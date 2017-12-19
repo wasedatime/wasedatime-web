@@ -2,11 +2,11 @@
   "name": "waseda-room-finder-web",
   "version": "1.0.0",
   "description": "A classroom finder web app for Waseda University",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
-    "dev-server": "webpack-dev-server"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -20,9 +20,11 @@
   "homepage": "https://github.com/waseda-room-finder/waseda-room-finder-web#readme",
   "dependencies": {
     "express": "^4.16.2",
-    "lodash": "^4.17.4"
+    "lodash": "^4.17.4",
+    "mongoose": "^4.13.7"
   },
   "devDependencies": {
+    "mocha": "^4.0.1",
     "nodemon": "^1.13.3"
   }
 }

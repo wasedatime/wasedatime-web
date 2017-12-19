@@ -5,19 +5,21 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha './test/**/*.test.js' ",
     "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/waseda-room-finder/waseda-room-finder-web.git"
+    "url":
+      "git+https://github.com/waseda-room-finder/waseda-room-finder-web.git"
   },
   "author": "Oscar Wang",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/waseda-room-finder/waseda-room-finder-web/issues"
   },
-  "homepage": "https://github.com/waseda-room-finder/waseda-room-finder-web#readme",
+  "homepage":
+    "https://github.com/waseda-room-finder/waseda-room-finder-web#readme",
   "dependencies": {
     "express": "^4.16.2",
     "lodash": "^4.17.4",

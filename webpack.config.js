@@ -6,13 +6,13 @@ module.exports = {
   ],
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.join(__dirname, 'dist')
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -21,5 +21,6 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  devtool: 'cheap-module-eval-source-map'
 };

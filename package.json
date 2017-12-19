@@ -4,7 +4,8 @@
   "description": "A classroom finder web app for Waseda University",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --watch"
   },
   "repository": {
     "type": "git",

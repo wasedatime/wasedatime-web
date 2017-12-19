@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const keys = require('../../config/keys');
 
+mongoose.Promise = global.Promise;
+
 before(done => {
   mongoose
     .connect(keys.mongoURI, {
@@ -11,7 +13,7 @@ before(done => {
       done();
     })
     .catch(err => {
-      console.error('Mongoose starting error:', err.stack);
+      console.error('Mongoose test starting error:', err.stack);
       process.exit(1);
     });
 });

@@ -1,0 +1,34 @@
+{
+  "name": "waseda-room-finder-web",
+  "version": "1.0.0",
+  "description": "A classroom finder web app for Waseda University",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waseda-room-finder/waseda-room-finder-web.git"
+  },
+  "author": "Oscar Wang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/waseda-room-finder/waseda-room-finder-web/issues"
+  },
+  "homepage": "https://github.com/waseda-room-finder/waseda-room-finder-web#readme",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "express": "^4.16.2",
+    "lodash": "^4.17.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "nodemon": "^1.13.3",
+    "webpack": "^3.10.0"
+  }
+}

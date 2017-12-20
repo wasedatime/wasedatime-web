@@ -25,5 +25,7 @@ app.get('/', (req, res) => {
   res.send({ hi: 'there' });
 });
 
+require('./routes/buildingRoutes')(app);
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

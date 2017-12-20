@@ -1,1 +1,1 @@
-# waseda-room-finder-web
+# wasetime-web

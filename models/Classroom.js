@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
+
 const { Schema } = mongoose;
+const ObjectId = Schema.Types.ObjectId;
 
 const classroomSchema = new Schema({
   name: String,

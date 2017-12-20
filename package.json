@@ -10,17 +10,16 @@
   },
   "repository": {
     "type": "git",
-    "url":
-      "git+https://github.com/waseda-room-finder/waseda-room-finder-web.git"
+    "url": "git+https://github.com/waseda-room-finder/waseda-room-finder-web.git"
   },
   "author": "Oscar Wang",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/waseda-room-finder/waseda-room-finder-web/issues"
   },
-  "homepage":
-    "https://github.com/waseda-room-finder/waseda-room-finder-web#readme",
+  "homepage": "https://github.com/waseda-room-finder/waseda-room-finder-web#readme",
   "dependencies": {
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "lodash": "^4.17.4",
     "mongoose": "^4.13.7"

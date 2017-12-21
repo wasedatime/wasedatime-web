@@ -1,1 +1,5 @@
+.env
+dev.js
+credentials.md
 /node_modules
+/db_backup

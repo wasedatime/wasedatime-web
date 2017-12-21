@@ -26,5 +26,5 @@ const classroomSchema = new Schema({
 module.exports = mongoose.model(
   'Classroom',
   classroomSchema,
-  'classrooms_fund_eng_eng'
+  '2017F_classrooms_sci_eng'
 );

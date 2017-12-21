@@ -22,4 +22,8 @@ const courseSchema = new Schema({
   code: String
 });
 
-module.exports = mongoose.model('Course', courseSchema, 'courses_fund_eng_eng');
+module.exports = mongoose.model(
+  'Course',
+  courseSchema,
+  '2017F_courses_sci_eng'
+);

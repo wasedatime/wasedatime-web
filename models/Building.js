@@ -15,5 +15,5 @@ const buildingSchema = new Schema({
 module.exports = mongoose.model(
   'Building',
   buildingSchema,
-  'buildings_fund_eng_eng'
+  '2017F_buildings_sci_eng'
 );

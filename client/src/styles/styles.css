@@ -1,3 +1,9 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
 html {
   font-size: 62.5%;
 }
@@ -7,36 +13,101 @@ body {
   font-size: 1.6rem;
 }
 
+/*.navbar .navbar-expand-sm*/
 .header {
   background: #222222;
-  display: inline-block;
-  margin: 0;
-  width: 100%;
+  position: sticky;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
 }
 
 .header__wrapper {
-  display: inherit;
-  width: inherit;
+  display: inline-block;
+  height: 100%;
   padding-left: 15px;
   padding-right: 15px;
-  height: 95px;
+  width: inherit;
 }
 
+/*.navbar-brand*/
 .header__logo {
-  padding: 0.8rem;
-  float: left;
+  display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  line-height: inherit;
+  white-space: nowrap;
 }
 
+/*.navbar-nav*/
 .header__nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  height: 6rem;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 
+/*.nav-item .nav-link*/
 .header__nav__elem {
-  font-size: 2.2rem;
-  color: white;
-  padding-left: 10px;
-  padding-right: 10px;
+  color: rgba(255, 255, 255, 1);
   text-decoration: none;
+  margin-bottom: -1px;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  text-align: center;
+  -ms-flex-preferred-size: 0;
+  flex-basis: 0;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 2rem 1rem;
+  font-size: 1.7rem;
+  font-weight: 330;
 }
+
+.header__nav__elem:hover {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/*
+@media (min-width: 320px) {
+*/
+.header {
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+}
+.header .header__nav {
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.header .header__nav .header__nav__elem {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+.header .navbar-collapse {
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -ms-flex-preferred-size: auto;
+  flex-basis: auto;
+}
+/*
+}
+*/
 
 .roomfinder {
   clear: left;

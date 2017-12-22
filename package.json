@@ -1,23 +1,25 @@
 {
-  "name": "waseda-room-finder-web",
+  "name": "wasetime-web",
   "version": "1.0.0",
   "description": "A classroom finder web app for Waseda University",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "mocha './test/**/*.test.js' ",
-    "dev": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client \""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/waseda-room-finder/waseda-room-finder-web.git"
+    "url": "git+https://github.com/wasetime/wasetime-web.git"
   },
   "author": "Oscar Wang",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/waseda-room-finder/waseda-room-finder-web/issues"
+    "url": "https://github.com/wasetime/wasetime-web/issues"
   },
-  "homepage": "https://github.com/waseda-room-finder/waseda-room-finder-web#readme",
+  "homepage": "https://github.com/wasetime/wasetime-web#readme",
   "dependencies": {
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
@@ -25,6 +27,7 @@
     "mongoose": "^4.13.7"
   },
   "devDependencies": {
+    "concurrently": "^3.5.1",
     "mocha": "^4.0.1",
     "nodemon": "^1.13.3"
   }

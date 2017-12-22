@@ -1,0 +1,46 @@
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 1.6rem;
+}
+
+.header {
+  background: #222222;
+  display: inline-block;
+  margin: 0;
+  width: 100%;
+}
+
+.header__wrapper {
+  display: inherit;
+  width: inherit;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 95px;
+}
+
+.header__logo {
+  padding: 0.8rem;
+  float: left;
+}
+
+.header__nav {
+}
+
+.header__nav__elem {
+  font-size: 2.2rem;
+  color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+}
+
+.roomfinder {
+  clear: left;
+}
+
+.bldglist {
+}

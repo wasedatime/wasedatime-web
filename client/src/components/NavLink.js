@@ -1,11 +1,12 @@
 import React from 'react';
+import { Route, Link } from 'react-router-dom';
 
 export default class NavLink extends React.Component {
   render() {
     return (
-      <a className="header__nav__elem" href={this.props.href}>
+      <Link to={this.props.link} className="header__nav__elem">
         {this.props.name}
-      </a>
+      </Link>
     );
   }
 }

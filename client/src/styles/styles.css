@@ -13,6 +13,10 @@ body {
   font-size: 1.6rem;
 }
 
+a:focus {
+  outline: 0;
+}
+
 /*.navbar .navbar-expand-sm*/
 .header {
   background: #222222;

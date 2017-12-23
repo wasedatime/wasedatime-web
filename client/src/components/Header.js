@@ -8,7 +8,7 @@ export default class Header extends React.Component {
     return (
       <header className="header">
         <Link to="/" className="header__logo">
-          <img src="/img/logo.png" alt="Wasetime logo" width="70" />
+          <img src="/img/logo.png" alt="Wasetime logo" width="60px" />
         </Link>
         <Navigation />
       </header>

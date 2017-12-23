@@ -5,12 +5,32 @@
 }
 
 html {
+  height: 100%;
   font-size: 62.5%;
 }
 
 body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 1.6rem;
+}
+
+#root {
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-top: 85px;
+}
+
+main {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  flex: 1 0 auto;
 }
 
 a:focus {
@@ -20,8 +40,12 @@ a:focus {
 /*.navbar .navbar-expand-sm*/
 .header {
   background: #222222;
-  position: sticky;
-  display: -ms-flexbox;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  padding: 0.3rem 1rem;
   display: flex;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
@@ -29,7 +53,6 @@ a:focus {
   align-items: center;
   -ms-flex-pack: justify;
   justify-content: space-between;
-  padding: 0.5rem 1rem;
 }
 
 .header__wrapper {
@@ -45,14 +68,13 @@ a:focus {
   display: inline-block;
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
-  margin-right: 1rem;
+  margin-right: 0.5rem;
   line-height: inherit;
   white-space: nowrap;
 }
 
 /*.navbar-nav*/
 .header__nav {
-  display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: column;
   flex-direction: column;
@@ -77,7 +99,7 @@ a:focus {
   flex-basis: 0;
   -ms-flex-positive: 1;
   flex-grow: 1;
-  padding: 2rem 1rem;
+  padding: 2rem 0.8rem;
   font-size: 1.7rem;
   font-weight: 330;
 }
@@ -99,22 +121,39 @@ a:focus {
   -ms-flex-direction: row;
   flex-direction: row;
 }
-.header .header__nav .header__nav__elem {
-  padding-right: 1rem;
-  padding-left: 1rem;
-}
 .header .navbar-collapse {
   display: -ms-flexbox !important;
   display: flex !important;
   -ms-flex-preferred-size: auto;
   flex-basis: auto;
 }
-/*
+
+.footer {
+  font-size: 1.4rem;
+  font-weight: 300;
+  text-align: center;
+  color: #a9a9a9;
+  background-color: #222222;
+  /*
+  background: #232526;
+  background: -webkit-linear-gradient(to top, #232526, #414345);
+  background: linear-gradient(to top, #232526, #414345);
+  */
 }
-*/
+
+.footer__list {
+  padding: 0;
+  margin: 1.4rem 0;
+  list-style-type: none;
+}
+
+.footer__link,
+.footer__author {
+  text-decoration: none;
+  color: #ffffff;
+}
 
 .roomfinder {
-  clear: left;
 }
 
 .bldglist {

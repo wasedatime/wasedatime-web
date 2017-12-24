@@ -1,14 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { render } from 'react-dom';
+import { createStore } from 'redux';
+import app from './reducers/index';
+import Root from './components/Root';
 
-import App from './components/App';
 import 'normalize-css/normalize.css';
 import './styles/styles.css';
 
-ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
-  document.getElementById('root')
-);
+let store = createStore(app);
+
+render(<Root store={store} />, document.getElementById('root'));

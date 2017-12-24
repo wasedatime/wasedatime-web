@@ -1,13 +1,11 @@
 import React from 'react';
 
-import NavLink from './NavLink';
+import NavRoomFinderLink from '../containers/NavRoomFinderLink';
 
 const Navigation = () => {
   return (
     <nav className="header__nav">
-      <NavLink name="TimeTable" link="/timetable" />
-      <NavLink name="RoomFinder" link="/roomfinder" />
-      <NavLink name="Bus" link="/bus" />
+      <NavRoomFinderLink link="/roomfinder" children="RoomFinder" />
     </nav>
   );
 };

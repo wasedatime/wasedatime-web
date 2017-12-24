@@ -4,18 +4,15 @@ const Building = mongoose.model('Building');
 const Classroom = mongoose.model('Classroom');
 
 module.exports = app => {
-  app.get('/roomfinder/current/:buildingName', async (req, res) => {
+  app.get('/api/current/:buildingName', async (req, res) => {
     var date = new Date();
-    var day = 1;
-    var minutes = 590;
-    //var day = date.getDay();
-    //var minutes = date.getHours() * 60 + date.getMinutes();
-    const classrooms = await Building.find({
+    var day = date.getDay();
+    var minutes = date.getHours() * 60 + date.getMinutes();
+    const building = await Building.find({
       name: req.params.buildingName
-    }).select({
-      _id: 0,
-      'classrooms.id': 0
     });
+
+    const building_classrooms = building[0].classrooms;
 
     const occupied_classrooms = await Classroom.aggregate(
       { $match: { building: req.params.buildingName } },
@@ -27,8 +24,8 @@ module.exports = app => {
           'courses.occurrences.end_time': { $gte: minutes }
         }
       },
-      { $project: { _id: 0, name: 1, 'courses.id': 1, 'courses.title': 1 } }
+      { $project: { name: 1, 'courses.id': 1, 'courses.title': 1 } }
     );
-    res.send({ classrooms, occupied_classrooms });
+    res.send({ date, building_classrooms, occupied_classrooms });
   });
 };

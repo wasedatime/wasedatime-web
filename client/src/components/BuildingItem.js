@@ -1,11 +1,16 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class BuildingItem extends React.Component {
-  render() {
-    return (
-      <li>
-        <a>{this.props.name}</a>
-      </li>
-    );
-  }
-}
+const BuildingItem = ({ name }) => {
+  return (
+    <li>
+      <a>{name}</a>
+    </li>
+  );
+};
+
+BuildingItem.propTypes = {
+  name: PropTypes.string.isRequired
+};
+
+export default BuildingItem;

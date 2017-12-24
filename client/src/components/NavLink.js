@@ -1,12 +1,18 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default class NavLink extends React.Component {
-  render() {
-    return (
-      <Link to={this.props.link} className="header__nav__elem">
-        {this.props.name}
-      </Link>
-    );
-  }
-}
+const NavLink = ({ link, name }) => {
+  return (
+    <Link to={link} className="header__nav__elem">
+      {name}
+    </Link>
+  );
+};
+
+export default NavLink;
+
+NavLink.propTypes = {
+  link: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired
+};

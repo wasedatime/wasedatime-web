@@ -1,10 +1,11 @@
 import React from 'react';
 import BuildingItem from './BuildingItem';
+import PropTypes from 'prop-types';
 
 export default class BuildingList extends React.Component {
   constructor(props) {
     super(props);
-    const buildings = [51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 66];
+    const buildings = ['51', '52', '53'];
     const listItems = buildings.map(building => (
       <BuildingItem key={building.toString()} name={building} />
     ));
@@ -24,3 +25,7 @@ export default class BuildingList extends React.Component {
     );
   }
 }
+
+BuildingItem.propTypes = {
+  name: PropTypes.string.isRequired
+};

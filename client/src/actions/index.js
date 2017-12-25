@@ -44,7 +44,9 @@ export function fetchBldgClassrooms(bldg) {
 
 export function fetchBldgOccupiedClassrooms(bldg) {
   var bldgOccupiedClassrooms = ['5a3b7c1ea2b3d21167f1564b'];
-  var bldgOccupiedClassroomsById = { name: '04-03B(社会文化領域研究室)' };
+  var bldgOccupiedClassroomsById = {
+    '5a3b7c1ea2b3d21167f1564b': { name: '04-03B(社会文化領域研究室)' }
+  };
   var payload = { bldgOccupiedClassrooms, bldgOccupiedClassroomsById };
   return { type: FETCH_BLDG_OCCUPIED_CLASSROOMS, payload };
 }

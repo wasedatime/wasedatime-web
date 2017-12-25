@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import BuildingItem from '../components/BuildingItem';
 import PropTypes from 'prop-types';

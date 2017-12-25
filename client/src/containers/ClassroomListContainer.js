@@ -10,8 +10,8 @@ import PropTypes from 'prop-types';
 
 class ClassroomListContainer extends React.Component {
   componentDidMount() {
-    this.props.fetchBldgClassrooms();
-    this.props.fetchBldgOccupiedClassrooms();
+    this.props.fetchBldgClassrooms(this.props.match.params.bldgName);
+    this.props.fetchBldgOccupiedClassrooms(this.props.match.params.bldgName);
   }
 
   render() {
@@ -21,21 +21,34 @@ class ClassroomListContainer extends React.Component {
 
 const getClassroomNames = (classroomIds, classroomsById) => {
   if (classroomIds.length !== 0) {
-    var classroomNames = classroomIds.map(id => classroomsById[id]['name']);
+    const classroomNames = classroomIds.map(id => classroomsById[id]['name']);
     console.log(classroomNames);
     return classroomNames;
   }
   return [];
 };
 
+const getOccupiedClassrooms = (classroomIds, classroomsById) => {
+  if (classroomIds.length !== 0) {
+    const classrooms = classroomIds.map(id => {
+      return {
+        name: classroomsById[id]['name'],
+        course: classroomsById[id]['courses']
+      };
+    });
+    console.log(classrooms);
+    return classrooms;
+  }
+  return [];
+};
+
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   return {
-    classroomNames: getClassroomNames(
+    classrooms: getClassroomNames(
       state.bldgClassroomIds,
       state.bldgClassroomsById
     ),
-    occupiedClassroomNames: getClassroomNames(
+    occupiedClassrooms: getOccupiedClassrooms(
       state.bldgOccupiedClassroomIds,
       state.bldgOccupiedClassroomsById
     )

@@ -1,13 +1,27 @@
-import { normalize, schema } from 'normalizr';
+import { schema } from 'normalizr';
 
 //{ _id: '5a3b9b0fd7776b6d49e060b5', name: '51' }
-export const bldgSchema = new schema.Entity(
-  'bldgs',
-  {},
-  { idAttribute: '_id' }
-);
+const bldgSchema = new schema.Entity('bldgs', {}, { idAttribute: '_id' });
 
 //shorthand syntax for new schema.Array(bldgSchema)
 export const bldgListSchema = [bldgSchema];
 
-export const test = 5;
+// { id: "5a3b7c1ea2b3d21167f156b1", name: "04-05" }
+const classroomSchema = new schema.Entity(
+  'classrooms',
+  {},
+  { idAttribute: 'id' }
+);
+
+export const classroomListSchema = [classroomSchema];
+
+// { _id: "5a3b7c1ea2b3d21167f15643",
+//   courses: {id: "5a3abb8f57ae267ac79fb856", title: "Communication Strategies 2 Mon-1 ISHIDA" },
+//   name : "B03" }
+const occupiedClassroomSchema = new schema.Entity(
+  'occupiedClassrooms',
+  {},
+  { idAttribute: '_id' }
+);
+
+export const occupiedClassroomListSchema = [occupiedClassroomSchema];

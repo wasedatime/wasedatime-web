@@ -9,7 +9,7 @@ const RoomFinder = ({ match }) => {
     <div className="roomfinder">
       <Route exact path={`${match.url}`} component={NishiBuildingList} />
       <Route
-        path={`${match.url}/:buildingName`}
+        path={`${match.url}/:bldgName`}
         component={ClassroomListContainer}
       />
     </div>

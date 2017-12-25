@@ -3,6 +3,8 @@
  */
 
 import axios from 'axios';
+import { normalize } from 'normalizr';
+//import { bldgById } from '../api/schema';
 
 import {
   FETCH_NISHI_BLDGS,
@@ -12,25 +14,31 @@ import {
 
 //This async action creator is a thunk.
 export const fetchNishiBldgs = () => {
-  return function(dispatch) {
-    var nishiBldgs = [
-      'time',
-      '5a3b9b0fd7776b6d49e060b5', //51
-      '5a3b9b0fd7776b6d49e060b6', //52
-      '5a3b9b0fd7776b6d49e060b7' //53
-    ];
-    var d = new Date();
-    var t = `Updated Time: ${d.getHours()}:${d.getMinutes()}`;
-    var nishiBldgsById = {
-      time: { name: t },
-      '5a3b9b0fd7776b6d49e060b5': { name: '51' },
-      '5a3b9b0fd7776b6d49e060b6': { name: '52' },
-      '5a3b9b0fd7776b6d49e060b7': { name: '53' }
-    };
-    var payload = { nishiBldgs, nishiBldgsById };
-
+  return function(dispatch, getState, schema) {
     axios.get('/api/buildings').then(res => {
-      console.log(res);
+      const nishiBldgNames = [
+        '51',
+        '52',
+        '53',
+        '54',
+        '55',
+        '56',
+        '57',
+        '58',
+        '59',
+        '60',
+        '61',
+        '62',
+        '63'
+      ];
+      //only include bldgs that are inside nishiBldgs array
+      const nishiData = res.data.filter(value => {
+        return nishiBldgNames.includes(value.name);
+      });
+      const normalizedNishiData = normalize(nishiData, schema.bldgListSchema);
+      const nishiBldgs = normalizedNishiData.result;
+      const nishiBldgsById = normalizedNishiData.entities.bldgs;
+      const payload = { nishiBldgs, nishiBldgsById };
       dispatch({ type: FETCH_NISHI_BLDGS, payload });
     });
   };

@@ -1,10 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const BuildingItem = ({ name }) => {
+const BuildingItem = ({ match, name }) => {
   return (
     <li>
-      <a>{name}</a>
+      <Link to={`/roomfinder/${name}`}>{name}</Link>
     </li>
   );
 };

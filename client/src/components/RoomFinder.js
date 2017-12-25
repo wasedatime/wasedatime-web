@@ -1,14 +1,11 @@
 import React from 'react';
-import BuildingList from './BuildingList.js';
+import NishiBuildingList from '../containers/NishiBuildingList';
 
 export default class RoomFinder extends React.Component {
   render() {
     return (
       <div className="roomfinder">
-        <BuildingList
-          className="bldglist"
-          name="Nishi-Waseda Campus Buildings"
-        />
+        <NishiBuildingList />
       </div>
     );
   }

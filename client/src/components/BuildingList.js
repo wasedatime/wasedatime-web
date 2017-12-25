@@ -1,31 +1,28 @@
 import React from 'react';
-import BuildingItem from './BuildingItem';
+import { connect } from 'react-redux';
+
+import BuildingItem from '../components/BuildingItem';
 import PropTypes from 'prop-types';
 
-export default class BuildingList extends React.Component {
-  constructor(props) {
-    super(props);
-    const buildings = ['51', '52', '53'];
-    const listItems = buildings.map(building => (
-      <BuildingItem key={building.toString()} name={building} />
+const BuildingList = props => {
+  if (props.bldgNames !== 0) {
+    const listItems = props.bldgNames.map(bldgName => (
+      <BuildingItem key={bldgName} name={bldgName} />
     ));
-    this.state = {
-      //TODO MongoDB routing
-      buildings: buildings,
-      listItems: listItems
-    };
-  }
-
-  render() {
     return (
       <div>
-        <h3>{this.props.name}</h3>
-        <ul>{this.state.listItems}</ul>
+        <h3>{props.name}</h3>
+        <ul>{listItems}</ul>
       </div>
     );
+  } else {
+    return <div />;
   }
-}
+};
 
-BuildingItem.propTypes = {
-  name: PropTypes.string.isRequired
+export default BuildingList;
+
+BuildingList.propTypes = {
+  name: PropTypes.string.isRequired,
+  bldgNames: PropTypes.array.isRequired
 };

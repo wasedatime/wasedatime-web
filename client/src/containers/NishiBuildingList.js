@@ -33,7 +33,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-//using shorthand syntax
+//shorthand syntax
 const mapDispatchToProps = {
   fetchNishiBldgs
 };

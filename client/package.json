@@ -12,6 +12,7 @@
     "bootstrap": "^4.0.0-beta.2",
     "node-sass-chokidar": "0.0.3",
     "normalize-css": "^2.3.1",
+    "normalizr": "^3.2.4",
     "npm-run-all": "^4.1.2",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
@@ -19,7 +20,8 @@
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
-    "redux": "^3.7.2"
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/ -o src/",

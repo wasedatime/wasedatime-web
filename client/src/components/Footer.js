@@ -20,7 +20,10 @@ const Footer = () => {
         </a>
       </p>
       <p className="footer__description">
-        Wasetime 2017. Code licensed&nbsp;
+        <a className="footer_organization" href="https://github.com/wasetime ">
+          Wasetime
+        </a>{' '}
+        2017. Code licensed&nbsp;
         <a
           className="footer__license"
           href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md"

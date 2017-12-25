@@ -149,6 +149,7 @@ a:focus {
 
 .footer__link,
 .footer__author,
+.footer_organization,
 .footer__license {
   text-decoration: none;
   color: #ffffff;

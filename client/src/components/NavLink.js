@@ -14,6 +14,5 @@ export default NavLink;
 
 NavLink.propTypes = {
   link: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  children: PropTypes.string.isRequired
 };

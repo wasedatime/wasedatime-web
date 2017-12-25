@@ -11,11 +11,8 @@ module.exports = app => {
   });
 
   app.get('/api/buildings/:buildingName', async (req, res) => {
-    const building = await Building.find({
+    const building = await Building.findOne({
       name: req.params.buildingName
-    }).select({
-      _id: 0,
-      'classrooms.id': 0
     });
     res.send(building);
   });

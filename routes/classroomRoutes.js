@@ -5,16 +5,15 @@ const Classroom = mongoose.model('Classroom');
 
 module.exports = app => {
   app.get('/api/current/:buildingName', async (req, res) => {
-    var date = new Date();
-    var day = date.getDay();
-    var minutes = date.getHours() * 60 + date.getMinutes();
-    const building = await Building.find({
-      name: req.params.buildingName
-    });
+    const date = new Date();
+    const day = date.getDay();
+    const minutes = 550; //date.getHours() * 60 + date.getMinutes();
+    // const building = await Building.find({
+    //   name: req.params.buildingName
+    // });
 
-    const building_classrooms = building[0].classrooms;
-
-    const occupied_classrooms = await Classroom.aggregate(
+    // const building_classrooms = building[0].classrooms;
+    const occupiedClassrooms = await Classroom.aggregate(
       { $match: { building: req.params.buildingName } },
       { $unwind: '$courses' },
       {
@@ -26,6 +25,6 @@ module.exports = app => {
       },
       { $project: { name: 1, 'courses.id': 1, 'courses.title': 1 } }
     );
-    res.send({ date, building_classrooms, occupied_classrooms });
+    res.send({ date, occupiedClassrooms });
   });
 };

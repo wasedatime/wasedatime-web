@@ -20,16 +20,16 @@ class NishiBuildingList extends React.Component {
   }
 }
 
-const getBldgNames = (nishiBldgs, nishiBldgsById) => {
-  if (nishiBldgs.length !== 0) {
-    return nishiBldgs.map(id => nishiBldgsById[id]['name']);
+const getBldgNames = (nishiBldgIds, nishiBldgsById) => {
+  if (nishiBldgIds.length !== 0) {
+    return nishiBldgIds.map(id => nishiBldgsById[id]['name']);
   }
   return [];
 };
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    bldgNames: getBldgNames(state.nishiBldgs, state.nishiBldgsById)
+    bldgNames: getBldgNames(state.nishiBldgIds, state.nishiBldgsById)
   };
 };
 

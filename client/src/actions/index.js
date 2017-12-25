@@ -4,7 +4,7 @@
 
 import axios from 'axios';
 import { normalize } from 'normalizr';
-//import { bldgById } from '../api/schema';
+import { nishiBldgs } from '../api/buildingList';
 
 import {
   FETCH_NISHI_BLDGS,
@@ -16,36 +16,22 @@ import {
 export const fetchNishiBldgs = () => {
   return function(dispatch, getState, schema) {
     axios.get('/api/buildings').then(res => {
-      const nishiBldgNames = [
-        '51',
-        '52',
-        '53',
-        '54',
-        '55',
-        '56',
-        '57',
-        '58',
-        '59',
-        '60',
-        '61',
-        '62',
-        '63'
-      ];
       //only include bldgs that are inside nishiBldgs array
+      console.log(nishiBldgs);
       const nishiData = res.data.filter(value => {
-        return nishiBldgNames.includes(value.name);
+        return nishiBldgs.includes(value.name);
       });
       const normalizedNishiData = normalize(nishiData, schema.bldgListSchema);
-      const nishiBldgs = normalizedNishiData.result;
+      const nishiBldgIds = normalizedNishiData.result;
       const nishiBldgsById = normalizedNishiData.entities.bldgs;
-      const payload = { nishiBldgs, nishiBldgsById };
+      const payload = { nishiBldgIds, nishiBldgsById };
       dispatch({ type: FETCH_NISHI_BLDGS, payload });
     });
   };
 };
 
 export function fetchBldgClassrooms(bldg) {
-  var bldgClassrooms = [
+  var bldgClassroomIds = [
     '5a3b7c1ea2b3d21167f1564b',
     '5a3b7c1ea2b3d21167f15679',
     '5a3b7c1ea2b3d21167f15668'
@@ -55,15 +41,15 @@ export function fetchBldgClassrooms(bldg) {
     '5a3b7c1ea2b3d21167f15679': { name: '06-04' },
     '5a3b7c1ea2b3d21167f15668': { name: '07-04' }
   };
-  var payload = { bldgClassrooms, bldgClassroomsById };
+  var payload = { bldgClassroomIds, bldgClassroomsById };
   return { type: FETCH_BLDG_CLASSROOMS, payload };
 }
 
 export function fetchBldgOccupiedClassrooms(bldg) {
-  var bldgOccupiedClassrooms = ['5a3b7c1ea2b3d21167f1564b'];
+  var bldgOccupiedClassroomIds = ['5a3b7c1ea2b3d21167f1564b'];
   var bldgOccupiedClassroomsById = {
     '5a3b7c1ea2b3d21167f1564b': { name: '04-03B(社会文化領域研究室)' }
   };
-  var payload = { bldgOccupiedClassrooms, bldgOccupiedClassroomsById };
+  var payload = { bldgOccupiedClassroomIds, bldgOccupiedClassroomsById };
   return { type: FETCH_BLDG_OCCUPIED_CLASSROOMS, payload };
 }

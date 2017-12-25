@@ -19,11 +19,11 @@ class ClassroomListContainer extends React.Component {
   }
 }
 
-const getClassroomNames = (rooms, roomsById) => {
-  if (rooms.length !== 0) {
-    var roomNames = rooms.map(id => roomsById[id]['name']);
-    console.log(roomNames);
-    return roomNames;
+const getClassroomNames = (classroomIds, classroomsById) => {
+  if (classroomIds.length !== 0) {
+    var classroomNames = classroomIds.map(id => classroomsById[id]['name']);
+    console.log(classroomNames);
+    return classroomNames;
   }
   return [];
 };
@@ -32,11 +32,11 @@ const mapStateToProps = (state, ownProps) => {
   console.log(state);
   return {
     classroomNames: getClassroomNames(
-      state.bldgClassrooms,
+      state.bldgClassroomIds,
       state.bldgClassroomsById
     ),
     occupiedClassroomNames: getClassroomNames(
-      state.bldgOccupiedClassrooms,
+      state.bldgOccupiedClassroomIds,
       state.bldgOccupiedClassroomsById
     )
   };

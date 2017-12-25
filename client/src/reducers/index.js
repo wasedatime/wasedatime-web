@@ -5,11 +5,11 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  nishiBldgs: [],
-  nishiBldgsById: [],
-  bldgClassrooms: [],
+  nishiBldgIds: [],
+  nishiBldgIdsById: [],
+  bldgClassroomIds: [],
   bldgClassroomsById: [],
-  bldgOccupiedClassrooms: [],
+  bldgOccupiedClassroomIds: [],
   bldgOccupiedClassroomsById: []
 };
 
@@ -18,19 +18,19 @@ export default function app(state = initialState, action) {
     case FETCH_NISHI_BLDGS:
       return {
         ...state,
-        nishiBldgs: action.payload.nishiBldgs,
+        nishiBldgIds: action.payload.nishiBldgIds,
         nishiBldgsById: action.payload.nishiBldgsById
       };
     case FETCH_BLDG_CLASSROOMS:
       return {
         ...state,
-        bldgClassrooms: action.payload.bldgClassrooms,
+        bldgClassroomIds: action.payload.bldgClassroomIds,
         bldgClassroomsById: action.payload.bldgClassroomsById
       };
     case FETCH_BLDG_OCCUPIED_CLASSROOMS:
       return {
         ...state,
-        bldgOccupiedClassrooms: action.payload.bldgOccupiedClassrooms,
+        bldgOccupiedClassroomIds: action.payload.bldgOccupiedClassroomIds,
         bldgOccupiedClassroomsById: action.payload.bldgOccupiedClassroomsById
       };
     default:

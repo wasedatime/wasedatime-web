@@ -5,12 +5,12 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  nishi_bldgs: [],
-  nishi_bldgsById: [],
-  bldg_classrooms: [],
-  bldg_classroomsById: [],
-  bldg_occupied_classrooms: [],
-  bldg_occupied_classroomsById: []
+  nishiBldgs: [],
+  nishiBldgsById: [],
+  bldgClassrooms: [],
+  bldgClassroomsById: [],
+  bldgOccupiedClassrooms: [],
+  bldgOccupiedClassroomsById: []
 };
 
 export default function app(state = initialState, action) {
@@ -18,20 +18,20 @@ export default function app(state = initialState, action) {
     case FETCH_NISHI_BLDGS:
       return {
         ...state,
-        nishi_bldgs: action.payload.nishi_bldgs,
-        nishi_bldgsById: action.payload.nishi_bldgsById
+        nishiBldgs: action.payload.nishiBldgs,
+        nishiBldgsById: action.payload.nishiBldgsById
       };
     case FETCH_BLDG_CLASSROOMS:
       return {
         ...state,
-        bldg_classrooms: action.payload.bldg_classrooms,
-        bldg_classroomsById: action.payload.bldg_classroomsById
+        bldgClassrooms: action.payload.bldgClassrooms,
+        bldgClassroomsById: action.payload.bldgClassroomsById
       };
     case FETCH_BLDG_OCCUPIED_CLASSROOMS:
       return {
         ...state,
-        bldg_occupied_classrooms: action.payload.bldg_occupied_classrooms,
-        bldg_occupied_classroomsById: action.payload.ldg_occupied_classroomsById
+        bldgOccupiedClassrooms: action.payload.bldgOccupiedClassrooms,
+        bldgOccupiedClassroomsById: action.payload.bldgOccupiedClassroomsById
       };
     default:
       return state;

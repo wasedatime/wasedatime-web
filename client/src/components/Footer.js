@@ -1,6 +1,9 @@
 import React from 'react';
 
 const Footer = () => {
+  //TODO emoji should be wrapped with img tag
+  const siteDescription = 'Created with ❤️ by ';
+  const licensceDescription = '. Code licensed ';
   return (
     <footer className="footer">
       <ul className="footer__list">
@@ -14,16 +17,16 @@ const Footer = () => {
         </li>
       </ul>
       <p className="footer__description">
-        Created with ❤️ by&nbsp;
+        {siteDescription}
         <a className="footer__author" href="https://github.com/OscarWang114">
           Oscar Wang
         </a>
       </p>
       <p className="footer__description">
         <a className="footer_organization" href="https://github.com/wasetime ">
-          Wasetime
-        </a>{' '}
-        2017. Code licensed&nbsp;
+          WaseTime 2017
+        </a>
+        {licensceDescription}
         <a
           className="footer__license"
           href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md"

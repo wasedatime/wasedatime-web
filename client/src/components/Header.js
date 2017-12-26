@@ -6,8 +6,8 @@ import Navigation from './Navigation';
 const Header = () => {
   return (
     <header className="header">
-      <Link to="/" className="header__logo">
-        <img src="/img/logo.png" alt="Wasetime logo" width="60px" />
+      <Link to="/" className="header__logo__wrapper">
+        <img className="header__logo" src="/img/logo.png" alt="Wasetime logo" />
       </Link>
       <Navigation />
     </header>

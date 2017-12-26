@@ -21,7 +21,16 @@ export const classroomListSchema = [classroomSchema];
 const occupiedClassroomSchema = new schema.Entity(
   'occupiedClassrooms',
   {},
-  { idAttribute: '_id' }
+  {
+    idAttribute: '_id',
+    processStrategy: entity => {
+      return {
+        id: entity._id,
+        name: entity.name,
+        courses: entity.courses
+      };
+    }
+  }
 );
 
 export const occupiedClassroomListSchema = [occupiedClassroomSchema];

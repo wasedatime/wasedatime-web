@@ -14,7 +14,7 @@
   flex-grow: 1 0 auto;
   position: fixed;
   width: 100%;
-  padding: 5px 0px 1px 24px;
+  padding: 5px 0px 1px 25px;
   background-color: #777;
   text-align: right;
 }
@@ -22,7 +22,7 @@
 .roomfinder__logo {
   height: 30px;
   width: 30px;
-  margin-right: 20px;
+  margin-right: 19px;
 }
 
 .roomfinder__nav__elem {

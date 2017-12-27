@@ -77,6 +77,28 @@ a:focus {
   width: 60px;
 }
 
+/* .header__logo.hover,
+.header__logo:hover {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+
+  -webkit-transition: 0.6s;
+  -webkit-transform-style: preserve-3d;
+
+  -moz-transition: 0.6s;
+  -moz-transform-style: preserve-3d;
+
+  -o-transition: 0.6s;
+  -o-transform-style: preserve-3d;
+
+  transition: 0.6s;
+  transform-style: preserve-3d;
+
+  position: relative;
+} */
+
 /*.navbar-nav*/
 .header__nav {
   display: flex;
@@ -85,6 +107,7 @@ a:focus {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
+  list-style-type: none;
   height: 6rem;
   max-width: 100%;
   overflow-x: auto;
@@ -149,6 +172,7 @@ a:focus {
 .footer__list {
   padding: 0;
   margin: 1.4rem 0;
+  list-style: none;
   list-style-type: none;
 }
 
@@ -160,8 +184,3 @@ a:focus {
   color: #ffffff;
 }
 
-.roomfinder {
-}
-
-.bldglist {
-}

@@ -16,8 +16,7 @@
   flex-direction: column;
   -ms-flex-direction: column;
   flex: 1 0 auto;
-  padding-right: 25px;
-  padding-left: 25px;
+  padding: 0 25px;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -28,7 +27,6 @@
   animation-name: slideup-in;
   animation-duration: 1000ms;
   max-width: 100%;
-  /* animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); */
   animation-timing-function: cubic-bezier(0.175, 0.885, 0.5, 1.275);
   animation-fill-mode: forwards;
 }
@@ -66,13 +64,6 @@
   font-weight: 300;
   color: white;
 }
-
-/* .home__description__highlight {
-  font-family: 'Times New Roman';
-  font-size: 2.5rem;
-  font-weight: 100;
-  color: greenyellow;
-} */
 
 @keyframes slideup-in {
   from {
@@ -132,7 +123,6 @@
     animation-name: slideup-in;
     animation-duration: 1000ms;
     max-width: 100%;
-    /* animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); */
     animation-timing-function: cubic-bezier(0.175, 0.885, 0.5, 1.275);
     animation-fill-mode: forwards;
   }

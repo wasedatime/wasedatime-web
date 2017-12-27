@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchBldgCurrentClassrooms } from '../actions/index';
 import ClassroomList from '../components/ClassroomList';
 import PropTypes from 'prop-types';
+import '../styles/classroomList.css';
 
 class ClassroomListContainer extends React.Component {
   constructor(props) {
@@ -17,10 +18,14 @@ class ClassroomListContainer extends React.Component {
 
   render() {
     return (
-      <ClassroomList
-        bldgName={this.bldgName}
-        classrooms={this.props.mergedClassrooms}
-      />
+      <div className="classroomListContainer__wrapper">
+        <div className="classroomListContainer__overlay">
+          <ClassroomList
+            bldgName={this.bldgName}
+            classrooms={this.props.mergedClassrooms}
+          />
+        </div>
+      </div>
     );
   }
 }

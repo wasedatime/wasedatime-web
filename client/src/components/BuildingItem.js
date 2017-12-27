@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 const BuildingItem = ({ match, name }) => {
   return (
     <li>
-      <Link to={`/roomfinder/${name}`}>{name}</Link>
+      <Link to={`/roomfinder/${name}`}>
+        <button className="buildingItem__button">{name}</button>
+      </Link>
     </li>
   );
 };

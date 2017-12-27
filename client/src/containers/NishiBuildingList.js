@@ -16,7 +16,13 @@ class NishiBuildingList extends React.Component {
   }
 
   render() {
-    return <BuildingList name={this.name} bldgNames={this.props.bldgNames} />;
+    return (
+      <div className="nishiBuildingList__wrapper">
+        <div className="nishiBuildingList__overlay">
+          <BuildingList name={this.name} bldgNames={this.props.bldgNames} />
+        </div>
+      </div>
+    );
   }
 }
 

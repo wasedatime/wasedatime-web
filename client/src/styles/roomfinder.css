@@ -6,92 +6,25 @@
   flex: 1 0 auto;
 }
 
-.nishiBuildingList__wrapper {
+.roomfinder__nav {
   display: flex;
   display: -ms-flexbox;
   flex-direction: column;
   -ms-flex-direction: column;
-  flex: 1 0 auto;
-  background-image: url('/img/nishi_waseda_campus-sm.jpg');
-  background-position: center, center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  position: absolute;
+  top: 110px;
 }
 
-.nishiBuildingList__overlay {
-  display: flex;
-  display: -ms-flexbox;
-  flex-direction: column;
-  -ms-flex-direction: column;
-  flex: 1 0 auto;
-  padding: 0 25px;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.buildingList__title__wrapper {
-  display: inline-block;
-  margin-top: 50px;
-  margin-left: -25px;
-  padding: 3px 10px;
+.roomfinder__nav__elem {
+  display: table;
+  margin-top: 10px;
+  padding: 5px 15px 5px 25px;
   border-radius: 0px 8px 8px 0px;
-  text-align: left;
-  background-color: rgba(0, 0, 0, 0.2);
-}
-
-.buildingList__title {
-  margin: 0 0;
-  padding-left: 25px;
-  font-family: 'Times';
-  font-size: 3.2rem;
-  font-weight: lighter;
   color: #fff;
-}
-
-.buildingList__wrapper {
-  text-align: center;
-}
-
-.buildingList {
-  padding: 0;
-  list-style: none;
-  list-style-type: none;
-}
-
-.buildingItem__button {
-  background-color: #fff;
-  padding: 12px;
-  margin: 10px 0;
-  width: 200px;
-  text-align: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-family: 'Times';
+  font-size: 3rem;
+  font-weight: lighter;
+  text-align: left;
   text-decoration: none;
-  border-radius: 8px;
-  border-bottom: none;
-  box-shadow: 0 5px #999;
-}
-
-.buildingItem__button:hover {
-  background-color: #eee;
-}
-
-.buildingItem__button:active {
-  background-color: #eee;
-  box-shadow: 0 5px #666;
-  transform: translateY(3px);
-}
-
-@-webkit-keyframes bounceright {
-  from {
-    -webkit-transform: translateX(0);
-  }
-  to {
-    -webkit-transform: translateX(3px);
-  }
-}
-@keyframes bounceright {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(3px);
-  }
 }

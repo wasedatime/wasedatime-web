@@ -9,7 +9,7 @@ import '../styles/buildingList.css';
 class NishiBuildingList extends React.Component {
   constructor(props) {
     super(props);
-    this.name = 'Nishi-Waseda Campus Buildings';
+    this.name = 'Nishi-Waseda Campus';
   }
 
   componentDidMount() {

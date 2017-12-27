@@ -9,7 +9,9 @@ const ClassroomList = props => {
     return (
       <div>
         <div className="classroomList__title__wrapper">
-          <h3 className="classroomList__title">{props.bldgName}</h3>
+          <h3 className="classroomList__title">{`Building ${
+            props.bldgName
+          }`}</h3>
         </div>
         <div className="classroomList__wrapper">
           <ul className="classroomList">{listItems}</ul>

@@ -16,14 +16,14 @@
   flex-direction: column;
   -ms-flex-direction: column;
   flex: 1 0 auto;
-  padding: 200px 0px 25px 0px;
+  padding: 42px 0px 25px 0px;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
 .buildingList__title__wrapper {
   display: inline-block;
-  margin-top: 50px;
-  margin-left: -25px;
+  margin-top: 30px;
+  margin-left: -20px;
   padding: 3px 10px;
   border-radius: 0px 8px 8px 0px;
   text-align: left;
@@ -40,7 +40,6 @@
 }
 
 .buildingList__wrapper {
-  margin-bottom: 13vh;
   text-align: center;
 }
 

@@ -102,7 +102,6 @@
     flex: 1 0 auto;
     background-image: url('../img/home_background-mobile.jpg');
     background-color: rgba(0, 0, 0, 0.2);
-    /* background-position: left bottom; */
     background-size: cover;
     background-repeat: no-repeat;
   }

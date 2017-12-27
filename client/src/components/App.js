@@ -1,18 +1,24 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Home from './Home';
 import RoomFinder from './RoomFinder';
 import Footer from './Footer';
+import ComingSoon from './ComingSoon';
 
 const App = () => {
   return (
     <div className="app">
       <Header />
       <main>
-        <Route exact path="/" component={Home} />
-        <Route path="/roomfinder" component={RoomFinder} />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/timetable" component={ComingSoon} />
+          <Route path="/roomfinder" component={RoomFinder} />
+          <Route path="/bus" component={ComingSoon} />
+          <Route component={Home} />
+        </Switch>
       </main>
       <Footer />
     </div>

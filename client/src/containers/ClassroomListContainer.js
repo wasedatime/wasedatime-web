@@ -1,8 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import { fetchBldgCurrentClassrooms } from '../actions/index';
 import ClassroomList from '../components/ClassroomList';
+import bldgs from '../api/buildingList';
 import PropTypes from 'prop-types';
 import '../styles/classroomList.css';
 
@@ -10,23 +12,35 @@ class ClassroomListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.bldgName = this.props.match.params.bldgName;
+    this.redirect = false;
   }
 
   componentDidMount() {
+    // if (bldgs.includes(this.bldgName)) {
     this.props.fetchBldgCurrentClassrooms(this.bldgName);
+    // } else {
+    //   this.redirect = true;
+    //   console.log('will Redirect');
+    // }
   }
 
   render() {
-    return (
-      <div className="classroomListContainer__wrapper">
-        <div className="classroomListContainer__overlay">
-          <ClassroomList
-            bldgName={this.bldgName}
-            classrooms={this.props.mergedClassrooms}
-          />
+    if (bldgs.includes(this.bldgName)) {
+      console.log('no redirect');
+      return (
+        <div className="classroomListContainer__wrapper">
+          <div className="classroomListContainer__overlay">
+            <ClassroomList
+              bldgName={this.bldgName}
+              classrooms={this.props.mergedClassrooms}
+            />
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      console.log('redirect');
+      return <Redirect from={this.props.match.url} to="/roomfinder" />;
+    }
   }
 }
 
@@ -39,7 +53,6 @@ const mergeClassrooms = (clrmIds, clrmsById, oClrmIds, oClrmsById) => {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  console.log(state);
   const mergedClassroomsObject = mergeClassrooms(
     state.bldgClassroomIds,
     state.bldgClassroomsById,

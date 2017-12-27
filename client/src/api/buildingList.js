@@ -1,3 +1,5 @@
+export const mainBldgs = [];
+
 export const nishiBldgs = [
   '51',
   '52',
@@ -13,3 +15,9 @@ export const nishiBldgs = [
   '62',
   '63'
 ];
+
+export const toyamaBldgs = [];
+
+const bldgs = mainBldgs.concat(nishiBldgs).concat(toyamaBldgs);
+
+export default bldgs;

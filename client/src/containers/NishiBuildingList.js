@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { fetchNishiBldgs } from '../actions/index';
 import BuildingList from '../components/BuildingList';
 import PropTypes from 'prop-types';
+import '../styles/buildingList.css';
 
 class NishiBuildingList extends React.Component {
   constructor(props) {

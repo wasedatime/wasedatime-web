@@ -1,0 +1,91 @@
+.nishiBuildingList__wrapper {
+  display: flex;
+  display: -ms-flexbox;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  flex: 1 0 auto;
+  background-image: url('/img/nishi_waseda_campus-sm.jpg');
+  background-position: center, center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.nishiBuildingList__overlay {
+  display: flex;
+  display: -ms-flexbox;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  flex: 1 0 auto;
+  padding: 200px 0px 25px 0px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.buildingList__title__wrapper {
+  display: inline-block;
+  margin-top: 50px;
+  margin-left: -25px;
+  padding: 3px 10px;
+  border-radius: 0px 8px 8px 0px;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.buildingList__title {
+  margin: 0 0;
+  padding-left: 25px;
+  font-family: 'Times';
+  font-size: 3.2rem;
+  font-weight: lighter;
+  color: #fff;
+}
+
+.buildingList__wrapper {
+  margin-bottom: 13vh;
+  text-align: center;
+}
+
+.buildingList {
+  padding: 0;
+  list-style: none;
+  list-style-type: none;
+}
+
+.buildingItem__button {
+  background-color: #fff;
+  padding: 12px;
+  margin: 10px 0;
+  width: 160px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  border-bottom: none;
+  box-shadow: 0 5px #999;
+  font-size: 1.7rem;
+}
+
+.buildingItem__button:hover {
+  background-color: #ccc;
+}
+
+.buildingItem__button:active {
+  background-color: #ccc;
+  box-shadow: 0 5px #666;
+  transform: translateY(3px);
+}
+
+@-webkit-keyframes bounceright {
+  from {
+    -webkit-transform: translateX(0);
+  }
+  to {
+    -webkit-transform: translateX(3px);
+  }
+}
+@keyframes bounceright {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(3px);
+  }
+}

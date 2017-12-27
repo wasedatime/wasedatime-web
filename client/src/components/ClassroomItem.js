@@ -4,18 +4,15 @@ import PropTypes from 'prop-types';
 const ClassroomItem = ({ children }) => {
   if (typeof children.courses !== 'undefined') {
     return (
-      <li>
-        <div style={{ color: 'red' }}>
-          {children.name}
-          {` `}
-          {children.courses.title}
-        </div>
+      <li className="classroomItem">
+        <div className="classroomItem__occupied">{children.name}</div>
+        <div className="classroomItem__course">{children.courses.title}</div>
       </li>
     );
   } else {
     return (
-      <li>
-        <div>{children.name}</div>
+      <li className="classroomItem">
+        <div className="classroomItem__vacant">{children.name}</div>
       </li>
     );
   }

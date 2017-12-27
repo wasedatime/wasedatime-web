@@ -20,7 +20,7 @@ module.exports = app => {
         $match: {
           'courses.occurrences.day': day,
           'courses.occurrences.start_time': { $lte: minutes },
-          'courses.occurrences.end_time': { $gte: minutes }
+          'courses.occurrences.end_time': { $gt: minutes }
         }
       },
       { $project: { name: 1, 'courses.id': 1, 'courses.title': 1 } }

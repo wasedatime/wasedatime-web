@@ -8,8 +8,12 @@ const ClassroomList = props => {
     });
     return (
       <div>
-        <h3>{props.bldgName}</h3>
-        <ul>{listItems}</ul>
+        <div className="classroomList__title__wrapper">
+          <h3 className="classroomList__title">{props.bldgName}</h3>
+        </div>
+        <div className="classroomList__wrapper">
+          <ul className="classroomList">{listItems}</ul>
+        </div>
       </div>
     );
   } else {

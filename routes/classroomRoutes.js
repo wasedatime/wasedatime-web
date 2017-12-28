@@ -8,8 +8,8 @@ module.exports = app => {
   app.get('/api/current/:buildingName', async (req, res) => {
     if (buildingList.allBldgs.includes(req.params.buildingName)) {
       const date = new Date();
-      const day = date.getDay();
-      const minutes = date.getHours() * 60 + date.getMinutes();
+      const day = 4; //date.getDay();
+      const minutes = 1000; //date.getHours() * 60 + date.getMinutes();
       const building = await Building.find({
         name: req.params.buildingName
       });

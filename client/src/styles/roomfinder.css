@@ -14,24 +14,24 @@
   flex-grow: 1 0 auto;
   position: fixed;
   width: 100%;
-  padding: 5px 0px 1px 25px;
+  padding: 5px 0px 1px 26px;
   background-color: #777;
   text-align: right;
 }
 
 .roomfinder__logo {
-  height: 30px;
-  width: 30px;
-  margin-right: 19px;
+  height: 27px;
+  width: 27px;
+  margin-right: 18px;
 }
 
 .roomfinder__nav__elem {
   align-self: flex-end;
   display: table;
-  padding: 5px 12px 5px 12px;
+  padding: 5px 14px 5px 14px;
   color: #fff;
   font-family: 'Garamond';
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 400;
   text-align: left;
   text-decoration: none;
@@ -39,7 +39,7 @@
 
 .roomfinder__comingsoon__main {
   top: 112px;
-  left: 71px;
+  left: 66px;
   padding: 1px 5px;
   background-color: pink;
   border-radius: 3px;
@@ -50,7 +50,7 @@
 
 .roomfinder__comingsoon__toyama {
   top: 112px;
-  left: 227px;
+  left: 222px;
   padding: 1px 5px;
   background-color: pink;
   border-radius: 3px;

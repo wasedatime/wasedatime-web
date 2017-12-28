@@ -16,7 +16,7 @@
   flex-direction: column;
   -ms-flex-direction: column;
   flex: 1 0 auto;
-  padding: 42px 25px 25px 25px 0px;
+  padding: 42px 25px 25px 25px;
   background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -46,6 +46,8 @@
 }
 
 .classroomList {
+  display: flex;
+  flex-direction: column;
   text-align: left;
   padding: 0;
   list-style: none;
@@ -53,15 +55,17 @@
 }
 
 .classroomItem {
-  font-size: 1.7rem;
-  padding: 8px 0;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 1.7rem;
+  /* padding: 8px 0; */
 }
 
 .classroomItem__vacant {
   display: table;
   background-color: #ceffaf;
-  margin-right: 5px;
+  margin: 4px 5px 4px 0px;
   padding: 10px 15px;
   text-align: center;
   text-decoration: none;
@@ -72,7 +76,7 @@
 .classroomItem__occupied {
   display: table;
   background-color: #ffafaf;
-  margin-right: 5px;
+  margin: 4px 5px 4px 0px;
   padding: 10px 15px;
   text-align: center;
   text-decoration: none;
@@ -84,36 +88,10 @@
 .classroomItem__course {
   display: inline-block;
   background-color: #ffafaf;
+  margin: 4px 0px 4px 0px;
   padding: 12px;
   text-align: center;
   text-decoration: none;
   border-radius: 8px;
   border: none;
-}
-
-/* .buildingItem__button:hover {
-  background-color: #eee;
-}
-
-.buildingItem__button:active {
-  background-color: #eee;
-  box-shadow: 0 5px #666;
-  transform: translateY(3px);
-} */
-
-@-webkit-keyframes bounceright {
-  from {
-    -webkit-transform: translateX(0);
-  }
-  to {
-    -webkit-transform: translateX(3px);
-  }
-}
-@keyframes bounceright {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(3px);
-  }
 }

@@ -16,7 +16,7 @@
   flex-direction: column;
   -ms-flex-direction: column;
   flex: 1 0 auto;
-  padding: 42px 25px 25px 25px 0px;
+  padding: 42px 25px 25px 25px;
   background-color: rgba(0, 0, 0, 0.2);
 }
 

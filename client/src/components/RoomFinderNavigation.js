@@ -1,16 +1,13 @@
 import React from 'react';
 
 import NavLink from './NavLink';
+import campus from '../img/campus.png';
 
 const RoomFinderNavigation = () => {
   return (
     <div>
       <nav className="roomfinder__nav">
-        <img
-          className="roomfinder__logo"
-          src="/img/campus.png"
-          alt="Campus logo"
-        />
+        <img className="roomfinder__logo" src={campus} alt="Campus logo" />
         <NavLink
           link="/roomfinder#mainCampus"
           children="Main"

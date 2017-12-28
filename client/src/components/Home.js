@@ -1,6 +1,7 @@
 import React from 'react';
 
 import '../styles/home.css';
+import logo from '../img/logo.png';
 
 const Home = () => {
   return (
@@ -8,7 +9,7 @@ const Home = () => {
       <div className="home__overlay">
         <header className="home__header">
           <div className="home__logo_wrapper">
-            <img className="home__logo" src="/img/logo.png" />
+            <img className="home__logo" src={logo} />
           </div>
           <div className="home__title__description__wrapper">
             <h1 className="home__title">WaseTime</h1>

@@ -4,7 +4,7 @@
   flex-direction: column;
   -ms-flex-direction: column;
   flex: 1 0 auto;
-  background-image: url('/img/nishi_waseda_campus-sm.jpg');
+  background-image: url('../img/nishi_waseda_campus-sm.jpg');
   background-position: center, center;
   background-size: cover;
   background-repeat: no-repeat;

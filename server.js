@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const helmet = require('helmet');
 const keys = require('./config/keys');
 require('./models/Course');
 require('./models/Classroom');
@@ -21,6 +22,7 @@ mongoose
   });
 
 const app = express();
+app.use(helmet());
 
 require('./routes/buildingRoutes')(app);
 require('./routes/classroomRoutes')(app);

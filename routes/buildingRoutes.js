@@ -5,9 +5,11 @@ const buildingList = require('../api/buildingList.js');
 
 module.exports = app => {
   app.get('/api/buildings', async (req, res) => {
-    const buildings = await Building.find({}).select({
-      name: 1
-    });
+    const buildings = await Building.find({})
+      .sort({ name: 1 })
+      .select({
+        name: 1
+      });
     res.send(buildings);
   });
 

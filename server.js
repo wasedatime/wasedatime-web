@@ -22,12 +22,18 @@ mongoose
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send({ hi: 'there' });
-});
-
 require('./routes/buildingRoutes')(app);
 require('./routes/classroomRoutes')(app);
+
+if (process.env.NODE_ENV === 'production') {
+  //serve up production assests
+  app.use(express.static('client/build'));
+  //serve up index.html if route is unrecognizable
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT);

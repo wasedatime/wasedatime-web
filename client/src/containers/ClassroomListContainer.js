@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 import { fetchBldgCurrentClassrooms } from '../actions/index';
 import ClassroomList from '../components/ClassroomList';
-import bldgs from '../api/buildingList';
+import allBldgs from '../api/buildingList';
 import PropTypes from 'prop-types';
 import '../styles/classroomList.css';
 
@@ -16,16 +16,11 @@ class ClassroomListContainer extends React.Component {
   }
 
   componentDidMount() {
-    // if (bldgs.includes(this.bldgName)) {
     this.props.fetchBldgCurrentClassrooms(this.bldgName);
-    // } else {
-    //   this.redirect = true;
-    //   console.log('will Redirect');
-    // }
   }
 
   render() {
-    if (bldgs.includes(this.bldgName)) {
+    if (allBldgs.includes(this.bldgName)) {
       console.log('no redirect');
       return (
         <div className="classroomListContainer__wrapper">

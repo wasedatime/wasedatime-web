@@ -18,6 +18,6 @@ export const nishiBldgs = [
 
 export const toyamaBldgs = [];
 
-const bldgs = mainBldgs.concat(nishiBldgs).concat(toyamaBldgs);
+const allBldgs = mainBldgs.concat(nishiBldgs).concat(toyamaBldgs);
 
-export default bldgs;
+export default allBldgs;

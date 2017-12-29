@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Header from './Header';
 import Home from './Home';
+import Syllabus from './Syllabus';
 import RoomFinder from './RoomFinder';
 import Footer from './Footer';
 import ComingSoon from './ComingSoon';
@@ -14,7 +15,7 @@ const App = () => {
       <main>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/timetable" component={ComingSoon} />
+          <Route path="/syllabus" component={Syllabus} />
           <Route path="/roomfinder" component={RoomFinder} />
           <Route path="/bus" component={ComingSoon} />
           <Route component={Home} />

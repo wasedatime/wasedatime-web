@@ -6,8 +6,8 @@ const Navigation = () => {
   return (
     <nav className="header__nav">
       <NavLink
-        link="/timetable"
-        children="TimeTable"
+        link="/syllabus"
+        children="Syllabus"
         className="header__nav__elem"
       />
       <NavLink

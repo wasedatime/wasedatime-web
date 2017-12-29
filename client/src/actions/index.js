@@ -54,13 +54,10 @@ const sortCourses = (searchTerm, courses) => {
 
 export const searchCourses = searchTerm => {
   var courseResults = [];
-  if (searchTerm && searchTerm.length > 2) {
-    console.log('searching');
+  if (searchTerm && searchTerm.length > 1) {
     const filteredCourses = filterCourses(searchTerm, courses);
     courseResults = sortCourses(searchTerm, filteredCourses);
   }
-
-  //const courseResults = courses[0];
   const payload = { courseResults };
   return { type: SEARCH_COURSES, payload };
 };

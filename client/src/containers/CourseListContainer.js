@@ -3,10 +3,17 @@ import { connect } from 'react-redux';
 
 import CourseList from '../components/CourseList';
 import PropTypes from 'prop-types';
+import '../styles/courseList.css';
 
 class CourseListContainer extends React.Component {
   render() {
-    return <CourseList courseResults={this.props.courseResults} />;
+    return (
+      <div className="courseListContainer__wrapper">
+        <div className="courseListContainer__overlay">
+          <CourseList courseResults={this.props.courseResults} />{' '}
+        </div>
+      </div>
+    );
   }
 }
 

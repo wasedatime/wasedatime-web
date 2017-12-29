@@ -11,7 +11,14 @@ class SyllabusSearch extends React.Component {
     this.wait = 300;
   }
   render() {
-    return <SearchBar onSearch={this.props.searchCourses} wait={this.wait} />;
+    return (
+      <SearchBar
+        className="syllabus__searchbar"
+        placeholder="Course names, instructors"
+        onSearch={this.props.searchCourses}
+        wait={this.wait}
+      />
+    );
   }
 }
 

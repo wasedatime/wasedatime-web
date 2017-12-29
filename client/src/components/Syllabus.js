@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import CourseListContainer from '../containers/CourseListContainer';
 import SyllabusSearchBar from '../containers/SyllabusSearchBar';
-// import '../styles/syllabus.css';
+import '../styles/syllabus.css';
 
 const Syllabus = ({ match }) => {
   return (

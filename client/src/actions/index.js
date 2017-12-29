@@ -3,15 +3,67 @@
  */
 
 import axios from 'axios';
+import { sortBy } from 'lodash';
 import { normalize } from 'normalizr';
-import { nishiBldgs } from '../api/buildingList';
 
+import { nishiBldgs } from '../api/buildingList';
 import {
+  SEARCH_COURSES,
   FETCH_NISHI_BLDGS,
-  FETCH_BLDG_CLASSROOMS,
-  FETCH_BLDG_OCCUPIED_CLASSROOMS,
   FETCH_BLDG_CURRENT_CLASSROOMS
 } from './types';
+import courses from '../data/2017F_courses_sci_eng_search.json';
+
+const tokenize = string => {
+  return string.trim().split(/\W+/g);
+};
+
+const regexify = string => {
+  const terms = string.trim().replace(/\W+/g, '\\W+');
+  const reg = RegExp(`\\b${terms}`, 'i');
+  return reg;
+};
+
+const filterCourses = (searchTerm, courses) => {
+  const searchRegexes = tokenize(searchTerm).map(regexify);
+
+  return courses.filter(course => {
+    return searchRegexes.every(regex => {
+      return regex.test(course.title) || regex.test(course.instructor);
+    });
+  });
+};
+
+const sortCourses = (searchTerm, courses) => {
+  const searchRegexes = tokenize(searchTerm).map(regexify);
+
+  return sortBy(courses, course => {
+    let sum = 0;
+    for (let i = 0; i < searchRegexes.length; i++) {
+      if (searchRegexes[i].test(course.title)) {
+        sum += 1;
+      } else if (searchRegexes[i].test(course.instructor)) {
+        sum += 2;
+      } else {
+        sum += 3;
+      }
+      return sum;
+    }
+  });
+};
+
+export const searchCourses = searchTerm => {
+  var courseResults = [];
+  if (searchTerm && searchTerm.length > 2) {
+    console.log('searching');
+    const filteredCourses = filterCourses(searchTerm, courses);
+    courseResults = sortCourses(searchTerm, filteredCourses);
+  }
+
+  //const courseResults = courses[0];
+  const payload = { courseResults };
+  return { type: SEARCH_COURSES, payload };
+};
 
 //This async action creator is an example of a thunk in redux-thunk.
 export const fetchNishiBldgs = () => async (dispatch, getState, schema) => {
@@ -25,44 +77,6 @@ export const fetchNishiBldgs = () => async (dispatch, getState, schema) => {
   const nishiBldgsById = normalizedNishiData.entities.bldgs;
   const payload = { nishiBldgIds, nishiBldgsById };
   dispatch({ type: FETCH_NISHI_BLDGS, payload });
-};
-
-export const fetchBldgClassrooms = bldg => async (
-  dispatch,
-  getState,
-  schema
-) => {
-  const res = await axios.get(`/api/buildings/${bldg}`);
-  const normalizedData = normalize(
-    res.data.classrooms,
-    schema.classroomListSchema
-  );
-  const bldgClassroomIds = normalizedData.result;
-  const bldgClassroomsById = normalizedData.entities.classrooms;
-  const payload = { bldgClassroomIds, bldgClassroomsById };
-  dispatch({ type: FETCH_BLDG_CLASSROOMS, payload });
-};
-
-export const fetchBldgOccupiedClassrooms = bldg => async (
-  dispatch,
-  getState,
-  schema
-) => {
-  const res = await axios.get(`/api/current/${bldg}`);
-  const data = res.data.occupiedClassrooms;
-  var payload = {
-    bldgOccupiedClassroomIds: [],
-    bldgOccupiedClassroomsById: []
-  };
-  if (data.length !== 0) {
-    const normalizedData = normalize(data, schema.occupiedClassroomListSchema);
-    const bldgOccupiedClassroomIds = normalizedData.result;
-    const bldgOccupiedClassroomsById =
-      normalizedData.entities.occupiedClassrooms;
-    payload = { bldgOccupiedClassroomIds, bldgOccupiedClassroomsById };
-  }
-
-  dispatch({ type: FETCH_BLDG_OCCUPIED_CLASSROOMS, payload });
 };
 
 export const fetchBldgCurrentClassrooms = bldg => async (

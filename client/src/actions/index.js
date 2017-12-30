@@ -9,6 +9,7 @@ import { normalize } from 'normalizr';
 import { nishiBldgs } from '../api/buildingList';
 import {
   SEARCH_COURSES,
+  FETCH_COURSE_BY_ID,
   FETCH_NISHI_BLDGS,
   FETCH_BLDG_CURRENT_CLASSROOMS
 } from './types';
@@ -60,6 +61,17 @@ export const searchCourses = searchTerm => {
   }
   const payload = { courseResults };
   return { type: SEARCH_COURSES, payload };
+};
+
+export const fetchCourseById = courseId => async (
+  dispatch,
+  getState,
+  schema
+) => {
+  const res = await axios.get(`/api/courses/${courseId}`);
+  const coursePage = res.data;
+  const payload = { coursePage };
+  dispatch({ type: FETCH_COURSE_BY_ID, payload });
 };
 
 //This async action creator is an example of a thunk in redux-thunk.

@@ -1,11 +1,13 @@
 import {
   SEARCH_COURSES,
+  FETCH_COURSE_BY_ID,
   FETCH_NISHI_BLDGS,
   FETCH_BLDG_CURRENT_CLASSROOMS
 } from '../actions/types';
 
 const initialState = {
   courseResults: [],
+  coursePage: {},
   nishiBldgIds: [],
   nishiBldgsById: [],
   bldgClassroomIds: [],
@@ -20,6 +22,11 @@ export default function app(state = initialState, action) {
       return {
         ...state,
         courseResults: action.payload.courseResults
+      };
+    case FETCH_COURSE_BY_ID:
+      return {
+        ...state,
+        coursePage: action.payload.coursePage
       };
     case FETCH_NISHI_BLDGS:
       return {

@@ -1,0 +1,22 @@
+.coursePageContainer__wrapper {
+  display: flex;
+  display: -ms-flexbox;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  flex: 1 0 auto;
+}
+
+.coursePageContainer__overlay {
+  display: flex;
+  display: -ms-flexbox;
+  flex-direction: column;
+  -ms-flex-direction: column;
+  flex: 1 0 auto;
+  align-items: center;
+  padding: 36px 25px 25px 25px;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.courseDetail__wrapper {
+  margin: 40px 0;
+}

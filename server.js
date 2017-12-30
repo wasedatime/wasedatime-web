@@ -26,6 +26,7 @@ app.use(helmet());
 
 require('./routes/buildingRoutes')(app);
 require('./routes/classroomRoutes')(app);
+require('./routes/courseRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
   //serve up production assests

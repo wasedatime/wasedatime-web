@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const keys = require('./config/keys');
+require('./models/CourseSimplified');
 require('./models/Course');
 require('./models/Classroom');
 require('./models/Building');

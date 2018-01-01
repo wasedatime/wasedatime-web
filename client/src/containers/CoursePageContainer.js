@@ -20,7 +20,6 @@ class CoursePageContainer extends React.Component {
 
   render() {
     if (this.props.coursePage._id) {
-      console.log('no redirect');
       return (
         <div className="coursePageContainer__wrapper">
           <div className="coursePageContainer__overlay">
@@ -29,7 +28,6 @@ class CoursePageContainer extends React.Component {
         </div>
       );
     } else {
-      console.log('redirect');
       return <Redirect from={this.props.match.url} to="/syllabus" />;
     }
   }

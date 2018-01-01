@@ -5,7 +5,7 @@ import CourseListContainer from '../containers/CourseListContainer';
 
 const SyllabusSearch = () => {
   return (
-    <div>
+    <div className="wrapper__syllabus">
       <SyllabusSearchBar />
       <CourseListContainer />
     </div>
@@ -13,4 +13,3 @@ const SyllabusSearch = () => {
 };
 
 export default SyllabusSearch;
-

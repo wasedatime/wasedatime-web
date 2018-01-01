@@ -21,7 +21,6 @@ class ClassroomListContainer extends React.Component {
 
   render() {
     if (allBldgs.includes(this.bldgName)) {
-      console.log('no redirect');
       return (
         <div className="classroomListContainer__wrapper">
           <div className="classroomListContainer__overlay">
@@ -33,7 +32,6 @@ class ClassroomListContainer extends React.Component {
         </div>
       );
     } else {
-      console.log('redirect');
       return <Redirect from={this.props.match.url} to="/roomfinder" />;
     }
   }

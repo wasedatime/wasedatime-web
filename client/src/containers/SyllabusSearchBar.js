@@ -5,7 +5,7 @@ import { searchCourses } from '../actions/index';
 import SearchBar from '../components/SearchBar';
 import PropTypes from 'prop-types';
 
-class SyllabusSearch extends React.Component {
+class SyllabusSearchBar extends React.Component {
   constructor(props) {
     super(props);
     this.wait = 300;
@@ -22,13 +22,8 @@ class SyllabusSearch extends React.Component {
   }
 }
 
-// const mapStateToProps = ({ courseResults }) => {
-//   console.log(courseResults);
-//   return { courseResults };
-// };
-
 const mapDispatchToProps = {
   searchCourses
 };
 
-export default connect(null, mapDispatchToProps)(SyllabusSearch);
+export default connect(null, mapDispatchToProps)(SyllabusSearchBar);

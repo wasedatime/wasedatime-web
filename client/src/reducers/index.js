@@ -6,7 +6,7 @@ import {
 } from '../actions/types';
 
 const initialState = {
-  courseResults: [],
+  searchTerm: '',
   coursePage: {},
   nishiBldgIds: [],
   nishiBldgsById: [],
@@ -21,7 +21,7 @@ export default function app(state = initialState, action) {
     case SEARCH_COURSES:
       return {
         ...state,
-        courseResults: action.payload.courseResults
+        searchTerm: action.payload.searchTerm
       };
     case FETCH_COURSE_BY_ID:
       return {

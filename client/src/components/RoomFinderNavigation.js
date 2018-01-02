@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import NavLink from './NavLink';
 import campus from '../img/campus.png';
 
 const StyledNav = styled('nav')`
@@ -21,7 +21,7 @@ const Logo = styled('img')`
   margin-right: 18px;
 `;
 
-const StyledNavLink = styled(NavLink)`
+const StyledLink = styled(Link)`
   padding: 0px 14px;
   color: #ffffff;
   font-family: 'Garamond';
@@ -52,9 +52,9 @@ const RoomFinderNavigation = () => {
   return (
     <StyledNav>
       <Logo src={campus} alt="Campus logo" />
-      <StyledNavLink link="/roomfinder#mainCampus" children="Main" />
-      <StyledNavLink link="/roomfinder#nishiWasedaCampus" children="Nishi" />
-      <StyledNavLink link="/roomfinder#toyamaCampus" children="Toyama" />
+      <StyledLink to="/roomfinder#mainCampus">Main</StyledLink>
+      <StyledLink to="/roomfinder#nishiWasedaCampus">Nishi</StyledLink>
+      <StyledLink to="/roomfinder#toyamaCampus">Toyama</StyledLink>
       <ComingSoonMain>Coming Soon</ComingSoonMain>
       <ComingSoonToyama>Coming Soon</ComingSoonToyama>
     </StyledNav>

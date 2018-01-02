@@ -1,7 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
-import NavLink from './NavLink';
 
 const StyledNav = styled('nav')`
   display: flex;
@@ -11,7 +10,7 @@ const StyledNav = styled('nav')`
   overflow-y: hidden;
 `;
 
-const StyledNavLink = styled(NavLink)`
+const StyledLink = styled(Link)`
   padding: 2rem 0.8rem;
   color: rgba(255, 255, 255, 1);
   text-align: center;
@@ -23,9 +22,9 @@ const StyledNavLink = styled(NavLink)`
 const Navigation = () => {
   return (
     <StyledNav>
-      <StyledNavLink link="/syllabus" children="Syllabus" />
-      <StyledNavLink link="/roomfinder" children="RoomFinder" />
-      <StyledNavLink link="/bus" children="Bus" />
+      <StyledLink to="/syllabus">Syllabus</StyledLink>
+      <StyledLink to="/roomfinder">RoomFinder</StyledLink>
+      <StyledLink to="/bus">Bus</StyledLink>
     </StyledNav>
   );
 };

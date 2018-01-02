@@ -1,40 +1,56 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledFooter = styled('footer')`
+  display: block;
+  text-align: center;
+  color: #a9a9a9;
+  background-color: #222222;
+  font-size: 1.4rem;
+  font-weight: 300;
+`;
+
+const StyledList = styled('ul')`
+  padding: 0;
+  margin: 1.4rem 0;
+  list-style: none;
+  list-style-type: none;
+`;
+
+const StyledLink = styled('a')`
+  text-decoration: none;
+  color: #ffffff;
+`;
 
 const Footer = () => {
-  //TODO emoji should be wrapped with img tag
   const siteDescription = 'Created with ❤️ by ';
   const licensceDescription = '. Code licensed ';
+
   return (
-    <footer className="footer">
-      <ul className="footer__list">
+    <StyledFooter>
+      <StyledList>
         <li>
-          <a
-            className="footer__link"
-            href="https://github.com/wasetime/wasetime-web"
-          >
+          <StyledLink href="https://github.com/wasetime/wasetime-web">
             GitHub
-          </a>
+          </StyledLink>
         </li>
-      </ul>
-      <p className="footer__description">
+      </StyledList>
+      <p>
         {siteDescription}
-        <a className="footer__author" href="https://github.com/OscarWang114">
+        <StyledLink href="https://github.com/OscarWang114">
           Oscar Wang
-        </a>
+        </StyledLink>
       </p>
-      <p className="footer__description">
-        <a className="footer_organization" href="https://github.com/wasetime ">
+      <p>
+        <StyledLink href="https://github.com/wasetime ">
           WaseTime 2017
-        </a>
+        </StyledLink>
         {licensceDescription}
-        <a
-          className="footer__license"
-          href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md"
-        >
+        <StyledLink href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md">
           MIT
-        </a>.
+        </StyledLink>.
       </p>
-    </footer>
+    </StyledFooter>
   );
 };
 

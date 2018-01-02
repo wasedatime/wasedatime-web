@@ -1,7 +1,38 @@
 import React from 'react';
 import { debounce } from 'lodash';
+import styled from 'styled-components';
 
 import search from '../img/search.png';
+
+const Wrapper = styled('div')`
+  display: flex;
+  flex-direction: row;
+  flex: 1 0 auto;
+  position: fixed;
+  height: 36px;
+  width: 100%;
+  padding-left: 26px;
+  background-color: #777;
+  z-index: 1030;
+`;
+
+const Logo = styled('img')`
+  width: 27px;
+  height: 27px;
+  align-self: center;
+  margin-right: 18px;
+`;
+
+const StyledForm = styled('form')`
+  width: 100%;
+  align-self: center;
+  margin-left: 14px;
+  margin-right: 25px;
+`;
+
+const StyledInput = styled('input')`
+  width: 100%;
+`;
 
 class SearchBar extends React.Component {
   constructor(props) {
@@ -23,24 +54,22 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <div className={this.props.className}>
-        <img className="searchbar__logo" src={search} alt="Search Logo" />
-        <form
-          className="searchbar__input__wrapper"
+      <Wrapper>
+        <Logo src={search} alt="Search Logo" />
+        <StyledForm
           onSubmit={e => {
             e.preventDefault();
           }}
         >
-          <input
-            className="searchbar__input"
+          <StyledInput
             type="text"
             placeholder={this.props.placeholder}
             value={this.state.searchTerm}
             onChange={this.onInputChange}
             autoFocus
           />
-        </form>
-      </div>
+        </StyledForm>
+      </Wrapper>
     );
   }
 }

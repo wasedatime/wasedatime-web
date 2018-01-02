@@ -1,7 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 const getLocation = (building, classroom) => {
-  if (building == '-1') {
+  if (building === '-1') {
     return `others-${classroom}`;
   } else {
     return `${building}-${classroom}`;
@@ -11,6 +13,39 @@ const getLocation = (building, classroom) => {
 const getKey = (day, start_period, location) => {
   return `${day}-${start_period}-${location}`;
 };
+
+const Wrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+`;
+
+const Overlay = styled('div')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  align-items: center;
+  padding: 25px;
+  background-color: rgba(0, 0, 0, 0.2);
+`;
+
+const StyledButton = styled('button')`
+  background-color: #fff;
+  padding: 12px;
+  margin: 10px 0;
+  width: 160px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 8px;
+  border-bottom: none;
+  box-shadow: 0 5px #999;
+  font-size: 1.7rem;
+`;
+
+const CourseDetailWrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+`;
 
 const CoursePage = ({ coursePage }) => {
   const links = coursePage.links.map(link => {
@@ -35,21 +70,28 @@ const CoursePage = ({ coursePage }) => {
     );
   });
   return (
-    <div className="courseDetail__wrapper">
-      <h2>{coursePage.title}</h2>
-      <div>{`Code: ${coursePage.code}`}</div>
-      <div>{`Instructor: ${coursePage.instructor}`}</div>
-      <div>{`Year: ${coursePage.year}`}</div>
-      <div>{`Term: ${coursePage.term}`}</div>
-      <div>
-        <div>Occurrences: </div>
-        <ul>{occurrences}</ul>
-      </div>
-      <div>
-        <div>More details on official syllabus database</div>
-        <ul>{links}</ul>
-      </div>
-    </div>
+    <Wrapper>
+      <Overlay>
+        <CourseDetailWrapper>
+          <h2>{coursePage.title}</h2>
+          <div>{`Code: ${coursePage.code}`}</div>
+          <div>{`Instructor: ${coursePage.instructor}`}</div>
+          <div>{`Year: ${coursePage.year}`}</div>
+          <div>{`Term: ${coursePage.term}`}</div>
+          <div>
+            <div>Occurrences: </div>
+            <ul>{occurrences}</ul>
+          </div>
+          <div>
+            <div>Official Syllabus Link(s):</div>
+            <ul>{links}</ul>
+          </div>
+        </CourseDetailWrapper>
+        <Link to="/syllabus">
+          <StyledButton>Return to search</StyledButton>
+        </Link>
+      </Overlay>
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
 import Header from './Header';
 import Home from './Home';
@@ -8,11 +9,26 @@ import RoomFinder from './RoomFinder';
 import Footer from './Footer';
 import ComingSoon from './ComingSoon';
 
+const Wrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 75px;
+`;
+
+const StyledMain = styled('main')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  width: 100%;
+  min-height: calc(100vh - 75px);
+`;
+
 const App = () => {
   return (
-    <div className="app">
+    <Wrapper>
       <Header />
-      <main>
+      <StyledMain>
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/syllabus" component={Syllabus} />
@@ -20,9 +36,9 @@ const App = () => {
           <Route path="/bus" component={ComingSoon} />
           <Route component={Home} />
         </Switch>
-      </main>
+      </StyledMain>
       <Footer />
-    </div>
+    </Wrapper>
   );
 };
 

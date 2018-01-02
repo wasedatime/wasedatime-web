@@ -20,13 +20,7 @@ class CoursePageContainer extends React.Component {
 
   render() {
     if (this.props.coursePage._id) {
-      return (
-        <div className="coursePageContainer__wrapper">
-          <div className="coursePageContainer__overlay">
-            <CoursePage coursePage={this.props.coursePage} />
-          </div>
-        </div>
-      );
+      return <CoursePage coursePage={this.props.coursePage} />;
     } else {
       return <Redirect from={this.props.match.url} to="/syllabus" />;
     }

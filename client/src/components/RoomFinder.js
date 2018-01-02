@@ -1,14 +1,20 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
 import RoomFinderNavigation from './RoomFinderNavigation';
 import NishiBuildingList from '../containers/NishiBuildingList';
 import ClassroomListContainer from '../containers/ClassroomListContainer';
-import '../styles/roomfinder.css';
+
+const Wrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+`;
 
 const RoomFinder = ({ match }) => {
   return (
-    <div className="roomfinder__wrapper">
+    <Wrapper>
       <RoomFinderNavigation />
       <Switch>
         <Route exact path={`${match.url}`} component={NishiBuildingList} />
@@ -18,7 +24,7 @@ const RoomFinder = ({ match }) => {
         />
         <Route component={NishiBuildingList} />
       </Switch>
-    </div>
+    </Wrapper>
   );
 };
 

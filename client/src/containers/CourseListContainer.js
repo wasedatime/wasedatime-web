@@ -6,8 +6,6 @@ import PropTypes from 'prop-types';
 import { filterCourses, sortCourses } from '../utils/syllabusSearch';
 import CourseList from '../components/CourseList';
 import LoadingSpinner from '../components/LoadingSpinner';
-import courses from '../data/2017F_courses_sci_eng_search.json';
-import '../styles/courseList.css';
 
 class CourseListContainer extends React.Component {
   constructor(props) {
@@ -21,7 +19,7 @@ class CourseListContainer extends React.Component {
   componentDidMount() {
     axios.get('/api/courses').then(res => {
       const courses = res.data;
-      this.setState({ loading: true, courses });
+      this.setState({ loading: false, courses });
     });
   }
 
@@ -31,18 +29,12 @@ class CourseListContainer extends React.Component {
     }
     console.log('rendering');
     const searchTerm = this.props.searchTerm;
-    let courseResults = courses;
+    let courseResults = this.state.courses;
     if (searchTerm.length > 1) {
-      const filteredCourses = filterCourses(searchTerm, courses);
+      const filteredCourses = filterCourses(searchTerm, this.state.courses);
       courseResults = sortCourses(searchTerm, filteredCourses);
     }
-    return (
-      <div className="courseListContainer__wrapper">
-        <div className="courseListContainer__overlay">
-          <CourseList searchTerm={searchTerm} courseResults={courseResults} />
-        </div>
-      </div>
-    );
+    return <CourseList searchTerm={searchTerm} courseResults={courseResults} />;
   }
 }
 

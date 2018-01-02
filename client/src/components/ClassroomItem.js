@@ -1,21 +1,63 @@
 import React from 'react';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const ClassroomItem = ({ children }) => {
-  if (typeof children.courses !== 'undefined') {
+const StyledListItem = styled('li')`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-size: 1.7rem;
+`;
+
+const Classroom = styled('div')`
+  display: inline-block;
+  height: 100%;
+  margin: 4px 5px 4px 0px;
+  padding: 12px;
+  text-decoration: none;
+  border-radius: 8px;
+  border: none;
+`;
+const VacantClassroom = Classroom.extend`
+  background-color: #ceffaf;
+`;
+
+const OccupiedClassroom = Classroom.extend`
+  background-color: #ffafaf;
+`;
+
+const Course = styled('div')`
+  display: flex;
+  flex: 1 1 150px;
+  background-color: #ffafaf;
+  margin: 4px 0px 4px 0px;
+  padding: 12px;
+  text-decoration: none;
+  border-radius: 8px;
+  border: none;
+`;
+
+const ClassroomItem = ({ classroom }) => {
+  if (typeof classroom.courses !== 'undefined') {
     return (
-      <li className="classroomItem">
-        <div className="classroomItem__occupied">{children.name}</div>
-        <div className="classroomItem__course">{children.courses.title}</div>
-      </li>
+      <StyledListItem>
+        <OccupiedClassroom>{classroom.name}</OccupiedClassroom>
+        <Course>
+          <div>{classroom.courses.title}</div>
+        </Course>
+      </StyledListItem>
     );
   } else {
     return (
-      <li className="classroomItem">
-        <div className="classroomItem__vacant">{children.name}</div>
-      </li>
+      <StyledListItem>
+        <VacantClassroom>{classroom.name}</VacantClassroom>
+      </StyledListItem>
     );
   }
 };
 
 export default ClassroomItem;
+
+ClassroomItem.propTypes = {
+  classroom: PropTypes.object.isRequired
+};

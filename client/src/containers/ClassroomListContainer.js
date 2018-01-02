@@ -6,13 +6,12 @@ import { fetchBldgCurrentClassrooms } from '../actions/index';
 import ClassroomList from '../components/ClassroomList';
 import allBldgs from '../api/buildingList';
 import PropTypes from 'prop-types';
-import '../styles/classroomList.css';
 
 class ClassroomListContainer extends React.Component {
   constructor(props) {
     super(props);
     this.bldgName = this.props.match.params.bldgName;
-    this.redirect = false;
+    this.backgroundUrl = '../img/nishi_waseda_campus-sm.jpg';
   }
 
   componentDidMount() {
@@ -22,14 +21,11 @@ class ClassroomListContainer extends React.Component {
   render() {
     if (allBldgs.includes(this.bldgName)) {
       return (
-        <div className="classroomListContainer__wrapper">
-          <div className="classroomListContainer__overlay">
-            <ClassroomList
-              bldgName={this.bldgName}
-              classrooms={this.props.mergedClassrooms}
-            />
-          </div>
-        </div>
+        <ClassroomList
+          bldgName={this.bldgName}
+          backgroundUrl={this.backgroundUrl}
+          classrooms={this.props.mergedClassrooms}
+        />
       );
     } else {
       return <Redirect from={this.props.match.url} to="/roomfinder" />;

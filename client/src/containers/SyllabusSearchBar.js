@@ -13,7 +13,6 @@ class SyllabusSearchBar extends React.Component {
   render() {
     return (
       <SearchBar
-        className="syllabus__searchbar"
         placeholder="Course names, instructors"
         onSearch={this.props.searchCourses}
         wait={this.wait}

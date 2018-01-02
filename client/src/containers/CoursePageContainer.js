@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 import { fetchCourseById } from '../actions/index';
 import CoursePage from '../components/CoursePage';
-import '../styles/coursePage.css';
 
 class CoursePageContainer extends React.Component {
   constructor(props) {

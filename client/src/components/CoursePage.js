@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const getLocation = (building, classroom) => {
   if (building === '-1') {
@@ -96,3 +97,8 @@ const CoursePage = ({ coursePage }) => {
 };
 
 export default CoursePage;
+
+CoursePage.propTypes = {
+  coursePage: PropTypes.object.isRequired
+};
+

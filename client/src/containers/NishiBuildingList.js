@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { fetchNishiBldgs } from '../actions/index';
 import BuildingList from '../components/BuildingList';
-import PropTypes from 'prop-types';
 
 class NishiBuildingList extends React.Component {
   constructor(props) {
@@ -48,5 +48,6 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(NishiBuildingList);
 
 NishiBuildingList.propTypes = {
-  bldgNames: PropTypes.array.isRequired
+  bldgNames: PropTypes.array.isRequired,
+  fetchNishiBldgs: PropTypes.func.isRequired
 };

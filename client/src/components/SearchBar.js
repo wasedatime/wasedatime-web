@@ -1,6 +1,7 @@
 import React from 'react';
 import { debounce } from 'lodash';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import search from '../img/search.png';
 
@@ -75,3 +76,9 @@ class SearchBar extends React.Component {
 }
 
 export default SearchBar;
+
+SearchBar.propTypes = {
+  placeholder: PropTypes.string.isRequired,
+  onSearch: PropTypes.func.isRequired,
+  wait: PropTypes.number.isRequired
+};

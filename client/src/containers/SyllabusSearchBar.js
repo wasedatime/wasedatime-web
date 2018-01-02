@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { searchCourses } from '../actions/index';
 import SearchBar from '../components/SearchBar';
-import PropTypes from 'prop-types';
 
 class SyllabusSearchBar extends React.Component {
   constructor(props) {
@@ -26,3 +26,7 @@ const mapDispatchToProps = {
 };
 
 export default connect(null, mapDispatchToProps)(SyllabusSearchBar);
+
+SyllabusSearchBar.propTypes = {
+  searchCourses: PropTypes.func.isRequired
+};

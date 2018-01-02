@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import RoomFinderNavigation from './RoomFinderNavigation';
 import NishiBuildingList from '../containers/NishiBuildingList';
@@ -29,3 +30,7 @@ const RoomFinder = ({ match }) => {
 };
 
 export default RoomFinder;
+
+RoomFinder.propTypes = {
+  match: PropTypes.object.isRequired
+};

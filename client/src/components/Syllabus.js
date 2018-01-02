@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import SyllabusSearch from './SyllabusSearch';
 import CoursePageContainer from '../containers/CoursePageContainer';
@@ -15,3 +16,7 @@ const Syllabus = ({ match }) => {
 };
 
 export default Syllabus;
+
+Syllabus.propTypes = {
+  match: PropTypes.object.isRequired
+};

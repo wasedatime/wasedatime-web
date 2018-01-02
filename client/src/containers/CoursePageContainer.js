@@ -1,9 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { fetchCourseById } from '../actions/index';
-import PropTypes from 'prop-types';
 import CoursePage from '../components/CoursePage';
 import '../styles/coursePage.css';
 
@@ -39,3 +39,9 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(
   CoursePageContainer
 );
+
+CoursePageContainer.propTypes = {
+  match: PropTypes.object.isRequired,
+  coursePage: PropTypes.object.isRequired,
+  fetchCourseById: PropTypes.func.isRequired
+};

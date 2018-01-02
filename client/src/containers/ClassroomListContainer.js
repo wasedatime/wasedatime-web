@@ -1,11 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import { fetchBldgCurrentClassrooms } from '../actions/index';
 import ClassroomList from '../components/ClassroomList';
 import allBldgs from '../api/buildingList';
-import PropTypes from 'prop-types';
 
 class ClassroomListContainer extends React.Component {
   constructor(props) {
@@ -61,3 +61,9 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(
   ClassroomListContainer
 );
+
+ClassroomListContainer.propTypes = {
+  match: PropTypes.object.isRequired,
+  mergedClassrooms: PropTypes.array.isRequired,
+  fetchBldgCurrentClassrooms: PropTypes.func.isRequired
+};

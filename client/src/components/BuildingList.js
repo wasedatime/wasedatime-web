@@ -47,16 +47,16 @@ const StyledList = styled('ul')`
   list-style-type: none;
 `;
 
-const BuildingList = props => {
-  if (props.bldgNames !== 0) {
-    const listItems = props.bldgNames.map(bldgName => (
+const BuildingList = ({ name, bldgNames, backgroundUrl }) => {
+  if (bldgNames !== 0) {
+    const listItems = bldgNames.map(bldgName => (
       <BuildingItem key={bldgName} name={bldgName} />
     ));
     return (
-      <Wrapper backgroundUrl={props.backgroundUrl}>
+      <Wrapper backgroundUrl={backgroundUrl}>
         <Overlay>
           <TitleWrapper>
-            <Title>{props.name}</Title>
+            <Title>{name}</Title>
           </TitleWrapper>
           <StyledList>{listItems}</StyledList>
         </Overlay>

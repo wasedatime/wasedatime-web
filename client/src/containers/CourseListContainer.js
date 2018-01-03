@@ -27,7 +27,6 @@ class CourseListContainer extends React.Component {
     if (this.state.loading) {
       return <LoadingSpinner />;
     }
-    console.log('rendering');
     const searchTerm = this.props.searchTerm;
     let courseResults = this.state.courses;
     if (searchTerm.length > 1) {

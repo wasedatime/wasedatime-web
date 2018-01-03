@@ -10,7 +10,6 @@ class CoursePageContainer extends React.Component {
   constructor(props) {
     super(props);
     this.courseId = this.props.match.params.courseId;
-    this.redirect = false;
   }
 
   componentDidMount() {

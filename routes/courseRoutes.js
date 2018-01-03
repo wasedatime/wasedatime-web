@@ -22,7 +22,7 @@ module.exports = app => {
     } catch (err) {
       if (err.name === 'CastError') {
         //Data was not found
-        res.status(200).send(null);
+        res.status(200).send({});
       } else {
         res.status(500).send('Error while fetching data from database');
       }

@@ -1,4 +1,4 @@
-import { sortBy } from 'lodash';
+import sortBy from 'lodash/sortBy';
 
 export const tokenize = string => {
   return string.trim().split(/\W+/g);

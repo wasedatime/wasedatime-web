@@ -7,7 +7,7 @@ import Home from './Home';
 import Syllabus from './Syllabus';
 import RoomFinder from './RoomFinder';
 import Footer from './Footer';
-import ComingSoon from './ComingSoon';
+import Bus from './Bus';
 
 const Wrapper = styled('div')`
   display: flex;
@@ -33,7 +33,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route path="/syllabus" component={Syllabus} />
           <Route path="/roomfinder" component={RoomFinder} />
-          <Route path="/bus" component={ComingSoon} />
+          <Route path="/bus" component={Bus} />
           <Route component={Home} />
         </Switch>
       </StyledMain>

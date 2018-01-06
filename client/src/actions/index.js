@@ -3,12 +3,41 @@ import { sortBy } from 'lodash';
 import { normalize } from 'normalizr';
 
 import {
+  FETCH_COURSES_REQUEST,
+  FETCH_COURSES_SUCCESS,
+  FETCH_COURSES_FAILURE,
   SEARCH_COURSES,
   FETCH_COURSE_BY_ID,
   FETCH_NISHI_BLDGS,
   FETCH_BLDG_CURRENT_CLASSROOMS
 } from './types';
-import { nishiBldgs } from '../api/buildingList';
+import { nishiBldgs } from './buildingList';
+import * as schema from './schema';
+
+export const fetchCourses = filter => async (dispatch, getState) => {
+  // if (getIsFetching(getState(), filter)) {
+  //   return Promise.resolve();
+  // }
+
+  dispatch({
+    type: FETCH_COURSES_REQUEST
+  });
+
+  try {
+    const res = axios.get('/api/courses');
+    const courses = res.data;
+    const normalizedCourses = normalize(courses, schema.coursesSchema);
+    dispatch({
+      type: FETCH_COURSES_SUCCESS,
+      response: normalizedCourses
+    });
+  } catch (err) {
+    dispatch({
+      type: FETCH_COURSES_FAILURE,
+      message: err.message || 'Something went wrong.'
+    });
+  }
+};
 
 export const searchCourses = searchTerm => {
   const payload = { searchTerm };
@@ -27,9 +56,10 @@ export const fetchCourseById = courseId => async (
 };
 
 //This async action creator is an example of a thunk in redux-thunk.
-export const fetchNishiBldgs = () => async (dispatch, getState, schema) => {
+export const fetchNishiBldgs = () => async (dispatch, getState) => {
   const res = await axios.get('/api/buildings');
   //only include bldgs that are inside nishiBldgs array
+  //TODO Move filtering to the server side
   const nishiData = res.data.filter(value => {
     return nishiBldgs.includes(value.name);
   });

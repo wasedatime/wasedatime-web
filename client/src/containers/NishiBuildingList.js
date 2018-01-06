@@ -2,8 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchNishiBldgs } from '../actions/index';
+import { fetchBuildings } from '../actions/index';
+import {
+  getIsFetching,
+  getBuildings,
+  getErrorMessage
+} from '../reducers/buildings';
 import BuildingList from '../components/BuildingList';
+
+const buildings = [
+  '51',
+  '52',
+  '53',
+  '54',
+  '55',
+  '56',
+  '57',
+  '58',
+  '59',
+  '60',
+  '61',
+  '62',
+  '63'
+];
 
 class NishiBuildingList extends React.Component {
   constructor(props) {
@@ -13,41 +34,37 @@ class NishiBuildingList extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchNishiBldgs();
+    this.props.fetchBuildings();
   }
 
   render() {
     return (
       <BuildingList
         name={this.name}
-        bldgNames={this.props.bldgNames}
+        buildings={this.props.buildings}
         backgroundUrl={this.backgroundUrl}
       />
     );
   }
 }
 
-const getBldgNames = (nishiBldgIds, nishiBldgsById) => {
-  if (nishiBldgIds.length !== 0) {
-    return nishiBldgIds.map(id => nishiBldgsById[id]['name']);
-  }
-  return [];
-};
-
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
   return {
-    bldgNames: getBldgNames(state.nishiBldgIds, state.nishiBldgsById)
+    buildings: getBuildings(state.buildings, buildings),
+    isFetching: getIsFetching(state.buildings),
+    errorMessage: getErrorMessage(state.buildings)
   };
 };
 
-//shorthand syntax
 const mapDispatchToProps = {
-  fetchNishiBldgs
+  fetchBuildings
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NishiBuildingList);
 
 NishiBuildingList.propTypes = {
-  bldgNames: PropTypes.array.isRequired,
-  fetchNishiBldgs: PropTypes.func.isRequired
+  buildings: PropTypes.array.isRequired,
+  isFetching: PropTypes.bool.isRequired,
+  errorMessage: PropTypes.string,
+  fetchBuildings: PropTypes.func.isRequired
 };

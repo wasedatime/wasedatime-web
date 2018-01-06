@@ -47,10 +47,10 @@ const StyledList = styled('ul')`
   list-style-type: none;
 `;
 
-const BuildingList = ({ name, bldgNames, backgroundUrl }) => {
-  if (bldgNames !== 0) {
-    const listItems = bldgNames.map(bldgName => (
-      <BuildingItem key={bldgName} name={bldgName} />
+const BuildingList = ({ name, buildings, backgroundUrl }) => {
+  if (buildings !== 0) {
+    const listItems = buildings.map(building => (
+      <BuildingItem key={building._id} name={building.name} />
     ));
     return (
       <Wrapper backgroundUrl={backgroundUrl}>
@@ -71,6 +71,6 @@ export default BuildingList;
 
 BuildingList.propTypes = {
   name: PropTypes.string.isRequired,
-  bldgNames: PropTypes.array.isRequired,
+  buildings: PropTypes.array.isRequired,
   backgroundUrl: PropTypes.string.isRequired
 };

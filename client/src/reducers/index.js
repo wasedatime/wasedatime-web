@@ -1,9 +1,12 @@
+import { combineReducers } from 'redux';
+
 import {
   SEARCH_COURSES,
   FETCH_COURSE_BY_ID,
   FETCH_NISHI_BLDGS,
   FETCH_BLDG_CURRENT_CLASSROOMS
 } from '../actions/types';
+import buildings from './buildings';
 
 const initialState = {
   searchTerm: '',
@@ -16,7 +19,7 @@ const initialState = {
   bldgOccupiedClassroomsById: []
 };
 
-export default function app(state = initialState, action) {
+const rest = (state = initialState, action) => {
   switch (action.type) {
     case SEARCH_COURSES:
       return {
@@ -45,4 +48,8 @@ export default function app(state = initialState, action) {
     default:
       return state;
   }
-}
+};
+
+const app = combineReducers({ buildings });
+
+export default app;

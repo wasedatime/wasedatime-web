@@ -4,12 +4,12 @@ import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import app from './reducers/index';
+import configureStore from './configureStore';
 import Root from './components/Root';
 
 import 'normalize-css/normalize.css';
 import './styles/styles.css';
 
-let store = createStore(app, applyMiddleware(thunk.withExtraArgument(schema)));
+const store = configureStore();
 
 render(<Root store={store} />, document.getElementById('root'));

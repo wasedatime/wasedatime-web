@@ -6,6 +6,9 @@ import {
   FETCH_COURSES_REQUEST,
   FETCH_COURSES_SUCCESS,
   FETCH_COURSES_FAILURE,
+  FETCH_BUILDINGS_REQUEST,
+  FETCH_BUILDINGS_SUCCESS,
+  FETCH_BUILDINGS_FAILURE,
   SEARCH_COURSES,
   FETCH_COURSE_BY_ID,
   FETCH_NISHI_BLDGS,
@@ -24,7 +27,7 @@ export const fetchCourses = filter => async (dispatch, getState) => {
   });
 
   try {
-    const res = axios.get('/api/courses');
+    const res = await axios.get('/api/courses');
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
     dispatch({
@@ -53,6 +56,31 @@ export const fetchCourseById = courseId => async (
   const coursePage = res.data;
   const payload = { coursePage };
   dispatch({ type: FETCH_COURSE_BY_ID, payload });
+};
+
+export const fetchBuildings = () => async (dispatch, getState) => {
+  // if (getIsFetching(getState(), filter)) {
+  //   return Promise.resolve();
+  // }
+
+  dispatch({
+    type: FETCH_BUILDINGS_REQUEST
+  });
+
+  try {
+    const res = await axios.get('/api/buildings');
+    const buildings = res.data;
+    const normalizedBuildings = normalize(buildings, schema.buildingsSchema);
+    dispatch({
+      type: FETCH_BUILDINGS_SUCCESS,
+      response: normalizedBuildings
+    });
+  } catch (err) {
+    dispatch({
+      type: FETCH_BUILDINGS_FAILURE,
+      message: err.message || 'Something went wrong.'
+    });
+  }
 };
 
 //This async action creator is an example of a thunk in redux-thunk.

@@ -10,6 +10,8 @@ import {
 } from '../reducers/buildings';
 import BuildingList from '../components/BuildingList';
 
+import background from '../img/nishi_waseda_campus-sm.jpg';
+
 const buildings = [
   '51',
   '52',
@@ -30,7 +32,7 @@ class NishiBuildingList extends React.Component {
   constructor(props) {
     super(props);
     this.name = 'Nishi-Waseda Campus';
-    this.backgroundUrl = '../img/nishi_waseda_campus-sm.jpg';
+    this.background = background;
   }
 
   componentDidMount() {
@@ -42,7 +44,7 @@ class NishiBuildingList extends React.Component {
       <BuildingList
         name={this.name}
         buildings={this.props.buildings}
-        backgroundUrl={this.backgroundUrl}
+        background={this.background}
       />
     );
   }

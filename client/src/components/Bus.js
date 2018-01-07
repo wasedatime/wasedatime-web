@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import background from '../img/home_background-sm.jpg';
+import backgroundMobile from '../img/home_background-mobile.jpg';
+
 const WasedaNishiwasedaBusUri =
   'https://www.waseda.jp/fsci/assets/uploads/2017/06/2017waseda-nishiwaseda-shuttle-bus-timetable.pdf';
 
@@ -8,12 +11,12 @@ const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  background-image: url('../img/home_background-sm.jpg');
+  background-image: url(${background});
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
   @media screen and (max-width: 430px) {
-    background-image: url('../img/home_background-mobile.jpg');
+    background-image: url(${backgroundMobile});
   }
 `;
 

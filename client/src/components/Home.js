@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
+import background from '../img/home_background-sm.jpg';
+import backgroundMobile from '../img/home_background-mobile.jpg';
 import logo from '../img/logo.png';
 
 const slideUpIn = keyframes`
@@ -46,12 +48,12 @@ const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  background-image: url('../img/home_background-sm.jpg');
+  background-image: url(${background});
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
   @media screen and (max-width: 430px) {
-    background-image: url('../img/home_background-mobile.jpg');
+    background-image: url(${backgroundMobile});
   }
 `;
 

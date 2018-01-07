@@ -8,7 +8,7 @@ const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  background-image: url(${props => props.backgroundUrl});
+  background-image: url(${props => props.background});
   background-position: center, center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -47,13 +47,13 @@ const StyledList = styled('ul')`
   list-style-type: none;
 `;
 
-const BuildingList = ({ name, buildings, backgroundUrl }) => {
+const BuildingList = ({ name, buildings, background }) => {
   if (buildings !== 0) {
     const listItems = buildings.map(building => (
       <BuildingItem key={building._id} name={building.name} />
     ));
     return (
-      <Wrapper backgroundUrl={backgroundUrl}>
+      <Wrapper background={background}>
         <Overlay>
           <TitleWrapper>
             <Title>{name}</Title>
@@ -72,5 +72,5 @@ export default BuildingList;
 BuildingList.propTypes = {
   name: PropTypes.string.isRequired,
   buildings: PropTypes.array.isRequired,
-  backgroundUrl: PropTypes.string.isRequired
+  background: PropTypes.string.isRequired
 };

@@ -43,8 +43,7 @@ export const fetchCourses = filter => async (dispatch, getState) => {
 };
 
 export const searchCourses = searchTerm => {
-  const payload = { searchTerm };
-  return { type: SEARCH_COURSES, payload };
+  return { type: SEARCH_COURSES, searchTerm };
 };
 
 export const fetchCourseById = courseId => async (

@@ -26,9 +26,16 @@ const highlight = (searchTerm, text) => {
   }
 };
 
+const Wrapper = styled('div')`
+  display: flex;
+  flex-direction: row;
+  overflow-y: hidden;
+`;
+
 const StyledListItem = styled('li')`
   display: flex;
   flex-direction: column;
+  flex: 1 0 auto;
   background-color: #ffffff;
   margin: 4px 0px;
   padding: 10px 15px;
@@ -47,16 +54,18 @@ const Instructor = styled('div')`
   text-align: right;
 `;
 
-const CourseItem = ({ searchTerm, course }) => {
+const CourseItem = ({ searchTerm, course, style }) => {
   const title = highlight(searchTerm, course.title);
   const instructor = highlight(searchTerm, course.instructor);
   return (
-    <StyledListItem>
-      <StyledLink to={`/syllabus/${course._id}`}>
-        <div>{title}</div>
-      </StyledLink>
-      <Instructor>{instructor}</Instructor>
-    </StyledListItem>
+    <Wrapper style={style}>
+      <StyledListItem>
+        <StyledLink to={`/syllabus/${course._id}`}>
+          <div>{title}</div>
+        </StyledLink>
+        <Instructor>{instructor}</Instructor>
+      </StyledListItem>
+    </Wrapper>
   );
 };
 

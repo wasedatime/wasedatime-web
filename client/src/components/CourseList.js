@@ -1,5 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import {
+  CellMeasurer,
+  CellMeasurerCache,
+  List,
+  AutoSizer
+} from 'react-virtualized';
 import PropTypes from 'prop-types';
 
 import CourseItem from './CourseItem';
@@ -19,10 +25,7 @@ const Overlay = styled('div')`
 `;
 
 const ListWrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  /* justify-content: center; */
-  margin-bottom: 8vh;
+  flex: 1 0 auto;
 `;
 
 const Summary = styled('div')`
@@ -40,20 +43,58 @@ const StyledList = styled('ul')`
   list-style-type: none;
 `;
 
-const CourseList = ({ searchTerm, courseResults }) => {
-  if (courseResults.length !== 0) {
-    const resultsCount = courseResults.length;
-    const listItems = courseResults.map(course => {
+const cache = new CellMeasurerCache({
+  fixedWidth: true,
+  defaultHeight: 50
+});
+
+const CourseList = ({ searchTerm, searchResults }) => {
+  if (searchResults.length !== 0) {
+    const rowRenderer = ({
+      index,
+      isScrolling,
+      isVisible,
+      key,
+      parent,
+      style
+    }) => {
       return (
-        <CourseItem key={course._id} searchTerm={searchTerm} course={course} />
+        <CellMeasurer
+          cache={cache}
+          columnIndex={0}
+          key={key}
+          parent={parent}
+          rowIndex={index}
+        >
+          <CourseItem
+            key={key}
+            style={style}
+            searchTerm={searchTerm}
+            course={searchResults[index]}
+          />
+        </CellMeasurer>
       );
-    });
+    };
+    const resultsCount = searchResults.length;
     return (
       <Wrapper>
         <Overlay>
+          <Summary>{`${resultsCount} course(s) found`}</Summary>
           <ListWrapper>
-            <Summary>{`${resultsCount} course(s) found`}</Summary>
-            <StyledList>{listItems}</StyledList>
+            <AutoSizer>
+              {({ width, height }) => {
+                return (
+                  <List
+                    width={width}
+                    height={height}
+                    rowCount={resultsCount}
+                    deferredMeasurementCache={cache}
+                    rowHeight={cache.rowHeight}
+                    rowRenderer={rowRenderer}
+                  />
+                );
+              }}
+            </AutoSizer>
           </ListWrapper>
         </Overlay>
       </Wrapper>
@@ -67,5 +108,5 @@ export default CourseList;
 
 CourseList.propTypes = {
   searchTerm: PropTypes.string.isRequired,
-  courseResults: PropTypes.array.isRequired
+  searchResults: PropTypes.array.isRequired
 };

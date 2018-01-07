@@ -10,8 +10,6 @@ import {
   FETCH_BUILDINGS_SUCCESS,
   FETCH_BUILDINGS_FAILURE,
   SEARCH_COURSES,
-  FETCH_COURSE_BY_ID,
-  FETCH_NISHI_BLDGS,
   FETCH_BLDG_CURRENT_CLASSROOMS
 } from './types';
 import { nishiBldgs } from './buildingList';
@@ -46,17 +44,6 @@ export const searchCourses = searchTerm => {
   return { type: SEARCH_COURSES, searchTerm };
 };
 
-export const fetchCourseById = courseId => async (
-  dispatch,
-  getState,
-  schema
-) => {
-  const res = await axios.get(`/api/courses/${courseId}`);
-  const coursePage = res.data;
-  const payload = { coursePage };
-  dispatch({ type: FETCH_COURSE_BY_ID, payload });
-};
-
 export const fetchBuildings = () => async (dispatch, getState) => {
   // if (getIsFetching(getState(), filter)) {
   //   return Promise.resolve();
@@ -80,21 +67,6 @@ export const fetchBuildings = () => async (dispatch, getState) => {
       message: err.message || 'Something went wrong.'
     });
   }
-};
-
-//This async action creator is an example of a thunk in redux-thunk.
-export const fetchNishiBldgs = () => async (dispatch, getState) => {
-  const res = await axios.get('/api/buildings');
-  //only include bldgs that are inside nishiBldgs array
-  //TODO Move filtering to the server side
-  const nishiData = res.data.filter(value => {
-    return nishiBldgs.includes(value.name);
-  });
-  const normalizedNishiData = normalize(nishiData, schema.bldgListSchema);
-  const nishiBldgIds = normalizedNishiData.result;
-  const nishiBldgsById = normalizedNishiData.entities.bldgs;
-  const payload = { nishiBldgIds, nishiBldgsById };
-  dispatch({ type: FETCH_NISHI_BLDGS, payload });
 };
 
 export const fetchBldgCurrentClassrooms = bldg => async (

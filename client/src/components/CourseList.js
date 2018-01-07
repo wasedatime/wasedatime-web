@@ -50,6 +50,7 @@ const cache = new CellMeasurerCache({
 
 const CourseList = ({ searchTerm, searchResults }) => {
   if (searchResults.length !== 0) {
+    cache.clearAll();
     const rowRenderer = ({
       index,
       isScrolling,
@@ -100,7 +101,13 @@ const CourseList = ({ searchTerm, searchResults }) => {
       </Wrapper>
     );
   } else {
-    return <Summary>No courses found</Summary>;
+    return (
+      <Wrapper>
+        <Overlay>
+          <Summary>No courses found</Summary>
+        </Overlay>
+      </Wrapper>
+    );
   }
 };
 

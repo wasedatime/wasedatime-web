@@ -2,12 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchCourses } from '../actions/index';
+import { fetchCourses, searchCourses } from '../actions/index';
 import {
   getIsFetching,
   getCourses,
   getErrorMessage
 } from '../reducers/courses';
+import { getSearchTerm } from '../reducers/searchTerm';
 import { filterCourses, sortCourses } from '../utils/syllabusSearch';
 import CourseList from '../components/CourseList';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -22,19 +23,16 @@ class CourseListContainer extends React.Component {
   }
 
   render() {
-    const { isFetching, courses, errorMessage } = this.props;
+    const { isFetching, courses, errorMessage, searchTerm } = this.props;
     if (isFetching && !courses.length) {
       return <LoadingSpinner />;
     }
-    // const searchTerm = this.props.searchTerm;
-    let courseResults = courses;
-    // console.log(courses);
-    // if (searchTerm.length > 1) {
-    //   const filteredCourses = filterCourses(searchTerm, this.state.courses);
-    //   courseResults = sortCourses(searchTerm, filteredCourses);
-    // }
-    //return <CourseList searchTerm={''} courseResults={courseResults} />;
-    return <div />;
+    let searchResults = courses;
+    if (searchTerm.length > 1) {
+      const filteredCourses = filterCourses(searchTerm, courses);
+      searchResults = sortCourses(searchTerm, filteredCourses);
+    }
+    return <CourseList searchTerm={searchTerm} searchResults={searchResults} />;
   }
 }
 
@@ -42,12 +40,14 @@ const mapStateToProps = state => {
   return {
     isFetching: getIsFetching(state.courses),
     courses: getCourses(state.courses),
-    errorMessage: getErrorMessage(state.courses)
+    errorMessage: getErrorMessage(state.courses),
+    searchTerm: getSearchTerm(state.searchTerm)
   };
 };
 
 const mapDispatchToProps = {
-  fetchCourses
+  fetchCourses,
+  searchCourses
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(

@@ -52,8 +52,8 @@ class NishiBuildingList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    buildings: getBuildings(state.buildings, buildings),
     isFetching: getIsFetching(state.buildings),
+    buildings: getBuildings(state.buildings, buildings),
     errorMessage: getErrorMessage(state.buildings)
   };
 };

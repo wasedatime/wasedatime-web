@@ -20,7 +20,7 @@ const RoomFinder = ({ match }) => {
       <Switch>
         <Route exact path={`${match.url}`} component={NishiBuildingList} />
         <Route
-          path={`${match.url}/:bldgName`}
+          path={`${match.url}/:buildingName`}
           component={ClassroomListContainer}
         />
         <Route component={NishiBuildingList} />

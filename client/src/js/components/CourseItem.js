@@ -29,13 +29,13 @@ const highlight = (searchTerm, text) => {
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: row;
+  justify-content: center;
   overflow-y: hidden;
 `;
 
 const StyledListItem = styled('li')`
   display: flex;
   flex-direction: column;
-  flex: 1 0 auto;
   background-color: #ffffff;
   margin: 4px 0px;
   padding: 10px 15px;

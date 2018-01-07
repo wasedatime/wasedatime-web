@@ -47,13 +47,12 @@ const ListWrapper = styled('div')`
 `;
 
 const StyledList = styled('ul')`
-  text-align: center;
   padding: 0;
   list-style: none;
   list-style-type: none;
 `;
 
-const ClassroomList = ({ bldgName, classrooms, backgroundUrl }) => {
+const ClassroomList = ({ buildingName, classrooms, backgroundUrl }) => {
   if (classrooms !== 0) {
     const listItems = classrooms.map(classroom => {
       return <ClassroomItem key={classroom.id} classroom={classroom} />;
@@ -62,7 +61,7 @@ const ClassroomList = ({ bldgName, classrooms, backgroundUrl }) => {
       <Wrapper backgroundUrl={backgroundUrl}>
         <Overlay>
           <TitleWrapper>
-            <Title>{`Building ${bldgName}`}</Title>
+            <Title>{`Building ${buildingName}`}</Title>
           </TitleWrapper>
           <ListWrapper>
             <StyledList>{listItems}</StyledList>
@@ -78,7 +77,7 @@ const ClassroomList = ({ bldgName, classrooms, backgroundUrl }) => {
 export default ClassroomList;
 
 ClassroomList.propTypes = {
-  bldgName: PropTypes.string.isRequired,
+  buildingName: PropTypes.string.isRequired,
   classrooms: PropTypes.array.isRequired,
   backgroundUrl: PropTypes.string.isRequired
 };

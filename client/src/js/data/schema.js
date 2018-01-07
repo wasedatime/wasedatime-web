@@ -13,13 +13,13 @@ const buildingSchema = new schema.Entity(
 //shorthand syntax for new schema.Array(bldgSchema)
 export const buildingsSchema = [buildingSchema];
 // { id: "5a3b7c1ea2b3d21167f156b1", name: "04-05" }
-const classroomSchema = new schema.Entity(
+const buildingClassroomSchema = new schema.Entity(
   'classrooms',
   {},
   { idAttribute: 'id' }
 );
 
-export const classroomListSchema = [classroomSchema];
+export const buildingClassroomsSchema = [buildingClassroomSchema];
 
 // { _id: "5a3b7c1ea2b3d21167f15643",
 //   courses: {id: "5a3abb8f57ae267ac79fb856", title: "Communication Strategies 2 Mon-1 ISHIDA" },
@@ -39,4 +39,4 @@ const occupiedClassroomSchema = new schema.Entity(
   }
 );
 
-export const occupiedClassroomListSchema = [occupiedClassroomSchema];
+export const occupiedClassroomsSchema = [occupiedClassroomSchema];

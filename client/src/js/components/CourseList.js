@@ -33,16 +33,6 @@ const Summary = styled('div')`
   align-self: flex-end;
 `;
 
-const StyledList = styled('ul')`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  list-style-type: none;
-`;
-
 const cache = new CellMeasurerCache({
   fixedWidth: true,
   defaultHeight: 50

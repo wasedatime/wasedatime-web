@@ -18,7 +18,6 @@ const Wrapper = styled('div')`
 `;
 
 const Logo = styled('img')`
-  width: 27px;
   height: 27px;
   align-self: center;
   margin-right: 18px;

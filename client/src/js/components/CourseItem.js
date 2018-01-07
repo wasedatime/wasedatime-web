@@ -13,7 +13,7 @@ const highlight = (searchTerm, text) => {
         return cleanTerm;
       })
       .join('|');
-    const regex = new RegExp(`(${termUnion})`, 'ig');
+    const regex = new RegExp(`\\b(${termUnion})`, 'i');
     const textParts = text.split(regex);
     return textParts.map((part, i) => {
       if (i % 2 === 0) {

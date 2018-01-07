@@ -6,6 +6,7 @@ import {
   FETCH_NISHI_BLDGS,
   FETCH_BLDG_CURRENT_CLASSROOMS
 } from '../actions/types';
+import courses from './courses';
 import buildings from './buildings';
 
 const initialState = {
@@ -50,6 +51,6 @@ const rest = (state = initialState, action) => {
   }
 };
 
-const app = combineReducers({ buildings });
+const app = combineReducers({ courses, buildings });
 
 export default app;

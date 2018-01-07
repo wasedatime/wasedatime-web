@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import BuildingItem from '../components/BuildingItem';
+import BuildingItem from './BuildingItem';
 
 const Wrapper = styled('div')`
   display: flex;

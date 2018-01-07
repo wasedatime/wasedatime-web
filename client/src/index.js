@@ -1,11 +1,10 @@
-import * as schema from './api/schema';
 import React from 'react';
 import { render } from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
 import configureStore from './configureStore';
-import Root from './components/Root';
+import Root from './js/components/Root';
 
 import 'normalize-css/normalize.css';
 import './styles/styles.css';

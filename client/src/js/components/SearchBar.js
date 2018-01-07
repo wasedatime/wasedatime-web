@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import search from '../img/search.png';
+import search from '../../img/search.png';
 
 const Wrapper = styled('div')`
   display: flex;

@@ -9,24 +9,8 @@ import {
   getErrorMessage
 } from '../reducers/buildings';
 import BuildingList from '../components/BuildingList';
-
-import background from '../img/nishi_waseda_campus-sm.jpg';
-
-const buildings = [
-  '51',
-  '52',
-  '53',
-  '54',
-  '55',
-  '56',
-  '57',
-  '58',
-  '59',
-  '60',
-  '61',
-  '62',
-  '63'
-];
+import nishiBuildings from '../data/buildingList';
+import background from '../../img/nishi_waseda_campus-sm.jpg';
 
 class NishiBuildingList extends React.Component {
   constructor(props) {
@@ -53,7 +37,7 @@ class NishiBuildingList extends React.Component {
 const mapStateToProps = state => {
   return {
     isFetching: getIsFetching(state.buildings),
-    buildings: getBuildings(state.buildings, buildings),
+    buildings: getBuildings(state.buildings, nishiBuildings),
     errorMessage: getErrorMessage(state.buildings)
   };
 };

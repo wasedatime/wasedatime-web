@@ -1,9 +1,9 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import background from '../img/home_background-sm.jpg';
-import backgroundMobile from '../img/home_background-mobile.jpg';
-import logo from '../img/logo.png';
+import background from '../../img/home_background-sm.jpg';
+import backgroundMobile from '../../img/home_background-mobile.jpg';
+import logo from '../../img/logo.png';
 
 const slideUpIn = keyframes`
   from {

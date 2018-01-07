@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
+import { axios } from 'axios';
 import PropTypes from 'prop-types';
 
 import { fetchBldgCurrentClassrooms } from '../actions/index';
 import ClassroomList from '../components/ClassroomList';
-import allBldgs from '../api/buildingList';
+import allBuildings from '../data/buildingList';
 
 class ClassroomListContainer extends React.Component {
   constructor(props) {
@@ -15,11 +16,12 @@ class ClassroomListContainer extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchBldgCurrentClassrooms(this.bldgName);
+    // this.props.fetchBldgCurrentClassrooms(this.bldgName);
+    //axios.get(`/api/current/${bldg}`)
   }
 
   render() {
-    if (allBldgs.includes(this.bldgName)) {
+    if (allBuildings.includes(this.bldgName)) {
       return (
         <ClassroomList
           bldgName={this.bldgName}

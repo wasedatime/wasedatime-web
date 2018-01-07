@@ -12,8 +12,7 @@ import {
   SEARCH_COURSES,
   FETCH_BLDG_CURRENT_CLASSROOMS
 } from './types';
-import { nishiBldgs } from './buildingList';
-import * as schema from './schema';
+import * as schema from '../data/schema';
 
 export const fetchCourses = filter => async (dispatch, getState) => {
   // if (getIsFetching(getState(), filter)) {

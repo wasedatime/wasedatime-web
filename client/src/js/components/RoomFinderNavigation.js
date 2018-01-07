@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import campus from '../img/campus.png';
+import campus from '../../img/campus.png';
 
 const StyledNav = styled('nav')`
   display: flex;

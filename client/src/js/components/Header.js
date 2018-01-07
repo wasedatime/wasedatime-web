@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import Navigation from './Navigation';
-import logo from '../img/logo.png';
+import logo from '../../img/logo.png';
 
 const StyledHeader = styled('header')`
   display: flex;

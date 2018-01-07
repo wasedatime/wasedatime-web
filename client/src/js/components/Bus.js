@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import background from '../img/home_background-sm.jpg';
-import backgroundMobile from '../img/home_background-mobile.jpg';
+import background from '../../img/home_background-sm.jpg';
+import backgroundMobile from '../../img/home_background-mobile.jpg';
 
 const WasedaNishiwasedaBusUri =
   'https://www.waseda.jp/fsci/assets/uploads/2017/06/2017waseda-nishiwaseda-shuttle-bus-timetable.pdf';

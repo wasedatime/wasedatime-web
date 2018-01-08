@@ -32,12 +32,11 @@ const StyledButton = styled('button')`
   font-size: 1.7rem;
 `;
 
-const FetchError = ({ errorMessage, onRetry }) => {
+const FetchError = ({ onRetry }) => {
   return (
     <Wrapper>
       <Overlay>
         <h3>Uh oh, something went wrong.</h3>
-        <p>{errorMessage}</p>
         <StyledButton onClick={onRetry}>Retry</StyledButton>
         <p>
           Kindly{' '}

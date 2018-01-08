@@ -12,25 +12,41 @@ const Wrapper = styled('div')`
   overflow-y: hidden;
 `;
 
-const StyledListItem = styled('li')`
+const StyledLink = styled(Link)`
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
-  margin: 4px 0px;
-  padding: 10px 15px;
-  width: 80vw;
+  align-items: center;
+  text-decoration: none;
 `;
 
-const StyledLink = styled(Link)`
-  text-decoration: none;
+const StyledButton = styled('button')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  align-items: stretch;
+  background-color: #ffffff;
+  border: none;
+  margin: 3px 0px;
+  padding: 10px 15px;
+  &:active {
+    background-color: #ccc;
+  }
+  width: 75vw;
+  @media screen and (max-width: 430px) {
+    width: 85vw;
+  }
+`;
+
+const StyledTitle = styled('div')`
+  text-align: left;
   color: #000;
 `;
 
 const Instructor = styled('div')`
   margin-top: 7px;
+  text-align: right;
   font-size: 1.4rem;
   color: #666;
-  text-align: right;
 `;
 
 const CourseItem = ({ searchTerm, course, style }) => {
@@ -38,12 +54,12 @@ const CourseItem = ({ searchTerm, course, style }) => {
   const instructor = highlight(searchTerm, course.instructor);
   return (
     <Wrapper style={style}>
-      <StyledListItem>
-        <StyledLink to={`/syllabus/${course._id}`}>
-          <div>{title}</div>
-        </StyledLink>
-        <Instructor>{instructor}</Instructor>
-      </StyledListItem>
+      <StyledLink to={`/syllabus/${course._id}`}>
+        <StyledButton>
+          <StyledTitle>{title}</StyledTitle>
+          <Instructor>{instructor}</Instructor>
+        </StyledButton>
+      </StyledLink>
     </Wrapper>
   );
 };

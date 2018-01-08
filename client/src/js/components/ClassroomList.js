@@ -40,6 +40,14 @@ const Title = styled('h3')`
   color: #ffffff;
 `;
 
+const Subtitle = styled('h4')`
+  margin: 0 0;
+  padding-left: 25px;
+  font-size: 1.5rem;
+  font-weight: lighter;
+  color: #ffffff;
+`;
+
 const ListWrapper = styled('div')`
   display: flex;
   justify-content: center;
@@ -52,8 +60,9 @@ const StyledList = styled('ul')`
   list-style-type: none;
 `;
 
-const ClassroomList = ({ buildingName, classrooms, backgroundUrl }) => {
-  if (classrooms !== 0) {
+const ClassroomList = ({ buildingName, classrooms, backgroundUrl, date }) => {
+  if (date && classrooms !== 0) {
+    const { dateString, hours, minutes } = date;
     const listItems = classrooms.map(classroom => {
       return <ClassroomItem key={classroom.id} classroom={classroom} />;
     });
@@ -62,6 +71,7 @@ const ClassroomList = ({ buildingName, classrooms, backgroundUrl }) => {
         <Overlay>
           <TitleWrapper>
             <Title>{`Building ${buildingName}`}</Title>
+            <Subtitle>{`${dateString} ${hours}:${minutes}`}</Subtitle>
           </TitleWrapper>
           <ListWrapper>
             <StyledList>{listItems}</StyledList>
@@ -70,13 +80,18 @@ const ClassroomList = ({ buildingName, classrooms, backgroundUrl }) => {
       </Wrapper>
     );
   } else {
-    return <div />;
+    return (
+      <Wrapper backgroundUrl={backgroundUrl}>
+        <Overlay />
+      </Wrapper>
+    );
   }
 };
 
 export default ClassroomList;
 
 ClassroomList.propTypes = {
+  date: PropTypes.object,
   buildingName: PropTypes.string.isRequired,
   classrooms: PropTypes.array.isRequired,
   backgroundUrl: PropTypes.string.isRequired

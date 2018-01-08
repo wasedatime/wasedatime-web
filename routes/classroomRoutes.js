@@ -30,17 +30,24 @@ module.exports = app => {
   app.get('/api/current/:buildingName', async (req, res) => {
     const buildingName = req.params.buildingName;
     if (buildingList.allBuildings.includes(buildingName)) {
-      const date = new Date();
-      const day = date.getDay();
-      const minutes = date.getHours() * 60 + date.getMinutes();
+      const now = new Date();
+      const dateString = now.toDateString();
+      const hours = now.getHours();
+      const minutes = now.getMinutes();
+      const day = now.getDay();
+      const totalMinutes = hours * 60 + minutes;
       try {
         const buildingClassrooms = await fetchBuildingClassrooms(buildingName);
         const occupiedClassrooms = await fetchOccupiedClassrooms(
           buildingName,
           day,
-          minutes
+          totalMinutes
         );
-        res.send({ date, buildingClassrooms, occupiedClassrooms });
+        res.send({
+          date: { dateString, hours, minutes },
+          buildingClassrooms,
+          occupiedClassrooms
+        });
       } catch (err) {
         res.status(500).send('Error while fetching data');
       }

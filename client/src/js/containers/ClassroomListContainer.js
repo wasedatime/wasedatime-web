@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 
 import ClassroomList from '../components/ClassroomList';
+import NotFound from '../components/NotFound';
 import FetchError from '../components/FetchError';
 import allBuildings from '../data/buildingList';
 import background from '../../img/nishi_waseda_campus-sm.jpg';
@@ -21,7 +22,7 @@ class ClassroomListContainer extends React.Component {
       isFetching: true,
       mergedClassrooms: [],
       date: null,
-      errorMessage: null
+      error: null
     };
   }
 
@@ -42,10 +43,10 @@ class ClassroomListContainer extends React.Component {
     let res;
     try {
       res = await axios.get(`/api/current/${this.state.buildingName}`);
-    } catch (err) {
+    } catch (error) {
       this.setState({
         isFetching: false,
-        errorMessage: err.message
+        error: error.response
       });
     }
     if (res) {
@@ -81,7 +82,7 @@ class ClassroomListContainer extends React.Component {
     e.preventDefault();
     this.setState({
       isFetching: true,
-      errorMessage: null
+      error: null
     });
     await this.fetchData();
   };
@@ -91,14 +92,14 @@ class ClassroomListContainer extends React.Component {
   }
 
   render() {
-    const hasErrorMessage = this.state.errorMessage ? true : false;
+    const hasErrorMessage = this.state.error ? true : false;
     if (hasErrorMessage) {
-      return (
-        <FetchError
-          errorMessage={this.state.errorMessage}
-          onRetry={this.handleRetry}
-        />
-      );
+      switch (this.state.error.status) {
+        case 404:
+          return <NotFound />;
+        default:
+          return <FetchError onRetry={this.handleRetry} />;
+      }
     }
     const isFetching = this.state.isFetching;
     const isMergedClassroomsEmpty =

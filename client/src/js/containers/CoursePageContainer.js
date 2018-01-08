@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { fetchCourseById } from '../actions/index';
 import BlankCoursePage from '../components/BlankCoursePage';
 import CoursePage from '../components/CoursePage';
+import NotFound from '../components/NotFound';
 import FetchError from '../components/FetchError';
 
 class CoursePageContainer extends React.Component {
@@ -16,7 +17,7 @@ class CoursePageContainer extends React.Component {
     this.state = {
       isFetching: true,
       coursePage: {},
-      errorMessage: null
+      error: null
     };
   }
 
@@ -27,10 +28,10 @@ class CoursePageContainer extends React.Component {
         isFetching: false,
         coursePage: res.data
       });
-    } catch (err) {
+    } catch (error) {
       this.setState({
         isFetching: false,
-        errorMessage: err.message
+        error: error.response
       });
     }
   }
@@ -40,7 +41,7 @@ class CoursePageContainer extends React.Component {
     e.preventDefault();
     this.setState({
       isFetching: true,
-      errorMessage: null
+      error: null
     });
     await this.fetchData();
   };
@@ -54,14 +55,14 @@ class CoursePageContainer extends React.Component {
       return <BlankCoursePage />;
     }
 
-    const hasErrorMessage = this.state.errorMessage ? true : false;
+    const hasErrorMessage = this.state.error ? true : false;
     if (hasErrorMessage) {
-      return (
-        <FetchError
-          errorMessage={this.state.errorMessage}
-          onRetry={this.handleRetry}
-        />
-      );
+      switch (this.state.error.status) {
+        case 404:
+          return <NotFound />;
+        default:
+          return <FetchError onRetry={this.handleRetry} />;
+      }
     }
 
     if (this.state.coursePage._id) {

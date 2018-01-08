@@ -9,7 +9,7 @@ module.exports = app => {
       const courses = await CourseSimplified.find({});
       res.send(courses);
     } catch (err) {
-      res.status(500).send('Error while fetching data from database');
+      res.status(500).send('Error while fetching data');
     }
   });
 
@@ -18,13 +18,13 @@ module.exports = app => {
       const course = await Course.findOne({
         _id: req.params.courseId
       });
-      res.send(course);
+      course ? res.send(course) : res.status(404).send('Not found');
     } catch (err) {
       if (err.name === 'CastError') {
-        //Data was not found
-        res.status(200).send({});
+        //Invalid ObjectId
+        res.status(404).send('Not found');
       } else {
-        res.status(500).send('Error while fetching data from database');
+        res.status(500).send('Error while fetching data');
       }
     }
   });

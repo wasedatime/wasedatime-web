@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const Building = mongoose.model('Building');
-const buildingList = require('../api/buildingList.js');
+const buildingList = require('../data/buildingList.js');
 
 module.exports = app => {
   app.get('/api/buildings', async (req, res) => {
@@ -13,22 +13,24 @@ module.exports = app => {
         });
       res.send(buildings);
     } catch (err) {
-      res.status(500).send('Error while fetching data from database');
+      res.status(500).send('Error while fetching data');
     }
   });
 
   app.get('/api/buildings/:buildingName', async (req, res) => {
-    try {
-      if (buildingList.allBldgs.includes(req.params.buildingName)) {
+    const buildingName = req.params.buildingName;
+    if (buildingList.allBuildings.includes(buildingName)) {
+      try {
         const building = await Building.findOne({
-          name: req.params.buildingName
+          name: buildingName
         });
         res.send(building);
-      } else {
-        res.status(404).send("Sorry can't find that!");
+      } catch (err) {
+        res.status(500).send('Error while fetching data');
       }
-    } catch (err) {
-      res.status(500).send('Error while fetching data from database');
+    } else {
+      //Requested building is not inside building list
+      res.status(404).send('Not found');
     }
   });
 };

@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { fetchBuildings } from '../actions/index';
-import {
-  getIsFetching,
-  getBuildings,
-  getErrorMessage
-} from '../reducers/buildings';
+import { getIsFetching, getBuildings, getError } from '../reducers/buildings';
 import BuildingList from '../components/BuildingList';
 import LoadingSpinner from '../components/LoadingSpinner';
 import FetchError from '../components/FetchError';
@@ -26,15 +22,13 @@ class NishiBuildingList extends React.Component {
   }
 
   render() {
-    const { isFetching, buildings, errorMessage, fetchBuildings } = this.props;
+    const { isFetching, buildings, error, fetchBuildings } = this.props;
     if (isFetching && !buildings.length) {
       return <LoadingSpinner />;
     }
 
-    if (errorMessage && !buildings.length) {
-      return (
-        <FetchError errorMessage={errorMessage} onRetry={fetchBuildings} />
-      );
+    if (error && !buildings.length) {
+      return <FetchError onRetry={fetchBuildings} />;
     }
     return (
       <BuildingList
@@ -50,7 +44,7 @@ const mapStateToProps = state => {
   return {
     isFetching: getIsFetching(state.buildings),
     buildings: getBuildings(state.buildings, nishiBuildings),
-    errorMessage: getErrorMessage(state.buildings)
+    error: getError(state.buildings)
   };
 };
 
@@ -63,6 +57,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(NishiBuildingList);
 NishiBuildingList.propTypes = {
   buildings: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string,
+  error: PropTypes.string,
   fetchBuildings: PropTypes.func.isRequired
 };

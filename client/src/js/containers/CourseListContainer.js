@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { fetchCourses, searchCourses } from '../actions/index';
-import {
-  getIsFetching,
-  getCourses,
-  getErrorMessage
-} from '../reducers/courses';
+import { getIsFetching, getCourses, getError } from '../reducers/courses';
 import { getSearchTerm } from '../reducers/searchTerm';
 import { filterCourses, sortCourses } from '../utils/syllabusSearch';
 import CourseList from '../components/CourseList';
@@ -20,19 +16,13 @@ class CourseListContainer extends React.Component {
   }
 
   render() {
-    const {
-      isFetching,
-      courses,
-      searchTerm,
-      errorMessage,
-      fetchCourses
-    } = this.props;
+    const { isFetching, courses, searchTerm, error, fetchCourses } = this.props;
     if (isFetching && !courses.length) {
       return <LoadingSpinner />;
     }
 
-    if (errorMessage && !courses.length) {
-      return <FetchError errorMessage={errorMessage} onRetry={fetchCourses} />;
+    if (error && !courses.length) {
+      return <FetchError onRetry={fetchCourses} />;
     }
     let searchResults = courses;
     if (searchTerm.length > 1) {
@@ -47,7 +37,7 @@ const mapStateToProps = state => {
   return {
     isFetching: getIsFetching(state.courses),
     courses: getCourses(state.courses),
-    errorMessage: getErrorMessage(state.courses),
+    error: getError(state.courses),
     searchTerm: getSearchTerm(state.searchTerm)
   };
 };

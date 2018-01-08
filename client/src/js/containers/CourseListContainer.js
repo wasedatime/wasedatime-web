@@ -12,20 +12,27 @@ import { getSearchTerm } from '../reducers/searchTerm';
 import { filterCourses, sortCourses } from '../utils/syllabusSearch';
 import CourseList from '../components/CourseList';
 import LoadingSpinner from '../components/LoadingSpinner';
+import FetchError from '../components/FetchError';
 
 class CourseListContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentDidMount() {
     this.props.fetchCourses();
   }
 
   render() {
-    const { isFetching, courses, errorMessage, searchTerm } = this.props;
+    const {
+      isFetching,
+      courses,
+      searchTerm,
+      errorMessage,
+      fetchCourses
+    } = this.props;
     if (isFetching && !courses.length) {
       return <LoadingSpinner />;
+    }
+
+    if (errorMessage && !courses.length) {
+      return <FetchError errorMessage={errorMessage} onRetry={fetchCourses} />;
     }
     let searchResults = courses;
     if (searchTerm.length > 1) {

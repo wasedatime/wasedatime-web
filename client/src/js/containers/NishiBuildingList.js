@@ -9,6 +9,8 @@ import {
   getErrorMessage
 } from '../reducers/buildings';
 import BuildingList from '../components/BuildingList';
+import LoadingSpinner from '../components/LoadingSpinner';
+import FetchError from '../components/FetchError';
 import nishiBuildings from '../data/buildingList';
 import background from '../../img/nishi_waseda_campus-sm.jpg';
 
@@ -24,10 +26,20 @@ class NishiBuildingList extends React.Component {
   }
 
   render() {
+    const { isFetching, buildings, errorMessage, fetchBuildings } = this.props;
+    if (isFetching && !buildings.length) {
+      return <LoadingSpinner />;
+    }
+
+    if (errorMessage && !buildings.length) {
+      return (
+        <FetchError errorMessage={errorMessage} onRetry={fetchBuildings} />
+      );
+    }
     return (
       <BuildingList
         name={this.name}
-        buildings={this.props.buildings}
+        buildings={buildings}
         background={this.background}
       />
     );

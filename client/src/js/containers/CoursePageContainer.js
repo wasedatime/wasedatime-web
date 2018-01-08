@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import { fetchCourseById } from '../actions/index';
 import BlankCoursePage from '../components/BlankCoursePage';
 import CoursePage from '../components/CoursePage';
+import FetchError from '../components/FetchError';
 
 class CoursePageContainer extends React.Component {
   constructor(props) {
@@ -14,21 +15,53 @@ class CoursePageContainer extends React.Component {
     this.courseId = this.props.match.params.courseId;
     this.state = {
       isFetching: true,
-      coursePage: {}
+      coursePage: {},
+      errorMessage: null
     };
   }
 
-  async componentDidMount() {
-    const res = await axios.get(`/api/courses/${this.courseId}`);
+  async fetchData() {
+    try {
+      const res = await axios.get(`/api/courses/${this.courseId}`);
+      this.setState({
+        isFetching: false,
+        coursePage: res.data
+      });
+    } catch (err) {
+      this.setState({
+        isFetching: false,
+        errorMessage: err.message
+      });
+    }
+  }
+
+  //Avoid creating an arrow function wrapper and binds in render.
+  handleRetry = async e => {
+    e.preventDefault();
     this.setState({
-      isFetching: false,
-      coursePage: res.data
+      isFetching: true,
+      errorMessage: null
     });
+    await this.fetchData();
+  };
+
+  async componentDidMount() {
+    await this.fetchData();
   }
 
   render() {
     if (this.state.isFetching) {
       return <BlankCoursePage />;
+    }
+
+    const hasErrorMessage = this.state.errorMessage ? true : false;
+    if (hasErrorMessage) {
+      return (
+        <FetchError
+          errorMessage={this.state.errorMessage}
+          onRetry={this.handleRetry}
+        />
+      );
     }
 
     if (this.state.coursePage._id) {

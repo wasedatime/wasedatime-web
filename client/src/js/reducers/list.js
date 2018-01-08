@@ -22,10 +22,10 @@ const list = actionTypes => {
     }
   };
 
-  const errorMessage = (state = null, action) => {
+  const error = (state = null, action) => {
     switch (action.type) {
       case actionTypes.fetchFailure:
-        return action.message;
+        return action.error;
       case actionTypes.fetchRequest:
       case actionTypes.fetchSuccess:
         return null;
@@ -33,7 +33,7 @@ const list = actionTypes => {
         return state;
     }
   };
-  return combineReducers({ ids, isFetching, errorMessage });
+  return combineReducers({ ids, isFetching, error });
 };
 
 export default list;
@@ -41,4 +41,4 @@ export default list;
 //Export selectors
 export const getIds = state => state.ids;
 export const getIsFetching = state => state.isFetching;
-export const getErrorMessage = state => state.errorMessage;
+export const getError = state => state.error;

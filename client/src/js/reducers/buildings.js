@@ -33,6 +33,6 @@ export const getIsFetching = state => {
   return fromList.getIsFetching(state.list);
 };
 
-export const getErrorMessage = state => {
-  return fromList.getErrorMessage(state.list);
+export const getError = state => {
+  return fromList.getError(state.list);
 };

@@ -15,10 +15,6 @@ import {
 import * as schema from '../data/schema';
 
 export const fetchCourses = filter => async (dispatch, getState) => {
-  // if (getIsFetching(getState(), filter)) {
-  //   return Promise.resolve();
-  // }
-
   dispatch({
     type: FETCH_COURSES_REQUEST
   });
@@ -31,10 +27,10 @@ export const fetchCourses = filter => async (dispatch, getState) => {
       type: FETCH_COURSES_SUCCESS,
       response: normalizedCourses
     });
-  } catch (err) {
+  } catch (error) {
     dispatch({
       type: FETCH_COURSES_FAILURE,
-      message: err.message || 'Something went wrong.'
+      error: error.response
     });
   }
 };
@@ -44,10 +40,6 @@ export const searchCourses = searchTerm => {
 };
 
 export const fetchBuildings = () => async (dispatch, getState) => {
-  // if (getIsFetching(getState(), filter)) {
-  //   return Promise.resolve();
-  // }
-
   dispatch({
     type: FETCH_BUILDINGS_REQUEST
   });
@@ -60,10 +52,10 @@ export const fetchBuildings = () => async (dispatch, getState) => {
       type: FETCH_BUILDINGS_SUCCESS,
       response: normalizedBuildings
     });
-  } catch (err) {
+  } catch (error) {
     dispatch({
       type: FETCH_BUILDINGS_FAILURE,
-      message: err.message || 'Something went wrong.'
+      error: error.response
     });
   }
 };

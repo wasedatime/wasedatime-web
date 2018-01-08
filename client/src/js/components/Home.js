@@ -2,8 +2,9 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import { media } from '../utils/styledComponents';
-import background from '../../img/home_background-sm.jpg';
-import backgroundMobile from '../../img/home_background-mobile.jpg';
+import homeBackground from '../../img/home_background-sm.jpg';
+import homeBackgroundMobile from '../../img/home_background-mobile.jpg';
+import getStartedBackground from '../../img/nishi_waseda_campus-sm.jpg';
 import logo from '../../img/logo.png';
 import arrow from '../../img/arrow.png';
 
@@ -60,13 +61,20 @@ const bounce = keyframes`
 
 const Wrapper = styled('div')`
   display: flex;
+  height: 200vh;
   flex-direction: column;
   flex: 1 0 auto;
-  background-image: url(${background});
+`;
+
+const HomeWrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 75px);
+  background-image: url(${homeBackground});
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
-  ${media.phone`background-image: url(${backgroundMobile});`};
+  ${media.phone`background-image: url(${homeBackgroundMobile});`};
 `;
 
 const Overlay = styled('div')`
@@ -141,27 +149,46 @@ const Arrow = styled('img')`
   ${media.phone`width: 100px;`};
 `;
 
+const GetStartedWrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  background-image: url(${getStartedBackground});
+  background-position: center top;
+  background-size: cover;
+  background-repeat: no-repeat;
+`;
+
+const DarkOverlay = Overlay.extend`
+  background-color: rgba(0, 0, 0, 0.6);
+`;
+
 const Home = () => {
   return (
     <Wrapper>
-      <Overlay>
-        <StyledHeader>
-          <LogoWrapper>
-            <Logo src={logo} alt="WaseTime Logo" />
-          </LogoWrapper>
-          <Introduction>
-            <Title>WaseTime</Title>
-            <Description>
-              An unonfficial app for syllabus searching, classroom finding, and
-              bus schedule checking at Waseda University.
-            </Description>
-          </Introduction>
-        </StyledHeader>
-        <ArrowWrapper>
-          <Description>Get Started</Description>
-          <Arrow src={arrow} alt="Scroll Down Arrow" />
-        </ArrowWrapper>
-      </Overlay>
+      <HomeWrapper>
+        <Overlay>
+          <StyledHeader>
+            <LogoWrapper>
+              <Logo src={logo} alt="WaseTime Logo" />
+            </LogoWrapper>
+            <Introduction>
+              <Title>WaseTime</Title>
+              <Description>
+                An unonfficial app for syllabus searching, classroom finding,
+                and bus schedule checking at Waseda University.
+              </Description>
+            </Introduction>
+          </StyledHeader>
+          <ArrowWrapper>
+            <Description>Get Started</Description>
+            <Arrow src={arrow} alt="Scroll Down Arrow" />
+          </ArrowWrapper>
+        </Overlay>
+      </HomeWrapper>
+      <GetStartedWrapper>
+        <DarkOverlay />
+      </GetStartedWrapper>
     </Wrapper>
   );
 };

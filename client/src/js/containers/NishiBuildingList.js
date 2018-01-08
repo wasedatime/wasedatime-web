@@ -55,8 +55,8 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(NishiBuildingList);
 
 NishiBuildingList.propTypes = {
-  buildings: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
-  error: PropTypes.string,
+  buildings: PropTypes.array.isRequired,
+  error: PropTypes.object,
   fetchBuildings: PropTypes.func.isRequired
 };

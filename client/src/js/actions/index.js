@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { sortBy } from 'lodash';
 import { normalize } from 'normalizr';
 
 import {
@@ -9,8 +8,7 @@ import {
   FETCH_BUILDINGS_REQUEST,
   FETCH_BUILDINGS_SUCCESS,
   FETCH_BUILDINGS_FAILURE,
-  SEARCH_COURSES,
-  FETCH_BLDG_CURRENT_CLASSROOMS
+  SEARCH_COURSES
 } from './types';
 import * as schema from '../data/schema';
 

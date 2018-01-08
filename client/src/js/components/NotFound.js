@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import PropTypes from 'prop-types';
 
 const Wrapper = styled('div')`
   display: flex;
@@ -42,7 +41,12 @@ const NotFound = () => {
         <Link to="/">
           <StyledButton>Take Me Home</StyledButton>
         </Link>
-        <p>Were you trying to break something? 😏</p>
+        <p>
+          Were you trying to break something?{' '}
+          <span role="img" aria-label="Smirking Face">
+            😏
+          </span>
+        </p>
       </Overlay>
     </Wrapper>
   );

@@ -38,7 +38,6 @@ const list = actionTypes => {
 
 export default list;
 
-//Export selectors
 export const getIds = state => state.ids;
 export const getIsFetching = state => state.isFetching;
 export const getError = state => state.error;

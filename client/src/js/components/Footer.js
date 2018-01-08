@@ -23,9 +23,6 @@ const StyledLink = styled('a')`
 `;
 
 const Footer = () => {
-  const siteDescription = 'Created with ❤️ by ';
-  const licensceDescription = '. Code licensed ';
-
   return (
     <StyledFooter>
       <StyledList>
@@ -36,7 +33,11 @@ const Footer = () => {
         </li>
       </StyledList>
       <p>
-        {siteDescription}
+        Created with{' '}
+        <span role="img" aria-label="Love">
+          ❤️
+        </span>{' '}
+        by{' '}
         <StyledLink href="https://github.com/OscarWang114">
           Oscar Wang
         </StyledLink>
@@ -45,7 +46,7 @@ const Footer = () => {
         <StyledLink href="https://github.com/wasetime ">
           WaseTime 2017
         </StyledLink>
-        {licensceDescription}
+        . Code licensed{' '}
         <StyledLink href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md">
           MIT
         </StyledLink>.

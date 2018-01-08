@@ -3,28 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { tokenize, regexify } from '../utils/syllabusSearch';
-
-const highlight = (searchTerm, text) => {
-  if (searchTerm.length > 1) {
-    const termUnion = tokenize(searchTerm)
-      .map(term => {
-        const cleanTerm = term.trim().replace(/\W+/g, '\\W+');
-        return cleanTerm;
-      })
-      .join('|');
-    const regex = new RegExp(`\\b(${termUnion})`, 'i');
-    const textParts = text.split(regex);
-    return textParts.map((part, i) => {
-      if (i % 2 === 0) {
-        return part;
-      }
-      return <mark key={i}>{part}</mark>;
-    });
-  } else {
-    return text;
-  }
-};
+import { highlight } from '../utils/react';
 
 const Wrapper = styled('div')`
   display: flex;
@@ -73,5 +52,6 @@ export default CourseItem;
 
 CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,
-  course: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired,
+  style: PropTypes.object.isRequired
 };

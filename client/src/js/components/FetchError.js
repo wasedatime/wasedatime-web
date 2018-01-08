@@ -49,3 +49,7 @@ const FetchError = ({ onRetry }) => {
 };
 
 export default FetchError;
+
+FetchError.propTypes = {
+  onRetry: PropTypes.func.isRequired
+};

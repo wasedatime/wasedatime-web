@@ -52,5 +52,10 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 );
 
 CourseListContainer.propTypes = {
-  searchTerm: PropTypes.string.isRequired
+  isFetching: PropTypes.bool.isRequired,
+  courses: PropTypes.array.isRequired,
+  error: PropTypes.object,
+  searchTerm: PropTypes.string.isRequired,
+  fetchCourses: PropTypes.func.isRequired,
+  searchCourses: PropTypes.func.isRequired
 };

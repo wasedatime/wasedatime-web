@@ -1,10 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-import { fetchCourseById } from '../actions/index';
 import BlankCoursePage from '../components/BlankCoursePage';
 import CoursePage from '../components/CoursePage';
 import NotFound from '../components/NotFound';

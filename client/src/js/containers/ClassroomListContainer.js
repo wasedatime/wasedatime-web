@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import ClassroomList from '../components/ClassroomList';
 import NotFound from '../components/NotFound';
 import FetchError from '../components/FetchError';
-import allBuildings from '../data/buildingList';
 import background from '../../img/nishi_waseda_campus-sm.jpg';
 
 class ClassroomListContainer extends React.Component {

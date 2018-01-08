@@ -2,6 +2,8 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
+const timeout = require('connect-timeout');
+
 const keys = require('./config/keys');
 require('./models/CourseSimplified');
 require('./models/Course');
@@ -23,6 +25,7 @@ mongoose
   });
 
 const app = express();
+app.use(timeout('9s'));
 app.use(helmet());
 
 require('./routes/buildingRoutes')(app);

@@ -1,7 +1,8 @@
 {
-  "name": "wasetime-web",
+  "name": "WaseTime-Web",
   "version": "1.0.0",
-  "description": "An unonfficial app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.",
+  "description":
+    "An unonfficial app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/wasetime/wasetime-web#readme",
   "dependencies": {
+    "connect-timeout": "^1.9.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "helmet": "^3.9.0",

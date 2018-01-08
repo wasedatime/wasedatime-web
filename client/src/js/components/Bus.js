@@ -29,29 +29,42 @@ const Overlay = styled('div')`
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
+const Banner = styled('div')`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  height: 36px;
+  width: 100%;
+  background-color: #777777;
+  color: white;
+  z-index: 1030;
+`;
+
 const InfoWrapper = styled('div')`
   flex: 1 0 500px;
-  ${'' /* width: 200px; */} transform: translate(0, 14vh);
+  transform: translate(0, 14vh);
   @media screen and (max-width: 430px) {
     transform: translate(0, 11vh);
   }
 `;
 
 const StyledAnchor = styled('a')`
-  ${'' /* padding: 2rem 0.8rem; */} color: rgba(255, 255, 255, 1);
+  color: rgba(255, 255, 255, 1);
   text-align: center;
   text-decoration: none;
   font-size: 2rem;
   font-weight: 330;
 `;
 
-const StyledHeader = styled('h1')`
+const StyledHeading = styled('h1')`
   font-family: Times;
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 400;
   color: #000000;
   @media screen and (max-width: 430px) {
-    font-size: 4.2rem;
+    font-size: 3.8rem;
   }
 `;
 
@@ -59,8 +72,9 @@ const Bus = () => {
   return (
     <Wrapper>
       <Overlay>
+        <Banner>More features coming soon!!</Banner>
         <InfoWrapper>
-          <StyledHeader>Links</StyledHeader>
+          <StyledHeading>Official Link</StyledHeading>
           <StyledAnchor href={WasedaNishiwasedaBusUri} target="_blank">
             2017-2018 Waseda-Nishiwaseda Bus Schedule
           </StyledAnchor>

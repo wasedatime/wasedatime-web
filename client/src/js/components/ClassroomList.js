@@ -3,16 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import ClassroomItem from './ClassroomItem';
-
-const Wrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-  background-image: url(${props => props.backgroundUrl});
-  background-position: center, center;
-  background-size: cover;
-  background-repeat: no-repeat;
-`;
+import { WrapperWithBackground } from '../styledComponents/Wrapper';
 
 const Overlay = styled('div')`
   display: flex;
@@ -60,14 +51,17 @@ const StyledList = styled('ul')`
   list-style-type: none;
 `;
 
-const ClassroomList = ({ buildingName, classrooms, backgroundUrl, date }) => {
+const ClassroomList = ({ buildingName, classrooms, background, date }) => {
   if (date && classrooms !== 0) {
     const { dateString, hours, minutes } = date;
     const listItems = classrooms.map(classroom => {
       return <ClassroomItem key={classroom.id} classroom={classroom} />;
     });
     return (
-      <Wrapper backgroundUrl={backgroundUrl}>
+      <WrapperWithBackground
+        background={background}
+        backgroundPhone={background}
+      >
         <Overlay>
           <TitleWrapper>
             <Title>{`Building ${buildingName}`}</Title>
@@ -77,13 +71,16 @@ const ClassroomList = ({ buildingName, classrooms, backgroundUrl, date }) => {
             <StyledList>{listItems}</StyledList>
           </ListWrapper>
         </Overlay>
-      </Wrapper>
+      </WrapperWithBackground>
     );
   } else {
     return (
-      <Wrapper backgroundUrl={backgroundUrl}>
+      <WrapperWithBackground
+        background={background}
+        backgroundPhone={background}
+      >
         <Overlay />
-      </Wrapper>
+      </WrapperWithBackground>
     );
   }
 };
@@ -94,5 +91,5 @@ ClassroomList.propTypes = {
   date: PropTypes.object,
   buildingName: PropTypes.string.isRequired,
   classrooms: PropTypes.array.isRequired,
-  backgroundUrl: PropTypes.string.isRequired
+  background: PropTypes.string.isRequired
 };

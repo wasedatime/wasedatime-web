@@ -109,7 +109,7 @@ class ClassroomListContainer extends React.Component {
       return (
         <ClassroomList
           buildingName={this.state.buildingName}
-          backgroundUrl={background}
+          background={background}
           classrooms={this.state.mergedClassrooms}
           date={this.state.date}
         />

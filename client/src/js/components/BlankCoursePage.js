@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-`;
+import { Wrapper } from '../styledComponents/Wrapper';
 
 const Overlay = styled('div')`
   display: flex;

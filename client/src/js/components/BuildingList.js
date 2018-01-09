@@ -3,16 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import BuildingItem from './BuildingItem';
-
-const Wrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-  background-image: url(${props => props.background});
-  background-position: center, center;
-  background-size: cover;
-  background-repeat: no-repeat;
-`;
+import { WrapperWithBackground } from '../styledComponents/Wrapper';
 
 const Overlay = styled('div')`
   display: flex;
@@ -53,14 +44,17 @@ const BuildingList = ({ name, buildings, background }) => {
       <BuildingItem key={building._id} name={building.name} />
     ));
     return (
-      <Wrapper background={background}>
+      <WrapperWithBackground
+        background={background}
+        backgroundPhone={background}
+      >
         <Overlay>
           <TitleWrapper>
             <Title>{name}</Title>
           </TitleWrapper>
           <StyledList>{listItems}</StyledList>
         </Overlay>
-      </Wrapper>
+      </WrapperWithBackground>
     );
   } else {
     return <div />;

@@ -3,8 +3,9 @@ import styled, { keyframes } from 'styled-components';
 import smoothScroll from 'smoothscroll';
 
 import { media } from '../utils/styledComponents';
+import { Wrapper, WrapperWithBackground } from '../styledComponents/Wrapper';
 import homeBackground from '../../img/home_background-sm.jpg';
-import homeBackgroundMobile from '../../img/home_background-mobile.jpg';
+import homeBackgroundPhone from '../../img/home_background-phone.jpg';
 import mainBackground from '../../img/main_campus-sm.jpg';
 import nishiwasedaBackground from '../../img/nishi_waseda_campus-sm.jpg';
 import toyamaBackground from '../../img/toyama_campus-sm.jpg';
@@ -66,21 +67,8 @@ const bounce = keyframes`
   }
 `;
 
-const Wrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-`;
-
-const HomeWrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
+const HomeWrapper = WrapperWithBackground.extend`
   height: calc(100vh - 75px);
-  background-image: url(${homeBackground});
-  background-position: center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-  ${media.phone`background-image: url(${homeBackgroundMobile});`};
 `;
 
 const Overlay = styled('div')`
@@ -158,39 +146,13 @@ const Arrow = styled('img')`
   ${media.phone`width: 100px;`};
 `;
 
-const GetStartedWrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-`;
-
 const StyledSection = styled('section')`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
 `;
 
-const StyledArticle = styled('article')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-  align-items: stretch;
-  background-position: center top;
-  background-size: cover;
-  background-repeat: no-repeat;
-`;
-
-const SyllabusArticle = StyledArticle.extend`
-  background-image: url(${mainBackground});
-`;
-
-const RoomFinderArticle = StyledArticle.extend`
-  background-image: url(${nishiwasedaBackground});
-`;
-
-const BusArticle = StyledArticle.extend`
-  background-image: url(${toyamaBackground});
-`;
+const StyledArticle = WrapperWithBackground.withComponent('article');
 
 const DarkOverlay = Overlay.extend`
   padding: 60px;
@@ -235,7 +197,10 @@ const clickHandler = e => {
 const Home = () => {
   return (
     <Wrapper>
-      <HomeWrapper>
+      <HomeWrapper
+        background={homeBackground}
+        backgroundPhone={homeBackgroundPhone}
+      >
         <Overlay>
           <StyledHeader>
             <LogoWrapper>
@@ -256,7 +221,10 @@ const Home = () => {
         </Overlay>
       </HomeWrapper>
       <StyledSection>
-        <SyllabusArticle>
+        <StyledArticle
+          background={mainBackground}
+          backgroundPhone={mainBackground}
+        >
           <DarkOverlay>
             <StyledHeader>
               <SubHeading>Syllabus</SubHeading>
@@ -277,8 +245,11 @@ const Home = () => {
               />
             </DemoFigure>
           </DarkOverlay>
-        </SyllabusArticle>
-        <RoomFinderArticle>
+        </StyledArticle>
+        <StyledArticle
+          background={nishiwasedaBackground}
+          backgroundPhone={nishiwasedaBackground}
+        >
           <DarkOverlay>
             <StyledHeader>
               <SubHeading>RoomFinder</SubHeading>
@@ -290,8 +261,11 @@ const Home = () => {
               <DemoImage src={roomFinder} alt="Room Finder Demo" />
             </DemoFigure>
           </DarkOverlay>
-        </RoomFinderArticle>
-        <BusArticle>
+        </StyledArticle>
+        <StyledArticle
+          background={toyamaBackground}
+          backgroundPhone={toyamaBackground}
+        >
           <DarkOverlay>
             <StyledHeader>
               <SubHeading>Bus</SubHeading>
@@ -304,7 +278,7 @@ const Home = () => {
               <DemoDescription>More features coming soon!</DemoDescription>
             </DemoFigure>
           </DarkOverlay>
-        </BusArticle>
+        </StyledArticle>
       </StyledSection>
     </Wrapper>
   );

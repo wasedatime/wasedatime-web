@@ -9,12 +9,7 @@ import {
 import PropTypes from 'prop-types';
 
 import CourseItem from './CourseItem';
-
-const Wrapper = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-`;
+import { Wrapper } from '../styledComponents/Wrapper';
 
 const Overlay = styled('div')`
   display: flex;

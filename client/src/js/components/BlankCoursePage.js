@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Wrapper } from '../styledComponents/Wrapper';
-import { Overlay } from '../styledComponents/Overlay';
+import { Wrapper } from '../styled-components/Wrapper';
+import { Overlay } from '../styled-components/Overlay';
 
 const BlankCoursePage = () => {
   return (

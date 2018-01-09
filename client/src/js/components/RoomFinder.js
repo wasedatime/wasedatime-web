@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import RoomFinderNavigation from './RoomFinderNavigation';
 import NishiBuildingList from '../containers/NishiBuildingList';
 import ClassroomListContainer from '../containers/ClassroomListContainer';
-import { Wrapper } from '../styledComponents/Wrapper';
+import { Wrapper } from '../styled-components/Wrapper';
 
 const RoomFinder = ({ match }) => {
   return (

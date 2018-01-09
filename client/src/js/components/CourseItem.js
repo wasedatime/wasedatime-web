@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { highlight } from '../utils/react';
+import { media } from '../utils/styledComponents';
 
 const Wrapper = styled('div')`
   display: flex;
@@ -32,9 +33,7 @@ const StyledButton = styled('button')`
     background-color: #ccc;
   }
   width: 75vw;
-  @media screen and (max-width: 430px) {
-    width: 85vw;
-  }
+  ${media.phone`width: 85vw;`};
 `;
 
 const StyledTitle = styled('div')`

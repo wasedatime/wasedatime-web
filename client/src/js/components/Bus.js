@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { WrapperWithBackground } from '../styledComponents/Wrapper';
-import { Overlay } from '../styledComponents/Overlay';
+import { media } from '../utils/styledComponents';
+import { WrapperWithBackground } from '../styled-components/Wrapper';
+import { Overlay } from '../styled-components/Overlay';
 import background from '../../img/home_background.jpg';
 import backgroundPhone from '../../img/home_background-phone.jpg';
 
@@ -30,9 +31,7 @@ const Banner = styled('div')`
 const InfoWrapper = styled('div')`
   flex: 1 0 500px;
   transform: translate(0, 14vh);
-  @media screen and (max-width: 430px) {
-    transform: translate(0, 11vh);
-  }
+  ${media.phone`transform: translate(0, 11vh);`};
 `;
 
 const StyledAnchor = styled('a')`
@@ -48,9 +47,7 @@ const StyledHeading = styled('h1')`
   font-size: 4rem;
   font-weight: 400;
   color: #000000;
-  @media screen and (max-width: 430px) {
-    font-size: 3.8rem;
-  }
+  ${media.phone`font-size: 3.8rem;`};
 `;
 
 const Bus = () => {

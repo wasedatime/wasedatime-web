@@ -3,8 +3,8 @@ import styled, { keyframes } from 'styled-components';
 import smoothScroll from 'smoothscroll';
 
 import { media } from '../utils/styledComponents';
-import { Wrapper, WrapperWithBackground } from '../styledComponents/Wrapper';
-import { Overlay } from '../styledComponents/Overlay';
+import { Wrapper, WrapperWithBackground } from '../styled-components/Wrapper';
+import { Overlay } from '../styled-components/Overlay';
 import homeBackground from '../../img/home_background.jpg';
 import homeBackgroundPhone from '../../img/home_background-phone.jpg';
 import mainBackground from '../../img/main_campus.jpg';

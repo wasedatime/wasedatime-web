@@ -9,8 +9,8 @@ import {
 import PropTypes from 'prop-types';
 
 import CourseItem from './CourseItem';
-import { Overlay } from '../styledComponents/Overlay';
-import { Wrapper } from '../styledComponents/Wrapper';
+import { Overlay } from '../styled-components/Overlay';
+import { Wrapper } from '../styled-components/Wrapper';
 
 const ExtendedOverlay = Overlay.extend`
   padding: 36px 25px 25px 25px;

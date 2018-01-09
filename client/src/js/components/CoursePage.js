@@ -4,9 +4,9 @@ import styled from 'styled-components';
 import { media } from '../utils/styledComponents';
 import PropTypes from 'prop-types';
 
-import { Wrapper } from '../styledComponents/Wrapper';
-import { Overlay } from '../styledComponents/Overlay';
-import { Button } from '../styledComponents/Button';
+import { Wrapper } from '../styled-components/Wrapper';
+import { Overlay } from '../styled-components/Overlay';
+import { Button } from '../styled-components/Button';
 
 const ExtendedOverlay = Overlay.extend`
   padding: 25px 20vh;

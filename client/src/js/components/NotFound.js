@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { Wrapper } from '../styledComponents/Wrapper';
-import { Button } from '../styledComponents/Button';
-import { Overlay } from '../styledComponents/Overlay';
+import { Wrapper } from '../styled-components/Wrapper';
+import { Button } from '../styled-components/Button';
+import { Overlay } from '../styled-components/Overlay';
 
 const ExtendedOverlay = Overlay.extend`
   justify-content: center;

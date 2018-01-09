@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import BuildingItem from './BuildingItem';
-import { WrapperWithBackground } from '../styledComponents/Wrapper';
-import { Overlay } from '../styledComponents/Overlay';
+import { WrapperWithBackground } from '../styled-components/Wrapper';
+import { Overlay } from '../styled-components/Overlay';
 
 const ExtendedOverlay = Overlay.extend`
   padding: 40px 25px 25px 25px;

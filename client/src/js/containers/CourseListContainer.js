@@ -12,7 +12,10 @@ import FetchError from '../components/FetchError';
 
 class CourseListContainer extends React.Component {
   componentDidMount() {
-    this.props.fetchCourses();
+    const isCoursesEmpty = !this.props.courses.length;
+    if (isCoursesEmpty) {
+      this.props.fetchCourses();
+    }
   }
 
   render() {

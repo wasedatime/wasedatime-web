@@ -8,7 +8,7 @@ import BuildingList from '../components/BuildingList';
 import LoadingSpinner from '../components/LoadingSpinner';
 import FetchError from '../components/FetchError';
 import nishiBuildings from '../data/buildingList';
-import background from '../../img/nishi_waseda_campus-sm.jpg';
+import background from '../../img/nishi_waseda_campus.jpg';
 
 class NishiBuildingList extends React.Component {
   constructor(props) {

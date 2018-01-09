@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { WrapperWithBackground } from '../styledComponents/Wrapper';
 import { Overlay } from '../styledComponents/Overlay';
-import background from '../../img/home_background-sm.jpg';
+import background from '../../img/home_background.jpg';
 import backgroundPhone from '../../img/home_background-phone.jpg';
 
 const WasedaNishiwasedaBusUri =

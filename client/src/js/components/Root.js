@@ -6,7 +6,7 @@ import { Route, BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 
-ReactGA.initialize('UA-112185819-1', { debug: true });
+ReactGA.initialize('UA-112185819-1', { debug: false });
 
 // A invisible component that sends a GA pageview every time
 // the pathname of the user is changed.

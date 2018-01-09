@@ -1,12 +1,19 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import smoothScroll from 'smoothscroll';
 
 import { media } from '../utils/styledComponents';
 import homeBackground from '../../img/home_background-sm.jpg';
 import homeBackgroundMobile from '../../img/home_background-mobile.jpg';
-import getStartedBackground from '../../img/nishi_waseda_campus-sm.jpg';
+import mainBackground from '../../img/main_campus-sm.jpg';
+import nishiwasedaBackground from '../../img/nishi_waseda_campus-sm.jpg';
+import toyamaBackground from '../../img/toyama_campus-sm.jpg';
 import logo from '../../img/logo.png';
 import arrow from '../../img/arrow.png';
+import syllabus from '../../img/syllabus-480.gif';
+import syllabusResult from '../../img/syllabusResult-480.gif';
+import bus from '../../img/bus-480.gif';
+import roomFinder from '../../img/roomFinder-480.gif';
 
 const slideUpIn = keyframes`
   from {
@@ -61,7 +68,6 @@ const bounce = keyframes`
 
 const Wrapper = styled('div')`
   display: flex;
-  height: 200vh;
   flex-direction: column;
   flex: 1 0 auto;
 `;
@@ -120,7 +126,7 @@ const Introduction = styled('div')`
   ${media.phone`animation-name: ${slideUpInMobile}; transform: translate(0, 8vh);`};
 `;
 
-const Title = styled('h1')`
+const MainHeading = styled('h1')`
   font-family: Times;
   font-size: 5rem;
   font-weight: 400;
@@ -135,13 +141,16 @@ const Description = styled('p')`
   ${media.phone`font-size: 2.2rem;`};
 `;
 
-const ArrowWrapper = styled('div')`
+const GetStartedButton = styled('button')`
+  align-self: center;
   text-align: center;
-  margin-bottom: 7vh;
+  background: transparent;
+  border: none !important;
   animation-name: ${bounce};
   animation-timing-function: linear;
   animation-duration: 1.5s;
   animation-delay: 1.5s;
+  z-index: 1000;
 `;
 
 const Arrow = styled('img')`
@@ -153,15 +162,75 @@ const GetStartedWrapper = styled('div')`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  background-image: url(${getStartedBackground});
+`;
+
+const StyledSection = styled('section')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+`;
+
+const StyledArticle = styled('article')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  align-items: stretch;
   background-position: center top;
   background-size: cover;
   background-repeat: no-repeat;
 `;
 
-const DarkOverlay = Overlay.extend`
-  background-color: rgba(0, 0, 0, 0.6);
+const SyllabusArticle = StyledArticle.extend`
+  background-image: url(${mainBackground});
 `;
+
+const RoomFinderArticle = StyledArticle.extend`
+  background-image: url(${nishiwasedaBackground});
+`;
+
+const BusArticle = StyledArticle.extend`
+  background-image: url(${toyamaBackground});
+`;
+
+const DarkOverlay = Overlay.extend`
+  padding: 60px;
+  background-color: rgba(0, 0, 0, 0.6);
+  ${media.phone`padding: 40px 50px;`};
+`;
+
+const SubHeading = styled('h2')`
+  margin: 0px;
+  font-size: 3.8rem;
+  font-weight: 300;
+  color: #ffffff;
+  ${media.phone`font-size: 3.2rem;`};
+`;
+
+const DemoFigure = styled('figure')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  align-items: center;
+  text-align: center;
+`;
+
+const DemoImage = styled('img')`
+  width: 400px;
+  ${media.phone`width: 100%;`};
+`;
+
+const DemoDescription = styled('p')`
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: #dddddd;
+  ${media.phone`font-size: 1.8rem;`};
+`;
+
+const clickHandler = e => {
+  e.preventDefault();
+  const destination = document.querySelector('#get-started');
+  smoothScroll(destination, 600);
+};
 
 const Home = () => {
   return (
@@ -173,22 +242,70 @@ const Home = () => {
               <Logo src={logo} alt="WaseTime Logo" />
             </LogoWrapper>
             <Introduction>
-              <Title>WaseTime</Title>
+              <MainHeading>WaseTime</MainHeading>
               <Description>
                 An unonfficial app for syllabus searching, classroom finding,
                 and bus schedule checking at Waseda University.
               </Description>
             </Introduction>
           </StyledHeader>
-          <ArrowWrapper>
+          <GetStartedButton onClick={clickHandler}>
             <Description>Get Started</Description>
-            <Arrow src={arrow} alt="Scroll Down Arrow" />
-          </ArrowWrapper>
+            <Arrow src={arrow} alt="Scroll Down Arrow" id="get-started" />
+          </GetStartedButton>
         </Overlay>
       </HomeWrapper>
-      <GetStartedWrapper>
-        <DarkOverlay />
-      </GetStartedWrapper>
+      <StyledSection>
+        <SyllabusArticle>
+          <DarkOverlay>
+            <StyledHeader>
+              <SubHeading>Syllabus</SubHeading>
+            </StyledHeader>
+            <DemoFigure>
+              <DemoDescription>
+                Search by course names and instructors instantly.
+              </DemoDescription>
+              <DemoImage src={syllabus} alt="Syllabus Search Demo" />
+            </DemoFigure>
+            <DemoFigure>
+              <DemoDescription>
+                Click for more details and easy access to official syllabus.
+              </DemoDescription>
+              <DemoImage
+                src={syllabusResult}
+                alt="Syllabus Search Result Demo"
+              />
+            </DemoFigure>
+          </DarkOverlay>
+        </SyllabusArticle>
+        <RoomFinderArticle>
+          <DarkOverlay>
+            <StyledHeader>
+              <SubHeading>RoomFinder</SubHeading>
+            </StyledHeader>
+            <DemoFigure>
+              <DemoDescription>
+                Find vacant classrooms and view real-time usage.
+              </DemoDescription>
+              <DemoImage src={roomFinder} alt="Room Finder Demo" />
+            </DemoFigure>
+          </DarkOverlay>
+        </RoomFinderArticle>
+        <BusArticle>
+          <DarkOverlay>
+            <StyledHeader>
+              <SubHeading>Bus</SubHeading>
+            </StyledHeader>
+            <DemoFigure>
+              <DemoDescription>
+                Easy access to official schedule.
+              </DemoDescription>
+              <DemoImage src={bus} alt="Room Finder Demo" />
+              <DemoDescription>More features coming soon!</DemoDescription>
+            </DemoFigure>
+          </DarkOverlay>
+        </BusArticle>
+      </StyledSection>
     </Wrapper>
   );
 };

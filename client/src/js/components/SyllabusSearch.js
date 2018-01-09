@@ -2,7 +2,7 @@ import React from 'react';
 
 import SyllabusSearchBar from '../containers/SyllabusSearchBar';
 import CourseListContainer from '../containers/CourseListContainer';
-import { Wrapper } from '../styledComponents/Wrapper';
+import { Wrapper } from '../styled-components/Wrapper';
 
 const SyllabusSearch = () => {
   return (

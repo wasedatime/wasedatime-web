@@ -8,7 +8,7 @@ import SearchBar from '../components/SearchBar';
 class SyllabusSearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.wait = 300;
+    this.wait = 400;
   }
   render() {
     return (

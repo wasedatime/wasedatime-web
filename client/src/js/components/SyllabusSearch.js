@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import SyllabusSearchBar from '../containers/SyllabusSearchBar';
 import CourseListContainer from '../containers/CourseListContainer';

@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import RoomFinderNavigation from './RoomFinderNavigation';

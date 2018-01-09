@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { Wrapper } from '../styledComponents/Wrapper';
+import { Button } from '../styledComponents/Button';
 
 const Overlay = styled('div')`
   display: flex;
@@ -15,19 +16,6 @@ const Overlay = styled('div')`
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
-const StyledButton = styled('button')`
-  background-color: #fff;
-  padding: 12px;
-  margin: 10px 0;
-  width: 160px;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 8px;
-  border-bottom: none;
-  box-shadow: 0 5px #999;
-  font-size: 1.7rem;
-`;
-
 const NotFound = () => {
   return (
     <Wrapper>
@@ -35,7 +23,7 @@ const NotFound = () => {
         <h3>Oops! 404</h3>
         <p>Looks like this page doesn't exist.</p>
         <Link to="/">
-          <StyledButton>Take Me Home</StyledButton>
+          <Button>Take Me Home</Button>
         </Link>
         <p>
           Were you trying to break something?{' '}

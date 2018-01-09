@@ -5,6 +5,7 @@ import { media } from '../utils/styledComponents';
 import PropTypes from 'prop-types';
 
 import { Wrapper } from '../styledComponents/Wrapper';
+import { Button } from '../styledComponents/Button';
 
 const Overlay = styled('div')`
   display: flex;
@@ -51,17 +52,6 @@ const OccurrenceList = styled('ul')`
 
 const StyledLink = styled(Link)`
   align-self: center;
-`;
-const StyledButton = styled('button')`
-  background-color: #fff;
-  padding: 12px;
-  margin: 10px 0;
-  width: 160px;
-  text-align: center;
-  border-radius: 8px;
-  border-bottom: none;
-  box-shadow: 0 5px #999;
-  font-size: 1.7rem;
 `;
 
 const LinkList = styled('ul')`
@@ -149,7 +139,7 @@ const CoursePage = ({ coursePage }) => {
           </div>
         </DetailWrapper>
         <StyledLink to="/syllabus">
-          <StyledButton>Return to search</StyledButton>
+          <Button>Return to search</Button>
         </StyledLink>
       </Overlay>
     </Wrapper>

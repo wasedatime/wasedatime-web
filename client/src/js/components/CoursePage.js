@@ -5,16 +5,12 @@ import { media } from '../utils/styledComponents';
 import PropTypes from 'prop-types';
 
 import { Wrapper } from '../styledComponents/Wrapper';
+import { Overlay } from '../styledComponents/Overlay';
 import { Button } from '../styledComponents/Button';
 
-const Overlay = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+const ExtendedOverlay = Overlay.extend`
   padding: 25px 20vh;
-  background-color: rgba(0, 0, 0, 0.2);
   font-size: 1.8rem;
-  ${media.desktop`padding: 25px 20vh;`};
   ${media.tablet`padding: 25px 10vh;`};
   ${media.phone`padding: 25px;`};
 `;
@@ -122,7 +118,7 @@ const CoursePage = ({ coursePage }) => {
   });
   return (
     <Wrapper>
-      <Overlay>
+      <ExtendedOverlay>
         <StyledHeader>
           <Title>{coursePage.title}</Title>
           <YearTerm>{`${coursePage.year} ${coursePage.term}`}</YearTerm>
@@ -141,7 +137,7 @@ const CoursePage = ({ coursePage }) => {
         <StyledLink to="/syllabus">
           <Button>Return to search</Button>
         </StyledLink>
-      </Overlay>
+      </ExtendedOverlay>
     </Wrapper>
   );
 };

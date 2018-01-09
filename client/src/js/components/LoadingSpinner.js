@@ -2,6 +2,7 @@ import React from 'react';
 import styled, { keyframes } from 'styled-components';
 
 import { Wrapper } from '../styledComponents/Wrapper';
+import { Overlay } from '../styledComponents/Overlay';
 import logo from '../../img/logo.png';
 
 const spin = keyframes`
@@ -16,14 +17,10 @@ const spin = keyframes`
   }
 `;
 
-const Overlay = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+const ExtendedOverlay = Overlay.extend`
   align-items: center;
   justify-content: center;
   padding: 25px;
-  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const Logo = styled('img')`
@@ -41,10 +38,10 @@ const Description = styled('p')`
 const LoadingSpinner = () => {
   return (
     <Wrapper>
-      <Overlay>
+      <ExtendedOverlay>
         <Logo src={logo} alt="WaseTime logo" />
         <Description>Loading...</Description>
-      </Overlay>
+      </ExtendedOverlay>
     </Wrapper>
   );
 };

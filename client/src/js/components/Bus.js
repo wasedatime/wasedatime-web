@@ -2,19 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { WrapperWithBackground } from '../styledComponents/Wrapper';
+import { Overlay } from '../styledComponents/Overlay';
 import background from '../../img/home_background-sm.jpg';
 import backgroundPhone from '../../img/home_background-phone.jpg';
 
 const WasedaNishiwasedaBusUri =
   'https://www.waseda.jp/fsci/assets/uploads/2017/06/2017waseda-nishiwaseda-shuttle-bus-timetable.pdf';
 
-const Overlay = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+const ExtendedOverlay = Overlay.extend`
   align-items: center;
   padding: 0 25px;
-  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const Banner = styled('div')`
@@ -62,7 +59,7 @@ const Bus = () => {
       background={background}
       backgroundPhone={backgroundPhone}
     >
-      <Overlay>
+      <ExtendedOverlay>
         <Banner>More features coming soon!!</Banner>
         <InfoWrapper>
           <StyledHeading>Official Link</StyledHeading>
@@ -70,7 +67,7 @@ const Bus = () => {
             2017-2018 Waseda-Nishiwaseda Bus Schedule
           </StyledAnchor>
         </InfoWrapper>
-      </Overlay>
+      </ExtendedOverlay>
     </WrapperWithBackground>
   );
 };

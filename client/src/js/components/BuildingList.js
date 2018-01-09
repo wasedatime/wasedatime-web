@@ -4,13 +4,10 @@ import PropTypes from 'prop-types';
 
 import BuildingItem from './BuildingItem';
 import { WrapperWithBackground } from '../styledComponents/Wrapper';
+import { Overlay } from '../styledComponents/Overlay';
 
-const Overlay = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+const ExtendedOverlay = Overlay.extend`
   padding: 40px 25px 25px 25px;
-  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const TitleWrapper = styled('div')`
@@ -48,12 +45,12 @@ const BuildingList = ({ name, buildings, background }) => {
         background={background}
         backgroundPhone={background}
       >
-        <Overlay>
+        <ExtendedOverlay>
           <TitleWrapper>
             <Title>{name}</Title>
           </TitleWrapper>
           <StyledList>{listItems}</StyledList>
-        </Overlay>
+        </ExtendedOverlay>
       </WrapperWithBackground>
     );
   } else {

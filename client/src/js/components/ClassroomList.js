@@ -3,14 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import ClassroomItem from './ClassroomItem';
+import { Overlay } from '../styledComponents/Overlay';
 import { WrapperWithBackground } from '../styledComponents/Wrapper';
 
-const Overlay = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+const ExtendedOverlay = Overlay.extend`
   padding: 40px 25px 25px 25px;
-  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const TitleWrapper = styled('div')`
@@ -62,7 +59,7 @@ const ClassroomList = ({ buildingName, classrooms, background, date }) => {
         background={background}
         backgroundPhone={background}
       >
-        <Overlay>
+        <ExtendedOverlay>
           <TitleWrapper>
             <Title>{`Building ${buildingName}`}</Title>
             <Subtitle>{`${dateString} ${hours}:${minutes}`}</Subtitle>
@@ -70,7 +67,7 @@ const ClassroomList = ({ buildingName, classrooms, background, date }) => {
           <ListWrapper>
             <StyledList>{listItems}</StyledList>
           </ListWrapper>
-        </Overlay>
+        </ExtendedOverlay>
       </WrapperWithBackground>
     );
   } else {
@@ -79,7 +76,7 @@ const ClassroomList = ({ buildingName, classrooms, background, date }) => {
         background={background}
         backgroundPhone={background}
       >
-        <Overlay />
+        <ExtendedOverlay />
       </WrapperWithBackground>
     );
   }

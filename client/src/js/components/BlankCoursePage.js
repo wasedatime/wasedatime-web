@@ -2,15 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Wrapper } from '../styledComponents/Wrapper';
-
-const Overlay = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-  align-items: center;
-  padding: 25px;
-  background-color: rgba(0, 0, 0, 0.2);
-`;
+import { Overlay } from '../styledComponents/Overlay';
 
 const BlankCoursePage = () => {
   return (

@@ -4,6 +4,7 @@ import smoothScroll from 'smoothscroll';
 
 import { media } from '../utils/styledComponents';
 import { Wrapper, WrapperWithBackground } from '../styledComponents/Wrapper';
+import { Overlay } from '../styledComponents/Overlay';
 import homeBackground from '../../img/home_background-sm.jpg';
 import homeBackgroundPhone from '../../img/home_background-phone.jpg';
 import mainBackground from '../../img/main_campus-sm.jpg';
@@ -71,12 +72,8 @@ const HomeWrapper = WrapperWithBackground.extend`
   height: calc(100vh - 75px);
 `;
 
-const Overlay = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+const ExtendedOverlay = Overlay.extend`
   padding: 0 25px;
-  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const StyledHeader = styled('header')`
@@ -201,7 +198,7 @@ const Home = () => {
         background={homeBackground}
         backgroundPhone={homeBackgroundPhone}
       >
-        <Overlay>
+        <ExtendedOverlay>
           <StyledHeader>
             <LogoWrapper>
               <Logo src={logo} alt="WaseTime Logo" />
@@ -218,7 +215,7 @@ const Home = () => {
             <Description>Get Started</Description>
             <Arrow src={arrow} alt="Scroll Down Arrow" id="get-started" />
           </GetStartedButton>
-        </Overlay>
+        </ExtendedOverlay>
       </HomeWrapper>
       <StyledSection>
         <StyledArticle

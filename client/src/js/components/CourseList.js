@@ -9,14 +9,11 @@ import {
 import PropTypes from 'prop-types';
 
 import CourseItem from './CourseItem';
+import { Overlay } from '../styledComponents/Overlay';
 import { Wrapper } from '../styledComponents/Wrapper';
 
-const Overlay = styled('div')`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
+const ExtendedOverlay = Overlay.extend`
   padding: 36px 25px 25px 25px;
-  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 const ListWrapper = styled('div')`
@@ -64,7 +61,7 @@ const CourseList = ({ searchTerm, searchResults }) => {
     const resultsCount = searchResults.length;
     return (
       <Wrapper>
-        <Overlay>
+        <ExtendedOverlay>
           <Summary>{`${resultsCount} course(s) found`}</Summary>
           <ListWrapper>
             <AutoSizer>
@@ -82,15 +79,15 @@ const CourseList = ({ searchTerm, searchResults }) => {
               }}
             </AutoSizer>
           </ListWrapper>
-        </Overlay>
+        </ExtendedOverlay>
       </Wrapper>
     );
   } else {
     return (
       <Wrapper>
-        <Overlay>
+        <ExtendedOverlay>
           <Summary>No courses found</Summary>
-        </Overlay>
+        </ExtendedOverlay>
       </Wrapper>
     );
   }

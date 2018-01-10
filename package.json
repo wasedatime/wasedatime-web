@@ -9,7 +9,8 @@
     "test": "mocha './test/**/*.test.js' ",
     "server": "nodemon server.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client \""
+    "dev": "concurrently \"npm run server\" \"npm run client \"",
+    "post-build": "npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",

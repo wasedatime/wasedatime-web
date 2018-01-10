@@ -12,7 +12,7 @@ import nishiwasedaBackground from '../../img/nishi_waseda_campus.jpg';
 import toyamaBackground from '../../img/toyama_campus.jpg';
 import logo from '../../img/logo.png';
 import arrow from '../../img/arrow.png';
-import syllabus from '../../img/syllabus-480.gif';
+import navigation from '../../img/navigation-480.gif';
 import syllabusResult from '../../img/syllabusResult-480.gif';
 import bus from '../../img/bus-480.gif';
 import roomFinder from '../../img/roomFinder-480.gif';
@@ -69,11 +69,12 @@ const bounce = keyframes`
 `;
 
 const HomeWrapper = WrapperWithBackground.extend`
-  height: calc(100vh - 75px);
+  min-height: calc(100vh - 75px);
 `;
 
 const ExtendedOverlay = Overlay.extend`
   padding: 0 25px;
+  padding-bottom: 30px;
 `;
 
 const StyledHeader = styled('header')`
@@ -120,7 +121,7 @@ const MainHeading = styled('h1')`
 `;
 
 const Description = styled('p')`
-  font-size: 2.3rem;
+  font-size: 2.4rem;
   font-weight: 300;
   color: #ffffff;
   ${media.phone`font-size: 2.2rem;`};
@@ -152,8 +153,8 @@ const StyledSection = styled('section')`
 const StyledArticle = WrapperWithBackground.withComponent('article');
 
 const DarkOverlay = Overlay.extend`
-  padding: 60px;
-  background-color: rgba(0, 0, 0, 0.6);
+  padding: 60px 60px 30px 60px;
+  background-color: rgba(0, 0, 0, 0.7);
   ${media.phone`padding: 40px 50px;`};
 `;
 
@@ -166,6 +167,7 @@ const SubHeading = styled('h2')`
 `;
 
 const DemoFigure = styled('figure')`
+  margin-bottom: 40px;
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
@@ -175,6 +177,7 @@ const DemoFigure = styled('figure')`
 
 const DemoImage = styled('img')`
   width: 400px;
+  margin: 10px;
   ${media.phone`width: 100%;`};
 `;
 
@@ -224,17 +227,18 @@ const Home = () => {
         >
           <DarkOverlay>
             <StyledHeader>
+              <SubHeading>Navigation</SubHeading>
+            </StyledHeader>
+            <DemoFigure>
+              <DemoDescription>Navigate easily by clicking.</DemoDescription>
+              <DemoImage src={navigation} alt="Syllabus Search Demo" />
+            </DemoFigure>
+            <StyledHeader>
               <SubHeading>Syllabus</SubHeading>
             </StyledHeader>
             <DemoFigure>
               <DemoDescription>
-                Search by course names and instructors instantly.
-              </DemoDescription>
-              <DemoImage src={syllabus} alt="Syllabus Search Demo" />
-            </DemoFigure>
-            <DemoFigure>
-              <DemoDescription>
-                Click for more details and easy access to official syllabus.
+                Search and view results instantly.
               </DemoDescription>
               <DemoImage
                 src={syllabusResult}

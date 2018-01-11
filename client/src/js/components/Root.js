@@ -6,8 +6,6 @@ import { Route, BrowserRouter } from 'react-router-dom';
 
 import App from './App';
 
-ReactGA.initialize('UA-112185819-1', { debug: false });
-
 // A invisible component that sends a GA pageview every time
 // the pathname of the user is changed.
 // Written by @dandalf and improved by @ianarundale. I removed
@@ -37,11 +35,16 @@ class Analytics extends React.Component {
 }
 
 const Root = ({ store }) => {
+  let analyticsRoute = null;
+  if (process.env.NODE_ENV === 'production') {
+    ReactGA.initialize('UA-112185819-1', { debug: false });
+    analyticsRoute = <Route path="/" component={Analytics} />;
+  }
   return (
     <Provider store={store}>
       <BrowserRouter>
         <div>
-          <Route path="/" component={Analytics} />
+          {analyticsRoute}
           <App />
         </div>
       </BrowserRouter>

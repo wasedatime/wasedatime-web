@@ -21,7 +21,7 @@ const StyledLink = styled(Link)`
   flex-direction: column;
   align-items: center;
   text-decoration: none;
-  overflow-x: hidden;
+  overflow: hidden;
 `;
 
 const StyledButton = styled('button')`

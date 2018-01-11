@@ -49,7 +49,9 @@ module.exports = app => {
           occupiedClassrooms
         });
       } catch (err) {
-        res.status(500).send('Error while fetching data');
+        if (!res.headersSent) {
+          res.status(500).send('Error while fetching data');
+        }
       }
     } else {
       //Requested building is not inside building list

@@ -9,7 +9,9 @@ module.exports = app => {
       const courses = await CourseSimplified.find({});
       res.send(courses);
     } catch (err) {
-      res.status(500).send('Error while fetching data');
+      if (!res.headersSent) {
+        res.status(500).send('Error while fetching data');
+      }
     }
   });
 
@@ -24,7 +26,9 @@ module.exports = app => {
         //Invalid ObjectId
         res.status(404).send('Not found');
       } else {
-        res.status(500).send('Error while fetching data');
+        if (!res.headersSent) {
+          res.status(500).send('Error while fetching data');
+        }
       }
     }
   });

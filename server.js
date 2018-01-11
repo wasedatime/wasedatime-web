@@ -25,12 +25,17 @@ mongoose
   });
 
 const app = express();
-app.use(timeout('9s'));
+app.use(timeout('15s'));
 app.use(helmet());
+app.use(haltOnTimedout);
 
 require('./routes/buildingRoutes')(app);
 require('./routes/classroomRoutes')(app);
 require('./routes/courseRoutes')(app);
+
+function haltOnTimedout(req, res, next) {
+  if (!req.timedout) next();
+}
 
 if (process.env.NODE_ENV === 'production') {
   //serve up production assests

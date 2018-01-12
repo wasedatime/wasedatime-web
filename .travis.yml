@@ -2,8 +2,7 @@ language: node_js
 node_js:
 - lts/*
 before_install:
-- openssl aes-256-cbc -K $encrypted_0bf5282a1b59_key -iv $encrypted_0bf5282a1b59_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
+- bash travis/before_install.sh
 install:
 - npm install
 before_script:
@@ -11,3 +10,5 @@ before_script:
 script:
 - npm test
 - npm run build --prefix client
+after_sucess:
+- bask travis/deploy.sh

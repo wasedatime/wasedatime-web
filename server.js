@@ -1,4 +1,4 @@
-require('dotenv').config();
+require('dotenv').config({ path: '/var/www/.env' });
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');

@@ -29,8 +29,10 @@ do
 done
 ```
 
+Make post-receive executable for user deploy exclusively.
+
 ```
-chmod +x hooks/post-receive
+chmod u+x hooks/post-receive
 ```
 
 Switch to a user with sudo privilege and allow pm2 to startup automatically for user deploy.

@@ -10,5 +10,5 @@ before_script:
 script:
 - npm test
 - npm run build --prefix client
-after_sucess:
+after_success:
 - bash travis/deploy.sh

@@ -1,5 +1,12 @@
 ####Server side
 
+Add a deploy user and with limited directory access permission.
+
+```
+adduser deploy
+chown -R deploy:deploy /var/www/wasetime-web
+```
+
 ```
 mkdir ~/wasetime-web.git
 cd ~/wasetime-web.git

@@ -11,4 +11,4 @@ script:
 - npm test
 - npm run build --prefix client
 after_sucess:
-- bask travis/deploy.sh
+- bash travis/deploy.sh

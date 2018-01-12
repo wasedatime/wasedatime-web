@@ -6,8 +6,8 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
     git add .
     git add client/build --force
     git status --ignored
-    #git commit -m "Deploy from Travis CI"
-    #git push deploy master
+    git commit -m "Deploy from Travis CI"
+    git push deploy master
 else
     echo "Not deploying, since this branch isn't master."
 fi

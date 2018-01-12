@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+ - lts/*
+ - "8"
+
+install:
+ - npm install
+
+before_script:
+ - npm install --prefix client
+
+script:
+ - npm test
+ - npm run build --prefix client

@@ -1,13 +1,13 @@
 language: node_js
 node_js:
- - lts/*
-
+- lts/*
+before_install:
+- openssl aes-256-cbc -K $encrypted_0bf5282a1b59_key -iv $encrypted_0bf5282a1b59_iv
+  -in deploy_rsa.enc -out ~\/.ssh/deploy_rsa -d
 install:
- - npm install
-
+- npm install
 before_script:
- - npm install --prefix client
-
+- npm install --prefix client
 script:
- - npm test
- - npm run build --prefix client
+- npm test
+- npm run build --prefix client

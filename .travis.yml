@@ -12,3 +12,6 @@ script:
 - npm run build --prefix client
 after_success:
 - bash travis/deploy.sh
+addons:
+  ssh_known_hosts:
+  - 139.59.122.225

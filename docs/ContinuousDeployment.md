@@ -33,10 +33,26 @@ done
 chmod +x hooks/post-receive
 ```
 
+Switch to a user with sudo privilege and allow pm2 to startup automatically for user deploy.
+
+```
+sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u deploy --hp /home/deploy
+```
+
 ####Local side
 
 ```
 gem install travis
 travis login
 travis encrypt-file ~/.ssh/deploy_rsa --add
+```
+
+####.env file
+
+Put the .env file outside of the work-tree folder (/var/www/wasetime-web)
+
+Modify server.js to read it from a custom path:
+
+```javascript
+require('dotenv').config({ path: '/var/www/.env' });
 ```

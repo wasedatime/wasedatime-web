@@ -25,5 +25,5 @@ const courseSchema = new Schema({
 module.exports = mongoose.model(
   'Course',
   courseSchema,
-  '2017F_courses_sci_eng'
+  '2017ALL_courses_sci_eng'
 );

@@ -9,5 +9,5 @@ const courseSimplifiedSchema = new Schema({
 module.exports = mongoose.model(
   'CourseSimplified',
   courseSimplifiedSchema,
-  '2017F_courses_sci_eng_search_sorted'
+  '2017ALL_courses_sci_eng_search_sorted'
 );

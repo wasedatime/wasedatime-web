@@ -6,7 +6,7 @@ const CourseSimplified = mongoose.model('CourseSimplified');
 module.exports = app => {
   app.get('/api/courses', async (req, res) => {
     try {
-      const courses = await CourseSimplified.find({});
+      const courses = await CourseSimplified.find({}).sort({ title: 1 });
       res.send(courses);
     } catch (err) {
       if (!res.headersSent) {

@@ -1,4 +1,7 @@
-.env
-dev.js
-credentials.md
+# dependencies
 /node_modules
+
+# credentials
+.env
+/config/dev.js
+credentials.md

@@ -23,8 +23,40 @@ const classroomSchema = new Schema({
   ]
 });
 
-module.exports = mongoose.model(
-  'Classroom',
-  classroomSchema,
-  '2017F_classrooms_sci_eng'
-);
+module.exports = (function() {
+  mongoose.model(
+    'ClassroomAll',
+    classroomSchema,
+    '2017F_classrooms_sci_eng_all'
+  );
+
+  mongoose.model(
+    'ClassroomMon',
+    classroomSchema,
+    '2017F_classrooms_sci_eng_mon'
+  );
+
+  mongoose.model(
+    'ClassroomTue',
+    classroomSchema,
+    '2017F_classrooms_sci_eng_tue'
+  );
+
+  mongoose.model(
+    'ClassroomWed',
+    classroomSchema,
+    '2017F_classrooms_sci_eng_wed'
+  );
+
+  mongoose.model(
+    'ClassroomThur',
+    classroomSchema,
+    '2017F_classrooms_sci_eng_thur'
+  );
+
+  mongoose.model(
+    'ClassroomFri',
+    classroomSchema,
+    '2017F_classrooms_sci_eng_fri'
+  );
+})();

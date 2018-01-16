@@ -50,7 +50,13 @@ const StyledList = styled('ul')`
 
 const ClassroomList = ({ buildingName, classrooms, background, date }) => {
   if (date && classrooms !== 0) {
-    const { dateString, hours, minutes } = date;
+    const { dateString, day, hours, minutes, period } = date;
+    const hoursString = hours < 10 ? `0${hours}` : `${hours}`;
+    const minutesString = minutes < 10 ? `0${minutes}` : `${minutes}`;
+    const periodString =
+      /^[1-5]$/.test(day) && /^[1-7]$/.test(period)
+        ? `Period ${period}`
+        : 'Non-Class Time';
     const listItems = classrooms.map(classroom => {
       return <ClassroomItem key={classroom.id} classroom={classroom} />;
     });
@@ -62,7 +68,9 @@ const ClassroomList = ({ buildingName, classrooms, background, date }) => {
         <ExtendedOverlay>
           <TitleWrapper>
             <Title>{`Building ${buildingName}`}</Title>
-            <Subtitle>{`${dateString} ${hours}:${minutes}`}</Subtitle>
+            <Subtitle
+            >{`${dateString} ${hoursString}:${minutesString}`}</Subtitle>
+            <Subtitle>{periodString}</Subtitle>
           </TitleWrapper>
           <ListWrapper>
             <StyledList>{listItems}</StyledList>

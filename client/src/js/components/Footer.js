@@ -44,7 +44,7 @@ const Footer = () => {
       </p>
       <p>
         <StyledLink href="https://github.com/wasetime ">
-          WaseTime 2017
+          WaseTime 2018
         </StyledLink>
         . Code licensed{' '}
         <StyledLink href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md">

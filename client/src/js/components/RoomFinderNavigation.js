@@ -2,8 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import campus from '../../img/campus.png';
-
 const StyledNav = styled('nav')`
   display: flex;
   flex-direction: row;
@@ -15,10 +13,10 @@ const StyledNav = styled('nav')`
   background-color: #777777;
 `;
 
-const Logo = styled('img')`
-  width: 27px;
-  height: 27px;
+const Icon = styled('div')`
+  align-items: center;
   margin-right: 18px;
+  color: #ffffff;
 `;
 
 const StyledLink = styled(Link)`
@@ -51,7 +49,9 @@ const ComingSoonToyama = ComingSoon.extend`
 const RoomFinderNavigation = () => {
   return (
     <StyledNav>
-      <Logo src={campus} alt="Campus logo" />
+      <Icon>
+        <i className="fas fa-university fa-2x" data-fa-transform="shrink-2" ></i>
+      </Icon>
       <StyledLink to="/roomfinder#mainCampus">Main</StyledLink>
       <StyledLink to="/roomfinder#nishiWasedaCampus">Nishi</StyledLink>
       <StyledLink to="/roomfinder#toyamaCampus">Toyama</StyledLink>

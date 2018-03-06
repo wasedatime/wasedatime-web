@@ -103,9 +103,15 @@ const mapSchooNameToSchoolIcon = schoolNames => {
   });
 };
 
+
+//TODO Check if successfully resolved undefined semesters.
 const termMap = {
   'fall semester': 'Fall',
-  'spring semester': 'Spring'
+  'spring semester': 'Spring',
+  'fall quarter': 'Fall quarter',
+  'spring quarter': 'Spring quarter',
+  'summer quarter': 'Summer quarter',
+  'winter quarter': 'Winter quarter'
 };
 
 const simplifyYearTerm = (year, term) => {

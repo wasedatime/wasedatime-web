@@ -13,11 +13,14 @@ const StyledNav = styled('nav')`
 
 const StyledLink = styled(Link)`
   padding: 2rem 1.5rem;
-  ${'' /* color: #ffffff; */}
   text-align: center;
   text-decoration: none;
   font-size: 1.7rem;
   font-weight: 330;
+  color:#ffffff;
+  &:hover {
+    color: #b51e36;
+  }
 `;
 
 const Navigation = (props) => {
@@ -39,7 +42,7 @@ const Navigation = (props) => {
     var fontName = nav['name'];
     // TODO see if inline style textShadow: "0px 0px 5px white" works :'(
     var fontStyle = pathname.includes(nav['path'])
-      ? {color: "#b51e36"} : {color: "#ffffff"};
+      ? {color: "#b51e36"} : {};
     var font = <i className={`fas fa-${fontName} fa-2x`}
                 data-fa-transform="shrink-2" ></i>
     return (

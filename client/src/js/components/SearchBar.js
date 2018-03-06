@@ -9,6 +9,7 @@ const Wrapper = styled('div')`
   display: flex;
   flex-direction: row;
   flex: 1 0 auto;
+  align-items: center;
   position: fixed;
   height: 36px;
   width: 100%;
@@ -17,10 +18,10 @@ const Wrapper = styled('div')`
   z-index: 1030;
 `;
 
-const Logo = styled('img')`
-  height: 27px;
-  align-self: center;
+const Icon = styled('div')`
+  align-items: center;
   margin-right: 18px;
+  color: #ffffff;
 `;
 
 const StyledForm = styled('form')`
@@ -55,7 +56,9 @@ class SearchBar extends React.Component {
   render() {
     return (
       <Wrapper>
-        <Logo src={search} alt="Search Logo" />
+        <Icon>
+          <i className="fas fa-search fa-2x" data-fa-transform="shrink-2" ></i>
+        </Icon>
         <StyledForm
           onSubmit={e => {
             e.preventDefault();

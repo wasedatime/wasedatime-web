@@ -11,7 +11,7 @@ const StyledNav = styled('nav')`
 `;
 
 const StyledLink = styled(Link)`
-  padding: 2rem 0.8rem;
+  padding: 2rem 1.5rem;
   color: rgba(255, 255, 255, 1);
   text-align: center;
   text-decoration: none;
@@ -22,9 +22,18 @@ const StyledLink = styled(Link)`
 const Navigation = () => {
   return (
     <StyledNav>
-      <StyledLink to="/syllabus">Syllabus</StyledLink>
-      <StyledLink to="/roomfinder">RoomFinder</StyledLink>
-      <StyledLink to="/bus">Bus</StyledLink>
+      <StyledLink to="/timetable">
+        <i className="fas fa-calendar-alt fa-2x" data-fa-transform="shrink-2"></i>
+      </StyledLink>
+      <StyledLink to="/syllabus">
+        <i className="fas fa-book fa-2x" data-fa-transform="shrink-2"></i>
+      </StyledLink>
+      <StyledLink to="/roomfinder">
+        <i className="fas fa-building fa-2x" data-fa-transform="shrink-2"></i>
+      </StyledLink>
+      <StyledLink to="/bus">
+        <i className="fas fa-bus fa-2x" data-fa-transform="shrink-2"></i>
+      </StyledLink>
     </StyledNav>
   );
 };

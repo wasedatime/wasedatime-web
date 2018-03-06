@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import Header from './Header';
 import Home from './Home';
+import TimeTable from './TimeTable';
 import Syllabus from './Syllabus';
 import RoomFinder from './RoomFinder';
 import Footer from './Footer';
@@ -31,6 +32,7 @@ const App = () => {
       <StyledMain>
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/timetable" component={TimeTable} />
           <Route path="/syllabus" component={Syllabus} />
           <Route path="/roomfinder" component={RoomFinder} />
           <Route path="/bus" component={Bus} />

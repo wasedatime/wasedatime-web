@@ -46,7 +46,7 @@ const fetchOccupiedClassrooms = async (buildingName, day, period) => {
   const isClassTime = /^[1-7]$/.test(period);
   if (isWeekday && isClassTime) {
     const targetClassroom = dayToClassroomModelMap[day];
-    return await targetClassroom.aggregate(
+    return await targetClassroom.aggregate([
       { $match: { building: buildingName } },
       { $unwind: '$courses' },
       {
@@ -56,7 +56,7 @@ const fetchOccupiedClassrooms = async (buildingName, day, period) => {
         }
       },
       { $project: { name: 1, 'courses.id': 1, 'courses.title': 1 } }
-    );
+    ]);
   }
   return [];
 };

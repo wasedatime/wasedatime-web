@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { media } from '../utils/styledComponents';
 import { WrapperWithBackground } from '../styled-components/Wrapper';
 import { Overlay } from '../styled-components/Overlay';
 import background from '../../img/home_background.jpg';

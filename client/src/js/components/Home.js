@@ -124,6 +124,7 @@ const Description = styled('p')`
   font-size: 2.4rem;
   font-weight: 300;
   color: #ffffff;
+  text-shadow: 0px 0px 3px #000000;
   ${media.phone`font-size: 2.2rem;`};
 `;
 
@@ -137,6 +138,7 @@ const GetStartedButton = styled('button')`
   animation-duration: 1.5s;
   animation-delay: 1.5s;
   z-index: 1000;
+  text-shadow: 0px 0px 3px #000000;
 `;
 
 const Arrow = styled('img')`

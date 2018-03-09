@@ -25,28 +25,30 @@ const StyledLink = styled(Link)`
 
 const Navigation = (props) => {
   var pathname = props.location.pathname;
+  var path = "path";
+  var name = "name"
   var navItems = [{
-    "path": "/timetable",
-    "name": "calendar-alt"
+    path: "/timetable",
+    name: "calendar-alt"
   },{
-    "path": "/syllabus",
-    "name": "book"
+    path: "/syllabus",
+    name: "book"
   },{
-    "path": "/roomfinder",
-    "name": "building"
+    path: "/roomfinder",
+    name: "building"
   },{
-    "path": "/bus",
-    "name": "bus"
+    path: "/bus",
+    name: "bus"
   }];
   var styledLinks = navItems.map((nav) => {
-    var fontName = nav['name'];
-    // TODO see if inline style textShadow: "0px 0px 5px white" works :'(
-    var fontStyle = pathname.includes(nav['path'])
+    var fontName = nav[name];
+    // TODO see if inline style textShadow: "0px 0px 5px white" works
+    var fontStyle = pathname.includes(nav[path])
       ? {color: "#b51e36"} : {};
     var font = <i className={`fas fa-${fontName} fa-2x`}
                 data-fa-transform="shrink-2" ></i>
     return (
-      <StyledLink to={nav['path']} key={fontName} style={fontStyle}>
+      <StyledLink to={nav[path]} key={fontName} style={fontStyle}>
         {font}
       </StyledLink>
     );

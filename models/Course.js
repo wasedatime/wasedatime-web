@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const courseSchema = new Schema({
+  _id: String,
   title: String,
   instructor: String,
   year: String,
@@ -25,5 +26,5 @@ const courseSchema = new Schema({
 module.exports = mongoose.model(
   'Course',
   courseSchema,
-  '2017ALL_courses_sci_eng'
+  'entire_2018_courses_sci_eng'
 );

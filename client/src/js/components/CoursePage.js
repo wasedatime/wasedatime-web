@@ -98,9 +98,12 @@ const getKey = (day, period, location) => {
 
 const CoursePage = ({ coursePage }) => {
   const links = coursePage.links.map(link => {
+    //TODO it should be coursePage.keys map to links
     return (
       <li key={link.school}>
-        <a href={link.link}>{link.school}</a>
+        <a href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${link.link}&pLng=en`} target="_blank">
+          {link.school}
+        </a>
       </li>
     );
   });

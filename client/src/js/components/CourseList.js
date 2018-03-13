@@ -62,7 +62,7 @@ const CourseList = ({ searchTerm, searchResults }) => {
     return (
       <Wrapper>
         <ExtendedOverlay>
-          <Summary>{`${resultsCount} course(s) found`}</Summary>
+          <Summary>{`${resultsCount} results`}</Summary>
           <ListWrapper>
             <AutoSizer>
               {({ width, height }) => {
@@ -86,7 +86,7 @@ const CourseList = ({ searchTerm, searchResults }) => {
     return (
       <Wrapper>
         <ExtendedOverlay>
-          <Summary>No courses found</Summary>
+          <Summary>0 results</Summary>
         </ExtendedOverlay>
       </Wrapper>
     );

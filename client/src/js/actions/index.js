@@ -30,7 +30,7 @@ export const fetchStats = () => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: FETCH_STATS_FAILURE,
-      response: error.response
+      error: error.response
     });
   }
 }

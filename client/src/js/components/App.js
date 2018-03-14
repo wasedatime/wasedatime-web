@@ -7,7 +7,7 @@ import Home from './Home';
 import TimeTable from './TimeTable';
 import Syllabus from './Syllabus';
 import RoomFinder from './RoomFinder';
-import Footer from './Footer';
+import FooterContainer from '../containers/FooterContainer';
 import Bus from './Bus';
 
 const Wrapper = styled('div')`
@@ -39,7 +39,7 @@ const App = () => {
           <Route component={Home} />
         </Switch>
       </StyledMain>
-      <Footer />
+      <FooterContainer />
     </Wrapper>
   );
 };

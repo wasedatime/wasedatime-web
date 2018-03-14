@@ -12,7 +12,6 @@ const StyledFooter = styled('footer')`
 
 const StyledList = styled('ul')`
   padding: 0;
-  margin: 1.4rem 0;
   list-style: none;
   list-style-type: none;
 `;
@@ -22,13 +21,15 @@ const StyledLink = styled('a')`
   color: #ffffff;
 `;
 
-const Footer = () => {
+const Footer = ({finishTime}) => {
+  console.log(finishTime);
   return (
     <StyledFooter>
+      <p>Syllabus correct at {finishTime}</p>
       <StyledList>
         <li>
           <StyledLink href="https://github.com/wasetime/wasetime-web">
-            GitHub
+          <i className="fab fa-github fa-2x" data-fa-transform="shrink-2"></i>
           </StyledLink>
         </li>
       </StyledList>

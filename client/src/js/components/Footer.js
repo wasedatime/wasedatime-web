@@ -22,7 +22,6 @@ const StyledLink = styled('a')`
 `;
 
 const Footer = ({finishTime}) => {
-  console.log(finishTime);
   return (
     <StyledFooter>
       <p>Syllabus correct at {finishTime} JST</p>

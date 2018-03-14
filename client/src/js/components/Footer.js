@@ -25,7 +25,7 @@ const Footer = ({finishTime}) => {
   console.log(finishTime);
   return (
     <StyledFooter>
-      <p>Syllabus correct at {finishTime}</p>
+      <p>Syllabus correct at {finishTime} JST</p>
       <StyledList>
         <li>
           <StyledLink href="https://github.com/wasetime/wasetime-web">

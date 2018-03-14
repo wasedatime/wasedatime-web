@@ -9,6 +9,7 @@ require('./models/CourseSimplified');
 require('./models/Course');
 require('./models/Classroom');
 require('./models/Building');
+require('./models/Stats');
 
 mongoose.Promise = global.Promise;
 
@@ -32,6 +33,7 @@ app.use(haltOnTimedout);
 require('./routes/buildingRoutes')(app);
 require('./routes/classroomRoutes')(app);
 require('./routes/courseRoutes')(app);
+require('./routes/statsRoutes')(app);
 
 function haltOnTimedout(req, res, next) {
   if (!req.timedout) next();

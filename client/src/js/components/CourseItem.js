@@ -73,7 +73,8 @@ const StyledDescription = styled('div')`
 `;
 
 const YearTerm = styled('div')`
-  flex: 1 0 auto;
+${'' /*use flex-basis 0 to distribute YearTerm, Instructor evenly.*/}
+  flex: 1 0 0;
   align-self: flex-end;
   margin-right: 7px;
   font-size: 1.7rem;
@@ -82,6 +83,7 @@ const YearTerm = styled('div')`
 `;
 
 const Instructor = styled('div')`
+  flex: 1 0 0;
   font-size: 1.7rem;
   text-align: right;
   color: #444;
@@ -103,15 +105,17 @@ const mapSchooNameToSchoolIcon = schoolNames => {
   });
 };
 
-
-//TODO Check if successfully resolved undefined semesters.
 const termMap = {
   'fall semester': 'Fall',
   'spring semester': 'Spring',
   'fall quarter': 'Fall quarter',
   'spring quarter': 'Spring quarter',
   'summer quarter': 'Summer quarter',
-  'winter quarter': 'Winter quarter'
+  'winter quarter': 'Winter quarter',
+  'full year': 'Full Year',
+  'an intensive course(spring and fall)': 'Intensive (Spring and Fall)',
+  'an intensive course(spring)': 'Intensive (Spring)',
+  'an intensive course(fall)': 'Intensive (Fall)'
 };
 
 const simplifyYearTerm = (year, term) => {

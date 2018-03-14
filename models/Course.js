@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
+// Need to declare _id new property and disable the original _id (set it to false)
 const courseSchema = new Schema({
   _id: String,
   title: String,
@@ -21,7 +22,7 @@ const courseSchema = new Schema({
     }
   ],
   code: String
-});
+}, { _id: false });
 
 module.exports = mongoose.model(
   'Course',

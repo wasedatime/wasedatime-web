@@ -24,7 +24,7 @@ const StyledLink = styled('a')`
 const Footer = ({finishTime}) => {
   return (
     <StyledFooter>
-      <p>Syllabus correct at {finishTime} JST</p>
+      <p>Syllabus correct as at {finishTime} JST</p>
       <StyledList>
         <li>
           <StyledLink href="https://github.com/wasetime/wasetime-web">

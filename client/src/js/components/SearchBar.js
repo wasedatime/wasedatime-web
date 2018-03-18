@@ -11,22 +11,20 @@ const Wrapper = styled('div')`
   position: fixed;
   height: 36px;
   width: 100%;
-  padding-left: 26px;
+  padding: 0px 25px;
   background-color: #777;
   z-index: 1030;
 `;
 
 const Icon = styled('div')`
   align-items: center;
-  margin-right: 18px;
+  margin-right: 25px;
   color: #ffffff;
 `;
 
 const StyledForm = styled('form')`
   width: 100%;
   align-self: center;
-  margin-left: 14px;
-  margin-right: 25px;
 `;
 
 const StyledInput = styled('input')`

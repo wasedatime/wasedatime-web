@@ -32,7 +32,7 @@ class TimeTable extends React.Component {
         backgroundPhone={backgroundPhone}
       >
         <ExtendedOverlay id="timetable-overlay">
-          <Banner>Time Table coming soon!! (Hopefully...)</Banner>
+          <Banner>Customizable time table coming soon!</Banner>
         </ExtendedOverlay>
       </WrapperWithBackground>
     );

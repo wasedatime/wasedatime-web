@@ -121,11 +121,11 @@ const Bus = () => {
   const now = new Date();
   const {wasedaStatus, nishiStatus} = getBusStatus(now);
   const wasedaStatusComponent = typeof wasedaStatus === 'object'
-    ? <span>Depart in <b>{wasedaStatus.departIn}</b> mins{' '}
+    ? <span>Departs in <b>{wasedaStatus.departIn}</b> mins{' '}
       <i className="fas fa-clock fa-1x"></i> <b>{wasedaStatus.timeString}</b></span>
     : <span>{wasedaStatus}</span>
   const nishiStatusComponent = typeof nishiStatus === 'object'
-    ? <span>Depart in <b>{nishiStatus.departIn}</b> mins{' '}
+    ? <span>Departs in <b>{nishiStatus.departIn}</b> mins{' '}
       <i className="fas fa-clock fa-1x"></i> <b>{nishiStatus.timeString}</b></span>
     : <span>{nishiStatus}</span>
   return (

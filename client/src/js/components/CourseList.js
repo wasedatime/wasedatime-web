@@ -68,11 +68,6 @@ const CourseList = ({ searchTerm, searchResults }) => {
       <ExtendedOverlay>
         <Menu>
           <span>{`${resultsCount} results`}</span>
-          <a>
-            <span>
-              <i className="fa fa-filter fa-lg" ></i> Filter
-            </span>
-          </a>
         </Menu>
         <ListWrapper>
           <AutoSizer>

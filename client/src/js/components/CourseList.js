@@ -14,7 +14,7 @@ import { Overlay } from '../styled-components/Overlay';
 import { Wrapper } from '../styled-components/Wrapper';
 
 const ExtendedOverlay = Overlay.extend`
-  padding: 36px 12.5vw 0px 12.5vw;
+  padding: 36px 10vw 0px 10vw;
   ${media.phone`padding: 36px 7.5vw 0px 7.5vw;`};
 `;
 

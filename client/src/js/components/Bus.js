@@ -7,7 +7,7 @@ import { Overlay } from '../styled-components/Overlay';
 import busSchedule from '../data/busSchedule.json';
 
 const wasedaNishiwasedaBusUri =
-  'https://www.waseda.jp/fsci/assets/uploads/2017/06/2017waseda-nishiwaseda-shuttle-bus-timetable.pdf';
+  'https://www.waseda.jp/fsci/assets/uploads/2018/03/2018waseda-nishiwaseda-shuttle-bus-timetable.pdf';
 
 const ExtendedOverlay = Overlay.extend`
   align-items: center;
@@ -143,7 +143,7 @@ const Bus = () => {
           </BusStatus>
           <StyledHeading>Official Link</StyledHeading>
           <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
-            2017-2018 Waseda-Nishiwaseda Bus Schedule
+            The Latest Waseda-Nishiwaseda Bus Schedule
           </StyledAnchor>
         </InfoWrapper>
       </ExtendedOverlay>

@@ -45,6 +45,7 @@ const StyledSubHeading = styled('h2')`
   margin-top: 0px;
   margin-bottom: 1rem;
   border: 3px solid rgb(148, 27, 47);
+  border-width: 3px 6px;
   border-radius: 5px;
   background: rgb(148, 27, 47);
   font-size: 2.5rem;

@@ -28,13 +28,13 @@
         1060,
         1085
       ],
-    "remarks":{
-        "725": "To TWIns via Nishiwaseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        "735": "To Nishiwaseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        "890": "Operation of middle-size bus and minibus.",
-        "1000": "Operation of middle-size bus and minibus.",
-        "1085": "Operation of middle-size bus and minibus."
-    }
+      "remarks":{
+          "725": "To TWIns via Nishiwaseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+          "735": "To Nishiwaseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+          "890": "Operation of middle-size bus and minibus.",
+          "1000": "Operation of middle-size bus and minibus.",
+          "1085": "Operation of middle-size bus and minibus."
+      }
     },
     "fromNishiWasedaToWaseda":{
       "occurrences":[
@@ -65,13 +65,13 @@
         1085,
         1100
       ],
-    "remarks":{
-        "725": "To TWIns via Waseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        "740": "To Waseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        "875": "Operation of middle-size bus and minibus.",
-        "980": "Operation of middle-size bus and minibus.",
-        "1100": "Operation of middle-size bus and minibus. Possibility of early/late departure."
-    }
+      "remarks":{
+          "725": "To TWIns via Waseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+          "740": "To Waseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+          "875": "Operation of middle-size bus and minibus.",
+          "980": "Operation of middle-size bus and minibus.",
+          "1100": "Operation of middle-size bus and minibus. Possibility of early/late departure."
+      }
     }
   },
   "saturday":{
@@ -88,7 +88,8 @@
         890,
         950,
         995
-      ]
+      ],
+      "remarks":{}
     },
     "fromNishiWasedaToWaseda":{
       "occurrences":[
@@ -102,7 +103,8 @@
         875,
         920,
         980
-      ]
+      ],
+      "remarks":{}
     }
   },
   "exceptions": {

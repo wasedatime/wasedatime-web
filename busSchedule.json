@@ -1,0 +1,135 @@
+{
+  "weekday":{
+    "fromWasedaToNishiWaseda":{
+      "occurrences":[ //把时间表上的时刻转成小时：555分 = 9小时 * 60 + 15分
+        555, // 9:15
+        585, // 9:45
+        610, // 10:10
+        635, // 10:35
+        645, // 10:45
+        680, // 11:20
+        710, // 11:50
+        725, // 12:05 *1
+        735, // 12:15 *2
+        765, // 12:45
+        795, // 13:15
+        825, // 13:45
+        840, // 14:00
+        855, // 14:15
+        875, // 14:35
+        890, // 14:50 *3
+        915, // 15:15
+        940, // 15:40
+        965, // 16:05
+        980, // 16:20
+        1000, // 16:40 *3
+        1020, // 17:00
+        1035, // 17:15
+        1060, // 17:40
+        1085  // 18:05
+      ],
+    "remarks":{ // 备考，时刻表上 (※１),(※2)... 等
+        "725": "To TWIns via Nishiwaseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "735": "To Nishiwaseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "890": "Operation of middle-size bus and minibus",
+        "1000": "Operation of middle-size bus and minibus"
+    }
+    },
+    "fromNishiWasedaToWaseda":{
+      "occurrences":[
+        555, // 9:15
+        585, // 9:45
+        610, // 10:10
+        635, // 10:35
+        645, // 10:45
+        665, // 11:05
+        700, // 11:40
+        725, // 12:05 *4
+        740, // 12:20 *5
+        765, // 12:45
+        780, // 13:15
+        810, // 13:30
+        840, // 14:00
+        855, // 14:15
+        875, // 14:35 *6
+        890, // 14:50
+        915, // 15:15
+        940, // 15:40
+        965, // 16:05
+        980, // 16:20 *6
+        1000, // 16:40
+        1020, // 17:00
+        1035, // 17:15
+        1060, // 17:40
+        1085, // 18:05
+        1100  // 18:20 *6,7
+      ],
+    "remarks":{
+        "725": "To TWIns via Waseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "740": "To Waseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "875": "Operation of middle-size bus and minibus",
+        "980": "Operation of middle-size bus and minibus",
+        "1100": "Operation of middle-size bus and minibus. Possibility of early/late departure."
+    }
+    },
+  },
+  "saturday":{
+    "fromWasedaToNishiWaseda":{
+      "occurrences":[
+        560, // 9:20
+        620, // 10:20
+        650, // 10:50
+        690, // 11:30
+        720, // 12:00
+        750, // 12:30
+        825, // 13:45
+        855, // 14:15
+        890, // 14:50
+        950, // 15:50
+        995  // 16:35
+      ]
+    },
+    "fromNishiWasedaToWaseda":{
+      "occurrences":[
+        575, // 9:35
+        635, // 10:35
+        665, // 11:05
+        705, // 11:45
+        735, // 12:15
+        765, // 12:45
+        840, // 14:00
+        875, // 14:35
+        920, // 15:20
+        980  // 16:20
+      ]
+    }
+  },
+  "exceptions": { // 所有写在时刻表上的例外
+    "outOfService":{ // 運休日 key: 月份 value: 日期
+        "1": [1,2,3,4,5],
+        "2": [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
+        "3": [2,9,16,23,25,26,30],
+        "4": [2], // 4月2日 
+        "5": [1,2], // 5月1日, 5月2日
+        "8": [3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+        "9": [1,8],
+        "11": [1,2],
+        "12": [29,30,31]
+    },
+    "weekdaySchedule":{ // 平日用ダイヤ
+        "7": [16],
+        "10": [8],
+        "11": [23]
+    },
+    "specialSchedule":{ //特別ダイヤ
+        "8": [4,5],
+        "11": [3,4]
+    },
+    "saturdaySchedule":{ //土曜用ダイヤ
+        "2": [25,26,27,28],
+        "3": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],
+        "9": [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+        "12": [25,26,27,28]
+    }
+  }
+}

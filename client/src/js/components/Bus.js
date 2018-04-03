@@ -47,34 +47,68 @@ const StyledSubHeading = styled('h2')`
   border: 3px solid rgb(148, 27, 47);
   border-radius: 5px;
   background: rgb(148, 27, 47);
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 100;
   color: #ffffff;
   ${media.phone`font-size: 2rem;`};
 `;
 
-const Status = styled('div')`
-  font-size: 1.8rem;
+const Status = styled('section')`
+  font-size: 2rem;
+  margin-bottom: 1rem;
 `;
 
-const convertTotalMinutesToTimeString = (totalMinutes) => {
-  const hours = Math.floor(totalMinutes / 60);
-  const minutes = totalMinutes - hours * 60;
-  // TODO duplicated code from ClassroomList
-  const hoursString = hours < 10 ? `0${hours}` : `${hours}`;
-  const minutesString = minutes < 10 ? `0${minutes}` : `${minutes}`;
-  return `${hoursString}:${minutesString}`;
-};
+const Remark = styled('section')`
+  font-size: 1.5rem;
+`
 
-const binarySearch = (totalMinutes, schedule, start, end) => {
+const binarySearch = (value, arr) => {
+  let start = 0, end = arr.length - 1;
+  while (start <= end) {
+    const mid = Math.floor((start + end) / 2);
+    if (arr[mid] === value) {
+      return true;
+    } else if (arr[mid] > value) {
+      end = mid - 1;
+    } else {
+      start = mid + 1;
+    }
+  }
+  return false;
+}
+
+const getSchduleType = (month, date, day) => {
+    const monthString = month.toString();
+    const {outOfService, weekdaySchedule, saturdaySchedule, specialSchedule} = busSchedule["exceptions"];
+    if (monthString in outOfService && binarySearch(date, outOfService[monthString])) {
+      return "no";
+    } else if (monthString in weekdaySchedule && binarySearch(date, weekdaySchedule[monthString])) {
+      return "weekday";
+    } else if (monthString in saturdaySchedule && binarySearch(date,saturdaySchedule[monthString])) {
+      return "saturday";
+    } else if (monthString in specialSchedule && binarySearch(date, specialSchedule[monthString])) {
+      return "special";
+    } else {
+      if (day === 0) {
+        return "no";
+      } else if (day === 6) {
+        return "saturday";
+      } else {
+        return "weekday";
+      }
+    }
+}
+
+const binarySearchSchedule = (totalMins, schedule) => {
+  let start = 0, end = schedule.length - 1;
   let ans = 0, index = 0;
   while (start <= end) {
     const mid = Math.floor((start + end) / 2);
-    if (schedule[mid] === totalMinutes) {
+    if (schedule[mid] === totalMins) {
       ans = schedule[mid];
       index = mid;
       break;
-    } else if (schedule[mid] > totalMinutes) {
+    } else if (schedule[mid] > totalMins) {
       end = mid - 1;
       index = mid;
     } else {
@@ -85,49 +119,76 @@ const binarySearch = (totalMinutes, schedule, start, end) => {
   if (ans !== 0) {
     return ans;
   } else {
-    // Return value -1 if totalMinutes is larger than all bus schedule values,
+    // Return value -1 if totalMins is larger than all bus schedule values,
     // meaning no service.
     return index >= schedule.length ? -1: schedule[index];
   }
 }
 
-const getBusStatus = (now) => {
+const totalMinsToTimeStr = (totalMins) => {
+  const hours = Math.floor(totalMins / 60);
+  const minutes = totalMins - hours * 60;
+  // TODO duplicated code from ClassroomList
+  const hoursString = hours < 10 ? `0${hours}` : `${hours}`;
+  const minsString = minutes < 10 ? `0${minutes}` : `${minutes}`;
+  return `${hoursString}:${minsString}`;
+};
+
+//TODO Fix mixing different return types
+const getBusStatus = (totalMins, occurrences, remarks) => {
+  const nextTotalMins = binarySearchSchedule(totalMins, occurrences);
+  // If there is there exists a subsequent bus schedule on the same day
+  if (nextTotalMins !== -1) {
+    const remark = nextTotalMins in remarks ? remarks[nextTotalMins.toString()] : "";
+    const nextTimeString = totalMinsToTimeStr(nextTotalMins);
+    return {"departIn": nextTotalMins - totalMins, "timeString": nextTimeString, remark};
+  }
+  return "Out of service";
+}
+
+const getBusStatuses = (now) => {
   // TODO get date from server.
+  const month = now.getMonth();
+  const date = now.getDate();
   const day = now.getDay();
-  let wasedaStatus = "Out of service";
-  let nishiStatus = "Out of service";
-  // No buses on Sunday.
-  if (day === 0) return {wasedaStatus, nishiStatus};
-  const dayType = day === 6 ? "saturday" : "weekday";
-  const totalMinutes = now.getHours() * 60 + now.getMinutes();
-  const wasedaSchedule = busSchedule[dayType].fromWasedaToNishiWaseda.occurrences;
-  const nishiSchedule = busSchedule[dayType].fromNishiWasedaToWaseda.occurrences;
-  const wasedaNextTotalMinutes = binarySearch(totalMinutes, wasedaSchedule, 0, wasedaSchedule.length - 1)
-  const nishiNextTotalMinutes = binarySearch(totalMinutes, nishiSchedule, 0, nishiSchedule.length - 1)
-  // If there is there exists a subsequent bus schedule on the same day
-  if (wasedaNextTotalMinutes !== -1) {
-    const wasedaNextTimeString = convertTotalMinutesToTimeString(wasedaNextTotalMinutes);
-    wasedaStatus = {"departIn": wasedaNextTotalMinutes - totalMinutes, "timeString": wasedaNextTimeString};
+  let wasedaStatus = "Out of service", nishiStatus = "Out of service";
+  const scheduleType = getSchduleType(month, date, day);
+  // No buses or special schedule
+  if (scheduleType === "no") {
+    return {wasedaStatus, nishiStatus};
+  } else if (scheduleType === "special") {
+    wasedaStatus = "Special Schedule";
+    nishiStatus = "Special Schedule";
+    return {wasedaStatus, nishiStatus};
   }
-  // If there is there exists a subsequent bus schedule on the same day
-  if (nishiNextTotalMinutes !== -1) {
-    const nishiNextTimeString = convertTotalMinutesToTimeString(nishiNextTotalMinutes);
-    nishiStatus = {"departIn": nishiNextTotalMinutes - totalMinutes, "timeString": nishiNextTimeString};
+  // Weekday schedule or Saturday schedule
+  const totalMins = now.getHours() * 60 + now.getMinutes();
+  const wasedaSchedule = busSchedule[scheduleType].fromWasedaToNishiWaseda;
+  const nishiSchedule = busSchedule[scheduleType].fromNishiWasedaToWaseda;
+  wasedaStatus = getBusStatus(totalMins, wasedaSchedule.occurrences, wasedaSchedule.remarks);
+  nishiStatus = getBusStatus(totalMins, nishiSchedule.occurrences, nishiSchedule.remarks);
+  return {wasedaStatus, nishiStatus};
+}
+
+const createStatusComponent = (status) => {
+  if (typeof status === 'object') {
+    return {
+      "status": <span>Departs in <b>{status.departIn}</b> mins{' '}
+        <i className="fas fa-clock fa-1x"></i> <b>{status.timeString}</b></span>,
+      "remark": status.remark
+    };
   }
-  return {wasedaStatus, nishiStatus}
+  return {
+    "status": <span>{status}</span>,
+    "remark": ""
+  };
 }
 
 const Bus = () => {
   const now = new Date();
-  const {wasedaStatus, nishiStatus} = getBusStatus(now);
-  const wasedaStatusComponent = typeof wasedaStatus === 'object'
-    ? <span>Departs in <b>{wasedaStatus.departIn}</b> mins{' '}
-      <i className="fas fa-clock fa-1x"></i> <b>{wasedaStatus.timeString}</b></span>
-    : <span>{wasedaStatus}</span>
-  const nishiStatusComponent = typeof nishiStatus === 'object'
-    ? <span>Departs in <b>{nishiStatus.departIn}</b> mins{' '}
-      <i className="fas fa-clock fa-1x"></i> <b>{nishiStatus.timeString}</b></span>
-    : <span>{nishiStatus}</span>
+  const {wasedaStatus, nishiStatus} = getBusStatuses(now);
+  const wasedaStatusComponent = createStatusComponent(wasedaStatus);
+  const nishiStatusComponent = createStatusComponent(nishiStatus);
   return (
     <Wrapper>
       <ExtendedOverlay>
@@ -135,15 +196,17 @@ const Bus = () => {
           <StyledHeading>Bus Status</StyledHeading>
           <BusStatus>
             <StyledSubHeading>Waseda <i className="fas fa-angle-double-right fa-1x"></i> NishiWaseda</StyledSubHeading>
-            <Status>{wasedaStatusComponent}</Status>
+            <Status>{wasedaStatusComponent.status}</Status>
+            <Remark>{wasedaStatusComponent.remark}</Remark>
           </BusStatus>
           <BusStatus>
             <StyledSubHeading>NishiWaseda <i className="fas fa-angle-double-right fa-1x"></i> Waseda</StyledSubHeading>
-            <Status>{nishiStatusComponent}</Status>
+            <Status>{nishiStatusComponent.status}</Status>
+            <Remark>{nishiStatusComponent.remark}</Remark>
           </BusStatus>
           <StyledHeading>Official Link</StyledHeading>
           <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
-            The Latest Waseda-Nishiwaseda Bus Schedule
+            The Latest Waseda-NishiWaseda Bus Schedule
           </StyledAnchor>
         </InfoWrapper>
       </ExtendedOverlay>

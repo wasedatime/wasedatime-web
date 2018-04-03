@@ -11,7 +11,7 @@ script:
 - npm test
 - npm run build --prefix client
 after_success:
-- bash travis/deploy.sh
+- 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash travis/deploy.sh; fi'
 addons:
   ssh_known_hosts:
   - 139.59.122.225

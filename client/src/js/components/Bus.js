@@ -143,7 +143,7 @@ const Bus = () => {
           </BusStatus>
           <StyledHeading>Official Link</StyledHeading>
           <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
-            2017-2018 Waseda-Nishiwaseda Bus Schedule
+            The Latest Waseda-Nishiwaseda Bus Schedule
           </StyledAnchor>
         </InfoWrapper>
       </ExtendedOverlay>

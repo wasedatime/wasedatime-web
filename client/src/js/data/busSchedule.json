@@ -2,63 +2,76 @@
   "weekday":{
     "fromWasedaToNishiWaseda":{
       "occurrences":[
-        560,
-        575,
-        590,
-        605,
+        555,
+        585,
+        610,
         635,
         645,
-        675,
-        705,
+        680,
+        710,
         725,
         735,
         765,
         795,
         825,
-        845,
+        840,
+        855,
         875,
         890,
-        905,
-        920,
-        935,
-        950,
+        915,
+        940,
+        965,
         980,
-        995,
+        1000,
         1020,
-        1040,
-        1090
-      ]
+        1035,
+        1060,
+        1085
+      ],
+    "remarks":{
+        "725": "To TWIns via Nishiwaseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "735": "To Nishiwaseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "890": "Operation of middle-size bus and minibus",
+        "1000": "Operation of middle-size bus and minibus"
+    }
     },
     "fromNishiWasedaToWaseda":{
       "occurrences":[
-        560,
-        575,
-        590,
-        605,
+        555,
+        585,
+        610,
         635,
         645,
-        660,
-        690,
+        665,
+        700,
         725,
         740,
         765,
         780,
         810,
-        845,
+        840,
+        855,
         875,
         890,
-        905,
-        920,
-        935,
-        950,
+        915,
+        940,
+        965,
         980,
-        995,
+        1000,
         1020,
-        1040,
-        1090,
+        1035,
+        1060,
+        1085,
         1100
-      ]
+      ],
+    "remarks":{
+        "725": "To TWIns via Waseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "740": "To Waseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "875": "Operation of middle-size bus and minibus",
+        "980": "Operation of middle-size bus and minibus",
+        "1100": "Operation of middle-size bus and minibus. Possibility of early/late departure."
     }
+    },
   },
   "saturday":{
     "fromWasedaToNishiWaseda":{
@@ -91,7 +104,32 @@
       ]
     }
   },
-  "outOfService":{
-
+  "exceptions": {
+    "outOfService":{
+        "1": [1,2,3,4,5],
+        "2": [5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23],
+        "3": [2,9,16,23,25,26,30],
+        "4": [2],
+        "5": [1,2],
+        "8": [3,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31],
+        "9": [1,8],
+        "11": [1,2],
+        "12": [29,30,31]
+    },
+    "weekdaySchedule":{
+        "7": [16],
+        "10": [8],
+        "11": [23]
+    },
+    "specialSchedule":{
+        "8": [4,5],
+        "11": [3,4]
+    },
+    "saturdaySchedule":{
+        "2": [25,26,27,28],
+        "3": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22],
+        "9": [3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],
+        "12": [25,26,27,28]
+    }
   }
 }

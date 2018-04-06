@@ -20,6 +20,20 @@ const show = keyframes`
   }
 `
 
+const hide = keyframes`
+  0% {
+    opacity: 1;
+  }
+  99% {
+    display: flex;
+    opacity: 0;
+  }
+  100% {
+    display: none;
+    opacity: 0;
+  }
+`
+
 const ExtendedOverlay = Overlay.extend`
   background-color: rgba(0, 0, 0, 0.6);
   align-items: center;
@@ -32,9 +46,7 @@ const ExtendedOverlay = Overlay.extend`
   padding: 1rem;
   z-index: 9999;
   opacity: 1;
-  ${'' /* overflow-x: hidden;
-  overflow-y: hidden; */}
-  animation: ${show} .5s ease;
+  animation: ${props => props.animation} .5s ease;
 `
 
 const Window = styled('div')`
@@ -66,48 +78,73 @@ const CloseLink = styled('a')`
 
 
 class Modal extends React.Component {
-  // Init of the component before it is mounted.
   constructor(props) {
     super(props);
+    this.setModalWindow = this.setModalWindow.bind(this);
+    this.closeModal = this.closeModal.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
-    this.setModalWindow = element => {
-      this.modalWindow = element;
-    }
+    this.handleOutsideTouchStart = this.handleOutsideTouchStart.bind(this);
+
+    this.state = {
+      close: false
+    };
   }
 
-  // Add listeners immediately after the component is mounted.
   componentDidMount() {
+    // Add listeners
     document.addEventListener('click', this.handleOutsideClick, false);
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
+    document.addEventListener('touchstart', this.handleOutsideTouchStart, false);
+    document.body.style.overflowY = 'hidden';
   }
 
-  // Remove listeners immediately before a component is unmounted and destroyed.
   componentWillUnmount() {
+    // Remove listeners
     document.removeEventListener('click', this.handleOutsideClick, false);
-    document.body.style.overflow = '';
-    document.body.style.position = '';
+    document.removeEventListener('touchstart', this.handleOutsideTouchStart, false);
+    document.body.style.overflowY = '';
   }
 
-  // Handle the mouse click on browser window.
-  handleOutsideClick(e) {
+  closeModal() {
     const { onClose } = this.props;
+    this.setState({
+      close: true
+    });
+    setTimeout(()=>{
+      onClose();
+    },300);
+  }
 
+  // Handle mouse click on browser window.
+  handleOutsideClick(e) {
     if (this.modalWindow != null) {
       if (!this.modalWindow.contains(e.target)) {
-        onClose();
+        this.closeModal();
         document.removeEventListener('click', this.handleOutsideClick, false);
       }
     }
   }
 
+  // Handle touch on smartphone window.
+  handleOutsideTouchStart(e) {
+    if (this.modalWindow != null) {
+      if (!this.modalWindow.contains(e.target)) {
+        this.closeModal();
+        document.removeEventListener('touchstart', this.handleOutsideTouchStart, false);
+      }
+    }
+  }
+
+  setModalWindow(element) {
+    this.modalWindow = element;
+  };
+
   render() {
     const {onClose, children} = this.props;
     return(
-      <ExtendedOverlay>
+      <ExtendedOverlay animation={this.state.close ? hide : show}>
         <Window innerRef={this.setModalWindow}>
           <Content>
-              <CloseLink onClick={onClose}>
+              <CloseLink onClick={this.closeModal}>
                 <i className="fas fa-times-circle fa-2x"></i>
               </CloseLink>
             {children}
@@ -117,7 +154,5 @@ class Modal extends React.Component {
     )
   }
 }
-
-
 
 export default Modal;

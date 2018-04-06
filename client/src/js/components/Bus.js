@@ -53,7 +53,7 @@ const StyledSubHeading = styled('h2')`
   border-radius: 5px;
   background: rgb(148, 27, 47);
   font-size: 2.5rem;
-  font-weight: 100;
+  font-weight: 300;
   color: #ffffff;
   ${media.phone`font-size: 2rem;`};
 `;
@@ -243,7 +243,6 @@ const Bus = () => {
               <ModalSection>
                 <ModalHeading>IOS / Safari:</ModalHeading>
                 <p>Tap on the bottom-middle icon{' '}
-                  {/* <object data={safariExport} type="image/svg+xml" ></object> */}
                   <img src={safariExport} alt="Safari export icon"></img>
                 and select "Add to Home Screen"</p>
                 <ModalImage src={a2hsSafari} alt="Add to home screen image for Safari"></ModalImage>

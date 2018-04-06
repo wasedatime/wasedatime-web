@@ -75,11 +75,13 @@ class Modal extends React.Component {
   // Add listeners immediately after the component is mounted.
   componentDidMount() {
     document.addEventListener('click', this.handleOutsideClick, false);
+    document.body.style.overflow = 'hidden';
   }
 
   // Remove listeners immediately before a component is unmounted and destroyed.
   componentWillUnmount() {
     document.removeEventListener('click', this.handleOutsideClick, false);
+    document.body.style.overflow = '';
   }
 
   // Handle the mouse click on browser window.

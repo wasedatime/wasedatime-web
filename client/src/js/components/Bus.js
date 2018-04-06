@@ -27,7 +27,7 @@ const InfoWrapper = styled('div')`
 const StyledAnchor = styled('a')`
   margin: 1.5rem 0px;
   font-size: 1.8rem;
-  font-weight: 330;
+  font-weight: 400;
   text-decoration: underline;
 `;
 

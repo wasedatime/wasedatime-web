@@ -24,7 +24,7 @@ const hide = keyframes`
   0% {
     opacity: 1;
   }
-  99% {
+  80% {
     display: flex;
     opacity: 0;
   }

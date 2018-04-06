@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/wasetime/wasetime-web.svg?branch=master)](https://travis-ci.org/wasetime/wasetime-web)
 
-WaseTime (stands for Waseda Time) is an unonfficial web app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.
+[WaseTime](https://wasetime.com) (stands for Waseda Time) is an unonfficial web app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.
 
 ## Getting Started
 
@@ -39,7 +39,7 @@ Front-end (Client):
 
 Submit an issue or a pull request! :blush:
 
-## Authors
+## Contributors
 
 * **Oscar Wang** - _Initial work_ - [OscarWang114](https://github.com/OscarWang114)
 * **WANG JUNJIE** - _Bus schedule conversion_ - [wanng-ide](https://github.com/wanng-ide)

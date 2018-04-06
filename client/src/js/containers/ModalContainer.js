@@ -24,7 +24,7 @@ class ModalContainer extends React.Component {
     return (
       <div>
         <span>
-          <a style={{textDecoration: 'underline', cursor: 'pointer'}}
+          <a style={{color: '#0000FF', textDecoration: 'underline', cursor: 'pointer'}}
             onClick={this.handleToggleModal}>
           {linkText}
           </a>

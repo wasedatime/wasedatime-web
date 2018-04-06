@@ -105,13 +105,15 @@ class Modal extends React.Component {
   }
 
   closeModal() {
-    const { onClose } = this.props;
-    this.setState({
-      close: true
-    });
-    setTimeout(()=>{
-      onClose();
-    },300);
+    if (!this.state.close) {
+      const { onClose } = this.props;
+      this.setState({
+        close: true
+      });
+      setTimeout(()=>{
+        onClose();
+      },300);
+    }
   }
 
   // Handle mouse click on browser window.

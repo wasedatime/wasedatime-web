@@ -51,7 +51,7 @@ const ExtendedOverlay = Overlay.extend`
 
 const Window = styled('div')`
   height: 100%;
-  width: 50vw;
+  max-width: 500px;
   padding: 10px 25px;
   background-color: #fff;
   border-radius: 10px;
@@ -62,10 +62,18 @@ const Window = styled('div')`
   ${media.phone`width: 80vw;`};
 `
 
-const Content = styled('div')`
+const Header = styled('header')`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+`
+
+const Content = styled('section')`
   display: flex;
   flex-direction: column;
 `
+
+const Footer = Header.withComponent('footer');
 
 const CloseLink = styled('a')`
   position: relative;
@@ -74,6 +82,21 @@ const CloseLink = styled('a')`
   align-self: flex-end;
   margin-bottom: -35px;
   cursor: pointer;
+`
+const CloseButton = styled('button')`
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  align-self: flex-end;
+  border-radius: 8px;
+  background-color: #ccc;
+  font-size: 1.7rem;
+  &:hover {
+    background-color: #999;
+  }
+  &:active {
+    background-color: #999;
+  }
 `
 
 
@@ -145,12 +168,19 @@ class Modal extends React.Component {
     return(
       <ExtendedOverlay animation={this.state.close ? hide : show}>
         <Window innerRef={this.setModalWindow}>
+          <Header>
+            <CloseLink onClick={this.closeModal}>
+              <i className="fas fa-times-circle fa-2x" data-fa-transform="shrink-2"></i>
+            </CloseLink>
+          </Header>
           <Content>
-              <CloseLink onClick={this.closeModal}>
-                <i className="fas fa-times-circle fa-2x"></i>
-              </CloseLink>
-            {children}
+              {children}
           </Content>
+          <Footer>
+            <CloseButton onClick={this.closeModal}>
+              Close
+            </CloseButton>
+          </Footer>
         </Window>
       </ExtendedOverlay>
     )

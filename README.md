@@ -42,7 +42,7 @@ Submit an issue or a pull request! :blush:
 ## Contributors
 
 * **Oscar Wang** - _Initial work_ - [OscarWang114](https://github.com/OscarWang114)
-* **WANG JUNJIE** - _Bus schedule conversion_ - [wanng-ide](https://github.com/wanng-ide)
+* **WANG JUNJIE** - _Bus schedule JSON conversion_ - [wanng-ide](https://github.com/wanng-ide)
 
 ## License
 

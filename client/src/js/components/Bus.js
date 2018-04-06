@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ModalContainer from '../containers/ModalContainer';
 import { media } from '../utils/styledComponents';
 import { Wrapper } from '../styled-components/Wrapper';
 import { Overlay } from '../styled-components/Overlay';
 import busSchedule from '../data/busSchedule.json';
+import safariExport from '../../img/safari-export.svg';
+import a2hsChrome from '../../img/bus_a2hs_chrome.png';
+import a2hsSafari from '../../img/bus_a2hs_safari.png';
 
 const wasedaNishiwasedaBusUri =
   'https://www.waseda.jp/fsci/assets/uploads/2018/03/2018waseda-nishiwaseda-shuttle-bus-timetable.pdf';
@@ -61,6 +65,29 @@ const Status = styled('section')`
 
 const Remark = styled('section')`
   font-size: 1.5rem;
+`
+
+const ModalImage = styled('img')`
+  width: 270px;
+  ${media.phone`width: 100%;`};
+`
+
+const ModalArticle = styled('article')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const ModalHeading = styled('h3')`
+  font-size: 2.2rem;
+  margin: 0px;
+`
+
+const ModalSection = styled('section')`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0px;
 `
 
 const binarySearch = (value, arr) => {
@@ -205,6 +232,24 @@ const Bus = () => {
             <Status>{nishiStatusComponent.status}</Status>
             <Remark>{nishiStatusComponent.remark}</Remark>
           </BusStatus>
+          <ModalContainer linkText="Add to home screen" text="and never miss a bus again!">
+            <ModalArticle>
+              <ModalSection>
+                <ModalHeading>Android / Chrome:</ModalHeading>
+                <p>Tap on the top-right icon{' '}<i className="fas fa-ellipsis-v fa-1x"></i>
+                {' '}and select "Add to Home screen"</p>
+                <ModalImage src={a2hsChrome} alt="Add to home screen image for Chrome"></ModalImage>
+              </ModalSection>
+              <ModalSection>
+                <ModalHeading>IOS / Safari:</ModalHeading>
+                <p>Tap on the bottom-middle icon{' '}
+                  {/* <object data={safariExport} type="image/svg+xml" ></object> */}
+                  <img src={safariExport} alt="Safari export icon"></img>
+                and select "Add to Home Screen"</p>
+                <ModalImage src={a2hsSafari} alt="Add to home screen image for Safari"></ModalImage>
+              </ModalSection>
+            </ModalArticle>
+          </ModalContainer>
           <StyledHeading>Official Link</StyledHeading>
           <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
             The Latest Waseda-NishiWaseda Bus Schedule

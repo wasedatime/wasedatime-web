@@ -139,7 +139,7 @@ class Modal extends React.Component {
   };
 
   render() {
-    const {onClose, children} = this.props;
+    const {children} = this.props;
     return(
       <ExtendedOverlay animation={this.state.close ? hide : show}>
         <Window innerRef={this.setModalWindow}>

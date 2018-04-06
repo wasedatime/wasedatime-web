@@ -32,18 +32,21 @@ const ExtendedOverlay = Overlay.extend`
   padding: 1rem;
   z-index: 9999;
   opacity: 1;
-  overflow-x: hidden;
-  ${'' /* overflow-y: auto; */}
+  ${'' /* overflow-x: hidden;
+  overflow-y: hidden; */}
   animation: ${show} .5s ease;
 `
 
 const Window = styled('div')`
+  height: 100%;
   width: 50vw;
   padding: 10px 25px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.2);
-  overflow-y: auto;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
   ${media.phone`width: 80vw;`};
 `
 

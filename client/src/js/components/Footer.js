@@ -38,8 +38,8 @@ const Footer = ({finishTime}) => {
           ❤️
         </span>{' '}
         by{' '}
-        <StyledLink href="https://github.com/OscarWang114">
-          Oscar Wang
+        <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors">
+          Our Contributors
         </StyledLink>
       </p>
       <p>

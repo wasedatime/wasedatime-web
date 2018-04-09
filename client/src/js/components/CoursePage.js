@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { media } from '../utils/styledComponents';
 import PropTypes from 'prop-types';
@@ -121,6 +122,13 @@ const CoursePage = ({ coursePage }) => {
   });
   return (
     <Wrapper>
+      <Helmet>
+        <title>WaseTime - Course: {coursePage.title}</title>
+        <meta name="description" content={`Course: ${coursePage.title} at Waseda University.`} />
+        <meta property="og:title" content={`WaseTime - Course: ${coursePage.title}`} />
+        <meta property="og:description" content={`Course: ${coursePage.title} at Waseda University.`} />
+        <meta property="og:site_name" content={`WaseTime - Course: ${coursePage.title}`} />
+      </Helmet>
       <ExtendedOverlay>
         <StyledHeader>
           <Title>{coursePage.title}</Title>

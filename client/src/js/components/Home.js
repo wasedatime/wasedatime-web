@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import styled, { keyframes } from 'styled-components';
 import smoothScroll from 'smoothscroll';
 
@@ -199,6 +200,13 @@ const clickHandler = e => {
 const Home = () => {
   return (
     <Wrapper>
+      <Helmet>
+        <title>WaseTime - Home</title>
+        <meta name="description" content="An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University." />
+        <meta property="og:title" content="WaseTime - Home" />
+        <meta property="og:description" content="An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University." />
+        <meta property="og:site_name" content="WaseTime - Home" />
+      </Helmet>
       <HomeWrapper
         background={homeBackground}
         backgroundPhone={homeBackgroundPhone}

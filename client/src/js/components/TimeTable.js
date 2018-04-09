@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
 import { WrapperWithBackground } from '../styled-components/Wrapper';
@@ -31,6 +32,13 @@ class TimeTable extends React.Component {
         background={background}
         backgroundPhone={backgroundPhone}
       >
+        <Helmet>
+          <title>WaseTime - TimeTable</title>
+          <meta name="description" content="Create Your Customizable TimeTable at Waseda University." />
+          <meta property="og:title" content="WaseTime - TimeTable" />
+          <meta property="og:description" content="Create Your Customizable TimeTable at Waseda University." />
+          <meta property="og:site_name" content="WaseTime - TimeTable" />
+        </Helmet>
         <ExtendedOverlay id="timetable-overlay">
           <Banner>Customizable time table coming soon!</Banner>
         </ExtendedOverlay>

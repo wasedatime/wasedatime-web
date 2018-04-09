@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from "react-helmet";
 import styled from 'styled-components';
 
 import ModalContainer from '../containers/ModalContainer';
@@ -219,6 +220,13 @@ const Bus = () => {
   const nishiStatusComponent = createStatusComponent(nishiStatus);
   return (
     <Wrapper>
+      <Helmet>
+        <title>WaseTime - Bus</title>
+        <meta name="description" content="Shuttle Bus Arrival Time Checking at Waseda University." />
+        <meta property="og:title" content="WaseTime - Bus" />
+        <meta property="og:description" content="Shuttle Bus Arrival Time Checking at Waseda University." />
+        <meta property="og:site_name" content="WaseTime - Bus" />
+      </Helmet>
       <ExtendedOverlay>
         <InfoWrapper>
           <StyledHeading>Bus Status</StyledHeading>

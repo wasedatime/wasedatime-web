@@ -36,7 +36,7 @@ const Course = styled('div')`
   border-radius: 8px;
   border: none;
 `;
-
+//TODO we have cases where multiple classes take place in one classroom...
 const ClassroomItem = ({ classroom }) => {
   if (typeof classroom.courses !== 'undefined') {
     return (

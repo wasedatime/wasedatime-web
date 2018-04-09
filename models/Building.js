@@ -4,9 +4,11 @@ const { Schema } = mongoose;
 const ObjectId = Schema.Types.ObjectId;
 
 const buildingSchema = new Schema({
+  _id: String,
+  name: String,
   classrooms: [
     {
-      id: ObjectId,
+      _id: String,
       name: String
     }
   ]
@@ -15,5 +17,5 @@ const buildingSchema = new Schema({
 module.exports = mongoose.model(
   'Building',
   buildingSchema,
-  '2017F_buildings_sci_eng'
+  'spr_first_half_2018_buildings_sci_eng'
 );

@@ -8,7 +8,7 @@ const classroomSchema = new Schema({
   building: String,
   courses: [
     {
-      id: ObjectId,
+      id: String,
       title: String,
       occurrences: [
         {
@@ -27,36 +27,36 @@ module.exports = (function() {
   mongoose.model(
     'ClassroomAll',
     classroomSchema,
-    '2017F_classrooms_sci_eng_all'
+    'spr_first_half_2018_classrooms_sci_eng_all'
   );
 
   mongoose.model(
     'ClassroomMon',
     classroomSchema,
-    '2017F_classrooms_sci_eng_mon'
+    'spr_first_half_2018_classrooms_sci_eng_mon'
   );
 
   mongoose.model(
     'ClassroomTue',
     classroomSchema,
-    '2017F_classrooms_sci_eng_tue'
+    'spr_first_half_2018_classrooms_sci_eng_tue'
   );
 
   mongoose.model(
     'ClassroomWed',
     classroomSchema,
-    '2017F_classrooms_sci_eng_wed'
+    'spr_first_half_2018_classrooms_sci_eng_wed'
   );
 
   mongoose.model(
     'ClassroomThur',
     classroomSchema,
-    '2017F_classrooms_sci_eng_thur'
+    'spr_first_half_2018_classrooms_sci_eng_thur'
   );
 
   mongoose.model(
     'ClassroomFri',
     classroomSchema,
-    '2017F_classrooms_sci_eng_fri'
+    'spr_first_half_2018_classrooms_sci_eng_fri'
   );
 })();

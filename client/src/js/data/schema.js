@@ -4,7 +4,7 @@ const courseSchema = new schema.Entity('courses', {}, { idAttribute: '_id' });
 
 export const coursesSchema = [courseSchema];
 
-//{ _id: '5a3b9b0fd7776b6d49e060b5', name: '51' }
+//{ _id: '51', name: '51' }
 const buildingSchema = new schema.Entity(
   'buildings',
   {},
@@ -12,7 +12,7 @@ const buildingSchema = new schema.Entity(
 );
 //shorthand syntax for new schema.Array(bldgSchema)
 export const buildingsSchema = [buildingSchema];
-// { id: "5a3b7c1ea2b3d21167f156b1", name: "04-05" }
+// { id: "51-04-05", name: "04-05" }
 const buildingClassroomSchema = new schema.Entity(
   'classrooms',
   {},
@@ -21,9 +21,14 @@ const buildingClassroomSchema = new schema.Entity(
 
 export const buildingClassroomsSchema = [buildingClassroomSchema];
 
-// { _id: "5a3b7c1ea2b3d21167f15643",
-//   courses: {id: "5a3abb8f57ae267ac79fb856", title: "Communication Strategies 2 Mon-1 ISHIDA" },
-//   name : "B03" }
+// {
+//   _id: "63-201",
+//   name: "201",
+//   courses: {
+//     id: "2603023001012018260701200326",
+//     title: "Signal Processing"
+//   }
+// }
 const occupiedClassroomSchema = new schema.Entity(
   'occupiedClassrooms',
   {},

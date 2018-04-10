@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const timeout = require('connect-timeout');
+const fs = require('fs');
 
 const keys = require('./config/keys');
 require('./models/CourseSimplified');
@@ -39,14 +40,81 @@ function haltOnTimedout(req, res, next) {
   if (!req.timedout) next();
 }
 
+const sendCustomizedIndexFile = (filePath, title, description) => {
+  return function(req, res, next) {
+    fs.readFile(filePath, 'utf8', (err, data) => {
+      if (err) {
+        console.log(err);
+        res.sendFile(filePath);
+      } else {
+        data = data.replace(/%TITLE%/g, title);
+        data = data.replace(/%DESCRIPTION%/g, description);
+        res.send(data);
+      }
+    });
+  }
+}
+
 if (process.env.NODE_ENV === 'production') {
-  //serve up production assests
-  app.use(express.static('client/build'));
+  //serve up production assests, disable directory indexing
+  app.use(express.static('client/build', { index: false }));
   //serve up index.html if route is unrecognizable
   const path = require('path');
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-  });
+  const indexFilePath = path.join(__dirname, 'client', 'build', 'index.html');
+
+  app.get(
+    '/',
+    sendCustomizedIndexFile(
+      indexFilePath,
+      'WaseTime',
+      'An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University.'
+    )
+  );
+
+  app.get(
+    '/timetable',
+    sendCustomizedIndexFile(
+      indexFilePath,
+      'WaseTime - TimeTable',
+      'Create Your Customizable TimeTable at Waseda University.'
+    )
+  );
+
+  app.get(
+    '/syllabus',
+    sendCustomizedIndexFile(
+      indexFilePath,
+      'WaseTime - Syllabus',
+      'Syllabus Searching at Waseda University.'
+    )
+  );
+
+  app.get(
+    '/roomfinder',
+    sendCustomizedIndexFile(
+      indexFilePath,
+      'WaseTime - Classroom Usage',
+      'Classroom Usage Checking at Waseda University.'
+    )
+  );
+
+  app.get(
+    '/bus',
+    sendCustomizedIndexFile(
+      indexFilePath,
+      'WaseTime - Bus',
+      'Shuttle Bus Arrival Time Checking at Waseda University.'
+    )
+  );
+
+  app.get(
+    '*',
+    sendCustomizedIndexFile(
+      indexFilePath,
+      'WaseTime',
+      'An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University.'
+    )
+  );
 }
 
 const PORT = process.env.PORT || 5000;

@@ -3,5 +3,4 @@
 
 # credentials
 .env
-/config/dev.js
 credentials.md

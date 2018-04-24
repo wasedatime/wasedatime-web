@@ -12,6 +12,20 @@ Currently this section is yet to be completed/refined. We will update it as freq
 
 ### Installing
 
+```bash
+git clone https://github.com/wasetime/wasetime-web.git
+cd wasetime-web
+# install server-side node_modules
+npm install
+# install client-side node_modules
+npm install --prefix client
+```
+
+### Running the app for developing
+
+```bash
+npm run dev
+```
 ### App Architecture
 
 ### Continuous Integration and Deployment

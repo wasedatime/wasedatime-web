@@ -8,8 +8,8 @@
     }
   },
   "dependencies": {
+    "ajv": "^6.4.0",
     "axios": "^0.17.1",
-    "node-sass-chokidar": "0.0.3",
     "normalize-css": "^2.3.1",
     "normalizr": "^3.2.4",
     "npm-run-all": "^4.1.2",
@@ -20,7 +20,7 @@
     "react-helmet": "^5.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.0.17",
+    "react-scripts": "1.1.4",
     "react-virtualized": "^9.16.1",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
@@ -29,12 +29,8 @@
     "styled-components": "^2.4.0"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build-js": "react-scripts build",
-    "build": "npm-run-all build-css build-js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }

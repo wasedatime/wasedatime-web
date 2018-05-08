@@ -10,9 +10,6 @@ const isLocalhost = Boolean(
 
 export default function registerServiceWorker() {
   if ('serviceWorker' in navigator) {
-    /* if you try ServiceWorker during the local Development,
-       you should remove the if statement
-    */
     if (!isLocalhost) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').then(registration => {

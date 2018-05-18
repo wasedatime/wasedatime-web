@@ -28,6 +28,8 @@ npm run dev
 ```
 ### App Architecture
 
+![App Architecture](/docs/images/AppArchitecture.png)
+
 ### Continuous Integration and Deployment
 
 This project is deployed on a remote server and uses Travis CI for continuous integration and deployment. You can learn more about the setup process at  [ContinuousDeployment.md](docs/ContinuousDeployment.md)

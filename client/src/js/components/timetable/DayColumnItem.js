@@ -16,17 +16,6 @@ const DayItem = styled('div')`
   font-weight: 400;
 `
 
-const DayRowItem = styled('div')`
-  flex: 1 0 50rem;
-  border: solid 1px #ccc;
-  border-right: none;
-  border-radius: 3px;
-  background: linear-gradient(180deg, #fff 50%, #eee 50%);
-  background-size: 100% calc(100%/3.5);
-  position: relative;
-  min-width: 6rem;
-`
-
 const DayColumnItem = ({day, courses}) => {
   return (
     <StyledDayColumnItem>

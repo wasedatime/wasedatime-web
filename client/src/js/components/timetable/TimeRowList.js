@@ -3,9 +3,6 @@ import styled from 'styled-components';
 
 import TimeRowItem from './TimeRowItem';
 
-// const ExtendedWrapper = Wrapper.extend`
-//   flex-direction: row;
-// `
 const StyledList = styled('ol')`
   display: flex;
   flex-direction: column;
@@ -14,8 +11,9 @@ const StyledList = styled('ol')`
   list-style: none;
   list-style-type: none;
   position: sticky;
-  padding-top: 3rem;
-  ${'' /* z-index: 1030; */}
+  padding-top: 2rem;
+  z-index: 1030;
+  left: 0;
 `;
 
 const TimeRowList = (props) => {

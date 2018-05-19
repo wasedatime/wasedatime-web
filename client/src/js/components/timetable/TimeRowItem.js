@@ -13,12 +13,17 @@ const StyledSpan = styled('span')`
   font-weight: 600;
 `
 
+const StyledTime = styled('time')`
+  font-size: 1.3rem;
+  color: #333;
+`
+
 const TimeRowItem = ({period}) => {
   return (
       <StyledListItem>
-        <time>{period.s}</time>
+        <StyledTime>{period.s}</StyledTime>
         <StyledSpan>{period.p}</StyledSpan>
-        <time>{period.e}</time>
+        <StyledTime>{period.e}</StyledTime>
       </StyledListItem>
   )
 }

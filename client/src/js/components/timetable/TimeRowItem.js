@@ -1,11 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const TimeRowItem = (props) => {
+const StyledListItem = styled('li')`
+  display: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+`
+const StyledSpan = styled('span')`
+  font-size: 2.2rem;
+  font-weight: 600;
+`
+
+const TimeRowItem = ({period}) => {
   return (
-      <li>
-        <time>{props.time}</time>
-      </li>
+      <StyledListItem>
+        <time>{period.s}</time>
+        <StyledSpan>{period.p}</StyledSpan>
+        <time>{period.e}</time>
+      </StyledListItem>
   )
 }
 

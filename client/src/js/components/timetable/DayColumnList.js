@@ -15,7 +15,7 @@ const StyledList = styled('ol')`
 `;
 
 const DayColumnList = (props) => {
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   const dayColumns = days.map(day => {
     return (
       <DayColumnItem key={day} day={day}></DayColumnItem>

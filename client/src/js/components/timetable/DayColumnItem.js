@@ -2,16 +2,36 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledDayColumnItem = styled('li')`
+  display: flex;
+  flex-direction: column;
   flex: 1 0 0;
-  border-right: solid 1px #222222;
-  ${'' /* border-radius: 3px; */}
 `
+
+const DayItem = styled('div')`
+  flex: 0 0 3rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 400;
+`
+
+const DayRowItem = styled('div')`
+  flex: 1 0 auto;
+  border: solid 1px #ccc;
+  border-right: none;
+  border-radius: 3px;
+  background: linear-gradient(180deg, #fff 50%, #eee 50%);
+  background-size: 100% calc(100%/3.5);
+`
+
 const DayColumnItem = (props) => {
   return (
     <StyledDayColumnItem>
-      <div>
+      <DayItem>
         <span>{props.day}</span>
-      </div>
+      </DayItem>
+      <DayRowItem>
+
+      </DayRowItem>
     </StyledDayColumnItem>
   )
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import {Wrapper} from '../../styled-components/Wrapper';
 import DayColumnItem from './DayColumnItem';
 
 const StyledList = styled('ol')`

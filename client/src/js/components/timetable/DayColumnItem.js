@@ -8,9 +8,9 @@ const StyledDayColumnItem = styled('li')`
 `
 
 const DayItem = styled('div')`
-  flex: 0 0 3rem;
+  flex: 0 0 2rem;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 400;
 `
 
@@ -23,11 +23,12 @@ const DayRowItem = styled('div')`
   background-size: 100% calc(100%/3.5);
 `
 
-const DayColumnItem = (props) => {
+const DayColumnItem = ({day, courses}) => {
+  console.log(courses);
   return (
     <StyledDayColumnItem>
       <DayItem>
-        <span>{props.day}</span>
+        <span>{day}</span>
       </DayItem>
       <DayRowItem>
 

@@ -15,10 +15,45 @@ const StyledList = styled('ol')`
 `;
 
 const DayColumnList = (props) => {
+  const courseMon = [ {
+      "title": "Biochemistry",
+      "instructor": "NOMURA, Wataru/HOZUMI, Kentaro",
+      "occurrences": [
+        {
+          "day": 1,
+          "start_period": "2",
+          "end_period": "2",
+          "location": "51-07-06"
+        }
+      ]
+    }
+  ];
+  const courseFri = [ {
+      "title": "Fundamental Statistics Thermodynamics",
+      "instructor": "HARAYAMA, Takahisa",
+      "occurrences": [
+          {
+              "day": 5,
+              "start_period": "2",
+              "end_period": "2",
+              "location": "54-304"
+          }
+      ]
+    }
+  ];
+  const courses = {
+    "Mon": courseMon,
+    "Tue": [],
+    "Wed": [],
+    "Thu": [],
+    "Fri": courseFri,
+    "Sat": []
+  };
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  // const days = [1, 2, 3, 4, 5, 6];
   const dayColumns = days.map(day => {
     return (
-      <DayColumnItem key={day} day={day}></DayColumnItem>
+      <DayColumnItem key={day} day={day} courses={courses[day]}></DayColumnItem>
     );
   });
   return (

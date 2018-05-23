@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { searchCourses } from '../actions/index';
-import SearchBar from '../components/SearchBar';
+import SearchBar from '../components/syllabus/SearchBar';
 
 class SyllabusSearchBar extends React.Component {
   constructor(props) {

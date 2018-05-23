@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import SyllabusSearch from './SyllabusSearch';
-import CoursePageContainer from '../containers/CoursePageContainer';
+import CoursePageContainer from '../../containers/CoursePageContainer';
 
 const Syllabus = ({ match }) => {
   return (

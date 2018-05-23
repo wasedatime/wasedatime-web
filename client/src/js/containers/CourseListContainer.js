@@ -6,7 +6,7 @@ import { fetchCourses, searchCourses } from '../actions/index';
 import { getIsFetching, getCourses, getError } from '../reducers/courses';
 import { getSearchTerm } from '../reducers/searchTerm';
 import { filterCourses, sortCourses } from '../utils/syllabusSearch';
-import CourseList from '../components/CourseList';
+import CourseList from '../components/syllabus/CourseList';
 import LoadingSpinner from '../components/LoadingSpinner';
 import FetchError from '../components/FetchError';
 

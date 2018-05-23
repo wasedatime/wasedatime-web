@@ -3,8 +3,8 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 
-import BlankCoursePage from '../components/BlankCoursePage';
-import CoursePage from '../components/CoursePage';
+import BlankCoursePage from '../components/syllabus/BlankCoursePage';
+import CoursePage from '../components/syllabus/CoursePage';
 import NotFound from '../components/NotFound';
 import FetchError from '../components/FetchError';
 

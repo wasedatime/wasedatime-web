@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import Home from './Home';
 import TimeTable from './timetable/TimeTable';
-import Syllabus from './Syllabus';
+import Syllabus from './syllabus/Syllabus';
 import RoomFinder from './RoomFinder';
 import FooterContainer from '../containers/FooterContainer';
 import Bus from './Bus';

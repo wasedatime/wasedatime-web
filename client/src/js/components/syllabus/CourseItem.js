@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { highlight } from '../utils/react';
-import { media } from '../utils/styledComponents';
-import fseIcon from '../../img/fse-cropped.png';
-import cseIcon from '../../img/cse-cropped.png';
-import aseIcon from '../../img/ase-cropped.png';
+import { highlight } from '../../utils/react';
+import { media } from '../../utils/styledComponents';
+import fseIcon from '../../../img/fse-cropped.png';
+import cseIcon from '../../../img/cse-cropped.png';
+import aseIcon from '../../../img/ase-cropped.png';
 
 const Wrapper = styled('div')`
   display: flex;

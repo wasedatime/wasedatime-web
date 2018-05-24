@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { Wrapper } from '../../styled-components/Wrapper';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
+import SearchBar from './SearchBar';
 
 const StyledTimetable = styled('div')`
   display: flex;
@@ -28,6 +29,7 @@ const StyledTimetable = styled('div')`
         <TimeRowList />
         <DayColumnList />
       </StyledTimetable>
+      <SearchBar />
     </Wrapper>
   );
 }

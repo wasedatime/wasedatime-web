@@ -10,8 +10,10 @@ const StyledDayColumnItem = styled('li')`
 `
 
 const DayItem = styled('div')`
-  flex: 0 0 2rem;
-  text-align: center;
+  display: flex;
+  flex: 0 0 3rem;
+  justify-content: center;
+  align-items: center;
   font-size: 1.8rem;
   font-weight: 400;
 `

@@ -9,6 +9,7 @@ const StyledList = styled('ol')`
   flex: 1 0 auto;
   justify-content: space-between;
   padding: 0;
+  margin: 0 auto;
   list-style: none;
   list-style-type: none;
 `;

@@ -7,6 +7,7 @@ const StyledListItem = styled('li')`
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  width: 3.5rem;
 `
 const StyledSpan = styled('span')`
   font-size: 2.2rem;

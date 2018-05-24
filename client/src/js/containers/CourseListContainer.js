@@ -2,9 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchCourses, searchCourses } from '../actions/index';
+import { fetchCourses } from '../actions/index';
 import { getIsFetching, getCourses, getError } from '../reducers/courses';
-import { getSearchTerm } from '../reducers/searchTerm';
 import { filterCourses, sortCourses } from '../utils/syllabusSearch';
 import CourseList from '../components/syllabus/CourseList';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -40,14 +39,12 @@ const mapStateToProps = state => {
   return {
     isFetching: getIsFetching(state.courses),
     courses: getCourses(state.courses),
-    error: getError(state.courses),
-    searchTerm: getSearchTerm(state.searchTerm)
+    error: getError(state.courses)
   };
 };
 
 const mapDispatchToProps = {
-  fetchCourses,
-  searchCourses
+  fetchCourses
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -58,7 +55,6 @@ CourseListContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   courses: PropTypes.array.isRequired,
   error: PropTypes.object,
-  searchTerm: PropTypes.string.isRequired,
   fetchCourses: PropTypes.func.isRequired,
-  searchCourses: PropTypes.func.isRequired
+  searchTerm: PropTypes.string.isRequired
 };

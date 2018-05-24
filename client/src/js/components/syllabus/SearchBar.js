@@ -1,5 +1,4 @@
 import React from 'react';
-import { debounce } from 'lodash';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -32,21 +31,9 @@ const StyledInput = styled('input')`
 `;
 
 class SearchBar extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { searchTerm: '' };
-  }
-
-  search = searchTerm => {
-    this.props.onSearch(searchTerm.trim());
-  };
-
-  debounceSearch = debounce(this.search, this.props.wait, { leading: false });
-
-  onInputChange = event => {
-    const searchTerm = event.target.value;
-    this.setState({ searchTerm });
-    this.debounceSearch(searchTerm);
+  handleInputChange = event => {
+    const inputText = event.target.value;
+    this.props.onInputChange(inputText.trim());
   };
 
   render() {
@@ -63,9 +50,8 @@ class SearchBar extends React.Component {
           <StyledInput
             type="text"
             placeholder={this.props.placeholder}
-            value={this.state.searchTerm}
-            onChange={this.onInputChange}
-            autoFocus
+            value={this.props.inputText}
+            onChange={this.handleInputChange}
           />
         </StyledForm>
       </Wrapper>
@@ -77,6 +63,6 @@ export default SearchBar;
 
 SearchBar.propTypes = {
   placeholder: PropTypes.string.isRequired,
-  onSearch: PropTypes.func.isRequired,
-  wait: PropTypes.number.isRequired
+  inputText: PropTypes.string.isRequired,
+  onInputChange: PropTypes.func.isRequired
 };

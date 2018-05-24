@@ -1,11 +1,44 @@
 import React from 'react';
+import { debounce } from 'lodash';
 import { Helmet } from 'react-helmet';
 
-import SyllabusSearchBar from '../../containers/SyllabusSearchBar';
+import SearchBar from './SearchBar';
 import CourseListContainer from '../../containers/CourseListContainer';
 import { Wrapper } from '../../styled-components/Wrapper';
 
 class SyllabusSearch extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      inputText: '',
+      searchTerm: ''
+    };
+    this.placeholder = 'Course titles, instructors';
+  }
+
+  updateSearchTerm = () => {
+    this.setState({
+      searchTerm: this.state.inputText
+    });
+  }
+
+  debounceUpdateSearchTerm = debounce(
+    this.updateSearchTerm,
+    400,
+    { leading: false }
+  );
+
+  handleInputChange = (inputText) => {
+    this.setState({
+      inputText
+    });
+    this.debounceUpdateSearchTerm();
+  }
+
+  componentWillUnmount() {
+    this.debounceUpdateSearchTerm.cancel();
+  }
+
   render() {
     return (
       <Wrapper>
@@ -16,8 +49,12 @@ class SyllabusSearch extends React.Component {
           <meta property="og:description" content="Syllabus Searching at Waseda University." />
           <meta property="og:site_name" content="WaseTime - Syllabus Search" />
         </Helmet>
-        <SyllabusSearchBar />
-        <CourseListContainer />
+        <SearchBar
+          onInputChange = {this.handleInputChange}
+          placeholder = {this.placeholder}
+          inputText = {this.state.inputText}
+        />
+        <CourseListContainer searchTerm={this.state.searchTerm}/>
       </Wrapper>
     );
   }

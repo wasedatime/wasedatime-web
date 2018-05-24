@@ -15,13 +15,18 @@ import {
 } from './types';
 import * as schema from '../data/schema';
 
+// temporary floating ip
+const API_BASE_URL = 'http://139.59.216.161/';
+const YEAR = '2018-2019/'
+const API_URL = API_BASE_URL + YEAR;
+
 export const fetchStats = () => async (dispatch, getState) => {
   dispatch({
     type: FETCH_STATS_REQUEST
   });
 
   try {
-    const res = await axios.get('/api/stats');
+    const res = await axios.get(API_URL + 'scraper_stats/index.json');
     const stats = res.data;
     dispatch({
       type: FETCH_STATS_SUCCESS,
@@ -41,7 +46,7 @@ export const fetchCourses = filter => async (dispatch, getState) => {
   });
 
   try {
-    const res = await axios.get('/api/courses');
+    const res = await axios.get(API_URL + 'course_list_sci_eng.json');
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
     dispatch({

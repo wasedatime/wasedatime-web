@@ -10,8 +10,7 @@ import {
   FETCH_COURSES_FAILURE,
   FETCH_BUILDINGS_REQUEST,
   FETCH_BUILDINGS_SUCCESS,
-  FETCH_BUILDINGS_FAILURE,
-  SEARCH_COURSES
+  FETCH_BUILDINGS_FAILURE
 } from './types';
 import * as schema from '../data/schema';
 
@@ -59,10 +58,6 @@ export const fetchCourses = filter => async (dispatch, getState) => {
       error: error.response
     });
   }
-};
-
-export const searchCourses = searchTerm => {
-  return { type: SEARCH_COURSES, searchTerm };
 };
 
 export const fetchBuildings = () => async (dispatch, getState) => {

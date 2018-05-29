@@ -100,7 +100,7 @@ const CloseButton = styled('button')`
 `
 
 
-class Modal extends React.Component {
+class BusModal extends React.Component {
   constructor(props) {
     super(props);
     this.setModalWindow = this.setModalWindow.bind(this);
@@ -187,4 +187,4 @@ class Modal extends React.Component {
   }
 }
 
-export default Modal;
+export default BusModal;

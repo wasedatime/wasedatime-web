@@ -2,7 +2,7 @@
 //https://medium.com/@pppped/build-a-simple-modal-window-with-react-and-jss-f05041d899cc
 import React from 'react';
 
-import Modal from '../components/Modal';
+import BusModal from '../components/BusModal';
 
 class ModalContainer extends React.Component {
   constructor(props) {
@@ -31,9 +31,9 @@ class ModalContainer extends React.Component {
           {' '}{text}
         </span>
         {showModal &&
-          <Modal onClose={this.handleToggleModal}>
+          <BusModal onClose={this.handleToggleModal}>
             {children}
-          </Modal>}
+          </BusModal>}
       </div>
     )
   }

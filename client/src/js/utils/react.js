@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { tokenize } from './syllabusSearch';
+import { tokenize } from './courseSearch';
 
 export const highlight = (searchTerm, text) => {
   if (searchTerm.length > 1) {

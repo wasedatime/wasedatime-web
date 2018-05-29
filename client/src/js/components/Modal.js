@@ -1,0 +1,53 @@
+import React from 'react';
+import ReactModal from 'react-modal';
+import noScroll from 'no-scroll';
+import PropTypes from 'prop-types';
+
+//TODO check how often this is called.
+ReactModal.setAppElement('#root');
+console.log('setAppElement called');
+
+class Modal extends React.Component {
+
+  componentDidMount() {
+    if (this.props.isOpen) {
+      noScroll.on();
+    }
+  }
+
+  componentWillUpdate(nextProps) {
+    if (nextProps.isOpen !== this.props.isOpen) {
+      nextProps.isOpen ? noScroll.on() : noScroll.off();
+    }
+  }
+
+  componentWillUnmount() {
+    noScroll.off();
+  }
+
+  render() {
+    const { closeTimeoutMS, style, overlayClassName, className, children, ...rest } = this.props;
+    return (
+      <ReactModal
+        closeTimeoutMS={closeTimeoutMS}
+        style={style}
+        overlayClassName={overlayClassName}
+        className={className}
+        {...rest}
+      >
+        {children}
+      </ReactModal>
+    )
+  }
+}
+
+export default Modal;
+
+Modal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  closeTimeoutMS: PropTypes.number,
+  style: PropTypes.object,
+  overlayClassName: PropTypes.string,
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired
+};

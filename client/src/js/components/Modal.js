@@ -3,9 +3,9 @@ import ReactModal from 'react-modal';
 import noScroll from 'no-scroll';
 import PropTypes from 'prop-types';
 
-//TODO check how often this is called.
 ReactModal.setAppElement('#root');
-console.log('setAppElement called');
+//TODO check how often this is called.
+// console.log('setAppElement called');
 
 class Modal extends React.Component {
 

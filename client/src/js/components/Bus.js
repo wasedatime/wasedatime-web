@@ -3,6 +3,8 @@ import { Helmet } from "react-helmet";
 import styled from 'styled-components';
 
 import ModalContainer from '../containers/ModalContainer';
+// TODO use react-modal
+// import Modal from './Modal';
 import { media } from '../utils/styledComponents';
 import { Wrapper } from '../styled-components/Wrapper';
 import { Overlay } from '../styled-components/Overlay';
@@ -176,7 +178,6 @@ const getBusStatus = (totalMins, occurrences, remarks) => {
 }
 
 const getBusStatuses = (now) => {
-  // TODO get date from server.
   const month = now.getMonth();
   const date = now.getDate();
   const day = now.getDay();

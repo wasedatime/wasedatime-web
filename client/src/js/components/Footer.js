@@ -24,7 +24,7 @@ const StyledLink = styled('a')`
 const Footer = ({finishTime}) => {
   return (
     <StyledFooter>
-      <p>Syllabus correct as at {finishTime} JST</p>
+      <p>{finishTime}</p>
       <StyledList>
         <li>
           <StyledLink href="https://github.com/wasetime/wasetime-web">
@@ -33,11 +33,8 @@ const Footer = ({finishTime}) => {
         </li>
       </StyledList>
       <p>
-        Created with{' '}
-        <span role="img" aria-label="Love">
-          ❤️
-        </span>{' '}
-        by{' '}
+        Created with&nbsp;
+        <span role="img" aria-label="Love">❤️&nbsp;</span>by&nbsp;
         <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors">
           Our Contributors
         </StyledLink>
@@ -46,7 +43,7 @@ const Footer = ({finishTime}) => {
         <StyledLink href="https://github.com/wasetime ">
           WaseTime 2018
         </StyledLink>
-        . Code licensed{' '}
+        . Code licensed&nbsp;
         <StyledLink href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md">
           MIT
         </StyledLink>.

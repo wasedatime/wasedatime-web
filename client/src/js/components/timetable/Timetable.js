@@ -1,11 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import ReactModal from 'react-modal';
 import styled from 'styled-components';
 
 import { Wrapper } from '../../styled-components/Wrapper';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
+import Modal from '../Modal';
+import CourseAdderContainer from '../../containers/CourseAdderContainer';
 
 const StyledTimetable = styled('div')`
   display: flex;
@@ -50,7 +51,14 @@ const modalStyle = {
   }
 }
 
-ReactModal.setAppElement('#root');
+const CloseModalButton = styled('button')`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  padding: 0;
+  border: none;
+  background: none;
+`
 
 class Timetable extends React.Component {
   constructor() {
@@ -86,13 +94,20 @@ class Timetable extends React.Component {
         <StyledButton onClick={this.handleOpenModal}>
           Add courses to timetable
         </StyledButton>
-        <ReactModal
+        <Modal
           isOpen={this.state.showModal}
-          contentLabel="Minimal Modal Example"
+          contentLabel="Course Search Modal"
           style={modalStyle}
         >
-          <button onClick={this.handleCloseModal}>Close Modal</button>
-        </ReactModal>
+          <div>
+            <span>Under Construction...</span>
+            <CloseModalButton onClick={this.handleCloseModal}>
+              <i className="fas fa-times-circle fa-2x" data-fa-transform="shrink-2"></i>
+            </CloseModalButton>
+          </div>
+          <CourseAdderContainer>
+          </CourseAdderContainer>
+        </Modal>
       </Wrapper>
     );
   }

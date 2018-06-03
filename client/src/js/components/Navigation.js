@@ -17,17 +17,28 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 1.7rem;
   font-weight: 330;
-  color:#ffffff;
+  color:#fff;
   &:hover {
     color: #b51e36;
   }
 `;
 
+const PreAlpha = styled('div')`
+  position: absolute;
+  top: 5.6rem;
+  left: 8.3rem;
+  font-size: 0.5rem;
+  color: #fff;
+  background-color: #6495ED;
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+`
+
 const Navigation = (props) => {
-  var pathname = props.location.pathname;
-  var path = "path";
-  var name = "name"
-  var navItems = [{
+  const pathname = props.location.pathname;
+  const path = "path";
+  const name = "name"
+  const navItems = [{
     path: "/timetable",
     name: "calendar-alt"
   },{
@@ -40,22 +51,26 @@ const Navigation = (props) => {
     path: "/bus",
     name: "bus"
   }];
-  var styledLinks = navItems.map((nav) => {
-    var fontName = nav[name];
+  const styledLinks = navItems.map((item) => {
+    const itemName = item[name];
+    const itemPath = item[path];
     // TODO see if inline style textShadow: "0px 0px 5px white" works
-    var fontStyle = pathname.includes(nav[path])
+    const linkStyle = pathname.includes(itemPath)
       ? {color: "#b51e36"} : {};
-    var font = <i className={`fas fa-${fontName} fa-2x`}
+    const font = <i className={`fas fa-${itemName} fa-2x`}
                 data-fa-transform="shrink-2" ></i>
     return (
-      <StyledLink to={nav[path]} key={fontName} style={fontStyle}>
+      <StyledLink to={itemPath} key={itemName} style={linkStyle}>
         {font}
       </StyledLink>
     );
   });
+
+
   return (
     <StyledNav>
       {styledLinks}
+      <PreAlpha>pre-alpha</PreAlpha>
     </StyledNav>
   );
 };

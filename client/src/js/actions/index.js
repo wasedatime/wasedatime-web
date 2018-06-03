@@ -25,7 +25,8 @@ export const fetchStats = () => async (dispatch, getState) => {
   });
 
   try {
-    const res = await axios.get(API_URL + 'scraper_stats/index.json');
+    // const res = await axios.get(API_URL + 'scraper_stats/index.json');
+    const res = await axios.get('/api/stats');
     const stats = res.data;
     dispatch({
       type: FETCH_STATS_SUCCESS,
@@ -46,7 +47,8 @@ export const fetchCourses = filter => async (dispatch, getState) => {
   });
 
   try {
-    const res = await axios.get(API_URL + 'course_list_sci_eng.json');
+    // const res = await axios.get(API_URL + 'course_list_sci_eng.json');
+    const res = await axios.get('/api/courses');
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
     dispatch({

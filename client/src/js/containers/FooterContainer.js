@@ -16,7 +16,7 @@ class FooterContainer extends React.Component {
 
   render() {
     const { isFetching, info, error} = this.props;
-    let finishTime = info.finish_time;
+    let finishTime = `Syllabus correct as at ${info.finish_time} JST.`;
     if (isFetching && Object.keys(info).length === 0) {
       finishTime = 'loading...';
     }

@@ -32,9 +32,10 @@ export const fetchStats = () => async (dispatch, getState) => {
       response: stats
     });
   } catch (error) {
+    const response = error.response || {status: 501, statusText: "Not Implemented"};
     dispatch({
       type: FETCH_STATS_FAILURE,
-      error: error.response
+      error: response
     });
   }
 }
@@ -53,9 +54,10 @@ export const fetchCourses = filter => async (dispatch, getState) => {
       response: normalizedCourses
     });
   } catch (error) {
+    const response = error.response || {status: 501, statusText: "Not Implemented"};
     dispatch({
       type: FETCH_COURSES_FAILURE,
-      error: error.response
+      error: response
     });
   }
 };

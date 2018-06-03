@@ -15,7 +15,7 @@ import {
 import * as schema from '../data/schema';
 
 // temporary floating ip
-const API_BASE_URL = 'http://139.59.216.161/';
+// const API_BASE_URL = 'http://139.59.216.161/';
 const YEAR = '2018-2019/'
 const API_URL = API_BASE_URL + YEAR;
 

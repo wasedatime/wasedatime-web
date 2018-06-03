@@ -26,11 +26,10 @@ const StyledLink = styled(Link)`
 const PreAlpha = styled('div')`
   position: absolute;
   top: 5.6rem;
-  left: 8.3rem;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   color: #fff;
   background-color: #6495ED;
-  padding: 0.3rem;
+  padding: 0.25rem;
   border-radius: 0.5rem;
 `
 
@@ -57,8 +56,13 @@ const Navigation = (props) => {
     // TODO see if inline style textShadow: "0px 0px 5px white" works
     const linkStyle = pathname.includes(itemPath)
       ? {color: "#b51e36"} : {};
-    const font = <i className={`fas fa-${itemName} fa-2x`}
-                data-fa-transform="shrink-2" ></i>
+    const fontBase = <i className={`fas fa-${itemName} fa-2x`}
+      data-fa-transform="shrink-2" ></i>;
+    const font = itemPath === "/timetable" ?
+      <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+        {fontBase}<PreAlpha>pre-alpha</PreAlpha>
+      </div> :
+      fontBase;
     return (
       <StyledLink to={itemPath} key={itemName} style={linkStyle}>
         {font}
@@ -70,7 +74,6 @@ const Navigation = (props) => {
   return (
     <StyledNav>
       {styledLinks}
-      <PreAlpha>pre-alpha</PreAlpha>
     </StyledNav>
   );
 };

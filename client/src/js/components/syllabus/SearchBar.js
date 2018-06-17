@@ -33,7 +33,7 @@ const StyledInput = styled('input')`
 class SearchBar extends React.Component {
   handleInputChange = event => {
     const inputText = event.target.value;
-    this.props.onInputChange(inputText.trim());
+    this.props.onInputChange(inputText);
   };
 
   render() {

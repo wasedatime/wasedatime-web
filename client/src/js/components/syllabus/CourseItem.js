@@ -93,6 +93,13 @@ const Instructor = styled('div')`
   color: #444;
 `;
 
+const OccurrenceList = styled('ul')`
+  list-style: none;
+  margin: 0 auto;
+  padding: 0px;
+  text-align: left;
+`;
+
 const schoolNameIconMap = {
   'FSE': fseIcon,
   'CSE': cseIcon,
@@ -116,11 +123,61 @@ const combineYearTerm = (year, term) => {
   return `${year} ${term}`;
 };
 
+const getDay = day => {
+  switch (day) {
+    case 1:
+      return 'Mon.';
+    case 2:
+      return 'Tue.';
+    case 3:
+      return 'Wed.';
+    case 4:
+      return 'Thur.';
+    case 5:
+      return 'Fri.';
+    case 6:
+      return 'Sat.';
+    case 7:
+      return 'Sun.';
+    default:
+      return '';
+  }
+};
+
+const getLocation = (building, classroom) => {
+  if (building === '-1') {
+    return classroom;
+  } else {
+    return `${building}-${classroom}`;
+  }
+};
+
+const getPeriod = (start_period, end_period) => {
+  if (start_period === -1) {
+    return 'undecided';
+  } else if (start_period === end_period) {
+    return `${start_period}`;
+  } else {
+    return `${start_period}-${end_period}`;
+  }
+};
+
 const CourseItem = ({ searchTerm, course, style }) => {
   const title = highlight(searchTerm, course.title);
   const instructor = highlight(searchTerm, course.instructor);
   const yearTerm = combineYearTerm(course.year, course.term);
   const schoolIcons = mapSchooNameToSchoolIcon(course.schools);
+  //Need to use index as keys due to Waseda's data.
+  const occurrences = course.occurrences.map((occurrence, index) => {
+    const day = getDay(occurrence.day);
+    const period = getPeriod(occurrence.start_period, occurrence.end_period);
+    const location = getLocation(occurrence.building, occurrence.classroom);
+    return (
+      <li key={index}>
+        <div>{`${day}${period} • ${location}`}</div>
+      </li>
+    );
+  });
   return (
     <Wrapper style={style}>
       <StyledLink to={`/syllabus/${course._id}`}>
@@ -128,7 +185,10 @@ const CourseItem = ({ searchTerm, course, style }) => {
           <StyledHeading>{title}</StyledHeading>
           <SchoolIconList>{schoolIcons}</SchoolIconList>
           <StyledDescription>
-            <YearTerm>{yearTerm}</YearTerm>
+            <div>
+              <YearTerm>{yearTerm}</YearTerm>
+              <OccurrenceList>{occurrences}</OccurrenceList>
+            </div>
             <Instructor>{instructor}</Instructor>
           </StyledDescription>
         </StyledButton>

@@ -14,12 +14,12 @@ import {
 } from './types';
 import * as schema from '../data/schema';
 
-const API_BASE_URL =
+const API_STATIC_BASE_URL =
   process.env.NODE_ENV === 'production' ?
   '/api/static/' :
   'http://wasetime.com/api/static/';
 const YEAR = '2018-2019/'
-const API_URL = API_BASE_URL + YEAR;
+const API_STATIC_URL = API_STATIC_BASE_URL + YEAR;
 
 export const fetchStats = () => async (dispatch, getState) => {
   dispatch({
@@ -27,7 +27,7 @@ export const fetchStats = () => async (dispatch, getState) => {
   });
 
   try {
-    // const res = await axios.get(API_URL + 'scraper_stats/index.json');
+    // const res = await axios.get(API_STATIC_URL + 'scraper_stats/index.json');
     const res = await axios.get('/api/stats');
     const stats = res.data;
     dispatch({
@@ -49,7 +49,7 @@ export const fetchCourses = filter => async (dispatch, getState) => {
   });
 
   try {
-    const res = await axios.get(API_URL + 'course_list_sci_eng.json');
+    const res = await axios.get(API_STATIC_URL + 'course_list_all.json');
     // const res = await axios.get('/api/courses');
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);

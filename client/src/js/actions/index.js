@@ -14,10 +14,12 @@ import {
 } from './types';
 import * as schema from '../data/schema';
 
-// temporary floating ip
-// const API_BASE_URL = 'http://139.59.216.161/';
-// const YEAR = '2018-2019/'
-// const API_URL = API_BASE_URL + YEAR;
+const API_BASE_URL =
+  process.env.NODE_ENV === 'production' ?
+  '/api/static/' :
+  'http://wasetime.com/api/static/';
+const YEAR = '2018-2019/'
+const API_URL = API_BASE_URL + YEAR;
 
 export const fetchStats = () => async (dispatch, getState) => {
   dispatch({
@@ -47,8 +49,8 @@ export const fetchCourses = filter => async (dispatch, getState) => {
   });
 
   try {
-    // const res = await axios.get(API_URL + 'course_list_sci_eng.json');
-    const res = await axios.get('/api/courses');
+    const res = await axios.get(API_URL + 'course_list_sci_eng.json');
+    // const res = await axios.get('/api/courses');
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
     dispatch({
@@ -78,9 +80,10 @@ export const fetchBuildings = () => async (dispatch, getState) => {
       response: normalizedBuildings
     });
   } catch (error) {
+    const response = error.response || {status: 501, statusText: "Not Implemented"};
     dispatch({
       type: FETCH_BUILDINGS_FAILURE,
-      error: error.response
+      error: response
     });
   }
 };

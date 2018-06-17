@@ -27,5 +27,5 @@ const courseSchema = new Schema({
 module.exports = mongoose.model(
   'Course',
   courseSchema,
-  'entire_2018_courses_sci_eng'
+  'entire_2018_courses_all'
 );

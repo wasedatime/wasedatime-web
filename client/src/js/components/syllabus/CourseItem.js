@@ -5,9 +5,13 @@ import PropTypes from 'prop-types';
 
 import { highlight } from '../../utils/react';
 import { media } from '../../utils/styledComponents';
-import fseIcon from '../../../img/fse-cropped.png';
-import cseIcon from '../../../img/cse-cropped.png';
-import aseIcon from '../../../img/ase-cropped.png';
+import fseIcon from '../../../img/syllabus-icons/fse.png';
+import cseIcon from '../../../img/syllabus-icons/cse.png';
+import aseIcon from '../../../img/syllabus-icons/ase.png';
+import pseIcon from '../../../img/syllabus-icons/pse.png';
+import silsIcon from '../../../img/syllabus-icons/sils.png';
+import cjlIcon from '../../../img/syllabus-icons/cjl.png';
+
 
 const Wrapper = styled('div')`
   display: flex;
@@ -90,9 +94,12 @@ const Instructor = styled('div')`
 `;
 
 const schoolNameIconMap = {
-  'Schl of Fund Sci/Eng': fseIcon,
-  'Schl Cre Sci/Eng': cseIcon,
-  'Schl Adv Sci/Eng': aseIcon
+  'FSE': fseIcon,
+  'CSE': cseIcon,
+  'ASE': aseIcon,
+  'PSE': pseIcon,
+  'SILS': silsIcon,
+  'CJL': cjlIcon
 };
 
 const mapSchooNameToSchoolIcon = schoolNames => {
@@ -105,27 +112,14 @@ const mapSchooNameToSchoolIcon = schoolNames => {
   });
 };
 
-const termMap = {
-  'fall semester': 'Fall',
-  'spring semester': 'Spring',
-  'fall quarter': 'Fall quarter',
-  'spring quarter': 'Spring quarter',
-  'summer quarter': 'Summer quarter',
-  'winter quarter': 'Winter quarter',
-  'full year': 'Full Year',
-  'an intensive course(spring and fall)': 'Intensive (Spring and Fall)',
-  'an intensive course(spring)': 'Intensive (Spring)',
-  'an intensive course(fall)': 'Intensive (Fall)'
-};
-
-const simplifyYearTerm = (year, term) => {
-  return `${year} ${termMap[term]}`;
+const combineYearTerm = (year, term) => {
+  return `${year} ${term}`;
 };
 
 const CourseItem = ({ searchTerm, course, style }) => {
   const title = highlight(searchTerm, course.title);
   const instructor = highlight(searchTerm, course.instructor);
-  const yearTerm = simplifyYearTerm(course.year, course.term);
+  const yearTerm = combineYearTerm(course.year, course.term);
   const schoolIcons = mapSchooNameToSchoolIcon(course.schools);
   return (
     <Wrapper style={style}>

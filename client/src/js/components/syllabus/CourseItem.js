@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
@@ -13,35 +12,23 @@ import silsIcon from '../../../img/syllabus-icons/sils.png';
 import cjlIcon from '../../../img/syllabus-icons/cjl.png';
 
 
-const Wrapper = styled('div')`
+const RowWrapper = styled('div')`
   display: flex;
   flex-direction: row;
   justify-content: center;
   overflow-y: hidden;
 `;
 
-const StyledLink = styled(Link)`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  overflow: hidden;
-`;
-
-const StyledButton = styled('button')`
+const CourseItemWrapper = styled('div')`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
   align-items: stretch;
-  background-color: #ffffff;
+  background-color: #fff;
   border: none;
-  margin: 3px 0px;
+  margin: 3px 0;
   padding: 9px 12px;
-  &:active {
-    background-color: #ccc;
-  }
-  width: 75vw;
-  ${media.phone`width: 85vw;`};
+  width: 100%;
 `;
 
 const StyledHeading = styled('h3')`
@@ -51,6 +38,13 @@ const StyledHeading = styled('h3')`
   font-weight: 600;
   color: #000;
 `;
+
+const CourseItemRow = styled('div')`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+`
 
 const SchoolIconList = styled('ul')`
   display: flex;
@@ -70,9 +64,17 @@ const SchoolIconImage = styled('img')`
   height: 28px;
 `;
 
+const StyledButton = styled('button')`
+  background-color: #6495ED;
+  color: #fff;
+  border:none;
+  border-radius: 0.3em;
+  ${media.phone`font-size: 0.8em;`};
+`
+
 const StyledDescription = styled('div')`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 `;
 
@@ -89,7 +91,7 @@ ${'' /*use flex-basis 0 to distribute YearTerm, Instructor evenly.*/}
 const Instructor = styled('div')`
   flex: 1 0 0;
   font-size: 1.7rem;
-  text-align: right;
+  text-align: left;
   color: #444;
 `;
 
@@ -174,26 +176,59 @@ const CourseItem = ({ searchTerm, course, style }) => {
     const location = getLocation(occurrence.building, occurrence.classroom);
     return (
       <li key={index}>
-        <div>{`${day}${period} • ${location}`}</div>
+        <div>
+          <span>
+            <i className="fas fa-clock fa-1x"></i>&nbsp;{`${day}${period}`}&nbsp;&nbsp;
+          </span>
+          <span>
+          <i className="fas fa-map-marker-alt fa-1x"></i>&nbsp;{`${location}`}
+          </span>
+        </div>
+      </li>
+    );
+  });
+  const keywords = "keywords" in course ?
+    course.keywords.map((keyword, index) => {
+      return (
+        <li key={keyword} style={{display: "inline-block"}}>
+          {index + 1 === course.keywords.length ? keyword : `${keyword},` }&nbsp;
+        </li>
+      );
+    }) :
+    null;
+  const keywordsList = keywords !== null ?
+    <OccurrenceList>Keywords: {keywords}</OccurrenceList> :
+    null;
+  const links = course.links.map(link => {
+    //TODO it should be coursePage.keys map to links
+    return (
+      <li key={link.school} style={{display: "inline-block", marginRight:"3px"}}>
+        <a href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${link.link}&pLng=en`} target="_blank">
+          {link.school}
+        </a>
       </li>
     );
   });
   return (
-    <Wrapper style={style}>
-      <StyledLink to={`/syllabus/${course._id}`}>
-        <StyledButton>
-          <StyledHeading>{title}</StyledHeading>
+    <RowWrapper style={style}>
+      <CourseItemWrapper>
+        <StyledHeading>{title}</StyledHeading>
+        <CourseItemRow>
           <SchoolIconList>{schoolIcons}</SchoolIconList>
-          <StyledDescription>
-            <div>
-              <YearTerm>{yearTerm}</YearTerm>
-              <OccurrenceList>{occurrences}</OccurrenceList>
-            </div>
+          <StyledButton>Add to timetable</StyledButton>
+        </CourseItemRow>
+        <StyledDescription>
+          <div>
+            <YearTerm>{yearTerm}</YearTerm>
+            <OccurrenceList>{occurrences}</OccurrenceList>
+            <div>Language: {course.lang}</div>
+            <OccurrenceList>Links to Official Syllabus: {links}</OccurrenceList>
             <Instructor>{instructor}</Instructor>
-          </StyledDescription>
-        </StyledButton>
-      </StyledLink>
-    </Wrapper>
+            {keywordsList}
+          </div>
+        </StyledDescription>
+      </CourseItemWrapper>
+    </RowWrapper>
   );
 };
 

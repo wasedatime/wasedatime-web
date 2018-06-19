@@ -6,20 +6,25 @@ import {
   List,
   AutoSizer
 } from 'react-virtualized';
+import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 
 import CourseItem from './CourseItem';
-import { media } from '../../utils/styledComponents';
+import { sizes } from '../../utils/styledComponents';
 import { Overlay } from '../../styled-components/Overlay';
 import { Wrapper } from '../../styled-components/Wrapper';
 
 const ExtendedOverlay = Overlay.extend`
-  padding: 36px 10vw 0px 10vw;
-  ${media.phone`padding: 36px 7.5vw 0px 7.5vw;`};
+  flex-direction: row;
+  padding: 36px 0vw 0px 0vw;
 `;
 
-const ListWrapper = styled('div')`
-  flex: 1 0 auto;
+const CourseListWrapper = Wrapper.extend`
+  margin: 1em 1.5em;
+`;
+
+const VirtualListWrapper = styled('div')`
+  flex: 1 1 auto;
 `;
 
 const Menu = styled('div')`
@@ -29,11 +34,18 @@ const Menu = styled('div')`
   align-items: center;
   margin: 5px 0px;
 `
+const Filter = styled('div')`
+  flex: 0 0 18em;
+  background-color: white;
+`
 
 const cache = new CellMeasurerCache({
   fixedWidth: true,
   defaultHeight: 50
 });
+
+//TODO Consider Infinite Loader
+//TODO https://github.com/bvaughn/react-virtualized/blob/master/source/InfiniteLoader/InfiniteLoader.example.js
 
 const CourseList = ({ searchTerm, searchResults }) => {
   cache.clearAll();
@@ -66,25 +78,40 @@ const CourseList = ({ searchTerm, searchResults }) => {
   return (
     <Wrapper>
       <ExtendedOverlay>
-        <Menu>
-          <span>{`${resultsCount} results`}</span>
-        </Menu>
-        <ListWrapper>
-          <AutoSizer>
-            {({ width, height }) => {
+        <CourseListWrapper>
+          <Menu>
+            <span>{`${resultsCount} results`}</span>
+          </Menu>
+          <VirtualListWrapper>
+            <AutoSizer>
+              {({ width, height }) => {
+                return (
+                  <List
+                    width={width}
+                    height={height}
+                    rowCount={resultsCount}
+                    deferredMeasurementCache={cache}
+                    rowHeight={cache.rowHeight}
+                    rowRenderer={rowRenderer}
+                  />
+                );
+              }}
+            </AutoSizer>
+          </VirtualListWrapper>
+        </CourseListWrapper>
+        <MediaQuery minWidth={sizes.desktop}>
+          {(matches) => {
+            if (matches) {
               return (
-                <List
-                  width={width}
-                  height={height}
-                  rowCount={resultsCount}
-                  deferredMeasurementCache={cache}
-                  rowHeight={cache.rowHeight}
-                  rowRenderer={rowRenderer}
-                />
+                <Filter>
+                  Course filter under construction
+                </Filter>
               );
-            }}
-          </AutoSizer>
-        </ListWrapper>
+            } else {
+              return null;
+            }
+          }}
+        </MediaQuery>
       </ExtendedOverlay>
     </Wrapper>
   );

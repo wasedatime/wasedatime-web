@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { highlight } from '../../utils/react';
-import { media } from '../../utils/styledComponents';
+// import { media } from '../../utils/styledComponents';
 import fseIcon from '../../../img/syllabus-icons/fse.png';
 import cseIcon from '../../../img/syllabus-icons/cse.png';
 import aseIcon from '../../../img/syllabus-icons/ase.png';
@@ -46,31 +46,47 @@ const CourseItemRow = styled('div')`
   justify-content: space-between;
 `
 
+const IconBadgeWrapper = styled('div')`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
 const SchoolIconList = styled('ul')`
   display: flex;
   flex-direction: row;
-  margin: 3px 0px;
-  padding: 0px;
+  margin: 0.3em 0;
+  padding: 0;
   list-style: none;
   list-style-type: none;
 `;
 
 const SchoolIconItem = styled('li')`
-  margin: 0px 3px;
-  padding: 0px;
+  display: flex;
+  margin: 0 0.3em 0 0;
+  padding: 0;
 `;
 
 const SchoolIconImage = styled('img')`
   height: 28px;
 `;
 
-const StyledButton = styled('button')`
-  background-color: #6495ED;
+const LanguageBadge = styled('div')`
+  background-color: #666;
   color: #fff;
-  border:none;
-  border-radius: 0.3em;
-  ${media.phone`font-size: 0.8em;`};
+  padding: 0.15em 0.3em;
+  border: none;
+  border-radius: 0.2em;
+  font-size: 0.8em;
 `
+
+// const StyledButton = styled('button')`
+//   background-color: #6495ED;
+//   color: #fff;
+//   border: none;
+//   border-radius: 0.3em;
+//   ${media.phone`font-size: 0.8em;`};
+// `
 
 const StyledDescription = styled('div')`
   display: flex;
@@ -92,7 +108,7 @@ const Instructor = styled('div')`
   flex: 1 0 0;
   font-size: 1.7rem;
   text-align: left;
-  color: #444;
+  color: #000;
 `;
 
 const OccurrenceList = styled('ul')`
@@ -199,34 +215,46 @@ const CourseItem = ({ searchTerm, course, style }) => {
   const keywordsList = keywords !== null ?
     <OccurrenceList>Keywords: {keywords}</OccurrenceList> :
     null;
-  const links = course.links.map(link => {
-    //TODO it should be coursePage.keys map to links
-    return (
-      <li key={link.school} style={{display: "inline-block", marginRight:"3px"}}>
-        <a href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${link.link}&pLng=en`} target="_blank">
-          {link.school}
-        </a>
-      </li>
-    );
-  });
+  // const links = course.links.map(link => {
+  //   //TODO it should be coursePage.keys map to links
+  //   return (
+  //     <li key={link.school} style={{display: "inline-block", marginRight:"3px"}}>
+  //       <a href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${link.link}&pLng=en`} target="_blank">
+  //         {link.school}
+  //       </a>
+  //     </li>
+  //   );
+  // });
   return (
     <RowWrapper style={style}>
       <CourseItemWrapper>
-        <StyledHeading>{title}</StyledHeading>
+        <StyledHeading>
+          {title}
+        </StyledHeading>
+        {/* <OccurrenceList>Syllabus Links: {links}</OccurrenceList> */}
         <CourseItemRow>
-          <SchoolIconList>{schoolIcons}</SchoolIconList>
-          <StyledButton>Add to timetable</StyledButton>
-        </CourseItemRow>
-        <StyledDescription>
+
+          <IconBadgeWrapper>
+            <SchoolIconList>{schoolIcons}</SchoolIconList>
+            <LanguageBadge>{course.lang}</LanguageBadge>
+          </IconBadgeWrapper>
+          <div style={{selfAlign:"flex-start"}}>
+          <i style={{color: "#6495ED"}} className="fas fa-external-link-square-alt fa-2x" data-fa-transform="shrink-2"></i>&nbsp;
+          <i style={{color: "#48af37"}} className="fas fa-plus-circle fa-2x" data-fa-transform="shrink-2"></i>
+                    </div>
+          </CourseItemRow>
+          <StyledDescription>
           <div>
             <YearTerm>{yearTerm}</YearTerm>
             <OccurrenceList>{occurrences}</OccurrenceList>
-            <div>Language: {course.lang}</div>
-            <OccurrenceList>Links to Official Syllabus: {links}</OccurrenceList>
             <Instructor>{instructor}</Instructor>
             {keywordsList}
           </div>
         </StyledDescription>
+        {/* <StyledButton>Add to timetable</StyledButton> */}
+
+
+
       </CourseItemWrapper>
     </RowWrapper>
   );

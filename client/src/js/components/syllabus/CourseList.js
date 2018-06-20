@@ -20,7 +20,7 @@ const ExtendedOverlay = Overlay.extend`
 `;
 
 const CourseListWrapper = Wrapper.extend`
-  margin: 1em 1.5em;
+  margin: 0em 1.5em 1em 1.5em;
 `;
 
 const VirtualListWrapper = styled('div')`

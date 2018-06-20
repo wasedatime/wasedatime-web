@@ -78,6 +78,19 @@ const CourseList = ({ searchTerm, searchResults }) => {
   return (
     <Wrapper>
       <ExtendedOverlay>
+        <MediaQuery minWidth={sizes.tablet}>
+          {(matches) => {
+            if (matches) {
+              return (
+                <Filter>
+                  Course Added List under construction
+                </Filter>
+              );
+            } else {
+              return null;
+            }
+          }}
+        </MediaQuery>
         <CourseListWrapper>
           <Menu>
             <span>{`${resultsCount} results`}</span>
@@ -104,7 +117,7 @@ const CourseList = ({ searchTerm, searchResults }) => {
             if (matches) {
               return (
                 <Filter>
-                  Course filter under construction
+                  Course Filter under construction
                 </Filter>
               );
             } else {

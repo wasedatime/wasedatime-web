@@ -105,7 +105,6 @@ const DescriptionWrapper = styled('div')`
 const Description = styled('div')`
   flex: 1 0 auto;
   text-align: left;
-  color: #000;
 `;
 
 const OccurrenceList = styled('ul')`
@@ -238,7 +237,9 @@ const CourseItem = ({ searchTerm, course, style }) => {
         </CourseItemRow>
         <DescriptionWrapper>
           <Description>{yearTerm}</Description>
-          <OccurrenceList>{occurrences}</OccurrenceList>
+          <Description>
+            <OccurrenceList>{occurrences}</OccurrenceList>
+          </Description>
           <Description>{instructor}</Description>
         </DescriptionWrapper>
       </CourseItemWrapper>

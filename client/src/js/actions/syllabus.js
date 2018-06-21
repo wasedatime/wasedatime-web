@@ -5,9 +5,7 @@ import {
   FETCH_COURSES_REQUEST,
   FETCH_COURSES_SUCCESS,
   FETCH_COURSES_FAILURE,
-  ADD_COURSE_REQUEST,
-  ADD_COURSE_SUCCESS,
-  ADD_COURSE_FAILURE
+  ADD_COURSE
 } from './types';
 import * as schema from '../data/schema';
 import { wasetimeApiStatic } from '../api/index';
@@ -34,24 +32,11 @@ export const fetchCourses = () => async (dispatch, getState) => {
   }
 };
 
-export const addCourse = id => async (dispatch, getState) => {
-  dispatch({
-    type: ADD_COURSE_REQUEST
-  });
-
-  try {
-    const res = await axios.get(`/api/${id}`);
-    const courses = res.data;
-    const normalizedCourses = normalize(courses, schema.coursesSchema);
-    dispatch({
-      type: ADD_COURSE_SUCCESS,
-      response: normalizedCourses
-    });
-  } catch (error) {
-    const response = error.response || {status: 501, statusText: "Not Implemented"};
-    dispatch({
-      type: ADD_COURSE_FAILURE,
-      error: response
-    });
+//ES6 syntax also allows omitting return statement
+export const addCourse = course => ({
+  type: ADD_COURSE,
+  payload: {
+    id: course._id,
+    course
   }
-};
+});

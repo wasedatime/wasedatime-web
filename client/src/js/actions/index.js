@@ -5,9 +5,6 @@ import {
   FETCH_STATS_REQUEST,
   FETCH_STATS_SUCCESS,
   FETCH_STATS_FAILURE,
-  FETCH_COURSES_REQUEST,
-  FETCH_COURSES_SUCCESS,
-  FETCH_COURSES_FAILURE,
   FETCH_BUILDINGS_REQUEST,
   FETCH_BUILDINGS_SUCCESS,
   FETCH_BUILDINGS_FAILURE
@@ -35,28 +32,6 @@ export const fetchStats = () => async (dispatch, getState) => {
     });
   }
 }
-
-export const fetchCourses = () => async (dispatch, getState) => {
-  dispatch({
-    type: FETCH_COURSES_REQUEST
-  });
-
-  try {
-    const res = await axios.get(wasetimeApiStatic.courseListAll);
-    const courses = res.data;
-    const normalizedCourses = normalize(courses, schema.coursesSchema);
-    dispatch({
-      type: FETCH_COURSES_SUCCESS,
-      response: normalizedCourses
-    });
-  } catch (error) {
-    const response = error.response || {status: 501, statusText: "Not Implemented"};
-    dispatch({
-      type: FETCH_COURSES_FAILURE,
-      error: response
-    });
-  }
-};
 
 export const fetchBuildings = () => async (dispatch, getState) => {
   dispatch({

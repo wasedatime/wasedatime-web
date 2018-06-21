@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { fetchCourses } from '../actions/index';
+import { fetchCourses } from '../actions/syllabus';
 import { getIsFetching, getCourses, getError } from '../reducers/courses';
 import { filterCourses, sortCourses } from '../utils/courseSearch';
 import CourseList from '../components/syllabus/CourseList';

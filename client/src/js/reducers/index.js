@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
 
 import stats from './stats';
-import courses from './courses';
-import buildings from './buildings';
+import fetchedCourses from './fetchedCourses';
+import fetchedBuildings from './fetchedBuildings';
 
-const app = combineReducers({ stats, courses, buildings});
+const app = combineReducers({ stats, fetchedCourses, fetchedBuildings});
 
 export default app;

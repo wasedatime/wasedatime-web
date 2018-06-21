@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const list = actionTypes => {
+const fetchedList = actionTypes => {
   const ids = (state = [], action) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
@@ -36,7 +36,7 @@ const list = actionTypes => {
   return combineReducers({ ids, isFetching, error });
 };
 
-export default list;
+export default fetchedList;
 
 export const getIds = state => state.ids;
 export const getIsFetching = state => state.isFetching;

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { fetchCourses } from '../actions/syllabus';
-import { getIsFetching, getCourses, getError } from '../reducers/courses';
+import { getIsFetching, getCourses, getError } from '../reducers/fetchedCourses';
 import { filterCourses, sortCourses } from '../utils/courseSearch';
 import CourseAdder from '../components/timetable/CourseAdder';
 // import LoadingSpinner from '../components/LoadingSpinner';

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { fetchBuildings } from '../actions/index';
-import { getIsFetching, getBuildings, getError } from '../reducers/buildings';
+import { getIsFetching, getBuildings, getError } from '../reducers/fetchedBuildings';
 import BuildingList from '../components/BuildingList';
 import LoadingSpinner from '../components/LoadingSpinner';
 import FetchError from '../components/FetchError';
@@ -42,9 +42,9 @@ class NishiBuildingList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isFetching: getIsFetching(state.buildings),
-    buildings: getBuildings(state.buildings, nishiBuildings),
-    error: getError(state.buildings)
+    isFetching: getIsFetching(state.fetchedBuildings),
+    buildings: getBuildings(state.fetchedBuildings, nishiBuildings),
+    error: getError(state.fetchedBuildings)
   };
 };
 

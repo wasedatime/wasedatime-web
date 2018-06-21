@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { fetchCourses } from '../actions/syllabus';
-import { getIsFetching, getCourses, getError } from '../reducers/courses';
+import { getIsFetching, getCourses, getError } from '../reducers/fetchedCourses';
 import { filterCourses, sortCourses } from '../utils/courseSearch';
 import CourseList from '../components/syllabus/CourseList';
 import LoadingSpinner from '../components/LoadingSpinner';
@@ -37,9 +37,9 @@ class CourseListContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isFetching: getIsFetching(state.courses),
-    courses: getCourses(state.courses),
-    error: getError(state.courses)
+    isFetching: getIsFetching(state.fetchedCourses),
+    courses: getCourses(state.fetchedCourses),
+    error: getError(state.fetchedCourses)
   };
 };
 

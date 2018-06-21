@@ -1,4 +1,4 @@
-const byId = (entityKey, actionTypes) => {
+const fetchedById = (entityKey, actionTypes) => {
   return (state = {}, action) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
@@ -9,6 +9,6 @@ const byId = (entityKey, actionTypes) => {
   };
 };
 
-export default byId;
+export default fetchedById;
 
 export const getItems = (state, id) => state[id];

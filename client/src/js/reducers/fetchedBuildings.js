@@ -5,8 +5,8 @@ import {
   FETCH_BUILDINGS_SUCCESS,
   FETCH_BUILDINGS_FAILURE
 } from '../actions/types';
-import list, * as fromList from './list';
-import byId, * as fromById from './byId';
+import list, * as fromList from './fetchedList';
+import byId, * as fromById from './fetchedById';
 
 const actionTypes = {
   fetchRequest: FETCH_BUILDINGS_REQUEST,

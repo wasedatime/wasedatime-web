@@ -5,8 +5,8 @@ import {
   FETCH_COURSES_SUCCESS,
   FETCH_COURSES_FAILURE
 } from '../actions/types';
-import list, * as fromList from './list';
-import byId, * as fromById from './byId';
+import fetchedList, * as fromList from './fetchedList';
+import fetchedById, * as fromById from './fetchedById';
 
 const actionTypes = {
   fetchRequest: FETCH_COURSES_REQUEST,
@@ -14,12 +14,12 @@ const actionTypes = {
   fetchFailure: FETCH_COURSES_FAILURE
 };
 
-const courses = combineReducers({
-  byId: byId('courses', actionTypes),
-  list: list(actionTypes)
+const fetchedCourses = combineReducers({
+  byId: fetchedById('courses', actionTypes),
+  list: fetchedList(actionTypes)
 });
 
-export default courses;
+export default fetchedCourses;
 
 export const getCourses = state => {
   const ids = fromList.getIds(state.list);

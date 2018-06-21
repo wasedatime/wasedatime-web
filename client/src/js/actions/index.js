@@ -13,13 +13,7 @@ import {
   FETCH_BUILDINGS_FAILURE
 } from './types';
 import * as schema from '../data/schema';
-
-const API_STATIC_BASE_URL =
-  process.env.NODE_ENV === 'production' ?
-  '/api/static/' :
-  'https://wasetime.com/api/static/';
-const YEAR = '2018-2019/'
-const API_STATIC_URL = API_STATIC_BASE_URL + YEAR;
+import { wasetimeApiStatic } from '../api/index';
 
 export const fetchStats = () => async (dispatch, getState) => {
   dispatch({
@@ -27,8 +21,7 @@ export const fetchStats = () => async (dispatch, getState) => {
   });
 
   try {
-    // const res = await axios.get(API_STATIC_URL + 'scraper_stats/index.json');
-    const res = await axios.get('/api/stats');
+    const res = await axios.get(wasetimeApiStatic.scraperStats);
     const stats = res.data;
     dispatch({
       type: FETCH_STATS_SUCCESS,
@@ -43,14 +36,13 @@ export const fetchStats = () => async (dispatch, getState) => {
   }
 }
 
-export const fetchCourses = filter => async (dispatch, getState) => {
+export const fetchCourses = () => async (dispatch, getState) => {
   dispatch({
     type: FETCH_COURSES_REQUEST
   });
 
   try {
-    const res = await axios.get(API_STATIC_URL + 'course_list_all.json');
-    // const res = await axios.get('/api/courses');
+    const res = await axios.get(wasetimeApiStatic.courseListAll);
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
     dispatch({

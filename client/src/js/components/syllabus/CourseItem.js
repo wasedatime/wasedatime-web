@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { highlight } from '../../utils/react';
-// import { media } from '../../utils/styledComponents';
+import { media } from '../../utils/styledComponents';
 import fseIcon from '../../../img/syllabus-icons/fse.png';
 import cseIcon from '../../../img/syllabus-icons/cse.png';
 import aseIcon from '../../../img/syllabus-icons/ase.png';
@@ -32,9 +32,10 @@ const CourseItemWrapper = styled('div')`
 `;
 
 const StyledHeading = styled('h3')`
-  margin: 0px;
+  margin: 0;
   text-align: left;
-  font-size: 1.8rem;
+  font-size: 1.2em;
+  ${media.phone`font-size: 1.1em;`};
   font-weight: 600;
   color: #000;
 `;
@@ -42,7 +43,6 @@ const StyledHeading = styled('h3')`
 const CourseItemRow = styled('div')`
   display: flex;
   flex-direction: row;
-  align-items: center;
   justify-content: space-between;
 `
 
@@ -50,12 +50,13 @@ const IconBadgeWrapper = styled('div')`
   display: flex;
   flex-direction: row;
   align-items: center;
+  flex-wrap: wrap;
 `
 
 const SchoolIconList = styled('ul')`
   display: flex;
   flex-direction: row;
-  margin: 0.3em 0;
+  margin: .1em 0;
   padding: 0;
   list-style: none;
   list-style-type: none;
@@ -63,58 +64,54 @@ const SchoolIconList = styled('ul')`
 
 const SchoolIconItem = styled('li')`
   display: flex;
-  margin: 0 0.3em 0 0;
+  margin: 0 .3em 0 0;
   padding: 0;
 `;
 
 const SchoolIconImage = styled('img')`
-  height: 28px;
+  height: 30px;
 `;
 
-const LanguageBadge = styled('div')`
+const Badge = styled('span')`
+  display: inline-block;
   background-color: #666;
   color: #fff;
-  padding: 0.15em 0.3em;
+  padding: .15em .3em;
   border: none;
-  border-radius: 0.2em;
-  font-size: 0.8em;
+  border-radius: .2em;
+  font-size: .8em;
+  margin: .1em .3em .1em 0;
 `
 
-// const StyledButton = styled('button')`
-//   background-color: #6495ED;
-//   color: #fff;
-//   border: none;
-//   border-radius: 0.3em;
-//   ${media.phone`font-size: 0.8em;`};
-// `
+const KeywordList = SchoolIconList.extend`
+  flex-wrap: wrap;
+`
 
-const StyledDescription = styled('div')`
+const InvisibleButton = styled('button')`
+  align-self: flex-start;
+  background-color: #fff;
+  border: none;
+  padding: 0;
+`
+
+const DescriptionWrapper = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  font-size: 1.2em;
+  ${media.phone`font-size: 1.1em;`};
 `;
 
-const YearTerm = styled('div')`
-${'' /*use flex-basis 0 to distribute YearTerm, Instructor evenly.*/}
-  flex: 1 0 0;
-  align-self: flex-end;
-  margin-right: 7px;
-  font-size: 1.7rem;
-  text-align: left;
-  color: #000;
-`;
-
-const Instructor = styled('div')`
-  flex: 1 0 0;
-  font-size: 1.7rem;
+const Description = styled('div')`
+  flex: 1 0 auto;
   text-align: left;
   color: #000;
 `;
 
 const OccurrenceList = styled('ul')`
   list-style: none;
-  margin: 0 auto;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   text-align: left;
 `;
 
@@ -185,6 +182,7 @@ const CourseItem = ({ searchTerm, course, style }) => {
   const instructor = highlight(searchTerm, course.instructor);
   const yearTerm = combineYearTerm(course.year, course.term);
   const schoolIcons = mapSchooNameToSchoolIcon(course.schools);
+  const syllabusLink = course.links[0].link;
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.occurrences.map((occurrence, index) => {
     const day = getDay(occurrence.day);
@@ -192,14 +190,10 @@ const CourseItem = ({ searchTerm, course, style }) => {
     const location = getLocation(occurrence.building, occurrence.classroom);
     return (
       <li key={index}>
-        <div>
-          <span>
-            <i className="fas fa-clock fa-1x"></i>&nbsp;{`${day}${period}`}&nbsp;&nbsp;
-          </span>
-          <span>
+        <span>
+          <i className="fas fa-clock fa-1x"></i>&nbsp;{`${day}${period}`}&nbsp;&nbsp;
           <i className="fas fa-map-marker-alt fa-1x"></i>&nbsp;{`${location}`}
-          </span>
-        </div>
+        </span>
       </li>
     );
   });
@@ -207,54 +201,46 @@ const CourseItem = ({ searchTerm, course, style }) => {
     course.keywords.map((keyword, index) => {
       return (
         <li key={keyword} style={{display: "inline-block"}}>
-          {index + 1 === course.keywords.length ? keyword : `${keyword},` }&nbsp;
+          <Badge>
+            {keyword === "English-based Undergraduate Program" ?
+              "EN-based Undergrad Program" :
+              keyword
+            }
+          </Badge>
         </li>
       );
     }) :
     null;
   const keywordsList = keywords !== null ?
-    <OccurrenceList>Keywords: {keywords}</OccurrenceList> :
+    <KeywordList>{keywords}</KeywordList> :
     null;
-  // const links = course.links.map(link => {
-  //   //TODO it should be coursePage.keys map to links
-  //   return (
-  //     <li key={link.school} style={{display: "inline-block", marginRight:"3px"}}>
-  //       <a href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${link.link}&pLng=en`} target="_blank">
-  //         {link.school}
-  //       </a>
-  //     </li>
-  //   );
-  // });
+
   return (
     <RowWrapper style={style}>
       <CourseItemWrapper>
         <StyledHeading>
           {title}
         </StyledHeading>
-        {/* <OccurrenceList>Syllabus Links: {links}</OccurrenceList> */}
         <CourseItemRow>
-
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <LanguageBadge>{course.lang}</LanguageBadge>
-          </IconBadgeWrapper>
-          <div style={{selfAlign:"flex-start"}}>
-          <i style={{color: "#6495ED"}} className="fas fa-external-link-square-alt fa-2x" data-fa-transform="shrink-2"></i>&nbsp;
-          <i style={{color: "#48af37"}} className="fas fa-plus-circle fa-2x" data-fa-transform="shrink-2"></i>
-                    </div>
-          </CourseItemRow>
-          <StyledDescription>
-          <div>
-            <YearTerm>{yearTerm}</YearTerm>
-            <OccurrenceList>{occurrences}</OccurrenceList>
-            <Instructor>{instructor}</Instructor>
+            <Badge>{course.lang}</Badge>
             {keywordsList}
+          </IconBadgeWrapper>
+          <div style={{display: "flex", flex: "1 0 auto", justifyContent: "flex-end"}}>
+            <a style={{alignSelf: "flex-start"}} href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`} target="_blank">
+              <i style={{color: "#6495ED"}} className="fas fa-external-link-square-alt fa-2x" data-fa-transform="shrink-2"></i>
+            </a>
+            <InvisibleButton>
+              <i style={{color: "#48af37"}} className="fas fa-plus-circle fa-2x" data-fa-transform="shrink-2"></i>
+            </InvisibleButton>
           </div>
-        </StyledDescription>
-        {/* <StyledButton>Add to timetable</StyledButton> */}
-
-
-
+        </CourseItemRow>
+        <DescriptionWrapper>
+          <Description>{yearTerm}</Description>
+          <OccurrenceList>{occurrences}</OccurrenceList>
+          <Description>{instructor}</Description>
+        </DescriptionWrapper>
       </CourseItemWrapper>
     </RowWrapper>
   );

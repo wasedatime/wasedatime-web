@@ -15,8 +15,8 @@ const actionTypes = {
 };
 
 const buildings = combineReducers({
-  byId: byId('buildings', actionTypes),
-  list: list(actionTypes)
+  list: list(actionTypes),
+  byId: byId('buildings', actionTypes)
 });
 
 export default buildings;

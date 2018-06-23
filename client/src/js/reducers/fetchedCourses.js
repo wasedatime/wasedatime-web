@@ -15,8 +15,8 @@ const actionTypes = {
 };
 
 const fetchedCourses = combineReducers({
-  byId: fetchedById('courses', actionTypes),
-  list: fetchedList(actionTypes)
+  list: fetchedList(actionTypes),
+  byId: fetchedById('courses', actionTypes)
 });
 
 export default fetchedCourses;

@@ -33,10 +33,11 @@ export const fetchCourses = () => async (dispatch, getState) => {
 };
 
 //ES6 syntax also allows omitting return statement
-export const addCourse = course => ({
+//TODO is course copied by value or reference?
+export const addCourse = (id, course) => ({
   type: ADD_COURSE,
   payload: {
-    id: course._id,
+    id,
     course
   }
 });

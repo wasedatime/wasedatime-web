@@ -176,7 +176,8 @@ const getPeriod = (start_period, end_period) => {
   }
 };
 
-const CourseItem = ({ searchTerm, course, style }) => {
+const CourseItem = ({ searchTerm, course, style, addCourse }) => {
+  // console.log(`${course._id} just rendered`);
   const title = highlight(searchTerm, course.title);
   const instructor = highlight(searchTerm, course.instructor);
   const yearTerm = combineYearTerm(course.year, course.term);
@@ -230,7 +231,7 @@ const CourseItem = ({ searchTerm, course, style }) => {
             <a style={{alignSelf: "flex-start"}} href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`} target="_blank">
               <i style={{color: "#6495ED"}} className="fas fa-external-link-square-alt fa-2x" data-fa-transform="shrink-2"></i>
             </a>
-            <InvisibleButton>
+            <InvisibleButton onClick={addCourse}>
               <i style={{color: "#48af37"}} className="fas fa-plus-circle fa-2x" data-fa-transform="shrink-2"></i>
             </InvisibleButton>
           </div>

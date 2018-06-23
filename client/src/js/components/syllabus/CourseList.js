@@ -9,7 +9,7 @@ import {
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 
-import CourseItem from './CourseItem';
+import CourseItemContainer from '../../containers/CourseItemContainer';
 import { sizes } from '../../utils/styledComponents';
 import { Overlay } from '../../styled-components/Overlay';
 import { Wrapper } from '../../styled-components/Wrapper';
@@ -65,7 +65,7 @@ const CourseList = ({ searchTerm, searchResults }) => {
         parent={parent}
         rowIndex={index}
       >
-        <CourseItem
+        <CourseItemContainer
           key={key}
           style={style}
           searchTerm={searchTerm}

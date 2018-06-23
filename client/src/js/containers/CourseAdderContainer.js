@@ -50,9 +50,9 @@ class CourseAdderContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    isFetching: getIsFetching(state.courses),
-    courses: getCourses(state.courses),
-    error: getError(state.courses)
+    isFetching: getIsFetching(state.fetchedCourses),
+    courses: getCourses(state.fetchedCourses),
+    error: getError(state.fetchedCourses)
   };
 };
 

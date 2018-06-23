@@ -12,7 +12,7 @@ const addedById = (state = {}, action) => {
     default:
       return state;
   }
-}
+};
 
 export default addedById;
 

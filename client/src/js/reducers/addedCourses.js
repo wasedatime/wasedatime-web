@@ -18,7 +18,7 @@ import addedCoursesProperties, * as fromProperties from './addedCoursesPropertie
 const addedCourses = combineReducers({
   properties: addedCoursesProperties,
   byId: addedById
-})
+});
 
 export default addedCourses;
 

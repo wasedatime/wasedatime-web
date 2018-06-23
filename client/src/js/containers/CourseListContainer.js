@@ -22,7 +22,6 @@ class CourseListContainer extends React.Component {
     if (isFetching && !courses.length) {
       return <LoadingSpinner />;
     }
-
     if (error && !courses.length) {
       return <FetchError onRetry={fetchCourses} />;
     }

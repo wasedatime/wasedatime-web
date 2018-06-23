@@ -15,3 +15,5 @@ const addedById = (state = {}, action) => {
 }
 
 export default addedById;
+
+export const getItem = (state, id) => state[id];

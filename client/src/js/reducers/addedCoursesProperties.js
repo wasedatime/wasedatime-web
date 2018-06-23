@@ -17,3 +17,5 @@ const addedCoursesProperties = (state = [], action) => {
 };
 
 export default addedCoursesProperties;
+
+export const getId = property => property.id;

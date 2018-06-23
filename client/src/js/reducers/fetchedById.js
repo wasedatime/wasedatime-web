@@ -11,4 +11,4 @@ const fetchedById = (entityKey, actionTypes) => {
 
 export default fetchedById;
 
-export const getItems = (state, id) => state[id];
+export const getItem = (state, id) => state[id];

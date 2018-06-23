@@ -23,7 +23,7 @@ export default buildings;
 
 export const getBuildings = (state, filterArray) => {
   const ids = fromList.getIds(state.list);
-  const buildings = ids.map(id => fromById.getItems(state.byId, id));
+  const buildings = ids.map(id => fromById.getItem(state.byId, id));
   return buildings.filter(building => {
     return filterArray.includes(building.name);
   });

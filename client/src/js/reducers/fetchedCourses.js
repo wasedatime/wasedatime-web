@@ -23,7 +23,7 @@ export default fetchedCourses;
 
 export const getCourses = state => {
   const ids = fromList.getIds(state.list);
-  return ids.map(id => fromById.getItems(state.byId, id));
+  return ids.map(id => fromById.getItem(state.byId, id));
 };
 
 export const getIsFetching = state => {

@@ -1,6 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import Alert from 'react-s-alert';
 import styled from 'styled-components';
+
+import 'react-s-alert/dist/s-alert-default.css';
+import '../../styles/s-alert-custom.css';
+import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
 
 import Header from './Header';
 import Home from './Home';
@@ -40,6 +45,7 @@ const App = () => {
         </Switch>
       </StyledMain>
       <FooterContainer />
+      <Alert stack={{limit: 3}} timeout={3000} />
     </Wrapper>
   );
 };

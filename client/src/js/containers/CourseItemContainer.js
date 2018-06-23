@@ -1,30 +1,41 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Alert from 'react-s-alert';
 
 import { addCourse } from '../actions/syllabus';
-import { getCourses } from '../reducers/addedCourses';
+import { getById } from '../reducers/addedCourses';
 import CourseItem from '../components/syllabus/CourseItem';
 
 class CourseItemContainer extends React.Component {
 
-  handleAddCourse = event => {
+  handleOnClick = event => {
     event.preventDefault();
-    const { course, addedCourses } = this.props;
-    
-    this.props.addCourse(course._id, course);
+    const { course, byId } = this.props;
+    const id = course._id;
+    if (!(id in byId)) {
+      this.props.addCourse(course._id, course);
+      Alert.success('Course Added.', {
+        position: 'bottom',
+        effect: 'jelly',
+      });
+    }
   }
 
   render() {
-    const { addCourse, addedCourses, ...rest } = this.props;
+    const { style, searchTerm, course } = this.props;
     return (
-      <CourseItem addCourse={this.handleAddCourse} {...rest} />
+      <CourseItem addCourse={this.handleOnClick}
+        style={style}
+        searchTerm={searchTerm}
+        course={course}
+      />
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    addedCourses: getCourses(state.addedCourses)
+    byId: getById(state.addedCourses)
   };
 };
 

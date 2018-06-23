@@ -22,6 +22,8 @@ const addedCourses = combineReducers({
 
 export default addedCourses;
 
+export const getById = state => state.byId;
+
 export const getCourses = state => {
   return state.properties.map(property => {
     return {

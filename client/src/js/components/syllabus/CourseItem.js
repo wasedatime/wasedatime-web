@@ -218,7 +218,7 @@ const CourseItem = ({ searchTerm, course, style, isAddable, handleOnClick }) => 
     <KeywordList>{keywords}</KeywordList> :
     null;
   const buttonIcon = <FontAwesomeIcon
-      style={isAddable ? {color: "#48af37"} : {color: "#da0015"}}
+      style={isAddable ? {color: "#48af37"} : {color: "#ce0115"}}
       icon={isAddable ? faPlusCircle : faMinusCircle}
       size="2x"
       transform="shrink-2"

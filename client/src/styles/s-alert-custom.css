@@ -12,6 +12,7 @@
 }
 
 .s-alert-error {
-    background: #b51e36;
+    /* background: #b51e36; */
+    background-color: #ce0115;
     color: #fff;
 }

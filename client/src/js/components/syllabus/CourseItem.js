@@ -1,5 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle, faMinusCircle, faClock, faMapMarkerAlt,
+  faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 import { highlight } from '../../utils/react';
@@ -176,8 +179,7 @@ const getPeriod = (start_period, end_period) => {
   }
 };
 
-const CourseItem = ({ searchTerm, course, style, addCourse }) => {
-  // console.log(`${course._id} just rendered`);
+const CourseItem = ({ searchTerm, course, style, isAddable, handleOnClick }) => {
   const title = highlight(searchTerm, course.title);
   const instructor = highlight(searchTerm, course.instructor);
   const yearTerm = combineYearTerm(course.year, course.term);
@@ -191,8 +193,9 @@ const CourseItem = ({ searchTerm, course, style, addCourse }) => {
     return (
       <li key={index}>
         <span>
-          <i className="fas fa-clock fa-1x"></i>&nbsp;{`${day}${period}`}&nbsp;&nbsp;
-          <i className="fas fa-map-marker-alt fa-1x"></i>&nbsp;{`${location}`}
+          <FontAwesomeIcon icon={faClock} size="1x" />&nbsp;{`${day}${period}`}
+            &nbsp;&nbsp;
+          <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" />&nbsp;{`${location}`}
         </span>
       </li>
     );
@@ -214,7 +217,12 @@ const CourseItem = ({ searchTerm, course, style, addCourse }) => {
   const keywordsList = keywords !== null ?
     <KeywordList>{keywords}</KeywordList> :
     null;
-
+  const buttonIcon = <FontAwesomeIcon
+      style={isAddable ? {color: "#48af37"} : {color: "#da0015"}}
+      icon={isAddable ? faPlusCircle : faMinusCircle}
+      size="2x"
+      transform="shrink-2"
+    />;
   return (
     <RowWrapper style={style}>
       <CourseItemWrapper>
@@ -229,11 +237,15 @@ const CourseItem = ({ searchTerm, course, style, addCourse }) => {
           </IconBadgeWrapper>
           <div style={{display: "flex", flex: "1 0 auto", justifyContent: "flex-end"}}>
             <a style={{alignSelf: "flex-start"}} href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`} target="_blank">
-              <i style={{color: "#6495ED"}} className="fas fa-external-link-square-alt fa-2x" data-fa-transform="shrink-2"></i>
+              <FontAwesomeIcon style={{color: "#6495ED"}}
+                icon={faExternalLinkSquareAlt}
+                size="2x"
+                transform="shrink-2"
+              />
             </a>
-            <InvisibleButton onClick={addCourse}>
-              <i style={{color: "#48af37"}} className="fas fa-plus-circle fa-2x" data-fa-transform="shrink-2"></i>
-            </InvisibleButton>
+          <InvisibleButton onClick={handleOnClick}>
+            {buttonIcon}
+          </InvisibleButton>
           </div>
         </CourseItemRow>
         <DescriptionWrapper>

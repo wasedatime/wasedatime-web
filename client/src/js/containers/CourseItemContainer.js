@@ -8,7 +8,7 @@ import CourseItem from '../components/syllabus/CourseItem';
 
 class CourseItemContainer extends React.Component {
 
-  handleOnClick = event => {
+  handleAddCourse = event => {
     event.preventDefault();
     const { course, byId } = this.props;
     const id = course._id;
@@ -21,15 +21,26 @@ class CourseItemContainer extends React.Component {
     }
   }
 
+  handleRemoveCourse = event => {
+    event.preventDefault();
+    Alert.error('Course Deleted.', {
+      position: 'bottom',
+      effect: 'jelly',
+    });
+  }
+
   render() {
-    const { style, searchTerm, course } = this.props;
+    const { style, searchTerm, course, byId } = this.props;
+    const id = course._id;
+    const isAddable = !(id in byId)
     return (
-      <CourseItem addCourse={this.handleOnClick}
+      <CourseItem handleOnClick={isAddable ? this.handleAddCourse : this.handleRemoveCourse}
+        isAddable = {isAddable}
         style={style}
         searchTerm={searchTerm}
         course={course}
       />
-    )
+    );
   }
 }
 

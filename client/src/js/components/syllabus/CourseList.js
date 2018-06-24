@@ -35,7 +35,7 @@ const Menu = styled('div')`
   margin: 5px 0px;
 `
 const Filter = styled('div')`
-  flex: 0 0 18em;
+  flex: 0 0 19em;
   background-color: white;
 `
 

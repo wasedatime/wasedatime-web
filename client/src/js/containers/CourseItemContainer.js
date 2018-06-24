@@ -14,7 +14,7 @@ class CourseItemContainer extends React.Component {
     const id = course._id;
     if (!(id in byId)) {
       this.props.addCourse(id, course);
-      Alert.success('Course Added.', {
+      Alert.success('Course added to timetable.', {
         position: 'bottom',
         effect: 'jelly',
       });
@@ -27,7 +27,7 @@ class CourseItemContainer extends React.Component {
     const id = course._id;
     if (id in byId) {
       this.props.removeCourse(course._id);
-      Alert.error('Course Removed.', {
+      Alert.error('Course removed from timetable.', {
         position: 'bottom',
         effect: 'jelly',
       });

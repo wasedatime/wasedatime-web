@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Alert from 'react-s-alert';
 
-import { addCourse } from '../actions/syllabus';
+import { addCourse, removeCourse } from '../actions/syllabus';
 import { getById } from '../reducers/addedCourses';
 import CourseItem from '../components/syllabus/CourseItem';
 
@@ -13,7 +13,7 @@ class CourseItemContainer extends React.Component {
     const { course, byId } = this.props;
     const id = course._id;
     if (!(id in byId)) {
-      this.props.addCourse(course._id, course);
+      this.props.addCourse(id, course);
       Alert.success('Course Added.', {
         position: 'bottom',
         effect: 'jelly',
@@ -23,10 +23,15 @@ class CourseItemContainer extends React.Component {
 
   handleRemoveCourse = event => {
     event.preventDefault();
-    Alert.error('Course Deleted.', {
-      position: 'bottom',
-      effect: 'jelly',
-    });
+    const { course, byId } = this.props;
+    const id = course._id;
+    if (id in byId) {
+      this.props.removeCourse(course._id);
+      Alert.error('Course Removed.', {
+        position: 'bottom',
+        effect: 'jelly',
+      });
+    }
   }
 
   render() {
@@ -51,7 +56,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-  addCourse
+  addCourse,
+  removeCourse
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(

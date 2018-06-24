@@ -1,4 +1,4 @@
-import { ADD_COURSE } from '../actions/types';
+import { ADD_COURSE, REMOVE_COURSE } from '../actions/types';
 
 const addedById = (state = {}, action) => {
   switch (action.type) {
@@ -9,6 +9,9 @@ const addedById = (state = {}, action) => {
           ...action.payload.course
         }
       };
+    case REMOVE_COURSE:
+      const { [action.payload.id]: value, ...rest } = state;
+      return rest;
     default:
       return state;
   }

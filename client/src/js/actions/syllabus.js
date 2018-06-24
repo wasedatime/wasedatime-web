@@ -5,7 +5,8 @@ import {
   FETCH_COURSES_REQUEST,
   FETCH_COURSES_SUCCESS,
   FETCH_COURSES_FAILURE,
-  ADD_COURSE
+  ADD_COURSE,
+  REMOVE_COURSE
 } from './types';
 import * as schema from '../data/schema';
 import { wasetimeApiStatic } from '../api/index';
@@ -33,11 +34,17 @@ export const fetchCourses = () => async (dispatch, getState) => {
 };
 
 //ES6 syntax also allows omitting return statement
-//TODO is course copied by value or reference?
 export const addCourse = (id, course) => ({
   type: ADD_COURSE,
   payload: {
     id,
     course
+  }
+});
+
+export const removeCourse = id => ({
+  type: REMOVE_COURSE,
+  payload: {
+    id
   }
 });

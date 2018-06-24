@@ -1,4 +1,4 @@
-import { ADD_COURSE } from '../actions/types';
+import { ADD_COURSE, REMOVE_COURSE } from '../actions/types';
 
 const addedCoursesProperties = (state = [], action) => {
   switch (action.type) {
@@ -11,6 +11,8 @@ const addedCoursesProperties = (state = [], action) => {
           visibility: true
         }
       ];
+    case REMOVE_COURSE:
+      return state.filter(item => item.id !== action.payload.id);
     default:
       return state;
   }

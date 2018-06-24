@@ -3,18 +3,6 @@ import { combineReducers } from 'redux';
 import addedById, * as fromById from './addedById';
 import addedCoursesProperties, * as fromProperties from './addedCoursesProperties';
 
-// addedCourses : {
-//   properties: [{
-//    id: 111,
-//
-//    color: 0,
-//    visible: true
-//   }...]
-//   byId: {
-//
-//   }
-// }
-
 const addedCourses = combineReducers({
   properties: addedCoursesProperties,
   byId: addedById

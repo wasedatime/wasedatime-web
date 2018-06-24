@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
 
 const StyledFooter = styled('footer')`
   display: block;
@@ -28,7 +30,7 @@ const Footer = ({finishTime}) => {
       <StyledList>
         <li>
           <StyledLink href="https://github.com/wasetime/wasetime-web">
-          <i className="fab fa-github fa-2x" data-fa-transform="shrink-2"></i>
+          <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
           </StyledLink>
         </li>
       </StyledList>

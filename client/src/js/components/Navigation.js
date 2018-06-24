@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router'
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt, faBook, faBuilding,
+  faBus } from '@fortawesome/free-solid-svg-icons';
 
 const StyledNav = styled('nav')`
   display: flex;
@@ -35,36 +38,34 @@ const PreAlpha = styled('div')`
 
 const Navigation = (props) => {
   const pathname = props.location.pathname;
-  const path = "path";
-  const name = "name"
   const navItems = [{
     path: "/timetable",
-    name: "calendar-alt"
+    icon: faCalendarAlt
   },{
     path: "/syllabus",
-    name: "book"
+    icon: faBook
   },{
     path: "/roomfinder",
-    name: "building"
+    icon: faBuilding
   },{
     path: "/bus",
-    name: "bus"
+    icon: faBus
   }];
   const styledLinks = navItems.map((item) => {
-    const itemName = item[name];
-    const itemPath = item[path];
+    const itemPath = item["path"];
+    const itemIcon = item["icon"];
     // TODO see if inline style textShadow: "0px 0px 5px white" works
     const linkStyle = pathname.includes(itemPath)
       ? {color: "#b51e36"} : {};
-    const fontBase = <i className={`fas fa-${itemName} fa-2x`}
-      data-fa-transform="shrink-2" ></i>;
+    const fontBase = <FontAwesomeIcon icon={itemIcon}
+      size="2x" transform="shrink-2" />
     const font = itemPath === "/timetable" ?
       <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
         {fontBase}<PreAlpha>pre-alpha</PreAlpha>
       </div> :
       fontBase;
     return (
-      <StyledLink to={itemPath} key={itemName} style={linkStyle}>
+      <StyledLink to={itemPath} key={itemPath} style={linkStyle}>
         {font}
       </StyledLink>
     );

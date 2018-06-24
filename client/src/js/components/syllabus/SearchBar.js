@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 const Wrapper = styled('div')`
@@ -40,7 +42,11 @@ class SearchBar extends React.Component {
     return (
       <Wrapper>
         <Icon>
-          <i className="fas fa-search fa-2x" data-fa-transform="shrink-2" ></i>
+          <FontAwesomeIcon
+            icon={faSearch}
+            size="2x"
+            transform="shrink-2"
+          />
         </Icon>
         <StyledForm
           onSubmit={e => {

@@ -1,5 +1,8 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock, faAngleDoubleRight,
+  faEllipsisV } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 import ModalContainer from '../containers/ModalContainer';
@@ -203,8 +206,9 @@ const getBusStatuses = (now) => {
 const createStatusComponent = (status) => {
   if (typeof status === 'object') {
     return {
-      "status": <span>Departs in <b>{status.departIn}</b> mins{' '}
-        <i className="fas fa-clock fa-1x"></i> <b>{status.timeString}</b></span>,
+      "status": <span>Departs in <b>{status.departIn}</b> mins&nbsp;
+        <FontAwesomeIcon icon={faClock} size="1x" /> <b>{status.timeString}</b>
+        </span>,
       "remark": status.remark
     };
   }
@@ -232,12 +236,16 @@ const Bus = () => {
         <InfoWrapper>
           <StyledHeading>Bus Status</StyledHeading>
           <BusStatus>
-            <StyledSubHeading>Waseda <i className="fas fa-angle-double-right fa-1x"></i> NishiWaseda</StyledSubHeading>
+            <StyledSubHeading>
+              Waseda <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" /> NishiWaseda
+            </StyledSubHeading>
             <Status>{wasedaStatusComponent.status}</Status>
             <Remark>{wasedaStatusComponent.remark}</Remark>
           </BusStatus>
           <BusStatus>
-            <StyledSubHeading>NishiWaseda <i className="fas fa-angle-double-right fa-1x"></i> Waseda</StyledSubHeading>
+            <StyledSubHeading>
+              NishiWaseda <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" /> Waseda
+            </StyledSubHeading>
             <Status>{nishiStatusComponent.status}</Status>
             <Remark>{nishiStatusComponent.remark}</Remark>
           </BusStatus>
@@ -245,13 +253,13 @@ const Bus = () => {
             <ModalArticle>
               <ModalSection>
                 <ModalHeading>Android / Chrome:</ModalHeading>
-                <p>Tap on the top-right icon{' '}<i className="fas fa-ellipsis-v fa-1x"></i>
-                {' '}and select "Add to Home screen"</p>
+                <p>Tap on the top-right icon&nbsp;<FontAwesomeIcon icon={faEllipsisV} size="1x" />
+                &nbsp;and select "Add to Home screen"</p>
                 <ModalImage src={a2hsChrome} alt="Add to home screen image for Chrome"></ModalImage>
               </ModalSection>
               <ModalSection>
                 <ModalHeading>IOS / Safari:</ModalHeading>
-                <p>Tap on the bottom-middle icon{' '}
+                <p>Tap on the bottom-middle icon&nbsp;
                   <img src={safariExport} alt="Safari export icon"></img>
                 and select "Add to Home Screen"</p>
                 <ModalImage src={a2hsSafari} alt="Add to home screen image for Safari"></ModalImage>

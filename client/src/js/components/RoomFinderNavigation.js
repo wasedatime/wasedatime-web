@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUniversity } from '@fortawesome/free-solid-svg-icons';
 
 const StyledNav = styled('nav')`
   display: flex;
@@ -50,7 +52,7 @@ const RoomFinderNavigation = () => {
   return (
     <StyledNav>
       <Icon>
-        <i className="fas fa-university fa-2x" data-fa-transform="shrink-2" ></i>
+        <FontAwesomeIcon icon={faUniversity} size="2x" transform="shrink-2" />
       </Icon>
       <StyledLink to="/roomfinder#mainCampus">Main</StyledLink>
       <StyledLink to="/roomfinder#nishiWasedaCampus">Nishi</StyledLink>

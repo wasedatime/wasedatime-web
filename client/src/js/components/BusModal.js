@@ -1,6 +1,8 @@
 //Credits: Adapted from the awesome tutorial by Sergio Pedercini at
 //https://medium.com/@pppped/build-a-simple-modal-window-with-react-and-jss-f05041d899cc
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import styled, {keyframes} from 'styled-components';
 
 import { media } from '../utils/styledComponents';
@@ -170,7 +172,7 @@ class BusModal extends React.Component {
         <Window innerRef={this.setModalWindow}>
           <Header>
             <CloseLink onClick={this.closeModal}>
-              <i className="fas fa-times-circle fa-2x" data-fa-transform="shrink-2"></i>
+              <FontAwesomeIcon icon={faTimesCircle} size="2x" transform="shrink-2" />
             </CloseLink>
           </Header>
           <Content>

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 import { Wrapper } from '../../styled-components/Wrapper';
@@ -102,7 +104,7 @@ class Timetable extends React.Component {
           <div>
             <span>Under Construction...</span>
             <CloseModalButton onClick={this.handleCloseModal}>
-              <i className="fas fa-times-circle fa-2x" data-fa-transform="shrink-2"></i>
+              <FontAwesomeIcon icon={faTimesCircle} size="2x" transform="shrink-2" />
             </CloseModalButton>
           </div>
           <CourseAdderContainer>

@@ -12,12 +12,20 @@ class CourseItemContainer extends React.Component {
     event.preventDefault();
     const { course, byId } = this.props;
     const id = course._id;
+    const occurrences = course.occurrences;
     if (!(id in byId)) {
       this.props.addCourse(id, course);
-      Alert.success('Course added to timetable.', {
-        position: 'bottom',
-        effect: 'jelly',
-      });
+      if (occurrences.some(o => o.day === -1 || o.start_period === -1)) {
+        Alert.warning('Course with undecided time cannot be displayed in timetable.', {
+          position: 'bottom',
+          effect: 'jelly',
+        });
+      } else {
+        Alert.success('Course added to timetable.', {
+          position: 'bottom',
+          effect: 'jelly',
+        });
+      }
     }
   }
 

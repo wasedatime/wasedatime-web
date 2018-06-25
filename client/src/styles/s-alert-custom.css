@@ -1,5 +1,5 @@
 .s-alert-box {
-    padding: 6px;
+  padding: 6px;
 }
 
 .s-alert-box-inner {
@@ -7,12 +7,17 @@
 }
 
 .s-alert-success {
-    background: #48af37;
-    color: #fff;
+  background: #48af37;
+  color: #fff;
+}
+
+.s-alert-warning {
+  background: #ffc107;
+  color: #000;
 }
 
 .s-alert-error {
-    /* background: #b51e36; */
-    background-color: #ce0115;
-    color: #fff;
+  /* background: #b51e36; */
+  background-color: #ce0115;
+  color: #fff;
 }

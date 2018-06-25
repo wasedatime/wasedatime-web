@@ -26,16 +26,6 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const PreAlpha = styled('div')`
-  position: absolute;
-  top: 5.6rem;
-  font-size: 0.8rem;
-  color: #fff;
-  background-color: #6495ED;
-  padding: 0.25rem;
-  border-radius: 0.5rem;
-`
-
 const Navigation = (props) => {
   const pathname = props.location.pathname;
   const navItems = [{

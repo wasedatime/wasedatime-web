@@ -10,7 +10,7 @@ const Wrapper = styled('div')`
   flex: 1 0 auto;
   align-items: center;
   position: fixed;
-  height: 36px;
+  height: 32px;
   width: 100%;
   padding: 0px 25px;
   background-color: #777;
@@ -20,7 +20,7 @@ const Wrapper = styled('div')`
 const Icon = styled('div')`
   align-items: center;
   margin-right: 25px;
-  color: #ffffff;
+  color: #fff;
 `;
 
 const StyledForm = styled('form')`
@@ -45,7 +45,7 @@ class SearchBar extends React.Component {
           <FontAwesomeIcon
             icon={faSearch}
             size="2x"
-            transform="shrink-2"
+            transform="shrink-4"
           />
         </Icon>
         <StyledForm

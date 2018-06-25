@@ -10,7 +10,7 @@ const StyledHeader = styled('header')`
   flex-direction: row;
   align-items: center;
   padding: 0.3rem 1rem;
-  height: 75px;
+  height: 60px;
   background: #222222;
   position: fixed;
   top: 0;
@@ -20,12 +20,13 @@ const StyledHeader = styled('header')`
 `;
 
 const StyledLink = styled(Link)`
+  display: flex;
   margin-right: 0.5rem;
 `;
 
 const Logo = styled('img')`
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
 `;
 
 const Header = () => {

@@ -15,7 +15,7 @@ const StyledNav = styled('nav')`
 `;
 
 const StyledLink = styled(Link)`
-  padding: 2rem 1.5rem;
+  padding: 1rem 1.5rem;
   text-align: center;
   text-decoration: none;
   font-size: 1.7rem;
@@ -59,14 +59,9 @@ const Navigation = (props) => {
       ? {color: "#b51e36"} : {};
     const fontBase = <FontAwesomeIcon icon={itemIcon}
       size="2x" transform="shrink-2" />
-    const font = itemPath === "/timetable" ?
-      <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
-        {fontBase}<PreAlpha>pre-alpha</PreAlpha>
-      </div> :
-      fontBase;
     return (
       <StyledLink to={itemPath} key={itemPath} style={linkStyle}>
-        {font}
+        {fontBase}
       </StyledLink>
     );
   });

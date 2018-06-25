@@ -19,7 +19,7 @@ const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: 75px;
+  padding-top: 60px;
 `;
 
 const StyledMain = styled('main')`
@@ -27,7 +27,7 @@ const StyledMain = styled('main')`
   flex-direction: column;
   flex: 1 0 auto;
   width: 100%;
-  min-height: calc(100vh - 75px);
+  min-height: calc(100vh - 60px);
 `;
 
 const App = () => {

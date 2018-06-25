@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import {
-  CellMeasurer,
-  CellMeasurerCache,
-  List,
-  AutoSizer
-} from 'react-virtualized';
+import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/commonjs/CellMeasurer';
+import List from 'react-virtualized/dist/commonjs/List';
+import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 

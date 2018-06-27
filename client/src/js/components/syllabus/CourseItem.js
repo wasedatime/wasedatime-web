@@ -179,7 +179,7 @@ const getPeriod = (start_period, end_period) => {
   }
 };
 
-const CourseItem = ({ searchTerm, course, style, isAddable, handleOnClick }) => {
+const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
   const title = highlight(searchTerm, course.title);
   const instructor = highlight(searchTerm, course.instructor);
   const yearTerm = combineYearTerm(course.year, course.term);
@@ -224,7 +224,7 @@ const CourseItem = ({ searchTerm, course, style, isAddable, handleOnClick }) => 
       transform="shrink-2"
     />;
   return (
-    <RowWrapper style={style}>
+    <RowWrapper>
       <CourseItemWrapper>
         <StyledHeading>
           {title}
@@ -264,6 +264,5 @@ export default CourseItem;
 
 CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,
-  course: PropTypes.object.isRequired,
-  style: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired
 };

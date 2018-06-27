@@ -1,24 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
-import { CellMeasurer, CellMeasurerCache } from 'react-virtualized/dist/commonjs/CellMeasurer';
-import List from 'react-virtualized/dist/commonjs/List';
-import AutoSizer from 'react-virtualized/dist/commonjs/AutoSizer';
+import WayPoint from 'react-waypoint';
+import stickybits from 'stickybits';
 
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 
-import CourseItemContainer from '../../containers/CourseItemContainer';
+import CourseChunk from './CourseChunk';
+import AddedCourseList from './AddedCourseList';
 import { sizes } from '../../utils/styledComponents';
 import { Overlay } from '../../styled-components/Overlay';
 import { Wrapper } from '../../styled-components/Wrapper';
 
 const ExtendedOverlay = Overlay.extend`
   flex-direction: row;
-  padding: 36px 0vw 0px 0vw;
+  padding-top: 32px;
 `;
 
 const CourseListWrapper = Wrapper.extend`
-  margin: 0em 1.5em 1em 1.5em;
+  flex: 1 1 0;
+  padding: 0 1.5em 1em 1.5em;
 `;
 
 const VirtualListWrapper = styled('div')`
@@ -37,42 +38,15 @@ const Filter = styled('div')`
   background-color: white;
 `
 
-const cache = new CellMeasurerCache({
-  fixedWidth: true,
-  defaultHeight: 50
-});
+const getChunkKey = chunk => {
+  const head = chunk[0];
+  const tail = chunk[chunk.length - 1];
+  return `${head._id}-${tail._id}`;
+}
 
-//TODO Consider Infinite Loader
-//TODO https://github.com/bvaughn/react-virtualized/blob/master/source/InfiniteLoader/InfiniteLoader.example.js
-
-const CourseList = ({ searchTerm, searchResults }) => {
-  cache.clearAll();
-  const rowRenderer = ({
-    index,
-    isScrolling,
-    isVisible,
-    key,
-    parent,
-    style
-  }) => {
-    return (
-      <CellMeasurer
-        cache={cache}
-        columnIndex={0}
-        key={key}
-        parent={parent}
-        rowIndex={index}
-      >
-        <CourseItemContainer
-          key={key}
-          style={style}
-          searchTerm={searchTerm}
-          course={searchResults[index]}
-        />
-      </CellMeasurer>
-    );
-  };
-  const resultsCount = searchResults.length;
+const CourseList = ({ searchTerm, resultsCount, resultsChunks }) => {
+  console.log(resultsChunks);
+  resultsChunks = resultsChunks.slice(0,3);
   return (
     <Wrapper>
       <ExtendedOverlay>
@@ -81,7 +55,7 @@ const CourseList = ({ searchTerm, searchResults }) => {
             if (matches) {
               return (
                 <Filter>
-                  Course Added List under construction
+                  <AddedCourseList />
                 </Filter>
               );
             } else {
@@ -91,26 +65,28 @@ const CourseList = ({ searchTerm, searchResults }) => {
         </MediaQuery>
         <CourseListWrapper>
           <Menu>
-            <span>{`${resultsCount} results`}</span>
+            Menu
           </Menu>
           <VirtualListWrapper>
-            <AutoSizer>
-              {({ width, height }) => {
-                return (
-                  <List
-                    width={width}
-                    height={height}
-                    rowCount={resultsCount}
-                    deferredMeasurementCache={cache}
-                    rowHeight={cache.rowHeight}
-                    rowRenderer={rowRenderer}
-                  />
-                );
+            { resultsChunks.map(chunk => (
+              <div>
+                <div>
+                  <span>{`${resultsCount} results`}</span>
+                </div>
+                <CourseChunk chunk={chunk} searchTerm={searchTerm} />
+              </div>
+              ))
+            }
+            <WayPoint
+              // key={getChunkKey(chunk)}
+              bottomOffset={"-20%"}
+              onEnter={function() {
+              console.log("enter");
               }}
-            </AutoSizer>
+            />
           </VirtualListWrapper>
         </CourseListWrapper>
-        <MediaQuery minWidth={sizes.desktop}>
+        {/* <MediaQuery minWidth={sizes.desktop}>
           {(matches) => {
             if (matches) {
               return (
@@ -122,7 +98,7 @@ const CourseList = ({ searchTerm, searchResults }) => {
               return null;
             }
           }}
-        </MediaQuery>
+        </MediaQuery> */}
       </ExtendedOverlay>
     </Wrapper>
   );
@@ -131,6 +107,5 @@ const CourseList = ({ searchTerm, searchResults }) => {
 export default CourseList;
 
 CourseList.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
-  searchResults: PropTypes.array.isRequired
+  searchTerm: PropTypes.string.isRequired
 };

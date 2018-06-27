@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import chunk from 'lodash/chunk';
 import PropTypes from 'prop-types';
 
 import { fetchCourses } from '../actions/syllabus';
@@ -8,6 +9,8 @@ import { filterCourses, sortCourses } from '../utils/courseSearch';
 import CourseList from '../components/syllabus/CourseList';
 import LoadingSpinner from '../components/LoadingSpinner';
 import FetchError from '../components/FetchError';
+
+const COURSES_PER_CHUNK = 5;
 
 class CourseListContainer extends React.Component {
   componentDidMount() {
@@ -25,12 +28,15 @@ class CourseListContainer extends React.Component {
     if (error && !courses.length) {
       return <FetchError onRetry={fetchCourses} />;
     }
-    let searchResults = courses;
-    if (searchTerm.length > 1) {
-      const filteredCourses = filterCourses(searchTerm, courses);
-      searchResults = sortCourses(searchTerm, filteredCourses);
-    }
-    return <CourseList searchTerm={searchTerm} searchResults={searchResults} />;
+    const results = searchTerm.length > 1 ?
+      sortCourses(searchTerm, filterCourses(searchTerm, courses)) :
+      courses;
+    const resultChunks = chunk(results, COURSES_PER_CHUNK);
+    return <CourseList
+      searchTerm={searchTerm}
+      resultsCount={results.length}
+      resultsChunks={resultChunks.slice(0,5)}
+    />;
   }
 }
 

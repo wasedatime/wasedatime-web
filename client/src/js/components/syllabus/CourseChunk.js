@@ -1,6 +1,6 @@
 import React from 'react';
 
-import CourseItemContainer from '../../containers/CourseItemContainer';
+import CourseItemContainer from '../../containers/syllabus/CourseItemContainer';
 import { UnstyledUList } from '../../styled-components/List';
 
 const CourseChunk = ({chunk, searchTerm}) => {

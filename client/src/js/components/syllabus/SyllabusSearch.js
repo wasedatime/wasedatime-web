@@ -3,7 +3,7 @@ import debounce from 'lodash/debounce';
 import { Helmet } from 'react-helmet';
 
 import SearchBar from './SearchBar';
-import CourseListContainer from '../../containers/CourseListContainer';
+import CourseListContainer from '../../containers/syllabus/CourseListContainer';
 import { Wrapper } from '../../styled-components/Wrapper';
 
 class SyllabusSearch extends React.Component {

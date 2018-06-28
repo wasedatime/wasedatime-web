@@ -2,9 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Alert from 'react-s-alert';
 
-import { addCourse, removeCourse } from '../actions/syllabus';
-import { getById } from '../reducers/addedCourses';
-import CourseItem from '../components/syllabus/CourseItem';
+import { addCourse, removeCourse } from '../../actions/syllabus';
+import { getById } from '../../reducers/addedCourses';
+import CourseItem from '../../components/syllabus/CourseItem';
 
 class CourseItemContainer extends React.Component {
 

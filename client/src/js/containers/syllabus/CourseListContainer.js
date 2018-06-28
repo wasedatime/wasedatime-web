@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import chunk from 'lodash/chunk';
 import PropTypes from 'prop-types';
 
-import { fetchCourses } from '../actions/syllabus';
-import { getIsFetching, getCourses, getError } from '../reducers/fetchedCourses';
-import { filterCourses, sortCourses } from '../utils/courseSearch';
-import CourseList from '../components/syllabus/CourseList';
-import LoadingSpinner from '../components/LoadingSpinner';
-import FetchError from '../components/FetchError';
+import { fetchCourses } from '../../actions/syllabus';
+import { getIsFetching, getCourses, getError } from '../../reducers/fetchedCourses';
+import { filterCourses, sortCourses } from '../../utils/courseSearch';
+import CourseList from '../../components/syllabus/CourseList';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import FetchError from '../../components/FetchError';
 
 const COURSES_PER_CHUNK = 5;
 

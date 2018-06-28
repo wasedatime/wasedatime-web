@@ -8,7 +8,7 @@ import { Wrapper } from '../../styled-components/Wrapper';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import Modal from '../Modal';
-import CourseAdderContainer from '../../containers/CourseAdderContainer';
+import CourseAdderContainer from '../../containers/timetable/CourseAdderContainer';
 
 const StyledTimetable = styled('div')`
   display: flex;

@@ -67,7 +67,7 @@ class AddedCourseList extends React.Component {
                 backgroundColor: "#fff",
                 flex: "1 0 auto",
                 fontSize: "18px",
-                padding: "0.5em 0.8em"
+                padding: "0.5em 0.7em"
               }}
             >
               <h4>Added courses are displayed here.</h4>
@@ -81,7 +81,7 @@ class AddedCourseList extends React.Component {
               >
                 <li>
                   Search for a course title or an instructor in the right search bar,
-                  e.g., "calculus" or "tanaka" or "calculus tanaka"
+                  e.g., "calculus" or "tanaka" or "calculus tanaka".
                 </li>
                 <li>
                   Click on <FontAwesomeIcon
@@ -95,7 +95,7 @@ class AddedCourseList extends React.Component {
                       /> to remove.
                 </li>
                 <li>
-                  Pro Tip: Filters!
+                  Pro Tip: Use Filters (under construction) to narrow down your search!
                 </li>
               </ol>
               </div>

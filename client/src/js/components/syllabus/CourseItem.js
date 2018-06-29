@@ -72,7 +72,7 @@ const SchoolIconItem = styled('li')`
 `;
 
 const SchoolIconImage = styled('img')`
-  height: 32px;
+  height: 2.1em;
 `;
 
 const Badge = styled('span')`

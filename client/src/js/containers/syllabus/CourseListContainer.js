@@ -28,7 +28,7 @@ class CourseListContainer extends React.Component {
   }
 
   componentDidMount() {
-    if (!this.coursesLength) {
+    if (!this.props.courses.length) {
       this.props.fetchCourses();
     }
   }
@@ -59,10 +59,10 @@ class CourseListContainer extends React.Component {
   render() {
     const { isFetching, courses, error, fetchCourses } = this.props;
     const { inputText, searchTerm } = this.state;
-    if (isFetching && !this.coursesLength) {
+    if (isFetching && !courses.length) {
       return <LoadingSpinner />;
     }
-    if (error && !this.coursesLength) {
+    if (error && !courses.length) {
       return <FetchError onRetry={fetchCourses} />;
     }
     const results = searchTerm.length > 1 ?

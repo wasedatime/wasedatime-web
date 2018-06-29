@@ -8,9 +8,10 @@ import { getIsFetching, getCourses, getError } from '../../reducers/fetchedCours
 import { filterCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
 import CourseList from '../../components/syllabus/CourseList';
+import Filter from '../../components/syllabus/Filter';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import FetchError from '../../components/FetchError';
-import { Wrapper } from '../../styled-components/Wrapper';
+import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 
 const ExtendedWrapper = Wrapper.extend`
   flex: 1 0 0;
@@ -75,10 +76,13 @@ class CourseListContainer extends React.Component {
           placeholder = {SEARCHBAR_PLACE_HOLDER}
           inputText = {inputText}
         />
-        <CourseList
-          searchTerm={searchTerm}
-          results={results}
-        />
+        <RowWrapper>
+          <CourseList
+            searchTerm={searchTerm}
+            results={results}
+          />
+          <Filter />
+        </RowWrapper>
       </ExtendedWrapper>
     )
   }

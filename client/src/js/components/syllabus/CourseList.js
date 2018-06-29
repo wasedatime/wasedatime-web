@@ -1,14 +1,15 @@
 import React from 'react';
-import styled from 'styled-components';
 import chunk from 'lodash/chunk';
 import WayPoint from 'react-waypoint';
-import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 
 import CourseChunk from './CourseChunk';
-import { sizes } from '../../utils/styledComponents';
 import { Overlay } from '../../styled-components/Overlay';
 import { Wrapper } from '../../styled-components/Wrapper';
+
+const ExtendedWrapper = Wrapper.extend`
+  flex: 1 1 0;
+`
 
 const ExtendedOverlay = Overlay.extend`
   flex-direction: row;
@@ -18,11 +19,6 @@ const CourseListWrapper = Wrapper.extend`
   flex: 1 1 0;
   padding: 0 1em 1em 1em;
 `;
-
-const SideBar = styled('div')`
-  flex: 0 0 19em;
-  background-color: white;
-`
 
 const getChunkKey = chunk => {
   const head = chunk[0];
@@ -69,7 +65,7 @@ class CourseList extends React.Component {
    const { searchTerm, results } = this.props
    const resultsInChunks = this.resultsToChunks();
     return (
-      <Wrapper>
+      <ExtendedWrapper>
         <ExtendedOverlay>
           <CourseListWrapper>
             <div>
@@ -95,16 +91,8 @@ class CourseList extends React.Component {
               }
             </div>
           </CourseListWrapper>
-          <MediaQuery minWidth={sizes.desktop}>
-            {matches => (
-              matches &&
-                <SideBar>
-                  Course Filter under construction
-                </SideBar>
-            )}
-          </MediaQuery>
         </ExtendedOverlay>
-      </Wrapper>
+      </ExtendedWrapper>
     );
   };
 }

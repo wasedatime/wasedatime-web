@@ -45,7 +45,7 @@ const App = () => {
         </Switch>
       </StyledMain>
       <FooterContainer />
-      <Alert stack={{limit: 3}} timeout={3000} />
+      <Alert stack={{limit: 2}} timeout={3000} />
     </Wrapper>
   );
 };

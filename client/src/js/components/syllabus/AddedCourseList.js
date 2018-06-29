@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import stickybits from 'stickybits';
 
 class AddedCourseList extends React.Component {
@@ -15,7 +14,6 @@ class AddedCourseList extends React.Component {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper,
           {stickyBitStickyOffset: 92});
-        console.log(this.stickyWrapper);
       }
     }
 

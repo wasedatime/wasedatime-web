@@ -81,7 +81,7 @@ class AddedCourseList extends React.Component {
               >
                 <li>
                   Search for a course title or an instructor in the right search bar,
-                  e.g., "caculus" or "tanaka" or "caculus tanaka"
+                  e.g., "calculus" or "tanaka" or "calculus tanaka"
                 </li>
                 <li>
                   Click on <FontAwesomeIcon

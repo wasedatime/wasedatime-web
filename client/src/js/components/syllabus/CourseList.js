@@ -19,13 +19,6 @@ const CourseListWrapper = Wrapper.extend`
   padding: 0 1em 1em 1em;
 `;
 
-// const Menu = styled('div')`
-//   display: flex;
-//   flex-direction: row;
-//   justify-content: space-between;
-//   align-items: center;
-//   margin: 5px 0px;
-// `
 const SideBar = styled('div')`
   flex: 0 0 19em;
   background-color: white;
@@ -79,9 +72,6 @@ class CourseList extends React.Component {
       <Wrapper>
         <ExtendedOverlay>
           <CourseListWrapper>
-            {/* <Menu>
-              Menu
-            </Menu> */}
             <div>
               {resultsInChunks.length ?
                 resultsInChunks.map((chunk, index) => (
@@ -92,7 +82,7 @@ class CourseList extends React.Component {
                     <div>
                       <div>
                         <span>
-                          {`${index * 5 + 1}-${index * 5 + 5} of ${results.length} courses`}
+                          {`${index * 5 + 1}-${index * 5 + chunk.length} of ${results.length} courses`}
                         </span>
                       </div>
                       <CourseChunk chunk={chunk} searchTerm={searchTerm} />

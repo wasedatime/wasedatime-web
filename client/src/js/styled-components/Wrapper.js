@@ -8,6 +8,10 @@ export const Wrapper = styled('div')`
   flex: 1 0 auto;
 `;
 
+export const RowWrapper =  Wrapper.extend`
+  flex-direction: row;
+`
+
 export const WrapperWithBackground = Wrapper.extend`
   background-image: url(${props => props.background});
   background-position: center, center;

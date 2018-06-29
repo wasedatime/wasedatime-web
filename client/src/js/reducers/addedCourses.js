@@ -16,7 +16,7 @@ export const getCourses = state => {
   return state.properties.map(property => {
     return {
       ...property,
-      course: fromById.getItem(fromProperties.getId(property))
+      course: fromById.getItem(state.byId, fromProperties.getId(property))
     };
   });
 };

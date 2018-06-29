@@ -3,14 +3,15 @@ import { Helmet } from 'react-helmet';
 import MediaQuery from 'react-responsive';
 import styled from 'styled-components';
 
-import AddedCourseList from './AddedCourseList';
+import AddedCourseListContainer from '../../containers/syllabus/AddedCourseListContainer';
 import CourseListContainer from '../../containers/syllabus/CourseListContainer';
 import { RowWrapper } from '../../styled-components/Wrapper';
 import { sizes } from '../../utils/styledComponents';
 
 const SideBar = styled('div')`
-  flex: 0 0 19em;
-  background-color: white;
+  display: flex;
+  flex: 0 0 21em;
+  background-color: rgba(0,0,0,0.2);
 `
 
 class SyllabusSearch extends React.Component {
@@ -28,7 +29,7 @@ class SyllabusSearch extends React.Component {
           {matches => (
             matches &&
               <SideBar>
-                <AddedCourseList />
+                <AddedCourseListContainer />
               </SideBar>
           )}
         </MediaQuery>

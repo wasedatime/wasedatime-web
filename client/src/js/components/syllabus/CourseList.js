@@ -16,16 +16,16 @@ const ExtendedOverlay = Overlay.extend`
 
 const CourseListWrapper = Wrapper.extend`
   flex: 1 1 0;
-  padding: 0 1.5em 1em 1.5em;
+  padding: 0 1em 1em 1em;
 `;
 
-const Menu = styled('div')`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin: 5px 0px;
-`
+// const Menu = styled('div')`
+//   display: flex;
+//   flex-direction: row;
+//   justify-content: space-between;
+//   align-items: center;
+//   margin: 5px 0px;
+// `
 const SideBar = styled('div')`
   flex: 0 0 19em;
   background-color: white;
@@ -79,9 +79,9 @@ class CourseList extends React.Component {
       <Wrapper>
         <ExtendedOverlay>
           <CourseListWrapper>
-            <Menu>
+            {/* <Menu>
               Menu
-            </Menu>
+            </Menu> */}
             <div>
               {resultsInChunks.length ?
                 resultsInChunks.map((chunk, index) => (

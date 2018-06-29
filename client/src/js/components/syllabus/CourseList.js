@@ -12,7 +12,6 @@ import { Wrapper } from '../../styled-components/Wrapper';
 
 const ExtendedOverlay = Overlay.extend`
   flex-direction: row;
-  padding-top: 32px;
 `;
 
 const CourseListWrapper = Wrapper.extend`

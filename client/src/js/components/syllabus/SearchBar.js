@@ -2,14 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import stickybits from 'stickybits';
 import PropTypes from 'prop-types';
 
-const Wrapper = styled('div')`
-  display: flex;
-  flex-direction: row;
-  flex: 1 0 auto;
+import { RowWrapper } from '../../styled-components/Wrapper';
+
+const ExtendedWrapper = RowWrapper.extend`
+  flex: none;
   align-items: center;
-  position: fixed;
   height: 32px;
   width: 100%;
   padding: 0px 25px;
@@ -33,6 +33,35 @@ const StyledInput = styled('input')`
 `;
 
 class SearchBar extends React.Component {
+  constructor() {
+    super();
+    this.wrapper = null;
+    this.setWrapperRef = element => {
+      this.wrapper = element;
+    }
+
+    this.createStickyWrapper = () => {
+      if (this.wrapper) {
+        this.stickyWrapper = stickybits(this.wrapper,
+          {stickyBitStickyOffset: 60});
+      }
+    }
+
+    this.cleanupStickyWrapper = () => {
+      if (this.stickyWrapper) {
+        this.stickyWrapper.cleanup();
+      }
+    }
+  }
+
+  componentDidMount() {
+    this.createStickyWrapper();
+  }
+
+  componentWillUnmount() {
+    this.cleanupStickyWrapper();
+  }
+
   handleInputChange = event => {
     const inputText = event.target.value;
     this.props.onInputChange(inputText);
@@ -40,7 +69,7 @@ class SearchBar extends React.Component {
 
   render() {
     return (
-      <Wrapper>
+      <ExtendedWrapper innerRef={this.setWrapperRef}>
         <Icon>
           <FontAwesomeIcon
             icon={faSearch}
@@ -60,7 +89,7 @@ class SearchBar extends React.Component {
             onChange={this.handleInputChange}
           />
         </StyledForm>
-      </Wrapper>
+      </ExtendedWrapper>
     );
   }
 }

@@ -19,7 +19,7 @@ const Wrapper = styled('div')`
 
 const Icon = styled('div')`
   align-items: center;
-  margin-right: 25px;
+  margin-right: 0.5em;
   color: #fff;
 `;
 

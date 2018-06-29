@@ -12,7 +12,7 @@ const ExtendedWrapper = RowWrapper.extend`
   align-items: center;
   height: 32px;
   width: 100%;
-  padding: 0px 25px;
+  padding: 0px 12px;
   background-color: #777;
   z-index: 1030;
 `;

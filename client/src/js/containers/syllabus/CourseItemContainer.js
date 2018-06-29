@@ -15,7 +15,7 @@ class CourseItemContainer extends React.Component {
     const { course, byId } = this.props;
     const occurrences = course.occurrences;
     if (Object.keys(byId).length >= ADDED_COURSES_NUMBER_LIMIT) {
-      Alert.error(`You cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`, {
+      Alert.error(`Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`, {
         position: 'bottom',
         effect: 'jelly',
       });
@@ -28,7 +28,7 @@ class CourseItemContainer extends React.Component {
         effect: 'jelly',
       });
     } else {
-      Alert.success('Course added to timetable.', {
+      Alert.success('Course added.', {
         position: 'bottom',
         effect: 'jelly',
       });
@@ -39,7 +39,7 @@ class CourseItemContainer extends React.Component {
     event.preventDefault();
     const { course } = this.props;
     this.props.removeCourse(course._id);
-    Alert.success('Course removed from timetable.', {
+    Alert.success('Course removed.', {
       position: 'bottom',
       effect: 'jelly',
     });

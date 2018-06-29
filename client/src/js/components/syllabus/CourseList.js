@@ -1,13 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
+import chunk from 'lodash/chunk';
 import WayPoint from 'react-waypoint';
-import stickybits from 'stickybits';
-
 import MediaQuery from 'react-responsive';
 import PropTypes from 'prop-types';
 
 import CourseChunk from './CourseChunk';
-import AddedCourseList from './AddedCourseList';
 import { sizes } from '../../utils/styledComponents';
 import { Overlay } from '../../styled-components/Overlay';
 import { Wrapper } from '../../styled-components/Wrapper';
@@ -22,10 +20,6 @@ const CourseListWrapper = Wrapper.extend`
   padding: 0 1.5em 1em 1.5em;
 `;
 
-const VirtualListWrapper = styled('div')`
-  flex: 1 1 auto;
-`;
-
 const Menu = styled('div')`
   display: flex;
   flex-direction: row;
@@ -33,7 +27,7 @@ const Menu = styled('div')`
   align-items: center;
   margin: 5px 0px;
 `
-const Filter = styled('div')`
+const SideBar = styled('div')`
   flex: 0 0 19em;
   background-color: white;
 `
@@ -44,65 +38,87 @@ const getChunkKey = chunk => {
   return `${head._id}-${tail._id}`;
 }
 
-const CourseList = ({ searchTerm, resultsCount, resultsChunks }) => {
-  console.log(resultsChunks);
-  resultsChunks = resultsChunks.slice(0,3);
-  return (
-    <Wrapper>
-      <ExtendedOverlay>
-        <MediaQuery minWidth={sizes.tablet}>
-          {(matches) => {
-            if (matches) {
-              return (
-                <Filter>
-                  <AddedCourseList />
-                </Filter>
-              );
-            } else {
-              return null;
-            }
-          }}
-        </MediaQuery>
-        <CourseListWrapper>
-          <Menu>
-            Menu
-          </Menu>
-          <VirtualListWrapper>
-            { resultsChunks.map(chunk => (
-              <div>
+const COURSES_PER_CHUNK = 5;
+const INIT_CHUNKS_NUM = 2;
+
+class CourseList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      loadedChunksNum: INIT_CHUNKS_NUM
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.searchTerm !== prevProps.searchTerm) {
+      this.setState({
+        loadedChunksNum: INIT_CHUNKS_NUM
+      })
+      window.scrollTo({top: 0})
+    }
+  }
+
+  resultsToChunks = () => (
+    chunk(this.props.results, COURSES_PER_CHUNK).slice(0, this.state.loadedChunksNum)
+  )
+
+  loadMoreChunks = index => {
+    if (index !== 0 &&
+      index + 1 === this.state.loadedChunksNum) {
+      this.setState((prevState, props) => {
+        return {
+          loadedChunksNum: prevState.loadedChunksNum + 1
+        }
+      })
+    }
+  }
+
+  render() {
+   const { searchTerm, results } = this.props
+   const resultsInChunks = this.resultsToChunks();
+    return (
+      <Wrapper>
+        <ExtendedOverlay>
+          <CourseListWrapper>
+            <Menu>
+              Menu
+            </Menu>
+            <div>
+              {resultsInChunks.length ?
+                resultsInChunks.map((chunk, index) => (
+                  <WayPoint
+                    key={getChunkKey(chunk)}
+                    onEnter={() => {this.loadMoreChunks(index)}}
+                  >
+                    <div>
+                      <div>
+                        <span>
+                          {`${index * 5 + 1}-${index * 5 + 5} of ${results.length} courses`}
+                        </span>
+                      </div>
+                      <CourseChunk chunk={chunk} searchTerm={searchTerm} />
+                    </div>
+                  </WayPoint>
+                )) :
                 <div>
-                  <span>{`${resultsCount} results`}</span>
+                  No results
                 </div>
-                <CourseChunk chunk={chunk} searchTerm={searchTerm} />
-              </div>
-              ))
-            }
-            <WayPoint
-              // key={getChunkKey(chunk)}
-              bottomOffset={"-20%"}
-              onEnter={function() {
-              console.log("enter");
-              }}
-            />
-          </VirtualListWrapper>
-        </CourseListWrapper>
-        {/* <MediaQuery minWidth={sizes.desktop}>
-          {(matches) => {
-            if (matches) {
-              return (
-                <Filter>
+              }
+            </div>
+          </CourseListWrapper>
+          <MediaQuery minWidth={sizes.desktop}>
+            {matches => (
+              matches &&
+                <SideBar>
                   Course Filter under construction
-                </Filter>
-              );
-            } else {
-              return null;
-            }
-          }}
-        </MediaQuery> */}
-      </ExtendedOverlay>
-    </Wrapper>
-  );
-};
+                </SideBar>
+            )}
+          </MediaQuery>
+        </ExtendedOverlay>
+      </Wrapper>
+    );
+  };
+}
 
 export default CourseList;
 

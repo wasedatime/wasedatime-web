@@ -36,6 +36,7 @@ const Description = styled('p')`
 `;
 
 const LoadingSpinner = () => {
+  window.scrollTo({top: 0})
   return (
     <Wrapper>
       <ExtendedOverlay>

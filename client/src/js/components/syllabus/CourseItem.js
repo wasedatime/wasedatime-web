@@ -29,8 +29,8 @@ const CourseItemWrapper = styled('div')`
   align-items: stretch;
   background-color: #fff;
   border: none;
-  margin: 3px 0;
-  padding: 9px 12px;
+  margin: 0.2em 0;
+  padding: 0.5em 0.8em;
   width: 100%;
 `;
 

@@ -23,18 +23,6 @@ class AddedCourseSearch extends React.Component {
     };
   }
 
-  componentDidUpdate() {
-    const { addedCourses, properties,
-      fetchedCoursesById, hydrateAddedCourses } = this.props;
-    // if addedCourses is not hydrated, properties is not empty, and courses are fetched
-    if (!addedCourses.length &&
-      properties.length &&
-      Object.keys(fetchedCoursesById).length
-    ) {
-      hydrateAddedCourses(properties, fetchedCoursesById);
-    }
-  }
-
   componentWillUnmount() {
     this.debounceUpdateSearchTerm.cancel();
   }
@@ -59,19 +47,9 @@ class AddedCourseSearch extends React.Component {
   }
 
   render() {
-    const { isFetching, fetchedCoursesById, error, fetchCourses,
-      addedCourses, properties } = this.props;
+    const { addedCourses } = this.props;
     const { inputText, searchTerm } = this.state;
 
-    if (!addedCourses.length &&
-      properties.length &&
-      isFetching &&
-      !Object.keys(fetchedCoursesById).length) {
-      return <LoadingSpinner message={"Initializing your added courses"}/>;
-    }
-    if (error && !Object.keys(fetchedCoursesById).length) {
-      return <FetchError onRetry={fetchCourses} />;
-    }
     const isSearching = searchTerm.length > 1;
     const results = isSearching ?
       sortCourses(searchTerm, filterCourses(searchTerm, addedCourses)) :
@@ -93,17 +71,4 @@ class AddedCourseSearch extends React.Component {
   }
 }
 
-// const mapStateToProps = state => {
-//   return {
-//
-//   };
-// };
-
-const mapDispatchToProps = {
-  fetchCourses,
-  removeCourse
-};
-
-export default connect(null, mapDispatchToProps)(
-  AddedCourseSearch
-);
+export default AddedCourseSearch;

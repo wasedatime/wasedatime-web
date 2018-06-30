@@ -14,6 +14,7 @@ import FetchError from '../../components/FetchError';
 import AddedCourseSearch from './AddedCourseSearch';
 import FetchedCourseSearch from './FetchedCourseSearch';
 import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
+import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../utils/styledComponents';
 
 const ExtendedWrapper = Wrapper.extend`
@@ -32,30 +33,47 @@ class CourseSearchContainer extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    const { addedCourses, properties, fetchedCourseIds, fetchedCoursesById,
+      hydrateAddedCourses } = this.props;
+    // if addedCourses is not hydrated, properties is not empty, and courses are fetched
+    if (!addedCourses.length &&
+      properties.length &&
+      fetchedCourseIds.length
+    ) {
+      hydrateAddedCourses(properties, fetchedCoursesById);
+    }
+  }
+
   render() {
-    const { isFetching, fetchedCourseIds , fetchedCoursesById, error,
+    const { isFetching, fetchedCourseIds, fetchedCoursesById, error,
       addedCourses, properties, fetchCourses } = this.props;
-    const { inputText, searchTerm } = this.state;
+
     if (isFetching && !fetchedCourseIds.length) {
       return <LoadingSpinner />;
     }
     if (error && !fetchedCourseIds.length) {
       return <FetchError onRetry={fetchCourses} />;
     }
-    const results = searchTerm.length > 1 ?
-      sortCourses(searchTerm, filterCourses(searchTerm, courses)) :
-      courses;
+    if (properties.length && !addedCourses.length) {
+      return <LoadingSpinner message={"Initializing your added courses"}/>;
+    }
+
+    const fetchedCourses = fetchedCourseIds.map(id => (
+      fetchedCoursesById[id]
+    ));
+
     return (
       <ExtendedRowWrapper>
         <MediaQuery minWidth={sizes.tablet}>
           {matches => (
             matches &&
               <SideBar flexBasis="21em">
-                <AddedCourseSearch />
+                <AddedCourseSearch addedCourses={addedCourses}/>
               </SideBar>
           )}
         </MediaQuery>
-        <FetchedCourseSearch />
+        <FetchedCourseSearch fetchedCourses={fetchCourses}/>
       </ExtendedRowWrapper>
     )
   }

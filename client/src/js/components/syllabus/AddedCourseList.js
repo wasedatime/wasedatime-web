@@ -8,7 +8,7 @@ import { Wrapper } from '../../styled-components/Wrapper';
 
 const CourseListWrapper = Wrapper.extend`
   flex: none;
-  padding: 0 1em 1em 1em;
+  padding: 0.5em 1em 1em 1em;
   overflow-y: auto;
   height: calc(100vh - 92px);
 `;
@@ -95,7 +95,7 @@ class AddedCourseList extends React.Component {
                       /> to remove.
                 </li>
                 <li>
-                  Pro Tip: Use Filters (under construction) to narrow down your search!
+                  Pro Tip: Use "Filter by" to narrow down your search!
                 </li>
               </ol>
               </div>

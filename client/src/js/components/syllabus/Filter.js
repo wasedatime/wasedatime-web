@@ -60,7 +60,7 @@ class Filter extends React.Component {
   render() {
     return (
       <FilterWrapper innerRef={this.setWrapperRef}>
-        <span>Filter by</span>
+        <span>Filter by (under construction)</span>
         <div
           style={{
             backgroundColor: "#fff",

@@ -1,6 +1,7 @@
 import React from 'react';
 import chunk from 'lodash/chunk';
 import WayPoint from 'react-waypoint';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import CourseChunk from './CourseChunk';
@@ -19,6 +20,10 @@ const CourseListWrapper = Wrapper.extend`
   flex: 1 1 0;
   padding: 0 1em 1em 1em;
 `;
+
+const CourseChunkWrapper = styled('div')`
+  margin: 0.5em 0;
+`
 
 const getChunkKey = chunk => {
   const head = chunk[0];
@@ -75,14 +80,14 @@ class CourseList extends React.Component {
                     key={getChunkKey(chunk)}
                     onEnter={() => {this.loadMoreChunks(index)}}
                   >
-                    <div>
+                    <CourseChunkWrapper>
                       <div>
                         <span>
                           {`${index * 5 + 1}-${index * 5 + chunk.length} of ${results.length} courses`}
                         </span>
                       </div>
                       <CourseChunk chunk={chunk} searchTerm={searchTerm} />
-                    </div>
+                    </CourseChunkWrapper>
                   </WayPoint>
                 )) :
                 <div>

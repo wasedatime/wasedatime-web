@@ -21,12 +21,9 @@ const fetchedCourses = combineReducers({
 
 export default fetchedCourses;
 
-export const getFetchedById = state => state.byId;
+export const getFetchedIds = state => fromList.getIds(state.list);
 
-export const getCourses = state => {
-  const ids = fromList.getIds(state.list);
-  return ids.map(id => fromById.getItem(state.byId, id));
-};
+export const getFetchedById = state => state.byId;
 
 export const getIsFetching = state => {
   return fromList.getIsFetching(state.list);
@@ -34,4 +31,9 @@ export const getIsFetching = state => {
 
 export const getError = state => {
   return fromList.getError(state.list);
+};
+
+export const getCourses = state => {
+  const ids = getFetchedIds();
+  return ids.map(id => fromById.getItem(state.byId, id));
 };

@@ -34,7 +34,7 @@ const getChunkKey = chunk => {
 const COURSES_PER_CHUNK = 5;
 const INIT_CHUNKS_NUM = 2;
 
-class CourseList extends React.Component {
+class FetchedCourseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -102,8 +102,8 @@ class CourseList extends React.Component {
   };
 }
 
-export default CourseList;
+export default FetchedCourseList;
 
-CourseList.propTypes = {
+FetchedCourseList.propTypes = {
   searchTerm: PropTypes.string.isRequired
 };

@@ -1,16 +1,10 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 
-import { removeCourse } from '../../actions/syllabus';
 import { filterCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
 import AddedCourseList from '../../components/syllabus/AddedCourseList';
 import { Wrapper } from '../../styled-components/Wrapper';
-
-const ExtendedWrapper = Wrapper.extend`
-  flex: 1 0 0;
-`
 
 const A_COURSES_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
 
@@ -55,7 +49,7 @@ class AddedCourseSearch extends React.Component {
       sortCourses(searchTerm, filterCourses(searchTerm, addedCourses)) :
       addedCourses;
     return (
-      <ExtendedWrapper>
+      <Wrapper>
         <SearchBar
           onInputChange = {this.handleInputChange}
           placeholder = {A_COURSES_SEARCH_PLACE_HOLDER}
@@ -66,7 +60,7 @@ class AddedCourseSearch extends React.Component {
           searchTerm={searchTerm}
           results={results}
         />
-      </ExtendedWrapper>
+      </Wrapper>
     )
   }
 }

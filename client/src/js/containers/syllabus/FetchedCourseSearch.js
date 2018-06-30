@@ -1,8 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 import MediaQuery from 'react-responsive';
-import PropTypes from 'prop-types';
 
 import { filterCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
@@ -13,10 +11,6 @@ import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../utils/styledComponents';
 
 const ExtendedWrapper = Wrapper.extend`
-  flex: 1 0 0;
-`
-
-const ExtendedRowWrapper = RowWrapper.extend`
   flex: 1 0 0;
 `
 

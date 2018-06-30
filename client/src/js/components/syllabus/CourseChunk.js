@@ -1,13 +1,13 @@
 import React from 'react';
 
-import CourseItemContainer from '../../containers/syllabus/CourseItemContainer';
+import FetchedCourseItem from '../../containers/syllabus/FetchedCourseItem';
 import { UnstyledUList } from '../../styled-components/List';
 
 const CourseChunk = ({chunk, searchTerm}) => {
   return (
     <UnstyledUList>
       {chunk.map(course => (
-        <CourseItemContainer
+        <FetchedCourseItem
           key={course._id}
           searchTerm={searchTerm}
           course={course}

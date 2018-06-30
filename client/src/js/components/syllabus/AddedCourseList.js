@@ -3,7 +3,7 @@ import stickybits from 'stickybits';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
-import CourseItemContainer from '../../containers/syllabus/CourseItemContainer';
+import AddedCourseItem from '../../containers/syllabus/AddedCourseItem';
 import { Wrapper } from '../../styled-components/Wrapper';
 
 const CourseListWrapper = Wrapper.extend`
@@ -54,7 +54,7 @@ class AddedCourseList extends React.Component {
           {results.length || isSearching ?
             <div style={{fontSize: "14px"}}>
               {results.map((result, index) => (
-                <CourseItemContainer
+                <AddedCourseItem
                   key={result._id}
                   searchTerm={searchTerm}
                   course={result}

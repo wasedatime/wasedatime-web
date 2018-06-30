@@ -1,25 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import debounce from 'lodash/debounce';
 import MediaQuery from 'react-responsive';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { fetchCourses, hydrateAddedCourses } from '../../actions/syllabus';
 import { getIsFetching, getFetchedIds, getFetchedById, getError } from '../../reducers/fetchedCourses';
 import { getProperties, getAddedCourses } from '../../reducers/addedCourses';
-import { filterCourses, sortCourses } from '../../utils/courseSearch';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import FetchError from '../../components/FetchError';
 import AddedCourseSearch from './AddedCourseSearch';
 import FetchedCourseSearch from './FetchedCourseSearch';
-import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
+import { RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../utils/styledComponents';
 
-const ExtendedWrapper = Wrapper.extend`
-  flex: 1 0 0;
-`
+// const ExtendedWrapper = Wrapper.extend`
+//   flex: 1 0 0;
+// `
 
 const ExtendedRowWrapper = RowWrapper.extend`
   flex: 1 0 0;
@@ -28,7 +25,7 @@ const ExtendedRowWrapper = RowWrapper.extend`
 class CourseSearchContainer extends React.Component {
 
   componentDidMount() {
-    if (!this.props.courses.length) {
+    if (!this.props.fetchedCourseIds.length) {
       this.props.fetchCourses();
     }
   }
@@ -73,7 +70,7 @@ class CourseSearchContainer extends React.Component {
               </SideBar>
           )}
         </MediaQuery>
-        <FetchedCourseSearch fetchedCourses={fetchCourses}/>
+        <FetchedCourseSearch fetchedCourses={fetchedCourses}/>
       </ExtendedRowWrapper>
     )
   }
@@ -101,7 +98,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 
 CourseSearchContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
-  courses: PropTypes.array.isRequired,
   error: PropTypes.object,
   fetchCourses: PropTypes.func.isRequired
 };

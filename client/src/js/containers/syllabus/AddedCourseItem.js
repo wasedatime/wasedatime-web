@@ -18,7 +18,7 @@ class AddedCourseItem extends React.Component {
   }
 
   render() {
-    const { searchTerm, course, byId } = this.props;
+    const { searchTerm, course } = this.props;
     return (
       <CourseItem handleOnClick={this.handleRemoveCourse}
         isAddable = {false}

@@ -35,13 +35,13 @@ const Description = styled('p')`
   font-size: 2rem;
 `;
 
-const LoadingSpinner = () => {
+const LoadingSpinner = props => {
   window.scrollTo({top: 0})
   return (
     <Wrapper>
       <ExtendedOverlay>
         <Logo src={logo} alt="WaseTime logo" />
-        <Description>Loading...</Description>
+        <Description>{props.message || "Loading..."}</Description>
       </ExtendedOverlay>
     </Wrapper>
   );

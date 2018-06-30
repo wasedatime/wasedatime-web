@@ -2,10 +2,13 @@ import React from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 
-import { removeCourse } from '../../actions/syllabus';
-import { getCourses } from '../../reducers/addedCourses';
+import { hydrateAddedCourses, fetchCourses, removeCourse } from '../../actions/syllabus';
+import { getIsFetching, getFetchedById, getError } from '../../reducers/fetchedCourses';
+import { getProperties, getAddedCourses } from '../../reducers/addedCourses';
 import { filterCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import FetchError from '../../components/FetchError';
 import AddedCourseList from '../../components/syllabus/AddedCourseList';
 import { Wrapper } from '../../styled-components/Wrapper';
 
@@ -22,6 +25,18 @@ class AddedCourseListContainer extends React.Component {
       inputText: '',
       searchTerm: ''
     };
+  }
+
+  componentDidUpdate() {
+    const { addedCourses, properties,
+      fetchedCoursesById, hydrateAddedCourses } = this.props;
+    // if addedCourses is not hydrated, properties is not empty, and courses are fetched
+    if (!addedCourses.length &&
+      properties.length &&
+      Object.keys(fetchedCoursesById).length
+    ) {
+      hydrateAddedCourses(properties, fetchedCoursesById);
+    }
   }
 
   componentWillUnmount() {
@@ -48,11 +63,23 @@ class AddedCourseListContainer extends React.Component {
   }
 
   render() {
-    const { courses } = this.props;
+    const { isFetching, fetchedCoursesById, error, fetchCourses,
+      addedCourses, properties } = this.props;
     const { inputText, searchTerm } = this.state;
+
+    if (!addedCourses.length &&
+      properties.length &&
+      isFetching &&
+      !Object.keys(fetchedCoursesById).length) {
+      return <LoadingSpinner message={"Initializing your added courses"}/>;
+    }
+    if (error && !Object.keys(fetchedCoursesById).length) {
+      return <FetchError onRetry={fetchCourses} />;
+    }
+
     const results = searchTerm.length > 1 ?
-      sortCourses(searchTerm, filterCourses(searchTerm, courses)) :
-      courses;
+      sortCourses(searchTerm, filterCourses(searchTerm, addedCourses)) :
+      addedCourses;
     return (
       <ExtendedWrapper>
         <SearchBar
@@ -71,11 +98,17 @@ class AddedCourseListContainer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    courses: getCourses(state.addedCourses)
+    isFetching: getIsFetching(state.fetchedCourses),
+    fetchedCoursesById: getFetchedById(state.fetchedCourses),
+    error: getError(state.fetchedCourses),
+    addedCourses: getAddedCourses(state.addedCourses),
+    properties: getProperties(state.addedCourses)
   };
 };
 
 const mapDispatchToProps = {
+  fetchCourses,
+  hydrateAddedCourses,
   removeCourse
 };
 

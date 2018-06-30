@@ -10,9 +10,19 @@ const addedCourses = combineReducers({
 
 export default addedCourses;
 
+export const getProperties = state => state.properties;
+
 export const getById = state => state.byId;
 
-export const getCourses = state => {
+export const getAddedCourses = state => {
+  if (!Object.keys(state.byId).length) return [];
+  return state.properties.map(property => (
+    fromById.getItem(state.byId, fromProperties.getId(property))
+  ));
+};
+
+export const getAddedCoursesWithProperties = state => {
+  if (!Object.keys(state.byId).length) return [];
   return state.properties.map(property => {
     return {
       ...property,

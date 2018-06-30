@@ -55,9 +55,9 @@ class AddedCourseList extends React.Component {
             <div style={{fontSize: "14px"}}>
               {results.map((result, index) => (
                 <CourseItemContainer
-                  key={result.id}
+                  key={result._id}
                   searchTerm={searchTerm}
-                  course={result.course}
+                  course={result}
                 />
               ))
               }

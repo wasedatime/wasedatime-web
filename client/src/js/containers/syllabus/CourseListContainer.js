@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
+import MediaQuery from 'react-responsive';
+import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import { fetchCourses } from '../../actions/syllabus';
@@ -12,9 +14,15 @@ import Filter from '../../components/syllabus/Filter';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import FetchError from '../../components/FetchError';
 import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
+import { sizes } from '../../utils/styledComponents';
 
 const ExtendedWrapper = Wrapper.extend`
   flex: 1 0 0;
+`
+
+const SideBar = styled('div')`
+  flex: 0 0 17em;
+  background-color: rgba(0,0,0,0.2);
 `
 
 const SEARCHBAR_PLACE_HOLDER = 'Course titles, instructors';
@@ -81,7 +89,16 @@ class CourseListContainer extends React.Component {
             searchTerm={searchTerm}
             results={results}
           />
-          <Filter />
+          <MediaQuery minWidth={sizes.desktop}>
+            {matches => {
+              return (
+              matches &&
+                <SideBar>
+                  <Filter />
+                </SideBar>
+              )
+            }}
+          </MediaQuery>
         </RowWrapper>
       </ExtendedWrapper>
     )

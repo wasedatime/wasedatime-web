@@ -5,6 +5,7 @@ import {
   FETCH_COURSES_REQUEST,
   FETCH_COURSES_SUCCESS,
   FETCH_COURSES_FAILURE,
+  HYDRATE_ADDED_COURSES,
   ADD_COURSE,
   REMOVE_COURSE
 } from './types';
@@ -34,6 +35,13 @@ export const fetchCourses = () => async (dispatch, getState) => {
 };
 
 //ES6 syntax also allows omitting return statement
+export const hydrateAddedCourses = properties => ({
+  type: HYDRATE_ADDED_COURSES,
+  payload: {
+    properties
+  }
+});
+
 export const addCourse = (id, course) => ({
   type: ADD_COURSE,
   payload: {

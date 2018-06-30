@@ -9,6 +9,8 @@ import SearchBar from '../../components/syllabus/SearchBar';
 import FetchedCourseList from '../../components/syllabus/FetchedCourseList';
 import Filter from '../../components/syllabus/Filter';
 import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
+import { SideBar } from '../../styled-components/SideBar';
+import { sizes } from '../../utils/styledComponents';
 
 const ExtendedWrapper = Wrapper.extend`
   flex: 1 0 0;
@@ -66,7 +68,7 @@ class FetchedCourseSearch extends React.Component {
             inputText = {inputText}
           />
           <RowWrapper>
-            <CourseList
+            <FetchedCourseList
               searchTerm={searchTerm}
               results={results}
             />

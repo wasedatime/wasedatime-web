@@ -2,13 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 
-import { hydrateAddedCourses, fetchCourses, removeCourse } from '../../actions/syllabus';
-import { getIsFetching, getFetchedById, getError } from '../../reducers/fetchedCourses';
-import { getProperties, getAddedCourses } from '../../reducers/addedCourses';
+import { removeCourse } from '../../actions/syllabus';
 import { filterCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
-import LoadingSpinner from '../../components/LoadingSpinner';
-import FetchError from '../../components/FetchError';
 import AddedCourseList from '../../components/syllabus/AddedCourseList';
 import { Wrapper } from '../../styled-components/Wrapper';
 
@@ -16,9 +12,9 @@ const ExtendedWrapper = Wrapper.extend`
   flex: 1 0 0;
 `
 
-const SEARCHBAR_PLACE_HOLDER = 'Course titles, instructors';
+const A_COURSES_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
 
-class AddedCourseListContainer extends React.Component {
+class AddedCourseSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -84,7 +80,7 @@ class AddedCourseListContainer extends React.Component {
       <ExtendedWrapper>
         <SearchBar
           onInputChange = {this.handleInputChange}
-          placeholder = {SEARCHBAR_PLACE_HOLDER}
+          placeholder = {A_COURSES_SEARCH_PLACE_HOLDER}
           inputText = {inputText}
         />
         <AddedCourseList
@@ -97,22 +93,17 @@ class AddedCourseListContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    isFetching: getIsFetching(state.fetchedCourses),
-    fetchedCoursesById: getFetchedById(state.fetchedCourses),
-    error: getError(state.fetchedCourses),
-    addedCourses: getAddedCourses(state.addedCourses),
-    properties: getProperties(state.addedCourses)
-  };
-};
+// const mapStateToProps = state => {
+//   return {
+//
+//   };
+// };
 
 const mapDispatchToProps = {
   fetchCourses,
-  hydrateAddedCourses,
   removeCourse
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  AddedCourseListContainer
+export default connect(null, mapDispatchToProps)(
+  AddedCourseSearch
 );

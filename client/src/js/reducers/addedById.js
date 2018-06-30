@@ -9,7 +9,7 @@ const addedById = (state = {}, action) => {
         return {
           ...acc,
           [property.id]: {
-            ...action.payload.courses[property.id]
+            ...action.payload.coursesById[property.id]
           }
         }
       }, {})

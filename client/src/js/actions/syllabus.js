@@ -35,10 +35,11 @@ export const fetchCourses = () => async (dispatch, getState) => {
 };
 
 //ES6 syntax also allows omitting return statement
-export const hydrateAddedCourses = properties => ({
+export const hydrateAddedCourses = (properties, coursesById) => ({
   type: HYDRATE_ADDED_COURSES,
   payload: {
-    properties
+    properties,
+    coursesById
   }
 });
 

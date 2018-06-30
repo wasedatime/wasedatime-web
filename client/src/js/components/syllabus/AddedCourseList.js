@@ -45,13 +45,13 @@ class AddedCourseList extends React.Component {
   }
 
   render() {
-    const { results, searchTerm } = this.props;
+    const { isSearching, results, searchTerm } = this.props;
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>
         <span>
-          {`${results.length} courses added.`}
+          { `${results.length} courses ${isSearching ? "found" : "added" }.`}
         </span>
-          {results.length ?
+          {results.length || isSearching ?
             <div style={{fontSize: "14px"}}>
               {results.map((result, index) => (
                 <CourseItemContainer

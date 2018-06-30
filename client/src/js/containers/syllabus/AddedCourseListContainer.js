@@ -76,8 +76,8 @@ class AddedCourseListContainer extends React.Component {
     if (error && !Object.keys(fetchedCoursesById).length) {
       return <FetchError onRetry={fetchCourses} />;
     }
-
-    const results = searchTerm.length > 1 ?
+    const isSearching = searchTerm.length > 1;
+    const results = isSearching ?
       sortCourses(searchTerm, filterCourses(searchTerm, addedCourses)) :
       addedCourses;
     return (
@@ -88,6 +88,7 @@ class AddedCourseListContainer extends React.Component {
           inputText = {inputText}
         />
         <AddedCourseList
+          isSearching={isSearching}
           searchTerm={searchTerm}
           results={results}
         />

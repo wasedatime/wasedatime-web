@@ -8,7 +8,7 @@ import CourseItem from '../../components/syllabus/CourseItem';
 
 const ADDED_COURSES_NUMBER_LIMIT = 50;
 
-class CourseItemContainer extends React.Component {
+class FetchedCourseItem extends React.Component {
 
   handleAddCourse = event => {
     event.preventDefault();
@@ -71,5 +71,5 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  CourseItemContainer
+  FetchedCourseItem
 );

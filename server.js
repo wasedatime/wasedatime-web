@@ -76,7 +76,7 @@ if (process.env.NODE_ENV === 'production') {
     sendCustomizedIndexFile(
       indexFilePath,
       'WaseTime - TimeTable',
-      'Create Your Customizable TimeTable at Waseda University.'
+      'Create Your Own TimeTable at Waseda University.'
     )
   );
 

@@ -84,9 +84,9 @@ class Timetable extends React.Component {
       <Wrapper>
         <Helmet>
           <title>WaseTime - Timetable</title>
-          <meta name="description" content="Create Your Customizable Timetable at Waseda University." />
+          <meta name="description" content="Create Your Own Timetable at Waseda University." />
           <meta property="og:title" content="WaseTime - Timetable" />
-          <meta property="og:description" content="Create Your Customizable Timetable at Waseda University." />
+          <meta property="og:description" content="Create Your Own Timetable at Waseda University." />
           <meta property="og:site_name" content="WaseTime - Timetable" />
         </Helmet>
         <StyledTimetable>

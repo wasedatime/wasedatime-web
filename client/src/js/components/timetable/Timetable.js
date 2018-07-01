@@ -8,7 +8,6 @@ import { Wrapper } from '../../styled-components/Wrapper';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import Modal from '../Modal';
-import CourseAdderContainer from '../../containers/timetable/CourseAdderContainer';
 
 const StyledTimetable = styled('div')`
   display: flex;
@@ -107,8 +106,6 @@ class Timetable extends React.Component {
               <FontAwesomeIcon icon={faTimesCircle} size="2x" transform="shrink-2" />
             </CloseModalButton>
           </div>
-          <CourseAdderContainer>
-          </CourseAdderContainer>
         </Modal>
       </Wrapper>
     );

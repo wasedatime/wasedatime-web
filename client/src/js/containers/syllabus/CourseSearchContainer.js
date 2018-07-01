@@ -14,10 +14,6 @@ import { RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../utils/styledComponents';
 
-// const ExtendedWrapper = Wrapper.extend`
-//   flex: 1 0 0;
-// `
-
 const ExtendedRowWrapper = RowWrapper.extend`
   flex: 1 0 0;
 `

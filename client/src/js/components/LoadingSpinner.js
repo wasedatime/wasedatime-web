@@ -17,6 +17,10 @@ const spin = keyframes`
   }
 `;
 
+const ExtendedWrapper = Wrapper.extend`
+  flex: 1 0 0;
+`
+
 const ExtendedOverlay = Overlay.extend`
   align-items: center;
   justify-content: center;
@@ -36,14 +40,13 @@ const Description = styled('p')`
 `;
 
 const LoadingSpinner = props => {
-  window.scrollTo({top: 0})
   return (
-    <Wrapper>
+    <ExtendedWrapper>
       <ExtendedOverlay>
         <Logo src={logo} alt="WaseTime logo" />
         <Description>{props.message || "Loading..."}</Description>
       </ExtendedOverlay>
-    </Wrapper>
+    </ExtendedWrapper>
   );
 };
 

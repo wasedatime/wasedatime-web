@@ -5,6 +5,10 @@ import { Wrapper } from '../styled-components/Wrapper';
 import { Button } from '../styled-components/Button';
 import { Overlay } from '../styled-components/Overlay';
 
+const ExtendedWrapper = Wrapper.extend`
+  flex: 1 0 0;
+`
+
 const ExtendedOverlay = Overlay.extend`
   justify-content: center;
   align-items: center;
@@ -14,7 +18,7 @@ const ExtendedOverlay = Overlay.extend`
 
 const FetchError = ({ onRetry }) => {
   return (
-    <Wrapper>
+    <ExtendedWrapper>
       <ExtendedOverlay>
         <h3>Uh oh, something went wrong.</h3>
         <Button onClick={onRetry}>Retry</Button>
@@ -24,7 +28,7 @@ const FetchError = ({ onRetry }) => {
           if this keeps happening.
         </p>
       </ExtendedOverlay>
-    </Wrapper>
+    </ExtendedWrapper>
   );
 };
 

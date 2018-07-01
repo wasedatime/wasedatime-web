@@ -32,7 +32,7 @@ const Logo = styled('img')`
 const Header = () => {
   return (
     <StyledHeader>
-      <StyledLink to="/">
+      <StyledLink to="/about">
         <Logo src={logo} alt="Wasetime logo" />
       </StyledLink>
       <Navigation />

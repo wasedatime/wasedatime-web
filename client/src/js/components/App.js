@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Alert from 'react-s-alert';
 import styled from 'styled-components';
 
@@ -14,6 +14,7 @@ import Syllabus from './syllabus/Syllabus';
 import RoomFinder from './RoomFinder';
 import FooterContainer from '../containers/FooterContainer';
 import Bus from './Bus';
+import NotFound from './NotFound';
 
 const Wrapper = styled('div')`
   display: flex;
@@ -36,12 +37,15 @@ const App = () => {
       <Header />
       <StyledMain>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={() => (
+            <Redirect to="/timetable"/>
+          )}/>
+          <Route path="/about" component={Home} />
           <Route path="/timetable" component={Timetable} />
           <Route path="/syllabus" component={Syllabus} />
           <Route path="/roomfinder" component={RoomFinder} />
           <Route path="/bus" component={Bus} />
-          <Route component={Home} />
+          <Route component={NotFound} />
         </Switch>
       </StyledMain>
       <FooterContainer />

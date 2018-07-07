@@ -1,20 +1,22 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
 
 import SyllabusSearch from './SyllabusSearch';
+import { RowWrapper } from '../../styled-components/Wrapper';
 
-const Syllabus = ({ match }) => {
+const Syllabus = () => {
   return (
-    <Switch>
-      <Route exact path={`${match.url}`} component={SyllabusSearch} />
-      <Route component={SyllabusSearch} />
-    </Switch>
+    <RowWrapper>
+      <Helmet>
+        <title>WaseTime - Syllabus Search</title>
+        <meta name="description" content="Syllabus Searching at Waseda University." />
+        <meta property="og:title" content="WaseTime - Syllabus Search" />
+        <meta property="og:description" content="Syllabus Searching at Waseda University." />
+        <meta property="og:site_name" content="WaseTime - Syllabus Search" />
+      </Helmet>
+      <SyllabusSearch />
+    </RowWrapper>
   );
 };
 
 export default Syllabus;
-
-Syllabus.propTypes = {
-  match: PropTypes.object.isRequired
-};

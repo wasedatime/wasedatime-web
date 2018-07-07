@@ -1,24 +1,33 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import MediaQuery from 'react-responsive';
 
-import CourseSearchContainer from '../../containers/syllabus/CourseSearchContainer';
+import AddedCourseSearch from '../../containers/syllabus/AddedCourseSearch';
+import FetchedCourseSearch from '../../containers/syllabus/FetchedCourseSearch';
 import { RowWrapper } from '../../styled-components/Wrapper';
+import { SideBar } from '../../styled-components/SideBar';
+import { sizes } from '../../utils/styledComponents';
+import withFetchCourses from '../../hocs/withFetchCourses';
 
-class SyllabusSearch extends React.Component {
-  render() {
-    return (
-      <RowWrapper>
-        <Helmet>
-          <title>WaseTime - Syllabus Search</title>
-          <meta name="description" content="Syllabus Searching at Waseda University." />
-          <meta property="og:title" content="WaseTime - Syllabus Search" />
-          <meta property="og:description" content="Syllabus Searching at Waseda University." />
-          <meta property="og:site_name" content="WaseTime - Syllabus Search" />
-        </Helmet>
-        <CourseSearchContainer/>
-      </RowWrapper>
-    );
-  }
-};
+const ExtendedRowWrapper = RowWrapper.extend`
+  flex: 1 0 0;
+`
 
-export default SyllabusSearch;
+const SyllabusSearch = props => {
+  const { addedCourses, fetchedCourses } = props;
+  return (
+    <ExtendedRowWrapper>
+      <MediaQuery minWidth={sizes.tablet}>
+        {matches => (
+          matches &&
+            <SideBar flexBasis="21em">
+              <AddedCourseSearch addedCourses={addedCourses}/>
+            </SideBar>
+        )}
+      </MediaQuery>
+      <FetchedCourseSearch fetchedCourses={fetchedCourses}/>
+    </ExtendedRowWrapper>
+  )
+}
+
+
+export default withFetchCourses(SyllabusSearch);

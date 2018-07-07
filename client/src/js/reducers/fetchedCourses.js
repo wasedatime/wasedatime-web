@@ -6,7 +6,7 @@ import {
   FETCH_COURSES_FAILURE
 } from '../actions/types';
 import fetchedList, * as fromList from './fetchedList';
-import fetchedById, * as fromById from './fetchedById';
+import fetchedById from './fetchedById';
 
 const actionTypes = {
   fetchRequest: FETCH_COURSES_REQUEST,
@@ -31,9 +31,4 @@ export const getIsFetching = state => {
 
 export const getError = state => {
   return fromList.getError(state.list);
-};
-
-export const getCourses = state => {
-  const ids = getFetchedIds();
-  return ids.map(id => fromById.getItem(state.byId, id));
 };

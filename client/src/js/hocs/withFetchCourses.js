@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 
 import { fetchCourses, hydrateAddedCourses } from '../actions/syllabus';
 import { getIsFetching, getFetchedIds, getFetchedById, getError } from '../reducers/fetchedCourses';
-import { getProperties, getAddedCourses } from '../reducers/addedCourses';
+import { getProperties, getAddedCourses, getAddedCoursesWithProperties } from '../reducers/addedCourses';
 import LoadingSpinner from '../components/LoadingSpinner';
 import FetchError from '../components/FetchError';
 
@@ -30,7 +29,8 @@ const withFetchCourses = WrappedComponent => {
 
     render() {
       const { isFetching, fetchedCourseIds, fetchedCoursesById, error,
-        addedCourses, properties, fetchCourses } = this.props;
+        addedCourses, properties, addedCoursesWithProperties,
+        fetchCourses,} = this.props;
 
       if (isFetching && !fetchedCourseIds.length) {
         return <LoadingSpinner />;
@@ -50,6 +50,7 @@ const withFetchCourses = WrappedComponent => {
         <WrappedComponent
           fetchedCourses={fetchedCourses}
           addedCourses={addedCourses}
+          addedCoursesWithProperties={addedCoursesWithProperties}
         />
       );
     }
@@ -62,19 +63,14 @@ const withFetchCourses = WrappedComponent => {
       fetchedCoursesById: getFetchedById(state.fetchedCourses),
       error: getError(state.fetchedCourses),
       addedCourses: getAddedCourses(state.addedCourses),
-      properties: getProperties(state.addedCourses)
+      properties: getProperties(state.addedCourses),
+      addedCoursesWithProperties: getAddedCoursesWithProperties(state.addedCourses)
     };
   };
 
   const mapDispatchToProps = {
     fetchCourses,
     hydrateAddedCourses
-  };
-
-  WithFetchCoursesComponent.propTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    error: PropTypes.object,
-    fetchCourses: PropTypes.func.isRequired
   };
 
   return connect(mapStateToProps, mapDispatchToProps)(

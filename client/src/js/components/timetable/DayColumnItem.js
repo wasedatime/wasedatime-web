@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import CourseRowList from './CourseRowList';
+import CourseColumn from './CourseColumn';
 
 const StyledDayColumnItem = styled('li')`
   display: flex;
@@ -24,7 +24,7 @@ const DayColumnItem = ({day, coursesAndProperties}) => {
       <DayItem>
         <span>{day}</span>
       </DayItem>
-      <CourseRowList coursesAndProperties={coursesAndProperties} />
+      <CourseColumn coursesAndProperties={coursesAndProperties} />
     </StyledDayColumnItem>
   )
 }

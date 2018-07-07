@@ -8,6 +8,7 @@ import { Wrapper } from '../../styled-components/Wrapper';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import Modal from '../Modal';
+import withFetchCourses from '../../hocs/withFetchCourses';
 
 const StyledTimetable = styled('div')`
   display: flex;
@@ -112,4 +113,4 @@ class Timetable extends React.Component {
   }
 }
 
-export default Timetable;
+export default withFetchCourses(Timetable);

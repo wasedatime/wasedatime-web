@@ -63,8 +63,8 @@ const CloseModalButton = styled('button')`
 `
 
 class Timetable extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       showModal: false,
       searchTerm: ''
@@ -80,6 +80,7 @@ class Timetable extends React.Component {
   }
 
   render() {
+    const { addedCoursesWithProperties } = this.props;
     return (
       <Wrapper>
         <Helmet>
@@ -91,7 +92,9 @@ class Timetable extends React.Component {
         </Helmet>
         <StyledTimetable>
           <TimeRowList />
-          <DayColumnList />
+          <DayColumnList
+            addedCoursesWithProperties={addedCoursesWithProperties}
+          />
         </StyledTimetable>
         <StyledButton onClick={this.handleOpenModal}>
           Add courses to timetable

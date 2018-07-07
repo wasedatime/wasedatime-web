@@ -18,13 +18,13 @@ const DayItem = styled('div')`
   font-weight: 600;
 `
 
-const DayColumnItem = ({day, courses}) => {
+const DayColumnItem = ({day, coursesAndProperties}) => {
   return (
     <StyledDayColumnItem>
       <DayItem>
         <span>{day}</span>
       </DayItem>
-      <CourseRowList courses={courses} />
+      <CourseRowList coursesAndProperties={coursesAndProperties} />
     </StyledDayColumnItem>
   )
 }

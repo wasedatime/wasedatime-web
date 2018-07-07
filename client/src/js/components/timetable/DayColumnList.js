@@ -14,46 +14,36 @@ const StyledList = styled('ol')`
   list-style-type: none;
 `;
 
-const DayColumnList = (props) => {
-  const courseMon = [ {
-      "title": "Biochemistry",
-      "instructor": "NOMURA, Wataru/HOZUMI, Kentaro",
-      "occurrences": [
-        {
-          "day": 1,
-          "start_period": "2",
-          "end_period": "2",
-          "location": "51-07-06"
-        }
-      ]
-    }
-  ];
-  const courseFri = [ {
-      "title": "Fundamental Statistics Thermodynamics",
-      "instructor": "HARAYAMA, Takahisa",
-      "occurrences": [
-          {
-              "day": 5,
-              "start_period": "2",
-              "end_period": "2",
-              "location": "54-304"
-          }
-      ]
-    }
-  ];
-  const courses = {
-    "Mon": courseMon,
-    "Tue": [],
-    "Wed": [],
-    "Thu": [],
-    "Fri": courseFri,
-    "Sat": []
+const DayColumnList = props => {
+  const { addedCoursesWithProperties } = props;
+  const initCoursesByDay = {
+    "-1": [], "0": [], "1": [], "2": [], "3": [], "4": [], "5": [], "6": []
   };
+
+  const coursesByDay = addedCoursesWithProperties.reduce((acc, elem) => {
+    const {course, ...restOfElem} = elem;
+    const {occurrences, ...restOfCourse} = course;
+    occurrences.forEach(occ => {
+      acc[occ.day] = [...acc[occ.day], {
+        ...restOfElem,
+        course: {
+          occurrence: occ,
+          ...restOfCourse
+        }
+      }]
+    });
+    return acc;
+  }, initCoursesByDay);
+
+  //We define Sunday as index 0.
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  // const days = [1, 2, 3, 4, 5, 6];
-  const dayColumns = days.map(day => {
+  const dayColumns = days.map((day, index) => {
     return (
-      <DayColumnItem key={day} day={day} courses={courses[day]}></DayColumnItem>
+      <DayColumnItem
+        key={day}
+        day={day}
+        coursesAndProperties={coursesByDay[index + 1]}
+      />
     );
   });
   return (

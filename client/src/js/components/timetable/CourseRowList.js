@@ -55,12 +55,13 @@ const CourseLocation = styled('span')`
   ${media.phone`font-size: 1.2rem;`};
 `
 
-const CourseRowList = ({courses}) => {
-  const courseRows = courses.map(course => {
-    const start_period = Number(course.occurrences[0].start_period);
-    const end_period = Number(course.occurrences[0].end_period);
+const CourseRowList = ({coursesAndProperties}) => {
+  const courseRows = coursesAndProperties.map(courseAndProperty => {
+    const { course } = courseAndProperty;
+    const start_period = Number(course.occurrence.start_period);
+    const end_period = Number(course.occurrence.end_period);
     return (
-      <CourseItem key={course.title}
+      <CourseItem key={`${course.term}-${course.title}-${start_period}-${end_period}`}
         backgroundColor={'lightgreen'}
         borderColor={'green'}
         top={start_period - 1}
@@ -70,7 +71,10 @@ const CourseRowList = ({courses}) => {
           {course.title}
         </CourseTitle>
         <CourseLocation>
-          {course.occurrences[0].location}
+          {course.occurrence.building == '-1' ?
+            'undecided' :
+            course.occurrence.location
+          }
         </CourseLocation>
       </CourseItem>
     )

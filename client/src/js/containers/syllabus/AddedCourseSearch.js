@@ -5,6 +5,7 @@ import { filterCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
 import AddedCourseList from '../../components/syllabus/AddedCourseList';
 import { Wrapper } from '../../styled-components/Wrapper';
+import { Overlay } from '../../styled-components/Overlay';
 
 const A_COURSES_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
 
@@ -50,16 +51,18 @@ class AddedCourseSearch extends React.Component {
       addedCourses;
     return (
       <Wrapper>
-        <SearchBar
-          onInputChange = {this.handleInputChange}
-          placeholder = {A_COURSES_SEARCH_PLACE_HOLDER}
-          inputText = {inputText}
-        />
-        <AddedCourseList
-          isSearching={isSearching}
-          searchTerm={searchTerm}
-          results={results}
-        />
+        <Overlay>
+          <SearchBar
+            onInputChange = {this.handleInputChange}
+            placeholder = {A_COURSES_SEARCH_PLACE_HOLDER}
+            inputText = {inputText}
+          />
+          <AddedCourseList
+            isSearching={isSearching}
+            searchTerm={searchTerm}
+            results={results}
+          />
+        </Overlay>
       </Wrapper>
     )
   }

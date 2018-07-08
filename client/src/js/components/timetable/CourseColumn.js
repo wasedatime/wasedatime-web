@@ -24,21 +24,15 @@ const CourseItem = styled('div')`
   height: calc(100% / 7 * ${props => props.height} - 1px);
   width: 100%;
   padding: 0.3rem 0 0 0.1rem;
-  ${'' /* padding: 0.3rem; */}
-  ${'' /* text-align: center; */}
-  ${'' /* justify-content: space-between; */}
-  background-color: ${props => props.backgroundColor};
-  border-left: 2px solid ${props => props.borderColor};
-  color: ${props => props.borderColor};
+  border-left-width: 2px;
+  border-left-style: solid;
 `
 
 const CourseTitle = styled('span')`
   flex: 1 1 75%;
   font-weight: bold;
   font-size: 1.4rem;
-  ${'' /* overflow-x: scroll; */}
   overflow-x: hidden;
-  ${'' /* overflow-y: hidden; */}
   word-break: break-word;
   text-overflow: ellipsis;
   text-align: center;
@@ -113,7 +107,7 @@ const CourseColumn = ({coursesAndProperties}) => {
   const distinctCourseListsComponent = distinctCourseLists.map(
     (distinctCourseList, index) => {
       const listComponent = distinctCourseList.map(courseAndProperty => {
-        const { course } = courseAndProperty;
+        const { course, color } = courseAndProperty;
         const startPeriod = Number(course.occurrence.start_period);
         const endPeriod = Number(course.occurrence.end_period);
         let location = 'undecided';
@@ -126,9 +120,8 @@ const CourseColumn = ({coursesAndProperties}) => {
         }
         return (
           <CourseItem
+            className={`color-${color}`}
             key={`${course.term}-${course.title}-${startPeriod}-${endPeriod}`}
-            backgroundColor={'lightgreen'}
-            borderColor={'green'}
             top={startPeriod - 1}
             height={endPeriod - startPeriod + 1}
             >

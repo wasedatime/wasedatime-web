@@ -90,7 +90,7 @@ class Timetable extends React.Component {
           <meta property="og:description" content="Create Your Own Timetable at Waseda University." />
           <meta property="og:site_name" content="WaseTime - Timetable" />
         </Helmet>
-        <StyledTimetable>
+        <StyledTimetable className="theme-default">
           <TimeRowList />
           <DayColumnList
             addedCoursesWithProperties={addedCoursesWithProperties}

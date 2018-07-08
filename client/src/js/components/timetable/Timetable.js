@@ -1,19 +1,23 @@
 import React from 'react';
+import MediaQuery from 'react-responsive';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
-import { Wrapper } from '../../styled-components/Wrapper';
+import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import Modal from '../Modal';
+import { SideBar } from '../../styled-components/SideBar';
+import { sizes } from '../../utils/styledComponents';
+import AddedCourseWithPropertyList from './AddedCourseWithPropertyList';
 import withFetchCourses from '../../hocs/withFetchCourses';
 
 const StyledTimetable = styled('div')`
   display: flex;
   flex-direction: row;
-  flex: 1 0 auto;
+  flex: 1 0 0;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
 `
@@ -90,12 +94,26 @@ class Timetable extends React.Component {
           <meta property="og:description" content="Create Your Own Timetable at Waseda University." />
           <meta property="og:site_name" content="WaseTime - Timetable" />
         </Helmet>
-        <StyledTimetable className="theme-default">
-          <TimeRowList />
-          <DayColumnList
-            addedCoursesWithProperties={addedCoursesWithProperties}
-          />
-        </StyledTimetable>
+        <RowWrapper>
+          <StyledTimetable className="theme-default">
+            <TimeRowList />
+            <DayColumnList
+              addedCoursesWithProperties={addedCoursesWithProperties}
+            />
+          </StyledTimetable>
+          <MediaQuery minWidth={sizes.desktop}>
+            {matches => (
+              matches &&
+                <SideBar flexBasis="21em">
+                  <div>
+                    <AddedCourseWithPropertyList
+                      addedCoursesWithProperties={addedCoursesWithProperties}
+                    />
+                  </div>
+                </SideBar>
+            )}
+          </MediaQuery>
+        </RowWrapper>
         <StyledButton onClick={this.handleOpenModal}>
           Add courses to timetable
         </StyledButton>

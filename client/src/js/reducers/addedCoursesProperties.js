@@ -7,7 +7,7 @@ const addedCoursesProperties = (state = [], action) => {
         ...state,
         {
           id: action.payload.id,
-          color: 0,
+          color: state.length % 8,
           visibility: true
         }
       ];

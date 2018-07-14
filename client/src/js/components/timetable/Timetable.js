@@ -1,5 +1,4 @@
 import React from 'react';
-import MediaQuery from 'react-responsive';
 import { Helmet } from 'react-helmet';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
@@ -9,12 +8,28 @@ import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import Modal from '../Modal';
-import { SideBar } from '../../styled-components/SideBar';
-import { sizes } from '../../utils/styledComponents';
 import AddedCourseWithPropertyList from './AddedCourseWithPropertyList';
 import withFetchCourses from '../../hocs/withFetchCourses';
+import { media } from '../../utils/styledComponents';
 
-const StyledTimetable = styled('div')`
+const ExtendedRowWrapper = RowWrapper.extend`
+  flex-wrap: wrap;
+`
+
+const Column = styled('div')`
+  flex: ${props => `0 0 ${props.flexBasis};`}
+  max-width: ${props => `${props.flexBasis};`}
+  ${media.tablet`
+    flex: unset;
+    max-width: 100%;
+  `};
+  ${media.phone`
+    flex: unset;
+    max-width: 100%;
+  `};
+`
+
+const ScrollableTimetable = styled('div')`
   display: flex;
   flex-direction: row;
   flex: 1 0 0;
@@ -94,41 +109,38 @@ class Timetable extends React.Component {
           <meta property="og:description" content="Create Your Own Timetable at Waseda University." />
           <meta property="og:site_name" content="WaseTime - Timetable" />
         </Helmet>
-        <RowWrapper>
-          <StyledTimetable className="theme-default">
-            <TimeRowList />
-            <DayColumnList
-              addedCoursesWithProperties={addedCoursesWithProperties}
-            />
-          </StyledTimetable>
-          <MediaQuery minWidth={sizes.desktop}>
-            {matches => (
-              matches &&
-                <SideBar flexBasis="21em">
-                  <div>
-                    <AddedCourseWithPropertyList
-                      addedCoursesWithProperties={addedCoursesWithProperties}
-                    />
-                  </div>
-                </SideBar>
-            )}
-          </MediaQuery>
-        </RowWrapper>
-        <StyledButton onClick={this.handleOpenModal}>
-          Add courses to timetable
-        </StyledButton>
-        <Modal
-          isOpen={this.state.showModal}
-          contentLabel="Course Search Modal"
-          style={modalStyle}
-        >
-          <div>
-            <span>Under Construction...</span>
-            <CloseModalButton onClick={this.handleCloseModal}>
-              <FontAwesomeIcon icon={faTimesCircle} size="2x" transform="shrink-2" />
-            </CloseModalButton>
-          </div>
-        </Modal>
+        <ExtendedRowWrapper>
+          <Column flexBasis="70%">
+            <ScrollableTimetable className="theme-default">
+              <TimeRowList />
+              <DayColumnList
+                addedCoursesWithProperties={addedCoursesWithProperties}
+              />
+            </ScrollableTimetable>
+          </Column>
+          <Column flexBasis="30%">
+            <Wrapper>
+              <StyledButton onClick={this.handleOpenModal}>
+                Add courses to timetable
+              </StyledButton>
+              <Modal
+                isOpen={this.state.showModal}
+                contentLabel="Course Search Modal"
+                style={modalStyle}
+              >
+                <div>
+                  <span>Under Construction...</span>
+                  <CloseModalButton onClick={this.handleCloseModal}>
+                    <FontAwesomeIcon icon={faTimesCircle} size="2x" transform="shrink-2" />
+                  </CloseModalButton>
+                </div>
+              </Modal>
+              <AddedCourseWithPropertyList
+                addedCoursesWithProperties={addedCoursesWithProperties}
+              />
+            </Wrapper>
+          </Column>
+        </ExtendedRowWrapper>
       </Wrapper>
     );
   }

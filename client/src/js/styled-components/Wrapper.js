@@ -8,8 +8,10 @@ export const Wrapper = styled('div')`
   flex: 1 0 auto;
 `;
 
-export const RowWrapper =  Wrapper.extend`
+export const RowWrapper = styled('div')`
+  display: flex;
   flex-direction: row;
+  flex: 1 0 auto;
 `
 
 export const WrapperWithBackground = Wrapper.extend`

@@ -20,11 +20,11 @@ const Column = styled('div')`
   flex: ${props => `0 0 ${props.flexBasis};`}
   max-width: ${props => `${props.flexBasis};`}
   ${media.tablet`
-    flex: unset;
+    flex: 1 0 auto;
     max-width: 100%;
   `};
   ${media.phone`
-    flex: unset;
+    flex: 1 0 auto;
     max-width: 100%;
   `};
 `

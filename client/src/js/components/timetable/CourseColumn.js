@@ -29,7 +29,7 @@ const CourseItem = styled('div')`
 `
 
 const CourseTitle = styled('span')`
-  flex: 1 1 75%;
+  flex: 1 1 auto;
   font-weight: bold;
   font-size: 1.4rem;
   overflow-x: hidden;
@@ -42,7 +42,8 @@ const CourseTitle = styled('span')`
 
 const CourseLocation = styled('span')`
   display: inline-flex;
-  flex: 1 0 auto;
+  flex: 0 0 auto;
+  padding: .2em 0;
   font-size: 1.4rem;
   word-break: break-all;
   align-items: center;

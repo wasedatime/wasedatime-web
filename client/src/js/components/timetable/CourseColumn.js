@@ -33,7 +33,8 @@ const CourseTitle = styled('span')`
   font-weight: bold;
   font-size: 1.4rem;
   overflow-x: hidden;
-  word-break: break-word;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
   text-overflow: ellipsis;
   text-align: center;
   ${media.tablet`font-size: 1.2rem;`};

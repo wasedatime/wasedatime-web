@@ -16,6 +16,7 @@ const DayItem = styled('div')`
   align-items: center;
   font-size: 1.8rem;
   font-weight: 600;
+  border-bottom: solid 1px #ccc;
 `
 
 const DayColumnItem = ({day, coursesAndProperties}) => {

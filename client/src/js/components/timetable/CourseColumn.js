@@ -6,9 +6,8 @@ import { media } from '../../utils/styledComponents';
 const StyledCourseColumn = styled('div')`
   display: flex;
   flex: 1 0 60rem;
-  border: solid 1px #ccc;
-  border-right: none;
-  border-radius: 3px;
+  border-right: solid 1px #ccc;
+  border-bottom: solid 1px #ccc;
   background: linear-gradient(180deg, #fff 50%, #eee 50%);
   background-size: 100% calc(100%/3.5);
   position: relative;

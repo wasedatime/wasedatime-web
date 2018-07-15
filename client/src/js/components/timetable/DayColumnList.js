@@ -15,12 +15,12 @@ const StyledList = styled('ol')`
 `;
 
 const DayColumnList = props => {
-  const { addedCoursesWithProperties } = props;
+  const { addedCoursesAndPrefs } = props;
   const initCoursesByDay = {
     "-1": [], "0": [], "1": [], "2": [], "3": [], "4": [], "5": [], "6": []
   };
 
-  const coursesByDay = addedCoursesWithProperties.reduce((acc, elem) => {
+  const coursesByDay = addedCoursesAndPrefs.reduce((acc, elem) => {
     const {course, ...restOfElem} = elem;
     const {occurrences, ...restOfCourse} = course;
     occurrences.forEach(occ => {

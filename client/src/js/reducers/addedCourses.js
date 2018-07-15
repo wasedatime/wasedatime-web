@@ -1,32 +1,32 @@
 import { combineReducers } from 'redux';
 
 import addedById, * as fromById from './addedById';
-import addedCoursesProperties, * as fromProperties from './addedCoursesProperties';
+import addedCoursePrefs, * as fromPrefs from './addedCoursePrefs';
 
 const addedCourses = combineReducers({
-  properties: addedCoursesProperties,
+  prefs: addedCoursePrefs,
   byId: addedById
 });
 
 export default addedCourses;
 
-export const getProperties = state => state.properties;
+export const getPrefs = state => state.prefs;
 
 export const getById = state => state.byId;
 
 export const getAddedCourses = state => {
   if (!Object.keys(state.byId).length) return [];
-  return state.properties.map(property => (
-    fromById.getItem(state.byId, fromProperties.getId(property))
+  return state.prefs.map(pref => (
+    fromById.getItem(state.byId, fromPrefs.getId(pref))
   ));
 };
 
-export const getAddedCoursesWithProperties = state => {
+export const getAddedCoursesAndPrefs = state => {
   if (!Object.keys(state.byId).length) return [];
-  return state.properties.map(property => {
+  return state.prefs.map(pref => {
     return {
-      ...property,
-      course: fromById.getItem(state.byId, fromProperties.getId(property))
+      ...pref,
+      course: fromById.getItem(state.byId, fromPrefs.getId(pref))
     };
   });
 };

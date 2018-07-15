@@ -1,6 +1,6 @@
 import { ADD_COURSE, REMOVE_COURSE } from '../actions/types';
 
-const addedCoursesProperties = (state = [], action) => {
+const addedCoursePrefs = (state = [], action) => {
   switch (action.type) {
     case ADD_COURSE:
       return [
@@ -18,6 +18,6 @@ const addedCoursesProperties = (state = [], action) => {
   }
 };
 
-export default addedCoursesProperties;
+export default addedCoursePrefs;
 
 export const getId = property => property.id;

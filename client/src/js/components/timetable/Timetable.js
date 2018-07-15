@@ -8,7 +8,7 @@ import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import Modal from '../Modal';
-import AddedCourseWithPropertyList from './AddedCourseWithPropertyList';
+import AddedCourseAndPrefList from './AddedCourseAndPrefList';
 import withFetchCourses from '../../hocs/withFetchCourses';
 import { media } from '../../utils/styledComponents';
 
@@ -99,7 +99,7 @@ class Timetable extends React.Component {
   }
 
   render() {
-    const { addedCoursesWithProperties } = this.props;
+    const { addedCoursesAndPrefs } = this.props;
     return (
       <Wrapper>
         <Helmet>
@@ -114,7 +114,7 @@ class Timetable extends React.Component {
             <ScrollableTimetable className="theme-default">
               <TimeRowList />
               <DayColumnList
-                addedCoursesWithProperties={addedCoursesWithProperties}
+                addedCoursesAndPrefs={addedCoursesAndPrefs}
               />
             </ScrollableTimetable>
           </Column>
@@ -135,8 +135,8 @@ class Timetable extends React.Component {
                   </CloseModalButton>
                 </div>
               </Modal>
-              <AddedCourseWithPropertyList
-                addedCoursesWithProperties={addedCoursesWithProperties}
+              <AddedCourseAndPrefList
+                addedCoursesAndPrefs={addedCoursesAndPrefs}
               />
             </Wrapper>
           </Column>

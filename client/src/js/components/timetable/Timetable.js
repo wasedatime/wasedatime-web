@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
 import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
-import { Article } from '../../styled-components/Article';
+import { Article, Section } from '../../styled-components/Article';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import AddedCourseAndPrefList from './AddedCourseAndPrefList';
@@ -36,6 +36,7 @@ const ScrollableTimetable = styled('div')`
 `
 
 const Timetable = ({ addedCoursesAndPrefs }) => {
+  window.scrollTo({top: 0});
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(elem => (
     elem.visibility === true
   ));
@@ -80,8 +81,14 @@ const Timetable = ({ addedCoursesAndPrefs }) => {
               <Wrapper>
                 <Article>
                   <h3>Welcome</h3>
-                  <div>Hi! You haven't added any courses.
-                  <br/>Go to <a href="./syllabus">Syllabus</a> and try adding one!</div>
+                  <Section>
+                    Hi! You haven't added any courses.<br/>
+                    Go to <a href="./syllabus">Syllabus</a> and try adding one!
+                  </Section>
+                  <Section>
+                    Period 6, 7 and Saturday are hidden by default to save space.
+                    They will appear once the corresponding course is selected.
+                  </Section>
                 </Article>
               </Wrapper>
             }

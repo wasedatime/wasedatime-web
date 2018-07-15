@@ -5,6 +5,8 @@ import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import AddedCourseItem from '../../containers/syllabus/AddedCourseItem';
 import { Wrapper } from '../../styled-components/Wrapper';
+import { Article, Section, Subheading,
+  OList, ListItem } from '../../styled-components/Article';
 
 const CourseListWrapper = Wrapper.extend`
   flex: none;
@@ -62,44 +64,41 @@ class AddedCourseList extends React.Component {
               ))
               }
             </div> :
-            <div
-              style={{
-                backgroundColor: "#fff",
-                flex: "1 0 auto",
-                fontSize: "18px",
-                padding: "0.5em 0.7em"
-              }}
-            >
+            <Article>
               <h4>Added courses are displayed here.</h4>
-              <div>
-              To add a course:
-              <ol
-                style={{
-                  paddingLeft: "1em",
-                  margin: 0
-                }}
-              >
-                <li>
-                  Search for a course title or an instructor in the right search bar,
-                  e.g., "calculus" or "tanaka" or "calculus tanaka".
-                </li>
-                <li>
-                  Click on <FontAwesomeIcon
-                      style={{color: "#48af37"}}
-                      icon={faPlusCircle}
-                      size="1x"
-                    /> to add, <FontAwesomeIcon
-                        style={{color: "#ce0115"}}
-                        icon={faMinusCircle}
+              <Section>
+              <Subheading>To add a course</Subheading>
+                <OList>
+                  <ListItem>
+                    Search for a course title or an instructor in the right search bar.
+                    <br/>E.g., "calculus" or "tanaka" or "calculus tanaka".
+                  </ListItem>
+                  <ListItem>
+                    Click on <FontAwesomeIcon
+                        style={{color: "#48af37"}}
+                        icon={faPlusCircle}
                         size="1x"
-                      /> to remove.
-                </li>
-                <li>
-                  Pro Tip: Use "Filter by" to narrow down your search!
-                </li>
-              </ol>
-              </div>
-            </div>
+                      /> to add, <FontAwesomeIcon
+                          style={{color: "#ce0115"}}
+                          icon={faMinusCircle}
+                          size="1x"
+                        /> to remove.
+                  </ListItem>
+                </OList>
+              </Section>
+              <Section>
+              <Subheading>Pro Tips!</Subheading>
+                <OList>
+                  <ListItem>
+                    Type only the start of the word!<br/>
+                    E.g., "vec calc" instead of "vector calculus"
+                  </ListItem>
+                  <ListItem>
+                    Use "Filter by" to narrow down your search!
+                  </ListItem>
+                </OList>
+              </Section>
+            </Article>
           }
       </CourseListWrapper>
     )

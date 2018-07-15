@@ -24,49 +24,49 @@ https://www.materialpalette.com/colors
 */
 
 .theme-default .color-0 {
-  color: #222;
-  background-color: #aaa;
-  border-color: #222;
-}
-
-.theme-default .color-1 {
   color: #580505;
   background-color: #ef9a9a;
   border-color: #580505;
 }
 
-.theme-default .color-2 {
-  color: #221361;
-  background-color: #b39ddb;
-  border-color: #221361;
-}
-
-.theme-default .color-3 {
-  color: #0c2a58;
-  background-color: #90caf9;
-  border-color: #0c2a58;
-}
-
-.theme-default .color-4 {
-  color: #114615;
-  background-color: #a5d6a7;
-  border-color: #114615;
-}
-
-.theme-default .color-5 {
-  color: #845125;
-  background-color: #fff59d;
-  border-color: #845125;
-}
-
-.theme-default .color-6 {
+.theme-default .color-1 {
   color: #9e2c08;
   background-color: #ffcc80;
   border-color: #9e2c08;
 }
 
-.theme-default .color-7 {
+.theme-default .color-2 {
+  color: #845125;
+  background-color: #fff59d;
+  border-color: #845125;
+}
+
+.theme-default .color-3 {
+  color: #114615;
+  background-color: #a5d6a7;
+  border-color: #114615;
+}
+
+.theme-default .color-4 {
+  color: #0c2a58;
+  background-color: #90caf9;
+  border-color: #0c2a58;
+}
+
+.theme-default .color-5 {
+  color: #221361;
+  background-color: #b39ddb;
+  border-color: #221361;
+}
+
+.theme-default .color-6 {
   color: #3e2723;
   background-color: #c7a59a;
   border-color: #3e2723;
+}
+
+.theme-default .color-7 {
+  color: #222;
+  background-color: #aaa;
+  border-color: #222;
 }

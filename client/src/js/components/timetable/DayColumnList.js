@@ -14,8 +14,7 @@ const StyledList = styled('ol')`
   list-style-type: none;
 `;
 
-const DayColumnList = props => {
-  const { addedCoursesAndPrefs } = props;
+const DayColumnList = ({ largestDay, largestPeriod, addedCoursesAndPrefs }) => {
   const initCoursesByDay = {
     "-1": [], "0": [], "1": [], "2": [], "3": [], "4": [], "5": [], "6": []
   };
@@ -36,19 +35,20 @@ const DayColumnList = props => {
 
   //We define Sunday as index 0.
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-  const dayColumns = days.map((day, index) => {
+  const dayColumns = days.slice(0, Math.max(largestDay, 5)).map((day, index) => {
     return (
       <DayColumnItem
         key={day}
         day={day}
+        largestPeriod={largestPeriod}
         coursesAndProperties={coursesByDay[index + 1]}
       />
     );
   });
   return (
-      <StyledList>
-        {dayColumns}
-      </StyledList>
+    <StyledList>
+      {dayColumns}
+    </StyledList>
   )
 }
 

@@ -5,11 +5,11 @@ import { media } from '../../utils/styledComponents';
 
 const StyledCourseColumn = styled('div')`
   display: flex;
-  flex: 1 0 60rem;
+  flex: 1 0 calc(63rem / 7 * ${props => props.displayPeriods});
   border-right: solid 1px #ccc;
   border-bottom: solid 1px #ccc;
   background: linear-gradient(180deg, #fff 50%, #eee 50%);
-  background-size: 100% calc(100%/3.5);
+  background-size: 100% calc(100% / ${props => props.displayPeriods} * 2);
   position: relative;
   min-width: 6.8rem;
   flex-direction: row;
@@ -19,8 +19,8 @@ const CourseItem = styled('div')`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: calc(100% / 7 * ${props => props.top});
-  height: calc(100% / 7 * ${props => props.height} - 1px);
+  top: calc(100% / ${props => props.displayPeriods} * ${props => props.top});
+  height: calc(100% / ${props => props.displayPeriods} * ${props => props.height} - 1px);
   width: 100%;
   padding: 0.3rem 0 0 0.1rem;
   border-left-width: 2px;
@@ -60,7 +60,8 @@ const CourseList = styled('div')`
   position: relative;
 `
 
-const CourseColumn = ({coursesAndProperties}) => {
+const CourseColumn = ({largestPeriod, coursesAndProperties}) => {
+  const displayPeriods = Math.max(largestPeriod, 5);
   // a distinct course list has no occurrence overlaps between its course items.
   let distinctCourseLists = [[]];
   // index 0 is not used since class period starts from 1.
@@ -123,6 +124,7 @@ const CourseColumn = ({coursesAndProperties}) => {
           <CourseItem
             className={`color-${color}`}
             key={`${course.term}-${course.title}-${startPeriod}-${endPeriod}`}
+            displayPeriods={displayPeriods}
             top={startPeriod - 1}
             height={endPeriod - startPeriod + 1}
             >
@@ -143,7 +145,7 @@ const CourseColumn = ({coursesAndProperties}) => {
   });
 
   return (
-    <StyledCourseColumn>
+    <StyledCourseColumn displayPeriods={displayPeriods}>
       {distinctCourseListsComponent}
     </StyledCourseColumn>
   );

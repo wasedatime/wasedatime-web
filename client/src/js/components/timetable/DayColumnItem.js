@@ -19,13 +19,16 @@ const DayItem = styled('div')`
   border-bottom: solid 1px #ccc;
 `
 
-const DayColumnItem = ({day, coursesAndProperties}) => {
+const DayColumnItem = ({day, largestPeriod, coursesAndProperties}) => {
   return (
     <StyledDayColumnItem>
       <DayItem>
         <span>{day}</span>
       </DayItem>
-      <CourseColumn coursesAndProperties={coursesAndProperties} />
+      <CourseColumn
+        largestPeriod={largestPeriod} 
+        coursesAndProperties={coursesAndProperties}
+      />
     </StyledDayColumnItem>
   )
 }

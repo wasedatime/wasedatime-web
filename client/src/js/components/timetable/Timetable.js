@@ -35,10 +35,23 @@ const ScrollableTimetable = styled('div')`
   -webkit-overflow-scrolling: touch;
 `
 
-const Timetable = ({ addedCourses, addedCoursesAndPrefs }) => {
+const Timetable = ({ addedCoursesAndPrefs }) => {
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(elem => (
     elem.visibility === true
   ));
+
+  const largestDayAndPeriod = visibleAddedCoursesAndPrefs.reduce((acc, elem) => {
+    const occurrences = elem.course.occurrences;
+    return occurrences.reduce((acc, occurrence) => {
+      return {
+        ...acc,
+        day: Math.max(acc.day, occurrence.day),
+        period: Math.max(acc.period, occurrence.end_period)
+      }
+    }, acc);
+  }, {day: 1, period: 1});
+
+  const { day: largestDay, period: largestPeriod } = largestDayAndPeriod;
   return (
     <Wrapper>
       <Helmet>
@@ -52,9 +65,11 @@ const Timetable = ({ addedCourses, addedCoursesAndPrefs }) => {
         <Column flexBasis="70%">
           <ScrollableTimetable>
             <TimeRowList
-              addedCoursesAndPrefs={visibleAddedCoursesAndPrefs}
+              largestPeriod={largestPeriod}
             />
             <DayColumnList
+              largestDay={largestDay}
+              largestPeriod={largestPeriod}
               addedCoursesAndPrefs={visibleAddedCoursesAndPrefs}
             />
           </ScrollableTimetable>

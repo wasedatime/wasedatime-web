@@ -2,10 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Alert from 'react-s-alert';
 
-import { removeCourse, toggleCourseVisibility } from '../../actions/syllabus';
+import { removeCourse, changeCourseColor,
+  toggleCourseVisibility } from '../../actions/syllabus';
 import CourseAndPrefItem from '../../components/timetable/CourseAndPrefItem';
 
 class AddedCourseAndPrefItem extends React.Component {
+  state = {
+    isPopperOpen: false
+  }
 
   handleRemoveCourse = event => {
     event.preventDefault();
@@ -16,6 +20,22 @@ class AddedCourseAndPrefItem extends React.Component {
       position: 'bottom',
       effect: 'jelly',
     });
+  }
+
+  handleToggleColorPopper = event => {
+    event.preventDefault();
+    this.setState((prevState, props) => {
+      return {isPopperOpen: !prevState.isPopperOpen};
+    });
+  }
+
+  handleChangeColor = color => {
+    const { addedCourseAndPref } = this.props;
+    const { course } = addedCourseAndPref;
+    this.setState((prevState, props) => {
+      return {isPopperOpen: !prevState.isPopperOpen};
+    });
+    this.props.changeCourseColor(course._id, color);
   }
 
   handleToggleVisibility = event => {
@@ -30,11 +50,13 @@ class AddedCourseAndPrefItem extends React.Component {
     const { color, visibility, course } = addedCourseAndPref;
     return (
       <CourseAndPrefItem
+        isPopperOpen={this.state.isPopperOpen}
         color={color}
         visibility={visibility}
         course={course}
         handleRemoveCourse={this.handleRemoveCourse}
-        handleChangeColor={null}
+        handleToggleColorPopper={this.handleToggleColorPopper}
+        handleChangeColor={this.handleChangeColor}
         handleToggleVisibility={this.handleToggleVisibility}
       />
     );
@@ -43,7 +65,8 @@ class AddedCourseAndPrefItem extends React.Component {
 
 const mapDispatchToProps = {
   removeCourse,
-  toggleCourseVisibility
+  changeCourseColor,
+  toggleCourseVisibility,
 };
 
 export default connect(null, mapDispatchToProps)(

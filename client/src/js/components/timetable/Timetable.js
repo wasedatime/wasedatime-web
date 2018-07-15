@@ -5,6 +5,7 @@ import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
+import { Article } from '../../styled-components/Article';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import Modal from '../Modal';
@@ -109,9 +110,9 @@ class Timetable extends React.Component {
           <meta property="og:description" content="Create Your Own Timetable at Waseda University." />
           <meta property="og:site_name" content="WaseTime - Timetable" />
         </Helmet>
-        <ExtendedRowWrapper>
+        <ExtendedRowWrapper className="theme-default">
           <Column flexBasis="70%">
-            <ScrollableTimetable className="theme-default">
+            <ScrollableTimetable>
               <TimeRowList />
               <DayColumnList
                 addedCoursesAndPrefs={addedCoursesAndPrefs}
@@ -120,21 +121,15 @@ class Timetable extends React.Component {
           </Column>
           <Column flexBasis="30%">
             <Wrapper>
-              <StyledButton onClick={this.handleOpenModal}>
-                Add courses to timetable
-              </StyledButton>
-              <Modal
-                isOpen={this.state.showModal}
-                contentLabel="Course Search Modal"
-                style={modalStyle}
-              >
-                <div>
-                  <span>Under Construction...</span>
-                  <CloseModalButton onClick={this.handleCloseModal}>
-                    <FontAwesomeIcon icon={faTimesCircle} size="2x" transform="shrink-2" />
-                  </CloseModalButton>
-                </div>
-              </Modal>
+              {!addedCoursesAndPrefs.length &&
+                <Wrapper>
+                  <Article>
+                    <h3>Welcome</h3>
+                    <div>Hi! You haven't added any courses.
+                    <br/>Go to <a href="./syllabus">Syllabus</a> and try adding one!</div>
+                  </Article>
+                </Wrapper>
+              }
               <AddedCourseAndPrefList
                 addedCoursesAndPrefs={addedCoursesAndPrefs}
               />

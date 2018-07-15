@@ -17,7 +17,20 @@ const StyledList = styled('ol')`
   left: 0;
 `;
 
-const TimeRowList = (props) => {
+const TimeRowList = ({addedCoursesAndPrefs}) => {
+  let initExistsLatePeriods = {
+    '6': false, '7': false
+  };
+  const existsLatePeriods = addedCoursesAndPrefs.reduce((acc, elem) => {
+    const occurrences = elem.course.occurrences;
+    occurrences.forEach(occur => {
+      if (occur.end_period >= 6) {
+        acc['6'] = true;
+        if (occur.end_period >= 7) acc['7'] = true;
+      }
+    })
+    return acc;
+  }, initExistsLatePeriods);
   const periods = [
     {
       's':'0900', 'e':'1030', 'p':1
@@ -35,7 +48,12 @@ const TimeRowList = (props) => {
       's':'1955', 'e':'2125', 'p':7
     }
   ]
-  const timeRows = periods.map(period => {
+  const latestPeriod = (existsLatePeriods['7']) ?
+    7 :
+    (existsLatePeriods['6']) ?
+      6 :
+      5 ;
+  const timeRows = periods.slice(0, latestPeriod).map(period => {
     return (
       <TimeRowItem key={period.p} period={period}></TimeRowItem>
     );

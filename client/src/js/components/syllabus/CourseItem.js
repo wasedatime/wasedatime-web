@@ -15,7 +15,7 @@ import silsIcon from '../../../img/syllabus-icons/sils.png';
 import cjlIcon from '../../../img/syllabus-icons/cjl.png';
 
 
-const RowWrapper = styled('div')`
+const RowWrapper = styled('li')`
   display: flex;
   flex-direction: row;
   justify-content: center;

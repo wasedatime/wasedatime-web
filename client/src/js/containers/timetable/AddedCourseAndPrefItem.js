@@ -18,7 +18,7 @@ class AddedCourseAndPrefItem extends React.Component {
 
   render() {
     const { addedCourseAndPref } = this.props;
-    const { color, visibility, course } = addedCourseAndPref;
+    const { course } = addedCourseAndPref;
     return (
       <div>
         {course.title}

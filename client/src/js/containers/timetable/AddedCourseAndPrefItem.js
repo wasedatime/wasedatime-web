@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Alert from 'react-s-alert';
 
-import { removeCourse } from '../../actions/syllabus';
+import { removeCourse, toggleCourseVisibility } from '../../actions/syllabus';
 import CourseAndPrefItem from '../../components/timetable/CourseAndPrefItem';
 
 class AddedCourseAndPrefItem extends React.Component {
@@ -18,6 +18,13 @@ class AddedCourseAndPrefItem extends React.Component {
     });
   }
 
+  handleToggleVisibility = event => {
+    event.preventDefault();
+    const { addedCourseAndPref } = this.props;
+    const { course } = addedCourseAndPref;
+    this.props.toggleCourseVisibility(course._id);
+  }
+
   render() {
     const { addedCourseAndPref } = this.props;
     const { color, visibility, course } = addedCourseAndPref;
@@ -28,14 +35,15 @@ class AddedCourseAndPrefItem extends React.Component {
         course={course}
         handleRemoveCourse={this.handleRemoveCourse}
         handleChangeColor={null}
-        handleToggleVisibility={null}
+        handleToggleVisibility={this.handleToggleVisibility}
       />
     );
   }
 }
 
 const mapDispatchToProps = {
-  removeCourse
+  removeCourse,
+  toggleCourseVisibility
 };
 
 export default connect(null, mapDispatchToProps)(

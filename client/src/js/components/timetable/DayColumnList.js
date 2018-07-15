@@ -19,10 +19,7 @@ const DayColumnList = props => {
   const initCoursesByDay = {
     "-1": [], "0": [], "1": [], "2": [], "3": [], "4": [], "5": [], "6": []
   };
-  const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(elem => (
-    elem.visibility === true
-  ));
-  const coursesByDay = visibleAddedCoursesAndPrefs.reduce((acc, elem) => {
+  const coursesByDay = addedCoursesAndPrefs.reduce((acc, elem) => {
     const {course, ...restOfElem} = elem;
     const {occurrences, ...restOfCourse} = course;
     occurrences.forEach(occ => {

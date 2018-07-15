@@ -35,7 +35,10 @@ const ScrollableTimetable = styled('div')`
   -webkit-overflow-scrolling: touch;
 `
 
-const Timetable = ({ addedCoursesAndPrefs }) => {
+const Timetable = ({ addedCourses, addedCoursesAndPrefs }) => {
+  const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(elem => (
+    elem.visibility === true
+  ));
   return (
     <Wrapper>
       <Helmet>
@@ -48,9 +51,11 @@ const Timetable = ({ addedCoursesAndPrefs }) => {
       <ExtendedRowWrapper className="theme-default">
         <Column flexBasis="70%">
           <ScrollableTimetable>
-            <TimeRowList />
+            <TimeRowList
+              addedCoursesAndPrefs={visibleAddedCoursesAndPrefs}
+            />
             <DayColumnList
-              addedCoursesAndPrefs={addedCoursesAndPrefs}
+              addedCoursesAndPrefs={visibleAddedCoursesAndPrefs}
             />
           </ScrollableTimetable>
         </Column>

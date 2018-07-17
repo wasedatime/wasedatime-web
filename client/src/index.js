@@ -14,7 +14,7 @@ const store = configureStore();
 store.subscribe(throttle(() => {
   saveState({
     addedCourses: {
-      properties: store.getState().addedCourses.properties
+      prefs: store.getState().addedCourses.prefs
     }
   });
 }, 800));

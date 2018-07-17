@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import CourseRowList from './CourseRowList';
+import CourseColumn from './CourseColumn';
 
 const StyledDayColumnItem = styled('li')`
   display: flex;
@@ -16,15 +16,19 @@ const DayItem = styled('div')`
   align-items: center;
   font-size: 1.8rem;
   font-weight: 600;
+  border-bottom: solid 1px #ccc;
 `
 
-const DayColumnItem = ({day, courses}) => {
+const DayColumnItem = ({day, largestPeriod, coursesAndProperties}) => {
   return (
     <StyledDayColumnItem>
       <DayItem>
         <span>{day}</span>
       </DayItem>
-      <CourseRowList courses={courses} />
+      <CourseColumn
+        largestPeriod={largestPeriod} 
+        coursesAndProperties={coursesAndProperties}
+      />
     </StyledDayColumnItem>
   )
 }

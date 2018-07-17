@@ -8,6 +8,7 @@ const StyledListItem = styled('li')`
   justify-content: space-between;
   text-align: center;
   width: 3.5rem;
+  border-right: solid 1px #ccc;
 `
 const StyledSpan = styled('span')`
   font-size: 2.2rem;

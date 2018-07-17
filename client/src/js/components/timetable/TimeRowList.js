@@ -17,7 +17,7 @@ const StyledList = styled('ol')`
   left: 0;
 `;
 
-const TimeRowList = (props) => {
+const TimeRowList = ({largestPeriod}) => {
   const periods = [
     {
       's':'0900', 'e':'1030', 'p':1
@@ -35,7 +35,7 @@ const TimeRowList = (props) => {
       's':'1955', 'e':'2125', 'p':7
     }
   ]
-  const timeRows = periods.map(period => {
+  const timeRows = periods.slice(0, Math.max(largestPeriod, 5)).map(period => {
     return (
       <TimeRowItem key={period.p} period={period}></TimeRowItem>
     );

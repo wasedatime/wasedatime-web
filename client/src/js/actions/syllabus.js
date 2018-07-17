@@ -7,7 +7,9 @@ import {
   FETCH_COURSES_FAILURE,
   HYDRATE_ADDED_COURSES,
   ADD_COURSE,
-  REMOVE_COURSE
+  REMOVE_COURSE,
+  CHANGE_COURSE_COLOR,
+  TOGGLE_COURSE_VISIBILITY
 } from './types';
 import * as schema from '../data/schema';
 import { wasetimeApiStatic } from '../api/index';
@@ -53,6 +55,21 @@ export const addCourse = (id, course) => ({
 
 export const removeCourse = id => ({
   type: REMOVE_COURSE,
+  payload: {
+    id
+  }
+});
+
+export const changeCourseColor = (id, color) => ({
+  type: CHANGE_COURSE_COLOR,
+  payload: {
+    id,
+    color
+  }
+});
+
+export const toggleCourseVisibility = id => ({
+  type: TOGGLE_COURSE_VISIBILITY,
   payload: {
     id
   }

@@ -2,8 +2,19 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { fetchCourses, hydrateAddedCourses } from '../actions/syllabus';
-import { getIsFetching, getFetchedIds, getFetchedById, getError } from '../reducers/fetchedCourses';
-import { getPrefs, getAddedCourses, getAddedCoursesAndPrefs } from '../reducers/addedCourses';
+import {
+  getIsFetching,
+  getFetchedIds,
+  getFetchedById,
+  getError
+} from '../reducers/fetchedCourses';
+import {
+  getAddedCourses,
+  getIsAddedCoursesEmpty,
+  getPrefs,
+  getIsPrefsEmpty,
+  getAddedCoursesAndPrefs
+} from '../reducers/addedCourses';
 import LoadingSpinner from '../components/LoadingSpinner';
 import FetchError from '../components/FetchError';
 
@@ -16,21 +27,33 @@ const withFetchCourses = WrappedComponent => {
     }
 
     componentDidUpdate() {
-      const { addedCourses, prefs, fetchedCourseIds, fetchedCoursesById,
-        hydrateAddedCourses } = this.props;
-      // if addedCourses is not hydrated, prefs is not empty, and courses are fetched
-      if (!addedCourses.length &&
-        prefs.length &&
-        fetchedCourseIds.length
-      ) {
+      const {
+        isAddedCoursesEmpty,
+        prefs,
+        isPrefsEmpty,
+        fetchedCourseIds,
+        fetchedCoursesById,
+        hydrateAddedCourses
+      } = this.props;
+      // if addedCourses is empty prefs is not empty, and courses are fetched
+      if (isAddedCoursesEmpty && isPrefsEmpty && fetchedCourseIds.length) {
         hydrateAddedCourses(prefs, fetchedCoursesById);
       }
     }
 
     render() {
-      const { isFetching, fetchedCourseIds, fetchedCoursesById, error,
-        addedCourses, prefs, addedCoursesAndPrefs,
-        fetchCourses,} = this.props;
+      const {
+        isFetching,
+        fetchedCourseIds,
+        fetchedCoursesById,
+        error,
+        addedCourses,
+        isAddedCoursesEmpty,
+        prefs,
+        isPrefsEmpty,
+        addedCoursesAndPrefs,
+        fetchCourses
+      } = this.props;
 
       if (isFetching && !fetchedCourseIds.length) {
         return <LoadingSpinner />;
@@ -38,13 +61,11 @@ const withFetchCourses = WrappedComponent => {
       if (error && !fetchedCourseIds.length) {
         return <FetchError onRetry={fetchCourses} />;
       }
-      if (prefs.length && !addedCourses.length) {
-        return <LoadingSpinner message={"Initializing your added courses"}/>;
+      if (!isPrefsEmpty && isAddedCoursesEmpty) {
+        return <LoadingSpinner message={'Initializing your added courses'} />;
       }
 
-      const fetchedCourses = fetchedCourseIds.map(id => (
-        fetchedCoursesById[id]
-      ));
+      const fetchedCourses = fetchedCourseIds.map(id => fetchedCoursesById[id]);
 
       return (
         <WrappedComponent
@@ -63,7 +84,9 @@ const withFetchCourses = WrappedComponent => {
       fetchedCoursesById: getFetchedById(state.fetchedCourses),
       error: getError(state.fetchedCourses),
       addedCourses: getAddedCourses(state.addedCourses),
+      isAddedCoursesEmpty: getIsAddedCoursesEmpty(state.addedCourses),
       prefs: getPrefs(state.addedCourses),
+      isPrefsEmpty: getIsPrefsEmpty(state.addedCourses),
       addedCoursesAndPrefs: getAddedCoursesAndPrefs(state.addedCourses)
     };
   };
@@ -76,6 +99,6 @@ const withFetchCourses = WrappedComponent => {
   return connect(mapStateToProps, mapDispatchToProps)(
     WithFetchCoursesComponent
   );
-}
+};
 
 export default withFetchCourses;

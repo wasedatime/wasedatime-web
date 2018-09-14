@@ -62,8 +62,7 @@ class Filter extends React.Component {
     const semesterInputName = 'semester';
     const semesterInputs = [
       { value: 'spring', label: 'Spring / Summer' },
-      { value: 'fall', label: 'Fall / Winter' },
-      { value: 'full', label: 'Full Year' }
+      { value: 'fall', label: 'Fall / Winter' }
     ];
     const schoolLegend = 'Schools';
     const schoolInputName = 'school';

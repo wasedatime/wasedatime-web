@@ -10,7 +10,6 @@ const ExtendedWrapper = RowWrapper.extend`
   justify-content: space-around;
   height: 32px;
   width: 100%;
-  padding: 0 1em;
   background-color: #777;
   z-index: 1030;
 `;

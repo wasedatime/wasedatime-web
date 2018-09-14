@@ -1,5 +1,8 @@
-import { HYDRATE_ADDED_COURSES,
-  ADD_COURSE, REMOVE_COURSE } from '../actions/types';
+import {
+  HYDRATE_ADDED_COURSES,
+  ADD_COURSE,
+  REMOVE_COURSE
+} from '../actions/types';
 
 const addedById = (state = {}, action) => {
   switch (action.type) {
@@ -11,8 +14,8 @@ const addedById = (state = {}, action) => {
           [property.id]: {
             ...action.payload.coursesById[property.id]
           }
-        }
-      }, {})
+        };
+      }, {});
     case ADD_COURSE:
       return {
         ...state,

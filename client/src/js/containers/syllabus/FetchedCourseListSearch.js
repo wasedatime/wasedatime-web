@@ -9,6 +9,7 @@ import Filter from '../../components/syllabus/Filter';
 import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../utils/styledComponents';
+import { fallSemesters, springSemesters } from '../../data/semesters';
 
 const ExtendedWrapper = Wrapper.extend`
   flex: 1 0 0;
@@ -20,14 +21,60 @@ class FetchedCourseSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      filterGroups: {
+        semester: [],
+        school: [],
+        lang: [],
+        special: []
+      },
       inputText: '',
-      searchTerm: ''
+      searchTerm: '',
+      filteredCourses: props.fetchedCourses
     };
   }
 
   componentWillUnmount() {
     this.debounceUpdateSearchTerm.cancel();
   }
+
+  handleToggleFilter = (inputName, value) => {
+    const { [inputName]: filters, ...rest } = this.state.filterGroups;
+    const newFilters = filters.includes(value)
+      ? filters.filter(elem => elem !== value)
+      : [...filters, value];
+    const newFilterGroups = {
+      [inputName]: newFilters,
+      ...rest
+    };
+    const newFilteredCourses = this.filterCourses(
+      newFilterGroups,
+      this.props.fetchedCourses
+    );
+    this.setState({
+      filterGroups: newFilterGroups,
+      filteredCourses: newFilteredCourses
+    });
+  };
+
+  filterCourses = (filterGroups, courses) => {
+    const semesters = filterGroups.semester;
+    let semesterFilters = [];
+    // if not empty not full
+    if (semesters.length !== 0 && semesters.length !== 2) {
+      if (semesters.includes('fall')) {
+        semesterFilters = semesterFilters.concat(fallSemesters);
+      }
+      if (semesters.includes('spring')) {
+        semesterFilters = semesterFilters.concat(springSemesters);
+      }
+    }
+
+    let filteredCourses =
+      semesterFilters.length === 0
+        ? courses
+        : courses.filter(course => semesterFilters.includes(course.term));
+    return filteredCourses;
+  };
 
   updateSearchTerm = () => {
     this.setState({
@@ -47,12 +94,14 @@ class FetchedCourseSearch extends React.Component {
   };
 
   render() {
-    const { fetchedCourses } = this.props;
     const { inputText, searchTerm } = this.state;
     const results =
       searchTerm.length > 1
-        ? sortCourses(searchTerm, searchCourses(searchTerm, fetchedCourses))
-        : fetchedCourses;
+        ? sortCourses(
+            searchTerm,
+            searchCourses(searchTerm, this.state.filteredCourses)
+          )
+        : this.state.filteredCourses;
     return (
       <ExtendedWrapper>
         <SearchBar
@@ -67,7 +116,7 @@ class FetchedCourseSearch extends React.Component {
               return (
                 matches && (
                   <SideBar flexBasis="17em">
-                    <Filter />
+                    <Filter handleToggleFilter={this.handleToggleFilter} />
                   </SideBar>
                 )
               );

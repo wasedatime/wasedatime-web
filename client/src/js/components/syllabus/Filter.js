@@ -67,25 +67,28 @@ class Filter extends React.Component {
     const schoolLegend = 'Schools';
     const schoolInputName = 'school';
     const schoolInputs = [
-      { value: 'sils', label: 'SILS' },
-      { value: 'pse', label: 'PSE' },
-      { value: 'fse', label: 'FSE' },
-      { value: 'cse', label: 'CSE' },
-      { value: 'ase', label: 'ASE' },
-      { value: 'cjl', label: 'CJL' }
+      { value: 'SILS', label: 'SILS' },
+      { value: 'PSE', label: 'PSE' },
+      { value: 'FSE', label: 'FSE' },
+      { value: 'CSE', label: 'CSE' },
+      { value: 'ASE', label: 'ASE' },
+      { value: 'CJL', label: 'CJL' }
     ];
     const langLegend = 'Languages';
     const langInputName = 'lang';
     const langInputs = [
-      { value: 'en', label: 'English' },
-      { value: 'jp', label: 'Japanese' },
+      { value: 'EN', label: 'English' },
+      { value: 'JP', label: 'Japanese' },
       { value: 'others', label: 'Others' }
     ];
     const specialLegend = 'Special';
     const specialInputName = 'special';
     const specialInputs = [
       { value: 'IPSE', label: 'IPSE' },
-      { value: 'ENUP', label: 'EN-based Undergrad Program' }
+      {
+        value: 'English-based Undergraduate Program',
+        label: 'EN-based Undergrad Program'
+      }
     ];
     return (
       <FilterWrapper innerRef={this.setWrapperRef}>
@@ -93,21 +96,25 @@ class Filter extends React.Component {
           <span>Filter by (under construction)</span>
           <FilterGroupWrapper>
             <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
               legend={semesterLegend}
               inputName={semesterInputName}
               inputs={semesterInputs}
             />
             <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
               legend={schoolLegend}
               inputName={schoolInputName}
               inputs={schoolInputs}
             />
             <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
               legend={langLegend}
               inputName={langInputName}
               inputs={langInputs}
             />
             <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
               legend={specialLegend}
               inputName={specialInputName}
               inputs={specialInputs}

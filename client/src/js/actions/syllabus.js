@@ -40,11 +40,11 @@ export const fetchCourses = () => async (dispatch, getState) => {
 };
 
 //ES6 syntax also allows omitting return statement
-export const hydrateAddedCourses = (prefs, coursesById) => ({
+export const hydrateAddedCourses = (prefs, fetchedCoursesById) => ({
   type: HYDRATE_ADDED_COURSES,
   payload: {
     prefs,
-    coursesById
+    fetchedCoursesById
   }
 });
 

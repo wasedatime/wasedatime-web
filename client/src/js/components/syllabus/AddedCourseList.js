@@ -20,6 +20,7 @@ import {
 
 const CourseListWrapper = Wrapper.extend`
   flex: none;
+  margin-top: 0.2em;
   padding: 0.5em 1em 1em 1em;
   overflow-y: auto;
   height: calc(100vh - 92px);

@@ -57,11 +57,10 @@ export const addCourse = course => ({
   }
 });
 
-export const removeCourse = course => ({
+export const removeCourse = id => ({
   type: REMOVE_COURSE,
   payload: {
-    id: course._id,
-    semester: course.term
+    id
   }
 });
 

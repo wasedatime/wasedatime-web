@@ -10,7 +10,7 @@ export const regexify = string => {
   return reg;
 };
 
-export const filterCourses = (searchTerm, courses) => {
+export const searchCourses = (searchTerm, courses) => {
   const searchRegexes = tokenize(searchTerm).map(regexify);
 
   return courses.filter(course => {

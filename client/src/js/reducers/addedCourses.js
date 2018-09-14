@@ -1,32 +1,70 @@
 import { combineReducers } from 'redux';
 
-import addedById, * as fromById from './addedById';
-import addedCoursePrefs, * as fromPrefs from './addedCoursePrefs';
+import addedSemesterCourses, * as fromSemesterCourses from './addedSemesterCourses';
+
+const fallSemesters = [
+  'Fall',
+  'Fall Quarter',
+  'Winter Quarter',
+  'Intensive: Fall',
+  'Intensive: Spring & Fall',
+  'Full Year'
+];
+const springSemesters = [
+  'Spring',
+  'Spring Quarter',
+  'Summer Quarter',
+  'Intensive: Spring',
+  'Intensive: Spring & Fall',
+  'Full Year'
+];
+
+// Higher-order reducer.
+// https://redux.js.org/recipes/structuringreducers/reusingreducerlogic
+const createSemesterWrapperReducer = (reducerFunction, reducerSemesters) => {
+  return (state, action) => {
+    const { semester } = action;
+    const isInitializationCall = state === undefined;
+    if (semester in reducerSemesters || isInitializationCall) {
+      return reducerFunction(state, action);
+    }
+    return state;
+  };
+};
 
 const addedCourses = combineReducers({
-  prefs: addedCoursePrefs,
-  byId: addedById
+  fall: createSemesterWrapperReducer(addedSemesterCourses, fallSemesters),
+  spring: createSemesterWrapperReducer(addedSemesterCourses, springSemesters)
 });
 
 export default addedCourses;
 
-export const getPrefs = state => state.prefs;
+// export const getAddedCourses = (state, semester) => {
+//   const subState = semester in fallSemesters ? state.fall : state.spring;
+//   return fromSemesterCourses.getAddedCourses(subState);
+// };
 
-export const getById = state => state.byId;
+export const getPrefs = state => ({
+  fall: fromSemesterCourses.getPrefs(state.fall),
+  spring: fromSemesterCourses.getPrefs(state.spring)
+});
 
-export const getAddedCourses = state => {
-  if (!Object.keys(state.byId).length) return [];
-  return state.prefs.map(pref => (
-    fromById.getItem(state.byId, fromPrefs.getId(pref))
-  ));
-};
+export const getAddedCourses = state => ({
+  fall: fromSemesterCourses.getAddedCoursesAndPrefs(state.fall),
+  spring: fromSemesterCourses.getAddedCoursesAndPrefs(state.spring)
+});
 
-export const getAddedCoursesAndPrefs = state => {
-  if (!Object.keys(state.byId).length) return [];
-  return state.prefs.map(pref => {
-    return {
-      ...pref,
-      course: fromById.getItem(state.byId, fromPrefs.getId(pref))
-    };
-  });
-};
+// export const getAddedCoursesAndPrefs = (state, semester) => {
+//   const subState = semester in fallSemesters ? state.fall : state.spring;
+//   return fromSemesterCourses.getAddedCoursesAndPrefs(subState);
+// };
+
+export const getAddedCoursesAndPrefs = state => ({
+  fall: fromSemesterCourses.getAddedCoursesAndPrefs(state.fall),
+  spring: fromSemesterCourses.getAddedCoursesAndPrefs(state.spring)
+});
+
+export const getById = state => ({
+  ...fromSemesterCourses.getById(state.fall),
+  ...fromSemesterCourses.getById(state.spring)
+});

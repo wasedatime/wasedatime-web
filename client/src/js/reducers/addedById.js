@@ -8,11 +8,11 @@ const addedById = (state = {}, action) => {
   switch (action.type) {
     case HYDRATE_ADDED_COURSES:
       // Provide an init value of {} to the reduce function
-      return action.payload.properties.reduce((acc, property) => {
+      return action.payload.prefs.reduce((acc, pref) => {
         return {
           ...acc,
-          [property.id]: {
-            ...action.payload.coursesById[property.id]
+          [pref.id]: {
+            ...action.payload.fetchedCoursesById[pref.id]
           }
         };
       }, {});

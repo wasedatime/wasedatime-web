@@ -10,7 +10,11 @@ import { fallSemesters, springSemesters } from '../data/semesters';
 
 // Higher-order reducer.
 // https://redux.js.org/recipes/structuringreducers/reusingreducerlogic
-const createSemesterWrapperReducer = (reducerFunction, reducerSemesters) => {
+const createSemesterWrapperReducer = (
+  reducerFunction,
+  reducerName,
+  reducerSemesters
+) => {
   return (state, action) => {
     let semester = null;
     switch (action.type) {
@@ -22,20 +26,31 @@ const createSemesterWrapperReducer = (reducerFunction, reducerSemesters) => {
         }
         return state;
       case HYDRATE_ADDED_COURSES:
-        return reducerFunction(state, action);
+        const { payload, ...actionRest } = action;
+        const { prefs, ...payloadRest } = payload;
+        const newPayload = {
+          prefs: payload.prefs[reducerName],
+          ...payloadRest
+        };
+        const newAction = { payload: newPayload, ...actionRest };
+        return reducerFunction(state, newAction);
       default:
-        const isInitializationCall = state === undefined;
-        if (isInitializationCall) {
-          return reducerFunction(state, action);
-        }
-        return state;
+        return reducerFunction(state, action);
     }
   };
 };
 
 const addedCourses = combineReducers({
-  fall: createSemesterWrapperReducer(addedSemesterCourses, fallSemesters),
-  spring: createSemesterWrapperReducer(addedSemesterCourses, springSemesters)
+  fall: createSemesterWrapperReducer(
+    addedSemesterCourses,
+    'fall',
+    fallSemesters
+  ),
+  spring: createSemesterWrapperReducer(
+    addedSemesterCourses,
+    'spring',
+    springSemesters
+  )
 });
 
 export default addedCourses;
@@ -59,8 +74,8 @@ export const getAddedCourses = state => ({
 
 export const getIsAddedCoursesEmpty = state => {
   return (
-    !fromSemesterCourses.getAddedCourses(state.fall) &&
-    !fromSemesterCourses.getAddedCourses(state.spring)
+    !fromSemesterCourses.getAddedCourses(state.fall).length &&
+    !fromSemesterCourses.getAddedCourses(state.spring).length
   );
 };
 

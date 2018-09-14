@@ -35,8 +35,8 @@ const withFetchCourses = WrappedComponent => {
         fetchedCoursesById,
         hydrateAddedCourses
       } = this.props;
-      // if addedCourses is empty prefs is not empty, and courses are fetched
-      if (isAddedCoursesEmpty && isPrefsEmpty && fetchedCourseIds.length) {
+      // if prefs is not empty, addedCourses is empty, and courses are fetched
+      if (!isPrefsEmpty && isAddedCoursesEmpty && fetchedCourseIds.length) {
         hydrateAddedCourses(prefs, fetchedCoursesById);
       }
     }

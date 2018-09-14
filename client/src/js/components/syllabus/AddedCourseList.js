@@ -99,10 +99,10 @@ class AddedCourseList extends React.Component {
               <Subheading>Pro Tips!</Subheading>
               <OList>
                 <ListItem>
-                  Type only the start of the word!<br />
+                  Type only the start of the word.<br />
                   E.g., "vec calc" instead of "vector calculus"
                 </ListItem>
-                <ListItem>Use "Filter by" to narrow down your search!</ListItem>
+                <ListItem>Use "Filter by" to narrow down your search.</ListItem>
               </OList>
             </Section>
           </ExtendedArticle>

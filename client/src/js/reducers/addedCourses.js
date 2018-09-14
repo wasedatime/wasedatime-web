@@ -1,23 +1,7 @@
 import { combineReducers } from 'redux';
 
 import addedSemesterCourses, * as fromSemesterCourses from './addedSemesterCourses';
-
-const fallSemesters = [
-  'Fall',
-  'Fall Quarter',
-  'Winter Quarter',
-  'Intensive: Fall',
-  'Intensive: Spring & Fall',
-  'Full Year'
-];
-const springSemesters = [
-  'Spring',
-  'Spring Quarter',
-  'Summer Quarter',
-  'Intensive: Spring',
-  'Intensive: Spring & Fall',
-  'Full Year'
-];
+import { fallSemesters, springSemesters } from '../data/semesters';
 
 // Higher-order reducer.
 // https://redux.js.org/recipes/structuringreducers/reusingreducerlogic

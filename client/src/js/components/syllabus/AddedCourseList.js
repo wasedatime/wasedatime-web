@@ -20,10 +20,13 @@ import {
 
 const CourseListWrapper = Wrapper.extend`
   flex: none;
-  margin-top: 0.2em;
   padding: 0.5em 1em 1em 1em;
   overflow-y: auto;
   height: calc(100vh - 92px);
+`;
+
+const ExtendedArticle = Article.extend`
+  margin-top: 0.2em;
 `;
 
 class AddedCourseList extends React.Component {
@@ -70,7 +73,7 @@ class AddedCourseList extends React.Component {
             ))}
           </div>
         ) : (
-          <Article>
+          <ExtendedArticle>
             <h4>Added courses are displayed here.</h4>
             <Section>
               <Subheading>To add a course</Subheading>
@@ -107,7 +110,7 @@ class AddedCourseList extends React.Component {
                 <ListItem>Use "Filter by" to narrow down your search!</ListItem>
               </OList>
             </Section>
-          </Article>
+          </ExtendedArticle>
         )}
       </CourseListWrapper>
     );

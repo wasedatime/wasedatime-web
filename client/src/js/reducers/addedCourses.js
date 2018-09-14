@@ -19,7 +19,6 @@ const createSemesterWrapperReducer = (
     let semester = null;
     switch (action.type) {
       case ADD_COURSE:
-      case REMOVE_COURSE:
         semester = action.payload.semester;
         if (reducerSemesters.includes(semester)) {
           return reducerFunction(state, action);

@@ -1,0 +1,42 @@
+import React from 'react';
+import debounce from 'lodash/debounce';
+
+import SemesterTabs from '../../components/syllabus/SemesterTabs';
+import AddedCourseList from '../../components/syllabus/AddedCourseList';
+import { Wrapper } from '../../styled-components/Wrapper';
+import { Overlay } from '../../styled-components/Overlay';
+
+class AddedCourseListContainer extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedSemester: 'fall'
+    };
+  }
+
+  handleSemesterChange = targetSemester => {
+    if (this.state.selectedSemester !== targetSemester) {
+      this.setState({
+        selectedSemester: targetSemester
+      });
+    }
+  };
+
+  render() {
+    const { addedCourses } = this.props;
+    console.log('test');
+    return (
+      <Wrapper>
+        <Overlay>
+          <SemesterTabs
+            onSemesterChange={this.handleSemesterChange}
+            semester={this.state.selectedSemester}
+          />
+          <AddedCourseList courses={addedCourses} />
+        </Overlay>
+      </Wrapper>
+    );
+  }
+}
+
+export default AddedCourseListContainer;

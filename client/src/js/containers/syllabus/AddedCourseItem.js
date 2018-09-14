@@ -9,7 +9,7 @@ class AddedCourseItem extends React.Component {
   handleRemoveCourse = event => {
     event.preventDefault();
     const { course } = this.props;
-    this.props.removeCourse(course._id);
+    this.props.removeCourse(course);
     Alert.success('Course removed.', {
       position: 'bottom',
       effect: 'jelly'

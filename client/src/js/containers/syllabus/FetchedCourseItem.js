@@ -6,52 +6,60 @@ import { addCourse, removeCourse } from '../../actions/syllabus';
 import { getById } from '../../reducers/addedCourses';
 import CourseItem from '../../components/syllabus/CourseItem';
 
-const ADDED_COURSES_NUMBER_LIMIT = 50;
+const ADDED_COURSES_NUMBER_LIMIT = 100;
 
 class FetchedCourseItem extends React.Component {
-
   handleAddCourse = event => {
     event.preventDefault();
     const { course, byId } = this.props;
     const occurrences = course.occurrences;
     if (Object.keys(byId).length >= ADDED_COURSES_NUMBER_LIMIT) {
-      Alert.error(`Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`, {
-        position: 'bottom',
-        effect: 'jelly',
-      });
+      Alert.error(
+        `Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`,
+        {
+          position: 'bottom',
+          effect: 'jelly'
+        }
+      );
       return;
     }
-    this.props.addCourse(course._id, course);
+    this.props.addCourse(course);
     if (occurrences.some(o => o.day === -1 || o.start_period === -1)) {
-      Alert.warning('Course with undecided time cannot be displayed in timetable.', {
-        position: 'bottom',
-        effect: 'jelly',
-      });
+      Alert.warning(
+        'Course with undecided time cannot be displayed in timetable.',
+        {
+          position: 'bottom',
+          effect: 'jelly'
+        }
+      );
     } else {
       Alert.success('Course added.', {
         position: 'bottom',
-        effect: 'jelly',
+        effect: 'jelly'
       });
     }
-  }
+  };
 
   handleRemoveCourse = event => {
     event.preventDefault();
     const { course } = this.props;
-    this.props.removeCourse(course._id);
+    this.props.removeCourse(course);
     Alert.success('Course removed.', {
       position: 'bottom',
-      effect: 'jelly',
+      effect: 'jelly'
     });
-  }
+  };
 
   render() {
     const { searchTerm, course, byId } = this.props;
     const id = course._id;
     const isAddable = !(id in byId);
     return (
-      <CourseItem handleOnClick={isAddable ? this.handleAddCourse : this.handleRemoveCourse}
-        isAddable = {isAddable}
+      <CourseItem
+        handleOnClick={
+          isAddable ? this.handleAddCourse : this.handleRemoveCourse
+        }
+        isAddable={isAddable}
         searchTerm={searchTerm}
         course={course}
       />
@@ -70,6 +78,4 @@ const mapDispatchToProps = {
   removeCourse
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  FetchedCourseItem
-);
+export default connect(mapStateToProps, mapDispatchToProps)(FetchedCourseItem);

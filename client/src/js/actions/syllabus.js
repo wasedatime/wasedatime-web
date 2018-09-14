@@ -48,18 +48,20 @@ export const hydrateAddedCourses = (prefs, coursesById) => ({
   }
 });
 
-export const addCourse = (id, course) => ({
+export const addCourse = course => ({
   type: ADD_COURSE,
   payload: {
-    id,
-    course
+    id: course._id,
+    semester: course.term,
+    course: course
   }
 });
 
-export const removeCourse = id => ({
+export const removeCourse = course => ({
   type: REMOVE_COURSE,
   payload: {
-    id
+    id: course._id,
+    semester: course.term
   }
 });
 

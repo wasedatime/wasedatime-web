@@ -1,19 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faMinusCircle, faClock, faMapMarkerAlt,
-  faExternalLinkSquareAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlusCircle,
+  faMinusCircle,
+  faClock,
+  faMapMarkerAlt,
+  faExternalLinkSquareAlt
+} from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
 import { highlight } from '../../utils/react';
 import { media } from '../../utils/styledComponents';
+import { InvisibleButton } from '../../styled-components/Button';
 import fseIcon from '../../../img/syllabus-icons/fse.png';
 import cseIcon from '../../../img/syllabus-icons/cse.png';
 import aseIcon from '../../../img/syllabus-icons/ase.png';
 import pseIcon from '../../../img/syllabus-icons/pse.png';
 import silsIcon from '../../../img/syllabus-icons/sils.png';
 import cjlIcon from '../../../img/syllabus-icons/cjl.png';
-
 
 const RowWrapper = styled('li')`
   display: flex;
@@ -47,19 +52,19 @@ const CourseItemRow = styled('div')`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`
+`;
 
 const IconBadgeWrapper = styled('div')`
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
-`
+`;
 
 const SchoolIconList = styled('ul')`
   display: flex;
   flex-direction: row;
-  margin: .1em 0;
+  margin: 0.1em 0;
   padding: 0;
   list-style: none;
   list-style-type: none;
@@ -67,7 +72,7 @@ const SchoolIconList = styled('ul')`
 
 const SchoolIconItem = styled('li')`
   display: flex;
-  margin: 0 .3em 0 0;
+  margin: 0 0.3em 0 0;
   padding: 0;
 `;
 
@@ -79,23 +84,16 @@ const Badge = styled('span')`
   display: inline-block;
   background-color: #666;
   color: #fff;
-  padding: .15em .3em;
+  padding: 0.15em 0.3em;
   border: none;
-  border-radius: .2em;
-  font-size: .8em;
-  margin: .1em .3em .1em 0;
-`
+  border-radius: 0.2em;
+  font-size: 0.8em;
+  margin: 0.1em 0.3em 0.1em 0;
+`;
 
 const KeywordList = SchoolIconList.extend`
   flex-wrap: wrap;
-`
-
-const InvisibleButton = styled('button')`
-  align-self: flex-start;
-  background-color: #fff;
-  border: none;
-  padding: 0;
-`
+`;
 
 const DescriptionWrapper = styled('div')`
   display: flex;
@@ -118,12 +116,12 @@ const OccurrenceList = styled('ul')`
 `;
 
 const schoolNameIconMap = {
-  'FSE': fseIcon,
-  'CSE': cseIcon,
-  'ASE': aseIcon,
-  'PSE': pseIcon,
-  'SILS': silsIcon,
-  'CJL': cjlIcon
+  FSE: fseIcon,
+  CSE: cseIcon,
+  ASE: aseIcon,
+  PSE: pseIcon,
+  SILS: silsIcon,
+  CJL: cjlIcon
 };
 
 const mapLinkToSchoolIcon = links => {
@@ -194,58 +192,71 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
       <li key={index}>
         <span>
           <FontAwesomeIcon icon={faClock} size="1x" />&nbsp;{`${day}${period}`}
-            &nbsp;&nbsp;
-          <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" />&nbsp;{`${location}`}
+          &nbsp;&nbsp;
+          <FontAwesomeIcon
+            icon={faMapMarkerAlt}
+            size="1x"
+          />&nbsp;{`${location}`}
         </span>
       </li>
     );
   });
-  const keywords = "keywords" in course ?
-    course.keywords.map((keyword, index) => {
-      return (
-        <li key={keyword} style={{display: "inline-block"}}>
-          <Badge>
-            {keyword === "English-based Undergraduate Program" ?
-              "EN-based Undergrad Program" :
-              keyword
-            }
-          </Badge>
-        </li>
-      );
-    }) :
-    null;
-  const keywordsList = keywords !== null ?
-    <KeywordList>{keywords}</KeywordList> :
-    null;
-  const buttonIcon = <FontAwesomeIcon
-      style={isAddable ? {color: "#48af37"} : {color: "#ce0115"}}
+  const keywords =
+    'keywords' in course
+      ? course.keywords.map((keyword, index) => {
+          return (
+            <li key={keyword} style={{ display: 'inline-block' }}>
+              <Badge>
+                {keyword === 'English-based Undergraduate Program'
+                  ? 'EN-based Undergrad Program'
+                  : keyword}
+              </Badge>
+            </li>
+          );
+        })
+      : null;
+  const keywordsList =
+    keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
+  const buttonIcon = (
+    <FontAwesomeIcon
+      style={isAddable ? { color: '#48af37' } : { color: '#ce0115' }}
       icon={isAddable ? faPlusCircle : faMinusCircle}
       size="2x"
       transform="shrink-2"
-    />;
+    />
+  );
   return (
     <RowWrapper>
       <CourseItemWrapper>
-        <StyledHeading>
-          {title}
-        </StyledHeading>
+        <StyledHeading>{title}</StyledHeading>
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
             <Badge>{course.lang}</Badge>
             {keywordsList}
           </IconBadgeWrapper>
-          <div style={{display: "flex", flex: "1 0 auto", justifyContent: "flex-end"}}>
-            <a style={{alignSelf: "flex-start"}} href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`} target="_blank">
-              <FontAwesomeIcon style={{color: "#6495ED"}}
+          <div
+            style={{
+              display: 'flex',
+              flex: '1 0 auto',
+              justifyContent: 'flex-end'
+            }}
+          >
+            <a
+              style={{ alignSelf: 'flex-start' }}
+              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`}
+              target="_blank"
+            >
+              <FontAwesomeIcon
+                style={{ color: '#6495ED' }}
                 icon={faExternalLinkSquareAlt}
                 size="2x"
                 transform="shrink-2"
               />
             </a>
-          <InvisibleButton onClick={handleOnClick}>
-            {buttonIcon}
-          </InvisibleButton>
+            <InvisibleButton onClick={handleOnClick}>
+              {buttonIcon}
+            </InvisibleButton>
           </div>
         </CourseItemRow>
         <DescriptionWrapper>

@@ -20,3 +20,10 @@ export const Button = styled('button')`
     transform: translateY(3px);
   }
 `;
+
+export const InvisibleButton = styled('button')`
+  align-self: flex-start;
+  background-color: unset;
+  border: none;
+  padding: 0;
+`;

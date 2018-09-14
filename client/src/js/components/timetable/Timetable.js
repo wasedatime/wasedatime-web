@@ -1,5 +1,4 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 
 import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
@@ -7,7 +6,6 @@ import { Article, Section } from '../../styled-components/Article';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import AddedCourseAndPrefList from './AddedCourseAndPrefList';
-import withFetchCourses from '../../hocs/withFetchCourses';
 import { media } from '../../utils/styledComponents';
 
 const ExtendedRowWrapper = RowWrapper.extend`

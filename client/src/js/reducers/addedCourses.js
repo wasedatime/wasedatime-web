@@ -1,10 +1,6 @@
 import { combineReducers } from 'redux';
 
-import {
-  HYDRATE_ADDED_COURSES,
-  ADD_COURSE,
-  REMOVE_COURSE
-} from '../actions/types';
+import { HYDRATE_ADDED_COURSES, ADD_COURSE } from '../actions/types';
 import addedSemesterCourses, * as fromSemesterCourses from './addedSemesterCourses';
 import { fallSemesters, springSemesters } from '../data/semesters';
 

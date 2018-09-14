@@ -1,5 +1,4 @@
 import React from 'react';
-import debounce from 'lodash/debounce';
 
 import SemesterTabs from '../../components/syllabus/SemesterTabs';
 import AddedCourseList from '../../components/syllabus/AddedCourseList';

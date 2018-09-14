@@ -1,12 +1,7 @@
 import React from 'react';
 import stickybits from 'stickybits';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faPlusCircle,
-  faMinusCircle,
-  faAngleRight,
-  faAngleDoubleLeft
-} from '@fortawesome/free-solid-svg-icons';
+import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import AddedCourseItem from '../../containers/syllabus/AddedCourseItem';
 import { Wrapper } from '../../styled-components/Wrapper';

@@ -49,7 +49,6 @@ const withFetchCourses = WrappedComponent => {
         error,
         addedCourses,
         isAddedCoursesEmpty,
-        prefs,
         isPrefsEmpty,
         addedCoursesAndPrefs,
         fetchCourses

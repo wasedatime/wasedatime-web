@@ -9,7 +9,7 @@ import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
 
 import Header from './Header';
 import Home from './Home';
-import Timetable from './timetable/Timetable';
+import TimetableContainer from '../containers/timetable/TimetableContainer';
 import Syllabus from './syllabus/Syllabus';
 import RoomFinder from './RoomFinder';
 import FooterContainer from '../containers/FooterContainer';
@@ -37,11 +37,9 @@ const App = () => {
       <Header />
       <StyledMain>
         <Switch>
-          <Route exact path="/" render={() => (
-            <Redirect to="/timetable"/>
-          )}/>
+          <Route exact path="/" render={() => <Redirect to="/timetable" />} />
           <Route path="/about" component={Home} />
-          <Route path="/timetable" component={Timetable} />
+          <Route path="/timetable" component={TimetableContainer} />
           <Route path="/syllabus" component={Syllabus} />
           <Route path="/roomfinder" component={RoomFinder} />
           <Route path="/bus" component={Bus} />
@@ -49,7 +47,7 @@ const App = () => {
         </Switch>
       </StyledMain>
       <FooterContainer />
-      <Alert stack={{limit: 2}} timeout={3000} />
+      <Alert stack={{ limit: 2 }} timeout={3000} />
     </Wrapper>
   );
 };

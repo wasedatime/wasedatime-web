@@ -77,18 +77,18 @@ class SemesterTabs extends React.Component {
     return (
       <ExtendedWrapper innerRef={this.setWrapperRef}>
         <SemesterButton
-          id={this.fallButtonId}
-          onClick={this.handleOnClick}
-          isSelected={this.props.semester === this.fallSemester}
-        >
-          Fall Semester
-        </SemesterButton>
-        <SemesterButton
           id={this.springButtonId}
           onClick={this.handleOnClick}
           isSelected={this.props.semester === this.springSemester}
         >
           Spring Semester
+        </SemesterButton>
+        <SemesterButton
+          id={this.fallButtonId}
+          onClick={this.handleOnClick}
+          isSelected={this.props.semester === this.fallSemester}
+        >
+          Fall Semester
         </SemesterButton>
       </ExtendedWrapper>
     );

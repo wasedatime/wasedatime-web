@@ -28,7 +28,10 @@ export const fetchCourses = () => async (dispatch, getState) => {
       response: normalizedCourses
     });
   } catch (error) {
-    const response = error.response || {status: 501, statusText: "Not Implemented"};
+    const response = error.response || {
+      status: 501,
+      statusText: 'Not Implemented'
+    };
     dispatch({
       type: FETCH_COURSES_FAILURE,
       error: response

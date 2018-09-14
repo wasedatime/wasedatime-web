@@ -24,7 +24,7 @@ class AddedCourseListContainer extends React.Component {
 
   render() {
     const { addedCourses } = this.props;
-    console.log('test');
+    const courses = addedCourses[this.state.selectedSemester];
     return (
       <Wrapper>
         <Overlay>
@@ -32,7 +32,7 @@ class AddedCourseListContainer extends React.Component {
             onSemesterChange={this.handleSemesterChange}
             semester={this.state.selectedSemester}
           />
-          <AddedCourseList courses={addedCourses} />
+          <AddedCourseList courses={courses} />
         </Overlay>
       </Wrapper>
     );

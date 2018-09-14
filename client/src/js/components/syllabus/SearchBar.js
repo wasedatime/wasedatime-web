@@ -12,7 +12,7 @@ const ExtendedWrapper = RowWrapper.extend`
   align-items: center;
   height: 32px;
   width: 100%;
-  padding: 0px 12px;
+  padding: 0 1em;
   background-color: #777;
   z-index: 1030;
 `;
@@ -38,20 +38,21 @@ class SearchBar extends React.Component {
     this.wrapper = null;
     this.setWrapperRef = element => {
       this.wrapper = element;
-    }
+    };
 
     this.createStickyWrapper = () => {
       if (this.wrapper) {
-        this.stickyWrapper = stickybits(this.wrapper,
-          {stickyBitStickyOffset: 60});
+        this.stickyWrapper = stickybits(this.wrapper, {
+          stickyBitStickyOffset: 60
+        });
       }
-    }
+    };
 
     this.cleanupStickyWrapper = () => {
       if (this.stickyWrapper) {
         this.stickyWrapper.cleanup();
       }
-    }
+    };
   }
 
   componentDidMount() {
@@ -71,11 +72,7 @@ class SearchBar extends React.Component {
     return (
       <ExtendedWrapper innerRef={this.setWrapperRef}>
         <Icon>
-          <FontAwesomeIcon
-            icon={faSearch}
-            size="2x"
-            transform="shrink-4"
-          />
+          <FontAwesomeIcon icon={faSearch} size="2x" transform="shrink-4" />
         </Icon>
         <StyledForm
           onSubmit={e => {

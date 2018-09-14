@@ -11,12 +11,20 @@ import './styles/styles.css';
 
 const store = configureStore();
 
-store.subscribe(throttle(() => {
-  saveState({
-    addedCourses: {
-      prefs: store.getState().addedCourses.prefs
-    }
-  });
-}, 800));
+store.subscribe(
+  throttle(() => {
+    const addedCourses = store.getState().addedCourses;
+    saveState({
+      addedCourses: {
+        fall: {
+          prefs: addedCourses.fall.prefs
+        },
+        spring: {
+          prefs: addedCourses.spring.prefs
+        }
+      }
+    });
+  }, 800)
+);
 
 render(<Root store={store} />, document.getElementById('root'));

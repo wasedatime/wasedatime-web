@@ -68,11 +68,41 @@ class FetchedCourseSearch extends React.Component {
         semesterFilters = semesterFilters.concat(springSemesters);
       }
     }
-
     let filteredCourses =
       semesterFilters.length === 0
         ? courses
         : courses.filter(course => semesterFilters.includes(course.term));
+
+    const schoolFilters = filterGroups.school;
+    filteredCourses =
+      schoolFilters.length === 0 || schoolFilters.length === 6
+        ? filteredCourses
+        : filteredCourses.filter(course => {
+            const links = course.links;
+            for (let i = 0; i < links.length; i++) {
+              if (schoolFilters.includes(links[i].school)) return true;
+            }
+            return false;
+          });
+
+    const langFilters = filterGroups.lang;
+    filteredCourses =
+      langFilters.length === 0 || langFilters.length === 3
+        ? filteredCourses
+        : filteredCourses.filter(course => langFilters.includes(course.lang));
+
+    const specialFilters = filterGroups.special;
+    filteredCourses =
+      specialFilters.length === 0
+        ? filteredCourses
+        : filteredCourses.filter(course => {
+            const keywords = course.keywords;
+            if (keywords === undefined) return false;
+            for (let i = 0; i < keywords.length; i++) {
+              if (specialFilters.includes(keywords[i])) return true;
+            }
+            return false;
+          });
     return filteredCourses;
   };
 

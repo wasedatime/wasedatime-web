@@ -58,10 +58,11 @@ class SemesterTabs extends React.Component {
   }
 
   handleOnClick = event => {
+    event.preventDefault();
     const buttonId = event.target.id;
     const semester =
       buttonId === this.fallButtonId ? this.fallSemester : this.springSemester;
-    this.props.onSemesterChange(semester);
+    this.props.handleChangeSemester(semester);
   };
 
   componentDidMount() {

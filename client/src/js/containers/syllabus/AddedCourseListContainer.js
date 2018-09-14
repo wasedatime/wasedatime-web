@@ -14,7 +14,7 @@ class AddedCourseListContainer extends React.Component {
     };
   }
 
-  handleSemesterChange = targetSemester => {
+  handleChangeSemester = targetSemester => {
     if (this.state.selectedSemester !== targetSemester) {
       this.setState({
         selectedSemester: targetSemester
@@ -29,7 +29,7 @@ class AddedCourseListContainer extends React.Component {
       <Wrapper>
         <Overlay>
           <SemesterTabs
-            onSemesterChange={this.handleSemesterChange}
+            handleChangeSemester={this.handleChangeSemester}
             semester={this.state.selectedSemester}
           />
           <AddedCourseList courses={courses} />

@@ -123,7 +123,7 @@ class Filter extends React.Component {
     return (
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
         <FilterOverlay isSideBar={isSideBar}>
-          <FilterTitle>Filter by</FilterTitle>
+          <FilterTitle isSideBar={isSideBar}>Filter by</FilterTitle>
           <FilterGroupWrapper>
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}

@@ -10,6 +10,7 @@ const StyledFooter = styled('footer')`
   background-color: #222222;
   font-size: 1.4rem;
   font-weight: 300;
+  z-index: 3000;
 `;
 
 const StyledList = styled('ul')`
@@ -23,20 +24,22 @@ const StyledLink = styled('a')`
   color: #ffffff;
 `;
 
-const Footer = ({finishTime}) => {
+const Footer = ({ finishTime }) => {
   return (
     <StyledFooter>
       <p>{finishTime}</p>
       <StyledList>
         <li>
           <StyledLink href="https://github.com/wasetime/wasetime-web">
-          <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
+            <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
           </StyledLink>
         </li>
       </StyledList>
       <p>
         Created with&nbsp;
-        <span role="img" aria-label="Love">❤️&nbsp;</span>by&nbsp;
+        <span role="img" aria-label="Love">
+          ❤️&nbsp;
+        </span>by&nbsp;
         <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors">
           Our Contributors
         </StyledLink>

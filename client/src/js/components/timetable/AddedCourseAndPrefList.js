@@ -3,13 +3,15 @@ import React from 'react';
 import AddedCourseAndPrefItem from '../../containers/timetable/AddedCourseAndPrefItem';
 import { Wrapper } from '../../styled-components/Wrapper';
 import { UnstyledUList } from '../../styled-components/List';
+import { media } from '../../utils/styledComponents';
 
 const ExtendedUnstyledUList = UnstyledUList.extend`
-  margin-top: 2em;
   font-size: 14px;
-`
+  ${media.tablet`margin-top: 2em;`};
+  ${media.phone`margin-top: 2em;`};
+`;
 
-const AddedCourseAndPrefList = ({addedCoursesAndPrefs}) => {
+const AddedCourseAndPrefList = ({ addedCoursesAndPrefs }) => {
   return (
     <Wrapper>
       <ExtendedUnstyledUList>
@@ -18,11 +20,10 @@ const AddedCourseAndPrefList = ({addedCoursesAndPrefs}) => {
             key={addedCourseAndPref.id}
             addedCourseAndPref={addedCourseAndPref}
           />
-        ))
-        }
+        ))}
       </ExtendedUnstyledUList>
     </Wrapper>
-  )
-}
+  );
+};
 
 export default AddedCourseAndPrefList;

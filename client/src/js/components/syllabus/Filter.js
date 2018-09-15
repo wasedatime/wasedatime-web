@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 import FilterGroup from './FilterGroup';
 import { Wrapper } from '../../styled-components/Wrapper';
-import { Overlay } from '../../styled-components/Overlay';
 
 const FilterWrapper = Wrapper.extend`
   flex: none;
@@ -19,6 +18,10 @@ const FilterOverlay = styled('div')`
   padding: ${props => (props.isSideBar ? '0.5em 1em 1em 1em;' : '0.5em 0.8em')}
   background-color: ${props =>
     props.isSideBar ? 'rgba(0, 0, 0, 0.2);' : 'unset;'};
+`;
+
+const FilterTitle = styled('span')`
+  font-size: ${props => (props.isSideBar ? '1em' : '1.3em')};
 `;
 
 const FilterGroupWrapper = styled('div')`
@@ -120,7 +123,7 @@ class Filter extends React.Component {
     return (
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
         <FilterOverlay isSideBar={isSideBar}>
-          <span>Filter by</span>
+          <FilterTitle>Filter by</FilterTitle>
           <FilterGroupWrapper>
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}

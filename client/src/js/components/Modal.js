@@ -8,7 +8,6 @@ ReactModal.setAppElement('#root');
 // console.log('setAppElement called');
 
 class Modal extends React.Component {
-
   componentDidMount() {
     if (this.props.isOpen) {
       noScroll.on();
@@ -26,7 +25,14 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { closeTimeoutMS, style, overlayClassName, className, children, ...rest } = this.props;
+    const {
+      closeTimeoutMS,
+      style,
+      overlayClassName,
+      className,
+      children,
+      ...rest
+    } = this.props;
     return (
       <ReactModal
         closeTimeoutMS={closeTimeoutMS}
@@ -37,7 +43,7 @@ class Modal extends React.Component {
       >
         {children}
       </ReactModal>
-    )
+    );
   }
 }
 

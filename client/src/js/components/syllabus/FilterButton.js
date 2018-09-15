@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
+import { faFilter, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { InvisibleButton } from '../../styled-components/Button';
 
@@ -23,10 +22,14 @@ const ExtendedInvisibleButton = InvisibleButton.extend`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const FilterButton = ({ handleToggleModal }) => {
+const FilterButton = ({ isModalOpen, handleToggleModal }) => {
   return (
     <ExtendedInvisibleButton onClick={handleToggleModal}>
-      <FontAwesomeIcon icon={faFilter} size="2x" transform="shrink-3" />
+      <FontAwesomeIcon
+        icon={isModalOpen ? faTimes : faFilter}
+        size="2x"
+        transform="shrink-3"
+      />
     </ExtendedInvisibleButton>
   );
 };

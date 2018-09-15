@@ -184,7 +184,10 @@ class FetchedCourseSearch extends React.Component {
                 </SideBar>
               ) : (
                 <div>
-                  <FilterButton handleToggleModal={this.handleToggleModal} />
+                  <FilterButton
+                    isModalOpen={this.state.isModalOpen}
+                    handleToggleModal={this.handleToggleModal}
+                  />
                   <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
                     <Filter
                       filterGroups={this.state.filterGroups}

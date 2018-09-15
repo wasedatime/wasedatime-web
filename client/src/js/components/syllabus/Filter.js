@@ -16,7 +16,7 @@ const FilterOverlay = styled('div')`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  padding: 0.5em 1em 1em 1em;
+  padding: ${props => (props.isSideBar ? '0.5em 1em 1em 1em;' : '0.5em 0.8em')}
   background-color: ${props =>
     props.isSideBar ? 'rgba(0, 0, 0, 0.2);' : 'unset;'};
 `;
@@ -40,8 +40,9 @@ class Filter extends React.Component {
 
     this.createStickyWrapper = () => {
       if (this.wrapper) {
+        const offset = this.props.isSideBar ? 92 : 0;
         this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: 92
+          stickyBitStickyOffset: offset
         });
       }
     };

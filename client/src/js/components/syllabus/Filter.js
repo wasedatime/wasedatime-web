@@ -93,7 +93,7 @@ class Filter extends React.Component {
     return (
       <FilterWrapper innerRef={this.setWrapperRef}>
         <FilterOverlay>
-          <span>Filter by (under construction)</span>
+          <span>Filter by</span>
           <FilterGroupWrapper>
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}

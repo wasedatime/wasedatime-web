@@ -57,7 +57,6 @@ class Filter extends React.Component {
   }
 
   render() {
-    // TODO Consider adding detailed options like Fall Quarter?
     const semesterLegend = 'Semesters';
     const semesterInputName = 'semester';
     const semesterInputs = [

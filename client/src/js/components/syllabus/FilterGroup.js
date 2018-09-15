@@ -8,12 +8,16 @@ const StyledFieldset = styled('fieldset')`
 `;
 
 const StyledLegend = styled('legend')`
-  font-size: 16px;
+  font-size: 1.2em;
   font-weight: bold;
 `;
 
 const StyledInput = styled('input')`
   margin-right: 0.6em;
+`;
+
+const StyledLabel = styled('label')`
+  font-size: 1.2em;
 `;
 
 const FilterGroup = ({ handleToggleFilter, legend, inputs, inputName }) => {
@@ -24,11 +28,12 @@ const FilterGroup = ({ handleToggleFilter, legend, inputs, inputName }) => {
         id={input.value}
         name={inputName}
         value={input.value}
+        checked={input.isChecked}
         onChange={e => {
           handleToggleFilter(e.target.name, e.target.value);
         }}
       />
-      <label htmlFor={input.label}>{input.label}</label>
+      <StyledLabel htmlFor={input.label}>{input.label}</StyledLabel>
     </div>
   ));
 

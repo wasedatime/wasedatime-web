@@ -9,11 +9,16 @@ import { Overlay } from '../../styled-components/Overlay';
 const FilterWrapper = Wrapper.extend`
   flex: none;
   overflow-y: auto;
-  height: calc(100vh - 92px);
+  height: ${props => (props.isSideBar ? 'calc(100vh - 92px);' : '100vh;')};
 `;
 
-const FilterOverlay = Overlay.extend`
+const FilterOverlay = styled('div')`
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
   padding: 0.5em 1em 1em 1em;
+  background-color: ${props =>
+    props.isSideBar ? 'rgba(0, 0, 0, 0.2);' : 'unset;'};
 `;
 
 const FilterGroupWrapper = styled('div')`
@@ -57,12 +62,18 @@ class Filter extends React.Component {
   }
 
   render() {
+    const { filterGroups } = this.props;
     const semesterLegend = 'Semesters';
     const semesterInputName = 'semester';
     const semesterInputs = [
       { value: 'spring', label: 'Spring / Summer' },
       { value: 'fall', label: 'Fall / Winter' }
     ];
+    const checkedSemesterInputs = semesterInputs.map(input => ({
+      ...input,
+      isChecked: filterGroups[semesterInputName].includes(input.value)
+    }));
+
     const schoolLegend = 'Schools';
     const schoolInputName = 'school';
     const schoolInputs = [
@@ -73,6 +84,11 @@ class Filter extends React.Component {
       { value: 'ASE', label: 'ASE' },
       { value: 'CJL', label: 'CJL' }
     ];
+    const checkedSchoolInputs = schoolInputs.map(input => ({
+      ...input,
+      isChecked: filterGroups[schoolInputName].includes(input.value)
+    }));
+
     const langLegend = 'Languages';
     const langInputName = 'lang';
     const langInputs = [
@@ -80,6 +96,11 @@ class Filter extends React.Component {
       { value: 'JP', label: 'Japanese' },
       { value: 'others', label: 'Others' }
     ];
+    const checkedLangInputs = langInputs.map(input => ({
+      ...input,
+      isChecked: filterGroups[langInputName].includes(input.value)
+    }));
+
     const specialLegend = 'Special';
     const specialInputName = 'special';
     const specialInputs = [
@@ -89,34 +110,40 @@ class Filter extends React.Component {
         label: 'EN-based Undergrad Program'
       }
     ];
+    const checkedSpecialInputs = specialInputs.map(input => ({
+      ...input,
+      isChecked: filterGroups[specialInputName].includes(input.value)
+    }));
+
+    const { isSideBar } = this.props;
     return (
-      <FilterWrapper innerRef={this.setWrapperRef}>
-        <FilterOverlay>
+      <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
+        <FilterOverlay isSideBar={isSideBar}>
           <span>Filter by</span>
           <FilterGroupWrapper>
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
               legend={semesterLegend}
               inputName={semesterInputName}
-              inputs={semesterInputs}
+              inputs={checkedSemesterInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
               legend={schoolLegend}
               inputName={schoolInputName}
-              inputs={schoolInputs}
+              inputs={checkedSchoolInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
               legend={langLegend}
               inputName={langInputName}
-              inputs={langInputs}
+              inputs={checkedLangInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
               legend={specialLegend}
               inputName={specialInputName}
-              inputs={specialInputs}
+              inputs={checkedSpecialInputs}
             />
           </FilterGroupWrapper>
         </FilterOverlay>

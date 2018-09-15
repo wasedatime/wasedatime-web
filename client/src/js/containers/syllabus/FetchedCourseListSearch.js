@@ -6,6 +6,8 @@ import { searchCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
 import FetchedCourseList from '../../components/syllabus/FetchedCourseList';
 import Filter from '../../components/syllabus/Filter';
+import FilterButton from '../../components/syllabus/FilterButton';
+import Modal from '../../components/Modal';
 import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../utils/styledComponents';
@@ -17,10 +19,35 @@ const ExtendedWrapper = Wrapper.extend`
 
 const F_COURSE_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
 
+const modalStyle = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.75)',
+    zIndex: '1050'
+  },
+  content: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    outline: 'none',
+    fontSize: '25px'
+  }
+};
+
 class FetchedCourseSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isModalOpen: false,
       filterGroups: {
         semester: [],
         school: [],
@@ -36,6 +63,11 @@ class FetchedCourseSearch extends React.Component {
   componentWillUnmount() {
     this.debounceUpdateSearchTerm.cancel();
   }
+
+  handleToggleModal = event => {
+    event.preventDefault();
+    this.setState({ isModalOpen: !this.state.isModalOpen });
+  };
 
   handleToggleFilter = (inputName, value) => {
     const { [inputName]: filters, ...rest } = this.state.filterGroups;
@@ -143,12 +175,25 @@ class FetchedCourseSearch extends React.Component {
           <FetchedCourseList searchTerm={searchTerm} results={results} />
           <MediaQuery minWidth={sizes.desktop}>
             {matches => {
-              return (
-                matches && (
-                  <SideBar flexBasis="17em">
-                    <Filter handleToggleFilter={this.handleToggleFilter} />
-                  </SideBar>
-                )
+              return matches ? (
+                <SideBar flexBasis="20em">
+                  <Filter
+                    filterGroups={this.state.filterGroups}
+                    handleToggleFilter={this.handleToggleFilter}
+                    isSideBar={true}
+                  />
+                </SideBar>
+              ) : (
+                <div>
+                  <FilterButton handleToggleModal={this.handleToggleModal} />
+                  <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                    <Filter
+                      filterGroups={this.state.filterGroups}
+                      handleToggleFilter={this.handleToggleFilter}
+                      isSideBar={false}
+                    />
+                  </Modal>
+                </div>
               );
             }}
           </MediaQuery>

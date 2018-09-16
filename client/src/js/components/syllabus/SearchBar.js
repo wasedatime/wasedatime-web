@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import stickybits from 'stickybits';
 import PropTypes from 'prop-types';
 
@@ -26,10 +26,31 @@ const Icon = styled('div')`
 const StyledForm = styled('form')`
   width: 100%;
   align-self: center;
+  background-color: #fff;
+  padding: 0 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 const StyledInput = styled('input')`
-  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 3px;
+  margin: 0;
+  flex: 1 0 auto;
+`;
+
+const StyledClearButton = styled('span')`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: #777;
+  &:focus {
+    outline: 0;
+  }
+  -webkit-tap-highlight-color: transparent;
 `;
 
 class SearchBar extends React.Component {
@@ -64,8 +85,14 @@ class SearchBar extends React.Component {
   }
 
   handleInputChange = event => {
+    event.preventDefault();
     const inputText = event.target.value;
     this.props.onInputChange(inputText);
+  };
+
+  handleClearInput = event => {
+    event.preventDefault();
+    this.props.onInputChange('');
   };
 
   render() {
@@ -85,6 +112,13 @@ class SearchBar extends React.Component {
             value={this.props.inputText}
             onChange={this.handleInputChange}
           />
+          <StyledClearButton
+            role="button"
+            title="clear"
+            onClick={this.handleClearInput}
+          >
+            <FontAwesomeIcon icon={faTimesCircle} size="1x" />
+          </StyledClearButton>
         </StyledForm>
       </ExtendedWrapper>
     );

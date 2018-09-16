@@ -19,7 +19,7 @@ const spin = keyframes`
 
 const ExtendedWrapper = Wrapper.extend`
   flex: 1 0 0;
-`
+`;
 
 const ExtendedOverlay = Overlay.extend`
   align-items: center;
@@ -44,7 +44,7 @@ const LoadingSpinner = props => {
     <ExtendedWrapper>
       <ExtendedOverlay>
         <Logo src={logo} alt="WaseTime logo" />
-        <Description>{props.message || "Loading..."}</Description>
+        <Description>{props.message || 'Loading...'}</Description>
       </ExtendedOverlay>
     </ExtendedWrapper>
   );

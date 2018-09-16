@@ -38,7 +38,6 @@ const ScrollableTimetable = styled('div')`
 `;
 
 const Timetable = ({ addedCoursesAndPrefs }) => {
-  window.scrollTo({ top: 0 });
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(
     elem => elem.visibility === true
   );

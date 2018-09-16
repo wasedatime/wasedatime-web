@@ -14,7 +14,6 @@
     "@fortawesome/react-fontawesome": "0.1.0-11",
     "ajv": "^6.4.0",
     "axios": "^0.17.1",
-    "downshift": "^1.31.15",
     "no-scroll": "^2.1.1",
     "normalize-css": "^2.3.1",
     "normalizr": "^3.2.4",

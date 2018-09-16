@@ -8,7 +8,7 @@ import '../../styles/s-alert-custom.css';
 import 'react-s-alert/dist/s-alert-css-effects/jelly.css';
 
 import Header from './Header';
-import Home from './Home';
+import About from './About';
 import TimetableContainer from '../containers/timetable/TimetableContainer';
 import Syllabus from './syllabus/Syllabus';
 import RoomFinder from './RoomFinder';
@@ -38,7 +38,7 @@ const App = () => {
       <StyledMain>
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/timetable" />} />
-          <Route path="/about" component={Home} />
+          <Route path="/about" component={About} />
           <Route path="/timetable" component={TimetableContainer} />
           <Route path="/syllabus" component={Syllabus} />
           <Route path="/roomfinder" component={RoomFinder} />

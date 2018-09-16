@@ -29,4 +29,5 @@ export const InvisibleButton = styled('button')`
   &:focus {
     outline: 0;
   }
+  -webkit-tap-highlight-color: transparent;
 `;

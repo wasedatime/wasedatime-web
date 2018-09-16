@@ -21,9 +21,22 @@ const ExtendedRowWrapper = RowWrapper.extend`
 `;
 
 const ExtendedInvisibleButton = InvisibleButton.extend`
+  color: #000;
   &:hover {
     color: #b51e36;
   }
+  &:active {
+    color: #000;
+  }
+  ${media.tablet`
+    &:focus {
+        color: #000;
+    }`};
+  ${media.phone`
+    &:focus {
+      color: #000;
+    }
+  `};
 `;
 
 const SemesterTitle = styled('div')`

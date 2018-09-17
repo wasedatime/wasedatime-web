@@ -158,12 +158,13 @@ class FetchedCourseSearch extends React.Component {
         ? filteredCourses
         : filteredCourses.filter(course => {
             const occurrences = course.occurrences;
-            for (let i = 0; i < occurrences.length; i++) {
-              for (let j = 0; j < periodFilters.length; j++) {
-                const period = parseInt(periodFilters[i], 10);
+
+            for (let i = 0; i < periodFilters.length; i++) {
+              const period = parseInt(periodFilters[i], 10);
+              for (let j = 0; j < occurrences.length; j++) {
                 if (
-                  occurrences[i].start_period <= period &&
-                  period <= occurrences[i].end_period
+                  occurrences[j].start_period <= period &&
+                  period <= occurrences[j].end_period
                 ) {
                   return true;
                 }

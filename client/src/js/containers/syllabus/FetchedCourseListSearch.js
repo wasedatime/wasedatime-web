@@ -38,7 +38,8 @@ const modalStyle = {
     overflowY: 'auto',
     WebkitOverflowScrolling: 'touch',
     outline: 'none',
-    fontSize: '16px'
+    fontSize: '16px',
+    padding: 0
   }
 };
 
@@ -51,7 +52,9 @@ class FetchedCourseSearch extends React.Component {
         semester: [],
         school: [],
         lang: [],
-        special: []
+        special: [],
+        day: [],
+        period: []
       },
       inputText: '',
       searchTerm: '',
@@ -131,6 +134,40 @@ class FetchedCourseSearch extends React.Component {
             if (keywords === undefined) return false;
             for (let i = 0; i < keywords.length; i++) {
               if (specialFilters.includes(keywords[i])) return true;
+            }
+            return false;
+          });
+
+    const dayFilters = filterGroups.day;
+    filteredCourses =
+      dayFilters.length === 0 || dayFilters.length === 6
+        ? filteredCourses
+        : filteredCourses.filter(course => {
+            const occurrences = course.occurrences;
+            for (let i = 0; i < occurrences.length; i++) {
+              if (dayFilters.includes(occurrences[i].day.toString()))
+                return true;
+            }
+            return false;
+          });
+
+    const periodFilters = filterGroups.period;
+
+    filteredCourses =
+      periodFilters.length === 0 || periodFilters.length === 6
+        ? filteredCourses
+        : filteredCourses.filter(course => {
+            const occurrences = course.occurrences;
+            for (let i = 0; i < occurrences.length; i++) {
+              for (let j = 0; j < periodFilters.length; j++) {
+                const period = parseInt(periodFilters[i], 10);
+                if (
+                  occurrences[i].start_period <= period &&
+                  period <= occurrences[i].end_period
+                ) {
+                  return true;
+                }
+              }
             }
             return false;
           });

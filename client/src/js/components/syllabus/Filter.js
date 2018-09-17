@@ -15,7 +15,7 @@ const FilterOverlay = styled('div')`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  padding: ${props => (props.isSideBar ? '0.5em 1em 1em 1em;' : '0.5em 0.8em')}
+  padding: ${props => (props.isSideBar ? '0.5em 1em 1em 1em;' : '1.5em 1.2em;')}
   background-color: ${props =>
     props.isSideBar ? 'rgba(0, 0, 0, 0.2);' : 'unset;'};
 `;
@@ -119,6 +119,37 @@ class Filter extends React.Component {
       isChecked: filterGroups[specialInputName].includes(input.value)
     }));
 
+    const dayLegend = 'Day';
+    const dayInputName = 'day';
+    const dayInputs = [
+      { value: '1', label: 'Mon.' },
+      { value: '2', label: 'Tue.' },
+      { value: '3', label: 'Wed.' },
+      { value: '4', label: 'Thu.' },
+      { value: '5', label: 'Fri.' },
+      { value: '6', label: 'Sat.' }
+    ];
+    const checkedDayInputs = dayInputs.map(input => ({
+      ...input,
+      isChecked: filterGroups[dayInputName].includes(input.value)
+    }));
+
+    const periodLegend = 'Period';
+    const periodInputName = 'period';
+    const periodInputs = [
+      { value: '1', label: '1' },
+      { value: '2', label: '2' },
+      { value: '3', label: '3' },
+      { value: '4', label: '4' },
+      { value: '5', label: '5' },
+      { value: '6', label: '6' },
+      { value: '7', label: '7' }
+    ];
+    const checkedPeriodInputs = periodInputs.map(input => ({
+      ...input,
+      isChecked: filterGroups[periodInputName].includes(input.value)
+    }));
+
     const { isSideBar } = this.props;
     return (
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
@@ -148,6 +179,18 @@ class Filter extends React.Component {
               legend={specialLegend}
               inputName={specialInputName}
               inputs={checkedSpecialInputs}
+            />
+            <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
+              legend={dayLegend}
+              inputName={dayInputName}
+              inputs={checkedDayInputs}
+            />
+            <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
+              legend={periodLegend}
+              inputName={periodInputName}
+              inputs={checkedPeriodInputs}
             />
           </FilterGroupWrapper>
         </FilterOverlay>

@@ -1,6 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import {
+  ADDED_ORDER,
+  COURSE_TITLE,
+  COURSE_TIME
+} from '../../data/sortingOptions';
 import { changeCoursesSortingOption } from '../../actions/syllabus';
 import { getSortingOption } from '../../reducers/addedSemesterCourses';
 import SortingOptions from '../../components/SortingOptions';
@@ -59,9 +64,59 @@ class AddedCourseAndPrefListContainer extends React.Component {
     }
   };
 
+  sortAddedCoursesAndPrefs = (addedCoursesAndPrefs, sortingOption) => {
+    switch (sortingOption) {
+      case ADDED_ORDER:
+        return addedCoursesAndPrefs;
+      case COURSE_TITLE:
+        return addedCoursesAndPrefs.sort((a, b) => {
+          // ignore upper and lowercase
+          const courseTitleA = a.course.title.toUpperCase();
+          const courseTitleB = b.course.title.toUpperCase();
+          if (courseTitleA < courseTitleB) {
+            return -1;
+          } else if (courseTitleA > courseTitleB) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
+      case COURSE_TIME:
+        return addedCoursesAndPrefs.sort((a, b) => {
+          const firstOccurrenceDayA = a.course.occurrences[0].day;
+          const firstOccurrenceDayB = b.course.occurrences[0].day;
+          const firstOccurrenceStartPeriodA =
+            a.course.occurrences[0].start_period;
+          const firstOccurrenceStartPeriodB =
+            b.course.occurrences[0].start_period;
+          if (firstOccurrenceDayA < firstOccurrenceDayB) {
+            return -1;
+          } else if (firstOccurrenceDayA > firstOccurrenceDayB) {
+            return 1;
+          } else {
+            if (firstOccurrenceStartPeriodA < firstOccurrenceStartPeriodB) {
+              return -1;
+            } else if (
+              firstOccurrenceStartPeriodA > firstOccurrenceStartPeriodB
+            ) {
+              return 1;
+            } else {
+              return 0;
+            }
+          }
+        });
+      default:
+        return addedCoursesAndPrefs;
+    }
+  };
+
   render() {
-    const addedCoursesAndPrefs = this.props.addedCoursesAndPrefs;
+    const { addedCoursesAndPrefs, sortingOption } = this.props;
     const isSortingOptionOpen = this.state.isSortingOptionOpen;
+    const sortedAddedCoursesAndPrefs = this.sortAddedCoursesAndPrefs(
+      addedCoursesAndPrefs,
+      sortingOption
+    );
     return (
       <ExtendedWrapper>
         <CourseAddedMessageWrapper>
@@ -87,7 +142,9 @@ class AddedCourseAndPrefListContainer extends React.Component {
             handleChangeSortingOption={this.handleChangeSortingOption}
           />
         )}
-        <AddedCourseAndPrefList addedCoursesAndPrefs={addedCoursesAndPrefs} />
+        <AddedCourseAndPrefList
+          addedCoursesAndPrefs={sortedAddedCoursesAndPrefs}
+        />
       </ExtendedWrapper>
     );
   }

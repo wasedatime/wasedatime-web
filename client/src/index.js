@@ -17,10 +17,12 @@ store.subscribe(
     saveState({
       addedCourses: {
         fall: {
-          prefs: addedCourses.fall.prefs
+          prefs: addedCourses.fall.prefs,
+          sortingOption: addedCourses.fall.sortingOption
         },
         spring: {
-          prefs: addedCourses.spring.prefs
+          prefs: addedCourses.spring.prefs,
+          sortingOption: addedCourses.spring.sortingOption
         }
       }
     });

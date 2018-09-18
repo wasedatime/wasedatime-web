@@ -68,25 +68,31 @@ class FetchedCourseSearch extends React.Component {
 
   handleToggleModal = event => {
     event.preventDefault();
-    this.setState({ isModalOpen: !this.state.isModalOpen });
+    this.setState((prevState, props) => {
+      return {
+        isModalOpen: !prevState.isModalOpen
+      };
+    });
   };
 
   handleToggleFilter = (inputName, value) => {
-    const { [inputName]: filters, ...rest } = this.state.filterGroups;
-    const newFilters = filters.includes(value)
-      ? filters.filter(elem => elem !== value)
-      : [...filters, value];
-    const newFilterGroups = {
-      [inputName]: newFilters,
-      ...rest
-    };
-    const newFilteredCourses = this.filterCourses(
-      newFilterGroups,
-      this.props.fetchedCourses
-    );
-    this.setState({
-      filterGroups: newFilterGroups,
-      filteredCourses: newFilteredCourses
+    this.setState((prevState, props) => {
+      const { [inputName]: filters, ...rest } = prevState.filterGroups;
+      const newFilters = filters.includes(value)
+        ? filters.filter(elem => elem !== value)
+        : [...filters, value];
+      const newFilterGroups = {
+        [inputName]: newFilters,
+        ...rest
+      };
+      const newFilteredCourses = this.filterCourses(
+        newFilterGroups,
+        this.props.fetchedCourses
+      );
+      return {
+        filterGroups: newFilterGroups,
+        filteredCourses: newFilteredCourses
+      };
     });
   };
 
@@ -176,8 +182,10 @@ class FetchedCourseSearch extends React.Component {
   };
 
   updateSearchTerm = () => {
-    this.setState({
-      searchTerm: this.state.inputText
+    this.setState((prevState, props) => {
+      return {
+        searchTerm: prevState.inputText
+      };
     });
   };
 

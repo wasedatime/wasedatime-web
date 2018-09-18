@@ -3,7 +3,6 @@ import React from 'react';
 import AddedCourseAndPrefItem from '../../containers/timetable/AddedCourseAndPrefItem';
 import { Wrapper } from '../../styled-components/Wrapper';
 import { UnstyledUList } from '../../styled-components/List';
-import { media } from '../../utils/styledComponents';
 
 const ExtendedUnstyledUList = UnstyledUList.extend`
   font-size: 14px;

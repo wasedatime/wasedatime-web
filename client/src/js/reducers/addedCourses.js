@@ -35,7 +35,6 @@ const createSemesterWrapperReducer = (
         return reducerFunction(state, newAction);
       case CHANGE_COURSES_SORTING_OPTION:
         semester = action.payload.semester;
-        console.log(semester);
         return semester === reducerName
           ? reducerFunction(state, action)
           : state;

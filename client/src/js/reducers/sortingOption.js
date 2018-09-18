@@ -1,4 +1,4 @@
-import { ADDED_ORDER, COURSE_TITLE, COURSE_TIME } from '../data/sortingOptions';
+import { ADDED_ORDER } from '../data/sortingOptions';
 import { CHANGE_COURSES_SORTING_OPTION } from '../actions/types';
 
 const sortingOption = (state = ADDED_ORDER, action) => {

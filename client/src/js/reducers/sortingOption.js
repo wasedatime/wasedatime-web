@@ -11,3 +11,5 @@ const sortingOption = (state = ADDED_ORDER, action) => {
 };
 
 export default sortingOption;
+
+export const getSortingOption = state => state;

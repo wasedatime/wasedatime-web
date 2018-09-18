@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import addedById, * as fromById from './addedById';
 import addedCoursePrefs, * as fromPrefs from './addedCoursePrefs';
-import sortingOption from './sortingOption';
+import sortingOption, * as fromSortingOption from './sortingOption';
 
 const addedSemesterCourses = combineReducers({
   prefs: addedCoursePrefs,
@@ -31,4 +31,8 @@ export const getAddedCoursesAndPrefs = state => {
       course: fromById.getItem(state.byId, fromPrefs.getId(pref))
     };
   });
+};
+
+export const getSortingOption = state => {
+  return fromSortingOption.getSortingOption(state.sortingOption);
 };

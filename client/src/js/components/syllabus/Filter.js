@@ -1,5 +1,7 @@
 import React from 'react';
 import stickybits from 'stickybits';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 import FilterGroup from './FilterGroup';
@@ -21,6 +23,8 @@ const FilterOverlay = styled('div')`
 `;
 
 const FilterTitle = styled('span')`
+  display: flex;
+  align-items: center;
   font-size: ${props => (props.isSideBar ? '1em' : '1.3em')};
 `;
 
@@ -154,7 +158,10 @@ class Filter extends React.Component {
     return (
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
         <FilterOverlay isSideBar={isSideBar}>
-          <FilterTitle isSideBar={isSideBar}>Filter by</FilterTitle>
+          <FilterTitle isSideBar={isSideBar}>
+            Filter by&nbsp;
+            <FontAwesomeIcon icon={faFilter} size="1x" />
+          </FilterTitle>
           <FilterGroupWrapper>
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}

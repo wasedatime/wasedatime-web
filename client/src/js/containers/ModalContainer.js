@@ -9,33 +9,40 @@ class ModalContainer extends React.Component {
     super(props);
     this.state = {
       showModal: false
-    }
+    };
   }
 
   //Avoid creating an arrow function wrapper and binds in render.
   handleToggleModal = () => {
-    this.setState({ showModal: !this.state.showModal });
-  }
+    this.setState((prevState, props) => {
+      return { showModal: !this.state.showModal };
+    });
+  };
 
   render() {
-    const {linkText, text, children} = this.props;
-    const {showModal} = this.state;
+    const { linkText, text, children } = this.props;
+    const { showModal } = this.state;
     //TODO remove styling from container components
     return (
       <div>
         <span>
-          <a style={{color: '#0000FF', textDecoration: 'underline', cursor: 'pointer'}}
-            onClick={this.handleToggleModal}>
-          {linkText}
-          </a>
-          {' '}{text}
+          <a
+            style={{
+              color: '#0000FF',
+              textDecoration: 'underline',
+              cursor: 'pointer'
+            }}
+            onClick={this.handleToggleModal}
+          >
+            {linkText}
+          </a>{' '}
+          {text}
         </span>
-        {showModal &&
-          <BusModal onClose={this.handleToggleModal}>
-            {children}
-          </BusModal>}
+        {showModal && (
+          <BusModal onClose={this.handleToggleModal}>{children}</BusModal>
+        )}
       </div>
-    )
+    );
   }
 }
 

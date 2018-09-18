@@ -80,9 +80,10 @@ export const toggleCourseVisibility = id => ({
   }
 });
 
-export const changeCoursesSortingOption = sortingOption => ({
+export const changeCoursesSortingOption = (sortingOption, semester) => ({
   type: CHANGE_COURSES_SORTING_OPTION,
   payload: {
-    sortingOption
+    sortingOption,
+    semester
   }
 });

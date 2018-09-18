@@ -1,7 +1,7 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
 
-import AddedCourseListContainer from '../../containers/syllabus/AddedCourseListContainer';
+import AddedCourseListSwitch from '../../containers/syllabus/AddedCourseListSwitch';
 import FetchedCourseListSearch from '../../containers/syllabus/FetchedCourseListSearch';
 import { RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
@@ -20,7 +20,7 @@ const SyllabusSearch = props => {
         {matches =>
           matches && (
             <SideBar flexBasis="21em">
-              <AddedCourseListContainer addedCourses={addedCourses} />
+              <AddedCourseListSwitch addedCourses={addedCourses} />
             </SideBar>
           )
         }

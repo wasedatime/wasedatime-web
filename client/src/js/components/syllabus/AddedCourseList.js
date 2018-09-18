@@ -3,6 +3,7 @@ import stickybits from 'stickybits';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
+import CourseListSummary from '../CourseListSummary';
 import AddedCourseItem from '../../containers/syllabus/AddedCourseItem';
 import { Wrapper } from '../../styled-components/Wrapper';
 import {
@@ -57,13 +58,25 @@ class AddedCourseList extends React.Component {
   }
 
   render() {
-    const { courses } = this.props;
+    const {
+      addedCourses,
+      isSortingOptionOpen,
+      handleToggleSortingOptions,
+      selectedSortingOption,
+      handleChangeSortingOption
+    } = this.props;
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>
-        <span>{`${courses.length} courses added `}</span>
-        {courses.length ? (
+        <CourseListSummary
+          courses={addedCourses}
+          isSortingOptionOpen={isSortingOptionOpen}
+          handleToggleSortingOptions={handleToggleSortingOptions}
+          selectedSortingOption={selectedSortingOption}
+          handleChangeSortingOption={handleChangeSortingOption}
+        />
+        {addedCourses.length ? (
           <div style={{ fontSize: '14px' }}>
-            {courses.map((course, index) => (
+            {addedCourses.map((course, index) => (
               <AddedCourseItem key={course._id} course={course} />
             ))}
           </div>

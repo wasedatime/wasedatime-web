@@ -1,41 +1,66 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import SemesterTabs from '../../components/syllabus/SemesterTabs';
+import { changeCoursesSortingOption } from '../../actions/syllabus';
+import { getSortingOption } from '../../reducers/addedSemesterCourses';
+import { sortAddedCourses } from '../../utils/addedCourses';
 import AddedCourseList from '../../components/syllabus/AddedCourseList';
-import { Wrapper } from '../../styled-components/Wrapper';
-import { Overlay } from '../../styled-components/Overlay';
 
 class AddedCourseListContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedSemester: 'fall'
+      isSortingOptionOpen: false
     };
   }
 
-  handleChangeSemester = targetSemester => {
-    if (this.state.selectedSemester !== targetSemester) {
-      this.setState({
-        selectedSemester: targetSemester
-      });
+  handleToggleSortingOptions = event => {
+    event.preventDefault();
+    this.setState((prevState, props) => {
+      return { isSortingOptionOpen: !prevState.isSortingOptionOpen };
+    });
+  };
+
+  handleChangeSortingOption = sortingOption => {
+    if (sortingOption !== this.props.sortingOption) {
+      this.props.changeCoursesSortingOption(
+        sortingOption,
+        this.props.semesterKey
+      );
     }
   };
 
   render() {
-    const { addedCourses } = this.props;
-    const courses = addedCourses[this.state.selectedSemester];
+    const { addedCourses, selectedSortingOption } = this.props;
+    const isSortingOptionOpen = this.state.isSortingOptionOpen;
+    const sortedAddedCourses = sortAddedCourses(
+      addedCourses,
+      selectedSortingOption
+    );
     return (
-      <Wrapper>
-        <Overlay>
-          <SemesterTabs
-            handleChangeSemester={this.handleChangeSemester}
-            semester={this.state.selectedSemester}
-          />
-          <AddedCourseList courses={courses} />
-        </Overlay>
-      </Wrapper>
+      <AddedCourseList
+        addedCourses={sortedAddedCourses}
+        isSortingOptionOpen={isSortingOptionOpen}
+        handleToggleSortingOptions={this.handleToggleSortingOptions}
+        selectedSortingOption={selectedSortingOption}
+        handleChangeSortingOption={this.handleChangeSortingOption}
+      />
     );
   }
 }
 
-export default AddedCourseListContainer;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    selectedSortingOption: getSortingOption(
+      state.addedCourses[ownProps.semesterKey]
+    )
+  };
+};
+
+const mapDispatchToProps = {
+  changeCoursesSortingOption
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  AddedCourseListContainer
+);

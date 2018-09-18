@@ -9,7 +9,8 @@ import {
   ADD_COURSE,
   REMOVE_COURSE,
   CHANGE_COURSE_COLOR,
-  TOGGLE_COURSE_VISIBILITY
+  TOGGLE_COURSE_VISIBILITY,
+  CHANGE_COURSES_SORTING_OPTION
 } from './types';
 import * as schema from '../data/schema';
 import { wasetimeApiStatic } from '../api/index';
@@ -76,5 +77,12 @@ export const toggleCourseVisibility = id => ({
   type: TOGGLE_COURSE_VISIBILITY,
   payload: {
     id
+  }
+});
+
+export const changeCoursesSortingOption = sortingOption => ({
+  type: CHANGE_COURSES_SORTING_OPTION,
+  payload: {
+    sortingOption
   }
 });

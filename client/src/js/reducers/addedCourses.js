@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux';
 
-import { HYDRATE_ADDED_COURSES, ADD_COURSE } from '../actions/types';
+import {
+  HYDRATE_ADDED_COURSES,
+  ADD_COURSE,
+  CHANGE_COURSES_SORTING_OPTION
+} from '../actions/types';
 import addedSemesterCourses, * as fromSemesterCourses from './addedSemesterCourses';
 import { fallSemesters, springSemesters } from '../data/semesters';
 
@@ -29,6 +33,12 @@ const createSemesterWrapperReducer = (
         };
         const newAction = { payload: newPayload, ...actionRest };
         return reducerFunction(state, newAction);
+      case CHANGE_COURSES_SORTING_OPTION:
+        semester = action.payload.semester;
+        console.log(semester);
+        return semester === reducerName
+          ? reducerFunction(state, action)
+          : state;
       default:
         return reducerFunction(state, action);
     }

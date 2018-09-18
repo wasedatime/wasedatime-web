@@ -3,7 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { fetchCourses } from '../../actions/syllabus';
-import { getIsFetching, getCourses, getError } from '../../reducers/fetchedCourses';
+import {
+  getIsFetching,
+  getCourses,
+  getError
+} from '../../reducers/fetchedCourses';
 import { filterCourses, sortCourses } from '../../utils/courseSearch';
 import CourseAdder from '../../components/timetable/CourseAdder';
 // import LoadingSpinner from '../components/LoadingSpinner';
@@ -25,14 +29,12 @@ class CourseAdderContainer extends React.Component {
       return sortCourses(searchTerm, filteredCourses.slice(0, RESULTS_LIMIT));
     }
     return this.props.courses.slice(0, RESULTS_LIMIT);
-  }
+  };
 
   render() {
     const { isFetching, courses, error, fetchCourses } = this.props;
     if (isFetching && !courses.length) {
-      return (
-        <span>Loading...</span>
-      );
+      return <span>Loading...</span>;
     }
 
     if (error && !courses.length) {

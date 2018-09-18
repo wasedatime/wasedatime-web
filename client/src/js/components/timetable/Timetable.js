@@ -5,7 +5,7 @@ import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import { Article, Section } from '../../styled-components/Article';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
-import AddedCourseAndPrefList from './AddedCourseAndPrefList';
+import AddedCourseAndPrefListContainer from '../../containers/timetable/AddedCourseAndPrefListContainer';
 import { media } from '../../utils/styledComponents';
 
 const ExtendedRowWrapper = RowWrapper.extend`
@@ -37,7 +37,7 @@ const ScrollableTimetable = styled('div')`
   -webkit-overflow-scrolling: touch;
 `;
 
-const Timetable = ({ addedCoursesAndPrefs }) => {
+const Timetable = ({ addedCoursesAndPrefs, semesterKey }) => {
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(
     elem => elem.visibility === true
   );
@@ -86,7 +86,10 @@ const Timetable = ({ addedCoursesAndPrefs }) => {
               </Article>
             </Wrapper>
           )}
-          <AddedCourseAndPrefList addedCoursesAndPrefs={addedCoursesAndPrefs} />
+          <AddedCourseAndPrefListContainer
+            addedCoursesAndPrefs={addedCoursesAndPrefs}
+            semesterKey={semesterKey}
+          />
         </Wrapper>
       </Column>
     </ExtendedRowWrapper>

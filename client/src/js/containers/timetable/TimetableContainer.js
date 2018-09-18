@@ -60,7 +60,10 @@ class TimetableContainer extends React.Component {
           handleIncreaseSemesterIndex={this.handleIncreaseSemesterIndex}
           handleDecreaseSemesterIndex={this.handleDecreaseSemesterIndex}
         />
-        <Timetable addedCoursesAndPrefs={addedCoursesAndPrefs} />
+        <Timetable
+          addedCoursesAndPrefs={addedCoursesAndPrefs}
+          semesterKey={key}
+        />
       </Wrapper>
     );
   }

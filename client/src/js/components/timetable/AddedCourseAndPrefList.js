@@ -7,6 +7,7 @@ import { media } from '../../utils/styledComponents';
 import { UnstyledUList } from '../../styled-components/List';
 
 const ExtendedWrapper = Wrapper.extend`
+  padding: 0 1em;
   ${media.tablet`margin-top: 2em;`};
   ${media.phone`margin-top: 2em;`};
 `;

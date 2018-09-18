@@ -1,14 +1,10 @@
 import React from 'react';
 
 import SortingOptions from './SortingOptions';
-import { Wrapper, RowWrapper } from '../styled-components/Wrapper';
+import { RowWrapper } from '../styled-components/Wrapper';
 import { InvisibleButton } from '../styled-components/Button';
-import { media } from '../utils/styledComponents';
 
 const CourseAddedMessageWrapper = RowWrapper.extend`
-  padding: 0.3em 1em;
-  ${media.tablet`padding: 0 1em;`};
-  ${media.phone`padding: 0 1em;`};
   justify-content: space-between;
 `;
 
@@ -34,7 +30,7 @@ const CourseListSummary = ({
   handleChangeSortingOption
 }) => {
   return (
-    <Wrapper>
+    <div>
       <CourseAddedMessageWrapper>
         <span>{`${courses.length} courses added `}</span>
         <SortByButton
@@ -58,7 +54,7 @@ const CourseListSummary = ({
           handleChangeSortingOption={handleChangeSortingOption}
         />
       )}
-    </Wrapper>
+    </div>
   );
 };
 

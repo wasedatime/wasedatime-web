@@ -5,7 +5,7 @@ import { RowWrapper } from '../styled-components/Wrapper';
 import { InvisibleButton } from '../styled-components/Button';
 
 const ExtendedRowWrapper = RowWrapper.extend`
-  padding: 0.3em 1em;
+  padding: 0.3em 0;
   justify-content: space-between;
 `;
 

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import smoothScroll from 'smoothscroll';
 
-import { media } from '../utils/styledComponents';
+import { media } from '../styled-components/utils';
 import { Wrapper, WrapperWithBackground } from '../styled-components/Wrapper';
 import { Overlay } from '../styled-components/Overlay';
+import { InvisibleButton } from '../styled-components/Button';
 import homeBackground from '../../img/home_background.jpg';
 import homeBackgroundPhone from '../../img/home_background-phone.jpg';
 import mainBackground from '../../img/main_campus.jpg';
@@ -18,59 +19,8 @@ import syllabusResult from '../../img/syllabusResult-480.gif';
 import bus from '../../img/bus-480.gif';
 import roomFinder from '../../img/roomFinder-480.gif';
 
-const slideUpIn = keyframes`
-  from {
-    transform: translateY(34vh);
-  }
-  to {
-    transform: translateY(14vh);
-  }
-`;
-
-const slideUpInMobile = keyframes`
-  from {
-    transform: translateY(25vh);
-  }
-  to {
-    transform: translateY(5vh);
-  }
-`;
-
-const spinner = keyframes`
-  from {
-    transform: rotateY(360deg);
-  }
-  15% {
-    transform: rotateY(-360deg);
-  }
-  30% {
-    transform: rotateY(0deg);
-  }
-  45% {
-    transform: rotateY(360deg);
-  }
-  60% {
-    transform: rotateY(180deg);
-  }
-  to {
-    transform: rotateY(0deg);
-  }
-`;
-
-const bounce = keyframes`
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-30px);
-  }
-  60% {
-    transform: translateY(-15px);
-  }
-`;
-
 const HomeWrapper = WrapperWithBackground.extend`
-  min-height: calc(100vh - 75px);
+  min-height: calc(100vh - 60px);
 `;
 
 const ExtendedOverlay = Overlay.extend`
@@ -87,30 +37,19 @@ const StyledHeader = styled('header')`
 
 const LogoWrapper = styled('div')`
   text-align: center;
-  transform: translate(0, 13vh);
-  ${media.phone`transform: translate(0, 6vh);`};
+  transform: translate(0, 6vh);
 `;
 
 const Logo = styled('img')`
   width: 120px;
   height: 120px;
-  animation-name: ${spinner};
-  animation-timing-function: linear;
-  animation-duration: 1.5s;
-  transform-style: preserve-3d;
   ${media.phone`width: 100px; height: 100px;`};
 `;
 
 const Introduction = styled('div')`
   text-align: center;
   max-width: 100%;
-  transform: translate(0, 14vh);
-  animation-delay: 0ms;
-  animation-name: ${slideUpIn};
-  animation-duration: 1000ms;
-  animation-timing-function: cubic-bezier(0.175, 0.885, 0.5, 1.275);
-  animation-fill-mode: forwards;
-  ${media.phone`animation-name: ${slideUpInMobile}; transform: translate(0, 8vh);`};
+  transform: translate(0, 6vh);
 `;
 
 const MainHeading = styled('h1')`
@@ -129,15 +68,11 @@ const Description = styled('p')`
   ${media.phone`font-size: 2.2rem;`};
 `;
 
-const GetStartedButton = styled('button')`
+const LearnMoreButton = InvisibleButton.extend`
   align-self: center;
   text-align: center;
   background: transparent;
   border: none !important;
-  animation-name: ${bounce};
-  animation-timing-function: linear;
-  animation-duration: 1.5s;
-  animation-delay: 1.5s;
   z-index: 1000;
   text-shadow: 0px 0px 3px #000000;
 `;
@@ -202,9 +137,15 @@ const Home = () => {
     <Wrapper>
       <Helmet>
         <title>WaseTime - Home</title>
-        <meta name="description" content="An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University." />
+        <meta
+          name="description"
+          content="An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University."
+        />
         <meta property="og:title" content="WaseTime - Home" />
-        <meta property="og:description" content="An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University." />
+        <meta
+          property="og:description"
+          content="An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University."
+        />
         <meta property="og:site_name" content="WaseTime - Home" />
       </Helmet>
       <HomeWrapper
@@ -224,10 +165,10 @@ const Home = () => {
               </Description>
             </Introduction>
           </StyledHeader>
-          <GetStartedButton onClick={clickHandler}>
-            <Description>Get Started</Description>
+          <LearnMoreButton onClick={clickHandler}>
+            <Description>Learn More</Description>
             <Arrow src={arrow} alt="Scroll Down Arrow" id="get-started" />
-          </GetStartedButton>
+          </LearnMoreButton>
         </ExtendedOverlay>
       </HomeWrapper>
       <StyledSection>

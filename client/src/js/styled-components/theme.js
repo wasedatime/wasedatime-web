@@ -11,6 +11,8 @@ const shades = {
 };
 
 export const normalTheme = {
+  ...shades,
+
   //main colors
   colorPrimary: '#b51e36',
 
@@ -24,6 +26,8 @@ export const normalTheme = {
 };
 
 export const darkTheme = {
+  ...shades,
+
   //main colors
   colorPrimary: '#b51e36',
 

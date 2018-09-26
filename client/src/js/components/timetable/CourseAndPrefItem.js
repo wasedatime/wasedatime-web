@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 
 import { PopperBox, Arrow } from '../../styled-components/ColorPopper';
 import ColorSelector from './ColorSelector';
-import { media } from '../../utils/styledComponents';
+import { media } from '../../styled-components/utils';
 
 const RowWrapper = styled('li')`
   display: flex;

@@ -8,7 +8,7 @@ import styled from 'styled-components';
 import ModalContainer from '../containers/ModalContainer';
 // TODO use react-modal
 // import Modal from './Modal';
-import { media } from '../utils/styledComponents';
+import { media } from '../styled-components/utils';
 import { Wrapper } from '../styled-components/Wrapper';
 import { Overlay } from '../styled-components/Overlay';
 import busSchedule from '../data/busSchedule.json';

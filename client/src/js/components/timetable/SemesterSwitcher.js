@@ -8,7 +8,7 @@ import styled from 'styled-components';
 
 import { InvisibleButton } from '../../styled-components/Button';
 import { RowWrapper } from '../../styled-components/Wrapper';
-import { media } from '../../utils/styledComponents';
+import { media } from '../../styled-components/utils';
 
 const ExtendedRowWrapper = RowWrapper.extend`
   flex: none;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { media } from '../../utils/styledComponents';
+import { media } from '../../styled-components/utils';
 
 const StyledCourseColumn = styled('div')`
   display: flex;

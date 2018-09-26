@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { media } from '../utils/styledComponents';
+import { media } from '../styled-components/utils';
 import { Wrapper } from '../styled-components/Wrapper';
 import { Overlay } from '../styled-components/Overlay';
 import logo from '../../img/logo.png';

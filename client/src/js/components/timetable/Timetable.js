@@ -6,7 +6,7 @@ import { Article, Section } from '../../styled-components/Article';
 import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import AddedCourseAndPrefListContainer from '../../containers/timetable/AddedCourseAndPrefListContainer';
-import { media } from '../../utils/styledComponents';
+import { media } from '../../styled-components/utils';
 
 const ExtendedRowWrapper = RowWrapper.extend`
   flex-wrap: wrap;

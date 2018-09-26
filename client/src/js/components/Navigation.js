@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faBook, faBuilding,
   faBus } from '@fortawesome/free-solid-svg-icons';
 
-import { media } from '../utils/styledComponents';
+import { media } from '../styled-components/utils';
 
 const StyledNav = styled('nav')`
   display: flex;

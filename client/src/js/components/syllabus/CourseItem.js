@@ -11,7 +11,7 @@ import {
 import PropTypes from 'prop-types';
 
 import { highlight } from '../../utils/react';
-import { media } from '../../utils/styledComponents';
+import { media } from '../../styled-components/utils';
 import { InvisibleButton } from '../../styled-components/Button';
 import fseIcon from '../../../img/syllabus-icons/fse.png';
 import cseIcon from '../../../img/syllabus-icons/cse.png';

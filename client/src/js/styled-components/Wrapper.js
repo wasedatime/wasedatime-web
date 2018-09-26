@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { media } from '../utils/styledComponents';
+import { media } from '../styled-components/utils';
 
 export const Wrapper = styled('div')`
   display: flex;
@@ -12,7 +12,7 @@ export const RowWrapper = styled('div')`
   display: flex;
   flex-direction: row;
   flex: 1 0 auto;
-`
+`;
 
 export const WrapperWithBackground = Wrapper.extend`
   background-image: url(${props => props.background});

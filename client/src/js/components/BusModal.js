@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import styled, {keyframes} from 'styled-components';
 
-import { media } from '../utils/styledComponents';
+import { media } from '../styled-components/utils';
 import {Overlay} from '../styled-components/Overlay';
 
 const show = keyframes`

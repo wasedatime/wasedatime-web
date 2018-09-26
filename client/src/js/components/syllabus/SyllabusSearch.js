@@ -5,7 +5,7 @@ import AddedCourseListSwitch from '../../containers/syllabus/AddedCourseListSwit
 import FetchedCourseListSearch from '../../containers/syllabus/FetchedCourseListSearch';
 import { RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
-import { sizes } from '../../utils/styledComponents';
+import { sizes } from '../../styled-components/utils';
 import withFetchCourses from '../../hocs/withFetchCourses';
 
 const ExtendedRowWrapper = RowWrapper.extend`

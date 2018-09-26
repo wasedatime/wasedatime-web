@@ -3,7 +3,7 @@ import React from 'react';
 import CourseListSummary from '../CourseListSummary';
 import AddedCourseAndPrefItem from '../../containers/timetable/AddedCourseAndPrefItem';
 import { Wrapper } from '../../styled-components/Wrapper';
-import { media } from '../../utils/styledComponents';
+import { media } from '../../styled-components/utils';
 import { UnstyledUList } from '../../styled-components/List';
 
 const ExtendedWrapper = Wrapper.extend`

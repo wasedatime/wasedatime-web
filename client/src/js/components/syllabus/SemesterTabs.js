@@ -8,21 +8,22 @@ const ExtendedWrapper = RowWrapper.extend`
   flex: none;
   align-items: center;
   justify-content: space-around;
-  height: 32px;
+  height: ${props => props.theme.semesterTabsHeight};
   width: 100%;
-  background-color: #777;
+  background-color: ${props => props.theme.grey7};
   z-index: 1030;
 `;
 
 const SemesterButton = styled('button')`
   width: 100%;
   height: 100%;
-  background-color: ${props => (props.isSelected ? '#444' : 'unset')};
+  background-color: ${props =>
+    props.isSelected ? props.theme.grey4 : 'unset'};
   border: none;
   padding: 0;
-  color: #fff;
+  color: ${props => props.theme.white};
   &:hover {
-    background-color: #444;
+    background-color: ${props => props.theme.grey4};
   }
   &:focus {
     outline: 0;

@@ -3,6 +3,10 @@ import stickybits from 'stickybits';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
+import {
+  headerHeight,
+  semesterTabsHeight
+} from '../../styled-components/variables';
 import CourseListSummary from '../CourseListSummary';
 import AddedCourseItem from '../../containers/syllabus/AddedCourseItem';
 import { Wrapper } from '../../styled-components/Wrapper';
@@ -18,7 +22,10 @@ const CourseListWrapper = Wrapper.extend`
   flex: none;
   padding: 0.5em 1em 1em 1em;
   overflow-y: auto;
-  height: calc(100vh - 92px);
+  height: calc(
+    100vh - ${props => props.theme.headerHeight} -
+      ${props => props.theme.semesterTabsHeight}
+  );
 `;
 
 const ExtendedArticle = Article.extend`
@@ -37,7 +44,8 @@ class AddedCourseList extends React.Component {
     this.createStickyWrapper = () => {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: 92
+          stickyBitStickyOffset:
+            parseInt(headerHeight) + parseInt(semesterTabsHeight)
         });
       }
     };

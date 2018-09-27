@@ -4,13 +4,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
+import {
+  headerHeight,
+  searchBarHeight
+} from '../../styled-components/variables';
 import FilterGroup from './FilterGroup';
 import { Wrapper } from '../../styled-components/Wrapper';
 
 const FilterWrapper = Wrapper.extend`
   flex: none;
   overflow-y: auto;
-  height: ${props => (props.isSideBar ? 'calc(100vh - 92px);' : '100vh;')};
+  height: ${props =>
+    props.isSideBar
+      ? `calc(100vh - ${props.theme.headerHeight} - ${
+          props.theme.searchBarHeight
+        });`
+      : '100vh;'};
 `;
 
 const FilterOverlay = styled('div')`
@@ -47,7 +56,9 @@ class Filter extends React.Component {
 
     this.createStickyWrapper = () => {
       if (this.wrapper) {
-        const offset = this.props.isSideBar ? 92 : 0;
+        const offset = this.props.isSideBar
+          ? parseInt(headerHeight) + parseInt(searchBarHeight)
+          : 0;
         this.stickyWrapper = stickybits(this.wrapper, {
           stickyBitStickyOffset: offset
         });

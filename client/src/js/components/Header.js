@@ -10,8 +10,8 @@ const StyledHeader = styled('header')`
   flex-direction: row;
   align-items: center;
   padding: 0.3rem 1rem;
-  height: 60px;
-  background: #222222;
+  height: ${props => props.theme.headerHeight};
+  background: ${props => props.theme.grey2};
   position: fixed;
   top: 0;
   right: 0;

@@ -20,7 +20,7 @@ import bus from '../../img/bus-480.gif';
 import roomFinder from '../../img/roomFinder-480.gif';
 
 const HomeWrapper = WrapperWithBackground.extend`
-  min-height: calc(100vh - 60px);
+  min-height: calc(100vh - ${props => props.theme.headerHeight});
 `;
 
 const ExtendedOverlay = Overlay.extend`

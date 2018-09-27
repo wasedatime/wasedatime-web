@@ -10,10 +10,10 @@ import { RowWrapper } from '../../styled-components/Wrapper';
 const ExtendedWrapper = RowWrapper.extend`
   flex: none;
   align-items: center;
-  height: 32px;
+  height: ${props => props.theme.searchBarHeight};
   width: 100%;
   padding: 0 1em;
-  background-color: #777;
+  background-color: ${props => props.theme.grey7};
   z-index: 1030;
 `;
 
@@ -26,7 +26,7 @@ const Icon = styled('div')`
 const StyledForm = styled('form')`
   width: 100%;
   align-self: center;
-  background-color: #fff;
+  background-color: ${props => props.theme.white};
   padding: 0 5px;
   display: flex;
   flex-direction: row;
@@ -46,7 +46,7 @@ const StyledClearButton = styled('span')`
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: #777;
+  color: ${props => props.theme.grey7};
   &:focus {
     outline: 0;
   }

@@ -57,7 +57,7 @@ class Filter extends React.Component {
     this.createStickyWrapper = () => {
       if (this.wrapper) {
         const offset = this.props.isSideBar
-          ? parseInt(headerHeight) + parseInt(searchBarHeight)
+          ? parseInt(headerHeight, 10) + parseInt(searchBarHeight, 10)
           : 0;
         this.stickyWrapper = stickybits(this.wrapper, {
           stickyBitStickyOffset: offset

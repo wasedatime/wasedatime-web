@@ -45,7 +45,7 @@ class AddedCourseList extends React.Component {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
           stickyBitStickyOffset:
-            parseInt(headerHeight) + parseInt(semesterTabsHeight)
+            parseInt(headerHeight, 10) + parseInt(semesterTabsHeight, 10)
         });
       }
     };

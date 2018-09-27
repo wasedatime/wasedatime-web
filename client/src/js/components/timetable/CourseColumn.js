@@ -13,19 +13,21 @@ const StyledCourseColumn = styled('div')`
   position: relative;
   min-width: 6.8rem;
   flex-direction: row;
-`
+`;
 
 const CourseItem = styled('div')`
   display: flex;
   flex-direction: column;
   position: absolute;
   top: calc(100% / ${props => props.displayPeriods} * ${props => props.top});
-  height: calc(100% / ${props => props.displayPeriods} * ${props => props.height} - 1px);
+  height: calc(
+    100% / ${props => props.displayPeriods} * ${props => props.height} - 1px
+  );
   width: 100%;
   padding: 0.3rem 0 0 0.1rem;
   border-left-width: 2px;
   border-left-style: solid;
-`
+`;
 
 const CourseTitle = styled('span')`
   flex: 1 1 auto;
@@ -38,19 +40,20 @@ const CourseTitle = styled('span')`
   text-align: center;
   ${media.tablet`font-size: 1.2rem;`};
   ${media.phone`font-size: 1.2rem;`};
-`
+`;
 
 const CourseLocation = styled('span')`
   display: inline-flex;
   flex: 0 0 auto;
-  padding: .2em 0;
+  padding: 0.2em 0;
   font-size: 1.4rem;
   word-break: break-all;
   align-items: center;
   justify-content: center;
+  text-align: center;
   ${media.tablet`font-size: 1.2rem;`};
   ${media.phone`font-size: 1.2rem;`};
-`
+`;
 
 const CourseList = styled('div')`
   display: flex;
@@ -58,9 +61,9 @@ const CourseList = styled('div')`
   flex: 1 0 auto;
   min-width: 6.8rem;
   position: relative;
-`
+`;
 
-const CourseColumn = ({largestPeriod, coursesAndProperties}) => {
+const CourseColumn = ({ largestPeriod, coursesAndProperties }) => {
   const displayPeriods = Math.max(largestPeriod, 5);
   // a distinct course list has no occurrence overlaps between its course items.
   let distinctCourseLists = [[]];
@@ -70,15 +73,17 @@ const CourseColumn = ({largestPeriod, coursesAndProperties}) => {
   let slotLists = [initSlotList.slice()];
 
   coursesAndProperties.forEach(courseAndProperty => {
-    const startPeriod = Number(courseAndProperty.course.occurrence.start_period);
+    const startPeriod = Number(
+      courseAndProperty.course.occurrence.start_period
+    );
     const endPeriod = Number(courseAndProperty.course.occurrence.end_period);
 
     let existsAvailableSlot = true;
-    for (let i = 0; i < slotLists.length; i ++) {
+    for (let i = 0; i < slotLists.length; i++) {
       // reinit as true for every slotList
       existsAvailableSlot = true;
       let j = startPeriod;
-      for (; j <= endPeriod; j ++) {
+      for (; j <= endPeriod; j++) {
         if (slotLists[i][j]) {
           //slot not available
           existsAvailableSlot = false;
@@ -87,7 +92,7 @@ const CourseColumn = ({largestPeriod, coursesAndProperties}) => {
       }
       if (existsAvailableSlot) {
         j = startPeriod;
-        for (; j <= endPeriod; j ++) {
+        for (; j <= endPeriod; j++) {
           slotLists[i][j] = 1;
         }
         distinctCourseLists[i].push(courseAndProperty);
@@ -99,10 +104,12 @@ const CourseColumn = ({largestPeriod, coursesAndProperties}) => {
       slotLists.push(initSlotList.slice());
       distinctCourseLists.push([]);
       let j = startPeriod;
-      for (; j <= endPeriod; j ++) {
+      for (; j <= endPeriod; j++) {
         slotLists[slotLists.length - 1][j] = 1;
       }
-      distinctCourseLists[distinctCourseLists.length - 1].push(courseAndProperty);
+      distinctCourseLists[distinctCourseLists.length - 1].push(
+        courseAndProperty
+      );
     }
   });
 
@@ -127,28 +134,21 @@ const CourseColumn = ({largestPeriod, coursesAndProperties}) => {
             displayPeriods={displayPeriods}
             top={startPeriod - 1}
             height={endPeriod - startPeriod + 1}
-            >
-            <CourseTitle>
-              {course.title}
-            </CourseTitle>
-            <CourseLocation>
-              {location}
-            </CourseLocation>
+          >
+            <CourseTitle>{course.title}</CourseTitle>
+            <CourseLocation>{location}</CourseLocation>
           </CourseItem>
-        )
+        );
       });
-      return (
-        <CourseList key={index}>
-          {listComponent}
-        </CourseList>
-      );
-  });
+      return <CourseList key={index}>{listComponent}</CourseList>;
+    }
+  );
 
   return (
     <StyledCourseColumn displayPeriods={displayPeriods}>
       {distinctCourseListsComponent}
     </StyledCourseColumn>
   );
-}
+};
 
 export default CourseColumn;

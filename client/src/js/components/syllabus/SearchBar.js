@@ -5,6 +5,7 @@ import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 import stickybits from 'stickybits';
 import PropTypes from 'prop-types';
 
+import { headerHeight } from '../../styled-components/variables';
 import { RowWrapper } from '../../styled-components/Wrapper';
 
 const ExtendedWrapper = RowWrapper.extend`
@@ -64,7 +65,7 @@ class SearchBar extends React.Component {
     this.createStickyWrapper = () => {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: 60
+          stickyBitStickyOffset: parseInt(headerHeight, 10)
         });
       }
     };

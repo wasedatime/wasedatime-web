@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import stickybits from 'stickybits';
 
+import { headerHeight } from '../../styled-components/variables';
 import { RowWrapper } from '../../styled-components/Wrapper';
 
 const ExtendedWrapper = RowWrapper.extend`
@@ -41,7 +42,7 @@ class SemesterTabs extends React.Component {
     this.createStickyWrapper = () => {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: 60
+          stickyBitStickyOffset: parseInt(headerHeight, 10)
         });
       }
     };

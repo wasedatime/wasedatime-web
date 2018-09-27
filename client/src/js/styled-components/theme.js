@@ -1,4 +1,11 @@
+import { headerHeight, searchBarHeight, semesterTabsHeight } from './variables';
+
 // Adapted from https://medium.com/codyhouse/create-your-design-system-part-3-colors-798e4729921f
+const sizes = {
+  headerHeight,
+  searchBarHeight,
+  semesterTabsHeight
+};
 
 const shades = {
   black: '#000',
@@ -11,6 +18,7 @@ const shades = {
 };
 
 export const normalTheme = {
+  ...sizes,
   ...shades,
 
   //main colors
@@ -26,6 +34,7 @@ export const normalTheme = {
 };
 
 export const darkTheme = {
+  ...sizes,
   ...shades,
 
   //main colors

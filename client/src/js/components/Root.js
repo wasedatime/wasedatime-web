@@ -8,18 +8,17 @@ import App from './App';
 
 // A invisible component that sends a GA pageview every time
 // the pathname of the user is changed.
-// Written by @dandalf and improved by @ianarundale. I removed
+// Written by @dandalf and improved by @ianarundale and @jessepinho. I removed
 // props.location.search since query string has not been implemented.
-// Reference: https://github.com/react-ga/react-ga/issues/122
+// Reference: https://github.com/react-ga/react-ga/issues/122#issuecomment-353101102
 class Analytics extends React.Component {
-  constructor(props) {
-    super(props);
-    this.sendPageChange(props.location.pathname);
+  componentDidMount() {
+    this.sendPageChange(this.props.location.pathname);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.location.pathname !== nextProps.location.pathname) {
-      this.sendPageChange(nextProps.location.pathname);
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.pathname !== this.props.location.pathname) {
+      this.sendPageChange(this.props.location.pathname);
     }
   }
 
@@ -35,11 +34,11 @@ class Analytics extends React.Component {
 }
 
 const Root = ({ store }) => {
-  let analyticsRoute = null;
-  if (process.env.NODE_ENV === 'production') {
-    ReactGA.initialize('UA-112185819-1', { debug: false });
-    analyticsRoute = <Route path="/" component={Analytics} />;
-  }
+  const trackingId =
+    process.env.NODE_ENV === 'production' ? 'UA-112185819-1' : 'UA-112185819-3';
+
+  ReactGA.initialize(trackingId, { debug: false });
+  const analyticsRoute = <Route path="/" component={Analytics} />;
   return (
     <Provider store={store}>
       <BrowserRouter>

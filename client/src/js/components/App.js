@@ -45,11 +45,11 @@ const App = () => {
               path="/index.html"
               render={() => <Redirect to="/timetable" />}
             />
-            <Route path="/about" component={About} />
-            <Route path="/timetable" component={TimetableContainer} />
-            <Route path="/syllabus" component={Syllabus} />
-            <Route path="/roomfinder" component={RoomFinder} />
-            <Route path="/bus" component={Bus} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/timetable" component={TimetableContainer} />
+            <Route exact path="/syllabus" component={Syllabus} />
+            <Route exact path="/roomfinder" component={RoomFinder} />
+            <Route exact path="/bus" component={Bus} />
             <Route component={NotFound} />
           </Switch>
         </StyledMain>

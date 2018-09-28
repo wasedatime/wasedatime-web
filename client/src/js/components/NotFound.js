@@ -21,12 +21,6 @@ const NotFound = () => {
         <Link to="/">
           <Button>Take Me Home</Button>
         </Link>
-        <p>
-          Were you trying to break something?{' '}
-          <span role="img" aria-label="Smirking Face">
-            😏
-          </span>
-        </p>
       </ExtendedOverlay>
     </Wrapper>
   );

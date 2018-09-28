@@ -40,6 +40,11 @@ const App = () => {
         <StyledMain>
           <Switch>
             <Route exact path="/" render={() => <Redirect to="/timetable" />} />
+            <Route
+              exact
+              path="/index.html"
+              render={() => <Redirect to="/timetable" />}
+            />
             <Route path="/about" component={About} />
             <Route path="/timetable" component={TimetableContainer} />
             <Route path="/syllabus" component={Syllabus} />

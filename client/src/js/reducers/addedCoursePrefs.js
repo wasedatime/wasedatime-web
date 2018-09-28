@@ -1,4 +1,5 @@
 import {
+  HYDRATE_ADDED_COURSES,
   ADD_COURSE,
   REMOVE_COURSE,
   CHANGE_COURSE_COLOR,
@@ -7,6 +8,12 @@ import {
 
 const addedCoursePrefs = (state = [], action) => {
   switch (action.type) {
+    case HYDRATE_ADDED_COURSES:
+      //Remove coursePref whose id doesn't match to any courses
+      //due to course key udpates in waseda official syllabus
+      return state.filter(coursePref => {
+        return action.payload.fetchedCoursesById[coursePref.id] !== undefined;
+      });
     case ADD_COURSE:
       return [
         ...state,

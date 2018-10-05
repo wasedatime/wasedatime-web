@@ -8,22 +8,30 @@ import App from './App';
 
 // A invisible component that sends a GA pageview every time
 // the pathname of the user is changed.
-// Written by @dandalf and improved by @ianarundale and @jessepinho. I removed
-// props.location.search since query string has not been implemented.
+// Written by @dandalf and improved by @ianarundale and @jessepinho.
 // Reference: https://github.com/react-ga/react-ga/issues/122#issuecomment-353101102
 class Analytics extends React.Component {
   componentDidMount() {
-    this.sendPageChange(this.props.location.pathname);
+    this.sendPageChange(
+      this.props.location.pathname,
+      this.props.location.search
+    );
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.location.pathname !== this.props.location.pathname) {
-      this.sendPageChange(this.props.location.pathname);
+    if (
+      prevProps.location.pathname !== this.props.location.pathname ||
+      prevProps.location.search !== this.props.location.search
+    ) {
+      this.sendPageChange(
+        this.props.location.pathname,
+        this.props.location.search
+      );
     }
   }
 
-  sendPageChange(pathname) {
-    const page = pathname;
+  sendPageChange(pathname, search) {
+    const page = pathname + search;
     ReactGA.set({ page });
     ReactGA.pageview(page);
   }

@@ -20,6 +20,7 @@
     "normalizr": "^3.2.4",
     "npm-run-all": "^4.1.2",
     "prop-types": "^15.6.0",
+    "query-string": "^6.2.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-ga": "^2.4.0",

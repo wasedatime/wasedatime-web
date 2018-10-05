@@ -18,6 +18,7 @@ import cseIcon from '../../../img/syllabus-icons/cse.png';
 import aseIcon from '../../../img/syllabus-icons/ase.png';
 import pseIcon from '../../../img/syllabus-icons/pse.png';
 import silsIcon from '../../../img/syllabus-icons/sils.png';
+import sssIcon from '../../../img/syllabus-icons/sss.png';
 import cjlIcon from '../../../img/syllabus-icons/cjl.png';
 
 const RowWrapper = styled('li')`
@@ -121,6 +122,7 @@ const schoolNameIconMap = {
   ASE: aseIcon,
   PSE: pseIcon,
   SILS: silsIcon,
+  SSS: sssIcon,
   CJL: cjlIcon
 };
 

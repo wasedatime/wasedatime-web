@@ -98,6 +98,7 @@ class Filter extends React.Component {
     const schoolInputs = [
       { value: 'SILS', label: 'SILS' },
       { value: 'PSE', label: 'PSE' },
+      { value: 'SSS', label: 'SSS' },
       { value: 'FSE', label: 'FSE' },
       { value: 'CSE', label: 'CSE' },
       { value: 'ASE', label: 'ASE' },

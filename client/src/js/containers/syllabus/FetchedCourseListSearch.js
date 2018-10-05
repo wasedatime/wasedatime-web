@@ -1,6 +1,8 @@
 import React from 'react';
 import debounce from 'lodash/debounce';
 import MediaQuery from 'react-responsive';
+import { withRouter } from 'react-router';
+import queryString from 'query-string';
 
 import { searchCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
@@ -13,11 +15,11 @@ import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../styled-components/utils';
 import { fallSemesters, springSemesters } from '../../data/semesters';
 
+const F_COURSE_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
+
 const ExtendedWrapper = Wrapper.extend`
   flex: 1 0 0;
 `;
-
-const F_COURSE_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
 
 const modalStyle = {
   overlay: {
@@ -46,6 +48,10 @@ const modalStyle = {
 class FetchedCourseSearch extends React.Component {
   constructor(props) {
     super(props);
+    const parsedSearch = queryString.parse(this.props.location.search);
+    const parsedSearchQ = parsedSearch.q;
+    const searchTerm =
+      parsedSearchQ === undefined || parsedSearchQ === '' ? '' : parsedSearchQ;
     this.state = {
       isModalOpen: false,
       filterGroups: {
@@ -56,8 +62,8 @@ class FetchedCourseSearch extends React.Component {
         day: [],
         period: []
       },
-      inputText: '',
-      searchTerm: '',
+      inputText: searchTerm,
+      searchTerm: searchTerm,
       filteredCourses: props.fetchedCourses
     };
   }
@@ -182,22 +188,30 @@ class FetchedCourseSearch extends React.Component {
   };
 
   updateSearchTerm = () => {
-    this.setState((prevState, props) => {
-      return {
-        searchTerm: prevState.inputText
-      };
-    });
+    this.setState(
+      (prevState, props) => {
+        return {
+          searchTerm: prevState.inputText
+        };
+      },
+      this.props.history.push({
+        pathname: '/syllabus',
+        search: this.state.inputText === '' ? '' : `q=${this.state.inputText}`
+      })
+    );
   };
 
-  debounceUpdateSearchTerm = debounce(this.updateSearchTerm, 400, {
+  debounceUpdateSearchTerm = debounce(this.updateSearchTerm, 500, {
     leading: false
   });
 
   handleInputChange = inputText => {
-    this.setState({
-      inputText
-    });
-    this.debounceUpdateSearchTerm();
+    this.setState(
+      {
+        inputText
+      },
+      this.debounceUpdateSearchTerm()
+    );
   };
 
   render() {
@@ -251,4 +265,4 @@ class FetchedCourseSearch extends React.Component {
   }
 }
 
-export default FetchedCourseSearch;
+export default withRouter(FetchedCourseSearch);

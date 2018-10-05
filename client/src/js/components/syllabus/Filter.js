@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
+import { SILS, PSE, SSS, FSE, ASE, CSE, CJL } from '../../data/schools';
 import {
   headerHeight,
   searchBarHeight
@@ -96,13 +97,13 @@ class Filter extends React.Component {
     const schoolLegend = 'Schools';
     const schoolInputName = 'school';
     const schoolInputs = [
-      { value: 'SILS', label: 'SILS' },
-      { value: 'PSE', label: 'PSE' },
-      { value: 'SSS', label: 'SSS' },
-      { value: 'FSE', label: 'FSE' },
-      { value: 'CSE', label: 'CSE' },
-      { value: 'ASE', label: 'ASE' },
-      { value: 'CJL', label: 'CJL' }
+      { value: SILS, label: SILS },
+      { value: PSE, label: PSE },
+      { value: SSS, label: SSS },
+      { value: FSE, label: FSE },
+      { value: CSE, label: CSE },
+      { value: ASE, label: ASE },
+      { value: CJL, label: CJL }
     ];
     const checkedSchoolInputs = schoolInputs.map(input => ({
       ...input,

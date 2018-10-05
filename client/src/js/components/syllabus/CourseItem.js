@@ -10,6 +10,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import PropTypes from 'prop-types';
 
+import { SILS, PSE, SSS, FSE, ASE, CSE, CJL } from '../../data/schools';
 import { highlight } from '../../utils/react';
 import { media } from '../../styled-components/utils';
 import { InvisibleButton } from '../../styled-components/Button';
@@ -117,13 +118,13 @@ const OccurrenceList = styled('ul')`
 `;
 
 const schoolNameIconMap = {
-  FSE: fseIcon,
-  CSE: cseIcon,
-  ASE: aseIcon,
-  PSE: pseIcon,
-  SILS: silsIcon,
-  SSS: sssIcon,
-  CJL: cjlIcon
+  [SILS]: silsIcon,
+  [PSE]: pseIcon,
+  [SSS]: sssIcon,
+  [FSE]: fseIcon,
+  [CSE]: cseIcon,
+  [ASE]: aseIcon,
+  [CJL]: cjlIcon
 };
 
 const mapLinkToSchoolIcon = links => {

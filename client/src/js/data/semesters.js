@@ -1,5 +1,6 @@
 export const fallSemesters = [
   'Fall',
+  'Winter',
   'Fall Quarter',
   'Winter Quarter',
   'Intensive: Fall',
@@ -9,6 +10,7 @@ export const fallSemesters = [
 
 export const springSemesters = [
   'Spring',
+  'Summer',
   'Spring Quarter',
   'Summer Quarter',
   'Intensive: Spring',

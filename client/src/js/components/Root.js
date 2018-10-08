@@ -3,6 +3,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import ReactGA from 'react-ga';
 import { Route, BrowserRouter } from 'react-router-dom';
+import debounce from 'lodash/debounce';
 
 import App from './App';
 
@@ -19,14 +20,17 @@ class Analytics extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (
-      prevProps.location.pathname !== this.props.location.pathname ||
-      prevProps.location.search !== this.props.location.search
-    ) {
-      this.sendPageChange(
-        this.props.location.pathname,
-        this.props.location.search
-      );
+    const prevPathname = prevProps.location.pathname;
+    const thisPathname = this.props.location.pathname;
+    const prevSearch = prevProps.location.search;
+    const thisSearch = this.props.location.search;
+
+    if (prevPathname !== thisPathname) {
+      this.sendPageChange(thisPathname, thisSearch);
+    } else {
+      if (prevSearch !== thisSearch && thisPathname === '/syllabus') {
+        this.debounceSendPageChange(thisPathname, thisSearch);
+      }
     }
   }
 
@@ -35,6 +39,10 @@ class Analytics extends React.Component {
     ReactGA.set({ page });
     ReactGA.pageview(page);
   }
+
+  debounceSendPageChange = debounce(this.sendPageChange, 1500, {
+    leading: false
+  });
 
   render() {
     return null;

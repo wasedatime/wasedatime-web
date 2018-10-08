@@ -187,18 +187,19 @@ class FetchedCourseSearch extends React.Component {
     return filteredCourses;
   };
 
+  pushHistory = () => {
+    this.props.history.push({
+      pathname: '/syllabus',
+      search: this.state.inputText === '' ? '' : `q=${this.state.inputText}`
+    });
+  };
+
   updateSearchTerm = () => {
-    this.setState(
-      (prevState, props) => {
-        return {
-          searchTerm: prevState.inputText
-        };
-      },
-      this.props.history.push({
-        pathname: '/syllabus',
-        search: this.state.inputText === '' ? '' : `q=${this.state.inputText}`
-      })
-    );
+    this.setState((prevState, props) => {
+      return {
+        searchTerm: prevState.inputText
+      };
+    }, this.pushHistory());
   };
 
   debounceUpdateSearchTerm = debounce(this.updateSearchTerm, 500, {

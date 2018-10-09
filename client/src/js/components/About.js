@@ -139,12 +139,12 @@ const Home = () => {
         <title>WaseTime - Home</title>
         <meta
           name="description"
-          content="An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University."
+          content="An unofficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University."
         />
         <meta property="og:title" content="WaseTime - Home" />
         <meta
           property="og:description"
-          content="An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University."
+          content="An unofficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University."
         />
         <meta property="og:site_name" content="WaseTime - Home" />
       </Helmet>
@@ -160,8 +160,8 @@ const Home = () => {
             <Introduction>
               <MainHeading>WaseTime</MainHeading>
               <Description>
-                An unonfficial app for syllabus searching, classroom finding,
-                and bus schedule checking at Waseda University.
+                An unofficial app for syllabus searching, classroom finding, and
+                bus schedule checking at Waseda University.
               </Description>
             </Introduction>
           </StyledHeader>

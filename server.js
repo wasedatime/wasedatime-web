@@ -52,8 +52,8 @@ const sendCustomizedIndexFile = (filePath, title, description) => {
         res.send(data);
       }
     });
-  }
-}
+  };
+};
 
 if (process.env.NODE_ENV === 'production') {
   //serve up production assests, disable directory indexing
@@ -67,7 +67,7 @@ if (process.env.NODE_ENV === 'production') {
     sendCustomizedIndexFile(
       indexFilePath,
       'WaseTime',
-      'An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University.'
+      'An unofficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University.'
     )
   );
 
@@ -112,7 +112,7 @@ if (process.env.NODE_ENV === 'production') {
     sendCustomizedIndexFile(
       indexFilePath,
       'WaseTime',
-      'An unonfficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University.'
+      'An unofficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University.'
     )
   );
 }

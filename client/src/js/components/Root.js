@@ -36,11 +36,12 @@ class Analytics extends React.Component {
 
   sendPageChange(pathname, search) {
     const page = pathname + search;
+    console.log(page);
     ReactGA.set({ page });
     ReactGA.pageview(page);
   }
 
-  debounceSendPageChange = debounce(this.sendPageChange, 1500, {
+  debounceSendPageChange = debounce(this.sendPageChange, 3000, {
     leading: false
   });
 

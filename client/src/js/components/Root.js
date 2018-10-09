@@ -28,7 +28,11 @@ class Analytics extends React.Component {
     if (prevPathname !== thisPathname) {
       this.sendPageChange(thisPathname, thisSearch);
     } else {
-      if (prevSearch !== thisSearch && thisPathname === '/syllabus') {
+      if (
+        prevSearch !== thisSearch &&
+        thisSearch !== '' &&
+        thisPathname === '/syllabus'
+      ) {
         this.debounceSendPageChange(thisPathname, thisSearch);
       }
     }
@@ -36,12 +40,11 @@ class Analytics extends React.Component {
 
   sendPageChange(pathname, search) {
     const page = pathname + search;
-    console.log(page);
     ReactGA.set({ page });
     ReactGA.pageview(page);
   }
 
-  debounceSendPageChange = debounce(this.sendPageChange, 3000, {
+  debounceSendPageChange = debounce(this.sendPageChange, 2000, {
     leading: false
   });
 

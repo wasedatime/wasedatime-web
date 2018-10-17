@@ -3,6 +3,7 @@
 import React from 'react';
 
 import BusModal from '../components/BusModal';
+import { InvisibleButton } from '../styled-components/Button';
 
 class ModalContainer extends React.Component {
   constructor(props) {
@@ -26,7 +27,7 @@ class ModalContainer extends React.Component {
     return (
       <div>
         <span>
-          <a
+          <InvisibleButton
             style={{
               color: '#0000FF',
               textDecoration: 'underline',
@@ -35,7 +36,7 @@ class ModalContainer extends React.Component {
             onClick={this.handleToggleModal}
           >
             {linkText}
-          </a>{' '}
+          </InvisibleButton>{' '}
           {text}
         </span>
         {showModal && (

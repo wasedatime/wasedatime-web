@@ -10,21 +10,6 @@
   "commit": true,
   "contributors": [
     {
-      "login": "oscarwang",
-      "name": "OscarWang",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/718626?v=4",
-      "profile": "https://github.com/oscarwang",
-      "contributions": [
-        "bug",
-        "code",
-        "design",
-        "doc",
-        "ideas",
-        "review",
-        "infra"
-      ]
-    },
-    {
       "login": "OscarWang114",
       "name": "WANG, Chih-Hao",
       "avatar_url": "https://avatars0.githubusercontent.com/u/30998659?v=4",
@@ -37,6 +22,16 @@
         "ideas",
         "review",
         "infra"
+      ]
+    },
+    {
+      "login": "wanng-ide",
+      "name": "wanng",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/32323900?v=4",
+      "profile": "https://github.com/wanng-ide",
+      "contributions": [
+        "code",
+        "ideas"
       ]
     }
   ]

@@ -8,5 +8,21 @@
   ],
   "imageSize": 100,
   "commit": true,
-  "contributors": []
+  "contributors": [
+    {
+      "login": "oscarwang",
+      "name": "OscarWang",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/718626?v=4",
+      "profile": "https://github.com/oscarwang",
+      "contributions": [
+        "bug",
+        "code",
+        "design",
+        "doc",
+        "ideas",
+        "review",
+        "infra"
+      ]
+    }
+  ]
 }

@@ -26,13 +26,14 @@ npm install --prefix client
 ```bash
 npm run dev
 ```
+
 ### App Architecture
 
 ![App Architecture](/docs/images/AppArchitecture.png)
 
 ### Continuous Integration and Deployment
 
-This project is deployed on a remote server and uses Travis CI for continuous integration and deployment. You can learn more about the setup process at  [ContinuousDeployment.md](docs/ContinuousDeployment.md)
+This project is deployed on a remote server and uses Travis CI for continuous integration and deployment. You can learn more about the setup process at [ContinuousDeployment.md](docs/ContinuousDeployment.md)
 
 Unfortunately, currently there are no unit tests
 created to ensure the code quality.
@@ -40,16 +41,20 @@ created to ensure the code quality.
 ## Built With
 
 Back-end (Server):
+
 * [Node.js](https://nodejs.org/) - Runtime environment used.
 * [Express](http://expressjs.com/) - Node.js web app framework used.
+
+Imported in code, but NOT being used for now:
+
 * [MongoDB](https://www.mongodb.com/) - Database used for retrieving information.
 * [mongoose](http://mongoosejs.com/) - Object modeling tool used for MongoDB.
 
 Front-end (Client):
+
 * [Create React App](https://github.com/facebook/create-react-app) - Main tool used for building the front-end application. See the [client directory](client/) for more details.
 * [Redux](https://redux.js.org) - Library used to manage the state of front-end.
 * [Styled Components](https://www.styled-components.com) - Library used for adding CSS to React components.
-
 
 ## Contributing
 

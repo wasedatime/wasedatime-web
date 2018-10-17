@@ -1,5 +1,6 @@
 # WaseTime
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 
 [![Build Status](https://travis-ci.org/wasetime/wasetime-web.svg?branch=master)](https://travis-ci.org/wasetime/wasetime-web)
 
@@ -65,9 +66,10 @@ Submit an issue or a pull request! :blush:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars1.githubusercontent.com/u/718626?v=4" width="100px;"/><br /><sub><b>OscarWang</b></sub>](https://github.com/oscarwang)<br />[🐛](https://github.com/OscarWang114/wasetime-web/issues?q=author%3Aoscarwang "Bug reports") [💻](https://github.com/OscarWang114/wasetime-web/commits?author=oscarwang "Code") [🎨](#design-oscarwang "Design") [📖](https://github.com/OscarWang114/wasetime-web/commits?author=oscarwang "Documentation") [🤔](#ideas-oscarwang "Ideas, Planning, & Feedback") [👀](#review-oscarwang "Reviewed Pull Requests") [🚇](#infra-oscarwang "Infrastructure (Hosting, Build-Tools, etc)") |
-| :---: |
+| [<img src="https://avatars1.githubusercontent.com/u/718626?v=4" width="100px;"/><br /><sub><b>OscarWang</b></sub>](https://github.com/oscarwang)<br />[🐛](https://github.com/OscarWang114/wasetime-web/issues?q=author%3Aoscarwang "Bug reports") [💻](https://github.com/OscarWang114/wasetime-web/commits?author=oscarwang "Code") [🎨](#design-oscarwang "Design") [📖](https://github.com/OscarWang114/wasetime-web/commits?author=oscarwang "Documentation") [🤔](#ideas-oscarwang "Ideas, Planning, & Feedback") [👀](#review-oscarwang "Reviewed Pull Requests") [🚇](#infra-oscarwang "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars0.githubusercontent.com/u/30998659?v=4" width="100px;"/><br /><sub><b>WANG, Chih-Hao</b></sub>](http://www.oscarwang114.me)<br />[🐛](https://github.com/OscarWang114/wasetime-web/issues?q=author%3AOscarWang114 "Bug reports") [💻](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Code") [🎨](#design-OscarWang114 "Design") [📖](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Documentation") [🤔](#ideas-OscarWang114 "Ideas, Planning, & Feedback") [👀](#review-OscarWang114 "Reviewed Pull Requests") [🚇](#infra-OscarWang114 "Infrastructure (Hosting, Build-Tools, etc)") |
+| :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
+
 * **Oscar Wang** - _Initial work_ - [OscarWang114](https://github.com/OscarWang114)
 * **WANG JUNJIE** - _Bus schedule JSON conversion_ - [wanng-ide](https://github.com/wanng-ide)
 

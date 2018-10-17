@@ -194,12 +194,13 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
     return (
       <li key={index}>
         <span>
-          <FontAwesomeIcon icon={faClock} size="1x" />&nbsp;{`${day}${period}`}
+          <FontAwesomeIcon icon={faClock} size="1x" />
+          &nbsp;
+          {`${day}${period}`}
           &nbsp;&nbsp;
-          <FontAwesomeIcon
-            icon={faMapMarkerAlt}
-            size="1x"
-          />&nbsp;{`${location}`}
+          <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" />
+          &nbsp;
+          {`${location}`}
         </span>
       </li>
     );
@@ -249,6 +250,7 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
               style={{ alignSelf: 'flex-start' }}
               href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`}
               target="_blank"
+              rel="noopener noreferrer"
             >
               <FontAwesomeIcon
                 style={{ color: '#6495ED' }}

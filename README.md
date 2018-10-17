@@ -45,7 +45,7 @@ Back-end (Server):
 * [Node.js](https://nodejs.org/) - Runtime environment used.
 * [Express](http://expressjs.com/) - Node.js web app framework used.
 
-Imported in code, but NOT being used for now:
+Imported in code, but NOT being used in production for now:
 
 * [MongoDB](https://www.mongodb.com/) - Database used for retrieving information.
 * [mongoose](http://mongoosejs.com/) - Object modeling tool used for MongoDB.

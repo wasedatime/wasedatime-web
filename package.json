@@ -1,14 +1,17 @@
 {
   "name": "WaseTime-Web",
   "version": "1.0.0",
-  "description": "An unonfficial app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.",
+  "description":
+    "An unonfficial app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "test": "mocha './test/**/*.test.js' ",
     "server": "nodemon server.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run client\" \"npm run server\""
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "contributors:add": "all-contributors add",
+    "contributors:generate": "all-contributors generate"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 # WaseTime
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 
 [![Build Status](https://travis-ci.org/wasetime/wasetime-web.svg?branch=master)](https://travis-ci.org/wasetime/wasetime-web)
 
@@ -66,8 +66,8 @@ Submit an issue or a pull request! :blush:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/30998659?v=4" width="100px;"/><br /><sub><b>WANG, Chih-Hao</b></sub>](http://www.oscarwang114.me)<br />[🐛](https://github.com/OscarWang114/wasetime-web/issues?q=author%3AOscarWang114 "Bug reports") [💻](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Code") [🎨](#design-OscarWang114 "Design") [📖](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Documentation") [🤔](#ideas-OscarWang114 "Ideas, Planning, & Feedback") [👀](#review-OscarWang114 "Reviewed Pull Requests") [🚇](#infra-OscarWang114 "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars0.githubusercontent.com/u/32323900?v=4" width="100px;"/><br /><sub><b>wanng</b></sub>](https://github.com/wanng-ide)<br />[💻](https://github.com/OscarWang114/wasetime-web/commits?author=wanng-ide "Code") [🤔](#ideas-wanng-ide "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/17228098?v=4" width="100px;"/><br /><sub><b>Daiki Nishikawa</b></sub>](https://github.com/nd-02110114)<br />[🤔](#ideas-nd-02110114 "Ideas, Planning, & Feedback") |
-| :---: | :---: | :---: |
+| [<img src="https://avatars0.githubusercontent.com/u/30998659?v=4" width="100px;"/><br /><sub><b>WANG, Chih-Hao</b></sub>](http://www.oscarwang114.me)<br />[🐛](https://github.com/OscarWang114/wasetime-web/issues?q=author%3AOscarWang114 "Bug reports") [💻](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Code") [🎨](#design-OscarWang114 "Design") [📖](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Documentation") [🤔](#ideas-OscarWang114 "Ideas, Planning, & Feedback") [👀](#review-OscarWang114 "Reviewed Pull Requests") [🚇](#infra-OscarWang114 "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars0.githubusercontent.com/u/32323900?v=4" width="100px;"/><br /><sub><b>wanng</b></sub>](https://github.com/wanng-ide)<br />[💻](https://github.com/OscarWang114/wasetime-web/commits?author=wanng-ide "Code") [🤔](#ideas-wanng-ide "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/17228098?v=4" width="100px;"/><br /><sub><b>Daiki Nishikawa</b></sub>](https://github.com/nd-02110114)<br />[🤔](#ideas-nd-02110114 "Ideas, Planning, & Feedback") | [<img src="https://graph.facebook.com/100000406482926/picture?type=large" width="100px;"/><br /><sub><b>Jaw Bo Yue</b></sub>](https://www.facebook.com/JawBoYue)<br />[🎨](#design "Design") [🤔](#ideas "Ideas, Planning, & Feedback") |
+| :---: | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification.

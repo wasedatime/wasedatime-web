@@ -29,6 +29,7 @@
     "mongoose": "^5.3.4"
   },
   "devDependencies": {
+    "all-contributors-cli": "^5.4.0",
     "concurrently": "^3.5.1",
     "mocha": "^4.0.1",
     "nodemon": "^1.18.3"

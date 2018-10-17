@@ -66,12 +66,11 @@ Submit an issue or a pull request! :blush:
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/30998659?v=4" width="100px;"/><br /><sub><b>WANG, Chih-Hao</b></sub>](http://www.oscarwang114.me)<br />[🐛](https://github.com/OscarWang114/wasetime-web/issues?q=author%3AOscarWang114 "Bug reports") [💻](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Code") [🎨](#design-OscarWang114 "Design") [📖](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Documentation") [🤔](#ideas-OscarWang114 "Ideas, Planning, & Feedback") [👀](#review-OscarWang114 "Reviewed Pull Requests") [🚇](#infra-OscarWang114 "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars0.githubusercontent.com/u/32323900?v=4" width="100px;"/><br /><sub><b>wanng</b></sub>](https://github.com/wanng-ide)<br />[💻](https://github.com/OscarWang114/wasetime-web/commits?author=wanng-ide "Code") [🤔](#ideas-wanng-ide "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/17228098?v=4" width="100px;"/><br /><sub><b>Daiki Nishikawa</b></sub>](https://github.com/nd-02110114)<br />[🤔](#ideas-nd-02110114 "Ideas, Planning, & Feedback") [👀](#review-nd-02110114 "Reviewed Pull Requests") |
+| [<img src="https://avatars0.githubusercontent.com/u/30998659?v=4" width="100px;"/><br /><sub><b>WANG, Chih-Hao</b></sub>](http://www.oscarwang114.me)<br />[🐛](https://github.com/OscarWang114/wasetime-web/issues?q=author%3AOscarWang114 "Bug reports") [💻](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Code") [🎨](#design-OscarWang114 "Design") [📖](https://github.com/OscarWang114/wasetime-web/commits?author=OscarWang114 "Documentation") [🤔](#ideas-OscarWang114 "Ideas, Planning, & Feedback") [👀](#review-OscarWang114 "Reviewed Pull Requests") [🚇](#infra-OscarWang114 "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars0.githubusercontent.com/u/32323900?v=4" width="100px;"/><br /><sub><b>wanng</b></sub>](https://github.com/wanng-ide)<br />[💻](https://github.com/OscarWang114/wasetime-web/commits?author=wanng-ide "Code") [🤔](#ideas-wanng-ide "Ideas, Planning, & Feedback") | [<img src="https://avatars3.githubusercontent.com/u/17228098?v=4" width="100px;"/><br /><sub><b>Daiki Nishikawa</b></sub>](https://github.com/nd-02110114)<br />[🤔](#ideas-nd-02110114 "Ideas, Planning, & Feedback") |
 | :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
-* **Oscar Wang** - _Initial work_ - [OscarWang114](https://github.com/OscarWang114)
-* **WANG JUNJIE** - _Bus schedule JSON conversion_ - [wanng-ide](https://github.com/wanng-ide)
+This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification.
 
 ## License
 

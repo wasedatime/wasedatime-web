@@ -146,6 +146,7 @@ const CourseAndPrefItem = ({
               style={{ alignSelf: 'flex-start' }}
               href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`}
               target="_blank"
+              rel="noopener noreferrer"
             >
               <FontAwesomeIcon
                 style={{ color: '#6495ED' }}

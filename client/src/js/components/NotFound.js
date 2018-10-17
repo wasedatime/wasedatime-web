@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 import { Wrapper } from '../styled-components/Wrapper';
 import { Button } from '../styled-components/Button';
 import { Overlay } from '../styled-components/Overlay';
 
-const ExtendedOverlay = Overlay.extend`
+const ExtendedOverlay = styled(Overlay)`
   justify-content: center;
   align-items: center;
   text-align: center;

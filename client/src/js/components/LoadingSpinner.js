@@ -17,11 +17,11 @@ const spin = keyframes`
   }
 `;
 
-const ExtendedWrapper = Wrapper.extend`
+const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
 `;
 
-const ExtendedOverlay = Overlay.extend`
+const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   justify-content: center;
   padding: 25px;

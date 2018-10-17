@@ -8,15 +8,15 @@ import CourseChunk from './CourseChunk';
 import { Overlay } from '../../styled-components/Overlay';
 import { Wrapper } from '../../styled-components/Wrapper';
 
-const ExtendedWrapper = Wrapper.extend`
+const ExtendedWrapper = styled(Wrapper)`
   flex: 1 1 0;
 `;
 
-const ExtendedOverlay = Overlay.extend`
+const ExtendedOverlay = styled(Overlay)`
   flex-direction: row;
 `;
 
-const CourseListWrapper = Wrapper.extend`
+const CourseListWrapper = styled(Wrapper)`
   flex: 1 1 0;
   padding: 0 1em 1em 1em;
 `;

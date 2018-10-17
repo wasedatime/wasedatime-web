@@ -6,7 +6,7 @@ import ClassroomItem from './ClassroomItem';
 import { Overlay } from '../styled-components/Overlay';
 import { WrapperWithBackground } from '../styled-components/Wrapper';
 
-const ExtendedOverlay = Overlay.extend`
+const ExtendedOverlay = styled(Overlay)`
   padding: 40px 25px 25px 25px;
 `;
 

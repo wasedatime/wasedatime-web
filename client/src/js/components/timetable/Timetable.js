@@ -8,7 +8,7 @@ import DayColumnList from './DayColumnList';
 import AddedCourseAndPrefListContainer from '../../containers/timetable/AddedCourseAndPrefListContainer';
 import { media } from '../../styled-components/utils';
 
-const ExtendedRowWrapper = RowWrapper.extend`
+const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
   padding: 0.2em;
   ${media.phone`

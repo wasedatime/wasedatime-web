@@ -36,7 +36,7 @@ const InvisibleButton = styled('button')`
   outline: 0;
 `;
 
-const ColorButton = InvisibleButton.extend`
+const ColorButton = styled(InvisibleButton)`
   width: 1.5em;
   height: 1.5em;
   margin: 0.8em 0.8em 0 0;

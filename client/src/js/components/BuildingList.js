@@ -6,7 +6,7 @@ import BuildingItem from './BuildingItem';
 import { WrapperWithBackground } from '../styled-components/Wrapper';
 import { Overlay } from '../styled-components/Overlay';
 
-const ExtendedOverlay = Overlay.extend`
+const ExtendedOverlay = styled(Overlay)`
   padding: 40px 25px 25px 25px;
 `;
 

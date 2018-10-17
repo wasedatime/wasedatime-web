@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import CourseListSummary from '../CourseListSummary';
 import AddedCourseAndPrefItem from '../../containers/timetable/AddedCourseAndPrefItem';
@@ -6,13 +7,13 @@ import { Wrapper } from '../../styled-components/Wrapper';
 import { media } from '../../styled-components/utils';
 import { UnstyledUList } from '../../styled-components/List';
 
-const ExtendedWrapper = Wrapper.extend`
+const ExtendedWrapper = styled(Wrapper)`
   padding: 0 1em;
   ${media.tablet`margin-top: 2em;`};
   ${media.phone`margin-top: 2em;`};
 `;
 
-const ExtendedUnstyledUList = UnstyledUList.extend`
+const ExtendedUnstyledUList = styled(UnstyledUList)`
   font-size: 14px;
 `;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import MediaQuery from 'react-responsive';
+import styled from 'styled-components';
 
 import AddedCourseListSwitch from '../../containers/syllabus/AddedCourseListSwitch';
 import FetchedCourseListSearch from '../../containers/syllabus/FetchedCourseListSearch';
@@ -8,7 +9,7 @@ import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../styled-components/utils';
 import withFetchCourses from '../../hocs/withFetchCourses';
 
-const ExtendedRowWrapper = RowWrapper.extend`
+const ExtendedRowWrapper = styled(RowWrapper)`
   flex: 1 0 0;
 `;
 

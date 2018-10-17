@@ -40,11 +40,11 @@ const ComingSoon = styled('div')`
   font-size: 1.1rem;
 `;
 
-const ComingSoonMain = ComingSoon.extend`
+const ComingSoonMain = styled(ComingSoon)`
   left: 66px;
 `;
 
-const ComingSoonToyama = ComingSoon.extend`
+const ComingSoonToyama = styled(ComingSoon)`
   left: 222px;
 `;
 

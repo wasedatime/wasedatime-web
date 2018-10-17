@@ -12,7 +12,7 @@ import {
 import FilterGroup from './FilterGroup';
 import { Wrapper } from '../../styled-components/Wrapper';
 
-const FilterWrapper = Wrapper.extend`
+const FilterWrapper = styled(Wrapper)`
   flex: none;
   overflow-y: auto;
   height: ${props =>

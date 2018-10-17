@@ -1,10 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFilter, faTimes } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 
 import { InvisibleButton } from '../../styled-components/Button';
 
-const ExtendedInvisibleButton = InvisibleButton.extend`
+const ExtendedInvisibleButton = styled(InvisibleButton)`
   position: fixed;
   z-index: 2000;
   width: 56px;

@@ -36,7 +36,7 @@ const hide = keyframes`
   }
 `
 
-const ExtendedOverlay = Overlay.extend`
+const ExtendedOverlay = styled(Overlay)`
   background-color: rgba(0, 0, 0, 0.6);
   align-items: center;
   justify-content: center;

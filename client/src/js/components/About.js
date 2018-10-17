@@ -19,11 +19,11 @@ import syllabusResult from '../../img/syllabusResult-480.gif';
 import bus from '../../img/bus-480.gif';
 import roomFinder from '../../img/roomFinder-480.gif';
 
-const HomeWrapper = WrapperWithBackground.extend`
+const HomeWrapper = styled(WrapperWithBackground)`
   min-height: calc(100vh - ${props => props.theme.headerHeight});
 `;
 
-const ExtendedOverlay = Overlay.extend`
+const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
   padding-bottom: 30px;
 `;
@@ -68,7 +68,7 @@ const Description = styled('p')`
   ${media.phone`font-size: 2.2rem;`};
 `;
 
-const LearnMoreButton = InvisibleButton.extend`
+const LearnMoreButton = styled(InvisibleButton)`
   align-self: center;
   text-align: center;
   background: transparent;
@@ -90,7 +90,7 @@ const StyledSection = styled('section')`
 
 const StyledArticle = WrapperWithBackground.withComponent('article');
 
-const DarkOverlay = Overlay.extend`
+const DarkOverlay = styled(Overlay)`
   padding: 60px 60px 30px 60px;
   background-color: rgba(0, 0, 0, 0.7);
   ${media.phone`padding: 40px 50px;`};

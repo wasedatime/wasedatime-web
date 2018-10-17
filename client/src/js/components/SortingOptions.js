@@ -1,15 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import { ADDED_ORDER, COURSE_TITLE, COURSE_TIME } from '../data/sortingOptions';
 import { RowWrapper } from '../styled-components/Wrapper';
 import { InvisibleButton } from '../styled-components/Button';
 
-const ExtendedRowWrapper = RowWrapper.extend`
+const ExtendedRowWrapper = styled(RowWrapper)`
   padding: 0.3em 0;
   justify-content: space-between;
 `;
 
-const ExtendedInvisibleButton = InvisibleButton.extend`
+const ExtendedInvisibleButton = styled(InvisibleButton)`
   &:hover {
     fill: #b51e36;
     color: #b51e36;

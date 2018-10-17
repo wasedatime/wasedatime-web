@@ -6,11 +6,11 @@ import { Wrapper } from '../styled-components/Wrapper';
 import { Overlay } from '../styled-components/Overlay';
 import logo from '../../img/logo.png';
 
-const ExtendedWrapper = Wrapper.extend`
+const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
 `
 
-const ExtendedOverlay = Overlay.extend`
+const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   justify-content: center;
   padding: 25px;

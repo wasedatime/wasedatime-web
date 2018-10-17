@@ -10,7 +10,7 @@ import { InvisibleButton } from '../../styled-components/Button';
 import { RowWrapper } from '../../styled-components/Wrapper';
 import { media } from '../../styled-components/utils';
 
-const ExtendedRowWrapper = RowWrapper.extend`
+const ExtendedRowWrapper = styled(RowWrapper)`
   flex: none;
   justify-content: center;
   font-size: 1.3em;
@@ -20,7 +20,7 @@ const ExtendedRowWrapper = RowWrapper.extend`
   padding: 0.5em;
 `;
 
-const ExtendedInvisibleButton = InvisibleButton.extend`
+const ExtendedInvisibleButton = styled(InvisibleButton)`
   color: #000;
   &:hover {
     color: #b51e36;

@@ -93,7 +93,7 @@ const Badge = styled('span')`
   margin: 0.1em 0.3em 0.1em 0;
 `;
 
-const KeywordList = SchoolIconList.extend`
+const KeywordList = styled(SchoolIconList)`
   flex-wrap: wrap;
 `;
 

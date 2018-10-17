@@ -1,14 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
 
 import SortingOptions from './SortingOptions';
 import { RowWrapper } from '../styled-components/Wrapper';
 import { InvisibleButton } from '../styled-components/Button';
 
-const CourseAddedMessageWrapper = RowWrapper.extend`
+const CourseAddedMessageWrapper = styled(RowWrapper)`
   justify-content: space-between;
 `;
 
-const SortByButton = InvisibleButton.extend`
+const SortByButton = styled(InvisibleButton)`
   display: flex;
   &:hover {
     fill: #b51e36;

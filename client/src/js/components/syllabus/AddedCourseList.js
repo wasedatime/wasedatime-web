@@ -2,6 +2,7 @@ import React from 'react';
 import stickybits from 'stickybits';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 
 import {
   headerHeight,
@@ -18,7 +19,7 @@ import {
   ListItem
 } from '../../styled-components/Article';
 
-const CourseListWrapper = Wrapper.extend`
+const CourseListWrapper = styled(Wrapper)`
   flex: none;
   padding: 0.5em 1em 1em 1em;
   overflow-y: auto;
@@ -28,7 +29,7 @@ const CourseListWrapper = Wrapper.extend`
   );
 `;
 
-const ExtendedArticle = Article.extend`
+const ExtendedArticle = styled(Article)`
   margin-top: 0.2em;
 `;
 
@@ -97,7 +98,8 @@ class AddedCourseList extends React.Component {
                 <ListItem>
                   Search for a course title or an instructor in the right search
                   bar.
-                  <br />E.g., "calculus" or "tanaka" or "calculus tanaka".
+                  <br />
+                  E.g., "calculus" or "tanaka" or "calculus tanaka".
                 </ListItem>
                 <ListItem>
                   Click on{' '}
@@ -120,7 +122,8 @@ class AddedCourseList extends React.Component {
               <Subheading>Pro Tips!</Subheading>
               <OList>
                 <ListItem>
-                  Type only the start of the word.<br />
+                  Type only the start of the word.
+                  <br />
                   E.g., "vec calc" instead of "vector calculus"
                 </ListItem>
                 <ListItem>Use "Filter by" to narrow down your search.</ListItem>

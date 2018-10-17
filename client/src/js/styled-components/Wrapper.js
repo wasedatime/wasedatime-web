@@ -14,7 +14,7 @@ export const RowWrapper = styled('div')`
   flex: 1 0 auto;
 `;
 
-export const WrapperWithBackground = Wrapper.extend`
+export const WrapperWithBackground = styled(Wrapper)`
   background-image: url(${props => props.background});
   background-position: center, center;
   background-size: cover;

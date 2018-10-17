@@ -5,7 +5,7 @@ import stickybits from 'stickybits';
 import { headerHeight } from '../../styled-components/variables';
 import { RowWrapper } from '../../styled-components/Wrapper';
 
-const ExtendedWrapper = RowWrapper.extend`
+const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
   align-items: center;
   justify-content: space-around;

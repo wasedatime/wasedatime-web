@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 import { Wrapper } from '../styled-components/Wrapper';
 import { Button } from '../styled-components/Button';
 import { Overlay } from '../styled-components/Overlay';
 
-const ExtendedWrapper = Wrapper.extend`
+const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
-`
+`;
 
-const ExtendedOverlay = Overlay.extend`
+const ExtendedOverlay = styled(Overlay)`
   justify-content: center;
   align-items: center;
   text-align: center;

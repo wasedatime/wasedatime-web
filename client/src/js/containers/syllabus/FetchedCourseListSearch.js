@@ -3,6 +3,7 @@ import debounce from 'lodash/debounce';
 import MediaQuery from 'react-responsive';
 import { withRouter } from 'react-router';
 import queryString from 'query-string';
+import styled from 'styled-components';
 
 import { searchCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
@@ -17,7 +18,7 @@ import { fallSemesters, springSemesters } from '../../data/semesters';
 
 const F_COURSE_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
 
-const ExtendedWrapper = Wrapper.extend`
+const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
 `;
 

@@ -18,11 +18,11 @@ const Classroom = styled('div')`
   border-radius: 8px;
   border: none;
 `;
-const VacantClassroom = Classroom.extend`
+const VacantClassroom = styled(Classroom)`
   background-color: #ceffaf;
 `;
 
-const OccupiedClassroom = Classroom.extend`
+const OccupiedClassroom = styled(Classroom)`
   background-color: #ffafaf;
 `;
 

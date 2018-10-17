@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import { headerHeight } from '../../styled-components/variables';
 import { RowWrapper } from '../../styled-components/Wrapper';
 
-const ExtendedWrapper = RowWrapper.extend`
+const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
   align-items: center;
   height: ${props => props.theme.searchBarHeight};

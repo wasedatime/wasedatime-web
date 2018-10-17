@@ -26,7 +26,7 @@
     "express": "^4.16.2",
     "helmet": "^3.9.0",
     "lodash": "^4.17.10",
-    "mongoose": "^4.13.7"
+    "mongoose": "^5.3.4"
   },
   "devDependencies": {
     "concurrently": "^3.5.1",

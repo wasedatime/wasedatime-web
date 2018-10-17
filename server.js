@@ -15,9 +15,7 @@ require('./models/Stats');
 mongoose.Promise = global.Promise;
 
 mongoose
-  .connect(keys.mongoURI, {
-    useMongoClient: true
-  })
+  .connect(keys.mongoURI, { useNewUrlParser: true })
   .then(() => {
     console.log('App starting...');
   })

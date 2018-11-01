@@ -125,9 +125,9 @@ class FetchedCourseSearch extends React.Component {
       schoolFilters.length === 0 || schoolFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter(course => {
-            const links = course.links;
-            for (let i = 0; i < links.length; i++) {
-              if (schoolFilters.includes(links[i].school)) return true;
+            const keys = course.keys;
+            for (let i = 0; i < keys.length; i++) {
+              if (schoolFilters.includes(keys[i].school)) return true;
             }
             return false;
           });

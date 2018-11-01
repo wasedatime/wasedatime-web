@@ -127,11 +127,11 @@ const schoolNameIconMap = {
   [CJL]: cjlIcon
 };
 
-const mapLinkToSchoolIcon = links => {
-  return links.map(link => {
+const mapLinkToSchoolIcon = keys => {
+  return keys.map(key => {
     return (
-      <SchoolIconItem key={link.school}>
-        <SchoolIconImage src={schoolNameIconMap[link.school]} />
+      <SchoolIconItem key={key.school}>
+        <SchoolIconImage src={schoolNameIconMap[key.school]} />
       </SchoolIconItem>
     );
   });
@@ -184,8 +184,8 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
   const title = highlight(searchTerm, course.title);
   const instructor = highlight(searchTerm, course.instructor);
   const yearTerm = combineYearTerm(course.year, course.term);
-  const schoolIcons = mapLinkToSchoolIcon(course.links);
-  const syllabusLink = course.links[0].link;
+  const schoolIcons = mapLinkToSchoolIcon(course.keys);
+  const syllabusLink = course.keys[0].key;
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.occurrences.map((occurrence, index) => {
     const day = getDay(occurrence.day);

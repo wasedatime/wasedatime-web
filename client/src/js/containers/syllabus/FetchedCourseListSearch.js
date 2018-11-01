@@ -16,7 +16,7 @@ import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../styled-components/utils';
 import { fallSemesters, springSemesters } from '../../data/semesters';
 
-const F_COURSE_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
+const F_COURSE_SEARCH_PLACE_HOLDER = 'Search for a course or instructor';
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;

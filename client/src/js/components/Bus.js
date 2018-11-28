@@ -340,6 +340,5 @@ const Bus = ({ t }) => {
     </Wrapper>
   );
 };
-
 // export default Bus;
 export default withNamespaces("bus")(Bus);

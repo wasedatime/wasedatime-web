@@ -1,47 +1,47 @@
-import React from "react";
-import { Helmet } from "react-helmet";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import { Helmet } from 'react-helmet';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faClock,
   faAngleDoubleRight,
   faEllipsisV
-} from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
-import { withNamespaces, Trans } from "react-i18next";
+} from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
+import { withNamespaces, Trans } from 'react-i18next';
 
-import ModalContainer from "../containers/ModalContainer";
+import ModalContainer from '../containers/ModalContainer';
 // TODO use react-modal
 // import Modal from './Modal';
-import { media } from "../styled-components/utils";
-import { Wrapper } from "../styled-components/Wrapper";
-import { Overlay } from "../styled-components/Overlay";
-import busSchedule from "../data/busSchedule.json";
-import safariExport from "../../img/safari-export.svg";
-import a2hsChrome from "../../img/bus_a2hs_chrome.png";
-import a2hsSafari from "../../img/bus_a2hs_safari.png";
+import { media } from '../styled-components/utils';
+import { Wrapper } from '../styled-components/Wrapper';
+import { Overlay } from '../styled-components/Overlay';
+import busSchedule from '../data/busSchedule.json';
+import safariExport from '../../img/safari-export.svg';
+import a2hsChrome from '../../img/bus_a2hs_chrome.png';
+import a2hsSafari from '../../img/bus_a2hs_safari.png';
 
 const wasedaNishiwasedaBusUri =
-  "https://www.waseda.jp/fsci/assets/uploads/2018/03/2018waseda-nishiwaseda-shuttle-bus-timetable.pdf";
+  'https://www.waseda.jp/fsci/assets/uploads/2018/03/2018waseda-nishiwaseda-shuttle-bus-timetable.pdf';
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   padding: 0 25px;
 `;
 
-const InfoWrapper = styled("div")`
+const InfoWrapper = styled('div')`
   display: flex;
   flex-direction: column;
   margin-top: ;
 `;
 
-const StyledAnchor = styled("a")`
+const StyledAnchor = styled('a')`
   margin: 1.5rem 0px;
   font-size: 1.8rem;
   font-weight: 400;
   text-decoration: underline;
 `;
 
-const StyledHeading = styled("h1")`
+const StyledHeading = styled('h1')`
   margin: 2rem 0px 0px 0px;
   font-family: Times;
   font-size: 4rem;
@@ -50,11 +50,11 @@ const StyledHeading = styled("h1")`
   ${media.phone`font-size: 3.6rem;`};
 `;
 
-const BusStatus = styled("article")`
+const BusStatus = styled('article')`
   margin: 1.5rem 0px;
 `;
 
-const StyledSubHeading = styled("h2")`
+const StyledSubHeading = styled('h2')`
   align-self: flex-start;
   margin-top: 0px;
   margin-bottom: 1rem;
@@ -68,32 +68,32 @@ const StyledSubHeading = styled("h2")`
   ${media.phone`font-size: 2rem;`};
 `;
 
-const Status = styled("section")`
+const Status = styled('section')`
   font-size: 2rem;
   margin-bottom: 1rem;
 `;
 
-const Remark = styled("section")`
+const Remark = styled('section')`
   font-size: 1.5rem;
 `;
 
-const ModalImage = styled("img")`
+const ModalImage = styled('img')`
   width: 270px;
   ${media.phone`width: 100%;`};
 `;
 
-const ModalArticle = styled("article")`
+const ModalArticle = styled('article')`
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
-const ModalHeading = styled("h3")`
+const ModalHeading = styled('h3')`
   font-size: 2.2rem;
   margin: 0px;
 `;
 
-const ModalSection = styled("section")`
+const ModalSection = styled('section')`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -123,34 +123,34 @@ const getSchduleType = (month, date, day) => {
     weekdaySchedule,
     saturdaySchedule,
     specialSchedule
-  } = busSchedule["exceptions"];
+  } = busSchedule['exceptions'];
   if (
     monthString in outOfService &&
     binarySearch(date, outOfService[monthString])
   ) {
-    return "no";
+    return 'no';
   } else if (
     monthString in weekdaySchedule &&
     binarySearch(date, weekdaySchedule[monthString])
   ) {
-    return "weekday";
+    return 'weekday';
   } else if (
     monthString in saturdaySchedule &&
     binarySearch(date, saturdaySchedule[monthString])
   ) {
-    return "saturday";
+    return 'saturday';
   } else if (
     monthString in specialSchedule &&
     binarySearch(date, specialSchedule[monthString])
   ) {
-    return "special";
+    return 'special';
   } else {
     if (day === 0) {
-      return "no";
+      return 'no';
     } else if (day === 6) {
-      return "saturday";
+      return 'saturday';
     } else {
-      return "weekday";
+      return 'weekday';
     }
   }
 };
@@ -198,7 +198,7 @@ const getBusStatus = (totalMins, occurrences, remarks) => {
   // If there is there exists a subsequent bus schedule on the same day
   if (nextTotalMins !== -1) {
     const remark =
-      nextTotalMins in remarks ? remarks[nextTotalMins.toString()] : "";
+      nextTotalMins in remarks ? remarks[nextTotalMins.toString()] : '';
     const nextTimeString = totalMinsToTimeStr(nextTotalMins);
     return {
       departIn: nextTotalMins - totalMins,
@@ -206,22 +206,22 @@ const getBusStatus = (totalMins, occurrences, remarks) => {
       remark
     };
   }
-  return "Out of service";
+  return 'Out of service';
 };
 
 const getBusStatuses = now => {
   const month = now.getMonth();
   const date = now.getDate();
   const day = now.getDay();
-  let wasedaStatus = "Out of service",
-    nishiStatus = "Out of service";
+  let wasedaStatus = 'Out of service',
+    nishiStatus = 'Out of service';
   const scheduleType = getSchduleType(month, date, day);
   // No buses or special schedule
-  if (scheduleType === "no") {
+  if (scheduleType === 'no') {
     return { wasedaStatus, nishiStatus };
-  } else if (scheduleType === "special") {
-    wasedaStatus = "Special Schedule";
-    nishiStatus = "Special Schedule";
+  } else if (scheduleType === 'special') {
+    wasedaStatus = 'Special Schedule';
+    nishiStatus = 'Special Schedule';
     return { wasedaStatus, nishiStatus };
   }
   // Weekday schedule or Saturday schedule
@@ -242,12 +242,12 @@ const getBusStatuses = now => {
 };
 
 const createStatusComponent = status => {
-  if (typeof status === "object") {
+  if (typeof status === 'object') {
     return {
       status: (
         <span>
           Departs in <b>{status.departIn}</b> mins&nbsp;
-          <FontAwesomeIcon icon={faClock} size="1x" />{" "}
+          <FontAwesomeIcon icon={faClock} size="1x" />{' '}
           <b>{status.timeString}</b>
         </span>
       ),
@@ -256,7 +256,7 @@ const createStatusComponent = status => {
   }
   return {
     status: <span>{status}</span>,
-    remark: ""
+    remark: ''
   };
 };
 
@@ -283,10 +283,10 @@ const Bus = ({ t }) => {
       <ExtendedOverlay>
         <InfoWrapper>
           <StyledHeading>Bus Status</StyledHeading>
-          <h1>{t("bus:title")}</h1>
+          <h1>{t('bus:title')}</h1>
           <BusStatus>
             <StyledSubHeading>
-              Waseda <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
+              Waseda <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{' '}
               NishiWaseda
             </StyledSubHeading>
             <Status>{wasedaStatusComponent.status}</Status>
@@ -294,7 +294,7 @@ const Bus = ({ t }) => {
           </BusStatus>
           <BusStatus>
             <StyledSubHeading>
-              NishiWaseda{" "}
+              NishiWaseda{' '}
               <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" /> Waseda
             </StyledSubHeading>
             <Status>{nishiStatusComponent.status}</Status>
@@ -342,4 +342,4 @@ const Bus = ({ t }) => {
 };
 
 // export default Bus;
-export default withNamespaces("bus")(Bus);
+export default withNamespaces('bus')(Bus);

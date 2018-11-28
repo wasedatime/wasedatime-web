@@ -54,7 +54,7 @@ class SemesterTabs extends React.Component {
     };
 
     this.fallButtonId = 'button--fall';
-    this.springButtonId = 'button-spring';
+    this.springButtonId = 'button--spring';
     this.fallSemester = 'fall';
     this.springSemester = 'spring';
   }

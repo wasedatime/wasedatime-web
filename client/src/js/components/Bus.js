@@ -7,7 +7,8 @@ import {
   faEllipsisV
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import { withNamespaces, Trans } from 'react-i18next';
+import i18n from './i18n';
+import { withNamespaces } from 'react-i18next';
 
 import ModalContainer from '../containers/ModalContainer';
 // TODO use react-modal
@@ -282,8 +283,8 @@ const Bus = ({ t }) => {
       </Helmet>
       <ExtendedOverlay>
         <InfoWrapper>
+        <h1>{t('busStatus')}</h1>
           <StyledHeading>Bus Status</StyledHeading>
-          <h1>{t('bus:title')}</h1>
           <BusStatus>
             <StyledSubHeading>
               Waseda <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{' '}
@@ -341,4 +342,4 @@ const Bus = ({ t }) => {
   );
 };
 // export default Bus;
-export default withNamespaces('bus')(Bus);
+export default withNamespaces()(Bus);

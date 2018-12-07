@@ -210,7 +210,7 @@ const getBusStatus = (totalMins, occurrences, remarks) => {
   return 'Out of service';
 };
 
-const getBusStatuses = now => {
+const getBusStatuses = ( now, { t } ) => {
   const month = now.getMonth();
   const date = now.getDate();
   const day = now.getDay();
@@ -242,12 +242,13 @@ const getBusStatuses = now => {
   return { wasedaStatus, nishiStatus };
 };
 
-const createStatusComponent = status => {
+const createStatusComponent = ( status, { t } ) => {
+
   if (typeof status === 'object') {
     return {
       status: (
         <span>
-          Departs in <b>{status.departIn}</b> mins&nbsp;
+          {t('bus.Departs in')} <b>{status.departIn}</b> mins&nbsp;
           <FontAwesomeIcon icon={faClock} size="1x" />{' '}
           <b>{status.timeString}</b>
         </span>
@@ -263,9 +264,9 @@ const createStatusComponent = status => {
 
 const Bus = ({ t }) => {
   const now = new Date();
-  const { wasedaStatus, nishiStatus } = getBusStatuses(now);
-  const wasedaStatusComponent = createStatusComponent(wasedaStatus);
-  const nishiStatusComponent = createStatusComponent(nishiStatus);
+  const { wasedaStatus, nishiStatus } = getBusStatuses(now, { t });
+  const wasedaStatusComponent = createStatusComponent(wasedaStatus, { t });
+  const nishiStatusComponent = createStatusComponent(nishiStatus, { t });
   return (
     <Wrapper>
       <Helmet>
@@ -283,35 +284,34 @@ const Bus = ({ t }) => {
       </Helmet>
       <ExtendedOverlay>
         <InfoWrapper>
-        <h1>{t('busStatus')}</h1>
-          <StyledHeading>Bus Status</StyledHeading>
+          <StyledHeading>{t('bus.busStatus')}</StyledHeading>
           <BusStatus>
             <StyledSubHeading>
-              Waseda <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{' '}
-              NishiWaseda
+              {t('bus.Waseda')} <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{' '}
+              {t('bus.NishiWaseda')}
             </StyledSubHeading>
             <Status>{wasedaStatusComponent.status}</Status>
             <Remark>{wasedaStatusComponent.remark}</Remark>
           </BusStatus>
           <BusStatus>
             <StyledSubHeading>
-              NishiWaseda{' '}
-              <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" /> Waseda
+              {t('bus.NishiWaseda')}{' '}
+              <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" /> {t('bus.Waseda')}
             </StyledSubHeading>
             <Status>{nishiStatusComponent.status}</Status>
             <Remark>{nishiStatusComponent.remark}</Remark>
           </BusStatus>
           <ModalContainer
-            linkText="Add to home screen"
-            text="and never miss a bus again!"
+            linkText={t('bus.Add to home screen')}
+            text={t('bus.and never miss a bus again!')}
           >
             <ModalArticle>
               <ModalSection>
                 <ModalHeading>Android / Chrome:</ModalHeading>
                 <p>
-                  Tap on the top-right icon&nbsp;
+                  {t('bus.Tap on the top-right icon')}&nbsp;
                   <FontAwesomeIcon icon={faEllipsisV} size="1x" />
-                  &nbsp;and select "Add to Home screen"
+                  &nbsp;{t('bus.and select Add to Home screen')}
                 </p>
                 <ModalImage
                   src={a2hsChrome}
@@ -321,9 +321,9 @@ const Bus = ({ t }) => {
               <ModalSection>
                 <ModalHeading>IOS / Safari:</ModalHeading>
                 <p>
-                  Tap on the bottom-middle icon&nbsp;
+                  {t('bus.Tap on the bottom-middle icon')}&nbsp;
                   <img src={safariExport} alt="Safari export icon" />
-                  and select "Add to Home Screen"
+                  &nbsp;{t('bus.and select Add to Home screen')}
                 </p>
                 <ModalImage
                   src={a2hsSafari}
@@ -332,14 +332,14 @@ const Bus = ({ t }) => {
               </ModalSection>
             </ModalArticle>
           </ModalContainer>
-          <StyledHeading>Official Link</StyledHeading>
+          <StyledHeading>{t('bus.Official Link')}</StyledHeading>
           <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
-            The Latest Waseda-NishiWaseda Bus Schedule
+            {t('bus.The Latest Waseda-NishiWaseda Bus Schedule')}
           </StyledAnchor>
         </InfoWrapper>
       </ExtendedOverlay>
     </Wrapper>
   );
 };
-// export default Bus;
-export default withNamespaces()(Bus);
+
+export default withNamespaces('translation')(Bus);

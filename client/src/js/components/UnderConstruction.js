@@ -6,6 +6,9 @@ import { Wrapper } from '../styled-components/Wrapper';
 import { Overlay } from '../styled-components/Overlay';
 import logo from '../../img/logo.png';
 
+import i18n from './i18n';
+import { withNamespaces } from 'react-i18next';
+
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
 `
@@ -28,21 +31,22 @@ const Description = styled('p')`
   ${media.phone`font-size: 1.1em;`};
 `;
 
-const UnderConstruction = props => {
+// const UnderConstruction =  props => {
+const UnderConstruction =  ({ t }) => {
   window.scrollTo({top: 0});
   return (
     <ExtendedWrapper>
       <ExtendedOverlay>
         <Logo src={logo} alt="WaseTime logo" />
-        <h2>Under Construction</h2>
+        <h2>{t('room.Under Construction')}</h2>
         <Description>
-          Want to help? <br/>
-          Check out <a href="https://github.com/wasetime/wasetime-web">here</a> or <a href="mailto:haohaowang.oscar@moegi.waseda.jp">send an email</a>!<br/>
-          We sincerely welcome any contributors!
+          {t('room.Want to help?')} <br/>
+          {t('room.Check out')}<a href="https://github.com/wasetime/wasetime-web">{t('room.here')}</a> {t('room.or')} <a href="mailto:haohaowang.oscar@moegi.waseda.jp">{t('room.send an email')}</a>!<br/>
+          {t('room.We sincerely welcome any contributors!')}
         </Description>
       </ExtendedOverlay>
     </ExtendedWrapper>
   );
 };
 
-export default UnderConstruction;
+export default withNamespaces('translation')(UnderConstruction);

@@ -1,3 +1,25 @@
 {
-  "busStatus": "Bus Status"
+  "room": {
+    "Under Construction": "Under Construction",
+    "Want to help?": "Want to help?",
+    "Check out": "Check out ",
+    "here": "here",
+    "or": "or",
+    "send an email": "send an email",
+    "We sincerely welcome any contributors!": "We sincerely welcome any contributors!"
+  },
+  "bus": {
+    "busStatus": "Bus Status",
+    "Waseda": "Waseda",
+    "NishiWaseda": "NishiWaseda",
+    "Add to home screen": "Add to home screen",
+    "and never miss a bus again!": "and never miss a bus again!",
+    "Official Link": "Official Link",
+    "The Latest Waseda-NishiWaseda Bus Schedule": "The Latest Waseda-NishiWaseda Bus Schedule",
+    "Departs in": "Departs in",
+    "Out of service": "Out of service",
+    "Tap on the top-right icon": "Tap on the top-right icon",
+    "and select Add to Home screen": "and select 'Add to Home screen'",
+    "Tap on the bottom-middle icon": "Tap on the bottom-middle icon"
+  }
 }

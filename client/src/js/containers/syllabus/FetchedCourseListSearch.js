@@ -7,7 +7,6 @@ import styled from 'styled-components';
 
 import { searchCourses, sortCourses } from '../../utils/courseSearch';
 import SearchBar from '../../components/syllabus/SearchBar';
-import BinarySwitch from '../../components/syllabus/BinarySwitch';
 import FetchedCourseList from '../../components/syllabus/FetchedCourseList';
 import Filter from '../../components/syllabus/Filter';
 import FilterButton from '../../components/syllabus/FilterButton';
@@ -233,7 +232,6 @@ class FetchedCourseSearch extends React.Component {
           placeholder={F_COURSE_SEARCH_PLACE_HOLDER}
           inputText={inputText}
         />
-        <BinarySwitch />
         <RowWrapper>
           <FetchedCourseList searchTerm={searchTerm} results={results} />
           <MediaQuery minWidth={sizes.desktop}>

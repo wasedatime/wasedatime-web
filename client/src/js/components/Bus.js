@@ -44,7 +44,7 @@ const StyledAnchor = styled('a')`
 
 const StyledHeading = styled('h1')`
   margin: 2rem 0px 0px 0px;
-  font-family: Times;
+  font-family: Helvetica;
   font-size: 4rem;
   font-weight: 400;
   color: #000000;
@@ -210,7 +210,7 @@ const getBusStatus = (totalMins, occurrences, remarks) => {
   return 'Out of service';
 };
 
-const getBusStatuses = ( now, { t } ) => {
+const getBusStatuses = (now, { t }) => {
   const month = now.getMonth();
   const date = now.getDate();
   const day = now.getDay();
@@ -242,8 +242,7 @@ const getBusStatuses = ( now, { t } ) => {
   return { wasedaStatus, nishiStatus };
 };
 
-const createStatusComponent = ( status, { t } ) => {
-
+const createStatusComponent = (status, { t }) => {
   if (typeof status === 'object') {
     return {
       status: (
@@ -287,7 +286,8 @@ const Bus = ({ t }) => {
           <StyledHeading>{t('bus.busStatus')}</StyledHeading>
           <BusStatus>
             <StyledSubHeading>
-              {t('bus.Waseda')} <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{' '}
+              {t('bus.Waseda')}{' '}
+              <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{' '}
               {t('bus.NishiWaseda')}
             </StyledSubHeading>
             <Status>{wasedaStatusComponent.status}</Status>
@@ -296,7 +296,8 @@ const Bus = ({ t }) => {
           <BusStatus>
             <StyledSubHeading>
               {t('bus.NishiWaseda')}{' '}
-              <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" /> {t('bus.Waseda')}
+              <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{' '}
+              {t('bus.Waseda')}
             </StyledSubHeading>
             <Status>{nishiStatusComponent.status}</Status>
             <Remark>{nishiStatusComponent.remark}</Remark>
@@ -309,9 +310,11 @@ const Bus = ({ t }) => {
               <ModalSection>
                 <ModalHeading>Android / Chrome:</ModalHeading>
                 <p>
-                  {t('bus.Tap on the top-right icon')}&nbsp;
+                  {t('bus.Tap on the top-right icon')}
+                  &nbsp;
                   <FontAwesomeIcon icon={faEllipsisV} size="1x" />
-                  &nbsp;{t('bus.and select Add to Home screen')}
+                  &nbsp;
+                  {t('bus.and select Add to Home screen')}
                 </p>
                 <ModalImage
                   src={a2hsChrome}
@@ -321,9 +324,11 @@ const Bus = ({ t }) => {
               <ModalSection>
                 <ModalHeading>IOS / Safari:</ModalHeading>
                 <p>
-                  {t('bus.Tap on the bottom-middle icon')}&nbsp;
+                  {t('bus.Tap on the bottom-middle icon')}
+                  &nbsp;
                   <img src={safariExport} alt="Safari export icon" />
-                  &nbsp;{t('bus.and select Add to Home screen')}
+                  &nbsp;
+                  {t('bus.and select Add to Home screen')}
                 </p>
                 <ModalImage
                   src={a2hsSafari}

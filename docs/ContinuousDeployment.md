@@ -1,4 +1,4 @@
-####Server side
+#### Server side
 
 Add a deploy user and with limited directory access permission.
 
@@ -48,7 +48,7 @@ Switch to a user with sudo privilege and allow pm2 to startup automatically for 
 sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u deploy --hp /home/deploy
 ```
 
-####Local side
+#### Local side
 
 ```
 gem install travis
@@ -56,7 +56,7 @@ travis login
 travis encrypt-file ~/.ssh/deploy_rsa --add
 ```
 
-####.env file
+#### .env file
 
 Put the .env file outside of the work-tree folder (/var/www/wasetime-web)
 

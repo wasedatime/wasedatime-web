@@ -15,7 +15,6 @@ elif [ $TRAVIS_BRANCH == 'development' ] ; then
     git checkout development
     git remote add deploy 'deploy@139.59.216.161:wasetime-web.git'
     git add .
-    git add client/build/* --force
     git status
     git commit -m "Deploy from Travis CI"
     git status

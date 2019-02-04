@@ -8,8 +8,10 @@
     "start": "node server.js",
     "test": "mocha './test/**/*.test.js' ",
     "server": "nodemon server.js",
-    "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "client-local": "npm run start-local --prefix client",
+    "client-remote": "npm run start-remote --prefix client",
+    "dev": "concurrently \"npm run client-local\" \"npm run server\"",
+    "dev-remote": "concurrently \"npm run client-remote\" \"npm run server\"",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
   },

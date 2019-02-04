@@ -39,15 +39,11 @@
     "styled-components": "^3.4.9"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-local": "react-scripts start",
+    "start-remote": "REACT_APP_ENV=development-remote npm run start-local",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "browserslist": [">0.2%", "not dead", "not ie <= 11", "not op_mini all"]
 }

@@ -1,17 +1,16 @@
 let API_STATIC_BASE_URL;
-switch (process.env.NODE_ENV) {
-  case 'production':
+if (process.env.NODE_ENV === 'production') {
+  API_STATIC_BASE_URL = '/api/static/';
+} else if (process.env.NODE_ENV === 'development') {
+  if (process.env.REACT_APP_ENV === 'development-remote') {
     API_STATIC_BASE_URL = '/api/static/';
-    break;
-  case 'development':
+  } else {
     API_STATIC_BASE_URL = 'https://wasetime.com/api/static/';
-    break;
-  case 'development-server':
-    API_STATIC_BASE_URL = '/api/static/';
-    break;
-  default:
-    API_STATIC_BASE_URL = 'https://wasetime.com/api/static/';
+  }
+} else {
+  API_STATIC_BASE_URL = 'https://wasetime.com/api/static/';
 }
+
 const YEAR = '2018-2019/';
 const API_STATIC_URL = API_STATIC_BASE_URL + YEAR;
 export const wasetimeApiStatic = {

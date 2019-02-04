@@ -55,18 +55,16 @@ class Analytics extends React.Component {
 
 const Root = ({ store }) => {
   let trackingId;
-  switch (process.env.NODE_ENV) {
-    case 'production':
-      trackingId = 'UA-112185819-1';
-      break;
-    case 'development':
-      trackingId = 'UA-112185819-3';
-      break;
-    case 'development-server':
+  if (process.env.NODE_ENV === 'production') {
+    trackingId = 'UA-112185819-1';
+  } else if (process.env.NODE_ENV === 'development') {
+    if (process.env.REACT_APP_ENV === 'development-remote') {
       trackingId = 'UA-112185819-4';
-      break;
-    default:
+    } else {
       trackingId = 'UA-112185819-3';
+    }
+  } else {
+    trackingId = 'UA-112185819-3';
   }
 
   ReactGA.initialize(trackingId, { debug: false });

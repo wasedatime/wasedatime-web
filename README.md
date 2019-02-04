@@ -1,8 +1,6 @@
 # WaseTime
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
-
-[![Build Status](https://travis-ci.org/wasetime/wasetime-web.svg?branch=master)](https://travis-ci.org/wasetime/wasetime-web)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/wasetime/wasetime-web.svg?branch=master)](https://travis-ci.org/wasetime/wasetime-web) [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 
 [WaseTime](https://wasetime.com) (stands for Waseda Time) is an unofficial web app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.
 

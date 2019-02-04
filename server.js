@@ -53,7 +53,10 @@ const sendCustomizedIndexFile = (filePath, title, description) => {
   };
 };
 
-if (process.env.NODE_ENV === 'production') {
+if (
+  process.env.NODE_ENV === 'production' ||
+  process.env.NODE_ENV === 'development-server'
+) {
   //serve up production assests, disable directory indexing
   app.use(express.static('client/build', { index: false }));
   //serve up index.html if route is unrecognizable

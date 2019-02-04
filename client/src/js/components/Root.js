@@ -54,8 +54,20 @@ class Analytics extends React.Component {
 }
 
 const Root = ({ store }) => {
-  const trackingId =
-    process.env.NODE_ENV === 'production' ? 'UA-112185819-1' : 'UA-112185819-3';
+  let trackingId;
+  switch (process.env.NODE_ENV) {
+    case 'production':
+      trackingId = 'UA-112185819-1';
+      break;
+    case 'development':
+      trackingId = 'UA-112185819-3';
+      break;
+    case 'development-server':
+      trackingId = 'UA-112185819-4';
+      break;
+    default:
+      trackingId = 'UA-112185819-3';
+  }
 
   ReactGA.initialize(trackingId, { debug: false });
   const analyticsRoute = <Route path="/" component={Analytics} />;

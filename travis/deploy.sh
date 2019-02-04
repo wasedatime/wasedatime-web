@@ -11,7 +11,7 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
     git commit -m "Deploy from Travis CI"
     git status
     git push deploy master --force
-else if [ $TRAVIS_BRANCH == 'development' ] ; then
+elif [ $TRAVIS_BRANCH == 'development' ] ; then
     git checkout master
     git remote add deploy 'deploy@139.59.216.161:wasetime-web.git'
     git add .

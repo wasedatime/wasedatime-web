@@ -14,6 +14,8 @@ git init --bare
 vim hooks/post-receive
 ```
 
+Production
+
 ```bash
 #!/bin/bash
 while read oldrev newrev ref
@@ -32,6 +34,30 @@ do
         && echo "Done. wasetime started successfully with pm2."
     else
         echo "Ref $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
+    fi
+done
+```
+
+Development
+
+```bash
+#!/bin/bash
+while read oldrev newrev ref
+do
+    if [[ $ref =~ .*/development$ ]];
+    then
+        echo "Development ref received.  Deploying development branch to development server..."
+        git --work-tree=/var/www/wasetime-web --git-dir=/home/deploy/wasetime-web.git checkout -f development
+        echo "Deployed to development branch. Changing directory to work-tree"
+        cd /var/www/wasetime-web
+        echo "Done. Installing required development packages..."
+        npm install \
+        && echo "Done. Deleting previous pm2 process and starting a new one..." \
+        && (pm2 delete "wasetime-development-server" || true) \
+        && pm2 start server.js --name "wasetime-development-server" \
+        && echo "Done. wasetime-development-server started successfully with pm2."
+    else
+        echo "Ref $ref successfully received.  Doing nothing: only the development branch may be deployed on this server."
     fi
 done
 ```

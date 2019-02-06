@@ -54,15 +54,13 @@ class Analytics extends React.Component {
 }
 
 const Root = ({ store }) => {
+  // production -> UA-112185819-1, staging -> UA-112185819-4, dev/others -> UA-112185819-3
   let trackingId;
   if (process.env.NODE_ENV === 'production') {
-    trackingId = 'UA-112185819-1';
-  } else if (process.env.NODE_ENV === 'development') {
-    if (process.env.REACT_APP_ENV === 'development-remote') {
-      trackingId = 'UA-112185819-4';
-    } else {
-      trackingId = 'UA-112185819-3';
-    }
+    trackingId =
+      process.env.REACT_APP_ENV === 'staging'
+        ? 'UA-112185819-4'
+        : 'UA-112185819-1';
   } else {
     trackingId = 'UA-112185819-3';
   }

@@ -39,9 +39,9 @@
     "styled-components": "^3.4.9"
   },
   "scripts": {
-    "start-local": "react-scripts start",
-    "start-remote": "REACT_APP_ENV=development-remote npm run start-local",
+    "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-staging": "REACT_APP_ENV=staging react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

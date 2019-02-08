@@ -3,6 +3,7 @@
   addedCourses: {},
   fetchedBuildings: {},
   fetchedCourses: {},
+  //TODO change stats to a better name like scraperStats, syllabusStats?
   stats: {},
   user: {
     // Boolean true or false

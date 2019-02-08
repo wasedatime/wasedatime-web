@@ -15,7 +15,7 @@ describe('>>>REDUCER --- Test user', () => {
         displayLang: 'jp'
       }
     };
-    expect(user('en', action)).toEqual({
+    expect(user({ displayLang: 'en' }, action)).toEqual({
       displayLang: 'jp'
     });
   });

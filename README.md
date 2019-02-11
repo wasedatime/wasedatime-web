@@ -11,7 +11,7 @@
 Currently this section is yet to be completed/refined. We will update it as frequent as possible.
 
 ### Prerequisites
-#### A human brain
+
 ### Installing
 
 ```bash
@@ -20,7 +20,8 @@ cd wasetime-web
 # install server-side node_modules
 npm install
 # install client-side node_modules
-npm install --prefix client
+cd client
+npm install
 ```
 
 ### Running the app for developing

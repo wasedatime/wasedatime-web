@@ -18,7 +18,8 @@ cd wasetime-web
 # install server-side node_modules
 npm install
 # install client-side node_modules
-npm install --prefix client
+cd client
+npm install
 ```
 
 ### Running the app for developing

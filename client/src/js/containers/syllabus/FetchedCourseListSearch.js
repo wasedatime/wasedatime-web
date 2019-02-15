@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 import MediaQuery from 'react-responsive';
 import { withRouter } from 'react-router';
@@ -15,6 +16,8 @@ import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../styled-components/utils';
 import { fallSemesters, springSemesters } from '../../data/semesters';
+import { jpRegex } from '../../utils/courseSearch';
+import {getUserDisplayLang} from '../../reducers/user'
 
 const F_COURSE_SEARCH_PLACE_HOLDER = 'Search for a course or instructor';
 
@@ -53,6 +56,7 @@ class FetchedCourseSearch extends React.Component {
     const parsedSearchQ = parsedSearch.q;
     const searchTerm =
       parsedSearchQ === undefined || parsedSearchQ === '' ? '' : parsedSearchQ;
+    const searchLang = searchTerm === '' ?  : getSearchLang(searchTerm)
     this.state = {
       isModalOpen: false,
       filterGroups: {
@@ -65,12 +69,17 @@ class FetchedCourseSearch extends React.Component {
       },
       inputText: searchTerm,
       searchTerm: searchTerm,
+      searchLang: null,
       filteredCourses: props.fetchedCourses
     };
   }
 
+  componentDidMount() {
+    //TODO need to init searchTerm from reducers here.
+  }
+
   componentWillUnmount() {
-    this.debounceUpdateSearchTerm.cancel();
+    this.debounceUpdateSearchTermAndLang.cancel();
   }
 
   handleToggleModal = event => {
@@ -195,34 +204,45 @@ class FetchedCourseSearch extends React.Component {
     });
   };
 
-  updateSearchTerm = () => {
+  updateSearchTermAndLang = () => {
     this.setState((prevState, props) => {
+      const searchTerm = prevState.inputText;
+      const searchLang = new RegExp(`[${jpRegex}]`).test(searchTerm)
+        ? 'jp'
+        : 'en';
       return {
-        searchTerm: prevState.inputText
+        searchTerm: prevState.inputText,
+        searchLang: searchLang
       };
     }, this.pushHistory());
   };
 
-  debounceUpdateSearchTerm = debounce(this.updateSearchTerm, 500, {
-    leading: false
-  });
+  debounceUpdateSearchTermAndLang = debounce(
+    this.updateSearchTermAndLang,
+    500,
+    {
+      leading: false
+    }
+  );
 
   handleInputChange = inputText => {
     this.setState(
       {
         inputText
       },
-      this.debounceUpdateSearchTerm()
+      this.debounceUpdateSearchTermAndLang()
     );
   };
 
   render() {
-    const { inputText, searchTerm } = this.state;
+    const { inputText, searchTerm, searchLang } = this.state;
+    //TODO debounce here? it's executed in every render which happens every time a user changes input.
     const results =
       searchTerm.length > 1
         ? sortCourses(
             searchTerm,
-            searchCourses(searchTerm, this.state.filteredCourses)
+            searchCourses(searchTerm, this.state.filteredCourses, searchLang),
+            searchLang
           )
         : this.state.filteredCourses;
     return (
@@ -267,4 +287,10 @@ class FetchedCourseSearch extends React.Component {
   }
 }
 
-export default withRouter(FetchedCourseSearch);
+const mapStateToProps = state => {
+  return {
+    searchLang: getById(state.addedCourses)
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(FetchedCourseSearch));

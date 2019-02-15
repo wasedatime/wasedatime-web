@@ -27,15 +27,15 @@ describe('>>>UTILS --- Test tokenize', () => {
 
 describe('>>>UTILS --- Test regexify', () => {
   test('should regexify a en token', () => {
-    expect(regexify('term')).toEqual(/\bterm/i);
+    expect(regexify('term', 'en')).toEqual(/\bterm/i);
   });
 
   test('should regexify a jp token', () => {
-    expect(regexify('ワード')).toEqual(/\bワード/i);
+    expect(regexify('ワード', 'jp')).toEqual(/ワード/i);
   });
 
   test('should regexify a en+jp token', () => {
-    expect(regexify('プログラミングII')).toEqual(/\bプログラミングII/i);
+    expect(regexify('プログラミングII', 'jp')).toEqual(/プログラミングII/i);
   });
 });
 
@@ -58,5 +58,115 @@ describe('>>>UTILS --- getCourseTitleAndInstructor', () => {
       title: '解析学入門',
       instructor: '田中 和永'
     });
+  });
+});
+
+describe('>>>UTILS --- searchCourses', () => {
+  const dummyCourses = [
+    {
+      title: 'Advanced Calculus',
+      title_jp: '解析学入門',
+      instructor: 'TANAKA, Kazunaga',
+      instructor_jp: '田中 和永'
+    },
+    {
+      title: 'Advanced Chinese II fall semester-Wed-5 Nagatomi',
+      title_jp: '中国語上級II 秋期水5永冨',
+      instructor: 'NAGATOMI, Seiji',
+      instructor_jp: '永冨 青地'
+    }
+  ];
+
+  test('should search a course given one en partial title', () => {
+    expect(searchCourses('chi', dummyCourses, 'en')).toEqual(
+      dummyCourses.slice(1, 2)
+    );
+  });
+
+  test('should search a course given multiple en partial title', () => {
+    expect(searchCourses('adv chi', dummyCourses, 'en')).toEqual(
+      dummyCourses.slice(1, 2)
+    );
+  });
+
+  test('should search a course given its jp partial title', () => {
+    expect(searchCourses('上', dummyCourses, 'jp')).toEqual(
+      dummyCourses.slice(1, 2)
+    );
+  });
+
+  test('should search a course given its jp partial title', () => {
+    expect(searchCourses('中国　秋期', dummyCourses, 'jp')).toEqual(
+      dummyCourses.slice(1, 2)
+    );
+  });
+});
+
+describe('>>>UTILS --- sortCourses', () => {
+  const dummyCourses = [
+    {
+      title: 'Advanced Calculus',
+      title_jp: '解析学入門',
+      instructor: 'TANAKA, Kazunaga',
+      instructor_jp: '田中 和永'
+    },
+    {
+      title: 'Advanced Chinese II fall semester-Wed-5 Nagatomi',
+      title_jp: '中国語上級II 秋期水5永冨',
+      instructor: 'NAGATOMI, Seiji',
+      instructor_jp: '永冨 青地'
+    },
+    {
+      title: 'Beginners Chinese IA spring semester-Fri-1 Hara',
+      title_jp: '中国語初級IA 春期金1原',
+      instructor: 'HARA, Shintaro Alexandre',
+      instructor_jp: '原 信太郎 アレシャンドレ'
+    }
+  ];
+
+  const dummyEnCourses = [
+    {
+      title: 'Advanced Calculus',
+      instructor: 'TANAKA, Kazunaga'
+    },
+    {
+      title: 'Calculus A',
+      instructor: 'BOWEN, Mark'
+    },
+    {
+      title: 'Advanced Macroeconomics A 01',
+      instructor: 'UEDA, Kozo'
+    }
+  ];
+
+  const dummyJpCourses = [
+    {
+      title_jp: '保険数学',
+      instructor_jp: '内藤 和晃'
+    },
+    {
+      title_jp: '量子力学特論',
+      instructor_jp: '山中 由也'
+    },
+    {
+      title_jp: '中国語上級II 秋期水5永冨',
+      instructor_jp: '永冨 青地'
+    }
+  ];
+
+  test('should prioritize en title > instructor > no match', () => {
+    expect(sortCourses('ma', dummyEnCourses, 'en')).toEqual([
+      dummyEnCourses[2],
+      dummyEnCourses[1],
+      dummyEnCourses[0]
+    ]);
+  });
+
+  test('should prioritize jp title > instructor > no match', () => {
+    expect(sortCourses('中', dummyJpCourses, 'jp')).toEqual([
+      dummyJpCourses[2],
+      dummyJpCourses[1],
+      dummyJpCourses[0]
+    ]);
   });
 });

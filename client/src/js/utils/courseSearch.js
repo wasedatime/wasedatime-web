@@ -1,18 +1,20 @@
 import sortBy from 'lodash/sortBy';
 
 // Unicode for Japanese: http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
-const jpRegex = '\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf';
+export const jpRegex = '\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf';
 
 export const tokenize = string => {
+  // TODO benchmark contructor (new RegExp) vs factory (RegExp)
   const regex = new RegExp(`[^A-Za-z0-9${jpRegex}]+`);
   return string.trim().split(regex);
 };
 
-export const regexify = token => {
+export const regexify = (token, searchLang) => {
   // Unnecessary trimming and replacing of \W characters
   // const terms = string.trim().replace(/\W+/g, '\\W+');
-  const regex = new RegExp(`\\b${token}`, 'i');
-  return regex;
+  return searchLang === 'en'
+    ? new RegExp(`\\b${token}`, 'i')
+    : new RegExp(`${token}`, 'i');
 };
 
 export const getCourseTitleAndInstructor = (course, searchLang) => {
@@ -22,7 +24,10 @@ export const getCourseTitleAndInstructor = (course, searchLang) => {
 };
 
 export const searchCourses = (searchTerm, courses, searchLang) => {
-  const searchRegexes = tokenize(searchTerm).map(regexify);
+  const searchRegexes = tokenize(searchTerm).map(token =>
+    regexify(token, searchLang)
+  );
+
   return courses.filter(course => {
     const { title, instructor } = getCourseTitleAndInstructor(
       course,
@@ -35,7 +40,9 @@ export const searchCourses = (searchTerm, courses, searchLang) => {
 };
 
 export const sortCourses = (searchTerm, courses, searchLang) => {
-  const searchRegexes = tokenize(searchTerm).map(regexify);
+  const searchRegexes = tokenize(searchTerm).map(token =>
+    regexify(token, searchLang)
+  );
 
   return sortBy(courses, course => {
     const { title, instructor } = getCourseTitleAndInstructor(

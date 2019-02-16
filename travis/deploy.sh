@@ -11,6 +11,15 @@ if [ $TRAVIS_BRANCH == 'master' ] ; then
     git commit -m "Deploy from Travis CI"
     git status
     git push deploy master --force
+elif [ $TRAVIS_BRANCH == 'staging' ] ; then
+    git checkout staging
+    git remote add deploy 'deploy@139.59.216.161:wasetime-web.git'
+    git add .
+    git add client/build/* --force
+    git status
+    git commit -m "Deploy from Travis CI"
+    git status
+    git push deploy staging --force
 else
-    echo "Not deploying, since this branch isn't master."
+    echo "Not deploying, since this branch isn't master or staging."
 fi

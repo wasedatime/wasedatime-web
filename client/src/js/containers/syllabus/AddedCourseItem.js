@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 import { connect } from 'react-redux';
 import Alert from 'react-s-alert';
@@ -33,4 +34,12 @@ const mapDispatchToProps = {
   removeCourse
 };
 
-export default connect(null, mapDispatchToProps)(AddedCourseItem);
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddedCourseItem);
+
+AddedCourseItem.propTypes = {
+  course: PropTypes.object.isRequired,
+  removeCourse: PropTypes.func.isRequired
+};

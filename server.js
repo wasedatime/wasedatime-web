@@ -53,6 +53,7 @@ const sendCustomizedIndexFile = (filePath, title, description) => {
   };
 };
 
+// process.env is read from the .env file on server
 if (process.env.NODE_ENV === 'production') {
   //serve up production assests, disable directory indexing
   app.use(express.static('client/build', { index: false }));

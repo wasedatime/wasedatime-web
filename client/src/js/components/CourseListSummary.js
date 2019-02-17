@@ -60,3 +60,11 @@ const CourseListSummary = ({
 };
 
 export default CourseListSummary;
+
+CourseListSummary.propTypes = {
+  courses: PropTypes.array.isRequired,
+  isSortingOptionOpen: PropTypes.boolean.isRequired,
+  handleToggleSortingOptions: PropTypes.func.isRequired,
+  selectedSortingOption: PropTypes.string.isRequired,
+  handleChangeSortingOption: PropTypes.func.isRequired
+};

@@ -19,3 +19,8 @@ const CourseChunk = ({chunk, searchTerm}) => {
 }
 
 export default CourseChunk;
+
+CourseChunk.propTypes = {
+  chunk: PropTypes.array.isRequired,
+  searchTerm: PropTypes.string.isRequired
+};

@@ -109,5 +109,6 @@ class FetchedCourseList extends React.Component {
 export default FetchedCourseList;
 
 FetchedCourseList.propTypes = {
-  searchTerm: PropTypes.string.isRequired
+  searchTerm: PropTypes.string.isRequired,
+  results: PropTypes.array.isRequired
 };

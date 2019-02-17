@@ -280,5 +280,7 @@ export default CourseItem;
 
 CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,
-  course: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired,
+  isAddable: PropTypes.boolean.isRequired,
+  handleOnClick: PropTypes.func.isRequired,
 };

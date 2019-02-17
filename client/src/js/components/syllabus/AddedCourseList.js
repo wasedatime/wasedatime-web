@@ -137,3 +137,11 @@ class AddedCourseList extends React.Component {
 }
 
 export default AddedCourseList;
+
+AddedCourseList.propTypes = {
+  courses: PropTypes.array.isRequired,
+  isSortingOptionOpen: PropTypes.boolean.isRequired,
+  handleToggleSortingOptions: PropTypes.func.isRequired,
+  selectedSortingOption: PropTypes.string.isRequired,
+  handleChangeSortingOption: PropTypes.func.isRequired
+};

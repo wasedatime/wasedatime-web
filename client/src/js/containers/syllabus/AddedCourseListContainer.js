@@ -64,3 +64,9 @@ const mapDispatchToProps = {
 export default connect(mapStateToProps, mapDispatchToProps)(
   AddedCourseListContainer
 );
+
+AddedCourseListContainer.propTypes = {
+  addedCourses: PropTypes.array.isRequired,
+  semesterKey: PropTypes.string.isRequired,
+  changeCoursesSortingOption: PropTypes.func.isRequired
+};

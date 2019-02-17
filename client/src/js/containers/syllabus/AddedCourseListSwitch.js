@@ -43,3 +43,7 @@ class AddedCourseListSwitch extends React.Component {
 }
 
 export default AddedCourseListSwitch;
+
+AddedCourseListSwitch.propTypes = {
+  addedCourses: PropTypes.array.isRequired
+};

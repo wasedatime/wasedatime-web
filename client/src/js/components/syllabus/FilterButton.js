@@ -36,3 +36,8 @@ const FilterButton = ({ isModalOpen, handleToggleModal }) => {
 };
 
 export default FilterButton;
+
+FilterButton.propTypes = {
+  isModalOpen: PropTypes.boolean.isRequired,
+  handleToggleModal: PropTypes.func.isRequired
+}

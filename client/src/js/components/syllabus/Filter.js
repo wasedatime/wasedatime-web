@@ -220,3 +220,9 @@ class Filter extends React.Component {
 }
 
 export default Filter;
+
+Filter.propTypes = {
+  filterGroups: PropTypes.object.isRequired,
+  handleToggleFilter: PropTypes.func.isRequired,
+  isSideBar: PropTypes.boolean.isRequired
+}

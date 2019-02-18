@@ -46,3 +46,10 @@ const FilterGroup = ({ handleToggleFilter, legend, inputs, inputName }) => {
 };
 
 export default FilterGroup;
+
+FilterGroup.propTypes = {
+  handleToggleFilter: PropTypes.func.isRequired,
+  legend: PropTypes.string.isRequired,
+  inputName: PropTypes.string.isRequired,
+  inputs: PropTypes.object.isRequired
+}

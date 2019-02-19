@@ -140,8 +140,12 @@ export default AddedCourseList;
 
 AddedCourseList.propTypes = {
   courses: PropTypes.array.isRequired,
-  isSortingOptionOpen: PropTypes.boolean.isRequired,
+  isSortingOptionOpen: PropTypes.bool.isRequired,
   handleToggleSortingOptions: PropTypes.func.isRequired,
   selectedSortingOption: PropTypes.string.isRequired,
   handleChangeSortingOption: PropTypes.func.isRequired
 };
+
+CourseListWrapper.propTypes = {
+  innerRef: PropTypes.func.isRequired
+}

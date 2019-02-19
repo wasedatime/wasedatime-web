@@ -224,5 +224,17 @@ export default Filter;
 Filter.propTypes = {
   filterGroups: PropTypes.object.isRequired,
   handleToggleFilter: PropTypes.func.isRequired,
-  isSideBar: PropTypes.boolean.isRequired
+  isSideBar: PropTypes.bool.isRequired
+
+FilterWrapper.propTypes = {
+  innerRef: PropTypes.func.isRequired,
+  isSideBar: PropTypes.bool.isRequired
+}
+
+FilterOverlay.propTypes = {
+  isSideBar: PropTypes.bool.isRequired
+}
+
+FilterTitle.propTypes = {
+  isSideBar: PropTypes.bool.isRequired
 }

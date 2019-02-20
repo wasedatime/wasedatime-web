@@ -1,15 +1,24 @@
 import React from 'react';
 
 import { tokenize } from './courseSearch';
+import langs from '../config/langs';
+import UnsupportedLanguageError from '../errors/UnsupportedLanguageError';
 
 export const highlight = (searchTerm, searchLang, text) => {
   if (searchTerm.length > 0) {
     const termUnion = tokenize(searchTerm).join('|');
     //Capturing parentheses () allows matched results to be included in the array.
-    const regex =
-      searchLang === 'en'
-        ? new RegExp(`\\b(${termUnion})`, 'i')
-        : new RegExp(`(${termUnion})`, 'i');
+    let regex;
+    switch (searchLang) {
+      case langs.JP:
+        regex = new RegExp(`(${termUnion})`, 'i');
+        break;
+      case langs.EN:
+        regex = new RegExp(`\\b(${termUnion})`, 'i');
+        break;
+      default:
+        throw new UnsupportedLanguageError(searchLang);
+    }
     const textParts = text.split(regex);
     return textParts.map((part, i) => {
       if (i % 2 === 0) {

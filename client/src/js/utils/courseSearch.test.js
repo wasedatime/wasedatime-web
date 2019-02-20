@@ -5,6 +5,7 @@ import {
   searchCourses,
   sortCourses
 } from './courseSearch';
+import langs from '../config/langs';
 
 describe('>>>UTILS --- Test tokenize', () => {
   test('should tokenize en search terms by non en/number characters', () => {
@@ -27,15 +28,15 @@ describe('>>>UTILS --- Test tokenize', () => {
 
 describe('>>>UTILS --- Test regexify', () => {
   test('should regexify a en token', () => {
-    expect(regexify('term', 'en')).toEqual(/\bterm/i);
+    expect(regexify('term', langs.EN)).toEqual(/\bterm/i);
   });
 
   test('should regexify a jp token', () => {
-    expect(regexify('ワード', 'jp')).toEqual(/ワード/i);
+    expect(regexify('ワード', langs.JP)).toEqual(/ワード/i);
   });
 
   test('should regexify a en+jp token', () => {
-    expect(regexify('プログラミングII', 'jp')).toEqual(/プログラミングII/i);
+    expect(regexify('プログラミングII', langs.JP)).toEqual(/プログラミングII/i);
   });
 });
 
@@ -47,14 +48,14 @@ describe('>>>UTILS --- getCourseTitleAndInstructor', () => {
     instructor_jp: '田中 和永'
   };
   test('should return a en title and instructor given a en searchLang', () => {
-    expect(getCourseTitleAndInstructor(dummyCourse, 'en')).toEqual({
+    expect(getCourseTitleAndInstructor(dummyCourse, langs.EN)).toEqual({
       title: 'Advanced Calculus',
       instructor: 'TANAKA, Kazunaga'
     });
   });
 
   test('should return a jp title and instructor given a jp searchLang', () => {
-    expect(getCourseTitleAndInstructor(dummyCourse, 'jp')).toEqual({
+    expect(getCourseTitleAndInstructor(dummyCourse, langs.JP)).toEqual({
       title: '解析学入門',
       instructor: '田中 和永'
     });
@@ -78,25 +79,25 @@ describe('>>>UTILS --- searchCourses', () => {
   ];
 
   test('should search a course given one en partial title', () => {
-    expect(searchCourses('chi', dummyCourses, 'en')).toEqual(
+    expect(searchCourses('chi', dummyCourses, langs.EN)).toEqual(
       dummyCourses.slice(1, 2)
     );
   });
 
   test('should search a course given multiple en partial title', () => {
-    expect(searchCourses('adv chi', dummyCourses, 'en')).toEqual(
+    expect(searchCourses('adv chi', dummyCourses, langs.EN)).toEqual(
       dummyCourses.slice(1, 2)
     );
   });
 
   test('should search a course given its jp partial title', () => {
-    expect(searchCourses('上', dummyCourses, 'jp')).toEqual(
+    expect(searchCourses('上', dummyCourses, langs.JP)).toEqual(
       dummyCourses.slice(1, 2)
     );
   });
 
   test('should search a course given its jp partial title', () => {
-    expect(searchCourses('中国　秋期', dummyCourses, 'jp')).toEqual(
+    expect(searchCourses('中国　秋期', dummyCourses, langs.JP)).toEqual(
       dummyCourses.slice(1, 2)
     );
   });
@@ -155,7 +156,7 @@ describe('>>>UTILS --- sortCourses', () => {
   ];
 
   test('should prioritize en title > instructor > no match', () => {
-    expect(sortCourses('ma', dummyEnCourses, 'en')).toEqual([
+    expect(sortCourses('ma', dummyEnCourses, langs.EN)).toEqual([
       dummyEnCourses[2],
       dummyEnCourses[1],
       dummyEnCourses[0]
@@ -163,7 +164,7 @@ describe('>>>UTILS --- sortCourses', () => {
   });
 
   test('should prioritize jp title > instructor > no match', () => {
-    expect(sortCourses('中', dummyJpCourses, 'jp')).toEqual([
+    expect(sortCourses('中', dummyJpCourses, langs.JP)).toEqual([
       dummyJpCourses[2],
       dummyJpCourses[1],
       dummyJpCourses[0]

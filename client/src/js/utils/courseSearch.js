@@ -1,5 +1,8 @@
 import sortBy from 'lodash/sortBy';
 
+import langs from '../config/langs';
+import UnsupportedLanguageError from '../errors/UnsupportedLanguageError';
+
 // Unicode for Japanese: http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
 export const jpRegex = '\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf';
 
@@ -10,21 +13,29 @@ export const tokenize = string => {
 };
 
 export const getSearchLang = searchTerm => {
-  return new RegExp(`[${jpRegex}]`).test(searchTerm) ? 'jp' : 'en';
+  return new RegExp(`[${jpRegex}]`).test(searchTerm) ? langs.JP : langs.EN;
 };
 
 export const regexify = (token, searchLang) => {
-  // Unnecessary trimming and replacing of \W characters
-  // const terms = string.trim().replace(/\W+/g, '\\W+');
-  return searchLang === 'en'
-    ? new RegExp(`\\b${token}`, 'i')
-    : new RegExp(token, 'i');
+  switch (searchLang) {
+    case langs.JP:
+      return new RegExp(token, 'i');
+    case langs.EN:
+      return new RegExp(`\\b${token}`, 'i');
+    default:
+      throw new UnsupportedLanguageError(searchLang);
+  }
 };
 
 export const getCourseTitleAndInstructor = (course, searchLang) => {
-  return searchLang === 'en'
-    ? { title: course.title, instructor: course.instructor }
-    : { title: course.title_jp, instructor: course.instructor_jp };
+  switch (searchLang) {
+    case langs.JP:
+      return { title: course.title_jp, instructor: course.instructor_jp };
+    case langs.EN:
+      return { title: course.title, instructor: course.instructor };
+    default:
+      throw new UnsupportedLanguageError(searchLang);
+  }
 };
 
 export const searchCourses = (searchTerm, courses, searchLang) => {

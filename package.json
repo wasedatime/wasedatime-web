@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "mocha './test/**/*.test.js' && npm run test --prefix client",
-    "server": "nodemon server.js",
+    "server": "nodemon --delay 2 server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
     "contributors:add": "all-contributors add",

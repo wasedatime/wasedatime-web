@@ -16,8 +16,8 @@ import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../styled-components/utils';
 import { fallSemesters, springSemesters } from '../../data/semesters';
-import { jpRegex } from '../../utils/courseSearch';
-import {getUserDisplayLang} from '../../reducers/user'
+import { getSearchLang } from '../../utils/courseSearch';
+import { getUserDisplayLang } from '../../reducers/user';
 
 const F_COURSE_SEARCH_PLACE_HOLDER = 'Search for a course or instructor';
 
@@ -54,9 +54,9 @@ class FetchedCourseSearch extends React.Component {
     super(props);
     const parsedSearch = queryString.parse(this.props.location.search);
     const parsedSearchQ = parsedSearch.q;
-    const searchTerm =
-      parsedSearchQ === undefined || parsedSearchQ === '' ? '' : parsedSearchQ;
-    const searchLang = searchTerm === '' ?  : getSearchLang(searchTerm)
+    const searchTerm = parsedSearchQ === undefined ? '' : parsedSearchQ;
+    const searchLang =
+      searchTerm === '' ? this.props.searchLang : getSearchLang(searchTerm);
     this.state = {
       isModalOpen: false,
       filterGroups: {
@@ -207,9 +207,7 @@ class FetchedCourseSearch extends React.Component {
   updateSearchTermAndLang = () => {
     this.setState((prevState, props) => {
       const searchTerm = prevState.inputText;
-      const searchLang = new RegExp(`[${jpRegex}]`).test(searchTerm)
-        ? 'jp'
-        : 'en';
+      const searchLang = getSearchLang(searchTerm);
       return {
         searchTerm: prevState.inputText,
         searchLang: searchLang
@@ -289,7 +287,7 @@ class FetchedCourseSearch extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    searchLang: getById(state.addedCourses)
+    searchLang: getUserDisplayLang(state)
   };
 };
 

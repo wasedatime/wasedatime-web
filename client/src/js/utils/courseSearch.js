@@ -18,7 +18,7 @@ export const regexify = (token, searchLang) => {
   // const terms = string.trim().replace(/\W+/g, '\\W+');
   return searchLang === 'en'
     ? new RegExp(`\\b${token}`, 'i')
-    : new RegExp(`${token}`, 'i');
+    : new RegExp(token, 'i');
 };
 
 export const getCourseTitleAndInstructor = (course, searchLang) => {

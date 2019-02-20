@@ -9,6 +9,10 @@ export const tokenize = string => {
   return string.trim().split(regex);
 };
 
+export const getSearchLang = searchTerm => {
+  return new RegExp(`[${jpRegex}]`).test(searchTerm) ? 'jp' : 'en';
+};
+
 export const regexify = (token, searchLang) => {
   // Unnecessary trimming and replacing of \W characters
   // const terms = string.trim().replace(/\W+/g, '\\W+');

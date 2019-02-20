@@ -68,7 +68,7 @@ class FetchedCourseList extends React.Component {
   };
 
   render() {
-    const { searchTerm, results } = this.props;
+    const { searchTerm, searchLang, results } = this.props;
     const resultsInChunks = this.resultsToChunks();
     return (
       <ExtendedWrapper>
@@ -91,7 +91,11 @@ class FetchedCourseList extends React.Component {
                           } courses`}
                         </span>
                       </div>
-                      <CourseChunk chunk={chunk} searchTerm={searchTerm} />
+                      <CourseChunk
+                        chunk={chunk}
+                        searchTerm={searchTerm}
+                        searchLang={searchLang}
+                      />
                     </CourseChunkWrapper>
                   </WayPoint>
                 ))

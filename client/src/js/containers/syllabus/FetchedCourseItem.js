@@ -51,7 +51,7 @@ class FetchedCourseItem extends React.Component {
   };
 
   render() {
-    const { searchTerm, course, byId } = this.props;
+    const { searchTerm, searchLang, course, byId } = this.props;
     const id = course._id;
     const isAddable = !(id in byId);
     return (
@@ -61,6 +61,7 @@ class FetchedCourseItem extends React.Component {
         }
         isAddable={isAddable}
         searchTerm={searchTerm}
+        searchLang={searchLang}
         course={course}
       />
     );

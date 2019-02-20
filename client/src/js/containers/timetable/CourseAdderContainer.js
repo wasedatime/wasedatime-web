@@ -24,7 +24,7 @@ class CourseAdderContainer extends React.Component {
   }
 
   getFilteredCourses = searchTerm => {
-    if (searchTerm.length > 1) {
+    if (searchTerm.length > 0) {
       const filteredCourses = filterCourses(searchTerm, this.props.courses);
       return sortCourses(searchTerm, filteredCourses.slice(0, RESULTS_LIMIT));
     }

@@ -69,7 +69,7 @@ class FetchedCourseSearch extends React.Component {
       },
       inputText: searchTerm,
       searchTerm: searchTerm,
-      searchLang: null,
+      searchLang: searchLang,
       filteredCourses: props.fetchedCourses
     };
   }
@@ -236,7 +236,7 @@ class FetchedCourseSearch extends React.Component {
     const { inputText, searchTerm, searchLang } = this.state;
     //TODO debounce here? it's executed in every render which happens every time a user changes input.
     const results =
-      searchTerm.length > 1
+      searchTerm.length > 0
         ? sortCourses(
             searchTerm,
             searchCourses(searchTerm, this.state.filteredCourses, searchLang),
@@ -251,7 +251,11 @@ class FetchedCourseSearch extends React.Component {
           inputText={inputText}
         />
         <RowWrapper>
-          <FetchedCourseList searchTerm={searchTerm} results={results} />
+          <FetchedCourseList
+            searchTerm={searchTerm}
+            searchLang={searchLang}
+            results={results}
+          />
           <MediaQuery minWidth={sizes.desktop}>
             {matches => {
               return matches ? (

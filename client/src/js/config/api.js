@@ -9,3 +9,4 @@ export const wasetimeApiStatic = {
   courseListAll: API_STATIC_URL + 'course_list_all.json',
   courseListPSE: API_STATIC_URL + 'course_list_PSE.json'
 };
+

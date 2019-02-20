@@ -13,7 +13,7 @@ import {
   CHANGE_COURSES_SORTING_OPTION
 } from './types';
 import * as schema from '../data/schema';
-import { wasetimeApiStatic } from '../api/index';
+import { wasetimeApiStatic } from '../config/api';
 
 export const fetchCourses = () => async (dispatch, getState) => {
   dispatch({

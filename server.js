@@ -1,42 +1,12 @@
 require('dotenv').config({ path: '/var/www/.env' });
 const express = require('express');
-const mongoose = require('mongoose');
 const helmet = require('helmet');
 const timeout = require('connect-timeout');
 const fs = require('fs');
 
-const keys = require('./config/keys');
-require('./models/CourseSimplified');
-require('./models/Course');
-require('./models/Classroom');
-require('./models/Building');
-require('./models/Stats');
-
-mongoose.Promise = global.Promise;
-
-mongoose
-  .connect(keys.mongoURI, { useNewUrlParser: true })
-  .then(() => {
-    console.log('App starting...');
-  })
-  .catch(err => {
-    console.error('App starting error:', err.stack);
-    process.exit(1);
-  });
-
-const app = express();
-app.use(timeout('15s'));
-app.use(helmet());
-app.use(haltOnTimedout);
-
-require('./routes/buildingRoutes')(app);
-require('./routes/classroomRoutes')(app);
-require('./routes/courseRoutes')(app);
-require('./routes/statsRoutes')(app);
-
-function haltOnTimedout(req, res, next) {
+const haltOnTimedout = (req, res, next) => {
   if (!req.timedout) next();
-}
+};
 
 const sendCustomizedIndexFile = (filePath, title, description) => {
   return function(req, res, next) {
@@ -52,6 +22,11 @@ const sendCustomizedIndexFile = (filePath, title, description) => {
     });
   };
 };
+
+const app = express();
+app.use(timeout('15s'));
+app.use(helmet());
+app.use(haltOnTimedout);
 
 if (process.env.NODE_ENV === 'production') {
   //serve up production assests, disable directory indexing
@@ -116,4 +91,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT);
+app.listen(PORT, () => console.log(`App listening on port ${PORT}`));

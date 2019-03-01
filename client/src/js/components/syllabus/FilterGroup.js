@@ -51,5 +51,5 @@ FilterGroup.propTypes = {
   handleToggleFilter: PropTypes.func.isRequired,
   legend: PropTypes.string.isRequired,
   inputName: PropTypes.string.isRequired,
-  inputs: PropTypes.object.isRequired
+  inputs: PropTypes.array.isRequired
 }

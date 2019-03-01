@@ -1,4 +1,10 @@
 {
+  "title": {
+    "Timetable": "時間割",
+    "Syllabus": "シラバス",
+    "RoomFinder": "空き教室探し",
+    "Bus": "バス"
+  },
   "room": {
     "Under Construction": "作成中",
     "Want to help?": "困ったことがあります？",

@@ -7,7 +7,6 @@ import {
   faEllipsisV
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
-import i18n from './i18n';
 import { withNamespaces } from 'react-i18next';
 
 import ModalContainer from '../containers/ModalContainer';
@@ -125,6 +124,7 @@ const getSchduleType = (month, date, day) => {
     saturdaySchedule,
     specialSchedule
   } = busSchedule['exceptions'];
+
   if (
     monthString in outOfService &&
     binarySearch(date, outOfService[monthString])
@@ -194,7 +194,7 @@ const totalMinsToTimeStr = totalMins => {
 };
 
 //TODO Fix mixing different return types
-const getBusStatus = (totalMins, occurrences, remarks) => {
+const getBusStatus = (totalMins, occurrences, remarks, lng) => {
   const nextTotalMins = binarySearchSchedule(totalMins, occurrences);
   // If there is there exists a subsequent bus schedule on the same day
   if (nextTotalMins !== -1) {
@@ -204,41 +204,76 @@ const getBusStatus = (totalMins, occurrences, remarks) => {
     return {
       departIn: nextTotalMins - totalMins,
       timeString: nextTimeString,
-      remark
+      remark,
+      lng
     };
   }
-  return 'Out of service';
+  if(lng === 'en') {
+    return 'Out of service';
+  } else if(lng === 'jp'){
+    return '利用時間外';
+  }
 };
 
-const getBusStatuses = ( now, { t } ) => {
+const getBusStatuses = ( now, lng, { t } ) => {
   const month = now.getMonth();
   const date = now.getDate();
   const day = now.getDay();
-  let wasedaStatus = 'Out of service',
+  //assertion language at first
+  let wasedaStatus, nishiStatus;
+  if(lng === 'en') {
+    wasedaStatus = 'Out of service';
     nishiStatus = 'Out of service';
+  } else if (lng ==='jp') {
+    wasedaStatus = '利用時間外';
+    nishiStatus = '利用時間外';
+  }
   const scheduleType = getSchduleType(month, date, day);
   // No buses or special schedule
   if (scheduleType === 'no') {
     return { wasedaStatus, nishiStatus };
   } else if (scheduleType === 'special') {
-    wasedaStatus = 'Special Schedule';
-    nishiStatus = 'Special Schedule';
-    return { wasedaStatus, nishiStatus };
+      if (lng === 'en') {
+        wasedaStatus = 'Special Schedule';
+        nishiStatus = 'Special Schedule';
+      }
+      else if (lng ==='jp') {
+        wasedaStatus = '特別なスケジュール';
+        nishiStatus = '特別なスケジュール';
+      }
+  return { wasedaStatus, nishiStatus };
   }
   // Weekday schedule or Saturday schedule
   const totalMins = now.getHours() * 60 + now.getMinutes();
   const wasedaSchedule = busSchedule[scheduleType].fromWasedaToNishiWaseda;
   const nishiSchedule = busSchedule[scheduleType].fromNishiWasedaToWaseda;
-  wasedaStatus = getBusStatus(
-    totalMins,
-    wasedaSchedule.occurrences,
-    wasedaSchedule.remarks
-  );
-  nishiStatus = getBusStatus(
-    totalMins,
-    nishiSchedule.occurrences,
-    nishiSchedule.remarks
-  );
+  if (lng === 'en') {
+    wasedaStatus = getBusStatus(
+      totalMins,
+      wasedaSchedule.occurrences,
+      wasedaSchedule.remarks_en,
+      lng
+    );
+    nishiStatus = getBusStatus(
+      totalMins,
+      nishiSchedule.occurrences,
+      nishiSchedule.remarks_en,
+      lng
+    );
+  } else if (lng === 'jp') {
+    wasedaStatus = getBusStatus(
+      totalMins,
+      wasedaSchedule.occurrences,
+      wasedaSchedule.remarks_jp,
+      lng
+    );
+    nishiStatus = getBusStatus(
+      totalMins,
+      nishiSchedule.occurrences,
+      nishiSchedule.remarks_jp,
+      lng
+    );
+  }
   return { wasedaStatus, nishiStatus };
 };
 
@@ -264,13 +299,14 @@ const createStatusComponent = ( status, { t } ) => {
 
 const Bus = ({ t }) => {
   const now = new Date();
-  const { wasedaStatus, nishiStatus } = getBusStatuses(now, { t });
-  const wasedaStatusComponent = createStatusComponent(wasedaStatus, { t });
-  const nishiStatusComponent = createStatusComponent(nishiStatus, { t });
+  let lng = 'jp'; //test about lauguage
+  const { wasedaStatus, nishiStatus } = getBusStatuses(now, lng, { t });
+  const wasedaStatusComponent = createStatusComponent(wasedaStatus, lng, { t });
+  const nishiStatusComponent = createStatusComponent(nishiStatus, lng, { t });
   return (
     <Wrapper>
       <Helmet>
-        <title>WaseTime - Bus</title>
+        <title>WaseTime -　Bus</title>
         <meta
           name="description"
           content="Shuttle Bus Arrival Time Checking at Waseda University."

@@ -8,6 +8,7 @@ import Root from './js/components/Root';
 
 import 'normalize-css/normalize.css';
 import './styles/styles.css';
+import './js/components/i18n';
 
 const store = configureStore();
 

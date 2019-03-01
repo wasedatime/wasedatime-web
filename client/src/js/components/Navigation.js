@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { translate } from 'react-i18next';
+import { withNamespaces } from 'react-i18next';
+
 import {
   faCalendarAlt,
   faBook,
@@ -50,6 +53,8 @@ const StyledSpan = styled('span')`
 `;
 
 const Navigation = props => {
+
+  // const Navigation = ({ t }) => {
   const pathname = props.location.pathname;
   const navItems = [
     {
@@ -93,5 +98,18 @@ const Navigation = props => {
 
   return <StyledNav>{styledLinks}</StyledNav>;
 };
+const MyRouter = withRouter(Navigation);
+// const MyTranslation = translate('translation')(Navigation);
+const MyTranslation = withNamespaces('translation')(Navigation);
 
-export default withRouter(Navigation);
+
+// export default withRouter(Navigation);
+export default class navigation extends React.Component{
+  render() {
+    return (
+      <MyRouter>
+      <MyTranslation />
+      </MyRouter>
+    )
+  }
+}

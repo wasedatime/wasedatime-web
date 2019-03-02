@@ -68,7 +68,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 AddedCourseListContainer.propTypes = {
   addedCourses: PropTypes.array.isRequired,
   semesterKey: PropTypes.string.isRequired,
-  selectedSortingOption: PropTypes.object.isRequired,
-  getSortingOption: PropTypes.func.isRequired,
+  selectedSortingOption: PropTypes.string.isRequired,
   changeCoursesSortingOption: PropTypes.func.isRequired
 };

@@ -6,5 +6,5 @@ if [ $TRAVIS_BRANCH == 'master' ]; then
 elif [ $TRAVIS_BRANCH == 'staging' ]; then
     npm run build-staging --prefix client
 else
-    echo "Not building, since this branch isn't master or staging."
+    npm run build --prefix client
 fi

@@ -4,6 +4,7 @@ import SemesterTabs from '../../components/syllabus/SemesterTabs';
 import AddedCourseListContainer from './AddedCourseListContainer';
 import { Wrapper } from '../../styled-components/Wrapper';
 import { Overlay } from '../../styled-components/Overlay';
+import PropTypes from 'prop-types';
 
 class AddedCourseListSwitch extends React.Component {
   constructor() {

@@ -5,6 +5,7 @@ import { changeCoursesSortingOption } from '../../actions/syllabus';
 import { getSortingOption } from '../../reducers/addedSemesterCourses';
 import { sortAddedCourses } from '../../utils/addedCourses';
 import AddedCourseList from '../../components/syllabus/AddedCourseList';
+import PropTypes from 'prop-types';
 
 class AddedCourseListContainer extends React.Component {
   constructor() {

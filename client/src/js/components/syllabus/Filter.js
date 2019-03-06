@@ -11,6 +11,7 @@ import {
 } from '../../styled-components/variables';
 import FilterGroup from './FilterGroup';
 import { Wrapper } from '../../styled-components/Wrapper';
+import PropTypes from 'prop-types';
 
 const FilterWrapper = styled(Wrapper)`
   flex: none;
@@ -227,7 +228,7 @@ Filter.propTypes = {
   isSideBar: PropTypes.bool.isRequired
 
 FilterWrapper.propTypes = {
-  innerRef: PropTypes.func.isRequired,
+  theme: PropTypes.object.isRequired,
   isSideBar: PropTypes.bool.isRequired
 }
 

@@ -3,6 +3,7 @@ import stickybits from 'stickybits';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import {
   headerHeight,
@@ -147,5 +148,5 @@ AddedCourseList.propTypes = {
 };
 
 CourseListWrapper.propTypes = {
-  innerRef: PropTypes.func.isRequired
+  theme: PropTypes.object.isRequired
 }

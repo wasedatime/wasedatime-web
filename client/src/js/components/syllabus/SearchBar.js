@@ -133,3 +133,26 @@ SearchBar.propTypes = {
   inputText: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired
 };
+
+ExtendedWrapper.propTypes = {
+  theme: PropTypes.object.isRequired
+};
+
+StyledForm.propTypes = {
+  theme: PropTypes.object.isRequired,
+  onSubmit: PropTypes.func.isRequired
+};
+
+StyledInput.propTypes = {
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+}
+
+StyledClearButton.propTypes = {
+  theme: PropTypes.object.isRequired,
+  role: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};

@@ -4,6 +4,7 @@ import stickybits from 'stickybits';
 
 import { headerHeight } from '../../styled-components/variables';
 import { RowWrapper } from '../../styled-components/Wrapper';
+import PropTypes from 'prop-types';
 
 const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
@@ -98,3 +99,19 @@ class SemesterTabs extends React.Component {
 }
 
 export default SemesterTabs;
+
+SemesterTabs.propTypes = {
+  handleChangeSemester: PropTypes.func.isRequired,
+  semester: PropTypes.string.isRequired
+}
+
+ExtendedWrapper.propTypes = {
+  theme: PropTypes.object.isRequired
+}
+
+SemesterButton.propTypes = {
+  theme: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+}

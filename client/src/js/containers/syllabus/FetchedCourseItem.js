@@ -5,6 +5,7 @@ import Alert from 'react-s-alert';
 import { addCourse, removeCourse } from '../../actions/syllabus';
 import { getById } from '../../reducers/addedCourses';
 import CourseItem from '../../components/syllabus/CourseItem';
+import PropTypes from 'prop-types';
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
 

@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet';
 
 import SyllabusSearch from './SyllabusSearch';
 import { RowWrapper } from '../../styled-components/Wrapper';
+import PropTypes from 'prop-types';
 
 const Syllabus = () => {
   return (

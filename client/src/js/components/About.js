@@ -18,6 +18,7 @@ import navigation from '../../img/navigation-480.gif';
 import syllabusResult from '../../img/syllabusResult-480.gif';
 import bus from '../../img/bus-480.gif';
 import roomFinder from '../../img/roomFinder-480.gif';
+import PropTypes from 'prop-types';
 
 const HomeWrapper = styled(WrapperWithBackground)`
   min-height: calc(100vh - ${props => props.theme.headerHeight});

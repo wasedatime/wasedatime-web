@@ -15,6 +15,7 @@ import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../styled-components/utils';
 import { fallSemesters, springSemesters } from '../../data/semesters';
+import PropTypes from 'prop-types';
 
 const F_COURSE_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
 

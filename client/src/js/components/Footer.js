@@ -46,7 +46,7 @@ const Footer = ({ finishTime }) => {
       </p>
       <p>
         <StyledLink href="https://github.com/wasetime ">
-          WaseTime 2018
+          WasedaTime 2018
         </StyledLink>
         . Code licensed&nbsp;
         <StyledLink href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md">

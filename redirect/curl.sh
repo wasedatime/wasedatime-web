@@ -1,5 +1,5 @@
 # Check if js files is max-age 0 by my original server
-# curl -sSL -D - https://wasetime.com/static/media/logo.ff714327.png \
+# curl -sSL -D - https://wasedatime.com/static/media/logo.ff714327.png \
 #   --resolve wasetime.com:443:159.89.210.122 -o /dev/null --insecure
 # It is indeed. Received Cache-Control: public, max-age=0 from nginx
 

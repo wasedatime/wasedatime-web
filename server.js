@@ -65,7 +65,7 @@ if (process.env.NODE_ENV === 'production') {
     '/',
     sendCustomizedIndexFile(
       indexFilePath,
-      'WaseTime',
+      'WasedaTime',
       'An unofficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University.'
     )
   );
@@ -74,7 +74,7 @@ if (process.env.NODE_ENV === 'production') {
     '/timetable',
     sendCustomizedIndexFile(
       indexFilePath,
-      'WaseTime - TimeTable',
+      'WasedaTime - TimeTable',
       'Create Your Own TimeTable at Waseda University.'
     )
   );
@@ -83,7 +83,7 @@ if (process.env.NODE_ENV === 'production') {
     '/syllabus',
     sendCustomizedIndexFile(
       indexFilePath,
-      'WaseTime - Syllabus',
+      'WasedaTime - Syllabus',
       'Syllabus Searching at Waseda University.'
     )
   );
@@ -92,7 +92,7 @@ if (process.env.NODE_ENV === 'production') {
     '/roomfinder',
     sendCustomizedIndexFile(
       indexFilePath,
-      'WaseTime - Classroom Usage',
+      'WasedaTime - Classroom Usage',
       'Classroom Usage Checking at Waseda University.'
     )
   );
@@ -101,7 +101,7 @@ if (process.env.NODE_ENV === 'production') {
     '/bus',
     sendCustomizedIndexFile(
       indexFilePath,
-      'WaseTime - Bus',
+      'WasedaTime - Bus',
       'Shuttle Bus Arrival Time Checking at Waseda University.'
     )
   );
@@ -110,7 +110,7 @@ if (process.env.NODE_ENV === 'production') {
     '*',
     sendCustomizedIndexFile(
       indexFilePath,
-      'WaseTime',
+      'WasedaTime',
       'An unofficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University.'
     )
   );

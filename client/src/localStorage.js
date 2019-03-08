@@ -1,4 +1,4 @@
-const STATE_NAME = 'wasetime-state';
+const STATE_NAME = "wasedatime-2019-state";
 
 export const loadState = () => {
   try {

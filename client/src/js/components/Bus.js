@@ -226,11 +226,11 @@ const Bus = () => {
   return (
     <Wrapper>
       <Helmet>
-        <title>WaseTime - Bus</title>
+        <title>WasedaTime - Bus</title>
         <meta name="description" content="Shuttle Bus Arrival Time Checking at Waseda University." />
-        <meta property="og:title" content="WaseTime - Bus" />
+        <meta property="og:title" content="WasedaTime - Bus" />
         <meta property="og:description" content="Shuttle Bus Arrival Time Checking at Waseda University." />
-        <meta property="og:site_name" content="WaseTime - Bus" />
+        <meta property="og:site_name" content="WasedaTime - Bus" />
       </Helmet>
       <ExtendedOverlay>
         <InfoWrapper>

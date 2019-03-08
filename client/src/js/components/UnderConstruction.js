@@ -33,7 +33,7 @@ const UnderConstruction = props => {
   return (
     <ExtendedWrapper>
       <ExtendedOverlay>
-        <Logo src={logo} alt="WaseTime logo" />
+        <Logo src={logo} alt="WasedaTime logo" />
         <h2>Under Construction</h2>
         <Description>
           Want to help? <br/>

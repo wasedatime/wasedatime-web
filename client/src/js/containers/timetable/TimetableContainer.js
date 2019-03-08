@@ -43,17 +43,17 @@ class TimetableContainer extends React.Component {
     return (
       <Wrapper>
         <Helmet>
-          <title>WaseTime - Timetable</title>
+          <title>WasedaTime - Timetable</title>
           <meta
             name="description"
             content="Create Your Own Timetable at Waseda University."
           />
-          <meta property="og:title" content="WaseTime - Timetable" />
+          <meta property="og:title" content="WasedaTime - Timetable" />
           <meta
             property="og:description"
             content="Create Your Own Timetable at Waseda University."
           />
-          <meta property="og:site_name" content="WaseTime - Timetable" />
+          <meta property="og:site_name" content="WasedaTime - Timetable" />
         </Helmet>
         <SemesterSwitcher
           semesterTitle={title}

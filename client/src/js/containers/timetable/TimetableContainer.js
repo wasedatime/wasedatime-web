@@ -1,20 +1,20 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import React from "react";
+import { Helmet } from "react-helmet";
 
-import { Wrapper } from '../../styled-components/Wrapper';
-import Timetable from '../../components/timetable/Timetable';
-import SemesterSwitcher from '../../components/timetable/SemesterSwitcher';
-import withFetchCourses from '../../hocs/withFetchCourses';
+import { Wrapper } from "../../styled-components/Wrapper";
+import Timetable from "../../components/timetable/Timetable";
+import SemesterSwitcher from "../../components/timetable/SemesterSwitcher";
+import withFetchCourses from "../../hocs/withFetchCourses";
 
 class TimetableContainer extends React.Component {
   constructor() {
     super();
     this.semesters = [
-      { title: 'Fall Semester', key: 'fall' },
-      { title: 'Spring Semester', key: 'spring' }
+      { title: "Fall Semester", key: "fall" },
+      { title: "Spring Semester", key: "spring" }
     ];
     this.state = {
-      semesterIndex: 0
+      semesterIndex: 1
     };
   }
 

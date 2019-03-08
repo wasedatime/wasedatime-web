@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import SemesterTabs from '../../components/syllabus/SemesterTabs';
-import AddedCourseListContainer from './AddedCourseListContainer';
-import { Wrapper } from '../../styled-components/Wrapper';
-import { Overlay } from '../../styled-components/Overlay';
+import SemesterTabs from "../../components/syllabus/SemesterTabs";
+import AddedCourseListContainer from "./AddedCourseListContainer";
+import { Wrapper } from "../../styled-components/Wrapper";
+import { Overlay } from "../../styled-components/Overlay";
 
 class AddedCourseListSwitch extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedSemester: 'fall'
+      selectedSemester: "spring"
     };
   }
 

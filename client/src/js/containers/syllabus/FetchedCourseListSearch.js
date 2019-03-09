@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import debounce from 'lodash/debounce';
 import MediaQuery from 'react-responsive';
 import { withRouter } from 'react-router';
@@ -15,8 +16,10 @@ import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
 import { SideBar } from '../../styled-components/SideBar';
 import { sizes } from '../../styled-components/utils';
 import { fallSemesters, springSemesters } from '../../data/semesters';
+import { getSearchLang } from '../../utils/courseSearch';
+import { getUserDisplayLang } from '../../reducers/user';
 
-const F_COURSE_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
+const F_COURSE_SEARCH_PLACE_HOLDER = 'Search for a course or instructor';
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
@@ -51,8 +54,9 @@ class FetchedCourseSearch extends React.Component {
     super(props);
     const parsedSearch = queryString.parse(this.props.location.search);
     const parsedSearchQ = parsedSearch.q;
-    const searchTerm =
-      parsedSearchQ === undefined || parsedSearchQ === '' ? '' : parsedSearchQ;
+    const searchTerm = parsedSearchQ === undefined ? '' : parsedSearchQ;
+    const searchLang =
+      searchTerm === '' ? this.props.searchLang : getSearchLang(searchTerm);
     this.state = {
       isModalOpen: false,
       filterGroups: {
@@ -65,12 +69,17 @@ class FetchedCourseSearch extends React.Component {
       },
       inputText: searchTerm,
       searchTerm: searchTerm,
+      searchLang: searchLang,
       filteredCourses: props.fetchedCourses
     };
   }
 
+  componentDidMount() {
+    //TODO need to init searchTerm from reducers here.
+  }
+
   componentWillUnmount() {
-    this.debounceUpdateSearchTerm.cancel();
+    this.debounceUpdateSearchTermAndLang.cancel();
   }
 
   handleToggleModal = event => {
@@ -125,9 +134,9 @@ class FetchedCourseSearch extends React.Component {
       schoolFilters.length === 0 || schoolFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter(course => {
-            const links = course.links;
-            for (let i = 0; i < links.length; i++) {
-              if (schoolFilters.includes(links[i].school)) return true;
+            const keys = course.keys;
+            for (let i = 0; i < keys.length; i++) {
+              if (schoolFilters.includes(keys[i].school)) return true;
             }
             return false;
           });
@@ -195,34 +204,43 @@ class FetchedCourseSearch extends React.Component {
     });
   };
 
-  updateSearchTerm = () => {
+  updateSearchTermAndLang = () => {
     this.setState((prevState, props) => {
+      const searchTerm = prevState.inputText;
+      const searchLang = getSearchLang(searchTerm);
       return {
-        searchTerm: prevState.inputText
+        searchTerm: prevState.inputText,
+        searchLang: searchLang
       };
     }, this.pushHistory());
   };
 
-  debounceUpdateSearchTerm = debounce(this.updateSearchTerm, 500, {
-    leading: false
-  });
+  debounceUpdateSearchTermAndLang = debounce(
+    this.updateSearchTermAndLang,
+    500,
+    {
+      leading: false
+    }
+  );
 
   handleInputChange = inputText => {
     this.setState(
       {
         inputText
       },
-      this.debounceUpdateSearchTerm()
+      this.debounceUpdateSearchTermAndLang()
     );
   };
 
   render() {
-    const { inputText, searchTerm } = this.state;
+    const { inputText, searchTerm, searchLang } = this.state;
+    //TODO debounce here? it's executed in every render which happens every time a user changes input.
     const results =
-      searchTerm.length > 1
+      searchTerm.length > 0
         ? sortCourses(
             searchTerm,
-            searchCourses(searchTerm, this.state.filteredCourses)
+            searchCourses(searchTerm, this.state.filteredCourses, searchLang),
+            searchLang
           )
         : this.state.filteredCourses;
     return (
@@ -233,7 +251,11 @@ class FetchedCourseSearch extends React.Component {
           inputText={inputText}
         />
         <RowWrapper>
-          <FetchedCourseList searchTerm={searchTerm} results={results} />
+          <FetchedCourseList
+            searchTerm={searchTerm}
+            searchLang={searchLang}
+            results={results}
+          />
           <MediaQuery minWidth={sizes.desktop}>
             {matches => {
               return matches ? (
@@ -267,4 +289,10 @@ class FetchedCourseSearch extends React.Component {
   }
 }
 
-export default withRouter(FetchedCourseSearch);
+const mapStateToProps = state => {
+  return {
+    searchLang: getUserDisplayLang(state)
+  };
+};
+
+export default withRouter(connect(mapStateToProps)(FetchedCourseSearch));

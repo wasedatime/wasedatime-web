@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha './test/**/*.test.js' ",
-    "server": "nodemon server.js",
+    "test": "mocha './test/**/*.test.js' && npm run test --prefix client",
+    "server": "nodemon --delay 2 server.js",
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run client\" \"npm run server\"",
     "contributors:add": "all-contributors add",

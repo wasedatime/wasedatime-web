@@ -13,7 +13,7 @@ import {
   CHANGE_COURSES_SORTING_OPTION
 } from './types';
 import * as schema from '../data/schema';
-import { wasetimeApiStatic } from '../api/index';
+import { wasetimeApiStatic } from '../config/api';
 
 export const fetchCourses = () => async (dispatch, getState) => {
   dispatch({
@@ -21,7 +21,7 @@ export const fetchCourses = () => async (dispatch, getState) => {
   });
 
   try {
-    const res = await axios.get(wasetimeApiStatic.courseListAll);
+    const res = await axios.get(wasetimeApiStatic.courseListPSE);
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
     dispatch({

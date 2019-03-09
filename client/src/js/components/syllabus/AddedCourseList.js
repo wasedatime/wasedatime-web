@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 import {
   headerHeight,
-  semesterTabsHeight
+  addedCourseListSwitchHeight
 } from '../../styled-components/variables';
 import CourseListSummary from '../CourseListSummary';
 import AddedCourseItem from '../../containers/syllabus/AddedCourseItem';
@@ -25,7 +25,7 @@ const CourseListWrapper = styled(Wrapper)`
   overflow-y: auto;
   height: calc(
     100vh - ${props => props.theme.headerHeight} -
-      ${props => props.theme.semesterTabsHeight}
+      ${props => props.theme.addedCourseListSwitchHeight}
   );
 `;
 
@@ -46,7 +46,8 @@ class AddedCourseList extends React.Component {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
           stickyBitStickyOffset:
-            parseInt(headerHeight, 10) + parseInt(semesterTabsHeight, 10)
+            parseInt(headerHeight, 10) +
+            parseInt(addedCourseListSwitchHeight, 10)
         });
       }
     };

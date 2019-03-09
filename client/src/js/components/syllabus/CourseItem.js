@@ -11,7 +11,8 @@ import {
 import PropTypes from 'prop-types';
 
 import { SILS, PSE, SSS, FSE, ASE, CSE, CJL } from '../../data/schools';
-import { highlight } from '../../utils/react';
+import { getCourseTitleAndInstructor } from '../../utils/courseSearch';
+import { highlight } from '../../utils/highlight';
 import { media } from '../../styled-components/utils';
 import { InvisibleButton } from '../../styled-components/Button';
 import fseIcon from '../../../img/syllabus-icons/fse.png';
@@ -127,11 +128,11 @@ const schoolNameIconMap = {
   [CJL]: cjlIcon
 };
 
-const mapLinkToSchoolIcon = links => {
-  return links.map(link => {
+const mapLinkToSchoolIcon = keys => {
+  return keys.map(key => {
     return (
-      <SchoolIconItem key={link.school}>
-        <SchoolIconImage src={schoolNameIconMap[link.school]} />
+      <SchoolIconItem key={key.school}>
+        <SchoolIconImage src={schoolNameIconMap[key.school]} />
       </SchoolIconItem>
     );
   });
@@ -180,12 +181,19 @@ const getPeriod = (start_period, end_period) => {
   }
 };
 
-const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
-  const title = highlight(searchTerm, course.title);
-  const instructor = highlight(searchTerm, course.instructor);
+const CourseItem = ({
+  searchTerm,
+  searchLang,
+  course,
+  isAddable,
+  handleOnClick
+}) => {
+  const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
+  const highlightedTitle = highlight(searchTerm, searchLang, title);
+  const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
   const yearTerm = combineYearTerm(course.year, course.term);
-  const schoolIcons = mapLinkToSchoolIcon(course.links);
-  const syllabusLink = course.links[0].link;
+  const schoolIcons = mapLinkToSchoolIcon(course.keys);
+  const syllabusLink = course.keys[0].key;
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.occurrences.map((occurrence, index) => {
     const day = getDay(occurrence.day);
@@ -232,7 +240,7 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
   return (
     <RowWrapper>
       <CourseItemWrapper>
-        <StyledHeading>{title}</StyledHeading>
+        <StyledHeading>{highlightedTitle}</StyledHeading>
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
@@ -269,7 +277,7 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
           <Description>
             <OccurrenceList>{occurrences}</OccurrenceList>
           </Description>
-          <Description>{instructor}</Description>
+          <Description>{highlightedInstructor}</Description>
         </DescriptionWrapper>
       </CourseItemWrapper>
     </RowWrapper>

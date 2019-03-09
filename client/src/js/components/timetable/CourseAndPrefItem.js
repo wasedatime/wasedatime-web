@@ -70,7 +70,7 @@ const CourseAndPrefItem = ({
 }) => {
   const title = course.title;
   const instructor = course.instructor;
-  const syllabusLink = course.links[0].link;
+  const syllabusKey = course.keys[0].key;
   const removeCourseIcon = (
     <FontAwesomeIcon
       style={{ color: '#ce0115' }}
@@ -144,7 +144,7 @@ const CourseAndPrefItem = ({
             </InvisibleButton>
             <a
               style={{ alignSelf: 'flex-start' }}
-              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`}
+              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusKey}&pLng=en`}
               target="_blank"
               rel="noopener noreferrer"
             >

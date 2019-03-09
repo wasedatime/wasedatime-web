@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import stickybits from 'stickybits';
 import PropTypes from 'prop-types';
 
@@ -16,12 +16,6 @@ const ExtendedWrapper = styled(RowWrapper)`
   padding: 0 1em;
   background-color: ${props => props.theme.grey7};
   z-index: 1030;
-`;
-
-const Icon = styled('div')`
-  align-items: center;
-  margin-right: 0.5em;
-  color: #fff;
 `;
 
 const StyledForm = styled('form')`
@@ -99,9 +93,6 @@ class SearchBar extends React.Component {
   render() {
     return (
       <ExtendedWrapper innerRef={this.setWrapperRef}>
-        <Icon>
-          <FontAwesomeIcon icon={faSearch} size="2x" transform="shrink-4" />
-        </Icon>
         <StyledForm
           onSubmit={e => {
             e.preventDefault();
@@ -118,7 +109,7 @@ class SearchBar extends React.Component {
             title="clear"
             onClick={this.handleClearInput}
           >
-            <FontAwesomeIcon icon={faTimesCircle} size="1x" />
+            <FontAwesomeIcon icon={faTimes} size="1x" />
           </StyledClearButton>
         </StyledForm>
       </ExtendedWrapper>

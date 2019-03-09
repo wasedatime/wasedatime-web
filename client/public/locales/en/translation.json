@@ -1,4 +1,10 @@
 {
+  "title": {
+    "Timetable": "Timetable",
+    "Syllabus": "Syllabus",
+    "RoomFinder": "RoomFinder",
+    "Bus": "Bus"
+  },
   "room": {
     "Under Construction": "Under Construction",
     "Want to help?": "Want to help?",

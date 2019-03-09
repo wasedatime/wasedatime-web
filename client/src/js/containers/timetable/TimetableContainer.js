@@ -5,6 +5,8 @@ import { Wrapper } from '../../styled-components/Wrapper';
 import Timetable from '../../components/timetable/Timetable';
 import SemesterSwitcher from '../../components/timetable/SemesterSwitcher';
 import withFetchCourses from '../../hocs/withFetchCourses';
+import { withNamespaces } from 'react-i18next';
+
 
 class TimetableContainer extends React.Component {
   constructor() {

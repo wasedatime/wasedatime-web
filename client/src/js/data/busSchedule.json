@@ -28,7 +28,14 @@
         1060,
         1085
       ],
-      "remarks":{
+      "remarks_jp":{
+          "725": "西早稲田キャンパス経由行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+          "735": "先端生命医科学センター経由西早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+          "890": "中型バスとマイクロバスの運行",
+          "1000": "中型バスとマイクロバスの運行",
+          "1085": "中型バスとマイクロバスの運行"
+      },
+      "remarks_en":{
           "725": "To TWIns via Nishiwaseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
           "735": "To Nishiwaseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
           "890": "Operation of middle-size bus and minibus.",
@@ -65,12 +72,19 @@
         1085,
         1100
       ],
-      "remarks":{
+      "remarks_en":{
           "725": "To TWIns via Waseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
           "740": "To Waseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
           "875": "Operation of middle-size bus and minibus.",
           "980": "Operation of middle-size bus and minibus.",
           "1100": "Operation of middle-size bus and minibus. Possibility of early/late departure."
+      },
+      "remarks_jp":{
+          "725": "早稲田キャンパス経由行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+          "740": "先端生命医科学センター経由早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+          "875": "中型バスとマイクロバスの運行",
+          "980": "中型バスとマイクロバスの運行",
+          "1100": "中型バスとマイクロバスの運行。出発時間は目安になります。"
       }
     }
   },

@@ -1,25 +1,25 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import debounce from 'lodash/debounce';
-import MediaQuery from 'react-responsive';
-import { withRouter } from 'react-router';
-import queryString from 'query-string';
-import styled from 'styled-components';
+import React from "react";
+import { connect } from "react-redux";
+import debounce from "lodash/debounce";
+import MediaQuery from "react-responsive";
+import { withRouter } from "react-router";
+import queryString from "query-string";
+import styled from "styled-components";
 
-import { searchCourses, sortCourses } from '../../utils/courseSearch';
-import SearchBar from '../../components/syllabus/SearchBar';
-import FetchedCourseList from '../../components/syllabus/FetchedCourseList';
-import Filter from '../../components/syllabus/Filter';
-import FilterButton from '../../components/syllabus/FilterButton';
-import Modal from '../../components/Modal';
-import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
-import { SideBar } from '../../styled-components/SideBar';
-import { sizes } from '../../styled-components/utils';
-import { fallSemesters, springSemesters } from '../../data/semesters';
-import { getSearchLang } from '../../utils/courseSearch';
-import { getUserDisplayLang } from '../../reducers/user';
+import { searchCourses, sortCourses } from "../../utils/courseSearch";
+import SearchBar from "../../components/syllabus/SearchBar";
+import FetchedCourseList from "../../components/syllabus/FetchedCourseList";
+import Filter from "../../components/syllabus/Filter";
+import FilterButton from "../../components/syllabus/FilterButton";
+import Modal from "../../components/Modal";
+import { Wrapper, RowWrapper } from "../../styled-components/Wrapper";
+import { SideBar } from "../../styled-components/SideBar";
+import { sizes } from "../../styled-components/utils";
+import { fallSemesters, springSemesters } from "../../data/semesters";
+import { getSearchLang } from "../../utils/courseSearch";
+import { getUserDisplayLang } from "../../reducers/user";
 
-const F_COURSE_SEARCH_PLACE_HOLDER = 'Search for a course or instructor';
+const F_COURSE_SEARCH_PLACE_HOLDER = "Search for a course or instructor";
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
@@ -27,24 +27,24 @@ const ExtendedWrapper = styled(Wrapper)`
 
 const modalStyle = {
   overlay: {
-    position: 'fixed',
+    position: "fixed",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: '1050'
+    zIndex: "1050"
   },
   content: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    background: '#fff',
-    overflowY: 'auto',
-    WebkitOverflowScrolling: 'touch',
-    outline: 'none',
-    fontSize: '16px',
+    background: "#fff",
+    overflowY: "auto",
+    WebkitOverflowScrolling: "touch",
+    outline: "none",
+    fontSize: "16px",
     padding: 0
   }
 };
@@ -54,9 +54,9 @@ class FetchedCourseSearch extends React.Component {
     super(props);
     const parsedSearch = queryString.parse(this.props.location.search);
     const parsedSearchQ = parsedSearch.q;
-    const searchTerm = parsedSearchQ === undefined ? '' : parsedSearchQ;
+    const searchTerm = parsedSearchQ === undefined ? "" : parsedSearchQ;
     const searchLang =
-      searchTerm === '' ? this.props.searchLang : getSearchLang(searchTerm);
+      searchTerm === "" ? this.props.searchLang : getSearchLang(searchTerm);
     this.state = {
       isModalOpen: false,
       filterGroups: {
@@ -117,10 +117,10 @@ class FetchedCourseSearch extends React.Component {
     let semesterFilters = [];
     // if not empty not full
     if (semesters.length !== 0 && semesters.length !== 2) {
-      if (semesters.includes('fall')) {
+      if (semesters.includes("fall")) {
         semesterFilters = semesterFilters.concat(fallSemesters);
       }
-      if (semesters.includes('spring')) {
+      if (semesters.includes("spring")) {
         semesterFilters = semesterFilters.concat(springSemesters);
       }
     }
@@ -134,11 +134,8 @@ class FetchedCourseSearch extends React.Component {
       schoolFilters.length === 0 || schoolFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter(course => {
-            const keys = course.keys;
-            for (let i = 0; i < keys.length; i++) {
-              if (schoolFilters.includes(keys[i].school)) return true;
-            }
-            return false;
+            const school = course.school;
+            return schoolFilters.includes(school);
           });
 
     const langFilters = filterGroups.lang;
@@ -199,8 +196,8 @@ class FetchedCourseSearch extends React.Component {
 
   pushHistory = () => {
     this.props.history.push({
-      pathname: '/syllabus',
-      search: this.state.inputText === '' ? '' : `q=${this.state.inputText}`
+      pathname: "/syllabus",
+      search: this.state.inputText === "" ? "" : `q=${this.state.inputText}`
     });
   };
 

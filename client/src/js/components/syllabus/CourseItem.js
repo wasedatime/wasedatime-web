@@ -1,36 +1,36 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlusCircle,
   faMinusCircle,
   faClock,
   faMapMarkerAlt,
   faExternalLinkSquareAlt
-} from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
+} from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
 
-import { SILS, PSE, SSS, FSE, ASE, CSE, CJL } from '../../data/schools';
-import { getCourseTitleAndInstructor } from '../../utils/courseSearch';
-import { highlight } from '../../utils/highlight';
-import { media } from '../../styled-components/utils';
-import { InvisibleButton } from '../../styled-components/Button';
-import fseIcon from '../../../img/syllabus-icons/fse.png';
-import cseIcon from '../../../img/syllabus-icons/cse.png';
-import aseIcon from '../../../img/syllabus-icons/ase.png';
-import pseIcon from '../../../img/syllabus-icons/pse.png';
-import silsIcon from '../../../img/syllabus-icons/sils.png';
-import sssIcon from '../../../img/syllabus-icons/sss.png';
-import cjlIcon from '../../../img/syllabus-icons/cjl.png';
+import { SILS, PSE, SSS, FSE, ASE, CSE, CJL } from "../../data/schools";
+import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
+import { highlight } from "../../utils/highlight";
+import { media } from "../../styled-components/utils";
+import { InvisibleButton } from "../../styled-components/Button";
+import fseIcon from "../../../img/syllabus-icons/fse.png";
+import cseIcon from "../../../img/syllabus-icons/cse.png";
+import aseIcon from "../../../img/syllabus-icons/ase.png";
+import pseIcon from "../../../img/syllabus-icons/pse.png";
+import silsIcon from "../../../img/syllabus-icons/sils.png";
+import sssIcon from "../../../img/syllabus-icons/sss.png";
+import cjlIcon from "../../../img/syllabus-icons/cjl.png";
 
-const RowWrapper = styled('li')`
+const RowWrapper = styled("li")`
   display: flex;
   flex-direction: row;
   justify-content: center;
   overflow-y: hidden;
 `;
 
-const CourseItemWrapper = styled('div')`
+const CourseItemWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
@@ -42,7 +42,7 @@ const CourseItemWrapper = styled('div')`
   width: 100%;
 `;
 
-const StyledHeading = styled('h3')`
+const StyledHeading = styled("h3")`
   margin: 0;
   text-align: left;
   font-size: 1.2em;
@@ -51,20 +51,20 @@ const StyledHeading = styled('h3')`
   color: #000;
 `;
 
-const CourseItemRow = styled('div')`
+const CourseItemRow = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-const IconBadgeWrapper = styled('div')`
+const IconBadgeWrapper = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
 `;
 
-const SchoolIconList = styled('ul')`
+const SchoolIconList = styled("ul")`
   display: flex;
   flex-direction: row;
   margin: 0.1em 0;
@@ -73,17 +73,17 @@ const SchoolIconList = styled('ul')`
   list-style-type: none;
 `;
 
-const SchoolIconItem = styled('li')`
+const SchoolIconItem = styled("li")`
   display: flex;
   margin: 0 0.3em 0 0;
   padding: 0;
 `;
 
-const SchoolIconImage = styled('img')`
+const SchoolIconImage = styled("img")`
   height: 2.1em;
 `;
 
-const Badge = styled('span')`
+const Badge = styled("span")`
   display: inline-block;
   background-color: #666;
   color: #fff;
@@ -98,7 +98,7 @@ const KeywordList = styled(SchoolIconList)`
   flex-wrap: wrap;
 `;
 
-const DescriptionWrapper = styled('div')`
+const DescriptionWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -106,12 +106,12 @@ const DescriptionWrapper = styled('div')`
   ${media.phone`font-size: 1.1em;`};
 `;
 
-const Description = styled('div')`
+const Description = styled("div")`
   flex: 1 0 auto;
   text-align: left;
 `;
 
-const OccurrenceList = styled('ul')`
+const OccurrenceList = styled("ul")`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -128,14 +128,12 @@ const schoolNameIconMap = {
   [CJL]: cjlIcon
 };
 
-const mapLinkToSchoolIcon = keys => {
-  return keys.map(key => {
-    return (
-      <SchoolIconItem key={key.school}>
-        <SchoolIconImage src={schoolNameIconMap[key.school]} />
-      </SchoolIconItem>
-    );
-  });
+const mapLinkToSchoolIcon = school => {
+  return (
+    <SchoolIconItem>
+      <SchoolIconImage src={schoolNameIconMap[school]} />
+    </SchoolIconItem>
+  );
 };
 
 const combineYearTerm = (year, term) => {
@@ -145,26 +143,26 @@ const combineYearTerm = (year, term) => {
 const getDay = day => {
   switch (day) {
     case 1:
-      return 'Mon.';
+      return "Mon.";
     case 2:
-      return 'Tue.';
+      return "Tue.";
     case 3:
-      return 'Wed.';
+      return "Wed.";
     case 4:
-      return 'Thur.';
+      return "Thur.";
     case 5:
-      return 'Fri.';
+      return "Fri.";
     case 6:
-      return 'Sat.';
+      return "Sat.";
     case 7:
-      return 'Sun.';
+      return "Sun.";
     default:
-      return '';
+      return "";
   }
 };
 
 const getLocation = (building, classroom) => {
-  if (building === '-1') {
+  if (building === "-1") {
     return classroom;
   } else {
     return `${building}-${classroom}`;
@@ -173,7 +171,7 @@ const getLocation = (building, classroom) => {
 
 const getPeriod = (start_period, end_period) => {
   if (start_period === -1) {
-    return 'undecided';
+    return "undecided";
   } else if (start_period === end_period) {
     return `${start_period}`;
   } else {
@@ -192,8 +190,8 @@ const CourseItem = ({
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
   const yearTerm = combineYearTerm(course.year, course.term);
-  const schoolIcons = mapLinkToSchoolIcon(course.keys);
-  const syllabusLink = course.keys[0].key;
+  const schoolIcons = mapLinkToSchoolIcon(course.school);
+  const syllabusId = course._id;
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.occurrences.map((occurrence, index) => {
     const day = getDay(occurrence.day);
@@ -214,13 +212,13 @@ const CourseItem = ({
     );
   });
   const keywords =
-    'keywords' in course
+    "keywords" in course
       ? course.keywords.map((keyword, index) => {
           return (
-            <li key={keyword} style={{ display: 'inline-block' }}>
+            <li key={keyword} style={{ display: "inline-block" }}>
               <Badge>
-                {keyword === 'English-based Undergraduate Program'
-                  ? 'EN-based Undergrad Program'
+                {keyword === "English-based Undergraduate Program"
+                  ? "EN-based Undergrad Program"
                   : keyword}
               </Badge>
             </li>
@@ -231,7 +229,7 @@ const CourseItem = ({
     keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
   const buttonIcon = (
     <FontAwesomeIcon
-      style={isAddable ? { color: '#48af37' } : { color: '#ce0115' }}
+      style={isAddable ? { color: "#48af37" } : { color: "#ce0115" }}
       icon={isAddable ? faPlusCircle : faMinusCircle}
       size="2x"
       transform="shrink-2"
@@ -249,19 +247,19 @@ const CourseItem = ({
           </IconBadgeWrapper>
           <div
             style={{
-              display: 'flex',
-              flex: '1 0 auto',
-              justifyContent: 'flex-end'
+              display: "flex",
+              flex: "1 0 auto",
+              justifyContent: "flex-end"
             }}
           >
             <a
-              style={{ alignSelf: 'flex-start' }}
-              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`}
+              style={{ alignSelf: "flex-start" }}
+              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}&pLng=en`}
               target="_blank"
               rel="noopener noreferrer"
             >
               <FontAwesomeIcon
-                style={{ color: '#6495ED' }}
+                style={{ color: "#6495ED" }}
                 icon={faExternalLinkSquareAlt}
                 size="2x"
                 transform="shrink-2"

@@ -11,6 +11,7 @@ import {
 import PropTypes from "prop-types";
 
 import { SILS, PSE, SSS, FSE, ASE, CSE, CJL } from "../../data/schools";
+import { semesterMap } from "../../data/semesters";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";
 import { media } from "../../styled-components/utils";
@@ -137,7 +138,7 @@ const mapLinkToSchoolIcon = school => {
 };
 
 const combineYearTerm = (year, term) => {
-  return `${year} ${term}`;
+  return `${year} ${semesterMap[term]}`;
 };
 
 const getDay = day => {

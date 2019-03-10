@@ -19,7 +19,7 @@ import { fallSemesters, springSemesters } from "../../data/semesters";
 import { getSearchLang } from "../../utils/courseSearch";
 import { getUserDisplayLang } from "../../reducers/user";
 
-const F_COURSE_SEARCH_PLACE_HOLDER = "Search for a course or instructor";
+const F_COURSE_SEARCH_PLACE_HOLDER = "Search course, instructor, 科目, 教師";
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;

@@ -1,23 +1,23 @@
-import React from 'react';
-import stickybits from 'stickybits';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
+import React from "react";
+import stickybits from "stickybits";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
 import {
   headerHeight,
   addedCourseListSwitchHeight
-} from '../../styled-components/variables';
-import CourseListSummary from '../CourseListSummary';
-import AddedCourseItem from '../../containers/syllabus/AddedCourseItem';
-import { Wrapper } from '../../styled-components/Wrapper';
+} from "../../styled-components/variables";
+import CourseListSummary from "../CourseListSummary";
+import AddedCourseItem from "../../containers/syllabus/AddedCourseItem";
+import { Wrapper } from "../../styled-components/Wrapper";
 import {
   Article,
   Section,
   Subheading,
   OList,
   ListItem
-} from '../../styled-components/Article';
+} from "../../styled-components/Article";
 
 const CourseListWrapper = styled(Wrapper)`
   flex: none;
@@ -85,7 +85,7 @@ class AddedCourseList extends React.Component {
           handleChangeSortingOption={handleChangeSortingOption}
         />
         {addedCourses.length ? (
-          <div style={{ fontSize: '14px' }}>
+          <div style={{ fontSize: "14px" }}>
             {addedCourses.map((course, index) => (
               <AddedCourseItem key={course._id} course={course} />
             ))}
@@ -97,36 +97,31 @@ class AddedCourseList extends React.Component {
               <Subheading>To add a course</Subheading>
               <OList>
                 <ListItem>
-                  Search for a course title or an instructor in the right search
-                  bar.
+                  Search for courses and instructors in the top search bar.
+                  Japanese is supported.
                   <br />
-                  E.g., "calculus" or "tanaka" or "calculus tanaka".
+                  Try "kanji" "tanaka" "漢字" "田中"
                 </ListItem>
                 <ListItem>
-                  Click on{' '}
+                  Click on{" "}
                   <FontAwesomeIcon
-                    style={{ color: '#48af37' }}
+                    style={{ color: "#48af37" }}
                     icon={faPlusCircle}
                     size="1x"
-                  />{' '}
-                  to add,{' '}
+                  />{" "}
+                  to add,{" "}
                   <FontAwesomeIcon
-                    style={{ color: '#ce0115' }}
+                    style={{ color: "#ce0115" }}
                     icon={faMinusCircle}
                     size="1x"
-                  />{' '}
+                  />{" "}
                   to remove.
                 </ListItem>
               </OList>
             </Section>
             <Section>
-              <Subheading>Pro Tips!</Subheading>
+              <Subheading>Pro Tip!</Subheading>
               <OList>
-                <ListItem>
-                  Type only the start of the word.
-                  <br />
-                  E.g., "vec calc" instead of "vector calculus"
-                </ListItem>
                 <ListItem>Use "Filter by" to narrow down your search.</ListItem>
               </OList>
             </Section>

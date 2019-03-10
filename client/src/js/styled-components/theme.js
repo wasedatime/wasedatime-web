@@ -1,10 +1,16 @@
-import { headerHeight, searchBarHeight, semesterTabsHeight } from './variables';
+import {
+  headerHeight,
+  searchBarHeight,
+  addedCourseListSwitchHeight,
+  fetchedCourseListSwitchHeight
+} from './variables';
 
 // Adapted from https://medium.com/codyhouse/create-your-design-system-part-3-colors-798e4729921f
 const sizes = {
   headerHeight,
   searchBarHeight,
-  semesterTabsHeight
+  addedCourseListSwitchHeight,
+  fetchedCourseListSwitchHeight
 };
 
 const shades = {

@@ -1,26 +1,26 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMinusCircle,
   faToggleOn,
   faToggleOff,
   faExternalLinkSquareAlt
-} from '@fortawesome/free-solid-svg-icons';
-import { Manager, Reference, Popper } from 'react-popper';
-import PropTypes from 'prop-types';
+} from "@fortawesome/free-solid-svg-icons";
+import { Manager, Reference, Popper } from "react-popper";
+import PropTypes from "prop-types";
 
-import { PopperBox, Arrow } from '../../styled-components/ColorPopper';
-import ColorSelector from './ColorSelector';
-import { media } from '../../styled-components/utils';
+import { PopperBox, Arrow } from "../../styled-components/ColorPopper";
+import ColorSelector from "./ColorSelector";
+import { media } from "../../styled-components/utils";
 
-const RowWrapper = styled('li')`
+const RowWrapper = styled("li")`
   display: flex;
   flex-direction: row;
   padding: 0.3em 0;
 `;
 
-const CourseItemWrapper = styled('div')`
+const CourseItemWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
@@ -28,7 +28,7 @@ const CourseItemWrapper = styled('div')`
   color: #000;
 `;
 
-const InvisibleButton = styled('button')`
+const InvisibleButton = styled("button")`
   align-self: flex-start;
   background-color: #fff;
   border: none;
@@ -44,7 +44,7 @@ const ColorButton = styled(InvisibleButton)`
   border-radius: 0.3em;
 `;
 
-const StyledHeading = styled('h3')`
+const StyledHeading = styled("h3")`
   margin: 0;
   text-align: left;
   font-size: 1.2em;
@@ -52,7 +52,7 @@ const StyledHeading = styled('h3')`
   font-weight: 600;
 `;
 
-const CourseItemRow = styled('div')`
+const CourseItemRow = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -70,10 +70,10 @@ const CourseAndPrefItem = ({
 }) => {
   const title = course.title;
   const instructor = course.instructor;
-  const syllabusLink = course.links[0].link;
+  const syllabusId = course._id;
   const removeCourseIcon = (
     <FontAwesomeIcon
-      style={{ color: '#ce0115' }}
+      style={{ color: "#ce0115" }}
       icon={faMinusCircle}
       size="2x"
       transform="shrink-2"
@@ -81,7 +81,7 @@ const CourseAndPrefItem = ({
   );
   const visibilityIcon = (
     <FontAwesomeIcon
-      style={{ color: '#48af37' }}
+      style={{ color: "#48af37" }}
       icon={visibility ? faToggleOn : faToggleOff}
       size="2x"
       transform="shrink-2"
@@ -123,33 +123,33 @@ const CourseAndPrefItem = ({
         <CourseItemRow>
           <div
             style={{
-              fontSize: '1.2em',
-              overflowWrap: 'break-word',
-              wordWrap: 'break-word',
-              flex: '1 0 auto',
-              width: '0'
+              fontSize: "1.2em",
+              overflowWrap: "break-word",
+              wordWrap: "break-word",
+              flex: "1 0 auto",
+              width: "0"
             }}
           >
             {instructor}
           </div>
           <div
             style={{
-              display: 'flex',
-              flex: '0 1 auto',
-              justifyContent: 'flex-end'
+              display: "flex",
+              flex: "0 1 auto",
+              justifyContent: "flex-end"
             }}
           >
             <InvisibleButton onClick={handleToggleVisibility}>
               {visibilityIcon}
             </InvisibleButton>
             <a
-              style={{ alignSelf: 'flex-start' }}
-              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`}
+              style={{ alignSelf: "flex-start" }}
+              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}&pLng=en`}
               target="_blank"
               rel="noopener noreferrer"
             >
               <FontAwesomeIcon
-                style={{ color: '#6495ED' }}
+                style={{ color: "#6495ED" }}
                 icon={faExternalLinkSquareAlt}
                 size="2x"
                 transform="shrink-2"

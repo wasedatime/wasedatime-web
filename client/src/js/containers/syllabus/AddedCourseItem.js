@@ -4,6 +4,7 @@ import Alert from 'react-s-alert';
 
 import { removeCourse } from '../../actions/syllabus';
 import CourseItem from '../../components/syllabus/CourseItem';
+import langs from '../../config/langs';
 
 class AddedCourseItem extends React.Component {
   handleRemoveCourse = event => {
@@ -23,6 +24,7 @@ class AddedCourseItem extends React.Component {
         handleOnClick={this.handleRemoveCourse}
         isAddable={false}
         searchTerm=""
+        searchLang={langs.EN}
         course={course}
       />
     );

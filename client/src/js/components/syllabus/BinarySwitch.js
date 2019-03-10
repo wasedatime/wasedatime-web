@@ -9,13 +9,13 @@ const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
   align-items: center;
   justify-content: space-around;
-  height: ${props => props.theme.semesterTabsHeight};
+  height: ${props => props.height};
   width: 100%;
   background-color: ${props => props.theme.grey7};
   z-index: 1030;
 `;
 
-const SemesterButton = styled('button')`
+const SwitchButton = styled('button')`
   width: 100%;
   height: 100%;
   background-color: ${props =>
@@ -31,7 +31,7 @@ const SemesterButton = styled('button')`
   }
 `;
 
-class SemesterTabs extends React.Component {
+export default class BinarySwitch extends React.Component {
   constructor() {
     super();
     this.wrapper = null;
@@ -52,19 +52,14 @@ class SemesterTabs extends React.Component {
         this.stickyWrapper.cleanup();
       }
     };
-
-    this.fallButtonId = 'button--fall';
-    this.springButtonId = 'button--spring';
-    this.fallSemester = 'fall';
-    this.springSemester = 'spring';
   }
 
   handleOnClick = event => {
     event.preventDefault();
     const buttonId = event.target.id;
-    const semester =
-      buttonId === this.fallButtonId ? this.fallSemester : this.springSemester;
-    this.props.handleChangeSemester(semester);
+    const { leftButtonId, leftValue, rightValue } = this.props;
+    const value = buttonId === leftButtonId ? leftValue : rightValue;
+    this.props.handleSwitchValue(value);
   };
 
   componentDidMount() {
@@ -76,25 +71,35 @@ class SemesterTabs extends React.Component {
   }
 
   render() {
+    const {
+      leftButtonId,
+      rightButtonId,
+      leftValue,
+      rightValue,
+      value,
+      leftDisplayedValue,
+      rightDisplayedValue
+    } = this.props;
     return (
-      <ExtendedWrapper innerRef={this.setWrapperRef}>
-        <SemesterButton
-          id={this.springButtonId}
+      <ExtendedWrapper
+        height={this.props.switchHeight}
+        innerRef={this.setWrapperRef}
+      >
+        <SwitchButton
+          id={leftButtonId}
           onClick={this.handleOnClick}
-          isSelected={this.props.semester === this.springSemester}
+          isSelected={value === leftValue}
         >
-          Spring Semester
-        </SemesterButton>
-        <SemesterButton
-          id={this.fallButtonId}
+          {leftDisplayedValue}
+        </SwitchButton>
+        <SwitchButton
+          id={rightButtonId}
           onClick={this.handleOnClick}
-          isSelected={this.props.semester === this.fallSemester}
+          isSelected={value === rightValue}
         >
-          Fall Semester
-        </SemesterButton>
+          {rightDisplayedValue}
+        </SwitchButton>
       </ExtendedWrapper>
     );
   }
 }
-
-export default SemesterTabs;

@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { normalize } from 'normalizr';
+import axios from "axios";
+import { normalize } from "normalizr";
 
 import {
   FETCH_COURSES_REQUEST,
@@ -11,9 +11,9 @@ import {
   CHANGE_COURSE_COLOR,
   TOGGLE_COURSE_VISIBILITY,
   CHANGE_COURSES_SORTING_OPTION
-} from './types';
-import * as schema from '../data/schema';
-import { wasetimeApiStatic } from '../api/index';
+} from "./types";
+import * as schema from "../data/schema";
+import { wasetimeApiStatic } from "../config/api";
 
 export const fetchCourses = () => async (dispatch, getState) => {
   dispatch({
@@ -31,7 +31,7 @@ export const fetchCourses = () => async (dispatch, getState) => {
   } catch (error) {
     const response = error.response || {
       status: 501,
-      statusText: 'Not Implemented'
+      statusText: "Not Implemented"
     };
     dispatch({
       type: FETCH_COURSES_FAILURE,

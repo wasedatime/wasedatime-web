@@ -194,7 +194,7 @@ const totalMinsToTimeStr = totalMins => {
 };
 
 //TODO Fix mixing different return types
-const getBusStatus = (totalMins, occurrences, remarks, lng) => {
+const getBusStatus = (totalMins, occurrences, remarks, lang) => {
   const nextTotalMins = binarySearchSchedule(totalMins, occurrences);
   // If there is there exists a subsequent bus schedule on the same day
   if (nextTotalMins !== -1) {
@@ -205,26 +205,26 @@ const getBusStatus = (totalMins, occurrences, remarks, lng) => {
       departIn: nextTotalMins - totalMins,
       timeString: nextTimeString,
       remark,
-      lng
+      lang
     };
   }
-  if (lng === "en") {
+  if (lang === "en") {
     return "Out of service";
-  } else if (lng === "jp") {
+  } else if (lang === "jp") {
     return "利用時間外";
   }
 };
 
-const getBusStatuses = (now, lng, { t }) => {
+const getBusStatuses = (now, lang) => {
   const month = now.getMonth();
   const date = now.getDate();
   const day = now.getDay();
   //assertion language at first
   let wasedaStatus, nishiStatus;
-  if (lng === "en") {
+  if (lang === "en") {
     wasedaStatus = "Out of service";
     nishiStatus = "Out of service";
-  } else if (lng === "jp") {
+  } else if (lang === "jp") {
     wasedaStatus = "利用時間外";
     nishiStatus = "利用時間外";
   }
@@ -233,10 +233,10 @@ const getBusStatuses = (now, lng, { t }) => {
   if (scheduleType === "no") {
     return { wasedaStatus, nishiStatus };
   } else if (scheduleType === "special") {
-    if (lng === "en") {
+    if (lang === "en") {
       wasedaStatus = "Special Schedule";
       nishiStatus = "Special Schedule";
-    } else if (lng === "jp") {
+    } else if (lang === "jp") {
       wasedaStatus = "特別なスケジュール";
       nishiStatus = "特別なスケジュール";
     }
@@ -246,37 +246,38 @@ const getBusStatuses = (now, lng, { t }) => {
   const totalMins = now.getHours() * 60 + now.getMinutes();
   const wasedaSchedule = busSchedule[scheduleType].fromWasedaToNishiWaseda;
   const nishiSchedule = busSchedule[scheduleType].fromNishiWasedaToWaseda;
-  if (lng === "en") {
+  if (lang === "en") {
     wasedaStatus = getBusStatus(
       totalMins,
       wasedaSchedule.occurrences,
       wasedaSchedule.remarks_en,
-      lng
+      lang
     );
     nishiStatus = getBusStatus(
       totalMins,
       nishiSchedule.occurrences,
       nishiSchedule.remarks_en,
-      lng
+      lang
     );
-  } else if (lng === "jp") {
+  } else if (lang === "jp") {
     wasedaStatus = getBusStatus(
       totalMins,
       wasedaSchedule.occurrences,
       wasedaSchedule.remarks_jp,
-      lng
+      lang
     );
     nishiStatus = getBusStatus(
       totalMins,
       nishiSchedule.occurrences,
       nishiSchedule.remarks_jp,
-      lng
+      lang
     );
   }
   return { wasedaStatus, nishiStatus };
 };
 
-const createStatusComponent = (status, { t }) => {
+const createStatusComponent = (status, lang, t) => {
+  console.log(typeof t);
   if (typeof status === "object") {
     return {
       status: (
@@ -297,10 +298,10 @@ const createStatusComponent = (status, { t }) => {
 
 const Bus = ({ t }) => {
   const now = new Date();
-  let lng = "jp"; //test about lauguage
-  const { wasedaStatus, nishiStatus } = getBusStatuses(now, lng, { t });
-  const wasedaStatusComponent = createStatusComponent(wasedaStatus, lng, { t });
-  const nishiStatusComponent = createStatusComponent(nishiStatus, lng, { t });
+  let lang = "jp"; //test about lauguage
+  const { wasedaStatus, nishiStatus } = getBusStatuses(now, lang);
+  const wasedaStatusComponent = createStatusComponent(wasedaStatus, lang, t);
+  const nishiStatusComponent = createStatusComponent(nishiStatus, lang, t);
   return (
     <Wrapper>
       <Helmet>

@@ -1,14 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { media } from '../styled-components/utils';
-import { Wrapper } from '../styled-components/Wrapper';
-import { Overlay } from '../styled-components/Overlay';
-import logo from '../../img/logo.png';
+import { media } from "../styled-components/utils";
+import { Wrapper } from "../styled-components/Wrapper";
+import { Overlay } from "../styled-components/Overlay";
+import logo from "../../img/logo.png";
+
+import { withNamespaces } from "react-i18next";
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
-`
+`;
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
@@ -16,33 +18,42 @@ const ExtendedOverlay = styled(Overlay)`
   padding: 25px;
 `;
 
-const Logo = styled('img')`
+const Logo = styled("img")`
   height: 100px;
   width: 100px;
   transition: transform(0, 12vh);
 `;
 
-const Description = styled('p')`
+const Description = styled("p")`
   font-size: 1.3em;
   text-align: center;
   ${media.phone`font-size: 1.1em;`};
 `;
 
-const UnderConstruction = props => {
-  window.scrollTo({top: 0});
+// const UnderConstruction =  props => {
+const UnderConstruction = ({ t }) => {
+  window.scrollTo({ top: 0 });
   return (
     <ExtendedWrapper>
       <ExtendedOverlay>
-        <Logo src={logo} alt="WasedaTime logo" />
-        <h2>Under Construction</h2>
+        <Logo src={logo} alt="WaseTime logo" />
+        <h2>{t("room.Under Construction")}</h2>
         <Description>
-          Want to help? <br/>
-          Check out <a href="https://github.com/wasetime/wasetime-web">here</a> or <a href="mailto:haohaowang.oscar@moegi.waseda.jp">send an email</a>!<br/>
-          We sincerely welcome any contributors!
+          {t("room.Want to help?")} <br />
+          {t("room.Check out")}
+          <a href="https://github.com/wasetime/wasetime-web">
+            {t("room.here")}
+          </a>{" "}
+          {t("room.or")}{" "}
+          <a href="mailto:haohaowang.oscar@moegi.waseda.jp">
+            {t("room.send an email")}
+          </a>
+          !<br />
+          {t("room.We sincerely welcome any contributors!")}
         </Description>
       </ExtendedOverlay>
     </ExtendedWrapper>
   );
 };
 
-export default UnderConstruction;
+export default withNamespaces("translation")(UnderConstruction);

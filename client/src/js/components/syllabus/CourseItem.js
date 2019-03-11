@@ -10,7 +10,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 
-import { SILS, PSE, SSS, FSE, ASE, CSE, CJL } from "../../data/schools";
+import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
 import { semesterMap } from "../../data/semesters";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";
@@ -23,6 +23,7 @@ import pseIcon from "../../../img/syllabus-icons/pse.png";
 import silsIcon from "../../../img/syllabus-icons/sils.png";
 import sssIcon from "../../../img/syllabus-icons/sss.png";
 import cjlIcon from "../../../img/syllabus-icons/cjl.png";
+import gecIcon from "../../../img/syllabus-icons/gec.png";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -126,15 +127,18 @@ const schoolNameIconMap = {
   [FSE]: fseIcon,
   [CSE]: cseIcon,
   [ASE]: aseIcon,
-  [CJL]: cjlIcon
+  [CJL]: cjlIcon,
+  [GEC]: gecIcon
 };
 
-const mapLinkToSchoolIcon = school => {
-  return (
-    <SchoolIconItem>
-      <SchoolIconImage src={schoolNameIconMap[school]} />
-    </SchoolIconItem>
-  );
+const mapLinkToSchoolIcon = keys => {
+  return keys.map(key => {
+    return (
+      <SchoolIconItem key={key.school}>
+        <SchoolIconImage src={schoolNameIconMap[key.school]} />
+      </SchoolIconItem>
+    );
+  });
 };
 
 const combineYearTerm = (year, term) => {
@@ -191,7 +195,7 @@ const CourseItem = ({
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
   const yearTerm = combineYearTerm(course.year, course.term);
-  const schoolIcons = mapLinkToSchoolIcon(course.school);
+  const schoolIcons = mapLinkToSchoolIcon(course.keys);
   const syllabusId = course._id;
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.occurrences.map((occurrence, index) => {

@@ -1,16 +1,16 @@
-import React from 'react';
-import stickybits from 'stickybits';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
+import React from "react";
+import stickybits from "stickybits";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
-import { SILS, PSE, SSS, FSE, ASE, CSE, CJL } from '../../data/schools';
+import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
 import {
   headerHeight,
   searchBarHeight
-} from '../../styled-components/variables';
-import FilterGroup from './FilterGroup';
-import { Wrapper } from '../../styled-components/Wrapper';
+} from "../../styled-components/variables";
+import FilterGroup from "./FilterGroup";
+import { Wrapper } from "../../styled-components/Wrapper";
 
 const FilterWrapper = styled(Wrapper)`
   flex: none;
@@ -20,25 +20,25 @@ const FilterWrapper = styled(Wrapper)`
       ? `calc(100vh - ${props.theme.headerHeight} - ${
           props.theme.searchBarHeight
         });`
-      : '100vh;'};
+      : "100vh;"};
 `;
 
-const FilterOverlay = styled('div')`
+const FilterOverlay = styled("div")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  padding: ${props => (props.isSideBar ? '0.5em 1em 1em 1em;' : '1.5em 1.2em;')}
+  padding: ${props => (props.isSideBar ? "0.5em 1em 1em 1em;" : "1.5em 1.2em;")}
   background-color: ${props =>
-    props.isSideBar ? 'rgba(0, 0, 0, 0.2);' : 'unset;'};
+    props.isSideBar ? "rgba(0, 0, 0, 0.2);" : "unset;"};
 `;
 
-const FilterTitle = styled('span')`
+const FilterTitle = styled("span")`
   display: flex;
   align-items: center;
-  font-size: ${props => (props.isSideBar ? '1em' : '1.3em')};
+  font-size: ${props => (props.isSideBar ? "1em" : "1.3em")};
 `;
 
-const FilterGroupWrapper = styled('div')`
+const FilterGroupWrapper = styled("div")`
   background-color: #fff;
   flex: 1 0 auto;
   padding: 1em;
@@ -83,19 +83,19 @@ class Filter extends React.Component {
 
   render() {
     const { filterGroups } = this.props;
-    const semesterLegend = 'Semesters';
-    const semesterInputName = 'semester';
+    const semesterLegend = "Semesters";
+    const semesterInputName = "semester";
     const semesterInputs = [
-      { value: 'spring', label: 'Spring / Summer' },
-      { value: 'fall', label: 'Fall / Winter' }
+      { value: "spring", label: "Spring / Summer" },
+      { value: "fall", label: "Fall / Winter" }
     ];
     const checkedSemesterInputs = semesterInputs.map(input => ({
       ...input,
       isChecked: filterGroups[semesterInputName].includes(input.value)
     }));
 
-    const schoolLegend = 'Schools';
-    const schoolInputName = 'school';
+    const schoolLegend = "Schools";
+    const schoolInputName = "school";
     const schoolInputs = [
       { value: SILS, label: SILS },
       { value: PSE, label: PSE },
@@ -103,32 +103,33 @@ class Filter extends React.Component {
       { value: FSE, label: FSE },
       { value: CSE, label: CSE },
       { value: ASE, label: ASE },
-      { value: CJL, label: CJL }
+      { value: CJL, label: CJL },
+      { value: GEC, label: GEC + " (Global)" }
     ];
     const checkedSchoolInputs = schoolInputs.map(input => ({
       ...input,
       isChecked: filterGroups[schoolInputName].includes(input.value)
     }));
 
-    const langLegend = 'Languages';
-    const langInputName = 'lang';
+    const langLegend = "Languages";
+    const langInputName = "lang";
     const langInputs = [
-      { value: 'EN', label: 'English' },
-      { value: 'JP', label: 'Japanese' },
-      { value: 'others', label: 'Others' }
+      { value: "EN", label: "English" },
+      { value: "JP", label: "Japanese" },
+      { value: "others", label: "Others" }
     ];
     const checkedLangInputs = langInputs.map(input => ({
       ...input,
       isChecked: filterGroups[langInputName].includes(input.value)
     }));
 
-    const specialLegend = 'Special';
-    const specialInputName = 'special';
+    const specialLegend = "Special";
+    const specialInputName = "special";
     const specialInputs = [
-      { value: 'IPSE', label: 'IPSE' },
+      { value: "IPSE", label: "IPSE" },
       {
-        value: 'English-based Undergraduate Program',
-        label: 'EN-based Undergrad Program'
+        value: "English-based Undergraduate Program",
+        label: "EN-based Undergrad Program"
       }
     ];
     const checkedSpecialInputs = specialInputs.map(input => ({
@@ -136,31 +137,31 @@ class Filter extends React.Component {
       isChecked: filterGroups[specialInputName].includes(input.value)
     }));
 
-    const dayLegend = 'Day';
-    const dayInputName = 'day';
+    const dayLegend = "Day";
+    const dayInputName = "day";
     const dayInputs = [
-      { value: '1', label: 'Mon.' },
-      { value: '2', label: 'Tue.' },
-      { value: '3', label: 'Wed.' },
-      { value: '4', label: 'Thur.' },
-      { value: '5', label: 'Fri.' },
-      { value: '6', label: 'Sat.' }
+      { value: "1", label: "Mon." },
+      { value: "2", label: "Tue." },
+      { value: "3", label: "Wed." },
+      { value: "4", label: "Thur." },
+      { value: "5", label: "Fri." },
+      { value: "6", label: "Sat." }
     ];
     const checkedDayInputs = dayInputs.map(input => ({
       ...input,
       isChecked: filterGroups[dayInputName].includes(input.value)
     }));
 
-    const periodLegend = 'Period';
-    const periodInputName = 'period';
+    const periodLegend = "Period";
+    const periodInputName = "period";
     const periodInputs = [
-      { value: '1', label: '1' },
-      { value: '2', label: '2' },
-      { value: '3', label: '3' },
-      { value: '4', label: '4' },
-      { value: '5', label: '5' },
-      { value: '6', label: '6' },
-      { value: '7', label: '7' }
+      { value: "1", label: "1" },
+      { value: "2", label: "2" },
+      { value: "3", label: "3" },
+      { value: "4", label: "4" },
+      { value: "5", label: "5" },
+      { value: "6", label: "6" },
+      { value: "7", label: "7" }
     ];
     const checkedPeriodInputs = periodInputs.map(input => ({
       ...input,

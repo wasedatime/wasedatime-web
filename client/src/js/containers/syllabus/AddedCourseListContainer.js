@@ -1,10 +1,10 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import { changeCoursesSortingOption } from '../../actions/syllabus';
-import { getSortingOption } from '../../reducers/addedSemesterCourses';
-import { sortAddedCourses } from '../../utils/addedCourses';
-import AddedCourseList from '../../components/syllabus/AddedCourseList';
+import { changeCoursesSortingOption } from "../../actions/syllabus";
+import { getSortingOption } from "../../reducers/addedSemesterCourses";
+import { sortAddedCourses } from "../../utils/addedCourses";
+import AddedCourseList from "../../components/syllabus/AddedCourseList";
 
 class AddedCourseListContainer extends React.Component {
   constructor() {
@@ -31,8 +31,14 @@ class AddedCourseListContainer extends React.Component {
   };
 
   render() {
-    const { addedCourses, selectedSortingOption } = this.props;
+    const { addedCoursesAndPrefs, selectedSortingOption } = this.props;
     const isSortingOptionOpen = this.state.isSortingOptionOpen;
+    const addedCourses = addedCoursesAndPrefs.map(addedCourseAndPref => {
+      return {
+        ...addedCourseAndPref.course,
+        displayLang: addedCourseAndPref.displayLang
+      };
+    });
     const sortedAddedCourses = sortAddedCourses(
       addedCourses,
       selectedSortingOption
@@ -61,6 +67,7 @@ const mapDispatchToProps = {
   changeCoursesSortingOption
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  AddedCourseListContainer
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddedCourseListContainer);

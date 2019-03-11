@@ -1,10 +1,10 @@
-import sortBy from 'lodash/sortBy';
+import sortBy from "lodash/sortBy";
 
-import langs from '../config/langs';
-import UnsupportedLanguageError from '../errors/UnsupportedLanguageError';
+import LANGS from "../config/langs";
+import UnsupportedLanguageError from "../errors/UnsupportedLanguageError";
 
 // Unicode for Japanese: http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
-export const jpRegex = '\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf';
+export const jpRegex = "\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf";
 
 export const tokenize = string => {
   // TODO benchmark contructor (new RegExp) vs factory (RegExp)
@@ -13,15 +13,15 @@ export const tokenize = string => {
 };
 
 export const getSearchLang = searchTerm => {
-  return new RegExp(`[${jpRegex}]`).test(searchTerm) ? langs.JP : langs.EN;
+  return new RegExp(`[${jpRegex}]`).test(searchTerm) ? LANGS.JP : LANGS.EN;
 };
 
 export const regexify = (token, searchLang) => {
   switch (searchLang) {
-    case langs.JP:
-      return new RegExp(token, 'i');
-    case langs.EN:
-      return new RegExp(`\\b${token}`, 'i');
+    case LANGS.JP:
+      return new RegExp(token, "i");
+    case LANGS.EN:
+      return new RegExp(`\\b${token}`, "i");
     default:
       throw new UnsupportedLanguageError(searchLang);
   }
@@ -29,9 +29,9 @@ export const regexify = (token, searchLang) => {
 
 export const getCourseTitleAndInstructor = (course, searchLang) => {
   switch (searchLang) {
-    case langs.JP:
+    case LANGS.JP:
       return { title: course.title_jp, instructor: course.instructor_jp };
-    case langs.EN:
+    case LANGS.EN:
       return { title: course.title, instructor: course.instructor };
     default:
       throw new UnsupportedLanguageError(searchLang);

@@ -27,9 +27,9 @@ class AddedCourseListSwitch extends React.Component {
   };
 
   render() {
-    const { addedCourses } = this.props;
+    const { addedCoursesAndPrefs } = this.props;
     const { selectedSemester } = this.state;
-    const courses = addedCourses[selectedSemester];
+    const courses = addedCoursesAndPrefs[selectedSemester];
     return (
       <Wrapper>
         <Overlay>
@@ -45,7 +45,7 @@ class AddedCourseListSwitch extends React.Component {
             rightDisplayedValue={this.displayedFallSemester}
           />
           <AddedCourseListContainer
-            addedCourses={courses}
+            addedCoursesAndPrefs={courses}
             semesterKey={selectedSemester}
           />
         </Overlay>

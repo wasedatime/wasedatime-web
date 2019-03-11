@@ -13,6 +13,7 @@ import PropTypes from "prop-types";
 import { PopperBox, Arrow } from "../../styled-components/ColorPopper";
 import ColorSelector from "./ColorSelector";
 import { media } from "../../styled-components/utils";
+import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -62,14 +63,17 @@ const CourseAndPrefItem = ({
   isPopperOpen,
   color,
   visibility,
+  displayLang,
   course,
   handleToggleColorPopper,
   handleToggleVisibility,
   handleRemoveCourse,
   handleChangeColor
 }) => {
-  const title = course.title;
-  const instructor = course.instructor;
+  const { title, instructor } = getCourseTitleAndInstructor(
+    course,
+    displayLang
+  );
   const syllabusId = course._id;
   const removeCourseIcon = (
     <FontAwesomeIcon

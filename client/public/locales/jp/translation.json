@@ -5,13 +5,13 @@
     "Go to": "まず",
     "Syllabus": "シラバス",
     "and try adding one!": "に行って、授業を一個追加してみて！",
-    "SaveSpace": "スペースを節約するために、6、7限および土曜日は非表示になっています。対応するコースが選択されると表示されます。"
+    "SaveSpace": "スペースを節約するために、6、7限および土曜日は非表示になっています。対応する授業が選択されると表示されます。"
   },
   "syllabus":{
     "Spring Semester": "春学期",
     "Fall Semester": "秋学期",
     "Added courses are displayed here":"追加された授業はここに表示されます。",
-    "To add a course": "授業の追加方法",
+    "To add a course": "授業を追加する方法",
     "Search for courses and instructors in the top search bar": "検索欄で授業もしくは教師を検索してください。",
     "Japanese is supported": "英語で検索することも可能です。",
     "try": "例えば",

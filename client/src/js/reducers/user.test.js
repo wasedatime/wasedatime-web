@@ -23,18 +23,13 @@ describe(">>>REDUCER --- Test user", () => {
 });
 
 describe(">>>SELECTOR --- Test getUserDisplayLang", () => {
-  test("should return JP Symbol given state with displayLang as 'jp'", () => {
+  test("should return LANGS.JP given state with displayLang as 'jp'", () => {
     const userSubState = user({ displayLang: "jp" }, {});
     expect(getUserDisplayLang({ user: userSubState })).toEqual(LANGS.JP);
   });
 
-  test("should return EN Symbol given state with displayLang as 'en'", () => {
+  test("should return LANGS.EN given state with displayLang as 'en'", () => {
     const userSubState = user({ displayLang: "en" }, {});
-    expect(getUserDisplayLang({ user: userSubState })).toEqual(LANGS.EN);
-  });
-
-  test("should return EN Symbol given state with displayLang as any other values", () => {
-    const userSubState = user({ displayLang: "aRandomValue" }, {});
     expect(getUserDisplayLang({ user: userSubState })).toEqual(LANGS.EN);
   });
 });

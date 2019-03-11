@@ -197,12 +197,6 @@ class Filter extends React.Component {
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={specialLegend}
-              inputName={specialInputName}
-              inputs={checkedSpecialInputs}
-            />
-            <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
               legend={dayLegend}
               inputName={dayInputName}
               inputs={checkedDayInputs}
@@ -212,6 +206,12 @@ class Filter extends React.Component {
               legend={periodLegend}
               inputName={periodInputName}
               inputs={checkedPeriodInputs}
+            />
+            <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
+              legend={specialLegend}
+              inputName={specialInputName}
+              inputs={checkedSpecialInputs}
             />
           </FilterGroupWrapper>
         </FilterOverlay>

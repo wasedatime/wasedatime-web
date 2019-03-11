@@ -22,7 +22,7 @@ const styles = theme => ({
     fontSize: "1em"
   },
   checkBox: {
-    padding: "3px 12px"
+    height: "30px"
   },
   checkBoxChecked: {
     color: "#b51e36 !important"

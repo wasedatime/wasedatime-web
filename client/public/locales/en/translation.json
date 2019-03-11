@@ -1,5 +1,5 @@
 {
-  "timetable":{
+  "timetable": {
     "welcome": "welcome",
     "You haven't added any courses": "Hi! You haven't added any courses.",
     "Go to": "Go to ",
@@ -7,21 +7,20 @@
     "and try adding one!": "and try adding one!",
     "SaveSpace": "Period 6, 7 and Saturday are hidden by default to save space. They will appear once the corresponding course is selected."
   },
-  "syllabus":{
+  "syllabus": {
     "Spring Semester": "Spring Semester",
     "Fall Semester": "Fall Semester",
-    "Added courses are displayed here":"Added courses are displayed here.",
+    "Added courses are displayed here": "Added courses are displayed here.",
     "To add a course": "To add a course",
     "Search for courses and instructors in the top search bar": "Search for courses and instructors in the top search bar.",
     "Japanese is supported": "Japanese is supported.",
-    "try": "try",
+    "try": "Try: \"kanji\" \"tanaka\" \"漢字\" \"田中\"",
     "Click on": "Click on",
     "to add": "to add",
     "to remove": "to remove.",
     "Pro Tip!": "Pro Tip!",
     "Use": "Use",
     "to narrow down your search": "to narrow down your search."
-
   },
   "room": {
     "Under Construction": "Under Construction",

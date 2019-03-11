@@ -68,7 +68,6 @@ class AddedCourseList extends React.Component {
     this.cleanupStickyWrapper();
   }
 
-
   render() {
     const {
       addedCourses,
@@ -101,13 +100,15 @@ class AddedCourseList extends React.Component {
               <Subheading>{t("syllabus.To add a course")}</Subheading>
               <OList>
                 <ListItem>
-                {t("syllabus.Search for courses and instructors in the top search bar")}
-                {t("syllabus.Japanese is supported")}
+                  {t(
+                    "syllabus.Search for courses and instructors in the top search bar"
+                  )}
+                  {t("syllabus.Japanese is supported")}
                   <br />
-                  {t("syllabus.try")} "kanji" "tanaka" "漢字" "田中"
+                  {t("syllabus.try")}
                 </ListItem>
                 <ListItem>
-                  {t("syllabus.Click on")} {" "}
+                  {t("syllabus.Click on")}{" "}
                   <FontAwesomeIcon
                     style={{ color: "#48af37" }}
                     icon={faPlusCircle}
@@ -126,7 +127,10 @@ class AddedCourseList extends React.Component {
             <Section>
               <Subheading>{t("syllabus.Pro Tip!")}</Subheading>
               <OList>
-                <ListItem>{t("syllabus.Use")} "Filter by" {t("syllabus.to narrow down your search")}</ListItem>
+                <ListItem>
+                  {t("syllabus.Use")} "Filter by"{" "}
+                  {t("syllabus.to narrow down your search")}
+                </ListItem>
               </OList>
             </Section>
           </ExtendedArticle>

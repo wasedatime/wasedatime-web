@@ -134,8 +134,11 @@ class FetchedCourseSearch extends React.Component {
       schoolFilters.length === 0 || schoolFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter(course => {
-            const school = course.school;
-            return schoolFilters.includes(school);
+            const keys = course.keys;
+            for (let i = 0; i < keys.length; i++) {
+              if (schoolFilters.includes(keys[i].school)) return true;
+            }
+            return false;
           });
 
     const langFilters = filterGroups.lang;

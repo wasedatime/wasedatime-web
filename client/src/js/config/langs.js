@@ -1,7 +1,6 @@
 const langs = Object.freeze({
-  EN: Symbol('English'),
-  JP: Symbol('Japanese')
+  EN: Symbol("en"),
+  JP: Symbol("jp")
 });
 
 export default langs;
-

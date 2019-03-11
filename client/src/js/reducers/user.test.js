@@ -1,6 +1,6 @@
 import user, { getUserDisplayLang } from "./user";
 import { CHANGE_USER_LANG } from "../actions/types";
-import LANG from "../config/langs";
+import LANGS from "../config/langs";
 
 describe(">>>REDUCER --- Test user", () => {
   test("should return the initial state", () => {

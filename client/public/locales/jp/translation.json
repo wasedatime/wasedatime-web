@@ -1,13 +1,15 @@
 {
-  "title": {
-    "Timetable": "時間割",
+  "timetable":{
+    "welcome": "WasedaTimeへようこそ",
+    "You haven't added any courses": "こんにちは！あなたはまだ授業を追加していません。",
+    "Go to": "まず",
     "Syllabus": "シラバス",
-    "RoomFinder": "空き教室探し",
-    "Bus": "バス"
+    "and try adding one!": "に行って、授業を一個追加してみて！",
+    "SaveSpace": "スペースを節約するために、期間6、7、および土曜日はデフォルトで非表示になっています。対応するコースが選択されると表示されます。"
   },
   "room": {
     "Under Construction": "作成中",
-    "Want to help?": "困ったことがあります？",
+    "Want to help?": "協力したいですか？",
     "Check out": " ",
     "here": "ここ",
     "or": "をクリックして！もしくは",

@@ -32,9 +32,17 @@ const DayColumnList = ({ largestDay, largestPeriod, addedCoursesAndPrefs }) => {
     });
     return acc;
   }, initCoursesByDay);
-
+  const lang = 'jp';
   //We define Sunday as index 0.
   const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  if(lang === 'jp'){
+    days[0] = '月';
+    days[1] = '火';
+    days[2] = '水';
+    days[3] = '木';
+    days[4] = '金';
+    days[5] = '土';
+  }
   const dayColumns = days.slice(0, Math.max(largestDay, 5)).map((day, index) => {
     return (
       <DayColumnItem

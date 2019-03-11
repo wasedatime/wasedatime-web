@@ -1,22 +1,22 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
-import { fetchCourses, hydrateAddedCourses } from '../actions/syllabus';
+import { fetchCourses, hydrateAddedCourses } from "../actions/syllabus";
 import {
   getIsFetching,
   getFetchedIds,
   getFetchedById,
   getError
-} from '../reducers/fetchedCourses';
+} from "../reducers/fetchedCourses";
 import {
   getAddedCourses,
   getIsAddedCoursesEmpty,
   getPrefs,
   getIsPrefsEmpty,
   getAddedCoursesAndPrefs
-} from '../reducers/addedCourses';
-import LoadingSpinner from '../components/LoadingSpinner';
-import FetchError from '../components/FetchError';
+} from "../reducers/addedCourses";
+import LoadingSpinner from "../components/LoadingSpinner";
+import FetchError from "../components/FetchError";
 
 const withFetchCourses = WrappedComponent => {
   class WithFetchCoursesComponent extends React.Component {
@@ -61,7 +61,7 @@ const withFetchCourses = WrappedComponent => {
         return <FetchError onRetry={fetchCourses} />;
       }
       if (!isPrefsEmpty && isAddedCoursesEmpty) {
-        return <LoadingSpinner message={'Initializing your added courses'} />;
+        return <LoadingSpinner message={"Initializing your added courses"} />;
       }
 
       const fetchedCourses = fetchedCourseIds.map(id => fetchedCoursesById[id]);
@@ -95,9 +95,10 @@ const withFetchCourses = WrappedComponent => {
     hydrateAddedCourses
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(
-    WithFetchCoursesComponent
-  );
+  return connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(WithFetchCoursesComponent);
 };
 
 export default withFetchCourses;

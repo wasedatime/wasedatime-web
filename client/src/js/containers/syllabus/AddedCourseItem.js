@@ -1,19 +1,18 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Alert from 'react-s-alert';
+import React from "react";
+import { connect } from "react-redux";
+import Alert from "react-s-alert";
 
-import { removeCourse } from '../../actions/syllabus';
-import CourseItem from '../../components/syllabus/CourseItem';
-import langs from '../../config/langs';
+import { removeCourse } from "../../actions/syllabus";
+import CourseItem from "../../components/syllabus/CourseItem";
 
 class AddedCourseItem extends React.Component {
   handleRemoveCourse = event => {
     event.preventDefault();
     const { course } = this.props;
     this.props.removeCourse(course._id);
-    Alert.success('Course removed.', {
-      position: 'bottom',
-      effect: 'jelly'
+    Alert.success("Course removed.", {
+      position: "bottom",
+      effect: "jelly"
     });
   };
 
@@ -24,7 +23,7 @@ class AddedCourseItem extends React.Component {
         handleOnClick={this.handleRemoveCourse}
         isAddable={false}
         searchTerm=""
-        searchLang={langs.EN}
+        searchLang={course.displayLang}
         course={course}
       />
     );
@@ -35,4 +34,7 @@ const mapDispatchToProps = {
   removeCourse
 };
 
-export default connect(null, mapDispatchToProps)(AddedCourseItem);
+export default connect(
+  null,
+  mapDispatchToProps
+)(AddedCourseItem);

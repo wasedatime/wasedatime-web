@@ -3,6 +3,7 @@ import stickybits from "stickybits";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
 
 import {
   headerHeight,
@@ -67,14 +68,17 @@ class AddedCourseList extends React.Component {
     this.cleanupStickyWrapper();
   }
 
+
   render() {
     const {
       addedCourses,
       isSortingOptionOpen,
       handleToggleSortingOptions,
       selectedSortingOption,
-      handleChangeSortingOption
+      handleChangeSortingOption,
+      t
     } = this.props;
+
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>
         <CourseListSummary
@@ -92,37 +96,37 @@ class AddedCourseList extends React.Component {
           </div>
         ) : (
           <ExtendedArticle>
-            <h4>Added courses are displayed here.</h4>
+            <h4>{t("syllabus.Added courses are displayed here")}</h4>
             <Section>
-              <Subheading>To add a course</Subheading>
+              <Subheading>{t("syllabus.To add a course")}</Subheading>
               <OList>
                 <ListItem>
-                  Search for courses and instructors in the top search bar.
-                  Japanese is supported.
+                {t("syllabus.Search for courses and instructors in the top search bar")}
+                {t("syllabus.Japanese is supported")}
                   <br />
-                  Try "kanji" "tanaka" "漢字" "田中"
+                  {t("syllabus.try")} "kanji" "tanaka" "漢字" "田中"
                 </ListItem>
                 <ListItem>
-                  Click on{" "}
+                  {t("syllabus.Click on")} {" "}
                   <FontAwesomeIcon
                     style={{ color: "#48af37" }}
                     icon={faPlusCircle}
                     size="1x"
                   />{" "}
-                  to add,{" "}
+                  {t("syllabus.to add")},{" "}
                   <FontAwesomeIcon
                     style={{ color: "#ce0115" }}
                     icon={faMinusCircle}
                     size="1x"
                   />{" "}
-                  to remove.
+                  {t("syllabus.to remove")}
                 </ListItem>
               </OList>
             </Section>
             <Section>
-              <Subheading>Pro Tip!</Subheading>
+              <Subheading>{t("syllabus.Pro Tip!")}</Subheading>
               <OList>
-                <ListItem>Use "Filter by" to narrow down your search.</ListItem>
+                <ListItem>{t("syllabus.Use")} "Filter by" {t("syllabus.to narrow down your search")}</ListItem>
               </OList>
             </Section>
           </ExtendedArticle>
@@ -132,4 +136,4 @@ class AddedCourseList extends React.Component {
   }
 }
 
-export default AddedCourseList;
+export default withNamespaces("translation")(AddedCourseList);

@@ -104,7 +104,7 @@ class Filter extends React.Component {
       { value: CSE, label: CSE },
       { value: ASE, label: ASE },
       { value: CJL, label: CJL },
-      { value: GEC, label: GEC }
+      { value: GEC, label: GEC + " (Global)" }
     ];
     const checkedSchoolInputs = schoolInputs.map(input => ({
       ...input,

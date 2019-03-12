@@ -3,6 +3,9 @@ import stickybits from "stickybits";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
+import LANGS from "../../config/langs";
+
 
 import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
 import {
@@ -82,13 +85,18 @@ class Filter extends React.Component {
   }
 
   render() {
-    const { filterGroups } = this.props;
+    const lang = "jp";
+    const { filterGroups, t } = this.props;
     const semesterLegend = "Semesters";
     const semesterInputName = "semester";
     const semesterInputs = [
       { value: "spring", label: "Spring / Summer" },
       { value: "fall", label: "Fall / Winter" }
     ];
+    if ( lang === LANGS.JP ){
+      semesterInputs[0].label = "春 / 夏　";
+      semesterInputs[1].label = "秋 / 冬　";
+    }
     const checkedSemesterInputs = semesterInputs.map(input => ({
       ...input,
       isChecked: filterGroups[semesterInputName].includes(input.value)
@@ -106,6 +114,16 @@ class Filter extends React.Component {
       { value: CJL, label: CJL },
       { value: GEC, label: GEC + " (Global)" }
     ];
+    if ( lang === LANGS.JP ){
+      schoolInputs[0].label = "国際教養";
+      schoolInputs[1].label = "政経";
+      schoolInputs[2].label = "社学";
+      schoolInputs[3].label = "基幹";
+      schoolInputs[4].label = "創造";
+      schoolInputs[5].label = "先進";
+      schoolInputs[6].label = "日本語教育";
+      schoolInputs[7].label = "グローバル";
+    }
     const checkedSchoolInputs = schoolInputs.map(input => ({
       ...input,
       isChecked: filterGroups[schoolInputName].includes(input.value)
@@ -118,6 +136,11 @@ class Filter extends React.Component {
       { value: "JP", label: "Japanese" },
       { value: "others", label: "Others" }
     ];
+    if ( lang === LANGS.JP ){
+      langInputs[0].label = "英語";
+      langInputs[1].label = "日本語";
+      langInputs[2].label = "ほか";
+    }
     const checkedLangInputs = langInputs.map(input => ({
       ...input,
       isChecked: filterGroups[langInputName].includes(input.value)
@@ -132,6 +155,10 @@ class Filter extends React.Component {
         label: "EN-based Undergrad Program"
       }
     ];
+    if ( lang === LANGS.JP ){
+      specialInputs[0].label = "理工学術院国際教育センター";
+      specialInputs[1].label = "英語による学位取得";
+    }
     const checkedSpecialInputs = specialInputs.map(input => ({
       ...input,
       isChecked: filterGroups[specialInputName].includes(input.value)
@@ -147,6 +174,14 @@ class Filter extends React.Component {
       { value: "5", label: "Fri." },
       { value: "6", label: "Sat." }
     ];
+    if ( lang === LANGS.JP ){
+      dayInputs[0].label = "月";
+      dayInputs[1].label = "火";
+      dayInputs[2].label = "水";
+      dayInputs[3].label = "木";
+      dayInputs[4].label = "金";
+      dayInputs[5].label = "土";
+    }
     const checkedDayInputs = dayInputs.map(input => ({
       ...input,
       isChecked: filterGroups[dayInputName].includes(input.value)
@@ -179,37 +214,37 @@ class Filter extends React.Component {
           <FilterGroupWrapper>
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={semesterLegend}
+              legend={t("syllabus.Semesters")}
               inputName={semesterInputName}
               inputs={checkedSemesterInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={schoolLegend}
+              legend={t("syllabus.Schools")}
               inputName={schoolInputName}
               inputs={checkedSchoolInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={langLegend}
+              legend={t("syllabus.Languages")}
               inputName={langInputName}
               inputs={checkedLangInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={dayLegend}
+              legend={t("syllabus.day")}
               inputName={dayInputName}
               inputs={checkedDayInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={periodLegend}
+              legend={t("syllabus.period")}
               inputName={periodInputName}
               inputs={checkedPeriodInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={specialLegend}
+              legend={t("syllabus.Special")}
               inputName={specialInputName}
               inputs={checkedSpecialInputs}
             />
@@ -220,4 +255,4 @@ class Filter extends React.Component {
   }
 }
 
-export default Filter;
+export default withNamespaces("translation")(Filter);

@@ -22,7 +22,13 @@
     "to remove": "to remove.",
     "Pro Tip!": "Pro Tip!",
     "Use": "Use",
-    "to narrow down your search": "to narrow down your search."
+    "to narrow down your search": "to narrow down your search.",
+    "Semesters": "Semesters",
+    "Schools": "Schools",
+    "Languages": "Languages",
+    "Special": "Special",
+    "day" : "day",
+    "period" : "period"
   },
   "room": {
     "Under Construction": "Under Construction",

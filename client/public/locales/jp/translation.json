@@ -22,7 +22,13 @@
     "to remove": "をクリックと、授業を削除できる。",
     "Pro Tip!": "おすすめ！",
     "Use": "",
-    "to narrow down your search": "を利用して検索を絞り込んでください"
+    "to narrow down your search": "を利用して検索を絞り込んでください",
+    "Semesters": "学期",
+    "Schools": "学部",
+    "Languages": "言語",
+    "Special": "ほか",
+    "day" : "曜日",
+    "period" : "時限"
   },
   "room": {
     "Under Construction": "作成中",

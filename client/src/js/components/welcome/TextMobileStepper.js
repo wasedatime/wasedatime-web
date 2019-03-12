@@ -10,9 +10,6 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
 import Greeting from "./Greeting";
 
-// const setupLabels = ["Welcome"];
-const setupSteps = [<Greeting />];
-
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -27,9 +24,12 @@ const styles = theme => ({
 });
 
 class TextMobileStepper extends React.Component {
-  state = {
-    activeStep: 0
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeStep: 0
+    };
+  }
 
   handleNext = () => {
     this.setState(prevState => ({
@@ -44,8 +44,9 @@ class TextMobileStepper extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes, lang } = this.props;
     const { activeStep } = this.state;
+    const setupSteps = [<Greeting lang={lang} />];
     const maxSteps = setupSteps.length;
 
     return (
@@ -63,11 +64,7 @@ class TextMobileStepper extends React.Component {
               disabled={activeStep === maxSteps - 1}
             >
               Next
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowLeft />
-              ) : (
-                <KeyboardArrowRight />
-              )}
+              <KeyboardArrowRight />
             </Button>
           }
           backButton={
@@ -76,11 +73,7 @@ class TextMobileStepper extends React.Component {
               onClick={this.handleBack}
               disabled={activeStep === 0}
             >
-              {theme.direction === "rtl" ? (
-                <KeyboardArrowRight />
-              ) : (
-                <KeyboardArrowLeft />
-              )}
+              <KeyboardArrowLeft />
               Back
             </Button>
           }

@@ -23,16 +23,10 @@ const styles = {
 class InitialDialog extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lang: props.lang };
   }
-
-  handleChangeUserDisplayLang = lang => {
-    this.props.changeUserDisplayLang(lang);
-  };
 
   render() {
     const { classes } = this.props;
-    console.log(this.state);
     return (
       <WrapperWithBackground
         background={homeBackground}
@@ -44,7 +38,7 @@ class InitialDialog extends React.Component {
           aria-labelledby="form-dialog-title"
           classes={{ paper: classes.dialogPaper }}
         >
-          <TextMobileStepper />
+          <TextMobileStepper lang={this.props.lang} />
         </Dialog>
       </WrapperWithBackground>
     );
@@ -56,11 +50,6 @@ const mapStateToProps = state => {
     lang: getUserDisplayLang(state)
   };
 };
-
-// const mapDispatchToProps = {
-//   setFirstTimeAccessToFalse, Can do in last stepper
-//   changeUserDisplayLang Can do in Greeting.js
-// };
 
 export default withStyles(styles)(
   connect(

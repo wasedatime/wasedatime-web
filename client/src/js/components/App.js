@@ -37,7 +37,6 @@ const StyledMain = styled("main")`
 `;
 
 const App = ({ isFirstTimeAccess }) => {
-  console.log(isFirstTimeAccess);
   return (
     <ThemeProvider theme={normalTheme}>
       <Wrapper>

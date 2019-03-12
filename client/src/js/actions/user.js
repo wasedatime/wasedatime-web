@@ -6,7 +6,7 @@ import {
 export const changeUserDisplayLang = lang => ({
   type: CHANGE_USER_DISPLAY_LANG,
   payload: {
-    lang
+    displayLang: lang
   }
 });
 

@@ -1,15 +1,14 @@
 import { combineReducers } from "redux";
 
 import {
-  CHANGE_USER_LANG,
+  CHANGE_USER_DISPLAY_LANG,
   SET_FIRST_TIME_ACCESS_TO_FALSE
 } from "../actions/types";
-import LANGS from "../config/langs";
 
 //TODO Change 'en' to null after the initial modal for setting up user profile is done.
-const displayLang = (state = LANGS.EN, action) => {
+const displayLang = (state = null, action) => {
   switch (action.type) {
-    case CHANGE_USER_LANG:
+    case CHANGE_USER_DISPLAY_LANG:
       return action.payload.displayLang;
     default:
       return state;

@@ -8,6 +8,11 @@ import HorizontalLinearStepper from "./HorizontalLinearStepper";
 import TextMobileStepper from "./TextMobileStepper";
 import homeBackground from "../../../img/home_background.jpg";
 import homeBackgroundPhone from "../../../img/home_background-phone.jpg";
+import {
+  setFirstTimeAccessToFalse,
+  changeUserDisplayLang
+} from "../../actions/user";
+import { getUserDisplayLang } from "../../reducers/user";
 
 const styles = {
   dialogPaper: {
@@ -18,10 +23,16 @@ const styles = {
 class InitialDialog extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lang: null };
+    this.state = { lang: props.lang };
   }
+
+  handleChangeUserDisplayLang = lang => {
+    this.props.changeUserDisplayLang(lang);
+  };
+
   render() {
     const { classes } = this.props;
+    console.log(this.state);
     return (
       <WrapperWithBackground
         background={homeBackground}
@@ -40,8 +51,20 @@ class InitialDialog extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  change
+const mapStateToProps = state => {
+  return {
+    lang: getUserDisplayLang(state)
+  };
 };
 
-export default withStyles(styles)(InitialDialog);
+// const mapDispatchToProps = {
+//   setFirstTimeAccessToFalse, Can do in last stepper
+//   changeUserDisplayLang Can do in Greeting.js
+// };
+
+export default withStyles(styles)(
+  connect(
+    mapStateToProps,
+    null
+  )(InitialDialog)
+);

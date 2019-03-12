@@ -15,7 +15,6 @@ const setupSteps = [<Greeting />];
 
 const styles = theme => ({
   root: {
-    // maxWidth: 400,
     flexGrow: 1
   },
   header: {
@@ -25,13 +24,6 @@ const styles = theme => ({
     paddingLeft: theme.spacing.unit * 4,
     backgroundColor: theme.palette.background.default
   }
-  // img: {
-  //   height: 255,
-  //   maxWidth: 400,
-  //   overflow: "hidden",
-  //   display: "block",
-  //   width: "100%"
-  // }
 });
 
 class TextMobileStepper extends React.Component {

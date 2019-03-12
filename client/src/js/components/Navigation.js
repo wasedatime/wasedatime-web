@@ -11,6 +11,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { media } from '../styled-components/utils';
+import LANGS from "../config/langs";
+
 
 const StyledNav = styled('nav')`
   display: flex;
@@ -74,7 +76,7 @@ const Navigation = props => {
       icon: faBus
     }
   ];
-  if(lang === 'jp'){
+  if(lang === LANGS.JP){
     navItems[0].name = '時間割';
     navItems[1].name = 'シラバス';
     navItems[2].name = '空き教室探し';

@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 import DayColumnItem from "./DayColumnItem";
+import LANGS from "../../config/langs";
+
 
 const StyledList = styled("ol")`
   display: flex;
@@ -45,7 +47,7 @@ const DayColumnList = ({ largestDay, largestPeriod, addedCoursesAndPrefs }) => {
   const lang = "jp";
   //We define Sunday as index 0.
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  if (lang === "jp") {
+  if (lang === LANGS.JP) {
     days[0] = "月";
     days[1] = "火";
     days[2] = "水";

@@ -5,6 +5,8 @@ import { Wrapper } from "../../styled-components/Wrapper";
 import Timetable from "../../components/timetable/Timetable";
 import SemesterSwitcher from "../../components/timetable/SemesterSwitcher";
 import withFetchCourses from "../../hocs/withFetchCourses";
+import LANGS from "../../config/langs";
+
 
 class TimetableContainer extends React.Component {
   constructor() {
@@ -40,6 +42,11 @@ class TimetableContainer extends React.Component {
   render() {
     const { title, key } = this.semesters[this.state.semesterIndex];
     const addedCoursesAndPrefs = this.props.addedCoursesAndPrefs[key];
+    const lang = "jp";
+    if(lang === LANGS.JP){
+      this.semesters[0].title = "秋学期";
+      this.semesters[1].title = "春学期";
+    }
     return (
       <Wrapper>
         <Helmet>

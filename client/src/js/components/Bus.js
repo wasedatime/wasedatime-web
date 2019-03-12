@@ -8,6 +8,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
+import LANGS from "../config/langs";
+
 
 import ModalContainer from "../containers/ModalContainer";
 // TODO use react-modal
@@ -208,9 +210,9 @@ const getBusStatus = (totalMins, occurrences, remarks, lang) => {
       lang
     };
   }
-  if (lang === "en") {
+  if (lang === LANGS.EN) {
     return "Out of service";
-  } else if (lang === "jp") {
+  } else if (lang === LANGS.JP) {
     return "利用時間外";
   }
 };
@@ -221,10 +223,10 @@ const getBusStatuses = (now, lang) => {
   const day = now.getDay();
   //assertion language at first
   let wasedaStatus, nishiStatus;
-  if (lang === "en") {
+  if (lang === LANGS.EN) {
     wasedaStatus = "Out of service";
     nishiStatus = "Out of service";
-  } else if (lang === "jp") {
+  } else if (lang === LANGS.JP) {
     wasedaStatus = "利用時間外";
     nishiStatus = "利用時間外";
   }
@@ -233,10 +235,10 @@ const getBusStatuses = (now, lang) => {
   if (scheduleType === "no") {
     return { wasedaStatus, nishiStatus };
   } else if (scheduleType === "special") {
-    if (lang === "en") {
+    if (lang === LANGS.EN) {
       wasedaStatus = "Special Schedule";
       nishiStatus = "Special Schedule";
-    } else if (lang === "jp") {
+    } else if (lang === LANGS.JP) {
       wasedaStatus = "特別なスケジュール";
       nishiStatus = "特別なスケジュール";
     }
@@ -246,7 +248,7 @@ const getBusStatuses = (now, lang) => {
   const totalMins = now.getHours() * 60 + now.getMinutes();
   const wasedaSchedule = busSchedule[scheduleType].fromWasedaToNishiWaseda;
   const nishiSchedule = busSchedule[scheduleType].fromNishiWasedaToWaseda;
-  if (lang === "en") {
+  if (lang === LANGS.EN) {
     wasedaStatus = getBusStatus(
       totalMins,
       wasedaSchedule.occurrences,
@@ -259,7 +261,7 @@ const getBusStatuses = (now, lang) => {
       nishiSchedule.remarks_en,
       lang
     );
-  } else if (lang === "jp") {
+  } else if (lang === LANGS.JP) {
     wasedaStatus = getBusStatus(
       totalMins,
       wasedaSchedule.occurrences,

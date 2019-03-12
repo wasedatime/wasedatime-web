@@ -5,6 +5,7 @@ import BinarySwitch from "../../components/syllabus/BinarySwitch";
 import AddedCourseListContainer from "./AddedCourseListContainer";
 import { Wrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
+import LANGS from "../../config/langs";
 
 class AddedCourseListSwitch extends React.Component {
   constructor() {
@@ -30,6 +31,11 @@ class AddedCourseListSwitch extends React.Component {
     const { addedCoursesAndPrefs } = this.props;
     const { selectedSemester } = this.state;
     const courses = addedCoursesAndPrefs[selectedSemester];
+    const lang = "jp";
+    if (lang === LANGS.JP){
+      this.displayedSpringSemester = "春学期";
+      this.displayedFallSemester = "秋学期";
+    }
     return (
       <Wrapper>
         <Overlay>

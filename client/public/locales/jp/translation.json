@@ -1,6 +1,9 @@
 {
   "welcome": {
-    "welcome": "WasedaTime へようこそ!"
+    "welcome": "WasedaTime へようこそ!",
+    "next": "次へ",
+    "back": "前へ",
+    "done": "完了"
   },
   "timetable": {
     "welcome": "WasedaTimeへようこそ",

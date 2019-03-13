@@ -56,7 +56,7 @@ class DialogStepper extends React.Component {
   };
 
   render() {
-    const { classes, lng } = this.props;
+    const { classes, t, lng } = this.props;
     const { activeStep } = this.state;
     const setupSteps = [<Greeting />];
     const maxSteps = setupSteps.length;
@@ -80,7 +80,7 @@ class DialogStepper extends React.Component {
                 classes={{ label: classes.buttonLabel }}
                 onClick={this.handleNext}
               >
-                Next
+                {t("welcome.next")}
                 <KeyboardArrowRight />
               </Button>
             ) : (
@@ -89,7 +89,7 @@ class DialogStepper extends React.Component {
                 classes={{ label: classes.buttonLabel }}
                 onClick={this.handleDone}
               >
-                Done
+                {t("welcome.done")}
                 <KeyboardArrowRight />
               </Button>
             )
@@ -102,7 +102,7 @@ class DialogStepper extends React.Component {
               disabled={isFirstStep}
             >
               <KeyboardArrowLeft />
-              Back
+              {t("welcome.back")}
             </Button>
           }
         />

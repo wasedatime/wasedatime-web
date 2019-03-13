@@ -49,7 +49,7 @@ const UnderConstruction = ({ t }) => {
           <a href="mailto:haohaowang.oscar@moegi.waseda.jp">
             {t("room.send an email")}
           </a>
-          <br />
+          {t("room.!")}<br />
           {t("room.We sincerely welcome any contributors!")}
         </Description>
       </ExtendedOverlay>

@@ -28,7 +28,9 @@
     "and try adding one!": "に行って、授業を一個登録してみて！",
     "SaveSpace": "スペースを節約するために、6、7限および土曜日は非表示になっています。対応する授業が選択されると表示されます。",
     "Sort by": "並べ替え",
-    "courses added": "個授業が登録された"
+    "courses added": "個授業が登録された",
+    "Spring Semester": "春学期",
+    "Fall Semester": "秋学期"
   },
   "syllabus": {
     "Spring Semester": "春学期",

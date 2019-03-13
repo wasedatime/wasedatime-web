@@ -5,6 +5,12 @@
     "back": "back",
     "done": "done"
   },
+  "navigation": {
+    "timetable": "Timetable",
+    "syllabus": "Syllabus",
+    "roomfinder": "Roomfinder",
+    "bus": "Bus"
+  },
   "timetable": {
     "welcome": "welcome",
     "You haven't added any courses": "Hi! You haven't added any courses.",

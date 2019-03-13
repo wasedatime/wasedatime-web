@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { withNamespaces } from "react-i18next";
 import { withRouter } from "react-router";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -36,6 +37,7 @@ const StyledButton = styled("button")`
   border: none;
   outline: none;
   padding: 0;
+  margin: 0;
   background-color: inherit;
   color: ${props =>
     props.isClicked ? props.theme.colorPrimary : props.theme.white};
@@ -51,36 +53,30 @@ const StyledSpan = styled("span")`
 `;
 
 const Navigation = props => {
-  const lang = "jp";
   const pathname = props.location.pathname;
+  const t = props.t;
   const navItems = [
     {
-      name: "Timetable",
+      name: t("navigation.timetable"),
       path: "/timetable",
       icon: faCalendarAlt
     },
     {
-      name: "Syllabus",
+      name: t("navigation.syllabus"),
       path: "/syllabus",
       icon: faBook
     },
     {
-      name: "RoomFinder",
+      name: t("navigation.roomfinder"),
       path: "/roomfinder",
       icon: faBuilding
     },
     {
-      name: "Bus",
+      name: t("navigation.bus"),
       path: "/bus",
       icon: faBus
     }
   ];
-  if (lang === LANGS.JP) {
-    navItems[0].name = "時間割";
-    navItems[1].name = "シラバス";
-    navItems[2].name = "空き教室探し";
-    navItems[3].name = "バス";
-  }
   const styledLinks = navItems.map(item => {
     const itemName = item["name"];
     const itemPath = item["path"];
@@ -102,4 +98,4 @@ const Navigation = props => {
   return <StyledNav>{styledLinks}</StyledNav>;
 };
 
-export default withRouter(Navigation);
+export default withRouter(withNamespaces("translation")(Navigation));

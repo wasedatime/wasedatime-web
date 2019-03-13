@@ -5,6 +5,12 @@
     "back": "前へ",
     "done": "完了"
   },
+  "navigation": {
+    "timetable": "時間割",
+    "syllabus": "シラバス",
+    "roomfinder": "空き教室探し",
+    "bus": "バス"
+  },
   "timetable": {
     "welcome": "WasedaTimeへようこそ",
     "You haven't added any courses": "こんにちは！あなたはまだ授業を登録していません。",

@@ -7,8 +7,6 @@ import { Overlay } from "../styled-components/Overlay";
 import logo from "../../img/logo.png";
 
 import { withNamespaces } from "react-i18next";
-import LANGS from "../config/langs";
-
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
@@ -49,7 +47,8 @@ const UnderConstruction = ({ t }) => {
           <a href="mailto:haohaowang.oscar@moegi.waseda.jp">
             {t("room.send an email")}
           </a>
-          {t("room.!")}<br />
+          {t("room.!")}
+          <br />
           {t("room.We sincerely welcome any contributors!")}
         </Description>
       </ExtendedOverlay>

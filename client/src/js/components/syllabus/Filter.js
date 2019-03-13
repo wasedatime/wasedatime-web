@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
-import LANGS from "../../config/langs";
 
 import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
 import {

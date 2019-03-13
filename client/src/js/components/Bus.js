@@ -194,7 +194,7 @@ const totalMinsToTimeStr = totalMins => {
 };
 
 //TODO Fix mixing different return types
-const getBusStatus = (totalMins, occurrences, remarks, lng , t) => {
+const getBusStatus = (totalMins, occurrences, remarks, lng, t) => {
   const nextTotalMins = binarySearchSchedule(totalMins, occurrences);
   // If there is there exists a subsequent bus schedule on the same day
   if (nextTotalMins !== -1) {
@@ -224,10 +224,11 @@ const getBusStatuses = (now, lng, t) => {
   if (scheduleType === "no") {
     return { wasedaStatus, nishiStatus };
   } else if (scheduleType === "special") {
-      wasedaStatus = t("Special Schedule");
-      nishiStatus = t("Special Schedule");
-    }
+    wasedaStatus = t("Special Schedule");
+    nishiStatus = t("Special Schedule");
     return { wasedaStatus, nishiStatus };
+  }
+
   // Weekday schedule or Saturday schedule
   const totalMins = now.getHours() * 60 + now.getMinutes();
   const wasedaSchedule = busSchedule[scheduleType].fromWasedaToNishiWaseda;
@@ -283,7 +284,7 @@ const createStatusComponent = (status, t) => {
 
 const Bus = ({ t, lng }) => {
   const now = new Date();
-  const { wasedaStatus, nishiStatus } = getBusStatuses(now, lng ,t);
+  const { wasedaStatus, nishiStatus } = getBusStatuses(now, lng, t);
   const wasedaStatusComponent = createStatusComponent(wasedaStatus, t);
   const nishiStatusComponent = createStatusComponent(nishiStatus, t);
   return (

@@ -16,7 +16,7 @@ store.subscribe(
   throttle(() => {
     const state = store.getState();
     const addedCourses = state.addedCourses;
-    const user = state.user;
+    // const user = state.user;
     saveState({
       addedCourses: {
         fall: {

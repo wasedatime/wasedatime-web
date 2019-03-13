@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 
 import DayColumnItem from "./DayColumnItem";
-import LANGS from "../../config/langs";
 
 const StyledList = styled("ol")`
   display: flex;

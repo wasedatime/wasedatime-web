@@ -6,7 +6,6 @@ import Timetable from "../../components/timetable/Timetable";
 import SemesterSwitcher from "../../components/timetable/SemesterSwitcher";
 import withFetchCourses from "../../hocs/withFetchCourses";
 import { withNamespaces } from "react-i18next";
-import LANGS from "../../config/langs";
 
 class TimetableContainer extends React.Component {
   constructor(props) {

@@ -6,7 +6,6 @@ import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 import LANGS from "../../config/langs";
 
-
 import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
 import {
   headerHeight,
@@ -85,18 +84,13 @@ class Filter extends React.Component {
   }
 
   render() {
-    const lang = "jp";
     const { filterGroups, t } = this.props;
     const semesterLegend = "Semesters";
     const semesterInputName = "semester";
     const semesterInputs = [
-      { value: "spring", label: "Spring / Summer" },
-      { value: "fall", label: "Fall / Winter" }
+      { value: "spring", label: t("syllabus.Spring / Summer") },
+      { value: "fall", label: t("syllabus.Fall / Winter") }
     ];
-    if ( lang === LANGS.JP ){
-      semesterInputs[0].label = "春 / 夏　";
-      semesterInputs[1].label = "秋 / 冬　";
-    }
     const checkedSemesterInputs = semesterInputs.map(input => ({
       ...input,
       isChecked: filterGroups[semesterInputName].includes(input.value)
@@ -105,25 +99,15 @@ class Filter extends React.Component {
     const schoolLegend = "Schools";
     const schoolInputName = "school";
     const schoolInputs = [
-      { value: SILS, label: SILS },
-      { value: PSE, label: PSE },
-      { value: SSS, label: SSS },
-      { value: FSE, label: FSE },
-      { value: CSE, label: CSE },
-      { value: ASE, label: ASE },
-      { value: CJL, label: CJL },
-      { value: GEC, label: GEC + " (Global)" }
+      { value: SILS, label: t(`syllabus.${SILS}`) },
+      { value: PSE, label: t(`syllabus.${PSE}`) },
+      { value: SSS, label: t(`syllabus.${SSS}`) },
+      { value: FSE, label: t(`syllabus.${FSE}`) },
+      { value: CSE, label: t(`syllabus.${CSE}`) },
+      { value: ASE, label: t(`syllabus.${ASE}`) },
+      { value: CJL, label: t(`syllabus.${CJL}`) },
+      { value: GEC, label: t(`syllabus.${GEC}`) }
     ];
-    if ( lang === LANGS.JP ){
-      schoolInputs[0].label = "国際教養";
-      schoolInputs[1].label = "政経";
-      schoolInputs[2].label = "社学";
-      schoolInputs[3].label = "基幹";
-      schoolInputs[4].label = "創造";
-      schoolInputs[5].label = "先進";
-      schoolInputs[6].label = "日本語教育";
-      schoolInputs[7].label = "グローバル";
-    }
     const checkedSchoolInputs = schoolInputs.map(input => ({
       ...input,
       isChecked: filterGroups[schoolInputName].includes(input.value)
@@ -132,15 +116,10 @@ class Filter extends React.Component {
     const langLegend = "Languages";
     const langInputName = "lang";
     const langInputs = [
-      { value: "EN", label: "English" },
-      { value: "JP", label: "Japanese" },
-      { value: "others", label: "Others" }
+      { value: "EN", label: t("syllabus.English") },
+      { value: "JP", label: t("syllabus.Japanese") },
+      { value: "others", label: t("syllabus.Others") }
     ];
-    if ( lang === LANGS.JP ){
-      langInputs[0].label = "英語";
-      langInputs[1].label = "日本語";
-      langInputs[2].label = "ほか";
-    }
     const checkedLangInputs = langInputs.map(input => ({
       ...input,
       isChecked: filterGroups[langInputName].includes(input.value)
@@ -149,16 +128,12 @@ class Filter extends React.Component {
     const specialLegend = "Special";
     const specialInputName = "special";
     const specialInputs = [
-      { value: "IPSE", label: "IPSE" },
+      { value: "IPSE", label: t("syllabus.IPSE") },
       {
         value: "English-based Undergraduate Program",
-        label: "EN-based Undergrad Program"
+        label: t("syllabus.EN-based Undergrad Program")
       }
     ];
-    if ( lang === LANGS.JP ){
-      specialInputs[0].label = "理工学術院国際教育センター";
-      specialInputs[1].label = "英語による学位取得";
-    }
     const checkedSpecialInputs = specialInputs.map(input => ({
       ...input,
       isChecked: filterGroups[specialInputName].includes(input.value)
@@ -167,21 +142,13 @@ class Filter extends React.Component {
     const dayLegend = "Day";
     const dayInputName = "day";
     const dayInputs = [
-      { value: "1", label: "Mon." },
-      { value: "2", label: "Tue." },
-      { value: "3", label: "Wed." },
-      { value: "4", label: "Thur." },
-      { value: "5", label: "Fri." },
-      { value: "6", label: "Sat." }
+      { value: "1", label: t("common.mon") },
+      { value: "2", label: t("common.tue") },
+      { value: "3", label: t("common.wed") },
+      { value: "4", label: t("common.thu") },
+      { value: "5", label: t("common.fri") },
+      { value: "6", label: t("common.sat") }
     ];
-    if ( lang === LANGS.JP ){
-      dayInputs[0].label = "月";
-      dayInputs[1].label = "火";
-      dayInputs[2].label = "水";
-      dayInputs[3].label = "木";
-      dayInputs[4].label = "金";
-      dayInputs[5].label = "土";
-    }
     const checkedDayInputs = dayInputs.map(input => ({
       ...input,
       isChecked: filterGroups[dayInputName].includes(input.value)

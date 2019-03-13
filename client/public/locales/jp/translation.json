@@ -1,4 +1,12 @@
 {
+  "common": {
+    "mon": "月",
+    "tue": "火",
+    "wed": "水",
+    "thu": "木",
+    "fri": "金",
+    "sat": "土"
+  },
   "welcome": {
     "welcome": "WasedaTime へようこそ!",
     "next": "次へ",
@@ -19,13 +27,7 @@
     "and try adding one!": "に行って、授業を一個登録してみて！",
     "SaveSpace": "スペースを節約するために、6、7限および土曜日は非表示になっています。対応する授業が選択されると表示されます。",
     "Sort by": "並べ替え",
-    "courses added": "個授業が登録された",
-    "mon": "月",
-    "tue": "火",
-    "wed": "水",
-    "thu": "木",
-    "fri": "金",
-    "sat": "土"
+    "courses added": "個授業が登録された"
   },
   "syllabus": {
     "Spring Semester": "春学期",
@@ -49,7 +51,23 @@
     "day": "曜日",
     "period": "時限",
     "displayedSpringSemester": "春学期",
-    "displayedFallSemester": "秋学期"
+    "displayedFallSemester": "秋学期",
+    "searchBarPlaceholder": "科目, 教師, course, instructorを検索",
+    "Spring / Summer": "春 / 夏",
+    "Fall / Winter": "秋 / 冬",
+    "SILS": "国教",
+    "PSE": "政経",
+    "SSS": "社学",
+    "FSE": "基幹",
+    "CSE": "創造",
+    "ASE": "先進",
+    "CJL": "日本語教育",
+    "GEC": "グローバル",
+    "English": "英語",
+    "Japanese": "日本語",
+    "Others": "ほか",
+    "IPSE": "理工国際プログラム",
+    "EN-based Undergrad Program": "英語による学位取得"
   },
   "room": {
     "Under Construction": "作成中",

@@ -1,4 +1,12 @@
 {
+  "common": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat"
+  },
   "welcome": {
     "welcome": "Welcome to WasedaTime!",
     "next": "next",
@@ -19,13 +27,7 @@
     "and try adding one!": "and try adding one!",
     "SaveSpace": "Period 6, 7 and Saturday are hidden by default to save space. They will appear once the corresponding course is selected.",
     "Sort by": "Sort by",
-    "courses added": "courses added",
-    "mon": "Mon",
-    "tue": "Tue",
-    "wed": "Wed",
-    "thu": "Thu",
-    "fri": "Fri",
-    "sat": "Sat"
+    "courses added": "courses added"
   },
   "syllabus": {
     "Spring Semester": "Spring Semester",
@@ -49,7 +51,23 @@
     "day": "day",
     "period": "period",
     "displayedSpringSemester": "Spring Semester",
-    "displayedFallSemester": "Fall Semester"
+    "displayedFallSemester": "Fall Semester",
+    "searchBarPlaceholder": "Search course, instructor, 科目, 教師",
+    "Spring / Summer": "Spring / Summer",
+    "Fall / Winter": "Fall / Winter",
+    "SILS": "SILS",
+    "PSE": "PSE",
+    "SSS": "SSS",
+    "FSE": "FSE",
+    "CSE": "CSE",
+    "ASE": "ASE",
+    "CJL": "CJL",
+    "GEC": "GEC (Global)",
+    "English": "English",
+    "Japanese": "Japanses",
+    "Others": "Others",
+    "IPSE": "IPSE",
+    "EN-based Undergrad Program": "EN-based Undergrad Program"
   },
   "room": {
     "Under Construction": "Under Construction",

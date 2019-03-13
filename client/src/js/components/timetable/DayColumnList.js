@@ -52,12 +52,12 @@ const DayColumnList = ({
 
   //We define Sunday as index 0.
   const days = [
-    t("timetable.mon"),
-    t("timetable.tue"),
-    t("timetable.wed"),
-    t("timetable.thu"),
-    t("timetable.fri"),
-    t("timetable.sat")
+    t("common.mon"),
+    t("common.tue"),
+    t("common.wed"),
+    t("common.thu"),
+    t("common.fri"),
+    t("common.sat")
   ];
 
   const dayColumns = days

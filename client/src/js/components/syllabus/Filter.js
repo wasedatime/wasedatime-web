@@ -87,7 +87,7 @@ class Filter extends React.Component {
   render() {
     const lang = "jp";
     const { filterGroups, t } = this.props;
-    const semesterLegend = "Semesters";
+    const semesterLegend = t("syllabus.Semesters");
     const semesterInputName = "semester";
     const semesterInputs = [
       { value: "spring", label: "Spring / Summer" },
@@ -102,7 +102,7 @@ class Filter extends React.Component {
       isChecked: filterGroups[semesterInputName].includes(input.value)
     }));
 
-    const schoolLegend = "Schools";
+    const schoolLegend = t("syllabus.Schools");
     const schoolInputName = "school";
     const schoolInputs = [
       { value: SILS, label: SILS },
@@ -115,7 +115,7 @@ class Filter extends React.Component {
       { value: GEC, label: GEC + " (Global)" }
     ];
     if ( lang === LANGS.JP ){
-      schoolInputs[0].label = "国際教養";
+      schoolInputs[0].label = "国教";
       schoolInputs[1].label = "政経";
       schoolInputs[2].label = "社学";
       schoolInputs[3].label = "基幹";
@@ -129,7 +129,7 @@ class Filter extends React.Component {
       isChecked: filterGroups[schoolInputName].includes(input.value)
     }));
 
-    const langLegend = "Languages";
+    const langLegend = t("syllabus.Languages");
     const langInputName = "lang";
     const langInputs = [
       { value: "EN", label: "English" },
@@ -146,7 +146,7 @@ class Filter extends React.Component {
       isChecked: filterGroups[langInputName].includes(input.value)
     }));
 
-    const specialLegend = "Special";
+    const specialLegend = t("syllabus.Special");
     const specialInputName = "special";
     const specialInputs = [
       { value: "IPSE", label: "IPSE" },
@@ -164,7 +164,7 @@ class Filter extends React.Component {
       isChecked: filterGroups[specialInputName].includes(input.value)
     }));
 
-    const dayLegend = "Day";
+    const dayLegend = t("syllabus.Day");
     const dayInputName = "day";
     const dayInputs = [
       { value: "1", label: "Mon." },
@@ -187,7 +187,7 @@ class Filter extends React.Component {
       isChecked: filterGroups[dayInputName].includes(input.value)
     }));
 
-    const periodLegend = "Period";
+    const periodLegend = t("syllabus.Period");
     const periodInputName = "period";
     const periodInputs = [
       { value: "1", label: "1" },
@@ -214,31 +214,31 @@ class Filter extends React.Component {
           <FilterGroupWrapper>
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={t("syllabus.Semesters")}
+              legend={semesterLegend}
               inputName={semesterInputName}
               inputs={checkedSemesterInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={t("syllabus.Schools")}
+              legend={schoolLegend}
               inputName={schoolInputName}
               inputs={checkedSchoolInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={t("syllabus.Languages")}
+              legend={langLegend}
               inputName={langInputName}
               inputs={checkedLangInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={t("syllabus.day")}
+              legend={dayLegend}
               inputName={dayInputName}
               inputs={checkedDayInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={t("syllabus.period")}
+              legend={periodLegend}
               inputName={periodInputName}
               inputs={checkedPeriodInputs}
             />

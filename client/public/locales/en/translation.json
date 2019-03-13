@@ -1,4 +1,7 @@
 {
+  "welcome": {
+    "welcome": "Welcome to WasedaTime!"
+  },
   "timetable": {
     "welcome": "welcome",
     "You haven't added any courses": "Hi! You haven't added any courses.",
@@ -22,13 +25,16 @@
     "to remove": "to remove.",
     "Pro Tip!": "Pro Tip!",
     "Use": "Use",
+    "Filter by": "Filter by",
     "to narrow down your search": "to narrow down your search.",
     "Semesters": "Semesters",
     "Schools": "Schools",
     "Languages": "Languages",
     "Special": "Special",
-    "day" : "day",
-    "period" : "period"
+    "day": "day",
+    "period": "period",
+    "displayedSpringSemester": "Spring Semester",
+    "displayedFallSemester": "Fall Semester"
   },
   "room": {
     "Under Construction": "Under Construction",

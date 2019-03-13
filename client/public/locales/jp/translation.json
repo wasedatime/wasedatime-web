@@ -1,4 +1,7 @@
 {
+  "welcome": {
+    "welcome": "WasedaTime へようこそ!"
+  },
   "timetable": {
     "welcome": "WasedaTimeへようこそ",
     "You haven't added any courses": "こんにちは！あなたはまだ授業を登録していません。",
@@ -6,7 +9,7 @@
     "Syllabus": "シラバス",
     "and try adding one!": "に行って、授業を一個登録してみて！",
     "SaveSpace": "スペースを節約するために、6、7限および土曜日は非表示になっています。対応する授業が選択されると表示されます。",
-    "Sort by": "整理",
+    "Sort by": "並べ替え",
     "courses added": "個授業が登録された"
   },
   "syllabus": {
@@ -22,13 +25,16 @@
     "to remove": "をクリックと、授業を削除できる。",
     "Pro Tip!": "おすすめ！",
     "Use": "",
+    "Filter by": "フィルター",
     "to narrow down your search": "を利用して検索を絞り込んでください",
     "Semesters": "学期",
     "Schools": "学部",
     "Languages": "言語",
     "Special": "ほか",
-    "day" : "曜日",
-    "period" : "時限"
+    "day": "曜日",
+    "period": "時限",
+    "displayedSpringSemester": "春学期",
+    "displayedFallSemester": "秋学期"
   },
   "room": {
     "Under Construction": "作成中",

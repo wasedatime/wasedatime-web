@@ -139,7 +139,7 @@ class Filter extends React.Component {
       isChecked: filterGroups[specialInputName].includes(input.value)
     }));
 
-    const dayLegend = t("syllabus.Day");
+    const dayLegend = t("syllabus.day");
     const dayInputName = "day";
     const dayInputs = [
       { value: "1", label: t("common.mon") },
@@ -154,7 +154,7 @@ class Filter extends React.Component {
       isChecked: filterGroups[dayInputName].includes(input.value)
     }));
 
-    const periodLegend = t("syllabus.Period");
+    const periodLegend = t("syllabus.period");
     const periodInputName = "period";
     const periodInputs = [
       { value: "1", label: "1" },
@@ -175,7 +175,7 @@ class Filter extends React.Component {
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
         <FilterOverlay isSideBar={isSideBar}>
           <FilterTitle isSideBar={isSideBar}>
-            Filter by&nbsp;
+            {t("syllabus.Filter by")}&nbsp;
             <FontAwesomeIcon icon={faFilter} size="1x" />
           </FilterTitle>
           <FilterGroupWrapper>
@@ -211,7 +211,7 @@ class Filter extends React.Component {
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
-              legend={t("syllabus.Special")}
+              legend={specialLegend}
               inputName={specialInputName}
               inputs={checkedSpecialInputs}
             />

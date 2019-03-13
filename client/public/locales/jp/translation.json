@@ -16,18 +16,18 @@
   "navigation": {
     "timetable": "時間割",
     "syllabus": "シラバス",
-    "roomfinder": "空き教室探し",
+    "roomfinder": "空き教室",
     "bus": "バス"
   },
   "timetable": {
-    "welcome": "ようこそ！",
-    "You haven't added any courses": "こんにちは！あなたはまだ授業を登録していません。",
-    "Go to": "まず",
+    "welcome": "WasedaTime へようこそ！",
+    "You haven't added any courses": "授業がありません。",
+    "Go to": "",
     "Syllabus": "シラバス",
-    "and try adding one!": "に行って、授業を一個登録してみて！",
-    "SaveSpace": "スペースを節約するために、6、7限および土曜日は非表示になっています。対応する授業が選択されると表示されます。",
+    "and try adding one!": "から授業の登録ができます。",
+    "SaveSpace": "6、7限および土曜日対応する授業を登録すると表示されます。",
     "Sort by": "並べ替え",
-    "courses added": "個授業が登録された"
+    "courses added": "個の授業が登録済"
   },
   "syllabus": {
     "Spring Semester": "春学期",
@@ -67,16 +67,17 @@
     "Japanese": "日本語",
     "Others": "ほか",
     "IPSE": "理工国際プログラム",
-    "EN-based Undergrad Program": "英語による学位取得"
+    "EN-based Undergrad Program": "英語による学位取得",
+    "Filter by":"フィルター"
   },
   "room": {
-    "Under Construction": "作成中",
-    "Want to help?": "協力したいですか？",
-    "Check out": " ",
-    "here": "ここ",
-    "or": "をクリックして！もしくは",
+    "Under Construction": "スタッフ募集中！",
+    "Want to help?": "私たちと一緒に開発のお仕事をしませんか？",
+    "Check out": "興味のある方は ",
+    "here": "こちら",
+    "or": "から！その他ご意見・要望等は",
     "send an email": "お問い合わせ",
-    "We sincerely welcome any contributors!": "私たちは心から全ての貢献者を歓迎します！"
+    "We sincerely welcome any contributors!": "までお願いします。"
   },
   "bus": {
     "busStatus": "バス運行情報",

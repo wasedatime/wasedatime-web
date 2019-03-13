@@ -20,7 +20,7 @@
     "bus": "Bus"
   },
   "timetable": {
-    "welcome": "Welcome",
+    "welcome": "Welcome to WasedaTime!",
     "You haven't added any courses": "Hi! You haven't added any courses.",
     "Go to": "Go to ",
     "Syllabus": "Syllabus",
@@ -48,8 +48,8 @@
     "Schools": "Schools",
     "Languages": "Languages",
     "Special": "Special",
-    "day": "day",
-    "period": "period",
+    "day": "Day",
+    "period": "Period",
     "displayedSpringSemester": "Spring Semester",
     "displayedFallSemester": "Fall Semester",
     "searchBarPlaceholder": "Search course, instructor, 科目, 教師",
@@ -67,7 +67,8 @@
     "Japanese": "Japanses",
     "Others": "Others",
     "IPSE": "IPSE",
-    "EN-based Undergrad Program": "EN-based Undergrad Program"
+    "EN-based Undergrad Program": "EN-based Undergrad Program",
+    "Filter by": "Filter by"
   },
   "room": {
     "Under Construction": "Under Construction",
@@ -75,7 +76,7 @@
     "Check out": "Check out ",
     "here": "here",
     "or": "or",
-    "send an email": "send an email",
+    "send an email": "send an email!",
     "We sincerely welcome any contributors!": "We sincerely welcome any contributors!"
   },
   "bus": {

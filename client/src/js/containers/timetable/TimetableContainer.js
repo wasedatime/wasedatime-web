@@ -44,7 +44,6 @@ class TimetableContainer extends React.Component {
     const { title, key } = this.semesters[this.state.semesterIndex];
     const addedCoursesAndPrefs = this.props.addedCoursesAndPrefs[key];
     const { lng, t } = this.props;
-
     return (
       <Wrapper>
         <Helmet>

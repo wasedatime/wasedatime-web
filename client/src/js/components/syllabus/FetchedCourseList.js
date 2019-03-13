@@ -7,6 +7,10 @@ import PropTypes from 'prop-types';
 import CourseChunk from './CourseChunk';
 import { Overlay } from '../../styled-components/Overlay';
 import { Wrapper } from '../../styled-components/Wrapper';
+import { withNamespaces } from "react-i18next";
+import LANGS from "../../config/langs";
+
+
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 1 0;
@@ -68,8 +72,9 @@ class FetchedCourseList extends React.Component {
   };
 
   render() {
-    const { searchTerm, searchLang, results } = this.props;
+    const { searchTerm, searchLang, results, lng, t, index } = this.props;
     const resultsInChunks = this.resultsToChunks();
+    
     return (
       <ExtendedWrapper>
         <ExtendedOverlay>
@@ -86,9 +91,9 @@ class FetchedCourseList extends React.Component {
                     <CourseChunkWrapper>
                       <div>
                         <span>
-                          {`${index * 5 + 1}-${index * 5 + chunk.length} of ${
-                            results.length
-                          } courses`}
+                          { lng === LANGS.JP
+                          ? "全 "+ results.length + " 件中 "　+ (index * 5 + 1) + " - " + (index * 5 + chunk.length) + " 件を表示"
+                          : (index * 5 + 1) + " - " + (index * 5 + chunk.length) + " of " + results.length + " courses"}
                         </span>
                       </div>
                       <CourseChunk
@@ -110,7 +115,7 @@ class FetchedCourseList extends React.Component {
   }
 }
 
-export default FetchedCourseList;
+export default withNamespaces("translation")(FetchedCourseList);
 
 FetchedCourseList.propTypes = {
   searchTerm: PropTypes.string.isRequired

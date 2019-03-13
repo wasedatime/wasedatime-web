@@ -5,9 +5,8 @@ import { Wrapper } from "../../styled-components/Wrapper";
 import Timetable from "../../components/timetable/Timetable";
 import SemesterSwitcher from "../../components/timetable/SemesterSwitcher";
 import withFetchCourses from "../../hocs/withFetchCourses";
-import LANGS from "../../config/langs";
 import { withNamespaces } from "react-i18next";
-
+import LANGS from "../../config/langs";
 
 class TimetableContainer extends React.Component {
   constructor(props) {
@@ -41,9 +40,10 @@ class TimetableContainer extends React.Component {
   };
 
   render() {
+    const { t } = this.props;
     const { title, key } = this.semesters[this.state.semesterIndex];
     const addedCoursesAndPrefs = this.props.addedCoursesAndPrefs[key];
-    const { lng, t } = this.props;
+
     return (
       <Wrapper>
         <Helmet>
@@ -60,7 +60,7 @@ class TimetableContainer extends React.Component {
           <meta property="og:site_name" content="WasedaTime - Timetable" />
         </Helmet>
         <SemesterSwitcher
-          semesterTitle={title}
+          semesterTitle={t(`timetable.${title}`)}
           handleIncreaseSemesterIndex={this.handleIncreaseSemesterIndex}
           handleDecreaseSemesterIndex={this.handleDecreaseSemesterIndex}
         />
@@ -73,4 +73,6 @@ class TimetableContainer extends React.Component {
   }
 }
 
-export default withNamespaces('translation')(withFetchCourses(TimetableContainer));
+export default withNamespaces("translation")(
+  withFetchCourses(TimetableContainer)
+);

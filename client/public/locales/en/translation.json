@@ -5,7 +5,8 @@
     "wed": "Wed",
     "thu": "Thu",
     "fri": "Fri",
-    "sat": "Sat"
+    "sat": "Sat",
+    "sun": "Sun"
   },
   "welcome": {
     "welcome": "Welcome to WasedaTime!",
@@ -27,7 +28,9 @@
     "and try adding one!": "and try adding one!",
     "SaveSpace": "Period 6, 7 and Saturday are hidden by default to save space. They will appear once the corresponding course is selected.",
     "Sort by": "Sort by",
-    "courses added": "courses added"
+    "courses added": "courses added",
+    "Spring Semester": "Spring Semester",
+    "Fall Semester": "Fall Semester"
   },
   "syllabus": {
     "Spring Semester": "Spring Semester",
@@ -68,7 +71,34 @@
     "Others": "Others",
     "IPSE": "IPSE",
     "EN-based Undergrad Program": "EN-based Undergrad Program",
-    "Filter by": "Filter by"
+    "Filter by":"Filter by",
+    "semesterMap": {
+      "springSem": "Spring Semester",
+      "springQuart": "Spring Quarter",
+      "summerQuart": "Summer Quarter",
+      "intensiveSpringSem": "Intensive: Spring Semester",
+      "intensiveSpring": "Intensive: Spring",
+      "intensiveSummer": "Intensive: Summer",
+      "springSummer": "Spring & Summer",
+
+      "fallSem": "Fall Semester",
+      "fallQuart": "Fall Quarter",
+      "winterQuart": "Winter Quarter",
+      "intensiveFallSem": "Intensive: Fall Semester",
+      "intensiveFall": "Intensive: Fall",
+      "intensiveWinter": "Intensive: Winter",
+      "fallWinter": "Fall & Winter",
+
+      "intensiveSpringFallSem": "Intensive: Spring & Fall Semester",
+      "fullYear": "Full Year",
+      "undecided": "undecided"
+    },
+    "JP": "JP",
+    "EN": "EN",
+    "others": "others",
+    "location": {
+      "undecided": "undecided"
+    }
   },
   "room": {
     "Under Construction": "Under Construction",

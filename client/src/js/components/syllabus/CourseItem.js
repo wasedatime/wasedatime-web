@@ -9,9 +9,9 @@ import {
   faExternalLinkSquareAlt
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 
 import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
-import { semesterMap } from "../../data/semesters";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";
 import { media } from "../../styled-components/utils";
@@ -141,42 +141,45 @@ const mapLinkToSchoolIcon = keys => {
   });
 };
 
-const combineYearTerm = (year, term) => {
-  return `${year} ${semesterMap[term]}`;
+const combineYearTerm = (year, term, t) => {
+  return `${year} ${t(`syllabus.semesterMap.${term}`)}`;
 };
 
-const getDay = day => {
+const getDay = (day, t) => {
   switch (day) {
     case 1:
-      return "Mon.";
+      return `${t("common.mon")}.`;
     case 2:
-      return "Tue.";
+      return `${t("common.tue")}.`;
     case 3:
-      return "Wed.";
+      return `${t("common.wed")}.`;
     case 4:
-      return "Thur.";
+      return `${t("common.thu")}.`;
     case 5:
-      return "Fri.";
+      return `${t("common.fri")}.`;
     case 6:
-      return "Sat.";
+      return `${t("common.sat")}.`;
     case 7:
-      return "Sun.";
+      return `${t("common.sun")}.`;
     default:
       return "";
   }
 };
 
-const getLocation = (building, classroom) => {
+const getLocation = (building, classroom, t) => {
   if (building === "-1") {
+    if (classroom === "undecided") {
+      return t("syllabus.location.undecided");
+    }
     return classroom;
   } else {
     return `${building}-${classroom}`;
   }
 };
 
-const getPeriod = (start_period, end_period) => {
+const getPeriod = (start_period, end_period, t) => {
   if (start_period === -1) {
-    return "undecided";
+    return t("syllabus.location.undecided");
   } else if (start_period === end_period) {
     return `${start_period}`;
   } else {
@@ -189,19 +192,20 @@ const CourseItem = ({
   searchLang,
   course,
   isAddable,
-  handleOnClick
+  handleOnClick,
+  t
 }) => {
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
-  const yearTerm = combineYearTerm(course.year, course.term);
+  const yearTerm = combineYearTerm(course.year, course.term, t);
   const schoolIcons = mapLinkToSchoolIcon(course.keys);
   const syllabusId = course._id;
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.occurrences.map((occurrence, index) => {
-    const day = getDay(occurrence.day);
-    const period = getPeriod(occurrence.start_period, occurrence.end_period);
-    const location = getLocation(occurrence.building, occurrence.classroom);
+    const day = getDay(occurrence.day, t);
+    const period = getPeriod(occurrence.start_period, occurrence.end_period, t);
+    const location = getLocation(occurrence.building, occurrence.classroom, t);
     return (
       <li key={index}>
         <span>
@@ -223,8 +227,8 @@ const CourseItem = ({
             <li key={keyword} style={{ display: "inline-block" }}>
               <Badge>
                 {keyword === "English-based Undergraduate Program"
-                  ? "EN-based Undergrad Program"
-                  : keyword}
+                  ? t("syllabus.EN-based Undergrad Program")
+                  : t(`syllabus.${keyword}`)}
               </Badge>
             </li>
           );
@@ -247,7 +251,7 @@ const CourseItem = ({
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge>{course.lang}</Badge>
+            <Badge>{t(`syllabus.${course.lang}`)}</Badge>
             {keywordsList}
           </IconBadgeWrapper>
           <div
@@ -287,7 +291,7 @@ const CourseItem = ({
   );
 };
 
-export default CourseItem;
+export default withNamespaces("translation")(CourseItem);
 
 CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,

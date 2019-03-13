@@ -5,7 +5,8 @@
     "wed": "水",
     "thu": "木",
     "fri": "金",
-    "sat": "土"
+    "sat": "土",
+    "sun": "日"
   },
   "welcome": {
     "welcome": "WasedaTime へようこそ!",
@@ -27,7 +28,13 @@
     "and try adding one!": "から授業の登録ができます。",
     "SaveSpace": "6、7限および土曜日対応する授業を登録すると表示されます。",
     "Sort by": "並べ替え",
+<<<<<<< HEAD
     "courses added": "個の授業が登録済"
+=======
+    "courses added": "個授業が登録された",
+    "Spring Semester": "春学期",
+    "Fall Semester": "秋学期"
+>>>>>>> 0d75e4325422a244c9f30f4285d5770bdbff7584
   },
   "syllabus": {
     "Spring Semester": "春学期",
@@ -68,7 +75,34 @@
     "Others": "ほか",
     "IPSE": "理工国際プログラム",
     "EN-based Undergrad Program": "英語による学位取得",
-    "Filter by":"フィルター"
+    "Filter by":"フィルター",
+    "semesterMap": {
+      "springSem": "春学期",
+      "springQuart": "春クォーター",
+      "summerQuart": "夏クォーター",
+      "intensiveSpringSem": "集中講義(春学期)",
+      "intensiveSpring": "春季集中",
+      "intensiveSummer": "夏季集中",
+      "springSummer": "春夏期",
+
+      "fallSem": "秋学期",
+      "fallQuart": "秋クォーター",
+      "winterQuart": "冬クォーター",
+      "intensiveFallSem": "集中講義(秋学期)",
+      "intensiveFall": "秋季集中",
+      "intensiveWinter": "冬季集中",
+      "fallWinter": "秋冬期",
+
+      "intensiveSpringFallSem": "集中(春・秋学期)",
+      "fullYear": "通年",
+      "undecided": "未定"
+    },
+    "JP": "日本語",
+    "EN": "英語",
+    "others": "ほか",
+    "location": {
+      "undecided": "未定"
+    }
   },
   "room": {
     "Under Construction": "スタッフ募集中！",

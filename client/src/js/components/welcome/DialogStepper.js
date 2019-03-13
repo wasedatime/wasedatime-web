@@ -2,6 +2,7 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
+import { withNamespaces } from "react-i18next";
 import PropTypes from "prop-types";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
@@ -9,7 +10,6 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
 import { setFirstTimeAccessToFalse } from "../../actions/user";
-import { getUserDisplayLang } from "../../reducers/user";
 import Greeting from "./Greeting";
 
 const styles = theme => ({
@@ -56,9 +56,9 @@ class DialogStepper extends React.Component {
   };
 
   render() {
-    const { classes, lang } = this.props;
+    const { classes, lng } = this.props;
     const { activeStep } = this.state;
-    const setupSteps = [<Greeting lang={lang} />, <Greeting lang={lang} />];
+    const setupSteps = [<Greeting />];
     const maxSteps = setupSteps.length;
     const isFirstStep = activeStep === 0;
     const isLastStep = activeStep === maxSteps - 1;
@@ -111,12 +111,6 @@ class DialogStepper extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    lang: getUserDisplayLang(state)
-  };
-};
-
 const mapDispatchToProps = {
   setFirstTimeAccessToFalse
 };
@@ -125,11 +119,13 @@ DialogStepper.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withRouter(
-  withStyles(styles)(
-    connect(
-      mapStateToProps,
-      mapDispatchToProps
-    )(DialogStepper)
+export default withNamespaces("translation")(
+  withRouter(
+    withStyles(styles)(
+      connect(
+        null,
+        mapDispatchToProps
+      )(DialogStepper)
+    )
   )
 );

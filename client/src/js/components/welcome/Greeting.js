@@ -1,5 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
+import { withNamespaces } from "react-i18next";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
@@ -8,7 +8,6 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 
-import { changeUserDisplayLang } from "../../actions/user";
 import { Article } from "../../styled-components/Article";
 import { media } from "../../styled-components/utils";
 import LANGS from "../../config/langs";
@@ -42,41 +41,29 @@ const styles = {
 class Greeting extends React.Component {
   handleChangeLang = event => {
     event.preventDefault();
-    const lang = event.target.value;
-    this.props.changeUserDisplayLang(lang);
+    const lng = event.target.value;
+    this.props.i18n.changeLanguage(lng);
   };
 
   render() {
-    const { classes, lang } = this.props;
+    const { classes, t, lng } = this.props;
     return (
       <ExtendedArticle>
         <Logo src={logo} />
-        {lang === LANGS.JP ? (
-          <Typography
-            variant="h3"
-            component="h3"
-            align="center"
-            gutterBottom
-            className={classes.h3}
-          >
-            WasedaTime へようこそ!
-          </Typography>
-        ) : (
-          <Typography
-            variant="h3"
-            component="h3"
-            align="center"
-            gutterBottom
-            className={classes.h3}
-          >
-            Welcome to WasedaTime!
-          </Typography>
-        )}
+        <Typography
+          variant="h3"
+          component="h3"
+          align="center"
+          gutterBottom
+          className={classes.h3}
+        >
+          {t("welcome.welcome")}
+        </Typography>
         <FormControl component="fieldset" className={undefined}>
           <RadioGroup
             aria-label="Language"
             name="language"
-            value={lang}
+            value={lng}
             onChange={this.handleChangeLang}
             row
           >
@@ -99,11 +86,4 @@ class Greeting extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  changeUserDisplayLang
-};
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(withStyles(styles)(Greeting));
+export default withNamespaces("translation")(withStyles(styles)(Greeting));

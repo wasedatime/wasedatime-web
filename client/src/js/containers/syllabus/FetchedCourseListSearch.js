@@ -1,8 +1,8 @@
 import React from "react";
-import { connect } from "react-redux";
 import debounce from "lodash/debounce";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router";
+import { withNamespaces } from "react-i18next";
 import queryString from "query-string";
 import styled from "styled-components";
 
@@ -17,7 +17,6 @@ import { SideBar } from "../../styled-components/SideBar";
 import { sizes } from "../../styled-components/utils";
 import { fallSemesters, springSemesters } from "../../data/semesters";
 import { getSearchLang } from "../../utils/courseSearch";
-import { getUserDisplayLang } from "../../reducers/user";
 
 const F_COURSE_SEARCH_PLACE_HOLDER = "Search course, instructor, 科目, 教師";
 
@@ -56,7 +55,7 @@ class FetchedCourseSearch extends React.Component {
     const parsedSearchQ = parsedSearch.q;
     const searchTerm = parsedSearchQ === undefined ? "" : parsedSearchQ;
     const searchLang =
-      searchTerm === "" ? this.props.searchLang : getSearchLang(searchTerm);
+      searchTerm === "" ? this.props.lng : getSearchLang(searchTerm);
     this.state = {
       isModalOpen: false,
       filterGroups: {
@@ -72,10 +71,6 @@ class FetchedCourseSearch extends React.Component {
       searchLang: searchLang,
       filteredCourses: props.fetchedCourses
     };
-  }
-
-  componentDidMount() {
-    //TODO need to init searchTerm from reducers here.
   }
 
   componentWillUnmount() {
@@ -289,10 +284,4 @@ class FetchedCourseSearch extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    searchLang: getUserDisplayLang(state)
-  };
-};
-
-export default withRouter(connect(mapStateToProps)(FetchedCourseSearch));
+export default withRouter(withNamespaces("translation")(FetchedCourseSearch));

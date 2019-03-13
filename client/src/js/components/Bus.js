@@ -10,10 +10,8 @@ import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 import LANGS from "../config/langs";
 
-
+// TODO use modal from other ui framework
 import ModalContainer from "../containers/ModalContainer";
-// TODO use react-modal
-// import Modal from './Modal';
 import { media } from "../styled-components/utils";
 import { Wrapper } from "../styled-components/Wrapper";
 import { Overlay } from "../styled-components/Overlay";
@@ -278,8 +276,7 @@ const getBusStatuses = (now, lang) => {
   return { wasedaStatus, nishiStatus };
 };
 
-const createStatusComponent = (status, lang, t) => {
-  console.log(typeof t);
+const createStatusComponent = (status, t) => {
   if (typeof status === "object") {
     return {
       status: (
@@ -302,8 +299,8 @@ const Bus = ({ t }) => {
   const now = new Date();
   let lang = "jp"; //test about lauguage
   const { wasedaStatus, nishiStatus } = getBusStatuses(now, lang);
-  const wasedaStatusComponent = createStatusComponent(wasedaStatus, lang, t);
-  const nishiStatusComponent = createStatusComponent(nishiStatus, lang, t);
+  const wasedaStatusComponent = createStatusComponent(wasedaStatus, t);
+  const nishiStatusComponent = createStatusComponent(nishiStatus, t);
   return (
     <Wrapper>
       <Helmet>

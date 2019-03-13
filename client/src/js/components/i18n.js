@@ -2,25 +2,32 @@ import i18n from "i18next";
 import { reactI18nextModule } from "react-i18next";
 import detector from "i18next-browser-languagedetector";
 import backend from "i18next-xhr-backend";
-import langs from "../config/langs";
+import LANGS from "../config/langs";
+
+const LNG_KEY = "wasedatime-2019-lng";
+
+const detectorOptions = {
+  lookupLocalStorage: LNG_KEY
+};
 
 i18n
   .use(backend)
   .use(detector)
   .use(reactI18nextModule) // passes i18n down to react-i18next
   .init({
-    lng: langs.JP.description,
-    //fallbackLng: 'en',
-    // keySeparator: false, // we do not use keys in form messages.welcome
-
-
+    lng: LANGS.JP,
+    fallbackLng: LANGS.EN,
+    keySeparator: ".",
     interpolation: {
-      escapeValue: false // react already safes from xss
+      // react already safes from xss
+      escapeValue: false
     },
-
+    // Configure the withNamespaces / NamespacesConsumer to
+    // not render the content until needed namespaces are loaded.
     react: {
       wait: true
-    }
+    },
+    detection: detectorOptions
   });
 
 export default i18n;

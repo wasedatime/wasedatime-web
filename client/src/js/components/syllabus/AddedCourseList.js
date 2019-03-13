@@ -128,7 +128,7 @@ class AddedCourseList extends React.Component {
               <Subheading>{t("syllabus.Pro Tip!")}</Subheading>
               <OList>
                 <ListItem>
-                  {t("syllabus.Use")} "Filter by"{" "}
+                  {t("syllabus.Use")} {t("syllabus.Filter by")}{" "}
                   {t("syllabus.to narrow down your search")}
                 </ListItem>
               </OList>

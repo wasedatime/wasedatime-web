@@ -30,7 +30,6 @@ const Description = styled("p")`
   ${media.phone`font-size: 1.1em;`};
 `;
 
-// const UnderConstruction =  props => {
 const UnderConstruction = ({ t }) => {
   window.scrollTo({ top: 0 });
   return (

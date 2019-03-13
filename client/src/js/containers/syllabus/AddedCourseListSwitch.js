@@ -1,22 +1,20 @@
 import React from "react";
+import { withNamespaces } from "react-i18next";
 
 import { addedCourseListSwitchHeight } from "../../styled-components/variables";
 import BinarySwitch from "../../components/syllabus/BinarySwitch";
 import AddedCourseListContainer from "./AddedCourseListContainer";
 import { Wrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
-import LANGS from "../../config/langs";
 
 class AddedCourseListSwitch extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.springSemester = "spring";
     this.fallSemester = "fall";
     this.state = {
       selectedSemester: this.springSemester
     };
-    this.displayedSpringSemester = "Spring Semester";
-    this.displayedFallSemester = "Fall Semester";
   }
 
   handleChangeSemester = targetSemester => {
@@ -28,14 +26,11 @@ class AddedCourseListSwitch extends React.Component {
   };
 
   render() {
-    const { addedCoursesAndPrefs } = this.props;
+    const { addedCoursesAndPrefs, t, lng } = this.props;
+    console.log(lng, t);
+
     const { selectedSemester } = this.state;
     const courses = addedCoursesAndPrefs[selectedSemester];
-    const lang = "jp";
-    if (lang === LANGS.JP){
-      this.displayedSpringSemester = "春学期";
-      this.displayedFallSemester = "秋学期";
-    }
     return (
       <Wrapper>
         <Overlay>
@@ -47,8 +42,8 @@ class AddedCourseListSwitch extends React.Component {
             rightButtonId={`button--semester-${this.fallSemester}`}
             leftValue={this.springSemester}
             rightValue={this.fallSemester}
-            leftDisplayedValue={this.displayedSpringSemester}
-            rightDisplayedValue={this.displayedFallSemester}
+            leftDisplayedValue={t("syllabus.displayedSpringSemester")}
+            rightDisplayedValue={t("syllabus.displayedFallSemester")}
           />
           <AddedCourseListContainer
             addedCoursesAndPrefs={courses}
@@ -60,4 +55,4 @@ class AddedCourseListSwitch extends React.Component {
   }
 }
 
-export default AddedCourseListSwitch;
+export default withNamespaces("translation")(AddedCourseListSwitch);

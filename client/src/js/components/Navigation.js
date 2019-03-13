@@ -1,20 +1,19 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { withRouter } from 'react-router';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import { Link } from "react-router-dom";
+import { withRouter } from "react-router";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarAlt,
   faBook,
   faBuilding,
   faBus
-} from '@fortawesome/free-solid-svg-icons';
+} from "@fortawesome/free-solid-svg-icons";
 
-import { media } from '../styled-components/utils';
+import { media } from "../styled-components/utils";
 import LANGS from "../config/langs";
 
-
-const StyledNav = styled('nav')`
+const StyledNav = styled("nav")`
   display: flex;
   flex-direction: row;
   max-width: 100%;
@@ -30,7 +29,7 @@ const StyledLink = styled(Link)`
   font-weight: 330;
 `;
 
-const StyledButton = styled('button')`
+const StyledButton = styled("button")`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,48 +44,47 @@ const StyledButton = styled('button')`
   }
 `;
 
-const StyledSpan = styled('span')`
+const StyledSpan = styled("span")`
   font-size: 0.55em;
   font-weight: 100;
   ${media.phone`font-size: 0.5em;`};
 `;
 
 const Navigation = props => {
-  const lang = 'jp';
+  const lang = "jp";
   const pathname = props.location.pathname;
   const navItems = [
     {
-      name: 'Timetable',
-      path: '/timetable',
+      name: "Timetable",
+      path: "/timetable",
       icon: faCalendarAlt
     },
     {
-      name: 'Syllabus',
-      path: '/syllabus',
+      name: "Syllabus",
+      path: "/syllabus",
       icon: faBook
     },
     {
-      name: 'RoomFinder',
-      path: '/roomfinder',
+      name: "RoomFinder",
+      path: "/roomfinder",
       icon: faBuilding
     },
     {
-      name: 'Bus',
-      path: '/bus',
+      name: "Bus",
+      path: "/bus",
       icon: faBus
     }
   ];
-  if(lang === LANGS.JP){
-    navItems[0].name = '時間割';
-    navItems[1].name = 'シラバス';
-    navItems[2].name = '空き教室探し';
-    navItems[3].name = 'バス';
+  if (lang === LANGS.JP) {
+    navItems[0].name = "時間割";
+    navItems[1].name = "シラバス";
+    navItems[2].name = "空き教室探し";
+    navItems[3].name = "バス";
   }
-  console.log(navItems['name']);
   const styledLinks = navItems.map(item => {
-    const itemName = item['name'];
-    const itemPath = item['path'];
-    const itemIcon = item['icon'];
+    const itemName = item["name"];
+    const itemPath = item["path"];
+    const itemIcon = item["icon"];
     const isClicked = pathname.includes(itemPath);
     const fontBase = (
       <FontAwesomeIcon icon={itemIcon} size="2x" transform="shrink-2" />

@@ -267,7 +267,7 @@ const createStatusComponent = (status, t) => {
     return {
       status: (
         <span>
-          {t("bus.Departs in")} <b>{status.departIn}</b> mins&nbsp;
+          {t("bus.Departs in")} <b>{status.departIn}</b> {t("bus.mins")}&nbsp;
           <FontAwesomeIcon icon={faClock} size="1x" />{" "}
           <b>{status.timeString}</b>
         </span>

@@ -18,8 +18,6 @@ import { sizes } from "../../styled-components/utils";
 import { fallSemesters, springSemesters } from "../../data/semesters";
 import { getSearchLang } from "../../utils/courseSearch";
 
-const F_COURSE_SEARCH_PLACE_HOLDER = "Search course, instructor, 科目, 教師";
-
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
 `;
@@ -229,6 +227,7 @@ class FetchedCourseSearch extends React.Component {
 
   render() {
     const { inputText, searchTerm, searchLang } = this.state;
+    const { t } = this.props;
     //TODO debounce here? it's executed in every render which happens every time a user changes input.
     const results =
       searchTerm.length > 0
@@ -242,7 +241,7 @@ class FetchedCourseSearch extends React.Component {
       <ExtendedWrapper>
         <SearchBar
           onInputChange={this.handleInputChange}
-          placeholder={F_COURSE_SEARCH_PLACE_HOLDER}
+          placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
         />
         <RowWrapper>

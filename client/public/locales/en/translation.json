@@ -1,12 +1,26 @@
 {
+  "common": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat"
+  },
   "welcome": {
     "welcome": "Welcome to WasedaTime!",
     "next": "next",
     "back": "back",
     "done": "done"
   },
+  "navigation": {
+    "timetable": "Timetable",
+    "syllabus": "Syllabus",
+    "roomfinder": "Roomfinder",
+    "bus": "Bus"
+  },
   "timetable": {
-    "welcome": "welcome",
+    "welcome": "Welcome",
     "You haven't added any courses": "Hi! You haven't added any courses.",
     "Go to": "Go to ",
     "Syllabus": "Syllabus",
@@ -37,7 +51,23 @@
     "day": "day",
     "period": "period",
     "displayedSpringSemester": "Spring Semester",
-    "displayedFallSemester": "Fall Semester"
+    "displayedFallSemester": "Fall Semester",
+    "searchBarPlaceholder": "Search course, instructor, 科目, 教師",
+    "Spring / Summer": "Spring / Summer",
+    "Fall / Winter": "Fall / Winter",
+    "SILS": "SILS",
+    "PSE": "PSE",
+    "SSS": "SSS",
+    "FSE": "FSE",
+    "CSE": "CSE",
+    "ASE": "ASE",
+    "CJL": "CJL",
+    "GEC": "GEC (Global)",
+    "English": "English",
+    "Japanese": "Japanses",
+    "Others": "Others",
+    "IPSE": "IPSE",
+    "EN-based Undergrad Program": "EN-based Undergrad Program"
   },
   "room": {
     "Under Construction": "Under Construction",

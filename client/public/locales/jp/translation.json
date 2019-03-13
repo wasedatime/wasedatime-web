@@ -1,12 +1,26 @@
 {
+  "common": {
+    "mon": "月",
+    "tue": "火",
+    "wed": "水",
+    "thu": "木",
+    "fri": "金",
+    "sat": "土"
+  },
   "welcome": {
     "welcome": "WasedaTime へようこそ!",
     "next": "次へ",
     "back": "前へ",
     "done": "完了"
   },
+  "navigation": {
+    "timetable": "時間割",
+    "syllabus": "シラバス",
+    "roomfinder": "空き教室探し",
+    "bus": "バス"
+  },
   "timetable": {
-    "welcome": "WasedaTimeへようこそ",
+    "welcome": "ようこそ！",
     "You haven't added any courses": "こんにちは！あなたはまだ授業を登録していません。",
     "Go to": "まず",
     "Syllabus": "シラバス",
@@ -37,7 +51,23 @@
     "day": "曜日",
     "period": "時限",
     "displayedSpringSemester": "春学期",
-    "displayedFallSemester": "秋学期"
+    "displayedFallSemester": "秋学期",
+    "searchBarPlaceholder": "科目, 教師, course, instructorを検索",
+    "Spring / Summer": "春 / 夏",
+    "Fall / Winter": "秋 / 冬",
+    "SILS": "国教",
+    "PSE": "政経",
+    "SSS": "社学",
+    "FSE": "基幹",
+    "CSE": "創造",
+    "ASE": "先進",
+    "CJL": "日本語教育",
+    "GEC": "グローバル",
+    "English": "英語",
+    "Japanese": "日本語",
+    "Others": "ほか",
+    "IPSE": "理工国際プログラム",
+    "EN-based Undergrad Program": "英語による学位取得"
   },
   "room": {
     "Under Construction": "作成中",

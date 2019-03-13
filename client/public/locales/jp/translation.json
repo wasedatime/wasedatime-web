@@ -28,13 +28,9 @@
     "and try adding one!": "から授業の登録ができます。",
     "SaveSpace": "6、7限および土曜日対応する授業を登録すると表示されます。",
     "Sort by": "並べ替え",
-<<<<<<< HEAD
-    "courses added": "個の授業が登録済"
-=======
-    "courses added": "個授業が登録された",
+    "courses added": "個の授業が登録済",
     "Spring Semester": "春学期",
     "Fall Semester": "秋学期"
->>>>>>> 0d75e4325422a244c9f30f4285d5770bdbff7584
   },
   "syllabus": {
     "Spring Semester": "春学期",

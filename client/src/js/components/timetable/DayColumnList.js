@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
 
 import DayColumnItem from "./DayColumnItem";
 import LANGS from "../../config/langs";
-
 
 const StyledList = styled("ol")`
   display: flex;
@@ -16,7 +16,12 @@ const StyledList = styled("ol")`
   list-style-type: none;
 `;
 
-const DayColumnList = ({ largestDay, largestPeriod, addedCoursesAndPrefs }) => {
+const DayColumnList = ({
+  largestDay,
+  largestPeriod,
+  addedCoursesAndPrefs,
+  t
+}) => {
   const initCoursesByDay = {
     "-1": [],
     "0": [],
@@ -44,17 +49,17 @@ const DayColumnList = ({ largestDay, largestPeriod, addedCoursesAndPrefs }) => {
     });
     return acc;
   }, initCoursesByDay);
-  const lang = "jp";
+
   //We define Sunday as index 0.
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  if (lang === LANGS.JP) {
-    days[0] = "月";
-    days[1] = "火";
-    days[2] = "水";
-    days[3] = "木";
-    days[4] = "金";
-    days[5] = "土";
-  }
+  const days = [
+    t("timetable.mon"),
+    t("timetable.tue"),
+    t("timetable.wed"),
+    t("timetable.thu"),
+    t("timetable.fri"),
+    t("timetable.sat")
+  ];
+
   const dayColumns = days
     .slice(0, Math.max(largestDay, 5))
     .map((day, index) => {
@@ -70,4 +75,4 @@ const DayColumnList = ({ largestDay, largestPeriod, addedCoursesAndPrefs }) => {
   return <StyledList>{dayColumns}</StyledList>;
 };
 
-export default DayColumnList;
+export default withNamespaces("translation")(DayColumnList);

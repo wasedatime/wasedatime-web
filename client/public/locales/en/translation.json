@@ -12,14 +12,20 @@
     "bus": "Bus"
   },
   "timetable": {
-    "welcome": "welcome",
+    "welcome": "Welcome",
     "You haven't added any courses": "Hi! You haven't added any courses.",
     "Go to": "Go to ",
     "Syllabus": "Syllabus",
     "and try adding one!": "and try adding one!",
     "SaveSpace": "Period 6, 7 and Saturday are hidden by default to save space. They will appear once the corresponding course is selected.",
     "Sort by": "Sort by",
-    "courses added": "courses added"
+    "courses added": "courses added",
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat"
   },
   "syllabus": {
     "Spring Semester": "Spring Semester",

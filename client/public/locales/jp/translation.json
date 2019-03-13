@@ -12,14 +12,20 @@
     "bus": "バス"
   },
   "timetable": {
-    "welcome": "WasedaTimeへようこそ",
+    "welcome": "ようこそ！",
     "You haven't added any courses": "こんにちは！あなたはまだ授業を登録していません。",
     "Go to": "まず",
     "Syllabus": "シラバス",
     "and try adding one!": "に行って、授業を一個登録してみて！",
     "SaveSpace": "スペースを節約するために、6、7限および土曜日は非表示になっています。対応する授業が選択されると表示されます。",
     "Sort by": "並べ替え",
-    "courses added": "個授業が登録された"
+    "courses added": "個授業が登録された",
+    "mon": "月",
+    "tue": "火",
+    "wed": "水",
+    "thu": "木",
+    "fri": "金",
+    "sat": "土"
   },
   "syllabus": {
     "Spring Semester": "春学期",

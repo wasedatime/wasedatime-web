@@ -1,23 +1,18 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import styled from "styled-components";
+import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
+import Typography from "@material-ui/core/Typography";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import FormLabel from "@material-ui/core/FormLabel";
-
-import { Article } from "../../styled-components/Article";
-import logo from "../../../img/logo.png";
-import { media } from "../../styled-components/utils";
-
-import LANGS from "../../config/langs";
-import { connect } from "react-redux";
 
 import { changeUserDisplayLang } from "../../actions/user";
+import { Article } from "../../styled-components/Article";
+import { media } from "../../styled-components/utils";
+import LANGS from "../../config/langs";
+import logo from "../../../img/logo.png";
 
 const ExtendedArticle = styled(Article)`
   display: flex;
@@ -36,7 +31,7 @@ const styles = {
   h3: {
     wordBreak: "keep-all"
   },
-  formControlLabel_label: {
+  formControlLabelLabel: {
     fontSize: "1em"
   },
   radioChecked: {
@@ -86,13 +81,13 @@ class Greeting extends React.Component {
             row
           >
             <FormControlLabel
-              classes={{ label: classes.formControlLabel_label }}
+              classes={{ label: classes.formControlLabelLabel }}
               value={LANGS.JP}
               control={<Radio classes={{ checked: classes.radioChecked }} />}
               label="日本語"
             />
             <FormControlLabel
-              classes={{ label: classes.formControlLabel_label }}
+              classes={{ label: classes.formControlLabelLabel }}
               value={LANGS.EN}
               control={<Radio classes={{ checked: classes.radioChecked }} />}
               label="English"

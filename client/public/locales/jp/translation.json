@@ -5,7 +5,8 @@
     "wed": "水",
     "thu": "木",
     "fri": "金",
-    "sat": "土"
+    "sat": "土",
+    "sun": "日"
   },
   "welcome": {
     "welcome": "WasedaTime へようこそ!",
@@ -87,6 +88,12 @@
 
       "intensiveSpringFallSem": "集中(春・秋学期)",
       "fullYear": "通年",
+      "undecided": "未定"
+    },
+    "JP": "日本語",
+    "EN": "英語",
+    "others": "ほか",
+    "location": {
       "undecided": "未定"
     }
   },

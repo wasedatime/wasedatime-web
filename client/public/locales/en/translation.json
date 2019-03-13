@@ -5,7 +5,8 @@
     "wed": "Wed",
     "thu": "Thu",
     "fri": "Fri",
-    "sat": "Sat"
+    "sat": "Sat",
+    "sun": "Sun"
   },
   "welcome": {
     "welcome": "Welcome to WasedaTime!",
@@ -87,6 +88,12 @@
 
       "intensiveSpringFallSem": "Intensive: Spring & Fall Semester",
       "fullYear": "Full Year",
+      "undecided": "undecided"
+    },
+    "JP": "JP",
+    "EN": "EN",
+    "others": "others",
+    "location": {
       "undecided": "undecided"
     }
   },

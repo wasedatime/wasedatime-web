@@ -51,7 +51,8 @@ const withFetchCourses = WrappedComponent => {
         isAddedCoursesEmpty,
         isPrefsEmpty,
         addedCoursesAndPrefs,
-        fetchCourses
+        fetchCourses,
+        ...rest
       } = this.props;
 
       if (isFetching && !fetchedCourseIds.length) {
@@ -71,6 +72,7 @@ const withFetchCourses = WrappedComponent => {
           fetchedCourses={fetchedCourses}
           addedCourses={addedCourses}
           addedCoursesAndPrefs={addedCoursesAndPrefs}
+          {...rest}
         />
       );
     }

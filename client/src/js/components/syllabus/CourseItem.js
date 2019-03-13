@@ -9,9 +9,9 @@ import {
   faExternalLinkSquareAlt
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 
 import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
-import { semesterMap } from "../../data/semesters";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";
 import { media } from "../../styled-components/utils";
@@ -141,8 +141,8 @@ const mapLinkToSchoolIcon = keys => {
   });
 };
 
-const combineYearTerm = (year, term) => {
-  return `${year} ${semesterMap[term]}`;
+const combineYearTerm = (year, term, t) => {
+  return `${year} ${t(`syllabus.semesterMap.${term}`)}`;
 };
 
 const getDay = day => {
@@ -189,12 +189,13 @@ const CourseItem = ({
   searchLang,
   course,
   isAddable,
-  handleOnClick
+  handleOnClick,
+  t
 }) => {
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
-  const yearTerm = combineYearTerm(course.year, course.term);
+  const yearTerm = combineYearTerm(course.year, course.term, t);
   const schoolIcons = mapLinkToSchoolIcon(course.keys);
   const syllabusId = course._id;
   //Need to use index as keys due to Waseda's data.
@@ -287,7 +288,7 @@ const CourseItem = ({
   );
 };
 
-export default CourseItem;
+export default withNamespaces("translation")(CourseItem);
 
 CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,

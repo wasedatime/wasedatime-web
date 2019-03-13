@@ -67,7 +67,28 @@
     "Japanese": "Japanses",
     "Others": "Others",
     "IPSE": "IPSE",
-    "EN-based Undergrad Program": "EN-based Undergrad Program"
+    "EN-based Undergrad Program": "EN-based Undergrad Program",
+    "semesterMap": {
+      "springSem": "Spring Semester",
+      "springQuart": "Spring Quarter",
+      "summerQuart": "Summer Quarter",
+      "intensiveSpringSem": "Intensive: Spring Semester",
+      "intensiveSpring": "Intensive: Spring",
+      "intensiveSummer": "Intensive: Summer",
+      "springSummer": "Spring & Summer",
+
+      "fallSem": "Fall Semester",
+      "fallQuart": "Fall Quarter",
+      "winterQuart": "Winter Quarter",
+      "intensiveFallSem": "Intensive: Fall Semester",
+      "intensiveFall": "Intensive: Fall",
+      "intensiveWinter": "Intensive: Winter",
+      "fallWinter": "Fall & Winter",
+
+      "intensiveSpringFallSem": "Intensive: Spring & Fall Semester",
+      "fullYear": "Full Year",
+      "undecided": "undecided"
+    }
   },
   "room": {
     "Under Construction": "Under Construction",

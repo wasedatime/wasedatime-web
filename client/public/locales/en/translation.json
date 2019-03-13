@@ -99,7 +99,10 @@
     "others": "others",
     "location": {
       "undecided": "undecided"
-    }
+    },
+    "Added order": "Added order",
+    "Course title": "Course title",
+    "Course time": "Course time"
   },
   "room": {
     "Under Construction": "Under Construction",

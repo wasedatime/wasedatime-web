@@ -99,7 +99,10 @@
     "others": "ほか",
     "location": {
       "undecided": "未定"
-    }
+    },
+    "Added order": "追加時間",
+    "Course title": "科目名",
+    "Course time": "科目時間"
   },
   "room": {
     "Under Construction": "作成中",

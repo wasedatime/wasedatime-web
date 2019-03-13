@@ -23,6 +23,7 @@ const StyledNav = styled("nav")`
 
 const StyledLink = styled(Link)`
   padding: 0.2em 0.5em 0 0.5em;
+  ${media.phone`padding: 0.2em 0.4em 0 0.4em;`};
   text-align: center;
   text-decoration: none;
   font-size: 1.1em;

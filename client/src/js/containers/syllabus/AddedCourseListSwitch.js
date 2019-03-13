@@ -26,9 +26,7 @@ class AddedCourseListSwitch extends React.Component {
   };
 
   render() {
-    const { addedCoursesAndPrefs, t, lng } = this.props;
-    console.log(lng, t);
-
+    const { addedCoursesAndPrefs, t } = this.props;
     const { selectedSemester } = this.state;
     const courses = addedCoursesAndPrefs[selectedSemester];
     return (

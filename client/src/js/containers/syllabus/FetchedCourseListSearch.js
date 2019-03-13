@@ -52,8 +52,7 @@ class FetchedCourseSearch extends React.Component {
     const parsedSearch = queryString.parse(this.props.location.search);
     const parsedSearchQ = parsedSearch.q;
     const searchTerm = parsedSearchQ === undefined ? "" : parsedSearchQ;
-    const searchLang =
-      searchTerm === "" ? this.props.lng : getSearchLang(searchTerm);
+
     this.state = {
       isModalOpen: false,
       filterGroups: {
@@ -66,13 +65,12 @@ class FetchedCourseSearch extends React.Component {
       },
       inputText: searchTerm,
       searchTerm: searchTerm,
-      searchLang: searchLang,
       filteredCourses: props.fetchedCourses
     };
   }
 
   componentWillUnmount() {
-    this.debounceUpdateSearchTermAndLang.cancel();
+    this.debounceUpdateSearchTerm.cancel();
   }
 
   handleToggleModal = event => {
@@ -197,36 +195,31 @@ class FetchedCourseSearch extends React.Component {
     });
   };
 
-  updateSearchTermAndLang = () => {
+  updateSearchTerm = () => {
     this.setState((prevState, props) => {
-      const searchTerm = prevState.inputText;
-      const searchLang = getSearchLang(searchTerm);
       return {
-        searchTerm: prevState.inputText,
-        searchLang: searchLang
+        searchTerm: prevState.inputText
       };
     }, this.pushHistory());
   };
 
-  debounceUpdateSearchTermAndLang = debounce(
-    this.updateSearchTermAndLang,
-    500,
-    {
-      leading: false
-    }
-  );
+  debounceUpdateSearchTerm = debounce(this.updateSearchTerm, 500, {
+    leading: false
+  });
 
   handleInputChange = inputText => {
     this.setState(
       {
         inputText
       },
-      this.debounceUpdateSearchTermAndLang()
+      this.debounceUpdateSearchTerm()
     );
   };
 
   render() {
-    const { inputText, searchTerm, searchLang } = this.state;
+    const { inputText, searchTerm } = this.state;
+    const searchLang =
+      searchTerm === "" ? this.props.lng : getSearchLang(searchTerm);
     const { t } = this.props;
     //TODO debounce here? it's executed in every render which happens every time a user changes input.
     const results =

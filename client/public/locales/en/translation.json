@@ -17,8 +17,9 @@
   "navigation": {
     "timetable": "Timetable",
     "syllabus": "Syllabus",
-    "roomfinder": "Roomfinder",
-    "bus": "Bus"
+    "roomfinder": "Rooms",
+    "bus": "Bus",
+    "language": "Language"
   },
   "timetable": {
     "welcome": "Welcome to WasedaTime!",
@@ -67,11 +68,11 @@
     "CJL": "CJL",
     "GEC": "GEC (Global)",
     "English": "English",
-    "Japanese": "Japanses",
+    "Japanese": "Japanese",
     "Others": "Others",
     "IPSE": "IPSE",
     "EN-based Undergrad Program": "EN-based Undergrad Program",
-    "Filter by":"Filter by",
+    "Filter by": "Filter by",
     "semesterMap": {
       "springSem": "Spring Semester",
       "springQuart": "Spring Quarter",

@@ -18,7 +18,8 @@
     "timetable": "時間割",
     "syllabus": "シラバス",
     "roomfinder": "空き教室",
-    "bus": "バス"
+    "bus": "バス",
+    "language": "言語"
   },
   "timetable": {
     "welcome": "WasedaTime へようこそ！",
@@ -71,7 +72,7 @@
     "Others": "ほか",
     "IPSE": "理工国際プログラム",
     "EN-based Undergrad Program": "英語による学位取得",
-    "Filter by":"フィルター",
+    "Filter by": "フィルター",
     "semesterMap": {
       "springSem": "春学期",
       "springQuart": "春クォーター",
@@ -101,13 +102,13 @@
     }
   },
   "room": {
-    "Under Construction": "スタッフ募集中！",
+    "Under Construction": "作成中",
     "Want to help?": "私たちと一緒に開発のお仕事をしませんか？",
     "Check out": "興味のある方は ",
     "here": "こちら",
     "or": "から！その他ご意見・要望等は",
     "send an email": "お問い合わせ",
-    "!" :"",
+    "!": "",
     "We sincerely welcome any contributors!": "までお願いします。"
   },
   "bus": {

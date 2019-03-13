@@ -20,6 +20,9 @@ const styles = theme => ({
     height: 50,
     paddingLeft: theme.spacing.unit * 4,
     backgroundColor: theme.palette.background.default
+  },
+  dotActive: {
+    backgroundColor: "#000"
   }
 });
 
@@ -46,9 +49,10 @@ class TextMobileStepper extends React.Component {
   render() {
     const { classes, lang } = this.props;
     const { activeStep } = this.state;
-    const setupSteps = [<Greeting lang={lang} />];
+    const setupSteps = [<Greeting lang={lang} />, <Greeting lang={lang} />];
     const maxSteps = setupSteps.length;
-
+    const isNotFirstStep = activeStep !== 0;
+    const isNotLastStep = activeStep !== maxSteps - 1;
     return (
       <div className={classes.root}>
         {setupSteps[activeStep]}
@@ -56,26 +60,32 @@ class TextMobileStepper extends React.Component {
           steps={maxSteps}
           position="static"
           activeStep={activeStep}
-          className={classes.mobileStepper}
+          classes={{
+            root: classes.mobileStepper,
+            dotActive: classes.dotActive
+          }}
           nextButton={
-            <Button
-              size="small"
-              onClick={this.handleNext}
-              disabled={activeStep === maxSteps - 1}
-            >
-              Next
-              <KeyboardArrowRight />
-            </Button>
+            isNotLastStep ? (
+              <Button size="small" onClick={this.handleNext}>
+                Next
+                <KeyboardArrowRight />
+              </Button>
+            ) : (
+              <Button size="small" onClick={this.handleNext} disabled>
+                Finish
+                <KeyboardArrowRight />
+              </Button>
+            )
           }
           backButton={
-            <Button
-              size="small"
-              onClick={this.handleBack}
-              disabled={activeStep === 0}
-            >
-              <KeyboardArrowLeft />
-              Back
-            </Button>
+            isNotFirstStep ? (
+              <Button size="small" onClick={this.handleBack}>
+                <KeyboardArrowLeft />
+                Back
+              </Button>
+            ) : (
+              <Button size="small" disabled />
+            )
           }
         />
       </div>

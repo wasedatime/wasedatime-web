@@ -38,6 +38,9 @@ const styles = {
   },
   formControlLabel_label: {
     fontSize: "1em"
+  },
+  radioChecked: {
+    color: "#b51e36 !important"
   }
 };
 
@@ -85,13 +88,13 @@ class Greeting extends React.Component {
             <FormControlLabel
               classes={{ label: classes.formControlLabel_label }}
               value={LANGS.JP}
-              control={<Radio />}
+              control={<Radio classes={{ checked: classes.radioChecked }} />}
               label="日本語"
             />
             <FormControlLabel
               classes={{ label: classes.formControlLabel_label }}
               value={LANGS.EN}
-              control={<Radio />}
+              control={<Radio classes={{ checked: classes.radioChecked }} />}
               label="English"
             />
           </RadioGroup>

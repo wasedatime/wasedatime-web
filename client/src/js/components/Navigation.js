@@ -12,7 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
-import LANGS from "../config/langs";
 
 const StyledNav = styled("nav")`
   display: flex;

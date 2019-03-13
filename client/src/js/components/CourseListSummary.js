@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import SortingOptions from './SortingOptions';
 import { RowWrapper } from '../styled-components/Wrapper';
 import { InvisibleButton } from '../styled-components/Button';
+import PropTypes from 'prop-types';
 
 const CourseAddedMessageWrapper = styled(RowWrapper)`
   justify-content: space-between;
@@ -63,7 +64,7 @@ export default CourseListSummary;
 
 CourseListSummary.propTypes = {
   courses: PropTypes.array.isRequired,
-  isSortingOptionOpen: PropTypes.boolean.isRequired,
+  isSortingOptionOpen: PropTypes.bool.isRequired,
   handleToggleSortingOptions: PropTypes.func.isRequired,
   selectedSortingOption: PropTypes.string.isRequired,
   handleChangeSortingOption: PropTypes.func.isRequired

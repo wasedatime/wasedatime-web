@@ -80,3 +80,11 @@ const mapDispatchToProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FetchedCourseItem);
+
+FetchedCourseItem.propTypes = {
+  searchTerm: PropTypes.string.isRequired,
+  course: PropTypes.object.isRequired,
+  byId: PropTypes.object.isRequired,
+  addCourse: PropTypes.func.isRequired,
+  removeCourse: PropTypes.func.isRequired
+}

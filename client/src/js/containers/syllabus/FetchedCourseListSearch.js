@@ -269,3 +269,9 @@ class FetchedCourseSearch extends React.Component {
 }
 
 export default withRouter(FetchedCourseSearch);
+
+FetchedCourseSearch.propTypes = {
+  location: PropTypes.object.isRequired,
+  history: PropTypes.object.isRequired,
+  fetchedCourses: PropTypes.array.isRequired
+}

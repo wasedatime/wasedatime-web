@@ -190,3 +190,13 @@ class BusModal extends React.Component {
 }
 
 export default BusModal;
+
+/*
+BusModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+}
+
+ExtendedOverlay.propTypes = {
+  animation: PropTypes.object.isRequired,
+}
+*/

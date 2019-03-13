@@ -105,12 +105,7 @@ SemesterTabs.propTypes = {
   semester: PropTypes.string.isRequired
 }
 
-ExtendedWrapper.propTypes = {
-  theme: PropTypes.object.isRequired
-}
-
 SemesterButton.propTypes = {
-  theme: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired,

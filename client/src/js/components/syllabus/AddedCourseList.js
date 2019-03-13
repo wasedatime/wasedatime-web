@@ -146,7 +146,3 @@ AddedCourseList.propTypes = {
   selectedSortingOption: PropTypes.string.isRequired,
   handleChangeSortingOption: PropTypes.func.isRequired
 };
-
-CourseListWrapper.propTypes = {
-  theme: PropTypes.object.isRequired
-}

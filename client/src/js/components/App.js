@@ -16,7 +16,6 @@ import RoomFinder from './RoomFinder';
 import FooterContainer from '../containers/FooterContainer';
 import Bus from './Bus';
 import NotFound from './NotFound';
-import PropTypes from 'prop-types';
 
 const Wrapper = styled('div')`
   display: flex;

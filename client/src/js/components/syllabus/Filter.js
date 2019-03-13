@@ -226,9 +226,9 @@ Filter.propTypes = {
   filterGroups: PropTypes.object.isRequired,
   handleToggleFilter: PropTypes.func.isRequired,
   isSideBar: PropTypes.bool.isRequired
+}
 
 FilterWrapper.propTypes = {
-  theme: PropTypes.object.isRequired,
   isSideBar: PropTypes.bool.isRequired
 }
 

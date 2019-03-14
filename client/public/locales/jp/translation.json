@@ -111,7 +111,8 @@
     },
     "Added order": "追加時間",
     "Course title": "科目名",
-    "Course time": "科目時間"
+    "Course time": "科目時間",
+    "langParam": ""
   },
   "room": {
     "Under Construction": "作成中",

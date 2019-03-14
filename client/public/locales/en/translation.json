@@ -129,7 +129,8 @@
     },
     "Added order": "Added order",
     "Course title": "Course title",
-    "Course time": "Course time"
+    "Course time": "Course time",
+    "langParam": "&pLng=en"
   },
   "room": {
     "Under Construction": "Under Construction",

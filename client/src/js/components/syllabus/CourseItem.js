@@ -263,7 +263,9 @@ const CourseItem = ({
           >
             <a
               style={{ alignSelf: "flex-start" }}
-              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}&pLng=en`}
+              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
+                "syllabus.langParam"
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
             >

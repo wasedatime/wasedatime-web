@@ -22,24 +22,6 @@
     "these contributors": "these contributors",
     "a": "."
   },
-  "contributors": {
-    "oscar": {
-      "name": "Oscar Wang",
-      "position": "Founder",
-      "bio": "WasedaTime > Course N@vi"
-    },
-    "mei": {
-      "name": "Mei",
-      "position": "Frontend & Translation",
-      "bio": "Join us and let's think!"
-    },
-
-    "hao": {
-      "name": "Hao",
-      "position": "Frontend debugging",
-      "bio": "May WasedaTime be with you."
-    }
-  },
   "navigation": {
     "timetable": "Timetable",
     "syllabus": "Syllabus",

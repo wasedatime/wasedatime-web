@@ -2,6 +2,13 @@ import React from "react";
 import Avatar from "@material-ui/core/Avatar";
 import { media } from "../../styled-components/utils";
 import styled from "styled-components";
+import {
+  faFacebook,
+  faTwitter,
+  faInstagram,
+  faWeibo
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import oscar from "../../../img/contributors/oscar.jpg";
 import mei from "../../../img/contributors/mei.jpg";
@@ -43,13 +50,39 @@ const StyledAvatar = styled(Avatar)`
   `};
 `;
 
+const StyledIcon = styled("a")`
+  color: black;
+  text-decoration: none;
+  margin: 0 0.1em;
+`;
+
 const Developers = ({ t }) => {
   return (
     <div>
       <Wrapper>
-        <StyledAvatar alt="Oscar Wang" src={oscar} />
+        <StyledAvatar alt="Oscar" src={oscar} />
         <Introduction>
-          <Name>Oscar Wang</Name>
+          <Name>
+            Oscar
+            <StyledIcon href="https://twitter.com/OscarWang114" target="_blank">
+              <FontAwesomeIcon
+                icon={faTwitter}
+                size="1x"
+                transform="shrink-2"
+              />
+            </StyledIcon>
+            <StyledIcon
+              href="https://www.facebook.com/haohaowang.oscar"
+              target="_blank"
+            >
+              <FontAwesomeIcon
+                icon={faFacebook}
+                size="1x"
+                transform="shrink-2"
+              />
+            </StyledIcon>
+          </Name>
+
           <Position>{t("welcome.Founder")}</Position>
           <Bio>
             <i>WasedaTime &gt; Course N@vi</i>
@@ -59,7 +92,32 @@ const Developers = ({ t }) => {
       <Wrapper>
         <StyledAvatar alt="Mei" src={mei} />
         <Introduction>
-          <Name>Mei</Name>
+          <Name>
+            Mei
+            <StyledIcon href="https://twitter.com/Rimei9623" target="_blank">
+              <FontAwesomeIcon
+                icon={faTwitter}
+                size="1x"
+                transform="shrink-2"
+              />
+            </StyledIcon>
+            <StyledIcon
+              href="https://www.instagram.com/limengmmmm/"
+              target="_blank"
+            >
+              <FontAwesomeIcon
+                icon={faInstagram}
+                size="1x"
+                transform="shrink-2"
+              />
+            </StyledIcon>
+            <StyledIcon
+              href="https://www.weibo.com/u/5000065316/home"
+              target="_blank"
+            >
+              <FontAwesomeIcon icon={faWeibo} size="1x" transform="shrink-2" />
+            </StyledIcon>
+          </Name>
           <Position>{t("welcome.Frontendtranslation")}</Position>
           <Bio>
             <i>Join us and let’s think!</i>
@@ -69,7 +127,16 @@ const Developers = ({ t }) => {
       <Wrapper>
         <StyledAvatar alt="Hao" src={hao} />
         <Introduction>
-          <Name>Hao</Name>
+          <Name>
+            Hao
+            <StyledIcon href="https://www.facebook.com/hao8711" target="_blank">
+              <FontAwesomeIcon
+                icon={faFacebook}
+                size="1x"
+                transform="shrink-2"
+              />
+            </StyledIcon>
+          </Name>
           <Position>{t("welcome.Frontend")}</Position>
           <Bio>
             <i>{t("welcome.May WasedaTime be with you")}</i>

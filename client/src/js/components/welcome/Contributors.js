@@ -3,16 +3,10 @@ import { withNamespaces } from "react-i18next";
 import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormControl from "@material-ui/core/FormControl";
 
 import { Article } from "../../styled-components/Article";
 import Developers from "./Developers";
 import { media } from "../../styled-components/utils";
-import LANGS from "../../config/langs";
-import logo from "../../../img/logo.png";
 
 const ExtendedArticle = styled(Article)`
   display: flex;
@@ -48,7 +42,7 @@ class Contributors extends React.Component {
   };
 
   render() {
-    const { classes, t, lng } = this.props;
+    const { classes, t } = this.props;
     return (
       <ExtendedArticle>
         <Typography

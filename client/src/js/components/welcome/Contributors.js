@@ -15,11 +15,15 @@ import LANGS from "../../config/langs";
 import logo from "../../../img/logo.png";
 import oscar from "../../../img/contributors/oscar.jpg";
 import mei from "../../../img/contributors/mei.jpg";
+import hao from "../../../img/contributors/hao.jpg";
 
 const ExtendedArticle = styled(Article)`
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  ${media.phone`
+    font-size: 16px
+  `};
 `;
 
 const Wrapper = styled("div")`
@@ -53,8 +57,8 @@ const StyledAvatar = styled(Avatar)`
   width: 80px !important;
   height: 80px !important;
   ${media.phone`
-    width: 50px !important;
-    height: 50px !important;;
+    width: 60px !important;
+    height: 60px !important;
   `};
 `;
 
@@ -66,7 +70,8 @@ const StyledLink = styled("a")`
 const styles = {
   h3: {
     margin: "0.6em 0",
-    wordBreak: "keep-all"
+    wordBreak: "keep-all",
+    fontSize: "1.6em"
   },
   h4: {
     margin: "0.35em 0",
@@ -99,7 +104,9 @@ class Contributors extends React.Component {
           <Introduction>
             <Name>Oscar Wang</Name>
             <Position>Founder</Position>
-            <Bio>"WasedaTime &gt; Course N@vi"</Bio>
+            <Bio>
+              <i>WasedaTime &gt; Course N@vi</i>
+            </Bio>
           </Introduction>
         </Wrapper>
         <Wrapper>
@@ -113,7 +120,7 @@ class Contributors extends React.Component {
           </Introduction>
         </Wrapper>
         <Wrapper>
-          <StyledAvatar alt="Mei" src={mei} />
+          <StyledAvatar alt="Hao" src={hao} />
           <Introduction>
             <Name>Mei</Name>
             <Position>Frontend & Translation</Position>

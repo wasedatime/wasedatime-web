@@ -17,6 +17,7 @@ const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   justify-content: center;
   padding: 25px;
+  ${media.phone`justify-content: end; `};
 `;
 
 const Logo = styled("img")`

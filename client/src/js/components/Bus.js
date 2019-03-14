@@ -194,7 +194,7 @@ const totalMinsToTimeStr = totalMins => {
 };
 
 //TODO Fix mixing different return types
-const getBusStatus = (totalMins, occurrences, remarks, lng, t) => {
+const getBusStatus = (totalMins, occurrences, remarks, t) => {
   const nextTotalMins = binarySearchSchedule(totalMins, occurrences);
   // If there is there exists a subsequent bus schedule on the same day
   if (nextTotalMins !== -1) {
@@ -204,8 +204,7 @@ const getBusStatus = (totalMins, occurrences, remarks, lng, t) => {
     return {
       departIn: nextTotalMins - totalMins,
       timeString: nextTimeString,
-      remark,
-      lng
+      remark
     };
   }
   return t("bus.Out of service");
@@ -224,8 +223,8 @@ const getBusStatuses = (now, lng, t) => {
   if (scheduleType === "no") {
     return { wasedaStatus, nishiStatus };
   } else if (scheduleType === "special") {
-    wasedaStatus = t("Special Schedule");
-    nishiStatus = t("Special Schedule");
+    wasedaStatus = t("bus.Special Schedule");
+    nishiStatus = t("bus.Special Schedule");
     return { wasedaStatus, nishiStatus };
   }
 
@@ -238,26 +237,26 @@ const getBusStatuses = (now, lng, t) => {
       totalMins,
       wasedaSchedule.occurrences,
       wasedaSchedule.remarks_en,
-      lng
+      t
     );
     nishiStatus = getBusStatus(
       totalMins,
       nishiSchedule.occurrences,
       nishiSchedule.remarks_en,
-      lng
+      t
     );
   } else if (lng === LANGS.JP) {
     wasedaStatus = getBusStatus(
       totalMins,
       wasedaSchedule.occurrences,
       wasedaSchedule.remarks_jp,
-      lng
+      t
     );
     nishiStatus = getBusStatus(
       totalMins,
       nishiSchedule.occurrences,
       nishiSchedule.remarks_jp,
-      lng
+      t
     );
   }
   return { wasedaStatus, nishiStatus };

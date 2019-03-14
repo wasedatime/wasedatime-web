@@ -12,7 +12,15 @@
     "welcome": "WasedaTime へようこそ!",
     "next": "次へ",
     "back": "前へ",
-    "done": "完了"
+    "done": "完了",
+    "Meet our developers!": "開発者たち",
+    "Founder": "創設者",
+    "Frontendtranslation": "フロントエンド &  翻訳",
+    "Frontend": "フロントエンド",
+    "May WasedaTime be with you": "WasedaTimeと共にあらんことを",
+    "We also received help from": "それ以外の",
+    "these contributors": "貢献者たち",
+    "a": ""
   },
   "navigation": {
     "timetable": "時間割",

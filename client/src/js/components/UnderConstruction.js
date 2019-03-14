@@ -35,7 +35,7 @@ const UnderConstruction = ({ t }) => {
   return (
     <ExtendedWrapper>
       <ExtendedOverlay>
-        <Logo src={logo} alt="WaseTime logo" />
+        <Logo src={logo} alt="WasedaTime logo" />
         <h2>{t("room.Under Construction")}</h2>
         <Description>
           {t("room.Want to help?")} <br />
@@ -44,9 +44,7 @@ const UnderConstruction = ({ t }) => {
             {t("room.here")}
           </a>{" "}
           {t("room.or")}{" "}
-          <a href="mailto:haohaowang.oscar@moegi.waseda.jp">
-            {t("room.send an email")}
-          </a>
+          <a href="mailto:wasedatime@gmail.com">{t("room.send an email")}</a>
           {t("room.!")}
           <br />
           {t("room.We sincerely welcome any contributors!")}

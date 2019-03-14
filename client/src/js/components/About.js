@@ -1,23 +1,24 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import smoothScroll from "smoothscroll";
+import { withNamespaces } from "react-i18next";
+// import smoothScroll from "smoothscroll";
 
 import { media } from "../styled-components/utils";
 import { Wrapper, WrapperWithBackground } from "../styled-components/Wrapper";
 import { Overlay } from "../styled-components/Overlay";
-import { InvisibleButton } from "../styled-components/Button";
+// import { InvisibleButton } from "../styled-components/Button";
 import homeBackground from "../../img/home_background.jpg";
 import homeBackgroundPhone from "../../img/home_background-phone.jpg";
-import mainBackground from "../../img/main_campus.jpg";
-import nishiwasedaBackground from "../../img/nishi_waseda_campus.jpg";
-import toyamaBackground from "../../img/toyama_campus.jpg";
+// import mainBackground from "../../img/main_campus.jpg";
+// import nishiwasedaBackground from "../../img/nishi_waseda_campus.jpg";
+// import toyamaBackground from "../../img/toyama_campus.jpg";
 import logo from "../../img/logo.png";
-import arrow from "../../img/arrow.png";
-import navigation from "../../img/navigation-480.gif";
-import syllabusResult from "../../img/syllabusResult-480.gif";
-import bus from "../../img/bus-480.gif";
-import roomFinder from "../../img/roomFinder-480.gif";
+// import arrow from "../../img/arrow.png";
+// import navigation from "../../img/navigation-480.gif";
+// import syllabusResult from "../../img/syllabusResult-480.gif";
+// import bus from "../../img/bus-480.gif";
+// import roomFinder from "../../img/roomFinder-480.gif";
 
 const HomeWrapper = styled(WrapperWithBackground)`
   min-height: calc(100vh - ${props => props.theme.headerHeight});
@@ -68,71 +69,71 @@ const Description = styled("p")`
   ${media.phone`font-size: 2.2rem;`};
 `;
 
-const LearnMoreButton = styled(InvisibleButton)`
-  align-self: center;
-  text-align: center;
-  background: transparent;
-  border: none !important;
-  z-index: 1000;
-  text-shadow: 0px 0px 3px #000000;
-`;
+// const LearnMoreButton = styled(InvisibleButton)`
+//   align-self: center;
+//   text-align: center;
+//   background: transparent;
+//   border: none !important;
+//   z-index: 1000;
+//   text-shadow: 0px 0px 3px #000000;
+// `;
+//
+// const Arrow = styled("img")`
+//   width: 120px;
+//   ${media.phone`width: 100px;`};
+// `;
+//
+// const StyledSection = styled("section")`
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1 0 auto;
+// `;
 
-const Arrow = styled("img")`
-  width: 120px;
-  ${media.phone`width: 100px;`};
-`;
+// const StyledArticle = WrapperWithBackground.withComponent("article");
+//
+// const DarkOverlay = styled(Overlay)`
+//   padding: 60px 60px 30px 60px;
+//   background-color: rgba(0, 0, 0, 0.7);
+//   ${media.phone`padding: 40px 50px;`};
+// `;
+//
+// const SubHeading = styled("h2")`
+//   margin: 0px;
+//   font-size: 3.8rem;
+//   font-weight: 300;
+//   color: #ffffff;
+//   ${media.phone`font-size: 3.2rem;`};
+// `;
+//
+// const DemoFigure = styled("figure")`
+//   margin-bottom: 40px;
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1 0 auto;
+//   align-items: center;
+//   text-align: center;
+// `;
+//
+// const DemoImage = styled("img")`
+//   width: 400px;
+//   margin: 10px;
+//   ${media.phone`width: 100%;`};
+// `;
+//
+// const DemoDescription = styled("p")`
+//   font-size: 2.4rem;
+//   font-weight: 300;
+//   color: #dddddd;
+//   ${media.phone`font-size: 1.8rem;`};
+// `;
+//
+// const clickHandler = e => {
+//   e.preventDefault();
+//   const destination = document.querySelector("#get-started");
+//   smoothScroll(destination, 600);
+// };
 
-const StyledSection = styled("section")`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-`;
-
-const StyledArticle = WrapperWithBackground.withComponent("article");
-
-const DarkOverlay = styled(Overlay)`
-  padding: 60px 60px 30px 60px;
-  background-color: rgba(0, 0, 0, 0.7);
-  ${media.phone`padding: 40px 50px;`};
-`;
-
-const SubHeading = styled("h2")`
-  margin: 0px;
-  font-size: 3.8rem;
-  font-weight: 300;
-  color: #ffffff;
-  ${media.phone`font-size: 3.2rem;`};
-`;
-
-const DemoFigure = styled("figure")`
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: column;
-  flex: 1 0 auto;
-  align-items: center;
-  text-align: center;
-`;
-
-const DemoImage = styled("img")`
-  width: 400px;
-  margin: 10px;
-  ${media.phone`width: 100%;`};
-`;
-
-const DemoDescription = styled("p")`
-  font-size: 2.4rem;
-  font-weight: 300;
-  color: #dddddd;
-  ${media.phone`font-size: 1.8rem;`};
-`;
-
-const clickHandler = e => {
-  e.preventDefault();
-  const destination = document.querySelector("#get-started");
-  smoothScroll(destination, 600);
-};
-
-const Home = () => {
+const Home = ({ t }) => {
   return (
     <Wrapper>
       <Helmet>
@@ -159,81 +160,82 @@ const Home = () => {
             </LogoWrapper>
             <Introduction>
               <MainHeading>WasedaTime</MainHeading>
-              <Description>
-                An unofficial app for syllabus searching, classroom finding, and
-                bus schedule checking at Waseda University.
-              </Description>
+              <Description>{t("about.description")}</Description>
             </Introduction>
           </StyledHeader>
-          <LearnMoreButton onClick={clickHandler}>
-            <Description>Learn More</Description>
-            <Arrow src={arrow} alt="Scroll Down Arrow" id="get-started" />
-          </LearnMoreButton>
+          {
+            // <LearnMoreButton onClick={clickHandler}>
+            //   <Description>Learn More</Description>
+            //   <Arrow src={arrow} alt="Scroll Down Arrow" id="get-started" />
+            // </LearnMoreButton>
+          }
         </ExtendedOverlay>
       </HomeWrapper>
-      <StyledSection>
-        <StyledArticle
-          background={mainBackground}
-          backgroundPhone={mainBackground}
-        >
-          <DarkOverlay>
-            <StyledHeader>
-              <SubHeading>Navigation</SubHeading>
-            </StyledHeader>
-            <DemoFigure>
-              <DemoDescription>Navigate easily by clicking.</DemoDescription>
-              <DemoImage src={navigation} alt="Syllabus Search Demo" />
-            </DemoFigure>
-            <StyledHeader>
-              <SubHeading>Syllabus</SubHeading>
-            </StyledHeader>
-            <DemoFigure>
-              <DemoDescription>
-                Search and view results instantly.
-              </DemoDescription>
-              <DemoImage
-                src={syllabusResult}
-                alt="Syllabus Search Result Demo"
-              />
-            </DemoFigure>
-          </DarkOverlay>
-        </StyledArticle>
-        <StyledArticle
-          background={nishiwasedaBackground}
-          backgroundPhone={nishiwasedaBackground}
-        >
-          <DarkOverlay>
-            <StyledHeader>
-              <SubHeading>RoomFinder</SubHeading>
-            </StyledHeader>
-            <DemoFigure>
-              <DemoDescription>
-                Find vacant classrooms and view real-time usage.
-              </DemoDescription>
-              <DemoImage src={roomFinder} alt="Room Finder Demo" />
-            </DemoFigure>
-          </DarkOverlay>
-        </StyledArticle>
-        <StyledArticle
-          background={toyamaBackground}
-          backgroundPhone={toyamaBackground}
-        >
-          <DarkOverlay>
-            <StyledHeader>
-              <SubHeading>Bus</SubHeading>
-            </StyledHeader>
-            <DemoFigure>
-              <DemoDescription>
-                Easy access to official schedule.
-              </DemoDescription>
-              <DemoImage src={bus} alt="Room Finder Demo" />
-              <DemoDescription>More features coming soon!</DemoDescription>
-            </DemoFigure>
-          </DarkOverlay>
-        </StyledArticle>
-      </StyledSection>
+      {
+        // {<StyledSection>
+        //   <StyledArticle
+        //     background={mainBackground}
+        //     backgroundPhone={mainBackground}
+        //   >
+        //     <DarkOverlay>
+        //       <StyledHeader>
+        //         <SubHeading>Navigation</SubHeading>
+        //       </StyledHeader>
+        //       <DemoFigure>
+        //         <DemoDescription>Navigate easily by clicking.</DemoDescription>
+        //         <DemoImage src={navigation} alt="Syllabus Search Demo" />
+        //       </DemoFigure>
+        //       <StyledHeader>
+        //         <SubHeading>Syllabus</SubHeading>
+        //       </StyledHeader>
+        //       <DemoFigure>
+        //         <DemoDescription>
+        //           Search and view results instantly.
+        //         </DemoDescription>
+        //         <DemoImage
+        //           src={syllabusResult}
+        //           alt="Syllabus Search Result Demo"
+        //         />
+        //       </DemoFigure>
+        //     </DarkOverlay>
+        //   </StyledArticle>
+        //   <StyledArticle
+        //     background={nishiwasedaBackground}
+        //     backgroundPhone={nishiwasedaBackground}
+        //   >
+        //     <DarkOverlay>
+        //       <StyledHeader>
+        //         <SubHeading>RoomFinder</SubHeading>
+        //       </StyledHeader>
+        //       <DemoFigure>
+        //         <DemoDescription>
+        //           Find vacant classrooms and view real-time usage.
+        //         </DemoDescription>
+        //         <DemoImage src={roomFinder} alt="Room Finder Demo" />
+        //       </DemoFigure>
+        //     </DarkOverlay>
+        //   </StyledArticle>
+        //   <StyledArticle
+        //     background={toyamaBackground}
+        //     backgroundPhone={toyamaBackground}
+        //   >
+        //     <DarkOverlay>
+        //       <StyledHeader>
+        //         <SubHeading>Bus</SubHeading>
+        //       </StyledHeader>
+        //       <DemoFigure>
+        //         <DemoDescription>
+        //           Easy access to official schedule.
+        //         </DemoDescription>
+        //         <DemoImage src={bus} alt="Room Finder Demo" />
+        //         <DemoDescription>More features coming soon!</DemoDescription>
+        //       </DemoFigure>
+        //     </DarkOverlay>
+        //   </StyledArticle>
+        // </StyledSection>}
+      }
     </Wrapper>
   );
 };
 
-export default Home;
+export default withNamespaces("translation")(Home);

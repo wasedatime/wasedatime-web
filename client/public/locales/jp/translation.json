@@ -21,6 +21,14 @@
     "bus": "バス",
     "language": "言語"
   },
+  "footer": {
+    "licensed": " ソースコードライセンス ",
+    "syllabus": "シラバスは",
+    "update": "に更新されました"
+  },
+  "about": {
+    "description": "早稲田大学におけるシラバス検索、空き教室探し、バス運行状況のチェックなどの目的に役立つアプリです。"
+  },
   "timetable": {
     "welcome": "WasedaTime へようこそ！",
     "You haven't added any courses": "授業がありません。",

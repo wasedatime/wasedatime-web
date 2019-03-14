@@ -1,31 +1,31 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 
-import { fetchStats } from '../actions/index';
-import { getIsFetching, getInfo, getError } from '../reducers/stats';
-import Footer from '../components/Footer';
+import { fetchStats } from "../actions/index";
+import { getIsFetching, getInfo, getError } from "../reducers/stats";
+import Footer from "../components/Footer";
 
 //TODO Use a better name instead of 'info'
 
 class FooterContainer extends React.Component {
-
   componentDidMount() {
     this.props.fetchStats();
   }
 
   render() {
-    const { isFetching, info, error} = this.props;
-    let finishTime = `Syllabus correct as at ${info.finish_time} JST.`;
+    const { isFetching, info, error, t } = this.props;
+    let finishTime = `${t("footer.syllabus")} ${info.finish_time} JST ${t(
+      "footer.update"
+    )}`;
     if (isFetching && Object.keys(info).length === 0) {
-      finishTime = 'loading...';
+      finishTime = "loading...";
     }
     if (error && Object.keys(info).length === 0) {
-      finishTime = 'Oops, an error occured.';
+      finishTime = "Oops, an error occured.";
     }
-    return (
-      <Footer finishTime={finishTime}/>
-    );
+    return <Footer finishTime={finishTime} />;
   }
 }
 
@@ -41,7 +41,12 @@ const mapDispatchToProps = {
   fetchStats
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FooterContainer);
+export default withNamespaces("translation")(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(FooterContainer)
+);
 
 FooterContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,

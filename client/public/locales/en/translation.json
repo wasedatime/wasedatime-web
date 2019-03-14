@@ -21,6 +21,14 @@
     "bus": "Bus",
     "language": "Language"
   },
+  "footer": {
+    "licensed": " Code Licensed ",
+    "syllabus": "Syllabus correct as at",
+    "update": ""
+  },
+  "about": {
+    "description": "An unofficial app for syllabus searching, classroom finding, and bus schedule checking at Waseda University."
+  },
   "timetable": {
     "welcome": "Welcome to WasedaTime!",
     "You haven't added any courses": "Hi! You haven't added any courses.",

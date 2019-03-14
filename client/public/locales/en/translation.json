@@ -12,7 +12,15 @@
     "welcome": "Welcome to WasedaTime!",
     "next": "next",
     "back": "back",
-    "done": "done"
+    "done": "done",
+    "Meet our developers!": "Meet our developers!",
+    "Founder": "Founder",
+    "Frontendtranslation":"Frontend & translation",
+    "Frontend": "Frontend",
+    "May WasedaTime be with you": "May WasedaTime be with you",
+    "We also received help from": "We also received help from",
+    "these contributors": "these contributors",
+    "a": "."
   },
   "contributors": {
     "oscar": {

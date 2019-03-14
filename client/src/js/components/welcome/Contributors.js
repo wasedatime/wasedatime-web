@@ -97,13 +97,13 @@ class Contributors extends React.Component {
           gutterBottom
           className={classes.h3}
         >
-          Meet our developers!
+          {t("welcome.Meet our developers!")}
         </Typography>
         <Wrapper>
           <StyledAvatar alt="Oscar Wang" src={oscar} />
           <Introduction>
             <Name>Oscar Wang</Name>
-            <Position>Founder</Position>
+            <Position>{t("welcome.Founder")}</Position>
             <Bio>
               <i>WasedaTime &gt; Course N@vi</i>
             </Bio>
@@ -113,7 +113,7 @@ class Contributors extends React.Component {
           <StyledAvatar alt="Mei" src={mei} />
           <Introduction>
             <Name>Mei</Name>
-            <Position>Frontend translation</Position>
+            <Position>{t("welcome.Frontendtranslation")}</Position>
             <Bio>
               <i>Join us and let’s think!</i>
             </Bio>
@@ -122,10 +122,10 @@ class Contributors extends React.Component {
         <Wrapper>
           <StyledAvatar alt="Hao" src={hao} />
           <Introduction>
-            <Name>Mei</Name>
-            <Position>Frontend & Translation</Position>
+            <Name>Hao</Name>
+            <Position>{t("welcome.Frontend")}</Position>
             <Bio>
-              <i>Join us and </i>
+              <i>{t("welcome.May WasedaTime be with you")}</i>
             </Bio>
           </Introduction>
         </Wrapper>
@@ -136,12 +136,15 @@ class Contributors extends React.Component {
           align="center"
           gutterBottom
         >
-          We also received help from
+          {t("welcome.We also received help from")}
           <br />
-          <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors">
-            these contributors
+          <StyledLink
+            href="https://github.com/wasetime/wasetime-web/graphs/contributors"
+            target="_blank"
+          >
+            {t("welcome.these contributors")}
           </StyledLink>
-          .
+          {t("welcome.a")}
         </Typography>
       </ExtendedArticle>
     );

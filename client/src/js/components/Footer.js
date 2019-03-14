@@ -44,17 +44,17 @@ const Footer = ({ finishTime, t, lng }) => {
       <StyledP>{finishTime}</StyledP>
       <StyledList>
         <StyledListItem>
-          <StyledLink href="https://github.com/wasetime/wasetime-web">
+          <StyledLink href="https://github.com/wasetime/wasetime-web" target="_blank">
             <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
           </StyledLink>
         </StyledListItem>
         <StyledListItem>
-          <StyledLink href="https://twitter.com/WasedaTime">
+          <StyledLink href="https://twitter.com/WasedaTime" target="_blank">
             <FontAwesomeIcon icon={faTwitter} size="2x" transform="shrink-2" />
           </StyledLink>
         </StyledListItem>
         <StyledListItem>
-          <StyledLink href="mailto:wasedatime@gmail.com">
+          <StyledLink href="mailto:wasedatime@gmail.com" target="_blank">
             <FontAwesomeIcon icon={faEnvelope} size="2x" transform="shrink-2" />
           </StyledLink>
         </StyledListItem>
@@ -62,7 +62,7 @@ const Footer = ({ finishTime, t, lng }) => {
 
       {lng === LANGS.JP ? (
         <StyledP>
-          <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors">
+          <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors" target="_blank">
             コントリビュータたち
           </StyledLink>
           <span role="img" aria-label="Love">
@@ -77,17 +77,17 @@ const Footer = ({ finishTime, t, lng }) => {
             ❤️&nbsp;
           </span>
           by&nbsp;
-          <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors">
+          <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors" target="_blank">
             Our Contributors
           </StyledLink>
         </StyledP>
       )}
       <StyledP>
-        <StyledLink href="https://github.com/wasetime ">
+        <StyledLink href="https://github.com/wasetime " target="_blank">
           WasedaTime 2019.
         </StyledLink>
         {t("footer.licensed")}
-        <StyledLink href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md">
+        <StyledLink href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md" target="_blank">
           MIT
         </StyledLink>
         .

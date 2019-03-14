@@ -59,8 +59,7 @@ class DialogStepper extends React.Component {
   render() {
     const { classes, t } = this.props;
     const { activeStep } = this.state;
-    // const setupSteps = [<Greeting />];
-    const setupSteps = [<Contributors />];
+    const setupSteps = [<Greeting />, <Contributors />];
     const maxSteps = setupSteps.length;
     const isFirstStep = activeStep === 0;
     const isLastStep = activeStep === maxSteps - 1;

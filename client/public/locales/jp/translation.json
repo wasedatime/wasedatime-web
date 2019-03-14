@@ -31,7 +31,8 @@
     "Sort by": "並べ替え",
     "courses added": "個の授業が登録済",
     "Spring Semester": "春学期",
-    "Fall Semester": "秋学期"
+    "Fall Semester": "秋学期",
+    "undecided": "未定"
   },
   "syllabus": {
     "Spring Semester": "春学期",
@@ -56,7 +57,7 @@
     "period": "時限",
     "displayedSpringSemester": "春学期",
     "displayedFallSemester": "秋学期",
-    "searchBarPlaceholder": "科目, 教師, course, instructorを検索",
+    "searchBarPlaceholder": "科目、教師を日本語・英語で検索",
     "Spring / Summer": "春 / 夏",
     "Fall / Winter": "秋 / 冬",
     "SILS": "国教",

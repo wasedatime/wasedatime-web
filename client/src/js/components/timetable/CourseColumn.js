@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
 
 import { media } from "../../styled-components/utils";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
@@ -64,7 +65,7 @@ const CourseList = styled("div")`
   position: relative;
 `;
 
-const CourseColumn = ({ largestPeriod, coursesAndProperties }) => {
+const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
   const displayPeriods = Math.max(largestPeriod, 5);
   // a distinct course list has no occurrence overlaps between its course items.
   let distinctCourseLists = [[]];
@@ -121,7 +122,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties }) => {
         const { title } = getCourseTitleAndInstructor(course, displayLang);
         const startPeriod = Number(course.occurrence.start_period);
         const endPeriod = Number(course.occurrence.end_period);
-        let location = "undecided";
+        let location = t("timetable.undecided");
         if (course.occurrence.classroom !== "undecided") {
           if (course.occurrence.building !== "-1") {
             location = course.occurrence.location;
@@ -153,4 +154,4 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties }) => {
   );
 };
 
-export default CourseColumn;
+export default withNamespaces("translation")(CourseColumn);

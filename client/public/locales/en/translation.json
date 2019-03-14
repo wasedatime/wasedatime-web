@@ -31,7 +31,8 @@
     "Sort by": "Sort by",
     "courses added": "courses added",
     "Spring Semester": "Spring Semester",
-    "Fall Semester": "Fall Semester"
+    "Fall Semester": "Fall Semester",
+    "undecided": "undecided"
   },
   "syllabus": {
     "Spring Semester": "Spring Semester",
@@ -39,7 +40,7 @@
     "Added courses are displayed here": "Added courses are displayed here.",
     "To add a course": "To add a course",
     "Search for courses and instructors in the top search bar": "Search for courses and instructors in the top search bar.",
-    "Japanese is supported": "Japanese is supported.",
+    "Japanese is supported": " Japanese is supported.",
     "try": "Try: \"kanji\" \"tanaka\" \"漢字\" \"田中\"",
     "Click on": "Click on",
     "to add": "to add",
@@ -56,7 +57,7 @@
     "period": "Period",
     "displayedSpringSemester": "Spring Semester",
     "displayedFallSemester": "Fall Semester",
-    "searchBarPlaceholder": "Search course, instructor, 科目, 教師",
+    "searchBarPlaceholder": "Search course, instructor in EN / JP",
     "Spring / Summer": "Spring / Summer",
     "Fall / Winter": "Fall / Winter",
     "SILS": "SILS",

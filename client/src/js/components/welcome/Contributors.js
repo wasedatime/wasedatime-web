@@ -104,7 +104,9 @@ class Contributors extends React.Component {
           </Introduction>
         </Wrapper>
         <Wrapper>
-          <StyledAvatar alt="Mei" src={mei} />
+          <StyledLink href="https://twitter.com/Rimei9623" target="_blank">
+          <StyledAvatar alt="Mei" src={mei}/>
+          </StyledLink>
           <Introduction>
             <Name>Mei</Name>
             <Position>{t("welcome.Frontendtranslation")}</Position>

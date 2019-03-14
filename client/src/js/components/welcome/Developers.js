@@ -5,6 +5,7 @@ import styled from "styled-components";
 import {
   faFacebook,
   faTwitter,
+  faGithub,
   faInstagram,
   faWeibo
 } from "@fortawesome/free-brands-svg-icons";
@@ -80,6 +81,9 @@ const Developers = ({ t }) => {
                 size="1x"
                 transform="shrink-2"
               />
+            </StyledIcon>
+            <StyledIcon href="https://github.com/OscarWang114" target="_blank">
+              <FontAwesomeIcon icon={faGithub} size="1x" transform="shrink-2" />
             </StyledIcon>
           </Name>
 

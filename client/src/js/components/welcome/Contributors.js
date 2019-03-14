@@ -131,7 +131,7 @@ class Contributors extends React.Component {
         >
           {t("welcome.We also received help from")}
           <br />
-          <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors">
+          <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors" target="_blank">
             {t("welcome.these contributors")}
           </StyledLink>
           {t("welcome.a")}

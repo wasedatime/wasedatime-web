@@ -7,9 +7,10 @@ import { Overlay } from "../styled-components/Overlay";
 import logo from "../../img/logo.png";
 
 import { withNamespaces } from "react-i18next";
+import Developers from "./welcome/Developers";
 
 const ExtendedWrapper = styled(Wrapper)`
-  flex: 1 0 0;
+  flex: 1 0 auto;
 `;
 
 const ExtendedOverlay = styled(Overlay)`
@@ -21,13 +22,15 @@ const ExtendedOverlay = styled(Overlay)`
 const Logo = styled("img")`
   height: 100px;
   width: 100px;
-  transition: transform(0, 12vh);
+  ${media.phone`height: 80px;
+  width: 80px;`};
 `;
 
 const Description = styled("p")`
   font-size: 1.3em;
   text-align: center;
-  ${media.phone`font-size: 1.1em;`};
+  word-break: keep-all;
+  ${media.phone`font-size: 1.1em; margin: 0.3em;`};
 `;
 
 const UnderConstruction = ({ t }) => {
@@ -39,16 +42,13 @@ const UnderConstruction = ({ t }) => {
         <h2>{t("room.Under Construction")}</h2>
         <Description>
           {t("room.Want to help?")} <br />
-          {t("room.Check out")}
-          <a href="https://github.com/wasetime/wasetime-web">
-            {t("room.here")}
-          </a>{" "}
-          {t("room.or")}{" "}
-          <a href="mailto:wasedatime@gmail.com">{t("room.send an email")}</a>
+          {t("room.Check out our")}
+          <a href="https://www.facebook.com/wasedatime">{t("room.facebook")}</a>
+          {t("room.or")}
+          <a href="https://twitter.com/wasedatime">{t("room.twitter")}</a>
           {t("room.!")}
-          <br />
-          {t("room.We sincerely welcome any contributors!")}
         </Description>
+        <Developers t={t} />
       </ExtendedOverlay>
     </ExtendedWrapper>
   );

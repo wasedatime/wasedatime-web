@@ -124,13 +124,13 @@
   },
   "room": {
     "Under Construction": "作成中",
-    "Want to help?": "私たちと一緒に開発のお仕事をしませんか？",
-    "Check out": "興味のある方は ",
-    "here": "こちら",
-    "or": "から！その他ご意見・要望等は",
-    "send an email": "お問い合わせ",
-    "!": "",
-    "We sincerely welcome any contributors!": "までお願いします。"
+    "Want to help?": "一緒に楽しく開発しませんか？",
+    "Check out our": "興味のある方は ",
+    "facebook": " Facebook ",
+    "twitter": " Twitter ",
+    "or": "または",
+    "!": "から！",
+    "We sincerely welcome any contributors!": ""
   },
   "bus": {
     "busStatus": "バス運行情報",

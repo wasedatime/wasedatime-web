@@ -7,15 +7,12 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-import Avatar from "@material-ui/core/Avatar";
 
 import { Article } from "../../styled-components/Article";
+import Developers from "./Developers";
 import { media } from "../../styled-components/utils";
 import LANGS from "../../config/langs";
 import logo from "../../../img/logo.png";
-import oscar from "../../../img/contributors/oscar.jpg";
-import mei from "../../../img/contributors/mei.jpg";
-import hao from "../../../img/contributors/hao.jpg";
 
 const ExtendedArticle = styled(Article)`
   display: flex;
@@ -23,42 +20,6 @@ const ExtendedArticle = styled(Article)`
   align-items: stretch;
   ${media.phone`
     font-size: 16px
-  `};
-`;
-
-const Wrapper = styled("div")`
-  display: flex;
-  flex-direction: row;
-`;
-
-const Introduction = styled("div")`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-`;
-
-const Name = styled("span")`
-  font-size: 1.2em;
-`;
-
-const Bio = styled("span")`
-  font-size: 0.9em;
-  margin-top: 0.2em;
-  color: #555;
-`;
-
-const Position = styled("span")`
-  font-size: 0.9em;
-  color: #555;
-`;
-
-const StyledAvatar = styled(Avatar)`
-  margin: 10px;
-  width: 80px !important;
-  height: 80px !important;
-  ${media.phone`
-    width: 60px !important;
-    height: 60px !important;
   `};
 `;
 
@@ -99,36 +60,7 @@ class Contributors extends React.Component {
         >
           {t("welcome.Meet our developers!")}
         </Typography>
-        <Wrapper>
-          <StyledAvatar alt="Oscar Wang" src={oscar} />
-          <Introduction>
-            <Name>Oscar Wang</Name>
-            <Position>{t("welcome.Founder")}</Position>
-            <Bio>
-              <i>WasedaTime &gt; Course N@vi</i>
-            </Bio>
-          </Introduction>
-        </Wrapper>
-        <Wrapper>
-          <StyledAvatar alt="Mei" src={mei} />
-          <Introduction>
-            <Name>Mei</Name>
-            <Position>{t("welcome.Frontendtranslation")}</Position>
-            <Bio>
-              <i>Join us and let’s think!</i>
-            </Bio>
-          </Introduction>
-        </Wrapper>
-        <Wrapper>
-          <StyledAvatar alt="Hao" src={hao} />
-          <Introduction>
-            <Name>Hao</Name>
-            <Position>{t("welcome.Frontend")}</Position>
-            <Bio>
-              <i>{t("welcome.May WasedaTime be with you")}</i>
-            </Bio>
-          </Introduction>
-        </Wrapper>
+        <Developers t={t} />
         <Typography
           className={classes.h4}
           variant="h4"

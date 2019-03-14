@@ -11,6 +11,7 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
 import { setFirstTimeAccessToFalse } from "../../actions/user";
 import Greeting from "./Greeting";
+import Contributors from "./Contributors";
 
 const styles = theme => ({
   root: {
@@ -58,7 +59,8 @@ class DialogStepper extends React.Component {
   render() {
     const { classes, t } = this.props;
     const { activeStep } = this.state;
-    const setupSteps = [<Greeting />];
+    // const setupSteps = [<Greeting />];
+    const setupSteps = [<Contributors />];
     const maxSteps = setupSteps.length;
     const isFirstStep = activeStep === 0;
     const isLastStep = activeStep === maxSteps - 1;

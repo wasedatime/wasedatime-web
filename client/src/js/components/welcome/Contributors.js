@@ -4,6 +4,10 @@ import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Avatar from "@material-ui/core/Avatar";
+import { faFacebook, faTwitter, faInstagram, faWeibo } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+
 
 import { Article } from "../../styled-components/Article";
 import { media } from "../../styled-components/utils";
@@ -61,6 +65,13 @@ const StyledLink = styled("a")`
   text-decoration: none;
 `;
 
+const StyledIcon = styled("a")`
+  color: black;
+  text-decoration: none;
+  margin: 0 0.1em;
+`;
+
+
 const styles = {
   h3: {
     margin: "0.6em 0",
@@ -96,7 +107,15 @@ class Contributors extends React.Component {
         <Wrapper>
           <StyledAvatar alt="Oscar Wang" src={oscar} />
           <Introduction>
-            <Name>Oscar Wang</Name>
+            <Name>Oscar Wang
+            <StyledIcon href="https://twitter.com/OscarWang114" target="_blank">
+            <FontAwesomeIcon icon={faTwitter} size="x" transform="shrink-2"/>
+            </StyledIcon>
+            <StyledIcon href="https://www.facebook.com/haohaowang.oscar" target="_blank">
+            <FontAwesomeIcon icon={faFacebook} size="x" transform="shrink-2"/>
+            </StyledIcon>
+            </Name>
+
             <Position>{t("welcome.Founder")}</Position>
             <Bio>
               <i>WasedaTime &gt; Course N@vi</i>
@@ -104,11 +123,19 @@ class Contributors extends React.Component {
           </Introduction>
         </Wrapper>
         <Wrapper>
-          <StyledLink href="https://twitter.com/Rimei9623" target="_blank">
           <StyledAvatar alt="Mei" src={mei}/>
-          </StyledLink>
           <Introduction>
-            <Name>Mei</Name>
+            <Name>Mei
+            <StyledIcon href="https://twitter.com/Rimei9623" target="_blank">
+            <FontAwesomeIcon icon={faTwitter} size="x" transform="shrink-2" />
+            </StyledIcon>
+            <StyledIcon href="https://www.instagram.com/limengmmmm/" target="_blank">
+            <FontAwesomeIcon icon={faInstagram} size="x" transform="shrink-2" />
+            </StyledIcon>
+            <StyledIcon href="https://www.weibo.com/u/5000065316/home" target="_blank">
+            <FontAwesomeIcon icon={faWeibo} size="x" transform="shrink-2" />
+            </StyledIcon>
+            </Name>
             <Position>{t("welcome.Frontendtranslation")}</Position>
             <Bio>
               <i>Join us and let’s think!</i>
@@ -118,7 +145,11 @@ class Contributors extends React.Component {
         <Wrapper>
           <StyledAvatar alt="Hao" src={hao} />
           <Introduction>
-            <Name>Hao</Name>
+            <Name>Hao
+            <StyledIcon href="https://www.facebook.com/hao8711" target="_blank">
+            <FontAwesomeIcon icon={faFacebook} size="x" transform="shrink-2"/>
+            </StyledIcon>
+            </Name>
             <Position>{t("welcome.Frontend")}</Position>
             <Bio>
               <i>{t("welcome.May WasedaTime be with you")}</i>

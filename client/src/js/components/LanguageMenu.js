@@ -8,7 +8,7 @@ import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
 import ReactGA from "react-ga";
 import { gaLanguage } from "../ga/eventCategories";
-import { gaChangeLanguage } from "../ga/eventActions";
+import { gaAppendActionWithLng, gaChangeLanguage } from "../ga/eventActions";
 
 import { media } from "../styled-components/utils";
 import LANGS from "../config/langs";
@@ -49,7 +49,7 @@ class LanguangeMenu extends React.Component {
     event.preventDefault();
     ReactGA.event({
       category: gaLanguage,
-      action: gaChangeLanguage,
+      action: gaAppendActionWithLng(gaChangeLanguage, this.props.lng),
       label: lang
     });
     i18n.changeLanguage(lang);

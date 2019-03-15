@@ -15,7 +15,6 @@ i18n
   .use(detector)
   .use(reactI18nextModule) // passes i18n down to react-i18next
   .init({
-    lng: LANGS.JP,
     fallbackLng: LANGS.EN,
     keySeparator: ".",
     interpolation: {

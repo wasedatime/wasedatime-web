@@ -16,7 +16,7 @@ store.subscribe(
   throttle(() => {
     const state = store.getState();
     const addedCourses = state.addedCourses;
-    // const user = state.user;
+    const user = state.user;
     saveState({
       addedCourses: {
         fall: {
@@ -27,8 +27,8 @@ store.subscribe(
           prefs: addedCourses.spring.prefs,
           sortingOption: addedCourses.spring.sortingOption
         }
-      }
-      // user: user
+      },
+      user: user
     });
   }, 800)
 );

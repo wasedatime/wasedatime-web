@@ -38,8 +38,7 @@ const StyledLink = styled("a")`
   color: #ffffff;
 `;
 
-const Footer = ({ finishTime, t, i18n, lng }) => {
-  console.log(i18n.language, i18n.languages, i18n);
+const Footer = ({ finishTime, t, lng }) => {
   return (
     <StyledFooter>
       <StyledP>{finishTime}</StyledP>

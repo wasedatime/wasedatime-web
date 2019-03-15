@@ -7,7 +7,9 @@ import LANGS from "../config/langs";
 const LNG_KEY = "wasedatime-2019-lng";
 
 const detectorOptions = {
-  lookupLocalStorage: LNG_KEY
+  order: ["localStorage"],
+  lookupLocalStorage: LNG_KEY,
+  caches: ["localStorage"]
 };
 
 i18n

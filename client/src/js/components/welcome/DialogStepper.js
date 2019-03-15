@@ -38,6 +38,7 @@ class DialogStepper extends React.Component {
   componentDidMount() {
     window.scrollTo({ top: 0 });
     noScroll.on();
+    this.props.setFirstTimeAccessToFalse();
   }
 
   componentWillUnmount() {

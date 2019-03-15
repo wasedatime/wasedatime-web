@@ -1,0 +1,17 @@
+export const gaAddCourse = "Add Course";
+export const gaRemoveCourse = "Remove Course";
+export const gaClickSyllabusLink = "Click Syllabus Link";
+export const gaMakeCourseVisible = "Make Course Visible";
+export const gaMakeCourseInVisible = "Make Course Invisible";
+export const gaChangeCourseColor = "Change Course Color";
+
+export const gaOpenModal = "Open modal";
+export const gaApplyFilter = "Appy Filter";
+export const gaRemoveFilter = "Remove Filter";
+
+export const gaSetLanguage = "Set Language";
+export const gaChangeLanguage = "Change Language";
+
+export const gaAppendActionWithLng = (action, lng) => {
+  return `${action} - ${lng} user`;
+};

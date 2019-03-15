@@ -76,13 +76,14 @@ const CourseAndPrefItem = ({
   handleToggleColorPopper,
   handleToggleVisibility,
   handleRemoveCourse,
-  handleChangeColor
+  handleChangeColor,
+  handleClickSyllabusLink
 }) => {
   const { title, instructor } = getCourseTitleAndInstructor(
     course,
     displayLang
   );
-  const syllabusId = course._id;
+  const courseId = course._id;
   const removeCourseIcon = (
     <FontAwesomeIcon
       style={{ color: "#ce0115" }}
@@ -152,14 +153,23 @@ const CourseAndPrefItem = ({
                   : () => null}
               </Popper>
             </Manager>
-            <InvisibleButton onClick={handleToggleVisibility}>
+            <InvisibleButton
+              onClick={e => {
+                e.preventDefault();
+                handleToggleVisibility(courseId, title);
+              }}
+            >
               {visibilityIcon}
             </InvisibleButton>
+
             <a
               style={{ alignSelf: "flex-start" }}
-              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}&pLng=en`}
+              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${courseId}&pLng=en`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={e => {
+                handleClickSyllabusLink(title);
+              }}
             >
               <FontAwesomeIcon
                 style={{ color: "#6495ED" }}
@@ -168,7 +178,12 @@ const CourseAndPrefItem = ({
                 transform="shrink-2"
               />
             </a>
-            <InvisibleButton onClick={handleRemoveCourse}>
+            <InvisibleButton
+              onClick={e => {
+                e.preventDefault();
+                handleRemoveCourse(courseId, title);
+              }}
+            >
               {removeCourseIcon}
             </InvisibleButton>
           </div>

@@ -1,11 +1,11 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import { Provider } from 'react-redux';
-import ReactGA from 'react-ga';
-import { Route, BrowserRouter } from 'react-router-dom';
-import debounce from 'lodash/debounce';
+import PropTypes from "prop-types";
+import React from "react";
+import { Provider } from "react-redux";
+import ReactGA from "react-ga";
+import { Route, BrowserRouter } from "react-router-dom";
+import debounce from "lodash/debounce";
 
-import App from './App';
+import App from "./App";
 
 // A invisible component that sends a GA pageview every time
 // the pathname of the user is changed.
@@ -30,8 +30,8 @@ class Analytics extends React.Component {
     } else {
       if (
         prevSearch !== thisSearch &&
-        thisSearch !== '' &&
-        thisPathname === '/syllabus'
+        thisSearch !== "" &&
+        thisPathname === "/syllabus"
       ) {
         this.debounceSendPageChange(thisPathname, thisSearch);
       }
@@ -56,16 +56,18 @@ class Analytics extends React.Component {
 const Root = ({ store }) => {
   // production -> UA-112185819-1, staging -> UA-112185819-4, dev/others -> UA-112185819-3
   let trackingId;
-  if (process.env.NODE_ENV === 'production') {
+  let debug = false;
+  if (process.env.NODE_ENV === "production") {
     trackingId =
-      process.env.REACT_APP_ENV === 'staging'
-        ? 'UA-112185819-4'
-        : 'UA-112185819-1';
+      process.env.REACT_APP_ENV === "staging"
+        ? "UA-112185819-4"
+        : "UA-112185819-1";
   } else {
-    trackingId = 'UA-112185819-3';
+    trackingId = "UA-112185819-3";
+    debug = true;
   }
 
-  ReactGA.initialize(trackingId, { debug: false });
+  ReactGA.initialize(trackingId, { debug: debug, titleCase: false });
   const analyticsRoute = <Route path="/" component={Analytics} />;
   return (
     <Provider store={store}>

@@ -1,6 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
+import { withNamespaces } from "react-i18next";
+import ReactGA from "react-ga";
+import { gaAddedCourseAndPrefItem } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaChangeCourseColor,
+  gaMakeCourseVisible,
+  gaMakeCourseInVisible,
+  gaClickSyllabusLink,
+  gaRemoveCourse
+} from "../../ga/eventActions";
 
 import {
   removeCourse,
@@ -8,17 +19,21 @@ import {
   toggleCourseVisibility
 } from "../../actions/syllabus";
 import CourseAndPrefItem from "../../components/timetable/CourseAndPrefItem";
+import { courseColors } from "../../data/colors";
 
 class AddedCourseAndPrefItem extends React.Component {
   state = {
     isPopperOpen: false
   };
 
-  handleRemoveCourse = event => {
-    event.preventDefault();
-    const { addedCourseAndPref } = this.props;
-    const { course } = addedCourseAndPref;
-    this.props.removeCourse(course._id);
+  handleRemoveCourse = (id, title) => {
+    const { lng } = this.props;
+    this.props.removeCourse(id);
+    ReactGA.event({
+      category: gaAddedCourseAndPrefItem,
+      action: gaAppendActionWithLng(gaRemoveCourse, lng),
+      label: title
+    });
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly"
@@ -32,20 +47,41 @@ class AddedCourseAndPrefItem extends React.Component {
     });
   };
 
-  handleChangeColor = color => {
-    const { addedCourseAndPref } = this.props;
+  handleChangeColor = colorId => {
+    const { addedCourseAndPref, lng } = this.props;
     const { course } = addedCourseAndPref;
     this.setState((prevState, props) => {
       return { isPopperOpen: !prevState.isPopperOpen };
     });
-    this.props.changeCourseColor(course._id, color);
+    ReactGA.event({
+      category: gaAddedCourseAndPrefItem,
+      action: gaAppendActionWithLng(gaChangeCourseColor, lng),
+      label: courseColors[colorId]
+    });
+    this.props.changeCourseColor(course._id, colorId);
   };
 
-  handleToggleVisibility = event => {
-    event.preventDefault();
-    const { addedCourseAndPref } = this.props;
-    const { course } = addedCourseAndPref;
-    this.props.toggleCourseVisibility(course._id);
+  handleToggleVisibility = (id, title) => {
+    const { addedCourseAndPref, lng } = this.props;
+    const gaAction =
+      addedCourseAndPref.visibility === true
+        ? gaMakeCourseInVisible
+        : gaMakeCourseVisible;
+    ReactGA.event({
+      category: gaAddedCourseAndPrefItem,
+      action: gaAppendActionWithLng(gaAction, lng),
+      label: title
+    });
+    this.props.toggleCourseVisibility(id);
+  };
+
+  handleClickSyllabusLink = title => {
+    const { lng } = this.props;
+    ReactGA.event({
+      category: gaAddedCourseAndPrefItem,
+      action: gaAppendActionWithLng(gaClickSyllabusLink, lng),
+      label: title
+    });
   };
 
   render() {
@@ -62,6 +98,7 @@ class AddedCourseAndPrefItem extends React.Component {
         handleToggleColorPopper={this.handleToggleColorPopper}
         handleChangeColor={this.handleChangeColor}
         handleToggleVisibility={this.handleToggleVisibility}
+        handleClickSyllabusLink={this.handleClickSyllabusLink}
       />
     );
   }
@@ -73,7 +110,9 @@ const mapDispatchToProps = {
   toggleCourseVisibility
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(AddedCourseAndPrefItem);
+export default withNamespaces("translation")(
+  connect(
+    null,
+    mapDispatchToProps
+  )(AddedCourseAndPrefItem)
+);

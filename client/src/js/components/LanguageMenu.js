@@ -6,6 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLanguage } from "@fortawesome/free-solid-svg-icons";
 import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
+import ReactGA from "react-ga";
+import { gaLanguage } from "../ga/eventCategories";
+import { gaChangeLanguage } from "../ga/eventActions";
 
 import { media } from "../styled-components/utils";
 import LANGS from "../config/langs";
@@ -44,6 +47,11 @@ class LanguangeMenu extends React.Component {
 
   handleMenuItemClick = (event, lang) => {
     event.preventDefault();
+    ReactGA.event({
+      category: gaLanguage,
+      action: gaChangeLanguage,
+      label: lang
+    });
     i18n.changeLanguage(lang);
     this.handleClose();
   };

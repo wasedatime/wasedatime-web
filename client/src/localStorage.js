@@ -6,7 +6,21 @@ export const loadState = () => {
     if (serializedState === null) {
       return undefined;
     }
-    return JSON.parse(serializedState);
+    const state = JSON.parse(serializedState);
+    const fallPrefs = state.addedCourses.fall.prefs.map(pref => {
+      return pref["displayLang"] === undefined
+        ? (pref["displayLang"] = "en")
+        : pref;
+    });
+    const springPrefs = state.addedCourses.spring.prefs.map(pref => {
+      return pref["displayLang"] === undefined
+        ? (pref["displayLang"] = "en")
+        : pref;
+    });
+
+    state.addedCourses.fall.prefs = fallPrefs;
+    state.addedCourses.spring.prefs = springPrefs;
+    return state;
   } catch (error) {
     // In case of any errors, play safe and let reducers initialize the state.
     return undefined;

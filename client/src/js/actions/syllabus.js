@@ -49,12 +49,13 @@ export const hydrateAddedCourses = (prefs, fetchedCoursesById) => ({
   }
 });
 
-export const addCourse = course => ({
+export const addCourse = (course, displayLang) => ({
   type: ADD_COURSE,
   payload: {
     id: course._id,
     semester: course.term,
-    course: course
+    course: course,
+    displayLang: displayLang
   }
 });
 

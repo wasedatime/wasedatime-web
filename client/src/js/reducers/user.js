@@ -1,24 +1,22 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import { CHANGE_USER_LANG } from '../actions/types';
-import langs from '../config/langs';
+import { SET_FIRST_TIME_ACCESS_TO_FALSE } from "../actions/types";
 
-//TODO Change 'en' to null after the initial modal for setting up user profile is done.
-const displayLang = (state = 'en', action) => {
+const isFirstTimeAccess = (state = true, action) => {
   switch (action.type) {
-    case CHANGE_USER_LANG:
-      return action.payload.displayLang;
+    case SET_FIRST_TIME_ACCESS_TO_FALSE:
+      return action.payload.isFirstTimeAccess;
     default:
       return state;
   }
 };
 
 const user = combineReducers({
-  displayLang
+  isFirstTimeAccess
 });
 
 export default user;
 
-export const getUserDisplayLang = state => {
-  return state.user.displayLang === 'jp' ? langs.JP : langs.EN;
+export const getUserIsFirstTimeAccess = state => {
+  return state.user.isFirstTimeAccess;
 };

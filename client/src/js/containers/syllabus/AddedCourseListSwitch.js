@@ -1,4 +1,5 @@
 import React from "react";
+import { withNamespaces } from "react-i18next";
 
 import { addedCourseListSwitchHeight } from "../../styled-components/variables";
 import BinarySwitch from "../../components/syllabus/BinarySwitch";
@@ -7,15 +8,13 @@ import { Wrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 
 class AddedCourseListSwitch extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.springSemester = "spring";
     this.fallSemester = "fall";
     this.state = {
       selectedSemester: this.springSemester
     };
-    this.displayedSpringSemester = "Spring Semester";
-    this.displayedFallSemester = "Fall Semester";
   }
 
   handleChangeSemester = targetSemester => {
@@ -27,9 +26,9 @@ class AddedCourseListSwitch extends React.Component {
   };
 
   render() {
-    const { addedCourses } = this.props;
+    const { addedCoursesAndPrefs, t } = this.props;
     const { selectedSemester } = this.state;
-    const courses = addedCourses[selectedSemester];
+    const courses = addedCoursesAndPrefs[selectedSemester];
     return (
       <Wrapper>
         <Overlay>
@@ -41,11 +40,11 @@ class AddedCourseListSwitch extends React.Component {
             rightButtonId={`button--semester-${this.fallSemester}`}
             leftValue={this.springSemester}
             rightValue={this.fallSemester}
-            leftDisplayedValue={this.displayedSpringSemester}
-            rightDisplayedValue={this.displayedFallSemester}
+            leftDisplayedValue={t("syllabus.displayedSpringSemester")}
+            rightDisplayedValue={t("syllabus.displayedFallSemester")}
           />
           <AddedCourseListContainer
-            addedCourses={courses}
+            addedCoursesAndPrefs={courses}
             semesterKey={selectedSemester}
           />
         </Overlay>
@@ -54,4 +53,4 @@ class AddedCourseListSwitch extends React.Component {
   }
 }
 
-export default AddedCourseListSwitch;
+export default withNamespaces("translation")(AddedCourseListSwitch);

@@ -1,14 +1,14 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDoubleLeft,
   faAngleDoubleRight
-} from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
+} from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
-import { InvisibleButton } from '../../styled-components/Button';
-import { RowWrapper } from '../../styled-components/Wrapper';
-import { media } from '../../styled-components/utils';
+import { InvisibleButton } from "../../styled-components/Button";
+import { RowWrapper } from "../../styled-components/Wrapper";
+import { media } from "../../styled-components/utils";
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex: none;
@@ -17,7 +17,7 @@ const ExtendedRowWrapper = styled(RowWrapper)`
   ${media.phone`
     font-size: 1.1em;
   `};
-  padding: 0.5em;
+  padding: 0.5em 0 0.1em 0;
 `;
 
 const ExtendedInvisibleButton = styled(InvisibleButton)`
@@ -39,7 +39,7 @@ const ExtendedInvisibleButton = styled(InvisibleButton)`
   `};
 `;
 
-const SemesterTitle = styled('div')`
+const SemesterTitle = styled("div")`
   width: 10em;
   text-align: center;
 `;

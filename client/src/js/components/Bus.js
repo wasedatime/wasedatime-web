@@ -1,56 +1,60 @@
-import React from 'react';
+import React from "react";
 import { Helmet } from "react-helmet";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faAngleDoubleRight,
-  faEllipsisV } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClock,
+  faAngleDoubleRight,
+  faEllipsisV
+} from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
+import LANGS from "../config/langs";
 
-import ModalContainer from '../containers/ModalContainer';
-// TODO use react-modal
-// import Modal from './Modal';
-import { media } from '../styled-components/utils';
-import { Wrapper } from '../styled-components/Wrapper';
-import { Overlay } from '../styled-components/Overlay';
-import busSchedule from '../data/busSchedule.json';
-import safariExport from '../../img/safari-export.svg';
-import a2hsChrome from '../../img/bus_a2hs_chrome.png';
-import a2hsSafari from '../../img/bus_a2hs_safari.png';
+// TODO use modal from other ui framework
+import ModalContainer from "../containers/ModalContainer";
+import { media } from "../styled-components/utils";
+import { Wrapper } from "../styled-components/Wrapper";
+import { Overlay } from "../styled-components/Overlay";
+import busSchedule from "../data/busSchedule.json";
+import safariExport from "../../img/safari-export.svg";
+import a2hsChrome from "../../img/bus_a2hs_chrome.png";
+import a2hsSafari from "../../img/bus_a2hs_safari.png";
 
 const wasedaNishiwasedaBusUri =
-  'https://www.waseda.jp/fsci/assets/uploads/2018/03/2018waseda-nishiwaseda-shuttle-bus-timetable.pdf';
+  "https://www.waseda.jp/fsci/assets/uploads/2018/03/2018waseda-nishiwaseda-shuttle-bus-timetable.pdf";
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   padding: 0 25px;
 `;
 
-const InfoWrapper = styled('div')`
+const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  margin-top:
+  margin-top: ;
 `;
 
-const StyledAnchor = styled('a')`
+const StyledAnchor = styled("a")`
   margin: 1.5rem 0px;
   font-size: 1.8rem;
   font-weight: 400;
   text-decoration: underline;
 `;
 
-const StyledHeading = styled('h1')`
+const StyledHeading = styled("h1")`
   margin: 2rem 0px 0px 0px;
-  font-family: Times;
+  font-family: Helvetica;
   font-size: 4rem;
   font-weight: 400;
   color: #000000;
   ${media.phone`font-size: 3.6rem;`};
 `;
 
-const BusStatus = styled('article')`
-  margin:1.5rem 0px;
-`
+const BusStatus = styled("article")`
+  margin: 1.5rem 0px;
+`;
 
-const StyledSubHeading = styled('h2')`
+const StyledSubHeading = styled("h2")`
   align-self: flex-start;
   margin-top: 0px;
   margin-bottom: 1rem;
@@ -64,40 +68,41 @@ const StyledSubHeading = styled('h2')`
   ${media.phone`font-size: 2rem;`};
 `;
 
-const Status = styled('section')`
+const Status = styled("section")`
   font-size: 2rem;
   margin-bottom: 1rem;
 `;
 
-const Remark = styled('section')`
+const Remark = styled("section")`
   font-size: 1.5rem;
-`
+`;
 
-const ModalImage = styled('img')`
+const ModalImage = styled("img")`
   width: 270px;
   ${media.phone`width: 100%;`};
-`
+`;
 
-const ModalArticle = styled('article')`
+const ModalArticle = styled("article")`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
-const ModalHeading = styled('h3')`
+const ModalHeading = styled("h3")`
   font-size: 2.2rem;
   margin: 0px;
-`
+`;
 
-const ModalSection = styled('section')`
+const ModalSection = styled("section")`
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 20px 0px;
-`
+`;
 
 const binarySearch = (value, arr) => {
-  let start = 0, end = arr.length - 1;
+  let start = 0,
+    end = arr.length - 1;
   while (start <= end) {
     const mid = Math.floor((start + end) / 2);
     if (arr[mid] === value) {
@@ -109,33 +114,53 @@ const binarySearch = (value, arr) => {
     }
   }
   return false;
-}
+};
 
 const getSchduleType = (month, date, day) => {
-    const monthString = month.toString();
-    const {outOfService, weekdaySchedule, saturdaySchedule, specialSchedule} = busSchedule["exceptions"];
-    if (monthString in outOfService && binarySearch(date, outOfService[monthString])) {
+  const monthString = month.toString();
+  const {
+    outOfService,
+    weekdaySchedule,
+    saturdaySchedule,
+    specialSchedule
+  } = busSchedule["exceptions"];
+
+  if (
+    monthString in outOfService &&
+    binarySearch(date, outOfService[monthString])
+  ) {
+    return "no";
+  } else if (
+    monthString in weekdaySchedule &&
+    binarySearch(date, weekdaySchedule[monthString])
+  ) {
+    return "weekday";
+  } else if (
+    monthString in saturdaySchedule &&
+    binarySearch(date, saturdaySchedule[monthString])
+  ) {
+    return "saturday";
+  } else if (
+    monthString in specialSchedule &&
+    binarySearch(date, specialSchedule[monthString])
+  ) {
+    return "special";
+  } else {
+    if (day === 0) {
       return "no";
-    } else if (monthString in weekdaySchedule && binarySearch(date, weekdaySchedule[monthString])) {
-      return "weekday";
-    } else if (monthString in saturdaySchedule && binarySearch(date,saturdaySchedule[monthString])) {
+    } else if (day === 6) {
       return "saturday";
-    } else if (monthString in specialSchedule && binarySearch(date, specialSchedule[monthString])) {
-      return "special";
     } else {
-      if (day === 0) {
-        return "no";
-      } else if (day === 6) {
-        return "saturday";
-      } else {
-        return "weekday";
-      }
+      return "weekday";
     }
-}
+  }
+};
 
 const binarySearchSchedule = (totalMins, schedule) => {
-  let start = 0, end = schedule.length - 1;
-  let ans = 0, index = 0;
+  let start = 0,
+    end = schedule.length - 1;
+  let ans = 0,
+    index = 0;
   while (start <= end) {
     const mid = Math.floor((start + end) / 2);
     if (schedule[mid] === totalMins) {
@@ -155,11 +180,11 @@ const binarySearchSchedule = (totalMins, schedule) => {
   } else {
     // Return value -1 if totalMins is larger than all bus schedule values,
     // meaning no service.
-    return index >= schedule.length ? -1: schedule[index];
+    return index >= schedule.length ? -1 : schedule[index];
   }
-}
+};
 
-const totalMinsToTimeStr = (totalMins) => {
+const totalMinsToTimeStr = totalMins => {
   const hours = Math.floor(totalMins / 60);
   const minutes = totalMins - hours * 60;
   // TODO duplicated code from ClassroomList
@@ -169,106 +194,172 @@ const totalMinsToTimeStr = (totalMins) => {
 };
 
 //TODO Fix mixing different return types
-const getBusStatus = (totalMins, occurrences, remarks) => {
+const getBusStatus = (totalMins, occurrences, remarks, t) => {
   const nextTotalMins = binarySearchSchedule(totalMins, occurrences);
   // If there is there exists a subsequent bus schedule on the same day
   if (nextTotalMins !== -1) {
-    const remark = nextTotalMins in remarks ? remarks[nextTotalMins.toString()] : "";
+    const remark =
+      nextTotalMins in remarks ? remarks[nextTotalMins.toString()] : "";
     const nextTimeString = totalMinsToTimeStr(nextTotalMins);
-    return {"departIn": nextTotalMins - totalMins, "timeString": nextTimeString, remark};
+    return {
+      departIn: nextTotalMins - totalMins,
+      timeString: nextTimeString,
+      remark
+    };
   }
-  return "Out of service";
-}
+  return t("bus.Out of service");
+};
 
-const getBusStatuses = (now) => {
+const getBusStatuses = (now, lng, t) => {
   const month = now.getMonth();
   const date = now.getDate();
   const day = now.getDay();
-  let wasedaStatus = "Out of service", nishiStatus = "Out of service";
+  //assertion language at first
+  let wasedaStatus, nishiStatus;
+  wasedaStatus = t("bus.Out of service");
+  nishiStatus = t("bus.Out of service");
   const scheduleType = getSchduleType(month, date, day);
   // No buses or special schedule
   if (scheduleType === "no") {
-    return {wasedaStatus, nishiStatus};
+    return { wasedaStatus, nishiStatus };
   } else if (scheduleType === "special") {
-    wasedaStatus = "Special Schedule";
-    nishiStatus = "Special Schedule";
-    return {wasedaStatus, nishiStatus};
+    wasedaStatus = t("bus.Special Schedule");
+    nishiStatus = t("bus.Special Schedule");
+    return { wasedaStatus, nishiStatus };
   }
+
   // Weekday schedule or Saturday schedule
   const totalMins = now.getHours() * 60 + now.getMinutes();
   const wasedaSchedule = busSchedule[scheduleType].fromWasedaToNishiWaseda;
   const nishiSchedule = busSchedule[scheduleType].fromNishiWasedaToWaseda;
-  wasedaStatus = getBusStatus(totalMins, wasedaSchedule.occurrences, wasedaSchedule.remarks);
-  nishiStatus = getBusStatus(totalMins, nishiSchedule.occurrences, nishiSchedule.remarks);
-  return {wasedaStatus, nishiStatus};
-}
+  if (lng === LANGS.EN) {
+    wasedaStatus = getBusStatus(
+      totalMins,
+      wasedaSchedule.occurrences,
+      wasedaSchedule.remarks_en,
+      t
+    );
+    nishiStatus = getBusStatus(
+      totalMins,
+      nishiSchedule.occurrences,
+      nishiSchedule.remarks_en,
+      t
+    );
+  } else if (lng === LANGS.JP) {
+    wasedaStatus = getBusStatus(
+      totalMins,
+      wasedaSchedule.occurrences,
+      wasedaSchedule.remarks_jp,
+      t
+    );
+    nishiStatus = getBusStatus(
+      totalMins,
+      nishiSchedule.occurrences,
+      nishiSchedule.remarks_jp,
+      t
+    );
+  }
+  return { wasedaStatus, nishiStatus };
+};
 
-const createStatusComponent = (status) => {
-  if (typeof status === 'object') {
+const createStatusComponent = (status, t) => {
+  if (typeof status === "object") {
     return {
-      "status": <span>Departs in <b>{status.departIn}</b> mins&nbsp;
-        <FontAwesomeIcon icon={faClock} size="1x" /> <b>{status.timeString}</b>
-        </span>,
-      "remark": status.remark
+      status: (
+        <span>
+          {t("bus.Departs in")} <b>{status.departIn}</b> {t("bus.mins")}&nbsp;
+          <FontAwesomeIcon icon={faClock} size="1x" />{" "}
+          <b>{status.timeString}</b>
+        </span>
+      ),
+      remark: status.remark
     };
   }
   return {
-    "status": <span>{status}</span>,
-    "remark": ""
+    status: <span>{status}</span>,
+    remark: ""
   };
-}
+};
 
-const Bus = () => {
+const Bus = ({ t, lng }) => {
   const now = new Date();
-  const {wasedaStatus, nishiStatus} = getBusStatuses(now);
-  const wasedaStatusComponent = createStatusComponent(wasedaStatus);
-  const nishiStatusComponent = createStatusComponent(nishiStatus);
+  const { wasedaStatus, nishiStatus } = getBusStatuses(now, lng, t);
+  const wasedaStatusComponent = createStatusComponent(wasedaStatus, t);
+  const nishiStatusComponent = createStatusComponent(nishiStatus, t);
   return (
     <Wrapper>
       <Helmet>
-        <title>WasedaTime - Bus</title>
-        <meta name="description" content="Shuttle Bus Arrival Time Checking at Waseda University." />
-        <meta property="og:title" content="WasedaTime - Bus" />
-        <meta property="og:description" content="Shuttle Bus Arrival Time Checking at Waseda University." />
-        <meta property="og:site_name" content="WasedaTime - Bus" />
+        <title>WaseTime -　Bus</title>
+        <meta
+          name="description"
+          content="Shuttle Bus Arrival Time Checking at Waseda University."
+        />
+        <meta property="og:title" content="WaseTime - Bus" />
+        <meta
+          property="og:description"
+          content="Shuttle Bus Arrival Time Checking at Waseda University."
+        />
+        <meta property="og:site_name" content="WaseTime - Bus" />
       </Helmet>
       <ExtendedOverlay>
         <InfoWrapper>
-          <StyledHeading>Bus Status</StyledHeading>
+          <StyledHeading>{t("bus.busStatus")}</StyledHeading>
           <BusStatus>
             <StyledSubHeading>
-              Waseda <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" /> NishiWaseda
+              {t("bus.Waseda")}{" "}
+              <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
+              {t("bus.NishiWaseda")}
             </StyledSubHeading>
             <Status>{wasedaStatusComponent.status}</Status>
             <Remark>{wasedaStatusComponent.remark}</Remark>
           </BusStatus>
           <BusStatus>
             <StyledSubHeading>
-              NishiWaseda <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" /> Waseda
+              {t("bus.NishiWaseda")}{" "}
+              <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
+              {t("bus.Waseda")}
             </StyledSubHeading>
             <Status>{nishiStatusComponent.status}</Status>
             <Remark>{nishiStatusComponent.remark}</Remark>
           </BusStatus>
-          <ModalContainer linkText="Add to home screen" text="and never miss a bus again!">
+          <ModalContainer
+            linkText={t("bus.Add to home screen")}
+            text={t("bus.and never miss a bus again!")}
+          >
             <ModalArticle>
               <ModalSection>
                 <ModalHeading>Android / Chrome:</ModalHeading>
-                <p>Tap on the top-right icon&nbsp;<FontAwesomeIcon icon={faEllipsisV} size="1x" />
-                &nbsp;and select "Add to Home screen"</p>
-                <ModalImage src={a2hsChrome} alt="Add to home screen image for Chrome"></ModalImage>
+                <p>
+                  {t("bus.Tap on the top-right icon")}
+                  &nbsp;
+                  <FontAwesomeIcon icon={faEllipsisV} size="1x" />
+                  &nbsp;
+                  {t("bus.and select Add to Home screen")}
+                </p>
+                <ModalImage
+                  src={a2hsChrome}
+                  alt="Add to home screen image for Chrome"
+                />
               </ModalSection>
               <ModalSection>
                 <ModalHeading>IOS / Safari:</ModalHeading>
-                <p>Tap on the bottom-middle icon&nbsp;
-                  <img src={safariExport} alt="Safari export icon"></img>
-                and select "Add to Home Screen"</p>
-                <ModalImage src={a2hsSafari} alt="Add to home screen image for Safari"></ModalImage>
+                <p>
+                  {t("bus.Tap on the bottom-middle icon")}
+                  &nbsp;
+                  <img src={safariExport} alt="Safari export icon" />
+                  &nbsp;
+                  {t("bus.and select Add to Home screen")}
+                </p>
+                <ModalImage
+                  src={a2hsSafari}
+                  alt="Add to home screen image for Safari"
+                />
               </ModalSection>
             </ModalArticle>
           </ModalContainer>
-          <StyledHeading>Official Link</StyledHeading>
+          <StyledHeading>{t("bus.Official Link")}</StyledHeading>
           <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
-            The Latest Waseda-NishiWaseda Bus Schedule
+            {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}
           </StyledAnchor>
         </InfoWrapper>
       </ExtendedOverlay>
@@ -276,4 +367,4 @@ const Bus = () => {
   );
 };
 
-export default Bus;
+export default withNamespaces("translation")(Bus);

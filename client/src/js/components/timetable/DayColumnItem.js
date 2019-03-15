@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import CourseColumn from './CourseColumn';
+import CourseColumn from "./CourseColumn";
 
-const StyledDayColumnItem = styled('li')`
+const StyledDayColumnItem = styled("li")`
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
-`
+`;
 
-const DayItem = styled('div')`
+const DayItem = styled("div")`
   display: flex;
   flex: 0 0 3rem;
   justify-content: center;
@@ -17,20 +17,20 @@ const DayItem = styled('div')`
   font-size: 1.8rem;
   font-weight: 600;
   border-bottom: solid 1px #ccc;
-`
+`;
 
-const DayColumnItem = ({day, largestPeriod, coursesAndProperties}) => {
+const DayColumnItem = ({ day, largestPeriod, coursesAndProperties }) => {
   return (
     <StyledDayColumnItem>
       <DayItem>
         <span>{day}</span>
       </DayItem>
       <CourseColumn
-        largestPeriod={largestPeriod} 
+        largestPeriod={largestPeriod}
         coursesAndProperties={coursesAndProperties}
       />
     </StyledDayColumnItem>
-  )
-}
+  );
+};
 
 export default DayColumnItem;

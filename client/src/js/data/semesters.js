@@ -1,3 +1,8 @@
+//TODO Cannot import outside src
+// import translation from "../../../public/locales/en/translation.json";
+// const semesterMap = translation.syllabus.semesterMap;
+// const semesters = Object.keys(semesterMap);
+
 export const springSemesterMap = {
   springSem: "Spring Semester",
 

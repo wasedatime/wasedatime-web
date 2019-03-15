@@ -1,9 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
 
-import { media } from '../../styled-components/utils';
+import { media } from "../../styled-components/utils";
+import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 
-const StyledCourseColumn = styled('div')`
+const StyledCourseColumn = styled("div")`
   display: flex;
   flex: 1 0 calc(63rem / 7 * ${props => props.displayPeriods});
   border-right: solid 1px #ccc;
@@ -15,7 +17,7 @@ const StyledCourseColumn = styled('div')`
   flex-direction: row;
 `;
 
-const CourseItem = styled('div')`
+const CourseItem = styled("div")`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -29,7 +31,7 @@ const CourseItem = styled('div')`
   border-left-style: solid;
 `;
 
-const CourseTitle = styled('span')`
+const CourseTitle = styled("span")`
   flex: 1 1 auto;
   font-weight: bold;
   font-size: 1.4rem;
@@ -42,7 +44,7 @@ const CourseTitle = styled('span')`
   ${media.phone`font-size: 1.2rem;`};
 `;
 
-const CourseLocation = styled('span')`
+const CourseLocation = styled("span")`
   display: inline-flex;
   flex: 0 0 auto;
   padding: 0.2em 0;
@@ -55,7 +57,7 @@ const CourseLocation = styled('span')`
   ${media.phone`font-size: 1.2rem;`};
 `;
 
-const CourseList = styled('div')`
+const CourseList = styled("div")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
@@ -63,7 +65,7 @@ const CourseList = styled('div')`
   position: relative;
 `;
 
-const CourseColumn = ({ largestPeriod, coursesAndProperties }) => {
+const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
   const displayPeriods = Math.max(largestPeriod, 5);
   // a distinct course list has no occurrence overlaps between its course items.
   let distinctCourseLists = [[]];
@@ -116,12 +118,13 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties }) => {
   const distinctCourseListsComponent = distinctCourseLists.map(
     (distinctCourseList, index) => {
       const listComponent = distinctCourseList.map(courseAndProperty => {
-        const { course, color } = courseAndProperty;
+        const { course, color, displayLang } = courseAndProperty;
+        const { title } = getCourseTitleAndInstructor(course, displayLang);
         const startPeriod = Number(course.occurrence.start_period);
         const endPeriod = Number(course.occurrence.end_period);
-        let location = 'undecided';
-        if (course.occurrence.classroom !== 'undecided') {
-          if (course.occurrence.building !== '-1') {
+        let location = t("timetable.undecided");
+        if (course.occurrence.classroom !== "undecided") {
+          if (course.occurrence.building !== "-1") {
             location = course.occurrence.location;
           } else {
             location = course.occurrence.classroom;
@@ -135,7 +138,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties }) => {
             top={startPeriod - 1}
             height={endPeriod - startPeriod + 1}
           >
-            <CourseTitle>{course.title}</CourseTitle>
+            <CourseTitle>{title}</CourseTitle>
             <CourseLocation>{location}</CourseLocation>
           </CourseItem>
         );
@@ -151,4 +154,4 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties }) => {
   );
 };
 
-export default CourseColumn;
+export default withNamespaces("translation")(CourseColumn);

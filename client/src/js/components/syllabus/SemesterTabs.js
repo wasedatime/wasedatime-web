@@ -5,6 +5,7 @@ import stickybits from 'stickybits';
 import { headerHeight } from '../../styled-components/variables';
 import { RowWrapper } from '../../styled-components/Wrapper';
 
+
 const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
   align-items: center;
@@ -76,6 +77,7 @@ class SemesterTabs extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <ExtendedWrapper innerRef={this.setWrapperRef}>
         <SemesterButton
@@ -83,18 +85,17 @@ class SemesterTabs extends React.Component {
           onClick={this.handleOnClick}
           isSelected={this.props.semester === this.springSemester}
         >
-          Spring Semester
+         Spring Semester
         </SemesterButton>
         <SemesterButton
           id={this.fallButtonId}
           onClick={this.handleOnClick}
           isSelected={this.props.semester === this.fallSemester}
         >
-          Fall Semester
+        Fall Semester
         </SemesterButton>
       </ExtendedWrapper>
     );
   }
 }
-
 export default SemesterTabs;

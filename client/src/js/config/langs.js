@@ -1,7 +1,6 @@
-const langs = Object.freeze({
-  EN: Symbol('English'),
-  JP: Symbol('Japanese')
+const LANGS = Object.freeze({
+  EN: "en",
+  JP: "jp"
 });
 
-export default langs;
-
+export default LANGS;

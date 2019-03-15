@@ -38,13 +38,17 @@ const StyledLink = styled("a")`
   color: #ffffff;
 `;
 
-const Footer = ({ finishTime, t, lng }) => {
+const Footer = ({ finishTime, t, i18n, lng }) => {
+  console.log(i18n.language, i18n.languages, i18n);
   return (
     <StyledFooter>
       <StyledP>{finishTime}</StyledP>
       <StyledList>
         <StyledListItem>
-          <StyledLink href="https://github.com/wasetime/wasetime-web" target="_blank">
+          <StyledLink
+            href="https://github.com/wasetime/wasetime-web"
+            target="_blank"
+          >
             <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
           </StyledLink>
         </StyledListItem>
@@ -62,7 +66,10 @@ const Footer = ({ finishTime, t, lng }) => {
 
       {lng === LANGS.JP ? (
         <StyledP>
-          <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors" target="_blank">
+          <StyledLink
+            href="https://github.com/wasetime/wasetime-web/graphs/contributors"
+            target="_blank"
+          >
             コントリビュータたち
           </StyledLink>
           <span role="img" aria-label="Love">
@@ -77,7 +84,10 @@ const Footer = ({ finishTime, t, lng }) => {
             ❤️&nbsp;
           </span>
           by&nbsp;
-          <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors" target="_blank">
+          <StyledLink
+            href="https://github.com/wasetime/wasetime-web/graphs/contributors"
+            target="_blank"
+          >
             Our Contributors
           </StyledLink>
         </StyledP>
@@ -87,7 +97,10 @@ const Footer = ({ finishTime, t, lng }) => {
           WasedaTime 2019.
         </StyledLink>
         {t("footer.licensed")}
-        <StyledLink href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md" target="_blank">
+        <StyledLink
+          href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md"
+          target="_blank"
+        >
           MIT
         </StyledLink>
         .

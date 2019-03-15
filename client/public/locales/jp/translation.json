@@ -21,11 +21,11 @@
     "We also received help from": "それ以外の",
     "these contributors": "貢献者たち",
     "a": "",
-    "notice": "お知らせ",
-    "currently": "Currently, we only support the following schools in Syllabus:",
-    "supportedSchools": "SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC (Global)",
-    "sorry": "We are sorry for any inconvenience caused.",
-    "future": "In the future, every school will be supported."
+    "notice": "お詫び",
+    "currently": "誠に申し訳ございませんが、シラバスで検索できる授業の学部は以下のみです。",
+    "supportedSchools": "国教、政経、社学、基幹、先進、創造、日本語教育、グローバル",
+    "sorry": "今後、全学部で使用できるように取り組んでおります。",
+    "future": "ご理解のほど宜しくお願い致します。"
   },
   "navigation": {
     "timetable": "時間割",

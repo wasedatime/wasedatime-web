@@ -9,7 +9,8 @@ import homeBackgroundPhone from "../../../img/home_background-phone.jpg";
 
 const styles = {
   dialogPaper: {
-    margin: "40px"
+    margin: "40px",
+    maxWidth: "620px"
   }
 };
 

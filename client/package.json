@@ -23,7 +23,7 @@
     "query-string": "^5.1.1",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-ga": "^2.4.0",
+    "react-ga": "^2.5.7",
     "react-helmet": "^5.2.0",
     "react-i18next": "^8.3.8",
     "react-localize-redux": "^3.4.1",

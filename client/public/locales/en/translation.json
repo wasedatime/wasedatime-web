@@ -20,7 +20,12 @@
     "May WasedaTime be with you": "May WasedaTime be with you",
     "We also received help from": "We also received help from",
     "these contributors": "these contributors",
-    "a": "."
+    "a": ".",
+    "notice": "Notice",
+    "currently": "Currently, we only support the following schools in Syllabus:",
+    "supportedSchools": "SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC (Global)",
+    "sorry": "We are sorry for any inconvenience caused.",
+    "future": "In the future, every school will be supported."
   },
   "navigation": {
     "timetable": "Timetable",

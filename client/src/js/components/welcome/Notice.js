@@ -5,7 +5,6 @@ import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 
 import { Article } from "../../styled-components/Article";
-import Developers from "./Developers";
 import { media } from "../../styled-components/utils";
 
 const ExtendedArticle = styled(Article)`
@@ -15,11 +14,6 @@ const ExtendedArticle = styled(Article)`
   ${media.phone`
     font-size: 16px
   `};
-`;
-
-const StyledLink = styled("a")`
-  color: #b51e36;
-  text-decoration: none;
 `;
 
 const styles = {
@@ -34,7 +28,7 @@ const styles = {
   }
 };
 
-const Contributors = ({ classes, t }) => {
+const Notice = ({ classes, t }) => {
   return (
     <ExtendedArticle>
       <Typography
@@ -44,9 +38,8 @@ const Contributors = ({ classes, t }) => {
         gutterBottom
         className={classes.h3}
       >
-        {t("welcome.Meet our developers!")}
+        {t("welcome.notice")}
       </Typography>
-      <Developers t={t} />
       <Typography
         className={classes.h4}
         variant="h4"
@@ -54,18 +47,18 @@ const Contributors = ({ classes, t }) => {
         align="center"
         gutterBottom
       >
-        {t("welcome.We also received help from")}
+        {t("welcome.currently")}
         <br />
-        <StyledLink
-          href="https://github.com/wasetime/wasetime-web/graphs/contributors"
-          target="_blank"
-        >
-          {t("welcome.these contributors")}
-        </StyledLink>
-        {t("welcome.a")}
+        <br />
+        {t("welcome.supportedSchools")}
+        <br />
+        <br />
+        {t("welcome.sorry")}
+        <br />
+        {t("welcome.future")}
       </Typography>
     </ExtendedArticle>
   );
 };
 
-export default withNamespaces("translation")(withStyles(styles)(Contributors));
+export default withNamespaces("translation")(withStyles(styles)(Notice));

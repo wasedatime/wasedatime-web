@@ -20,7 +20,12 @@
     "May WasedaTime be with you": "WasedaTimeと共にあらんことを",
     "We also received help from": "それ以外の",
     "these contributors": "貢献者たち",
-    "a": ""
+    "a": "",
+    "notice": "お知らせ",
+    "currently": "Currently, we only support the following schools in Syllabus:",
+    "supportedSchools": "SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC (Global)",
+    "sorry": "We are sorry for any inconvenience caused.",
+    "future": "In the future, every school will be supported."
   },
   "navigation": {
     "timetable": "時間割",

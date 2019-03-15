@@ -21,7 +21,7 @@ const FilterWrapper = styled(Wrapper)`
       ? `calc(100vh - ${props.theme.headerHeight} - ${
           props.theme.searchBarHeight
         });`
-      : "100vh;"};
+      : "auto"};
 `;
 
 const FilterOverlay = styled("div")`

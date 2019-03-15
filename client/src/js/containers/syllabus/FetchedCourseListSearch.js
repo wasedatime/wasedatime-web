@@ -39,6 +39,7 @@ const modalStyle = {
     bottom: 0,
     background: "#fff",
     overflowY: "auto",
+    overflowScrolling: "touch",
     WebkitOverflowScrolling: "touch",
     outline: "none",
     fontSize: "16px",

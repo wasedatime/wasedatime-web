@@ -1,9 +1,13 @@
 //Credits: Adapted from the awesome tutorial by Sergio Pedercini at
 //https://medium.com/@pppped/build-a-simple-modal-window-with-react-and-jss-f05041d899cc
-import React from 'react';
+import React from "react";
+import { withNamespaces } from "react-i18next";
+import ReactGA from "react-ga";
 
-import BusModal from '../components/BusModal';
-import { InvisibleButton } from '../styled-components/Button';
+import BusModal from "../components/BusModal";
+import { InvisibleButton } from "../styled-components/Button";
+import { gaBus } from "../ga/eventCategories";
+import { gaAppendActionWithLng, gaOpenModal } from "../ga/eventActions";
 
 class ModalContainer extends React.Component {
   constructor(props) {
@@ -15,6 +19,10 @@ class ModalContainer extends React.Component {
 
   //Avoid creating an arrow function wrapper and binds in render.
   handleToggleModal = () => {
+    ReactGA.event({
+      category: gaBus,
+      action: gaAppendActionWithLng(gaOpenModal, this.props.lng)
+    });
     this.setState((prevState, props) => {
       return { showModal: !this.state.showModal };
     });
@@ -29,14 +37,14 @@ class ModalContainer extends React.Component {
         <span>
           <InvisibleButton
             style={{
-              color: '#0000FF',
-              textDecoration: 'underline',
-              cursor: 'pointer'
+              color: "#0000FF",
+              textDecoration: "underline",
+              cursor: "pointer"
             }}
             onClick={this.handleToggleModal}
           >
             {linkText}
-          </InvisibleButton>{' '}
+          </InvisibleButton>{" "}
           {text}
         </span>
         {showModal && (
@@ -47,4 +55,4 @@ class ModalContainer extends React.Component {
   }
 }
 
-export default ModalContainer;
+export default withNamespaces("translation")(ModalContainer);

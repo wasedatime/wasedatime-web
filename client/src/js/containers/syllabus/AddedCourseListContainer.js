@@ -1,10 +1,19 @@
 import React from "react";
 import { connect } from "react-redux";
+import { withNamespaces } from "react-i18next";
+import ReactGA from "react-ga";
 
 import { changeCoursesSortingOption } from "../../actions/syllabus";
 import { getSortingOption } from "../../reducers/addedSemesterCourses";
 import { sortAddedCourses } from "../../utils/addedCourses";
 import AddedCourseList from "../../components/syllabus/AddedCourseList";
+import { gaAddedCourseItem } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaOpenSortingOption,
+  gaCloseSortingOption,
+  gaChangeSortingOption
+} from "../../ga/eventActions";
 
 class AddedCourseListContainer extends React.Component {
   constructor() {
@@ -16,6 +25,13 @@ class AddedCourseListContainer extends React.Component {
 
   handleToggleSortingOptions = event => {
     event.preventDefault();
+    const gaAction = this.state.isSortingOptionOpen
+      ? gaCloseSortingOption
+      : gaOpenSortingOption;
+    ReactGA.event({
+      category: gaAddedCourseItem,
+      action: gaAppendActionWithLng(gaAction, this.props.lng)
+    });
     this.setState((prevState, props) => {
       return { isSortingOptionOpen: !prevState.isSortingOptionOpen };
     });
@@ -23,6 +39,11 @@ class AddedCourseListContainer extends React.Component {
 
   handleChangeSortingOption = sortingOption => {
     if (sortingOption !== this.props.sortingOption) {
+      ReactGA.event({
+        category: gaAddedCourseItem,
+        action: gaAppendActionWithLng(gaChangeSortingOption, this.props.lng),
+        label: sortingOption
+      });
       this.props.changeCoursesSortingOption(
         sortingOption,
         this.props.semesterKey
@@ -67,7 +88,9 @@ const mapDispatchToProps = {
   changeCoursesSortingOption
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(AddedCourseListContainer);
+export default withNamespaces("translation")(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(AddedCourseListContainer)
+);

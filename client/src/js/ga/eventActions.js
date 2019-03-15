@@ -13,6 +13,10 @@ export const gaRemoveFilter = "Remove Filter";
 export const gaSetLanguage = "Set Language";
 export const gaChangeLanguage = "Change Language";
 
+export const gaOpenSortingOption = "Open Sorting Option";
+export const gaCloseSortingOption = "Close Sorting Option";
+export const gaChangeSortingOption = "Change Sorting Option";
+
 export const gaAppendActionWithLng = (action, lng) => {
   return `${action} - ${lng} user`;
 };

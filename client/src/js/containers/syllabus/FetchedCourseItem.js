@@ -1,18 +1,30 @@
 import React from "react";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
+import ReactGA from "react-ga";
 
 import { addCourse, removeCourse } from "../../actions/syllabus";
 import { getById } from "../../reducers/addedCourses";
 import CourseItem from "../../components/syllabus/CourseItem";
+import { gaFetchedCourseItem } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaAddCourse,
+  gaRemoveCourse,
+  gaClickSyllabusLink
+} from "../../ga/eventActions";
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
 
 class FetchedCourseItem extends React.Component {
-  handleAddCourse = event => {
-    event.preventDefault();
+  handleAddCourse = (title, lng) => {
     const { course, byId, searchLang } = this.props;
     const occurrences = course.occurrences;
+    ReactGA.event({
+      category: gaFetchedCourseItem,
+      action: gaAppendActionWithLng(gaAddCourse, lng),
+      label: title
+    });
     if (Object.keys(byId).length >= ADDED_COURSES_NUMBER_LIMIT) {
       Alert.error(
         `Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`,
@@ -40,13 +52,25 @@ class FetchedCourseItem extends React.Component {
     }
   };
 
-  handleRemoveCourse = event => {
-    event.preventDefault();
+  handleRemoveCourse = (title, lng) => {
     const { course } = this.props;
+    ReactGA.event({
+      category: gaFetchedCourseItem,
+      action: gaAppendActionWithLng(gaRemoveCourse, lng),
+      label: title
+    });
     this.props.removeCourse(course._id);
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly"
+    });
+  };
+
+  handleClickSyllabusLink = (title, lng) => {
+    ReactGA.event({
+      category: gaFetchedCourseItem,
+      action: gaAppendActionWithLng(gaClickSyllabusLink, lng),
+      label: title
     });
   };
 
@@ -59,6 +83,7 @@ class FetchedCourseItem extends React.Component {
         handleOnClick={
           isAddable ? this.handleAddCourse : this.handleRemoveCourse
         }
+        handleClickSyllabusLink={this.handleClickSyllabusLink}
         isAddable={isAddable}
         searchTerm={searchTerm}
         searchLang={searchLang}

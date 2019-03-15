@@ -193,7 +193,9 @@ const CourseItem = ({
   course,
   isAddable,
   handleOnClick,
-  t
+  handleClickSyllabusLink,
+  t,
+  lng
 }) => {
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
@@ -268,6 +270,9 @@ const CourseItem = ({
               )}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={e => {
+                handleClickSyllabusLink(title, lng);
+              }}
             >
               <FontAwesomeIcon
                 style={{ color: "#6495ED" }}
@@ -276,7 +281,12 @@ const CourseItem = ({
                 transform="shrink-2"
               />
             </a>
-            <InvisibleButton onClick={handleOnClick}>
+            <InvisibleButton
+              onClick={e => {
+                e.preventDefault();
+                handleOnClick(title, lng);
+              }}
+            >
               {buttonIcon}
             </InvisibleButton>
           </div>

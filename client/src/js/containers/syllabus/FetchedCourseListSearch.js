@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import { withNamespaces } from "react-i18next";
 import queryString from "query-string";
 import styled from "styled-components";
+import ReactGA from "react-ga";
 
 import { searchCourses, sortCourses } from "../../utils/courseSearch";
 import SearchBar from "../../components/syllabus/SearchBar";
@@ -17,6 +18,14 @@ import { SideBar } from "../../styled-components/SideBar";
 import { sizes } from "../../styled-components/utils";
 import { fallSemesters, springSemesters } from "../../data/semesters";
 import { getSearchLang } from "../../utils/courseSearch";
+import { gaFilter } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaOpenModal,
+  gaCloseModal,
+  gaApplyFilter,
+  gaRemoveFilter
+} from "../../ga/eventActions";
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
@@ -76,6 +85,11 @@ class FetchedCourseSearch extends React.Component {
 
   handleToggleModal = event => {
     event.preventDefault();
+    const gaAction = this.state.isModalOpen ? gaCloseModal : gaOpenModal;
+    ReactGA.event({
+      category: gaFilter,
+      action: gaAppendActionWithLng(gaAction, this.props.lng)
+    });
     this.setState((prevState, props) => {
       return {
         isModalOpen: !prevState.isModalOpen
@@ -86,9 +100,19 @@ class FetchedCourseSearch extends React.Component {
   handleToggleFilter = (inputName, value) => {
     this.setState((prevState, props) => {
       const { [inputName]: filters, ...rest } = prevState.filterGroups;
-      const newFilters = filters.includes(value)
-        ? filters.filter(elem => elem !== value)
-        : [...filters, value];
+      let newFilters, gaAction;
+      if (filters.includes(value)) {
+        newFilters = filters.filter(elem => elem !== value);
+        gaAction = gaRemoveFilter;
+      } else {
+        newFilters = [...filters, value];
+        gaAction = gaApplyFilter;
+      }
+      ReactGA.event({
+        category: gaFilter,
+        action: gaAppendActionWithLng(gaAction, this.props.lng),
+        label: `${inputName} - ${value}`
+      });
       const newFilterGroups = {
         [inputName]: newFilters,
         ...rest

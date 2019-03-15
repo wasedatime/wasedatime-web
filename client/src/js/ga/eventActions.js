@@ -6,6 +6,7 @@ export const gaMakeCourseInVisible = "Make Course Invisible";
 export const gaChangeCourseColor = "Change Course Color";
 
 export const gaOpenModal = "Open modal";
+export const gaCloseModal = "Close modal";
 export const gaApplyFilter = "Appy Filter";
 export const gaRemoveFilter = "Remove Filter";
 

@@ -8,6 +8,7 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+import noScroll from "no-scroll";
 
 import { setFirstTimeAccessToFalse } from "../../actions/user";
 import Greeting from "./Greeting";
@@ -32,6 +33,15 @@ class DialogStepper extends React.Component {
     this.state = {
       activeStep: 0
     };
+  }
+
+  componentDidMount() {
+    window.scrollTo({ top: 0 });
+    noScroll.on();
+  }
+
+  componentWillUnmount() {
+    noScroll.off();
   }
 
   handleNext = () => {

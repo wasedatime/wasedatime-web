@@ -9,11 +9,14 @@ import Button from "@material-ui/core/Button";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import noScroll from "no-scroll";
+import ReactGA from "react-ga";
 
 import { setFirstTimeAccessToFalse } from "../../actions/user";
 import Greeting from "./Greeting";
 import Contributors from "./Contributors";
 import Notice from "./Notice";
+import { gaLanguage } from "../../ga/eventCategories";
+import { gaSetLanguage } from "../../ga/eventActions";
 
 const styles = theme => ({
   root: {
@@ -38,7 +41,6 @@ class DialogStepper extends React.Component {
   componentDidMount() {
     window.scrollTo({ top: 0 });
     noScroll.on();
-    this.props.setFirstTimeAccessToFalse();
   }
 
   componentWillUnmount() {
@@ -64,6 +66,11 @@ class DialogStepper extends React.Component {
   };
 
   handleDone = () => {
+    ReactGA.event({
+      category: gaLanguage,
+      action: gaSetLanguage,
+      label: this.props.lng
+    });
     this.props.setFirstTimeAccessToFalse();
     this.redirectToRoot();
   };

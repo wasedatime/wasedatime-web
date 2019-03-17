@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-import Navigation from './Navigation';
-import logo from '../../img/logo.png';
+import Navigation from "./Navigation";
+import LanguangeMenu from "./LanguageMenu";
+import logo from "../../img/logo.png";
 
-const StyledHeader = styled('header')`
+const StyledHeader = styled("header")`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -24,7 +25,7 @@ const StyledLink = styled(Link)`
   margin-right: 0.5rem;
 `;
 
-const Logo = styled('img')`
+const Logo = styled("img")`
   width: 50px;
   height: 50px;
 `;
@@ -33,9 +34,10 @@ const Header = () => {
   return (
     <StyledHeader>
       <StyledLink to="/about">
-        <Logo src={logo} alt="Wasetime logo" />
+        <Logo src={logo} alt="WasedaTime logo" />
       </StyledLink>
       <Navigation />
+      <LanguangeMenu />
     </StyledHeader>
   );
 };

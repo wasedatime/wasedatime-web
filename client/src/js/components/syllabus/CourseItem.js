@@ -1,35 +1,38 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlusCircle,
   faMinusCircle,
   faClock,
   faMapMarkerAlt,
   faExternalLinkSquareAlt
-} from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
+} from "@fortawesome/free-solid-svg-icons";
+import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 
-import { SILS, PSE, SSS, FSE, ASE, CSE, CJL } from '../../data/schools';
-import { highlight } from '../../utils/react';
-import { media } from '../../styled-components/utils';
-import { InvisibleButton } from '../../styled-components/Button';
-import fseIcon from '../../../img/syllabus-icons/fse.png';
-import cseIcon from '../../../img/syllabus-icons/cse.png';
-import aseIcon from '../../../img/syllabus-icons/ase.png';
-import pseIcon from '../../../img/syllabus-icons/pse.png';
-import silsIcon from '../../../img/syllabus-icons/sils.png';
-import sssIcon from '../../../img/syllabus-icons/sss.png';
-import cjlIcon from '../../../img/syllabus-icons/cjl.png';
+import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
+import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
+import { highlight } from "../../utils/highlight";
+import { media } from "../../styled-components/utils";
+import { InvisibleButton } from "../../styled-components/Button";
+import fseIcon from "../../../img/syllabus-icons/fse.png";
+import cseIcon from "../../../img/syllabus-icons/cse.png";
+import aseIcon from "../../../img/syllabus-icons/ase.png";
+import pseIcon from "../../../img/syllabus-icons/pse.png";
+import silsIcon from "../../../img/syllabus-icons/sils.png";
+import sssIcon from "../../../img/syllabus-icons/sss.png";
+import cjlIcon from "../../../img/syllabus-icons/cjl.png";
+import gecIcon from "../../../img/syllabus-icons/gec.png";
 
-const RowWrapper = styled('li')`
+const RowWrapper = styled("li")`
   display: flex;
   flex-direction: row;
   justify-content: center;
   overflow-y: hidden;
 `;
 
-const CourseItemWrapper = styled('div')`
+const CourseItemWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
@@ -41,7 +44,7 @@ const CourseItemWrapper = styled('div')`
   width: 100%;
 `;
 
-const StyledHeading = styled('h3')`
+const StyledHeading = styled("h3")`
   margin: 0;
   text-align: left;
   font-size: 1.2em;
@@ -50,20 +53,20 @@ const StyledHeading = styled('h3')`
   color: #000;
 `;
 
-const CourseItemRow = styled('div')`
+const CourseItemRow = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-const IconBadgeWrapper = styled('div')`
+const IconBadgeWrapper = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
 `;
 
-const SchoolIconList = styled('ul')`
+const SchoolIconList = styled("ul")`
   display: flex;
   flex-direction: row;
   margin: 0.1em 0;
@@ -72,17 +75,17 @@ const SchoolIconList = styled('ul')`
   list-style-type: none;
 `;
 
-const SchoolIconItem = styled('li')`
+const SchoolIconItem = styled("li")`
   display: flex;
   margin: 0 0.3em 0 0;
   padding: 0;
 `;
 
-const SchoolIconImage = styled('img')`
+const SchoolIconImage = styled("img")`
   height: 2.1em;
 `;
 
-const Badge = styled('span')`
+const Badge = styled("span")`
   display: inline-block;
   background-color: #666;
   color: #fff;
@@ -97,7 +100,7 @@ const KeywordList = styled(SchoolIconList)`
   flex-wrap: wrap;
 `;
 
-const DescriptionWrapper = styled('div')`
+const DescriptionWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -105,12 +108,12 @@ const DescriptionWrapper = styled('div')`
   ${media.phone`font-size: 1.1em;`};
 `;
 
-const Description = styled('div')`
+const Description = styled("div")`
   flex: 1 0 auto;
   text-align: left;
 `;
 
-const OccurrenceList = styled('ul')`
+const OccurrenceList = styled("ul")`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -124,55 +127,59 @@ const schoolNameIconMap = {
   [FSE]: fseIcon,
   [CSE]: cseIcon,
   [ASE]: aseIcon,
-  [CJL]: cjlIcon
+  [CJL]: cjlIcon,
+  [GEC]: gecIcon
 };
 
-const mapLinkToSchoolIcon = links => {
-  return links.map(link => {
+const mapLinkToSchoolIcon = keys => {
+  return keys.map(key => {
     return (
-      <SchoolIconItem key={link.school}>
-        <SchoolIconImage src={schoolNameIconMap[link.school]} />
+      <SchoolIconItem key={key.school}>
+        <SchoolIconImage src={schoolNameIconMap[key.school]} />
       </SchoolIconItem>
     );
   });
 };
 
-const combineYearTerm = (year, term) => {
-  return `${year} ${term}`;
+const combineYearTerm = (year, term, t) => {
+  return `${year} ${t(`syllabus.semesterMap.${term}`)}`;
 };
 
-const getDay = day => {
+const getDay = (day, t) => {
   switch (day) {
     case 1:
-      return 'Mon.';
+      return `${t("common.mon")}.`;
     case 2:
-      return 'Tue.';
+      return `${t("common.tue")}.`;
     case 3:
-      return 'Wed.';
+      return `${t("common.wed")}.`;
     case 4:
-      return 'Thur.';
+      return `${t("common.thu")}.`;
     case 5:
-      return 'Fri.';
+      return `${t("common.fri")}.`;
     case 6:
-      return 'Sat.';
+      return `${t("common.sat")}.`;
     case 7:
-      return 'Sun.';
+      return `${t("common.sun")}.`;
     default:
-      return '';
+      return "";
   }
 };
 
-const getLocation = (building, classroom) => {
-  if (building === '-1') {
+const getLocation = (building, classroom, t) => {
+  if (building === "-1") {
+    if (classroom === "undecided") {
+      return t("syllabus.location.undecided");
+    }
     return classroom;
   } else {
     return `${building}-${classroom}`;
   }
 };
 
-const getPeriod = (start_period, end_period) => {
+const getPeriod = (start_period, end_period, t) => {
   if (start_period === -1) {
-    return 'undecided';
+    return t("syllabus.location.undecided");
   } else if (start_period === end_period) {
     return `${start_period}`;
   } else {
@@ -180,17 +187,27 @@ const getPeriod = (start_period, end_period) => {
   }
 };
 
-const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
-  const title = highlight(searchTerm, course.title);
-  const instructor = highlight(searchTerm, course.instructor);
-  const yearTerm = combineYearTerm(course.year, course.term);
-  const schoolIcons = mapLinkToSchoolIcon(course.links);
-  const syllabusLink = course.links[0].link;
+const CourseItem = ({
+  searchTerm,
+  searchLang,
+  course,
+  isAddable,
+  handleOnClick,
+  handleClickSyllabusLink,
+  t,
+  lng
+}) => {
+  const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
+  const highlightedTitle = highlight(searchTerm, searchLang, title);
+  const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
+  const yearTerm = combineYearTerm(course.year, course.term, t);
+  const schoolIcons = mapLinkToSchoolIcon(course.keys);
+  const syllabusId = course._id;
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.occurrences.map((occurrence, index) => {
-    const day = getDay(occurrence.day);
-    const period = getPeriod(occurrence.start_period, occurrence.end_period);
-    const location = getLocation(occurrence.building, occurrence.classroom);
+    const day = getDay(occurrence.day, t);
+    const period = getPeriod(occurrence.start_period, occurrence.end_period, t);
+    const location = getLocation(occurrence.building, occurrence.classroom, t);
     return (
       <li key={index}>
         <span>
@@ -206,14 +223,14 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
     );
   });
   const keywords =
-    'keywords' in course
+    "keywords" in course
       ? course.keywords.map((keyword, index) => {
           return (
-            <li key={keyword} style={{ display: 'inline-block' }}>
+            <li key={keyword} style={{ display: "inline-block" }}>
               <Badge>
-                {keyword === 'English-based Undergraduate Program'
-                  ? 'EN-based Undergrad Program'
-                  : keyword}
+                {keyword === "English-based Undergraduate Program"
+                  ? t("syllabus.EN-based Undergrad Program")
+                  : t(`syllabus.${keyword}`)}
               </Badge>
             </li>
           );
@@ -223,7 +240,7 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
     keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
   const buttonIcon = (
     <FontAwesomeIcon
-      style={isAddable ? { color: '#48af37' } : { color: '#ce0115' }}
+      style={isAddable ? { color: "#48af37" } : { color: "#ce0115" }}
       icon={isAddable ? faPlusCircle : faMinusCircle}
       size="2x"
       transform="shrink-2"
@@ -232,34 +249,44 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
   return (
     <RowWrapper>
       <CourseItemWrapper>
-        <StyledHeading>{title}</StyledHeading>
+        <StyledHeading>{highlightedTitle}</StyledHeading>
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge>{course.lang}</Badge>
+            <Badge>{t(`syllabus.${course.lang}`)}</Badge>
             {keywordsList}
           </IconBadgeWrapper>
           <div
             style={{
-              display: 'flex',
-              flex: '1 0 auto',
-              justifyContent: 'flex-end'
+              display: "flex",
+              flex: "1 0 auto",
+              justifyContent: "flex-end"
             }}
           >
             <a
-              style={{ alignSelf: 'flex-start' }}
-              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusLink}&pLng=en`}
+              style={{ alignSelf: "flex-start" }}
+              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
+                "syllabus.langParam"
+              )}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={e => {
+                handleClickSyllabusLink(title, lng);
+              }}
             >
               <FontAwesomeIcon
-                style={{ color: '#6495ED' }}
+                style={{ color: "#6495ED" }}
                 icon={faExternalLinkSquareAlt}
                 size="2x"
                 transform="shrink-2"
               />
             </a>
-            <InvisibleButton onClick={handleOnClick}>
+            <InvisibleButton
+              onClick={e => {
+                e.preventDefault();
+                handleOnClick(title, lng);
+              }}
+            >
               {buttonIcon}
             </InvisibleButton>
           </div>
@@ -269,14 +296,14 @@ const CourseItem = ({ searchTerm, course, isAddable, handleOnClick }) => {
           <Description>
             <OccurrenceList>{occurrences}</OccurrenceList>
           </Description>
-          <Description>{instructor}</Description>
+          <Description>{highlightedInstructor}</Description>
         </DescriptionWrapper>
       </CourseItemWrapper>
     </RowWrapper>
   );
 };
 
-export default CourseItem;
+export default withNamespaces("translation")(CourseItem);
 
 CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,

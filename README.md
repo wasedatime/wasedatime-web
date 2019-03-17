@@ -1,8 +1,8 @@
-# WaseTime
+# WasedaTime
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/wasetime/wasetime-web.svg?branch=master)](https://travis-ci.org/wasetime/wasetime-web) [![All Contributors](https://img.shields.io/badge/all_contributors-4-orange.svg?style=flat-square)](#contributors)
 
-[WaseTime](https://wasetime.com) (stands for Waseda Time) is an unofficial web app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.
+[WasedaTime](https://wasedatime.com) (stands for Waseda Timetable) is an unofficial web app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.
 
 ## Getting Started
 
@@ -43,19 +43,19 @@ created to ensure the code quality.
 
 Back-end (Server):
 
-* [Node.js](https://nodejs.org/) - Runtime environment used.
-* [Express](http://expressjs.com/) - Node.js web app framework used.
+- [Node.js](https://nodejs.org/) - Runtime environment used.
+- [Express](http://expressjs.com/) - Node.js web app framework used.
 
 Imported in code, but NOT being used in production for now:
 
-* [MongoDB](https://www.mongodb.com/) - Database used for retrieving information.
-* [mongoose](http://mongoosejs.com/) - Object modeling tool used for MongoDB.
+- [MongoDB](https://www.mongodb.com/) - Database used for retrieving information.
+- [mongoose](http://mongoosejs.com/) - Object modeling tool used for MongoDB.
 
 Front-end (Client):
 
-* [Create React App](https://github.com/facebook/create-react-app) - Main tool used for building the front-end application. See the [client directory](client/) for more details.
-* [Redux](https://redux.js.org) - Library used to manage the state of front-end.
-* [Styled Components](https://www.styled-components.com) - Library used for adding CSS to React components.
+- [Create React App](https://github.com/facebook/create-react-app) - Main tool used for building the front-end application. See the [client directory](client/) for more details.
+- [Redux](https://redux.js.org) - Library used to manage the state of front-end.
+- [Styled Components](https://www.styled-components.com) - Library used for adding CSS to React components.
 
 ## Contributing
 

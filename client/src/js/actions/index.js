@@ -10,7 +10,7 @@ import {
   FETCH_BUILDINGS_FAILURE
 } from './types';
 import * as schema from '../data/schema';
-import { wasetimeApiStatic } from '../api/index';
+import { wasetimeApiStatic } from '../config/api';
 
 export const fetchStats = () => async (dispatch, getState) => {
   dispatch({
@@ -25,13 +25,16 @@ export const fetchStats = () => async (dispatch, getState) => {
       response: stats
     });
   } catch (error) {
-    const response = error.response || {status: 501, statusText: "Not Implemented"};
+    const response = error.response || {
+      status: 501,
+      statusText: 'Not Implemented'
+    };
     dispatch({
       type: FETCH_STATS_FAILURE,
       error: response
     });
   }
-}
+};
 
 export const fetchBuildings = () => async (dispatch, getState) => {
   dispatch({
@@ -47,7 +50,10 @@ export const fetchBuildings = () => async (dispatch, getState) => {
       response: normalizedBuildings
     });
   } catch (error) {
-    const response = error.response || {status: 501, statusText: "Not Implemented"};
+    const response = error.response || {
+      status: 501,
+      statusText: 'Not Implemented'
+    };
     dispatch({
       type: FETCH_BUILDINGS_FAILURE,
       error: response

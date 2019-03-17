@@ -1,56 +1,72 @@
-import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React from "react";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import { withStyles } from "@material-ui/core/styles";
 
-const StyledFieldset = styled('fieldset')`
-  margin: 0 0 0.5em 0;
-  padding: 0;
-  border: none;
-`;
+const styles = theme => ({
+  formLabel: {
+    fontSize: "1.3em",
+    color: "#000",
+    fontWeight: "bold"
+  },
+  formGroup: {
+    fontSize: "1.2em",
+    margin: "5px 0"
+  },
+  formControlLabel: {
+    minWidth: "105px"
+  },
+  formControlLabel_label: {
+    fontSize: "1em"
+  },
+  checkBox: {
+    height: "30px"
+  },
+  checkBoxChecked: {
+    color: "#b51e36 !important"
+  }
+});
 
-const StyledLegend = styled('legend')`
-  font-size: 1.2em;
-  font-weight: bold;
-`;
-
-const StyledInput = styled('input')`
-  margin-right: 0.6em;
-`;
-
-const StyledLabel = styled('label')`
-  font-size: 1.2em;
-`;
-
-const FilterGroup = ({ handleToggleFilter, legend, inputs, inputName }) => {
+const FilterGroup = ({
+  handleToggleFilter,
+  legend,
+  inputs,
+  inputName,
+  classes
+}) => {
   const checkboxes = inputs.map(input => (
-    <div key={input.value}>
-      <StyledInput
-        type="checkbox"
-        id={input.value}
-        name={inputName}
-        value={input.value}
-        checked={input.isChecked}
-        onChange={e => {
-          handleToggleFilter(e.target.name, e.target.value);
-        }}
-      />
-      <StyledLabel htmlFor={input.label}>{input.label}</StyledLabel>
-    </div>
+    <FormControlLabel
+      key={input.value}
+      control={
+        <Checkbox
+          id={input.value}
+          name={inputName}
+          value={input.value}
+          checked={input.isChecked}
+          onChange={e => {
+            handleToggleFilter(e.target.name, e.target.value);
+          }}
+          classes={{ root: classes.checkBox, checked: classes.checkBoxChecked }}
+        />
+      }
+      label={input.label}
+      classes={{
+        root: classes.formControlLabel,
+        label: classes.formControlLabel_label
+      }}
+    />
   ));
 
   return (
-    <StyledFieldset>
-      <StyledLegend>{legend}</StyledLegend>
-      {checkboxes}
-    </StyledFieldset>
+    <div>
+      <FormLabel className={classes.formLabel}>{legend}</FormLabel>
+      <FormGroup row className={classes.formGroup}>
+        {checkboxes}
+      </FormGroup>
+    </div>
   );
 };
 
-export default FilterGroup;
-
-FilterGroup.propTypes = {
-  handleToggleFilter: PropTypes.func.isRequired,
-  legend: PropTypes.string.isRequired,
-  inputName: PropTypes.string.isRequired,
-  inputs: PropTypes.array.isRequired
-}
+export default withStyles(styles)(FilterGroup);

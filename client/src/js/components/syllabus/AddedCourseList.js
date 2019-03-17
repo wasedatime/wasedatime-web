@@ -1,24 +1,24 @@
-import React from 'react';
-import stickybits from 'stickybits';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React from "react";
+import stickybits from "stickybits";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusCircle, faMinusCircle } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
 
 import {
   headerHeight,
-  semesterTabsHeight
-} from '../../styled-components/variables';
-import CourseListSummary from '../CourseListSummary';
-import AddedCourseItem from '../../containers/syllabus/AddedCourseItem';
-import { Wrapper } from '../../styled-components/Wrapper';
+  addedCourseListSwitchHeight
+} from "../../styled-components/variables";
+import CourseListSummary from "../CourseListSummary";
+import AddedCourseItem from "../../containers/syllabus/AddedCourseItem";
+import { Wrapper } from "../../styled-components/Wrapper";
 import {
   Article,
   Section,
   Subheading,
   OList,
   ListItem
-} from '../../styled-components/Article';
+} from "../../styled-components/Article";
 
 const CourseListWrapper = styled(Wrapper)`
   flex: none;
@@ -26,7 +26,7 @@ const CourseListWrapper = styled(Wrapper)`
   overflow-y: auto;
   height: calc(
     100vh - ${props => props.theme.headerHeight} -
-      ${props => props.theme.semesterTabsHeight}
+      ${props => props.theme.addedCourseListSwitchHeight}
   );
 `;
 
@@ -47,7 +47,8 @@ class AddedCourseList extends React.Component {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
           stickyBitStickyOffset:
-            parseInt(headerHeight, 10) + parseInt(semesterTabsHeight, 10)
+            parseInt(headerHeight, 10) +
+            parseInt(addedCourseListSwitchHeight, 10)
         });
       }
     };
@@ -73,8 +74,10 @@ class AddedCourseList extends React.Component {
       isSortingOptionOpen,
       handleToggleSortingOptions,
       selectedSortingOption,
-      handleChangeSortingOption
+      handleChangeSortingOption,
+      t
     } = this.props;
+
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>
         <CourseListSummary
@@ -85,49 +88,49 @@ class AddedCourseList extends React.Component {
           handleChangeSortingOption={handleChangeSortingOption}
         />
         {addedCourses.length ? (
-          <div style={{ fontSize: '14px' }}>
+          <div style={{ fontSize: "14px" }}>
             {addedCourses.map((course, index) => (
               <AddedCourseItem key={course._id} course={course} />
             ))}
           </div>
         ) : (
           <ExtendedArticle>
-            <h4>Added courses are displayed here.</h4>
+            <h4>{t("syllabus.Added courses are displayed here")}</h4>
             <Section>
-              <Subheading>To add a course</Subheading>
+              <Subheading>{t("syllabus.To add a course")}</Subheading>
               <OList>
                 <ListItem>
-                  Search for a course title or an instructor in the right search
-                  bar.
+                  {t(
+                    "syllabus.Search for courses and instructors in the top search bar"
+                  )}
+                  {t("syllabus.Japanese is supported")}
                   <br />
-                  E.g., "calculus" or "tanaka" or "calculus tanaka".
+                  {t("syllabus.try")}
                 </ListItem>
                 <ListItem>
-                  Click on{' '}
+                  {t("syllabus.Click on")}{" "}
                   <FontAwesomeIcon
-                    style={{ color: '#48af37' }}
+                    style={{ color: "#48af37" }}
                     icon={faPlusCircle}
                     size="1x"
-                  />{' '}
-                  to add,{' '}
+                  />{" "}
+                  {t("syllabus.to add")},{" "}
                   <FontAwesomeIcon
-                    style={{ color: '#ce0115' }}
+                    style={{ color: "#ce0115" }}
                     icon={faMinusCircle}
                     size="1x"
-                  />{' '}
-                  to remove.
+                  />{" "}
+                  {t("syllabus.to remove")}
                 </ListItem>
               </OList>
             </Section>
             <Section>
-              <Subheading>Pro Tips!</Subheading>
+              <Subheading>{t("syllabus.Pro Tip!")}</Subheading>
               <OList>
                 <ListItem>
-                  Type only the start of the word.
-                  <br />
-                  E.g., "vec calc" instead of "vector calculus"
+                  {t("syllabus.Use")} {t("syllabus.Filter by")}{" "}
+                  {t("syllabus.to narrow down your search")}
                 </ListItem>
-                <ListItem>Use "Filter by" to narrow down your search.</ListItem>
               </OList>
             </Section>
           </ExtendedArticle>
@@ -137,12 +140,4 @@ class AddedCourseList extends React.Component {
   }
 }
 
-export default AddedCourseList;
-
-AddedCourseList.propTypes = {
-  courses: PropTypes.array.isRequired,
-  isSortingOptionOpen: PropTypes.bool.isRequired,
-  handleToggleSortingOptions: PropTypes.func.isRequired,
-  selectedSortingOption: PropTypes.string.isRequired,
-  handleChangeSortingOption: PropTypes.func.isRequired
-};
+export default withNamespaces("translation")(AddedCourseList);

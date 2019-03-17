@@ -43,7 +43,7 @@ const LoadingSpinner = props => {
   return (
     <ExtendedWrapper>
       <ExtendedOverlay>
-        <Logo src={logo} alt="WaseTime logo" />
+        <Logo src={logo} alt="WasedaTime logo" />
         <Description>{props.message || 'Loading...'}</Description>
       </ExtendedOverlay>
     </ExtendedWrapper>

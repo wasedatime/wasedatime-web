@@ -1,9 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import React from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { withNamespaces } from "react-i18next";
 
-const StyledFooter = styled('footer')`
+import LANGS from "../config/langs";
+
+const StyledFooter = styled("footer")`
   display: block;
   text-align: center;
   color: #a9a9a9;
@@ -13,48 +17,95 @@ const StyledFooter = styled('footer')`
   z-index: 3000;
 `;
 
-const StyledList = styled('ul')`
+const StyledP = styled("p")`
+  margin: 0.5em 0.5em;
+`;
+
+const StyledList = styled("ul")`
   padding: 0;
+  margin: 0.5em 0;
   list-style: none;
   list-style-type: none;
 `;
 
-const StyledLink = styled('a')`
+const StyledListItem = styled("li")`
+  display: inline-block;
+  margin: 0 0.3em;
+`;
+
+const StyledLink = styled("a")`
   text-decoration: none;
   color: #ffffff;
 `;
 
-const Footer = ({ finishTime }) => {
+const Footer = ({ finishTime, t, lng }) => {
   return (
     <StyledFooter>
-      <p>{finishTime}</p>
+      <StyledP>{finishTime}</StyledP>
       <StyledList>
-        <li>
-          <StyledLink href="https://github.com/wasetime/wasetime-web">
+        <StyledListItem>
+          <StyledLink
+            href="https://github.com/wasetime/wasetime-web"
+            target="_blank"
+          >
             <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
           </StyledLink>
-        </li>
+        </StyledListItem>
+        <StyledListItem>
+          <StyledLink href="https://twitter.com/WasedaTime" target="_blank">
+            <FontAwesomeIcon icon={faTwitter} size="2x" transform="shrink-2" />
+          </StyledLink>
+        </StyledListItem>
+        <StyledListItem>
+          <StyledLink href="mailto:wasedatime@gmail.com" target="_blank">
+            <FontAwesomeIcon icon={faEnvelope} size="2x" transform="shrink-2" />
+          </StyledLink>
+        </StyledListItem>
       </StyledList>
-      <p>
-        Created with&nbsp;
-        <span role="img" aria-label="Love">
-          ❤️&nbsp;
-        </span>by&nbsp;
-        <StyledLink href="https://github.com/wasetime/wasetime-web/graphs/contributors">
-          Our Contributors
+
+      {lng === LANGS.JP ? (
+        <StyledP>
+          <StyledLink
+            href="https://github.com/wasetime/wasetime-web/graphs/contributors"
+            target="_blank"
+          >
+            コントリビュータたち
+          </StyledLink>
+          <span role="img" aria-label="Love">
+            が&nbsp;❤️&nbsp;
+          </span>
+          を込めて作り上げました。&nbsp;
+        </StyledP>
+      ) : (
+        <StyledP>
+          Created with&nbsp;
+          <span role="img" aria-label="Love">
+            ❤️&nbsp;
+          </span>
+          by&nbsp;
+          <StyledLink
+            href="https://github.com/wasetime/wasetime-web/graphs/contributors"
+            target="_blank"
+          >
+            Our Contributors
+          </StyledLink>
+        </StyledP>
+      )}
+      <StyledP>
+        <StyledLink href="https://github.com/wasetime " target="_blank">
+          WasedaTime 2019.
         </StyledLink>
-      </p>
-      <p>
-        <StyledLink href="https://github.com/wasetime ">
-          WaseTime 2018
-        </StyledLink>
-        . Code licensed&nbsp;
-        <StyledLink href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md">
+        {t("footer.licensed")}
+        <StyledLink
+          href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md"
+          target="_blank"
+        >
           MIT
-        </StyledLink>.
-      </p>
+        </StyledLink>
+        .
+      </StyledP>
     </StyledFooter>
   );
 };
 
-export default Footer;
+export default withNamespaces("translation")(Footer);

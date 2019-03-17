@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 import styled, { keyframes } from 'styled-components';
 
 import { Wrapper } from '../styled-components/Wrapper';
@@ -51,3 +52,7 @@ const LoadingSpinner = props => {
 };
 
 export default LoadingSpinner;
+
+LoadingSpinner.propTypes = {
+  message: PropTypes.string.isRequired
+}

@@ -57,7 +57,7 @@ const Contributors = ({ classes, t }) => {
         {t("welcome.We also received help from")}
         <br />
         <StyledLink
-          href="https://github.com/wasetime/wasetime-web/graphs/contributors"
+          href="https://github.com/wasetime/wasetime-web#contributors"
           target="_blank"
         >
           {t("welcome.these contributors")}

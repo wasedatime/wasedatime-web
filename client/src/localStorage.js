@@ -22,7 +22,6 @@ export const loadState = () => {
 
     state.addedCourses.fall.prefs = fallPrefs;
     state.addedCourses.spring.prefs = springPrefs;
-    console.log(state);
 
     return state;
   } catch (error) {

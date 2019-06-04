@@ -45,7 +45,7 @@ const Footer = ({ finishTime, t, lng }) => {
       <StyledList>
         <StyledListItem>
           <StyledLink
-            href="https://github.com/wasetime/wasetime-web"
+            href="https://github.com/wasedatime/wasedatime-web"
             target="_blank"
           >
             <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
@@ -66,7 +66,7 @@ const Footer = ({ finishTime, t, lng }) => {
       {lng === LANGS.JP ? (
         <StyledP>
           <StyledLink
-            href="https://github.com/wasetime/wasetime-web/graphs/contributors"
+            href="https://github.com/wasedatime/wasedatime-web/graphs/contributors"
             target="_blank"
           >
             コントリビュータたち
@@ -84,7 +84,7 @@ const Footer = ({ finishTime, t, lng }) => {
           </span>
           by&nbsp;
           <StyledLink
-            href="https://github.com/wasetime/wasetime-web/graphs/contributors"
+            href="https://github.com/wasedatime/wasedatime-web/graphs/contributors"
             target="_blank"
           >
             Our Contributors
@@ -92,12 +92,12 @@ const Footer = ({ finishTime, t, lng }) => {
         </StyledP>
       )}
       <StyledP>
-        <StyledLink href="https://github.com/wasetime " target="_blank">
+        <StyledLink href="https://github.com/wasedatime " target="_blank">
           WasedaTime 2019.
         </StyledLink>
         {t("footer.licensed")}
         <StyledLink
-          href="https://github.com/wasetime/wasetime-web/blob/master/LICENSE.md"
+          href="https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md"
           target="_blank"
         >
           MIT

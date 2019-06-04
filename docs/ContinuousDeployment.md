@@ -4,12 +4,12 @@ Add a deploy user and with limited directory access permission.
 
 ```
 adduser deploy
-chown -R deploy:deploy /var/www/wasetime-web
+chown -R deploy:deploy /var/www/wasedatime-web
 ```
 
 ```
-mkdir ~/wasetime-web.git
-cd ~/wasetime-web.git
+mkdir ~/wasedatime-web.git
+cd ~/wasedatime-web.git
 git init --bare
 vim hooks/post-receive
 ```
@@ -23,15 +23,15 @@ do
     if [[ $ref =~ .*/master$ ]];
     then
         echo "Master ref received.  Deploying master branch to production..."
-        git --work-tree=/var/www/wasetime-web --git-dir=/home/deploy/wasetime-web.git checkout -f
+        git --work-tree=/var/www/wasedatime-web --git-dir=/home/deploy/wasedatime-web.git checkout -f
         echo "Deployed to master branch. Changing directory to work-tree"
-        cd /var/www/wasetime-web
+        cd /var/www/wasedatime-web
         echo "Done. Installing required production packages..."
         npm install --production \
         && echo "Done. Deleting previous pm2 process and starting a new one..." \
-        && (pm2 delete "wasetime" || true) \
-        && pm2 start server.js --name "wasetime" \
-        && echo "Done. wasetime started successfully with pm2."
+        && (pm2 delete "wasedatime" || true) \
+        && pm2 start server.js --name "wasedatime" \
+        && echo "Done. wasedatime started successfully with pm2."
     else
         echo "Ref $ref successfully received.  Doing nothing: only the master branch may be deployed on this server."
     fi
@@ -47,15 +47,15 @@ do
     if [[ $ref =~ .*/staging$ ]];
     then
         echo "Staging ref received.  Deploying staging branch to staging server..."
-        git --work-tree=/var/www/wasetime-web --git-dir=/home/deploy/wasetime-web.git checkout -f staging
+        git --work-tree=/var/www/wasedatime-web --git-dir=/home/deploy/wasedatime-web.git checkout -f staging
         echo "Deployed to staging branch. Changing directory to work-tree"
-        cd /var/www/wasetime-web
+        cd /var/www/wasedatime-web
         echo "Done. Installing required staging packages..."
         npm install \
         && echo "Done. Deleting previous pm2 process and starting a new one..." \
-        && (pm2 delete "wasetime-staging" || true) \
-        && pm2 start server.js --name "wasetime-staging" \
-        && echo "Done. wasetime-staging started successfully with pm2."
+        && (pm2 delete "wasedatime-staging" || true) \
+        && pm2 start server.js --name "wasedatime-staging" \
+        && echo "Done. wasedatime-staging started successfully with pm2."
     else
         echo "Ref $ref successfully received.  Doing nothing: only the staging branch may be deployed on this server."
     fi
@@ -84,12 +84,12 @@ travis encrypt-file ~/.ssh/deploy_rsa --add
 
 #### .env file
 
-Put the .env file outside of the work-tree folder (/var/www/wasetime-web)
+Put the .env file outside of the work-tree folder (/var/www/wasedatime-web)
 
 Modify server.js to read it from a custom path:
 
 ```javascript
-require('dotenv').config({ path: '/var/www/.env' });
+require("dotenv").config({ path: "/var/www/.env" });
 ```
 
 This .env file is read by server.js, but _NOT_ create-react-app.

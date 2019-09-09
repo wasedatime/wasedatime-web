@@ -11,11 +11,19 @@ class TimetableContainer extends React.Component {
   constructor(props) {
     super(props);
     this.semesters = [
-      { title: "Fall Semester", key: "fall" },
-      { title: "Spring Semester", key: "spring" }
+      { title: "Spring Semester", key: "spring" },
+      { title: "Fall Semester", key: "fall" }
     ];
+    let semesterIndex;
+    const month = new Date().getMonth();
+    // 0-base index
+    if (month >= 2 && month <= 7) {
+      semesterIndex = 0;
+    } else {
+      semesterIndex = 1;
+    }
     this.state = {
-      semesterIndex: 1
+      semesterIndex
     };
   }
 

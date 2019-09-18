@@ -4,7 +4,6 @@ import { faFilter, faTimes } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 
 import { InvisibleButton } from '../../styled-components/Button';
-import PropTypes from 'prop-types';
 
 const ExtendedInvisibleButton = styled(InvisibleButton)`
   position: fixed;

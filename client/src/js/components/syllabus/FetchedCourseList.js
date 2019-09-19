@@ -1,12 +1,14 @@
-import React from 'react';
-import chunk from 'lodash/chunk';
-import WayPoint from 'react-waypoint';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React from "react";
+import chunk from "lodash/chunk";
+import WayPoint from "react-waypoint";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-import CourseChunk from './CourseChunk';
-import { Overlay } from '../../styled-components/Overlay';
-import { Wrapper } from '../../styled-components/Wrapper';
+import CourseChunk from "./CourseChunk";
+import { Overlay } from "../../styled-components/Overlay";
+import { Wrapper } from "../../styled-components/Wrapper";
+import { withNamespaces } from "react-i18next";
+import LANGS from "../../config/langs";
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 1 0;
@@ -21,7 +23,7 @@ const CourseListWrapper = styled(Wrapper)`
   padding: 0 1em 1em 1em;
 `;
 
-const CourseChunkWrapper = styled('div')`
+const CourseChunkWrapper = styled("div")`
   margin: 0.5em 0;
 `;
 
@@ -68,8 +70,9 @@ class FetchedCourseList extends React.Component {
   };
 
   render() {
-    const { searchTerm, results } = this.props;
+    const { searchTerm, searchLang, results, lng } = this.props;
     const resultsInChunks = this.resultsToChunks();
+
     return (
       <ExtendedWrapper>
         <ExtendedOverlay>
@@ -86,17 +89,33 @@ class FetchedCourseList extends React.Component {
                     <CourseChunkWrapper>
                       <div>
                         <span>
-                          {`${index * 5 + 1}-${index * 5 + chunk.length} of ${
-                            results.length
-                          } courses`}
+                          {lng === LANGS.JP
+                            ? "全 " +
+                              results.length +
+                              " 件中 " +
+                              (index * 5 + 1) +
+                              " - " +
+                              (index * 5 + chunk.length) +
+                              " 件を表示"
+                            : index * 5 +
+                              1 +
+                              " - " +
+                              (index * 5 + chunk.length) +
+                              " of " +
+                              results.length +
+                              " courses"}
                         </span>
                       </div>
-                      <CourseChunk chunk={chunk} searchTerm={searchTerm} />
+                      <CourseChunk
+                        chunk={chunk}
+                        searchTerm={searchTerm}
+                        searchLang={searchLang}
+                      />
                     </CourseChunkWrapper>
                   </WayPoint>
                 ))
               ) : (
-                <div style={{ marginTop: '0.5em' }}>No results</div>
+                <div style={{ marginTop: "0.5em" }}>No results</div>
               )}
             </div>
           </CourseListWrapper>
@@ -106,8 +125,9 @@ class FetchedCourseList extends React.Component {
   }
 }
 
-export default FetchedCourseList;
+export default withNamespaces("translation")(FetchedCourseList);
 
 FetchedCourseList.propTypes = {
-  searchTerm: PropTypes.string.isRequired
+  searchTerm: PropTypes.string.isRequired,
+  results: PropTypes.array.isRequired
 };

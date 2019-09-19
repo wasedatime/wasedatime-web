@@ -13,11 +13,11 @@ const RoomFinder = ({ match }) => {
   return (
     <Wrapper>
       <Helmet>
-        <title>WaseTime - Classroom Usage</title>
+        <title>WasedaTime - Classroom Usage</title>
         <meta name="description" content="Classroom Usage Checking at Waseda University." />
-        <meta property="og:title" content="WaseTime - Classroom Usage" />
+        <meta property="og:title" content="WasedaTime - Classroom Usage" />
         <meta property="og:description" content="Classroom Usage Checking at Waseda University." />
-        <meta property="og:site_name" content="WaseTime - Classroom Usage" />
+        <meta property="og:site_name" content="WasedaTime - Classroom Usage" />
       </Helmet>
       {/* <RoomFinderNavigation /> */}
       <Switch>

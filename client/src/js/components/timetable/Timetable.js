@@ -7,6 +7,8 @@ import TimeRowList from './TimeRowList';
 import DayColumnList from './DayColumnList';
 import AddedCourseAndPrefListContainer from '../../containers/timetable/AddedCourseAndPrefListContainer';
 import { media } from '../../styled-components/utils';
+import { withNamespaces } from "react-i18next";
+
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
@@ -37,7 +39,7 @@ const ScrollableTimetable = styled('div')`
   -webkit-overflow-scrolling: touch;
 `;
 
-const Timetable = ({ addedCoursesAndPrefs, semesterKey }) => {
+const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(
     elem => elem.visibility === true
   );
@@ -74,15 +76,12 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey }) => {
           {!addedCoursesAndPrefs.length && (
             <Wrapper>
               <Article>
-                <h3>Welcome</h3>
+                <h3>{t("timetable.welcome")}</h3>
                 <Section>
-                  Hi! You haven't added any courses.<br />
-                  Go to <a href="./syllabus">Syllabus</a> and try adding one!
+                  {t("timetable.You haven't added any courses")}<br />
+                  {t("timetable.Go to")}  <a href="./syllabus">{t("timetable.Syllabus")} </a> {t("timetable.and try adding one!")}
                 </Section>
-                <Section>
-                  Period 6, 7 and Saturday are hidden by default to save space.
-                  They will appear once the corresponding course is selected.
-                </Section>
+                <Section> {t("timetable.SaveSpace")} </Section>
               </Article>
             </Wrapper>
           )}
@@ -96,4 +95,4 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey }) => {
   );
 };
 
-export default Timetable;
+export default withNamespaces("translation")(Timetable);

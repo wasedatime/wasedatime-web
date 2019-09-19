@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import SortingOptions from './SortingOptions';
 import { RowWrapper } from '../styled-components/Wrapper';
 import { InvisibleButton } from '../styled-components/Button';
+import { withNamespaces } from "react-i18next";
+import PropTypes from 'prop-types';
 
 const CourseAddedMessageWrapper = styled(RowWrapper)`
   justify-content: space-between;
@@ -28,17 +30,18 @@ const CourseListSummary = ({
   isSortingOptionOpen,
   handleToggleSortingOptions,
   selectedSortingOption,
-  handleChangeSortingOption
+  handleChangeSortingOption,
+  t
 }) => {
   return (
     <div>
       <CourseAddedMessageWrapper>
-        <span>{`${courses.length} courses added `}</span>
+        <span>{`${courses.length}`} {t("timetable.courses added")} </span>
         <SortByButton
           isSortingOptionOpen={isSortingOptionOpen}
           onClick={handleToggleSortingOptions}
         >
-          <span>Sort by&nbsp;</span>
+          <span>{t("timetable.Sort by")}&nbsp;</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="18"
@@ -59,4 +62,16 @@ const CourseListSummary = ({
   );
 };
 
-export default CourseListSummary;
+export default withNamespaces("translation")(CourseListSummary);
+
+CourseListSummary.propTypes = {
+  courses: PropTypes.array.isRequired,
+  isSortingOptionOpen: PropTypes.bool.isRequired,
+  handleToggleSortingOptions: PropTypes.func.isRequired,
+  selectedSortingOption: PropTypes.string.isRequired,
+  handleChangeSortingOption: PropTypes.func.isRequired
+}
+
+SortByButton.propTypes = {
+  isSortingOptionOpen: PropTypes.bool.isRequired
+}

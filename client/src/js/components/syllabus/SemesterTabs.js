@@ -4,6 +4,8 @@ import stickybits from 'stickybits';
 
 import { headerHeight } from '../../styled-components/variables';
 import { RowWrapper } from '../../styled-components/Wrapper';
+import PropTypes from 'prop-types';
+
 
 const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
@@ -54,7 +56,7 @@ class SemesterTabs extends React.Component {
     };
 
     this.fallButtonId = 'button--fall';
-    this.springButtonId = 'button-spring';
+    this.springButtonId = 'button--spring';
     this.fallSemester = 'fall';
     this.springSemester = 'spring';
   }
@@ -76,6 +78,7 @@ class SemesterTabs extends React.Component {
   }
 
   render() {
+    const { t } = this.props;
     return (
       <ExtendedWrapper innerRef={this.setWrapperRef}>
         <SemesterButton
@@ -83,18 +86,28 @@ class SemesterTabs extends React.Component {
           onClick={this.handleOnClick}
           isSelected={this.props.semester === this.springSemester}
         >
-          Spring Semester
+         Spring Semester
         </SemesterButton>
         <SemesterButton
           id={this.fallButtonId}
           onClick={this.handleOnClick}
           isSelected={this.props.semester === this.fallSemester}
         >
-          Fall Semester
+        Fall Semester
         </SemesterButton>
       </ExtendedWrapper>
     );
   }
 }
-
 export default SemesterTabs;
+
+SemesterTabs.propTypes = {
+  handleChangeSemester: PropTypes.func.isRequired,
+  semester: PropTypes.string.isRequired
+}
+
+SemesterButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  isSelected: PropTypes.bool.isRequired,
+}

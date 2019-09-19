@@ -1,15 +1,19 @@
-import React from 'react';
+import React from "react";
+import { withNamespaces } from "react-i18next";
 
-import SemesterTabs from '../../components/syllabus/SemesterTabs';
-import AddedCourseListContainer from './AddedCourseListContainer';
-import { Wrapper } from '../../styled-components/Wrapper';
-import { Overlay } from '../../styled-components/Overlay';
+import { addedCourseListSwitchHeight } from "../../styled-components/variables";
+import BinarySwitch from "../../components/syllabus/BinarySwitch";
+import AddedCourseListContainer from "./AddedCourseListContainer";
+import { Wrapper } from "../../styled-components/Wrapper";
+import { Overlay } from "../../styled-components/Overlay";
 
 class AddedCourseListSwitch extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.springSemester = "spring";
+    this.fallSemester = "fall";
     this.state = {
-      selectedSemester: 'fall'
+      selectedSemester: this.springSemester
     };
   }
 
@@ -22,18 +26,25 @@ class AddedCourseListSwitch extends React.Component {
   };
 
   render() {
-    const { addedCourses } = this.props;
+    const { addedCoursesAndPrefs, t } = this.props;
     const { selectedSemester } = this.state;
-    const courses = addedCourses[selectedSemester];
+    const courses = addedCoursesAndPrefs[selectedSemester];
     return (
       <Wrapper>
         <Overlay>
-          <SemesterTabs
-            handleChangeSemester={this.handleChangeSemester}
-            semester={selectedSemester}
+          <BinarySwitch
+            switchHeight={addedCourseListSwitchHeight}
+            handleSwitchValue={this.handleChangeSemester}
+            value={selectedSemester}
+            leftButtonId={`button--semester-${this.springSemester}`}
+            rightButtonId={`button--semester-${this.fallSemester}`}
+            leftValue={this.springSemester}
+            rightValue={this.fallSemester}
+            leftDisplayedValue={t("syllabus.displayedSpringSemester")}
+            rightDisplayedValue={t("syllabus.displayedFallSemester")}
           />
           <AddedCourseListContainer
-            addedCourses={courses}
+            addedCoursesAndPrefs={courses}
             semesterKey={selectedSemester}
           />
         </Overlay>
@@ -42,4 +53,4 @@ class AddedCourseListSwitch extends React.Component {
   }
 }
 
-export default AddedCourseListSwitch;
+export default withNamespaces("translation")(AddedCourseListSwitch);

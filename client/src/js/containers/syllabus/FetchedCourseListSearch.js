@@ -1,22 +1,31 @@
-import React from 'react';
-import debounce from 'lodash/debounce';
-import MediaQuery from 'react-responsive';
-import { withRouter } from 'react-router';
-import queryString from 'query-string';
-import styled from 'styled-components';
+import React from "react";
+import debounce from "lodash/debounce";
+import MediaQuery from "react-responsive";
+import { withRouter } from "react-router";
+import { withNamespaces } from "react-i18next";
+import queryString from "query-string";
+import styled from "styled-components";
+import ReactGA from "react-ga";
 
-import { searchCourses, sortCourses } from '../../utils/courseSearch';
-import SearchBar from '../../components/syllabus/SearchBar';
-import FetchedCourseList from '../../components/syllabus/FetchedCourseList';
-import Filter from '../../components/syllabus/Filter';
-import FilterButton from '../../components/syllabus/FilterButton';
-import Modal from '../../components/Modal';
-import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
-import { SideBar } from '../../styled-components/SideBar';
-import { sizes } from '../../styled-components/utils';
-import { fallSemesters, springSemesters } from '../../data/semesters';
-
-const F_COURSE_SEARCH_PLACE_HOLDER = 'Course titles, instructors';
+import { searchCourses, sortCourses } from "../../utils/courseSearch";
+import SearchBar from "../../components/syllabus/SearchBar";
+import FetchedCourseList from "../../components/syllabus/FetchedCourseList";
+import Filter from "../../components/syllabus/Filter";
+import FilterButton from "../../components/syllabus/FilterButton";
+import Modal from "../../components/Modal";
+import { Wrapper, RowWrapper } from "../../styled-components/Wrapper";
+import { SideBar } from "../../styled-components/SideBar";
+import { sizes } from "../../styled-components/utils";
+import { fallSemesters, springSemesters } from "../../data/semesters";
+import { getSearchLang } from "../../utils/courseSearch";
+import { gaFilter } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaOpenModal,
+  gaCloseModal,
+  gaApplyFilter,
+  gaRemoveFilter
+} from "../../ga/eventActions";
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
@@ -24,24 +33,25 @@ const ExtendedWrapper = styled(Wrapper)`
 
 const modalStyle = {
   overlay: {
-    position: 'fixed',
+    position: "fixed",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: '1050'
+    zIndex: "1050"
   },
   content: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    background: '#fff',
-    overflowY: 'auto',
-    WebkitOverflowScrolling: 'touch',
-    outline: 'none',
-    fontSize: '16px',
+    background: "#fff",
+    overflowY: "auto",
+    overflowScrolling: "touch",
+    WebkitOverflowScrolling: "touch",
+    outline: "none",
+    fontSize: "16px",
     padding: 0
   }
 };
@@ -51,8 +61,8 @@ class FetchedCourseSearch extends React.Component {
     super(props);
     const parsedSearch = queryString.parse(this.props.location.search);
     const parsedSearchQ = parsedSearch.q;
-    const searchTerm =
-      parsedSearchQ === undefined || parsedSearchQ === '' ? '' : parsedSearchQ;
+    const searchTerm = parsedSearchQ === undefined ? "" : parsedSearchQ;
+
     this.state = {
       isModalOpen: false,
       filterGroups: {
@@ -75,6 +85,11 @@ class FetchedCourseSearch extends React.Component {
 
   handleToggleModal = event => {
     event.preventDefault();
+    const gaAction = this.state.isModalOpen ? gaCloseModal : gaOpenModal;
+    ReactGA.event({
+      category: gaFilter,
+      action: gaAppendActionWithLng(gaAction, this.props.lng)
+    });
     this.setState((prevState, props) => {
       return {
         isModalOpen: !prevState.isModalOpen
@@ -85,9 +100,19 @@ class FetchedCourseSearch extends React.Component {
   handleToggleFilter = (inputName, value) => {
     this.setState((prevState, props) => {
       const { [inputName]: filters, ...rest } = prevState.filterGroups;
-      const newFilters = filters.includes(value)
-        ? filters.filter(elem => elem !== value)
-        : [...filters, value];
+      let newFilters, gaAction;
+      if (filters.includes(value)) {
+        newFilters = filters.filter(elem => elem !== value);
+        gaAction = gaRemoveFilter;
+      } else {
+        newFilters = [...filters, value];
+        gaAction = gaApplyFilter;
+      }
+      ReactGA.event({
+        category: gaFilter,
+        action: gaAppendActionWithLng(gaAction, this.props.lng),
+        label: `${inputName} - ${value}`
+      });
       const newFilterGroups = {
         [inputName]: newFilters,
         ...rest
@@ -108,10 +133,10 @@ class FetchedCourseSearch extends React.Component {
     let semesterFilters = [];
     // if not empty not full
     if (semesters.length !== 0 && semesters.length !== 2) {
-      if (semesters.includes('fall')) {
+      if (semesters.includes("fall")) {
         semesterFilters = semesterFilters.concat(fallSemesters);
       }
-      if (semesters.includes('spring')) {
+      if (semesters.includes("spring")) {
         semesterFilters = semesterFilters.concat(springSemesters);
       }
     }
@@ -125,9 +150,9 @@ class FetchedCourseSearch extends React.Component {
       schoolFilters.length === 0 || schoolFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter(course => {
-            const links = course.links;
-            for (let i = 0; i < links.length; i++) {
-              if (schoolFilters.includes(links[i].school)) return true;
+            const keys = course.keys;
+            for (let i = 0; i < keys.length; i++) {
+              if (schoolFilters.includes(keys[i].school)) return true;
             }
             return false;
           });
@@ -190,8 +215,8 @@ class FetchedCourseSearch extends React.Component {
 
   pushHistory = () => {
     this.props.history.push({
-      pathname: '/syllabus',
-      search: this.state.inputText === '' ? '' : `q=${this.state.inputText}`
+      pathname: "/syllabus",
+      search: this.state.inputText === "" ? "" : `q=${this.state.inputText}`
     });
   };
 
@@ -218,22 +243,31 @@ class FetchedCourseSearch extends React.Component {
 
   render() {
     const { inputText, searchTerm } = this.state;
+    const searchLang =
+      searchTerm === "" ? this.props.lng : getSearchLang(searchTerm);
+    const { t } = this.props;
+    //TODO debounce here? it's executed in every render which happens every time a user changes input.
     const results =
-      searchTerm.length > 1
+      searchTerm.length > 0
         ? sortCourses(
             searchTerm,
-            searchCourses(searchTerm, this.state.filteredCourses)
+            searchCourses(searchTerm, this.state.filteredCourses, searchLang),
+            searchLang
           )
         : this.state.filteredCourses;
     return (
       <ExtendedWrapper>
         <SearchBar
           onInputChange={this.handleInputChange}
-          placeholder={F_COURSE_SEARCH_PLACE_HOLDER}
+          placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
         />
         <RowWrapper>
-          <FetchedCourseList searchTerm={searchTerm} results={results} />
+          <FetchedCourseList
+            searchTerm={searchTerm}
+            searchLang={searchLang}
+            results={results}
+          />
           <MediaQuery minWidth={sizes.desktop}>
             {matches => {
               return matches ? (
@@ -267,4 +301,4 @@ class FetchedCourseSearch extends React.Component {
   }
 }
 
-export default withRouter(FetchedCourseSearch);
+export default withRouter(withNamespaces("translation")(FetchedCourseSearch));

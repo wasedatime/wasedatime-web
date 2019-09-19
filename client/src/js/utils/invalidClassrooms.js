@@ -4,8 +4,8 @@ export const filterInvalidClassrooms = (
   classroomNameLength
 ) => {
   return courses.filter(course => {
-    const links = course.links;
-    const schools = links.map(link => link.school);
+    const keys = course.keys;
+    const schools = keys.map(key => key.school);
     if (!schools.includes(school)) return false;
 
     const occurrences = course.occurrences;

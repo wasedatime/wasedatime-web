@@ -1,4 +1,4 @@
-const STATE_NAME = 'wasetime-state';
+const STATE_NAME = "wasedatime-2019-state";
 
 export const loadState = () => {
   try {
@@ -6,8 +6,27 @@ export const loadState = () => {
     if (serializedState === null) {
       return undefined;
     }
-    return JSON.parse(serializedState);
+    const state = JSON.parse(serializedState);
+    const fallPrefs = state.addedCourses.fall.prefs.map(pref => {
+      if (pref["displayLang"] === undefined) {
+        pref["displayLang"] = "en";
+      }
+      return pref;
+    });
+    const springPrefs = state.addedCourses.spring.prefs.map(pref => {
+      if (pref["displayLang"] === undefined) {
+        pref["displayLang"] = "en";
+      }
+      return pref;
+    });
+
+    state.addedCourses.fall.prefs = fallPrefs;
+    state.addedCourses.spring.prefs = springPrefs;
+    console.log(state);
+
+    return state;
   } catch (error) {
+    console.log(error);
     // In case of any errors, play safe and let reducers initialize the state.
     return undefined;
   }

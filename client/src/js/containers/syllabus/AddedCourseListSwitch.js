@@ -13,7 +13,7 @@ class AddedCourseListSwitch extends React.Component {
     this.springSemester = "spring";
     this.fallSemester = "fall";
     this.state = {
-      selectedSemester: this.springSemester
+      selectedSemester: this.fallSemester
     };
   }
 

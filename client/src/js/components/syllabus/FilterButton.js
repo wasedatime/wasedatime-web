@@ -1,9 +1,10 @@
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faTimes } from '@fortawesome/free-solid-svg-icons';
-import styled from 'styled-components';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter, faTimes } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-import { InvisibleButton } from '../../styled-components/Button';
+import { InvisibleButton } from "../../styled-components/Button";
 
 const ExtendedInvisibleButton = styled(InvisibleButton)`
   position: fixed;
@@ -36,3 +37,8 @@ const FilterButton = ({ isModalOpen, handleToggleModal }) => {
 };
 
 export default FilterButton;
+
+FilterButton.propTypes = {
+  isModalOpen: PropTypes.bool.isRequired,
+  handleToggleModal: PropTypes.func.isRequired
+};

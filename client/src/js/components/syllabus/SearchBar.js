@@ -124,3 +124,20 @@ SearchBar.propTypes = {
   inputText: PropTypes.string.isRequired,
   onInputChange: PropTypes.func.isRequired
 };
+
+StyledForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired
+};
+
+StyledInput.propTypes = {
+  type: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+}
+
+StyledClearButton.propTypes = {
+  role: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired
+};

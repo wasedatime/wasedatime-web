@@ -307,5 +307,7 @@ export default withNamespaces("translation")(CourseItem);
 
 CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,
-  course: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired,
+  isAddable: PropTypes.bool.isRequired,
+  handleOnClick: PropTypes.func.isRequired,
 };

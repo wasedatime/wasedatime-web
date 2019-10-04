@@ -15,7 +15,7 @@ import ModalContainer from "../containers/ModalContainer";
 import { media } from "../styled-components/utils";
 import { Wrapper } from "../styled-components/Wrapper";
 import { Overlay } from "../styled-components/Overlay";
-import busSchedule from "../data/busSchedule.json";
+import { busSchedule } from "../data/busSchedule.js";
 import safariExport from "../../img/safari-export.svg";
 import a2hsChrome from "../../img/bus_a2hs_chrome.png";
 import a2hsSafari from "../../img/bus_a2hs_safari.png";
@@ -129,7 +129,7 @@ const getSchduleType = (month, date, day) => {
     monthString in outOfService &&
     binarySearch(date, outOfService[monthString])
   ) {
-    return "no";
+    return "noSchedule";
   } else if (
     monthString in weekdaySchedule &&
     binarySearch(date, weekdaySchedule[monthString])
@@ -147,7 +147,7 @@ const getSchduleType = (month, date, day) => {
     return "special";
   } else {
     if (day === 0) {
-      return "no";
+      return "noSchedule";
     } else if (day === 6) {
       return "saturday";
     } else {
@@ -220,7 +220,7 @@ const getBusStatuses = (now, lng, t) => {
   nishiStatus = t("bus.Out of service");
   const scheduleType = getSchduleType(month, date, day);
   // No buses or special schedule
-  if (scheduleType === "no") {
+  if (scheduleType === "noSchedule") {
     return { wasedaStatus, nishiStatus };
   } else if (scheduleType === "special") {
     wasedaStatus = t("bus.Special Schedule");

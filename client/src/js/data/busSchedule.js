@@ -1,7 +1,9 @@
-{
-  "weekday": {
-    "fromWasedaToNishiWaseda": {
-      "occurrences": [
+export const busSchedule = {
+  // Weekday schedule
+  weekday: {
+    fromWasedaToNishiWaseda: {
+      occurrences: [
+        // Converted to minutes. E.g., 09:15 = 9 * 60 + 15 = 555
         555,
         585,
         610,
@@ -28,23 +30,28 @@
         1060,
         1086
       ],
-      "remarks_jp": {
-        "725": "西早稲田キャンパス経由行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
-        "735": "先端生命医科学センター経由西早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+      // Remarks written in the pdf file.
+      remarks_jp: {
+        "725":
+          "西早稲田キャンパス経由行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+        "735":
+          "先端生命医科学センター経由西早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
         "890": "中型バスとマイクロバスの運行",
         "1000": "中型バスとマイクロバスの運行",
         "1085": "中型バスとマイクロバスの運行"
       },
-      "remarks_en": {
-        "725": "To TWIns via Nishiwaseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        "735": "To Nishiwaseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+      remarks_en: {
+        "725":
+          "To TWIns via Nishiwaseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "735":
+          "To Nishiwaseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
         "890": "Operation of middle-size bus and minibus.",
         "1000": "Operation of middle-size bus and minibus.",
         "1085": "Operation of middle-size bus and minibus."
       }
     },
-    "fromNishiWasedaToWaseda": {
-      "occurrences": [
+    fromNishiWasedaToWaseda: {
+      occurrences: [
         555,
         585,
         610,
@@ -72,36 +79,47 @@
         1085,
         1100
       ],
-      "remarks_en": {
-        "725": "To TWIns via Waseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        "740": "To Waseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+      remarks_en: {
+        "725":
+          "To TWIns via Waseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        "740":
+          "To Waseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
         "875": "Operation of middle-size bus and minibus.",
         "980": "Operation of middle-size bus and minibus.",
-        "1100": "Operation of middle-size bus and minibus. Possibility of early/late departure."
+        "1100":
+          "Operation of middle-size bus and minibus. Possibility of early/late departure."
       },
-      "remarks_jp": {
-        "725": "早稲田キャンパス経由行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
-        "740": "先端生命医科学センター経由早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+      remarks_jp: {
+        "725":
+          "早稲田キャンパス経由行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+        "740":
+          "先端生命医科学センター経由早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
         "875": "中型バスとマイクロバスの運行",
         "980": "中型バスとマイクロバスの運行",
         "1100": "中型バスとマイクロバスの運行。出発時間は目安になります。"
       }
     }
   },
-  "saturday": {
-    "fromWasedaToNishiWaseda": {
-      "occurrences": [560, 620, 650, 690, 720, 750, 825, 855, 890, 950, 995],
-      "remarks_en": {},
-      "remarks_jp": {}
+  // Saturday schedule
+  saturday: {
+    fromWasedaToNishiWaseda: {
+      occurrences: [560, 620, 650, 690, 720, 750, 825, 855, 890, 950, 995],
+      remarks_en: {},
+      remarks_jp: {}
     },
-    "fromNishiWasedaToWaseda": {
-      "occurrences": [575, 635, 665, 705, 735, 765, 840, 875, 920, 980],
-      "remarks_en": {},
-      "remarks_jp": {}
+    fromNishiWasedaToWaseda: {
+      occurrences: [575, 635, 665, 705, 735, 765, 840, 875, 920, 980],
+      remarks_en: {},
+      remarks_jp: {}
     }
   },
-  "exceptions": {
-    "outOfService": {
+  // Special schedules
+  exceptions: {
+    outOfService: {
+      // Format is "month": [array of dates]
+      // Month is 0-based. So "0" is January and "11" is December.
+      // Date is 1-based. So 1 is the first date of the month.
+      // E.g., "0": [1,2,3,4,5] means January 01 to Janurary 05.
       "0": [1, 2, 3, 4, 5],
       "1": [
         5,
@@ -160,16 +178,16 @@
       "10": [1, 2],
       "11": [29, 30, 31]
     },
-    "weekdaySchedule": {
+    weekdaySchedule: {
       "6": [16],
       "9": [8],
       "10": [23]
     },
-    "specialSchedule": {
+    specialSchedule: {
       "7": [4, 5],
       "10": [3, 4]
     },
-    "saturdaySchedule": {
+    saturdaySchedule: {
       "1": [25, 26, 27, 28],
       "2": [
         1,
@@ -199,4 +217,4 @@
       "11": [25, 26, 27, 28]
     }
   }
-}
+};

@@ -219,7 +219,7 @@ export const busSchedule = {
       // Month is 0-based. So "0" is January and "11" is December.
       // Date is 1-based. So 1 is the first date of the month.
       // E.g., "0": [1,2,3,4,5] means January 01 to Janurary 05.
-      "0": [1, 2, 3, 4, ],
+      "0": [1, 2, 3, 4],
       "1": [
         5,
         6,
@@ -279,15 +279,15 @@ export const busSchedule = {
     },
     weekdaySchedule: {
       "4": [6],
-      "8": [15],
+      "6": [15],
       "9": [14]
     },
     specialSchedule: {
-      "9": [3, 4]
+      "7": [3, 4],
       "10": [2, 3],
     },
     saturdaySchedule: {
-      "1": [25, 26, 27, 28],
+      "1": [25, 26, 27, 28, 29],
       "2": [
         1,
         2,

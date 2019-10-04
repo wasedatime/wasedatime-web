@@ -21,7 +21,7 @@ import a2hsChrome from "../../img/bus_a2hs_chrome.png";
 import a2hsSafari from "../../img/bus_a2hs_safari.png";
 
 const wasedaNishiwasedaBusUri =
-  "https://www.waseda.jp/fsci/assets/uploads/2018/03/2018waseda-nishiwaseda-shuttle-bus-timetable.pdf";
+  "https://www.waseda.jp/fsci/assets/uploads/2019/03/2019waseda-nishiwaseda-shuttlebus-timetable03.pdf";
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;

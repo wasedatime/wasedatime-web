@@ -25,6 +25,7 @@ npm install
 ### Running the app for developing
 
 ```bash
+cd wasedatime-web
 npm run dev
 ```
 

@@ -1,6 +1,6 @@
 # WasedaTime
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/wasedatime/wasedatime-web.svg?branch=master)](https://travis-ci.org/wasedatime/wasedatime-web) [![All Contributors](https://img.shields.io/badge/all_contributors-7-orange.svg?style=flat-square)](#contributors)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/wasedatime/wasedatime-web.svg?branch=master)](https://travis-ci.org/wasedatime/wasedatime-web) [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
 
 [WasedaTime](https://wasedatime.com) (stands for Waseda Timetable) is an unofficial web app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.
 
@@ -74,6 +74,9 @@ Submit an issue or a pull request! :blush:
     <td align="center"><a href="https://github.com/Lmmmmm"><img src="https://avatars1.githubusercontent.com/u/30943643?v=4" width="100px;" alt="Meng Li"/><br /><sub><b>Meng Li</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/issues?q=author%3ALmmmmm" title="Bug reports">🐛</a> <a href="https://github.com/wasedatime/wasedatime-web/commits?author=Lmmmmm" title="Code">💻</a> <a href="#design-Lmmmmm" title="Design">🎨</a> <a href="#ideas-Lmmmmm" title="Ideas, Planning, & Feedback">🤔</a> <a href="#maintenance-Lmmmmm" title="Maintenance">🚧</a></td>
     <td align="center"><a href="https://github.com/Isabella-Ko"><img src="https://avatars0.githubusercontent.com/u/47520253?v=4" width="100px;" alt="Isabella-Ko"/><br /><sub><b>Isabella-Ko</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/commits?author=Isabella-Ko" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/JiaxianGu"><img src="https://avatars3.githubusercontent.com/u/43884711?v=4" width="100px;" alt="JiaxianGu"/><br /><sub><b>JiaxianGu</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/commits?author=JiaxianGu" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/YHhaoareyou"><img src="https://avatars0.githubusercontent.com/u/43674499?v=4" width="100px;" alt="YH_hao_are_you"/><br /><sub><b>YH_hao_are_you</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/commits?author=YHhaoareyou" title="Code">💻</a></td>
   </tr>
 </table>
 

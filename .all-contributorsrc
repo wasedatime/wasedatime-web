@@ -74,7 +74,26 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "JiaxianGu",
+      "name": "JiaxianGu",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/43884711?v=4",
+      "profile": "https://github.com/JiaxianGu",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "YHhaoareyou",
+      "name": "YH_hao_are_you",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/43674499?v=4",
+      "profile": "https://github.com/YHhaoareyou",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "commitConvention": "none"
+  "commitConvention": "none",
+  "contributorsPerLine": 7
 }

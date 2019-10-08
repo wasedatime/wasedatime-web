@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import Alert from "react-s-alert";
 import ReactGA from "react-ga";
 
 import { addCourse, removeCourse } from "../../actions/syllabus";
@@ -26,29 +25,14 @@ class FetchedCourseItem extends React.Component {
       label: title
     });
     if (Object.keys(byId).length >= ADDED_COURSES_NUMBER_LIMIT) {
-      Alert.error(
-        `Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`,
-        {
-          position: "bottom",
-          effect: "jelly"
-        }
-      );
+      // added courses more than limit error alert
       return;
     }
     this.props.addCourse(course, searchLang);
     if (occurrences.some(o => o.day === -1 || o.start_period === -1)) {
-      Alert.warning(
-        "Course with undecided time cannot be displayed in timetable.",
-        {
-          position: "bottom",
-          effect: "jelly"
-        }
-      );
+      // course with undecided time warning alert
     } else {
-      Alert.success("Course added.", {
-        position: "bottom",
-        effect: "jelly"
-      });
+      // course added success alert
     }
   };
 
@@ -60,10 +44,7 @@ class FetchedCourseItem extends React.Component {
       label: title
     });
     this.props.removeCourse(course._id);
-    Alert.success("Course removed.", {
-      position: "bottom",
-      effect: "jelly"
-    });
+    // course removed success alert
   };
 
   handleClickSyllabusLink = (title, lng) => {

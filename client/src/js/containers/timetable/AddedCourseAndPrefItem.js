@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import Alert from "react-s-alert";
 import { withNamespaces } from "react-i18next";
 import ReactGA from "react-ga";
 import { gaAddedCourseAndPrefItem } from "../../ga/eventCategories";
@@ -34,10 +33,7 @@ class AddedCourseAndPrefItem extends React.Component {
       action: gaAppendActionWithLng(gaRemoveCourse, lng),
       label: title
     });
-    Alert.success("Course removed.", {
-      position: "bottom",
-      effect: "jelly"
-    });
+    // course removed success alert
   };
 
   handleToggleColorPopper = event => {

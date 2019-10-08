@@ -2,13 +2,9 @@ import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import Alert from "react-s-alert";
 import styled, { ThemeProvider } from "styled-components";
 
 import { normalTheme } from "../styled-components/theme";
-import "react-s-alert/dist/s-alert-default.css";
-import "../../styles/s-alert-custom.css";
-import "react-s-alert/dist/s-alert-css-effects/jelly.css";
 
 import Header from "./Header";
 import About from "./About";
@@ -69,7 +65,7 @@ const App = ({ isFirstTimeAccess }) => {
           )}
         </StyledMain>
         <FooterContainer />
-        <Alert stack={{ limit: 1 }} timeout={3000} />
+        // was Alert component
       </Wrapper>
     </ThemeProvider>
   );

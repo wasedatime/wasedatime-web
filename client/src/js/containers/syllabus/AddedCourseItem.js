@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import Alert from "react-s-alert";
 import ReactGA from "react-ga";
 
 import { removeCourse } from "../../actions/syllabus";
@@ -28,10 +27,7 @@ class AddedCourseItem extends React.Component {
       label: title
     });
     this.props.removeCourse(course._id);
-    Alert.success("Course removed.", {
-      position: "bottom",
-      effect: "jelly"
-    });
+    // course removed success alert
   };
 
   render() {

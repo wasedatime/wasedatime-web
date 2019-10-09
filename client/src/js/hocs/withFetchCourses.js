@@ -56,7 +56,7 @@ const withFetchCourses = WrappedComponent => {
       } = this.props;
 
       if (isFetching && !fetchedCourseIds.length) {
-        return <LoadingSpinner />;
+        return <LoadingSpinner message={""} />;
       }
       if (error && !fetchedCourseIds.length) {
         return <FetchError onRetry={fetchCourses} />;

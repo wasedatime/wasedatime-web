@@ -7,6 +7,7 @@ import styled, {keyframes} from 'styled-components';
 
 import { media } from '../styled-components/utils';
 import {Overlay} from '../styled-components/Overlay';
+import PropTypes from 'prop-types';
 
 const show = keyframes`
   0% {
@@ -190,3 +191,12 @@ class BusModal extends React.Component {
 }
 
 export default BusModal;
+
+BusModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired
+}
+
+ExtendedOverlay.propTypes = {
+  animation: PropTypes.object.isRequired,
+}

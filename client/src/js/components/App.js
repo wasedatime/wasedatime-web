@@ -65,7 +65,7 @@ const App = ({ isFirstTimeAccess }) => {
           )}
         </StyledMain>
         <FooterContainer />
-        // was Alert component
+        {/* was Alert component*/}
       </Wrapper>
     </ThemeProvider>
   );

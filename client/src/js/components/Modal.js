@@ -14,7 +14,7 @@ class Modal extends React.Component {
     }
   }
 
-  componentWillUpdate(nextProps) {
+  UNSAFE_componentWillUpdate(nextProps) {
     if (nextProps.isOpen !== this.props.isOpen) {
       nextProps.isOpen ? noScroll.on() : noScroll.off();
     }

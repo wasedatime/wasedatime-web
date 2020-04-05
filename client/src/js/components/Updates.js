@@ -4,7 +4,6 @@ import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
 
 import ModalContainer from "../containers/ModalContainer";
-import { media } from "../styled-components/utils";
 
 const StyledUpdates = styled("div")`
   display: flex;

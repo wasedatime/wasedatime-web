@@ -72,6 +72,7 @@ const Header = styled('header')`
 `
 
 const Content = styled('section')`
+  color: #000000;
   display: flex;
   flex-direction: column;
 `
@@ -79,6 +80,7 @@ const Content = styled('section')`
 const Footer = Header.withComponent('footer');
 
 const CloseLink = styled('a')`
+  color: #000000;
   position: relative;
   top: -5px;
   right: -20px;

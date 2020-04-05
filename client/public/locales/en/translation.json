@@ -152,5 +152,13 @@
     "Tap on the top-right icon": "Tap on the top-right icon",
     "and select Add to Home screen": "and select 'Add to Home screen'",
     "Tap on the bottom-middle icon": "Tap on the bottom-middle icon"
+  },
+  "updates": {
+    "header": "Updates on the issue with the 2020 syllabus",
+    "main": "Hi! Thanks for clicking in.", 
+    "main2": "We apologize that the 2020 syllabus is not supported yet. Due to a updated policy from Waseda University, we are not able to obtain the 2020 syllabus data at this moment.",
+    "main3": "We are actively negotiating with the university and will provide any updates as soon as possible. We have received many inquiries and are very sorry for not being able to respond in time.",
+    "main4": "Thank you so much again, and we will do our best to ensure that the mission of WasedaTime continues.",
+    "main5": "Please stay safe and healthy!"
   }
 }

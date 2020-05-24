@@ -7,6 +7,7 @@ import styled, {keyframes} from 'styled-components';
 
 import { media } from '../styled-components/utils';
 import {Overlay} from '../styled-components/Overlay';
+import PropTypes from 'prop-types';
 
 const show = keyframes`
   0% {
@@ -71,6 +72,7 @@ const Header = styled('header')`
 `
 
 const Content = styled('section')`
+  color: #000000;
   display: flex;
   flex-direction: column;
 `
@@ -78,6 +80,7 @@ const Content = styled('section')`
 const Footer = Header.withComponent('footer');
 
 const CloseLink = styled('a')`
+  color: #000000;
   position: relative;
   top: -5px;
   right: -20px;
@@ -190,3 +193,12 @@ class BusModal extends React.Component {
 }
 
 export default BusModal;
+
+BusModal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired
+}
+
+ExtendedOverlay.propTypes = {
+  animation: PropTypes.object.isRequired,
+}

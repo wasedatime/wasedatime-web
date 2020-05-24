@@ -88,9 +88,7 @@ const Developers = ({ t }) => {
           </Name>
 
           <Position>{t("welcome.Founder")}</Position>
-          <Bio>
-            <i>WasedaTime &gt; Course N@vi</i>
-          </Bio>
+          <Bio />
         </Introduction>
       </Wrapper>
       <Wrapper>

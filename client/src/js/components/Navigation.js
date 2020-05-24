@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import { withRouter } from "react-router";
@@ -99,3 +100,12 @@ const Navigation = props => {
 };
 
 export default withRouter(withNamespaces("translation")(Navigation));
+
+Navigation.propTypes = {
+  location: PropTypes.object.isRequired,
+  t: PropTypes.func.isRequired
+}
+
+StyledButton.propTypes = {
+  isClicked: PropTypes.bool.isRequired
+}

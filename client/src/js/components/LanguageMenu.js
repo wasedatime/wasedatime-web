@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import i18n from "./i18n";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -91,3 +92,8 @@ class LanguangeMenu extends React.Component {
 }
 
 export default withNamespaces("translation")(LanguangeMenu);
+
+LanguangeMenu.propTypes = {
+  lng: PropTypes.string.isRequired,
+  t: PropTypes.func.isRequired
+}

@@ -116,6 +116,8 @@ const DatetimeInputContainer = styled("div")`
 const DatetimeInput = styled("input")`
   background: #fff;
   border: 0px;
+  cursor: pointer;
+
   &:focus {
     outline: none;
   }
@@ -125,6 +127,7 @@ const DatetimeClearButton = styled("button")`
   background: #fff;
   border: 0px;
   float: right;
+  
   &:focus {
     outline: none;
     background: #ccc;
@@ -375,6 +378,7 @@ class Bus extends React.Component {
               locale={lng}
               timeConstraints={{ minutes: { step: 5 } }}
               renderInput={this.renderInput}
+              inputProps={{ readOnly: true }}
             />
             <BusStatus>
               <StyledSubHeading>

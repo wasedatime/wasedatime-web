@@ -9,16 +9,15 @@
 .rdtPicker {
   display: none;
   position: absolute;
-  width: 250px;
   padding: 4px;
   margin-top: 1px;
   z-index: 99999 !important;
   background: #fff;
   box-shadow: 0 1px 3px rgba(0,0,0,.1);
-  border: 1px solid #f9f9f9;
 }
 .rdtOpen .rdtPicker {
   display: block;
+  border-radius: 3px;
 }
 .rdtStatic .rdtPicker {
   box-shadow: none;
@@ -27,6 +26,7 @@
 
 .rdtPicker .rdtTimeToggle {
   text-align: center;
+  padding: 0.5em 1em;
 }
 .rdtTimeToggle:before{
   content: "🕒";
@@ -42,6 +42,7 @@
 .rdtPicker th {
   text-align: center;
   height: 28px;
+  padding: 0.5em 1em;
 }
 .rdtPicker td {
   cursor: pointer;
@@ -176,6 +177,7 @@ td.rdtYear:hover {
 
 .rdtCounter {
   height: 100px;
+  margin: 0px 1em;
 }
 
 .rdtCounter {

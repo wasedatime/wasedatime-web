@@ -5,9 +5,11 @@ import {
   faClock,
   faAngleDoubleRight,
   faEllipsisV,
-  faSearch
+  faSearch,
+  faCalendarAlt,
+  faTimes
 } from "@fortawesome/free-solid-svg-icons";
-import DatetimePicker from 'react-datetime-picker';
+import Datetime from 'react-datetime';
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 import LANGS from "../config/langs";
@@ -21,7 +23,7 @@ import { busSchedule } from "../data/busSchedule.js";
 import safariExport from "../../img/safari-export.svg";
 import a2hsChrome from "../../img/bus_a2hs_chrome.png";
 import a2hsSafari from "../../img/bus_a2hs_safari.png";
-import "../../styles/datetimePicker.css";
+import "../../styles/datetime.css";
 
 const wasedaNishiwasedaBusUri =
   "https://www.waseda.jp/fsci/assets/uploads/2019/03/2019waseda-nishiwaseda-shuttlebus-timetable03.pdf";
@@ -101,6 +103,33 @@ const ModalSection = styled("section")`
   flex-direction: column;
   align-items: center;
   margin: 20px 0px;
+`;
+
+const DatetimeInputContainer = styled("div")`
+  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  cursor: pointer;
+`;
+
+const DatetimeInput = styled("input")`
+  background: #fff;
+  border: 0px;
+  &:focus {
+    outline: none;
+  }
+`;
+
+const DatetimeClearButton = styled("button")`
+  background: #fff;
+  border: 0px;
+  float: right;
+  &:focus {
+    outline: none;
+    background: #ccc;
+    border-radius: 5px;
+  }
 `;
 
 const binarySearch = (value, arr) => {
@@ -290,7 +319,25 @@ class Bus extends React.Component {
   };
 
   onDateChange = date => {
-    this.setState({ date: date || new Date() })
+    this.setState({ date: date.toDate() || new Date() })
+  }
+
+  renderInput = ( props, openCalendar, closeCalendar ) => {
+    function clear(evt){
+      evt.stopPropagation();
+      props.onChange({target: {value: new Date()}});
+      closeCalendar();
+    }
+    return (
+      <DatetimeInputContainer onClick={openCalendar}>
+        <FontAwesomeIcon icon={faCalendarAlt} size="1x" />{' '}
+        <DatetimeInput {...props} />
+
+        <DatetimeClearButton onClick={clear}>
+          <FontAwesomeIcon icon={faTimes} size="1x" />{' '}Clear
+        </DatetimeClearButton>
+      </DatetimeInputContainer>
+    );
   }
 
   render () {
@@ -320,12 +367,14 @@ class Bus extends React.Component {
               <FontAwesomeIcon icon={faSearch} size="1x" />{' '}
               Assign a date / time to check the next bus:
             </p>
-            <DatetimePicker
+            <Datetime
               onChange={this.onDateChange}
               value={this.state.date}
-              disableClock={true}
-              format="yyyy-MM-dd hh:mm a"
+              dateFormat="YYYY-MM-DD "
+              timeFormat=" hh:mm A"
               locale={lng}
+              timeConstraints={{ minutes: { step: 5 } }}
+              renderInput={this.renderInput}
             />
             <BusStatus>
               <StyledSubHeading>

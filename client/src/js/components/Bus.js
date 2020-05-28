@@ -127,7 +127,7 @@ const DatetimeClearButton = styled("button")`
   background: #fff;
   border: 0px;
   float: right;
-  
+
   &:focus {
     outline: none;
     background: #ccc;
@@ -368,7 +368,7 @@ class Bus extends React.Component {
             <StyledHeading>{t("bus.busStatus")}</StyledHeading>
             <p>
               <FontAwesomeIcon icon={faSearch} size="1x" />{' '}
-              Assign a date / time to check the next bus:
+              {t("bus.Assign a date / time to check the next bus")}：
             </p>
             <Datetime
               onChange={this.onDateChange}

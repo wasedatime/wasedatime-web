@@ -9,7 +9,7 @@ import {
   faCalendarAlt,
   faTimes
 } from "@fortawesome/free-solid-svg-icons";
-import Datetime from 'react-datetime';
+import DatePicker from 'react-datepicker';
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 import LANGS from "../config/langs";
@@ -24,6 +24,7 @@ import safariExport from "../../img/safari-export.svg";
 import a2hsChrome from "../../img/bus_a2hs_chrome.png";
 import a2hsSafari from "../../img/bus_a2hs_safari.png";
 import "../../styles/datetime.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const wasedaNishiwasedaBusUri =
   "https://www.waseda.jp/fsci/assets/uploads/2019/03/2019waseda-nishiwaseda-shuttlebus-timetable03.pdf";
@@ -105,33 +106,35 @@ const ModalSection = styled("section")`
   margin: 20px 0px;
 `;
 
-const DatetimeInputContainer = styled("div")`
+const DatetimeSelection = styled("div")`
   background: #fff;
-  border: 1px solid #ccc;
   border-radius: 5px;
-  padding: 0.5em 1em;
   cursor: pointer;
 `;
 
-const DatetimeInput = styled("input")`
-  background: #fff;
-  border: 0px;
-  cursor: pointer;
+const DatePickerWrapper = styled("div")`
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  width: 37.5%;
 
-  &:focus {
+  &:hover {
     outline: none;
+    background: #ddd;
   }
 `;
 
-const DatetimeClearButton = styled("button")`
-  background: #fff;
-  border: 0px;
-  float: right;
+const DatetimeClearButton = styled("div")`
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  display: inline-block;
+  width: 25%;
 
-  &:focus {
+  &:hover {
     outline: none;
-    background: #ccc;
-    border-radius: 5px;
+    background: #ddd;
   }
 `;
 
@@ -316,31 +319,31 @@ const createStatusComponent = (status, t) => {
   };
 };
 
+const DateSelector = ({ value, onClick }) => (
+  <span onClick={onClick}>
+    <FontAwesomeIcon icon={faCalendarAlt} size="1x" />{" "}
+    {value}
+  </span>
+);
+
+const TimeSelector = ({ value, onClick }) => (
+  <span onClick={onClick}>
+    <FontAwesomeIcon icon={faClock} size="1x" />{" "}
+    {value}
+  </span>
+);
+
 class Bus extends React.Component {
   state = {
     date: new Date()
   };
 
-  onDateChange = date => {
-    this.setState({ date: date.toDate() || new Date() })
+  onDatetimeChange = date => {
+    this.setState({ date: date || new Date() })
   }
 
-  renderInput = ( props, openCalendar, closeCalendar ) => {
-    function clear(evt){
-      evt.stopPropagation();
-      props.onChange({target: {value: new Date()}});
-      closeCalendar();
-    }
-    return (
-      <DatetimeInputContainer onClick={openCalendar}>
-        <FontAwesomeIcon icon={faCalendarAlt} size="1x" />{' '}
-        <DatetimeInput {...props} />
-
-        <DatetimeClearButton onClick={clear}>
-          <FontAwesomeIcon icon={faTimes} size="1x" />{' '}Clear
-        </DatetimeClearButton>
-      </DatetimeInputContainer>
-    );
+  clearDatetime = () => {
+    this.setState({ date: new Date() })
   }
 
   render () {
@@ -370,16 +373,35 @@ class Bus extends React.Component {
               <FontAwesomeIcon icon={faSearch} size="1x" />{' '}
               {t("bus.Assign a date / time to check the next bus")}：
             </p>
-            <Datetime
-              onChange={this.onDateChange}
-              value={this.state.date}
-              dateFormat="YYYY-MM-DD "
-              timeFormat=" hh:mm A"
-              locale={lng}
-              timeConstraints={{ minutes: { step: 5 } }}
-              renderInput={this.renderInput}
-              inputProps={{ readOnly: true }}
-            />
+
+            <DatetimeSelection>
+              <DatePickerWrapper>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={date => this.onDatetimeChange(date)}
+                  dateFormat="yyyy-MM-dd"
+                  customInput={<DateSelector />}
+                />
+              </DatePickerWrapper>
+              <DatePickerWrapper>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={date => this.onDatetimeChange(date)}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  minTime={(new Date()).setHours(9, 0)}
+                  maxTime={(new Date()).setHours(18, 20)}
+                  timeIntervals={5}
+                  timeCaption="Time"
+                  dateFormat="hh:mm aa"
+                  customInput={<TimeSelector />}
+                />
+              </DatePickerWrapper>
+              <DatetimeClearButton onClick={this.clearDatetime}>
+                <FontAwesomeIcon icon={faTimes} size="1x" />{' '}Clear
+              </DatetimeClearButton>
+            </DatetimeSelection>
+
             <BusStatus>
               <StyledSubHeading>
                 {t("bus.Waseda")}{" "}

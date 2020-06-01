@@ -1,9 +1,8 @@
-.react-datepicker__input-container input {
-  border: none;
-  cursor: pointer;
+.react-datepicker-wrapper {
+  width: 100% !important;
 }
 
-.react-datepicker__input-container input:focus {
+.react-datepicker__input-container button:focus {
   outline: none;
 }
 

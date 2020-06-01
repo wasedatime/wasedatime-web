@@ -112,12 +112,16 @@ const DatetimeSelection = styled("div")`
   cursor: pointer;
 `;
 
-const DatePickerWrapper = styled("div")`
+const DatePickerSpan = styled("span")`
+   display: inline-block;
+   width: 37.5%;
+`;
+
+const DatePickerButton = styled("button")`
   padding: 0.5em 1em;
   border: none;
   border-radius: 5px;
-  display: inline-block;
-  width: 37.5%;
+  width: 100%;
 
   &:hover {
     outline: none;
@@ -125,16 +129,19 @@ const DatePickerWrapper = styled("div")`
   }
 `;
 
-const DatetimeClearButton = styled("div")`
+const DatetimeClearButton = styled("button")`
   padding: 0.5em 1em;
   border: none;
   border-radius: 5px;
-  display: inline-block;
   width: 25%;
 
   &:hover {
     outline: none;
     background: #ddd;
+  }
+
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -320,17 +327,17 @@ const createStatusComponent = (status, t) => {
 };
 
 const DateSelector = ({ value, onClick }) => (
-  <span onClick={onClick}>
+  <DatePickerButton onClick={onClick}>
     <FontAwesomeIcon icon={faCalendarAlt} size="1x" />{" "}
     {value}
-  </span>
+  </DatePickerButton>
 );
 
 const TimeSelector = ({ value, onClick }) => (
-  <span onClick={onClick}>
+  <DatePickerButton onClick={onClick}>
     <FontAwesomeIcon icon={faClock} size="1x" />{" "}
     {value}
-  </span>
+  </DatePickerButton>
 );
 
 class Bus extends React.Component {
@@ -375,15 +382,15 @@ class Bus extends React.Component {
             </p>
 
             <DatetimeSelection>
-              <DatePickerWrapper>
+              <DatePickerSpan>
                 <DatePicker
                   selected={this.state.date}
                   onChange={date => this.onDatetimeChange(date)}
                   dateFormat="yyyy-MM-dd"
                   customInput={<DateSelector />}
                 />
-              </DatePickerWrapper>
-              <DatePickerWrapper>
+              </DatePickerSpan>
+              <DatePickerSpan>
                 <DatePicker
                   selected={this.state.date}
                   onChange={date => this.onDatetimeChange(date)}
@@ -396,7 +403,7 @@ class Bus extends React.Component {
                   dateFormat="hh:mm aa"
                   customInput={<TimeSelector />}
                 />
-              </DatePickerWrapper>
+              </DatePickerSpan>
               <DatetimeClearButton onClick={this.clearDatetime}>
                 <FontAwesomeIcon icon={faTimes} size="1x" />{' '}Clear
               </DatetimeClearButton>

@@ -127,6 +127,8 @@ const DatePickerButton = styled("button")`
     outline: none;
     background: #ddd;
   }
+
+  ${media.phone`padding: 0.5em;`};
 `;
 
 const DatetimeClearButton = styled("button")`
@@ -143,6 +145,8 @@ const DatetimeClearButton = styled("button")`
   &:focus {
     outline: none;
   }
+
+  ${media.phone`padding: 0.5em;`};
 `;
 
 const binarySearch = (value, arr) => {
@@ -388,6 +392,7 @@ class Bus extends React.Component {
                   onChange={date => this.onDatetimeChange(date)}
                   dateFormat="yyyy-MM-dd"
                   customInput={<DateSelector />}
+                  popperPlacement='bottom-start'
                 />
               </DatePickerSpan>
               <DatePickerSpan>
@@ -402,6 +407,7 @@ class Bus extends React.Component {
                   timeCaption="Time"
                   dateFormat="hh:mm aa"
                   customInput={<TimeSelector />}
+                  popperPlacement='bottom-start'
                 />
               </DatePickerSpan>
               <DatetimeClearButton onClick={this.clearDatetime}>

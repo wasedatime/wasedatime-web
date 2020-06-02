@@ -26,14 +26,14 @@
     "connect-timeout": "^1.9.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
-    "helmet": "^3.9.0",
+    "helmet": "^3.22.0",
     "lodash": "^4.17.11",
-    "mongoose": "^5.3.4"
+    "mongoose": "^5.9.16"
   },
   "devDependencies": {
-    "all-contributors-cli": "^6.1.1",
+    "all-contributors-cli": "^6.15.0",
     "concurrently": "^3.5.1",
     "mocha": "^4.0.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.19.4"
   }
 }

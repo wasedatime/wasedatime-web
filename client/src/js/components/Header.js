@@ -6,8 +6,6 @@ import Navigation from "./Navigation";
 import LanguangeMenu from "./LanguageMenu";
 import logo from "../../img/logo.png";
 
-import Updates from "./Updates";
-
 const StyledHeader = styled("header")`
   display: flex;
   flex-direction: row;

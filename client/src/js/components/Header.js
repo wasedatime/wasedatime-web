@@ -16,7 +16,7 @@ const StyledHeader = styled("header")`
   height: ${props => props.theme.headerHeight};
   background: ${props => props.theme.grey2};
   position: fixed;
-  top: 60px;
+  top: 0;
   right: 0;
   left: 0;
   z-index: 1030;
@@ -34,8 +34,6 @@ const Logo = styled("img")`
 
 const Header = () => {
   return (
-    <div>
-    <Updates />
     <StyledHeader>
       <StyledLink to="/about">
         <Logo src={logo} alt="WasedaTime logo" />
@@ -43,7 +41,6 @@ const Header = () => {
       <Navigation />
       <LanguangeMenu />
     </StyledHeader>
-    </div>
   );
 };
 

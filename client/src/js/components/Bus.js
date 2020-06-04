@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Helmet } from "react-helmet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -330,19 +330,19 @@ const createStatusComponent = (status, t) => {
   };
 };
 
-const DateSelector = ({ value, onClick }) => (
-  <DatePickerButton onClick={onClick}>
+const DateSelector = forwardRef(({ value, onClick }, ref) => (
+  <DatePickerButton onClick={onClick} ref={ref}>
     <FontAwesomeIcon icon={faCalendarAlt} size="1x" />{" "}
     {value}
   </DatePickerButton>
-);
+));
 
-const TimeSelector = ({ value, onClick }) => (
-  <DatePickerButton onClick={onClick}>
+const TimeSelector = forwardRef(({ value, onClick }, ref) => (
+  <DatePickerButton onClick={onClick} ref={ref}>
     <FontAwesomeIcon icon={faClock} size="1x" />{" "}
     {value}
   </DatePickerButton>
-);
+));
 
 class Bus extends React.Component {
   state = {

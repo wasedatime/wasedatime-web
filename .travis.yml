@@ -4,9 +4,9 @@ node_js:
 before_install:
   - bash travis/before_install.sh
 install:
-  - npm install
+  - npm ci
 before_script:
-  - npm install --prefix client
+  - npm ci --prefix client
 script:
   - npm test
   - bash travis/build.sh

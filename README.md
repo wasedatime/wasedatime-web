@@ -1,6 +1,6 @@
 # WasedaTime
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md) [![Build Status](https://travis-ci.org/wasedatime/wasedatime-web.svg?branch=master)](https://travis-ci.org/wasedatime/wasedatime-web) [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md) [![Build Status](https://travis-ci.com/wasedatime/wasedatime-web.svg?branch=master)](https://travis-ci.com/wasedatime/wasedatime-web) [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
 
 [WasedaTime](https://wasedatime.com) (stands for Waseda Timetable) is an unofficial web app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.
 
@@ -16,10 +16,10 @@ Currently this section is yet to be completed/refined. We will update it as freq
 git clone https://github.com/wasedatime/wasedatime-web.git
 cd wasedatime-web
 # install server-side node_modules
-npm install
+npm ci
 # install client-side node_modules
 cd client
-npm install
+npm ci
 ```
 
 ### Running the app for developing

@@ -73,6 +73,12 @@
   overflow-x: hidden !important;
 }
 
+@media (max-height: 670px) {
+  .react-datepicker__time-list {
+    height: 250px !important;
+  }
+}
+
 .react-datepicker__time-list-item {
   width: 150px !important;
   padding-top: 0.8em !important;

@@ -129,6 +129,7 @@ const DatePickerButton = styled("button")`
   }
 
   ${media.phone`padding: 0.5em 0.3em;`};
+  ${media.phoneMini`font-size: 0.9em;`};
 `;
 
 const DatetimeClearButton = styled("button")`
@@ -147,6 +148,7 @@ const DatetimeClearButton = styled("button")`
   }
 
   ${media.phone`padding: 0.5em 0.3em;`};
+  ${media.phoneMini`font-size: 0.9em;`};
 `;
 
 const binarySearch = (value, arr) => {

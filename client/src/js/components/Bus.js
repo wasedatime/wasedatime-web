@@ -1,11 +1,15 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { Helmet } from "react-helmet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
   faAngleDoubleRight,
-  faEllipsisV
+  faEllipsisV,
+  faSearch,
+  faCalendarAlt,
+  faTimes
 } from "@fortawesome/free-solid-svg-icons";
+import DatePicker from 'react-datepicker';
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 import LANGS from "../config/langs";
@@ -19,6 +23,8 @@ import { busSchedule } from "../data/busSchedule.js";
 import safariExport from "../../img/safari-export.svg";
 import a2hsChrome from "../../img/bus_a2hs_chrome.png";
 import a2hsSafari from "../../img/bus_a2hs_safari.png";
+import "../../styles/datetime.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 const wasedaNishiwasedaBusUri =
   "https://www.waseda.jp/fsci/assets/uploads/2019/03/2019waseda-nishiwaseda-shuttlebus-timetable03.pdf";
@@ -98,6 +104,51 @@ const ModalSection = styled("section")`
   flex-direction: column;
   align-items: center;
   margin: 20px 0px;
+`;
+
+const DatetimeSelection = styled("div")`
+  background: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+`;
+
+const DatePickerSpan = styled("span")`
+   display: inline-block;
+   width: 37.5%;
+`;
+
+const DatePickerButton = styled("button")`
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  width: 100%;
+
+  &:hover {
+    outline: none;
+    background: #ddd;
+  }
+
+  ${media.phone`padding: 0.5em 0.3em;`};
+  ${media.phoneMini`font-size: 0.9em;`};
+`;
+
+const DatetimeClearButton = styled("button")`
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 5px;
+  width: 25%;
+
+  &:hover {
+    outline: none;
+    background: #ddd;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  ${media.phone`padding: 0.5em 0.3em;`};
+  ${media.phoneMini`font-size: 0.9em;`};
 `;
 
 const binarySearch = (value, arr) => {
@@ -210,10 +261,10 @@ const getBusStatus = (totalMins, occurrences, remarks, t) => {
   return t("bus.Out of service");
 };
 
-const getBusStatuses = (now, lng, t) => {
-  const month = now.getMonth();
-  const date = now.getDate();
-  const day = now.getDay();
+const getBusStatuses = (targetDate, lng, t) => {
+  const month = targetDate.getMonth();
+  const date = targetDate.getDate();
+  const day = targetDate.getDay();
   //assertion language at first
   let wasedaStatus, nishiStatus;
   wasedaStatus = t("bus.Out of service");
@@ -229,7 +280,7 @@ const getBusStatuses = (now, lng, t) => {
   }
 
   // Weekday schedule or Saturday schedule
-  const totalMins = now.getHours() * 60 + now.getMinutes();
+  const totalMins = targetDate.getHours() * 60 + targetDate.getMinutes();
   const wasedaSchedule = busSchedule[scheduleType].fromWasedaToNishiWaseda;
   const nishiSchedule = busSchedule[scheduleType].fromNishiWasedaToWaseda;
   if (lng === LANGS.EN) {
@@ -281,90 +332,153 @@ const createStatusComponent = (status, t) => {
   };
 };
 
-const Bus = ({ t, lng }) => {
-  const now = new Date();
-  const { wasedaStatus, nishiStatus } = getBusStatuses(now, lng, t);
-  const wasedaStatusComponent = createStatusComponent(wasedaStatus, t);
-  const nishiStatusComponent = createStatusComponent(nishiStatus, t);
-  return (
-    <Wrapper>
-      <Helmet>
-        <title>WasedaTime -　Bus</title>
-        <meta
-          name="description"
-          content="Shuttle Bus Arrival Time Checking at Waseda University."
-        />
-        <meta property="og:title" content="WasedaTime - Bus" />
-        <meta
-          property="og:description"
-          content="Shuttle Bus Arrival Time Checking at Waseda University."
-        />
-        <meta property="og:site_name" content="WasedaTime - Bus" />
-      </Helmet>
-      <ExtendedOverlay>
-        <InfoWrapper>
-          <StyledHeading>{t("bus.busStatus")}</StyledHeading>
-          <BusStatus>
-            <StyledSubHeading>
-              {t("bus.Waseda")}{" "}
-              <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
-              {t("bus.NishiWaseda")}
-            </StyledSubHeading>
-            <Status>{wasedaStatusComponent.status}</Status>
-            <Remark>{wasedaStatusComponent.remark}</Remark>
-          </BusStatus>
-          <BusStatus>
-            <StyledSubHeading>
-              {t("bus.NishiWaseda")}{" "}
-              <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
-              {t("bus.Waseda")}
-            </StyledSubHeading>
-            <Status>{nishiStatusComponent.status}</Status>
-            <Remark>{nishiStatusComponent.remark}</Remark>
-          </BusStatus>
-          <ModalContainer
-            linkText={t("bus.Add to home screen")}
-            text={t("bus.and never miss a bus again!")}
-          >
-            <ModalArticle>
-              <ModalSection>
-                <ModalHeading>Android / Chrome:</ModalHeading>
-                <p>
-                  {t("bus.Tap on the top-right icon")}
-                  &nbsp;
-                  <FontAwesomeIcon icon={faEllipsisV} size="1x" />
-                  &nbsp;
-                  {t("bus.and select Add to Home screen")}
-                </p>
-                <ModalImage
-                  src={a2hsChrome}
-                  alt="Add to home screen image for Chrome"
+const DateSelector = forwardRef(({ value, onClick }, ref) => (
+  <DatePickerButton onClick={onClick} ref={ref}>
+    <FontAwesomeIcon icon={faCalendarAlt} size="1x" />{" "}
+    {value}
+  </DatePickerButton>
+));
+
+const TimeSelector = forwardRef(({ value, onClick }, ref) => (
+  <DatePickerButton onClick={onClick} ref={ref}>
+    <FontAwesomeIcon icon={faClock} size="1x" />{" "}
+    {value}
+  </DatePickerButton>
+));
+
+class Bus extends React.Component {
+  state = {
+    date: new Date()
+  };
+
+  onDatetimeChange = date => {
+    this.setState({ date: date || new Date() })
+  }
+
+  clearDatetime = () => {
+    this.setState({ date: new Date() })
+  }
+
+  render () {
+    const { t, lng } = this.props;
+    const { wasedaStatus, nishiStatus } = getBusStatuses(this.state.date, lng, t);
+    const wasedaStatusComponent = createStatusComponent(wasedaStatus, t);
+    const nishiStatusComponent = createStatusComponent(nishiStatus, t);
+    return (
+      <Wrapper>
+        <Helmet>
+          <title>WasedaTime -　Bus</title>
+          <meta
+            name="description"
+            content="Shuttle Bus Arrival Time Checking at Waseda University."
+            />
+          <meta property="og:title" content="WasedaTime - Bus" />
+          <meta
+            property="og:description"
+            content="Shuttle Bus Arrival Time Checking at Waseda University."
+            />
+          <meta property="og:site_name" content="WasedaTime - Bus" />
+        </Helmet>
+        <ExtendedOverlay>
+          <InfoWrapper>
+            <StyledHeading>{t("bus.busStatus")}</StyledHeading>
+            <p>
+              <FontAwesomeIcon icon={faSearch} size="1x" />{' '}
+              {t("bus.Assign a date / time to check the next bus")}：
+            </p>
+
+            <DatetimeSelection>
+              <DatePickerSpan>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={date => this.onDatetimeChange(date)}
+                  dateFormat="yyyy-MM-dd"
+                  customInput={<DateSelector />}
+                  popperPlacement='bottom-start'
                 />
-              </ModalSection>
-              <ModalSection>
-                <ModalHeading>IOS / Safari:</ModalHeading>
-                <p>
-                  {t("bus.Tap on the bottom-middle icon")}
-                  &nbsp;
-                  <img src={safariExport} alt="Safari export icon" />
-                  &nbsp;
-                  {t("bus.and select Add to Home screen")}
-                </p>
-                <ModalImage
-                  src={a2hsSafari}
-                  alt="Add to home screen image for Safari"
+              </DatePickerSpan>
+              <DatePickerSpan>
+                <DatePicker
+                  selected={this.state.date}
+                  onChange={date => this.onDatetimeChange(date)}
+                  showTimeSelect
+                  showTimeSelectOnly
+                  minTime={(new Date()).setHours(9, 0)}
+                  maxTime={(new Date()).setHours(18, 20)}
+                  timeIntervals={5}
+                  timeCaption="Time"
+                  dateFormat="hh:mm aa"
+                  customInput={<TimeSelector />}
+                  popperPlacement='bottom-start'
                 />
-              </ModalSection>
-            </ModalArticle>
-          </ModalContainer>
-          <StyledHeading>{t("bus.Official Link")}</StyledHeading>
-          <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
-            {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}
-          </StyledAnchor>
-        </InfoWrapper>
-      </ExtendedOverlay>
-    </Wrapper>
-  );
+              </DatePickerSpan>
+              <DatetimeClearButton onClick={this.clearDatetime}>
+                <FontAwesomeIcon icon={faTimes} size="1x" />{' '}Clear
+              </DatetimeClearButton>
+            </DatetimeSelection>
+
+            <BusStatus>
+              <StyledSubHeading>
+                {t("bus.Waseda")}{" "}
+                <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
+                {t("bus.NishiWaseda")}
+              </StyledSubHeading>
+              <Status>{wasedaStatusComponent.status}</Status>
+              <Remark>{wasedaStatusComponent.remark}</Remark>
+            </BusStatus>
+            <BusStatus>
+              <StyledSubHeading>
+                {t("bus.NishiWaseda")}{" "}
+                <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
+                {t("bus.Waseda")}
+              </StyledSubHeading>
+              <Status>{nishiStatusComponent.status}</Status>
+              <Remark>{nishiStatusComponent.remark}</Remark>
+            </BusStatus>
+            <ModalContainer
+              linkText={t("bus.Add to home screen")}
+              text={t("bus.and never miss a bus again!")}
+              >
+              <ModalArticle>
+                <ModalSection>
+                  <ModalHeading>Android / Chrome:</ModalHeading>
+                  <p>
+                    {t("bus.Tap on the top-right icon")}
+                    &nbsp;
+                    <FontAwesomeIcon icon={faEllipsisV} size="1x" />
+                    &nbsp;
+                    {t("bus.and select Add to Home screen")}
+                  </p>
+                  <ModalImage
+                    src={a2hsChrome}
+                    alt="Add to home screen image for Chrome"
+                    />
+                </ModalSection>
+                <ModalSection>
+                  <ModalHeading>IOS / Safari:</ModalHeading>
+                  <p>
+                    {t("bus.Tap on the bottom-middle icon")}
+                    &nbsp;
+                    <img src={safariExport} alt="Safari export icon" />
+                    &nbsp;
+                    {t("bus.and select Add to Home screen")}
+                  </p>
+                  <ModalImage
+                    src={a2hsSafari}
+                    alt="Add to home screen image for Safari"
+                    />
+                </ModalSection>
+              </ModalArticle>
+            </ModalContainer>
+            <StyledHeading>{t("bus.Official Link")}</StyledHeading>
+            <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
+              {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}
+            </StyledAnchor>
+          </InfoWrapper>
+        </ExtendedOverlay>
+      </Wrapper>
+    );
+  }
 };
 
 export default withNamespaces("translation")(Bus);

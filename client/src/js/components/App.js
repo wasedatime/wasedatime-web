@@ -25,8 +25,7 @@ const Wrapper = styled("div")`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  // padding-top: ${props => props.theme.headerHeight};
-  padding-top: 120px;
+  padding-top: ${props => props.theme.headerHeight};
 `;
 
 const StyledMain = styled("main")`

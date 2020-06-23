@@ -6,7 +6,9 @@ import {
   faMinusCircle,
   faClock,
   faMapMarkerAlt,
-  faExternalLinkSquareAlt
+  faExternalLinkSquareAlt,
+  faEye,
+  faPen
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
@@ -100,17 +102,65 @@ const KeywordList = styled(SchoolIconList)`
   flex-wrap: wrap;
 `;
 
+const DetailWrapper = styled("div")`
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2em;
+  ${media.phone`font-size: 1.0em;`};
+`;
+
 const DescriptionWrapper = styled("div")`
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 1.2em;
-  ${media.phone`font-size: 1.1em;`};
 `;
 
 const Description = styled("div")`
   flex: 1 0 auto;
   text-align: left;
+`;
+
+const CommentButtonsWrapper = styled("div")`
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+`;
+
+const ViewCommentsButton = styled("a")`
+  flex: 1 0 auto;
+  display: block;
+  background: #6495ED;
+  border: 0px;
+  border-radius: 5px;
+  color: #fff;
+  width: 40%;
+  margin-bottom: 5px;
+  text-align: center;
+  padding-top: 4px;
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  ${media.phone`width: 100%;`};
+`;
+
+const AddCommentsButton = styled("button")`
+  flex: 1 0 auto;
+  background: #48af37;
+  border: 0px;
+  border-radius: 5px;
+  color: #fff;
+  width: 40%;
+
+  &:focus {
+    outline: none;
+  }
+
+  ${media.phone`width: 100%;`};
 `;
 
 const OccurrenceList = styled("ul")`
@@ -291,13 +341,32 @@ const CourseItem = ({
             </InvisibleButton>
           </div>
         </CourseItemRow>
-        <DescriptionWrapper>
-          <Description>{yearTerm}</Description>
-          <Description>
-            <OccurrenceList>{occurrences}</OccurrenceList>
-          </Description>
-          <Description>{highlightedInstructor}</Description>
-        </DescriptionWrapper>
+        <DetailWrapper>
+          <DescriptionWrapper>
+            <Description>{yearTerm}</Description>
+            <Description>
+              <OccurrenceList>{occurrences}</OccurrenceList>
+            </Description>
+            <Description>{highlightedInstructor}</Description>
+          </DescriptionWrapper>
+          <CommentButtonsWrapper>
+            <ViewCommentsButton href={`/comments/${syllabusId}`} target="_blank">
+              <FontAwesomeIcon
+                icon={faEye}
+              />{' '}
+              View Comments
+            </ViewCommentsButton>
+
+            <AddCommentsButton onClick={e => {
+              e.preventDefault();
+            }}>
+              <FontAwesomeIcon
+                icon={faPen}
+              />{' '}
+              Add Comments
+            </AddCommentsButton>
+          </CommentButtonsWrapper>
+        </DetailWrapper>
       </CourseItemWrapper>
     </RowWrapper>
   );

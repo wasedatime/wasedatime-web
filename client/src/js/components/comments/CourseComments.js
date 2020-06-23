@@ -8,6 +8,7 @@ import { sizes } from "../../styled-components/utils";
 import { Overlay } from "../../styled-components/Overlay";
 import { Wrapper } from "../../styled-components/Wrapper";
 import CourseItem from "../syllabus/CourseItem";
+import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import CommentsList from "./CommentsList";
 
 const ExtendedOverlay = styled(Overlay)`
@@ -51,24 +52,40 @@ const exampleComments = [
   }
 ];
 
+const exampleCourse = {
+  _id: "9204B440010220209204B4400192",
+  title: "\"Keigo\" Communication 4 (Japanese course for International Student)",
+  title_jp: "敬語でコミュニケーション4 (留学生対象日本語科目)",
+  instructor: "MARUYAMA, Tomoko",
+  instructor_jp: "丸山 具子",
+  year: 2020,
+  term: "fallSem",
+  keys: [
+    {
+      "school": "CJL",
+      "key": "9204B440010220209204B4400192"
+    }
+  ],
+  occurrences: [
+    {
+      day: 1,
+      start_period: 3,
+      end_period: 3,
+      building: "-1",
+      classroom: "undecided",
+      location: "-1-undecided"
+    }
+  ],
+  lang: "JP"
+}
+
 const CourseComments = ({ courseKey }) => {
   return (
     <Wrapper>
       <ExtendedOverlay>
         <div style={{ width: '70%' }}>
           <br />
-          <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-            background: '#fff',
-            padding: '1em',
-            margin: '1em 0px',
-            height: '200px'
-          }}>
-            <h1>Course Detail</h1>
-            XXXXXXXXXXXX
-          </div>
+          <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={exampleCourse} isInCommentsPage={true} />
           <div></div>
           <StyledSubHeading>
             Comments

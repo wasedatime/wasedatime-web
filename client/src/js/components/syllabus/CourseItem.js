@@ -244,6 +244,7 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   handleClickSyllabusLink,
+  isInCommentsPage,
   t,
   lng
 }) => {
@@ -349,23 +350,27 @@ const CourseItem = ({
             </Description>
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
-          <CommentButtonsWrapper>
-            <ViewCommentsButton href={`/comments/${syllabusId}`} target="_blank">
-              <FontAwesomeIcon
-                icon={faEye}
-              />{' '}
-              View Comments
-            </ViewCommentsButton>
+          {
+            !isInCommentsPage && (
+              <CommentButtonsWrapper>
+                <ViewCommentsButton href={`/comments/${syllabusId.substring(0, 10)}`} target="_blank">
+                  <FontAwesomeIcon
+                    icon={faEye}
+                    />{' '}
+                    View Comments
+                  </ViewCommentsButton>
 
-            <AddCommentsButton onClick={e => {
-              e.preventDefault();
-            }}>
-              <FontAwesomeIcon
-                icon={faPen}
-              />{' '}
-              Add Comments
-            </AddCommentsButton>
-          </CommentButtonsWrapper>
+                  <AddCommentsButton onClick={e => {
+                      e.preventDefault();
+                    }}>
+                    <FontAwesomeIcon
+                      icon={faPen}
+                      />{' '}
+                      Add Comments
+                    </AddCommentsButton>
+                  </CommentButtonsWrapper>
+            )
+          }
         </DetailWrapper>
       </CourseItemWrapper>
     </RowWrapper>

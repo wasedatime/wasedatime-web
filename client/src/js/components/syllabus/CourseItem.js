@@ -7,7 +7,7 @@ import {
   faClock,
   faMapMarkerAlt,
   faExternalLinkSquareAlt,
-  faEye,
+  faCommentDots,
   faPen
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
@@ -126,16 +126,17 @@ const CommentButtonsWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  font-size: 0.9em;
 `;
 
 const ViewCommentsButton = styled("a")`
-  flex: 1 0 auto;
+  flex: 1 0 30%;
   display: block;
-  background: #6495ED;
+  background: #FFAE42;
   border: 0px;
   border-radius: 5px;
   color: #fff;
-  width: 40%;
+  width: 30%;
   margin-bottom: 5px;
   text-align: center;
   padding-top: 4px;
@@ -149,12 +150,14 @@ const ViewCommentsButton = styled("a")`
 `;
 
 const AddCommentsButton = styled("button")`
+  visibility: hidden;
+
   flex: 1 0 auto;
   background: #48af37;
   border: 0px;
   border-radius: 5px;
   color: #fff;
-  width: 40%;
+  width: 30%;
 
   &:focus {
     outline: none;
@@ -355,9 +358,9 @@ const CourseItem = ({
               <CommentButtonsWrapper>
                 <ViewCommentsButton href={`/comments/${syllabusId.substring(0, 10)}`} target="_blank">
                   <FontAwesomeIcon
-                    icon={faEye}
+                    icon={faCommentDots}
                     />{' '}
-                    View Comments
+                    Comments
                   </ViewCommentsButton>
 
                   <AddCommentsButton onClick={e => {

@@ -1,11 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import MediaQuery from "react-responsive";
 import styled from "styled-components";
 
 import { media } from "../../styled-components/utils";
 import { RowWrapper } from "../../styled-components/Wrapper";
-import { sizes } from "../../styled-components/utils";
 import { Overlay } from "../../styled-components/Overlay";
 import { Wrapper } from "../../styled-components/Wrapper";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";

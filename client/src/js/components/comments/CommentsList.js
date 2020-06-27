@@ -1,5 +1,4 @@
 import React from "react";
-import MediaQuery from "react-responsive";
 import styled from "styled-components";
 
 const CommentsWrapper = styled("div")`

@@ -1,9 +1,6 @@
 import React from "react";
-import MediaQuery from "react-responsive";
 import styled from "styled-components";
 
-import { media } from "../../styled-components/utils";
-import { sizes } from "../../styled-components/utils";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import CommentsList from "./CommentsList";
 

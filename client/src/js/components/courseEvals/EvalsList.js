@@ -42,6 +42,7 @@ const EvalsList = ({ evaluations }) => {
     const satisfaction = evaluation["satisfaction"];
     const difficulty = evaluation["difficulty"];
     const benefit = evaluation["benefit"];
+    
     return (
       <CommentsWrapper>
         {i !== 0 && <CommentDivider />}

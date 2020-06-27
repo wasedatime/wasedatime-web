@@ -37,169 +37,244 @@ const CommentsListWrapper = styled("div")`
   overflow-y: auto;
 `;
 
-const SimilarCoursesWrapper = styled("div")`
+const RelatedCoursesWrapper = styled("div")`
   max-height: 80vh;
   overflow-y: auto;
 `;
 
-const getCourse = courseKey => {
+const getCourse = courseID => {
   // Todo: Get course data with course key
   return {
-    _id: "9204B440010220209204B4400192",
-    title: "\"Keigo\" Communication 4 (Japanese course for International Student)",
-    title_jp: "敬語でコミュニケーション4 (留学生対象日本語科目)",
-    instructor: "MARUYAMA, Tomoko",
-    instructor_jp: "丸山 具子",
-    year: 2020,
-    term: "fallSem",
-    keys: [
+    "_id":"26GF02200201202026M001270126",
+    "course_code":"INFY21ZL",
+    "year":2020,
+    "term":"fallSem",
+    "title":"Information Design: Methods and Applications",
+    "title_jp":"Information Design: Methods and Applications",
+    "instructor":"SCHNEIDER, Andreas",
+    "instructor_jp":"シュナイダー アンドレアス",
+    "occurrences":[
       {
-        "school": "CJL",
-        "key": "9204B440010220209204B4400192"
+         "day":1,
+         "start_period":1,
+         "end_period":1,
+         "building":"-1",
+         "classroom":"undecided",
+         "location":"-1-undecided"
       }
     ],
-    occurrences: [
-      {
-        day: 1,
-        start_period: 3,
-        end_period: 3,
-        building: "-1",
-        classroom: "undecided",
-        location: "-1-undecided"
-      }
+    "keywords":[
+      "IPSE"
     ],
-    lang: "JP"
+    "lang":"EN",
+    "keys":[
+      {
+         "school":"FSE",
+         "key":"26GF02200201202026M001270126"
+      }
+    ]
   };
 }
 
-const getEvaluations = courseKey => {
-  // Todo: Get comments of this course with its course key
+const getCourseCode = course => course["course_code"];
+
+const getCourseKey = course => course["_id"].substring(0, 10);
+
+const getAllEvals = courseCode => {
+  // Todo: Get evaluations of this course with its course key
   return [
     {
-      "course_key": '',
-      "course_code": '',
+      "course_key": '2605012005',
+      "course_code": 'INFY21ZL',
       "satisfaction": 4,
-      "difficulty": 5,
+      "difficulty": 3,
       "benefit": 5,
-      "comment": "The final report requires a 3000 minimum word count, so I highly suggest future students to start writing it as soon as possible!",
+      "comment": "Dummy evaluation of related course 1-1",
       "course_year": "2018"
     },
     {
-      "course_key": '',
-      "course_code": '',
+      "course_key": '2605012005',
+      "course_code": 'INFY21ZL',
       "satisfaction": 4,
-      "difficulty": 5,
+      "difficulty": 4,
+      "benefit": 4,
+      "comment": "Dummy evaluation of related course 1-2",
+      "course_year": "2019"
+    },
+    {
+      "course_key": '26GF022002',
+      "course_code": 'INFY21ZL',
+      "satisfaction": 4,
+      "difficulty": 4,
       "benefit": 5,
-      "comment": "The final report requires a 3000 minimum word count, so I highly suggest future students to start writing it as soon as possible!",
+      "comment": "Dummy evaluation of this course 1",
       "course_year": "2018"
     },
     {
-      "course_key": '',
-      "course_code": '',
-      "satisfaction": 4,
-      "difficulty": 5,
+      "course_key": '26GF022002',
+      "course_code": 'INFY21ZL',
+      "satisfaction": 5,
+      "difficulty": 4,
       "benefit": 5,
-      "comment": "The final report requires a 3000 minimum word count, so I highly suggest future students to start writing it as soon as possible!",
+      "comment": "Dummy evaluation of this course 2",
+      "course_year": "2019"
+    },
+    {
+      "course_key": '2600002108',
+      "course_code": 'INFY21ZL',
+      "satisfaction": 3,
+      "difficulty": 3,
+      "benefit": 4,
+      "comment": "Dummy evaluation of related course 2-1",
+      "course_year": "2019"
+    },
+    {
+      "course_key": '2600002108',
+      "course_code": 'INFY21ZL',
+      "satisfaction": 3,
+      "difficulty": 4,
+      "benefit": 3,
+      "comment": "Dummy evaluation of related course 2-2",
       "course_year": "2018"
     }
   ];
 }
 
-const getCourseCode = course => {
-  // Todo: Get course code of this course
-  return 'example_course_code';
-}
-
-const getSimilarCourses = courseCode => {
-  // Todo: Get similar courses with course code
-  return [
+const getRelatedCourses = (courseCode, thisCourseKey) => {
+  // Todo: Get related courses with course code
+  const dummyCoursesData = [
     {
-      _id: "9204B440010220209204B4400192",
-      title: "\"Keigo\" Communication 4 (Japanese course for International Student)",
-      title_jp: "敬語でコミュニケーション4 (留学生対象日本語科目)",
-      instructor: "MARUYAMA, Tomoko",
-      instructor_jp: "丸山 具子",
-      year: 2020,
-      term: "fallSem",
-      keys: [
+      "_id":"2605012005012020260602303326",
+      "course_code":"INFY21ZL",
+      "year":2020,
+      "term":"fallSem",
+      "title":"Information Theory",
+      "title_jp":"情報理論",
+      "instructor":"OIKAWA, Yasuhiro",
+      "instructor_jp":"及川 靖広",
+      "occurrences":[
         {
-          "school": "CJL",
-          "key": "9204B440010220209204B4400192"
+           "day":5,
+           "start_period":2,
+           "end_period":2,
+           "building":"-1",
+           "classroom":"undecided",
+           "location":"-1-undecided"
         }
       ],
-      occurrences: [
+      "lang":"JP",
+      "keys":[
         {
-          day: 1,
-          start_period: 3,
-          end_period: 3,
-          building: "-1",
-          classroom: "undecided",
-          location: "-1-undecided"
+           "school":"FSE",
+           "key":"2605012005012020260602303326"
         }
-      ],
-      lang: "JP"
+      ]
     },
     {
-      _id: "9204B440010220209204B4400192",
-      title: "\"Keigo\" Communication 4 (Japanese course for International Student)",
-      title_jp: "敬語でコミュニケーション4 (留学生対象日本語科目)",
-      instructor: "MARUYAMA, Tomoko",
-      instructor_jp: "丸山 具子",
-      year: 2020,
-      term: "fallSem",
-      keys: [
+      "_id":"26GF02200201202026M001270126",
+      "course_code":"INFY21ZL",
+      "year":2020,
+      "term":"fallSem",
+      "title":"Information Design: Methods and Applications",
+      "title_jp":"Information Design: Methods and Applications",
+      "instructor":"SCHNEIDER, Andreas",
+      "instructor_jp":"シュナイダー アンドレアス",
+      "occurrences":[
         {
-          "school": "CJL",
-          "key": "9204B440010220209204B4400192"
+           "day":1,
+           "start_period":1,
+           "end_period":1,
+           "building":"-1",
+           "classroom":"undecided",
+           "location":"-1-undecided"
         }
       ],
-      occurrences: [
+      "keywords":[
+        "IPSE"
+      ],
+      "lang":"EN",
+      "keys":[
         {
-          day: 1,
-          start_period: 3,
-          end_period: 3,
-          building: "-1",
-          classroom: "undecided",
-          location: "-1-undecided"
+           "school":"FSE",
+           "key":"26GF02200201202026M001270126"
+        }
+      ]
+    },
+    {
+      "_id":"2600002108012020260000210826",
+      "course_code":"INFY21ZL",
+      "year":2020,
+      "term":"springSem",
+      "title":"Introduction to CIO",
+      "title_jp":"CIO(最高情報責任者)概論",
+      "instructor":"IWASAKI, Naoko",
+      "instructor_jp":"岩崎 尚子",
+      "occurrences":[
+        {
+           "day":5,
+           "start_period":4,
+           "end_period":4,
+           "building":"63",
+           "classroom":"201",
+           "location":"63-201"
         }
       ],
-      lang: "JP"
+      "lang":"JP",
+      "keys":[
+        {
+           "school":"FSE",
+           "key":"2600002108012020260000210826"
+        },
+        {
+           "school":"ASE",
+           "key":"2800002108012020260000210828"
+        },
+        {
+           "school":"CSE",
+           "key":"2700002108012020260000210827"
+        }
+      ]
     }
   ];
+  return dummyCoursesData.filter(course => getCourseKey(course) != thisCourseKey);
 }
+
+const getCourseEvals = (evaluations, courseKey) => evaluations.filter(e => e.course_key == courseKey);
 
 const CourseEvals = ({ location }) => {
-  const course = getCourse(location.search.courseKey);
-  const evaluations = getEvaluations(location.search.courseKey);
-  const courseCode = getCourseCode(course);
-  const similarCourses = getSimilarCourses(courseCode);
+  const thisCourse = getCourse(location.search.courseID);
+  const thisCourseCode = getCourseCode(thisCourse);
+  const thisCourseKey = getCourseKey(thisCourse);
+  const relatedCourses = getRelatedCourses(thisCourseCode, thisCourseKey);
+  const evaluations = getAllEvals(thisCourseCode);
+
   return (
     <RowWrapper>
       <Helmet>
-        <title>WasedaTime - Course Comments</title>
+        <title>WasedaTime - Course Evaluations</title>
         <meta
           name="description"
           content="Syllabus Searching at Waseda University."
         />
-        <meta property="og:title" content="WasedaTime - Course Comments" />
+        <meta property="og:title" content="WasedaTime - Course Evaluations" />
         <meta
           property="og:description"
           content="Syllabus Searching at Waseda University."
         />
-        <meta property="og:site_name" content="WasedaTime - Course Comments" />
+        <meta property="og:site_name" content="WasedaTime - Course Evaluations" />
       </Helmet>
 
       <LongWrapper>
         <ExtendedOverlay>
           <div>
             <br />
-            <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={course} isInCourseEvalsPage={true} />
+            <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={thisCourse} isInCourseEvalsPage={true} />
 
             <StyledSubHeading>
               Evaluations
             </StyledSubHeading>
             <CommentsListWrapper>
-              <EvalsList evaluations={evaluations} />
+              <EvalsList evaluations={getCourseEvals(evaluations, thisCourseKey)} />
             </CommentsListWrapper>
 
           </div>
@@ -209,11 +284,17 @@ const CourseEvals = ({ location }) => {
       <ShortWrapper>
         <ExtendedOverlay>
           <StyledSubHeading>
-            Similar courses
+            Related courses
           </StyledSubHeading>
-          <SimilarCoursesWrapper>
-            { similarCourses.map((similarCourse, i) => <CourseEvalsGroup course={similarCourse} key={i} />) }
-          </SimilarCoursesWrapper>
+          <RelatedCoursesWrapper>
+            {
+              relatedCourses.map(relatedCourse => <CourseEvalsGroup
+                course={relatedCourse}
+                evaluations={getCourseEvals(evaluations, getCourseKey(relatedCourse))}
+                key={getCourseKey(relatedCourse)}
+              />)
+            }
+          </RelatedCoursesWrapper>
         </ExtendedOverlay>
       </ShortWrapper>
     </RowWrapper>

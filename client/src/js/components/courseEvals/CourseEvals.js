@@ -236,10 +236,10 @@ const getRelatedCourses = (courseCode, thisCourseKey) => {
       ]
     }
   ];
-  return dummyCoursesData.filter(course => getCourseKey(course) != thisCourseKey);
+  return dummyCoursesData.filter(course => getCourseKey(course) !== thisCourseKey);
 }
 
-const getCourseEvals = (evaluations, courseKey) => evaluations.filter(e => e.course_key == courseKey);
+const getCourseEvals = (evaluations, courseKey) => evaluations.filter(e => e.course_key === courseKey);
 
 const CourseEvals = ({ location }) => {
   const thisCourse = getCourse(location.search.courseID);

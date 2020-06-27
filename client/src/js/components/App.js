@@ -15,7 +15,7 @@ import About from "./About";
 import InitialDialog from "./welcome/InitialDialog";
 import TimetableContainer from "../containers/timetable/TimetableContainer";
 import Syllabus from "./syllabus/Syllabus";
-import Comments from "./comments/Comments";
+import CourseEvals from "./courseEvals/CourseEvals";
 import RoomFinder from "./RoomFinder";
 import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
@@ -65,7 +65,7 @@ const App = ({ isFirstTimeAccess }) => {
               <Route exact path="/syllabus" component={Syllabus} />
               <Route exact path="/roomfinder" component={RoomFinder} />
               <Route exact path="/bus" component={Bus} />
-              <Route exact path="/comments/:courseKey" component={Comments} />
+              <Route exact path="/courseEvals" component={CourseEvals} />
               <Route component={NotFound} />
             </Switch>
           )}

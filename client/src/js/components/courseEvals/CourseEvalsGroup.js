@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
-import CommentsList from "./CommentsList";
+import EvalsList from "./EvalsList";
 
 const CourseCommentsGroupWrapper = styled('div')`
   background: #fff;
@@ -20,8 +20,8 @@ const getCourseKey = course => {
   return 'example_course_key';
 }
 
-const getComments = courseKey => {
-  // Todo: Get comments of this course with its course key
+const getEvaluations = courseKey => {
+  // Todo: Get evaluations of this course with its course key
   return [
     {
       "course_key": '',
@@ -44,14 +44,14 @@ const getComments = courseKey => {
   ];
 }
 
-const CourseCommentsGroup = ({ course }) => {
+const CourseEvalsGroup = ({ course }) => {
   return (
     <CourseCommentsGroupWrapper>
-      <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={course} isInCommentsPage={true} />
-      <CommentsHeader>Comments</CommentsHeader>
-      <CommentsList comments={getComments(getCourseKey(course))} />
+      <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={course} isInCourseEvalsPage={true} />
+      <CommentsHeader>Evaluations</CommentsHeader>
+      <EvalsList evaluations={getEvaluations(getCourseKey(course))} />
     </CourseCommentsGroupWrapper>
   );
 };
 
-export default CourseCommentsGroup;
+export default CourseEvalsGroup;

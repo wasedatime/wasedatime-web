@@ -247,7 +247,7 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   handleClickSyllabusLink,
-  isInCommentsPage,
+  isInCourseEvalsPage,
   t,
   lng
 }) => {
@@ -354,9 +354,9 @@ const CourseItem = ({
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
           {
-            !isInCommentsPage && (
+            !isInCourseEvalsPage && (
               <CommentButtonsWrapper>
-                <ViewCommentsButton href={`/comments/${syllabusId.substring(0, 10)}`} target="_blank">
+                <ViewCommentsButton href={`/courseEvals?courseID=${syllabusId}`} target="_blank">
                   <FontAwesomeIcon
                     icon={faCommentDots}
                     />{' '}

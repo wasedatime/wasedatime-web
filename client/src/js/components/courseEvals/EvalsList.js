@@ -37,17 +37,17 @@ const CommentEvaluationStars = styled("span")`
   color: orange;
 `;
 
-const CommentsList = ({ comments }) => {
-  return comments.map((comment, i) => {
-    let satisfaction = parseInt(comment["satisfaction"]);
-    let difficulty = parseInt(comment["difficulty"]);
-    let benefit = parseInt(comment["benefit"]);
+const EvalsList = ({ evaluations }) => {
+  return evaluations.map((evaluation, i) => {
+    const satisfaction = evaluation["satisfaction"];
+    const difficulty = evaluation["difficulty"];
+    const benefit = evaluation["benefit"];
     return (
       <CommentsWrapper>
         {i !== 0 && <CommentDivider />}
         <Comment key={i}>
           <CommentText>
-            {comment["comment"]}
+            {evaluation["comment"]}
           </CommentText>
           <CommentEvaluationWrapper>
             <CommentEvaluation>
@@ -75,4 +75,4 @@ const CommentsList = ({ comments }) => {
   });
 }
 
-export default CommentsList;
+export default EvalsList;

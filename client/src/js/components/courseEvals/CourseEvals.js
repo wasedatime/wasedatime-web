@@ -7,8 +7,8 @@ import { RowWrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 import { Wrapper } from "../../styled-components/Wrapper";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
-import CourseCommentsGroup from './CourseCommentsGroup';
-import CommentsList from "./CommentsList";
+import CourseEvalsGroup from './CourseEvalsGroup';
+import EvalsList from "./EvalsList";
 
 export const LongWrapper = styled(Wrapper)`
   flex: 0 0 70%;
@@ -72,7 +72,7 @@ const getCourse = courseKey => {
   };
 }
 
-const getComments = courseKey => {
+const getEvaluations = courseKey => {
   // Todo: Get comments of this course with its course key
   return [
     {
@@ -168,9 +168,9 @@ const getSimilarCourses = courseCode => {
   ];
 }
 
-const Comments = ({ match }) => {
-  const course = getCourse(match.params.courseKey);
-  const comments = getComments(match.params.courseKey);
+const CourseEvals = ({ location }) => {
+  const course = getCourse(location.search.courseKey);
+  const evaluations = getEvaluations(location.search.courseKey);
   const courseCode = getCourseCode(course);
   const similarCourses = getSimilarCourses(courseCode);
   return (
@@ -193,13 +193,13 @@ const Comments = ({ match }) => {
         <ExtendedOverlay>
           <div>
             <br />
-            <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={course} isInCommentsPage={true} />
+            <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={course} isInCourseEvalsPage={true} />
 
             <StyledSubHeading>
-              Comments
+              Evaluations
             </StyledSubHeading>
             <CommentsListWrapper>
-              <CommentsList comments={comments} />
+              <EvalsList evaluations={evaluations} />
             </CommentsListWrapper>
 
           </div>
@@ -212,7 +212,7 @@ const Comments = ({ match }) => {
             Similar courses
           </StyledSubHeading>
           <SimilarCoursesWrapper>
-            { similarCourses.map((similarCourse, i) => <CourseCommentsGroup course={similarCourse} key={i} />) }
+            { similarCourses.map((similarCourse, i) => <CourseEvalsGroup course={similarCourse} key={i} />) }
           </SimilarCoursesWrapper>
         </ExtendedOverlay>
       </ShortWrapper>
@@ -220,4 +220,4 @@ const Comments = ({ match }) => {
   );
 };
 
-export default Comments;
+export default CourseEvals;

@@ -1,27 +1,28 @@
 import React from "react";
 import styled from "styled-components";
+import EvaluationStars from "./EvaluationStars";
 
-const CommentsWrapper = styled("div")`
+const EvaluationsWrapper = styled("div")`
   background: #fff;
 `;
 
-const Comment = styled("div")`
+const Evaluation = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 1em;
 `;
 
-const CommentDivider = styled("hr")`
+const EvaluationDivider = styled("hr")`
   margin: 0px 2em;
   border: 1px solid #ddd;
 `
 
-const CommentText = styled("div")`
+const EvaluationText = styled("div")`
   flex: 1;
 `;
 
-const CommentEvaluationWrapper = styled("div")`
+const EvaluationScalesList = styled("div")`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -29,49 +30,32 @@ const CommentEvaluationWrapper = styled("div")`
   font-size: 1.2em;
 `;
 
-const CommentEvaluation = styled("div")`
+const EvaluationScale = styled("div")`
   flex: 1;
-`;
-
-const CommentEvaluationStars = styled("span")`
-  color: orange;
 `;
 
 const EvalsList = ({ evaluations }) => {
   return evaluations.map((evaluation, i) => {
-    const satisfaction = evaluation["satisfaction"];
-    const difficulty = evaluation["difficulty"];
-    const benefit = evaluation["benefit"];
-    
     return (
-      <CommentsWrapper>
-        {i !== 0 && <CommentDivider />}
-        <Comment key={i}>
-          <CommentText>
+      <EvaluationsWrapper>
+        {i !== 0 && <EvaluationDivider />}
+        <Evaluation key={i}>
+          <EvaluationText>
             {evaluation["comment"]}
-          </CommentText>
-          <CommentEvaluationWrapper>
-            <CommentEvaluation>
-              Satisfaction:{' '}
-              <CommentEvaluationStars>
-                {"★".repeat(satisfaction) + "☆".repeat(5-satisfaction)}
-              </CommentEvaluationStars>
-            </CommentEvaluation>
-            <CommentEvaluation>
-              Difficulty:{' '}
-              <CommentEvaluationStars>
-                {"★".repeat(difficulty) + "☆".repeat(5-difficulty)}
-              </CommentEvaluationStars>
-            </CommentEvaluation>
-            <CommentEvaluation>
-              Benefit:{' '}
-              <CommentEvaluationStars>
-                {"★".repeat(benefit) + "☆".repeat(5-benefit)}
-              </CommentEvaluationStars>
-            </CommentEvaluation>
-          </CommentEvaluationWrapper>
-        </Comment>
-      </CommentsWrapper>
+          </EvaluationText>
+          <EvaluationScalesList>
+            <EvaluationScale>
+              Satisfaction{' '}<EvaluationStars scale={evaluation["satisfaction"]} />
+            </EvaluationScale>
+            <EvaluationScale>
+              Difficulty{' '}<EvaluationStars scale={evaluation["difficulty"]} />
+            </EvaluationScale>
+            <EvaluationScale>
+              Benefit{' '}<EvaluationStars scale={evaluation["benefit"]} />
+            </EvaluationScale>
+          </EvaluationScalesList>
+        </Evaluation>
+      </EvaluationsWrapper>
     )
   });
 }

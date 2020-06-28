@@ -9,6 +9,7 @@ import { Wrapper } from "../../styled-components/Wrapper";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import CourseEvalsGroup from './CourseEvalsGroup';
 import EvalsList from "./EvalsList";
+import EvaluationStars from "./EvaluationStars";
 
 export const LongWrapper = styled(Wrapper)`
   flex: 0 0 70%;
@@ -32,7 +33,7 @@ const StyledSubHeading = styled("h2")`
   ${media.phone`font-size: 2rem;`};
 `;
 
-const CommentsListWrapper = styled("div")`
+const EvalsListWrapper = styled("div")`
   max-height: 60vh;
   overflow-y: auto;
 `;
@@ -40,6 +41,19 @@ const CommentsListWrapper = styled("div")`
 const RelatedCoursesWrapper = styled("div")`
   max-height: 80vh;
   overflow-y: auto;
+`;
+
+const EvaluationScalesRow = styled("div")`
+  display: flex;
+  flex-direction: row;
+  font-size: 1.5em;
+  background: #eee;
+  padding: 1rem 0px;
+`;
+
+const EvaluationScale = styled("div")`
+  flex: 1;
+  text-align: center;
 `;
 
 const getCourse = courseID => {
@@ -114,7 +128,7 @@ const getAllEvals = courseCode => {
       "course_key": '26GF022002',
       "course_code": 'INFY21ZL',
       "satisfaction": 5,
-      "difficulty": 4,
+      "difficulty": 3,
       "benefit": 5,
       "comment": "Dummy evaluation of this course 2",
       "course_year": "2019"
@@ -247,6 +261,16 @@ const CourseEvals = ({ location }) => {
   const thisCourseKey = getCourseKey(thisCourse);
   const relatedCourses = getRelatedCourses(thisCourseCode, thisCourseKey);
   const evaluations = getAllEvals(thisCourseCode);
+  const thisCourseEvals = getCourseEvals(evaluations, thisCourseKey);
+  let satisfactionSum = 0, difficultySum = 0, benefitSum = 0;
+  thisCourseEvals.forEach(evaluation => {
+    satisfactionSum += evaluation.satisfaction;
+    difficultySum += evaluation.difficulty;
+    benefitSum += evaluation.benefit;
+  });
+  const satisfaction = Math.round(satisfactionSum / thisCourseEvals.length * 2) / 2;
+  const difficulty = Math.round(difficultySum / thisCourseEvals.length * 2) / 2;
+  const benefit = Math.round(benefitSum / thisCourseEvals.length * 2) / 2;
 
   return (
     <RowWrapper>
@@ -270,12 +294,24 @@ const CourseEvals = ({ location }) => {
             <br />
             <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={thisCourse} isInCourseEvalsPage={true} />
 
+            <EvaluationScalesRow>
+              <EvaluationScale>
+                Satisfaction{' '}<EvaluationStars scale={satisfaction} />
+              </EvaluationScale>
+              <EvaluationScale>
+                Difficulty{' '}<EvaluationStars scale={difficulty} />
+              </EvaluationScale>
+              <EvaluationScale>
+                Benefit{' '}<EvaluationStars scale={benefit} />
+              </EvaluationScale>
+            </EvaluationScalesRow>
+
             <StyledSubHeading>
               Evaluations
             </StyledSubHeading>
-            <CommentsListWrapper>
-              <EvalsList evaluations={getCourseEvals(evaluations, thisCourseKey)} />
-            </CommentsListWrapper>
+            <EvalsListWrapper>
+              <EvalsList evaluations={thisCourseEvals} />
+            </EvalsListWrapper>
 
           </div>
         </ExtendedOverlay>

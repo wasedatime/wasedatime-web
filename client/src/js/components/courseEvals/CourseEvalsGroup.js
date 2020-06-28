@@ -4,12 +4,12 @@ import styled from "styled-components";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import EvalsList from "./EvalsList";
 
-const CourseCommentsGroupWrapper = styled('div')`
+const CourseEvalsGroupWrapper = styled('div')`
   background: #fff;
   margin-bottom: 1em;
 `;
 
-const CommentsHeader = styled('h3')`
+const EvalsHeader = styled('h3')`
   margin: 0;
   text-align: center;
   background: #eee;
@@ -17,11 +17,11 @@ const CommentsHeader = styled('h3')`
 
 const CourseEvalsGroup = ({ course, evaluations }) => {
   return (
-    <CourseCommentsGroupWrapper>
+    <CourseEvalsGroupWrapper>
       <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={course} isInCourseEvalsPage={true} />
-      <CommentsHeader>Evaluations</CommentsHeader>
+      <EvalsHeader>Evaluations</EvalsHeader>
       <EvalsList evaluations={evaluations} />
-    </CourseCommentsGroupWrapper>
+    </CourseEvalsGroupWrapper>
   );
 };
 

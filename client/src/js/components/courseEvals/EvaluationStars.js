@@ -12,7 +12,14 @@ const BlankStar = styled(FontAwesomeIcon)`
 `;
 
 const displayFilledStars = scale => {
-  return [...Array(Math.floor(scale)).keys()].map(i => <FilledStar key={i} icon={faStar} />)
+  let stars = [];
+  for (let n = Math.floor(scale); n > 0; n--) {
+    stars.push(<FilledStar key={n} icon={faStar} />);
+  }
+  return stars;
+  // return [...Array(Math.floor(scale)).keys()].map(i => {
+  //   return <FilledStar key={i} icon={faStar} />
+  // })
 }
 
 const displayHalfStar = scale => {
@@ -20,7 +27,12 @@ const displayHalfStar = scale => {
 }
 
 const displayBlankStars = scale => {
-  return [...Array(5-Math.ceil(scale)).keys()].map(i => <BlankStar key={i} icon={faStar} />)
+  let stars = [];
+  for (let n = 5-Math.ceil(scale); n > 0; n--) {
+    stars.push(<BlankStar key={n} icon={faStar} />);
+  }
+  return stars;
+  // return [...Array(5-Math.ceil(scale)).keys()].map(i => <BlankStar key={i} icon={faStar} />)
 }
 
 const EvaluationStars = ({ scale }) => (

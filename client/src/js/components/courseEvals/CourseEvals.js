@@ -1,6 +1,11 @@
 import React from 'react';
+import qs from 'qs';
 import { Helmet } from 'react-helmet';
 import styled from "styled-components";
+import axios from "axios";
+// import { normalize } from "normalizr";
+// import { coursesSchema } from "../../data/schema";
+import { wasetimeApiStatic } from "../../config/api";
 
 import { media } from "../../styled-components/utils";
 import { RowWrapper } from "../../styled-components/Wrapper";
@@ -56,35 +61,40 @@ const EvaluationScale = styled("div")`
   text-align: center;
 `;
 
-const getCourse = courseID => {
-  // Todo: Get course data with course key
+async function getAllCourses () {
+  // const res = await axios.get(wasetimeApiStatic.courseListAll);
+  // return normalize(res.data, coursesSchema).entities['courses'];
+  return [];
+}
+
+const getCourse = (coursesList, courseID) => {
+  // Todo: get the course from courses list by id
+  // return coursesList[courseID];
+
   return {
-    "_id":"26GF02200201202026M001270126",
-    "course_code":"INFY21ZL",
+    "_id":"2603013002012020260301300226",
+    "course_code": 'INFP31ZL',
     "year":2020,
-    "term":"fallSem",
-    "title":"Information Design: Methods and Applications",
-    "title_jp":"Information Design: Methods and Applications",
-    "instructor":"SCHNEIDER, Andreas",
-    "instructor_jp":"シュナイダー アンドレアス",
+    "term":"springSem",
+    "title":"Software Engineering A",
+    "title_jp":"ソフトウェア工学A",
+    "instructor":"FUKAZAWA, Yoshiaki/WASHIZAKI, Hironori",
+    "instructor_jp":"深澤 良彰/鷲崎 弘宜",
     "occurrences":[
       {
-         "day":1,
-         "start_period":1,
-         "end_period":1,
-         "building":"-1",
-         "classroom":"undecided",
-         "location":"-1-undecided"
+         "day":5,
+         "start_period":2,
+         "end_period":2,
+         "building":"63",
+         "classroom":"202",
+         "location":"63-202"
       }
     ],
-    "keywords":[
-      "IPSE"
-    ],
-    "lang":"EN",
+    "lang":"JP",
     "keys":[
       {
          "school":"FSE",
-         "key":"26GF02200201202026M001270126"
+         "key":"2603013002012020260301300226"
       }
     ]
   };
@@ -94,83 +104,34 @@ const getCourseCode = course => course["course_code"];
 
 const getCourseKey = course => course["_id"].substring(0, 10);
 
-const getAllEvals = courseCode => {
-  // Todo: Get evaluations of this course with its course key
-  return [
-    {
-      "course_key": '2605012005',
-      "course_code": 'INFY21ZL',
-      "satisfaction": 4,
-      "difficulty": 3,
-      "benefit": 5,
-      "comment": "Dummy evaluation of related course 1-1",
-      "course_year": "2018"
-    },
-    {
-      "course_key": '2605012005',
-      "course_code": 'INFY21ZL',
-      "satisfaction": 4,
-      "difficulty": 4,
-      "benefit": 4,
-      "comment": "Dummy evaluation of related course 1-2",
-      "course_year": "2019"
-    },
-    {
-      "course_key": '26GF022002',
-      "course_code": 'INFY21ZL',
-      "satisfaction": 4,
-      "difficulty": 4,
-      "benefit": 5,
-      "comment": "Dummy evaluation of this course 1",
-      "course_year": "2018"
-    },
-    {
-      "course_key": '26GF022002',
-      "course_code": 'INFY21ZL',
-      "satisfaction": 5,
-      "difficulty": 3,
-      "benefit": 5,
-      "comment": "Dummy evaluation of this course 2",
-      "course_year": "2019"
-    },
-    {
-      "course_key": '2600002108',
-      "course_code": 'INFY21ZL',
-      "satisfaction": 3,
-      "difficulty": 3,
-      "benefit": 4,
-      "comment": "Dummy evaluation of related course 2-1",
-      "course_year": "2019"
-    },
-    {
-      "course_key": '2600002108',
-      "course_code": 'INFY21ZL',
-      "satisfaction": 3,
-      "difficulty": 4,
-      "benefit": 3,
-      "comment": "Dummy evaluation of related course 2-2",
-      "course_year": "2018"
-    }
-  ];
+async function getAllEvals (courseCode) {
+  try {
+    const res = await axios.get(wasetimeApiStatic.courseEvalsBaseURL + courseCode);
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-const getRelatedCourses = (courseCode, thisCourseKey) => {
+const getRelatedCourses = (coursesList, courseCode, thisCourseKey) => {
   // Todo: Get related courses with course code
-  const dummyCoursesData = [
+  // let relatedCourses = coursesList.filter(c => c.course_code === courseCode && getCourseKey(c) !== thisCourseKey);
+
+  return [
     {
-      "_id":"2605012005012020260602303326",
-      "course_code":"INFY21ZL",
+      "_id":"2603033019012020260303301926",
+      "course_code": 'INFP31ZL',
       "year":2020,
       "term":"fallSem",
-      "title":"Information Theory",
-      "title_jp":"情報理論",
-      "instructor":"OIKAWA, Yasuhiro",
-      "instructor_jp":"及川 靖広",
+      "title":"Software Engineering B",
+      "title_jp":"ソフトウェア工学B",
+      "instructor":"HAGIMOTO, Junzo/HIRANABE, Kenji/FUKAZAWA, Yoshiaki/WASHIZAKI, Hironori",
+      "instructor_jp":"萩本 順三/平鍋 健児/深澤 良彰/鷲崎 弘宜",
       "occurrences":[
         {
-           "day":5,
-           "start_period":2,
-           "end_period":2,
+           "day":3,
+           "start_period":5,
+           "end_period":5,
            "building":"-1",
            "classroom":"undecided",
            "location":"-1-undecided"
@@ -180,24 +141,24 @@ const getRelatedCourses = (courseCode, thisCourseKey) => {
       "keys":[
         {
            "school":"FSE",
-           "key":"2605012005012020260602303326"
+           "key":"2603033019012020260303301926"
         }
       ]
     },
     {
-      "_id":"26GF02200201202026M001270126",
-      "course_code":"INFY21ZL",
+      "_id":"26GC02300301202026MC03300926",
+      "course_code": 'INFP31ZL',
       "year":2020,
       "term":"fallSem",
-      "title":"Information Design: Methods and Applications",
-      "title_jp":"Information Design: Methods and Applications",
-      "instructor":"SCHNEIDER, Andreas",
-      "instructor_jp":"シュナイダー アンドレアス",
+      "title":"Software Engineering",
+      "title_jp":"Software Engineering",
+      "instructor":"ARCAINI, Paolo/KOBAYASHI, Tsutomu/FUKAZAWA, Yoshiaki/HONIDEN, Shinichi/WASHIZAKI, Hironori",
+      "instructor_jp":"アルカイニ パオロ/小林 努/深澤 良彰/本位田 真一/鷲崎 弘宜",
       "occurrences":[
         {
            "day":1,
-           "start_period":1,
-           "end_period":1,
+           "start_period":3,
+           "end_period":3,
            "building":"-1",
            "classroom":"undecided",
            "location":"-1-undecided"
@@ -210,131 +171,126 @@ const getRelatedCourses = (courseCode, thisCourseKey) => {
       "keys":[
         {
            "school":"FSE",
-           "key":"26GF02200201202026M001270126"
-        }
-      ]
-    },
-    {
-      "_id":"2600002108012020260000210826",
-      "course_code":"INFY21ZL",
-      "year":2020,
-      "term":"springSem",
-      "title":"Introduction to CIO",
-      "title_jp":"CIO(最高情報責任者)概論",
-      "instructor":"IWASAKI, Naoko",
-      "instructor_jp":"岩崎 尚子",
-      "occurrences":[
-        {
-           "day":5,
-           "start_period":4,
-           "end_period":4,
-           "building":"63",
-           "classroom":"201",
-           "location":"63-201"
-        }
-      ],
-      "lang":"JP",
-      "keys":[
-        {
-           "school":"FSE",
-           "key":"2600002108012020260000210826"
-        },
-        {
-           "school":"ASE",
-           "key":"2800002108012020260000210828"
-        },
-        {
-           "school":"CSE",
-           "key":"2700002108012020260000210827"
+           "key":"26GC02300301202026MC03300926"
         }
       ]
     }
   ];
-  return dummyCoursesData.filter(course => getCourseKey(course) !== thisCourseKey);
 }
 
 const getCourseEvals = (evaluations, courseKey) => evaluations.filter(e => e.course_key === courseKey);
 
-const CourseEvals = ({ location }) => {
-  const thisCourse = getCourse(location.search.courseID);
-  const thisCourseCode = getCourseCode(thisCourse);
-  const thisCourseKey = getCourseKey(thisCourse);
-  const relatedCourses = getRelatedCourses(thisCourseCode, thisCourseKey);
-  const evaluations = getAllEvals(thisCourseCode);
-  const thisCourseEvals = getCourseEvals(evaluations, thisCourseKey);
-  let satisfactionSum = 0, difficultySum = 0, benefitSum = 0;
-  thisCourseEvals.forEach(evaluation => {
-    satisfactionSum += evaluation.satisfaction;
-    difficultySum += evaluation.difficulty;
-    benefitSum += evaluation.benefit;
-  });
-  const satisfaction = Math.round(satisfactionSum / thisCourseEvals.length * 2) / 2;
-  const difficulty = Math.round(difficultySum / thisCourseEvals.length * 2) / 2;
-  const benefit = Math.round(benefitSum / thisCourseEvals.length * 2) / 2;
+class CourseEvals extends React.Component {
+  state = {
+    thisCourse: {},
+    relatedCourses: [],
+    evaluations: [],
+    thisCourseEvals: [],
+    satisfaction: 0,
+    difficulty: 0,
+    benefit: 0,
+    isLoaded: false
+  };
 
-  return (
-    <RowWrapper>
-      <Helmet>
-        <title>WasedaTime - Course Evaluations</title>
-        <meta
-          name="description"
-          content="Syllabus Searching at Waseda University."
-        />
-        <meta property="og:title" content="WasedaTime - Course Evaluations" />
-        <meta
-          property="og:description"
-          content="Syllabus Searching at Waseda University."
-        />
-        <meta property="og:site_name" content="WasedaTime - Course Evaluations" />
-      </Helmet>
+  async componentDidMount () {
+    const courseID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).courseID;
+    const coursesList = await getAllCourses();
+    const thisCourse = getCourse(coursesList, courseID);
+    const thisCourseCode = getCourseCode(thisCourse);
+    const thisCourseKey = getCourseKey(thisCourse);
+    const relatedCourses = getRelatedCourses(coursesList, thisCourseCode, thisCourseKey);
+    const evaluations = await getAllEvals(thisCourseCode);
+    const thisCourseEvals = getCourseEvals(evaluations, thisCourseKey);
+    let satisfactionSum = 0, difficultySum = 0, benefitSum = 0;
+    thisCourseEvals.forEach(evaluation => {
+      satisfactionSum += evaluation.satisfaction;
+      difficultySum += evaluation.difficulty;
+      benefitSum += evaluation.benefit;
+    });
+    const satisfaction = Math.round(satisfactionSum / thisCourseEvals.length * 2) / 2;
+    const difficulty = Math.round(difficultySum / thisCourseEvals.length * 2) / 2;
+    const benefit = Math.round(benefitSum / thisCourseEvals.length * 2) / 2;
 
-      <LongWrapper>
-        <ExtendedOverlay>
-          <div>
-            <br />
-            <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={thisCourse} isInCourseEvalsPage={true} />
+    this.setState({
+      thisCourse: thisCourse,
+      relatedCourses: relatedCourses,
+      evaluations: evaluations,
+      thisCourseEvals: thisCourseEvals,
+      satisfaction: satisfaction,
+      difficulty: difficulty,
+      benefit: benefit,
+      isLoaded: true
+    });
+  }
 
-            <EvaluationScalesRow>
-              <EvaluationScale>
-                Satisfaction{' '}<EvaluationStars scale={satisfaction} />
-              </EvaluationScale>
-              <EvaluationScale>
-                Difficulty{' '}<EvaluationStars scale={difficulty} />
-              </EvaluationScale>
-              <EvaluationScale>
-                Benefit{' '}<EvaluationStars scale={benefit} />
-              </EvaluationScale>
-            </EvaluationScalesRow>
+  render () {
+    const { thisCourse, relatedCourses, evaluations, thisCourseEvals, satisfaction, difficulty, benefit, isLoaded } = this.state;
+    return (
+      <RowWrapper>
+        <Helmet>
+          <title>WasedaTime - Course Evaluations</title>
+          <meta
+            name="description"
+            content="Syllabus Searching at Waseda University."
+            />
+          <meta property="og:title" content="WasedaTime - Course Evaluations" />
+          <meta
+            property="og:description"
+            content="Syllabus Searching at Waseda University."
+            />
+          <meta property="og:site_name" content="WasedaTime - Course Evaluations" />
+        </Helmet>
 
+        <LongWrapper>
+          <ExtendedOverlay>
+            <div>
+              <br />
+              {
+                isLoaded && <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={thisCourse} isInCourseEvalsPage={true} />
+              }
+
+              <EvaluationScalesRow>
+                <EvaluationScale>
+                  Satisfaction{' '}<EvaluationStars scale={satisfaction} />
+                </EvaluationScale>
+                <EvaluationScale>
+                  Difficulty{' '}<EvaluationStars scale={difficulty} />
+                </EvaluationScale>
+                <EvaluationScale>
+                  Benefit{' '}<EvaluationStars scale={benefit} />
+                </EvaluationScale>
+              </EvaluationScalesRow>
+
+              <StyledSubHeading>
+                Evaluations
+              </StyledSubHeading>
+              <EvalsListWrapper>
+                <EvalsList evaluations={thisCourseEvals} />
+              </EvalsListWrapper>
+
+            </div>
+          </ExtendedOverlay>
+        </LongWrapper>
+
+        <ShortWrapper>
+          <ExtendedOverlay>
             <StyledSubHeading>
-              Evaluations
+              Related courses
             </StyledSubHeading>
-            <EvalsListWrapper>
-              <EvalsList evaluations={thisCourseEvals} />
-            </EvalsListWrapper>
-
-          </div>
-        </ExtendedOverlay>
-      </LongWrapper>
-
-      <ShortWrapper>
-        <ExtendedOverlay>
-          <StyledSubHeading>
-            Related courses
-          </StyledSubHeading>
-          <RelatedCoursesWrapper>
-            {
-              relatedCourses.map(relatedCourse => <CourseEvalsGroup
-                course={relatedCourse}
-                evaluations={getCourseEvals(evaluations, getCourseKey(relatedCourse))}
-                key={getCourseKey(relatedCourse)}
-              />)
-            }
-          </RelatedCoursesWrapper>
-        </ExtendedOverlay>
-      </ShortWrapper>
-    </RowWrapper>
-  );
+            <RelatedCoursesWrapper>
+              {
+                relatedCourses.map(relatedCourse => <CourseEvalsGroup
+                  course={relatedCourse}
+                  evaluations={getCourseEvals(evaluations, getCourseKey(relatedCourse))}
+                  key={getCourseKey(relatedCourse)}
+                />)
+              }
+            </RelatedCoursesWrapper>
+          </ExtendedOverlay>
+        </ShortWrapper>
+      </RowWrapper>
+    );
+  }
 };
 
 export default CourseEvals;

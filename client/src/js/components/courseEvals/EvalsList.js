@@ -37,9 +37,9 @@ const EvaluationScale = styled("div")`
 const EvalsList = ({ evaluations }) => {
   return evaluations.map((evaluation, i) => {
     return (
-      <EvaluationsWrapper>
+      <EvaluationsWrapper key={i}>
         {i !== 0 && <EvaluationDivider />}
-        <Evaluation key={i}>
+        <Evaluation>
           <EvaluationText>
             {evaluation["comment"]}
           </EvaluationText>

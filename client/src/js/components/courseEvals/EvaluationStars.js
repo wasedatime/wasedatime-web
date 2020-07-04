@@ -5,10 +5,14 @@ import { faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
 
 const FilledStar = styled(FontAwesomeIcon)`
   color: orange;
+  font-size: 0.7em;
+  vertical-align: 0.1em
 `;
 
 const BlankStar = styled(FontAwesomeIcon)`
   color: #ccc;
+  font-size: 0.7em;
+  vertical-align: 0.1em;
 `;
 
 const displayFilledStars = scale => {

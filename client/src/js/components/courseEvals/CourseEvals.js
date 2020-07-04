@@ -53,12 +53,13 @@ const EvaluationScalesRow = styled("div")`
   flex-direction: row;
   font-size: 1.5em;
   background: #eee;
-  padding: 1rem 0px;
 `;
 
 const EvaluationScale = styled("div")`
-  flex: 1;
+  flex: 2;
+  padding: 1rem 0px;
   text-align: center;
+  color: #333;
 `;
 
 async function getAllCourses () {
@@ -249,22 +250,25 @@ class CourseEvals extends React.Component {
                 isLoaded && <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={thisCourse} isInCourseEvalsPage={true} />
               }
 
-              <EvaluationScalesRow>
-                <EvaluationScale>
-                  Satisfaction{' '}<EvaluationStars scale={satisfaction} />
-                </EvaluationScale>
-                <EvaluationScale>
-                  Difficulty{' '}<EvaluationStars scale={difficulty} />
-                </EvaluationScale>
-                <EvaluationScale>
-                  Benefit{' '}<EvaluationStars scale={benefit} />
-                </EvaluationScale>
-              </EvaluationScalesRow>
 
               <StyledSubHeading>
                 Evaluations
               </StyledSubHeading>
               <EvalsListWrapper>
+                <EvaluationScalesRow>
+                  <EvaluationScale>
+                    Satisfaction{' '}<EvaluationStars scale={satisfaction} />
+                  </EvaluationScale>
+                  <EvaluationScale>
+                    Difficulty{' '}<EvaluationStars scale={difficulty} />
+                  </EvaluationScale>
+                  <EvaluationScale>
+                    Benefit{' '}<EvaluationStars scale={benefit} />
+                  </EvaluationScale>
+                  <EvaluationScale style={{ flex: '1', color: '#777', fontSize: '0.7em', paddingTop: '1.5rem' }}>
+                    {thisCourseEvals.length} Evaluations
+                  </EvaluationScale>
+                </EvaluationScalesRow>
                 <EvalsList evaluations={thisCourseEvals} />
               </EvalsListWrapper>
 

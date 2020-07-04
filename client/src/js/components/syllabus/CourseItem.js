@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import MediaQuery from "react-responsive";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlusCircle,
@@ -17,6 +18,7 @@ import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";
 import { media } from "../../styled-components/utils";
+import { sizes } from "../../styled-components/utils";
 import { InvisibleButton } from "../../styled-components/Button";
 import fseIcon from "../../../img/syllabus-icons/fse.png";
 import cseIcon from "../../../img/syllabus-icons/cse.png";
@@ -145,8 +147,18 @@ const ViewCommentsButton = styled("a")`
   &:focus {
     outline: none;
   }
+`;
 
-  ${media.phone`width: 100%;`};
+const ViewCommentsIconButton = styled("a")`
+  display: block;
+  background: #fff;
+  border: 0px;
+  color: #FFAE42;
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const AddCommentsButton = styled("button")`
@@ -343,6 +355,17 @@ const CourseItem = ({
             >
               {buttonIcon}
             </InvisibleButton>
+            <MediaQuery maxWidth={sizes.desktop}>
+              { matches => {
+                return (matches && !isInCourseEvalsPage) && (
+                   <ViewCommentsIconButton href={`/courseEvals?courseID=${syllabusId}`} target="_blank">
+                     <FontAwesomeIcon
+                       icon={faCommentDots} size='2x'
+                     />{' '}
+                   </ViewCommentsIconButton>
+                 )
+              }}
+            </MediaQuery>
           </div>
         </CourseItemRow>
         <DetailWrapper>
@@ -353,27 +376,29 @@ const CourseItem = ({
             </Description>
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
-          {
-            !isInCourseEvalsPage && (
-              <CommentButtonsWrapper>
-                <ViewCommentsButton href={`/courseEvals?courseID=${syllabusId}`} target="_blank">
-                  <FontAwesomeIcon
-                    icon={faCommentDots}
-                    />{' '}
-                    Comments
-                  </ViewCommentsButton>
+          <MediaQuery minWidth={sizes.desktop}>
+            { matches => {
+              return (matches && !isInCourseEvalsPage) && (
+                 <CommentButtonsWrapper>
+                   <ViewCommentsButton href={`/courseEvals?courseID=${syllabusId}`} target="_blank">
+                     <FontAwesomeIcon
+                       icon={faCommentDots}
+                     />{' '}
+                     Comments
+                   </ViewCommentsButton>
 
-                  <AddCommentsButton onClick={e => {
-                      e.preventDefault();
-                    }}>
-                    <FontAwesomeIcon
-                      icon={faPen}
-                      />{' '}
-                      Add Comments
-                    </AddCommentsButton>
-                  </CommentButtonsWrapper>
-            )
-          }
+                   <AddCommentsButton onClick={e => {
+                       e.preventDefault();
+                     }}>
+                     <FontAwesomeIcon
+                       icon={faPen}
+                     />{' '}
+                     Add Comments
+                   </AddCommentsButton>
+                 </CommentButtonsWrapper>
+               )
+            }}
+          </MediaQuery>
         </DetailWrapper>
       </CourseItemWrapper>
     </RowWrapper>

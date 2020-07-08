@@ -212,7 +212,7 @@ class CourseEvals extends React.Component {
       difficultySum += evaluation.difficulty;
       benefitSum += evaluation.benefit;
     });
-    
+    // calculate the averages of scales and round them to the nearest .5
     const avgSatisfaction = Math.round(satisfactionSum / thisCourseEvals.length * 2) / 2;
     const avgDifficulty = Math.round(difficultySum / thisCourseEvals.length * 2) / 2;
     const avgBenefit = Math.round(benefitSum / thisCourseEvals.length * 2) / 2;

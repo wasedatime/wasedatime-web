@@ -63,12 +63,6 @@ const EvaluationScale = styled("div")`
   color: #333;
 `;
 
-async function getAllCourses () {
-  // const res = await axios.get(wasetimeApiStatic.courseListAll);
-  // return normalize(res.data, coursesSchema).entities['courses'];
-  return [];
-}
-
 const getCourse = (fetchedCourses, courseID) => {
   // Todo: get the course from courses list by id
   // return fetchedCourses[courseID];

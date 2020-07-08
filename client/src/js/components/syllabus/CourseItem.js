@@ -123,7 +123,7 @@ const Description = styled("div")`
   text-align: left;
 `;
 
-const CommentButtonsWrapper = styled("div")`
+const EvalButtonsWrapper = styled("div")`
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
@@ -131,7 +131,7 @@ const CommentButtonsWrapper = styled("div")`
   font-size: 0.9em;
 `;
 
-const ViewCommentsButton = styled("a")`
+const ViewEvalsButton = styled("a")`
   flex: 1 0 30%;
   display: block;
   background: #FFAE42;
@@ -149,7 +149,7 @@ const ViewCommentsButton = styled("a")`
   }
 `;
 
-const ViewCommentsIconButton = styled("a")`
+const ViewEvalsIconButton = styled("a")`
   display: block;
   background: #fff;
   border: 0px;
@@ -161,7 +161,7 @@ const ViewCommentsIconButton = styled("a")`
   }
 `;
 
-const AddCommentsButton = styled("button")`
+const AddEvalsButton = styled("button")`
   visibility: hidden;
 
   flex: 1 0 auto;
@@ -358,11 +358,11 @@ const CourseItem = ({
             <MediaQuery maxWidth={sizes.desktop}>
               { matches => {
                 return (matches && !isInCourseEvalsPage) && (
-                   <ViewCommentsIconButton href={`/courseEvals?courseID=${syllabusId}`} target="_blank">
+                   <ViewEvalsIconButton href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`} target="_blank">
                      <FontAwesomeIcon
                        icon={faCommentDots} size='2x'
                      />{' '}
-                   </ViewCommentsIconButton>
+                   </ViewEvalsIconButton>
                  )
               }}
             </MediaQuery>
@@ -379,23 +379,23 @@ const CourseItem = ({
           <MediaQuery minWidth={sizes.desktop}>
             { matches => {
               return (matches && !isInCourseEvalsPage) && (
-                 <CommentButtonsWrapper>
-                   <ViewCommentsButton href={`/courseEvals?courseID=${syllabusId}`} target="_blank">
+                 <EvalButtonsWrapper>
+                   <ViewEvalsButton href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`} target="_blank">
                      <FontAwesomeIcon
                        icon={faCommentDots}
                      />{' '}
                      Comments
-                   </ViewCommentsButton>
+                   </ViewEvalsButton>
 
-                   <AddCommentsButton onClick={e => {
+                   <AddEvalsButton onClick={e => {
                        e.preventDefault();
                      }}>
                      <FontAwesomeIcon
                        icon={faPen}
                      />{' '}
                      Add Comments
-                   </AddCommentsButton>
-                 </CommentButtonsWrapper>
+                   </AddEvalsButton>
+                 </EvalButtonsWrapper>
                )
             }}
           </MediaQuery>

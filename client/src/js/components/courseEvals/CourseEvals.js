@@ -15,6 +15,7 @@ import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import CourseEvalsGroup from './CourseEvalsGroup';
 import EvalsList from "./EvalsList";
 import EvaluationStars from "./EvaluationStars";
+import withFetchCourses from "../../hocs/withFetchCourses";
 
 export const LongWrapper = styled(Wrapper)`
   flex: 0 0 70%;
@@ -68,9 +69,9 @@ async function getAllCourses () {
   return [];
 }
 
-const getCourse = (coursesList, courseID) => {
+const getCourse = (fetchedCourses, courseID) => {
   // Todo: get the course from courses list by id
-  // return coursesList[courseID];
+  // return fetchedCourses[courseID];
 
   return {
     "_id":"2603013002012020260301300226",
@@ -105,7 +106,7 @@ const getCourseCode = course => course["course_code"];
 
 const getCourseKey = course => course["_id"].substring(0, 10);
 
-async function getAllEvals (courseCode) {
+async function getCourseEvals (courseCode) {
   try {
     const res = await axios.get(wasetimeApiStatic.courseEvalsBaseURL + courseCode);
     return res.data;
@@ -114,9 +115,9 @@ async function getAllEvals (courseCode) {
   }
 }
 
-const getRelatedCourses = (coursesList, courseCode, thisCourseKey) => {
+const getRelatedCourses = (fetchedCourses, courseCode, thisCourseKey) => {
   // Todo: Get related courses with course code
-  // let relatedCourses = coursesList.filter(c => c.course_code === courseCode && getCourseKey(c) !== thisCourseKey);
+  // let relatedCourses = fetchedCourses.filter(c => c.course_code === courseCode && getCourseKey(c) !== thisCourseKey);
 
   return [
     {
@@ -179,65 +180,70 @@ const getRelatedCourses = (coursesList, courseCode, thisCourseKey) => {
   ];
 }
 
-const getCourseEvals = (evaluations, courseKey) => evaluations.filter(e => e.course_key === courseKey);
+const filterCourseEvalsByKey = (evaluations, courseKey) => evaluations.filter(e => e.course_key === courseKey);
 
 class CourseEvals extends React.Component {
   state = {
     thisCourse: {},
     relatedCourses: [],
-    evaluations: [],
+    courseEvals: [],
     thisCourseEvals: [],
-    satisfaction: 0,
-    difficulty: 0,
-    benefit: 0,
+    avgSatisfaction: 0,
+    avgDifficulty: 0,
+    avgBenefit: 0,
     isLoaded: false
   };
 
   async componentDidMount () {
     const courseID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).courseID;
-    const coursesList = await getAllCourses();
-    const thisCourse = getCourse(coursesList, courseID);
+    const searchLang = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchLang;
+
+    const thisCourse = getCourse(this.props.fetchedCourses, courseID);
     const thisCourseCode = getCourseCode(thisCourse);
     const thisCourseKey = getCourseKey(thisCourse);
-    const relatedCourses = getRelatedCourses(coursesList, thisCourseCode, thisCourseKey);
-    const evaluations = await getAllEvals(thisCourseCode);
-    const thisCourseEvals = getCourseEvals(evaluations, thisCourseKey);
+    const relatedCourses = getRelatedCourses(this.props.fetchedCourses, thisCourseCode, thisCourseKey);
+
+    const evalsWithSameCode = await getCourseEvals(thisCourseCode);
+    const thisCourseEvals = filterCourseEvalsByKey(evalsWithSameCode, thisCourseKey);
+
     let satisfactionSum = 0, difficultySum = 0, benefitSum = 0;
     thisCourseEvals.forEach(evaluation => {
       satisfactionSum += evaluation.satisfaction;
       difficultySum += evaluation.difficulty;
       benefitSum += evaluation.benefit;
     });
-    const satisfaction = Math.round(satisfactionSum / thisCourseEvals.length * 2) / 2;
-    const difficulty = Math.round(difficultySum / thisCourseEvals.length * 2) / 2;
-    const benefit = Math.round(benefitSum / thisCourseEvals.length * 2) / 2;
+    
+    const avgSatisfaction = Math.round(satisfactionSum / thisCourseEvals.length * 2) / 2;
+    const avgDifficulty = Math.round(difficultySum / thisCourseEvals.length * 2) / 2;
+    const avgBenefit = Math.round(benefitSum / thisCourseEvals.length * 2) / 2;
 
     this.setState({
       thisCourse: thisCourse,
       relatedCourses: relatedCourses,
-      evaluations: evaluations,
+      courseEvals: evalsWithSameCode,
       thisCourseEvals: thisCourseEvals,
-      satisfaction: satisfaction,
-      difficulty: difficulty,
-      benefit: benefit,
+      avgSatisfaction: avgSatisfaction,
+      avgDifficulty: avgDifficulty,
+      avgBenefit: avgBenefit,
+      searchLang: searchLang,
       isLoaded: true
     });
   }
 
   render () {
-    const { thisCourse, relatedCourses, evaluations, thisCourseEvals, satisfaction, difficulty, benefit, isLoaded } = this.state;
+    const { thisCourse, relatedCourses, courseEvals, thisCourseEvals, avgSatisfaction, avgDifficulty, avgBenefit, isLoaded, searchLang } = this.state;
     return (
       <RowWrapper>
         <Helmet>
           <title>WasedaTime - Course Evaluations</title>
           <meta
             name="description"
-            content="Syllabus Searching at Waseda University."
+            content="Latest Course Evaluations by Waseda Students."
             />
           <meta property="og:title" content="WasedaTime - Course Evaluations" />
           <meta
             property="og:description"
-            content="Syllabus Searching at Waseda University."
+            content="Latest Course Evaluations by Waseda Students."
             />
           <meta property="og:site_name" content="WasedaTime - Course Evaluations" />
         </Helmet>
@@ -247,7 +253,7 @@ class CourseEvals extends React.Component {
             <div>
               <br />
               {
-                isLoaded && <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={thisCourse} isInCourseEvalsPage={true} />
+                isLoaded && <FetchedCourseItem searchTerm={""} searchLang={searchLang} course={thisCourse} isInCourseEvalsPage={true} />
               }
 
 
@@ -257,13 +263,13 @@ class CourseEvals extends React.Component {
               <EvalsListWrapper>
                 <EvaluationScalesRow>
                   <EvaluationScale>
-                    Satisfaction{' '}<EvaluationStars scale={satisfaction} />
+                    Satisfaction{' '}<EvaluationStars scale={avgSatisfaction} />
                   </EvaluationScale>
                   <EvaluationScale>
-                    Difficulty{' '}<EvaluationStars scale={difficulty} />
+                    Difficulty{' '}<EvaluationStars scale={avgDifficulty} />
                   </EvaluationScale>
                   <EvaluationScale>
-                    Benefit{' '}<EvaluationStars scale={benefit} />
+                    Benefit{' '}<EvaluationStars scale={avgBenefit} />
                   </EvaluationScale>
                   <EvaluationScale style={{ flex: '1', color: '#777', fontSize: '0.7em', paddingTop: '1.5rem' }}>
                     {thisCourseEvals.length} Evaluations
@@ -285,7 +291,7 @@ class CourseEvals extends React.Component {
               {
                 relatedCourses.map(relatedCourse => <CourseEvalsGroup
                   course={relatedCourse}
-                  evaluations={getCourseEvals(evaluations, getCourseKey(relatedCourse))}
+                  evaluations={filterCourseEvalsByKey(courseEvals, getCourseKey(relatedCourse))}
                   key={getCourseKey(relatedCourse)}
                 />)
               }
@@ -297,4 +303,4 @@ class CourseEvals extends React.Component {
   }
 };
 
-export default CourseEvals;
+export default withFetchCourses(CourseEvals);

@@ -138,7 +138,7 @@ const ViewEvalsButton = styled("a")`
   border: 0px;
   border-radius: 5px;
   color: #fff;
-  width: 30%;
+  padding: 0px 1rem;
   margin-bottom: 5px;
   text-align: center;
   padding-top: 4px;

@@ -132,16 +132,13 @@ const EvalButtonsWrapper = styled("div")`
 `;
 
 const ViewEvalsButton = styled("a")`
-  flex: 1 0 30%;
   display: block;
-  background: #FFAE42;
+  background-color: #ffae42;
   border: 0px;
   border-radius: 5px;
   color: #fff;
-  padding: 0px 1rem;
-  margin-bottom: 5px;
+  padding: 5px 1rem;
   text-align: center;
-  padding-top: 4px;
   text-decoration: none;
 
   &:focus {
@@ -151,9 +148,9 @@ const ViewEvalsButton = styled("a")`
 
 const ViewEvalsIconButton = styled("a")`
   display: block;
-  background: #fff;
+  background-color: #fff;
   border: 0px;
-  color: #FFAE42;
+  color: #ffae42;
   text-decoration: none;
 
   &:focus {
@@ -356,14 +353,18 @@ const CourseItem = ({
               {buttonIcon}
             </InvisibleButton>
             <MediaQuery maxWidth={sizes.desktop}>
-              { matches => {
-                return (matches && !isInCourseEvalsPage) && (
-                   <ViewEvalsIconButton href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`} target="_blank">
-                     <FontAwesomeIcon
-                       icon={faCommentDots} size='2x'
-                     />{' '}
-                   </ViewEvalsIconButton>
-                 )
+              {matches => {
+                return (
+                  matches &&
+                  !isInCourseEvalsPage && (
+                    <ViewEvalsIconButton
+                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faCommentDots} size="2x" />{" "}
+                    </ViewEvalsIconButton>
+                  )
+                );
               }}
             </MediaQuery>
           </div>
@@ -377,26 +378,27 @@ const CourseItem = ({
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
           <MediaQuery minWidth={sizes.desktop}>
-            { matches => {
-              return (matches && !isInCourseEvalsPage) && (
-                 <EvalButtonsWrapper>
-                   <ViewEvalsButton href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`} target="_blank">
-                     <FontAwesomeIcon
-                       icon={faCommentDots}
-                     />{' '}
-                     Comments
-                   </ViewEvalsButton>
-
-                   <AddEvalsButton onClick={e => {
-                       e.preventDefault();
-                     }}>
-                     <FontAwesomeIcon
-                       icon={faPen}
-                     />{' '}
-                     Add Comments
-                   </AddEvalsButton>
-                 </EvalButtonsWrapper>
-               )
+            {matches => {
+              return (
+                matches &&
+                !isInCourseEvalsPage && (
+                  <EvalButtonsWrapper>
+                    <ViewEvalsButton
+                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faCommentDots} /> Evaluations
+                    </ViewEvalsButton>
+                    <AddEvalsButton
+                      onClick={e => {
+                        e.preventDefault();
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faPen} /> Add Evaluations
+                    </AddEvalsButton>
+                  </EvalButtonsWrapper>
+                )
+              );
             }}
           </MediaQuery>
         </DetailWrapper>
@@ -411,5 +413,5 @@ CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,
   course: PropTypes.object.isRequired,
   isAddable: PropTypes.bool.isRequired,
-  handleOnClick: PropTypes.func.isRequired,
+  handleOnClick: PropTypes.func.isRequired
 };

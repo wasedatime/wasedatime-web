@@ -138,6 +138,7 @@ const ViewEvalsButton = styled("a")`
   border-radius: 5px;
   color: #fff;
   padding: 5px 1rem;
+  margin-bottom: 4px;
   text-align: center;
   text-decoration: none;
 
@@ -161,12 +162,12 @@ const ViewEvalsIconButton = styled("a")`
 const AddEvalsButton = styled("button")`
   visibility: hidden;
 
-  flex: 1 0 auto;
+  display: block;
   background: #48af37;
   border: 0px;
   border-radius: 5px;
   color: #fff;
-  width: 30%;
+  padding: 5px 1rem;
 
   &:focus {
     outline: none;

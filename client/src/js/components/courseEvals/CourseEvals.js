@@ -1,4 +1,5 @@
 import React from 'react';
+import MediaQuery from "react-responsive";
 import qs from 'qs';
 import { Helmet } from 'react-helmet';
 import styled from "styled-components";
@@ -6,27 +7,40 @@ import axios from "axios";
 // import { normalize } from "normalizr";
 // import { coursesSchema } from "../../data/schema";
 import { wasetimeApiStatic } from "../../config/api";
+import ReactGA from "react-ga";
 
 import { media } from "../../styled-components/utils";
+import { sizes } from "../../styled-components/utils";
 import { RowWrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 import { Wrapper } from "../../styled-components/Wrapper";
+import RelatedCoursesButton from "./RelatedCoursesButton";
+import Modal from "../../components/Modal";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import CourseEvalsGroup from './CourseEvalsGroup';
 import EvalsList from "./EvalsList";
 import EvaluationStars from "./EvaluationStars";
 import withFetchCourses from "../../hocs/withFetchCourses";
+import { gaFilter } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaOpenModal,
+  gaCloseModal,
+} from "../../ga/eventActions";
 
 export const LongWrapper = styled(Wrapper)`
   flex: 0 0 70%;
+  ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
 
 export const ShortWrapper = styled(Wrapper)`
   flex: 0 0 30%;
+  ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
+  ${media.tablet`padding-right: 2rem;`};
 `;
 
 const StyledSubHeading = styled("h2")`
@@ -36,7 +50,7 @@ const StyledSubHeading = styled("h2")`
   border-left: 5px solid rgb(148, 27, 47);
   font-size: 2.5rem;
   font-weight: 300;
-  ${media.phone`font-size: 2rem;`};
+  ${media.tablet`font-size: 2rem;`};
 `;
 
 const EvalsListWrapper = styled("div")`
@@ -54,14 +68,59 @@ const EvaluationScalesRow = styled("div")`
   flex-direction: row;
   font-size: 1.5em;
   background: #eee;
+  ${media.tablet`padding: 1rem; font-size: 1.2em;`};
+`;
+
+const EvaluationScalesList = styled("div")`
+  flex: 5;
+  display: flex;
+  flex-direction: row;
+  ${media.tablet`flex: 2; flex-direction: column;`};
 `;
 
 const EvaluationScale = styled("div")`
-  flex: 2;
+  flex: 1;
   padding: 1rem 0px;
   text-align: center;
   color: #333;
+  ${media.tablet`
+    flex: 1;
+    padding: 0.2rem 0px;
+    text-align: left;
+  `};
 `;
+
+const EvaluationsCount = styled("div")`
+  flex: 1;
+  padding: 1rem 0px;
+  text-align: center;
+  justify-content: flex-start;
+  color: #333;
+`;
+
+const modalStyle = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: "3001"
+  },
+  content: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: "#fff",
+    overflowY: "auto",
+    overflowScrolling: "touch",
+    WebkitOverflowScrolling: "touch",
+    outline: "none",
+    padding: 0
+  }
+};
 
 const getCourse = (fetchedCourses, courseID) => {
   // Todo: get the course from courses list by id
@@ -185,7 +244,8 @@ class CourseEvals extends React.Component {
     avgSatisfaction: 0,
     avgDifficulty: 0,
     avgBenefit: 0,
-    isLoaded: false
+    isLoaded: false,
+    isModalOpen: false
   };
 
   async componentDidMount () {
@@ -224,6 +284,20 @@ class CourseEvals extends React.Component {
     });
   }
 
+  handleToggleModal = event => {
+    event.preventDefault();
+    const gaAction = this.state.isModalOpen ? gaCloseModal : gaOpenModal;
+    ReactGA.event({
+      category: gaFilter,
+      action: gaAppendActionWithLng(gaAction, this.props.lng)
+    });
+    this.setState((prevState, props) => {
+      return {
+        isModalOpen: !prevState.isModalOpen
+      };
+    });
+  };
+
   render () {
     const { thisCourse, relatedCourses, courseEvals, thisCourseEvals, avgSatisfaction, avgDifficulty, avgBenefit, isLoaded, searchLang } = this.state;
     return (
@@ -250,24 +324,29 @@ class CourseEvals extends React.Component {
                 isLoaded && <FetchedCourseItem searchTerm={""} searchLang={searchLang} course={thisCourse} isInCourseEvalsPage={true} />
               }
 
-
               <StyledSubHeading>
                 Evaluations
               </StyledSubHeading>
               <EvalsListWrapper>
                 <EvaluationScalesRow>
-                  <EvaluationScale>
-                    Satisfaction{' '}<EvaluationStars scale={avgSatisfaction} />
-                  </EvaluationScale>
-                  <EvaluationScale>
-                    Difficulty{' '}<EvaluationStars scale={avgDifficulty} />
-                  </EvaluationScale>
-                  <EvaluationScale>
-                    Benefit{' '}<EvaluationStars scale={avgBenefit} />
-                  </EvaluationScale>
-                  <EvaluationScale style={{ flex: '1', color: '#777', fontSize: '0.7em', paddingTop: '1.5rem' }}>
-                    {thisCourseEvals.length} Evaluations
-                  </EvaluationScale>
+                  <EvaluationScalesList>
+                    <EvaluationScale>
+                      Satisfaction{' '}<EvaluationStars scale={avgSatisfaction} />
+                    </EvaluationScale>
+                    <EvaluationScale>
+                      Difficulty{' '}<EvaluationStars scale={avgDifficulty} />
+                    </EvaluationScale>
+                    <EvaluationScale>
+                      Benefit{' '}<EvaluationStars scale={avgBenefit} />
+                    </EvaluationScale>
+                  </EvaluationScalesList>
+
+                  <EvaluationsCount style={{ flex: '1', color: '#777', fontSize: '0.7em', paddingTop: '1.5rem' }}>
+                    <MediaQuery minWidth={sizes.desktop}>
+                      {matches => matches ? thisCourseEvals.length : <h1 style={{ margin: '0px' }}>{thisCourseEvals.length}</h1>}
+                    </MediaQuery>
+                    {' '}Evaluations
+                  </EvaluationsCount>
                 </EvaluationScalesRow>
                 <EvalsList evaluations={thisCourseEvals} />
               </EvalsListWrapper>
@@ -276,22 +355,53 @@ class CourseEvals extends React.Component {
           </ExtendedOverlay>
         </LongWrapper>
 
-        <ShortWrapper>
-          <ExtendedOverlay>
-            <StyledSubHeading>
-              Related courses
-            </StyledSubHeading>
-            <RelatedCoursesWrapper>
-              {
-                relatedCourses.map(relatedCourse => <CourseEvalsGroup
-                  course={relatedCourse}
-                  evaluations={filterCourseEvalsByKey(courseEvals, getCourseKey(relatedCourse))}
-                  key={getCourseKey(relatedCourse)}
-                />)
-              }
-            </RelatedCoursesWrapper>
-          </ExtendedOverlay>
-        </ShortWrapper>
+        <MediaQuery minWidth={sizes.desktop}>
+          {matches => {
+            return matches ? (
+              <ShortWrapper>
+                <ExtendedOverlay>
+                  <StyledSubHeading>
+                    Related courses
+                  </StyledSubHeading>
+                  <RelatedCoursesWrapper>
+                    {
+                      relatedCourses.map(relatedCourse => <CourseEvalsGroup
+                        course={relatedCourse}
+                        evaluations={filterCourseEvalsByKey(courseEvals, getCourseKey(relatedCourse))}
+                        key={getCourseKey(relatedCourse)}
+                      />)
+                    }
+                  </RelatedCoursesWrapper>
+                </ExtendedOverlay>
+              </ShortWrapper>
+            ) : (
+              <div>
+                <RelatedCoursesButton
+                  isModalOpen={this.state.isModalOpen}
+                  handleToggleModal={this.handleToggleModal}
+                />
+                <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                  <ExtendedOverlay>
+                    <StyledSubHeading>
+                      Related courses
+                    </StyledSubHeading>
+                    <RelatedCoursesWrapper>
+                      {
+                        relatedCourses.map(relatedCourse => <CourseEvalsGroup
+                          course={relatedCourse}
+                          evaluations={filterCourseEvalsByKey(courseEvals, getCourseKey(relatedCourse))}
+                          key={getCourseKey(relatedCourse)}
+                        />)
+                      }
+                    </RelatedCoursesWrapper>
+                  </ExtendedOverlay>
+                </Modal>
+              </div>
+            )
+          }}
+        </MediaQuery>
+
+
       </RowWrapper>
     );
   }

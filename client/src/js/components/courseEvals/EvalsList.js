@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import EvaluationStars from "./EvaluationStars";
+import { media } from "../../styled-components/utils";
 
 const EvaluationsWrapper = styled("div")`
   background: #fff;
@@ -28,6 +29,7 @@ const EvaluationScalesList = styled("div")`
   flex-direction: column;
   align-items: flex-end;
   font-size: 1.2em;
+  ${media.tablet`font-size: 1em;`};
 `;
 
 const EvaluationScale = styled("div")`

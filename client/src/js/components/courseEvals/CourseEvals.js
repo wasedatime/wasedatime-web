@@ -69,6 +69,7 @@ const EvaluationScalesRow = styled("div")`
   font-size: 1.5em;
   background: #eee;
   ${media.tablet`padding: 1rem; font-size: 1.2em;`};
+  ${media.phoneMini`padding: 1rem; font-size: 1em;`};
 `;
 
 const EvaluationScalesList = styled("div")`

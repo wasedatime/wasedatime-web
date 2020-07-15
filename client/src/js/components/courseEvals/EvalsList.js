@@ -21,6 +21,7 @@ const EvaluationDivider = styled("hr")`
 
 const EvaluationText = styled("div")`
   flex: 1;
+  ${media.phoneMini`font-size: 1.4rem;`};
 `;
 
 const EvaluationScalesList = styled("div")`
@@ -30,6 +31,7 @@ const EvaluationScalesList = styled("div")`
   align-items: flex-end;
   font-size: 1.2em;
   ${media.tablet`font-size: 1em;`};
+  ${media.phoneMini`font-size: 1.2rem;`};
 `;
 
 const EvaluationScale = styled("div")`

@@ -18,9 +18,9 @@ import { Wrapper } from "../../styled-components/Wrapper";
 import RelatedCoursesButton from "./RelatedCoursesButton";
 import Modal from "../../components/Modal";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
-import CourseEvalsGroup from './CourseEvalsGroup';
+import EvaluationScalesCountContainer from "../../containers/courseEvals/EvaluationScalesCountContainer";
+import RelatedCoursesContainer from "../../containers/courseEvals/RelatedCoursesContainer";
 import EvalsList from "./EvalsList";
-import EvaluationStars from "./EvaluationStars";
 import { gaFilter } from "../../ga/eventCategories";
 import {
   gaAppendActionWithLng,
@@ -56,47 +56,6 @@ const StyledSubHeading = styled("h2")`
 const EvalsListWrapper = styled("div")`
   max-height: 60vh;
   overflow-y: auto;
-`;
-
-const RelatedCoursesWrapper = styled("div")`
-  max-height: 80vh;
-  overflow-y: auto;
-`;
-
-const EvaluationScalesRow = styled("div")`
-  display: flex;
-  flex-direction: row;
-  font-size: 1.5em;
-  background: #eee;
-  ${media.tablet`padding: 1rem; font-size: 1.2em;`};
-  ${media.phoneMini`padding: 1rem; font-size: 1em;`};
-`;
-
-const EvaluationScalesList = styled("div")`
-  flex: 5;
-  display: flex;
-  flex-direction: row;
-  ${media.tablet`flex: 2; flex-direction: column;`};
-`;
-
-const EvaluationScale = styled("div")`
-  flex: 1;
-  padding: 1rem 0px;
-  text-align: center;
-  color: #333;
-  ${media.tablet`
-    flex: 1;
-    padding: 0.2rem 0px;
-    text-align: left;
-  `};
-`;
-
-const EvaluationsCount = styled("div")`
-  flex: 1;
-  padding: 1rem 0px;
-  text-align: center;
-  justify-content: flex-start;
-  color: #333;
 `;
 
 const modalStyle = {
@@ -375,26 +334,12 @@ class CourseEvals extends React.Component {
                 Evaluations
               </StyledSubHeading>
               <EvalsListWrapper>
-                <EvaluationScalesRow>
-                  <EvaluationScalesList>
-                    <EvaluationScale>
-                      Satisfaction{' '}<EvaluationStars scale={avgSatisfaction} />
-                    </EvaluationScale>
-                    <EvaluationScale>
-                      Difficulty{' '}<EvaluationStars scale={avgDifficulty} />
-                    </EvaluationScale>
-                    <EvaluationScale>
-                      Benefit{' '}<EvaluationStars scale={avgBenefit} />
-                    </EvaluationScale>
-                  </EvaluationScalesList>
-
-                  <EvaluationsCount style={{ flex: '1', color: '#777', fontSize: '0.7em', paddingTop: '1.5rem' }}>
-                    <MediaQuery minWidth={sizes.desktop}>
-                      {matches => matches ? thisCourseEvals.length : <h1 style={{ margin: '0px' }}>{thisCourseEvals.length}</h1>}
-                    </MediaQuery>
-                    {' '}Evaluations
-                  </EvaluationsCount>
-                </EvaluationScalesRow>
+                <EvaluationScalesCountContainer
+                  avgSatisfaction={avgSatisfaction}
+                  avgDifficulty={avgDifficulty}
+                  avgBenefit={avgBenefit}
+                  thisCourseEvalsLength={thisCourseEvals.length}
+                />
                 <EvalsList evaluations={thisCourseEvals} />
               </EvalsListWrapper>
 
@@ -402,53 +347,37 @@ class CourseEvals extends React.Component {
           </ExtendedOverlay>
         </LongWrapper>
 
-        <MediaQuery minWidth={sizes.desktop}>
-          {matches => {
-            return matches ? (
-              <ShortWrapper>
-                <ExtendedOverlay>
-                  <StyledSubHeading>
-                    Related courses
-                  </StyledSubHeading>
-                  <RelatedCoursesWrapper>
-                    {
-                      relatedCourses.map(relatedCourse => <CourseEvalsGroup
-                        course={relatedCourse}
-                        evaluations={filterCourseEvalsByKey(courseEvals, getCourseKey(relatedCourse))}
-                        key={getCourseKey(relatedCourse)}
-                      />)
-                    }
-                  </RelatedCoursesWrapper>
-                </ExtendedOverlay>
-              </ShortWrapper>
-            ) : (
-              <div>
-                <RelatedCoursesButton
-                  isModalOpen={this.state.isModalOpen}
-                  handleToggleModal={this.handleToggleModal}
-                />
-                <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
-                  <ExtendedOverlay>
-                    <StyledSubHeading>
-                      Related courses
-                    </StyledSubHeading>
-                    <RelatedCoursesWrapper>
-                      {
-                        relatedCourses.map(relatedCourse => <CourseEvalsGroup
-                          course={relatedCourse}
-                          evaluations={filterCourseEvalsByKey(courseEvals, getCourseKey(relatedCourse))}
-                          key={getCourseKey(relatedCourse)}
-                        />)
-                      }
-                    </RelatedCoursesWrapper>
-                  </ExtendedOverlay>
-                </Modal>
-              </div>
-            )
-          }}
-        </MediaQuery>
-
-
+        {
+          isLoaded && <MediaQuery minWidth={sizes.desktop}>
+            {matches => {
+              return matches ? (
+                <ShortWrapper>
+                  <RelatedCoursesContainer
+                    relatedCourses={relatedCourses}
+                    courseEvals={courseEvals}
+                    getCourseKey={getCourseKey}
+                    filterCourseEvalsByKey={filterCourseEvalsByKey}
+                  />
+                </ShortWrapper>
+              ) : (
+                <div>
+                  <RelatedCoursesButton
+                    isModalOpen={this.state.isModalOpen}
+                    handleToggleModal={this.handleToggleModal}
+                  />
+                  <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                    <RelatedCoursesContainer
+                      relatedCourses={relatedCourses}
+                      courseEvals={courseEvals}
+                      getCourseKey={getCourseKey}
+                      filterCourseEvalsByKey={filterCourseEvalsByKey}
+                    />
+                  </Modal>
+                </div>
+              )
+            }}
+          </MediaQuery>
+        }
       </RowWrapper>
     );
   }

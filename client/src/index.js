@@ -3,7 +3,7 @@ import { render } from "react-dom";
 import throttle from "lodash/throttle";
 
 import configureStore from "./configureStore";
-import { saveState } from "./localStorage";
+import { loadState, saveState } from "./localStorage";
 import Root from "./js/components/Root";
 
 import "normalize-css/normalize.css";
@@ -28,6 +28,7 @@ store.subscribe(
           sortingOption: addedCourses.spring.sortingOption
         }
       },
+      fetchedCourses: loadState().fetchedCourses,
       user: user
     });
   }, 800)

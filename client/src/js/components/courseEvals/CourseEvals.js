@@ -4,9 +4,10 @@ import qs from 'qs';
 import { Helmet } from 'react-helmet';
 import styled from "styled-components";
 import axios from "axios";
-// import { normalize } from "normalizr";
-// import { coursesSchema } from "../../data/schema";
+import { normalize } from "normalizr";
+import { coursesSchema } from "../../data/schema";
 import { wasetimeApiStatic } from "../../config/api";
+import { loadState, saveState } from "../../../localStorage";
 import ReactGA from "react-ga";
 
 import { media } from "../../styled-components/utils";
@@ -20,7 +21,6 @@ import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import CourseEvalsGroup from './CourseEvalsGroup';
 import EvalsList from "./EvalsList";
 import EvaluationStars from "./EvaluationStars";
-import withFetchCourses from "../../hocs/withFetchCourses";
 import { gaFilter } from "../../ga/eventCategories";
 import {
   gaAppendActionWithLng,
@@ -123,10 +123,11 @@ const modalStyle = {
   }
 };
 
-const getCourse = (fetchedCourses, courseID) => {
-  // Todo: get the course from courses list by id
-  // return fetchedCourses[courseID];
+const getCourse = (loadedCourses, courseID) => {
+  // Return null if courses not saved in localStorage or the course to display is not contained in courses in localStorage
+  // return loadedCourses ? loadedCourses[courseID] : null;
 
+  // No course code in data from static file, so use the below dummy data for now.
   return {
     "_id":"2603013002012020260301300226",
     "course_code": 'INFP31ZL',
@@ -169,10 +170,25 @@ async function getCourseEvals (courseCode) {
   }
 }
 
-const getRelatedCourses = (fetchedCourses, courseCode, thisCourseKey) => {
-  // Todo: Get related courses with course code
-  // let relatedCourses = fetchedCourses.filter(c => c.course_code === courseCode && getCourseKey(c) !== thisCourseKey);
+async function fetchAndSaveCourses () {
+  try {
+    const res = await axios.get(wasetimeApiStatic.courseListAll);
+    const fetchedCourses = res.data.filter(course => course.term.includes("fall"));
+    const normalizedFetchedCourses = normalize(fetchedCourses, coursesSchema).entities.courses;
+    saveState({ fetchedCourses: normalizedFetchedCourses });
+    return normalizedFetchedCourses;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
+const getRelatedCourses = (loadedCourses, courseCode, thisCourseKey) => {
+  // const relatedCourseIDs = Object.keys(loadedCourses).filter(courseID => loadedCourses[courseID].course_code === courseCode && getCourseKey(loadedCourses[courseID]) !== thisCourseKey);
+  // const relatedCourses = relatedCourseIDs.map(courseID => loadedCourses[courseID]);
+  // const sortedRelatedCourses = ...
+  // return sortedRelatedCourses;
+
+  // No course code in data from static file, so use the below dummy data for now.
   return [
     {
       "_id":"2603033019012020260303301926",
@@ -234,6 +250,20 @@ const getRelatedCourses = (fetchedCourses, courseCode, thisCourseKey) => {
   ];
 }
 
+// const getCourseKeys = courses => {
+//   courses.map(course => course._id.substring(0, 10));
+// }
+
+// async function getCourseEvalsByKey (courseKeys) {
+//   try {
+//     // get evaluations by courseKeys
+//     const res = await axios.get(wasetimeApiStatic.courseEvalsBaseURL + courseKeys);
+//     return res.data;
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
+
 const filterCourseEvalsByKey = (evaluations, courseKey) => evaluations.filter(e => e.course_key === courseKey);
 
 class CourseEvals extends React.Component {
@@ -252,14 +282,30 @@ class CourseEvals extends React.Component {
   async componentDidMount () {
     const courseID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).courseID;
     const searchLang = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchLang;
+    let loadedCourses = loadState().fetchedCourses;
 
-    const thisCourse = getCourse(this.props.fetchedCourses, courseID);
+    // ↓ Replace these code with the below ones
+    const thisCourse = getCourse(loadedCourses, courseID);
+    if (thisCourse === null) loadedCourses = await fetchAndSaveCourses();
+
     const thisCourseCode = getCourseCode(thisCourse);
     const thisCourseKey = getCourseKey(thisCourse);
-    const relatedCourses = getRelatedCourses(this.props.fetchedCourses, thisCourseCode, thisCourseKey);
 
+    const relatedCourses = getRelatedCourses(loadedCourses, thisCourseCode, thisCourseKey);
     const evalsWithSameCode = await getCourseEvals(thisCourseCode);
     const thisCourseEvals = filterCourseEvalsByKey(evalsWithSameCode, thisCourseKey);
+    // ↑ Replace these code with the below ones
+
+    // 1. Get evaluations of this course by key
+    // const thisCourseEvals = await getCourseEvalsByKey([thisCourseKey]);
+    //
+    // 2. Get related courses by code
+    // (3. Sort the courses in method 'getRelatedCourses')
+    // const relatedCourses = getRelatedCourses(loadedCourses, thisCourseCode, thisCourseKey);
+    //
+    // 4. Get evaluations of related courses by their keys
+    // const relatedCourseKeys = getCourseKeys(relatedCourses);
+    // const relatedCourseEvals = await getCourseEvalsByKey(relatedCourseKeys);
 
     let satisfactionSum = 0, difficultySum = 0, benefitSum = 0;
     thisCourseEvals.forEach(evaluation => {
@@ -408,4 +454,4 @@ class CourseEvals extends React.Component {
   }
 };
 
-export default withFetchCourses(CourseEvals);
+export default CourseEvals;

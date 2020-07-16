@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -9,14 +9,14 @@ import { InvisibleButton } from "../../styled-components/Button";
 const ExtendedInvisibleButton = styled(InvisibleButton)`
   position: fixed;
   z-index: 3002;
-  width: 56px;
+  width: ${props => props.isModalOpen ? '56px' : '100px'};
   height: 56px;
   justify-content: center;
   display: flex;
   align-items: center;
   background-color: #b51e36;
   color: white;
-  border-radius: 30px;
+  border-radius: ${props => props.isModalOpen ? '30px' : '10px'};
   bottom: 20px;
   right: 20px;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.4), 0 6px 10px 0 rgba(0, 0, 0, 0.2),
@@ -26,12 +26,14 @@ const ExtendedInvisibleButton = styled(InvisibleButton)`
 
 const FilterButton = ({ isModalOpen, handleToggleModal }) => {
   return (
-    <ExtendedInvisibleButton onClick={handleToggleModal}>
-      <FontAwesomeIcon
-        icon={isModalOpen ? faTimes : faLink}
-        size="2x"
-        transform="shrink-3"
-      />
+    <ExtendedInvisibleButton onClick={handleToggleModal} isModalOpen={isModalOpen}>
+      {
+        isModalOpen ? <FontAwesomeIcon
+          icon={faTimes}
+          size="2x"
+          transform="shrink-3"
+        /> : "Related Courses"
+      }
     </ExtendedInvisibleButton>
   );
 };

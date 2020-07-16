@@ -5,10 +5,21 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 
-import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
+import {
+  SILS,
+  PSE,
+  SSS,
+  FSE,
+  ASE,
+  CSE,
+  CJL,
+  GEC,
+  HSS,
+  CMS,
+} from "../../data/schools";
 import {
   headerHeight,
-  searchBarHeight
+  searchBarHeight,
 } from "../../styled-components/variables";
 import FilterGroup from "./FilterGroup";
 import { Wrapper } from "../../styled-components/Wrapper";
@@ -16,11 +27,9 @@ import { Wrapper } from "../../styled-components/Wrapper";
 const FilterWrapper = styled(Wrapper)`
   flex: none;
   overflow-y: auto;
-  height: ${props =>
+  height: ${(props) =>
     props.isSideBar
-      ? `calc(100vh - ${props.theme.headerHeight} - ${
-          props.theme.searchBarHeight
-        });`
+      ? `calc(100vh - ${props.theme.headerHeight} - ${props.theme.searchBarHeight});`
       : "auto"};
 `;
 
@@ -28,15 +37,16 @@ const FilterOverlay = styled("div")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  padding: ${props => (props.isSideBar ? "0.5em 1em 1em 1em;" : "1.5em 1.2em;")}
-  background-color: ${props =>
+  padding: ${(props) =>
+    props.isSideBar ? "0.5em 1em 1em 1em;" : "1.5em 1.2em;"}
+  background-color: ${(props) =>
     props.isSideBar ? "rgba(0, 0, 0, 0.2);" : "unset;"};
 `;
 
 const FilterTitle = styled("span")`
   display: flex;
   align-items: center;
-  font-size: ${props => (props.isSideBar ? "1em" : "1.3em")};
+  font-size: ${(props) => (props.isSideBar ? "1em" : "1.3em")};
 `;
 
 const FilterGroupWrapper = styled("div")`
@@ -52,7 +62,7 @@ class Filter extends React.Component {
     super(props);
     this.wrapper = null;
 
-    this.setWrapperRef = element => {
+    this.setWrapperRef = (element) => {
       this.wrapper = element;
     };
 
@@ -62,7 +72,7 @@ class Filter extends React.Component {
           ? parseInt(headerHeight, 10) + parseInt(searchBarHeight, 10)
           : 0;
         this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: offset
+          stickyBitStickyOffset: offset,
         });
       }
     };
@@ -88,11 +98,11 @@ class Filter extends React.Component {
     const semesterInputName = "semester";
     const semesterInputs = [
       { value: "spring", label: t("syllabus.Spring / Summer") },
-      { value: "fall", label: t("syllabus.Fall / Winter") }
+      { value: "fall", label: t("syllabus.Fall / Winter") },
     ];
-    const checkedSemesterInputs = semesterInputs.map(input => ({
+    const checkedSemesterInputs = semesterInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[semesterInputName].includes(input.value)
+      isChecked: filterGroups[semesterInputName].includes(input.value),
     }));
 
     const schoolLegend = t("syllabus.Schools");
@@ -104,12 +114,14 @@ class Filter extends React.Component {
       { value: FSE, label: t(`syllabus.${FSE}`) },
       { value: CSE, label: t(`syllabus.${CSE}`) },
       { value: ASE, label: t(`syllabus.${ASE}`) },
+      { value: CMS, label: t(`syllabus.${CMS}`) },
+      { value: HSS, label: t(`syllabus.${HSS}`) },
       { value: CJL, label: t(`syllabus.${CJL}`) },
-      { value: GEC, label: t(`syllabus.${GEC}`) }
+      { value: GEC, label: t(`syllabus.${GEC}`) },
     ];
-    const checkedSchoolInputs = schoolInputs.map(input => ({
+    const checkedSchoolInputs = schoolInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[schoolInputName].includes(input.value)
+      isChecked: filterGroups[schoolInputName].includes(input.value),
     }));
 
     const langLegend = t("syllabus.Languages");
@@ -117,11 +129,11 @@ class Filter extends React.Component {
     const langInputs = [
       { value: "EN", label: t("syllabus.English") },
       { value: "JP", label: t("syllabus.Japanese") },
-      { value: "others", label: t("syllabus.Others") }
+      { value: "others", label: t("syllabus.Others") },
     ];
-    const checkedLangInputs = langInputs.map(input => ({
+    const checkedLangInputs = langInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[langInputName].includes(input.value)
+      isChecked: filterGroups[langInputName].includes(input.value),
     }));
 
     const specialLegend = t("syllabus.Special");
@@ -130,12 +142,12 @@ class Filter extends React.Component {
       { value: "IPSE", label: t("syllabus.IPSE") },
       {
         value: "English-based Undergraduate Program",
-        label: t("syllabus.EN-based Undergrad Program")
-      }
+        label: t("syllabus.EN-based Undergrad Program"),
+      },
     ];
-    const checkedSpecialInputs = specialInputs.map(input => ({
+    const checkedSpecialInputs = specialInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[specialInputName].includes(input.value)
+      isChecked: filterGroups[specialInputName].includes(input.value),
     }));
 
     const dayLegend = t("syllabus.day");
@@ -146,11 +158,11 @@ class Filter extends React.Component {
       { value: "3", label: t("common.wed") },
       { value: "4", label: t("common.thu") },
       { value: "5", label: t("common.fri") },
-      { value: "6", label: t("common.sat") }
+      { value: "6", label: t("common.sat") },
     ];
-    const checkedDayInputs = dayInputs.map(input => ({
+    const checkedDayInputs = dayInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[dayInputName].includes(input.value)
+      isChecked: filterGroups[dayInputName].includes(input.value),
     }));
 
     const periodLegend = t("syllabus.period");
@@ -162,11 +174,11 @@ class Filter extends React.Component {
       { value: "4", label: "4" },
       { value: "5", label: "5" },
       { value: "6", label: "6" },
-      { value: "7", label: "7" }
+      { value: "7", label: "7" },
     ];
-    const checkedPeriodInputs = periodInputs.map(input => ({
+    const checkedPeriodInputs = periodInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[periodInputName].includes(input.value)
+      isChecked: filterGroups[periodInputName].includes(input.value),
     }));
 
     const { isSideBar } = this.props;

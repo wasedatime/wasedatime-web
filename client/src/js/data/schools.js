@@ -6,3 +6,5 @@ export const ASE = "ASE";
 export const CSE = "CSE";
 export const CJL = "CJL";
 export const GEC = "GEC";
+export const CMS = "CMS";
+export const HSS = "HSS";

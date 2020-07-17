@@ -121,15 +121,6 @@ const getCourseCode = course => course["course_code"];
 
 const getCourseKey = course => course["_id"].substring(0, 10);
 
-async function getCourseEvals (courseCode) {
-  try {
-    const res = await axios.get(wasetimeApiStatic.courseEvalsBaseURL + courseCode);
-    return res.data;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 async function fetchAndSaveCourses () {
   try {
     const res = await axios.get(wasetimeApiStatic.courseListAll);
@@ -208,10 +199,6 @@ const getRelatedCourses = (loadedCourses, courseCode, thisCourseKey) => {
       ]
     }
   ];
-}
-
-const getCourseKeys = courses => {
-  courses.map(course => course._id.substring(0, 10));
 }
 
 async function getCourseEvalsByKey (courseKey) {

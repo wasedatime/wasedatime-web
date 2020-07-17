@@ -21,6 +21,7 @@ import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import EvaluationScalesCountContainer from "../../containers/courseEvals/EvaluationScalesCountContainer";
 import RelatedCoursesContainer from "../../containers/courseEvals/RelatedCoursesContainer";
 import EvalsList from "./EvalsList";
+import LoadingSpinner from "../LoadingSpinner";
 import { gaFilter } from "../../ga/eventCategories";
 import {
   gaAppendActionWithLng,
@@ -209,28 +210,26 @@ const getRelatedCourses = (loadedCourses, courseCode, thisCourseKey) => {
   ];
 }
 
-// const getCourseKeys = courses => {
-//   courses.map(course => course._id.substring(0, 10));
-// }
+const getCourseKeys = courses => {
+  courses.map(course => course._id.substring(0, 10));
+}
 
-// async function getCourseEvalsByKey (courseKeys) {
-//   try {
-//     // get evaluations by courseKeys
-//     const res = await axios.get(wasetimeApiStatic.courseEvalsBaseURL + courseKeys);
-//     return res.data;
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
-
-const filterCourseEvalsByKey = (evaluations, courseKey) => evaluations.filter(e => e.course_key === courseKey);
+async function getCourseEvalsByKey (courseKey) {
+  try {
+    // get evaluations by courseKeys
+    const res = await axios.get(wasetimeApiStatic.courseEvalsBaseURL + courseKey);
+    return res.data;
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 class CourseEvals extends React.Component {
   state = {
     thisCourse: {},
     relatedCourses: [],
-    courseEvals: [],
     thisCourseEvals: [],
+    relatedCourseEvals: [],
     avgSatisfaction: 0,
     avgDifficulty: 0,
     avgBenefit: 0,
@@ -243,28 +242,24 @@ class CourseEvals extends React.Component {
     const searchLang = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchLang;
     let loadedCourses = loadState().fetchedCourses;
 
-    // ↓ Replace these code with the below ones
     const thisCourse = getCourse(loadedCourses, courseID);
     if (thisCourse === null) loadedCourses = await fetchAndSaveCourses();
 
     const thisCourseCode = getCourseCode(thisCourse);
     const thisCourseKey = getCourseKey(thisCourse);
 
-    const relatedCourses = getRelatedCourses(loadedCourses, thisCourseCode, thisCourseKey);
-    const evalsWithSameCode = await getCourseEvals(thisCourseCode);
-    const thisCourseEvals = filterCourseEvalsByKey(evalsWithSameCode, thisCourseKey);
-    // ↑ Replace these code with the below ones
-
     // 1. Get evaluations of this course by key
-    // const thisCourseEvals = await getCourseEvalsByKey([thisCourseKey]);
-    //
-    // 2. Get related courses by code
-    // (3. Sort the courses in method 'getRelatedCourses')
-    // const relatedCourses = getRelatedCourses(loadedCourses, thisCourseCode, thisCourseKey);
-    //
-    // 4. Get evaluations of related courses by their keys
-    // const relatedCourseKeys = getCourseKeys(relatedCourses);
-    // const relatedCourseEvals = await getCourseEvalsByKey(relatedCourseKeys);
+    const thisCourseEvals = await getCourseEvalsByKey(thisCourseKey);
+
+    // 2. Get related courses by code, sort them, and get the first k courses (k=3)
+    const relatedCourses = getRelatedCourses(loadedCourses, thisCourseCode, thisCourseKey);
+
+    // 3. Get evaluations of related courses by their keys
+    let relatedCourseEvals = [];
+    for (const course of relatedCourses) {
+      const evals = await getCourseEvalsByKey(getCourseKey(course));
+      relatedCourseEvals = [...evals, ...relatedCourseEvals];
+    }
 
     let satisfactionSum = 0, difficultySum = 0, benefitSum = 0;
     thisCourseEvals.forEach(evaluation => {
@@ -280,8 +275,8 @@ class CourseEvals extends React.Component {
     this.setState({
       thisCourse: thisCourse,
       relatedCourses: relatedCourses,
-      courseEvals: evalsWithSameCode,
       thisCourseEvals: thisCourseEvals,
+      relatedCourseEvals: relatedCourseEvals,
       avgSatisfaction: avgSatisfaction,
       avgDifficulty: avgDifficulty,
       avgBenefit: avgBenefit,
@@ -305,8 +300,8 @@ class CourseEvals extends React.Component {
   };
 
   render () {
-    const { thisCourse, relatedCourses, courseEvals, thisCourseEvals, avgSatisfaction, avgDifficulty, avgBenefit, isLoaded, searchLang } = this.state;
-    return (
+    const { thisCourse, relatedCourses, thisCourseEvals, relatedCourseEvals, avgSatisfaction, avgDifficulty, avgBenefit, isLoaded, searchLang } = this.state;
+    return isLoaded ? (
       <RowWrapper>
         <Helmet>
           <title>WasedaTime - Course Evaluations</title>
@@ -354,9 +349,7 @@ class CourseEvals extends React.Component {
                 <ShortWrapper>
                   <RelatedCoursesContainer
                     relatedCourses={relatedCourses}
-                    courseEvals={courseEvals}
-                    getCourseKey={getCourseKey}
-                    filterCourseEvalsByKey={filterCourseEvalsByKey}
+                    courseEvals={relatedCourseEvals}
                   />
                 </ShortWrapper>
               ) : (
@@ -368,9 +361,7 @@ class CourseEvals extends React.Component {
                   <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
                     <RelatedCoursesContainer
                       relatedCourses={relatedCourses}
-                      courseEvals={courseEvals}
-                      getCourseKey={getCourseKey}
-                      filterCourseEvalsByKey={filterCourseEvalsByKey}
+                      courseEvals={relatedCourseEvals}
                     />
                   </Modal>
                 </div>
@@ -379,7 +370,7 @@ class CourseEvals extends React.Component {
           </MediaQuery>
         }
       </RowWrapper>
-    );
+    ) : <LoadingSpinner message={"Loading evaluations..."} />;;
   }
 };
 

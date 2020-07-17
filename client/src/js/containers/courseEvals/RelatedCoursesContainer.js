@@ -24,7 +24,11 @@ const RelatedCoursesWrapper = styled("div")`
   overflow-y: auto;
 `;
 
-const RelatedCoursesContainer = ({ relatedCourses, courseEvals, getCourseKey, filterCourseEvalsByKey }) => (
+const filterCourseEvalsByKey = (evaluations, courseKey) => evaluations.filter(e => e.course_key === courseKey);
+
+const getCourseKey = course => course["_id"].substring(0, 10);
+
+const RelatedCoursesContainer = ({ relatedCourses, courseEvals }) => (
   <ExtendedOverlay>
     <StyledSubHeading>
       Related courses

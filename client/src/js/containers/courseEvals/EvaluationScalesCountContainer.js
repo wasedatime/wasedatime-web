@@ -41,23 +41,23 @@ const EvaluationsCount = styled("div")`
   color: #333;
 `;
 
-const EvaluationScalesCountContainer = (avgSatisfaction, avgDifficulty, avgBenefit, thisCourseEvalsLength) => (
+const EvaluationScalesCountContainer = ({avgSatisfaction, avgDifficulty, avgBenefit, thisCourseEvalsLength}) => (
   <EvaluationScalesRow>
     <EvaluationScalesList>
       <EvaluationScale>
-        Satisfaction{' '}<EvaluationStars scale={avgSatisfaction} />
+        <EvaluationStars scale={avgSatisfaction} />  {' '}Satisfaction
       </EvaluationScale>
       <EvaluationScale>
-        Difficulty{' '}<EvaluationStars scale={avgDifficulty} />
+        <EvaluationStars scale={avgDifficulty} />{' '}Difficulty
       </EvaluationScale>
       <EvaluationScale>
-        Benefit{' '}<EvaluationStars scale={avgBenefit} />
+        <EvaluationStars scale={avgBenefit} />{' '}Benefit
       </EvaluationScale>
     </EvaluationScalesList>
 
     <EvaluationsCount style={{ flex: '1', color: '#777', fontSize: '0.7em', paddingTop: '1.5rem' }}>
       <MediaQuery minWidth={sizes.desktop}>
-        {matches => matches ? <span>thisCourseEvalsLength</span> : <h1 style={{ margin: '0px' }}>{thisCourseEvalsLength}</h1>}
+        {matches => matches ? <span>{thisCourseEvalsLength}</span> : <h1 style={{ margin: '0px' }}>{thisCourseEvalsLength}</h1>}
       </MediaQuery>
       {' '}Evaluations
     </EvaluationsCount>

@@ -11,7 +11,7 @@ import {
   gaAppendActionWithLng,
   gaAddCourse,
   gaRemoveCourse,
-  gaClickSyllabusLink
+  gaClickSyllabusLink,
 } from "../../ga/eventActions";
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
@@ -23,31 +23,31 @@ class FetchedCourseItem extends React.Component {
     ReactGA.event({
       category: gaFetchedCourseItem,
       action: gaAppendActionWithLng(gaAddCourse, lng),
-      label: title
+      label: title,
     });
     if (Object.keys(byId).length >= ADDED_COURSES_NUMBER_LIMIT) {
       Alert.error(
         `Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`,
         {
           position: "bottom",
-          effect: "jelly"
+          effect: "jelly",
         }
       );
       return;
     }
     this.props.addCourse(course, searchLang);
-    if (occurrences.some(o => o.day === -1 || o.start_period === -1)) {
+    if (occurrences.some((o) => o.day === -1 || o.start_period === -1)) {
       Alert.warning(
         "Course with undecided time cannot be displayed in timetable.",
         {
           position: "bottom",
-          effect: "jelly"
+          effect: "jelly",
         }
       );
     } else {
       Alert.success("Course added.", {
         position: "bottom",
-        effect: "jelly"
+        effect: "jelly",
       });
     }
   };
@@ -57,12 +57,12 @@ class FetchedCourseItem extends React.Component {
     ReactGA.event({
       category: gaFetchedCourseItem,
       action: gaAppendActionWithLng(gaRemoveCourse, lng),
-      label: title
+      label: title,
     });
     this.props.removeCourse(course._id);
     Alert.success("Course removed.", {
       position: "bottom",
-      effect: "jelly"
+      effect: "jelly",
     });
   };
 
@@ -70,7 +70,7 @@ class FetchedCourseItem extends React.Component {
     ReactGA.event({
       category: gaFetchedCourseItem,
       action: gaAppendActionWithLng(gaClickSyllabusLink, lng),
-      label: title
+      label: title,
     });
   };
 
@@ -93,18 +93,15 @@ class FetchedCourseItem extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    byId: getById(state.addedCourses)
+    byId: getById(state.addedCourses),
   };
 };
 
 const mapDispatchToProps = {
   addCourse,
-  removeCourse
+  removeCourse,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FetchedCourseItem);
+export default connect(mapStateToProps, mapDispatchToProps)(FetchedCourseItem);

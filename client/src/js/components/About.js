@@ -21,7 +21,7 @@ import logo from "../../img/logo.png";
 // import roomFinder from "../../img/roomFinder-480.gif";
 
 const HomeWrapper = styled(WrapperWithBackground)`
-  min-height: calc(100vh - ${props => props.theme.headerHeight});
+  min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
 const ExtendedOverlay = styled(Overlay)`

@@ -26,12 +26,12 @@ const styles = {
   h3: {
     margin: "0.6em 0",
     wordBreak: "keep-all",
-    fontSize: "1.6em"
+    fontSize: "1.6em",
   },
   h4: {
     margin: "0.35em 0",
-    fontSize: "1.1em"
-  }
+    fontSize: "1.1em",
+  },
 };
 
 const Contributors = ({ classes, t }) => {

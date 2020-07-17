@@ -1,0 +1,10 @@
+node_modules
+client/build
+client/node_modules
+client/package-lock.json
+client/package.json
+
+*.enc
+.all-contributorsrc
+package-lock.json
+package.json

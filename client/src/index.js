@@ -21,14 +21,14 @@ store.subscribe(
       addedCourses: {
         fall: {
           prefs: addedCourses.fall.prefs,
-          sortingOption: addedCourses.fall.sortingOption
+          sortingOption: addedCourses.fall.sortingOption,
         },
         spring: {
           prefs: addedCourses.spring.prefs,
-          sortingOption: addedCourses.spring.sortingOption
-        }
+          sortingOption: addedCourses.spring.sortingOption,
+        },
       },
-      user: user
+      user: user,
     });
   }, 800)
 );

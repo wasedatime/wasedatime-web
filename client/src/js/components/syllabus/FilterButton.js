@@ -40,5 +40,5 @@ export default FilterButton;
 
 FilterButton.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,
-  handleToggleModal: PropTypes.func.isRequired
+  handleToggleModal: PropTypes.func.isRequired,
 };

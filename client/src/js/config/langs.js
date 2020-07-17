@@ -1,6 +1,6 @@
 const LANGS = Object.freeze({
   EN: "en",
-  JP: "jp"
+  JP: "jp",
 });
 
 export default LANGS;

@@ -28,18 +28,18 @@ const Logo = styled("img")`
 
 const styles = {
   h3: {
-    wordBreak: "keep-all"
+    wordBreak: "keep-all",
   },
   formControlLabelLabel: {
-    fontSize: "1em"
+    fontSize: "1em",
   },
   radioChecked: {
-    color: "#b51e36 !important"
-  }
+    color: "#b51e36 !important",
+  },
 };
 
 class Greeting extends React.Component {
-  handleChangeLang = event => {
+  handleChangeLang = (event) => {
     event.preventDefault();
     const lng = event.target.value;
     this.props.i18n.changeLanguage(lng);

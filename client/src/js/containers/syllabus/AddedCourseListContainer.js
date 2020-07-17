@@ -12,37 +12,37 @@ import {
   gaAppendActionWithLng,
   gaOpenSortingOption,
   gaCloseSortingOption,
-  gaChangeSortingOption
+  gaChangeSortingOption,
 } from "../../ga/eventActions";
 
 class AddedCourseListContainer extends React.Component {
   constructor() {
     super();
     this.state = {
-      isSortingOptionOpen: false
+      isSortingOptionOpen: false,
     };
   }
 
-  handleToggleSortingOptions = event => {
+  handleToggleSortingOptions = (event) => {
     event.preventDefault();
     const gaAction = this.state.isSortingOptionOpen
       ? gaCloseSortingOption
       : gaOpenSortingOption;
     ReactGA.event({
       category: gaAddedCourseItem,
-      action: gaAppendActionWithLng(gaAction, this.props.lng)
+      action: gaAppendActionWithLng(gaAction, this.props.lng),
     });
     this.setState((prevState, props) => {
       return { isSortingOptionOpen: !prevState.isSortingOptionOpen };
     });
   };
 
-  handleChangeSortingOption = sortingOption => {
+  handleChangeSortingOption = (sortingOption) => {
     if (sortingOption !== this.props.sortingOption) {
       ReactGA.event({
         category: gaAddedCourseItem,
         action: gaAppendActionWithLng(gaChangeSortingOption, this.props.lng),
-        label: sortingOption
+        label: sortingOption,
       });
       this.props.changeCoursesSortingOption(
         sortingOption,
@@ -54,10 +54,10 @@ class AddedCourseListContainer extends React.Component {
   render() {
     const { addedCoursesAndPrefs, selectedSortingOption } = this.props;
     const isSortingOptionOpen = this.state.isSortingOptionOpen;
-    const addedCourses = addedCoursesAndPrefs.map(addedCourseAndPref => {
+    const addedCourses = addedCoursesAndPrefs.map((addedCourseAndPref) => {
       return {
         ...addedCourseAndPref.course,
-        displayLang: addedCourseAndPref.displayLang
+        displayLang: addedCourseAndPref.displayLang,
       };
     });
     const sortedAddedCourses = sortAddedCourses(
@@ -80,17 +80,14 @@ const mapStateToProps = (state, ownProps) => {
   return {
     selectedSortingOption: getSortingOption(
       state.addedCourses[ownProps.semesterKey]
-    )
+    ),
   };
 };
 
 const mapDispatchToProps = {
-  changeCoursesSortingOption
+  changeCoursesSortingOption,
 };
 
 export default withNamespaces("translation")(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(AddedCourseListContainer)
+  connect(mapStateToProps, mapDispatchToProps)(AddedCourseListContainer)
 );

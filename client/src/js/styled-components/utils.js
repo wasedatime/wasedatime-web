@@ -1,10 +1,10 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
 
 export const sizes = {
   desktop: 992,
   tablet: 768,
   phone: 480,
-  phoneMini: 375
+  phoneMini: 375,
 };
 
 // Iterate through the sizes and create a media template

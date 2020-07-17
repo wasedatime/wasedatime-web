@@ -97,7 +97,10 @@ class Filter extends React.Component {
     const semesterLegend = t("syllabus.Semesters");
     const semesterInputName = "semester";
     const semesterInputs = [
-      { value: "spring", label: t("syllabus.Spring / Summer") },
+      {
+        value: "spring",
+        label: t("syllabus.Spring / Summer"),
+      },
       { value: "fall", label: t("syllabus.Fall / Winter") },
     ];
     const checkedSemesterInputs = semesterInputs.map((input) => ({

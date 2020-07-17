@@ -5,18 +5,7 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 
-import {
-  SILS,
-  PSE,
-  SSS,
-  FSE,
-  ASE,
-  CSE,
-  CJL,
-  GEC,
-  HSS,
-  CMS,
-} from "../../data/schools";
+import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
 import {
   headerHeight,
   searchBarHeight,

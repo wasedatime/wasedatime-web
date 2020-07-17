@@ -1,5 +1,5 @@
 {
-  "name": "WasedaTime-Web",
+  "name": "wasedatime-web",
   "version": "1.0.0",
   "description": "An unonfficial app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.",
   "main": "server.js",

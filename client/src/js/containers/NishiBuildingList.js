@@ -1,19 +1,23 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import { fetchBuildings } from '../actions/index';
-import { getIsFetching, getBuildings, getError } from '../reducers/fetchedBuildings';
-import BuildingList from '../components/BuildingList';
-import LoadingSpinner from '../components/LoadingSpinner';
-import FetchError from '../components/FetchError';
-import nishiBuildings from '../data/buildingList';
-import background from '../../img/nishi_waseda_campus.jpg';
+import { fetchBuildings } from "../actions/index";
+import {
+  getIsFetching,
+  getBuildings,
+  getError,
+} from "../reducers/fetchedBuildings";
+import BuildingList from "../components/BuildingList";
+import LoadingSpinner from "../components/LoadingSpinner";
+import FetchError from "../components/FetchError";
+import nishiBuildings from "../data/buildingList";
+import background from "../../img/nishi_waseda_campus.jpg";
 
 class NishiBuildingList extends React.Component {
   constructor(props) {
     super(props);
-    this.name = 'Nishi-Waseda Campus';
+    this.name = "Nishi-Waseda Campus";
     this.background = background;
   }
 
@@ -40,16 +44,16 @@ class NishiBuildingList extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isFetching: getIsFetching(state.fetchedBuildings),
     buildings: getBuildings(state.fetchedBuildings, nishiBuildings),
-    error: getError(state.fetchedBuildings)
+    error: getError(state.fetchedBuildings),
   };
 };
 
 const mapDispatchToProps = {
-  fetchBuildings
+  fetchBuildings,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NishiBuildingList);
@@ -58,5 +62,5 @@ NishiBuildingList.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   buildings: PropTypes.array.isRequired,
   error: PropTypes.object,
-  fetchBuildings: PropTypes.func.isRequired
+  fetchBuildings: PropTypes.func.isRequired,
 };

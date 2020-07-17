@@ -11,7 +11,7 @@ const StyledUpdates = styled("div")`
   align-items: center;
   padding: 0.3rem 2rem;
   height: 60px;
-  background: ${props => props.theme.colorPrimary};
+  background: ${(props) => props.theme.colorPrimary};
   position: fixed;
   top: 0;
   right: 0;
@@ -35,35 +35,21 @@ const ModalSection = styled("section")`
 `;
 
 class Updates extends React.Component {
-
   render() {
     const { t } = this.props;
     return (
       <StyledUpdates>
-        <ModalContainer
-            linkText={t("updates.header")}
-            text={""}
-          >
-            <ModalArticle>
-              <ModalSection>
-                <p>
-                  {t("updates.main")}
-                </p>
-                <p>
-                  {t("updates.main2")}
-                </p>
-                <p>
-                  {t("updates.main3")}
-                </p>
-                <p>
-                  {t("updates.main4")}
-                </p>
-                <p>
-                  {t("updates.main5")}
-                </p>
-              </ModalSection>
-            </ModalArticle>
-          </ModalContainer>
+        <ModalContainer linkText={t("updates.header")} text={""}>
+          <ModalArticle>
+            <ModalSection>
+              <p>{t("updates.main")}</p>
+              <p>{t("updates.main2")}</p>
+              <p>{t("updates.main3")}</p>
+              <p>{t("updates.main4")}</p>
+              <p>{t("updates.main5")}</p>
+            </ModalSection>
+          </ModalArticle>
+        </ModalContainer>
       </StyledUpdates>
     );
   }
@@ -72,5 +58,5 @@ class Updates extends React.Component {
 export default withNamespaces("translation")(Updates);
 
 Updates.propTypes = {
-  t: PropTypes.func.isRequired
-}
+  t: PropTypes.func.isRequired,
+};

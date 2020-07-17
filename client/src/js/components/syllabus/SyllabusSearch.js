@@ -13,12 +13,12 @@ const ExtendedRowWrapper = styled(RowWrapper)`
   flex: 1 0 0;
 `;
 
-const SyllabusSearch = props => {
+const SyllabusSearch = (props) => {
   const { addedCoursesAndPrefs, fetchedCourses } = props;
   return (
     <ExtendedRowWrapper>
       <MediaQuery minWidth={sizes.tablet}>
-        {matches =>
+        {(matches) =>
           matches && (
             <SideBar flexBasis="21em">
               <AddedCourseListSwitch

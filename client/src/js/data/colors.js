@@ -6,5 +6,5 @@ export const courseColors = [
   "blue",
   "purple",
   "brown",
-  "black"
+  "black",
 ];

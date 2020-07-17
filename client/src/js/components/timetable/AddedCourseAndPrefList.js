@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import CourseListSummary from '../CourseListSummary';
-import AddedCourseAndPrefItem from '../../containers/timetable/AddedCourseAndPrefItem';
-import { Wrapper } from '../../styled-components/Wrapper';
-import { media } from '../../styled-components/utils';
-import { UnstyledUList } from '../../styled-components/List';
+import CourseListSummary from "../CourseListSummary";
+import AddedCourseAndPrefItem from "../../containers/timetable/AddedCourseAndPrefItem";
+import { Wrapper } from "../../styled-components/Wrapper";
+import { media } from "../../styled-components/utils";
+import { UnstyledUList } from "../../styled-components/List";
 
 const ExtendedWrapper = styled(Wrapper)`
   padding: 0 1em;
@@ -22,7 +22,7 @@ const AddedCourseAndPrefList = ({
   isSortingOptionOpen,
   handleToggleSortingOptions,
   selectedSortingOption,
-  handleChangeSortingOption
+  handleChangeSortingOption,
 }) => {
   return (
     <ExtendedWrapper>
@@ -35,7 +35,7 @@ const AddedCourseAndPrefList = ({
       />
       <Wrapper>
         <ExtendedUnstyledUList>
-          {addedCoursesAndPrefs.map(addedCourseAndPref => (
+          {addedCoursesAndPrefs.map((addedCourseAndPref) => (
             <AddedCourseAndPrefItem
               key={addedCourseAndPref.id}
               addedCourseAndPref={addedCourseAndPref}

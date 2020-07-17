@@ -1,4 +1,4 @@
-import { ADDED_ORDER, COURSE_TITLE, COURSE_TIME } from '../data/sortingOptions';
+import { ADDED_ORDER, COURSE_TITLE, COURSE_TIME } from "../data/sortingOptions";
 
 export const sortAddedCoursesAndPrefs = (
   addedCoursesAndPrefs,

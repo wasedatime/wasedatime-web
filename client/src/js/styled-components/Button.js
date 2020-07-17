@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-export const Button = styled('button')`
+export const Button = styled("button")`
   padding: 12px;
   margin: 10px 0;
   width: 160px;
@@ -21,7 +21,7 @@ export const Button = styled('button')`
   }
 `;
 
-export const InvisibleButton = styled('button')`
+export const InvisibleButton = styled("button")`
   align-self: flex-start;
   background-color: unset;
   border: none;

@@ -1,34 +1,34 @@
-import React from 'react';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import stickybits from 'stickybits';
-import PropTypes from 'prop-types';
+import React from "react";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import stickybits from "stickybits";
+import PropTypes from "prop-types";
 
-import { headerHeight } from '../../styled-components/variables';
-import { RowWrapper } from '../../styled-components/Wrapper';
+import { headerHeight } from "../../styled-components/variables";
+import { RowWrapper } from "../../styled-components/Wrapper";
 
 const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
   align-items: center;
-  height: ${props => props.theme.searchBarHeight};
+  height: ${(props) => props.theme.searchBarHeight};
   width: 100%;
   padding: 0 1em;
-  background-color: ${props => props.theme.grey7};
+  background-color: ${(props) => props.theme.grey7};
   z-index: 1030;
 `;
 
-const StyledForm = styled('form')`
+const StyledForm = styled("form")`
   width: 100%;
   align-self: center;
-  background-color: ${props => props.theme.white};
+  background-color: ${(props) => props.theme.white};
   padding: 0 5px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 `;
 
-const StyledInput = styled('input')`
+const StyledInput = styled("input")`
   border: none;
   background: none;
   outline: none;
@@ -37,11 +37,11 @@ const StyledInput = styled('input')`
   flex: 1 0 auto;
 `;
 
-const StyledClearButton = styled('span')`
+const StyledClearButton = styled("span")`
   display: flex;
   align-items: center;
   cursor: pointer;
-  color: ${props => props.theme.grey7};
+  color: ${(props) => props.theme.grey7};
   &:focus {
     outline: 0;
   }
@@ -52,14 +52,14 @@ class SearchBar extends React.Component {
   constructor() {
     super();
     this.wrapper = null;
-    this.setWrapperRef = element => {
+    this.setWrapperRef = (element) => {
       this.wrapper = element;
     };
 
     this.createStickyWrapper = () => {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: parseInt(headerHeight, 10)
+          stickyBitStickyOffset: parseInt(headerHeight, 10),
         });
       }
     };
@@ -79,22 +79,22 @@ class SearchBar extends React.Component {
     this.cleanupStickyWrapper();
   }
 
-  handleInputChange = event => {
+  handleInputChange = (event) => {
     event.preventDefault();
     const inputText = event.target.value;
     this.props.onInputChange(inputText);
   };
 
-  handleClearInput = event => {
+  handleClearInput = (event) => {
     event.preventDefault();
-    this.props.onInputChange('');
+    this.props.onInputChange("");
   };
 
   render() {
     return (
       <ExtendedWrapper innerRef={this.setWrapperRef}>
         <StyledForm
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
           }}
         >
@@ -122,22 +122,22 @@ export default SearchBar;
 SearchBar.propTypes = {
   placeholder: PropTypes.string.isRequired,
   inputText: PropTypes.string.isRequired,
-  onInputChange: PropTypes.func.isRequired
+  onInputChange: PropTypes.func.isRequired,
 };
 
 StyledForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
 };
 
 StyledInput.propTypes = {
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
-}
+  onChange: PropTypes.func.isRequired,
+};
 
 StyledClearButton.propTypes = {
   role: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 };

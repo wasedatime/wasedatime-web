@@ -1,8 +1,8 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
-import { Button } from '../styled-components/Button';
+import { Button } from "../styled-components/Button";
 
 const BuildingItem = ({ name }) => {
   return (
@@ -15,7 +15,7 @@ const BuildingItem = ({ name }) => {
 };
 
 BuildingItem.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
 };
 
 export default BuildingItem;

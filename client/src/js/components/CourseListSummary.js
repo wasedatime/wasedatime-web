@@ -1,11 +1,11 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import SortingOptions from './SortingOptions';
-import { RowWrapper } from '../styled-components/Wrapper';
-import { InvisibleButton } from '../styled-components/Button';
+import SortingOptions from "./SortingOptions";
+import { RowWrapper } from "../styled-components/Wrapper";
+import { InvisibleButton } from "../styled-components/Button";
 import { withNamespaces } from "react-i18next";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const CourseAddedMessageWrapper = styled(RowWrapper)`
   justify-content: space-between;
@@ -18,11 +18,11 @@ const SortByButton = styled(InvisibleButton)`
     color: #b51e36;
   }
   &:focus {
-    fill: ${props => (props.isSortingOptionOpen ? '#b51e36;' : '#000;')};
-    color: ${props => (props.isSortingOptionOpen ? '#b51e36;' : '#000;')};
+    fill: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
+    color: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
   }
-  fill: ${props => (props.isSortingOptionOpen ? '#b51e36;' : '#000;')};
-  color: ${props => (props.isSortingOptionOpen ? '#b51e36;' : '#000;')};
+  fill: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
+  color: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
 `;
 
 const CourseListSummary = ({
@@ -31,12 +31,14 @@ const CourseListSummary = ({
   handleToggleSortingOptions,
   selectedSortingOption,
   handleChangeSortingOption,
-  t
+  t,
 }) => {
   return (
     <div>
       <CourseAddedMessageWrapper>
-        <span>{`${courses.length}`} {t("timetable.courses added")} </span>
+        <span>
+          {`${courses.length}`} {t("timetable.courses added")}{" "}
+        </span>
         <SortByButton
           isSortingOptionOpen={isSortingOptionOpen}
           onClick={handleToggleSortingOptions}
@@ -69,9 +71,9 @@ CourseListSummary.propTypes = {
   isSortingOptionOpen: PropTypes.bool.isRequired,
   handleToggleSortingOptions: PropTypes.func.isRequired,
   selectedSortingOption: PropTypes.string.isRequired,
-  handleChangeSortingOption: PropTypes.func.isRequired
-}
+  handleChangeSortingOption: PropTypes.func.isRequired,
+};
 
 SortByButton.propTypes = {
-  isSortingOptionOpen: PropTypes.bool.isRequired
-}
+  isSortingOptionOpen: PropTypes.bool.isRequired,
+};

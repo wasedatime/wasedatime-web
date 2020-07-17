@@ -7,13 +7,13 @@ export const loadState = () => {
       return undefined;
     }
     const state = JSON.parse(serializedState);
-    const fallPrefs = state.addedCourses.fall.prefs.map(pref => {
+    const fallPrefs = state.addedCourses.fall.prefs.map((pref) => {
       if (pref["displayLang"] === undefined) {
         pref["displayLang"] = "en";
       }
       return pref;
     });
-    const springPrefs = state.addedCourses.spring.prefs.map(pref => {
+    const springPrefs = state.addedCourses.spring.prefs.map((pref) => {
       if (pref["displayLang"] === undefined) {
         pref["displayLang"] = "en";
       }
@@ -31,7 +31,7 @@ export const loadState = () => {
   }
 };
 
-export const saveState = state => {
+export const saveState = (state) => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem(STATE_NAME, serializedState);

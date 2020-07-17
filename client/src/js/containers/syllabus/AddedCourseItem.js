@@ -9,7 +9,7 @@ import { gaAddedCourseItem } from "../../ga/eventCategories";
 import {
   gaAppendActionWithLng,
   gaRemoveCourse,
-  gaClickSyllabusLink
+  gaClickSyllabusLink,
 } from "../../ga/eventActions";
 
 class AddedCourseItem extends React.Component {
@@ -17,7 +17,7 @@ class AddedCourseItem extends React.Component {
     ReactGA.event({
       category: gaAddedCourseItem,
       action: gaAppendActionWithLng(gaClickSyllabusLink, lng),
-      label: title
+      label: title,
     });
   };
   handleRemoveCourse = (title, lng) => {
@@ -25,12 +25,12 @@ class AddedCourseItem extends React.Component {
     ReactGA.event({
       category: gaAddedCourseItem,
       action: gaAppendActionWithLng(gaRemoveCourse, lng),
-      label: title
+      label: title,
     });
     this.props.removeCourse(course._id);
     Alert.success("Course removed.", {
       position: "bottom",
-      effect: "jelly"
+      effect: "jelly",
     });
   };
 
@@ -50,10 +50,7 @@ class AddedCourseItem extends React.Component {
 }
 
 const mapDispatchToProps = {
-  removeCourse
+  removeCourse,
 };
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(AddedCourseItem);
+export default connect(null, mapDispatchToProps)(AddedCourseItem);

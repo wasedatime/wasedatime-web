@@ -24,7 +24,8 @@
   padding: 0.5em !important;
 }
 
-.react-datepicker__day-name, .react-datepicker__day {
+.react-datepicker__day-name,
+.react-datepicker__day {
   width: 2em !important;
   margin: 0.2em !important;
   line-height: 2em !important;
@@ -53,7 +54,7 @@
   font-size: 1.2em !important;
 }
 
-.react-datepicker__time-container  {
+.react-datepicker__time-container {
   width: 150px !important;
 }
 

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { withNamespaces } from "react-i18next";
 
 import { InvisibleButton } from "../../styled-components/Button";
 
@@ -24,7 +25,7 @@ const ExtendedInvisibleButton = styled(InvisibleButton)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-const FilterButton = ({ isModalOpen, handleToggleModal }) => {
+const FilterButton = ({ isModalOpen, handleToggleModal, lng }) => {
   return (
     <ExtendedInvisibleButton onClick={handleToggleModal} isModalOpen={isModalOpen}>
       {
@@ -38,7 +39,7 @@ const FilterButton = ({ isModalOpen, handleToggleModal }) => {
   );
 };
 
-export default FilterButton;
+export default withNamespaces("translation")(FilterButton);
 
 FilterButton.propTypes = {
   isModalOpen: PropTypes.bool.isRequired,

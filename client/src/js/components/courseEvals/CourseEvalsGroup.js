@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { withNamespaces } from "react-i18next";
 
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import EvalsList from "./EvalsList";
@@ -15,14 +16,14 @@ const EvalsHeader = styled('h3')`
   background: #eee;
 `;
 
-const CourseEvalsGroup = ({ course, evaluations }) => {
+const CourseEvalsGroup = ({ course, evaluations, t, lng }) => {
   return (
     <CourseEvalsGroupWrapper>
-      <FetchedCourseItem searchTerm={""} searchLang={"jp"} course={course} isInCourseEvalsPage={true} />
-      <EvalsHeader>Evaluations</EvalsHeader>
+      <FetchedCourseItem searchTerm={""} searchLang={lng} course={course} isInCourseEvalsPage={true} />
+      <EvalsHeader>{t(`courseEvals.Evaluations`)}</EvalsHeader>
       <EvalsList evaluations={evaluations} />
     </CourseEvalsGroupWrapper>
   );
 };
 
-export default CourseEvalsGroup;
+export default withNamespaces("translation")(CourseEvalsGroup);

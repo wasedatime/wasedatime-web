@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CourseEvalsGroup from "../../components/courseEvals/CourseEvalsGroup";
 import { media } from "../../styled-components/utils";
 import { Overlay } from "../../styled-components/Overlay";
+import { withNamespaces } from "react-i18next";
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
@@ -28,10 +29,10 @@ const filterCourseEvalsByKey = (evaluations, courseKey) => evaluations.filter(e 
 
 const getCourseKey = course => course["_id"].substring(0, 10);
 
-const RelatedCoursesContainer = ({ relatedCourses, courseEvals }) => (
+const RelatedCoursesContainer = ({ relatedCourses, courseEvals, t }) => (
   <ExtendedOverlay>
     <StyledSubHeading>
-      Related courses
+      {t(`courseEvals.Related courses`)}
     </StyledSubHeading>
     <RelatedCoursesWrapper>
       {
@@ -45,4 +46,4 @@ const RelatedCoursesContainer = ({ relatedCourses, courseEvals }) => (
   </ExtendedOverlay>
 );
 
-export default RelatedCoursesContainer;
+export default withNamespaces("translation")(RelatedCoursesContainer);

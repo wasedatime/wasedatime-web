@@ -127,6 +127,13 @@
     "Course time": "科目時間",
     "langParam": ""
   },
+  "courseEvals": {
+    "Evaluations": "評価",
+    "Satisfaction": "満足度",
+    "Difficulty": "難易度",
+    "Benefit": "有益さ",
+    "Related courses": "関連科目"
+  },
   "room": {
     "Under Construction": "作成中",
     "Want to help?": "一緒に楽しく開発しませんか？",

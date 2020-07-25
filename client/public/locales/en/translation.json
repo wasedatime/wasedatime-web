@@ -127,6 +127,13 @@
     "Course time": "Course time",
     "langParam": "&pLng=en"
   },
+  "courseEvals": {
+    "Evaluations": "Evaluations",
+    "Satisfaction": "Satisfaction",
+    "Difficulty": "Difficulty",
+    "Benefit": "Benefit",
+    "Related courses": "Related courses"
+  },
   "room": {
     "Under Construction": "Under Construction",
     "Want to help?": "Wanna build an amazing app with us?",

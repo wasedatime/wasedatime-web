@@ -359,7 +359,7 @@ const CourseItem = ({
                   matches &&
                   !isInCourseEvalsPage && (
                     <ViewEvalsIconButton
-                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                      href={`/courseEvals?courseID=${syllabusId}`}
                       target="_blank"
                     >
                       <FontAwesomeIcon icon={faCommentDots} size="2x" />{" "}
@@ -385,7 +385,7 @@ const CourseItem = ({
                 !isInCourseEvalsPage && (
                   <EvalButtonsWrapper>
                     <ViewEvalsButton
-                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                      href={`/courseEvals?courseID=${syllabusId}`}
                       target="_blank"
                     >
                       <FontAwesomeIcon icon={faCommentDots} /> Evaluations

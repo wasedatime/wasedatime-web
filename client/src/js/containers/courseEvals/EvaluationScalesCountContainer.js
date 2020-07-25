@@ -4,6 +4,7 @@ import styled from "styled-components";
 import EvaluationStars from "../../components/courseEvals/EvaluationStars";
 import { media } from "../../styled-components/utils";
 import { sizes } from "../../styled-components/utils";
+import { withNamespaces } from "react-i18next";
 
 const EvaluationScalesRow = styled("div")`
   display: flex;
@@ -41,17 +42,17 @@ const EvaluationsCount = styled("div")`
   color: #333;
 `;
 
-const EvaluationScalesCountContainer = ({avgSatisfaction, avgDifficulty, avgBenefit, thisCourseEvalsLength}) => (
+const EvaluationScalesCountContainer = ({ avgSatisfaction, avgDifficulty, avgBenefit, thisCourseEvalsLength, t }) => (
   <EvaluationScalesRow>
     <EvaluationScalesList>
       <EvaluationScale>
-        <EvaluationStars scale={avgSatisfaction} />  {' '}Satisfaction
+        <EvaluationStars scale={avgSatisfaction} />  {' '}{t(`courseEvals.Satisfaction`)}
       </EvaluationScale>
       <EvaluationScale>
-        <EvaluationStars scale={avgDifficulty} />{' '}Difficulty
+        <EvaluationStars scale={avgDifficulty} />{' '}{t(`courseEvals.Difficulty`)}
       </EvaluationScale>
       <EvaluationScale>
-        <EvaluationStars scale={avgBenefit} />{' '}Benefit
+        <EvaluationStars scale={avgBenefit} />{' '}{t(`courseEvals.Benefit`)}
       </EvaluationScale>
     </EvaluationScalesList>
 
@@ -59,9 +60,9 @@ const EvaluationScalesCountContainer = ({avgSatisfaction, avgDifficulty, avgBene
       <MediaQuery minWidth={sizes.desktop}>
         {matches => matches ? <span>{thisCourseEvalsLength}</span> : <h1 style={{ margin: '0px' }}>{thisCourseEvalsLength}</h1>}
       </MediaQuery>
-      {' '}Evaluations
+      {' '}{t(`courseEvals.Evaluations`)}
     </EvaluationsCount>
   </EvaluationScalesRow>
 );
 
-export default EvaluationScalesCountContainer;
+export default withNamespaces("translation")(EvaluationScalesCountContainer);

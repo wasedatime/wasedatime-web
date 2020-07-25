@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import EvaluationStars from "./EvaluationStars";
 import { media } from "../../styled-components/utils";
+import { withNamespaces } from "react-i18next";
 
 const EvaluationsWrapper = styled("div")`
   background: #fff;
@@ -38,7 +39,7 @@ const EvaluationScale = styled("div")`
   flex: 1;
 `;
 
-const EvalsList = ({ evaluations }) => {
+const EvalsList = ({ evaluations, t }) => {
   return evaluations.map((evaluation, i) => {
     return (
       <EvaluationsWrapper key={i}>
@@ -49,13 +50,13 @@ const EvalsList = ({ evaluations }) => {
           </EvaluationText>
           <EvaluationScalesList>
             <EvaluationScale>
-              Satisfaction{' '}<EvaluationStars scale={evaluation["satisfaction"]} />
+              {t(`courseEvals.Satisfaction`)}{' '}<EvaluationStars scale={evaluation["satisfaction"]} />
             </EvaluationScale>
             <EvaluationScale>
-              Difficulty{' '}<EvaluationStars scale={evaluation["difficulty"]} />
+              {t(`courseEvals.Difficulty`)}{' '}<EvaluationStars scale={evaluation["difficulty"]} />
             </EvaluationScale>
             <EvaluationScale>
-              Benefit{' '}<EvaluationStars scale={evaluation["benefit"]} />
+              {t(`courseEvals.Benefit`)}{' '}<EvaluationStars scale={evaluation["benefit"]} />
             </EvaluationScale>
           </EvaluationScalesList>
         </Evaluation>
@@ -64,4 +65,4 @@ const EvalsList = ({ evaluations }) => {
   });
 }
 
-export default EvalsList;
+export default withNamespaces("translation")(EvalsList);

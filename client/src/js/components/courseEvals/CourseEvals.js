@@ -9,12 +9,21 @@ import { coursesSchema } from "../../data/schema";
 import { wasetimeApiStatic } from "../../config/api";
 import { loadState, saveState } from "../../../localStorage";
 import ReactGA from "react-ga";
+import { gaFilter } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaOpenModal,
+  gaCloseModal,
+} from "../../ga/eventActions";
+import levenshtein from 'levenshtein-edit-distance';
+import { withNamespaces } from "react-i18next";
 
 import { media } from "../../styled-components/utils";
 import { sizes } from "../../styled-components/utils";
 import { RowWrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 import { Wrapper } from "../../styled-components/Wrapper";
+
 import RelatedCoursesButton from "./RelatedCoursesButton";
 import Modal from "../../components/Modal";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
@@ -22,12 +31,6 @@ import EvaluationScalesCountContainer from "../../containers/courseEvals/Evaluat
 import RelatedCoursesContainer from "../../containers/courseEvals/RelatedCoursesContainer";
 import EvalsList from "./EvalsList";
 import LoadingSpinner from "../LoadingSpinner";
-import { gaFilter } from "../../ga/eventCategories";
-import {
-  gaAppendActionWithLng,
-  gaOpenModal,
-  gaCloseModal,
-} from "../../ga/eventActions";
 
 export const LongWrapper = styled(Wrapper)`
   flex: 0 0 70%;
@@ -84,40 +87,9 @@ const modalStyle = {
 };
 
 const getCourse = (loadedCourses, courseID) => {
-  // Return null if courses not saved in localStorage or the course to display is not contained in courses in localStorage
-  // return loadedCourses ? loadedCourses[courseID] : null;
-
-  // No course code in data from static file, so use the below dummy data for now.
-  return {
-    "_id":"2603013002012020260301300226",
-    "course_code": 'INFP31ZL',
-    "year":2020,
-    "term":"springSem",
-    "title":"Software Engineering A",
-    "title_jp":"ソフトウェア工学A",
-    "instructor":"FUKAZAWA, Yoshiaki/WASHIZAKI, Hironori",
-    "instructor_jp":"深澤 良彰/鷲崎 弘宜",
-    "occurrences":[
-      {
-         "day":5,
-         "start_period":2,
-         "end_period":2,
-         "building":"63",
-         "classroom":"202",
-         "location":"63-202"
-      }
-    ],
-    "lang":"JP",
-    "keys":[
-      {
-         "school":"FSE",
-         "key":"2603013002012020260301300226"
-      }
-    ]
-  };
+  // Return null if courses not saved in localStorage or the course to display is not saved in localStorage
+  return loadedCourses ? loadedCourses[courseID] : null;
 }
-
-const getCourseCode = course => course["course_code"];
 
 const getCourseKey = course => course["_id"].substring(0, 10);
 
@@ -133,72 +105,11 @@ async function fetchAndSaveCourses () {
   }
 }
 
-const getRelatedCourses = (loadedCourses, courseCode, thisCourseKey) => {
-  // const relatedCourseIDs = Object.keys(loadedCourses).filter(courseID => loadedCourses[courseID].course_code === courseCode && getCourseKey(loadedCourses[courseID]) !== thisCourseKey);
-  // const relatedCourses = relatedCourseIDs.map(courseID => loadedCourses[courseID]);
-  // const sortedRelatedCourses = ...
-  // return sortedRelatedCourses;
-
-  // No course code in data from static file, so use the below dummy data for now.
-  return [
-    {
-      "_id":"2603033019012020260303301926",
-      "course_code": 'INFP31ZL',
-      "year":2020,
-      "term":"fallSem",
-      "title":"Software Engineering B",
-      "title_jp":"ソフトウェア工学B",
-      "instructor":"HAGIMOTO, Junzo/HIRANABE, Kenji/FUKAZAWA, Yoshiaki/WASHIZAKI, Hironori",
-      "instructor_jp":"萩本 順三/平鍋 健児/深澤 良彰/鷲崎 弘宜",
-      "occurrences":[
-        {
-           "day":3,
-           "start_period":5,
-           "end_period":5,
-           "building":"-1",
-           "classroom":"undecided",
-           "location":"-1-undecided"
-        }
-      ],
-      "lang":"JP",
-      "keys":[
-        {
-           "school":"FSE",
-           "key":"2603033019012020260303301926"
-        }
-      ]
-    },
-    {
-      "_id":"26GC02300301202026MC03300926",
-      "course_code": 'INFP31ZL',
-      "year":2020,
-      "term":"fallSem",
-      "title":"Software Engineering",
-      "title_jp":"Software Engineering",
-      "instructor":"ARCAINI, Paolo/KOBAYASHI, Tsutomu/FUKAZAWA, Yoshiaki/HONIDEN, Shinichi/WASHIZAKI, Hironori",
-      "instructor_jp":"アルカイニ パオロ/小林 努/深澤 良彰/本位田 真一/鷲崎 弘宜",
-      "occurrences":[
-        {
-           "day":1,
-           "start_period":3,
-           "end_period":3,
-           "building":"-1",
-           "classroom":"undecided",
-           "location":"-1-undecided"
-        }
-      ],
-      "keywords":[
-        "IPSE"
-      ],
-      "lang":"EN",
-      "keys":[
-        {
-           "school":"FSE",
-           "key":"26GC02300301202026MC03300926"
-        }
-      ]
-    }
-  ];
+const getRelatedCourses = (loadedCourses, courseCode, thisCourseKey, thisCourseTitle) => {
+  const relatedCourseIDs = Object.keys(loadedCourses).filter(courseID => loadedCourses[courseID].code === courseCode && getCourseKey(loadedCourses[courseID]) !== thisCourseKey);
+  const relatedCourses = relatedCourseIDs.map(courseID => loadedCourses[courseID]);
+  const sortedRelatedCourses = relatedCourses.sort((a, b) => levenshtein(thisCourseTitle, a.title) - levenshtein(thisCourseTitle, b.title)).slice(0,3);
+  return sortedRelatedCourses;
 }
 
 async function getCourseEvalsByKey (courseKey) {
@@ -226,20 +137,17 @@ class CourseEvals extends React.Component {
 
   async componentDidMount () {
     const courseID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).courseID;
-    const searchLang = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchLang;
-    let loadedCourses = loadState().fetchedCourses;
+    let loadedCourses = loadState().fetchedCourses.byId;
 
     const thisCourse = getCourse(loadedCourses, courseID);
     if (thisCourse === null) loadedCourses = await fetchAndSaveCourses();
-
-    const thisCourseCode = getCourseCode(thisCourse);
     const thisCourseKey = getCourseKey(thisCourse);
 
     // 1. Get evaluations of this course by key
     const thisCourseEvals = await getCourseEvalsByKey(thisCourseKey);
 
     // 2. Get related courses by code, sort them, and get the first k courses (k=3)
-    const relatedCourses = getRelatedCourses(loadedCourses, thisCourseCode, thisCourseKey);
+    const relatedCourses = getRelatedCourses(loadedCourses, thisCourse.code, thisCourseKey, thisCourse.title);
 
     // 3. Get evaluations of related courses by their keys
     let relatedCourseEvals = [];
@@ -267,7 +175,6 @@ class CourseEvals extends React.Component {
       avgSatisfaction: avgSatisfaction,
       avgDifficulty: avgDifficulty,
       avgBenefit: avgBenefit,
-      searchLang: searchLang,
       isLoaded: true
     });
   }
@@ -287,7 +194,7 @@ class CourseEvals extends React.Component {
   };
 
   render () {
-    const { thisCourse, relatedCourses, thisCourseEvals, relatedCourseEvals, avgSatisfaction, avgDifficulty, avgBenefit, isLoaded, searchLang } = this.state;
+    const { thisCourse, relatedCourses, thisCourseEvals, relatedCourseEvals, avgSatisfaction, avgDifficulty, avgBenefit, isLoaded } = this.state;
     return isLoaded ? (
       <RowWrapper>
         <Helmet>
@@ -309,11 +216,11 @@ class CourseEvals extends React.Component {
             <div>
               <br />
               {
-                isLoaded && <FetchedCourseItem searchTerm={""} searchLang={searchLang} course={thisCourse} isInCourseEvalsPage={true} />
+                isLoaded && <FetchedCourseItem searchTerm={""} searchLang={this.props.lng} course={thisCourse} isInCourseEvalsPage={true} />
               }
 
               <StyledSubHeading>
-                Evaluations
+                {this.props.t(`courseEvals.Evaluations`)}
               </StyledSubHeading>
               <EvalsListWrapper>
                 <EvaluationScalesCountContainer
@@ -337,6 +244,7 @@ class CourseEvals extends React.Component {
                   <RelatedCoursesContainer
                     relatedCourses={relatedCourses}
                     courseEvals={relatedCourseEvals}
+                    lng={this.props.lng}
                   />
                 </ShortWrapper>
               ) : (
@@ -361,4 +269,4 @@ class CourseEvals extends React.Component {
   }
 };
 
-export default CourseEvals;
+export default withNamespaces("translation")(CourseEvals);

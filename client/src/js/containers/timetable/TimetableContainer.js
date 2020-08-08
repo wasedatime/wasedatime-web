@@ -6,22 +6,19 @@ import Timetable from "../../components/timetable/Timetable";
 import SemesterSwitcher from "../../components/timetable/SemesterSwitcher";
 import withFetchCourses from "../../hocs/withFetchCourses";
 import { withNamespaces } from "react-i18next";
+import { SEMESTERS, getCurrentSemester } from "../../config/semesters";
 
 class TimetableContainer extends React.Component {
   constructor(props) {
     super(props);
     this.semesters = [
-      { title: "Spring Semester", key: "spring" },
-      { title: "Fall Semester", key: "fall" },
+      { title: "Spring Semester", key: SEMESTERS.SPRING },
+      { title: "Fall Semester", key: SEMESTERS.FALL },
     ];
-    let semesterIndex;
-    const month = new Date().getMonth();
-    // 0-base index
-    if (month >= 2 && month <= 7) {
-      semesterIndex = 0;
-    } else {
-      semesterIndex = 1;
-    }
+    const currentSemester = getCurrentSemester();
+    const semesterIndex = this.semesters.findIndex(
+      (semester) => semester.key === currentSemester
+    );
     this.state = {
       semesterIndex,
     };

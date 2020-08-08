@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faTimes,
   faSearchPlus,
-  faSearch,
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import PropTypes from "prop-types";

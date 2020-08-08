@@ -1,7 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter, faTimes } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { FloatingActionButton } from "../../styled-components/Button";

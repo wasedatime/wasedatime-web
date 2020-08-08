@@ -21,10 +21,11 @@ import logo from "../../img/logo.png";
 // import roomFinder from "../../img/roomFinder-480.gif";
 
 const HomeWrapper = styled(WrapperWithBackground)`
-  min-height: calc(100vh - ${props => props.theme.headerHeight});
+  min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
 const ExtendedOverlay = styled(Overlay)`
+  background: rgba(0, 0, 0, 0.2);
   padding: 0 25px;
   padding-bottom: 30px;
 `;

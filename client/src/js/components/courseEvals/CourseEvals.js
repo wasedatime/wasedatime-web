@@ -69,7 +69,7 @@ const modalStyle = {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: "3001"
+    zIndex: "1050"
   },
   content: {
     position: "absolute",
@@ -77,7 +77,7 @@ const modalStyle = {
     left: 0,
     right: 0,
     bottom: 0,
-    background: "#fff",
+    backgroundColor: "#ccc",
     overflowY: "auto",
     overflowScrolling: "touch",
     WebkitOverflowScrolling: "touch",

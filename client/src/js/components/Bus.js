@@ -122,6 +122,7 @@ const DatePickerButton = styled("button")`
   border: none;
   border-radius: 5px;
   width: 100%;
+  background: #efefef;
 
   &:hover {
     outline: none;
@@ -137,6 +138,7 @@ const DatetimeClearButton = styled("button")`
   border: none;
   border-radius: 5px;
   width: 25%;
+  background: #efefef;
 
   &:hover {
     outline: none;

@@ -137,7 +137,7 @@ class CourseEvals extends React.Component {
 
   async componentDidMount () {
     const courseID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).courseID;
-    let loadedCourses = loadState().fetchedCourses.byId;
+    let loadedCourses = loadState().fetchedCourses;
 
     const thisCourse = getCourse(loadedCourses, courseID);
     if (thisCourse === null) loadedCourses = await fetchAndSaveCourses();

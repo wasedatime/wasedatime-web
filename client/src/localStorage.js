@@ -39,13 +39,3 @@ export const saveState = state => {
     console.log(error);
   }
 };
-
-export const updateState = state => {
-  try {
-    const updatedState = { ...loadState(), ...state };
-    const serializedState = JSON.stringify(updatedState);
-    localStorage.setItem(STATE_NAME, serializedState);
-  } catch (error) {
-    console.log(error);
-  }
-};

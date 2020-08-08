@@ -14,7 +14,6 @@ import {
 } from "./types";
 import * as schema from "../data/schema";
 import { wasetimeApiStatic } from "../config/api";
-import { updateState } from "../../localStorage";
 
 export const fetchCourses = () => async (dispatch, getState) => {
   dispatch({
@@ -24,10 +23,7 @@ export const fetchCourses = () => async (dispatch, getState) => {
   try {
     const res = await axios.get(wasetimeApiStatic.courseListAll);
     const courses = res.data;
-    const coursesSavedLocal = courses.filter(course => course.term.includes("fall"));
     const normalizedCourses = normalize(courses, schema.coursesSchema);
-    const normalizedCoursesSavedLocal = normalize(coursesSavedLocal, schema.coursesSchema);
-    updateState({ fetchedCourses: { byId: normalizedCoursesSavedLocal.entities.courses } });
     dispatch({
       type: FETCH_COURSES_SUCCESS,
       response: normalizedCourses

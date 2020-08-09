@@ -106,11 +106,13 @@ const getRelatedCourses = (
   const relatedCourses = relatedCourseIDs.map(
     courseID => loadedCourses[courseID]
   );
-  const sortedRelatedCourses = relatedCourses.sort(
-    (a, b) =>
-      levenshtein(thisCourseTitle, a.title) -
-      levenshtein(thisCourseTitle, b.title)
-  );
+  const sortedRelatedCourses = relatedCourses
+    .sort(
+      (a, b) =>
+        levenshtein(thisCourseTitle, a.title) -
+        levenshtein(thisCourseTitle, b.title)
+    )
+    .slice(0, 10);
   return sortedRelatedCourses;
 };
 

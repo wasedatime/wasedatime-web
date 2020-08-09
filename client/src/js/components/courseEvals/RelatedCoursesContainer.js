@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import CourseEvalsGroup from "../../components/courseEvals/CourseEvalsGroup";
+import CourseEvalsGroup from "./CourseEvalsGroup";
 import { media } from "../../styled-components/utils";
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";

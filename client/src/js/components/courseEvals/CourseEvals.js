@@ -4,10 +4,8 @@ import qs from 'qs';
 import { Helmet } from 'react-helmet';
 import styled from "styled-components";
 import axios from "axios";
-import { normalize } from "normalizr";
-import { coursesSchema } from "../../data/schema";
 import { wasetimeApiStatic } from "../../config/api";
-import { loadState, saveState } from "../../../localStorage";
+import { loadState } from "../../../localStorage";
 import ReactGA from "react-ga";
 import { gaFilter } from "../../ga/eventCategories";
 import {
@@ -28,8 +26,8 @@ import { Wrapper } from "../../styled-components/Wrapper";
 import RelatedCoursesButton from "./RelatedCoursesButton";
 import Modal from "../../components/Modal";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
-import EvaluationScalesCountContainer from "../../containers/courseEvals/EvaluationScalesCountContainer";
-import RelatedCoursesContainer from "../../containers/courseEvals/RelatedCoursesContainer";
+import EvaluationScalesCountContainer from "./EvaluationScalesCountContainer";
+import RelatedCoursesContainer from "./RelatedCoursesContainer";
 import EvalsList from "./EvalsList";
 import LoadingSpinner from "../LoadingSpinner";
 

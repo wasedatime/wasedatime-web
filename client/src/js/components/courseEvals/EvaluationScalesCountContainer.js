@@ -1,7 +1,7 @@
 import React from 'react';
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
-import EvaluationStars from "../../components/courseEvals/EvaluationStars";
+import EvaluationStars from "./EvaluationStars";
 import { media } from "../../styled-components/utils";
 import { sizes } from "../../styled-components/utils";
 import { withNamespaces } from "react-i18next";

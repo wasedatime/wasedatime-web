@@ -25,8 +25,6 @@ const RelatedCoursesWrapper = styled("div")`
   overflow-y: auto;
 `;
 
-const filterCourseEvalsByKey = (evaluations, courseKey) => evaluations.filter(e => e.course_key === courseKey);
-
 const getCourseKey = course => course["_id"].substring(0, 10);
 
 const RelatedCoursesContainer = ({ relatedCourses, courseEvals, searchLang, t }) => (
@@ -38,7 +36,7 @@ const RelatedCoursesContainer = ({ relatedCourses, courseEvals, searchLang, t })
       {
         relatedCourses.map(relatedCourse => <CourseEvalsGroup
           course={relatedCourse}
-          evaluations={filterCourseEvalsByKey(courseEvals, getCourseKey(relatedCourse))}
+          evaluations={courseEvals[getCourseKey(relatedCourse)]}
           searchLang={searchLang}
           key={getCourseKey(relatedCourse)}
         />)

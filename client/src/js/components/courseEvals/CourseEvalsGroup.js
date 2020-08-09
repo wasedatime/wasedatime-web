@@ -21,7 +21,7 @@ const CourseEvalsGroup = ({ course, evaluations, searchLang, t }) => {
     <CourseEvalsGroupWrapper>
       <FetchedCourseItem searchTerm={""} searchLang={searchLang} course={course} isInCourseEvalsPage={true} />
       <EvalsHeader>{t(`courseEvals.Evaluations`)}</EvalsHeader>
-      <EvalsList evaluations={evaluations} />
+      { evaluations && <EvalsList evaluations={evaluations} /> }
     </CourseEvalsGroupWrapper>
   );
 };

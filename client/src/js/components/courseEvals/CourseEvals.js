@@ -137,10 +137,10 @@ class CourseEvals extends React.Component {
     const relatedCourses = getRelatedCourses(loadedCourses, thisCourse.code, thisCourseKey, thisCourse.title);
 
     // 3. Get evaluations of related courses by their keys
-    let relatedCourseEvals = [];
+    let relatedCourseEvals = {};
     for (const course of relatedCourses) {
       const evals = await getCourseEvalsByKey(getCourseKey(course));
-      relatedCourseEvals = [...evals, ...relatedCourseEvals];
+      if (evals.length > 0) relatedCourseEvals[getCourseKey(course)] = evals;
     }
 
     let satisfactionSum = 0, difficultySum = 0, benefitSum = 0;

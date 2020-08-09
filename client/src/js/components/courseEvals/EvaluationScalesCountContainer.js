@@ -27,6 +27,7 @@ const EvaluationScale = styled("div")`
   padding: 1rem 0px;
   text-align: center;
   color: #333;
+  font-size: 0.8em;
   ${media.tablet`
     flex: 1;
     padding: 0.2rem 0px;
@@ -41,7 +42,7 @@ const EvaluationsCount = styled("div")`
   text-align: center;
   justify-content: flex-start;
   color: #777;
-  font-size: 0.7em;
+  font-size: 0.6em;
 `;
 
 const EvaluationScalesCountContainer = ({
@@ -54,14 +55,16 @@ const EvaluationScalesCountContainer = ({
   <EvaluationScalesRow>
     <EvaluationScalesList>
       <EvaluationScale>
-        <EvaluationStars scale={avgSatisfaction} />{" "}
+        <EvaluationStars scale={avgSatisfaction} />
         {t(`courseEvals.Satisfaction`)}
       </EvaluationScale>
       <EvaluationScale>
-        <EvaluationStars scale={avgDifficulty} /> {t(`courseEvals.Difficulty`)}
+        <EvaluationStars scale={avgDifficulty} />
+        {t(`courseEvals.Difficulty`)}
       </EvaluationScale>
       <EvaluationScale>
-        <EvaluationStars scale={avgBenefit} /> {t(`courseEvals.Benefit`)}
+        <EvaluationStars scale={avgBenefit} />
+        {t(`courseEvals.Benefit`)}
       </EvaluationScale>
     </EvaluationScalesList>
 

@@ -18,7 +18,7 @@ const Evaluation = styled("div")`
 const EvaluationDivider = styled("hr")`
   margin: 0px 2em;
   border: 1px solid #ddd;
-`
+`;
 
 const EvaluationText = styled("div")`
   flex: 1;
@@ -30,7 +30,7 @@ const EvaluationScalesList = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  font-size: 1.2em;
+  font-size: 1em;
   ${media.tablet`font-size: 1em;`};
   ${media.phoneMini`font-size: 1.2rem;`};
 `;
@@ -45,24 +45,25 @@ const EvalsList = ({ evaluations, t }) => {
       <EvaluationsWrapper key={i}>
         {i !== 0 && <EvaluationDivider />}
         <Evaluation>
-          <EvaluationText>
-            {evaluation["comment"]}
-          </EvaluationText>
+          <EvaluationText>{evaluation["comment"]}</EvaluationText>
           <EvaluationScalesList>
             <EvaluationScale>
-              {t(`courseEvals.Satisfaction`)}{' '}<EvaluationStars scale={evaluation["satisfaction"]} />
+              {t(`courseEvals.Satisfaction`)}{" "}
+              <EvaluationStars scale={evaluation["satisfaction"]} />
             </EvaluationScale>
             <EvaluationScale>
-              {t(`courseEvals.Difficulty`)}{' '}<EvaluationStars scale={evaluation["difficulty"]} />
+              {t(`courseEvals.Difficulty`)}{" "}
+              <EvaluationStars scale={evaluation["difficulty"]} />
             </EvaluationScale>
             <EvaluationScale>
-              {t(`courseEvals.Benefit`)}{' '}<EvaluationStars scale={evaluation["benefit"]} />
+              {t(`courseEvals.Benefit`)}{" "}
+              <EvaluationStars scale={evaluation["benefit"]} />
             </EvaluationScale>
           </EvaluationScalesList>
         </Evaluation>
       </EvaluationsWrapper>
-    )
+    );
   });
-}
+};
 
 export default withNamespaces("translation")(EvalsList);

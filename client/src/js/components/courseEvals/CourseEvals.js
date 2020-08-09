@@ -138,6 +138,7 @@ class CourseEvals extends React.Component {
 
   async componentDidMount () {
     const courseID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).courseID;
+    const searchLang = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchLang;
     let loadedCourses = loadState().fetchedCourses.byId;
 
     const thisCourse = getCourse(loadedCourses, courseID);
@@ -176,6 +177,7 @@ class CourseEvals extends React.Component {
       avgSatisfaction: avgSatisfaction,
       avgDifficulty: avgDifficulty,
       avgBenefit: avgBenefit,
+      searchLang: searchLang,
       isLoaded: true
     });
   }
@@ -195,7 +197,7 @@ class CourseEvals extends React.Component {
   };
 
   render () {
-    const { thisCourse, relatedCourses, thisCourseEvals, relatedCourseEvals, avgSatisfaction, avgDifficulty, avgBenefit, isLoaded } = this.state;
+    const { thisCourse, relatedCourses, thisCourseEvals, relatedCourseEvals, avgSatisfaction, avgDifficulty, avgBenefit, searchLang, isLoaded } = this.state;
     return isLoaded ? (
       <RowWrapper>
         <Helmet>
@@ -217,7 +219,7 @@ class CourseEvals extends React.Component {
             <div>
               <br />
               {
-                isLoaded && <FetchedCourseItem searchTerm={""} searchLang={this.props.lng} course={thisCourse} isInCourseEvalsPage={true} />
+                isLoaded && <FetchedCourseItem searchTerm={""} searchLang={searchLang} course={thisCourse} isInCourseEvalsPage={true} />
               }
 
               <StyledSubHeading>
@@ -245,7 +247,7 @@ class CourseEvals extends React.Component {
                   <RelatedCoursesContainer
                     relatedCourses={relatedCourses}
                     courseEvals={relatedCourseEvals}
-                    lng={this.props.lng}
+                    searchLang={searchLang}
                   />
                 </ShortWrapper>
               ) : (
@@ -258,6 +260,7 @@ class CourseEvals extends React.Component {
                     <RelatedCoursesContainer
                       relatedCourses={relatedCourses}
                       courseEvals={relatedCourseEvals}
+                      searchLang={searchLang}
                     />
                   </Modal>
                 </div>

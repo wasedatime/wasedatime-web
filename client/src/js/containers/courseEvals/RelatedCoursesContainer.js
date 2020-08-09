@@ -29,7 +29,7 @@ const filterCourseEvalsByKey = (evaluations, courseKey) => evaluations.filter(e 
 
 const getCourseKey = course => course["_id"].substring(0, 10);
 
-const RelatedCoursesContainer = ({ relatedCourses, courseEvals, t }) => (
+const RelatedCoursesContainer = ({ relatedCourses, courseEvals, searchLang, t }) => (
   <ExtendedOverlay>
     <StyledSubHeading>
       {t(`courseEvals.Related courses`)}
@@ -39,6 +39,7 @@ const RelatedCoursesContainer = ({ relatedCourses, courseEvals, t }) => (
         relatedCourses.map(relatedCourse => <CourseEvalsGroup
           course={relatedCourse}
           evaluations={filterCourseEvalsByKey(courseEvals, getCourseKey(relatedCourse))}
+          searchLang={searchLang}
           key={getCourseKey(relatedCourse)}
         />)
       }

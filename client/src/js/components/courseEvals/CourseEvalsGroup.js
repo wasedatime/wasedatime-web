@@ -16,10 +16,10 @@ const EvalsHeader = styled('h3')`
   background: #eee;
 `;
 
-const CourseEvalsGroup = ({ course, evaluations, t, lng }) => {
+const CourseEvalsGroup = ({ course, evaluations, searchLang, t }) => {
   return (
     <CourseEvalsGroupWrapper>
-      <FetchedCourseItem searchTerm={""} searchLang={lng} course={course} isInCourseEvalsPage={true} />
+      <FetchedCourseItem searchTerm={""} searchLang={searchLang} course={course} isInCourseEvalsPage={true} />
       <EvalsHeader>{t(`courseEvals.Evaluations`)}</EvalsHeader>
       <EvalsList evaluations={evaluations} />
     </CourseEvalsGroupWrapper>

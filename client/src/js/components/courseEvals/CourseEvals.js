@@ -94,18 +94,6 @@ const getCourse = (loadedCourses, courseID) => {
 
 const getCourseKey = course => course["_id"].substring(0, 10);
 
-async function fetchAndSaveCourses () {
-  try {
-    const res = await axios.get(wasetimeApiStatic.courseListAll);
-    const fetchedCourses = res.data.filter(course => course.term.includes("fall"));
-    const normalizedFetchedCourses = normalize(fetchedCourses, coursesSchema).entities.courses;
-    saveState({ fetchedCourses: normalizedFetchedCourses });
-    return normalizedFetchedCourses;
-  } catch (error) {
-    console.error(error);
-  }
-}
-
 const getRelatedCourses = (loadedCourses, courseCode, thisCourseKey, thisCourseTitle) => {
   const relatedCourseIDs = Object.keys(loadedCourses).filter(courseID => loadedCourses[courseID].code === courseCode && getCourseKey(loadedCourses[courseID]) !== thisCourseKey);
   const relatedCourses = relatedCourseIDs.map(courseID => loadedCourses[courseID]);
@@ -142,7 +130,6 @@ class CourseEvals extends React.Component {
     let loadedCourses = loadState().fetchedCourses.byId;
 
     const thisCourse = getCourse(loadedCourses, courseID);
-    if (thisCourse === null) loadedCourses = await fetchAndSaveCourses();
     const thisCourseKey = getCourseKey(thisCourse);
 
     // 1. Get evaluations of this course by key

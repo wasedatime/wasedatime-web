@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import EvaluationStars from "./EvaluationStars";
@@ -37,30 +37,45 @@ const EvaluationScale = styled("div")`
 const EvaluationsCount = styled("div")`
   flex: 1;
   padding: 1rem 0px;
+  padding-top: 1.5rem;
   text-align: center;
   justify-content: flex-start;
-  color: #333;
+  color: #777;
+  font-size: 0.7em;
 `;
 
-const EvaluationScalesCountContainer = ({ avgSatisfaction, avgDifficulty, avgBenefit, thisCourseEvalsLength, t }) => (
+const EvaluationScalesCountContainer = ({
+  avgSatisfaction,
+  avgDifficulty,
+  avgBenefit,
+  thisCourseEvalsLength,
+  t
+}) => (
   <EvaluationScalesRow>
     <EvaluationScalesList>
       <EvaluationScale>
-        <EvaluationStars scale={avgSatisfaction} />  {' '}{t(`courseEvals.Satisfaction`)}
+        <EvaluationStars scale={avgSatisfaction} />{" "}
+        {t(`courseEvals.Satisfaction`)}
       </EvaluationScale>
       <EvaluationScale>
-        <EvaluationStars scale={avgDifficulty} />{' '}{t(`courseEvals.Difficulty`)}
+        <EvaluationStars scale={avgDifficulty} /> {t(`courseEvals.Difficulty`)}
       </EvaluationScale>
       <EvaluationScale>
-        <EvaluationStars scale={avgBenefit} />{' '}{t(`courseEvals.Benefit`)}
+        <EvaluationStars scale={avgBenefit} /> {t(`courseEvals.Benefit`)}
       </EvaluationScale>
     </EvaluationScalesList>
 
-    <EvaluationsCount style={{ flex: '1', color: '#777', fontSize: '0.7em', paddingTop: '1.5rem' }}>
+    <EvaluationsCount>
       <MediaQuery minWidth={sizes.desktop}>
-        {matches => matches ? <span>{thisCourseEvalsLength}</span> : <h1 style={{ margin: '0px' }}>{thisCourseEvalsLength}</h1>}
-      </MediaQuery>
-      {' '}{t(`courseEvals.Evaluations`)}
+        {matches =>
+          matches ? (
+            <span>{thisCourseEvalsLength}</span>
+          ) : (
+            <h1 style={{ margin: "0px" }}>{thisCourseEvalsLength}</h1>
+          )
+        }
+      </MediaQuery>{" "}
+      {t(`courseEvals.Evaluations`)}
     </EvaluationsCount>
   </EvaluationScalesRow>
 );

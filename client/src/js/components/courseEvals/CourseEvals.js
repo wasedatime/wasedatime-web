@@ -7,7 +7,7 @@ import axios from "axios";
 import { normalize } from "normalizr";
 import { coursesSchema } from "../../data/schema";
 import { wasetimeApiStatic } from "../../config/api";
-import { loadState, saveState } from "../../../localStorage";
+import { loadState, saveState } from "../../../localForage";
 import ReactGA from "react-ga";
 import { gaFilter } from "../../ga/eventCategories";
 import {

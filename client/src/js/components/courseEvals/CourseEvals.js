@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 import MediaQuery from "react-responsive";
-import qs from 'qs';
-import { Helmet } from 'react-helmet';
+import qs from "qs";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import axios from "axios";
 import { wasetimeApiStatic } from "../../config/api";
@@ -11,9 +11,9 @@ import { gaFilter } from "../../ga/eventCategories";
 import {
   gaAppendActionWithLng,
   gaOpenModal,
-  gaCloseModal,
+  gaCloseModal
 } from "../../ga/eventActions";
-import levenshtein from 'levenshtein-edit-distance';
+import levenshtein from "levenshtein-edit-distance";
 import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
 
@@ -88,21 +88,38 @@ const modalStyle = {
 const getCourse = (loadedCourses, courseID) => {
   // Return null if courses not saved in localStorage or the course to display is not saved in localStorage
   return loadedCourses ? loadedCourses[courseID] : null;
-}
+};
 
 const getCourseKey = course => course["_id"].substring(0, 10);
 
-const getRelatedCourses = (loadedCourses, courseCode, thisCourseKey, thisCourseTitle) => {
-  const relatedCourseIDs = Object.keys(loadedCourses).filter(courseID => loadedCourses[courseID].code === courseCode && getCourseKey(loadedCourses[courseID]) !== thisCourseKey);
-  const relatedCourses = relatedCourseIDs.map(courseID => loadedCourses[courseID]);
-  const sortedRelatedCourses = relatedCourses.sort((a, b) => levenshtein(thisCourseTitle, a.title) - levenshtein(thisCourseTitle, b.title)).slice(0,3);
+const getRelatedCourses = (
+  loadedCourses,
+  courseCode,
+  thisCourseKey,
+  thisCourseTitle
+) => {
+  const relatedCourseIDs = Object.keys(loadedCourses).filter(
+    courseID =>
+      loadedCourses[courseID].code === courseCode &&
+      getCourseKey(loadedCourses[courseID]) !== thisCourseKey
+  );
+  const relatedCourses = relatedCourseIDs.map(
+    courseID => loadedCourses[courseID]
+  );
+  const sortedRelatedCourses = relatedCourses.sort(
+    (a, b) =>
+      levenshtein(thisCourseTitle, a.title) -
+      levenshtein(thisCourseTitle, b.title)
+  );
   return sortedRelatedCourses;
-}
+};
 
-async function getCourseEvalsByKey (courseKey) {
+async function getCourseEvalsByKey(courseKey) {
   try {
     // get evaluations by courseKeys
-    const res = await axios.get(wasetimeApiStatic.courseEvalsBaseURL + courseKey);
+    const res = await axios.get(
+      wasetimeApiStatic.courseEvalsBaseURL + courseKey
+    );
     return res.data;
   } catch (error) {
     console.error(error);
@@ -122,9 +139,13 @@ class CourseEvals extends React.Component {
     isModalOpen: false
   };
 
-  async componentDidMount () {
-    const courseID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).courseID;
-    const searchLang = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).searchLang;
+  async componentDidMount() {
+    const courseID = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true
+    }).courseID;
+    const searchLang = qs.parse(this.props.location.search, {
+      ignoreQueryPrefix: true
+    }).searchLang;
     let loadedCourses = loadState().fetchedCourses.byId;
 
     const thisCourse = getCourse(loadedCourses, courseID);
@@ -134,25 +155,35 @@ class CourseEvals extends React.Component {
     const thisCourseEvals = await getCourseEvalsByKey(thisCourseKey);
 
     // 2. Get related courses by code, sort them, and get the first k courses (k=3)
-    const relatedCourses = getRelatedCourses(loadedCourses, thisCourse.code, thisCourseKey, thisCourse.title);
+    const relatedCourses = getRelatedCourses(
+      loadedCourses,
+      thisCourse.code,
+      thisCourseKey,
+      thisCourse.title
+    );
 
     // 3. Get evaluations of related courses by their keys
     let relatedCourseEvals = {};
-    for (const course of relatedCourses) {
+    for (const course of relatedCourses.slice(0, 3)) {
       const evals = await getCourseEvalsByKey(getCourseKey(course));
       if (evals.length > 0) relatedCourseEvals[getCourseKey(course)] = evals;
     }
 
-    let satisfactionSum = 0, difficultySum = 0, benefitSum = 0;
+    let satisfactionSum = 0,
+      difficultySum = 0,
+      benefitSum = 0;
     thisCourseEvals.forEach(evaluation => {
       satisfactionSum += evaluation.satisfaction;
       difficultySum += evaluation.difficulty;
       benefitSum += evaluation.benefit;
     });
     // calculate the averages of scales and round them to the nearest .5
-    const avgSatisfaction = Math.round(satisfactionSum / thisCourseEvals.length * 2) / 2;
-    const avgDifficulty = Math.round(difficultySum / thisCourseEvals.length * 2) / 2;
-    const avgBenefit = Math.round(benefitSum / thisCourseEvals.length * 2) / 2;
+    const avgSatisfaction =
+      Math.round((satisfactionSum / thisCourseEvals.length) * 2) / 2;
+    const avgDifficulty =
+      Math.round((difficultySum / thisCourseEvals.length) * 2) / 2;
+    const avgBenefit =
+      Math.round((benefitSum / thisCourseEvals.length) * 2) / 2;
 
     this.setState({
       thisCourse: thisCourse,
@@ -181,8 +212,18 @@ class CourseEvals extends React.Component {
     });
   };
 
-  render () {
-    const { thisCourse, relatedCourses, thisCourseEvals, relatedCourseEvals, avgSatisfaction, avgDifficulty, avgBenefit, searchLang, isLoaded } = this.state;
+  render() {
+    const {
+      thisCourse,
+      relatedCourses,
+      thisCourseEvals,
+      relatedCourseEvals,
+      avgSatisfaction,
+      avgDifficulty,
+      avgBenefit,
+      searchLang,
+      isLoaded
+    } = this.state;
     return isLoaded ? (
       <RowWrapper>
         <Helmet>
@@ -190,22 +231,30 @@ class CourseEvals extends React.Component {
           <meta
             name="description"
             content="Latest Course Evaluations by Waseda Students."
-            />
+          />
           <meta property="og:title" content="WasedaTime - Course Evaluations" />
           <meta
             property="og:description"
             content="Latest Course Evaluations by Waseda Students."
-            />
-          <meta property="og:site_name" content="WasedaTime - Course Evaluations" />
+          />
+          <meta
+            property="og:site_name"
+            content="WasedaTime - Course Evaluations"
+          />
         </Helmet>
 
         <LongWrapper>
           <ExtendedOverlay>
             <div>
               <br />
-              {
-                isLoaded && <FetchedCourseItem searchTerm={""} searchLang={searchLang} course={thisCourse} isInCourseEvalsPage={true} />
-              }
+              {isLoaded && (
+                <FetchedCourseItem
+                  searchTerm={""}
+                  searchLang={searchLang}
+                  course={thisCourse}
+                  isInCourseEvalsPage={true}
+                />
+              )}
 
               <StyledSubHeading>
                 {this.props.t(`courseEvals.Evaluations`)}
@@ -219,13 +268,12 @@ class CourseEvals extends React.Component {
                 />
                 <EvalsList evaluations={thisCourseEvals} />
               </EvalsListWrapper>
-
             </div>
           </ExtendedOverlay>
         </LongWrapper>
 
-        {
-          isLoaded && <MediaQuery minWidth={sizes.desktop}>
+        {isLoaded && (
+          <MediaQuery minWidth={sizes.desktop}>
             {matches => {
               return matches ? (
                 <ShortWrapper>
@@ -249,13 +297,15 @@ class CourseEvals extends React.Component {
                     />
                   </Modal>
                 </div>
-              )
+              );
             }}
           </MediaQuery>
-        }
+        )}
       </RowWrapper>
-    ) : <LoadingSpinner message={"Loading evaluations..."} />;;
+    ) : (
+      <LoadingSpinner message={"Loading evaluations..."} />
+    );
   }
-};
+}
 
 export default withFetchCourses(withNamespaces("translation")(CourseEvals));

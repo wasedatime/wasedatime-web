@@ -17,6 +17,7 @@ import {
 } from "../../ga/eventActions";
 import levenshtein from 'levenshtein-edit-distance';
 import { withNamespaces } from "react-i18next";
+import withFetchCourses from "../../hocs/withFetchCourses";
 
 import { media } from "../../styled-components/utils";
 import { sizes } from "../../styled-components/utils";
@@ -137,7 +138,7 @@ class CourseEvals extends React.Component {
 
   async componentDidMount () {
     const courseID = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).courseID;
-    let loadedCourses = loadState().fetchedCourses;
+    let loadedCourses = loadState().fetchedCourses.byId;
 
     const thisCourse = getCourse(loadedCourses, courseID);
     if (thisCourse === null) loadedCourses = await fetchAndSaveCourses();
@@ -269,4 +270,4 @@ class CourseEvals extends React.Component {
   }
 };
 
-export default withNamespaces("translation")(CourseEvals);
+export default withFetchCourses(withNamespaces("translation")(CourseEvals));

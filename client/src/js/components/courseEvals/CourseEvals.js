@@ -7,7 +7,7 @@ import axios from "axios";
 import { wasetimeApiStatic } from "../../config/api";
 import { loadState } from "../../../localStorage";
 import ReactGA from "react-ga";
-import { gaFilter } from "../../ga/eventCategories";
+import { gaRelatedCourses } from "../../ga/eventCategories";
 import {
   gaAppendActionWithLng,
   gaOpenModal,
@@ -204,7 +204,7 @@ class CourseEvals extends React.Component {
     event.preventDefault();
     const gaAction = this.state.isModalOpen ? gaCloseModal : gaOpenModal;
     ReactGA.event({
-      category: gaFilter,
+      category: gaRelatedCourses,
       action: gaAppendActionWithLng(gaAction, this.props.lng)
     });
     this.setState((prevState, props) => {

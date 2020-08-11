@@ -25,6 +25,7 @@ import { Wrapper } from "../../styled-components/Wrapper";
 
 import RelatedCoursesButton from "./RelatedCoursesButton";
 import Modal from "../../components/Modal";
+import FetchError from "../../components/FetchError";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import EvaluationScalesCountContainer from "./EvaluationScalesCountContainer";
 import RelatedCoursesContainer from "./RelatedCoursesContainer";
@@ -125,6 +126,7 @@ async function getCourseEvalsByKey(courseKey) {
     return res.data;
   } catch (error) {
     console.error(error);
+    this.setState({ error: true });
   }
 }
 
@@ -138,10 +140,15 @@ class CourseEvals extends React.Component {
     avgDifficulty: 0,
     avgBenefit: 0,
     isLoaded: false,
-    isModalOpen: false
+    isModalOpen: false,
+    error: false
   };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.loadEvaluationsAndRelatedCourses();
+  }
+
+  async loadEvaluationsAndRelatedCourses() {
     const courseID = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
     }).courseID;
@@ -224,8 +231,11 @@ class CourseEvals extends React.Component {
       avgDifficulty,
       avgBenefit,
       searchLang,
-      isLoaded
+      isLoaded,
+      error
     } = this.state;
+    if (error)
+      return <FetchError onRetry={this.loadEvaluationsAndRelatedCourses} />;
     return isLoaded ? (
       <RowWrapper>
         <Helmet>

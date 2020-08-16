@@ -23,6 +23,8 @@ import { sizes } from "../../styled-components/utils";
 import { RowWrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 import { Wrapper } from "../../styled-components/Wrapper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 import ReviewLangSwitches from "./ReviewLangSwitches";
 import RelatedCoursesButton from "./RelatedCoursesButton";
@@ -32,6 +34,7 @@ import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import EvaluationScalesCountContainer from "./EvaluationScalesCountContainer";
 import RelatedCoursesContainer from "./RelatedCoursesContainer";
 import EvalsList from "./EvalsList";
+import AddEvaluationForm from "./AddEvaluationForm";
 import LoadingSpinner from "../LoadingSpinner";
 
 export const LongWrapper = styled(Wrapper)`
@@ -78,6 +81,16 @@ const StyledSubHeading = styled("h2")`
 const EvalsListWrapper = styled("div")`
   max-height: 60vh;
   overflow-y: auto;
+`;
+
+const AddEvaluationButton = styled("button")`
+  background-color: #ffae42;
+  color: #fff;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 0.7em;
+  float: right;
+  padding: 0.3em;
 `;
 
 const modalStyle = {
@@ -162,6 +175,7 @@ class CourseEvals extends React.Component {
     reviewLang: "",
     isLoaded: false,
     isModalOpen: false,
+    isAddEvaluationFormOpen: false,
     error: false,
   };
 
@@ -278,6 +292,16 @@ class CourseEvals extends React.Component {
 
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });
 
+  toggleAddEvaluationForm = () => {
+    this.setState({
+      isAddEvaluationFormOpen: !this.state.isAddEvaluationFormOpen,
+    });
+  };
+
+  onNewEvalScalesChange = (target, score) => {};
+
+  onNewEvalTextChange = (event) => {};
+
   render() {
     const {
       thisCourse,
@@ -290,6 +314,8 @@ class CourseEvals extends React.Component {
       searchLang,
       reviewLang,
       isLoaded,
+      isModalOpen,
+      isAddEvaluationFormOpen,
       error,
     } = this.state;
     if (error)
@@ -344,6 +370,9 @@ class CourseEvals extends React.Component {
                     isInHeading={true}
                   />
                 </span>
+                <AddEvaluationButton onClick={this.toggleAddEvaluationForm}>
+                  <FontAwesomeIcon icon={faPen} /> Add evaluations
+                </AddEvaluationButton>
               </StyledSubHeading>
               <Disclaimer>{this.props.t(`courseEvals.Disclaimer`)}</Disclaimer>
               <EvalsListWrapper>
@@ -378,10 +407,10 @@ class CourseEvals extends React.Component {
               ) : (
                 <div>
                   <RelatedCoursesButton
-                    isModalOpen={this.state.isModalOpen}
+                    isModalOpen={isModalOpen}
                     handleToggleModal={this.handleToggleModal}
                   />
-                  <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                  <Modal isOpen={isModalOpen} style={modalStyle}>
                     <RelatedCoursesContainer
                       relatedCourses={relatedCourses}
                       courseEvals={relatedCourseEvals}
@@ -393,6 +422,13 @@ class CourseEvals extends React.Component {
             }}
           </MediaQuery>
         )}
+        <Modal isOpen={isAddEvaluationFormOpen} style={modalStyle}>
+          <AddEvaluationForm
+            toggleModal={this.toggleAddEvaluationForm}
+            onNewEvalScalesChange={this.onNewEvalScalesChange}
+            onNewEvalTextChange={this.onNewEvalTextChange}
+          />
+        </Modal>
       </RowWrapper>
     ) : (
       <LoadingSpinner message={"Loading reviews..."} />

@@ -8,8 +8,7 @@ import {
   faClock,
   faMapMarkerAlt,
   faExternalLinkSquareAlt,
-  faCommentDots,
-  faPen
+  faCommentDots
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
@@ -108,11 +107,12 @@ const DetailWrapper = styled("div")`
   display: flex;
   flex-direction: row;
   font-size: 1.2em;
+  flex-wrap: wrap;
   ${media.phone`font-size: 1.0em;`};
 `;
 
 const DescriptionWrapper = styled("div")`
-  flex: 1 0 auto;
+  flex: 3 0 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -123,8 +123,14 @@ const Description = styled("div")`
   text-align: left;
 `;
 
+const Instructors = styled("div")`
+  flex: 1 0 100%;
+  text-align: left;
+  font-size: 1.2em;
+`;
+
 const EvalButtonsWrapper = styled("div")`
-  flex: 1 0 auto;
+  flex: 1 0 30%;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -157,23 +163,6 @@ const ViewEvalsIconButton = styled("a")`
   &:focus {
     outline: none;
   }
-`;
-
-const AddEvalsButton = styled("button")`
-  visibility: hidden;
-
-  display: block;
-  background: #48af37;
-  border: 0px;
-  border-radius: 5px;
-  color: #fff;
-  padding: 5px 1rem;
-
-  &:focus {
-    outline: none;
-  }
-
-  ${media.phone`width: 100%;`};
 `;
 
 const OccurrenceList = styled("ul")`
@@ -376,7 +365,6 @@ const CourseItem = ({
             <Description>
               <OccurrenceList>{occurrences}</OccurrenceList>
             </Description>
-            <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
           <MediaQuery minWidth={sizes.desktop}>
             {matches => {
@@ -388,21 +376,15 @@ const CourseItem = ({
                       href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
                       target="_blank"
                     >
-                      <FontAwesomeIcon icon={faCommentDots} /> Evaluations
+                      <FontAwesomeIcon icon={faCommentDots} /> Reviews
                     </ViewEvalsButton>
-                    <AddEvalsButton
-                      onClick={e => {
-                        e.preventDefault();
-                      }}
-                    >
-                      <FontAwesomeIcon icon={faPen} /> Add Evaluations
-                    </AddEvalsButton>
                   </EvalButtonsWrapper>
                 )
               );
             }}
           </MediaQuery>
         </DetailWrapper>
+        <Instructors>{highlightedInstructor}</Instructors>
       </CourseItemWrapper>
     </RowWrapper>
   );

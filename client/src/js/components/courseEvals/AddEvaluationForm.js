@@ -3,11 +3,8 @@ import styled from "styled-components";
 import { media } from "../../styled-components/utils";
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
-
-const ExtendedOverlay = styled(Overlay)`
-  padding: 0 25px;
-  ${media.tablet`padding-right: 2rem;`};
-`;
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faStar } from "@fortawesome/free-solid-svg-icons";
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
@@ -19,10 +16,19 @@ const StyledSubHeading = styled("h2")`
   ${media.tablet`font-size: 2rem;`};
 `;
 
+const CloseFormButton = styled("button")`
+  background-color: rgb(148, 27, 47);
+  float: right;
+  color: #fff;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 0.7em;
+  padding: 0.3em;
+`;
+
 const StyledForm = styled("form")`
   width: 100%;
   align-self: center;
-  background-color: ${props => props.theme.white};
   padding: 0 5px;
   display: flex;
   flex-direction: row;
@@ -31,7 +37,7 @@ const StyledForm = styled("form")`
 
 const StyledTextarea = styled("textarea")`
   border: none;
-  background: none;
+  background-color: ${props => props.theme.white};
   outline: none;
   padding: 3px;
   margin: 0;
@@ -48,11 +54,14 @@ const AddEvaluationForm = ({
   onNewEvalTextChange,
   t
 }) => (
-  <ExtendedOverlay>
+  <Overlay>
     <StyledSubHeading>
       {t(`courseEvals.Add evaluation to this course`)}
+      <CloseFormButton onClick={toggleModal}>
+        <FontAwesomeIcon icon={faTimes} /> Close
+      </CloseFormButton>
     </StyledSubHeading>
-    <button onClick={toggleModal}>Close</button>
+
     <StyledForm
       onSubmit={e => {
         e.preventDefault();
@@ -60,7 +69,7 @@ const AddEvaluationForm = ({
     >
       <StyledTextarea placeholder="Leave your comments..." />
     </StyledForm>
-  </ExtendedOverlay>
+  </Overlay>
 );
 
 export default withNamespaces("translation")(AddEvaluationForm);

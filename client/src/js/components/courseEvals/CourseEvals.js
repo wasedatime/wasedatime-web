@@ -175,8 +175,12 @@ class CourseEvals extends React.Component {
     reviewLang: "",
     isLoaded: false,
     isModalOpen: false,
-    isAddEvaluationFormOpen: false,
     error: false,
+    isAddEvaluationFormOpen: false,
+    newEvalSatisfaction: 0,
+    newEvalDifficulty: 0,
+    newEvalBenefit: 0,
+    newEvalComment: "",
   };
 
   componentDidMount() {
@@ -361,34 +365,45 @@ class CourseEvals extends React.Component {
                 />
               )}
 
-              <StyledSubHeading>
-                {this.props.t(`courseEvals.Reviews`)}{" "}
-                <span style={{ marginLeft: "10px" }}>
-                  <ReviewLangSwitches
-                    reviewLang={reviewLang}
-                    switchReviewLang={this.switchReviewLang}
-                    isInHeading={true}
-                  />
-                </span>
-                <AddEvaluationButton onClick={this.toggleAddEvaluationForm}>
-                  <FontAwesomeIcon icon={faPen} /> Add evaluations
-                </AddEvaluationButton>
-              </StyledSubHeading>
-              <Disclaimer>{this.props.t(`courseEvals.Disclaimer`)}</Disclaimer>
-              <EvalsListWrapper>
-                <EvaluationScalesCountContainer
-                  avgSatisfaction={avgSatisfaction}
-                  avgDifficulty={avgDifficulty}
-                  avgBenefit={avgBenefit}
-                  thisCourseEvalsLength={thisCourseEvals.length}
+              {isAddEvaluationFormOpen ? (
+                <AddEvaluationForm
+                  toggleModal={this.toggleAddEvaluationForm}
+                  onNewEvalScalesChange={this.onNewEvalScalesChange}
+                  onNewEvalTextChange={this.onNewEvalTextChange}
                 />
-                <EvalsList
-                  reviews={thisCourseEvals}
-                  searchLang={searchLang}
-                  reviewLang={reviewLang}
-                />
-              </EvalsListWrapper>
-              <br />
+              ) : (
+                <React.Fragment>
+                  <StyledSubHeading>
+                    {this.props.t(`courseEvals.Reviews`)}
+                    <span style={{ marginLeft: "10px" }}>
+                      <ReviewLangSwitches
+                        reviewLang={reviewLang}
+                        switchReviewLang={this.switchReviewLang}
+                        isInHeading={true}
+                      />
+                    </span>
+                    <AddEvaluationButton onClick={this.toggleAddEvaluationForm}>
+                      <FontAwesomeIcon icon={faPen} /> Add evaluations
+                    </AddEvaluationButton>
+                  </StyledSubHeading>
+                  <Disclaimer>
+                    {this.props.t(`courseEvals.Disclaimer`)}
+                  </Disclaimer>
+                  <EvalsListWrapper>
+                    <EvaluationScalesCountContainer
+                      avgSatisfaction={avgSatisfaction}
+                      avgDifficulty={avgDifficulty}
+                      avgBenefit={avgBenefit}
+                      thisCourseEvalsLength={thisCourseEvals.length}
+                    />
+                    <EvalsList
+                      evaluations={thisCourseEvals}
+                      searchLang={searchLang}
+                      reviewLang={reviewLang}
+                    />
+                  </EvalsListWrapper>
+                </React.Fragment>
+              )}
             </div>
           </ExtendedOverlay>
         </LongWrapper>
@@ -422,13 +437,6 @@ class CourseEvals extends React.Component {
             }}
           </MediaQuery>
         )}
-        <Modal isOpen={isAddEvaluationFormOpen} style={modalStyle}>
-          <AddEvaluationForm
-            toggleModal={this.toggleAddEvaluationForm}
-            onNewEvalScalesChange={this.onNewEvalScalesChange}
-            onNewEvalTextChange={this.onNewEvalTextChange}
-          />
-        </Modal>
       </RowWrapper>
     ) : (
       <LoadingSpinner message={"Loading reviews..."} />

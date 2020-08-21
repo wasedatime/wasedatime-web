@@ -26,7 +26,9 @@ const CourseEvalsGroup = ({ course, evaluations, searchLang, t }) => {
         isInCourseEvalsPage={true}
       />
       <EvalsHeader>{t(`courseEvals.Evaluations`)}</EvalsHeader>
-      {evaluations && <EvalsList evaluations={evaluations} />}
+      {evaluations && (
+        <EvalsList evaluations={evaluations} searchLang={searchLang} />
+      )}
     </CourseEvalsGroupWrapper>
   );
 };

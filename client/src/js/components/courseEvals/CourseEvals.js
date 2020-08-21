@@ -278,7 +278,10 @@ class CourseEvals extends React.Component {
                   avgBenefit={avgBenefit}
                   thisCourseEvalsLength={thisCourseEvals.length}
                 />
-                <EvalsList evaluations={thisCourseEvals} />
+                <EvalsList
+                  evaluations={thisCourseEvals}
+                  searchLang={searchLang}
+                />
               </EvalsListWrapper>
             </div>
           </ExtendedOverlay>

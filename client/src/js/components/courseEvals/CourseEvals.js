@@ -1,5 +1,7 @@
 import React from "react";
 import MediaQuery from "react-responsive";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -47,12 +49,22 @@ const ExtendedOverlay = styled(Overlay)`
   ${media.tablet`padding-right: 2rem;`};
 `;
 
+const Announcement = styled("div")`
+  background-color: #48af37;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  font-size: 0.7em;
+  border-radius: 3px;
+`;
+
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
   margin-top: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 300;
   ${media.tablet`font-size: 2rem;`};
 `;
@@ -258,7 +270,18 @@ class CourseEvals extends React.Component {
         <LongWrapper>
           <ExtendedOverlay>
             <div>
-              <br />
+              <Announcement>
+                <FontAwesomeIcon icon={faBullhorn} /> We appreciate{" "}
+                <a
+                  href="https://www.facebook.com/WasedaTaiwaneseStudentAssociation/"
+                  style={{ color: "#fff" }}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Waseda Taiwanese Student Association (WTSA)
+                </a>{" "}
+                for providing us the evaluations!
+              </Announcement>
               {isLoaded && (
                 <FetchedCourseItem
                   searchTerm={""}
@@ -283,6 +306,7 @@ class CourseEvals extends React.Component {
                   searchLang={searchLang}
                 />
               </EvalsListWrapper>
+              <br />
             </div>
           </ExtendedOverlay>
         </LongWrapper>

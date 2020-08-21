@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import styled from "styled-components";
 import CourseEvalsGroup from "./CourseEvalsGroup";
 import { media } from "../../styled-components/utils";
@@ -15,7 +15,7 @@ const StyledSubHeading = styled("h2")`
   margin-top: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 300;
   ${media.tablet`font-size: 2rem;`};
 `;
@@ -27,20 +27,23 @@ const RelatedCoursesWrapper = styled("div")`
 
 const getCourseKey = course => course["_id"].substring(0, 10);
 
-const RelatedCoursesContainer = ({ relatedCourses, courseEvals, searchLang, t }) => (
+const RelatedCoursesContainer = ({
+  relatedCourses,
+  courseEvals,
+  searchLang,
+  t
+}) => (
   <ExtendedOverlay>
-    <StyledSubHeading>
-      {t(`courseEvals.Related courses`)}
-    </StyledSubHeading>
+    <StyledSubHeading>{t(`courseEvals.Related courses`)}</StyledSubHeading>
     <RelatedCoursesWrapper>
-      {
-        relatedCourses.map(relatedCourse => <CourseEvalsGroup
+      {relatedCourses.map(relatedCourse => (
+        <CourseEvalsGroup
           course={relatedCourse}
           evaluations={courseEvals[getCourseKey(relatedCourse)]}
           searchLang={searchLang}
           key={getCourseKey(relatedCourse)}
-        />)
-      }
+        />
+      ))}
     </RelatedCoursesWrapper>
   </ExtendedOverlay>
 );

@@ -279,8 +279,8 @@ class CourseEvals extends React.Component {
                   rel="noopener noreferrer"
                 >
                   Waseda Taiwanese Student Association (WTSA)
-                </a>{" "}
-                for providing us the evaluations!
+                </a>
+                's help for providing the evaluations!
               </Announcement>
               {isLoaded && (
                 <FetchedCourseItem

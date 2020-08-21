@@ -5,12 +5,12 @@ import { withNamespaces } from "react-i18next";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import EvalsList from "./EvalsList";
 
-const CourseEvalsGroupWrapper = styled('div')`
+const CourseEvalsGroupWrapper = styled("div")`
   background: #fff;
   margin-bottom: 1em;
 `;
 
-const EvalsHeader = styled('h3')`
+const EvalsHeader = styled("h3")`
   margin: 0;
   text-align: center;
   background: #eee;
@@ -19,9 +19,14 @@ const EvalsHeader = styled('h3')`
 const CourseEvalsGroup = ({ course, evaluations, searchLang, t }) => {
   return (
     <CourseEvalsGroupWrapper>
-      <FetchedCourseItem searchTerm={""} searchLang={searchLang} course={course} isInCourseEvalsPage={true} />
+      <FetchedCourseItem
+        searchTerm={""}
+        searchLang={searchLang}
+        course={course}
+        isInCourseEvalsPage={true}
+      />
       <EvalsHeader>{t(`courseEvals.Evaluations`)}</EvalsHeader>
-      { evaluations && <EvalsList evaluations={evaluations} /> }
+      {evaluations && <EvalsList evaluations={evaluations} />}
     </CourseEvalsGroupWrapper>
   );
 };

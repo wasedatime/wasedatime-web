@@ -40,12 +40,15 @@ const EvaluationScale = styled("div")`
 `;
 
 const EvalsList = ({ evaluations, t }) => {
+  console.log(t);
   return evaluations.map((evaluation, i) => {
     return (
       <EvaluationsWrapper key={i}>
         {i !== 0 && <EvaluationDivider />}
         <Evaluation>
-          <EvaluationText>{evaluation["comment"]}</EvaluationText>
+          <EvaluationText>
+            {evaluation[t(`courseEvals.Comment object key`)]}
+          </EvaluationText>
           <EvaluationScalesList>
             <EvaluationScale>
               {t(`courseEvals.Satisfaction`)}{" "}

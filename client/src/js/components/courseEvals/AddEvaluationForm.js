@@ -4,26 +4,16 @@ import { media } from "../../styled-components/utils";
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
   margin-top: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 300;
   ${media.tablet`font-size: 2rem;`};
-`;
-
-const CloseFormButton = styled("button")`
-  background-color: rgb(148, 27, 47);
-  float: right;
-  color: #fff;
-  border: 0px;
-  border-radius: 5px;
-  font-size: 0.7em;
-  padding: 0.3em;
 `;
 
 const StyledForm = styled("form")`
@@ -52,83 +42,132 @@ const StyledTextarea = styled("textarea")`
   border: none;
   background-color: ${props => props.theme.white};
   outline: none;
-  padding: 3px;
-  margin: 0;
+  padding: 10px;
+  margin: 5px 0 0;
+  height: 100px;
   flex: 1 0 auto;
 `;
 
-const handleScaleChange = event => {};
+const FormActions = styled("div")`
+  display: flex;
+  margin-top: 10px;
+`;
 
-const handleTextChange = event => {};
+const CheckboxContainer = styled("span")`
+  flex: 0 0 60%;
+`;
+
+const SubmitFormButton = styled("button")`
+  flex: 0 0 20%;
+  background-color: #48af37;
+  color: #fff;
+  border: 0px;
+  border-radius: 5px 0 0 5px;
+  padding: 0.3em;
+`;
+
+const CloseFormButton = styled("button")`
+  flex: 0 0 20%;
+  background-color: rgb(148, 27, 47);
+  color: #fff;
+  border: 0px;
+  border-radius: 0 5px 5px 0;
+  padding: 0.3em;
+`;
 
 class AddEvaluationForm extends React.Component {
   state = {
-    hoveredSatisfactionStar: 0,
-    hoveredDifficultyStars: 0,
-    hoveredBenefitStars: 0,
-    isSatisfactionScaled: false,
-    isDifficultyScaled: false,
-    isBenefitScaled: false
+    paintedSatisfactionStars: 0,
+    paintedDifficultyStars: 0,
+    paintedBenefitStars: 0
   };
 
-  stars(label, isScaled, hoveredStar) {
+  displayStars = (label, selectedStar, paintedStar) => {
     let stars = [];
     for (let n = 1; n <= 5; n++) {
-      let hoveredStars = "";
-      const color = isScaled || n <= hoveredStar ? "orange" : "#fff";
-      if (label === "satisfaction") hoveredStars = "hoveredSatisfactionStars";
-      if (label === "difficulty") hoveredStars = "hoveredDifficultyStars";
-      if (label === "benefit") hoveredStars = "hoveredBenefitStars";
+      let paintedStarsLabel = "";
+      switch (label) {
+        case "satisfaction":
+          paintedStarsLabel = "paintedSatisfactionStars";
+          break;
+        case "difficulty":
+          paintedStarsLabel = "paintedDifficultyStars";
+          break;
+        case "benefit":
+          paintedStarsLabel = "paintedBenefitStars";
+          break;
+        default:
+          paintedStarsLabel = "paintedSatisfactionStars";
+      }
+      const color =
+        n <= paintedStar || (paintedStar === 0 && n <= selectedStar)
+          ? "orange"
+          : "#fff";
+
       stars.push(
         <FontAwesomeIcon
           key={n}
           icon={faStar}
-          style={{ color: color }}
-          onMouseOver={() => this.setState({ [hoveredStars]: n })}
-          onMouseOut={() => this.setState({ [hoveredStars]: 0 })}
+          style={{ color: color, cursor: "pointer" }}
+          onMouseOver={() => this.setState({ [paintedStarsLabel]: n })}
+          onMouseOut={() =>
+            this.setState({ [paintedStarsLabel]: selectedStar })
+          }
+          onClick={() => this.props.handleScaleChange(label, n)}
         />
       );
     }
     return stars;
-  }
+  };
 
-  changeStarsColor(label, scale) {
+  changeStarsColor = (label, scale) => {
     switch (label) {
       case "satisfaction":
-        this.setState({ hoveredSatisfactionStar: scale });
+        this.setState({ paintedSatisfactionStars: scale });
         break;
       case "difficulty":
-        this.setState({ hoveredDifficultyStars: scale });
+        this.setState({ paintedDifficultyStars: scale });
         break;
       case "benefit":
-        this.setState({ hoveredBenefitStars: scale });
+        this.setState({ paintedBenefitStars: scale });
         break;
+      default:
+        this.setState({ paintedSatisfactionStars: scale });
     }
-  }
+  };
+
+  handleTextareaChange = event => {
+    event.preventDefault();
+    const inputText = event.target.value;
+    this.props.handleCommentChange(inputText);
+  };
+
+  handleCheckboxChange = event => {
+    console.log(event.target.checked);
+  };
 
   render() {
     const {
       toggleModal,
-      onNewEvalScalesChange,
-      onNewEvalTextChange,
+      satisfaction,
+      difficulty,
+      benefit,
+      comment,
+      agreeToShare,
+      handleCheckboxChange,
+      handleFormSubmit,
       t
     } = this.props;
     const {
-      hoveredSatisfactionStars,
-      hoveredDifficultyStars,
-      hoveredBenefitStars,
-      isSatisfactionScaled,
-      isDifficultyScaled,
-      isBenefitScaled
+      paintedSatisfactionStars,
+      paintedDifficultyStars,
+      paintedBenefitStars
     } = this.state;
 
     return (
       <Overlay>
         <StyledSubHeading>
           {t(`courseEvals.Add evaluation to this course`)}
-          <CloseFormButton onClick={toggleModal}>
-            <FontAwesomeIcon icon={faTimes} /> Close
-          </CloseFormButton>
         </StyledSubHeading>
 
         <StyledForm
@@ -136,32 +175,58 @@ class AddEvaluationForm extends React.Component {
             e.preventDefault();
           }}
         >
-          Please choose the score for each scale
+          <b>Scales</b>
           <ScalesList>
             <Scale>
-              {this.stars(
+              {this.displayStars(
                 "satisfaction",
-                isSatisfactionScaled,
-                hoveredSatisfactionStars
+                satisfaction,
+                paintedSatisfactionStars
               )}{" "}
               Satisfaction
             </Scale>
             <Scale>
-              {this.stars(
+              {this.displayStars(
                 "difficulty",
-                isDifficultyScaled,
-                hoveredDifficultyStars
+                difficulty,
+                paintedDifficultyStars
               )}{" "}
               Difficulty
             </Scale>
             <Scale>
-              {this.stars("benefit", isBenefitScaled, hoveredBenefitStars)}{" "}
+              {this.displayStars("benefit", benefit, paintedBenefitStars)}{" "}
               Benefit
             </Scale>
           </ScalesList>
-          Please share your experiences, feelings, and even advices about the
-          course
-          <StyledTextarea placeholder="Leave your comments..." />
+
+          <b>Comments</b>
+          <StyledTextarea
+            placeholder="Please share your experiences, feelings, and even advices about the course!"
+            onChange={this.handleTextareaChange}
+            value={comment}
+          />
+          <FormActions>
+            <CheckboxContainer>
+              <input
+                type="checkbox"
+                id="shareWithWtsa"
+                name="shareWithWtsa"
+                value={true}
+                checked={agreeToShare}
+                onChange={handleCheckboxChange}
+              />
+              <label htmlFor="shareWithWtsa" style={{ fontSize: "0.8em" }}>
+                {" "}
+                I agree to share my evaluation with WTSA
+              </label>
+            </CheckboxContainer>
+            <SubmitFormButton onClick={handleFormSubmit}>
+              <FontAwesomeIcon icon={faCheck} /> Submit
+            </SubmitFormButton>
+            <CloseFormButton onClick={toggleModal}>
+              <FontAwesomeIcon icon={faTimes} /> Close
+            </CloseFormButton>
+          </FormActions>
         </StyledForm>
       </Overlay>
     );

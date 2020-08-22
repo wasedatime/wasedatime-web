@@ -1,7 +1,7 @@
 import React from "react";
 import MediaQuery from "react-responsive";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
+import { faBullhorn, faPen } from "@fortawesome/free-solid-svg-icons";
 import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -23,8 +23,6 @@ import { sizes } from "../../styled-components/utils";
 import { RowWrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 import { Wrapper } from "../../styled-components/Wrapper";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 import ReviewLangSwitches from "./ReviewLangSwitches";
 import RelatedCoursesButton from "./RelatedCoursesButton";
@@ -181,6 +179,7 @@ class CourseEvals extends React.Component {
     newEvalDifficulty: 0,
     newEvalBenefit: 0,
     newEvalComment: "",
+    newEvalAgreeToShare: true,
   };
 
   componentDidMount() {
@@ -302,9 +301,64 @@ class CourseEvals extends React.Component {
     });
   };
 
-  onNewEvalScalesChange = (target, score) => {};
+  onNewEvalScaleChange = (target, score) => {
+    switch (target) {
+      case "satisfaction":
+        this.setState({ newEvalSatisfaction: score });
+        break;
+      case "difficulty":
+        this.setState({ newEvalDifficulty: score });
+        break;
+      case "benefit":
+        this.setState({ newEvalBenefit: score });
+        break;
+      default:
+        this.setState({ newEvalSatisfaction: score });
+    }
+  };
 
-  onNewEvalTextChange = (event) => {};
+  onNewEvalCommentChange = (text) => this.setState({ newEvalComment: text });
+
+  onNewEvalShareAgreementChange = () =>
+    this.setState({ newEvalAgreeToShare: !this.state.newEvalAgreeToShare });
+
+  onNewEvalFormSubmit = () => {
+    const {
+      newEvalSatisfaction,
+      newEvalDifficulty,
+      newEvalBenefit,
+      newEvalComment,
+      newEvalAgreeToShare,
+    } = this.state;
+    const {
+      _id,
+      code,
+      title,
+      title_jp,
+      instructor,
+      instructor_jp,
+    } = this.state.thisCourse;
+    const newEval = {
+      _id: "",
+      course_id: _id,
+      course_key: getCourseKey(this.state.thisCourse),
+      course_code: code,
+      title: title,
+      title_jp: title_jp,
+      instructor: instructor,
+      instructor_jp: instructor_jp,
+      year: 2020,
+      satisfaction: newEvalSatisfaction,
+      difficulty: newEvalDifficulty,
+      benefit: newEvalBenefit,
+      comment_src_lng: 0, // 0: en, 1: jp, 2:zh
+      comment_zh: newEvalComment,
+      comment_en: newEvalComment,
+      comment_jp: newEvalComment,
+      commented_date: new Date(),
+      agree_to_share_with_wtsa: newEvalAgreeToShare,
+    };
+  };
 
   render() {
     const {
@@ -319,8 +373,13 @@ class CourseEvals extends React.Component {
       reviewLang,
       isLoaded,
       isModalOpen,
-      isAddEvaluationFormOpen,
       error,
+      isAddEvaluationFormOpen,
+      newEvalSatisfaction,
+      newEvalDifficulty,
+      newEvalBenefit,
+      newEvalComment,
+      newEvalAgreeToShare,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadEvaluationsAndRelatedCourses} />;
@@ -368,8 +427,15 @@ class CourseEvals extends React.Component {
               {isAddEvaluationFormOpen ? (
                 <AddEvaluationForm
                   toggleModal={this.toggleAddEvaluationForm}
-                  onNewEvalScalesChange={this.onNewEvalScalesChange}
-                  onNewEvalTextChange={this.onNewEvalTextChange}
+                  satisfaction={newEvalSatisfaction}
+                  difficulty={newEvalDifficulty}
+                  benefit={newEvalBenefit}
+                  comment={newEvalComment}
+                  agreeToShare={newEvalAgreeToShare}
+                  handleScaleChange={this.onNewEvalScaleChange}
+                  handleCommentChange={this.onNewEvalCommentChange}
+                  handleCheckboxChange={this.onNewEvalShareAgreementChange}
+                  handleFormSubmit={this.onNewEvalFormSubmit}
                 />
               ) : (
                 <React.Fragment>
@@ -405,6 +471,7 @@ class CourseEvals extends React.Component {
                 </React.Fragment>
               )}
             </div>
+            <br />
           </ExtendedOverlay>
         </LongWrapper>
 

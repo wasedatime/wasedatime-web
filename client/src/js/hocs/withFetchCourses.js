@@ -70,6 +70,7 @@ const withFetchCourses = WrappedComponent => {
       return (
         <WrappedComponent
           fetchedCourses={fetchedCourses}
+          fetchedCoursesById={fetchedCoursesById}
           addedCourses={addedCourses}
           addedCoursesAndPrefs={addedCoursesAndPrefs}
           {...rest}

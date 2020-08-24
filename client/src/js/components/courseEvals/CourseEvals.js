@@ -7,7 +7,6 @@ import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import axios from "axios";
 import { wasetimeApiStatic } from "../../config/api";
-import { loadState } from "../../../localStorage";
 import ReactGA from "react-ga";
 import { gaRelatedCourses } from "../../ga/eventCategories";
 import {
@@ -167,7 +166,8 @@ class CourseEvals extends React.Component {
     const searchLang = qs.parse(this.props.location.search, {
       ignoreQueryPrefix: true
     }).searchLang;
-    let loadedCourses = loadState().fetchedCourses.byId;
+    let loadedCourses = this.props.fetchedCoursesById;
+    //loadState().fetchedCourses.byId;
 
     const thisCourse = getCourse(loadedCourses, courseID);
     const thisCourseKey = getCourseKey(thisCourse);
@@ -323,27 +323,27 @@ class CourseEvals extends React.Component {
                   />
                 </ShortWrapper>
               ) : (
-                <div>
-                  <RelatedCoursesButton
-                    isModalOpen={this.state.isModalOpen}
-                    handleToggleModal={this.handleToggleModal}
-                  />
-                  <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
-                    <RelatedCoursesContainer
-                      relatedCourses={relatedCourses}
-                      courseEvals={relatedCourseEvals}
-                      searchLang={searchLang}
+                  <div>
+                    <RelatedCoursesButton
+                      isModalOpen={this.state.isModalOpen}
+                      handleToggleModal={this.handleToggleModal}
                     />
-                  </Modal>
-                </div>
-              );
+                    <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                      <RelatedCoursesContainer
+                        relatedCourses={relatedCourses}
+                        courseEvals={relatedCourseEvals}
+                        searchLang={searchLang}
+                      />
+                    </Modal>
+                  </div>
+                );
             }}
           </MediaQuery>
         )}
       </RowWrapper>
     ) : (
-      <LoadingSpinner message={"Loading evaluations..."} />
-    );
+        <LoadingSpinner message={"Loading evaluations..."} />
+      );
   }
 }
 

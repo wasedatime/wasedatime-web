@@ -124,9 +124,9 @@ const Description = styled("div")`
 `;
 
 const Instructors = styled("div")`
-  flex: 1 0 100%;
   text-align: left;
   font-size: 1.2em;
+  ${media.phone`font-size: 1.0em;`};
 `;
 
 const EvalButtonsWrapper = styled("div")`

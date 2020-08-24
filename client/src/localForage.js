@@ -1,20 +1,42 @@
 import localForage from "localforage";
 
 export const LNG_KEY = "wasedatime-2020-lng";
+const PREV_STATE_NAME = "wasedatime-2019-state";
 const STATE_NAME = "wasedatime-2020-state";
 const STATE_FECTHED_COURSES_NAME = "wasedatime-2020-state-fc";
 const DATA_TO_SAVE = [LNG_KEY, STATE_NAME, STATE_FECTHED_COURSES_NAME];
 
 export const loadState = () => {
+  let prevState = null;
+  try {
+    const serializedPrevState = localStorage.getItem(PREV_STATE_NAME);
+    if (serializedPrevState !== null) {
+      prevState = JSON.parse(serializedPrevState);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+
   return Promise.all([
     localForage.getItem(STATE_NAME),
     localForage.getItem(STATE_FECTHED_COURSES_NAME),
   ])
     .then((states) => {
-      const state = states[0];
-      const fetchedCourses = states[1];
+      let state;
+      let fetchedCourses;
+      if (prevState !== null) {
+        state = prevState;
+        state.user.isFirstTimeAccess = true;
+        fetchedCourses = {
+          byId: {},
+          list: {},
+        };
+      } else {
+        state = states[0];
+        fetchedCourses = states[1];
+      }
 
-      if (state === null || fetchedCourses === null) {
+      if (prevState === null && (state === null || fetchedCourses === null)) {
         return undefined;
       }
 

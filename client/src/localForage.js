@@ -14,7 +14,7 @@ export const loadState = () => {
       prevState = JSON.parse(serializedPrevState);
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 
   return Promise.all([

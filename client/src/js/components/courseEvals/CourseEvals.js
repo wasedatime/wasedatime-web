@@ -130,7 +130,7 @@ const getRelatedCourses = (
 
 async function getCourseEvalsByKey(courseKey) {
   try {
-    // get evaluations by courseKeys
+    // get reviews by courseKeys
     const res = await axios.get(
       wasetimeApiStatic.courseEvalsBaseURL + courseKey
     );
@@ -172,7 +172,7 @@ class CourseEvals extends React.Component {
     const thisCourse = getCourse(loadedCourses, courseID);
     const thisCourseKey = getCourseKey(thisCourse);
 
-    // 1. Get evaluations of this course by key
+    // 1. Get reviews of this course by key
     const thisCourseEvals = await getCourseEvalsByKey(thisCourseKey);
 
     // 2. Get related courses by code, sort them, and get the first k courses (k=3)
@@ -183,7 +183,7 @@ class CourseEvals extends React.Component {
       thisCourse.title
     );
 
-    // 3. Get evaluations of related courses by their keys
+    // 3. Get reviews of related courses by their keys
     let relatedCourseEvals = {};
     for (const course of relatedCourses.slice(0, 3)) {
       const evals = await getCourseEvalsByKey(getCourseKey(course));
@@ -193,10 +193,10 @@ class CourseEvals extends React.Component {
     let satisfactionSum = 0,
       difficultySum = 0,
       benefitSum = 0;
-    thisCourseEvals.forEach(evaluation => {
-      satisfactionSum += evaluation.satisfaction;
-      difficultySum += evaluation.difficulty;
-      benefitSum += evaluation.benefit;
+    thisCourseEvals.forEach(review => {
+      satisfactionSum += review.satisfaction;
+      difficultySum += review.difficulty;
+      benefitSum += review.benefit;
     });
     // calculate the averages of scales and round them to the nearest .5
     const avgSatisfaction =
@@ -251,20 +251,17 @@ class CourseEvals extends React.Component {
     return isLoaded ? (
       <RowWrapper>
         <Helmet>
-          <title>WasedaTime - Course Evaluations</title>
+          <title>WasedaTime - Course Reviews</title>
           <meta
             name="description"
-            content="Latest Course Evaluations by Waseda Students."
+            content="Latest Course Reviews by Waseda Students."
           />
-          <meta property="og:title" content="WasedaTime - Course Evaluations" />
+          <meta property="og:title" content="WasedaTime - Course Reviews" />
           <meta
             property="og:description"
-            content="Latest Course Evaluations by Waseda Students."
+            content="Latest Course Reviews by Waseda Students."
           />
-          <meta
-            property="og:site_name"
-            content="WasedaTime - Course Evaluations"
-          />
+          <meta property="og:site_name" content="WasedaTime - Course Reviews" />
         </Helmet>
 
         <LongWrapper>
@@ -280,7 +277,7 @@ class CourseEvals extends React.Component {
                 >
                   Waseda Taiwanese Student Association (WTSA)
                 </a>
-                's help for providing the evaluations!
+                's help for providing the reviews!
               </Announcement>
               {isLoaded && (
                 <FetchedCourseItem
@@ -292,7 +289,7 @@ class CourseEvals extends React.Component {
               )}
 
               <StyledSubHeading>
-                {this.props.t(`courseEvals.Evaluations`)}
+                {this.props.t(`courseEvals.Reviews`)}
               </StyledSubHeading>
               <EvalsListWrapper>
                 <EvaluationScalesCountContainer
@@ -301,10 +298,7 @@ class CourseEvals extends React.Component {
                   avgBenefit={avgBenefit}
                   thisCourseEvalsLength={thisCourseEvals.length}
                 />
-                <EvalsList
-                  evaluations={thisCourseEvals}
-                  searchLang={searchLang}
-                />
+                <EvalsList reviews={thisCourseEvals} searchLang={searchLang} />
               </EvalsListWrapper>
               <br />
             </div>
@@ -323,27 +317,27 @@ class CourseEvals extends React.Component {
                   />
                 </ShortWrapper>
               ) : (
-                  <div>
-                    <RelatedCoursesButton
-                      isModalOpen={this.state.isModalOpen}
-                      handleToggleModal={this.handleToggleModal}
+                <div>
+                  <RelatedCoursesButton
+                    isModalOpen={this.state.isModalOpen}
+                    handleToggleModal={this.handleToggleModal}
+                  />
+                  <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                    <RelatedCoursesContainer
+                      relatedCourses={relatedCourses}
+                      courseEvals={relatedCourseEvals}
+                      searchLang={searchLang}
                     />
-                    <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
-                      <RelatedCoursesContainer
-                        relatedCourses={relatedCourses}
-                        courseEvals={relatedCourseEvals}
-                        searchLang={searchLang}
-                      />
-                    </Modal>
-                  </div>
-                );
+                  </Modal>
+                </div>
+              );
             }}
           </MediaQuery>
         )}
       </RowWrapper>
     ) : (
-        <LoadingSpinner message={"Loading evaluations..."} />
-      );
+      <LoadingSpinner message={"Loading reviews..."} />
+    );
   }
 }
 

@@ -78,7 +78,7 @@ const EvaluationScalesCountContainer = ({
           )
         }
       </MediaQuery>{" "}
-      {t(`courseEvals.Evaluations`)}
+      {t(`courseEvals.Reviews`)}
     </EvaluationsCount>
   </EvaluationScalesRow>
 );

@@ -39,7 +39,7 @@ const RelatedCoursesContainer = ({
       {relatedCourses.map(relatedCourse => (
         <CourseEvalsGroup
           course={relatedCourse}
-          evaluations={courseEvals[getCourseKey(relatedCourse)]}
+          reviews={courseEvals[getCourseKey(relatedCourse)]}
           searchLang={searchLang}
           key={getCourseKey(relatedCourse)}
         />

@@ -52,8 +52,8 @@ const EvaluationScale = styled("div")`
   flex: 1;
 `;
 
-const EvalsList = ({ evaluations, searchLang, t }) => {
-  return evaluations.map((evaluation, i) => {
+const EvalsList = ({ reviews, searchLang, t }) => {
+  return reviews.map((review, i) => {
     return (
       <EvaluationsWrapper key={i}>
         {i !== 0 && <EvaluationDivider />}
@@ -61,24 +61,23 @@ const EvalsList = ({ evaluations, searchLang, t }) => {
           <EvaluationText>
             <EvaluationTitle>
               <EvaluationYear>2020</EvaluationYear>{" "}
-              {evaluation[searchLang === "en" ? "title" : "title_jp"]} ({" "}
-              {evaluation[searchLang === "en" ? "instructor" : "instructor_jp"]}{" "}
-              )
+              {review[searchLang === "en" ? "title" : "title_jp"]} ({" "}
+              {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
             </EvaluationTitle>
-            {evaluation[t(`courseEvals.Comment object key`)]}
+            {review[t(`courseEvals.Comment object key`)]}
           </EvaluationText>
           <EvaluationScalesList>
             <EvaluationScale>
               {t(`courseEvals.Satisfaction`)}{" "}
-              <EvaluationStars scale={evaluation["satisfaction"]} />
+              <EvaluationStars scale={review["satisfaction"]} />
             </EvaluationScale>
             <EvaluationScale>
               {t(`courseEvals.Difficulty`)}{" "}
-              <EvaluationStars scale={evaluation["difficulty"]} />
+              <EvaluationStars scale={review["difficulty"]} />
             </EvaluationScale>
             <EvaluationScale>
               {t(`courseEvals.Benefit`)}{" "}
-              <EvaluationStars scale={evaluation["benefit"]} />
+              <EvaluationStars scale={review["benefit"]} />
             </EvaluationScale>
           </EvaluationScalesList>
         </Evaluation>

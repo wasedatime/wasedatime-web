@@ -103,7 +103,11 @@ const getCourse = (loadedCourses, courseID) => {
   return loadedCourses ? loadedCourses[courseID] : null;
 };
 
-const getCourseKey = course => course["_id"].substring(0, 10);
+const getCourseKey = course =>
+  course["keys"]["school"] === "SILS" &&
+  (course["title"].includes("seminar") || course["title"].includes("Seminar"))
+    ? course["_id"].substring(0, 12)
+    : course["_id"].substring(0, 10);
 
 const getRelatedCourses = (
   loadedCourses,

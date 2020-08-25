@@ -40,15 +40,33 @@ const Description = styled('p')`
   font-size: 2rem;
 `;
 
-const LoadingSpinner = props => {
-  return (
-    <ExtendedWrapper>
-      <ExtendedOverlay>
-        <Logo src={logo} alt="WasedaTime logo" />
-        <Description>{props.message || 'Loading...'}</Description>
-      </ExtendedOverlay>
-    </ExtendedWrapper>
-  );
+class LoadingSpinner extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      delayMessage: ""
+    }
+  }
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        delayMessage: "Slow network is detected. Please wait we're almost done 💪"
+      })
+    }, 4000)
+  }
+
+  render() {
+    return (
+      <ExtendedWrapper>
+        <ExtendedOverlay>
+          <Logo src={logo} alt="WasedaTime logo" />
+          <Description>{this.props.message || 'Loading...'}</Description>
+          <Description>{this.state.delayMessage}</Description>
+        </ExtendedOverlay>
+      </ExtendedWrapper>
+    );
+  }
 };
 
 export default LoadingSpinner;

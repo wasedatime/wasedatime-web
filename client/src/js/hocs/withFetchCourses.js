@@ -56,13 +56,13 @@ const withFetchCourses = WrappedComponent => {
       } = this.props;
 
       if (isFetching && !fetchedCourseIds.length) {
-        return <LoadingSpinner message={""} />;
+        return <LoadingSpinner message={"Loading the lastest syllabus..."} />;
       }
       if (error && !fetchedCourseIds.length) {
         return <FetchError onRetry={fetchCourses} />;
       }
       if (!isPrefsEmpty && isAddedCoursesEmpty) {
-        return <LoadingSpinner message={"Initializing your added courses"} />;
+        return <LoadingSpinner message={"Initializing your added courses..."} />;
       }
 
       const fetchedCourses = fetchedCourseIds.map(id => fetchedCoursesById[id]);

@@ -22,6 +22,15 @@ const fetchedList = actionTypes => {
     }
   };
 
+  const fetchedTime = (state = null, action) => {
+    switch (action.type) {
+      case actionTypes.fetchSuccess:
+        return action.response.fetchedTime;
+      default:
+        return state;
+    }
+  }
+
   const error = (state = null, action) => {
     switch (action.type) {
       case actionTypes.fetchFailure:
@@ -33,7 +42,7 @@ const fetchedList = actionTypes => {
         return state;
     }
   };
-  return combineReducers({ ids, isFetching, error });
+  return combineReducers({ ids, isFetching, fetchedTime, error });
 };
 
 export default fetchedList;

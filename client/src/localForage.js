@@ -34,6 +34,22 @@ export const loadState = () => {
       } else {
         state = states[0];
         fetchedCourses = states[1];
+
+        // Courses should be updated at 7am, 1 day after the last saved timestamp
+        const fetchedTime = fetchedCourses.list.fetchedTime;
+        let nextUpdateTime = new Date(fetchedTime);
+        nextUpdateTime.setDate(nextUpdateTime.getDate() + 1);
+        nextUpdateTime.setHours(7, 0, 0, 0);
+
+        const currentTime = new Date()
+        const needsUpdate = currentTime >= nextUpdateTime;
+
+        if (needsUpdate) {
+          fetchedCourses = {
+            byId: {},
+            list: {},
+          };
+        }
       }
 
       if (prevState === null && (state === null || fetchedCourses === null)) {
@@ -71,7 +87,7 @@ export const saveState = (state) => {
       localStorage.clear();
       localForage
         .clear()
-        .then(() => {})
+        .then(() => { })
         .catch((error) => {
           console.error(error);
         });
@@ -80,13 +96,13 @@ export const saveState = (state) => {
   const { fetchedCourses, ...rest } = state;
   localForage
     .setItem(STATE_NAME, rest)
-    .then((value) => {})
+    .then((value) => { })
     .catch((error) => {
       console.error(error);
     });
   localForage
     .setItem(STATE_FETCHED_COURSES_NAME, fetchedCourses)
-    .then((value) => {})
+    .then((value) => { })
     .catch((error) => {
       console.error(error);
     });

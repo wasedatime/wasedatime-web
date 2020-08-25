@@ -45,9 +45,13 @@ export const fetchBuildings = () => async (dispatch, getState) => {
     const res = await axios.get('/api/buildings');
     const buildings = res.data;
     const normalizedBuildings = normalize(buildings, schema.buildingsSchema);
+    const fetchedTime = new Date().toISOString();
     dispatch({
       type: FETCH_BUILDINGS_SUCCESS,
-      response: normalizedBuildings
+      response: {
+        ...normalizedBuildings,
+        fetchedTime
+      }
     });
   } catch (error) {
     const response = error.response || {

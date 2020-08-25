@@ -24,9 +24,13 @@ export const fetchCourses = () => async (dispatch, getState) => {
     const res = await axios.get(wasetimeApiStatic.courseListAll);
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
+    const fetchedTime = new Date().toISOString();
     dispatch({
       type: FETCH_COURSES_SUCCESS,
-      response: normalizedCourses
+      response: {
+        ...normalizedCourses,
+        fetchedTime
+      }
     });
   } catch (error) {
     const response = error.response || {

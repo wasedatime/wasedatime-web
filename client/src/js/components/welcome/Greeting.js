@@ -59,6 +59,15 @@ class Greeting extends React.Component {
         >
           {t("welcome.welcome")}
         </Typography>
+        <Typography
+          variant="h4"
+          component="h4"
+          align="center"
+          gutterBottom
+          className={classes.h3}
+        >
+          {`${t("welcome.newFeature")} ${t("welcome.courseEvals")} ${t("welcome.added")}`}
+        </Typography>
         <FormControl component="fieldset" className={undefined}>
           <RadioGroup
             aria-label="Language"

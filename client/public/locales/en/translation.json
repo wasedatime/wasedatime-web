@@ -10,6 +10,9 @@
   },
   "welcome": {
     "welcome": "Welcome to WasedaTime!",
+    "newFeature": "New feature:",
+    "courseEvals": "Course Reviews",
+    "added": "is available!",
     "next": "next",
     "back": "back",
     "done": "done",
@@ -103,7 +106,6 @@
       "intensiveSpring": "Intensive: Spring",
       "intensiveSummer": "Intensive: Summer",
       "springSummer": "Spring & Summer",
-
       "fallSem": "Fall Semester",
       "fallQuart": "Fall Quarter",
       "winterQuart": "Winter Quarter",
@@ -111,7 +113,6 @@
       "intensiveFall": "Intensive: Fall",
       "intensiveWinter": "Intensive: Winter",
       "fallWinter": "Fall & Winter",
-
       "intensiveSpringFallSem": "Intensive: Spring & Fall Semester",
       "fullYear": "Full Year",
       "undecided": "undecided"

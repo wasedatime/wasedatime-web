@@ -52,7 +52,7 @@ const EvaluationScale = styled("div")`
   flex: 1;
 `;
 
-const EvalsList = ({ reviews, searchLang, t }) => {
+const EvalsList = ({ reviews, searchLang, reviewLang, t }) => {
   return reviews.map((review, i) => {
     return (
       <EvaluationsWrapper key={i}>
@@ -64,7 +64,7 @@ const EvalsList = ({ reviews, searchLang, t }) => {
               {review[searchLang === "en" ? "title" : "title_jp"]} ({" "}
               {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
             </EvaluationTitle>
-            {review[t(`courseEvals.Comment object key`)]}
+            {review["comment_" + reviewLang]}
           </EvaluationText>
           <EvaluationScalesList>
             <EvaluationScale>

@@ -24,6 +24,7 @@ import { RowWrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 import { Wrapper } from "../../styled-components/Wrapper";
 
+import ReviewLangSwitches from "./ReviewLangSwitches";
 import RelatedCoursesButton from "./RelatedCoursesButton";
 import Modal from "../../components/Modal";
 import FetchError from "../../components/FetchError";
@@ -150,6 +151,8 @@ class CourseEvals extends React.Component {
     avgSatisfaction: 0,
     avgDifficulty: 0,
     avgBenefit: 0,
+    searchLang: "",
+    reviewLang: "",
     isLoaded: false,
     isModalOpen: false,
     error: false
@@ -215,6 +218,7 @@ class CourseEvals extends React.Component {
       avgDifficulty: avgDifficulty,
       avgBenefit: avgBenefit,
       searchLang: searchLang,
+      reviewLang: searchLang,
       isLoaded: true
     });
   }
@@ -233,6 +237,8 @@ class CourseEvals extends React.Component {
     });
   };
 
+  switchReviewLang = lang => this.setState({ reviewLang: lang });
+
   render() {
     const {
       thisCourse,
@@ -243,6 +249,7 @@ class CourseEvals extends React.Component {
       avgDifficulty,
       avgBenefit,
       searchLang,
+      reviewLang,
       isLoaded,
       error
     } = this.state;
@@ -289,7 +296,11 @@ class CourseEvals extends React.Component {
               )}
 
               <StyledSubHeading>
-                {this.props.t(`courseEvals.Reviews`)}
+                {this.props.t(`courseEvals.Reviews`)}{" "}
+                <ReviewLangSwitches
+                  reviewLang={reviewLang}
+                  switchReviewLang={this.switchReviewLang}
+                />
               </StyledSubHeading>
               <EvalsListWrapper>
                 <EvaluationScalesCountContainer
@@ -298,7 +309,11 @@ class CourseEvals extends React.Component {
                   avgBenefit={avgBenefit}
                   thisCourseEvalsLength={thisCourseEvals.length}
                 />
-                <EvalsList reviews={thisCourseEvals} searchLang={searchLang} />
+                <EvalsList
+                  reviews={thisCourseEvals}
+                  searchLang={searchLang}
+                  reviewLang={reviewLang}
+                />
               </EvalsListWrapper>
               <br />
             </div>

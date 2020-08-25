@@ -16,7 +16,7 @@ const EvalsHeader = styled("h3")`
   background: #eee;
 `;
 
-const CourseEvalsGroup = ({ course, reviews, searchLang, t }) => {
+const CourseEvalsGroup = ({ course, reviews, searchLang, reviewLang, t }) => {
   return (
     <CourseEvalsGroupWrapper>
       <FetchedCourseItem
@@ -27,7 +27,11 @@ const CourseEvalsGroup = ({ course, reviews, searchLang, t }) => {
       />
       <EvalsHeader>{t(`courseEvals.Reviews`)}</EvalsHeader>
       {reviews && (
-        <EvalsList reviews={reviews} searchLang={searchLang} />
+        <EvalsList
+          reviews={reviews}
+          searchLang={searchLang}
+          reviewLang={reviewLang}
+        />
       )}
     </CourseEvalsGroupWrapper>
   );

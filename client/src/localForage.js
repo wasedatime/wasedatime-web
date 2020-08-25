@@ -35,10 +35,15 @@ export const loadState = () => {
         state = states[0];
         fetchedCourses = states[1];
 
-        // Courses should be updated at 7am, 1 day after the last saved timestamp
         const fetchedTime = fetchedCourses.list.fetchedTime;
+
         let nextUpdateTime = new Date(fetchedTime);
-        nextUpdateTime.setDate(nextUpdateTime.getDate() + 1);
+        // Courses are updated at 7am everyday
+        // if the last fetched time is 0 - 6 o'clock, the next update time is the same day, 7am
+        // if the last fetched time is 7 - 23 o'clock, the next update time is the next day, 7am
+        if (nextUpdateTime.getHours() >= 7) {
+          nextUpdateTime.setDate(nextUpdateTime.getDate() + 1);
+        }
         nextUpdateTime.setHours(7, 0, 0, 0);
 
         const currentTime = new Date()

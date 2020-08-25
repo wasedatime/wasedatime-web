@@ -3,8 +3,8 @@ import localForage from "localforage";
 export const LNG_KEY = "wasedatime-2020-lng";
 const PREV_STATE_NAME = "wasedatime-2019-state";
 const STATE_NAME = "wasedatime-2020-state";
-const STATE_FECTHED_COURSES_NAME = "wasedatime-2020-state-fc";
-const DATA_TO_SAVE = [LNG_KEY, STATE_NAME, STATE_FECTHED_COURSES_NAME];
+const STATE_FETCHED_COURSES_NAME = "wasedatime-2020-state-fc";
+const DATA_TO_SAVE = [LNG_KEY, STATE_NAME, STATE_FETCHED_COURSES_NAME];
 
 export const loadState = () => {
   let prevState = null;
@@ -19,7 +19,7 @@ export const loadState = () => {
 
   return Promise.all([
     localForage.getItem(STATE_NAME),
-    localForage.getItem(STATE_FECTHED_COURSES_NAME),
+    localForage.getItem(STATE_FETCHED_COURSES_NAME),
   ])
     .then((states) => {
       let state;
@@ -85,7 +85,7 @@ export const saveState = (state) => {
       console.error(error);
     });
   localForage
-    .setItem(STATE_FECTHED_COURSES_NAME, fetchedCourses)
+    .setItem(STATE_FETCHED_COURSES_NAME, fetchedCourses)
     .then((value) => {})
     .catch((error) => {
       console.error(error);

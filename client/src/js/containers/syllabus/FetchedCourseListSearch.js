@@ -174,7 +174,8 @@ class FetchedCourseSearch extends React.Component {
             c =>
               c.keywords !== undefined &&
               c.title === course.title &&
-              c.keywords.includes("EBSE")
+              !c.keywords.includes("IPSE") &&
+              c.keywords.includes("English-based Undergraduate Program")
           )
         )
           return false;

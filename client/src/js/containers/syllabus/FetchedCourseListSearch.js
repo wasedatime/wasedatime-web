@@ -241,6 +241,9 @@ class FetchedCourseSearch extends React.Component {
     );
   };
 
+  sortCoursesWithEvalsExistence = courses =>
+    sortBy(courses, course => (course.has_evals ? 1 : 2));
+
   render() {
     const { inputText, searchTerm } = this.state;
     const searchLang =
@@ -254,7 +257,7 @@ class FetchedCourseSearch extends React.Component {
             searchCourses(searchTerm, this.state.filteredCourses, searchLang),
             searchLang
           )
-        : this.state.filteredCourses;
+        : this.sortCoursesWithEvalsExistence(this.state.filteredCourses);
     return (
       <ExtendedWrapper>
         <SearchBar

@@ -1,5 +1,6 @@
 import React from "react";
 import debounce from "lodash/debounce";
+import sortBy from "lodash/sortBy";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router";
 import { withNamespaces } from "react-i18next";
@@ -182,7 +183,7 @@ class FetchedCourseSearch extends React.Component {
       if (keywords === undefined) return false;
       if (keywords.includes("IPSE")) {
         if (
-          filterCourses.find(
+          filteredCourses.find(
             c =>
               c.keywords !== undefined &&
               c.title === course.title &&

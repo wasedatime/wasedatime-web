@@ -346,7 +346,8 @@ const CourseItem = ({
               {matches => {
                 return (
                   matches &&
-                  !isInCourseEvalsPage && (
+                  !isInCourseEvalsPage &&
+                  course.has_evals && (
                     <ViewEvalsIconButton
                       href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
                       target="_blank"
@@ -370,13 +371,15 @@ const CourseItem = ({
             {matches => {
               return (
                 matches &&
-                !isInCourseEvalsPage && (
+                !isInCourseEvalsPage &&
+                course.has_evals && (
                   <EvalButtonsWrapper>
                     <ViewEvalsButton
                       href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
                       target="_blank"
                     >
-                      <FontAwesomeIcon icon={faCommentDots} /> Reviews
+                      <FontAwesomeIcon icon={faCommentDots} />{" "}
+                      {t("courseEvals.Reviews")}
                     </ViewEvalsButton>
                   </EvalButtonsWrapper>
                 )

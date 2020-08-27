@@ -32,7 +32,7 @@ const getCourseKey = (course) => course["_id"].substring(0, 10);
 
 class RelatedCoursesContainer extends React.Component {
   state = {
-    reviewLang: this.props.searchLang,
+    reviewLang: this.props.lng,
   };
 
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });

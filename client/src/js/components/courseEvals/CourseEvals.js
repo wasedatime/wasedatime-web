@@ -233,7 +233,7 @@ class CourseEvals extends React.Component {
         avgDifficulty: avgDifficulty,
         avgBenefit: avgBenefit,
         searchLang: searchLang,
-        reviewLang: searchLang,
+        reviewLang: this.props.lng,
         isLoaded: true,
       });
   }

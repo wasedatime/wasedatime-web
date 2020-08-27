@@ -28,14 +28,14 @@ const RelatedCoursesWrapper = styled("div")`
   overflow-y: auto;
 `;
 
-const getCourseKey = course => course["_id"].substring(0, 10);
+const getCourseKey = (course) => course["_id"].substring(0, 10);
 
 class RelatedCoursesContainer extends React.Component {
   state = {
-    reviewLang: this.props.searchLang
+    reviewLang: this.props.searchLang,
   };
 
-  switchReviewLang = lang => this.setState({ reviewLang: lang });
+  switchReviewLang = (lang) => this.setState({ reviewLang: lang });
 
   render() {
     const { relatedCourses, courseEvals, searchLang, t } = this.props;
@@ -47,7 +47,7 @@ class RelatedCoursesContainer extends React.Component {
           switchReviewLang={this.switchReviewLang}
         />
         <RelatedCoursesWrapper>
-          {relatedCourses.map(relatedCourse => (
+          {relatedCourses.map((relatedCourse) => (
             <CourseEvalsGroup
               course={relatedCourse}
               reviews={courseEvals[getCourseKey(relatedCourse)]}

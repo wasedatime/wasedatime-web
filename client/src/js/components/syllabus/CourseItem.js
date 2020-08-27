@@ -8,7 +8,7 @@ import {
   faClock,
   faMapMarkerAlt,
   faExternalLinkSquareAlt,
-  faCommentDots
+  faCommentDots,
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
@@ -180,11 +180,11 @@ const schoolNameIconMap = {
   [CSE]: cseIcon,
   [ASE]: aseIcon,
   [CJL]: cjlIcon,
-  [GEC]: gecIcon
+  [GEC]: gecIcon,
 };
 
-const mapLinkToSchoolIcon = keys => {
-  return keys.map(key => {
+const mapLinkToSchoolIcon = (keys) => {
+  return keys.map((key) => {
     return (
       <SchoolIconItem key={key.school}>
         <SchoolIconImage src={schoolNameIconMap[key.school]} />
@@ -248,7 +248,7 @@ const CourseItem = ({
   handleClickSyllabusLink,
   isInCourseEvalsPage,
   t,
-  lng
+  lng,
 }) => {
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
@@ -313,7 +313,7 @@ const CourseItem = ({
             style={{
               display: "flex",
               flex: "1 0 auto",
-              justifyContent: "flex-end"
+              justifyContent: "flex-end",
             }}
           >
             <a
@@ -323,7 +323,7 @@ const CourseItem = ({
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={e => {
+              onClick={(e) => {
                 handleClickSyllabusLink(title, lng);
               }}
             >
@@ -335,7 +335,7 @@ const CourseItem = ({
               />
             </a>
             <InvisibleButton
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 handleOnClick(title, lng);
               }}
@@ -343,7 +343,7 @@ const CourseItem = ({
               {buttonIcon}
             </InvisibleButton>
             <MediaQuery maxWidth={sizes.desktop}>
-              {matches => {
+              {(matches) => {
                 return (
                   matches &&
                   !isInCourseEvalsPage &&
@@ -368,7 +368,7 @@ const CourseItem = ({
             </Description>
           </DescriptionWrapper>
           <MediaQuery minWidth={sizes.desktop}>
-            {matches => {
+            {(matches) => {
               return (
                 matches &&
                 !isInCourseEvalsPage &&
@@ -399,5 +399,5 @@ CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,
   course: PropTypes.object.isRequired,
   isAddable: PropTypes.bool.isRequired,
-  handleOnClick: PropTypes.func.isRequired
+  handleOnClick: PropTypes.func.isRequired,
 };

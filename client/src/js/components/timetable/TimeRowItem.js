@@ -1,7 +1,7 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-const StyledListItem = styled('li')`
+const StyledListItem = styled("li")`
   display: flex;
   flex: 1 0 auto;
   flex-direction: column;
@@ -10,12 +10,12 @@ const StyledListItem = styled('li')`
   width: 3rem;
   border-right: solid 1px #ccc;
 `;
-const StyledSpan = styled('span')`
+const StyledSpan = styled("span")`
   font-size: 2.2rem;
   font-weight: 600;
 `;
 
-const StyledTime = styled('time')`
+const StyledTime = styled("time")`
   font-size: 1.2rem;
   color: #333;
 `;

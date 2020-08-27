@@ -17,38 +17,57 @@ const ExtendedArticle = styled(Article)`
   `};
 `;
 
-const CourseItemWrapper = styled('div')`
+const CourseItemWrapper = styled("div")`
   pointer-events: none !important;
   font-size: 16px;
   width: 500px;
   ${media.phone`
     width: auto;
   `};
-`
+`;
 
 const styles = {
   h3: {
     margin: "0.6em 0",
     wordBreak: "keep-all",
-    fontSize: "1.6em"
+    fontSize: "1.6em",
   },
   h4: {
     margin: "0.35em 0",
-    fontSize: "1.1em"
-  }
+    fontSize: "1.1em",
+  },
 };
 
 const NewFeature = ({ classes, t, lng }) => {
   const dummyCourse = {
-    "_id": "11G100101001202011G100101011",
-    "year": 2020,
-    "term": "fallSem",
-    "title": "Introduction to Political Analysis [E] 01",
-    "title_jp": "Introduction to Political Analysis 01",
-    "instructor": "KELLAM, Marisa",
-    "instructor_jp": "ケラム マリサ",
-    "occurrences": [{ "day": 3, "start_period": 2, "end_period": 2, "building": "-1", "classroom": "undecided", "location": "-1-undecided" }, { "day": 2, "start_period": 3, "end_period": 3, "building": "-1", "classroom": "undecided", "location": "-1-undecided" }], "lang": "EN", "keys": [{ "school": "PSE", "key": "11G100101001202011G100101011" }]
-  }
+    _id: "11G100101001202011G100101011",
+    year: 2020,
+    term: "fallSem",
+    title: "Introduction to Political Analysis [E] 01",
+    title_jp: "Introduction to Political Analysis 01",
+    instructor: "KELLAM, Marisa",
+    instructor_jp: "ケラム マリサ",
+    occurrences: [
+      {
+        day: 3,
+        start_period: 2,
+        end_period: 2,
+        building: "-1",
+        classroom: "undecided",
+        location: "-1-undecided",
+      },
+      {
+        day: 2,
+        start_period: 3,
+        end_period: 3,
+        building: "-1",
+        classroom: "undecided",
+        location: "-1-undecided",
+      },
+    ],
+    lang: "EN",
+    keys: [{ school: "PSE", key: "11G100101001202011G100101011" }],
+  };
   return (
     <ExtendedArticle>
       <Typography
@@ -62,8 +81,8 @@ const NewFeature = ({ classes, t, lng }) => {
       </Typography>
       <CourseItemWrapper>
         <CourseItem
-          handleOnClick={() => { }}
-          handleClickSyllabusLink={() => { }}
+          handleOnClick={() => {}}
+          handleClickSyllabusLink={() => {}}
           isAddable={true}
           searchTerm={""}
           searchLang={lng}

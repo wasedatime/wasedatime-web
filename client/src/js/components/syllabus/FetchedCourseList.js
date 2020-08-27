@@ -27,7 +27,7 @@ const CourseChunkWrapper = styled("div")`
   margin: 0.5em 0;
 `;
 
-const getChunkKey = chunk => {
+const getChunkKey = (chunk) => {
   const head = chunk[0];
   const tail = chunk[chunk.length - 1];
   return `${head._id}-${tail._id}`;
@@ -40,14 +40,14 @@ class FetchedCourseList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadedChunksNum: INIT_CHUNKS_NUM
+      loadedChunksNum: INIT_CHUNKS_NUM,
     };
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.searchTerm !== prevProps.searchTerm) {
       this.setState({
-        loadedChunksNum: INIT_CHUNKS_NUM
+        loadedChunksNum: INIT_CHUNKS_NUM,
       });
       window.scrollTo({ top: 0 });
     }
@@ -59,11 +59,11 @@ class FetchedCourseList extends React.Component {
       this.state.loadedChunksNum
     );
 
-  loadMoreChunks = index => {
+  loadMoreChunks = (index) => {
     if (index !== 0 && index + 1 === this.state.loadedChunksNum) {
       this.setState((prevState, props) => {
         return {
-          loadedChunksNum: prevState.loadedChunksNum + 1
+          loadedChunksNum: prevState.loadedChunksNum + 1,
         };
       });
     }
@@ -129,5 +129,5 @@ export default withNamespaces("translation")(FetchedCourseList);
 
 FetchedCourseList.propTypes = {
   searchTerm: PropTypes.string.isRequired,
-  results: PropTypes.array.isRequired
+  results: PropTypes.array.isRequired,
 };

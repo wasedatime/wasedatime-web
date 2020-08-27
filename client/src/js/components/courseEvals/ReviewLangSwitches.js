@@ -8,7 +8,7 @@ const ReviewLangSwitch = styled("button")`
   background-color: #ccc;
   height: 2em;
   vertical-align: 0.3em;
-  ${props => props.active && "border-bottom: 2px solid #fff"};
+  ${(props) => props.active && "border-bottom: 2px solid #fff"};
 
   &:hover {
     outline: none;

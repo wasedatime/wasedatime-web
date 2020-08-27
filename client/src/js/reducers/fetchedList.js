@@ -1,6 +1,6 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-const fetchedList = actionTypes => {
+const fetchedList = (actionTypes) => {
   const ids = (state = [], action) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
@@ -29,7 +29,7 @@ const fetchedList = actionTypes => {
       default:
         return state;
     }
-  }
+  };
 
   const error = (state = null, action) => {
     switch (action.type) {
@@ -47,6 +47,6 @@ const fetchedList = actionTypes => {
 
 export default fetchedList;
 
-export const getIds = state => state.ids;
-export const getIsFetching = state => state.isFetching;
-export const getError = state => state.error;
+export const getIds = (state) => state.ids;
+export const getIsFetching = (state) => state.isFetching;
+export const getError = (state) => state.error;

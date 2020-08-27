@@ -3,7 +3,7 @@ import {
   ADD_COURSE,
   REMOVE_COURSE,
   CHANGE_COURSE_COLOR,
-  TOGGLE_COURSE_VISIBILITY
+  TOGGLE_COURSE_VISIBILITY,
 } from "../actions/types";
 
 const addedCoursePrefs = (state = [], action) => {
@@ -11,7 +11,7 @@ const addedCoursePrefs = (state = [], action) => {
     case HYDRATE_ADDED_COURSES:
       //Remove coursePref whose id doesn't match to any courses
       //due to course key udpates in waseda official syllabus
-      return state.filter(coursePref => {
+      return state.filter((coursePref) => {
         return action.payload.fetchedCoursesById[coursePref.id] !== undefined;
       });
     case ADD_COURSE:
@@ -21,19 +21,19 @@ const addedCoursePrefs = (state = [], action) => {
           id: action.payload.id,
           color: state.length % 8,
           visibility: true,
-          displayLang: action.payload.displayLang
-        }
+          displayLang: action.payload.displayLang,
+        },
       ];
     case REMOVE_COURSE:
-      return state.filter(coursePref => coursePref.id !== action.payload.id);
+      return state.filter((coursePref) => coursePref.id !== action.payload.id);
     case CHANGE_COURSE_COLOR:
-      return state.map(coursePref =>
+      return state.map((coursePref) =>
         coursePref.id === action.payload.id
           ? { ...coursePref, color: action.payload.color }
           : coursePref
       );
     case TOGGLE_COURSE_VISIBILITY:
-      return state.map(coursePref =>
+      return state.map((coursePref) =>
         coursePref.id === action.payload.id
           ? { ...coursePref, visibility: !coursePref.visibility }
           : coursePref
@@ -45,4 +45,4 @@ const addedCoursePrefs = (state = [], action) => {
 
 export default addedCoursePrefs;
 
-export const getId = property => property.id;
+export const getId = (property) => property.id;

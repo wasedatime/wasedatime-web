@@ -3,9 +3,9 @@ export const filterInvalidClassrooms = (
   school,
   classroomNameLength
 ) => {
-  return courses.filter(course => {
+  return courses.filter((course) => {
     const keys = course.keys;
-    const schools = keys.map(key => key.school);
+    const schools = keys.map((key) => key.school);
     if (!schools.includes(school)) return false;
 
     const occurrences = course.occurrences;

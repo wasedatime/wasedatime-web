@@ -26,7 +26,7 @@ const Wrapper = styled("div")`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: ${props => props.theme.headerHeight};
+  padding-top: ${(props) => props.theme.headerHeight};
 `;
 
 const StyledMain = styled("main")`
@@ -34,7 +34,7 @@ const StyledMain = styled("main")`
   flex-direction: column;
   flex: 1 0 auto;
   width: 100%;
-  min-height: calc(100vh - ${props => props.theme.headerHeight});
+  min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
 const App = ({ isFirstTimeAccess }) => {
@@ -77,15 +77,10 @@ const App = ({ isFirstTimeAccess }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isFirstTimeAccess: getUserIsFirstTimeAccess(state)
+    isFirstTimeAccess: getUserIsFirstTimeAccess(state),
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    null
-  )(App)
-);
+export default withRouter(connect(mapStateToProps, null)(App));

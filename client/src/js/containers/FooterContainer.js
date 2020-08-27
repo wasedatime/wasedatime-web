@@ -29,28 +29,25 @@ class FooterContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isFetching: getIsFetching(state.stats),
     info: getInfo(state.stats),
-    error: getError(state.stats)
+    error: getError(state.stats),
   };
 };
 
 const mapDispatchToProps = {
-  fetchStats
+  fetchStats,
 };
 
 export default withNamespaces("translation")(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(FooterContainer)
+  connect(mapStateToProps, mapDispatchToProps)(FooterContainer)
 );
 
 FooterContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   info: PropTypes.object.isRequired,
   error: PropTypes.object,
-  fetchStats: PropTypes.func.isRequired
+  fetchStats: PropTypes.func.isRequired,
 };

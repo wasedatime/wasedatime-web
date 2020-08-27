@@ -28,22 +28,22 @@ const Logo = styled("img")`
 
 const styles = {
   h3: {
-    wordBreak: "keep-all"
+    wordBreak: "keep-all",
   },
   h4: {
     wordBreak: "keep-all",
-    color: '#0b35c8 !important'
+    color: "#0b35c8 !important",
   },
   formControlLabelLabel: {
-    fontSize: "1em"
+    fontSize: "1em",
   },
   radioChecked: {
-    color: "#b51e36 !important"
-  }
+    color: "#b51e36 !important",
+  },
 };
 
 class Greeting extends React.Component {
-  handleChangeLang = event => {
+  handleChangeLang = (event) => {
     event.preventDefault();
     const lng = event.target.value;
     this.props.i18n.changeLanguage(lng);
@@ -70,7 +70,9 @@ class Greeting extends React.Component {
           gutterBottom
           className={classes.h4}
         >
-          {`${t("welcome.newFeature")} ${t("welcome.courseEvals")} ${t("welcome.added")}`}
+          {`${t("welcome.newFeature")} ${t("welcome.courseEvals")} ${t(
+            "welcome.added"
+          )}`}
         </Typography>
         <FormControl component="fieldset" className={undefined}>
           <RadioGroup

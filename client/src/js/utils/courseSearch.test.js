@@ -3,7 +3,7 @@ import {
   regexify,
   getCourseTitleAndInstructor,
   searchCourses,
-  sortCourses
+  sortCourses,
 } from "./courseSearch";
 import LANGS from "../config/langs";
 
@@ -21,7 +21,7 @@ describe(">>>UTILS --- Test tokenize", () => {
       "search",
       "term",
       "検索",
-      "ワード"
+      "ワード",
     ]);
   });
 });
@@ -45,19 +45,19 @@ describe(">>>UTILS --- getCourseTitleAndInstructor", () => {
     title: "Advanced Calculus",
     title_jp: "解析学入門",
     instructor: "TANAKA, Kazunaga",
-    instructor_jp: "田中 和永"
+    instructor_jp: "田中 和永",
   };
   test("should return a en title and instructor given a en searchLang", () => {
     expect(getCourseTitleAndInstructor(dummyCourse, LANGS.EN)).toEqual({
       title: "Advanced Calculus",
-      instructor: "TANAKA, Kazunaga"
+      instructor: "TANAKA, Kazunaga",
     });
   });
 
   test("should return a jp title and instructor given a jp searchLang", () => {
     expect(getCourseTitleAndInstructor(dummyCourse, LANGS.JP)).toEqual({
       title: "解析学入門",
-      instructor: "田中 和永"
+      instructor: "田中 和永",
     });
   });
 });
@@ -68,14 +68,14 @@ describe(">>>UTILS --- searchCourses", () => {
       title: "Advanced Calculus",
       title_jp: "解析学入門",
       instructor: "TANAKA, Kazunaga",
-      instructor_jp: "田中 和永"
+      instructor_jp: "田中 和永",
     },
     {
       title: "Advanced Chinese II fall semester-Wed-5 Nagatomi",
       title_jp: "中国語上級II 秋期水5永冨",
       instructor: "NAGATOMI, Seiji",
-      instructor_jp: "永冨 青地"
-    }
+      instructor_jp: "永冨 青地",
+    },
   ];
 
   test("should search a course given one en partial title", () => {
@@ -109,57 +109,57 @@ describe(">>>UTILS --- sortCourses", () => {
       title: "Advanced Calculus",
       title_jp: "解析学入門",
       instructor: "TANAKA, Kazunaga",
-      instructor_jp: "田中 和永"
+      instructor_jp: "田中 和永",
     },
     {
       title: "Advanced Chinese II fall semester-Wed-5 Nagatomi",
       title_jp: "中国語上級II 秋期水5永冨",
       instructor: "NAGATOMI, Seiji",
-      instructor_jp: "永冨 青地"
+      instructor_jp: "永冨 青地",
     },
     {
       title: "Beginners Chinese IA spring semester-Fri-1 Hara",
       title_jp: "中国語初級IA 春期金1原",
       instructor: "HARA, Shintaro Alexandre",
-      instructor_jp: "原 信太郎 アレシャンドレ"
-    }
+      instructor_jp: "原 信太郎 アレシャンドレ",
+    },
   ];
 
   const dummyEnCourses = [
     {
       title: "Advanced Calculus",
-      instructor: "TANAKA, Kazunaga"
+      instructor: "TANAKA, Kazunaga",
     },
     {
       title: "Calculus A",
-      instructor: "BOWEN, Mark"
+      instructor: "BOWEN, Mark",
     },
     {
       title: "Advanced Macroeconomics A 01",
-      instructor: "UEDA, Kozo"
-    }
+      instructor: "UEDA, Kozo",
+    },
   ];
 
   const dummyJpCourses = [
     {
       title_jp: "保険数学",
-      instructor_jp: "内藤 和晃"
+      instructor_jp: "内藤 和晃",
     },
     {
       title_jp: "量子力学特論",
-      instructor_jp: "山中 由也"
+      instructor_jp: "山中 由也",
     },
     {
       title_jp: "中国語上級II 秋期水5永冨",
-      instructor_jp: "永冨 青地"
-    }
+      instructor_jp: "永冨 青地",
+    },
   ];
 
   test("should prioritize en title > instructor > no match", () => {
     expect(sortCourses("ma", dummyEnCourses, LANGS.EN)).toEqual([
       dummyEnCourses[2],
       dummyEnCourses[1],
-      dummyEnCourses[0]
+      dummyEnCourses[0],
     ]);
   });
 
@@ -167,7 +167,7 @@ describe(">>>UTILS --- sortCourses", () => {
     expect(sortCourses("中", dummyJpCourses, LANGS.JP)).toEqual([
       dummyJpCourses[2],
       dummyJpCourses[1],
-      dummyJpCourses[0]
+      dummyJpCourses[0],
     ]);
   });
 });

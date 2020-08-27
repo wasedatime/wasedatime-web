@@ -1,8 +1,6 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import {
-  UPDATE_LANGUAGE
-} from '../actions/types';
+import { UPDATE_LANGUAGE } from "../actions/types";
 
 const getLanguage = (state = {}, action) => {
   switch (action.type) {

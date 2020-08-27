@@ -46,7 +46,7 @@ export const loadState = () => {
         }
         nextUpdateTime.setHours(7, 0, 0, 0);
 
-        const currentTime = new Date()
+        const currentTime = new Date();
         const needsUpdate = currentTime >= nextUpdateTime;
 
         if (needsUpdate) {
@@ -92,7 +92,7 @@ export const saveState = (state) => {
       localStorage.clear();
       localForage
         .clear()
-        .then(() => { })
+        .then(() => {})
         .catch((error) => {
           console.error(error);
         });
@@ -101,13 +101,13 @@ export const saveState = (state) => {
   const { fetchedCourses, ...rest } = state;
   localForage
     .setItem(STATE_NAME, rest)
-    .then((value) => { })
+    .then((value) => {})
     .catch((error) => {
       console.error(error);
     });
   localForage
     .setItem(STATE_FETCHED_COURSES_NAME, fetchedCourses)
-    .then((value) => { })
+    .then((value) => {})
     .catch((error) => {
       console.error(error);
     });

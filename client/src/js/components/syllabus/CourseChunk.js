@@ -7,7 +7,7 @@ import { UnstyledUList } from "../../styled-components/List";
 const CourseChunk = ({ chunk, searchTerm, searchLang }) => {
   return (
     <UnstyledUList>
-      {chunk.map(course => (
+      {chunk.map((course) => (
         <FetchedCourseItem
           key={course._id}
           searchTerm={searchTerm}
@@ -24,5 +24,5 @@ export default CourseChunk;
 CourseChunk.propTypes = {
   chunk: PropTypes.array.isRequired,
   searchTerm: PropTypes.string.isRequired,
-  searchLang: PropTypes.string.isRequired
+  searchLang: PropTypes.string.isRequired,
 };

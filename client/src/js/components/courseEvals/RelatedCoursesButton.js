@@ -1,9 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faTimes,
-  faSearchPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faSearchPlus } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";

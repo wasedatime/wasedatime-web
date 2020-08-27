@@ -12,7 +12,7 @@ import { gaRelatedCourses } from "../../ga/eventCategories";
 import {
   gaAppendActionWithLng,
   gaOpenModal,
-  gaCloseModal
+  gaCloseModal,
 } from "../../ga/eventActions";
 import levenshtein from "levenshtein-edit-distance";
 import { withNamespaces } from "react-i18next";
@@ -81,7 +81,7 @@ const modalStyle = {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: "1050"
+    zIndex: "1050",
   },
   content: {
     position: "absolute",
@@ -94,8 +94,8 @@ const modalStyle = {
     overflowScrolling: "touch",
     WebkitOverflowScrolling: "touch",
     outline: "none",
-    padding: 0
-  }
+    padding: 0,
+  },
 };
 
 const getCourse = (loadedCourses, courseID) => {
@@ -103,9 +103,9 @@ const getCourse = (loadedCourses, courseID) => {
   return loadedCourses ? loadedCourses[courseID] : null;
 };
 
-const getCourseKey = course =>
+const getCourseKey = (course) =>
   course["keys"]["school"] === "SILS" &&
-    course["title"].toLowerCase().includes("seminar")
+  course["title"].toLowerCase().includes("seminar")
     ? course["_id"].substring(0, 12)
     : course["_id"].substring(0, 10);
 
@@ -116,12 +116,12 @@ const getRelatedCourses = (
   thisCourseTitle
 ) => {
   const relatedCourseIDs = Object.keys(loadedCourses).filter(
-    courseID =>
+    (courseID) =>
       loadedCourses[courseID].code === courseCode &&
       getCourseKey(loadedCourses[courseID]) !== thisCourseKey
   );
   const relatedCourses = relatedCourseIDs.map(
-    courseID => loadedCourses[courseID]
+    (courseID) => loadedCourses[courseID]
   );
   const sortedRelatedCourses = relatedCourses
     .sort(
@@ -164,7 +164,7 @@ class CourseEvals extends React.Component {
     reviewLang: "",
     isLoaded: false,
     isModalOpen: false,
-    error: false
+    error: false,
   };
 
   componentDidMount() {
@@ -178,10 +178,10 @@ class CourseEvals extends React.Component {
 
   async loadEvaluationsAndRelatedCourses() {
     const courseID = qs.parse(this.props.location.search, {
-      ignoreQueryPrefix: true
+      ignoreQueryPrefix: true,
     }).courseID;
     const searchLang = qs.parse(this.props.location.search, {
-      ignoreQueryPrefix: true
+      ignoreQueryPrefix: true,
     }).searchLang;
     let loadedCourses = this.props.fetchedCoursesById;
     //loadState().fetchedCourses.byId;
@@ -210,7 +210,7 @@ class CourseEvals extends React.Component {
     let satisfactionSum = 0,
       difficultySum = 0,
       benefitSum = 0;
-    thisCourseEvals.forEach(review => {
+    thisCourseEvals.forEach((review) => {
       satisfactionSum += review.satisfaction;
       difficultySum += review.difficulty;
       benefitSum += review.benefit;
@@ -223,35 +223,36 @@ class CourseEvals extends React.Component {
     const avgBenefit =
       Math.round((benefitSum / thisCourseEvals.length) * 2) / 2;
 
-    this._isMounted && this.setState({
-      thisCourse: thisCourse,
-      relatedCourses: relatedCourses,
-      thisCourseEvals: thisCourseEvals,
-      relatedCourseEvals: relatedCourseEvals,
-      avgSatisfaction: avgSatisfaction,
-      avgDifficulty: avgDifficulty,
-      avgBenefit: avgBenefit,
-      searchLang: searchLang,
-      reviewLang: searchLang,
-      isLoaded: true
-    });
+    this._isMounted &&
+      this.setState({
+        thisCourse: thisCourse,
+        relatedCourses: relatedCourses,
+        thisCourseEvals: thisCourseEvals,
+        relatedCourseEvals: relatedCourseEvals,
+        avgSatisfaction: avgSatisfaction,
+        avgDifficulty: avgDifficulty,
+        avgBenefit: avgBenefit,
+        searchLang: searchLang,
+        reviewLang: searchLang,
+        isLoaded: true,
+      });
   }
 
-  handleToggleModal = event => {
+  handleToggleModal = (event) => {
     event.preventDefault();
     const gaAction = this.state.isModalOpen ? gaCloseModal : gaOpenModal;
     ReactGA.event({
       category: gaRelatedCourses,
-      action: gaAppendActionWithLng(gaAction, this.props.lng)
+      action: gaAppendActionWithLng(gaAction, this.props.lng),
     });
     this.setState((prevState, props) => {
       return {
-        isModalOpen: !prevState.isModalOpen
+        isModalOpen: !prevState.isModalOpen,
       };
     });
   };
 
-  switchReviewLang = lang => this.setState({ reviewLang: lang });
+  switchReviewLang = (lang) => this.setState({ reviewLang: lang });
 
   render() {
     const {
@@ -265,7 +266,7 @@ class CourseEvals extends React.Component {
       searchLang,
       reviewLang,
       isLoaded,
-      error
+      error,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadEvaluationsAndRelatedCourses} />;
@@ -336,7 +337,7 @@ class CourseEvals extends React.Component {
 
         {isLoaded && (
           <MediaQuery minWidth={sizes.desktop}>
-            {matches => {
+            {(matches) => {
               return matches ? (
                 <ShortWrapper>
                   <RelatedCoursesContainer
@@ -346,27 +347,27 @@ class CourseEvals extends React.Component {
                   />
                 </ShortWrapper>
               ) : (
-                  <div>
-                    <RelatedCoursesButton
-                      isModalOpen={this.state.isModalOpen}
-                      handleToggleModal={this.handleToggleModal}
+                <div>
+                  <RelatedCoursesButton
+                    isModalOpen={this.state.isModalOpen}
+                    handleToggleModal={this.handleToggleModal}
+                  />
+                  <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                    <RelatedCoursesContainer
+                      relatedCourses={relatedCourses}
+                      courseEvals={relatedCourseEvals}
+                      searchLang={searchLang}
                     />
-                    <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
-                      <RelatedCoursesContainer
-                        relatedCourses={relatedCourses}
-                        courseEvals={relatedCourseEvals}
-                        searchLang={searchLang}
-                      />
-                    </Modal>
-                  </div>
-                );
+                  </Modal>
+                </div>
+              );
             }}
           </MediaQuery>
         )}
       </RowWrapper>
     ) : (
-        <LoadingSpinner message={"Loading reviews..."} />
-      );
+      <LoadingSpinner message={"Loading reviews..."} />
+    );
   }
 }
 

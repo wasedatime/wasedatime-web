@@ -1,12 +1,12 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
 import {
   HYDRATE_ADDED_COURSES,
   ADD_COURSE,
-  CHANGE_COURSES_SORTING_OPTION
-} from '../actions/types';
-import addedSemesterCourses, * as fromSemesterCourses from './addedSemesterCourses';
-import { fallSemesters, springSemesters } from '../data/semesters';
+  CHANGE_COURSES_SORTING_OPTION,
+} from "../actions/types";
+import addedSemesterCourses, * as fromSemesterCourses from "./addedSemesterCourses";
+import { fallSemesters, springSemesters } from "../data/semesters";
 
 // Higher-order reducer.
 // https://redux.js.org/recipes/structuringreducers/reusingreducerlogic
@@ -29,7 +29,7 @@ const createSemesterWrapperReducer = (
         const { prefs, ...payloadRest } = payload;
         const newPayload = {
           prefs: payload.prefs[reducerName],
-          ...payloadRest
+          ...payloadRest,
         };
         const newAction = { payload: newPayload, ...actionRest };
         return reducerFunction(state, newAction);
@@ -47,48 +47,48 @@ const createSemesterWrapperReducer = (
 const addedCourses = combineReducers({
   fall: createSemesterWrapperReducer(
     addedSemesterCourses,
-    'fall',
+    "fall",
     fallSemesters
   ),
   spring: createSemesterWrapperReducer(
     addedSemesterCourses,
-    'spring',
+    "spring",
     springSemesters
-  )
+  ),
 });
 
 export default addedCourses;
 
-export const getPrefs = state => ({
+export const getPrefs = (state) => ({
   fall: fromSemesterCourses.getPrefs(state.fall),
-  spring: fromSemesterCourses.getPrefs(state.spring)
+  spring: fromSemesterCourses.getPrefs(state.spring),
 });
 
-export const getIsPrefsEmpty = state => {
+export const getIsPrefsEmpty = (state) => {
   return (
     !fromSemesterCourses.getPrefs(state.fall).length &&
     !fromSemesterCourses.getPrefs(state.spring).length
   );
 };
 
-export const getAddedCourses = state => ({
+export const getAddedCourses = (state) => ({
   fall: fromSemesterCourses.getAddedCourses(state.fall),
-  spring: fromSemesterCourses.getAddedCourses(state.spring)
+  spring: fromSemesterCourses.getAddedCourses(state.spring),
 });
 
-export const getIsAddedCoursesEmpty = state => {
+export const getIsAddedCoursesEmpty = (state) => {
   return (
     !fromSemesterCourses.getAddedCourses(state.fall).length &&
     !fromSemesterCourses.getAddedCourses(state.spring).length
   );
 };
 
-export const getAddedCoursesAndPrefs = state => ({
+export const getAddedCoursesAndPrefs = (state) => ({
   fall: fromSemesterCourses.getAddedCoursesAndPrefs(state.fall),
-  spring: fromSemesterCourses.getAddedCoursesAndPrefs(state.spring)
+  spring: fromSemesterCourses.getAddedCoursesAndPrefs(state.spring),
 });
 
-export const getById = state => ({
+export const getById = (state) => ({
   ...fromSemesterCourses.getById(state.fall),
-  ...fromSemesterCourses.getById(state.spring)
+  ...fromSemesterCourses.getById(state.spring),
 });

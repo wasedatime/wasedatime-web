@@ -12,7 +12,7 @@ class TimetableContainer extends React.Component {
     super(props);
     this.semesters = [
       { title: "Spring Semester", key: "spring" },
-      { title: "Fall Semester", key: "fall" }
+      { title: "Fall Semester", key: "fall" },
     ];
     let semesterIndex;
     const month = new Date().getMonth();
@@ -23,26 +23,26 @@ class TimetableContainer extends React.Component {
       semesterIndex = 1;
     }
     this.state = {
-      semesterIndex
+      semesterIndex,
     };
   }
 
-  handleIncreaseSemesterIndex = event => {
+  handleIncreaseSemesterIndex = (event) => {
     event.preventDefault();
     const newSemesterIndex =
       (this.state.semesterIndex + 1) % this.semesters.length;
     this.setState({
-      semesterIndex: newSemesterIndex
+      semesterIndex: newSemesterIndex,
     });
   };
 
-  handleDecreaseSemesterIndex = event => {
+  handleDecreaseSemesterIndex = (event) => {
     event.preventDefault();
     const newSemesterIndex = Math.abs(
       (this.state.semesterIndex - 1) % this.semesters.length
     );
     this.setState({
-      semesterIndex: newSemesterIndex
+      semesterIndex: newSemesterIndex,
     });
   };
 

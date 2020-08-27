@@ -6,7 +6,7 @@ import { faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
 const FilledStar = styled(FontAwesomeIcon)`
   color: orange;
   font-size: 0.7em;
-  vertical-align: 0.1em
+  vertical-align: 0.1em;
 `;
 
 const BlankStar = styled(FontAwesomeIcon)`
@@ -15,7 +15,7 @@ const BlankStar = styled(FontAwesomeIcon)`
   vertical-align: 0.1em;
 `;
 
-const displayFilledStars = scale => {
+const displayFilledStars = (scale) => {
   let stars = [];
   for (let n = Math.floor(scale); n > 0; n--) {
     stars.push(<FilledStar key={n} icon={faStar} />);
@@ -24,20 +24,24 @@ const displayFilledStars = scale => {
   // return [...Array(Math.floor(scale)).keys()].map(i => {
   //   return <FilledStar key={i} icon={faStar} />
   // })
-}
+};
 
-const displayHalfStar = scale => {
-  return (scale - Math.floor(scale))*2 ? <FilledStar icon={faStarHalf} /> : ''
-}
+const displayHalfStar = (scale) => {
+  return (scale - Math.floor(scale)) * 2 ? (
+    <FilledStar icon={faStarHalf} />
+  ) : (
+    ""
+  );
+};
 
-const displayBlankStars = scale => {
+const displayBlankStars = (scale) => {
   let stars = [];
-  for (let n = 5-Math.ceil(scale); n > 0; n--) {
+  for (let n = 5 - Math.ceil(scale); n > 0; n--) {
     stars.push(<BlankStar key={n} icon={faStar} />);
   }
   return stars;
   // return [...Array(5-Math.ceil(scale)).keys()].map(i => <BlankStar key={i} icon={faStar} />)
-}
+};
 
 const EvaluationStars = ({ scale }) => (
   <span>
@@ -45,6 +49,6 @@ const EvaluationStars = ({ scale }) => (
     {displayHalfStar(scale)}
     {displayBlankStars(scale)}
   </span>
-)
+);
 
 export default EvaluationStars;

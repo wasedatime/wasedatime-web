@@ -50,7 +50,7 @@ const EvaluationScalesCountContainer = ({
   avgDifficulty,
   avgBenefit,
   thisCourseEvalsLength,
-  t
+  t,
 }) => (
   <EvaluationScalesRow>
     <EvaluationScalesList>
@@ -70,7 +70,7 @@ const EvaluationScalesCountContainer = ({
 
     <EvaluationsCount>
       <MediaQuery minWidth={sizes.desktop}>
-        {matches =>
+        {(matches) =>
           matches ? (
             <span>{thisCourseEvalsLength}</span>
           ) : (

@@ -45,7 +45,7 @@ class Analytics extends React.Component {
   }
 
   debounceSendPageChange = debounce(this.sendPageChange, 2000, {
-    leading: false
+    leading: false,
   });
 
   render() {
@@ -84,5 +84,5 @@ const Root = ({ store }) => {
 export default Root;
 
 Root.propTypes = {
-  store: PropTypes.object.isRequired
+  store: PropTypes.object.isRequired,
 };

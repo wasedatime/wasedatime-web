@@ -11,5 +11,5 @@ const API_COURSE_EVALS_BASE_URL =
 export const wasetimeApiStatic = {
   scraperStats: API_STATIC_URL + "scraper_stats/index.json",
   courseListAll: API_STATIC_URL + "course_list_all.json",
-  courseEvalsBaseURL: API_COURSE_EVALS_BASE_URL
+  courseEvalsBaseURL: API_COURSE_EVALS_BASE_URL,
 };

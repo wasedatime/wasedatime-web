@@ -38,22 +38,32 @@ const Logo = styled('img')`
 
 const Description = styled('p')`
   font-size: 2rem;
+  text-align: center;
 `;
 
 class LoadingSpinner extends React.Component {
   constructor(props) {
     super(props);
+
+    // isMounted pattern to prevent setTimeOut executing after the component unmounts.
+    this._isMounted = false;
+
     this.state = {
       delayMessage: ""
     }
   }
 
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({
+    this._isMounted = true;
+    this._isMounted && setTimeout(() => {
+      this._isMounted && this.setState({
         delayMessage: "Slow network is detected. Please wait we're almost done 💪"
       })
     }, 4000)
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   render() {

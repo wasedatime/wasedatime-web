@@ -30,6 +30,10 @@ const styles = {
   h3: {
     wordBreak: "keep-all"
   },
+  h4: {
+    wordBreak: "keep-all",
+    color: '#0b35c8 !important'
+  },
   formControlLabelLabel: {
     fontSize: "1em"
   },
@@ -64,7 +68,7 @@ class Greeting extends React.Component {
           component="h4"
           align="center"
           gutterBottom
-          className={classes.h3}
+          className={classes.h4}
         >
           {`${t("welcome.newFeature")} ${t("welcome.courseEvals")} ${t("welcome.added")}`}
         </Typography>

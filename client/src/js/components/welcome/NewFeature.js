@@ -18,8 +18,9 @@ const ExtendedArticle = styled(Article)`
 `;
 
 const CourseItemWrapper = styled('div')`
+  pointer-events: none !important;
   font-size: 16px;
-  width: 400px;
+  width: 500px;
   ${media.phone`
     width: auto;
   `};
@@ -38,7 +39,7 @@ const styles = {
 };
 
 const NewFeature = ({ classes, t, lng }) => {
-  const course = {
+  const dummyCourse = {
     "_id": "11G100101001202011G100101011",
     "year": 2020,
     "term": "fallSem",
@@ -61,13 +62,12 @@ const NewFeature = ({ classes, t, lng }) => {
       </Typography>
       <CourseItemWrapper>
         <CourseItem
-
           handleOnClick={() => { }}
           handleClickSyllabusLink={() => { }}
           isAddable={true}
           searchTerm={""}
           searchLang={lng}
-          course={course}
+          course={dummyCourse}
           isInCourseEvalsPage={false}
         />
       </CourseItemWrapper>
@@ -78,8 +78,9 @@ const NewFeature = ({ classes, t, lng }) => {
         align="center"
         gutterBottom
       >
+        {t("welcome.courseEvalsDetails1")}
         <br />
-        {t("welcome.future")}
+        {t("welcome.courseEvalsDetails2")}
       </Typography>
     </ExtendedArticle>
   );

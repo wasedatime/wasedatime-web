@@ -105,7 +105,7 @@ const getCourse = (loadedCourses, courseID) => {
 
 const getCourseKey = course =>
   course["keys"]["school"] === "SILS" &&
-  (course["title"].includes("seminar") || course["title"].includes("Seminar"))
+    course["title"].toLowerCase().includes("seminar")
     ? course["_id"].substring(0, 12)
     : course["_id"].substring(0, 10);
 
@@ -147,6 +147,11 @@ async function getCourseEvalsByKey(courseKey) {
 }
 
 class CourseEvals extends React.Component {
+  constructor(props) {
+    super(props);
+    this._isMounted = false;
+  }
+
   state = {
     thisCourse: {},
     relatedCourses: [],
@@ -163,7 +168,12 @@ class CourseEvals extends React.Component {
   };
 
   componentDidMount() {
-    this.loadEvaluationsAndRelatedCourses();
+    this._isMounted = true;
+    this._isMounted && this.loadEvaluationsAndRelatedCourses();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   async loadEvaluationsAndRelatedCourses() {
@@ -213,7 +223,7 @@ class CourseEvals extends React.Component {
     const avgBenefit =
       Math.round((benefitSum / thisCourseEvals.length) * 2) / 2;
 
-    this.setState({
+    this._isMounted && this.setState({
       thisCourse: thisCourse,
       relatedCourses: relatedCourses,
       thisCourseEvals: thisCourseEvals,
@@ -336,27 +346,27 @@ class CourseEvals extends React.Component {
                   />
                 </ShortWrapper>
               ) : (
-                <div>
-                  <RelatedCoursesButton
-                    isModalOpen={this.state.isModalOpen}
-                    handleToggleModal={this.handleToggleModal}
-                  />
-                  <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
-                    <RelatedCoursesContainer
-                      relatedCourses={relatedCourses}
-                      courseEvals={relatedCourseEvals}
-                      searchLang={searchLang}
+                  <div>
+                    <RelatedCoursesButton
+                      isModalOpen={this.state.isModalOpen}
+                      handleToggleModal={this.handleToggleModal}
                     />
-                  </Modal>
-                </div>
-              );
+                    <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                      <RelatedCoursesContainer
+                        relatedCourses={relatedCourses}
+                        courseEvals={relatedCourseEvals}
+                        searchLang={searchLang}
+                      />
+                    </Modal>
+                  </div>
+                );
             }}
           </MediaQuery>
         )}
       </RowWrapper>
     ) : (
-      <LoadingSpinner message={"Loading reviews..."} />
-    );
+        <LoadingSpinner message={"Loading reviews..."} />
+      );
   }
 }
 

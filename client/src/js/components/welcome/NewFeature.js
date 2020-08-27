@@ -47,6 +47,7 @@ const NewFeature = ({ classes, t, lng }) => {
     title_jp: "Introduction to Political Analysis 01",
     instructor: "KELLAM, Marisa",
     instructor_jp: "ケラム マリサ",
+    has_evals: true,
     occurrences: [
       {
         day: 3,

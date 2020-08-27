@@ -55,7 +55,7 @@ const SemesterSwitcher = ({
         <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
       </ExtendedInvisibleButton>
       <SemesterTitle>{semesterTitle}</SemesterTitle>
-      <ExtendedInvisibleButton onClick={handleIncreaseSemesterIndex}>
+      <ExtendedInvisibleButton onClick={handleDecreaseSemesterIndex}>
         <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
       </ExtendedInvisibleButton>
     </ExtendedRowWrapper>

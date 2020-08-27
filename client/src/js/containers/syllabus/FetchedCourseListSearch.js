@@ -164,25 +164,6 @@ class FetchedCourseSearch extends React.Component {
         ? filteredCourses
         : filteredCourses.filter(course => langFilters.includes(course.lang));
 
-    // Don't fetch IPSE courses if EBSE courses with same titles exist
-    filteredCourses = filteredCourses.filter(course => {
-      const keywords = course.keywords;
-      if (keywords === undefined) return false;
-      if (keywords.includes("IPSE")) {
-        if (
-          filteredCourses.find(
-            c =>
-              c.keywords !== undefined &&
-              c.title === course.title &&
-              !c.keywords.includes("IPSE") &&
-              c.keywords.includes("English-based Undergraduate Program")
-          )
-        )
-          return false;
-      }
-      return true;
-    });
-
     const dayFilters = filterGroups.day;
     filteredCourses =
       dayFilters.length === 0 || dayFilters.length === 6

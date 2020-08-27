@@ -13,7 +13,7 @@ import ReactGA from "react-ga";
 
 import { setFirstTimeAccessToFalse } from "../../actions/user";
 import Greeting from "./Greeting";
-import Contributors from "./Contributors";
+import NewFeature from './NewFeature';
 import Notice from "./Notice";
 import { gaLanguage } from "../../ga/eventCategories";
 import { gaSetLanguage } from "../../ga/eventActions";
@@ -78,7 +78,7 @@ class DialogStepper extends React.Component {
   render() {
     const { classes, t } = this.props;
     const { activeStep } = this.state;
-    const setupSteps = [<Greeting />, <Contributors />, <Notice />];
+    const setupSteps = [<Greeting />, <NewFeature />, <Notice />];
     const maxSteps = setupSteps.length;
     const isFirstStep = activeStep === 0;
     const isLastStep = activeStep === maxSteps - 1;
@@ -104,15 +104,15 @@ class DialogStepper extends React.Component {
                 <KeyboardArrowRight />
               </Button>
             ) : (
-              <Button
-                size="small"
-                classes={{ label: classes.buttonLabel }}
-                onClick={this.handleDone}
-              >
-                {t("welcome.done")}
-                <KeyboardArrowRight />
-              </Button>
-            )
+                <Button
+                  size="small"
+                  classes={{ label: classes.buttonLabel }}
+                  onClick={this.handleDone}
+                >
+                  {t("welcome.done")}
+                  <KeyboardArrowRight />
+                </Button>
+              )
           }
           backButton={
             <Button

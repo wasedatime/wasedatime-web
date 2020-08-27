@@ -10,9 +10,14 @@
   },
   "welcome": {
     "welcome": "WasedaTime へようこそ!",
+    "newFeature": "新機能",
+    "courseEvals": "授業評価",
+    "added": "を追加しました！",
     "next": "次へ",
     "back": "前へ",
     "done": "完了",
+    "courseEvalsDetails1": "授業評価はシラバス検索結果でオレンジ色",
+    "courseEvalsDetails2": "のボタンをクリックすると表示できます",
     "Meet our developers!": "開発者たち",
     "Founder": "創設者",
     "Frontendtranslation": "フロントエンド &  翻訳",
@@ -103,7 +108,6 @@
       "intensiveSpring": "春季集中",
       "intensiveSummer": "夏季集中",
       "springSummer": "春夏期",
-
       "fallSem": "秋学期",
       "fallQuart": "秋クォーター",
       "winterQuart": "冬クォーター",
@@ -111,7 +115,6 @@
       "intensiveFall": "秋季集中",
       "intensiveWinter": "冬季集中",
       "fallWinter": "秋冬期",
-
       "intensiveSpringFallSem": "集中(春・秋学期)",
       "fullYear": "通年",
       "undecided": "未定"

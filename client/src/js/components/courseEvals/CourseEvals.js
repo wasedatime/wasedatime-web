@@ -312,10 +312,12 @@ class CourseEvals extends React.Component {
 
               <StyledSubHeading>
                 {this.props.t(`courseEvals.Reviews`)}{" "}
-                <ReviewLangSwitches
-                  reviewLang={reviewLang}
-                  switchReviewLang={this.switchReviewLang}
-                />
+                <span style={{ marginLeft: "10px" }}>
+                  <ReviewLangSwitches
+                    reviewLang={reviewLang}
+                    switchReviewLang={this.switchReviewLang}
+                  />
+                </span>
               </StyledSubHeading>
               <EvalsListWrapper>
                 <EvaluationScalesCountContainer

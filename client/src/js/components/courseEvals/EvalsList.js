@@ -21,7 +21,6 @@ const EvaluationDivider = styled("hr")`
 `;
 
 const EvaluationText = styled("div")`
-  flex: 1 0 70%;
   ${media.phoneMini`font-size: 1.4rem; flex: 1 0 60%;`};
 `;
 
@@ -39,7 +38,7 @@ const EvaluationYear = styled("span")`
 `;
 
 const EvaluationScalesList = styled("div")`
-  flex: 1 0 30%;
+  word-break: break-word;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -49,7 +48,7 @@ const EvaluationScalesList = styled("div")`
 `;
 
 const EvaluationScale = styled("div")`
-  flex: 1;
+  text-align: end;
 `;
 
 const EvalsList = ({ reviews, searchLang, reviewLang, t }) => {
@@ -68,15 +67,15 @@ const EvalsList = ({ reviews, searchLang, reviewLang, t }) => {
           </EvaluationText>
           <EvaluationScalesList>
             <EvaluationScale>
-              {t(`courseEvals.Satisfaction`)}{" "}
+              <span>{t(`courseEvals.Satisfaction`)}&nbsp;</span>
               <EvaluationStars scale={review["satisfaction"]} />
             </EvaluationScale>
             <EvaluationScale>
-              {t(`courseEvals.Difficulty`)}{" "}
+              <span>{t(`courseEvals.Difficulty`)}&nbsp;</span>
               <EvaluationStars scale={review["difficulty"]} />
             </EvaluationScale>
             <EvaluationScale>
-              {t(`courseEvals.Benefit`)}{" "}
+              <span>{t(`courseEvals.Benefit`)}&nbsp;</span>
               <EvaluationStars scale={review["benefit"]} />
             </EvaluationScale>
           </EvaluationScalesList>

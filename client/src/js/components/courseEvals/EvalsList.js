@@ -21,7 +21,6 @@ const EvaluationDivider = styled("hr")`
 `;
 
 const EvaluationText = styled("div")`
-  /*flex: 1 1 70%;*/
   ${media.phoneMini`font-size: 1.4rem; flex: 1 0 60%;`};
 `;
 
@@ -39,7 +38,6 @@ const EvaluationYear = styled("span")`
 `;
 
 const EvaluationScalesList = styled("div")`
-  /*flex: 0 0 30%;*/
   word-break: break-word;
   display: flex;
   flex-direction: column;

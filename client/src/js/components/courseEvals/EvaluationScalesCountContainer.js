@@ -56,15 +56,15 @@ const EvaluationScalesCountContainer = ({
     <EvaluationScalesList>
       <EvaluationScale>
         <EvaluationStars scale={avgSatisfaction} />
-        {t(`courseEvals.Satisfaction`)}
+        <span>&nbsp;{t(`courseEvals.Satisfaction`)}</span>
       </EvaluationScale>
       <EvaluationScale>
         <EvaluationStars scale={avgDifficulty} />
-        {t(`courseEvals.Difficulty`)}
+        <span>&nbsp;{t(`courseEvals.Difficulty`)}</span>
       </EvaluationScale>
       <EvaluationScale>
         <EvaluationStars scale={avgBenefit} />
-        {t(`courseEvals.Benefit`)}
+        <span>&nbsp;{t(`courseEvals.Benefit`)}</span>
       </EvaluationScale>
     </EvaluationScalesList>
 

@@ -49,7 +49,7 @@ const EvaluationScalesList = styled("div")`
 `;
 
 const EvaluationScale = styled("div")`
-  flex: 1;
+  text-align: end;
 `;
 
 const EvalsList = ({ reviews, searchLang, reviewLang, t }) => {
@@ -68,15 +68,15 @@ const EvalsList = ({ reviews, searchLang, reviewLang, t }) => {
           </EvaluationText>
           <EvaluationScalesList>
             <EvaluationScale>
-              {t(`courseEvals.Satisfaction`)}{" "}
+              <span>{t(`courseEvals.Satisfaction`)}&nbsp;</span>
               <EvaluationStars scale={review["satisfaction"]} />
             </EvaluationScale>
             <EvaluationScale>
-              {t(`courseEvals.Difficulty`)}{" "}
+              <span>{t(`courseEvals.Difficulty`)}&nbsp;</span>
               <EvaluationStars scale={review["difficulty"]} />
             </EvaluationScale>
             <EvaluationScale>
-              {t(`courseEvals.Benefit`)}{" "}
+              <span>{t(`courseEvals.Benefit`)}&nbsp;</span>
               <EvaluationStars scale={review["benefit"]} />
             </EvaluationScale>
           </EvaluationScalesList>

@@ -15,6 +15,10 @@ const BlankStar = styled(FontAwesomeIcon)`
   vertical-align: 0.1em;
 `;
 
+const StyledEvaluationStars = styled("span")`
+  white-space: pre;
+`;
+
 const displayFilledStars = (scale) => {
   let stars = [];
   for (let n = Math.floor(scale); n > 0; n--) {
@@ -44,11 +48,11 @@ const displayBlankStars = (scale) => {
 };
 
 const EvaluationStars = ({ scale }) => (
-  <span>
+  <StyledEvaluationStars>
     {displayFilledStars(scale)}
     {displayHalfStar(scale)}
     {displayBlankStars(scale)}
-  </span>
+  </StyledEvaluationStars>
 );
 
 export default EvaluationStars;

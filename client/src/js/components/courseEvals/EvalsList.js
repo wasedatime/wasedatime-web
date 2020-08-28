@@ -39,6 +39,7 @@ const EvaluationYear = styled("span")`
 
 const EvaluationScalesList = styled("div")`
   word-break: break-word;
+  flex: 1 0 6em;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

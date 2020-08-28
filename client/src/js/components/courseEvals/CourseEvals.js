@@ -35,6 +35,7 @@ import EvalsList from "./EvalsList";
 import LoadingSpinner from "../LoadingSpinner";
 
 export const LongWrapper = styled(Wrapper)`
+  flex: 1 1 auto;
   ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
 

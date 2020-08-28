@@ -35,12 +35,11 @@ import EvalsList from "./EvalsList";
 import LoadingSpinner from "../LoadingSpinner";
 
 export const LongWrapper = styled(Wrapper)`
-  flex: 0 0 70%;
   ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
 
 export const ShortWrapper = styled(Wrapper)`
-  flex: 0 0 30%;
+  flex: 0 0 24em;
   ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
 

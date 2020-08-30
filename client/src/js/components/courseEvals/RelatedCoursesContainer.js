@@ -28,7 +28,12 @@ const RelatedCoursesWrapper = styled("div")`
   overflow-y: auto;
 `;
 
-const getCourseKey = (course) => course["_id"].substring(0, 10);
+const getCourseKey = (course) =>
+  course["keys"].find(
+    (key) => key["school"] === "SILS" || key["school"] === "PSE"
+  ) && course["title"].toLowerCase().includes("seminar")
+    ? course["_id"].substring(0, 12)
+    : course["_id"].substring(0, 10);
 
 class RelatedCoursesContainer extends React.Component {
   state = {

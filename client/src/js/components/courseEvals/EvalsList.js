@@ -3,6 +3,7 @@ import styled from "styled-components";
 import EvaluationStars from "./EvaluationStars";
 import { media } from "../../styled-components/utils";
 import { withNamespaces } from "react-i18next";
+import COURSE_EVAL_LNG from "../../config/course_eval_lng";
 
 const EvaluationsWrapper = styled("div")`
   background: #fff;
@@ -22,6 +23,13 @@ const EvaluationDivider = styled("hr")`
 
 const EvaluationText = styled("div")`
   ${media.phoneMini`font-size: 1.4rem; flex: 1 0 60%;`};
+`;
+
+const GoogleTranslationHint = styled("p")`
+  margin: 0;
+  margin-top: 5px;
+  font-size: 0.7em;
+  color: #aaa;
 `;
 
 const EvaluationTitle = styled("h6")`
@@ -65,6 +73,11 @@ const EvalsList = ({ reviews, searchLang, reviewLang, t }) => {
               {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
             </EvaluationTitle>
             {review["comment_" + reviewLang]}
+            {COURSE_EVAL_LNG[review["comment_src_lng"]] !== reviewLang && (
+              <GoogleTranslationHint>
+                Translated by Google
+              </GoogleTranslationHint>
+            )}
           </EvaluationText>
           <EvaluationScalesList>
             <EvaluationScale>

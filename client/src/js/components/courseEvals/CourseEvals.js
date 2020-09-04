@@ -59,9 +59,14 @@ const Announcement = styled("div")`
   border-radius: 3px;
 `;
 
+const Disclaimer = styled(Announcement)`
+  background-color: #aaa;
+  margin: 0.5rem 0px;
+`;
+
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
-  margin-top: 1rem 0px;
+  margin: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-size: 2rem;
@@ -320,6 +325,7 @@ class CourseEvals extends React.Component {
                   />
                 </span>
               </StyledSubHeading>
+              <Disclaimer>{this.props.t(`courseEvals.Disclaimer`)}</Disclaimer>
               <EvalsListWrapper>
                 <EvaluationScalesCountContainer
                   avgSatisfaction={avgSatisfaction}

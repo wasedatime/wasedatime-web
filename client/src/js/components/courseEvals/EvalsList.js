@@ -3,7 +3,10 @@ import styled from "styled-components";
 import EvaluationStars from "./EvaluationStars";
 import { media } from "../../styled-components/utils";
 import { withNamespaces } from "react-i18next";
-import COURSE_EVAL_LNG from "../../config/course_eval_lng";
+import {
+  COURSE_EVAL_LNG,
+  COURSE_EVAL_LNG_FULL_NAME,
+} from "../../config/course_eval_lng";
 
 const EvaluationsWrapper = styled("div")`
   background: #fff;
@@ -77,7 +80,8 @@ const EvalsList = ({ reviews, searchLang, reviewLang, t }) => {
             </span>
             {COURSE_EVAL_LNG[review["comment_src_lng"]] !== reviewLang && (
               <GoogleTranslationHint>
-                Translated by Google
+                Translated from{" "}
+                {COURSE_EVAL_LNG_FULL_NAME[review["comment_src_lng"]]} by Google
               </GoogleTranslationHint>
             )}
           </EvaluationText>

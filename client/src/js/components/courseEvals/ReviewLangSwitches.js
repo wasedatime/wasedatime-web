@@ -8,7 +8,8 @@ const ReviewLangSwitch = styled("button")`
   background-color: #ddd;
   height: 2em;
   vertical-align: 0.3em;
-  ${(props) => props.active && "border-bottom: 2px solid #fff; background-color: #eee;"};
+  ${(props) =>
+    props.active && "border-bottom: 2px solid #fff; background-color: #eee;"};
 
   &:hover {
     outline: none;
@@ -44,10 +45,16 @@ const ReviewLangSwitches = ({ reviewLang, switchReviewLang, t }) => (
       English
     </ReviewLangSwitchEng>
     <ReviewLangSwitch
-      active={reviewLang === "zh"}
-      onClick={() => switchReviewLang("zh")}
+      active={reviewLang === "zh_TW"}
+      onClick={() => switchReviewLang("zh_TW")}
     >
-      中文
+      繁中
+    </ReviewLangSwitch>
+    <ReviewLangSwitch
+      active={reviewLang === "zh_CN"}
+      onClick={() => switchReviewLang("zh_CN")}
+    >
+      简中
     </ReviewLangSwitch>
   </span>
 );

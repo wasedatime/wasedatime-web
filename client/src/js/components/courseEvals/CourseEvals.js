@@ -202,11 +202,11 @@ class CourseEvals extends React.Component {
 
     // 3. Fetch the reviews by posting the keys list
     const courseEvals = await this.getCourseEvalsByKey(courseKeysToFetchEvals);
-    console.log(courseEvals);
-    const thisCourseEvals = courseEvals[0];
+    let thisCourseEvals = {};
     let relatedCourseEvals = {};
-    courseEvals.slice(1, 3).forEach((evals, i) => {
-      relatedCourseEvals[courseKeysToFetchEvals[i]] = evals;
+    courseEvals.forEach((c, i) => {
+      if (i === 0) thisCourseEvals = c.comments;
+      else relatedCourseEvals[courseKeysToFetchEvals[i]] = c.comments;
     });
 
     let satisfactionSum = 0,

@@ -88,13 +88,13 @@ class RelatedCoursesContainer extends React.Component {
           switchReviewLang={this.switchReviewLang}
         />
         <RelatedCoursesWrapper>
-          {relatedCourses.map((relatedCourse) => (
+          {relatedCourses.map((relatedCourse, i) => (
             <CourseEvalsGroup
               course={relatedCourse}
               reviews={courseEvals[getCourseKey(relatedCourse)]}
               searchLang={searchLang}
               reviewLang={this.state.reviewLang}
-              key={getCourseKey(relatedCourse)}
+              key={i}
             />
           ))}
         </RelatedCoursesWrapper>

@@ -276,8 +276,8 @@ const CourseItem = ({
     );
   });
   const keywords =
-    "keywords" in course
-      ? course.keywords.map((keyword, index) => {
+    "kws" in course
+      ? course.kws.map((keyword, index) => {
           return (
             <li key={keyword} style={{ display: "inline-block" }}>
               <Badge>

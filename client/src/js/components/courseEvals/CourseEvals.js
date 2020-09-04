@@ -119,7 +119,8 @@ const getRelatedCourses = (
   loadedCourses,
   courseCode,
   thisCourseKey,
-  thisCourseTitle
+  thisCourseTitle,
+  thisCourseSchool
 ) => {
   const relatedCourseIDs = Object.keys(loadedCourses).filter(
     (courseID) =>
@@ -130,11 +131,22 @@ const getRelatedCourses = (
     (courseID) => loadedCourses[courseID]
   );
   const sortedRelatedCourses = relatedCourses
-    .sort(
-      (a, b) =>
+    .sort((a, b) => {
+      if (
+        a.keys[0].school === thisCourseSchool &&
+        b.keys[0].school !== thisCourseSchool
+      )
+        return -1;
+      if (
+        a.keys[0].school !== thisCourseSchool &&
+        b.keys[0].school === thisCourseSchool
+      )
+        return 1;
+      return (
         levenshtein(thisCourseTitle, a.title) -
         levenshtein(thisCourseTitle, b.title)
-    )
+      );
+    })
     .slice(0, 10);
   return sortedRelatedCourses;
 };
@@ -190,7 +202,8 @@ class CourseEvals extends React.Component {
       loadedCourses,
       thisCourse.code,
       thisCourseKey,
-      thisCourse.title
+      thisCourse.title,
+      thisCourse.keys[0].school
     );
 
     // 3. Get reviews of related courses by their keys

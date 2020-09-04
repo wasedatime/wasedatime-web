@@ -32,18 +32,18 @@ const ReviewLangSwitchEng = styled(ReviewLangSwitch)`
 
 const ReviewLangSwitches = ({ reviewLang, switchReviewLang, t }) => (
   <span>
-    <ReviewLangSwitch
-      active={reviewLang === "jp"}
-      onClick={() => switchReviewLang("jp")}
-    >
-      日本語
-    </ReviewLangSwitch>
     <ReviewLangSwitchEng
       active={reviewLang === "en"}
       onClick={() => switchReviewLang("en")}
     >
       English
     </ReviewLangSwitchEng>
+    <ReviewLangSwitch
+      active={reviewLang === "jp"}
+      onClick={() => switchReviewLang("jp")}
+    >
+      日本語
+    </ReviewLangSwitch>
     <ReviewLangSwitch
       active={reviewLang === "zh_TW"}
       onClick={() => switchReviewLang("zh_TW")}

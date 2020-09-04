@@ -186,10 +186,7 @@ class CourseEvals extends React.Component {
     const thisCourse = getCourse(loadedCourses, courseID);
     const thisCourseKey = getCourseKey(thisCourse);
 
-    // 1. Get reviews of this course by key
-    const thisCourseEvals = await this.getCourseEvalsByKey(thisCourseKey);
-
-    // 2. Get related courses by code, sort them, and get the first k courses (k=3)
+    // 1. Get related courses by code, sort them, and get the first k courses (k=10)
     const relatedCourses = getRelatedCourses(
       loadedCourses,
       thisCourse.code,
@@ -198,12 +195,19 @@ class CourseEvals extends React.Component {
       thisCourse.ks[0].s
     );
 
-    // 3. Get reviews of related courses by their keys
+    // 2. Make the key of tis course and keys of top 3 related courses into a list
+    const courseKeysToFetchEvals = [thisCourseKey].concat(
+      relatedCourses.slice(0, 3).map((course) => getCourseKey(course))
+    );
+
+    // 3. Fetch the reviews by posting the keys list
+    const courseEvals = await this.getCourseEvalsByKey(courseKeysToFetchEvals);
+    console.log(courseEvals);
+    const thisCourseEvals = courseEvals[0];
     let relatedCourseEvals = {};
-    for (const course of relatedCourses.slice(0, 3)) {
-      const evals = await this.getCourseEvalsByKey(getCourseKey(course));
-      if (evals.length > 0) relatedCourseEvals[getCourseKey(course)] = evals;
-    }
+    courseEvals.slice(1, 3).forEach((evals, i) => {
+      relatedCourseEvals[courseKeysToFetchEvals[i]] = evals;
+    });
 
     let satisfactionSum = 0,
       difficultySum = 0,
@@ -236,11 +240,19 @@ class CourseEvals extends React.Component {
       });
   }
 
-  async getCourseEvalsByKey(courseKey) {
+  async getCourseEvalsByKey(courseKeys) {
     try {
       // get reviews by courseKeys
-      const res = await axios.get(
-        wasetimeApiStatic.courseEvalsBaseURL + courseKey
+      const res = await axios.post(
+        wasetimeApiStatic.courseEvalsBaseURL,
+        {
+          course_keys: courseKeys,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
       return res.data;
     } catch (error) {

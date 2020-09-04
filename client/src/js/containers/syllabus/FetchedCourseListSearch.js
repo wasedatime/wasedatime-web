@@ -144,16 +144,16 @@ class FetchedCourseSearch extends React.Component {
     let filteredCourses =
       semesterFilters.length === 0
         ? courses
-        : courses.filter((course) => semesterFilters.includes(course.term));
+        : courses.filter((course) => semesterFilters.includes(course.tm));
 
     const schoolFilters = filterGroups.school;
     filteredCourses =
       schoolFilters.length === 0 || schoolFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter((course) => {
-            const keys = course.keys;
+            const keys = course.ks;
             for (let i = 0; i < keys.length; i++) {
-              if (schoolFilters.includes(keys[i].school)) return true;
+              if (schoolFilters.includes(keys[i].s)) return true;
             }
             return false;
           });
@@ -162,12 +162,12 @@ class FetchedCourseSearch extends React.Component {
     filteredCourses =
       langFilters.length === 0 || langFilters.length === 3
         ? filteredCourses
-        : filteredCourses.filter((course) => langFilters.includes(course.lang));
+        : filteredCourses.filter((course) => langFilters.includes(course.l));
 
     // IPSE/English-based Undergraduate Program
     if (filterGroups.special.length > 0) {
       const specialFilters = filterGroups.special[0].split("/");
-      filteredCourses = filteredCourses.filter(course => {
+      filteredCourses = filteredCourses.filter((course) => {
         const keywords = course.keywords;
         if (keywords === undefined) return false;
         for (let i = 0; i < keywords.length; i++) {
@@ -182,10 +182,9 @@ class FetchedCourseSearch extends React.Component {
       dayFilters.length === 0 || dayFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter((course) => {
-            const occurrences = course.occurrences;
+            const occurrences = course.os;
             for (let i = 0; i < occurrences.length; i++) {
-              if (dayFilters.includes(occurrences[i].day.toString()))
-                return true;
+              if (dayFilters.includes(occurrences[i].d.toString())) return true;
             }
             return false;
           });
@@ -196,15 +195,12 @@ class FetchedCourseSearch extends React.Component {
       periodFilters.length === 0 || periodFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter((course) => {
-            const occurrences = course.occurrences;
+            const occurrences = course.os;
 
             for (let i = 0; i < periodFilters.length; i++) {
               const period = parseInt(periodFilters[i], 10);
               for (let j = 0; j < occurrences.length; j++) {
-                if (
-                  occurrences[j].start_period <= period &&
-                  period <= occurrences[j].end_period
-                ) {
+                if (occurrences[j].s <= period && period <= occurrences[j].e) {
                   return true;
                 }
               }
@@ -243,7 +239,7 @@ class FetchedCourseSearch extends React.Component {
   };
 
   sortCoursesWithEvalsExistence = (courses) =>
-    sortBy(courses, (course) => (course.has_evals ? 1 : 2));
+    sortBy(courses, (course) => (course.e ? 1 : 2));
 
   render() {
     const { inputText, searchTerm } = this.state;

@@ -55,11 +55,10 @@ const RelatedCoursesExplainTooltipText = styled("span")`
 `;
 
 const getCourseKey = (course) =>
-  course["keys"].find(
-    (key) => key["school"] === "SILS" || key["school"] === "PSE"
-  ) && course["title"].toLowerCase().includes("seminar")
-    ? course["_id"].substring(0, 12)
-    : course["_id"].substring(0, 10);
+  course.ks.find((key) => key.s === "SILS" || key.s === "PSE") &&
+  course.t.toLowerCase().includes("seminar")
+    ? course._id.substring(0, 12)
+    : course._id.substring(0, 10);
 
 class RelatedCoursesContainer extends React.Component {
   state = {

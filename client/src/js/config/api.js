@@ -10,6 +10,6 @@ const API_COURSE_EVALS_BASE_URL =
     : "https://staging.wasedatime.com/api/course_evals_test?course_key=";
 export const wasetimeApiStatic = {
   scraperStats: API_STATIC_URL + "scraper_stats/index.json",
-  courseListAll: API_STATIC_URL + "course_list_all.json",
+  courseListAll: API_STATIC_URL + "course_list_all_min.json",
   courseEvalsBaseURL: API_COURSE_EVALS_BASE_URL,
 };

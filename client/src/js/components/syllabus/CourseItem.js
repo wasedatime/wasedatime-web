@@ -186,8 +186,8 @@ const schoolNameIconMap = {
 const mapLinkToSchoolIcon = (keys) => {
   return keys.map((key) => {
     return (
-      <SchoolIconItem key={key.school}>
-        <SchoolIconImage src={schoolNameIconMap[key.school]} />
+      <SchoolIconItem key={key.s}>
+        <SchoolIconImage src={schoolNameIconMap[key.s]} />
       </SchoolIconItem>
     );
   });
@@ -253,14 +253,14 @@ const CourseItem = ({
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
-  const yearTerm = combineYearTerm(course.year, course.term, t);
-  const schoolIcons = mapLinkToSchoolIcon(course.keys);
+  const yearTerm = combineYearTerm(course.y, course.tm, t);
+  const schoolIcons = mapLinkToSchoolIcon(course.ks);
   const syllabusId = course._id;
   //Need to use index as keys due to Waseda's data.
-  const occurrences = course.occurrences.map((occurrence, index) => {
-    const day = getDay(occurrence.day, t);
-    const period = getPeriod(occurrence.start_period, occurrence.end_period, t);
-    const location = getLocation(occurrence.building, occurrence.classroom, t);
+  const occurrences = course.os.map((occurrence, index) => {
+    const day = getDay(occurrence.d, t);
+    const period = getPeriod(occurrence.s, occurrence.e, t);
+    const location = getLocation(occurrence.b, occurrence.c, t);
     return (
       <li key={index}>
         <span>
@@ -306,7 +306,7 @@ const CourseItem = ({
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge>{t(`syllabus.${course.lang}`)}</Badge>
+            <Badge>{t(`syllabus.${course.l}`)}</Badge>
             {keywordsList}
           </IconBadgeWrapper>
           <div
@@ -347,7 +347,7 @@ const CourseItem = ({
                 return (
                   matches &&
                   !isInCourseEvalsPage &&
-                  course.has_evals && (
+                  course.e && (
                     <ViewEvalsIconButton
                       href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
                       target="_blank"
@@ -372,7 +372,7 @@ const CourseItem = ({
               return (
                 matches &&
                 !isInCourseEvalsPage &&
-                course.has_evals && (
+                course.e && (
                   <EvalButtonsWrapper>
                     <ViewEvalsButton
                       href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}

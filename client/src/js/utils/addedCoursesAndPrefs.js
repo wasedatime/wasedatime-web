@@ -10,8 +10,8 @@ export const sortAddedCoursesAndPrefs = (
     case COURSE_TITLE:
       return addedCoursesAndPrefs.sort((a, b) => {
         // ignore upper and lowercase
-        const courseTitleA = a.course.title.toUpperCase();
-        const courseTitleB = b.course.title.toUpperCase();
+        const courseTitleA = a.course.t.toUpperCase();
+        const courseTitleB = b.course.t.toUpperCase();
         if (courseTitleA < courseTitleB) {
           return -1;
         } else if (courseTitleA > courseTitleB) {

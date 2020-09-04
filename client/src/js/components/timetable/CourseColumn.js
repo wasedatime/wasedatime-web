@@ -135,7 +135,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
         return (
           <CourseItem
             className={`color-${color}`}
-            key={`${course.term}-${course.title}-${startPeriod}-${endPeriod}`}
+            key={`${course.term}-${course.t}-${startPeriod}-${endPeriod}`}
             displayPeriods={displayPeriods}
             top={startPeriod - 1}
             height={endPeriod - startPeriod + 1}

@@ -109,11 +109,10 @@ const getCourse = (loadedCourses, courseID) => {
 };
 
 const getCourseKey = (course) =>
-  course["keys"].find(
-    (key) => key["school"] === "SILS" || key["school"] === "PSE"
-  ) && course["title"].toLowerCase().includes("seminar")
-    ? course["_id"].substring(0, 12)
-    : course["_id"].substring(0, 10);
+  course.ks.find((key) => key.s === "SILS" || key.s === "PSE") &&
+  course.t.toLowerCase().includes("seminar")
+    ? course._id.substring(0, 12)
+    : course._id.substring(0, 10);
 
 const getRelatedCourses = (
   loadedCourses,
@@ -132,19 +131,12 @@ const getRelatedCourses = (
   );
   const sortedRelatedCourses = relatedCourses
     .sort((a, b) => {
-      if (
-        a.keys[0].school === thisCourseSchool &&
-        b.keys[0].school !== thisCourseSchool
-      )
+      if (a.ks[0].s === thisCourseSchool && b.ks[0].s !== thisCourseSchool)
         return -1;
-      if (
-        a.keys[0].school !== thisCourseSchool &&
-        b.keys[0].school === thisCourseSchool
-      )
+      if (a.ks[0].s !== thisCourseSchool && b.ks[0].s === thisCourseSchool)
         return 1;
       return (
-        levenshtein(thisCourseTitle, a.title) -
-        levenshtein(thisCourseTitle, b.title)
+        levenshtein(thisCourseTitle, a.t) - levenshtein(thisCourseTitle, b.t)
       );
     })
     .slice(0, 10);
@@ -202,8 +194,8 @@ class CourseEvals extends React.Component {
       loadedCourses,
       thisCourse.code,
       thisCourseKey,
-      thisCourse.title,
-      thisCourse.keys[0].school
+      thisCourse.t,
+      thisCourse.ks[0].s
     );
 
     // 3. Get reviews of related courses by their keys

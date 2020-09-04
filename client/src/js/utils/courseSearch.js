@@ -30,9 +30,9 @@ export const regexify = (token, searchLang) => {
 export const getCourseTitleAndInstructor = (course, searchLang) => {
   switch (searchLang) {
     case LANGS.JP:
-      return { title: course.title_jp, instructor: course.instructor_jp };
+      return { title: course.tj, instructor: course.ij };
     case LANGS.EN:
-      return { title: course.title, instructor: course.instructor };
+      return { title: course.t, instructor: course.i };
     default:
       throw new UnsupportedLanguageError(searchLang);
   }
@@ -67,11 +67,11 @@ export const sortCourses = (searchTerm, courses, searchLang) => {
     let sum = 0;
     for (let i = 0; i < searchRegexes.length; i++) {
       if (searchRegexes[i].test(title)) {
-        sum += course.has_evals ? 1 : 3;
+        sum += course.e ? 1 : 3;
       } else if (searchRegexes[i].test(instructor)) {
-        sum += course.has_evals ? 2 : 4;
+        sum += course.e ? 2 : 4;
       } else {
-        sum += course.has_evals ? 5 : 6;
+        sum += course.e ? 5 : 6;
       }
       return sum;
     }

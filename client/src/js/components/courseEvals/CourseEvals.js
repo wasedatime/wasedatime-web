@@ -296,16 +296,17 @@ class CourseEvals extends React.Component {
           <ExtendedOverlay>
             <div>
               <Announcement>
-                <FontAwesomeIcon icon={faBullhorn} /> We appreciate{" "}
+                <FontAwesomeIcon icon={faBullhorn} />{" "}
+                {this.props.t(`courseEvals.Thank WTSA 1`)}{" "}
                 <a
                   href="https://www.facebook.com/WasedaTaiwaneseStudentAssociation/"
                   style={{ color: "#fff" }}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Waseda Taiwanese Student Association (WTSA)
+                  {this.props.t(`courseEvals.WTSA`)}
                 </a>
-                's help for providing the reviews!
+                {this.props.t(`courseEvals.Thank WTSA 2`)}
               </Announcement>
               {isLoaded && (
                 <FetchedCourseItem

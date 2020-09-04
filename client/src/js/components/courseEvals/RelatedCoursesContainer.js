@@ -5,6 +5,8 @@ import ReviewLangSwitches from "./ReviewLangSwitches";
 import { media } from "../../styled-components/utils";
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
@@ -28,6 +30,30 @@ const RelatedCoursesWrapper = styled("div")`
   overflow-y: auto;
 `;
 
+const RelatedCoursesExplainTooltip = styled("div")`
+  position: relative;
+  display: inline-block;
+
+  &:hover span {
+    visibility: visible;
+  }
+`;
+
+const RelatedCoursesExplainTooltipText = styled("span")`
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  margin-left: 5px;
+  font-size: 0.6em;
+  position: absolute;
+  z-index: 1;
+  ${media.phone`width: 150px;`};
+`;
+
 const getCourseKey = (course) =>
   course["keys"].find(
     (key) => key["school"] === "SILS" || key["school"] === "PSE"
@@ -46,7 +72,18 @@ class RelatedCoursesContainer extends React.Component {
     const { relatedCourses, courseEvals, searchLang, t } = this.props;
     return (
       <ExtendedOverlay>
-        <StyledSubHeading>{t(`courseEvals.Related courses`)}</StyledSubHeading>
+        <StyledSubHeading>
+          {t(`courseEvals.Related courses`)}{" "}
+          <RelatedCoursesExplainTooltip>
+            <FontAwesomeIcon
+              icon={faQuestionCircle}
+              style={{ fontSize: "0.7em" }}
+            ></FontAwesomeIcon>
+            <RelatedCoursesExplainTooltipText>
+              {t(`courseEvals.Related courses explanation`)}
+            </RelatedCoursesExplainTooltipText>
+          </RelatedCoursesExplainTooltip>
+        </StyledSubHeading>
         <ReviewLangSwitches
           reviewLang={this.state.reviewLang}
           switchReviewLang={this.switchReviewLang}

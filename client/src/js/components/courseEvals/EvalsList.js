@@ -68,9 +68,7 @@ const EvalsList = ({ reviews, searchLang, reviewLang, t }) => {
         <Evaluation>
           <EvaluationText>
             <EvaluationTitle>
-              <EvaluationYear>
-                {review["commented_date"].substring(0, 4)}
-              </EvaluationYear>{" "}
+              <EvaluationYear>{review["year"]}</EvaluationYear>{" "}
               {review[searchLang === "en" ? "title" : "title_jp"]} ({" "}
               {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
             </EvaluationTitle>

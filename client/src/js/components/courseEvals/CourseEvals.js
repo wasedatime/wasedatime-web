@@ -123,7 +123,7 @@ const getRelatedCourses = (
 ) => {
   const relatedCourseIDs = Object.keys(loadedCourses).filter(
     (courseID) =>
-      loadedCourses[courseID].code === courseCode &&
+      loadedCourses[courseID].c === courseCode &&
       getCourseKey(loadedCourses[courseID]) !== thisCourseKey
   );
   const relatedCourses = relatedCourseIDs.map(

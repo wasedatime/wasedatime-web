@@ -189,7 +189,7 @@ class CourseEvals extends React.Component {
     // 1. Get related courses by code, sort them, and get the first k courses (k=10)
     const relatedCourses = getRelatedCourses(
       loadedCourses,
-      thisCourse.code,
+      thisCourse.c,
       thisCourseKey,
       thisCourse.t,
       thisCourse.ks[0].s

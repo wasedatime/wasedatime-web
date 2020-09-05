@@ -77,10 +77,8 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
   let slotLists = [initSlotList.slice()];
 
   coursesAndProperties.forEach((courseAndProperty) => {
-    const startPeriod = Number(
-      courseAndProperty.course.occurrence.start_period
-    );
-    const endPeriod = Number(courseAndProperty.course.occurrence.end_period);
+    const startPeriod = Number(courseAndProperty.course.occurrence.s);
+    const endPeriod = Number(courseAndProperty.course.occurrence.e);
 
     let existsAvailableSlot = true;
     for (let i = 0; i < slotLists.length; i++) {
@@ -122,14 +120,14 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
       const listComponent = distinctCourseList.map((courseAndProperty) => {
         const { course, color, displayLang } = courseAndProperty;
         const { title } = getCourseTitleAndInstructor(course, displayLang);
-        const startPeriod = Number(course.occurrence.start_period);
-        const endPeriod = Number(course.occurrence.end_period);
+        const startPeriod = Number(course.occurrence.s);
+        const endPeriod = Number(course.occurrence.e);
         let location = t("timetable.undecided");
-        if (course.occurrence.classroom !== "undecided") {
-          if (course.occurrence.building !== "-1") {
-            location = course.occurrence.location;
+        if (course.occurrence.c !== "undecided") {
+          if (course.occurrence.b !== "-1") {
+            location = course.occurrence.l;
           } else {
-            location = course.occurrence.classroom;
+            location = course.occurrence.c;
           }
         }
         return (

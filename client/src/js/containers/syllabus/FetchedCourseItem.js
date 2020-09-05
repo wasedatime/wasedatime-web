@@ -19,7 +19,7 @@ const ADDED_COURSES_NUMBER_LIMIT = 100;
 class FetchedCourseItem extends React.Component {
   handleAddCourse = (title, lng) => {
     const { course, byId, searchLang } = this.props;
-    const occurrences = course.occurrences;
+    const occurrences = course.os;
     ReactGA.event({
       category: gaFetchedCourseItem,
       action: gaAppendActionWithLng(gaAddCourse, lng),

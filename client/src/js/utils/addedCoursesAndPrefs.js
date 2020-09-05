@@ -22,12 +22,10 @@ export const sortAddedCoursesAndPrefs = (
       });
     case COURSE_TIME:
       return addedCoursesAndPrefs.sort((a, b) => {
-        const firstOccurrenceDayA = a.course.occurrences[0].day;
-        const firstOccurrenceDayB = b.course.occurrences[0].day;
-        const firstOccurrenceStartPeriodA =
-          a.course.occurrences[0].start_period;
-        const firstOccurrenceStartPeriodB =
-          b.course.occurrences[0].start_period;
+        const firstOccurrenceDayA = a.course.os[0].day;
+        const firstOccurrenceDayB = b.course.os[0].day;
+        const firstOccurrenceStartPeriodA = a.course.os[0].start_period;
+        const firstOccurrenceStartPeriodB = b.course.os[0].start_period;
         if (firstOccurrenceDayA < firstOccurrenceDayB) {
           return -1;
         } else if (firstOccurrenceDayA > firstOccurrenceDayB) {

@@ -33,10 +33,10 @@ const DayColumnList = ({
   };
   const coursesByDay = addedCoursesAndPrefs.reduce((acc, elem) => {
     const { course, ...restOfElem } = elem;
-    const { occurrences, ...restOfCourse } = course;
-    occurrences.forEach((occ) => {
-      acc[occ.day] = [
-        ...acc[occ.day],
+    const { os, ...restOfCourse } = course;
+    os.forEach((occ) => {
+      acc[occ.d] = [
+        ...acc[occ.d],
         {
           ...restOfElem,
           course: {

@@ -57,7 +57,7 @@ export const addCourse = (course, displayLang) => ({
   type: ADD_COURSE,
   payload: {
     id: course._id,
-    semester: course.term,
+    semester: course.tm,
     course: course,
     displayLang: displayLang,
   },

@@ -45,12 +45,12 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
 
   const largestDayAndPeriod = visibleAddedCoursesAndPrefs.reduce(
     (acc, elem) => {
-      const occurrences = elem.course.occurrences;
+      const occurrences = elem.course.os;
       return occurrences.reduce((acc, occurrence) => {
         return {
           ...acc,
-          day: Math.max(acc.day, occurrence.day),
-          period: Math.max(acc.period, occurrence.end_period),
+          day: Math.max(acc.day, occurrence.d),
+          period: Math.max(acc.period, occurrence.e),
         };
       }, acc);
     },

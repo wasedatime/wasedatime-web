@@ -139,6 +139,7 @@
   },
   "courseEvals": {
     "Reviews": "Reviews",
+    "Review": "Review",
     "Satisfaction": "Satisfaction",
     "Difficulty": "Difficulty",
     "Benefit": "Benefit",
@@ -148,7 +149,13 @@
     "WTSA": "Waseda Taiwanese Student Association (WTSA)",
     "Thank WTSA 2": "'s help for providing the reviews!",
     "Related courses explanation": "Top 10 courses having the same course code and similar title",
-    "Add evaluation to this course": "Add evaluation to this course"
+    "Add review to this course": "Add review to this course",
+    "Agree to share": "I agree to share my review with WTSA",
+    "Submit": "Submit",
+    "Close": "Close",
+    "Review sent": "Review sent",
+    "Review failed to send": "Review failed to send",
+    "Fill in all fields before sending": "Please fill in all fields before sending your review"
   },
   "room": {
     "Under Construction": "Under Construction",

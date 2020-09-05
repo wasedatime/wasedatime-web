@@ -8,7 +8,7 @@ import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
-  margin-top: 1rem 0px;
+  margin: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-size: 2rem;
@@ -40,7 +40,7 @@ const Scale = styled("div")`
 
 const StyledTextarea = styled("textarea")`
   border: none;
-  background-color: ${props => props.theme.white};
+  background-color: ${(props) => props.theme.white};
   outline: none;
   padding: 10px;
   margin: 5px 0 0;
@@ -79,7 +79,7 @@ class AddEvaluationForm extends React.Component {
   state = {
     paintedSatisfactionStars: 0,
     paintedDifficultyStars: 0,
-    paintedBenefitStars: 0
+    paintedBenefitStars: 0,
   };
 
   displayStars = (label, selectedStar, paintedStar) => {
@@ -136,13 +136,13 @@ class AddEvaluationForm extends React.Component {
     }
   };
 
-  handleTextareaChange = event => {
+  handleTextareaChange = (event) => {
     event.preventDefault();
     const inputText = event.target.value;
     this.props.handleCommentChange(inputText);
   };
 
-  handleCheckboxChange = event => {
+  handleCheckboxChange = (event) => {
     console.log(event.target.checked);
   };
 
@@ -156,22 +156,22 @@ class AddEvaluationForm extends React.Component {
       agreeToShare,
       handleCheckboxChange,
       handleFormSubmit,
-      t
+      t,
     } = this.props;
     const {
       paintedSatisfactionStars,
       paintedDifficultyStars,
-      paintedBenefitStars
+      paintedBenefitStars,
     } = this.state;
 
     return (
       <Overlay>
         <StyledSubHeading>
-          {t(`courseEvals.Add evaluation to this course`)}
+          {t(`courseEvals.Add review to this course`)}
         </StyledSubHeading>
 
         <StyledForm
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
           }}
         >
@@ -183,7 +183,7 @@ class AddEvaluationForm extends React.Component {
                 satisfaction,
                 paintedSatisfactionStars
               )}{" "}
-              Satisfaction
+              {t(`courseEvals.Satisfaction`)}
             </Scale>
             <Scale>
               {this.displayStars(
@@ -191,15 +191,15 @@ class AddEvaluationForm extends React.Component {
                 difficulty,
                 paintedDifficultyStars
               )}{" "}
-              Difficulty
+              {t(`courseEvals.Difficulty`)}
             </Scale>
             <Scale>
               {this.displayStars("benefit", benefit, paintedBenefitStars)}{" "}
-              Benefit
+              {t(`courseEvals.Benefit`)}
             </Scale>
           </ScalesList>
 
-          <b>Comments</b>
+          <b>{t(`courseEvals.Review`)}</b>
           <StyledTextarea
             placeholder="Please share your experiences, feelings, and even advices about the course!"
             onChange={this.handleTextareaChange}
@@ -217,14 +217,14 @@ class AddEvaluationForm extends React.Component {
               />
               <label htmlFor="shareWithWtsa" style={{ fontSize: "0.8em" }}>
                 {" "}
-                I agree to share my evaluation with WTSA
+                {t(`courseEvals.Agree to share`)}
               </label>
             </CheckboxContainer>
             <SubmitFormButton onClick={handleFormSubmit}>
-              <FontAwesomeIcon icon={faCheck} /> Submit
+              <FontAwesomeIcon icon={faCheck} /> {t(`courseEvals.Submit`)}
             </SubmitFormButton>
             <CloseFormButton onClick={toggleModal}>
-              <FontAwesomeIcon icon={faTimes} /> Close
+              <FontAwesomeIcon icon={faTimes} /> {t(`courseEvals.Close`)}
             </CloseFormButton>
           </FormActions>
         </StyledForm>

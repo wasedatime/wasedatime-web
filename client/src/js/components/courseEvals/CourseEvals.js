@@ -14,6 +14,7 @@ import {
   gaOpenModal,
   gaCloseModal,
 } from "../../ga/eventActions";
+import Alert from "react-s-alert";
 import levenshtein from "levenshtein-edit-distance";
 import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
@@ -330,36 +331,66 @@ class CourseEvals extends React.Component {
       newEvalComment,
       newEvalAgreeToShare,
     } = this.state;
-    const {
-      _id,
-      code,
-      title,
-      title_jp,
-      instructor,
-      instructor_jp,
-    } = this.state.thisCourse;
-    const newEval = {
-      _id: "",
-      course_id: _id,
-      course_key: getCourseKey(this.state.thisCourse),
-      course_code: code,
-      title: title,
-      title_jp: title_jp,
-      instructor: instructor,
-      instructor_jp: instructor_jp,
-      year: 2020,
-      satisfaction: newEvalSatisfaction,
-      difficulty: newEvalDifficulty,
-      benefit: newEvalBenefit,
-      comment_src_lng: 0, // 0: en, 1: jp, 2:zh_TW, 3: zh_CN
-      comment_en: newEvalComment,
-      comment_jp: newEvalComment,
-      comment_zh_TW: newEvalComment,
-      comment_zh_CN: newEvalComment,
-      commented_date: new Date(),
-      agree_to_share_with_wtsa: newEvalAgreeToShare,
-    };
-    console.log(newEval);
+    if (
+      newEvalSatisfaction === 0 ||
+      newEvalDifficulty === 0 ||
+      newEvalBenefit === 0 ||
+      newEvalComment.length === 0
+    ) {
+      Alert.warning(
+        this.props.t(`courseEvals.Fill in all fields before sending`),
+        {
+          position: "bottom",
+          effect: "jelly",
+        }
+      );
+    } else {
+      const { _id, c, t, tj, i, ij, y } = this.state.thisCourse;
+      const newEval = {
+        _id: "",
+        course_id: _id,
+        course_key: getCourseKey(this.state.thisCourse),
+        course_code: c,
+        title: t,
+        title_jp: tj,
+        instructor: i,
+        instructor_jp: ij,
+        year: y,
+        satisfaction: newEvalSatisfaction,
+        difficulty: newEvalDifficulty,
+        benefit: newEvalBenefit,
+        comment_src_lng: 0, // 0: en, 1: jp, 2:zh_TW, 3: zh_CN
+        comment_en: newEvalComment,
+        comment_jp: newEvalComment,
+        comment_zh_TW: newEvalComment,
+        comment_zh_CN: newEvalComment,
+        commented_date: new Date(),
+        agree_to_share_with_wtsa: newEvalAgreeToShare,
+      };
+
+      try {
+        // Send the review
+
+        Alert.success(this.props.t(`courseEvals.Review sent`), {
+          position: "bottom",
+          effect: "jelly",
+        });
+        console.log(newEval);
+        this.setState({
+          isAddEvaluationFormOpen: false,
+          newEvalSatisfaction: 0,
+          newEvalDifficulty: 0,
+          newEvalBenefit: 0,
+          newEvalComment: "",
+          newEvalAgreeToShare: true,
+        });
+      } catch (error) {
+        Alert.error(this.props.t(`courseEvals.Review failed to send`), {
+          position: "bottom",
+          effect: "jelly",
+        });
+      }
+    }
   };
 
   render() {

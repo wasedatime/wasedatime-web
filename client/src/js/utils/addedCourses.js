@@ -7,8 +7,8 @@ export const sortAddedCourses = (addedCourses, sortingOption) => {
     case COURSE_TITLE:
       return addedCourses.sort((a, b) => {
         // ignore upper and lowercase
-        const courseTitleA = a.title.toUpperCase();
-        const courseTitleB = b.title.toUpperCase();
+        const courseTitleA = a.t.toUpperCase();
+        const courseTitleB = b.t.toUpperCase();
         if (courseTitleA < courseTitleB) {
           return -1;
         } else if (courseTitleA > courseTitleB) {
@@ -19,10 +19,10 @@ export const sortAddedCourses = (addedCourses, sortingOption) => {
       });
     case COURSE_TIME:
       return addedCourses.sort((a, b) => {
-        const firstOccurrenceDayA = a.occurrences[0].day;
-        const firstOccurrenceDayB = b.occurrences[0].day;
-        const firstOccurrenceStartPeriodA = a.occurrences[0].start_period;
-        const firstOccurrenceStartPeriodB = b.occurrences[0].start_period;
+        const firstOccurrenceDayA = a.os[0].d;
+        const firstOccurrenceDayB = b.os[0].d;
+        const firstOccurrenceStartPeriodA = a.os[0].s;
+        const firstOccurrenceStartPeriodB = b.os[0].s;
         if (firstOccurrenceDayA < firstOccurrenceDayB) {
           return -1;
         } else if (firstOccurrenceDayA > firstOccurrenceDayB) {

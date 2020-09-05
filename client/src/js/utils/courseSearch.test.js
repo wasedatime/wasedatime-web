@@ -49,15 +49,15 @@ describe(">>>UTILS --- getCourseTitleAndInstructor", () => {
   };
   test("should return a en title and instructor given a en searchLang", () => {
     expect(getCourseTitleAndInstructor(dummyCourse, LANGS.EN)).toEqual({
-      t: "Advanced Calculus",
-      i: "TANAKA, Kazunaga",
+      title: "Advanced Calculus",
+      instructor: "TANAKA, Kazunaga",
     });
   });
 
   test("should return a jp title and instructor given a jp searchLang", () => {
     expect(getCourseTitleAndInstructor(dummyCourse, LANGS.JP)).toEqual({
-      t: "解析学入門",
-      i: "田中 和永",
+      title: "解析学入門",
+      instructor: "田中 和永",
     });
   });
 });

@@ -351,10 +351,11 @@ class CourseEvals extends React.Component {
       satisfaction: newEvalSatisfaction,
       difficulty: newEvalDifficulty,
       benefit: newEvalBenefit,
-      comment_src_lng: 0, // 0: en, 1: jp, 2:zh
-      comment_zh: newEvalComment,
+      comment_src_lng: 0, // 0: en, 1: jp, 2:zh_TW, 3: zh_CN
       comment_en: newEvalComment,
       comment_jp: newEvalComment,
+      comment_zh_TW: newEvalComment,
+      comment_zh_CN: newEvalComment,
       commented_date: new Date(),
       agree_to_share_with_wtsa: newEvalAgreeToShare,
     };

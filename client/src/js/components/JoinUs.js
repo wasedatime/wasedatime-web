@@ -31,7 +31,7 @@ const JoinUs = () => {
   return (
     <Wrapper>
       <Helmet>
-        <title>WasedaTime - Join Us</title>
+        <title>WasedaTime - Join Us!</title>
         <meta
           name="description"
           content="Recruitment document for WasedaTime."

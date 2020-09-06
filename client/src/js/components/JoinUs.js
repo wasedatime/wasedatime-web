@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Wrapper } from "../styled-components/Wrapper";
 import { Overlay } from "../styled-components/Overlay";
 import styled from "styled-components";
-import { Header, List, Icon, Segment, Divider } from "semantic-ui-react";
+import { Header, List, Divider } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserTie, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { media } from "../styled-components/utils";
@@ -115,7 +115,12 @@ const JoinUs = () => {
 
         <Divider hidden />
         <DividerTitle horizontal>
-          <Header size="huge">🤗 How to get started</Header>
+          <Header size="huge">
+            <span role="img" aria-label="smile">
+              🤗
+            </span>{" "}
+            How to get started
+          </Header>
         </DividerTitle>
         <p>
           We welcome students who are interested to send an email with a brief

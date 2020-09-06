@@ -46,11 +46,23 @@ const JoinUs = () => {
 
       <ExtendedOverlay>
         <Divider hidden />
-        <ColoredHeader
-          size="huge"
-          textAlign="center"
-          content="WasedaTime is back, AND WE WANT YOU!"
-        />
+        <MediaQuery minWidth={sizes.desktop}>
+          {(matches) =>
+            matches ? (
+              <ColoredHeader
+                size="huge"
+                textAlign="center"
+                content="WasedaTime is back, AND WE WANT YOU!"
+              />
+            ) : (
+              <ColoredHeader
+                size="large"
+                textAlign="center"
+                content="WasedaTime is back, AND WE WANT YOU!"
+              />
+            )
+          }
+        </MediaQuery>
         <Divider hidden />
         <p>
           WasedaTime has been working on supporting students' academic

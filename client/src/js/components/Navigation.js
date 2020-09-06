@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarAlt,
   faBook,
-  faBuilding,
+  faStar,
   faBus,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -68,14 +68,14 @@ const Navigation = (props) => {
       icon: faBook,
     },
     {
-      name: t("navigation.joinus"),
-      path: "/joinus",
-      icon: faBuilding,
-    },
-    {
       name: t("navigation.bus"),
       path: "/bus",
       icon: faBus,
+    },
+    {
+      name: t("navigation.joinus"),
+      path: "/joinus",
+      icon: faStar,
     },
   ];
   const styledLinks = navItems.map((item) => {

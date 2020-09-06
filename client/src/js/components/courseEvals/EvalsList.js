@@ -76,7 +76,12 @@ const EvalsList = ({ reviews, searchLang, reviewLang, t }) => {
               {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
             </EvaluationTitle>
             <span>
-              {review["comment_" + reviewLang].replace("\n", "<br />")}
+              {review["comment_" + reviewLang].split("\n").map((str) => (
+                <span>
+                  {str}
+                  <br />
+                </span>
+              ))}
             </span>
             {COURSE_EVAL_LNG[review["comment_src_lng"]] !== reviewLang && (
               <GoogleTranslationHint>

@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import { withRouter } from "react-router";
@@ -9,7 +9,7 @@ import {
   faCalendarAlt,
   faBook,
   faBuilding,
-  faBus
+  faBus,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
@@ -40,10 +40,10 @@ const StyledButton = styled("button")`
   padding: 0;
   margin: 0;
   background-color: inherit;
-  color: ${props =>
+  color: ${(props) =>
     props.isClicked ? props.theme.colorPrimary : props.theme.white};
   &:hover {
-    color: ${props => props.theme.colorPrimary};
+    color: ${(props) => props.theme.colorPrimary};
   }
 `;
 
@@ -53,32 +53,32 @@ const StyledSpan = styled("span")`
   ${media.phone`font-size: 0.5em;`};
 `;
 
-const Navigation = props => {
+const Navigation = (props) => {
   const pathname = props.location.pathname;
   const t = props.t;
   const navItems = [
     {
       name: t("navigation.timetable"),
       path: "/timetable",
-      icon: faCalendarAlt
+      icon: faCalendarAlt,
     },
     {
       name: t("navigation.syllabus"),
       path: "/syllabus",
-      icon: faBook
+      icon: faBook,
     },
     {
-      name: t("navigation.roomfinder"),
-      path: "/roomfinder",
-      icon: faBuilding
+      name: t("navigation.joinus"),
+      path: "/joinus",
+      icon: faBuilding,
     },
     {
       name: t("navigation.bus"),
       path: "/bus",
-      icon: faBus
-    }
+      icon: faBus,
+    },
   ];
-  const styledLinks = navItems.map(item => {
+  const styledLinks = navItems.map((item) => {
     const itemName = item["name"];
     const itemPath = item["path"];
     const itemIcon = item["icon"];
@@ -103,9 +103,9 @@ export default withRouter(withNamespaces("translation")(Navigation));
 
 Navigation.propTypes = {
   location: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired
-}
+  t: PropTypes.func.isRequired,
+};
 
 StyledButton.propTypes = {
-  isClicked: PropTypes.bool.isRequired
-}
+  isClicked: PropTypes.bool.isRequired,
+};

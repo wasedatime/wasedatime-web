@@ -16,6 +16,7 @@ import InitialDialog from "./welcome/InitialDialog";
 import TimetableContainer from "../containers/timetable/TimetableContainer";
 import Syllabus from "./syllabus/Syllabus";
 import RoomFinder from "./RoomFinder";
+import JoinUs from "./JoinUs";
 import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
 import NotFound from "./NotFound";
@@ -25,7 +26,7 @@ const Wrapper = styled("div")`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: ${props => props.theme.headerHeight};
+  padding-top: ${(props) => props.theme.headerHeight};
 `;
 
 const StyledMain = styled("main")`
@@ -33,7 +34,7 @@ const StyledMain = styled("main")`
   flex-direction: column;
   flex: 1 0 auto;
   width: 100%;
-  min-height: calc(100vh - ${props => props.theme.headerHeight});
+  min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
 const App = ({ isFirstTimeAccess }) => {
@@ -62,7 +63,8 @@ const App = ({ isFirstTimeAccess }) => {
               <Route exact path="/about" component={About} />
               <Route exact path="/timetable" component={TimetableContainer} />
               <Route exact path="/syllabus" component={Syllabus} />
-              <Route exact path="/roomfinder" component={RoomFinder} />
+              {/* <Route exact path="/roomfinder" component={RoomFinder} /> */}
+              <Route exact path="/joinus" component={JoinUs} />
               <Route exact path="/bus" component={Bus} />
               <Route component={NotFound} />
             </Switch>
@@ -75,15 +77,10 @@ const App = ({ isFirstTimeAccess }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    isFirstTimeAccess: getUserIsFirstTimeAccess(state)
+    isFirstTimeAccess: getUserIsFirstTimeAccess(state),
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    null
-  )(App)
-);
+export default withRouter(connect(mapStateToProps, null)(App));

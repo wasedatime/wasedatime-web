@@ -41,7 +41,7 @@ const RelatedCoursesExplainTooltip = styled("div")`
 
 const RelatedCoursesExplainTooltipText = styled("span")`
   visibility: hidden;
-  width: 200px;
+  width: 150px;
   background-color: black;
   color: #fff;
   text-align: center;
@@ -51,7 +51,7 @@ const RelatedCoursesExplainTooltipText = styled("span")`
   font-size: 0.6em;
   position: absolute;
   z-index: 1;
-  ${media.phone`width: 150px;`};
+  ${media.phoneMini`left: -400%; top: 100%;`};
 `;
 
 const getCourseKey = (course) =>

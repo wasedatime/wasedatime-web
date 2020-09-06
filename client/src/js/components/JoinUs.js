@@ -136,7 +136,7 @@ const JoinUs = () => {
         </DividerTitle>
         <p>
           We welcome students who are interested to send an email with a brief
-          self-introduction or a CV/resume to the following address:
+          self-introduction or a CV/resume to the following address:{" "}
           <b>wasedatime@gmail.com</b>
         </p>
         <p>

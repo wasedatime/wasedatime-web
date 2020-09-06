@@ -9,6 +9,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserTie, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { media } from "../styled-components/utils";
 import { sizes } from "../styled-components/utils";
+import "../../styles/semantic-ui-css/components/header.min.css";
+import "../../styles/semantic-ui-css/components/list.min.css";
+import "../../styles/semantic-ui-css/components/divider.min.css";
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
@@ -102,7 +105,11 @@ const JoinUs = () => {
         <Divider hidden />
         <DividerTitle horizontal>
           <Header size="huge">
-            <FontAwesomeIcon icon={faUserTie} /> Performance Marketing
+            <FontAwesomeIcon icon={faUserTie} />
+            <MediaQuery minWidth={sizes.desktop}>
+              {(matches) => (matches ? " " : <br />)}
+            </MediaQuery>
+            Performance Marketing
             <MediaQuery minWidth={sizes.desktop}>
               {(matches) => (matches ? " " : <br />)}
             </MediaQuery>

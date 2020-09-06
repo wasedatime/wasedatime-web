@@ -7,7 +7,6 @@ import { saveState } from "./localForage";
 import Root from "./js/components/Root";
 
 import "normalize-css/normalize.css";
-import "semantic-ui-css/semantic.min.css";
 import "./styles/styles.css";
 import "./js/components/i18n";
 

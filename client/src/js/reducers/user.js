@@ -12,11 +12,11 @@ const isFirstTimeAccess = (state = true, action) => {
 };
 
 const user = combineReducers({
-  isFirstTimeAccess
+  isFirstTimeAccess,
 });
 
 export default user;
 
-export const getUserIsFirstTimeAccess = state => {
+export const getUserIsFirstTimeAccess = (state) => {
   return state.user.isFirstTimeAccess;
 };

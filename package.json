@@ -1,5 +1,5 @@
 {
-  "name": "WasedaTime-Web",
+  "name": "wasedatime-web",
   "version": "1.0.0",
   "description": "An unonfficial app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.",
   "main": "server.js",
@@ -27,13 +27,14 @@
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
     "helmet": "^3.9.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "mongoose": "^5.3.4"
   },
   "devDependencies": {
     "all-contributors-cli": "^6.1.1",
     "concurrently": "^3.5.1",
     "mocha": "^4.0.1",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "prettier": "2.0.5"
   }
 }

@@ -10,20 +10,20 @@ import {
   gaMakeCourseVisible,
   gaMakeCourseInVisible,
   gaClickSyllabusLink,
-  gaRemoveCourse
+  gaRemoveCourse,
 } from "../../ga/eventActions";
 
 import {
   removeCourse,
   changeCourseColor,
-  toggleCourseVisibility
+  toggleCourseVisibility,
 } from "../../actions/syllabus";
 import CourseAndPrefItem from "../../components/timetable/CourseAndPrefItem";
 import { courseColors } from "../../data/colors";
 
 class AddedCourseAndPrefItem extends React.Component {
   state = {
-    isPopperOpen: false
+    isPopperOpen: false,
   };
 
   handleRemoveCourse = (id, title) => {
@@ -32,22 +32,22 @@ class AddedCourseAndPrefItem extends React.Component {
     ReactGA.event({
       category: gaAddedCourseAndPrefItem,
       action: gaAppendActionWithLng(gaRemoveCourse, lng),
-      label: title
+      label: title,
     });
     Alert.success("Course removed.", {
       position: "bottom",
-      effect: "jelly"
+      effect: "jelly",
     });
   };
 
-  handleToggleColorPopper = event => {
+  handleToggleColorPopper = (event) => {
     event.preventDefault();
     this.setState((prevState, props) => {
       return { isPopperOpen: !prevState.isPopperOpen };
     });
   };
 
-  handleChangeColor = colorId => {
+  handleChangeColor = (colorId) => {
     const { addedCourseAndPref, lng } = this.props;
     const { course } = addedCourseAndPref;
     this.setState((prevState, props) => {
@@ -56,7 +56,7 @@ class AddedCourseAndPrefItem extends React.Component {
     ReactGA.event({
       category: gaAddedCourseAndPrefItem,
       action: gaAppendActionWithLng(gaChangeCourseColor, lng),
-      label: courseColors[colorId]
+      label: courseColors[colorId],
     });
     this.props.changeCourseColor(course._id, colorId);
   };
@@ -70,17 +70,17 @@ class AddedCourseAndPrefItem extends React.Component {
     ReactGA.event({
       category: gaAddedCourseAndPrefItem,
       action: gaAppendActionWithLng(gaAction, lng),
-      label: title
+      label: title,
     });
     this.props.toggleCourseVisibility(id);
   };
 
-  handleClickSyllabusLink = title => {
+  handleClickSyllabusLink = (title) => {
     const { lng } = this.props;
     ReactGA.event({
       category: gaAddedCourseAndPrefItem,
       action: gaAppendActionWithLng(gaClickSyllabusLink, lng),
-      label: title
+      label: title,
     });
   };
 
@@ -107,12 +107,9 @@ class AddedCourseAndPrefItem extends React.Component {
 const mapDispatchToProps = {
   removeCourse,
   changeCourseColor,
-  toggleCourseVisibility
+  toggleCourseVisibility,
 };
 
 export default withNamespaces("translation")(
-  connect(
-    null,
-    mapDispatchToProps
-  )(AddedCourseAndPrefItem)
+  connect(null, mapDispatchToProps)(AddedCourseAndPrefItem)
 );

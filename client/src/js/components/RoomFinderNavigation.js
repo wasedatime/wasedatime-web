@@ -1,10 +1,10 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUniversity } from '@fortawesome/free-solid-svg-icons';
+import React from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUniversity } from "@fortawesome/free-solid-svg-icons";
 
-const StyledNav = styled('nav')`
+const StyledNav = styled("nav")`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -15,7 +15,7 @@ const StyledNav = styled('nav')`
   background-color: #777777;
 `;
 
-const Icon = styled('div')`
+const Icon = styled("div")`
   align-items: center;
   margin-right: 18px;
   color: #ffffff;
@@ -24,13 +24,13 @@ const Icon = styled('div')`
 const StyledLink = styled(Link)`
   padding: 0px 14px;
   color: #ffffff;
-  font-family: 'Garamond';
+  font-family: "Garamond";
   font-size: 2rem;
   font-weight: 400;
   text-decoration: none;
 `;
 
-const ComingSoon = styled('div')`
+const ComingSoon = styled("div")`
   top: 105px;
   padding: 1px 5px;
   background-color: pink;

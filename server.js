@@ -9,7 +9,7 @@ const haltOnTimedout = (req, res, next) => {
 };
 
 const sendCustomizedIndexFile = (filePath, title, description) => {
-  return function(req, res, next) {
+  return function (req, res, next) {
     fs.readFile(filePath, "utf8", (err, data) => {
       if (err) {
         console.log(err);

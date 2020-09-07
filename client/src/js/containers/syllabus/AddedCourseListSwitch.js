@@ -6,21 +6,22 @@ import BinarySwitch from "../../components/syllabus/BinarySwitch";
 import AddedCourseListContainer from "./AddedCourseListContainer";
 import { Wrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
+import { getCurrentSemester, SEMESTERS } from "../../config/semesters";
 
 class AddedCourseListSwitch extends React.Component {
   constructor(props) {
     super(props);
-    this.springSemester = "spring";
-    this.fallSemester = "fall";
+    this.springSemester = SEMESTERS.SPRING;
+    this.fallSemester = SEMESTERS.FALL;
     this.state = {
-      selectedSemester: this.fallSemester
+      selectedSemester: getCurrentSemester(),
     };
   }
 
-  handleChangeSemester = targetSemester => {
+  handleChangeSemester = (targetSemester) => {
     if (this.state.selectedSemester !== targetSemester) {
       this.setState({
-        selectedSemester: targetSemester
+        selectedSemester: targetSemester,
       });
     }
   };

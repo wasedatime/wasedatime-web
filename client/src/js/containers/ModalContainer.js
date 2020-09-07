@@ -13,7 +13,7 @@ class ModalContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
     };
   }
 
@@ -21,7 +21,7 @@ class ModalContainer extends React.Component {
   handleToggleModal = () => {
     ReactGA.event({
       category: gaBus,
-      action: gaAppendActionWithLng(gaOpenModal, this.props.lng)
+      action: gaAppendActionWithLng(gaOpenModal, this.props.lng),
     });
     this.setState((prevState, props) => {
       return { showModal: !this.state.showModal };
@@ -39,7 +39,7 @@ class ModalContainer extends React.Component {
             style={{
               color: "#ffffff",
               textDecoration: "underline",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
             onClick={this.handleToggleModal}
           >

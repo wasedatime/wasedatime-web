@@ -7,7 +7,7 @@ import { withNamespaces } from "react-i18next";
 
 import {
   headerHeight,
-  addedCourseListSwitchHeight
+  addedCourseListSwitchHeight,
 } from "../../styled-components/variables";
 import CourseListSummary from "../CourseListSummary";
 import AddedCourseItem from "../../containers/syllabus/AddedCourseItem";
@@ -17,7 +17,7 @@ import {
   Section,
   Subheading,
   OList,
-  ListItem
+  ListItem,
 } from "../../styled-components/Article";
 
 const CourseListWrapper = styled(Wrapper)`
@@ -25,8 +25,8 @@ const CourseListWrapper = styled(Wrapper)`
   padding: 0.5em 1em 1em 1em;
   overflow-y: auto;
   height: calc(
-    100vh - ${props => props.theme.headerHeight} -
-      ${props => props.theme.addedCourseListSwitchHeight}
+    100vh - ${(props) => props.theme.headerHeight} -
+      ${(props) => props.theme.addedCourseListSwitchHeight}
   );
 `;
 
@@ -39,7 +39,7 @@ class AddedCourseList extends React.Component {
     super(props);
     this.wrapper = null;
 
-    this.setWrapperRef = element => {
+    this.setWrapperRef = (element) => {
       this.wrapper = element;
     };
 
@@ -48,7 +48,7 @@ class AddedCourseList extends React.Component {
         this.stickyWrapper = stickybits(this.wrapper, {
           stickyBitStickyOffset:
             parseInt(headerHeight, 10) +
-            parseInt(addedCourseListSwitchHeight, 10)
+            parseInt(addedCourseListSwitchHeight, 10),
         });
       }
     };
@@ -75,7 +75,7 @@ class AddedCourseList extends React.Component {
       handleToggleSortingOptions,
       selectedSortingOption,
       handleChangeSortingOption,
-      t
+      t,
     } = this.props;
 
     return (

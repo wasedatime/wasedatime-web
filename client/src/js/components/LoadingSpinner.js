@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
-import styled, { keyframes } from 'styled-components';
+import styled, { keyframes } from "styled-components";
 
-import { Wrapper } from '../styled-components/Wrapper';
-import { Overlay } from '../styled-components/Overlay';
-import logo from '../../img/logo.png';
+import { Wrapper } from "../styled-components/Wrapper";
+import { Overlay } from "../styled-components/Overlay";
+import logo from "../../img/logo.png";
 
 const spin = keyframes`
   from {
@@ -28,7 +28,7 @@ const ExtendedOverlay = styled(Overlay)`
   padding: 25px;
 `;
 
-const Logo = styled('img')`
+const Logo = styled("img")`
   height: 100px;
   width: 100px;
   transition: transform(0, 12vh);
@@ -36,23 +36,54 @@ const Logo = styled('img')`
   transform-style: preserve-3d;
 `;
 
-const Description = styled('p')`
+const Description = styled("p")`
   font-size: 2rem;
+  text-align: center;
 `;
 
-const LoadingSpinner = props => {
-  return (
-    <ExtendedWrapper>
-      <ExtendedOverlay>
-        <Logo src={logo} alt="WasedaTime logo" />
-        <Description>{props.message || 'Loading...'}</Description>
-      </ExtendedOverlay>
-    </ExtendedWrapper>
-  );
-};
+class LoadingSpinner extends React.Component {
+  constructor(props) {
+    super(props);
+
+    // isMounted pattern to prevent setTimeOut executing after the component unmounts.
+    this._isMounted = false;
+
+    this.state = {
+      delayMessage: "",
+    };
+  }
+
+  componentDidMount() {
+    this._isMounted = true;
+    this._isMounted &&
+      setTimeout(() => {
+        this._isMounted &&
+          this.setState({
+            delayMessage:
+              "Slow network is detected. Please wait we're almost done 💪",
+          });
+      }, 4000);
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+
+  render() {
+    return (
+      <ExtendedWrapper>
+        <ExtendedOverlay>
+          <Logo src={logo} alt="WasedaTime logo" />
+          <Description>{this.props.message || "Loading..."}</Description>
+          <Description>{this.state.delayMessage}</Description>
+        </ExtendedOverlay>
+      </ExtendedWrapper>
+    );
+  }
+}
 
 export default LoadingSpinner;
 
 LoadingSpinner.propTypes = {
-  message: PropTypes.string.isRequired
-}
+  message: PropTypes.string.isRequired,
+};

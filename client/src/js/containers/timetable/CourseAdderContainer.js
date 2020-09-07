@@ -1,15 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import { fetchCourses } from '../../actions/syllabus';
+import { fetchCourses } from "../../actions/syllabus";
 import {
   getIsFetching,
   getCourses,
-  getError
-} from '../../reducers/fetchedCourses';
-import { filterCourses, sortCourses } from '../../utils/courseSearch';
-import CourseAdder from '../../components/timetable/CourseAdder';
+  getError,
+} from "../../reducers/fetchedCourses";
+import { filterCourses, sortCourses } from "../../utils/courseSearch";
+import CourseAdder from "../../components/timetable/CourseAdder";
 // import LoadingSpinner from '../components/LoadingSpinner';
 // import FetchError from '../components/FetchError';
 
@@ -23,7 +23,7 @@ class CourseAdderContainer extends React.Component {
     }
   }
 
-  getFilteredCourses = searchTerm => {
+  getFilteredCourses = (searchTerm) => {
     if (searchTerm.length > 0) {
       const filteredCourses = filterCourses(searchTerm, this.props.courses);
       return sortCourses(searchTerm, filteredCourses.slice(0, RESULTS_LIMIT));
@@ -50,25 +50,26 @@ class CourseAdderContainer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isFetching: getIsFetching(state.fetchedCourses),
     courses: getCourses(state.fetchedCourses),
-    error: getError(state.fetchedCourses)
+    error: getError(state.fetchedCourses),
   };
 };
 
 const mapDispatchToProps = {
-  fetchCourses
+  fetchCourses,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  CourseAdderContainer
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CourseAdderContainer);
 
 CourseAdderContainer.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   courses: PropTypes.array.isRequired,
   error: PropTypes.object,
-  fetchCourses: PropTypes.func.isRequired
+  fetchCourses: PropTypes.func.isRequired,
 };

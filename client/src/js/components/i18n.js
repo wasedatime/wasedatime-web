@@ -3,13 +3,12 @@ import { reactI18nextModule } from "react-i18next";
 import detector from "i18next-browser-languagedetector";
 import backend from "i18next-xhr-backend";
 import LANGS from "../config/langs";
-
-const LNG_KEY = "wasedatime-2019-lng";
+import { LNG_KEY } from "../../localForage";
 
 const detectorOptions = {
   order: ["localStorage"],
   lookupLocalStorage: LNG_KEY,
-  caches: ["localStorage"]
+  caches: ["localStorage"],
 };
 
 i18n
@@ -21,14 +20,14 @@ i18n
     keySeparator: ".",
     interpolation: {
       // react already safes from xss
-      escapeValue: false
+      escapeValue: false,
     },
     // Configure the withNamespaces / NamespacesConsumer to
     // not render the content until needed namespaces are loaded.
     react: {
-      wait: true
+      wait: true,
     },
-    detection: detectorOptions
+    detection: detectorOptions,
   });
 
 export default i18n;

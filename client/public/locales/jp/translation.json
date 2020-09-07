@@ -1,4 +1,7 @@
 {
+  "app": {
+    "courseChange": "科目の変更が検出されました。別のタブで科目を登録/取り消した場合は、変更を反映するためにこのページを再読み込みしてください。"
+  },
   "common": {
     "mon": "月",
     "tue": "火",
@@ -10,9 +13,15 @@
   },
   "welcome": {
     "welcome": "WasedaTime へようこそ!",
+    "newFeature": "新機能",
+    "courseEvals": "授業評価",
+    "added": "を追加しました！",
+    "returningUsers": "以前からご利用頂いている場合、既に登録した科目は保持されています。",
     "next": "次へ",
     "back": "前へ",
     "done": "完了",
+    "courseEvalsDetails1": "授業評価はシラバス検索結果でオレンジ色",
+    "courseEvalsDetails2": "のボタンをクリックすると表示できます",
     "Meet our developers!": "開発者たち",
     "Founder": "創設者",
     "Frontendtranslation": "フロントエンド &  翻訳",
@@ -31,6 +40,7 @@
     "timetable": "時間割",
     "syllabus": "シラバス",
     "roomfinder": "空き教室",
+    "joinus": "募集中！",
     "bus": "バス",
     "language": "言語"
   },
@@ -94,6 +104,7 @@
     "Others": "ほか",
     "IPSE": "理工国際プログラム",
     "EN-based Undergrad Program": "英語による学位取得",
+    "IPSE/EN-based Undergrad Program": "理工国際プログラム / 英語による学位取得",
     "Filter by": "フィルター",
     "semesterMap": {
       "springSem": "春学期",
@@ -103,7 +114,6 @@
       "intensiveSpring": "春季集中",
       "intensiveSummer": "夏季集中",
       "springSummer": "春夏期",
-
       "fallSem": "秋学期",
       "fallQuart": "秋クォーター",
       "winterQuart": "冬クォーター",
@@ -111,7 +121,6 @@
       "intensiveFall": "秋季集中",
       "intensiveWinter": "冬季集中",
       "fallWinter": "秋冬期",
-
       "intensiveSpringFallSem": "集中(春・秋学期)",
       "fullYear": "通年",
       "undecided": "未定"
@@ -126,6 +135,18 @@
     "Course title": "科目名",
     "Course time": "科目時間",
     "langParam": ""
+  },
+  "courseEvals": {
+    "Reviews": "評価",
+    "Satisfaction": "満足度",
+    "Difficulty": "難易度",
+    "Benefit": "有益さ",
+    "Related courses": "関連科目",
+    "Disclaimer": "評価の内容はWasedaTimeの立場、意見を代表するものではありません",
+    "Thank WTSA 1": "",
+    "WTSA": "早稲田大学台湾留学生会（WTSA）",
+    "Thank WTSA 2": "の評価のご提供に感謝を申し上げます。",
+    "Related courses explanation": "同じコード及び似たタイトルを持つ授業の中の前10位"
   },
   "room": {
     "Under Construction": "作成中",

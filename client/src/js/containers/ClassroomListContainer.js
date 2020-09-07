@@ -1,17 +1,17 @@
-import React from 'react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
-import { normalize } from 'normalizr';
+import React from "react";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
+import { normalize } from "normalizr";
 import {
   buildingClassroomsSchema,
-  occupiedClassroomsSchema
-} from '../data/schema';
-import PropTypes from 'prop-types';
+  occupiedClassroomsSchema,
+} from "../data/schema";
+import PropTypes from "prop-types";
 
-import ClassroomList from '../components/ClassroomList';
-import NotFound from '../components/NotFound';
-import FetchError from '../components/FetchError';
-import background from '../../img/nishi_waseda_campus.jpg';
+import ClassroomList from "../components/ClassroomList";
+import NotFound from "../components/NotFound";
+import FetchError from "../components/FetchError";
+import background from "../../img/nishi_waseda_campus.jpg";
 
 class ClassroomListContainer extends React.Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class ClassroomListContainer extends React.Component {
       isFetching: true,
       mergedClassrooms: [],
       date: null,
-      error: null
+      error: null,
     };
   }
 
@@ -32,7 +32,7 @@ class ClassroomListContainer extends React.Component {
     occupiedClassroomsById
   ) {
     let mergedClassroomsById = { ...buildingClassroomsById };
-    occupiedClassroomIds.forEach(id => {
+    occupiedClassroomIds.forEach((id) => {
       mergedClassroomsById[id] = occupiedClassroomsById[id];
     });
     return mergedClassroomsById;
@@ -45,7 +45,7 @@ class ClassroomListContainer extends React.Component {
     } catch (error) {
       this.setState({
         isFetching: false,
-        error: error.response
+        error: error.response,
       });
     }
     if (res) {
@@ -65,23 +65,23 @@ class ClassroomListContainer extends React.Component {
         normalizedOccupiedClassrooms.entities.occupiedClassrooms
       );
 
-      const mergedClassrooms = normalizedBuildingClassrooms.result.map(id => {
+      const mergedClassrooms = normalizedBuildingClassrooms.result.map((id) => {
         return mergedClassroomsById[id];
       });
       this.setState({
         isFetching: false,
         date,
-        mergedClassrooms
+        mergedClassrooms,
       });
     }
   }
 
   //Avoid creating an arrow function wrapper and binds in render.
-  handleRetry = async e => {
+  handleRetry = async (e) => {
     e.preventDefault();
     this.setState({
       isFetching: true,
-      error: null
+      error: null,
     });
     await this.fetchData();
   };
@@ -121,5 +121,5 @@ class ClassroomListContainer extends React.Component {
 export default ClassroomListContainer;
 
 ClassroomListContainer.propTypes = {
-  match: PropTypes.object.isRequired
+  match: PropTypes.object.isRequired,
 };

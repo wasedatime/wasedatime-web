@@ -5,28 +5,28 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { withStyles } from "@material-ui/core/styles";
 
-const styles = theme => ({
+const styles = (theme) => ({
   formLabel: {
     fontSize: "1.3em",
     color: "#000",
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   formGroup: {
     fontSize: "1.2em",
-    margin: "5px 0"
+    margin: "5px 0",
   },
   formControlLabel: {
-    minWidth: "105px"
+    minWidth: "105px",
   },
   formControlLabel_label: {
-    fontSize: "1em"
+    fontSize: "1em",
   },
   checkBox: {
-    height: "30px"
+    height: "30px",
   },
   checkBoxChecked: {
-    color: "#b51e36 !important"
-  }
+    color: "#b51e36 !important",
+  },
 });
 
 const FilterGroup = ({
@@ -34,9 +34,9 @@ const FilterGroup = ({
   legend,
   inputs,
   inputName,
-  classes
+  classes,
 }) => {
-  const checkboxes = inputs.map(input => (
+  const checkboxes = inputs.map((input) => (
     <FormControlLabel
       key={input.value}
       control={
@@ -45,7 +45,7 @@ const FilterGroup = ({
           name={inputName}
           value={input.value}
           checked={input.isChecked}
-          onChange={e => {
+          onChange={(e) => {
             handleToggleFilter(e.target.name, e.target.value);
           }}
           classes={{ root: classes.checkBox, checked: classes.checkBoxChecked }}
@@ -54,7 +54,7 @@ const FilterGroup = ({
       label={input.label}
       classes={{
         root: classes.formControlLabel,
-        label: classes.formControlLabel_label
+        label: classes.formControlLabel_label,
       }}
     />
   ));

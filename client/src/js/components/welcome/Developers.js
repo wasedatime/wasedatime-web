@@ -7,7 +7,7 @@ import {
   faTwitter,
   faGithub,
   faInstagram,
-  faWeibo
+  faWeibo,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

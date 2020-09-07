@@ -1,22 +1,22 @@
-import { schema } from 'normalizr';
+import { schema } from "normalizr";
 
-const courseSchema = new schema.Entity('courses', {}, { idAttribute: '_id' });
+const courseSchema = new schema.Entity("courses", {}, { idAttribute: "_id" });
 
 export const coursesSchema = [courseSchema];
 
 //{ _id: '51', name: '51' }
 const buildingSchema = new schema.Entity(
-  'buildings',
+  "buildings",
   {},
-  { idAttribute: '_id' }
+  { idAttribute: "_id" }
 );
 //shorthand syntax for new schema.Array(bldgSchema)
 export const buildingsSchema = [buildingSchema];
 // { id: "51-04-05", name: "04-05" }
 const buildingClassroomSchema = new schema.Entity(
-  'classrooms',
+  "classrooms",
   {},
-  { idAttribute: 'id' }
+  { idAttribute: "id" }
 );
 
 export const buildingClassroomsSchema = [buildingClassroomSchema];
@@ -30,17 +30,17 @@ export const buildingClassroomsSchema = [buildingClassroomSchema];
 //   }
 // }
 const occupiedClassroomSchema = new schema.Entity(
-  'occupiedClassrooms',
+  "occupiedClassrooms",
   {},
   {
-    idAttribute: '_id',
-    processStrategy: entity => {
+    idAttribute: "_id",
+    processStrategy: (entity) => {
       return {
         id: entity._id,
         name: entity.name,
-        courses: entity.courses
+        courses: entity.courses,
       };
-    }
+    },
   }
 );
 

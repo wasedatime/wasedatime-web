@@ -10,32 +10,36 @@ import {
   REMOVE_COURSE,
   CHANGE_COURSE_COLOR,
   TOGGLE_COURSE_VISIBILITY,
-  CHANGE_COURSES_SORTING_OPTION
+  CHANGE_COURSES_SORTING_OPTION,
 } from "./types";
 import * as schema from "../data/schema";
 import { wasetimeApiStatic } from "../config/api";
 
 export const fetchCourses = () => async (dispatch, getState) => {
   dispatch({
-    type: FETCH_COURSES_REQUEST
+    type: FETCH_COURSES_REQUEST,
   });
 
   try {
     const res = await axios.get(wasetimeApiStatic.courseListAll);
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
+    const fetchedTime = new Date().toISOString();
     dispatch({
       type: FETCH_COURSES_SUCCESS,
-      response: normalizedCourses
+      response: {
+        ...normalizedCourses,
+        fetchedTime,
+      },
     });
   } catch (error) {
     const response = error.response || {
       status: 501,
-      statusText: "Not Implemented"
+      statusText: "Not Implemented",
     };
     dispatch({
       type: FETCH_COURSES_FAILURE,
-      error: response
+      error: response,
     });
   }
 };
@@ -45,46 +49,46 @@ export const hydrateAddedCourses = (prefs, fetchedCoursesById) => ({
   type: HYDRATE_ADDED_COURSES,
   payload: {
     prefs,
-    fetchedCoursesById
-  }
+    fetchedCoursesById,
+  },
 });
 
 export const addCourse = (course, displayLang) => ({
   type: ADD_COURSE,
   payload: {
     id: course._id,
-    semester: course.term,
+    semester: course.tm,
     course: course,
-    displayLang: displayLang
-  }
+    displayLang: displayLang,
+  },
 });
 
-export const removeCourse = id => ({
+export const removeCourse = (id) => ({
   type: REMOVE_COURSE,
   payload: {
-    id
-  }
+    id,
+  },
 });
 
 export const changeCourseColor = (id, color) => ({
   type: CHANGE_COURSE_COLOR,
   payload: {
     id,
-    color
-  }
+    color,
+  },
 });
 
-export const toggleCourseVisibility = id => ({
+export const toggleCourseVisibility = (id) => ({
   type: TOGGLE_COURSE_VISIBILITY,
   payload: {
-    id
-  }
+    id,
+  },
 });
 
 export const changeCoursesSortingOption = (sortingOption, semester) => ({
   type: CHANGE_COURSES_SORTING_OPTION,
   payload: {
     sortingOption,
-    semester
-  }
+    semester,
+  },
 });

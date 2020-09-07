@@ -17,7 +17,7 @@ export const springSemesterMap = {
   intensiveSummer: "Intensive: Summer",
   springSummer: "Spring & Summer",
 
-  undecided: "undecided"
+  undecided: "undecided",
 };
 
 export const fallSemesterMap = {
@@ -34,12 +34,12 @@ export const fallSemesterMap = {
   intensiveWinter: "Intensive: Winter",
   fallWinter: "Fall & Winter",
 
-  undecided: "undecided"
+  undecided: "undecided",
 };
 
 export const semesterMap = {
   ...springSemesterMap,
-  ...fallSemesterMap
+  ...fallSemesterMap,
 };
 
 export const springSemesters = Object.keys(springSemesterMap);

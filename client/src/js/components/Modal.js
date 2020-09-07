@@ -1,9 +1,9 @@
-import React from 'react';
-import ReactModal from 'react-modal';
-import noScroll from 'no-scroll';
-import PropTypes from 'prop-types';
+import React from "react";
+import ReactModal from "react-modal";
+import noScroll from "no-scroll";
+import PropTypes from "prop-types";
 
-ReactModal.setAppElement('#root');
+ReactModal.setAppElement("#root");
 //TODO check how often this is called.
 // console.log('setAppElement called');
 
@@ -55,5 +55,5 @@ Modal.propTypes = {
   style: PropTypes.object,
   overlayClassName: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };

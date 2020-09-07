@@ -3,12 +3,12 @@ export const filterInvalidClassrooms = (
   school,
   classroomNameLength
 ) => {
-  return courses.filter(course => {
-    const keys = course.keys;
-    const schools = keys.map(key => key.school);
+  return courses.filter((course) => {
+    const keys = course.ks;
+    const schools = keys.map((key) => key.school);
     if (!schools.includes(school)) return false;
 
-    const occurrences = course.occurrences;
+    const occurrences = course.os;
     for (let i = 0; i < occurrences.length; i++) {
       const classroom = occurrences[i].classroom;
       const building = occurrences[i].building;

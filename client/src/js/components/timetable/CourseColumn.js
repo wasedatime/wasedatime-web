@@ -7,11 +7,11 @@ import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 
 const StyledCourseColumn = styled("div")`
   display: flex;
-  flex: 1 0 calc(63rem / 7 * ${props => props.displayPeriods});
+  flex: 1 0 calc(63rem / 7 * ${(props) => props.displayPeriods});
   border-right: solid 1px #ccc;
   border-bottom: solid 1px #ccc;
   background: linear-gradient(180deg, #fff 50%, #eee 50%);
-  background-size: 100% calc(100% / ${props => props.displayPeriods} * 2);
+  background-size: 100% calc(100% / ${(props) => props.displayPeriods} * 2);
   position: relative;
   min-width: 6.8rem;
   flex-direction: row;
@@ -21,9 +21,11 @@ const CourseItem = styled("div")`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: calc(100% / ${props => props.displayPeriods} * ${props => props.top});
+  top: calc(
+    100% / ${(props) => props.displayPeriods} * ${(props) => props.top}
+  );
   height: calc(
-    100% / ${props => props.displayPeriods} * ${props => props.height} - 1px
+    100% / ${(props) => props.displayPeriods} * ${(props) => props.height} - 1px
   );
   width: 100%;
   padding: 0.3rem 0 0 0.1rem;
@@ -74,11 +76,9 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
   const initSlotList = [0, 0, 0, 0, 0, 0, 0, 0];
   let slotLists = [initSlotList.slice()];
 
-  coursesAndProperties.forEach(courseAndProperty => {
-    const startPeriod = Number(
-      courseAndProperty.course.occurrence.start_period
-    );
-    const endPeriod = Number(courseAndProperty.course.occurrence.end_period);
+  coursesAndProperties.forEach((courseAndProperty) => {
+    const startPeriod = Number(courseAndProperty.course.occurrence.s);
+    const endPeriod = Number(courseAndProperty.course.occurrence.e);
 
     let existsAvailableSlot = true;
     for (let i = 0; i < slotLists.length; i++) {
@@ -117,23 +117,23 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
 
   const distinctCourseListsComponent = distinctCourseLists.map(
     (distinctCourseList, index) => {
-      const listComponent = distinctCourseList.map(courseAndProperty => {
+      const listComponent = distinctCourseList.map((courseAndProperty) => {
         const { course, color, displayLang } = courseAndProperty;
         const { title } = getCourseTitleAndInstructor(course, displayLang);
-        const startPeriod = Number(course.occurrence.start_period);
-        const endPeriod = Number(course.occurrence.end_period);
+        const startPeriod = Number(course.occurrence.s);
+        const endPeriod = Number(course.occurrence.e);
         let location = t("timetable.undecided");
-        if (course.occurrence.classroom !== "undecided") {
-          if (course.occurrence.building !== "-1") {
-            location = course.occurrence.location;
+        if (course.occurrence.c !== "undecided") {
+          if (course.occurrence.b !== "-1") {
+            location = course.occurrence.l;
           } else {
-            location = course.occurrence.classroom;
+            location = course.occurrence.c;
           }
         }
         return (
           <CourseItem
             className={`color-${color}`}
-            key={`${course.term}-${course.title}-${startPeriod}-${endPeriod}`}
+            key={`${course.term}-${course.t}-${startPeriod}-${endPeriod}`}
             displayPeriods={displayPeriods}
             top={startPeriod - 1}
             height={endPeriod - startPeriod + 1}

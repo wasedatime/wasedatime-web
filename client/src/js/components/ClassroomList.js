@@ -1,16 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-import ClassroomItem from './ClassroomItem';
-import { Overlay } from '../styled-components/Overlay';
-import { WrapperWithBackground } from '../styled-components/Wrapper';
+import ClassroomItem from "./ClassroomItem";
+import { Overlay } from "../styled-components/Overlay";
+import { WrapperWithBackground } from "../styled-components/Wrapper";
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 40px 25px 25px 25px;
 `;
 
-const TitleWrapper = styled('div')`
+const TitleWrapper = styled("div")`
   align-self: flex-start;
   margin-top: 30px;
   margin-left: -40px;
@@ -19,16 +19,16 @@ const TitleWrapper = styled('div')`
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
-const Title = styled('h3')`
+const Title = styled("h3")`
   margin: 0 0;
   padding-left: 25px;
-  font-family: 'Times';
+  font-family: "Times";
   font-size: 3.2rem;
   font-weight: lighter;
   color: #ffffff;
 `;
 
-const Subtitle = styled('h4')`
+const Subtitle = styled("h4")`
   margin: 0 0;
   padding-left: 25px;
   font-size: 1.5rem;
@@ -36,13 +36,13 @@ const Subtitle = styled('h4')`
   color: #ffffff;
 `;
 
-const ListWrapper = styled('div')`
+const ListWrapper = styled("div")`
   display: flex;
   justify-content: center;
   margin-bottom: 8vh;
 `;
 
-const StyledList = styled('ul')`
+const StyledList = styled("ul")`
   padding: 0;
   list-style: none;
   list-style-type: none;
@@ -56,8 +56,8 @@ const ClassroomList = ({ buildingName, classrooms, background, date }) => {
     const periodString =
       /^[1-5]$/.test(day) && /^[1-7]$/.test(period)
         ? `Period ${period}`
-        : 'Non-Class Time';
-    const listItems = classrooms.map(classroom => {
+        : "Non-Class Time";
+    const listItems = classrooms.map((classroom) => {
       return <ClassroomItem key={classroom.id} classroom={classroom} />;
     });
     return (
@@ -68,8 +68,7 @@ const ClassroomList = ({ buildingName, classrooms, background, date }) => {
         <ExtendedOverlay>
           <TitleWrapper>
             <Title>{`Building ${buildingName}`}</Title>
-            <Subtitle
-            >{`${dateString} ${hoursString}:${minutesString}`}</Subtitle>
+            <Subtitle>{`${dateString} ${hoursString}:${minutesString}`}</Subtitle>
             <Subtitle>{periodString}</Subtitle>
           </TitleWrapper>
           <ListWrapper>
@@ -96,5 +95,5 @@ ClassroomList.propTypes = {
   date: PropTypes.object,
   buildingName: PropTypes.string.isRequired,
   classrooms: PropTypes.array.isRequired,
-  background: PropTypes.string.isRequired
+  background: PropTypes.string.isRequired,
 };

@@ -87,7 +87,7 @@ const JoinUs = () => {
             <FontAwesomeIcon icon={faUserCog} /> Technology Roles
           </Header>
         </DividerTitle>
-        <List bulleted size="small">
+        <List bulleted size="medium">
           <List.Item>General Software Developer / Apprentice</List.Item>
           <List.Item>Frontend Developer / Apprentice</List.Item>
           <List.Item>Backend Developer / Apprentice</List.Item>
@@ -117,7 +117,7 @@ const JoinUs = () => {
           </Header>
         </DividerTitle>
 
-        <List bulleted size="small">
+        <List bulleted size="medium">
           <List.Item>Product management</List.Item>
           <List.Item>Marketing & Advertising</List.Item>
           <List.Item>Business expansion/liaison</List.Item>
@@ -154,7 +154,7 @@ const JoinUs = () => {
 
         <Divider hidden />
         <ColoredHeader
-          size="big"
+          size="medium"
           textAlign="center"
           content="We look forward to hearing from you!"
         />

@@ -74,7 +74,7 @@ class Greeting extends React.Component {
             "welcome.added"
           )}`}
         </Typography>
-        <Typography variant="p" component="p" align="center" gutterBottom>
+        <Typography variant="h4" component="p" align="center" gutterBottom>
           {t("welcome.returningUsers")}
         </Typography>
         <FormControl component="fieldset" className={undefined}>

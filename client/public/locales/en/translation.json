@@ -1,4 +1,7 @@
 {
+  "app": {
+    "courseChange": "Course change detected. If you added/deleted courses in another tab, please refresh this page to see the changes."
+  },
   "common": {
     "mon": "Mon",
     "tue": "Tue",

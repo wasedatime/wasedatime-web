@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Alert from "react-s-alert";
 import styled, { ThemeProvider } from "styled-components";
+import { withNamespaces } from "react-i18next";
 
 import { normalTheme } from "../styled-components/theme";
 import "react-s-alert/dist/s-alert-default.css";
@@ -38,7 +39,16 @@ const StyledMain = styled("main")`
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
-const App = ({ isFirstTimeAccess }) => {
+const App = ({ isFirstTimeAccess, t }) => {
+  window.addEventListener("storage", (e) => {
+    if (e.key === "wasedatime-2020-state-ac") {
+      Alert.warning(t("app.courseChange"), {
+        timeout: "none",
+        position: "bottom",
+        effect: "jelly",
+      });
+    }
+  });
   return (
     <ThemeProvider theme={normalTheme}>
       <Wrapper>
@@ -85,4 +95,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withRouter(connect(mapStateToProps, null)(App));
+export default withNamespaces("translation")(
+  withRouter(connect(mapStateToProps, null)(App))
+);

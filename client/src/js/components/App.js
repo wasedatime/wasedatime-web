@@ -38,6 +38,17 @@ const StyledMain = styled("main")`
 `;
 
 const App = ({ isFirstTimeAccess }) => {
+  window.addEventListener("storage", (e) => {
+    if (e.key === "wasedatime-2020-state-ac") {
+      Alert.warning(
+        "Course changed. If you opened WasedaTime in another tab, please refresh it to see the changes.",
+        {
+          position: "bottom",
+          effect: "jelly",
+        }
+      );
+    }
+  });
   return (
     <ThemeProvider theme={normalTheme}>
       <Wrapper>

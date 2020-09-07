@@ -167,11 +167,9 @@ class FetchedCourseSearch extends React.Component {
     // IPSE/English-based Undergraduate Program
     if (filterGroups.special.length > 0) {
       const specialFilters = filterGroups.special[0].split("/");
-      console.log(specialFilters);
       filteredCourses = filteredCourses.filter((course) => {
         const keywords = course.kws;
         if (keywords === undefined) return false;
-        console.log(keywords);
         for (let i = 0; i < keywords.length; i++) {
           if (specialFilters.includes(keywords[i])) return true;
         }

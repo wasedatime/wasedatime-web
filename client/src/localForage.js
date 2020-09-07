@@ -4,7 +4,13 @@ export const LNG_KEY = "wasedatime-2020-lng";
 const PREV_STATE_NAME = "wasedatime-2019-state";
 const STATE_NAME = "wasedatime-2020-state";
 const STATE_FETCHED_COURSES_NAME = "wasedatime-2020-state-fc";
-const DATA_TO_SAVE = [LNG_KEY, STATE_NAME, STATE_FETCHED_COURSES_NAME];
+const STATE_ADDED_COURSES_NAME = "wasedatime-2020-state-ac";
+const DATA_TO_SAVE = [
+  LNG_KEY,
+  STATE_NAME,
+  STATE_FETCHED_COURSES_NAME,
+  STATE_ADDED_COURSES_NAME,
+];
 
 export const loadState = () => {
   let prevState = null;
@@ -102,6 +108,10 @@ export const saveState = (state) => {
     }
   }
   const { fetchedCourses, ...rest } = state;
+  localStorage.setItem(
+    STATE_ADDED_COURSES_NAME,
+    JSON.stringify(rest.addedCourses)
+  );
   localForage
     .setItem(STATE_NAME, rest)
     .then((value) => {})

@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import { media } from "../../styled-components/utils";
 
 const ReviewLangSwitch = styled("button")`
   font-size: 0.6em;
   border: none;
-  padding: 5px 10px;
+  padding: 4px 10px 10px;
   background-color: #ddd;
   height: 2em;
   vertical-align: 0.3em;
@@ -22,12 +23,7 @@ const ReviewLangSwitch = styled("button")`
 `;
 
 const ReviewLangSwitchEng = styled(ReviewLangSwitch)`
-  border-top: 2px solid #ddd;
-  ${(props) => props.active && "border-top: 2px solid #eee;"};
-
-  &:hover {
-    border-top: 2px solid #eee;
-  }
+  font-family: sans-serif;
 `;
 
 const ReviewLangSwitches = ({ reviewLang, switchReviewLang, t }) => (

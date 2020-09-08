@@ -46,8 +46,11 @@ const App = ({ isFirstTimeAccess, t }) => {
         <React.Fragment>
           {t("app.courseChange")}
           <a
-            href={window.location.href + "#"}
-            onClick={() => window.location.reload(true)}
+            href={"/"}
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.reload(true);
+            }}
           >
             {t("app.RefreshLink")}
           </a>

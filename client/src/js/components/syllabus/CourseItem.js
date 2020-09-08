@@ -350,7 +350,6 @@ const CourseItem = ({
                   course.e && (
                     <ViewEvalsIconButton
                       href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
-                      target="_blank"
                     >
                       <FontAwesomeIcon icon={faCommentDots} size="2x" />{" "}
                     </ViewEvalsIconButton>

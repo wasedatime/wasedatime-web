@@ -340,6 +340,7 @@ class CourseEvals extends React.Component {
                   <ReviewLangSwitches
                     reviewLang={reviewLang}
                     switchReviewLang={this.switchReviewLang}
+                    isInHeading={true}
                   />
                 </span>
               </StyledSubHeading>

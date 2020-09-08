@@ -4,12 +4,14 @@ import styled from "styled-components";
 const ReviewLangSwitch = styled("button")`
   font-size: 0.6em;
   border: none;
-  padding: 4px 10px 10px;
+  padding: 5px 10px;
   background-color: #ddd;
   height: 2em;
   vertical-align: 0.3em;
+  line-height: 15px;
   ${(props) =>
     props.active && "border-bottom: 2px solid #fff; background-color: #eee;"};
+  ${(props) => props.isInHeading && "line-height: 20px;"};
 
   &:hover {
     outline: none;
@@ -21,33 +23,38 @@ const ReviewLangSwitch = styled("button")`
   }
 `;
 
-const ReviewLangSwitchEng = styled(ReviewLangSwitch)`
-  font-family: sans-serif;
-`;
-
-const ReviewLangSwitches = ({ reviewLang, switchReviewLang, t }) => (
+const ReviewLangSwitches = ({
+  reviewLang,
+  switchReviewLang,
+  isInHeading,
+  t,
+}) => (
   <span>
-    <ReviewLangSwitchEng
+    <ReviewLangSwitch
       active={reviewLang === "en"}
       onClick={() => switchReviewLang("en")}
+      isInHeading={isInHeading}
     >
       English
-    </ReviewLangSwitchEng>
+    </ReviewLangSwitch>
     <ReviewLangSwitch
       active={reviewLang === "jp"}
       onClick={() => switchReviewLang("jp")}
+      isInHeading={isInHeading}
     >
       日本語
     </ReviewLangSwitch>
     <ReviewLangSwitch
       active={reviewLang === "zh_TW"}
       onClick={() => switchReviewLang("zh_TW")}
+      isInHeading={isInHeading}
     >
       繁中
     </ReviewLangSwitch>
     <ReviewLangSwitch
       active={reviewLang === "zh_CN"}
       onClick={() => switchReviewLang("zh_CN")}
+      isInHeading={isInHeading}
     >
       简中
     </ReviewLangSwitch>

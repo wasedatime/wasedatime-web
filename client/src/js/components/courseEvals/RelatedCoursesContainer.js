@@ -86,6 +86,7 @@ class RelatedCoursesContainer extends React.Component {
         <ReviewLangSwitches
           reviewLang={this.state.reviewLang}
           switchReviewLang={this.switchReviewLang}
+          isInHeading={false}
         />
         <RelatedCoursesWrapper>
           {relatedCourses.map((relatedCourse, i) => (

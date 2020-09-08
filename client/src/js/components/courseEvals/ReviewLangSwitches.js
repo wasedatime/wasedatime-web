@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { media } from "../../styled-components/utils";
 
 const ReviewLangSwitch = styled("button")`
   font-size: 0.6em;

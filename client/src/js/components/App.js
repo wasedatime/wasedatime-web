@@ -42,11 +42,22 @@ const StyledMain = styled("main")`
 const App = ({ isFirstTimeAccess, t }) => {
   window.addEventListener("storage", (e) => {
     if (e.key === "wasedatime-2020-state-ac") {
-      Alert.warning(t("app.courseChange"), {
-        timeout: "none",
-        position: "bottom",
-        effect: "jelly",
-      });
+      Alert.warning(
+        <React.Fragment>
+          {t("app.courseChange")}
+          <a
+            href={window.location.href + "#"}
+            onClick={() => window.location.reload(true)}
+          >
+            {t("app.RefreshLink")}
+          </a>
+        </React.Fragment>,
+        {
+          timeout: "none",
+          position: "bottom",
+          effect: "jelly",
+        }
+      );
     }
   });
   return (

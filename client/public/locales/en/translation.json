@@ -1,6 +1,7 @@
 {
   "app": {
-    "courseChange": "Course change detected. If you added/deleted courses in another tab, please refresh this page to see the changes."
+    "courseChange": "Course change detected. If you added/deleted courses in another tab, please ",
+    "RefreshLink": "click here to refresh to see the changes"
   },
   "common": {
     "mon": "Mon",

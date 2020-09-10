@@ -1,13 +1,13 @@
 //Credits: Adapted from the awesome tutorial by Sergio Pedercini at
 //https://medium.com/@pppped/build-a-simple-modal-window-with-react-and-jss-f05041d899cc
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
-import styled, {keyframes} from 'styled-components';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
+import styled, { keyframes } from "styled-components";
 
-import { media } from '../styled-components/utils';
-import {Overlay} from '../styled-components/Overlay';
-import PropTypes from 'prop-types';
+import { media } from "../styled-components/utils";
+import { Overlay } from "../styled-components/Overlay";
+import PropTypes from "prop-types";
 
 const show = keyframes`
   0% {
@@ -21,7 +21,7 @@ const show = keyframes`
   100% {
     opacity: 1;
   }
-`
+`;
 
 const hide = keyframes`
   0% {
@@ -35,7 +35,7 @@ const hide = keyframes`
     display: none;
     opacity: 0;
   }
-`
+`;
 
 const ExtendedOverlay = styled(Overlay)`
   background-color: rgba(0, 0, 0, 0.6);
@@ -49,10 +49,10 @@ const ExtendedOverlay = styled(Overlay)`
   padding: 1rem;
   z-index: 9999;
   opacity: 1;
-  animation: ${props => props.animation} .5s ease;
-`
+  animation: ${(props) => props.animation} 0.5s ease;
+`;
 
-const Window = styled('div')`
+const Window = styled("div")`
   height: 100%;
   max-width: 500px;
   padding: 10px 25px;
@@ -63,23 +63,23 @@ const Window = styled('div')`
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   ${media.phone`width: 80vw;`};
-`
+`;
 
-const Header = styled('header')`
+const Header = styled("header")`
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
-`
+`;
 
-const Content = styled('section')`
+const Content = styled("section")`
   color: #000000;
   display: flex;
   flex-direction: column;
-`
+`;
 
-const Footer = Header.withComponent('footer');
+const Footer = Header.withComponent("footer");
 
-const CloseLink = styled('a')`
+const CloseLink = styled("a")`
   color: #000000;
   position: relative;
   top: -5px;
@@ -87,8 +87,8 @@ const CloseLink = styled('a')`
   align-self: flex-end;
   margin-bottom: -35px;
   cursor: pointer;
-`
-const CloseButton = styled('button')`
+`;
+const CloseButton = styled("button")`
   padding: 12px;
   text-align: center;
   text-decoration: none;
@@ -102,8 +102,7 @@ const CloseButton = styled('button')`
   &:active {
     background-color: #999;
   }
-`
-
+`;
 
 class BusModal extends React.Component {
   constructor(props) {
@@ -114,33 +113,41 @@ class BusModal extends React.Component {
     this.handleOutsideTouchStart = this.handleOutsideTouchStart.bind(this);
 
     this.state = {
-      close: false
+      close: false,
     };
   }
 
   componentDidMount() {
     // Add listeners
-    document.addEventListener('click', this.handleOutsideClick, false);
-    document.addEventListener('touchstart', this.handleOutsideTouchStart, false);
-    document.body.style.overflowY = 'hidden';
+    document.addEventListener("click", this.handleOutsideClick, false);
+    document.addEventListener(
+      "touchstart",
+      this.handleOutsideTouchStart,
+      false
+    );
+    document.body.style.overflowY = "hidden";
   }
 
   componentWillUnmount() {
     // Remove listeners
-    document.removeEventListener('click', this.handleOutsideClick, false);
-    document.removeEventListener('touchstart', this.handleOutsideTouchStart, false);
-    document.body.style.overflowY = '';
+    document.removeEventListener("click", this.handleOutsideClick, false);
+    document.removeEventListener(
+      "touchstart",
+      this.handleOutsideTouchStart,
+      false
+    );
+    document.body.style.overflowY = "";
   }
 
   closeModal() {
     if (!this.state.close) {
       const { onClose } = this.props;
       this.setState({
-        close: true
+        close: true,
       });
-      setTimeout(()=>{
+      setTimeout(() => {
         onClose();
-      },300);
+      }, 300);
     }
   }
 
@@ -149,7 +156,7 @@ class BusModal extends React.Component {
     if (this.modalWindow != null) {
       if (!this.modalWindow.contains(e.target)) {
         this.closeModal();
-        document.removeEventListener('click', this.handleOutsideClick, false);
+        document.removeEventListener("click", this.handleOutsideClick, false);
       }
     }
   }
@@ -159,36 +166,40 @@ class BusModal extends React.Component {
     if (this.modalWindow != null) {
       if (!this.modalWindow.contains(e.target)) {
         this.closeModal();
-        document.removeEventListener('touchstart', this.handleOutsideTouchStart, false);
+        document.removeEventListener(
+          "touchstart",
+          this.handleOutsideTouchStart,
+          false
+        );
       }
     }
   }
 
   setModalWindow(element) {
     this.modalWindow = element;
-  };
+  }
 
   render() {
-    const {children} = this.props;
-    return(
+    const { children } = this.props;
+    return (
       <ExtendedOverlay animation={this.state.close ? hide : show}>
         <Window innerRef={this.setModalWindow}>
           <Header>
             <CloseLink onClick={this.closeModal}>
-              <FontAwesomeIcon icon={faTimesCircle} size="2x" transform="shrink-2" />
+              <FontAwesomeIcon
+                icon={faTimesCircle}
+                size="2x"
+                transform="shrink-2"
+              />
             </CloseLink>
           </Header>
-          <Content>
-              {children}
-          </Content>
+          <Content>{children}</Content>
           <Footer>
-            <CloseButton onClick={this.closeModal}>
-              Close
-            </CloseButton>
+            <CloseButton onClick={this.closeModal}>Close</CloseButton>
           </Footer>
         </Window>
       </ExtendedOverlay>
-    )
+    );
   }
 }
 
@@ -196,9 +207,9 @@ export default BusModal;
 
 BusModal.propTypes = {
   onClose: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired
-}
+  children: PropTypes.element.isRequired,
+};
 
 ExtendedOverlay.propTypes = {
   animation: PropTypes.object.isRequired,
-}
+};

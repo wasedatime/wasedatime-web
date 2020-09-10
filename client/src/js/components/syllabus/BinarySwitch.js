@@ -1,30 +1,30 @@
-import React from 'react';
-import styled from 'styled-components';
-import stickybits from 'stickybits';
+import React from "react";
+import styled from "styled-components";
+import stickybits from "stickybits";
 
-import { headerHeight } from '../../styled-components/variables';
-import { RowWrapper } from '../../styled-components/Wrapper';
+import { headerHeight } from "../../styled-components/variables";
+import { RowWrapper } from "../../styled-components/Wrapper";
 
 const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
   align-items: center;
   justify-content: space-around;
-  height: ${props => props.height};
+  height: ${(props) => props.height};
   width: 100%;
-  background-color: ${props => props.theme.grey7};
+  background-color: ${(props) => props.theme.grey7};
   z-index: 1030;
 `;
 
-const SwitchButton = styled('button')`
+const SwitchButton = styled("button")`
   width: 100%;
   height: 100%;
-  background-color: ${props =>
-    props.isSelected ? props.theme.grey4 : 'unset'};
+  background-color: ${(props) =>
+    props.isSelected ? props.theme.grey4 : "unset"};
   border: none;
   padding: 0;
-  color: ${props => props.theme.white};
+  color: ${(props) => props.theme.white};
   &:hover {
-    background-color: ${props => props.theme.grey4};
+    background-color: ${(props) => props.theme.grey4};
   }
   &:focus {
     outline: 0;
@@ -35,14 +35,14 @@ export default class BinarySwitch extends React.Component {
   constructor() {
     super();
     this.wrapper = null;
-    this.setWrapperRef = element => {
+    this.setWrapperRef = (element) => {
       this.wrapper = element;
     };
 
     this.createStickyWrapper = () => {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: parseInt(headerHeight, 10)
+          stickyBitStickyOffset: parseInt(headerHeight, 10),
         });
       }
     };
@@ -54,7 +54,7 @@ export default class BinarySwitch extends React.Component {
     };
   }
 
-  handleOnClick = event => {
+  handleOnClick = (event) => {
     event.preventDefault();
     const buttonId = event.target.id;
     const { leftButtonId, leftValue, rightValue } = this.props;
@@ -78,7 +78,7 @@ export default class BinarySwitch extends React.Component {
       rightValue,
       value,
       leftDisplayedValue,
-      rightDisplayedValue
+      rightDisplayedValue,
     } = this.props;
     return (
       <ExtendedWrapper

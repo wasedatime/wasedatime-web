@@ -1,14 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-import { Wrapper, RowWrapper } from '../../styled-components/Wrapper';
-import { Article, Section } from '../../styled-components/Article';
-import TimeRowList from './TimeRowList';
-import DayColumnList from './DayColumnList';
-import AddedCourseAndPrefListContainer from '../../containers/timetable/AddedCourseAndPrefListContainer';
-import { media } from '../../styled-components/utils';
+import { Wrapper, RowWrapper } from "../../styled-components/Wrapper";
+import { Article, Section } from "../../styled-components/Article";
+import TimeRowList from "./TimeRowList";
+import DayColumnList from "./DayColumnList";
+import AddedCourseAndPrefListContainer from "../../containers/timetable/AddedCourseAndPrefListContainer";
+import { media } from "../../styled-components/utils";
 import { withNamespaces } from "react-i18next";
-
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
@@ -18,9 +17,9 @@ const ExtendedRowWrapper = styled(RowWrapper)`
   `};
 `;
 
-const Column = styled('div')`
-  flex: ${props => `0 0 ${props.flexBasis};`}
-  max-width: ${props => `${props.flexBasis};`}
+const Column = styled("div")`
+  flex: ${(props) => `0 0 ${props.flexBasis};`}
+  max-width: ${(props) => `${props.flexBasis};`}
   ${media.tablet`
     flex: 1 0 auto;
     max-width: 100%;
@@ -31,7 +30,7 @@ const Column = styled('div')`
   `};
 `;
 
-const ScrollableTimetable = styled('div')`
+const ScrollableTimetable = styled("div")`
   display: flex;
   flex-direction: row;
   flex: 1 0 0;
@@ -41,17 +40,17 @@ const ScrollableTimetable = styled('div')`
 
 const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(
-    elem => elem.visibility === true
+    (elem) => elem.visibility === true
   );
 
   const largestDayAndPeriod = visibleAddedCoursesAndPrefs.reduce(
     (acc, elem) => {
-      const occurrences = elem.course.occurrences;
+      const occurrences = elem.course.os;
       return occurrences.reduce((acc, occurrence) => {
         return {
           ...acc,
-          day: Math.max(acc.day, occurrence.day),
-          period: Math.max(acc.period, occurrence.end_period)
+          day: Math.max(acc.day, occurrence.d),
+          period: Math.max(acc.period, occurrence.e),
         };
       }, acc);
     },
@@ -78,8 +77,11 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
               <Article>
                 <h3>{t("timetable.welcome")}</h3>
                 <Section>
-                  {t("timetable.You haven't added any courses")}<br />
-                  {t("timetable.Go to")}  <a href="./syllabus">{t("timetable.Syllabus")} </a> {t("timetable.and try adding one!")}
+                  {t("timetable.You haven't added any courses")}
+                  <br />
+                  {t("timetable.Go to")}{" "}
+                  <a href="./syllabus">{t("timetable.Syllabus")} </a>{" "}
+                  {t("timetable.and try adding one!")}
                 </Section>
                 <Section> {t("timetable.SaveSpace")} </Section>
               </Article>

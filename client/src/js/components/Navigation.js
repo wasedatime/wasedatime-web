@@ -11,7 +11,8 @@ import {
   faBuilding,
   faBus,
   faAddressCard,
-  faBriefcase
+  faBriefcase,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
@@ -62,28 +63,28 @@ const Navigation = (props) => {
     {
       name: t("navigation.timetable"),
       path: "/timetable",
-      icon: faCalendarAlt
+      icon: faCalendarAlt,
     },
     {
       name: t("navigation.syllabus"),
       path: "/syllabus",
-      icon: faBook
-    },
-    {
-      name: t("navigation.roomfinder"),
-      path: "/roomfinder",
-      icon: faBuilding
+      icon: faBook,
     },
     {
       name: t("navigation.bus"),
       path: "/bus",
-      icon: faBus
+      icon: faBus,
     },
     {
       name: t("navigation.career"),
       path: "/career",
-      icon: faBriefcase
-    }
+      icon: faBriefcase,
+    },
+    {
+      name: t("navigation.joinus"),
+      path: "/joinus",
+      icon: faStar,
+    },
   ];
   const styledLinks = navItems.map((item) => {
     const itemName = item["name"];
@@ -110,9 +111,9 @@ export default withRouter(withNamespaces("translation")(Navigation));
 
 Navigation.propTypes = {
   location: PropTypes.object.isRequired,
-  t: PropTypes.func.isRequired
+  t: PropTypes.func.isRequired,
 };
 
 StyledButton.propTypes = {
-  isClicked: PropTypes.bool.isRequired
+  isClicked: PropTypes.bool.isRequired,
 };

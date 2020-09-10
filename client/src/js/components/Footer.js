@@ -114,5 +114,5 @@ export default withNamespaces("translation")(Footer);
 Footer.propTypes = {
   finishTime: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
-  lng: PropTypes.string.isRequired
-}
+  lng: PropTypes.string.isRequired,
+};

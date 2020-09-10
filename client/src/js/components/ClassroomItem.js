@@ -1,15 +1,15 @@
-import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import React from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
-const StyledListItem = styled('li')`
+const StyledListItem = styled("li")`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   font-size: 1.7rem;
 `;
 
-const Classroom = styled('div')`
+const Classroom = styled("div")`
   display: inline-block;
   height: 100%;
   margin: 4px 5px 4px 0px;
@@ -26,7 +26,7 @@ const OccupiedClassroom = styled(Classroom)`
   background-color: #ffafaf;
 `;
 
-const Course = styled('div')`
+const Course = styled("div")`
   display: flex;
   flex: 1 1 150px;
   background-color: #ffafaf;
@@ -38,7 +38,7 @@ const Course = styled('div')`
 `;
 //TODO we have cases where multiple classes take place in one classroom...
 const ClassroomItem = ({ classroom }) => {
-  if (typeof classroom.courses !== 'undefined') {
+  if (typeof classroom.courses !== "undefined") {
     return (
       <StyledListItem>
         <OccupiedClassroom>{classroom.name}</OccupiedClassroom>
@@ -59,5 +59,5 @@ const ClassroomItem = ({ classroom }) => {
 export default ClassroomItem;
 
 ClassroomItem.propTypes = {
-  classroom: PropTypes.object.isRequired
+  classroom: PropTypes.object.isRequired,
 };

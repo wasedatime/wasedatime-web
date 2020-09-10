@@ -34,10 +34,10 @@ const StyledSpan = styled("span")`
 
 class LanguangeMenu extends React.Component {
   state = {
-    anchorEl: null
+    anchorEl: null,
   };
 
-  handleClick = event => {
+  handleClick = (event) => {
     event.preventDefault();
     this.setState({ anchorEl: event.currentTarget });
   };
@@ -51,7 +51,7 @@ class LanguangeMenu extends React.Component {
     ReactGA.event({
       category: gaLanguage,
       action: gaAppendActionWithLng(gaChangeLanguage, this.props.lng),
-      label: lang
+      label: lang,
     });
     i18n.changeLanguage(lang);
     this.handleClose();
@@ -75,13 +75,13 @@ class LanguangeMenu extends React.Component {
         >
           <MenuItem
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={event => this.handleMenuItemClick(event, LANGS.JP)}
+            onClick={(event) => this.handleMenuItemClick(event, LANGS.JP)}
           >
             日本語
           </MenuItem>
           <MenuItem
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={event => this.handleMenuItemClick(event, LANGS.EN)}
+            onClick={(event) => this.handleMenuItemClick(event, LANGS.EN)}
           >
             English
           </MenuItem>
@@ -95,5 +95,5 @@ export default withNamespaces("translation")(LanguangeMenu);
 
 LanguangeMenu.propTypes = {
   lng: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired
-}
+  t: PropTypes.func.isRequired,
+};

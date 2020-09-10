@@ -19,31 +19,31 @@ const DayColumnList = ({
   largestDay,
   largestPeriod,
   addedCoursesAndPrefs,
-  t
+  t,
 }) => {
   const initCoursesByDay = {
     "-1": [],
-    "0": [],
-    "1": [],
-    "2": [],
-    "3": [],
-    "4": [],
-    "5": [],
-    "6": []
+    0: [],
+    1: [],
+    2: [],
+    3: [],
+    4: [],
+    5: [],
+    6: [],
   };
   const coursesByDay = addedCoursesAndPrefs.reduce((acc, elem) => {
     const { course, ...restOfElem } = elem;
-    const { occurrences, ...restOfCourse } = course;
-    occurrences.forEach(occ => {
-      acc[occ.day] = [
-        ...acc[occ.day],
+    const { os, ...restOfCourse } = course;
+    os.forEach((occ) => {
+      acc[occ.d] = [
+        ...acc[occ.d],
         {
           ...restOfElem,
           course: {
             occurrence: occ,
-            ...restOfCourse
-          }
-        }
+            ...restOfCourse,
+          },
+        },
       ];
     });
     return acc;
@@ -56,7 +56,7 @@ const DayColumnList = ({
     t("common.wed"),
     t("common.thu"),
     t("common.fri"),
-    t("common.sat")
+    t("common.sat"),
   ];
 
   const dayColumns = days

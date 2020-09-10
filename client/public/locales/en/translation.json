@@ -1,4 +1,8 @@
 {
+  "app": {
+    "courseChange": "Course change detected. If you added/deleted courses in another tab, please ",
+    "RefreshLink": "click here to refresh to see the changes"
+  },
   "common": {
     "mon": "Mon",
     "tue": "Tue",
@@ -10,9 +14,15 @@
   },
   "welcome": {
     "welcome": "Welcome to WasedaTime!",
+    "newFeature": "New feature:",
+    "courseEvals": "Course Reviews",
+    "added": "is available!",
+    "returningUsers": "For returning users, your added courses are preserved.",
     "next": "next",
     "back": "back",
     "done": "done",
+    "courseEvalsDetails1": "In syllabus search, course reivews can be",
+    "courseEvalsDetails2": "viewed by clicking the orange button.",
     "Meet our developers!": "Meet our developers!",
     "Founder": "Founder",
     "Frontendtranslation": "Frontend & translation",
@@ -31,6 +41,7 @@
     "timetable": "Timetable",
     "syllabus": "Syllabus",
     "roomfinder": "Rooms",
+    "joinus": "Join Us!",
     "bus": "Bus",
     "language": "Language"
   },
@@ -96,6 +107,7 @@
     "Others": "Others",
     "IPSE": "IPSE",
     "EN-based Undergrad Program": "EN-based Undergrad Program",
+    "IPSE/EN-based Undergrad Program": "IPSE / EN-based Undergrad Program",
     "Filter by": "Filter by",
     "semesterMap": {
       "springSem": "Spring Semester",
@@ -105,7 +117,6 @@
       "intensiveSpring": "Intensive: Spring",
       "intensiveSummer": "Intensive: Summer",
       "springSummer": "Spring & Summer",
-
       "fallSem": "Fall Semester",
       "fallQuart": "Fall Quarter",
       "winterQuart": "Winter Quarter",
@@ -113,7 +124,6 @@
       "intensiveFall": "Intensive: Fall",
       "intensiveWinter": "Intensive: Winter",
       "fallWinter": "Fall & Winter",
-
       "intensiveSpringFallSem": "Intensive: Spring & Fall Semester",
       "fullYear": "Full Year",
       "undecided": "undecided"
@@ -128,6 +138,18 @@
     "Course title": "Course title",
     "Course time": "Course time",
     "langParam": "&pLng=en"
+  },
+  "courseEvals": {
+    "Reviews": "Reviews",
+    "Satisfaction": "Satisfaction",
+    "Difficulty": "Difficulty",
+    "Benefit": "Benefit",
+    "Related courses": "Related courses",
+    "Disclaimer": "The reviews do not represent the official position or opinion of WasedaTime.",
+    "Thank WTSA 1": "We appreciate",
+    "WTSA": "Waseda Taiwanese Student Association (WTSA)",
+    "Thank WTSA 2": "'s help for providing the reviews!",
+    "Related courses explanation": "Top 10 courses having the same course code and similar title"
   },
   "room": {
     "Under Construction": "Under Construction",

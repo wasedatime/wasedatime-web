@@ -17,32 +17,32 @@ const ExtendedInvisibleButton = styled(InvisibleButton)`
     color: #b51e36;
   }
   &:focus {
-    fill: ${props => (props.isClicked ? "#b51e36;" : "#000;")};
-    color: ${props => (props.isClicked ? "#b51e36;" : "#000;")};
+    fill: ${(props) => (props.isClicked ? "#b51e36;" : "#000;")};
+    color: ${(props) => (props.isClicked ? "#b51e36;" : "#000;")};
   }
-  fill: ${props => (props.isClicked ? "#b51e36;" : "#000;")};
-  color: ${props => (props.isClicked ? "#b51e36;" : "#000;")};
+  fill: ${(props) => (props.isClicked ? "#b51e36;" : "#000;")};
+  color: ${(props) => (props.isClicked ? "#b51e36;" : "#000;")};
 `;
 
 const SortingOptions = ({
   selectedSortingOption,
   handleChangeSortingOption,
-  t
+  t,
 }) => {
   const sortingOptions = [
     { value: ADDED_ORDER, label: t("syllabus.Added order") },
     { value: COURSE_TITLE, label: t("syllabus.Course title") },
-    { value: COURSE_TIME, label: t("syllabus.Course time") }
+    { value: COURSE_TIME, label: t("syllabus.Course time") },
   ];
   return (
     <ExtendedRowWrapper>
-      {sortingOptions.map(sortingOption => {
+      {sortingOptions.map((sortingOption) => {
         const sortingOptionValue = sortingOption.value;
         return (
           <ExtendedInvisibleButton
             key={sortingOptionValue}
             isClicked={sortingOptionValue === selectedSortingOption}
-            onClick={event => {
+            onClick={(event) => {
               event.preventDefault();
               handleChangeSortingOption(sortingOptionValue);
             }}

@@ -13,28 +13,28 @@ import ReactGA from "react-ga";
 
 import { setFirstTimeAccessToFalse } from "../../actions/user";
 import Greeting from "./Greeting";
-import Contributors from "./Contributors";
+import NewFeature from "./NewFeature";
 import Notice from "./Notice";
 import { gaLanguage } from "../../ga/eventCategories";
 import { gaSetLanguage } from "../../ga/eventActions";
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   dotActive: {
-    backgroundColor: "#000"
+    backgroundColor: "#000",
   },
   buttonLabel: {
-    fontSize: "1.6em"
-  }
+    fontSize: "1.6em",
+  },
 });
 
 class DialogStepper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeStep: 0
+      activeStep: 0,
     };
   }
 
@@ -48,20 +48,20 @@ class DialogStepper extends React.Component {
   }
 
   handleNext = () => {
-    this.setState(prevState => ({
-      activeStep: prevState.activeStep + 1
+    this.setState((prevState) => ({
+      activeStep: prevState.activeStep + 1,
     }));
   };
 
   handleBack = () => {
-    this.setState(prevState => ({
-      activeStep: prevState.activeStep - 1
+    this.setState((prevState) => ({
+      activeStep: prevState.activeStep - 1,
     }));
   };
 
   redirectToRoot = () => {
     this.props.history.push({
-      pathname: "/"
+      pathname: "/",
     });
   };
 
@@ -69,7 +69,7 @@ class DialogStepper extends React.Component {
     ReactGA.event({
       category: gaLanguage,
       action: gaSetLanguage,
-      label: this.props.lng
+      label: this.props.lng,
     });
     this.props.setFirstTimeAccessToFalse();
     this.redirectToRoot();
@@ -78,7 +78,7 @@ class DialogStepper extends React.Component {
   render() {
     const { classes, t } = this.props;
     const { activeStep } = this.state;
-    const setupSteps = [<Greeting />, <Contributors />, <Notice />];
+    const setupSteps = [<Greeting />, <NewFeature />, <Notice />];
     const maxSteps = setupSteps.length;
     const isFirstStep = activeStep === 0;
     const isLastStep = activeStep === maxSteps - 1;
@@ -91,7 +91,7 @@ class DialogStepper extends React.Component {
           activeStep={activeStep}
           classes={{
             root: classes.mobileStepper,
-            dotActive: classes.dotActive
+            dotActive: classes.dotActive,
           }}
           nextButton={
             !isLastStep ? (
@@ -132,20 +132,15 @@ class DialogStepper extends React.Component {
 }
 
 const mapDispatchToProps = {
-  setFirstTimeAccessToFalse
+  setFirstTimeAccessToFalse,
 };
 
 DialogStepper.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withNamespaces("translation")(
   withRouter(
-    withStyles(styles)(
-      connect(
-        null,
-        mapDispatchToProps
-      )(DialogStepper)
-    )
+    withStyles(styles)(connect(null, mapDispatchToProps)(DialogStepper))
   )
 );

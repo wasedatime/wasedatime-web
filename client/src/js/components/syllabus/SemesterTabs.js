@@ -1,32 +1,31 @@
-import React from 'react';
-import styled from 'styled-components';
-import stickybits from 'stickybits';
+import React from "react";
+import styled from "styled-components";
+import stickybits from "stickybits";
 
-import { headerHeight } from '../../styled-components/variables';
-import { RowWrapper } from '../../styled-components/Wrapper';
-import PropTypes from 'prop-types';
-
+import { headerHeight } from "../../styled-components/variables";
+import { RowWrapper } from "../../styled-components/Wrapper";
+import PropTypes from "prop-types";
 
 const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
   align-items: center;
   justify-content: space-around;
-  height: ${props => props.theme.semesterTabsHeight};
+  height: ${(props) => props.theme.semesterTabsHeight};
   width: 100%;
-  background-color: ${props => props.theme.grey7};
+  background-color: ${(props) => props.theme.grey7};
   z-index: 1030;
 `;
 
-const SemesterButton = styled('button')`
+const SemesterButton = styled("button")`
   width: 100%;
   height: 100%;
-  background-color: ${props =>
-    props.isSelected ? props.theme.grey4 : 'unset'};
+  background-color: ${(props) =>
+    props.isSelected ? props.theme.grey4 : "unset"};
   border: none;
   padding: 0;
-  color: ${props => props.theme.white};
+  color: ${(props) => props.theme.white};
   &:hover {
-    background-color: ${props => props.theme.grey4};
+    background-color: ${(props) => props.theme.grey4};
   }
   &:focus {
     outline: 0;
@@ -37,14 +36,14 @@ class SemesterTabs extends React.Component {
   constructor() {
     super();
     this.wrapper = null;
-    this.setWrapperRef = element => {
+    this.setWrapperRef = (element) => {
       this.wrapper = element;
     };
 
     this.createStickyWrapper = () => {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: parseInt(headerHeight, 10)
+          stickyBitStickyOffset: parseInt(headerHeight, 10),
         });
       }
     };
@@ -55,13 +54,13 @@ class SemesterTabs extends React.Component {
       }
     };
 
-    this.fallButtonId = 'button--fall';
-    this.springButtonId = 'button--spring';
-    this.fallSemester = 'fall';
-    this.springSemester = 'spring';
+    this.fallButtonId = "button--fall";
+    this.springButtonId = "button--spring";
+    this.fallSemester = "fall";
+    this.springSemester = "spring";
   }
 
-  handleOnClick = event => {
+  handleOnClick = (event) => {
     event.preventDefault();
     const buttonId = event.target.id;
     const semester =
@@ -86,14 +85,14 @@ class SemesterTabs extends React.Component {
           onClick={this.handleOnClick}
           isSelected={this.props.semester === this.springSemester}
         >
-         Spring Semester
+          Spring Semester
         </SemesterButton>
         <SemesterButton
           id={this.fallButtonId}
           onClick={this.handleOnClick}
           isSelected={this.props.semester === this.fallSemester}
         >
-        Fall Semester
+          Fall Semester
         </SemesterButton>
       </ExtendedWrapper>
     );
@@ -103,11 +102,11 @@ export default SemesterTabs;
 
 SemesterTabs.propTypes = {
   handleChangeSemester: PropTypes.func.isRequired,
-  semester: PropTypes.string.isRequired
-}
+  semester: PropTypes.string.isRequired,
+};
 
 SemesterButton.propTypes = {
   id: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   isSelected: PropTypes.bool.isRequired,
-}
+};

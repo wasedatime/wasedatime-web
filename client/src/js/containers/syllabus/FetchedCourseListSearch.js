@@ -1,5 +1,6 @@
 import React from "react";
 import debounce from "lodash/debounce";
+import sortBy from "lodash/sortBy";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router";
 import { withNamespaces } from "react-i18next";
@@ -24,7 +25,7 @@ import {
   gaOpenModal,
   gaCloseModal,
   gaApplyFilter,
-  gaRemoveFilter
+  gaRemoveFilter,
 } from "../../ga/eventActions";
 
 const ExtendedWrapper = styled(Wrapper)`
@@ -38,7 +39,7 @@ const modalStyle = {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: "1050"
+    zIndex: "1050",
   },
   content: {
     position: "absolute",
@@ -52,8 +53,8 @@ const modalStyle = {
     WebkitOverflowScrolling: "touch",
     outline: "none",
     fontSize: "16px",
-    padding: 0
-  }
+    padding: 0,
+  },
 };
 
 class FetchedCourseSearch extends React.Component {
@@ -71,11 +72,11 @@ class FetchedCourseSearch extends React.Component {
         lang: [],
         special: [],
         day: [],
-        period: []
+        period: [],
       },
       inputText: searchTerm,
       searchTerm: searchTerm,
-      filteredCourses: props.fetchedCourses
+      filteredCourses: props.fetchedCourses,
     };
   }
 
@@ -83,16 +84,16 @@ class FetchedCourseSearch extends React.Component {
     this.debounceUpdateSearchTerm.cancel();
   }
 
-  handleToggleModal = event => {
+  handleToggleModal = (event) => {
     event.preventDefault();
     const gaAction = this.state.isModalOpen ? gaCloseModal : gaOpenModal;
     ReactGA.event({
       category: gaFilter,
-      action: gaAppendActionWithLng(gaAction, this.props.lng)
+      action: gaAppendActionWithLng(gaAction, this.props.lng),
     });
     this.setState((prevState, props) => {
       return {
-        isModalOpen: !prevState.isModalOpen
+        isModalOpen: !prevState.isModalOpen,
       };
     });
   };
@@ -102,7 +103,7 @@ class FetchedCourseSearch extends React.Component {
       const { [inputName]: filters, ...rest } = prevState.filterGroups;
       let newFilters, gaAction;
       if (filters.includes(value)) {
-        newFilters = filters.filter(elem => elem !== value);
+        newFilters = filters.filter((elem) => elem !== value);
         gaAction = gaRemoveFilter;
       } else {
         newFilters = [...filters, value];
@@ -111,11 +112,11 @@ class FetchedCourseSearch extends React.Component {
       ReactGA.event({
         category: gaFilter,
         action: gaAppendActionWithLng(gaAction, this.props.lng),
-        label: `${inputName} - ${value}`
+        label: `${inputName} - ${value}`,
       });
       const newFilterGroups = {
         [inputName]: newFilters,
-        ...rest
+        ...rest,
       };
       const newFilteredCourses = this.filterCourses(
         newFilterGroups,
@@ -123,7 +124,7 @@ class FetchedCourseSearch extends React.Component {
       );
       return {
         filterGroups: newFilterGroups,
-        filteredCourses: newFilteredCourses
+        filteredCourses: newFilteredCourses,
       };
     });
   };
@@ -143,16 +144,16 @@ class FetchedCourseSearch extends React.Component {
     let filteredCourses =
       semesterFilters.length === 0
         ? courses
-        : courses.filter(course => semesterFilters.includes(course.term));
+        : courses.filter((course) => semesterFilters.includes(course.tm));
 
     const schoolFilters = filterGroups.school;
     filteredCourses =
       schoolFilters.length === 0 || schoolFilters.length === 6
         ? filteredCourses
-        : filteredCourses.filter(course => {
-            const keys = course.keys;
+        : filteredCourses.filter((course) => {
+            const keys = course.ks;
             for (let i = 0; i < keys.length; i++) {
-              if (schoolFilters.includes(keys[i].school)) return true;
+              if (schoolFilters.includes(keys[i].s)) return true;
             }
             return false;
           });
@@ -161,30 +162,29 @@ class FetchedCourseSearch extends React.Component {
     filteredCourses =
       langFilters.length === 0 || langFilters.length === 3
         ? filteredCourses
-        : filteredCourses.filter(course => langFilters.includes(course.lang));
+        : filteredCourses.filter((course) => langFilters.includes(course.l));
 
-    const specialFilters = filterGroups.special;
-    filteredCourses =
-      specialFilters.length === 0
-        ? filteredCourses
-        : filteredCourses.filter(course => {
-            const keywords = course.keywords;
-            if (keywords === undefined) return false;
-            for (let i = 0; i < keywords.length; i++) {
-              if (specialFilters.includes(keywords[i])) return true;
-            }
-            return false;
-          });
+    // IPSE/English-based Undergraduate Program
+    if (filterGroups.special.length > 0) {
+      const specialFilters = filterGroups.special[0].split("/");
+      filteredCourses = filteredCourses.filter((course) => {
+        const keywords = course.kws;
+        if (keywords === undefined) return false;
+        for (let i = 0; i < keywords.length; i++) {
+          if (specialFilters.includes(keywords[i])) return true;
+        }
+        return false;
+      });
+    }
 
     const dayFilters = filterGroups.day;
     filteredCourses =
       dayFilters.length === 0 || dayFilters.length === 6
         ? filteredCourses
-        : filteredCourses.filter(course => {
-            const occurrences = course.occurrences;
+        : filteredCourses.filter((course) => {
+            const occurrences = course.os;
             for (let i = 0; i < occurrences.length; i++) {
-              if (dayFilters.includes(occurrences[i].day.toString()))
-                return true;
+              if (dayFilters.includes(occurrences[i].d.toString())) return true;
             }
             return false;
           });
@@ -194,16 +194,13 @@ class FetchedCourseSearch extends React.Component {
     filteredCourses =
       periodFilters.length === 0 || periodFilters.length === 6
         ? filteredCourses
-        : filteredCourses.filter(course => {
-            const occurrences = course.occurrences;
+        : filteredCourses.filter((course) => {
+            const occurrences = course.os;
 
             for (let i = 0; i < periodFilters.length; i++) {
               const period = parseInt(periodFilters[i], 10);
               for (let j = 0; j < occurrences.length; j++) {
-                if (
-                  occurrences[j].start_period <= period &&
-                  period <= occurrences[j].end_period
-                ) {
+                if (occurrences[j].s <= period && period <= occurrences[j].e) {
                   return true;
                 }
               }
@@ -216,30 +213,33 @@ class FetchedCourseSearch extends React.Component {
   pushHistory = () => {
     this.props.history.push({
       pathname: "/syllabus",
-      search: this.state.inputText === "" ? "" : `q=${this.state.inputText}`
+      search: this.state.inputText === "" ? "" : `q=${this.state.inputText}`,
     });
   };
 
   updateSearchTerm = () => {
     this.setState((prevState, props) => {
       return {
-        searchTerm: prevState.inputText
+        searchTerm: prevState.inputText,
       };
     }, this.pushHistory());
   };
 
   debounceUpdateSearchTerm = debounce(this.updateSearchTerm, 500, {
-    leading: false
+    leading: false,
   });
 
-  handleInputChange = inputText => {
+  handleInputChange = (inputText) => {
     this.setState(
       {
-        inputText
+        inputText,
       },
       this.debounceUpdateSearchTerm()
     );
   };
+
+  sortCoursesWithEvalsExistence = (courses) =>
+    sortBy(courses, (course) => (course.e ? 1 : 2));
 
   render() {
     const { inputText, searchTerm } = this.state;
@@ -254,7 +254,7 @@ class FetchedCourseSearch extends React.Component {
             searchCourses(searchTerm, this.state.filteredCourses, searchLang),
             searchLang
           )
-        : this.state.filteredCourses;
+        : this.sortCoursesWithEvalsExistence(this.state.filteredCourses);
     return (
       <ExtendedWrapper>
         <SearchBar
@@ -269,7 +269,7 @@ class FetchedCourseSearch extends React.Component {
             results={results}
           />
           <MediaQuery minWidth={sizes.desktop}>
-            {matches => {
+            {(matches) => {
               return matches ? (
                 <SideBar flexBasis="20em">
                   <Filter

@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAngleDoubleLeft,
-  faAngleDoubleRight
+  faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
@@ -47,7 +47,7 @@ const SemesterTitle = styled("div")`
 const SemesterSwitcher = ({
   semesterTitle,
   handleIncreaseSemesterIndex,
-  handleDecreaseSemesterIndex
+  handleDecreaseSemesterIndex,
 }) => {
   return (
     <ExtendedRowWrapper>
@@ -55,7 +55,7 @@ const SemesterSwitcher = ({
         <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
       </ExtendedInvisibleButton>
       <SemesterTitle>{semesterTitle}</SemesterTitle>
-      <ExtendedInvisibleButton onClick={handleIncreaseSemesterIndex}>
+      <ExtendedInvisibleButton onClick={handleDecreaseSemesterIndex}>
         <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
       </ExtendedInvisibleButton>
     </ExtendedRowWrapper>

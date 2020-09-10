@@ -1,4 +1,4 @@
-import { ADDED_ORDER, COURSE_TITLE, COURSE_TIME } from '../data/sortingOptions';
+import { ADDED_ORDER, COURSE_TITLE, COURSE_TIME } from "../data/sortingOptions";
 
 export const sortAddedCoursesAndPrefs = (
   addedCoursesAndPrefs,
@@ -10,8 +10,8 @@ export const sortAddedCoursesAndPrefs = (
     case COURSE_TITLE:
       return addedCoursesAndPrefs.sort((a, b) => {
         // ignore upper and lowercase
-        const courseTitleA = a.course.title.toUpperCase();
-        const courseTitleB = b.course.title.toUpperCase();
+        const courseTitleA = a.course.t.toUpperCase();
+        const courseTitleB = b.course.t.toUpperCase();
         if (courseTitleA < courseTitleB) {
           return -1;
         } else if (courseTitleA > courseTitleB) {
@@ -22,12 +22,10 @@ export const sortAddedCoursesAndPrefs = (
       });
     case COURSE_TIME:
       return addedCoursesAndPrefs.sort((a, b) => {
-        const firstOccurrenceDayA = a.course.occurrences[0].day;
-        const firstOccurrenceDayB = b.course.occurrences[0].day;
-        const firstOccurrenceStartPeriodA =
-          a.course.occurrences[0].start_period;
-        const firstOccurrenceStartPeriodB =
-          b.course.occurrences[0].start_period;
+        const firstOccurrenceDayA = a.course.os[0].day;
+        const firstOccurrenceDayB = b.course.os[0].day;
+        const firstOccurrenceStartPeriodA = a.course.os[0].start_period;
+        const firstOccurrenceStartPeriodB = b.course.os[0].start_period;
         if (firstOccurrenceDayA < firstOccurrenceDayB) {
           return -1;
         } else if (firstOccurrenceDayA > firstOccurrenceDayB) {

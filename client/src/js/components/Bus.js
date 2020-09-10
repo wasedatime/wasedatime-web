@@ -7,9 +7,9 @@ import {
   faEllipsisV,
   faSearch,
   faCalendarAlt,
-  faTimes
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import DatePicker from 'react-datepicker';
+import DatePicker from "react-datepicker";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 import LANGS from "../config/langs";
@@ -113,8 +113,8 @@ const DatetimeSelection = styled("div")`
 `;
 
 const DatePickerSpan = styled("span")`
-   display: inline-block;
-   width: 37.5%;
+  display: inline-block;
+  width: 37.5%;
 `;
 
 const DatePickerButton = styled("button")`
@@ -122,6 +122,7 @@ const DatePickerButton = styled("button")`
   border: none;
   border-radius: 5px;
   width: 100%;
+  background: #efefef;
 
   &:hover {
     outline: none;
@@ -137,6 +138,7 @@ const DatetimeClearButton = styled("button")`
   border: none;
   border-radius: 5px;
   width: 25%;
+  background: #efefef;
 
   &:hover {
     outline: none;
@@ -173,7 +175,7 @@ const getSchduleType = (month, date, day) => {
     outOfService,
     weekdaySchedule,
     saturdaySchedule,
-    specialSchedule
+    specialSchedule,
   } = busSchedule["exceptions"];
 
   if (
@@ -235,7 +237,7 @@ const binarySearchSchedule = (totalMins, schedule) => {
   }
 };
 
-const totalMinsToTimeStr = totalMins => {
+const totalMinsToTimeStr = (totalMins) => {
   const hours = Math.floor(totalMins / 60);
   const minutes = totalMins - hours * 60;
   // TODO duplicated code from ClassroomList
@@ -255,7 +257,7 @@ const getBusStatus = (totalMins, occurrences, remarks, t) => {
     return {
       departIn: nextTotalMins - totalMins,
       timeString: nextTimeString,
-      remark
+      remark,
     };
   }
   return t("bus.Out of service");
@@ -323,45 +325,47 @@ const createStatusComponent = (status, t) => {
           <b>{status.timeString}</b>
         </span>
       ),
-      remark: status.remark
+      remark: status.remark,
     };
   }
   return {
     status: <span>{status}</span>,
-    remark: ""
+    remark: "",
   };
 };
 
 const DateSelector = forwardRef(({ value, onClick }, ref) => (
   <DatePickerButton onClick={onClick} ref={ref}>
-    <FontAwesomeIcon icon={faCalendarAlt} size="1x" />{" "}
-    {value}
+    <FontAwesomeIcon icon={faCalendarAlt} size="1x" /> {value}
   </DatePickerButton>
 ));
 
 const TimeSelector = forwardRef(({ value, onClick }, ref) => (
   <DatePickerButton onClick={onClick} ref={ref}>
-    <FontAwesomeIcon icon={faClock} size="1x" />{" "}
-    {value}
+    <FontAwesomeIcon icon={faClock} size="1x" /> {value}
   </DatePickerButton>
 ));
 
 class Bus extends React.Component {
   state = {
-    date: new Date()
+    date: new Date(),
   };
 
-  onDatetimeChange = date => {
-    this.setState({ date: date || new Date() })
-  }
+  onDatetimeChange = (date) => {
+    this.setState({ date: date || new Date() });
+  };
 
   clearDatetime = () => {
-    this.setState({ date: new Date() })
-  }
+    this.setState({ date: new Date() });
+  };
 
-  render () {
+  render() {
     const { t, lng } = this.props;
-    const { wasedaStatus, nishiStatus } = getBusStatuses(this.state.date, lng, t);
+    const { wasedaStatus, nishiStatus } = getBusStatuses(
+      this.state.date,
+      lng,
+      t
+    );
     const wasedaStatusComponent = createStatusComponent(wasedaStatus, t);
     const nishiStatusComponent = createStatusComponent(nishiStatus, t);
     return (
@@ -371,19 +375,19 @@ class Bus extends React.Component {
           <meta
             name="description"
             content="Shuttle Bus Arrival Time Checking at Waseda University."
-            />
+          />
           <meta property="og:title" content="WasedaTime - Bus" />
           <meta
             property="og:description"
             content="Shuttle Bus Arrival Time Checking at Waseda University."
-            />
+          />
           <meta property="og:site_name" content="WasedaTime - Bus" />
         </Helmet>
         <ExtendedOverlay>
           <InfoWrapper>
             <StyledHeading>{t("bus.busStatus")}</StyledHeading>
             <p>
-              <FontAwesomeIcon icon={faSearch} size="1x" />{' '}
+              <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
               {t("bus.Assign a date / time to check the next bus")}：
             </p>
 
@@ -391,29 +395,29 @@ class Bus extends React.Component {
               <DatePickerSpan>
                 <DatePicker
                   selected={this.state.date}
-                  onChange={date => this.onDatetimeChange(date)}
+                  onChange={(date) => this.onDatetimeChange(date)}
                   dateFormat="yyyy-MM-dd"
                   customInput={<DateSelector />}
-                  popperPlacement='bottom-start'
+                  popperPlacement="bottom-start"
                 />
               </DatePickerSpan>
               <DatePickerSpan>
                 <DatePicker
                   selected={this.state.date}
-                  onChange={date => this.onDatetimeChange(date)}
+                  onChange={(date) => this.onDatetimeChange(date)}
                   showTimeSelect
                   showTimeSelectOnly
-                  minTime={(new Date()).setHours(9, 0)}
-                  maxTime={(new Date()).setHours(18, 20)}
+                  minTime={new Date().setHours(9, 0)}
+                  maxTime={new Date().setHours(18, 20)}
                   timeIntervals={5}
                   timeCaption="Time"
                   dateFormat="hh:mm aa"
                   customInput={<TimeSelector />}
-                  popperPlacement='bottom-start'
+                  popperPlacement="bottom-start"
                 />
               </DatePickerSpan>
               <DatetimeClearButton onClick={this.clearDatetime}>
-                <FontAwesomeIcon icon={faTimes} size="1x" />{' '}Clear
+                <FontAwesomeIcon icon={faTimes} size="1x" /> Clear
               </DatetimeClearButton>
             </DatetimeSelection>
 
@@ -438,7 +442,7 @@ class Bus extends React.Component {
             <ModalContainer
               linkText={t("bus.Add to home screen")}
               text={t("bus.and never miss a bus again!")}
-              >
+            >
               <ModalArticle>
                 <ModalSection>
                   <ModalHeading>Android / Chrome:</ModalHeading>
@@ -452,7 +456,7 @@ class Bus extends React.Component {
                   <ModalImage
                     src={a2hsChrome}
                     alt="Add to home screen image for Chrome"
-                    />
+                  />
                 </ModalSection>
                 <ModalSection>
                   <ModalHeading>IOS / Safari:</ModalHeading>
@@ -466,7 +470,7 @@ class Bus extends React.Component {
                   <ModalImage
                     src={a2hsSafari}
                     alt="Add to home screen image for Safari"
-                    />
+                  />
                 </ModalSection>
               </ModalArticle>
             </ModalContainer>
@@ -479,6 +483,6 @@ class Bus extends React.Component {
       </Wrapper>
     );
   }
-};
+}
 
 export default withNamespaces("translation")(Bus);

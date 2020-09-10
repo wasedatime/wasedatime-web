@@ -5,7 +5,7 @@ import {
   faMinusCircle,
   faToggleOn,
   faToggleOff,
-  faExternalLinkSquareAlt
+  faExternalLinkSquareAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { Manager, Reference, Popper } from "react-popper";
 import PropTypes from "prop-types";
@@ -77,7 +77,7 @@ const CourseAndPrefItem = ({
   handleToggleVisibility,
   handleRemoveCourse,
   handleChangeColor,
-  handleClickSyllabusLink
+  handleClickSyllabusLink,
 }) => {
   const { title, instructor } = getCourseTitleAndInstructor(
     course,
@@ -112,7 +112,7 @@ const CourseAndPrefItem = ({
               overflowWrap: "break-word",
               wordWrap: "break-word",
               flex: "1 0 auto",
-              width: "0"
+              width: "0",
             }}
           >
             {instructor}
@@ -121,7 +121,7 @@ const CourseAndPrefItem = ({
             style={{
               display: "flex",
               flex: "0 1 auto",
-              justifyContent: "flex-end"
+              justifyContent: "flex-end",
             }}
           >
             <Manager>
@@ -154,7 +154,7 @@ const CourseAndPrefItem = ({
               </Popper>
             </Manager>
             <InvisibleButton
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 handleToggleVisibility(courseId, title);
               }}
@@ -167,7 +167,7 @@ const CourseAndPrefItem = ({
               href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${courseId}&pLng=en`}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={e => {
+              onClick={(e) => {
                 handleClickSyllabusLink(title);
               }}
             >
@@ -179,7 +179,7 @@ const CourseAndPrefItem = ({
               />
             </a>
             <InvisibleButton
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 handleRemoveCourse(courseId, title);
               }}
@@ -196,5 +196,5 @@ const CourseAndPrefItem = ({
 export default CourseAndPrefItem;
 
 CourseAndPrefItem.propTypes = {
-  course: PropTypes.object.isRequired
+  course: PropTypes.object.isRequired,
 };

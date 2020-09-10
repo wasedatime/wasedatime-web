@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
+import MediaQuery from "react-responsive";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlusCircle,
   faMinusCircle,
   faClock,
   faMapMarkerAlt,
-  faExternalLinkSquareAlt
+  faExternalLinkSquareAlt,
+  faCommentDots,
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
@@ -15,6 +17,7 @@ import { SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC } from "../../data/schools";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";
 import { media } from "../../styled-components/utils";
+import { sizes } from "../../styled-components/utils";
 import { InvisibleButton } from "../../styled-components/Button";
 import fseIcon from "../../../img/syllabus-icons/fse.png";
 import cseIcon from "../../../img/syllabus-icons/cse.png";
@@ -100,17 +103,66 @@ const KeywordList = styled(SchoolIconList)`
   flex-wrap: wrap;
 `;
 
+const DetailWrapper = styled("div")`
+  display: flex;
+  flex-direction: row;
+  font-size: 1.2em;
+  flex-wrap: wrap;
+  ${media.phone`font-size: 1.0em;`};
+`;
+
 const DescriptionWrapper = styled("div")`
+  flex: 3 0 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 1.2em;
-  ${media.phone`font-size: 1.1em;`};
 `;
 
 const Description = styled("div")`
   flex: 1 0 auto;
   text-align: left;
+`;
+
+const Instructors = styled("div")`
+  text-align: left;
+  font-size: 1.2em;
+  ${media.phone`font-size: 1.0em;`};
+`;
+
+const EvalButtonsWrapper = styled("div")`
+  flex: 1 0 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.9em;
+`;
+
+const ViewEvalsButton = styled("a")`
+  display: block;
+  background-color: #ffae42;
+  border: 0px;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px 1rem;
+  margin-bottom: 4px;
+  text-align: center;
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const ViewEvalsIconButton = styled("a")`
+  display: block;
+  background-color: #fff;
+  border: 0px;
+  color: #ffae42;
+  text-decoration: none;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const OccurrenceList = styled("ul")`
@@ -128,14 +180,14 @@ const schoolNameIconMap = {
   [CSE]: cseIcon,
   [ASE]: aseIcon,
   [CJL]: cjlIcon,
-  [GEC]: gecIcon
+  [GEC]: gecIcon,
 };
 
-const mapLinkToSchoolIcon = keys => {
-  return keys.map(key => {
+const mapLinkToSchoolIcon = (keys) => {
+  return keys.map((key) => {
     return (
-      <SchoolIconItem key={key.school}>
-        <SchoolIconImage src={schoolNameIconMap[key.school]} />
+      <SchoolIconItem key={key.s}>
+        <SchoolIconImage src={schoolNameIconMap[key.s]} />
       </SchoolIconItem>
     );
   });
@@ -194,20 +246,21 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   handleClickSyllabusLink,
+  isInCourseEvalsPage,
   t,
-  lng
+  lng,
 }) => {
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
-  const yearTerm = combineYearTerm(course.year, course.term, t);
-  const schoolIcons = mapLinkToSchoolIcon(course.keys);
+  const yearTerm = combineYearTerm(course.y, course.tm, t);
+  const schoolIcons = mapLinkToSchoolIcon(course.ks);
   const syllabusId = course._id;
   //Need to use index as keys due to Waseda's data.
-  const occurrences = course.occurrences.map((occurrence, index) => {
-    const day = getDay(occurrence.day, t);
-    const period = getPeriod(occurrence.start_period, occurrence.end_period, t);
-    const location = getLocation(occurrence.building, occurrence.classroom, t);
+  const occurrences = course.os.map((occurrence, index) => {
+    const day = getDay(occurrence.d, t);
+    const period = getPeriod(occurrence.s, occurrence.e, t);
+    const location = getLocation(occurrence.b, occurrence.c, t);
     return (
       <li key={index}>
         <span>
@@ -223,8 +276,8 @@ const CourseItem = ({
     );
   });
   const keywords =
-    "keywords" in course
-      ? course.keywords.map((keyword, index) => {
+    "kws" in course
+      ? course.kws.map((keyword, index) => {
           return (
             <li key={keyword} style={{ display: "inline-block" }}>
               <Badge>
@@ -253,14 +306,14 @@ const CourseItem = ({
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge>{t(`syllabus.${course.lang}`)}</Badge>
+            <Badge>{t(`syllabus.${course.l}`)}</Badge>
             {keywordsList}
           </IconBadgeWrapper>
           <div
             style={{
               display: "flex",
               flex: "1 0 auto",
-              justifyContent: "flex-end"
+              justifyContent: "flex-end",
             }}
           >
             <a
@@ -270,7 +323,7 @@ const CourseItem = ({
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={e => {
+              onClick={(e) => {
                 handleClickSyllabusLink(title, lng);
               }}
             >
@@ -282,22 +335,58 @@ const CourseItem = ({
               />
             </a>
             <InvisibleButton
-              onClick={e => {
+              onClick={(e) => {
                 e.preventDefault();
                 handleOnClick(title, lng);
               }}
             >
               {buttonIcon}
             </InvisibleButton>
+            <MediaQuery maxWidth={sizes.desktop}>
+              {(matches) => {
+                return (
+                  matches &&
+                  !isInCourseEvalsPage &&
+                  course.e && (
+                    <ViewEvalsIconButton
+                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                    >
+                      <FontAwesomeIcon icon={faCommentDots} size="2x" />{" "}
+                    </ViewEvalsIconButton>
+                  )
+                );
+              }}
+            </MediaQuery>
           </div>
         </CourseItemRow>
-        <DescriptionWrapper>
-          <Description>{yearTerm}</Description>
-          <Description>
-            <OccurrenceList>{occurrences}</OccurrenceList>
-          </Description>
-          <Description>{highlightedInstructor}</Description>
-        </DescriptionWrapper>
+        <DetailWrapper>
+          <DescriptionWrapper>
+            <Description>{yearTerm}</Description>
+            <Description>
+              <OccurrenceList>{occurrences}</OccurrenceList>
+            </Description>
+          </DescriptionWrapper>
+          <MediaQuery minWidth={sizes.desktop}>
+            {(matches) => {
+              return (
+                matches &&
+                !isInCourseEvalsPage &&
+                course.e && (
+                  <EvalButtonsWrapper>
+                    <ViewEvalsButton
+                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faCommentDots} />{" "}
+                      {t("courseEvals.Reviews")}
+                    </ViewEvalsButton>
+                  </EvalButtonsWrapper>
+                )
+              );
+            }}
+          </MediaQuery>
+        </DetailWrapper>
+        <Instructors>{highlightedInstructor}</Instructors>
       </CourseItemWrapper>
     </RowWrapper>
   );

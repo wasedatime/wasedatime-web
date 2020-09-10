@@ -18,6 +18,8 @@ import Syllabus from "./syllabus/Syllabus";
 import RoomFinder from "./RoomFinder";
 import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
+import Career from "./career/Career";
+
 import NotFound from "./NotFound";
 import { getUserIsFirstTimeAccess } from "../reducers/user";
 
@@ -25,7 +27,7 @@ const Wrapper = styled("div")`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  padding-top: ${props => props.theme.headerHeight};
+  padding-top: ${(props) => props.theme.headerHeight};
 `;
 
 const StyledMain = styled("main")`
@@ -33,7 +35,7 @@ const StyledMain = styled("main")`
   flex-direction: column;
   flex: 1 0 auto;
   width: 100%;
-  min-height: calc(100vh - ${props => props.theme.headerHeight});
+  min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
 const App = ({ isFirstTimeAccess }) => {
@@ -64,6 +66,7 @@ const App = ({ isFirstTimeAccess }) => {
               <Route exact path="/syllabus" component={Syllabus} />
               <Route exact path="/roomfinder" component={RoomFinder} />
               <Route exact path="/bus" component={Bus} />
+              <Route exact path="/career" component={Career} />
               <Route component={NotFound} />
             </Switch>
           )}
@@ -75,15 +78,10 @@ const App = ({ isFirstTimeAccess }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     isFirstTimeAccess: getUserIsFirstTimeAccess(state)
   };
 };
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    null
-  )(App)
-);
+export default withRouter(connect(mapStateToProps, null)(App));

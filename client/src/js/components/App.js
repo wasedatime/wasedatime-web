@@ -112,10 +112,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-<<<<<<< HEAD
-export default withRouter(connect(mapStateToProps, null)(App));
-=======
 export default withNamespaces("translation")(
   withRouter(connect(mapStateToProps, null)(App))
 );
->>>>>>> staging

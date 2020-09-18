@@ -8,9 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarAlt,
   faBook,
-  faBuilding,
   faBus,
-  faAddressCard,
   faBriefcase,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";

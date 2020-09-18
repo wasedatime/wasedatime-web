@@ -1,12 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { Wrapper } from "../../styled-components/Wrapper";
 
-import { RowWrapper } from "../../styled-components/Wrapper";
-import Filter from "./Filter";
-
+import CareerList from "./CareerList";
+import CareerFilter from "./CareerFilter";
 const Career = () => {
   return (
-    <RowWrapper>
+    <Wrapper>
       <Helmet>
         <title>WasedaTime - Career</title>
         <meta
@@ -20,8 +20,9 @@ const Career = () => {
         />
         <meta property="og:site_name" content="WasedaTime - Career" />
       </Helmet>
-      <Filter />
-    </RowWrapper>
+      <CareerFilter />
+      <CareerList />
+    </Wrapper>
   );
 };
 

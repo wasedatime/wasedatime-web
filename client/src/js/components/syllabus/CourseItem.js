@@ -9,7 +9,17 @@ import {
   faMapMarkerAlt,
   faExternalLinkSquareAlt,
   faCommentDots,
+  faShareAlt, 
+  faLink // or faShare,
+  
 } from "@fortawesome/free-solid-svg-icons";
+import { 
+  faFacebookF,
+  faTwitter,
+  faLine,
+  faWeixin,
+  faFacebookMessenger,
+} from "@fortawesome/free-brands-svg-icons";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 
@@ -27,6 +37,8 @@ import silsIcon from "../../../img/syllabus-icons/sils.png";
 import sssIcon from "../../../img/syllabus-icons/sss.png";
 import cjlIcon from "../../../img/syllabus-icons/cjl.png";
 import gecIcon from "../../../img/syllabus-icons/gec.png";
+import { matches, size } from "lodash";
+//import { icon } from "@fortawesome/fontawesome-svg-core";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -137,6 +149,7 @@ const EvalButtonsWrapper = styled("div")`
   font-size: 0.9em;
 `;
 
+// Review Button
 const ViewEvalsButton = styled("a")`
   display: block;
   background-color: #ffae42;
@@ -151,9 +164,9 @@ const ViewEvalsButton = styled("a")`
   &:focus {
     outline: none;
   }
-`;
+`; // Case of large Screen 
 
-const ViewEvalsIconButton = styled("a")`
+const ViewEvalsIconButton = styled("a")` 
   display: block;
   background-color: #fff;
   border: 0px;
@@ -163,7 +176,44 @@ const ViewEvalsIconButton = styled("a")`
   &:focus {
     outline: none;
   }
-`;
+`; // Case of Small Screen 
+// ---
+
+// Share Button
+const ShareButton = styled("a")`
+  display: block;
+  background-color: #aaa;
+  border: 0px;
+  border-radius: 5px;
+  color: #554A53;
+  padding: 5px 1rem;
+  margin-bottom: 4px;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    color: #abc;
+  }
+  &:focus {
+    outline: none;
+  }
+`; // Case of large Screen 
+
+const ShareIconButton = styled("a")` 
+  display: block;
+  background-color: #fff;
+  border-left: 0px;
+  color: #7D7A7C;
+  text-decoration: none;
+
+  &:hover {
+    color: #abc;
+  }
+  &:focus {
+    outline: none;
+  }
+`; // Case of Small Screen 
+// -- 
 
 const OccurrenceList = styled("ul")`
   list-style: none;
@@ -299,6 +349,21 @@ const CourseItem = ({
       transform="shrink-2"
     />
   );
+
+  
+  const shareButtonSlide = ( // Share Button Function for large page
+    <FontAwesomeIcon
+      
+    />
+  );
+
+  const shareButtonPop = ( // Share Button Function for small page
+    <FontAwesomeIcon
+      
+    />
+  );
+  
+
   return (
     <RowWrapper>
       <CourseItemWrapper>
@@ -316,7 +381,7 @@ const CourseItem = ({
               justifyContent: "flex-end",
             }}
           >
-            <a
+            <a /* Syllebus Button */
               style={{ alignSelf: "flex-start" }}
               href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
                 "syllabus.langParam"
@@ -334,16 +399,17 @@ const CourseItem = ({
                 transform="shrink-2"
               />
             </a>
-            <InvisibleButton
+            <InvisibleButton /* Add Button */
               onClick={(e) => {
                 e.preventDefault();
                 handleOnClick(title, lng);
               }}
+
             >
               {buttonIcon}
             </InvisibleButton>
-            <MediaQuery maxWidth={sizes.desktop}>
-              {(matches) => {
+            <MediaQuery maxWidth={sizes.desktop}> 
+              {(matches) => { /* To course Evaluation Button */
                 return (
                   matches &&
                   !isInCourseEvalsPage &&
@@ -357,15 +423,58 @@ const CourseItem = ({
                 );
               }}
             </MediaQuery>
+
+            <MediaQuery maxWidth={sizes.desktop}>
+              {(matches) => { /* Share Button */
+                return (
+                  matches &&
+                  
+                  course.e && (
+                    <ShareIconButton>
+                      <FontAwesomeIcon    
+                        icon={faShareAlt} size="2x" 
+                        //onMouseOver={
+                          
+                        //}
+                      />{" "}
+                    </ShareIconButton>
+                  )
+                );
+              }}    
+            </MediaQuery>
+            <MediaQuery maxWidth={sizes.phone||sizes.tablet}></MediaQuery>
+            
+            <MediaQuery maxWidth={sizes.desktop}>
+              {(matches) => { /* Share Button */
+                return (
+                  matches &&
+                  
+                  course.e && (
+                    <ShareIconButton>
+                      <FontAwesomeIcon    
+                        //icon={['fab', 'facebook-f']}
+                        icon={faWeixin}
+                        //onMouseOver={
+                          
+                        //}
+                      />{" "}
+                    </ShareIconButton>
+                  )
+                );
+              }}    
+            </MediaQuery>
+           
+
           </div>
         </CourseItemRow>
-        <DetailWrapper>
+        <DetailWrapper> 
           <DescriptionWrapper>
             <Description>{yearTerm}</Description>
             <Description>
               <OccurrenceList>{occurrences}</OccurrenceList>
             </Description>
           </DescriptionWrapper>
+          
           <MediaQuery minWidth={sizes.desktop}>
             {(matches) => {
               return (
@@ -385,6 +494,30 @@ const CourseItem = ({
               );
             }}
           </MediaQuery>
+
+          <MediaQuery minWidth={sizes.desktop}>
+            {(matches) => {
+              return (
+                matches &&
+                
+                course.e && (
+                  <EvalButtonsWrapper>
+                    <ShareButton
+                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                      target="_blank"
+                    >
+                      <FontAwesomeIcon icon={faShareAlt} />{" "}
+                      {t("Share")}
+                
+                      
+                    </ShareButton>
+                  </EvalButtonsWrapper>
+                )
+              );
+            }}
+          </MediaQuery>
+
+
         </DetailWrapper>
         <Instructors>{highlightedInstructor}</Instructors>
       </CourseItemWrapper>
@@ -400,3 +533,8 @@ CourseItem.propTypes = {
   isAddable: PropTypes.bool.isRequired,
   handleOnClick: PropTypes.func.isRequired,
 };
+
+/*
+- Small Screen
+- Large Screen 
+*/

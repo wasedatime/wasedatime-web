@@ -9,11 +9,11 @@ import {
   faMapMarkerAlt,
   faExternalLinkSquareAlt,
   faCommentDots,
-  faShareAlt, 
+  faShareAlt,
   faLink // or faShare,
-  
+
 } from "@fortawesome/free-solid-svg-icons";
-import { 
+import {
   faFacebookF,
   faTwitter,
   faLine,
@@ -81,6 +81,14 @@ const IconBadgeWrapper = styled("div")`
   flex-wrap: wrap;
 `;
 
+const MenuIconWrapper = styled("div")`
+  display: "flex",
+  flex: "1 0 auto",
+  flex-direction: row;
+  align-items: center;
+  justifyContent: "flex-end",
+`;
+
 const SchoolIconList = styled("ul")`
   display: flex;
   flex-direction: row;
@@ -135,11 +143,13 @@ const Description = styled("div")`
   text-align: left;
 `;
 
+/*
 const Instructors = styled("div")`
   text-align: left;
   font-size: 1.2em;
   ${media.phone`font-size: 1.0em;`};
 `;
+*/
 
 const EvalButtonsWrapper = styled("div")`
   flex: 1 0 30%;
@@ -328,16 +338,16 @@ const CourseItem = ({
   const keywords =
     "kws" in course
       ? course.kws.map((keyword, index) => {
-          return (
-            <li key={keyword} style={{ display: "inline-block" }}>
-              <Badge>
-                {keyword === "English-based Undergraduate Program"
-                  ? t("syllabus.EN-based Undergrad Program")
-                  : t(`syllabus.${keyword}`)}
-              </Badge>
-            </li>
-          );
-        })
+        return (
+          <li key={keyword} style={{ display: "inline-block" }}>
+            <Badge>
+              {keyword === "English-based Undergraduate Program"
+                ? t("syllabus.EN-based Undergrad Program")
+                : t(`syllabus.${keyword}`)}
+            </Badge>
+          </li>
+        );
+      })
       : null;
   const keywordsList =
     keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
@@ -350,19 +360,89 @@ const CourseItem = ({
     />
   );
 
-  
-  const shareButtonSlide = ( // Share Button Function for large page
-    <FontAwesomeIcon
-      
-    />
+  const reviewButtonBar = (
+    <MediaQuery minWidth={sizes.desktop}>
+      {(matches) => {
+        return (
+          matches &&
+          !isInCourseEvalsPage &&
+          course.e && (
+            <EvalButtonsWrapper>
+              <ViewEvalsButton
+                href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                target="_blank"
+              >
+                <FontAwesomeIcon icon={faCommentDots} />{" "}
+                {t("courseEvals.Reviews")}
+              </ViewEvalsButton>
+            </EvalButtonsWrapper>
+          )
+        );
+      }}
+    </MediaQuery>
   );
 
-  const shareButtonPop = ( // Share Button Function for small page
-    <FontAwesomeIcon
-      
-    />
+  const shareButtonBar = ( // Share Button Function for large page
+    <MediaQuery minWidth={sizes.desktop}>
+      {(matches) => {
+        return (
+          matches &&
+
+          course.e && (
+            <EvalButtonsWrapper>
+              <ShareButton
+                href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                target="_blank"
+              >
+                <FontAwesomeIcon icon={faShareAlt} />{" "}
+                {t("Share")}
+
+
+              </ShareButton>
+            </EvalButtonsWrapper>
+          )
+        );
+      }}
+    </MediaQuery>
   );
-  
+
+  const reviewButtonIcon = ( // Share Button Function for small page
+    <MediaQuery maxWidth={sizes.desktop}>
+      {(matches) => { /* To course Evaluation Button */
+        return (
+          matches &&
+          !isInCourseEvalsPage &&
+          course.e && (
+            <ViewEvalsIconButton
+              href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+            >
+              <FontAwesomeIcon icon={faCommentDots} size="2x" />{" "}
+            </ViewEvalsIconButton>
+          )
+        );
+      }}
+    </MediaQuery>
+  );
+
+  const shareButtonIcon = ( // Share Button Function for small page
+    <MediaQuery maxWidth={sizes.desktop}>
+      {(matches) => { /* Share Button */
+        return (
+          matches &&
+
+          course.e && (
+            <ShareIconButton>
+              <FontAwesomeIcon
+                icon={faShareAlt} size="2x"
+
+              />{" "}
+            </ShareIconButton>
+          )
+        );
+      }}
+    </MediaQuery>
+    //<MediaQuery maxWidth={sizes.phone || sizes.tablet}></MediaQuery>
+  );
 
   return (
     <RowWrapper>
@@ -374,13 +454,7 @@ const CourseItem = ({
             <Badge>{t(`syllabus.${course.l}`)}</Badge>
             {keywordsList}
           </IconBadgeWrapper>
-          <div
-            style={{
-              display: "flex",
-              flex: "1 0 auto",
-              justifyContent: "flex-end",
-            }}
-          >
+          <MenuIconWrapper>
             <a /* Syllebus Button */
               style={{ alignSelf: "flex-start" }}
               href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
@@ -404,126 +478,47 @@ const CourseItem = ({
                 e.preventDefault();
                 handleOnClick(title, lng);
               }}
-
             >
               {buttonIcon}
-            </InvisibleButton>
-            <MediaQuery maxWidth={sizes.desktop}> 
-              {(matches) => { /* To course Evaluation Button */
-                return (
-                  matches &&
-                  !isInCourseEvalsPage &&
-                  course.e && (
-                    <ViewEvalsIconButton
-                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
-                    >
-                      <FontAwesomeIcon icon={faCommentDots} size="2x" />{" "}
-                    </ViewEvalsIconButton>
-                  )
-                );
-              }}
-            </MediaQuery>
-
-            <MediaQuery maxWidth={sizes.desktop}>
-              {(matches) => { /* Share Button */
-                return (
-                  matches &&
-                  
-                  course.e && (
-                    <ShareIconButton>
-                      <FontAwesomeIcon    
-                        icon={faShareAlt} size="2x" 
-                        //onMouseOver={
-                          
-                        //}
-                      />{" "}
-                    </ShareIconButton>
-                  )
-                );
-              }}    
-            </MediaQuery>
-            <MediaQuery maxWidth={sizes.phone||sizes.tablet}></MediaQuery>
+            </InvisibleButton> 
             
-            <MediaQuery maxWidth={sizes.desktop}>
-              {(matches) => { /* Share Button */
-                return (
-                  matches &&
-                  
-                  course.e && (
-                    <ShareIconButton>
-                      <FontAwesomeIcon    
-                        //icon={['fab', 'facebook-f']}
-                        icon={faWeixin}
-                        //onMouseOver={
-                          
-                        //}
-                      />{" "}
-                    </ShareIconButton>
-                  )
-                );
-              }}    
-            </MediaQuery>
+            {reviewButtonIcon}
            
-
-          </div>
+            {shareButtonIcon} 
+            
+          </MenuIconWrapper>
         </CourseItemRow>
-        <DetailWrapper> 
+
+        <DetailWrapper>
           <DescriptionWrapper>
             <Description>{yearTerm}</Description>
             <Description>
               <OccurrenceList>{occurrences}</OccurrenceList>
             </Description>
+            <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
-          
-          <MediaQuery minWidth={sizes.desktop}>
-            {(matches) => {
-              return (
-                matches &&
-                !isInCourseEvalsPage &&
-                course.e && (
-                  <EvalButtonsWrapper>
-                    <ViewEvalsButton
-                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
-                      target="_blank"
-                    >
-                      <FontAwesomeIcon icon={faCommentDots} />{" "}
-                      {t("courseEvals.Reviews")}
-                    </ViewEvalsButton>
-                  </EvalButtonsWrapper>
-                )
-              );
-            }}
-          </MediaQuery>
 
-          <MediaQuery minWidth={sizes.desktop}>
-            {(matches) => {
-              return (
-                matches &&
-                
-                course.e && (
-                  <EvalButtonsWrapper>
-                    <ShareButton
-                      href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
-                      target="_blank"
-                    >
-                      <FontAwesomeIcon icon={faShareAlt} />{" "}
-                      {t("Share")}
-                
-                      
-                    </ShareButton>
-                  </EvalButtonsWrapper>
-                )
-              );
-            }}
-          </MediaQuery>
-
-
+          <InvisibleButton>
+            {reviewButtonBar}
+            {shareButtonBar}
+          </InvisibleButton>
         </DetailWrapper>
-        <Instructors>{highlightedInstructor}</Instructors>
       </CourseItemWrapper>
     </RowWrapper>
   );
 };
+
+/*
+<div
+            style={{
+              display: "flex",
+              flex: "1 0 auto",
+              justifyContent: "flex-end",
+            }}
+          >
+*/
+
+// <Instructors>{highlightedInstructor}</Instructors>
 
 export default withNamespaces("translation")(CourseItem);
 
@@ -536,5 +531,5 @@ CourseItem.propTypes = {
 
 /*
 - Small Screen
-- Large Screen 
+- Large Screen
 */

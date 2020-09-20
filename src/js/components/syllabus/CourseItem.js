@@ -84,7 +84,7 @@ const IconBadgeWrapper = styled("div")`
 const MenuIconWrapper = styled("div")`
   display: "flex",
   flex: "1 0 auto",
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justifyContent: "flex-end",
 `;
@@ -454,7 +454,14 @@ const CourseItem = ({
             <Badge>{t(`syllabus.${course.l}`)}</Badge>
             {keywordsList}
           </IconBadgeWrapper>
-          <MenuIconWrapper>
+          <div
+            style={{
+              display: "flex",
+              flex: "1 0 auto",
+              justifyContent: "flex-end",
+              borderRadius: "5px",
+            }}
+          >
             <a /* Syllebus Button */
               style={{ alignSelf: "flex-start" }}
               href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
@@ -486,7 +493,7 @@ const CourseItem = ({
            
             {shareButtonIcon} 
             
-          </MenuIconWrapper>
+          </div>
         </CourseItemRow>
 
         <DetailWrapper>

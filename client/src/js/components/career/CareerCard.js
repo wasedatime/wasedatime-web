@@ -28,7 +28,7 @@ const CareerCard = ({ company }) => {
           <p style={{ marginTop: "20px", marginBottom: "30px" }}>
             {company.description}
           </p>
-          <div class="ui section divider"></div>
+          <div className="ui section divider"></div>
 
           <div>
             <div className="company-part1">
@@ -87,18 +87,18 @@ const CareerCard = ({ company }) => {
           </div>
         </div>
       </div>
-      <div class="ui section divider"></div>
+      <div className="ui section divider"></div>
       <div className="job-button">
         <button
           onClick={() => window.open("https://www.doorkel.com/")}
-          class="ui primary button"
+          className="ui primary button"
           style={{ fontSize: "12px" }}
         >
           インターン内容をもっと見る
         </button>
         <button
           onClick={() => window.open("https://www.doorkel.com/")}
-          class="ui primary button"
+          className="ui primary button"
           style={{ fontSize: "12px" }}
         >
           Entry

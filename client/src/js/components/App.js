@@ -22,7 +22,6 @@ import JoinUs from "./JoinUs";
 import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
 import Career from "./career/Career";
-
 import NotFound from "./NotFound";
 import { getUserIsFirstTimeAccess } from "../reducers/user";
 
@@ -93,7 +92,7 @@ const App = ({ isFirstTimeAccess, t }) => {
               {/* <Route exact path="/roomfinder" component={RoomFinder} /> */}
               <Route exact path="/joinus" component={JoinUs} />
               <Route exact path="/bus" component={Bus} />
-              <Route exact path="/career" component={Career} />
+              <Route path="/career" component={Career} />
               <Route exact path="/courseEvals" component={CourseEvals} />
               <Route component={NotFound} />
             </Switch>

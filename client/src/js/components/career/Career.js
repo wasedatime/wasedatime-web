@@ -1,9 +1,11 @@
 import React from "react";
+import { Switch, Route, Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Wrapper } from "../../styled-components/Wrapper";
 
 import CareerList from "./CareerList";
-import CareerFilter from "./CareerFilter";
+import CareerArticles from "./CareerArticles";
+
 const Career = () => {
   return (
     <Wrapper>
@@ -20,8 +22,18 @@ const Career = () => {
         />
         <meta property="og:site_name" content="WasedaTime - Career" />
       </Helmet>
-      <CareerFilter />
-      <CareerList />
+      <div>
+        <Link to="/career">
+          <button className="ui button">Jobs</button>
+        </Link>
+        <Link to="/career/articles">
+          <button className="ui button">Articles</button>
+        </Link>
+        <Switch>
+          <Route exact path="/career" component={CareerList} />
+          <Route exact path="/career/articles" component={CareerArticles} />
+        </Switch>
+      </div>
     </Wrapper>
   );
 };

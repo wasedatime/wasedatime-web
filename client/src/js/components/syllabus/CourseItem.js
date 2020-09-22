@@ -396,8 +396,6 @@ const CourseItem = ({
               >
                 <FontAwesomeIcon icon={faShareAlt} />{" "}
                 {t("Share")}
-
-
               </ShareButton>
             </EvalButtonsWrapper>
           )
@@ -427,14 +425,28 @@ const CourseItem = ({
   const shareButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => { /* Share Button */
+        /*
+        if (onmouseenter) {
+          return (
+            <ShareIconButton>
+               styled("a") {
+                focus {
+                  outline: "none",
+                }
+              }
+            </ShareIconButton>
+          )
+        }
+        */
         return (
           matches &&
-
           course.e && (
             <ShareIconButton>
               <FontAwesomeIcon
                 icon={faShareAlt} size="2x"
-
+                //onClick={(e) => {
+                  //href=(`https://www.google.com/`);
+                //}}
               />{" "}
             </ShareIconButton>
           )
@@ -442,6 +454,23 @@ const CourseItem = ({
       }}
     </MediaQuery>
     //<MediaQuery maxWidth={sizes.phone || sizes.tablet}></MediaQuery>
+  );
+
+  const socialMediaButton = (
+    <MediaQuery maxWidth={sizes.desktop}>
+      {(matches) => {
+        return (
+          <ShareIconButton>
+            <FontAwesomeIcon
+              icon={faLine} size="lg" // lg = slight large than 1x
+            />{" "}
+            <FontAwesomeIcon
+              icon={faWeixin} size="lg"
+            />{" "}
+          </ShareIconButton>
+        )
+      }}  
+    </MediaQuery>
   );
 
   return (
@@ -490,7 +519,6 @@ const CourseItem = ({
             </InvisibleButton> 
             
             {reviewButtonIcon}
-           
             {shareButtonIcon} 
             
           </div>
@@ -509,21 +537,12 @@ const CourseItem = ({
             {reviewButtonBar}
             {shareButtonBar}
           </InvisibleButton>
+          
         </DetailWrapper>
       </CourseItemWrapper>
     </RowWrapper>
   );
 };
-
-/*
-<div
-            style={{
-              display: "flex",
-              flex: "1 0 auto",
-              justifyContent: "flex-end",
-            }}
-          >
-*/
 
 // <Instructors>{highlightedInstructor}</Instructors>
 

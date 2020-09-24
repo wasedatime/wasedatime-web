@@ -44,7 +44,7 @@
     "joinus": "Join Us!",
     "bus": "Bus",
     "language": "Language",
-    "career": "career"
+    "career": "Career"
   },
   "footer": {
     "licensed": " Code Licensed ",
@@ -186,5 +186,11 @@
     "main3": "We are actively negotiating with the university and will provide any updates as soon as possible. We have received many inquiries and are very sorry for not being able to respond in time.",
     "main4": "Thank you so much again, and we will do our best to ensure that the mission of WasedaTime continues.",
     "main5": "Please stay safe and healthy!"
+  },
+  "career": {
+    "Intern": "Intern",
+    "Articles": "Articles",
+    "viewMore": "View More",
+    "Entry": "Entry"
   }
 }

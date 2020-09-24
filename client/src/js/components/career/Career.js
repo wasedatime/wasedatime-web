@@ -1,12 +1,13 @@
 import React from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Wrapper } from "../../styled-components/Wrapper";
+import { withNamespaces } from "react-i18next";
 
-import CareerList from "./CareerList";
+import CareerList from "./CareerInternList";
 import CareerArticles from "./CareerArticles";
 
-const Career = () => {
+const Career = ({ t }) => {
   return (
     <Wrapper>
       <Helmet>
@@ -23,14 +24,19 @@ const Career = () => {
         <meta property="og:site_name" content="WasedaTime - Career" />
       </Helmet>
       <div>
-        <Link to="/career">
-          <button className="ui button">Jobs</button>
+        <Link to="/career/intern">
+          <button className="ui button">{t("career.Intern")}</button>
         </Link>
         <Link to="/career/articles">
-          <button className="ui button">Articles</button>
+          <button className="ui button">{t("career.Articles")}</button>
         </Link>
         <Switch>
-          <Route exact path="/career" component={CareerList} />
+          <Route
+            exact
+            path="/career"
+            render={() => <Redirect to="/career/intern" />}
+          />
+          <Route exact path="/career/intern" component={CareerList} />
           <Route exact path="/career/articles" component={CareerArticles} />
         </Switch>
       </div>
@@ -38,4 +44,4 @@ const Career = () => {
   );
 };
 
-export default Career;
+export default withNamespaces("translation")(Career);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBuilding,
@@ -8,15 +8,31 @@ import {
   faBriefcase,
   faSearchLocation,
 } from "@fortawesome/free-solid-svg-icons";
-import "./CareerCard.css";
+import { withNamespaces } from "react-i18next";
+import "./CareerInternCard.css";
 
-const CareerCard = ({ company }) => {
-  const onClick = () => {
-    console.log("1");
+const CareerCard = ({ company, t }) => {
+  const [browserWidth, setBrowserWidth] = useState(document.body.clientWidth);
+  useEffect(() => {
+    window.addEventListener("resize", handleBrowserWidth);
+
+    return () => {
+      window.removeEventListener("resize", handleBrowserWidth);
+    };
+  }, [browserWidth]);
+
+  const handleBrowserWidth = () => {
+    setBrowserWidth(document.body.clientWidth);
   };
   return (
-    <div className="ui segment" onClick={onClick}>
-      <div className="company-image">
+    <div className="ui segment">
+      <div
+        className={
+          document.body.clientWidth > 600
+            ? "company-image-large-width"
+            : "company-image-short-width"
+        }
+      >
         <img
           alt="company"
           src="https://static.careerbaito.com/picture/corporation/2796/708_472/ZpKQ0P4d.jpg"
@@ -94,18 +110,18 @@ const CareerCard = ({ company }) => {
           className="ui primary button"
           style={{ fontSize: "12px" }}
         >
-          インターン内容をもっと見る
+          {t("career.viewMore")}
         </button>
         <button
           onClick={() => window.open("https://www.doorkel.com/")}
           className="ui primary button"
           style={{ fontSize: "12px" }}
         >
-          Entry
+          {t("career.Entry")}
         </button>
       </div>
     </div>
   );
 };
 
-export default CareerCard;
+export default withNamespaces("translation")(CareerCard);

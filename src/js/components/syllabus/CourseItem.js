@@ -425,19 +425,6 @@ const CourseItem = ({
   const shareButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => { /* Share Button */
-        /*
-        if (onmouseenter) {
-          return (
-            <ShareIconButton>
-               styled("a") {
-                focus {
-                  outline: "none",
-                }
-              }
-            </ShareIconButton>
-          )
-        }
-        */
         return (
           matches &&
           course.e && (
@@ -458,20 +445,54 @@ const CourseItem = ({
 
   const socialMediaButton = (
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => {
+      {(matches) => { /* Share Button */
         return (
-          <ShareIconButton>
-            <FontAwesomeIcon
+          matches &&
+          course.e && (
+            <ShareIconButton>
+              <a
+                class= "twitter-share-button"
+                href= {`https://twitter.com/intent/tweet?url=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
+                  "syllabus.langParam"
+                )}`}
+                target="_blank"
+              > 
+                <FontAwesomeIcon
+                  icon={faTwitter} size="lg" // lg = slight large than 1x
+                  style={{ color: "#00ACEE" }}
+                />{" "}
+              </a>
+            </ShareIconButton>
+          )
+        );
+      }}
+    </MediaQuery>
+
+    /*  Twitter Share Reference
+      <a
+                class= "twitter-share-button"
+                href= {`https://twitter.com/intent/tweet?url=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
+                  "syllabus.langParam"
+                )}`}
+                target="_blank"
+              > 
+                <FontAwesomeIcon
+                  icon={faTwitter} size="lg" // lg = slight large than 1x
+                  style={{ color: "#00ACEE" }}
+                />{" "}
+              </a>
+    */
+
+  );
+
+  /*
+      <FontAwesomeIcon
               icon={faLine} size="lg" // lg = slight large than 1x
             />{" "}
-            <FontAwesomeIcon
+      <FontAwesomeIcon
               icon={faWeixin} size="lg"
             />{" "}
-          </ShareIconButton>
-        )
-      }}  
-    </MediaQuery>
-  );
+  */
 
   return (
     <RowWrapper>
@@ -520,7 +541,7 @@ const CourseItem = ({
             
             {reviewButtonIcon}
             {shareButtonIcon} 
-            
+            {socialMediaButton}
           </div>
         </CourseItemRow>
 
@@ -536,8 +557,8 @@ const CourseItem = ({
           <InvisibleButton>
             {reviewButtonBar}
             {shareButtonBar}
+           
           </InvisibleButton>
-          
         </DetailWrapper>
       </CourseItemWrapper>
     </RowWrapper>
@@ -558,4 +579,25 @@ CourseItem.propTypes = {
 /*
 - Small Screen
 - Large Screen
+*/
+
+/*
+<div 
+              class="line-it-button" 
+              data-lang="en" 
+              data-type="share-c" 
+              data-ver="3" 
+              data-url= {`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
+                "syllabus.langParam"
+              )}`}
+              data-color="default" 
+              data-size="small" 
+              data-count="false" 
+              style="display: none;"> 
+            </div>
+            <script 
+              src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" 
+              async="async" 
+              defer="defer">
+            </script>
 */

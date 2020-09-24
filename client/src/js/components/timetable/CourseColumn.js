@@ -31,6 +31,7 @@ const CourseItem = styled("div")`
   padding: 0.3rem 0 0 0.1rem;
   border-left-width: 2px;
   border-left-style: solid;
+  line-height: normal;
 `;
 
 const CourseTitle = styled("span")`

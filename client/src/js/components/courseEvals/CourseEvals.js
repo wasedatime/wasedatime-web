@@ -57,6 +57,7 @@ const Announcement = styled("div")`
   padding: 5px 10px;
   font-size: 0.7em;
   border-radius: 3px;
+  line-height: normal;
 `;
 
 const Disclaimer = styled(Announcement)`

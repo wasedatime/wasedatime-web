@@ -95,9 +95,9 @@ class AddedCourseList extends React.Component {
           </div>
         ) : (
           <ExtendedArticle>
-            <h4>{t("syllabus.Added courses are displayed here")}</h4>
+            <Subheading as='h2'>{t("syllabus.Added courses are displayed here")}</Subheading>
             <Section>
-              <Subheading>{t("syllabus.To add a course")}</Subheading>
+              <Subheading as='h2'>{t("syllabus.To add a course")}</Subheading>
               <OList>
                 <ListItem>
                   {t(
@@ -125,7 +125,7 @@ class AddedCourseList extends React.Component {
               </OList>
             </Section>
             <Section>
-              <Subheading>{t("syllabus.Pro Tip!")}</Subheading>
+              <Subheading as='h2'>{t("syllabus.Pro Tip!")}</Subheading>
               <OList>
                 <ListItem>
                   {t("syllabus.Use")} {t("syllabus.Filter by")}{" "}

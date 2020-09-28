@@ -19,6 +19,7 @@ import {
   faLine,
   faWeixin,
   faFacebookMessenger,
+  faFacebook
 } from "@fortawesome/free-brands-svg-icons";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
@@ -307,6 +308,7 @@ const CourseItem = ({
   handleOnClick,
   handleClickSyllabusLink,
   isInCourseEvalsPage,
+  //isInSyllabusPage, // Test
   t,
   lng,
 }) => {
@@ -387,12 +389,11 @@ const CourseItem = ({
       {(matches) => {
         return (
           matches &&
-
+          
           course.e && (
             <EvalButtonsWrapper>
               <ShareButton
-                href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
-                target="_blank"
+                
               >
                 <FontAwesomeIcon icon={faShareAlt} />{" "}
                 {t("Share")}
@@ -427,13 +428,14 @@ const CourseItem = ({
       {(matches) => { /* Share Button */
         return (
           matches &&
+          
           course.e && (
             <ShareIconButton>
               <FontAwesomeIcon
                 icon={faShareAlt} size="2x"
-                //onClick={(e) => {
-                  //href=(`https://www.google.com/`);
-                //}}
+              //onClick={(e) => {
+              //href=(`https://www.google.com/`);
+              //}}
               />{" "}
             </ShareIconButton>
           )
@@ -442,8 +444,9 @@ const CourseItem = ({
     </MediaQuery>
     //<MediaQuery maxWidth={sizes.phone || sizes.tablet}></MediaQuery>
   );
-
-  const socialMediaButton = (
+  
+  //Sub button part ---------------------------------------------------
+  const twitterButton = (
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => { /* Share Button */
         return (
@@ -451,48 +454,123 @@ const CourseItem = ({
           course.e && (
             <ShareIconButton>
               <a
-                class= "twitter-share-button"
-                href= {`https://twitter.com/intent/tweet?url=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
-                  "syllabus.langParam"
-                )}`}
+                class="twitter-share-button"
+                href={`https://twitter.com/intent/tweet?url=https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
                 target="_blank"
-              > 
+              >
                 <FontAwesomeIcon
                   icon={faTwitter} size="lg" // lg = slight large than 1x
                   style={{ color: "#00ACEE" }}
                 />{" "}
               </a>
             </ShareIconButton>
-          )
+          ) 
         );
       }}
     </MediaQuery>
+  );
+  
+  const facebookButton = (
+    <MediaQuery maxWidth={sizes.desktop}>
+      {(matches) => { /* Share Button */
+        return (
+          matches &&
+          course.e && (
+            <ShareIconButton>
+              <a
+                class="fb-share-button"
+                href={`https://www.facebook.com/sharer/sharer.php?title=&u=https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                target="_blank"
+              >
+                <FontAwesomeIcon
+                  icon={faFacebook} size="lg" // lg = slight large than 1x
+                  style={{ color: "#3B5998" }}
+                />{" "}
+              </a>
+            </ShareIconButton>
+          ) 
+        );
+      }}
+    </MediaQuery>
+  );
 
-    /*  Twitter Share Reference
+  const lineButton = (
+    <MediaQuery maxWidth={sizes.desktop}>
+      {(matches) => { /* Share Button */
+        return (
+          matches &&
+          course.e && (
+            <ShareIconButton>
+              <a
+                class="fb-share-button"
+                href={`https://social-plugins.line.me/lineit/share?url=https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                target="_blank"
+              >
+                <FontAwesomeIcon
+                  icon={faLine} size="lg" // lg = slight large than 1x
+                  style={{ color: "#00B400" }}
+                />{" "}
+              </a>
+              
+            </ShareIconButton>
+          ) 
+        );
+      }}
+    </MediaQuery>
+  );
+  // const lineButton = (
+  //   <MediaQuery maxWidth={sizes.desktop}>
+  //     {(matches) => { /* Share Button */
+  //       return (
+  //         matches &&
+  //         course.e && (
+  //           <ShareIconButton>
+  //             <div 
+  //               class="line-it-button" 
+  //               data-lang="en" 
+  //               data-type="share-c" 
+  //               data-ver="3" 
+  //               data-url= {`https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+  //               data-color="default" 
+  //               data-size="small" 
+  //               data-count="false" 
+  //               style={{display: "flex"}}
+  //             >
+  //               <FontAwesomeIcon
+  //                 icon={faLine} size="lg" // lg = slight large than 1x
+  //                 style={{ color: "#00ACEE" }}
+  //               />{" "}
+  //             </div>
+  //             <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" 
+  //               async="async" 
+  //               defer="defer"
+  //             ></script>
+  //           </ShareIconButton>
+  //         ) 
+  //       );
+  //     }}
+  //   </MediaQuery>
+  // );
+    /*
+      Share to syllebus page (old way)
+      
       <a
-                class= "twitter-share-button"
-                href= {`https://twitter.com/intent/tweet?url=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
+                class="twitter-share-button"
+                href={`https://twitter.com/intent/tweet?url=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
                   "syllabus.langParam"
                 )}`}
                 target="_blank"
-              > 
-                <FontAwesomeIcon
-                  icon={faTwitter} size="lg" // lg = slight large than 1x
-                  style={{ color: "#00ACEE" }}
-                />{" "}
-              </a>
+              >
+      
+      <a
+                class="fb-share-button"
+                href={`https://www.facebook.com/sharer/sharer.php?title=&u=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
+                  "syllabus.langParam"
+                )}`}
+                target="_blank"
+              >
+
     */
-
-  );
-
-  /*
-      <FontAwesomeIcon
-              icon={faLine} size="lg" // lg = slight large than 1x
-            />{" "}
-      <FontAwesomeIcon
-              icon={faWeixin} size="lg"
-            />{" "}
-  */
 
   return (
     <RowWrapper>
@@ -537,11 +615,13 @@ const CourseItem = ({
               }}
             >
               {buttonIcon}
-            </InvisibleButton> 
-            
+            </InvisibleButton>
+
             {reviewButtonIcon}
-            {shareButtonIcon} 
-            {socialMediaButton}
+            {shareButtonIcon}
+            {twitterButton}
+            {facebookButton}
+            {lineButton}
           </div>
         </CourseItemRow>
 
@@ -557,7 +637,6 @@ const CourseItem = ({
           <InvisibleButton>
             {reviewButtonBar}
             {shareButtonBar}
-           
           </InvisibleButton>
         </DetailWrapper>
       </CourseItemWrapper>
@@ -582,22 +661,22 @@ CourseItem.propTypes = {
 */
 
 /*
-<div 
-              class="line-it-button" 
-              data-lang="en" 
-              data-type="share-c" 
-              data-ver="3" 
+<div
+              class="line-it-button"
+              data-lang="en"
+              data-type="share-c"
+              data-ver="3"
               data-url= {`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
                 "syllabus.langParam"
               )}`}
-              data-color="default" 
-              data-size="small" 
-              data-count="false" 
-              style="display: none;"> 
+              data-color="default"
+              data-size="small"
+              data-count="false"
+              style="display: none;">
             </div>
-            <script 
-              src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" 
-              async="async" 
+            <script
+              src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js"
+              async="async"
               defer="defer">
             </script>
 */

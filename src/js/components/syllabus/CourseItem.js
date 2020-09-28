@@ -10,16 +10,18 @@ import {
   faExternalLinkSquareAlt,
   faCommentDots,
   faShareAlt,
-  faLink // or faShare,
-
+  faLink, // or faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import {
-  faFacebookF,
+  faFacebook,
   faTwitter,
+  faLinkedin,
   faLine,
+  faWhatsappSquare,
   faWeixin,
   faFacebookMessenger,
-  faFacebook
+
+  //whatapp, linkin, slack
 } from "@fortawesome/free-brands-svg-icons";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
@@ -175,9 +177,9 @@ const ViewEvalsButton = styled("a")`
   &:focus {
     outline: none;
   }
-`; // Case of large Screen 
+`; // Case of large Screen
 
-const ViewEvalsIconButton = styled("a")` 
+const ViewEvalsIconButton = styled("a")`
   display: block;
   background-color: #fff;
   border: 0px;
@@ -187,7 +189,7 @@ const ViewEvalsIconButton = styled("a")`
   &:focus {
     outline: none;
   }
-`; // Case of Small Screen 
+`; // Case of Small Screen
 // ---
 
 // Share Button
@@ -196,7 +198,7 @@ const ShareButton = styled("a")`
   background-color: #aaa;
   border: 0px;
   border-radius: 5px;
-  color: #554A53;
+  color: #554a53;
   padding: 5px 1rem;
   margin-bottom: 4px;
   text-align: center;
@@ -208,13 +210,13 @@ const ShareButton = styled("a")`
   &:focus {
     outline: none;
   }
-`; // Case of large Screen 
+`; // Case of large Screen
 
-const ShareIconButton = styled("a")` 
+const ShareIconButton = styled("a")`
   display: block;
   background-color: #fff;
   border-left: 0px;
-  color: #7D7A7C;
+  color: #7d7a7c;
   text-decoration: none;
 
   &:hover {
@@ -223,8 +225,8 @@ const ShareIconButton = styled("a")`
   &:focus {
     outline: none;
   }
-`; // Case of Small Screen 
-// -- 
+`; // Case of Small Screen
+// --
 
 const OccurrenceList = styled("ul")`
   list-style: none;
@@ -318,6 +320,7 @@ const CourseItem = ({
   const yearTerm = combineYearTerm(course.y, course.tm, t);
   const schoolIcons = mapLinkToSchoolIcon(course.ks);
   const syllabusId = course._id;
+  const shareLink = `https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`; // share link
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.os.map((occurrence, index) => {
     const day = getDay(occurrence.d, t);
@@ -340,16 +343,16 @@ const CourseItem = ({
   const keywords =
     "kws" in course
       ? course.kws.map((keyword, index) => {
-        return (
-          <li key={keyword} style={{ display: "inline-block" }}>
-            <Badge>
-              {keyword === "English-based Undergraduate Program"
-                ? t("syllabus.EN-based Undergrad Program")
-                : t(`syllabus.${keyword}`)}
-            </Badge>
-          </li>
-        );
-      })
+          return (
+            <li key={keyword} style={{ display: "inline-block" }}>
+              <Badge>
+                {keyword === "English-based Undergraduate Program"
+                  ? t("syllabus.EN-based Undergrad Program")
+                  : t(`syllabus.${keyword}`)}
+              </Badge>
+            </li>
+          );
+        })
       : null;
   const keywordsList =
     keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
@@ -389,14 +392,10 @@ const CourseItem = ({
       {(matches) => {
         return (
           matches &&
-          
           course.e && (
             <EvalButtonsWrapper>
-              <ShareButton
-                
-              >
-                <FontAwesomeIcon icon={faShareAlt} />{" "}
-                {t("Share")}
+              <ShareButton>
+                <FontAwesomeIcon icon={faShareAlt} /> {t("Share")}
               </ShareButton>
             </EvalButtonsWrapper>
           )
@@ -407,7 +406,8 @@ const CourseItem = ({
 
   const reviewButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* To course Evaluation Button */
+      {(matches) => {
+        /* To course Evaluation Button */
         return (
           matches &&
           !isInCourseEvalsPage &&
@@ -425,70 +425,102 @@ const CourseItem = ({
 
   const shareButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
-        return (
-          matches &&
-          
-          course.e && (
+      {(matches) => {
+        /* Share Button */
+        if (matches && isInCourseEvalsPage) {
+          return (
             <ShareIconButton>
               <FontAwesomeIcon
-                icon={faShareAlt} size="2x"
-              //onClick={(e) => {
-              //href=(`https://www.google.com/`);
-              //}}
+                icon={faShareAlt}
+                size="2x"
+                //onClick={(e) => {
+                //href=(`https://www.google.com/`);
+                //}}
               />{" "}
             </ShareIconButton>
-          )
-        );
+          );
+        } else {
+          return "";
+        }
       }}
     </MediaQuery>
     //<MediaQuery maxWidth={sizes.phone || sizes.tablet}></MediaQuery>
   );
-  
+
   //Sub button part ---------------------------------------------------
   const twitterButton = (
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
+      {(matches) => {
+        /* Share Button */
         return (
           matches &&
           course.e && (
             <ShareIconButton>
               <a
                 class="twitter-share-button"
-                href={`https://twitter.com/intent/tweet?url=https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                href={`https://twitter.com/intent/tweet?url=${shareLink}`}
                 target="_blank"
               >
                 <FontAwesomeIcon
-                  icon={faTwitter} size="lg" // lg = slight large than 1x
+                  icon={faTwitter}
+                  size="lg" // lg = slight large than 1x
                   style={{ color: "#00ACEE" }}
                 />{" "}
               </a>
             </ShareIconButton>
-          ) 
+          )
         );
       }}
     </MediaQuery>
   );
-  
+
   const facebookButton = (
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
+      {(matches) => {
+        /* Share Button */
         return (
           matches &&
           course.e && (
             <ShareIconButton>
               <a
                 class="fb-share-button"
-                href={`https://www.facebook.com/sharer/sharer.php?title=&u=https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                href={`https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}`}
                 target="_blank"
               >
                 <FontAwesomeIcon
-                  icon={faFacebook} size="lg" // lg = slight large than 1x
+                  icon={faFacebook}
+                  size="lg" // lg = slight large than 1x
                   style={{ color: "#3B5998" }}
                 />{" "}
               </a>
             </ShareIconButton>
-          ) 
+          )
+        );
+      }}
+    </MediaQuery>
+  );
+
+  const linkedinButton = (
+    <MediaQuery maxWidth={sizes.desktop}>
+      {(matches) => {
+        /* Share Button */
+        return (
+          matches &&
+          course.e && (
+            <ShareIconButton>
+              <a
+                class="linkedin-share-button"
+                href={`http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}`}
+                target="_blank"
+              >
+                <FontAwesomeIcon
+                  icon={faLinkedin}
+                  size="lg" // lg = slight large than 1x
+                  style={{ color: "#0E76A8" }}
+                />{" "}
+              </a>
+            </ShareIconButton>
+          )
         );
       }}
     </MediaQuery>
@@ -496,63 +528,81 @@ const CourseItem = ({
 
   const lineButton = (
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
+      {(matches) => {
+        /* Share Button */
         return (
           matches &&
           course.e && (
             <ShareIconButton>
               <a
                 class="fb-share-button"
-                href={`https://social-plugins.line.me/lineit/share?url=https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+                href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
                 target="_blank"
               >
                 <FontAwesomeIcon
-                  icon={faLine} size="lg" // lg = slight large than 1x
+                  icon={faLine}
+                  size="lg" // lg = slight large than 1x
                   style={{ color: "#00B400" }}
                 />{" "}
               </a>
             </ShareIconButton>
-          ) 
+          )
         );
       }}
     </MediaQuery>
   );
-  // const lineButton = (
+
+  const whatappButton = (
+    <MediaQuery maxWidth={sizes.desktop}>
+      {(matches) => {
+        /* Share Button */
+        return (
+          matches &&
+          course.e && (
+            <ShareIconButton>
+              <a
+                class="whatapp-share-button"
+                href={`https://wa.me/?text=${shareLink}`}
+                target="_blank"
+              >
+                <FontAwesomeIcon
+                  icon={faWhatsappSquare}
+                  size="lg" // lg = slight large than 1x
+                  style={{ color: "#4FCE5D" }}
+                />{" "}
+              </a>
+            </ShareIconButton>
+          )
+        );
+      }}
+    </MediaQuery>
+  );
+
+  // const copyClipboardButton = (
   //   <MediaQuery maxWidth={sizes.desktop}>
   //     {(matches) => { /* Share Button */
   //       return (
   //         matches &&
   //         course.e && (
   //           <ShareIconButton>
-  //             <div 
-  //               class="line-it-button" 
-  //               data-lang="en" 
-  //               data-type="share-c" 
-  //               data-ver="3" 
-  //               data-url= {`https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
-  //               data-color="default" 
-  //               data-size="small" 
-  //               data-count="false" 
-  //               style={{display: "flex"}}
+  //             <a
+  //               onClick={`copyToClipboard(${shareLink})`}
   //             >
   //               <FontAwesomeIcon
-  //                 icon={faLine} size="lg" // lg = slight large than 1x
-  //                 style={{ color: "#00ACEE" }}
+  //                 icon={faLink} size="lg" // lg = slight large than 1x
+  //                 style={{ color: "#4FCE5D" }}
   //               />{" "}
-  //             </div>
-  //             <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" 
-  //               async="async" 
-  //               defer="defer"
-  //             ></script>
+  //             </a>
   //           </ShareIconButton>
-  //         ) 
+  //         )
   //       );
   //     }}
   //   </MediaQuery>
   // );
-    /*
+
+  /*
       Share to syllebus page (old way)
-      
+
       <a
                 class="twitter-share-button"
                 href={`https://twitter.com/intent/tweet?url=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
@@ -560,7 +610,7 @@ const CourseItem = ({
                 )}`}
                 target="_blank"
               >
-      
+
       <a
                 class="fb-share-button"
                 href={`https://www.facebook.com/sharer/sharer.php?title=&u=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
@@ -620,7 +670,9 @@ const CourseItem = ({
             {shareButtonIcon}
             {twitterButton}
             {facebookButton}
+            {linkedinButton}
             {lineButton}
+            {whatappButton}
           </div>
         </CourseItemRow>
 
@@ -657,25 +709,4 @@ CourseItem.propTypes = {
 /*
 - Small Screen
 - Large Screen
-*/
-
-/*
-<div
-              class="line-it-button"
-              data-lang="en"
-              data-type="share-c"
-              data-ver="3"
-              data-url= {`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
-                "syllabus.langParam"
-              )}`}
-              data-color="default"
-              data-size="small"
-              data-count="false"
-              style="display: none;">
-            </div>
-            <script
-              src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js"
-              async="async"
-              defer="defer">
-            </script>
 */

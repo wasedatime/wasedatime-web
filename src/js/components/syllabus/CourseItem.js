@@ -511,7 +511,6 @@ const CourseItem = ({
                   style={{ color: "#00B400" }}
                 />{" "}
               </a>
-              
             </ShareIconButton>
           ) 
         );

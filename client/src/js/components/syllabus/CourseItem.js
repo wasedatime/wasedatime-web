@@ -175,9 +175,9 @@ const ViewEvalsButton = styled("a")`
   &:focus {
     outline: none;
   }
-`; // Case of large Screen 
+`; // Case of large Screen
 
-const ViewEvalsIconButton = styled("a")` 
+const ViewEvalsIconButton = styled("a")`
   display: block;
   background-color: #fff;
   border: 0px;
@@ -187,7 +187,7 @@ const ViewEvalsIconButton = styled("a")`
   &:focus {
     outline: none;
   }
-`; // Case of Small Screen 
+`; // Case of Small Screen
 // ---
 
 // Share Button
@@ -208,9 +208,9 @@ const ShareButton = styled("a")`
   &:focus {
     outline: none;
   }
-`; // Case of large Screen 
+`; // Case of large Screen
 
-const ShareIconButton = styled("a")` 
+const ShareIconButton = styled("a")`
   display: block;
   background-color: #fff;
   border-left: 0px;
@@ -223,8 +223,8 @@ const ShareIconButton = styled("a")`
   &:focus {
     outline: none;
   }
-`; // Case of Small Screen 
-// -- 
+`; // Case of Small Screen
+// --
 
 const OccurrenceList = styled("ul")`
   list-style: none;
@@ -387,20 +387,20 @@ const CourseItem = ({
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizes.desktop}>
       {(matches) => {
-        return (
-          matches &&
-          
-          course.e && (
+        if (matches && isInCourseEvalsPage) {
+          return (
             <EvalButtonsWrapper>
               <ShareButton
-                
+
               >
                 <FontAwesomeIcon icon={faShareAlt} />{" "}
                 {t("Share")}
               </ShareButton>
             </EvalButtonsWrapper>
-          )
-        );
+          );
+        } else {
+          return "";
+        }
       }}
     </MediaQuery>
   );
@@ -428,7 +428,7 @@ const CourseItem = ({
       {(matches) => { /* Share Button */
         return (
           matches &&
-          
+
           course.e && (
             <ShareIconButton>
               <FontAwesomeIcon
@@ -444,7 +444,7 @@ const CourseItem = ({
     </MediaQuery>
     //<MediaQuery maxWidth={sizes.phone || sizes.tablet}></MediaQuery>
   );
-  
+
   //Sub button part ---------------------------------------------------
   const twitterButton = (
     <MediaQuery maxWidth={sizes.desktop}>
@@ -464,12 +464,12 @@ const CourseItem = ({
                 />{" "}
               </a>
             </ShareIconButton>
-          ) 
+          )
         );
       }}
     </MediaQuery>
   );
-  
+
   const facebookButton = (
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => { /* Share Button */
@@ -488,7 +488,7 @@ const CourseItem = ({
                 />{" "}
               </a>
             </ShareIconButton>
-          ) 
+          )
         );
       }}
     </MediaQuery>
@@ -512,7 +512,7 @@ const CourseItem = ({
                 />{" "}
               </a>
             </ShareIconButton>
-          ) 
+          )
         );
       }}
     </MediaQuery>
@@ -524,15 +524,15 @@ const CourseItem = ({
   //         matches &&
   //         course.e && (
   //           <ShareIconButton>
-  //             <div 
-  //               class="line-it-button" 
-  //               data-lang="en" 
-  //               data-type="share-c" 
-  //               data-ver="3" 
+  //             <div
+  //               class="line-it-button"
+  //               data-lang="en"
+  //               data-type="share-c"
+  //               data-ver="3"
   //               data-url= {`https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
-  //               data-color="default" 
-  //               data-size="small" 
-  //               data-count="false" 
+  //               data-color="default"
+  //               data-size="small"
+  //               data-count="false"
   //               style={{display: "flex"}}
   //             >
   //               <FontAwesomeIcon
@@ -540,19 +540,19 @@ const CourseItem = ({
   //                 style={{ color: "#00ACEE" }}
   //               />{" "}
   //             </div>
-  //             <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" 
-  //               async="async" 
+  //             <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js"
+  //               async="async"
   //               defer="defer"
   //             ></script>
   //           </ShareIconButton>
-  //         ) 
+  //         )
   //       );
   //     }}
   //   </MediaQuery>
   // );
     /*
       Share to syllebus page (old way)
-      
+
       <a
                 class="twitter-share-button"
                 href={`https://twitter.com/intent/tweet?url=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
@@ -560,7 +560,7 @@ const CourseItem = ({
                 )}`}
                 target="_blank"
               >
-      
+
       <a
                 class="fb-share-button"
                 href={`https://www.facebook.com/sharer/sharer.php?title=&u=https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(

@@ -16,13 +16,13 @@ import {
 import {
   faFacebook,
   faTwitter,
-  faLinkedin, 
+  faLinkedin,
   faLine,
   faWhatsappSquare,
   faWeixin,
   faFacebookMessenger,
-  
-  //whatapp, linkin, slack 
+
+  //whatapp, linkin, slack
 } from "@fortawesome/free-brands-svg-icons";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
@@ -321,7 +321,7 @@ const CourseItem = ({
   const yearTerm = combineYearTerm(course.y, course.tm, t);
   const schoolIcons = mapLinkToSchoolIcon(course.ks);
   const syllabusId = course._id;
-  const shareLink = `https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`; // share link
+  const shareLink = `https://wasedatime.com/courseEvals?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.os.map((occurrence, index) => {
     const day = getDay(occurrence.d, t);
@@ -545,7 +545,7 @@ const CourseItem = ({
       }}
     </MediaQuery>
   );
-  
+
   const whatappButton = (
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => { /* Share Button */
@@ -665,7 +665,7 @@ const CourseItem = ({
             {linkedinButton}
             {lineButton}
             {whatappButton}
-            
+
           </div>
         </CourseItemRow>
 

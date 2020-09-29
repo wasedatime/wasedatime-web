@@ -320,7 +320,7 @@ const CourseItem = ({
   const yearTerm = combineYearTerm(course.y, course.tm, t);
   const schoolIcons = mapLinkToSchoolIcon(course.ks);
   const syllabusId = course._id;
-  const shareLink = `https://wasedatime.com/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`; // share link
+  const shareLink = `https://wasedatime.com/courseEvals?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
   //Need to use index as keys due to Waseda's data.
   const occurrences = course.os.map((occurrence, index) => {
     const day = getDay(occurrence.d, t);

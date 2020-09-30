@@ -15,8 +15,10 @@ import Filter from "../../components/syllabus/Filter";
 import FilterButton from "../../components/syllabus/FilterButton";
 import Modal from "../../components/Modal";
 import { Wrapper, RowWrapper } from "../../styled-components/Wrapper";
+import { Overlay } from "../../styled-components/Overlay";
 import { SideBar } from "../../styled-components/SideBar";
 import { sizes } from "../../styled-components/utils";
+import { Segment, Tab, Card, Header, Button, Icon } from 'semantic-ui-react';
 import { fallSemesters, springSemesters } from "../../data/semesters";
 import { getSearchLang } from "../../utils/courseSearch";
 import { gaFilter } from "../../ga/eventCategories";
@@ -27,6 +29,15 @@ import {
   gaApplyFilter,
   gaRemoveFilter,
 } from "../../ga/eventActions";
+
+import fseIcon from "../../../img/syllabus-icons/fse.png";
+import cseIcon from "../../../img/syllabus-icons/cse.png";
+import aseIcon from "../../../img/syllabus-icons/ase.png";
+import pseIcon from "../../../img/syllabus-icons/pse.png";
+import silsIcon from "../../../img/syllabus-icons/sils.png";
+import sssIcon from "../../../img/syllabus-icons/sss.png";
+import cjlIcon from "../../../img/syllabus-icons/cjl.png";
+import gecIcon from "../../../img/syllabus-icons/gec.png";
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
@@ -57,6 +68,51 @@ const modalStyle = {
   },
 };
 
+const schoolFilterPanes = [
+  { menuItem: 'Undergraduate', render: () => <React.Fragment>
+    <Card.Group itemsPerRow={8} style={{ marginTop: "0.5em" }}>
+      <Card image={fseIcon} />
+      <Card image={cseIcon} />
+      <Card image={aseIcon} />
+      <Card image={pseIcon} />
+      <Card image={silsIcon} />
+      <Card image={sssIcon} />
+      <Card image={cjlIcon} />
+      <Card image={gecIcon} />
+      <Card image={fseIcon} />
+      <Card image={cseIcon} />
+      <Card image={aseIcon} />
+      <Card image={pseIcon} />
+      <Card image={silsIcon} />
+      <Card image={sssIcon} />
+      <Card image={cjlIcon} />
+      <Card image={gecIcon} />
+    </Card.Group>
+    <Button style={{ margin: "1em 0px" }}>Filter</Button>
+  </React.Fragment> },
+  { menuItem: 'Graduate', render: () => <React.Fragment>
+    <Card.Group itemsPerRow={8} style={{ marginTop: "0.5em" }}>
+      <Card image={gecIcon} />
+      <Card image={cjlIcon} />
+      <Card image={sssIcon} />
+      <Card image={silsIcon} />
+      <Card image={pseIcon} />
+      <Card image={aseIcon} />
+      <Card image={cseIcon} />
+      <Card image={fseIcon} />
+      <Card image={gecIcon} />
+      <Card image={cjlIcon} />
+      <Card image={sssIcon} />
+      <Card image={silsIcon} />
+      <Card image={pseIcon} />
+      <Card image={aseIcon} />
+      <Card image={cseIcon} />
+      <Card image={fseIcon} />
+    </Card.Group>
+    <Button style={{ margin: "1em 0px" }}>Filter</Button>
+  </React.Fragment> },
+]
+
 class FetchedCourseSearch extends React.Component {
   constructor(props) {
     super(props);
@@ -77,6 +133,8 @@ class FetchedCourseSearch extends React.Component {
       inputText: searchTerm,
       searchTerm: searchTerm,
       filteredCourses: props.fetchedCourses,
+      isSchoolFilterOpened: true,
+      checkedSchools: [],
     };
   }
 
@@ -262,6 +320,17 @@ class FetchedCourseSearch extends React.Component {
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
         />
+        <Overlay>
+          <Segment style={{ margin: "1em 2em 0em", padding: "0.5em 1em 0px" }}>
+            <Header as="h2"
+              onClick={() => this.setState({ isSchoolFilterOpened: !this.state.isSchoolFilterOpened })}
+              style={{ cursor: "pointer", margin: "0px" }}
+            >School filter <Icon name="angle down" /></Header>
+            {this.state.isSchoolFilterOpened && (
+              <Tab panes={schoolFilterPanes} />
+            )}
+          </Segment>
+        </Overlay>
         <RowWrapper>
           <FetchedCourseList
             searchTerm={searchTerm}

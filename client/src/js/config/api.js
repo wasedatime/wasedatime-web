@@ -1,7 +1,7 @@
 const API_STATIC_BASE_URL =
   process.env.NODE_ENV === "production"
     ? "/api/static/"
-    : "https://staging.wasedatime.com/api/static/";
+    : "https://wasedatime-syllabus.s3-ap-northeast-1.amazonaws.com/";
 const YEAR = "2020-2021/";
 const API_STATIC_URL = API_STATIC_BASE_URL + YEAR;
 const API_COURSE_EVALS_BASE_URL =

@@ -1,7 +1,7 @@
 import React from "react";
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
-import SchoolCard from "./SchoolCard";
+import SchoolImportCard from "./SchoolImportCard";
 import SchoolRemoveCard from "./SchoolRemoveCard";
 
 import {
@@ -46,7 +46,7 @@ import sssIcon from "../../../img/syllabus-icons/sss.png";
 import cjlIcon from "../../../img/syllabus-icons/cjl.png";
 import gecIcon from "../../../img/syllabus-icons/gec.png";
 
-const loadedUndergradSchools = ["FSE", "CSE", "ASE", "PSE", "CJL"];
+const loadedUndergradSchools = [];
 
 const undergradSchoolNameIconMap = {
   [SILS]: silsIcon,
@@ -89,7 +89,7 @@ class SchoolFilterForm extends React.Component {
         render: () => (
           <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
             {Object.keys(undergradSchoolNameIconMap).map((schoolName) => (
-              <SchoolCard
+              <SchoolImportCard
                 key={schoolName}
                 schoolName={schoolName}
                 loaded={loadedSchools.includes(schoolName)}

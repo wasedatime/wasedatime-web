@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { Card, Icon, Dimmer, Image } from "semantic-ui-react";
 
 class SchoolRemoveCard extends React.Component {

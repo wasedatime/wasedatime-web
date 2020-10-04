@@ -10,7 +10,7 @@ const SchoolCardContainer = styled(Dimmer.Dimmable)`
   }
 `;
 
-const SchoolCard = ({
+const SchoolImportCard = ({
   schoolName,
   loaded,
   loading,
@@ -38,4 +38,4 @@ const SchoolCard = ({
   </SchoolCardContainer>
 );
 
-export default SchoolCard;
+export default SchoolImportCard;

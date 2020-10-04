@@ -5,25 +5,25 @@
 		<loc>https://wasedatime.com/</loc>
 		<lastmod>2020-09-16</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
+		<priority>0.7</priority>
 	</url>
 	<url>
 		<loc>https://wasedatime.com/timetable</loc>
 		<lastmod>2020-09-16</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>0.5</priority>
+		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://wasedatime.com/syllabus</loc>
 		<lastmod>2020-09-16</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
+		<priority>1.0</priority>
 	</url>
 	<url>
 		<loc>https://wasedatime.com/bus</loc>
 		<lastmod>2020-09-16</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>0.9</priority>
+		<priority>0.8</priority>
 	</url>
 	<url>
 		<loc>https://wasedatime.com/joinus</loc>

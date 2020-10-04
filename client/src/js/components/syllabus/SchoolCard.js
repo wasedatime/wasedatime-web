@@ -27,7 +27,7 @@ const SchoolCard = ({
       {!loaded && (
         <Icon
           name={loading ? "spinner" : "download"}
-          size="huge"
+          size="big"
           style={{
             color: loading ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0.05)",
           }}

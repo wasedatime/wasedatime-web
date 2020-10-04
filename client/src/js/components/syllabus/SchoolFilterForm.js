@@ -3,7 +3,18 @@ import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import SchoolCard from "./SchoolCard";
 
-import { Segment, Tab, Card, Header, Icon } from "semantic-ui-react";
+import {
+  Segment,
+  Tab,
+  Card,
+  Header,
+  Icon,
+  Checkbox,
+  Form,
+  Button,
+  Popup,
+  Image,
+} from "semantic-ui-react";
 
 import {
   SILS,
@@ -68,12 +79,7 @@ class SchoolFilterForm extends React.Component {
   };
 
   schoolFilterPanes = () => {
-    const {
-      selectedSchools,
-      loadedSchools,
-      loadingSchool,
-      schoolsUpToLimit,
-    } = this.state;
+    const { loadedSchools, loadingSchool, schoolsUpToLimit } = this.state;
 
     return [
       {
@@ -86,10 +92,8 @@ class SchoolFilterForm extends React.Component {
                   key={schoolName}
                   schoolName={schoolName}
                   loaded={loadedSchools.includes(schoolName)}
-                  selected={selectedSchools.includes(schoolName)}
                   loading={this.state.loadingSchool === schoolName}
                   schoolIcon={undergradSchoolNameIconMap[schoolName]}
-                  toggleSelected={this.toggleSelected}
                   onDownload={this.handleSchoolloading}
                   isBannedToLoad={
                     !loadedSchools.includes(schoolName) &&
@@ -162,7 +166,7 @@ class SchoolFilterForm extends React.Component {
   render() {
     return (
       <Overlay>
-        <Segment style={{ margin: "1em 2em 0em", padding: "0.5em 1em 1em" }}>
+        <Segment style={{ margin: "1em 2em 0em", padding: "0.5em 1em 0px" }}>
           <Header
             as="h2"
             onClick={() =>
@@ -174,8 +178,42 @@ class SchoolFilterForm extends React.Component {
           >
             School filter <Icon name="angle down" />
           </Header>
+
           {this.state.isSchoolFilterOpened && (
-            <Tab panes={this.schoolFilterPanes()} />
+            <Button.Group>
+              <Popup
+                trigger={
+                  <Button color="green" icon="add" content="Import syllabus" />
+                }
+                content={<Tab panes={this.schoolFilterPanes()} />}
+                on="click"
+                position="bottom left"
+                size="huge"
+                wide="very"
+              />
+            </Button.Group>
+          )}
+
+          {this.state.isSchoolFilterOpened && (
+            <Form>
+              <Form.Group inline style={{ margin: "0px" }}>
+                {this.state.loadedSchools.map((schoolName) => (
+                  <Form.Field
+                    control={Checkbox}
+                    label={{
+                      children: (
+                        <Image
+                          size="tiny"
+                          src={undergradSchoolNameIconMap[schoolName]}
+                        />
+                      ),
+                    }}
+                    style={{ margin: "1em 0px 0px" }}
+                    onChange={() => this.toggleSelected(schoolName)}
+                  />
+                ))}
+              </Form.Group>
+            </Form>
           )}
         </Segment>
       </Overlay>

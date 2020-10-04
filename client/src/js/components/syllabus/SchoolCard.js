@@ -13,27 +13,15 @@ const SchoolCardContainer = styled(Dimmer.Dimmable)`
 const SchoolCard = ({
   schoolName,
   loaded,
-  selected,
   loading,
   schoolIcon,
-  toggleSelected,
   onDownload,
   isBannedToLoad,
 }) => (
   <SchoolCardContainer
     as={Card}
     dimmed={!loaded}
-    selected={selected}
-    onClick={() =>
-      isBannedToLoad
-        ? {}
-        : loaded
-        ? toggleSelected(schoolName)
-        : onDownload(schoolName)
-    }
-    style={{
-      border: selected ? "2px solid rgb(150, 150, 255)" : "0px",
-    }}
+    onClick={() => (isBannedToLoad || loaded ? {} : onDownload(schoolName))}
   >
     <Dimmer active={!loaded} inverted={!isBannedToLoad}>
       {!loaded && (

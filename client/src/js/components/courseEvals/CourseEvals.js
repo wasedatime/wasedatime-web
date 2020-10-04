@@ -156,6 +156,37 @@ const getRelatedCourses = (
   return sortedRelatedCourses;
 };
 
+const getDay = (day) => {
+  switch (day) {
+    case 1:
+      return "Mon";
+    case 2:
+      return "Tue";
+    case 3:
+      return "Wed";
+    case 4:
+      return "Thu";
+    case 5:
+      return "Fri";
+    case 6:
+      return "Sat";
+    case 7:
+      return "Sun";
+    default:
+      return "";
+  }
+};
+
+const getPeriod = (start_period, end_period) => {
+  if (start_period === -1) {
+    return "undecided";
+  } else if (start_period === end_period) {
+    return `${start_period}`;
+  } else {
+    return `${start_period}-${end_period}`;
+  }
+};
+
 class CourseEvals extends React.Component {
   constructor(props) {
     super(props);
@@ -345,7 +376,10 @@ class CourseEvals extends React.Component {
         }
       );
     } else {
-      const { _id, c, t, tj, i, ij, y } = this.state.thisCourse;
+      const { _id, c, t, tj, i, ij, y, l, tm, os, ks } = this.state.thisCourse;
+      const occurrences = os
+        .map((o) => getDay(o.d) + "." + getPeriod(o.s, o.e))
+        .join(", ");
       const newEval = {
         _id: "",
         course_id: _id,
@@ -355,7 +389,11 @@ class CourseEvals extends React.Component {
         title_jp: tj,
         instructor: i,
         instructor_jp: ij,
+        school: ks.map((k) => k.s).join(", "),
+        term: tm,
         year: y,
+        lang: l,
+        occurrences: occurrences,
         satisfaction: newEvalSatisfaction,
         difficulty: newEvalDifficulty,
         benefit: newEvalBenefit,

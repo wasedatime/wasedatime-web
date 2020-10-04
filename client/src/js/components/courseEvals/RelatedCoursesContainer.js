@@ -15,8 +15,7 @@ const ExtendedOverlay = styled(Overlay)`
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
-  margin-top: 1rem 0px;
-  margin-bottom: 0.5rem;
+  margin: 1rem 0px 0.5rem !important;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-size: 2rem;

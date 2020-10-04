@@ -8,7 +8,7 @@ import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
-  margin: 1rem 0px;
+  margin: 1rem 0px !important;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-size: 2rem;
@@ -59,7 +59,7 @@ const CheckboxContainer = styled("span")`
 
 const SubmitFormButton = styled("button")`
   flex: 0 0 20%;
-  background-color: #48af37;
+  background-color: orange;
   color: #fff;
   border: 0px;
   border-radius: 5px 0 0 5px;
@@ -68,7 +68,7 @@ const SubmitFormButton = styled("button")`
 
 const CloseFormButton = styled("button")`
   flex: 0 0 20%;
-  background-color: rgb(148, 27, 47);
+  background-color: #aaa;
   color: #fff;
   border: 0px;
   border-radius: 0 5px 5px 0;

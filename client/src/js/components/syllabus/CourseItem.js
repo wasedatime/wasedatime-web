@@ -150,6 +150,12 @@ const ViewEvalsButton = styled("a")`
   text-align: center;
   text-decoration: none;
 
+  &:hover {
+    color: #ffae42;
+    background-color: #fff;
+    border: 2px solid #ffae42;
+  }
+
   &:focus {
     outline: none;
   }
@@ -161,6 +167,10 @@ const ViewEvalsIconButton = styled("a")`
   border: 0px;
   color: #ffae42;
   text-decoration: none;
+
+  &:hover {
+    color: #ffae42;
+  }
 
   &:focus {
     outline: none;

@@ -10,14 +10,14 @@ import {
   faExternalLinkSquareAlt,
   faCommentDots,
   faShareAlt,
-  faLink // or faShare,
+  // faLink or faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookSquare,
   faTwitterSquare,
   faLinkedin,
   faLine,
-  faWhatsappSquare
+  faWhatsappSquare,
   //faWeixin,
   //faFacebookMessenger,
 } from "@fortawesome/free-brands-svg-icons";
@@ -38,7 +38,7 @@ import silsIcon from "../../../img/syllabus-icons/sils.png";
 import sssIcon from "../../../img/syllabus-icons/sss.png";
 import cjlIcon from "../../../img/syllabus-icons/cjl.png";
 import gecIcon from "../../../img/syllabus-icons/gec.png";
-import { matches, size } from "lodash";
+// import { matches, size } from "lodash";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -81,13 +81,13 @@ const IconBadgeWrapper = styled("div")`
   flex-wrap: wrap;
 `;
 
-const MenuIconWrapper = styled("div")`
-  display: "flex",
-  flex: "1 0 auto",
-  flex-direction: column;
-  align-items: center;
-  justifyContent: "flex-end",
-`;
+// const MenuIconWrapper = styled("div")`
+//   display: "flex",
+//   flex: "1 0 auto",
+//   flex-direction: column;
+//   align-items: center;
+//   justifyContent: "flex-end",
+// `;
 
 const SchoolIconList = styled("ul")`
   display: flex;
@@ -195,7 +195,7 @@ const ShareButton = styled("a")`
   background-color: #aaa;
   border: 0px;
   border-radius: 5px;
-  color: #554A53;
+  color: #554a53;
   padding: 5px 1rem;
   margin-bottom: 4px;
   text-align: center;
@@ -213,9 +213,9 @@ const ShareIconButton = styled("a")`
   display: block;
   background-color: #fff;
   border-left: 0px;
-  color: #7D7A7C;
+  color: #7d7a7c;
   text-decoration: none;
-  
+
   &:focus {
     outline: none;
   }
@@ -347,16 +347,16 @@ const CourseItem = ({
   const keywords =
     "kws" in course
       ? course.kws.map((keyword, index) => {
-        return (
-          <li key={keyword} style={{ display: "inline-block" }}>
-            <Badge>
-              {keyword === "English-based Undergraduate Program"
-                ? t("syllabus.EN-based Undergrad Program")
-                : t(`syllabus.${keyword}`)}
-            </Badge>
-          </li>
-        );
-      })
+          return (
+            <li key={keyword} style={{ display: "inline-block" }}>
+              <Badge>
+                {keyword === "English-based Undergraduate Program"
+                  ? t("syllabus.EN-based Undergrad Program")
+                  : t(`syllabus.${keyword}`)}
+              </Badge>
+            </li>
+          );
+        })
       : null;
   const keywordsList =
     keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
@@ -397,11 +397,8 @@ const CourseItem = ({
         if (matches && isInCourseEvalsPage) {
           return (
             <EvalButtonsWrapper>
-              <ShareButton
-
-              >
-                <FontAwesomeIcon icon={faShareAlt} />{" "}
-                {t("Share")}
+              <ShareButton>
+                <FontAwesomeIcon icon={faShareAlt} /> {t("Share")}
               </ShareButton>
             </EvalButtonsWrapper>
           );
@@ -414,7 +411,8 @@ const CourseItem = ({
 
   const reviewButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* To course Evaluation Button */
+      {(matches) => {
+        /* To course Evaluation Button */
         return (
           matches &&
           !isInCourseEvalsPage &&
@@ -432,22 +430,24 @@ const CourseItem = ({
 
   const shareButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
+      {(matches) => {
+        /* Share Button */
         if (matches && isInCourseEvalsPage) {
           return (
             <ShareIconButton>
               <FontAwesomeIcon
-                icon={faShareAlt} size="2x"
-              // onClick={(e) => {
-              //   e.preventDefault();
-              //   render() {
-              //     {twitterButton },
-              //     {facebookButton },
-              //     {linkedinButton },
-              //     {lineButton },
-              //     {whatappButton }
-              //   }
-              // }}
+                icon={faShareAlt}
+                size="2x"
+                // onClick={(e) => {
+                //   e.preventDefault();
+                //   render() {
+                //     {twitterButton },
+                //     {facebookButton },
+                //     {linkedinButton },
+                //     {lineButton },
+                //     {whatappButton }
+                //   }
+                // }}
               />{" "}
             </ShareIconButton>
           );
@@ -462,7 +462,8 @@ const CourseItem = ({
   //Sub button part ---------------------------------------------------
   const twitterButton = (
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
+      {(matches) => {
+        /* Share Button */
         return (
           matches &&
           course.e && (
@@ -471,9 +472,11 @@ const CourseItem = ({
                 class="twitter-share-button"
                 href={`https://twitter.com/intent/tweet?url=${shareLink}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
-                  icon={faTwitterSquare} size="lg" // lg = slight large than 1x
+                  icon={faTwitterSquare}
+                  size="lg" // lg = slight large than 1x
                   style={{ color: "#00ACEE" }}
                 />{" "}
               </a>
@@ -486,7 +489,8 @@ const CourseItem = ({
 
   const facebookButton = (
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
+      {(matches) => {
+        /* Share Button */
         return (
           matches &&
           course.e && (
@@ -495,9 +499,11 @@ const CourseItem = ({
                 class="facebook-share-button"
                 href={`https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
-                  icon={faFacebookSquare} size="lg" // lg = slight large than 1x
+                  icon={faFacebookSquare}
+                  size="lg" // lg = slight large than 1x
                   style={{ color: "#3B5998" }}
                 />{" "}
               </a>
@@ -510,7 +516,8 @@ const CourseItem = ({
 
   const linkedinButton = (
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
+      {(matches) => {
+        /* Share Button */
         return (
           matches &&
           course.e && (
@@ -519,9 +526,11 @@ const CourseItem = ({
                 class="linkedin-share-button"
                 href={`http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
-                  icon={faLinkedin} size="lg" // lg = slight large than 1x
+                  icon={faLinkedin}
+                  size="lg" // lg = slight large than 1x
                   style={{ color: "#0E76A8" }}
                 />{" "}
               </a>
@@ -534,7 +543,8 @@ const CourseItem = ({
 
   const lineButton = (
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
+      {(matches) => {
+        /* Share Button */
         return (
           matches &&
           course.e && (
@@ -543,9 +553,11 @@ const CourseItem = ({
                 class="line-share-button"
                 href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
-                  icon={faLine} size="lg" // lg = slight large than 1x
+                  icon={faLine}
+                  size="lg" // lg = slight large than 1x
                   style={{ color: "#00B400" }}
                 />{" "}
               </a>
@@ -558,7 +570,8 @@ const CourseItem = ({
 
   const whatappButton = (
     <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => { /* Share Button */
+      {(matches) => {
+        /* Share Button */
         return (
           matches &&
           course.e && (
@@ -567,9 +580,11 @@ const CourseItem = ({
                 class="whatapp-share-button"
                 href={`https://wa.me/?text=${shareLink}`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
-                  icon={faWhatsappSquare} size="lg" // lg = slight large than 1x
+                  icon={faWhatsappSquare}
+                  size="lg" // lg = slight large than 1x
                   style={{ color: "#4FCE5D" }}
                 />{" "}
               </a>
@@ -626,8 +641,6 @@ const CourseItem = ({
   //   </MediaQuery>
   // );
 
-
-
   return (
     <RowWrapper>
       <CourseItemWrapper>
@@ -674,7 +687,6 @@ const CourseItem = ({
             </InvisibleButton>
             {reviewButtonIcon}
 
-
             <InvisibleButton
             // onClick={(e) => {
             //   e.preventDefault();
@@ -687,7 +699,6 @@ const CourseItem = ({
             >
               {shareButtonIcon}
             </InvisibleButton>
-
           </div>
         </CourseItemRow>
 
@@ -699,13 +710,13 @@ const CourseItem = ({
             </Description>
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
-          
-            {facebookButton}
-            {linkedinButton}
-            {twitterButton}
-            {whatappButton}
-            {lineButton}
-          
+
+          {facebookButton}
+          {linkedinButton}
+          {twitterButton}
+          {whatappButton}
+          {lineButton}
+
           <InvisibleButton>
             {reviewButtonBar}
             {shareButtonBar}

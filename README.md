@@ -31,7 +31,7 @@ npm run dev
 
 ### App Architecture
 
-![App Architecture](/docs/images/AppArchitecture.png)
+![App Architecture](/docs/images/AWSArch.png)
 
 ### Continuous Integration and Deployment
 
@@ -42,10 +42,9 @@ created to ensure the code quality.
 
 ## Built With
 
-Back-end (Server):
+Serverless backend:
 
-- [Node.js](https://nodejs.org/) - Runtime environment used.
-- [Express](http://expressjs.com/) - Node.js web app framework used.
+- [Amazon Web Service](https://aws.amazon.com/) - Fully powered by AWS.
 
 Imported in code, but NOT being used in production for now:
 

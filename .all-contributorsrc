@@ -25,6 +25,90 @@
       ]
     },
     {
+      "login": "Lmmmmm",
+      "name": "Meng Li",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/30943643?v=4",
+      "profile": "https://github.com/Lmmmmm",
+      "contributions": [
+        "bug",
+        "code",
+        "design",
+        "ideas",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "Isabella-Ko",
+      "name": "Isabella-Ko",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/47520253?v=4",
+      "profile": "https://github.com/Isabella-Ko",
+      "contributions": [
+        "business",
+        "code",
+        "design",
+        "ideas",
+      ]
+    },
+    {
+      "login": "JiaxianGu",
+      "name": "JiaxianGu",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/43884711?v=4",
+      "profile": "https://github.com/JiaxianGu",
+      "contributions": [
+        "code",
+        "design",
+        "ideas",
+      ]
+    },
+    {
+      "login": "YHhaoareyou",
+      "name": "YH_hao_are_you",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/43674499?v=4",
+      "profile": "https://github.com/YHhaoareyou",
+      "contributions": [
+        "bug",
+        "code",
+        "ideas",
+        "review",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "AustinZhu",
+      "name": "AustinZhu",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/42071208?v=4",
+      "profile": "https://github.com/AustinZhu",
+      "contributions": [
+        "bug",
+        "code",
+        "ideas",
+        "infra",
+        "maintenance"
+      ]
+    },
+    {
+      "login": "NeroArcher",
+      "name": "NeroArcher",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/59641121?v=4",
+      "profile": "https://github.com/NeroArcher",
+      "contributions": [
+        "code",
+        "design",
+        "ideas"
+      ]
+    },
+    {
+      "login": "k-jomphon",
+      "name": "k-jomphon",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/38510009?s=400&v=4",
+      "profile": "https://github.com/k-jomphon",
+      "contributions": [
+        "code",
+        "design",
+        "ideas"
+      ]
+    },
+    {
       "login": "wanng-ide",
       "name": "wanng",
       "avatar_url": "https://avatars0.githubusercontent.com/u/32323900?v=4",
@@ -51,46 +135,6 @@
       "contributions": [
         "design",
         "ideas"
-      ]
-    },
-    {
-      "login": "Lmmmmm",
-      "name": "Meng Li",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/30943643?v=4",
-      "profile": "https://github.com/Lmmmmm",
-      "contributions": [
-        "bug",
-        "code",
-        "design",
-        "ideas",
-        "maintenance"
-      ]
-    },
-    {
-      "login": "Isabella-Ko",
-      "name": "Isabella-Ko",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/47520253?v=4",
-      "profile": "https://github.com/Isabella-Ko",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "JiaxianGu",
-      "name": "JiaxianGu",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/43884711?v=4",
-      "profile": "https://github.com/JiaxianGu",
-      "contributions": [
-        "code"
-      ]
-    },
-    {
-      "login": "YHhaoareyou",
-      "name": "YH_hao_are_you",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/43674499?v=4",
-      "profile": "https://github.com/YHhaoareyou",
-      "contributions": [
-        "code"
       ]
     }
   ],

@@ -39,6 +39,7 @@
     "react-router-dom": "^4.2.2",
     "react-s-alert": "^1.4.1",
     "react-scripts": "^3.4.3",
+    "react-snap": "^1.23.0",
     "react-virtualized": "^9.16.1",
     "react-waypoint": "^8.0.2",
     "redux": "^3.7.2",
@@ -56,7 +57,8 @@
     "build": "react-scripts build",
     "build-staging": "REACT_APP_ENV=staging react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "postbuild": "react-snap"
   },
   "browserslist": [
     ">0.2%",

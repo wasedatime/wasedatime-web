@@ -53,7 +53,7 @@ class Greeting extends React.Component {
     const { classes, t, lng } = this.props;
     return (
       <ExtendedArticle>
-        <Logo src={logo} />
+        <Logo src={logo} alt=""/>
         <Typography
           variant="h3"
           component="h3"

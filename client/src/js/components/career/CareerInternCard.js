@@ -15,7 +15,6 @@ const CareerCard = ({ company, t }) => {
   const [browserWidth, setBrowserWidth] = useState(document.body.clientWidth);
   useEffect(() => {
     window.addEventListener("resize", handleBrowserWidth);
-
     return () => {
       window.removeEventListener("resize", handleBrowserWidth);
     };

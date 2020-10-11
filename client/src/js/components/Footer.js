@@ -48,12 +48,13 @@ const Footer = ({ finishTime, t, lng }) => {
           <StyledLink
             href="https://github.com/wasedatime/wasedatime-web"
             target="_blank"
+            rel="noreferrer"
           >
             <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
           </StyledLink>
         </StyledListItem>
         <StyledListItem>
-          <StyledLink href="https://twitter.com/WasedaTime" target="_blank">
+          <StyledLink href="https://twitter.com/WasedaTime" target="_blank" rel="noreferrer">
             <FontAwesomeIcon icon={faTwitter} size="2x" transform="shrink-2" />
           </StyledLink>
         </StyledListItem>
@@ -69,6 +70,7 @@ const Footer = ({ finishTime, t, lng }) => {
           <StyledLink
             href="https://github.com/wasedatime/wasedatime-web/graphs/contributors"
             target="_blank"
+            rel="noreferrer"
           >
             コントリビュータたち
           </StyledLink>
@@ -87,6 +89,7 @@ const Footer = ({ finishTime, t, lng }) => {
           <StyledLink
             href="https://github.com/wasedatime/wasedatime-web/graphs/contributors"
             target="_blank"
+            rel="noreferrer"
           >
             Our Contributors
           </StyledLink>
@@ -100,6 +103,7 @@ const Footer = ({ finishTime, t, lng }) => {
         <StyledLink
           href="https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md"
           target="_blank"
+          rel="noreferrer"
         >
           MIT
         </StyledLink>

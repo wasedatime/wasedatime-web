@@ -13,6 +13,7 @@ import SearchBar from "../../components/syllabus/SearchBar";
 import FetchedCourseList from "../../components/syllabus/FetchedCourseList";
 import Filter from "../../components/syllabus/Filter";
 import FilterButton from "../../components/syllabus/FilterButton";
+import SchoolFilterForm from "../../components/syllabus/SchoolFilterForm";
 import Modal from "../../components/Modal";
 import { Wrapper, RowWrapper } from "../../styled-components/Wrapper";
 import { SideBar } from "../../styled-components/SideBar";
@@ -262,6 +263,7 @@ class FetchedCourseSearch extends React.Component {
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
         />
+        <SchoolFilterForm handleToggleFilter={this.handleToggleFilter} />
         <RowWrapper>
           <FetchedCourseList
             searchTerm={searchTerm}

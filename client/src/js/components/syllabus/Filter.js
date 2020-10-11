@@ -6,18 +6,6 @@ import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 
 import {
-  SILS,
-  PSE,
-  SSS,
-  FSE,
-  ASE,
-  CSE,
-  CJL,
-  GEC,
-  HSS,
-  CMS,
-} from "../../data/schools";
-import {
   headerHeight,
   searchBarHeight,
 } from "../../styled-components/variables";
@@ -102,25 +90,6 @@ class Filter extends React.Component {
       isChecked: filterGroups[semesterInputName].includes(input.value),
     }));
 
-    const schoolLegend = t("syllabus.Schools");
-    const schoolInputName = "school";
-    const schoolInputs = [
-      { value: SILS, label: t(`syllabus.${SILS}`) },
-      { value: PSE, label: t(`syllabus.${PSE}`) },
-      { value: SSS, label: t(`syllabus.${SSS}`) },
-      { value: FSE, label: t(`syllabus.${FSE}`) },
-      { value: CSE, label: t(`syllabus.${CSE}`) },
-      { value: ASE, label: t(`syllabus.${ASE}`) },
-      { value: CMS, label: t(`syllabus.${CMS}`) },
-      { value: HSS, label: t(`syllabus.${HSS}`) },
-      { value: CJL, label: t(`syllabus.${CJL}`) },
-      { value: GEC, label: t(`syllabus.${GEC}`) },
-    ];
-    const checkedSchoolInputs = schoolInputs.map((input) => ({
-      ...input,
-      isChecked: filterGroups[schoolInputName].includes(input.value),
-    }));
-
     const langLegend = t("syllabus.Languages");
     const langInputName = "lang";
     const langInputs = [
@@ -191,12 +160,6 @@ class Filter extends React.Component {
               legend={semesterLegend}
               inputName={semesterInputName}
               inputs={checkedSemesterInputs}
-            />
-            <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
-              legend={schoolLegend}
-              inputName={schoolInputName}
-              inputs={checkedSchoolInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}

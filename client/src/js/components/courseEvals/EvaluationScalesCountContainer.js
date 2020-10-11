@@ -11,7 +11,8 @@ const EvaluationScalesRow = styled("div")`
   flex-direction: row;
   font-size: 1.5em;
   background: #eee;
-  padding: 1rem;
+  padding: 0.5rem;
+  line-height: 100%;
   ${media.tablet`font-size: 1.2em;`};
   ${media.phoneMini`font-size: 1em;`};
 `;

@@ -2,19 +2,13 @@ language: node_js
 node_js:
   - lts/*
 before_install:
-  - bash travis/before_install.sh
+  - "echo $TRAVIS_BRANCH"
 install:
-  - npm ci
-before_script:
   - npm ci --prefix client
 script:
   - npm test
   - bash travis/build.sh
 after_success:
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash travis/deploy.sh; fi'
-addons:
-  ssh_known_hosts:
-    - 159.89.210.122
-    - 139.59.216.161
 git:
   depth: false

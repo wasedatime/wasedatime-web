@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - lts/*
 before_install:
-  - "echo $TRAVIS_BRANCH"
+  - cd client
 install:
-  - npm ci --prefix client
+  - npm ci
 script:
   - npm test
   - bash travis/build.sh

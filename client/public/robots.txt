@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://dev.wasedatime.com/sitemap.xml

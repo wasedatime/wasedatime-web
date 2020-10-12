@@ -58,7 +58,8 @@
     "build-staging": "REACT_APP_ENV=staging react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "postbuild": "react-snap"
+    "postbuild": "react-snap",
+    "postbuild-staging": "react-snap"
   },
   "browserslist": [
     ">0.2%",

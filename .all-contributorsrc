@@ -8,136 +8,22 @@
   ],
   "imageSize": 100,
   "commit": true,
+  "commitConvention": "none",
   "contributors": [
     {
       "login": "OscarWang114",
-      "name": "WANG, Chih-Hao",
+      "name": "Chih-Hao Wang",
       "avatar_url": "https://avatars0.githubusercontent.com/u/30998659?v=4",
-      "profile": "http://www.oscarwang114.me",
+      "profile": "https://github.com/OscarWang114",
       "contributions": [
         "bug",
         "code",
         "design",
         "doc",
         "ideas",
-        "review",
         "infra"
-      ]
-    },
-    {
-      "login": "Lmmmmm",
-      "name": "Meng Li",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/30943643?v=4",
-      "profile": "https://github.com/Lmmmmm",
-      "contributions": [
-        "bug",
-        "code",
-        "design",
-        "ideas",
-        "maintenance"
-      ]
-    },
-    {
-      "login": "Isabella-Ko",
-      "name": "Isabella-Ko",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/47520253?v=4",
-      "profile": "https://github.com/Isabella-Ko",
-      "contributions": [
-        "business",
-        "code",
-        "design",
-        "ideas",
-      ]
-    },
-    {
-      "login": "JiaxianGu",
-      "name": "JiaxianGu",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/43884711?v=4",
-      "profile": "https://github.com/JiaxianGu",
-      "contributions": [
-        "code",
-        "design",
-        "ideas",
-      ]
-    },
-    {
-      "login": "YHhaoareyou",
-      "name": "YH_hao_are_you",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/43674499?v=4",
-      "profile": "https://github.com/YHhaoareyou",
-      "contributions": [
-        "bug",
-        "code",
-        "ideas",
-        "review",
-        "maintenance"
-      ]
-    },
-    {
-      "login": "AustinZhu",
-      "name": "AustinZhu",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/42071208?v=4",
-      "profile": "https://github.com/AustinZhu",
-      "contributions": [
-        "bug",
-        "code",
-        "ideas",
-        "infra",
-        "maintenance"
-      ]
-    },
-    {
-      "login": "NeroArcher",
-      "name": "NeroArcher",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/59641121?v=4",
-      "profile": "https://github.com/NeroArcher",
-      "contributions": [
-        "code",
-        "design",
-        "ideas"
-      ]
-    },
-    {
-      "login": "k-jomphon",
-      "name": "k-jomphon",
-      "avatar_url": "https://avatars1.githubusercontent.com/u/38510009?s=400&v=4",
-      "profile": "https://github.com/k-jomphon",
-      "contributions": [
-        "code",
-        "design",
-        "ideas"
-      ]
-    },
-    {
-      "login": "wanng-ide",
-      "name": "wanng",
-      "avatar_url": "https://avatars0.githubusercontent.com/u/32323900?v=4",
-      "profile": "https://github.com/wanng-ide",
-      "contributions": [
-        "code",
-        "ideas"
-      ]
-    },
-    {
-      "login": "nd-02110114",
-      "name": "Daiki Nishikawa",
-      "avatar_url": "https://avatars3.githubusercontent.com/u/17228098?v=4",
-      "profile": "https://github.com/nd-02110114",
-      "contributions": [
-        "ideas"
-      ]
-    },
-    {
-      "login": "",
-      "name": "Jaw Bo Yue",
-      "avatar_url": "https://graph.facebook.com/100000406482926/picture?type=large",
-      "profile": "https://www.facebook.com/JawBoYue",
-      "contributions": [
-        "design",
-        "ideas"
       ]
     }
   ],
-  "commitConvention": "none",
   "contributorsPerLine": 7
 }

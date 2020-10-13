@@ -1,4 +1,4 @@
-import localForage from "localForage";
+import localForage from "localforage";
 
 export const LNG_KEY = "wasedatime-2020-lng";
 const PREV_STATE_NAME = "wasedatime-2019-state";

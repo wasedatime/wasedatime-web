@@ -38,7 +38,7 @@
     "react-responsive-modal": "^3.5.1",
     "react-router-dom": "^4.2.2",
     "react-s-alert": "^1.4.1",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^3.4.3",
     "react-virtualized": "^9.16.1",
     "react-waypoint": "^8.0.2",
     "redux": "^3.7.2",

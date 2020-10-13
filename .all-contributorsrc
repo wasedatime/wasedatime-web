@@ -84,6 +84,17 @@
         "infra",
         "maintenance"
       ]
+    },
+    {
+      "login": "NeroArcher",
+      "name": "NeroArcher",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/59641121?v=4",
+      "profile": "https://github.com/NeroArcher",
+      "contributions": [
+        "code",
+        "design",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7

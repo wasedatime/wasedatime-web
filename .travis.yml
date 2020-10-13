@@ -1,14 +1,12 @@
 language: node_js
 node_js:
   - lts/*
-before_install:
-  - cd client
 install:
   - npm ci
 script:
   - npm test
-  - bash ../travis/build.sh
+  - bash scripts/build.sh
 after_success:
-  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash ../travis/deploy.sh; fi'
+  - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then bash scripts/deploy.sh; fi'
 git:
   depth: false

@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 
 import { Article } from "../../styled-components/Article";
 import { media } from "../../styled-components/utils";
-import CourseItem from "../../components/syllabus/CourseItem";
+import CourseItem from "../syllabus/CourseItem";
 
 const ExtendedArticle = styled(Article)`
   display: flex;

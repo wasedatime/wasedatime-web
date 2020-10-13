@@ -4,7 +4,7 @@ import thunk from "redux-thunk";
 
 import { loadState } from "./localForage";
 
-import app from "./js/reducers/index";
+import app from "./js/reducers";
 
 const configureStore = async () => {
   const middlewares = [thunk];

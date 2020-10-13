@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { fetchBuildings } from "../actions/index";
+import { fetchBuildings } from "../actions";
 import {
   getIsFetching,
   getBuildings,

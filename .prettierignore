@@ -1,8 +1,8 @@
 node_modules
 client/build
 client/node_modules
-client/package-lock.json
-client/package.json
+package-lock.json
+package.json
 
 *.enc
 .all-contributorsrc

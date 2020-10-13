@@ -26,8 +26,8 @@ import { Wrapper } from "../../styled-components/Wrapper";
 
 import ReviewLangSwitches from "./ReviewLangSwitches";
 import RelatedCoursesButton from "./RelatedCoursesButton";
-import Modal from "../../components/Modal";
-import FetchError from "../../components/FetchError";
+import Modal from "../Modal";
+import FetchError from "../FetchError";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import EvaluationScalesCountContainer from "./EvaluationScalesCountContainer";
 import RelatedCoursesContainer from "./RelatedCoursesContainer";

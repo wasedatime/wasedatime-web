@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Header } from "semantic-ui-react";
 
 export const Article = styled("article")`
   background-color: #fff;
@@ -11,7 +12,7 @@ export const Section = styled("section")`
   margin-bottom: 1em;
 `;
 
-export const Subheading = styled("h4")`
+export const Subheading = styled(Header)`
   margin: 0;
 `;
 

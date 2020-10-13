@@ -10,6 +10,7 @@ import { normalTheme } from "../styled-components/theme";
 import "react-s-alert/dist/s-alert-default.css";
 import "../../styles/s-alert-custom.css";
 import "react-s-alert/dist/s-alert-css-effects/jelly.css";
+import "semantic-ui-css/semantic.min.css";
 
 import Header from "./Header";
 import About from "./About";

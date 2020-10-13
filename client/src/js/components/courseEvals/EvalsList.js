@@ -10,6 +10,7 @@ import {
 
 const EvaluationsWrapper = styled("div")`
   background: #fff;
+  line-height: 120%;
 `;
 
 const Evaluation = styled("div")`

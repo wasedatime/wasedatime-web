@@ -106,6 +106,35 @@
         "design",
         "ideas"
       ]
+    },
+    {
+      "login": "wanng-ide",
+      "name": "wanng",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/32323900?v=4",
+      "profile": "https://github.com/wanng-ide",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "nd-02110114",
+      "name": "Daiki Nishikawa",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/17228098?v=4",
+      "profile": "https://github.com/nd-02110114",
+      "contributions": [
+        "ideas"
+      ]
+    },
+    {
+      "login": "",
+      "name": "Jaw Bo Yue",
+      "avatar_url": "https://graph.facebook.com/100000406482926/picture?type=large",
+      "profile": "https://www.facebook.com/JawBoYue",
+      "contributions": [
+        "design",
+        "ideas"
+      ]
     }
   ],
   "contributorsPerLine": 7

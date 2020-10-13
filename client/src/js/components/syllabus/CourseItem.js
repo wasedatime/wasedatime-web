@@ -57,6 +57,7 @@ const CourseItemWrapper = styled("div")`
   margin: 0.2em 0;
   padding: 0.5em 0.8em;
   width: 100%;
+  line-height: 150%;
 `;
 
 const StyledHeading = styled("h3")`
@@ -117,6 +118,7 @@ const Badge = styled("span")`
   border-radius: 0.2em;
   font-size: 0.8em;
   margin: 0.1em 0.3em 0.1em 0;
+  line-height: 120%;
 `;
 
 const KeywordList = styled(SchoolIconList)`
@@ -171,6 +173,12 @@ const ViewEvalsButton = styled("a")`
   text-align: center;
   text-decoration: none;
 
+  &:hover {
+    color: #ffae42;
+    background-color: #fff;
+    border: 2px solid #ffae42;
+  }
+
   &:focus {
     outline: none;
   }
@@ -182,6 +190,10 @@ const ViewEvalsIconButton = styled("a")`
   border: 0px;
   color: #ffae42;
   text-decoration: none;
+
+  &:hover {
+    color: #ffae42;
+  }
 
   &:focus {
     outline: none;

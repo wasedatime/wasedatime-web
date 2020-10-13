@@ -1,6 +1,6 @@
 # WasedaTime
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-6-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md) [![Build Status](https://travis-ci.com/wasedatime/wasedatime-web.svg?branch=master)](https://travis-ci.com/wasedatime/wasedatime-web) [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
@@ -76,6 +76,7 @@ Submit an issue or a pull request! :blush:
     <td align="center"><a href="https://github.com/Isabella-Ko"><img src="https://avatars0.githubusercontent.com/u/47520253?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Isabella-Ko</b></sub></a><br /><a href="#business-Isabella-Ko" title="Business development">💼</a> <a href="https://github.com/wasedatime/wasedatime-web/commits?author=Isabella-Ko" title="Code">💻</a> <a href="#design-Isabella-Ko" title="Design">🎨</a> <a href="#ideas-Isabella-Ko" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/JiaxianGu"><img src="https://avatars3.githubusercontent.com/u/43884711?v=4?s=100" width="100px;" alt=""/><br /><sub><b>JiaxianGu</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/commits?author=JiaxianGu" title="Code">💻</a> <a href="#design-JiaxianGu" title="Design">🎨</a> <a href="#ideas-JiaxianGu" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/YHhaoareyou"><img src="https://avatars0.githubusercontent.com/u/43674499?v=4?s=100" width="100px;" alt=""/><br /><sub><b>YH_hao_are_you</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/issues?q=author%3AYHhaoareyou" title="Bug reports">🐛</a> <a href="https://github.com/wasedatime/wasedatime-web/commits?author=YHhaoareyou" title="Code">💻</a> <a href="#ideas-YHhaoareyou" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/wasedatime/wasedatime-web/pulls?q=is%3Apr+reviewed-by%3AYHhaoareyou" title="Reviewed Pull Requests">👀</a> <a href="#maintenance-YHhaoareyou" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/AustinZhu"><img src="https://avatars1.githubusercontent.com/u/42071208?v=4?s=100" width="100px;" alt=""/><br /><sub><b>AustinZhu</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/issues?q=author%3AAustinZhu" title="Bug reports">🐛</a> <a href="https://github.com/wasedatime/wasedatime-web/commits?author=AustinZhu" title="Code">💻</a> <a href="#ideas-AustinZhu" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-AustinZhu" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-AustinZhu" title="Maintenance">🚧</a></td>
   </tr>
 </table>
 

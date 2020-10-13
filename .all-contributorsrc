@@ -71,6 +71,19 @@
         "review",
         "maintenance"
       ]
+    },
+    {
+      "login": "AustinZhu",
+      "name": "AustinZhu",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/42071208?v=4",
+      "profile": "https://github.com/AustinZhu",
+      "contributions": [
+        "bug",
+        "code",
+        "ideas",
+        "infra",
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7

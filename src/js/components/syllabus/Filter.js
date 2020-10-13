@@ -5,8 +5,22 @@ import {faFilter} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import {withNamespaces} from "react-i18next";
 
-import {ASE, CJL, CSE, FSE, GEC, PSE, SILS, SSS} from "../../data/schools";
-import {headerHeight, searchBarHeight,} from "../../styled-components/variables";
+import {
+  SILS,
+  PSE,
+  SSS,
+  FSE,
+  ASE,
+  CSE,
+  CJL,
+  GEC,
+  HSS,
+  CMS,
+} from "../../data/schools";
+import {
+  headerHeight,
+  searchBarHeight,
+} from "../../styled-components/variables";
 import FilterGroup from "./FilterGroup";
 import {Wrapper} from "../../styled-components/Wrapper";
 import {Overlay} from "../../styled-components/Overlay";
@@ -97,6 +111,8 @@ class Filter extends React.Component {
       { value: FSE, label: t(`syllabus.${FSE}`) },
       { value: CSE, label: t(`syllabus.${CSE}`) },
       { value: ASE, label: t(`syllabus.${ASE}`) },
+      { value: CMS, label: t(`syllabus.${CMS}`) },
+      { value: HSS, label: t(`syllabus.${HSS}`) },
       { value: CJL, label: t(`syllabus.${CJL}`) },
       { value: GEC, label: t(`syllabus.${GEC}`) },
     ];
@@ -121,12 +137,14 @@ class Filter extends React.Component {
     const specialInputName = "special";
     const specialInput = {
       value: "IPSE/English-based Undergraduate Program",
-      label: t("syllabus.IPSE/EN-based Undergrad Program")
+      label: t("syllabus.IPSE/EN-based Undergrad Program"),
     };
-    const checkedSpecialInput = [{
-      ...specialInput,
-      isChecked: filterGroups[specialInputName].includes(specialInput.value)
-    }];
+    const checkedSpecialInput = [
+      {
+        ...specialInput,
+        isChecked: filterGroups[specialInputName].includes(specialInput.value),
+      },
+    ];
 
     const dayLegend = t("syllabus.day");
     const dayInputName = "day";

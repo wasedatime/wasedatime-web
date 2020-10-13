@@ -9,6 +9,7 @@ import {
   faCalendarAlt,
   faBook,
   faBus,
+  faBriefcase,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -71,6 +72,11 @@ const Navigation = (props) => {
       name: t("navigation.bus"),
       path: "/bus",
       icon: faBus,
+    },
+    {
+      name: t("navigation.career"),
+      path: "/career",
+      icon: faBriefcase,
     },
     {
       name: t("navigation.joinus"),

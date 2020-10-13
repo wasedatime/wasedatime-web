@@ -2,11 +2,11 @@ import React from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import {fetchBuildings} from "../actions";
+import { fetchBuildings } from "../actions";
 import {
-    getIsFetching,
-    getBuildings,
-    getError,
+  getIsFetching,
+  getBuildings,
+  getError,
 } from "../reducers/fetchedBuildings";
 import BuildingList from "../components/BuildingList";
 import LoadingSpinner from "../components/LoadingSpinner";

@@ -38,6 +38,7 @@ import silsIcon from "../../../img/syllabus-icons/sils.png";
 import sssIcon from "../../../img/syllabus-icons/sss.png";
 import cjlIcon from "../../../img/syllabus-icons/cjl.png";
 import gecIcon from "../../../img/syllabus-icons/gec.png";
+import ShareButton from "./ShareButton";
 // import { matches, size } from "lodash";
 
 const RowWrapper = styled("li")`
@@ -190,7 +191,7 @@ const ViewEvalsIconButton = styled("a")`
 // ---
 
 // Share Button
-const ShareButton = styled("a")`
+const ShareButtonBar = styled("a")`
   display: block;
   background-color: #aaa;
   border: 0px;
@@ -209,7 +210,7 @@ const ShareButton = styled("a")`
   }
 `; // Case of large Screen
 
-const ShareIconButton = styled("a")`
+const ShareButtonIcon = styled("a")`
   display: block;
   background-color: #fff;
   border-left: 0px;
@@ -347,16 +348,16 @@ const CourseItem = ({
   const keywords =
     "kws" in course
       ? course.kws.map((keyword, index) => {
-          return (
-            <li key={keyword} style={{ display: "inline-block" }}>
-              <Badge>
-                {keyword === "English-based Undergraduate Program"
-                  ? t("syllabus.EN-based Undergrad Program")
-                  : t(`syllabus.${keyword}`)}
-              </Badge>
-            </li>
-          );
-        })
+        return (
+          <li key={keyword} style={{ display: "inline-block" }}>
+            <Badge>
+              {keyword === "English-based Undergraduate Program"
+                ? t("syllabus.EN-based Undergrad Program")
+                : t(`syllabus.${keyword}`)}
+            </Badge>
+          </li>
+        );
+      })
       : null;
   const keywordsList =
     keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
@@ -397,9 +398,9 @@ const CourseItem = ({
         if (matches && isInCourseEvalsPage) {
           return (
             <EvalButtonsWrapper>
-              <ShareButton>
+              <ShareButtonBar>
                 <FontAwesomeIcon icon={faShareAlt} /> {t("Share")}
-              </ShareButton>
+              </ShareButtonBar>
             </EvalButtonsWrapper>
           );
         } else {
@@ -434,22 +435,22 @@ const CourseItem = ({
         /* Share Button */
         if (matches && isInCourseEvalsPage) {
           return (
-            <ShareIconButton>
+            <ShareButtonIcon>
               <FontAwesomeIcon
                 icon={faShareAlt}
                 size="2x"
-                // onClick={(e) => {
-                //   e.preventDefault();
-                //   render() {
-                //     {twitterButton },
-                //     {facebookButton },
-                //     {linkedinButton },
-                //     {lineButton },
-                //     {whatappButton }
-                //   }
-                // }}
+              // onClick={(e) => {
+              //   e.preventDefault();
+              //   render() {
+              //     {twitterButton },
+              //     {facebookButton },
+              //     {linkedinButton },
+              //     {lineButton },
+              //     {whatappButton }
+              //   }
+              // }}
               />{" "}
-            </ShareIconButton>
+            </ShareButtonIcon>
           );
         } else {
           return "";
@@ -546,8 +547,9 @@ const CourseItem = ({
       {(matches) => {
         /* Share Button */
         return (
-          matches &&
-          course.e && (
+          // matches &&
+          // course.e && 
+          (
             <SocialMediaRow>
               <a
                 class="line-share-button"
@@ -685,20 +687,18 @@ const CourseItem = ({
             >
               {buttonIcon}
             </InvisibleButton>
-            {reviewButtonIcon}
-
-            <InvisibleButton
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   {twitterButton}
-            //   {facebookButton}
-            //   {linkedinButton}
-            //   {lineButton}
-            //   {whatappButton}
-            // }}
-            >
-              {shareButtonIcon}
+            <InvisibleButton>
+              {reviewButtonIcon}
+              {/* {shareButtonIcon} */}
             </InvisibleButton>
+
+            <ShareButton
+              shareLink={shareLink}
+              isInCourseEvalsPage={isInCourseEvalsPage}
+              display="icon"
+              sizesDesktop={sizes.desktop}
+            />
+
           </div>
         </CourseItemRow>
 
@@ -711,15 +711,17 @@ const CourseItem = ({
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
 
-          {facebookButton}
-          {linkedinButton}
-          {twitterButton}
-          {whatappButton}
-          {lineButton}
+          <ShareButton
+              shareLink={shareLink}
+              isInCourseEvalsPage={isInCourseEvalsPage}
+              display="bar"
+              sizesDesktop={sizes.desktop}
+            />
+
 
           <InvisibleButton>
             {reviewButtonBar}
-            {shareButtonBar}
+            {/* {shareButtonBar} */}
           </InvisibleButton>
         </DetailWrapper>
       </CourseItemWrapper>

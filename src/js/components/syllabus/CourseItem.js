@@ -38,7 +38,8 @@ import silsIcon from "../../../img/syllabus-icons/sils.png";
 import sssIcon from "../../../img/syllabus-icons/sss.png";
 import cjlIcon from "../../../img/syllabus-icons/cjl.png";
 import gecIcon from "../../../img/syllabus-icons/gec.png";
-import { matches, size } from "lodash";
+import ShareButton from "./ShareButton";
+// import { matches, size } from "lodash";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -190,7 +191,7 @@ const ViewEvalsIconButton = styled("a")`
 // ---
 
 // Share Button
-const ShareButton = styled("a")`
+const ShareButtonBar = styled("a")`
   display: block;
   background-color: #aaa;
   border: 0px;
@@ -209,7 +210,7 @@ const ShareButton = styled("a")`
   }
 `; // Case of large Screen
 
-const ShareIconButton = styled("a")`
+const ShareButtonIcon = styled("a")`
   display: block;
   background-color: #fff;
   border-left: 0px;
@@ -398,9 +399,9 @@ const CourseItem = ({
           matches &&
           course.e && (
             <EvalButtonsWrapper>
-              <ShareButton>
+              <ShareButtonBar>
                 <FontAwesomeIcon icon={faShareAlt} /> {t("Share")}
-              </ShareButton>
+              </ShareButtonBar>
             </EvalButtonsWrapper>
           )
         );
@@ -433,7 +434,7 @@ const CourseItem = ({
         /* Share Button */
         if (matches && isInCourseEvalsPage) {
           return (
-            <ShareIconButton>
+            <ShareButtonIcon>
               <FontAwesomeIcon
                 icon={faShareAlt}
                 size="2x"
@@ -448,7 +449,7 @@ const CourseItem = ({
                 //   }
                 // }}
               />{" "}
-            </ShareIconButton>
+            </ShareButtonIcon>
           );
         } else {
           return "";
@@ -542,22 +543,21 @@ const CourseItem = ({
       {(matches) => {
         /* Share Button */
         return (
-          matches &&
-          course.e && (
-            <SocialMediaRow>
-              <a
-                class="line-share-button"
-                href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
-                target="_blank"
-              >
-                <FontAwesomeIcon
-                  icon={faLine}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#00B400" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
+          // matches &&
+          // course.e &&
+          <SocialMediaRow>
+            <a
+              class="line-share-button"
+              href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
+              target="_blank"
+            >
+              <FontAwesomeIcon
+                icon={faLine}
+                size="lg" // lg = slight large than 1x
+                style={{ color: "#00B400" }}
+              />{" "}
+            </a>
+          </SocialMediaRow>
         );
       }}
     </MediaQuery>
@@ -679,20 +679,17 @@ const CourseItem = ({
             >
               {buttonIcon}
             </InvisibleButton>
-            {reviewButtonIcon}
-
-            <InvisibleButton
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   {twitterButton}
-            //   {facebookButton}
-            //   {linkedinButton}
-            //   {lineButton}
-            //   {whatappButton}
-            // }}
-            >
-              {shareButtonIcon}
+            <InvisibleButton>
+              {reviewButtonIcon}
+              {/* {shareButtonIcon} */}
             </InvisibleButton>
+
+            <ShareButton
+              shareLink={shareLink}
+              isInCourseEvalsPage={isInCourseEvalsPage}
+              display="icon"
+              sizesDesktop={sizes.desktop}
+            />
           </div>
         </CourseItemRow>
 
@@ -705,15 +702,16 @@ const CourseItem = ({
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
 
-          {facebookButton}
-          {linkedinButton}
-          {twitterButton}
-          {whatappButton}
-          {lineButton}
+          <ShareButton
+            shareLink={shareLink}
+            isInCourseEvalsPage={isInCourseEvalsPage}
+            display="bar"
+            sizesDesktop={sizes.desktop}
+          />
 
           <InvisibleButton>
             {reviewButtonBar}
-            {shareButtonBar}
+            {/* {shareButtonBar} */}
           </InvisibleButton>
         </DetailWrapper>
       </CourseItemWrapper>

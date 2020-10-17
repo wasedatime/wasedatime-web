@@ -292,19 +292,28 @@ class CourseEvals extends React.Component {
 
   async getCourseEvalsByKey(courseKeys) {
     try {
+      const header =
+        process.env.NODE_ENV === "production"
+          ? {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          : {
+              headers: {
+                "Content-Type": "application/json",
+                "X-Api-Key": process.env.REACT_APP_X_API_KEY,
+              },
+            };
       // get reviews by courseKeys
       const res = await axios.post(
         wasetimeApiStatic.courseEvalsBaseURL,
         {
           course_keys: courseKeys,
         },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        header
       );
-      return res.data;
+      return res.data.data;
     } catch (error) {
       console.error(error);
       this.setState({ error: true });

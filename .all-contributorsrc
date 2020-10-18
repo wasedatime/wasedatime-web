@@ -44,7 +44,7 @@
       "contributions": [
         "business",
         "design",
-        "ideas"
+        "ideas",
       ]
     },
     {
@@ -55,7 +55,8 @@
       "contributions": [
         "code",
         "design",
-        "ideas"
+        "ideas",
+        "bug"
       ]
     },
     {
@@ -68,7 +69,6 @@
         "code",
         "ideas",
         "review",
-        "maintenance",
         "projectManagement"
       ]
     },
@@ -104,6 +104,16 @@
       "contributions": [
         "code",
         "design",
+        "ideas"
+      ]
+    },
+    {
+      "login": "",
+      "name": "Xia Zjou Zheng (George)",
+      "avatar_url": "",
+      "profile": "",
+      "contributions": [
+        "projectManagement",
         "ideas"
       ]
     },

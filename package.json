@@ -50,7 +50,8 @@
     "smoothscroll": "^0.4.0",
     "stickybits": "^3.3.7",
     "styled-components": "^3.4.9",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.3",
+    "xlsx": "^0.16.8"
   },
   "scripts": {
     "start": "react-scripts start",

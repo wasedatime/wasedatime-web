@@ -118,9 +118,6 @@ const ShareButtonIcon = styled("InvisibleButton")`
     outline: none;
   }
 `; // Case of Small Screen // Used to be "a" tag
-// &:hover {
-//   color: #abc;
-// }
 
 const ShareButton = ({
   // passed from components/syllebus/ShareButton.js
@@ -151,9 +148,7 @@ const ShareButton = ({
               )}
             </Reference>
           );
-        } else {
-          return "";
-        }
+        } else { return ""; }
       }}
     </MediaQuery>
   );
@@ -161,7 +156,6 @@ const ShareButton = ({
   const shareButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizesDesktop}>
       {(matches) => {
-        /* Share Button */
         if (matches && isInCourseEvalsPage && display === "icon") {
           return (
             <Reference>
@@ -178,9 +172,7 @@ const ShareButton = ({
               )}
             </Reference>
           );
-        } else {
-          return "";
-        }
+        } else { return ""; }
       }}
     </MediaQuery>
     //<MediaQuery maxWidth={sizes.phone || sizes.tablet}></MediaQuery> 
@@ -346,20 +338,6 @@ const ShareButton = ({
     <Manager>
       {shareButtonIcon}
       {shareButtonBar}
-      {/* <Reference>
-        {({ ref }) => (
-          <ShareButtonIcon
-            // className={`color-${color}`}
-            innerRef={ref}
-            onClick={shareButtonIcon} // handleToggleSharePopper
-          /> ||
-          <ShareButtonBar
-            // className={`color-${color}`}
-            innerRef={ref}
-            onClick={shareButtonBar} // handleToggleSharePopper
-          />
-        )}
-      </Reference> */}
       <Popper placement="bottom">
         {isPopperOpen
           ? ({ ref, style, placement, arrowProps }) => (
@@ -387,28 +365,3 @@ const ShareButton = ({
 }
 
 export default ShareButton;
-
-/*
-<div>
-      {shareButtonIcon}
-      {shareButtonBar}
-
-      { <SocialMediaRow>
-        {facebookButton}
-        {linkedinButton}
-        {twitterButton}
-        {whatappButton}
-        {lineButton}
-      </SocialMediaRow> }
-      </div>
-*/
-
-/*
-  Implement on click Share BTN
-    handleToggleSharePopper
-    and
-    isPopperOpen
-    inside the Class files in container
-  Impelenent popup
-  Done!
-*/

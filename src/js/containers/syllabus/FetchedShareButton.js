@@ -3,9 +3,7 @@ import React from "react";
 import ShareButton from "../../components/syllabus/ShareButton"
 
 class FetchedShareButton extends React.Component {
-  state = {
-    isPopperOpen: false,
-  };
+  state = { isPopperOpen: false, };
 
   handleToggleSharePopper = (event) => {
     event.preventDefault();

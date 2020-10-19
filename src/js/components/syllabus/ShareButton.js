@@ -70,10 +70,10 @@ const PopperBox = styled("div")`
 //   background-color: #eee;
 //   color: #fff;
 //   border-radius: 5px;
-  
+
 //   padding: 0.25em;
 //   text-align: center;
-  
+
 //   z-index: 1050;
 // `; // width: 8em; (re-moved)
 // flex-direction: collumn;
@@ -115,7 +115,7 @@ const ShareButtonBar = styled("InvisibleButton")`
   text-decoration: none;
 
   &:hover {
-    color: #D7DEE0;
+    color: #d7dee0;
   }
   &:focus {
     outline: none;
@@ -144,7 +144,6 @@ const ShareButton = ({
   isPopperOpen,
   handleToggleSharePopper,
 }) => {
-
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizesDesktop}>
       {(matches) => {
@@ -157,13 +156,15 @@ const ShareButton = ({
                     innerRef={ref}
                     onClick={handleToggleSharePopper}
                   >
-                    <FontAwesomeIcon icon={faShareAlt} /> {("Share")}
+                    <FontAwesomeIcon icon={faShareAlt} /> {"Share"}
                   </ShareButtonBar>
                 </ShareButtonBarWrapper>
               )}
             </Reference>
           );
-        } else { return ""; }
+        } else {
+          return "";
+        }
       }}
     </MediaQuery>
   );
@@ -179,18 +180,17 @@ const ShareButton = ({
                   innerRef={ref}
                   onClick={handleToggleSharePopper}
                 >
-                  <FontAwesomeIcon
-                    icon={faShareAlt}
-                    size="2x"
-                  />{" "}
+                  <FontAwesomeIcon icon={faShareAlt} size="2x" />{" "}
                 </ShareButtonIcon>
               )}
             </Reference>
           );
-        } else { return ""; }
+        } else {
+          return "";
+        }
       }}
     </MediaQuery>
-    //<MediaQuery maxWidth={sizes.phone || sizes.tablet}></MediaQuery> 
+    //<MediaQuery maxWidth={sizes.phone || sizes.tablet}></MediaQuery>
   );
 
   //Social Button part ---------------------------------------------------
@@ -349,19 +349,12 @@ const ShareButton = ({
 
   // Return Share button popper
   return (
-    // <div
-    //   style={{
-    //     display: "flex",
-    //     flex: "0 1 auto",
-    //     justifyContent: "flex-end",
-    //   }}
-    // >
-      <Manager>
-        {shareButtonIcon}
-        {shareButtonBar}
-        <Popper placement="bottom">
-          {isPopperOpen
-            ? ({ ref, style, placement, arrowProps }) => (
+    <Manager>
+      {shareButtonIcon}
+      {shareButtonBar}
+      <Popper placement="bottom">
+        {isPopperOpen
+          ? ({ ref, style, placement, arrowProps }) => (
               <PopperBox
                 innerRef={ref}
                 style={style}
@@ -378,13 +371,12 @@ const ShareButton = ({
                   style={arrowProps.style}
                 /> */}
               </PopperBox>
-            ) : () => null}
-        </Popper>
-      </Manager>
+            )
+          : () => null}
+      </Popper>
+    </Manager>
     // </div>
   );
-}
+};
 
 export default ShareButton;
-
-{ /* Apperenly "placement=top" can accomplish a pop on the bottom */ }

@@ -1,8 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Wrapper } from "../styled-components/Wrapper";
-import { Grid, Statistic, Divider, Header } from "semantic-ui-react";
+import { Grid, Statistic, Divider, Header, Dropdown } from "semantic-ui-react";
+import { withNamespaces } from "react-i18next";
 import axios from "axios";
+import countries from "i18n-iso-countries";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 
 class CoronaInfo extends React.Component {
   state = {
@@ -14,6 +18,26 @@ class CoronaInfo extends React.Component {
     const tokyoData = await this.getTokyoInfo();
     const regionData = await this.getRegionInfo("JPN");
     this.setState({ tokyoData, regionData });
+  }
+
+  getCountryOptions () {
+    countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
+    countries.registerLocale(require("i18n-iso-countries/langs/ja.json"));
+    const countryNames = countries.getNames(this.props.lng === 'jp' ? 'ja' : this.props.lng);
+    const countryOptions = Object.keys(countryNames).map(iso2 => {
+      const iso3 = countries.alpha2ToAlpha3(iso2);
+      return {
+        key: iso3,
+        text: countryNames[iso2],
+        value: iso3
+      };
+    });
+    return countryOptions;
+  }
+
+  selectCountry = async (event, data) => {
+    const selectedRegionData = await this.getRegionInfo(data.value);
+    this.setState({ regionData: selectedRegionData });
   }
 
   formatDate (date) {
@@ -68,6 +92,7 @@ class CoronaInfo extends React.Component {
         "deaths": 0,
         "recovered_diff": 0,
         "recovered": 0,
+        "date": res.data.data[0]["date"]
       };
 
       res.data.data.forEach((province) => {
@@ -108,62 +133,75 @@ class CoronaInfo extends React.Component {
           <Grid.Row>
             <Grid.Column>
               <Header size='huge'>Tokyo</Header>
-              <Statistic size="huge">
+              <p><FontAwesomeIcon icon={faCalendarAlt} size="1x" /> {tokyoData["date"]}</p>
+              <Statistic size="huge" color='blue'>
                 <Statistic.Value>{tokyoData["confirmed_diff"]}</Statistic.Value>
                 <Statistic.Label>New Cases</Statistic.Label>
               </Statistic>
-              <Statistic size="huge">
+              <Statistic size="huge" color='blue'>
                 <Statistic.Value>{tokyoData["confirmed"]}</Statistic.Value>
                 <Statistic.Label>Total Cases</Statistic.Label>
               </Statistic>
               <Divider />
-              <Statistic size="huge">
+              <Statistic size="huge" color='red'>
                 <Statistic.Value>{tokyoData["deaths_diff"]}</Statistic.Value>
                 <Statistic.Label>New Deaths</Statistic.Label>
               </Statistic>
-              <Statistic size="huge">
+              <Statistic size="huge" color='red'>
                 <Statistic.Value>{tokyoData["deaths"]}</Statistic.Value>
                 <Statistic.Label>Total Deaths</Statistic.Label>
               </Statistic>
               <Divider />
-              <Statistic size="huge">
+              <Statistic size="huge" color='green'>
                 <Statistic.Value>{tokyoData["recovered_diff"]}</Statistic.Value>
                 <Statistic.Label>New Recovered</Statistic.Label>
               </Statistic>
-              <Statistic size="huge">
+              <Statistic size="huge" color='green'>
                 <Statistic.Value>{tokyoData["recovered"]}</Statistic.Value>
                 <Statistic.Label>Total Recovered</Statistic.Label>
               </Statistic>
             </Grid.Column>
 
             <Grid.Column>
-              <Header size='huge'>Japan</Header>
-              <Statistic size="huge">
-                <Statistic.Value>{regionData["confirmed_diff"]}</Statistic.Value>
-                <Statistic.Label>New Cases</Statistic.Label>
-              </Statistic>
-              <Statistic size="huge">
-                <Statistic.Value>{regionData["confirmed"]}</Statistic.Value>
-                <Statistic.Label>Total Cases</Statistic.Label>
-              </Statistic>
-              <Divider />
-              <Statistic size="huge">
-                <Statistic.Value>{regionData["deaths_diff"]}</Statistic.Value>
-                <Statistic.Label>New Deaths</Statistic.Label>
-              </Statistic>
-              <Statistic size="huge">
-                <Statistic.Value>{regionData["deaths"]}</Statistic.Value>
-                <Statistic.Label>Total Deaths</Statistic.Label>
-              </Statistic>
-              <Divider />
-              <Statistic size="huge">
-                <Statistic.Value>{regionData["recovered_diff"]}</Statistic.Value>
-                <Statistic.Label>New Recovered</Statistic.Label>
-              </Statistic>
-              <Statistic size="huge">
-                <Statistic.Value>{regionData["recovered"]}</Statistic.Value>
-                <Statistic.Label>Total Recovered</Statistic.Label>
-              </Statistic>
+              <div style={{ marginBottom: "3px" }}>
+                <Dropdown placeholder='Region' search selection options={this.getCountryOptions()} defaultValue={"JPN"} onChange={this.selectCountry} />
+              </div>
+
+              {
+                regionData === undefined ? (
+                  <Header size="huge">No Data...</Header>
+                ) : (
+                  <React.Fragment>
+                    <p><FontAwesomeIcon icon={faCalendarAlt} size="1x" /> {regionData["date"]}</p>
+                    <Statistic size="huge" color='blue'>
+                      <Statistic.Value>{regionData["confirmed_diff"]}</Statistic.Value>
+                      <Statistic.Label>New Cases</Statistic.Label>
+                    </Statistic>
+                    <Statistic size="huge" color='blue'>
+                      <Statistic.Value>{regionData["confirmed"]}</Statistic.Value>
+                      <Statistic.Label>Total Cases</Statistic.Label>
+                    </Statistic>
+                    <Divider />
+                    <Statistic size="huge" color='red'>
+                      <Statistic.Value>{regionData["deaths_diff"]}</Statistic.Value>
+                      <Statistic.Label>New Deaths</Statistic.Label>
+                    </Statistic>
+                    <Statistic size="huge" color='red'>
+                      <Statistic.Value>{regionData["deaths"]}</Statistic.Value>
+                      <Statistic.Label>Total Deaths</Statistic.Label>
+                    </Statistic>
+                    <Divider />
+                    <Statistic size="huge" color='green'>
+                      <Statistic.Value>{regionData["recovered_diff"]}</Statistic.Value>
+                      <Statistic.Label>New Recovered</Statistic.Label>
+                    </Statistic>
+                    <Statistic size="huge" color='green'>
+                      <Statistic.Value>{regionData["recovered"]}</Statistic.Value>
+                      <Statistic.Label>Total Recovered</Statistic.Label>
+                    </Statistic>
+                  </React.Fragment>
+                )
+              }
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -172,4 +210,4 @@ class CoronaInfo extends React.Component {
   }
 }
 
-export default CoronaInfo;
+export default withNamespaces("translation")(CoronaInfo);

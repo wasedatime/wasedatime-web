@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { media } from "../styled-components/utils";
-import { sizes } from "../styled-components/utils";
 import { Helmet } from "react-helmet";
 import { Wrapper } from "../styled-components/Wrapper";
 import { Grid, Statistic, Divider, Header, Dropdown } from "semantic-ui-react";
@@ -21,9 +20,9 @@ const StatisticsWrapper = styled("div")`
   ${media.desktop`padding-bottom: 3em;`};
 `;
 
-const CoronaInfoStatistics = ({ statisticData }) => {
+const CoronaInfoStatistics = ({ statisticData, t }) => {
   if (statisticData === undefined)
-    return <Header size="huge">No Data...</Header>;
+    return <Header size="huge">{t("No Data")}</Header>;
   else if (typeof statisticData === "object") {
     if (Object.keys(statisticData).length > 0) {
       return (
@@ -34,29 +33,29 @@ const CoronaInfoStatistics = ({ statisticData }) => {
           </p>
           <Statistic size="huge" color="blue">
             <Statistic.Value>{statisticData["confirmed_diff"]}</Statistic.Value>
-            <Statistic.Label>New Cases</Statistic.Label>
+            <Statistic.Label>{t("coronaInfo.New Cases")}</Statistic.Label>
           </Statistic>
           <Statistic size="huge" color="blue">
             <Statistic.Value>{statisticData["confirmed"]}</Statistic.Value>
-            <Statistic.Label>Total Cases</Statistic.Label>
+            <Statistic.Label>{t("coronaInfo.Total Cases")}</Statistic.Label>
           </Statistic>
           <Divider />
           <Statistic size="huge" color="red">
             <Statistic.Value>{statisticData["deaths_diff"]}</Statistic.Value>
-            <Statistic.Label>New Deaths</Statistic.Label>
+            <Statistic.Label>{t("coronaInfo.New Deaths")}</Statistic.Label>
           </Statistic>
           <Statistic size="huge" color="red">
             <Statistic.Value>{statisticData["deaths"]}</Statistic.Value>
-            <Statistic.Label>Total Deaths</Statistic.Label>
+            <Statistic.Label>{t("coronaInfo.Total Deaths")}</Statistic.Label>
           </Statistic>
           <Divider />
           <Statistic size="huge" color="green">
             <Statistic.Value>{statisticData["recovered_diff"]}</Statistic.Value>
-            <Statistic.Label>New Recovered</Statistic.Label>
+            <Statistic.Label>{t("coronaInfo.New Recovered")}</Statistic.Label>
           </Statistic>
           <Statistic size="huge" color="green">
             <Statistic.Value>{statisticData["recovered"]}</Statistic.Value>
-            <Statistic.Label>Total Recovered</Statistic.Label>
+            <Statistic.Label>{t("coronaInfo.Total Recovered")}</Statistic.Label>
           </Statistic>
         </React.Fragment>
       );
@@ -64,7 +63,7 @@ const CoronaInfoStatistics = ({ statisticData }) => {
       return (
         <div style={{ marginTop: "2em" }}>
           <FontAwesomeIcon icon={faSpinner} size="5x" />
-          <Header size="big">Loading Statistics...</Header>
+          <Header size="big">{t("coronaInfo.Loading Statistics")}...</Header>
         </div>
       );
     }
@@ -199,7 +198,7 @@ class CoronaInfo extends React.Component {
         </Helmet>
 
         <Header size="huge" style={{ textAlign: "center", marginTop: "5vw" }}>
-          COVID-19 Statistics
+          {this.props.t("coronaInfo.title")}
         </Header>
 
         <StatisticsGroupWrapper>
@@ -207,8 +206,13 @@ class CoronaInfo extends React.Component {
             <Grid.Row>
               <Grid.Column>
                 <StatisticsWrapper>
-                  <Header size="huge">Tokyo</Header>
-                  <CoronaInfoStatistics statisticData={tokyoData} />
+                  <Header size="huge">
+                    {this.props.t("coronaInfo.Tokyo")}
+                  </Header>
+                  <CoronaInfoStatistics
+                    statisticData={tokyoData}
+                    t={this.props.t}
+                  />
                 </StatisticsWrapper>
               </Grid.Column>
 
@@ -224,7 +228,10 @@ class CoronaInfo extends React.Component {
                       onChange={this.selectCountry}
                     />
                   </div>
-                  <CoronaInfoStatistics statisticData={regionData} />
+                  <CoronaInfoStatistics
+                    statisticData={regionData}
+                    t={this.props.t}
+                  />
                 </StatisticsWrapper>
               </Grid.Column>
             </Grid.Row>

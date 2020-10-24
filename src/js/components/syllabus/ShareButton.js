@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import MediaQuery from "react-responsive";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faShareAlt,
-  // faLink or faShare,
-} from "@fortawesome/free-solid-svg-icons";
+import { faShareAlt, faLink } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebookSquare,
   faTwitterSquare,
@@ -16,75 +14,25 @@ import {
   //faFacebookMessenger,
 } from "@fortawesome/free-brands-svg-icons";
 import { Manager, Reference, Popper } from "react-popper";
-import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
 import { InvisibleButton } from "../../styled-components/Button";
 
 //Propper Style -----
-const Arrow = styled("div")`
-  position: relative;
-  width: 3em;
-  height: 3em;
-  &[data-placement*="top"] {
-    bottom: 0;
-    left: 0;
-    margin-bottom: 2.5em;
-    width: 1em;
-    height: 1em;
-    &::before {
-      border-width: 0.5em 0.5em 0 0.5em;
-      border-color: #eee transparent transparent transparent;
-    }
-  }
-  &::before {
-    content: "";
-    margin: auto;
-    display: block;
-    width: 0;
-    height: 0;
-    border-style: solid;
-  }
-  z-index: 1050;
-`;
 
 const PopperBox = styled("div")`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  background-color: #eee;
-  color: #fff;
+  display: box;
   border-radius: 5px;
-  margin: 0.5em;
-  padding: 0.5em;
+  padding: 0.4em;
   text-align: center;
   z-index: 1050;
-`; // width: 8em;
-
-// const PopperBox = styled("div")`
-//   display: box;
-//   flex-wrap: nowrap;
-//   flex-direction: collumn;
-//   justify-content: center;
-//   align-items: center;
-//   background-color: #eee;
-//   color: #fff;
-//   border-radius: 5px;
-
-//   padding: 0.25em;
-//   text-align: center;
-
-//   z-index: 1050;
-// `; // width: 8em; (re-moved)
-// flex-direction: collumn;
-
-const SocialMediaRow = styled("div")`
-  display: "flex",
-  flex-wrap: "nowrap",
-  flex: "1 0 auto",
-  justifyContent: "flex-end",
-  borderRadius: "5px",
 `;
+
+// const SocialMediaRow = styled("div")`
+//   display: "flex",
+//   flex-wrap: "nowrap",
+//   flex: "1 0 auto",
+//   justifyContent: "flex-end",
+//   borderRadius: "5px",
+// `;
 
 // const SocialMediaRow = styled("div")`
 //   display: block;
@@ -115,12 +63,12 @@ const ShareButtonBar = styled("InvisibleButton")`
   text-decoration: none;
 
   &:hover {
-    color: #d7dee0;
+    color: #eee;
   }
   &:focus {
     outline: none;
   }
-`; // Case of large Screen // Used to be "a" tag
+`; // Case of large Screen
 
 const ShareButtonIcon = styled("InvisibleButton")`
   display: block;
@@ -132,7 +80,7 @@ const ShareButtonIcon = styled("InvisibleButton")`
   &:focus {
     outline: none;
   }
-`; // Case of Small Screen // Used to be "a" tag
+`; // Case of Small Screen
 
 const ShareButton = ({
   // passed from components/syllebus/ShareButton.js
@@ -143,6 +91,7 @@ const ShareButton = ({
   // logic in containers/syllebus/FetchedShareButton.js
   isPopperOpen,
   handleToggleSharePopper,
+  // copyToClipboard,
 }) => {
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizesDesktop}>
@@ -208,7 +157,10 @@ const ShareButton = ({
             <FontAwesomeIcon
               icon={faTwitterSquare}
               size="lg" // lg = slight large than 1x
-              style={{ color: "#00ACEE" }}
+              style={{
+                color: "#00ACEE",
+                // backgroundColor: "#fff",
+              }}
             />{" "}
           </a>
         );
@@ -301,51 +253,23 @@ const ShareButton = ({
     </MediaQuery>
   );
 
-  // const MessengerButton = (
-  //   <MediaQuery maxWidth={sizes.desktop}>
-  //     {(matches) => { /* Share Button */
-  //       return (
-  //         matches &&
-  //         course.e && (
-  //           <SocialMediaRow>
-  //             <a
-  //               class="messenger-share-button"
-  //               href={`fb-messenger://share/?link=${shareLink}`}
-  //               target="_blank"
-  //             >
-  //               <FontAwesomeIcon
-  //                 icon={faFacebookMessenger} size="lg" // lg = slight large than 1x
-  //                 style={{ color: "#0078FF" }}
-  //               />{" "}
-  //             </a>
-  //           </SocialMediaRow>
-  //         )
-  //       );
-  //     }}
-  //   </MediaQuery>
-  // );
-
-  // const copyClipboardButton = (
-  //   <MediaQuery maxWidth={sizes.desktop}>
-  //     {(matches) => { /* Share Button */
-  //       return (
-  //         matches &&
-  //         course.e && (
-  //           <SocialMediaRow>
-  //             <a
-  //               onClick={`copyToClipboard(${shareLink})`}
-  //             >
-  //               <FontAwesomeIcon
-  //                 icon={faLink} size="lg" // lg = slight large than 1x
-  //                 style={{ color: "#4FCE5D" }}
-  //               />{" "}
-  //             </a>
-  //           </SocialMediaRow>
-  //         )
-  //       );
-  //     }}
-  //   </MediaQuery>
-  // );
+  const copyClipboardButton = (
+    <MediaQuery maxWidth={sizesDesktop}>
+      {() => {
+        return (
+          <CopyToClipboard text={window.location.href}>
+            <InvisibleButton>
+              <FontAwesomeIcon
+                icon={faLink}
+                size="1x" // lg = slight large than 1x
+                style={{ color: "#8B8" }}
+              />{" "}
+            </InvisibleButton>
+          </CopyToClipboard>
+        );
+      }}
+    </MediaQuery>
+  );
 
   // Return Share button popper
   return (
@@ -354,7 +278,7 @@ const ShareButton = ({
       {shareButtonBar}
       <Popper placement="bottom">
         {isPopperOpen
-          ? ({ ref, style, placement, arrowProps }) => (
+          ? ({ ref, style, placement }) => (
               <PopperBox
                 innerRef={ref}
                 style={style}
@@ -365,11 +289,7 @@ const ShareButton = ({
                 {twitterButton}
                 {whatappButton}
                 {lineButton}
-                {/* <Arrow
-                  innerRef={arrowProps.ref}
-                  data-placement={placement}
-                  style={arrowProps.style}
-                /> */}
+                {copyClipboardButton}
               </PopperBox>
             )
           : () => null}

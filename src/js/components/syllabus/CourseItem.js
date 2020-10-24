@@ -168,7 +168,6 @@ const ViewEvalsIconButton = styled("a")`
     outline: none;
   }
 `; // Case of Small Screen
-// ---
 
 const OccurrenceList = styled("ul")`
   list-style: none;
@@ -328,7 +327,7 @@ const CourseItem = ({
     </MediaQuery>
   );
 
-  const reviewButtonIcon = ( // Share Button for small page
+  const reviewButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => {
         return (
@@ -388,7 +387,6 @@ const CourseItem = ({
                 handleOnClick(title, lng);
               }}
             >
-              {" "}
               {buttonIcon}
             </InvisibleButton>
             <InvisibleButton>{reviewButtonIcon}</InvisibleButton>
@@ -400,7 +398,6 @@ const CourseItem = ({
             />
           </div>
         </CourseItemRow>
-
         <DetailWrapper>
           <DescriptionWrapper>
             <Description>{yearTerm}</Description>

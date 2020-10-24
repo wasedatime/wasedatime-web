@@ -8,7 +8,11 @@ import { withNamespaces } from "react-i18next";
 import axios from "axios";
 import countries from "i18n-iso-countries";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalendarAlt, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCalendarAlt,
+  faSpinner,
+  faExternalLinkSquareAlt,
+} from "@fortawesome/free-solid-svg-icons";
 
 const StatisticsGroupWrapper = styled("div")`
   padding: 5em 15em;
@@ -213,6 +217,18 @@ class CoronaInfo extends React.Component {
                     statisticData={tokyoData}
                     t={this.props.t}
                   />
+                  <br />
+                  <a
+                    href="https://stopcovid19.metro.tokyo.lg.jp/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    More info{" "}
+                    <FontAwesomeIcon
+                      style={{ color: "#6495ED" }}
+                      icon={faExternalLinkSquareAlt}
+                    />
+                  </a>
                 </StatisticsWrapper>
               </Grid.Column>
 
@@ -232,6 +248,18 @@ class CoronaInfo extends React.Component {
                     statisticData={regionData}
                     t={this.props.t}
                   />
+                  <br />
+                  <a
+                    href="https://covid19.who.int/table"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    More info{" "}
+                    <FontAwesomeIcon
+                      style={{ color: "#6495ED" }}
+                      icon={faExternalLinkSquareAlt}
+                    />
+                  </a>
                 </StatisticsWrapper>
               </Grid.Column>
             </Grid.Row>

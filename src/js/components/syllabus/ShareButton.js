@@ -18,9 +18,9 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Manager, Reference, Popper } from "react-popper";
 import { InvisibleButton } from "../../styled-components/Button";
+//import { element } from "prop-types";
 
 //Propper Style -----
-
 const PopperBox = styled("div")`
   display: box;
   border-radius: 5px;
@@ -28,22 +28,6 @@ const PopperBox = styled("div")`
   text-align: center;
   z-index: 1050;
 `;
-
-// const SocialMediaRow = styled("div")`
-//   display: "flex",
-//   flex-wrap: "nowrap",
-//   flex: "1 0 auto",
-//   justifyContent: "flex-end",
-//   borderRadius: "5px",
-// `;
-
-// const SocialMediaRow = styled("div")`
-//   display: block;
-//   background-color: #fff;
-//   border-left: 0px;
-//   text-decoration: none;
-//   padding-left: 5px;
-// `; // PLAN TO NOT USE (Become a popper instate)
 
 //ShareButton Style -----
 const ShareButtonBarWrapper = styled("div")`
@@ -76,9 +60,7 @@ const ShareButtonIcon = styled("InvisibleButton")`
   color: #7d7a7c;
   text-decoration: none;
 
-  &:focus {
-    outline: none;
-  }
+  &:focus { outline: none; }
 `; // Case of Small Screen
 
 const ShareButton = ({
@@ -90,7 +72,8 @@ const ShareButton = ({
   // logic in containers/syllebus/FetchedShareButton.js
   isPopperOpen,
   handleToggleSharePopper,
-  // copyToClipboard,
+    //isWindowResize,
+    //handleWindowResize,
 }) => {
 
   const shareButtonBar = ( // Share Button Function for large page
@@ -275,9 +258,10 @@ const ShareButton = ({
     <Manager>
       {shareButtonIcon}
       {shareButtonBar}
+      {/* <element onresize="handleWindowResize"/> */}
       <Popper placement="bottom">
         {isPopperOpen
-          ? ({ ref, style, placement }) => (
+          ? ({ ref, style, placement, }) => (
             <PopperBox
               innerRef={ref}
               style={style}

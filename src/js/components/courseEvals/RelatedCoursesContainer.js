@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import CourseEvalsGroup from "./CourseEvalsGroup";
 import ReviewLangSwitches from "./ReviewLangSwitches";
-import {media} from "../../styled-components/utils";
-import {Overlay} from "../../styled-components/Overlay";
-import {withNamespaces} from "react-i18next";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
+import { media } from "../../styled-components/utils";
+import { Overlay } from "../../styled-components/Overlay";
+import { withNamespaces } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
@@ -15,7 +15,7 @@ const ExtendedOverlay = styled(Overlay)`
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
-  margin-top: 1rem 0px;
+  margin-top: 1em !important;
   margin-bottom: 0.5rem;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);

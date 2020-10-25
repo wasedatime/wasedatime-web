@@ -27,7 +27,7 @@ import silsIcon from "../../../img/syllabus-icons/sils.png";
 import sssIcon from "../../../img/syllabus-icons/sss.png";
 import cjlIcon from "../../../img/syllabus-icons/cjl.png";
 import gecIcon from "../../../img/syllabus-icons/gec.png";
-import FetchedShareButton from "../../containers/syllabus/FetchedShareButton"
+import FetchedShareButton from "../../containers/syllabus/FetchedShareButton";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -259,6 +259,7 @@ const CourseItem = ({
   handleOnClick,
   handleClickSyllabusLink,
   isInCourseEvalsPage,
+  needLineBreak,
   t,
   lng,
 }) => {
@@ -291,16 +292,16 @@ const CourseItem = ({
   const keywords =
     "kws" in course
       ? course.kws.map((keyword, index) => {
-        return (
-          <li key={keyword} style={{ display: "inline-block" }}>
-            <Badge>
-              {keyword === "English-based Undergraduate Program"
-                ? t("syllabus.EN-based Undergrad Program")
-                : t(`syllabus.${keyword}`)}
-            </Badge>
-          </li>
-        );
-      })
+          return (
+            <li key={keyword} style={{ display: "inline-block" }}>
+              <Badge>
+                {keyword === "English-based Undergraduate Program"
+                  ? t("syllabus.EN-based Undergrad Program")
+                  : t(`syllabus.${keyword}`)}
+              </Badge>
+            </li>
+          );
+        })
       : null;
   const keywordsList =
     keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
@@ -395,13 +396,16 @@ const CourseItem = ({
                 e.preventDefault();
                 handleOnClick(title, lng);
               }}
-            >{buttonIcon}</InvisibleButton>
+            >
+              {buttonIcon}
+            </InvisibleButton>
             <InvisibleButton>{reviewButtonIcon}</InvisibleButton>
             <FetchedShareButton
               shareLink={shareLink}
               isInCourseEvalsPage={isInCourseEvalsPage}
               display="icon"
               sizesDesktop={sizes.desktop}
+              needLineBreak={needLineBreak}
             />
           </div>
         </CourseItemRow>
@@ -413,12 +417,13 @@ const CourseItem = ({
             </Description>
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
-            <FetchedShareButton
-              shareLink={shareLink}
-              isInCourseEvalsPage={isInCourseEvalsPage}
-              display="bar"
-              sizesDesktop={sizes.desktop}
-            />
+          <FetchedShareButton
+            shareLink={shareLink}
+            isInCourseEvalsPage={isInCourseEvalsPage}
+            display="bar"
+            sizesDesktop={sizes.desktop}
+            needLineBreak={needLineBreak}
+          />
           <InvisibleButton>{reviewButtonBar}</InvisibleButton>
         </DetailWrapper>
       </CourseItemWrapper>

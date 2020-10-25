@@ -77,6 +77,7 @@ const ShareButton = ({
   // logic in containers/syllebus/FetchedShareButton.js
   isPopperOpen,
   handleToggleSharePopper,
+  needLineBreak,
   //isWindowResize,
   //handleWindowResize,
 }) => {
@@ -286,6 +287,7 @@ const ShareButton = ({
                 {facebookButton}
                 {linkedinButton}
                 {twitterButton}
+                {needLineBreak !== undefined && needLineBreak ? <br /> : ""}
                 {whatappButton}
                 {lineButton}
                 {copyClipboardButton}

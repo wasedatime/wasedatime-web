@@ -282,7 +282,7 @@ class CourseEvals extends React.Component {
       //   },
       //   header
       // );
-      return res.data.data;
+      return res.data;
     } catch (error) {
       console.error(error);
       this.setState({ error: true });

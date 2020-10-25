@@ -79,8 +79,6 @@ const ShareButton = ({
   isPopperOpen,
   handleToggleSharePopper,
   needLineBreak,
-  //isWindowResize,
-  //handleWindowResize,
 }) => {
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizesDesktop}>
@@ -282,7 +280,6 @@ const ShareButton = ({
     <Manager>
       {shareButtonIcon}
       {shareButtonBar}
-      {/* <element onresize="handleWindowResize"/> */}
       <Popper
         style={{ backgroundColor: "#aaa" }}
         placement="bottom"

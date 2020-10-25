@@ -2,18 +2,8 @@ import React from "react";
 
 import ShareButton from "../../components/syllabus/ShareButton";
 
-// function WindowResize() {
-//     FetchedShareButton.setState(() => {
-//       console.log("Screen Re-sized!!");
-//       return { isPopperOpen: false };
-//     });
-// }
-
 class FetchedShareButton extends React.Component {
-  state = {
-    isPopperOpen: false,
-    //isWindowResize: false
-  };
+  state = { isPopperOpen: false, };
 
   handleToggleSharePopper = (event) => {
     event.preventDefault();
@@ -21,10 +11,6 @@ class FetchedShareButton extends React.Component {
       return { isPopperOpen: !prevState.isPopperOpen };
     });
   };
-
-  // handleWindowResize = () => {
-  //   window.addEventListener('resize',WindowResize());
-  // }
 
   render() {
     // props from components/syllebus/ShareButton.js

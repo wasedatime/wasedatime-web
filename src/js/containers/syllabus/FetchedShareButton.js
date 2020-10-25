@@ -1,6 +1,6 @@
-import React, { version } from "react";
+import React from "react";
 
-import ShareButton from "../../components/syllabus/ShareButton"
+import ShareButton from "../../components/syllabus/ShareButton";
 
 // function WindowResize() {
 //     FetchedShareButton.setState(() => {
@@ -10,7 +10,8 @@ import ShareButton from "../../components/syllabus/ShareButton"
 // }
 
 class FetchedShareButton extends React.Component {
-  state = { isPopperOpen: false, 
+  state = {
+    isPopperOpen: false,
     //isWindowResize: false
   };
 
@@ -26,18 +27,23 @@ class FetchedShareButton extends React.Component {
   // }
 
   render() {
+    // props from components/syllebus/ShareButton.js
+    const {
+      display,
+      shareLink,
+      sizesDesktop,
+      isInCourseEvalsPage,
+    } = this.props;
+    // sizesDesktop: Small or Large Screen
+
     return (
       <ShareButton
-        // passed from components/syllebus/ShareButton.js
-        display={this.props.display}
-        shareLink={this.props.shareLink}
-        sizesDesktop={this.props.sizesDesktop} // = Small or Large Screen
-        isInCourseEvalsPage={this.props.isInCourseEvalsPage}
-        // logic in containers/syllebus/FetchedShareButton.js
+        display={display}
+        shareLink={shareLink}
+        sizesDesktop={sizesDesktop}
+        isInCourseEvalsPage={isInCourseEvalsPage}
         isPopperOpen={this.state.isPopperOpen}
         handleToggleSharePopper={this.handleToggleSharePopper}
-          //isWindowResize={this.isWindowResize}
-          //handleWindowResize={this.handleWindowResize}
       />
     );
   }

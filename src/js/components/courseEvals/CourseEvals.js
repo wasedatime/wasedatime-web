@@ -6,8 +6,8 @@ import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-// import axios from "axios";
-// import { wasetimeApiStatic } from "../../config/api";
+import axios from "axios";
+import { wasetimeApiStatic } from "../../config/api";
 import ReactGA from "react-ga";
 import { gaRelatedCourses } from "../../ga/eventCategories";
 import {
@@ -242,47 +242,48 @@ class CourseEvals extends React.Component {
 
   async getCourseEvalsByKey(courseKeys) {
     try {
-      // const header =
-      //   process.env.NODE_ENV === "production"
-      //     ? {
-      //         headers: {
-      //           "Content-Type": "application/json",
-      //         },
-      //       }
-      //     : {
-      //         headers: {
-      //           "Content-Type": "application/json",
-      //           "X-Api-Key": process.env.REACT_APP_X_API_KEY,
-      //         },
-      //       };
-
-      const apiName = "wasedatime-dev";
-      const path = "/course-reviews";
-      const myInit = {
-        // OPTIONAL
-        body: { course_keys: courseKeys }, // replace this with attributes you need
-        headers:
-          process.env.NODE_ENV === "production"
-            ? {
+      const header =
+        process.env.NODE_ENV === "production"
+          ? {
+              headers: {
                 "Content-Type": "application/json",
-              }
-            : {
+              },
+            }
+          : {
+              headers: {
                 "Content-Type": "application/json",
                 "X-Api-Key": process.env.REACT_APP_X_API_KEY,
               },
-      };
+            };
 
-      // get reviews by courseKeys
-      const res = await API.post(apiName, path, myInit);
+      // const apiName = "wasedatime-dev";
+      // const path = "/course-reviews";
+      // const myInit = {
+      //   // OPTIONAL
+      //   body: { course_keys: courseKeys }, // replace this with attributes you need
+      //   headers:
+      //     process.env.NODE_ENV === "production"
+      //       ? {
+      //           "Content-Type": "application/json",
+      //         }
+      //       : {
+      //           "Content-Type": "application/json",
+      //           "X-Api-Key": process.env.REACT_APP_X_API_KEY,
+      //         },
+      // };
+      //
+      // // get reviews by courseKeys
+      // const res = await API.post(apiName, path, myInit);
 
-      // const res = await axios.post(
-      //   wasetimeApiStatic.courseEvalsBaseURL,
-      //   {
-      //     course_keys: courseKeys,
-      //   },
-      //   header
-      // );
-      return res.data;
+      const res = await axios.post(
+        wasetimeApiStatic.courseEvalsBaseURL,
+        {
+          course_keys: courseKeys,
+        },
+        header
+      );
+      // return res.data;
+      return res.data.data;
     } catch (error) {
       console.error(error);
       this.setState({ error: true });

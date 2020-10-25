@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import EvalsList from "./EvalsList";
@@ -24,6 +24,7 @@ const CourseEvalsGroup = ({ course, reviews, searchLang, reviewLang, t }) => {
         searchLang={searchLang}
         course={course}
         isInCourseEvalsPage={true}
+        needLineBreak={true}
       />
       <EvalsHeader>{t(`courseEvals.Reviews`)}</EvalsHeader>
       {reviews && (

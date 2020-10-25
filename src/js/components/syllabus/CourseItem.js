@@ -251,6 +251,7 @@ const CourseItem = ({
   handleOnClick,
   handleClickSyllabusLink,
   isInCourseEvalsPage,
+  needLineBreak,
   t,
   lng,
 }) => {
@@ -395,6 +396,7 @@ const CourseItem = ({
               isInCourseEvalsPage={isInCourseEvalsPage}
               display="icon"
               sizesDesktop={sizes.desktop}
+              needLineBreak={needLineBreak}
             />
           </div>
         </CourseItemRow>
@@ -411,6 +413,7 @@ const CourseItem = ({
             isInCourseEvalsPage={isInCourseEvalsPage}
             display="bar"
             sizesDesktop={sizes.desktop}
+            needLineBreak={needLineBreak}
           />
           <InvisibleButton>{reviewButtonBar}</InvisibleButton>
         </DetailWrapper>

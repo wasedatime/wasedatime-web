@@ -256,7 +256,7 @@ class CourseEvals extends React.Component {
       //         },
       //       };
 
-      const apiName = "wasedatimeDev";
+      const apiName = "wasedatime-dev";
       const path = "/course-reviews";
       const myInit = {
         // OPTIONAL

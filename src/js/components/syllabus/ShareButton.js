@@ -23,7 +23,7 @@ const PopperBox = styled("div")`
   border-radius: 5px;
   padding: 0.4em;
   text-align: center;
-  z-index: 1050;
+  overflow: hidden;
 `;
 
 //ShareButton Style -----
@@ -35,30 +35,32 @@ const ShareButtonBarWrapper = styled("div")`
   font-size: 0.9em;
 `;
 
-const ShareButtonBar = styled("InvisibleButton")`
+const ShareButtonBar = styled("button")`
   display: block;
-  background-color: #aaa;
+  background-color: rgb(86, 162, 146);
   border: 0px;
   border-radius: 5px;
-  color: #554a53;
+  color: #fff;
   padding: 5px 1rem;
   margin-bottom: 4px;
   text-align: center;
   text-decoration: none;
+  cursor: pointer;
 
   &:hover {
-    color: #eee;
+    background-color: rgba(86, 162, 146, 0.3);
+    color: rgb(86, 162, 146);
   }
   &:focus {
     outline: none;
   }
 `; // Case of large Screen
 
-const ShareButtonIcon = styled("InvisibleButton")`
+const ShareButtonIcon = styled("i")`
   display: block;
   background-color: #fff;
   border-left: 0px;
-  color: #7d7a7c;
+  color: rgb(86, 162, 146);
   text-decoration: none;
 
   &:focus {
@@ -134,7 +136,7 @@ const ShareButton = ({
         /* Share Button */
         return (
           <a
-            class="twitter-share-button"
+            className="twitter-share-button"
             href={`https://twitter.com/intent/tweet?url=${shareLink}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -159,7 +161,7 @@ const ShareButton = ({
         /* Share Button */
         return (
           <a
-            class="facebook-share-button"
+            className="facebook-share-button"
             href={`https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -180,7 +182,7 @@ const ShareButton = ({
       {() => {
         return (
           <a
-            class="linkedin-share-button"
+            className="linkedin-share-button"
             href={`http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -201,7 +203,7 @@ const ShareButton = ({
       {() => {
         return (
           <a
-            class="line-share-button"
+            className="line-share-button"
             href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -222,7 +224,7 @@ const ShareButton = ({
       {() => {
         return (
           <a
-            class="whatapp-share-button"
+            className="whatapp-share-button"
             href={`https://wa.me/?text=${shareLink}`}
             target="_blank"
             rel="noopener noreferrer"
@@ -262,12 +264,23 @@ const ShareButton = ({
       {shareButtonIcon}
       {shareButtonBar}
       {/* <element onresize="handleWindowResize"/> */}
-      <Popper placement="bottom">
+      <Popper
+        style={{ backgroundColor: "#aaa" }}
+        placement="bottom"
+        modifiers={[
+          {
+            preventOverflow: {
+              enabled: true,
+              boundary: "scrollParent",
+            },
+          },
+        ]}
+      >
         {isPopperOpen
-          ? ({ ref, style, placement }) => (
+          ? ({ ref, style, placement, outOfBoundaries }) => (
               <PopperBox
                 innerRef={ref}
-                style={style}
+                style={{ opacity: outOfBoundaries ? 0 : 1, ...style }}
                 data-placement={placement}
               >
                 {facebookButton}

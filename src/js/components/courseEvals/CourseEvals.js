@@ -1,22 +1,27 @@
 import React from "react";
 import MediaQuery from "react-responsive";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBullhorn} from "@fortawesome/free-solid-svg-icons";
+import API from "@aws-amplify/api";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import qs from "qs";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import axios from "axios";
-import {wasetimeApiStatic} from "../../config/api";
+// import axios from "axios";
+// import { wasetimeApiStatic } from "../../config/api";
 import ReactGA from "react-ga";
-import {gaRelatedCourses} from "../../ga/eventCategories";
-import {gaAppendActionWithLng, gaCloseModal, gaOpenModal,} from "../../ga/eventActions";
+import { gaRelatedCourses } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaCloseModal,
+  gaOpenModal,
+} from "../../ga/eventActions";
 import levenshtein from "levenshtein-edit-distance";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
 
-import {media, sizes} from "../../styled-components/utils";
-import {RowWrapper, Wrapper} from "../../styled-components/Wrapper";
-import {Overlay} from "../../styled-components/Overlay";
+import { media, sizes } from "../../styled-components/utils";
+import { RowWrapper, Wrapper } from "../../styled-components/Wrapper";
+import { Overlay } from "../../styled-components/Overlay";
 
 import ReviewLangSwitches from "./ReviewLangSwitches";
 import RelatedCoursesButton from "./RelatedCoursesButton";
@@ -159,6 +164,7 @@ class CourseEvals extends React.Component {
   };
 
   componentDidMount() {
+    API.configure();
     this._isMounted = true;
     this._isMounted && this.loadEvaluationsAndRelatedCourses();
   }
@@ -236,19 +242,47 @@ class CourseEvals extends React.Component {
 
   async getCourseEvalsByKey(courseKeys) {
     try {
+      // const header =
+      //   process.env.NODE_ENV === "production"
+      //     ? {
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //         },
+      //       }
+      //     : {
+      //         headers: {
+      //           "Content-Type": "application/json",
+      //           "X-Api-Key": process.env.REACT_APP_X_API_KEY,
+      //         },
+      //       };
+
+      const apiName = "wasedatimeDev";
+      const path = "/course-reviews";
+      const myInit = {
+        // OPTIONAL
+        body: { course_keys: courseKeys }, // replace this with attributes you need
+        headers:
+          process.env.NODE_ENV === "production"
+            ? {
+                "Content-Type": "application/json",
+              }
+            : {
+                "Content-Type": "application/json",
+                "X-Api-Key": process.env.REACT_APP_X_API_KEY,
+              },
+      };
+
       // get reviews by courseKeys
-      const res = await axios.post(
-        wasetimeApiStatic.courseEvalsBaseURL,
-        {
-          course_keys: courseKeys,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      return res.data;
+      const res = await API.post(apiName, path, myInit);
+
+      // const res = await axios.post(
+      //   wasetimeApiStatic.courseEvalsBaseURL,
+      //   {
+      //     course_keys: courseKeys,
+      //   },
+      //   header
+      // );
+      return res.data.data;
     } catch (error) {
       console.error(error);
       this.setState({ error: true });

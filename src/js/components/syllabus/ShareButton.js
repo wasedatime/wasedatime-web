@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { Manager, Reference, Popper } from "react-popper";
 import { InvisibleButton } from "../../styled-components/Button";
+import { Popup } from "semantic-ui-react";
 //import { element } from "prop-types";
 
 //Propper Style -----
@@ -247,11 +248,18 @@ const ShareButton = ({
         return (
           <CopyToClipboard text={window.location.href}>
             <InvisibleButton>
-              <FontAwesomeIcon
-                icon={faLink}
-                size="1x" // lg = slight large than 1x
-                style={{ color: "#8B8" }}
-              />{" "}
+              <Popup
+                basic
+                content="Link Copied!"
+                on="click"
+                trigger={
+                  <FontAwesomeIcon
+                    icon={faLink}
+                    size="1x" // lg = slight large than 1x
+                    style={{ color: "#8B8" }}
+                  />
+                }
+              />
             </InvisibleButton>
           </CopyToClipboard>
         );

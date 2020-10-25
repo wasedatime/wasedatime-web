@@ -90,12 +90,22 @@ const ShareButton = ({
             <Reference>
               {({ ref }) => (
                 <ShareButtonBarWrapper>
-                  <ShareButtonBar
-                    innerRef={ref}
-                    onClick={handleToggleSharePopper}
-                  >
-                    <FontAwesomeIcon icon={faShareAlt} /> {"Share"}
-                  </ShareButtonBar>
+                  <Popup
+                    position="top right"
+                    content="Does this course look good? Share with classmates!"
+                    on="hover"
+                    trigger={
+                      <ShareButtonBar
+                        innerRef={ref}
+                        onClick={handleToggleSharePopper}
+                      >
+                        <FontAwesomeIcon icon={faShareAlt} />
+                        {needLineBreak !== undefined && needLineBreak
+                          ? " Share"
+                          : " Share!"}
+                      </ShareButtonBar>
+                    }
+                  />
                 </ShareButtonBarWrapper>
               )}
             </Reference>

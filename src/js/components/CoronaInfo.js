@@ -15,7 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const StatisticsGroupWrapper = styled("div")`
-  padding: 5em 15em;
+  padding: 5em 10em;
   text-align: center;
   ${media.desktop`padding: 2em;`};
 `;

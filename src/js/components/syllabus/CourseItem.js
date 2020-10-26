@@ -146,11 +146,17 @@ const ViewEvalsButton = styled("a")`
   background-color: #ffae42;
   border: 0px;
   border-radius: 5px;
-  color: #fff;
+  color: #fff !important;
   padding: 5px 1rem;
   margin-bottom: 4px;
   text-align: center;
   text-decoration: none;
+
+  &:hover {
+    background-color: #fff;
+    border: 1px solid #ffae42;
+    color: #ffae42 !important;
+  }
 
   &:focus {
     outline: none;

@@ -69,9 +69,9 @@ const Navigation = (props) => {
       icon: faBook,
     },
     {
-      name: t("navigation.bus"),
-      path: "/bus",
-      icon: faBus,
+      name: t("navigation.corona-info"),
+      path: "/corona-info",
+      icon: faExclamationTriangle,
     },
     {
       name: t("navigation.joinus"),
@@ -79,9 +79,9 @@ const Navigation = (props) => {
       icon: faStar,
     },
     {
-      name: t("navigation.corona-info"),
-      path: "/corona-info",
-      icon: faExclamationTriangle,
+      name: t("navigation.bus"),
+      path: "/bus",
+      icon: faBus,
     },
   ];
   const styledLinks = navItems.map((item) => {

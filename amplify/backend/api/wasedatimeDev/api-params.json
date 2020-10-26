@@ -1,0 +1,35 @@
+{
+    "paths": [
+        {
+            "name": "/course-reviews",
+            "lambdaFunction": "getReviews",
+            "privacy": {
+                "open": true
+            },
+            "policyResourceName": "/course-reviews"
+        }
+    ],
+    "resourceName": "wasedatimeDev",
+    "apiName": "wasedatimeDev",
+    "functionArns": [
+        {
+            "lambdaFunction": "getReviews"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-wasedatimeweb-dev-113621-authRole",
+        "unAuthRoleName": "amplify-wasedatimeweb-dev-113621-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "getReviews",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

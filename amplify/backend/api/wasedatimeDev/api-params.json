@@ -5,8 +5,7 @@
             "lambdaFunction": "getReviews",
             "privacy": {
                 "open": true
-            },
-            "policyResourceName": "/course-reviews"
+            }
         }
     ],
     "resourceName": "wasedatimeDev",
@@ -31,5 +30,6 @@
                 "Arn"
             ]
         }
-    ]
+    ],
+    "uuid": "7a7d18fc"
 }

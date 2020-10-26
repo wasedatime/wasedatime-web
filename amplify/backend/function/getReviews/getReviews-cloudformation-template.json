@@ -69,7 +69,7 @@
         "Timeout": "25",
         "Code": {
           "S3Bucket": "amplify-wasedatimeweb-dev-113621-deployment",
-          "S3Key": "amplify-builds/getReviews-42446743434e566b4a76-build.zip"
+          "S3Key": "amplify-builds/getReviews-4a7263646e7358307135-build.zip"
         }
       }
     },

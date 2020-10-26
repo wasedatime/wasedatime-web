@@ -2,7 +2,7 @@
   "providers": [
     "awscloudformation"
   ],
-  "projectName": "wasedatime-web",
+  "projectName": "wasedatimeWeb",
   "version": "3.0",
   "frontend": "javascript",
   "javascript": {

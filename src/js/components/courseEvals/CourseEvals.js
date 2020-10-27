@@ -6,8 +6,6 @@ import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import axios from "axios";
-import { wasetimeApiStatic } from "../../config/api";
 import ReactGA from "react-ga";
 import { gaRelatedCourses } from "../../ga/eventCategories";
 import {
@@ -242,38 +240,17 @@ class CourseEvals extends React.Component {
 
   async getCourseEvalsByKey(courseKeys) {
     try {
-      if (process.env.NODE_ENV === "production") {
-        const header = {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        };
-
-        // get reviews by courseKeys
-        const res = await axios.post(
-          wasetimeApiStatic.courseEvalsBaseURL,
-          {
-            course_keys: courseKeys,
-          },
-          header
-        );
-        return res.data.data;
-      } else {
-        const apiName = "wasedatime-dev";
-        const path = "/course-reviews";
-        const myInit = {
-          // OPTIONAL
-          body: { course_keys: courseKeys }, // replace this with attributes you need
-          headers: {
-            "Content-Type": "application/json",
-            "X-Api-Key": process.env.REACT_APP_X_API_KEY,
-          },
-        };
-
-        // get reviews by courseKeys
-        const res = await API.post(apiName, path, myInit);
-        return res.data;
-      }
+      const apiName =
+        process.env.NODE_ENV === "production"
+          ? "wasedatime-api"
+          : "wasedatime-dev";
+      const res = await API.post(apiName, "/course-reviews", {
+        body: { course_keys: courseKeys },
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      return res.data;
     } catch (error) {
       console.error(error);
       this.setState({ error: true });

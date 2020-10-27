@@ -1,19 +1,18 @@
-import axios from "axios";
-import {normalize} from "normalizr";
+import { normalize } from "normalizr";
+import API from "@aws-amplify/api";
 
 import {
-    ADD_COURSE,
-    CHANGE_COURSE_COLOR,
-    CHANGE_COURSES_SORTING_OPTION,
-    FETCH_COURSES_FAILURE,
-    FETCH_COURSES_REQUEST,
-    FETCH_COURSES_SUCCESS,
-    HYDRATE_ADDED_COURSES,
-    REMOVE_COURSE,
-    TOGGLE_COURSE_VISIBILITY,
+  ADD_COURSE,
+  CHANGE_COURSE_COLOR,
+  CHANGE_COURSES_SORTING_OPTION,
+  FETCH_COURSES_FAILURE,
+  FETCH_COURSES_REQUEST,
+  FETCH_COURSES_SUCCESS,
+  HYDRATE_ADDED_COURSES,
+  REMOVE_COURSE,
+  TOGGLE_COURSE_VISIBILITY,
 } from "./types";
 import * as schema from "../data/schema";
-import {wasetimeApiStatic} from "../config/api";
 
 export const fetchCourses = () => async (dispatch, getState) => {
   dispatch({
@@ -21,7 +20,16 @@ export const fetchCourses = () => async (dispatch, getState) => {
   });
 
   try {
-    const res = await axios.get(wasetimeApiStatic.courseListAll);
+    const apiName =
+      process.env.NODE_ENV === "production"
+        ? "wasedatime-api"
+        : "wasedatime-dev";
+    const res = await API.get(apiName, "/syllabus", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
     const fetchedTime = new Date().toISOString();

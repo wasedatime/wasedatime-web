@@ -17,11 +17,7 @@ Amplify.configure({
     endpoints: [
       {
         name: "wasedatime-dev",
-        endpoint: process.env.REACT_APP_DEV_API_BASE_URL,
-      },
-      {
-        name: "wasedatime-api",
-        endpoint: process.env.REACT_APP_PROD_API_BASE_URL,
+        endpoint: process.env.REACT_APP_API_BASE_URL,
       },
     ],
   },

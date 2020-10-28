@@ -20,11 +20,7 @@ export const fetchCourses = () => async (dispatch, getState) => {
   });
 
   try {
-    const apiName =
-      process.env.NODE_ENV === "production"
-        ? "wasedatime-api"
-        : "wasedatime-dev";
-    const res = await API.get(apiName, "/syllabus", {
+    const res = await API.get("wasedatime-dev", "/syllabus", {
       headers: {
         "Content-Type": "application/json",
       },

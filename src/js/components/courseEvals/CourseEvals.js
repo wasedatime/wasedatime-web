@@ -240,11 +240,7 @@ class CourseEvals extends React.Component {
 
   async getCourseEvalsByKey(courseKeys) {
     try {
-      const apiName =
-        process.env.NODE_ENV === "production"
-          ? "wasedatime-api"
-          : "wasedatime-dev";
-      const res = await API.post(apiName, "/course-reviews", {
+      const res = await API.post("wasedatime-dev", "/course-reviews", {
         body: { course_keys: courseKeys },
         headers: {
           "Content-Type": "application/json",

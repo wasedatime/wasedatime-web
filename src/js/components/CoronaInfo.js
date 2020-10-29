@@ -24,6 +24,14 @@ const StatisticsWrapper = styled("div")`
   ${media.desktop`padding-bottom: 3em;`};
 `;
 
+const getGMT = (date) => {
+  return (
+    (-date.getTimezoneOffset() < 0 ? "-" : "+") +
+    (Math.abs(date.getTimezoneOffset() / 60) < 10 ? "0" : "") +
+    Math.abs(date.getTimezoneOffset() / 60)
+  );
+};
+
 const CoronaInfoStatistics = ({ statisticData, t }) => {
   if (statisticData === undefined)
     return <Header size="huge">{t("No Data")}</Header>;
@@ -33,7 +41,7 @@ const CoronaInfoStatistics = ({ statisticData, t }) => {
         <React.Fragment>
           <p>
             <FontAwesomeIcon icon={faCalendarAlt} size="1x" />{" "}
-            {statisticData["date"]}
+            {statisticData["date"] + " GMT" + getGMT(new Date())}
           </p>
           <Statistic size="huge" color="blue">
             <Statistic.Value>{statisticData["confirmed_diff"]}</Statistic.Value>
@@ -110,9 +118,9 @@ class CoronaInfo extends React.Component {
 
   formatDate(date) {
     date.setDate(date.getDate() - 1);
-    var year = date.getFullYear(),
-      day = "" + date.getDate(),
-      month = "" + (date.getMonth() + 1);
+    var year = date.getUTCFullYear(),
+      day = "" + date.getUTCDate(),
+      month = "" + (date.getUTCMonth() + 1);
 
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
@@ -122,23 +130,18 @@ class CoronaInfo extends React.Component {
 
   async getTokyoInfo() {
     var date = new Date();
+    var response = [];
     try {
-      var res = await axios.get(
-        // "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/10-17-2020.csv"
-        `https://covid-api.com/api/reports?date=${this.formatDate(
-          date
-        )}&iso=JPN&region_province=Tokyo`
-      );
-      if (res.data.data.length === 0) {
-        date.setDate(date.getDate() - 1);
-        res = await axios.get(
+      while (response.length === 0) {
+        const res = await axios.get(
           `https://covid-api.com/api/reports?date=${this.formatDate(
             date
           )}&iso=JPN&region_province=Tokyo`
         );
+        response = res.data.data;
+        date.setDate(date.getDate() - 1);
       }
-
-      return res.data.data[0];
+      return response[0];
     } catch (e) {
       console.error(e);
     }

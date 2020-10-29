@@ -187,6 +187,7 @@
   },
   "coronaInfo": {
     "title": "COVID-19 Statistics",
+    "attribution": "Data fetched from Johns Hopkins University CSSE",
     "New Cases": "New Cases",
     "Total Cases": "Total Cases",
     "New Deaths": "New Deaths",

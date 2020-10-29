@@ -207,6 +207,9 @@ class CoronaInfo extends React.Component {
         <Header size="huge" style={{ textAlign: "center", marginTop: "5vw" }}>
           {this.props.t("coronaInfo.title")}
         </Header>
+        <p style={{ textAlign: "center" }}>
+          {this.props.t("coronaInfo.attribution")}
+        </p>
 
         <StatisticsGroupWrapper>
           <Grid stackable columns={2}>

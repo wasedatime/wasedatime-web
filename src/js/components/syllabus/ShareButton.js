@@ -80,6 +80,7 @@ const ShareButton = ({
   handleToggleSharePopper,
   needLineBreak,
 }) => {
+  const shareText = "Wanna search for good courses? Try WasedaTime!";
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizesDesktop}>
       {(matches) => {
@@ -147,7 +148,7 @@ const ShareButton = ({
         return (
           <a
             className="twitter-share-button"
-            href={`https://twitter.com/intent/tweet?url=${shareLink}`}
+            href={`https://twitter.com/intent/tweet?url=${shareLink}&text=${shareText}&hashtags=wasedatime,waseda`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -172,7 +173,7 @@ const ShareButton = ({
         return (
           <a
             className="facebook-share-button"
-            href={`https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}`}
+            href={`https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}&quote=${shareText}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -193,7 +194,7 @@ const ShareButton = ({
         return (
           <a
             className="linkedin-share-button"
-            href={`http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}`}
+            href={`http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}&title=${shareText}&summary=${shareText}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -214,7 +215,7 @@ const ShareButton = ({
         return (
           <a
             className="line-share-button"
-            href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
+            href={`http://line.me/R/msg/text/?${shareText} ${shareLink}`}
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -235,7 +236,7 @@ const ShareButton = ({
         return (
           <a
             className="whatapp-share-button"
-            href={`https://wa.me/?text=${shareLink}`}
+            href={`https://wa.me/?text=${shareText} ${shareLink}`}
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -187,6 +187,7 @@
   },
   "coronaInfo": {
     "title": "新型コロナウイルス感染症情報",
+    "attribution": "Johns Hopkins University CSSE より引用",
     "New Cases": "新規感染数",
     "Total Cases": "総感染数",
     "New Deaths": "新規死亡数",

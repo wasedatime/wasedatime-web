@@ -20,14 +20,13 @@ export const fetchCourses = () => async (dispatch, getState) => {
   });
 
   try {
-    const res = await API.get("wasedatime-dev", "/syllabus", {
+    const courses = await API.get("wasedatime-dev", "/syllabus", {
       headers: {
         "Content-Type": "application/json",
       },
     });
-    console.log(res);
+    // const courses = res.data;
 
-    const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);
     const fetchedTime = new Date().toISOString();
     dispatch({

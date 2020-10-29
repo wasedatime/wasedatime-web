@@ -63,6 +63,7 @@ const ShareButtonIcon = styled("i")`
   border-left: 0px;
   color: rgb(86, 162, 146);
   text-decoration: none;
+  padding: 1px 0px;
 
   &:focus {
     outline: none;
@@ -127,7 +128,11 @@ const ShareButton = ({
                   innerRef={ref}
                   onClick={handleToggleSharePopper}
                 >
-                  <FontAwesomeIcon icon={faShareAlt} size="2x" />{" "}
+                  <FontAwesomeIcon
+                    icon={faShareAlt}
+                    size="2x"
+                    transform="shrink-2"
+                  />{" "}
                 </ShareButtonIcon>
               )}
             </Reference>

@@ -25,6 +25,7 @@ export const fetchCourses = () => async (dispatch, getState) => {
         "Content-Type": "application/json",
       },
     });
+    console.log(res);
 
     const courses = res.data;
     const normalizedCourses = normalize(courses, schema.coursesSchema);

@@ -117,7 +117,6 @@ class CoronaInfo extends React.Component {
   };
 
   formatDate(date) {
-    date.setDate(date.getDate() - 1);
     var year = date.getUTCFullYear(),
       day = "" + date.getUTCDate(),
       month = "" + (date.getUTCMonth() + 1);

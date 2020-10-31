@@ -147,21 +147,18 @@ class CoronaInfo extends React.Component {
   }
 
   async getRegionInfo(iso) {
-    var date = new Date();
-    try {
-      var res = await axios.get(
-        `https://covid-api.com/api/reports?date=${this.formatDate(
-          date
-        )}&iso=${iso}`
-      );
-      if (res.data.data.length === 0) {
-        date.setDate(date.getDate() - 1);
-        res = await axios.get(
+    const date = new Date();
+    let response = [];
+      try {
+        while (response.length === 0) {
+          const res = await axios.get(
           `https://covid-api.com/api/reports?date=${this.formatDate(
             date
-          )}&iso=${iso}`
-        );
-      }
+              )}&iso=${iso}`
+            );
+            response = res.data.data;
+            date.setDate(date.getDate() - 1);
+        }
 
       var regionData = {
         confirmed_diff: 0,
@@ -170,10 +167,10 @@ class CoronaInfo extends React.Component {
         deaths: 0,
         recovered_diff: 0,
         recovered: 0,
-        date: res.data.data[0]["date"],
+        date: response[0]["date"],
       };
 
-      res.data.data.forEach((province) => {
+      response.forEach((province) => {
         regionData["confirmed_diff"] += province["confirmed_diff"];
         regionData["confirmed"] += province["confirmed"];
         regionData["deaths_diff"] += province["deaths_diff"];

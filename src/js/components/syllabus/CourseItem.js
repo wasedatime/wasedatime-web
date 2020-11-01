@@ -477,7 +477,7 @@ const CourseItem = ({
           course.e && (
             <SocialMediaRow>
               <a
-                class="twitter-share-button"
+                className="twitter-share-button"
                 href={`https://twitter.com/intent/tweet?url=${shareLink}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -504,7 +504,7 @@ const CourseItem = ({
           course.e && (
             <SocialMediaRow>
               <a
-                class="facebook-share-button"
+                className="facebook-share-button"
                 href={`https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -531,7 +531,7 @@ const CourseItem = ({
           course.e && (
             <SocialMediaRow>
               <a
-                class="linkedin-share-button"
+                className="linkedin-share-button"
                 href={`http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -558,7 +558,7 @@ const CourseItem = ({
           course.e && (
             <SocialMediaRow>
               <a
-                class="line-share-button"
+                className="line-share-button"
                 href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -585,7 +585,7 @@ const CourseItem = ({
           course.e && (
             <SocialMediaRow>
               <a
-                class="whatapp-share-button"
+                className="whatapp-share-button"
                 href={`https://wa.me/?text=${shareLink}`}
                 target="_blank"
                 rel="noopener noreferrer"

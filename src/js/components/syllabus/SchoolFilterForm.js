@@ -1,8 +1,11 @@
 import React from "react";
+import axios from "axios";
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import SchoolImportCard from "./SchoolImportCard";
 import SchoolRemoveCard from "./SchoolRemoveCard";
+import { saveState } from "../../../localForage";
+// import { wasetimeApiStatic } from "../../config/api";
 
 import {
   Segment,
@@ -54,6 +57,20 @@ import socIcon from "../../../img/syllabus-icons/soc.png";
 import eduIcon from "../../../img/syllabus-icons/edu.png";
 import cieIcon from "../../../img/syllabus-icons/cie.png";
 
+import fseIcon_jp from "../../../img/syllabus-icons/fse_jp.png";
+import cseIcon_jp from "../../../img/syllabus-icons/cse_jp.png";
+import aseIcon_jp from "../../../img/syllabus-icons/ase_jp.png";
+import pseIcon_jp from "../../../img/syllabus-icons/pse_jp.png";
+import silsIcon_jp from "../../../img/syllabus-icons/sils_jp.png";
+import sssIcon_jp from "../../../img/syllabus-icons/sss_jp.png";
+import humIcon_jp from "../../../img/syllabus-icons/hum_jp.png";
+import lawIcon_jp from "../../../img/syllabus-icons/law_jp.png";
+import spsIcon_jp from "../../../img/syllabus-icons/sps_jp.png";
+import cmsIcon_jp from "../../../img/syllabus-icons/cms_jp.png";
+import hssIcon_jp from "../../../img/syllabus-icons/hss_jp.png";
+import socIcon_jp from "../../../img/syllabus-icons/soc_jp.png";
+import eduIcon_jp from "../../../img/syllabus-icons/edu_jp.png";
+
 const loadedUndergradSchools = [];
 
 const undergradSchoolNameIconMap = {
@@ -75,9 +92,13 @@ const undergradSchoolNameIconMap = {
   [CIE]: cieIcon,
 };
 
-// async function loadSyllabus(school) {
-//   await ...
-// }
+async function loadSyllabus(school) {
+  const basicURL = "https://api.wasedatime.com/staging/syllabus/";
+  // console.log(wasetimeApiStatic.courseListAll);
+  const schoolData = await axios.get(`${basicURL}${school}`);
+  saveState(schoolData);
+  console.log(schoolData);
+}
 
 class SchoolFilterForm extends React.Component {
   state = {
@@ -168,8 +189,7 @@ class SchoolFilterForm extends React.Component {
       }
 
       this.setState({ loadingSchool: school });
-
-      // loadSyllabus(school);
+      loadSyllabus(school);
 
       // Move the setState execution out of setTimeout after loadSyllabus function is implemented
       setTimeout(() => {
@@ -278,6 +298,7 @@ class SchoolFilterForm extends React.Component {
               <Form.Group inline style={{ margin: "0px" }}>
                 {this.state.loadedSchools.map((schoolName) => (
                   <Form.Field
+                    key={schoolName}
                     control={Checkbox}
                     label={{
                       children: (

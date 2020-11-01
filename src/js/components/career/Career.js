@@ -6,6 +6,8 @@ import { withNamespaces } from "react-i18next";
 
 import CareerList from "./CareerInternList";
 import CareerArticles from "./CareerArticles";
+import CareerRecruit from "./CareerRecruit";
+import CareerSeminar from "./CareerSeminar";
 
 const Career = ({ t }) => {
   return (
@@ -27,6 +29,12 @@ const Career = ({ t }) => {
         <Link to="/career/intern">
           <button className="ui button">{t("career.Intern")}</button>
         </Link>
+        <Link to="/career/seminar">
+          <button className="ui button">{t("career.Seminar")}</button>
+        </Link>
+        <Link to="/career/recruit">
+          <button className="ui button">{t("career.Recruit")}</button>
+        </Link>
         <Link to="/career/articles">
           <button className="ui button">{t("career.Articles")}</button>
         </Link>
@@ -37,6 +45,8 @@ const Career = ({ t }) => {
             render={() => <Redirect to="/career/intern" />}
           />
           <Route exact path="/career/intern" component={CareerList} />
+          <Route exact path="/career/recruit" component={CareerRecruit} />
+          <Route exact path="/career/seminar" component={CareerSeminar} />
           <Route exact path="/career/articles" component={CareerArticles} />
         </Switch>
       </div>

@@ -4,8 +4,10 @@ import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import SchoolImportCard from "./SchoolImportCard";
 import SchoolRemoveCard from "./SchoolRemoveCard";
-import { saveState } from "../../../localForage";
-// import { wasetimeApiStatic } from "../../config/api";
+import { saveSchool } from "../../../localForage";
+import { normalize } from "normalizr";
+import * as schema from "../../data/schema";
+import { wasetimeApiStatic } from "../../config/api";
 
 import {
   Segment,
@@ -92,14 +94,6 @@ const undergradSchoolNameIconMap = {
   [CIE]: cieIcon,
 };
 
-async function loadSyllabus(school) {
-  const basicURL = "https://api.wasedatime.com/staging/syllabus/";
-  // console.log(wasetimeApiStatic.courseListAll);
-  const schoolData = await axios.get(`${basicURL}${school}`);
-  saveState(schoolData);
-  console.log(schoolData);
-}
-
 class SchoolFilterForm extends React.Component {
   state = {
     isSchoolFilterOpened: true,
@@ -107,6 +101,11 @@ class SchoolFilterForm extends React.Component {
     loadedSchools: loadedUndergradSchools,
     loadingSchool: null,
     schoolsUpToLimit: loadedUndergradSchools.length >= 10,
+  };
+
+  loadSyllabus = async (school) => {
+    this.props.addSchool(school);
+    this.props.fetchCourses();
   };
 
   schoolImportPanes = () => {
@@ -189,7 +188,7 @@ class SchoolFilterForm extends React.Component {
       }
 
       this.setState({ loadingSchool: school });
-      loadSyllabus(school);
+      this.loadSyllabus(school);
 
       // Move the setState execution out of setTimeout after loadSyllabus function is implemented
       setTimeout(() => {

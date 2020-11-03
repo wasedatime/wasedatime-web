@@ -243,6 +243,7 @@ class FetchedCourseSearch extends React.Component {
     sortBy(courses, (course) => (course.e ? 1 : 2));
 
   render() {
+    const { fetchCourses, addSchool, removeSchool } = this.props;
     const { inputText, searchTerm } = this.state;
     const searchLang =
       searchTerm === "" ? this.props.lng : getSearchLang(searchTerm);
@@ -263,7 +264,12 @@ class FetchedCourseSearch extends React.Component {
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
         />
-        <SchoolFilterForm handleToggleFilter={this.handleToggleFilter} />
+        <SchoolFilterForm
+          handleToggleFilter={this.handleToggleFilter}
+          fetchCourses={fetchCourses}
+          addSchool={addSchool}
+          removeSchool={removeSchool}
+        />
         <RowWrapper>
           <FetchedCourseList
             searchTerm={searchTerm}

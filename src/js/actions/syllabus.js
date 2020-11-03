@@ -1,36 +1,64 @@
 import axios from "axios";
-import {normalize} from "normalizr";
+import { normalize } from "normalizr";
 
 import {
-    ADD_COURSE,
-    CHANGE_COURSE_COLOR,
-    CHANGE_COURSES_SORTING_OPTION,
-    FETCH_COURSES_FAILURE,
-    FETCH_COURSES_REQUEST,
-    FETCH_COURSES_SUCCESS,
-    HYDRATE_ADDED_COURSES,
-    REMOVE_COURSE,
-    TOGGLE_COURSE_VISIBILITY,
+  ADD_COURSE,
+  CHANGE_COURSE_COLOR,
+  CHANGE_COURSES_SORTING_OPTION,
+  FETCH_COURSES_FAILURE,
+  FETCH_COURSES_REQUEST,
+  FETCH_COURSES_SUCCESS,
+  HYDRATE_ADDED_COURSES,
+  REMOVE_COURSE,
+  TOGGLE_COURSE_VISIBILITY,
+  ADD_SCHOOL,
+  REMOVE_SCHOOL,
 } from "./types";
 import * as schema from "../data/schema";
-import {wasetimeApiStatic} from "../config/api";
+import { wasetimeApiStatic } from "../config/api";
+
+export const addSchool = (school) => ({
+  type: ADD_SCHOOL,
+  payload: school,
+});
+
+export const removeSchool = (school) => ({
+  type: REMOVE_SCHOOL,
+  payload: school,
+});
 
 export const fetchCourses = () => async (dispatch, getState) => {
   dispatch({
     type: FETCH_COURSES_REQUEST,
   });
+  // const res = await axios.get(
+  //   `https://api.wasedatime.com/staging/syllabus/`
+  // );
+  // const normalizedCourses = normalize(res.data, schema.coursesSchema);
+
+  const schools = getState().fetchedCourses.schools;
+  var courses = [];
 
   try {
-    const res = await axios.get(wasetimeApiStatic.courseListAll);
-    const courses = res.data;
-    const normalizedCourses = normalize(courses, schema.coursesSchema);
-    const fetchedTime = new Date().toISOString();
-    dispatch({
-      type: FETCH_COURSES_SUCCESS,
-      response: {
-        ...normalizedCourses,
-        fetchedTime,
-      },
+    const schools = getState().fetchedCourses.schools;
+    Promise.all(
+      schools.map(async (school) => {
+        const res = await axios.get(
+          `${process.env.REACT_APP_API_BASE_URL}/syllabus/${school}`
+        );
+        courses = [...courses, ...res.data];
+        return;
+      })
+    ).then(() => {
+      const normalizedCourses = normalize(courses, schema.coursesSchema);
+      const fetchedTime = new Date().toISOString();
+      dispatch({
+        type: FETCH_COURSES_SUCCESS,
+        response: {
+          ...normalizedCourses,
+          fetchedTime,
+        },
+      });
     });
   } catch (error) {
     const response = error.response || {

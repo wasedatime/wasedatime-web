@@ -1,7 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { fetchCourses, hydrateAddedCourses } from "../actions/syllabus";
+import {
+  fetchCourses,
+  hydrateAddedCourses,
+  addSchool,
+  removeSchool,
+} from "../actions/syllabus";
 import {
   getIsFetching,
   getFetchedIds,
@@ -77,6 +82,7 @@ const withFetchCourses = (WrappedComponent) => {
           fetchedCoursesById={fetchedCoursesById}
           addedCourses={addedCourses}
           addedCoursesAndPrefs={addedCoursesAndPrefs}
+          fetchCourses={fetchCourses}
           {...rest}
         />
       );
@@ -100,6 +106,8 @@ const withFetchCourses = (WrappedComponent) => {
   const mapDispatchToProps = {
     fetchCourses,
     hydrateAddedCourses,
+    addSchool,
+    removeSchool,
   };
 
   return connect(

@@ -46,7 +46,7 @@ export const fetchCourses = () => async (dispatch, getState) => {
         const res = await axios.get(
           `${process.env.REACT_APP_API_BASE_URL}/syllabus/${school}`
         );
-        courses = [...courses, ...res.data];
+        courses = [...courses, ...res.data.map((c) => ({ ...c, q: school }))];
         return;
       })
     ).then(() => {

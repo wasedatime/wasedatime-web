@@ -9,6 +9,7 @@ import styled from "styled-components";
 import ReactGA from "react-ga";
 
 import { searchCourses, sortCourses } from "../../utils/courseSearch";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 import SearchBar from "../../components/syllabus/SearchBar";
 import FetchedCourseList from "../../components/syllabus/FetchedCourseList";
 import Filter from "../../components/syllabus/Filter";
@@ -145,47 +146,39 @@ class FetchedCourseSearch extends React.Component {
     let filteredCourses =
       semesterFilters.length === 0
         ? courses
-        : courses.filter((course) => semesterFilters.includes(course.tm));
+        : courses.filter((course) =>
+            semesterFilters.includes(course[SYLLABUS_KEYS.TERM])
+          );
 
     const schoolFilters = filterGroups.school;
     filteredCourses =
       schoolFilters.length === 0 || schoolFilters.length === 6
         ? filteredCourses
-        : filteredCourses.filter((course) => {
-            const keys = course.ks;
-            for (let i = 0; i < keys.length; i++) {
-              if (schoolFilters.includes(keys[i].s)) return true;
-            }
-            return false;
-          });
+        : filteredCourses.filter((course) =>
+            schoolFilters.includes(course[SYLLABUS_KEYS.SCHOOL])
+          );
 
     const langFilters = filterGroups.lang;
     filteredCourses =
       langFilters.length === 0 || langFilters.length === 3
         ? filteredCourses
-        : filteredCourses.filter((course) => langFilters.includes(course.l));
-
-    // IPSE/English-based Undergraduate Program
-    if (filterGroups.special.length > 0) {
-      const specialFilters = filterGroups.special[0].split("/");
-      filteredCourses = filteredCourses.filter((course) => {
-        const keywords = course.kws;
-        if (keywords === undefined) return false;
-        for (let i = 0; i < keywords.length; i++) {
-          if (specialFilters.includes(keywords[i])) return true;
-        }
-        return false;
-      });
-    }
+        : filteredCourses.filter((course) =>
+            langFilters.includes(course[SYLLABUS_KEYS.LANG])
+          );
 
     const dayFilters = filterGroups.day;
     filteredCourses =
       dayFilters.length === 0 || dayFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter((course) => {
-            const occurrences = course.os;
+            const occurrences = course[SYLLABUS_KEYS.OCCURRENCES];
             for (let i = 0; i < occurrences.length; i++) {
-              if (dayFilters.includes(occurrences[i].d.toString())) return true;
+              if (
+                dayFilters.includes(
+                  occurrences[i][SYLLABUS_KEYS.OCC_DAY].toString()
+                )
+              )
+                return true;
             }
             return false;
           });
@@ -196,13 +189,18 @@ class FetchedCourseSearch extends React.Component {
       periodFilters.length === 0 || periodFilters.length === 6
         ? filteredCourses
         : filteredCourses.filter((course) => {
-            const occurrences = course.os;
+            const occurrences = course[SYLLABUS_KEYS.OCCURRENCES];
 
             for (let i = 0; i < periodFilters.length; i++) {
               const period = parseInt(periodFilters[i], 10);
               for (let j = 0; j < occurrences.length; j++) {
-                if (occurrences[j].s <= period && period <= occurrences[j].e) {
-                  return true;
+                const op = occurrences[j][SYLLABUS_KEYS.OCC_PERIOD];
+                if (op > 9) {
+                  const start = parseInt(op / 10);
+                  const end = op % 10;
+                  if (start <= period && period <= end) return true;
+                } else {
+                  if (op === period) return true;
                 }
               }
             }
@@ -239,9 +237,6 @@ class FetchedCourseSearch extends React.Component {
     );
   };
 
-  sortCoursesWithEvalsExistence = (courses) =>
-    sortBy(courses, (course) => (course.e ? 1 : 2));
-
   render() {
     const { fetchCourses, addSchool, removeSchool } = this.props;
     const { inputText, searchTerm } = this.state;
@@ -256,7 +251,7 @@ class FetchedCourseSearch extends React.Component {
             searchCourses(searchTerm, this.state.filteredCourses, searchLang),
             searchLang
           )
-        : this.sortCoursesWithEvalsExistence(this.state.filteredCourses);
+        : this.state.filteredCourses;
     return (
       <ExtendedWrapper>
         <SearchBar

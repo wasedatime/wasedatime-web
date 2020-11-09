@@ -14,13 +14,7 @@ const ExtendedRowWrapper = styled(RowWrapper)`
 `;
 
 const SyllabusSearch = (props) => {
-  const {
-    addedCoursesAndPrefs,
-    fetchedCourses,
-    fetchCourses,
-    addSchool,
-    removeSchool,
-  } = props;
+  const { addedCoursesAndPrefs, fetchedCourses } = props;
   return (
     <ExtendedRowWrapper>
       <MediaQuery minWidth={sizes.tablet}>
@@ -34,12 +28,7 @@ const SyllabusSearch = (props) => {
           )
         }
       </MediaQuery>
-      <FetchedCourseListSearch
-        fetchedCourses={fetchedCourses}
-        fetchCourses={fetchCourses}
-        addSchool={addSchool}
-        removeSchool={removeSchool}
-      />
+      <FetchedCourseListSearch fetchedCourses={fetchedCourses} />
     </ExtendedRowWrapper>
   );
 };

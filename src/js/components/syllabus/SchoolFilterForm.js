@@ -1,13 +1,11 @@
 import React from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { fetchCourses, addSchool, removeSchool } from "../../actions/syllabus";
+
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import SchoolImportCard from "./SchoolImportCard";
 import SchoolRemoveCard from "./SchoolRemoveCard";
-import { saveSchool } from "../../../localForage";
-import { normalize } from "normalizr";
-import * as schema from "../../data/schema";
-import { wasetimeApiStatic } from "../../config/api";
 
 import {
   Segment,
@@ -73,34 +71,52 @@ import hssIcon_jp from "../../../img/syllabus-icons/hss_jp.png";
 import socIcon_jp from "../../../img/syllabus-icons/soc_jp.png";
 import eduIcon_jp from "../../../img/syllabus-icons/edu_jp.png";
 
-const loadedUndergradSchools = [];
-
-const undergradSchoolNameIconMap = {
-  [SILS]: silsIcon,
-  [PSE]: pseIcon,
-  [SSS]: sssIcon,
-  [FSE]: fseIcon,
-  [CSE]: cseIcon,
-  [ASE]: aseIcon,
-  [CJL]: cjlIcon,
-  [GEC]: gecIcon,
-  [LAW]: lawIcon,
-  [CMS]: cmsIcon,
-  [HSS]: hssIcon,
-  [EDU]: eduIcon,
-  [SOC]: socIcon,
-  [HUM]: humIcon,
-  [SPS]: spsIcon,
-  [CIE]: cieIcon,
-};
+const undergradSchoolNameIconMap = (lng) =>
+  lng === "jp"
+    ? {
+        [SILS]: silsIcon_jp,
+        [PSE]: pseIcon_jp,
+        [SSS]: sssIcon_jp,
+        [FSE]: fseIcon_jp,
+        [CSE]: cseIcon_jp,
+        [ASE]: aseIcon_jp,
+        [CJL]: cjlIcon,
+        [GEC]: gecIcon,
+        [LAW]: lawIcon_jp,
+        [CMS]: cmsIcon_jp,
+        [HSS]: hssIcon_jp,
+        [EDU]: eduIcon_jp,
+        [SOC]: socIcon_jp,
+        [HUM]: humIcon_jp,
+        [SPS]: spsIcon_jp,
+        [CIE]: cieIcon,
+      }
+    : {
+        [SILS]: silsIcon,
+        [PSE]: pseIcon,
+        [SSS]: sssIcon,
+        [FSE]: fseIcon,
+        [CSE]: cseIcon,
+        [ASE]: aseIcon,
+        [CJL]: cjlIcon,
+        [GEC]: gecIcon,
+        [LAW]: lawIcon,
+        [CMS]: cmsIcon,
+        [HSS]: hssIcon,
+        [EDU]: eduIcon,
+        [SOC]: socIcon,
+        [HUM]: humIcon,
+        [SPS]: spsIcon,
+        [CIE]: cieIcon,
+      };
 
 class SchoolFilterForm extends React.Component {
   state = {
     isSchoolFilterOpened: true,
     selectedSchools: [],
-    loadedSchools: loadedUndergradSchools,
+    loadedSchools: this.props.loadedSchools,
     loadingSchool: null,
-    schoolsUpToLimit: loadedUndergradSchools.length >= 10,
+    schoolsUpToLimit: this.props.loadedSchools.length >= 10,
   };
 
   loadSyllabus = async (school) => {
@@ -116,21 +132,26 @@ class SchoolFilterForm extends React.Component {
         menuItem: "Undergraduate",
         render: () => (
           <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
-            {Object.keys(undergradSchoolNameIconMap).map((schoolName) => (
-              <SchoolImportCard
-                key={schoolName}
-                schoolName={schoolName}
-                loaded={loadedSchools.includes(schoolName)}
-                loading={this.state.loadingSchool === schoolName}
-                schoolIcon={undergradSchoolNameIconMap[schoolName]}
-                onDownload={this.handleSchoolloading}
-                isBannedToLoad={
-                  !loadedSchools.includes(schoolName) &&
-                  ((loadingSchool && this.state.loadingSchool !== schoolName) ||
-                    schoolsUpToLimit)
-                }
-              />
-            ))}
+            {Object.keys(undergradSchoolNameIconMap(this.props.lng)).map(
+              (schoolName) => (
+                <SchoolImportCard
+                  key={schoolName}
+                  schoolName={schoolName}
+                  loaded={loadedSchools.includes(schoolName)}
+                  loading={this.state.loadingSchool === schoolName}
+                  schoolIcon={
+                    undergradSchoolNameIconMap(this.props.lng)[schoolName]
+                  }
+                  onDownload={this.handleSchoolloading}
+                  isBannedToLoad={
+                    !loadedSchools.includes(schoolName) &&
+                    ((loadingSchool &&
+                      this.state.loadingSchool !== schoolName) ||
+                      schoolsUpToLimit)
+                  }
+                />
+              )
+            )}
           </Card.Group>
         ),
       },
@@ -153,7 +174,7 @@ class SchoolFilterForm extends React.Component {
         <SchoolRemoveCard
           key={schoolName}
           schoolName={schoolName}
-          schoolIcon={undergradSchoolNameIconMap[schoolName]}
+          schoolIcon={undergradSchoolNameIconMap(this.props.lng)[schoolName]}
           onRemove={this.handleSchoolRemove}
         />
       ))}
@@ -303,7 +324,11 @@ class SchoolFilterForm extends React.Component {
                       children: (
                         <Image
                           size="tiny"
-                          src={undergradSchoolNameIconMap[schoolName]}
+                          src={
+                            undergradSchoolNameIconMap(this.props.lng)[
+                              schoolName
+                            ]
+                          }
                         />
                       ),
                     }}
@@ -321,4 +346,18 @@ class SchoolFilterForm extends React.Component {
   }
 }
 
-export default withNamespaces("translation")(SchoolFilterForm);
+const mapStateToProps = (state) => {
+  return {
+    loadedSchools: state.fetchedCourses.schools,
+  };
+};
+
+const mapDispatchToProps = {
+  fetchCourses,
+  addSchool,
+  removeSchool,
+};
+
+export default withNamespaces("translation")(
+  connect(mapStateToProps, mapDispatchToProps)(SchoolFilterForm)
+);

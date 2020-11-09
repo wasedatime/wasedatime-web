@@ -118,10 +118,6 @@ const Badge = styled("span")`
   line-height: 120%;
 `;
 
-const KeywordList = styled(SchoolIconList)`
-  flex-wrap: wrap;
-`;
-
 const DetailWrapper = styled("div")`
   display: flex;
   flex-direction: row;

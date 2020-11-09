@@ -15,7 +15,6 @@ import {
   REMOVE_SCHOOL,
 } from "./types";
 import * as schema from "../data/schema";
-import { wasetimeApiStatic } from "../config/api";
 
 export const addSchool = (school) => ({
   type: ADD_SCHOOL,

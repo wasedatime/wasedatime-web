@@ -1,6 +1,5 @@
 import React from "react";
 import debounce from "lodash/debounce";
-import sortBy from "lodash/sortBy";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router";
 import { withNamespaces } from "react-i18next";
@@ -238,7 +237,6 @@ class FetchedCourseSearch extends React.Component {
   };
 
   render() {
-    const { fetchCourses, addSchool, removeSchool } = this.props;
     const { inputText, searchTerm } = this.state;
     const searchLang =
       searchTerm === "" ? this.props.lng : getSearchLang(searchTerm);
@@ -259,12 +257,7 @@ class FetchedCourseSearch extends React.Component {
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
         />
-        <SchoolFilterForm
-          handleToggleFilter={this.handleToggleFilter}
-          fetchCourses={fetchCourses}
-          addSchool={addSchool}
-          removeSchool={removeSchool}
-        />
+        <SchoolFilterForm handleToggleFilter={this.handleToggleFilter} />
         <RowWrapper>
           <FetchedCourseList
             searchTerm={searchTerm}

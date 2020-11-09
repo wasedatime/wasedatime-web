@@ -37,25 +37,24 @@ export const fetchCourses = () => async (dispatch, getState) => {
   // const normalizedCourses = normalize(res.data, schema.coursesSchema);
 
   const schools = getState().fetchedCourses.schools;
-  var courses = [];
+  var coursesBySchool = {};
 
   try {
-    const schools = getState().fetchedCourses.schools;
     Promise.all(
       schools.map(async (school) => {
         const res = await axios.get(
           `${process.env.REACT_APP_API_BASE_URL}/syllabus/${school}`
         );
-        courses = [...courses, ...res.data.map((c) => ({ ...c, q: school }))];
+        coursesBySchool[school] = normalize(res.data, schema.coursesSchema);
         return;
       })
     ).then(() => {
-      const normalizedCourses = normalize(courses, schema.coursesSchema);
+      // const normalizedCourses = normalize(courses, schema.coursesSchema);
       const fetchedTime = new Date().toISOString();
       dispatch({
         type: FETCH_COURSES_SUCCESS,
         response: {
-          ...normalizedCourses,
+          coursesBySchool,
           fetchedTime,
         },
       });

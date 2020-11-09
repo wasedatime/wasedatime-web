@@ -29,7 +29,24 @@ export default fetchedCourses;
 
 export const getFetchedIds = (state) => fromList.getIds(state.list);
 
-export const getFetchedById = (state) => state.byId;
+export const getFetchedById = (state) => {
+  var courses = {};
+  const coursesBySchool = JSON.parse(JSON.stringify(state.byId));
+  Object.keys(coursesBySchool).forEach((school) => {
+    var coursesById = coursesBySchool[school];
+    if (coursesById) {
+      Object.keys(coursesById).forEach((id) => {
+        coursesById[id]["q"] = school;
+      });
+
+      courses = {
+        ...courses,
+        ...coursesById,
+      };
+    }
+  });
+  return courses;
+};
 
 export const getIsFetching = (state) => {
   return fromList.getIsFetching(state.list);

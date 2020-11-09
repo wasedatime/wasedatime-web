@@ -4,7 +4,15 @@ const fetchedList = (actionTypes) => {
   const ids = (state = [], action) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
-        return action.response.result;
+        var ids = {};
+        const coursesBySchool = action.response["coursesBySchool"];
+
+        Object.keys(coursesBySchool).forEach((school) => {
+          if (coursesBySchool[school].result) {
+            ids[school] = coursesBySchool[school].result;
+          }
+        });
+        return ids;
       default:
         return state;
     }
@@ -47,6 +55,14 @@ const fetchedList = (actionTypes) => {
 
 export default fetchedList;
 
-export const getIds = (state) => state.ids;
+export const getIds = (state) => {
+  var ids = [];
+  const idsBySchool = state.ids;
+  Object.keys(idsBySchool).forEach((school) => {
+    ids = [...ids, ...idsBySchool[school]];
+  });
+  return ids;
+};
+
 export const getIsFetching = (state) => state.isFetching;
 export const getError = (state) => state.error;

@@ -124,6 +124,11 @@ class SchoolFilterForm extends React.Component {
     this.props.fetchCourses();
   };
 
+  removeSyllabus = async (school) => {
+    this.props.removeSchool(school);
+    this.props.fetchCourses();
+  };
+
   schoolImportPanes = () => {
     const { loadedSchools, loadingSchool, schoolsUpToLimit } = this.state;
 
@@ -232,6 +237,7 @@ class SchoolFilterForm extends React.Component {
         this.props.handleToggleFilter("school", school);
       }
 
+      this.removeSyllabus(school);
       this.setState({
         loadedSchools: loadedSchools,
         selectedSchools: selectedSchools,

@@ -1,7 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { fetchCourses, addSchool, removeSchool } from "../../actions/syllabus";
-
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import SchoolImportCard from "./SchoolImportCard";
@@ -116,17 +113,8 @@ class SchoolFilterForm extends React.Component {
     selectedSchools: [],
     loadedSchools: this.props.loadedSchools,
     loadingSchool: null,
+    removingSchool: null,
     schoolsUpToLimit: this.props.loadedSchools.length >= 10,
-  };
-
-  loadSyllabus = async (school) => {
-    this.props.addSchool(school);
-    this.props.fetchCourses();
-  };
-
-  removeSyllabus = async (school) => {
-    this.props.removeSchool(school);
-    this.props.fetchCourses();
   };
 
   schoolImportPanes = () => {
@@ -180,7 +168,12 @@ class SchoolFilterForm extends React.Component {
           key={schoolName}
           schoolName={schoolName}
           schoolIcon={undergradSchoolNameIconMap(this.props.lng)[schoolName]}
+          removing={this.state.removingSchool === schoolName}
           onRemove={this.handleSchoolRemove}
+          isBannedToRemove={
+            this.state.removingSchool !== null &&
+            this.state.removingSchool !== schoolName
+          }
         />
       ))}
     </Card.Group>
@@ -202,7 +195,7 @@ class SchoolFilterForm extends React.Component {
     }
   };
 
-  handleSchoolloading = (school) => {
+  handleSchoolloading = async (school) => {
     const { schoolsUpToLimit, loadingSchool, loadedSchools } = this.state;
     if (
       !schoolsUpToLimit &&
@@ -214,9 +207,8 @@ class SchoolFilterForm extends React.Component {
       }
 
       this.setState({ loadingSchool: school });
-      this.loadSyllabus(school);
+      await this.props.loadSyllabus(school);
 
-      // Move the setState execution out of setTimeout after loadSyllabus function is implemented
       setTimeout(() => {
         this.setState({
           loadingSchool: null,
@@ -226,22 +218,26 @@ class SchoolFilterForm extends React.Component {
     }
   };
 
-  handleSchoolRemove = (school) => {
+  handleSchoolRemove = async (school) => {
     if (this.state.loadedSchools.includes(school)) {
       let loadedSchools = this.state.loadedSchools;
       let selectedSchools = this.state.selectedSchools;
+      this.setState({ removingSchool: school });
 
-      loadedSchools.splice(loadedSchools.indexOf(school), 1);
-      if (selectedSchools.includes(school)) {
-        selectedSchools.splice(selectedSchools.indexOf(school), 1);
-        this.props.handleToggleFilter("school", school);
-      }
+      await this.props.removeSyllabus(school);
 
-      this.removeSyllabus(school);
-      this.setState({
-        loadedSchools: loadedSchools,
-        selectedSchools: selectedSchools,
-      });
+      setTimeout(() => {
+        loadedSchools.splice(loadedSchools.indexOf(school), 1);
+        if (selectedSchools.includes(school)) {
+          selectedSchools.splice(selectedSchools.indexOf(school), 1);
+          this.props.handleToggleFilter("school", school);
+        }
+        this.setState({
+          removingSchool: null,
+          loadedSchools: loadedSchools,
+          selectedSchools: selectedSchools,
+        });
+      }, 1000);
     }
   };
 
@@ -352,18 +348,4 @@ class SchoolFilterForm extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    loadedSchools: state.fetchedCourses.schools,
-  };
-};
-
-const mapDispatchToProps = {
-  fetchCourses,
-  addSchool,
-  removeSchool,
-};
-
-export default withNamespaces("translation")(
-  connect(mapStateToProps, mapDispatchToProps)(SchoolFilterForm)
-);
+export default withNamespaces("translation")(SchoolFilterForm);

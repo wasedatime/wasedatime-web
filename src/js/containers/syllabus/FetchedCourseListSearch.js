@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { fetchCourses, addSchool, removeSchool } from "../../actions/syllabus";
 import debounce from "lodash/debounce";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router";
@@ -236,7 +238,30 @@ class FetchedCourseSearch extends React.Component {
     );
   };
 
+  loadSyllabus = async (school) => {
+    this.props.addSchool(school);
+    this.props.fetchCourses();
+  };
+
+  removeSyllabus = async (school) => {
+    this.props.removeSchool(school);
+    this.props.fetchCourses();
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.fetchedCourses !== this.props.fetchedCourses) {
+      this.setState({
+        filteredCourses: this.filterCourses(
+          this.state.filterGroups,
+          this.props.fetchedCourses
+        ),
+      });
+    }
+  }
+
   render() {
+    console.log(this.props.fetchedCourses);
+    console.log(this.state.filteredCourses);
     const { inputText, searchTerm } = this.state;
     const searchLang =
       searchTerm === "" ? this.props.lng : getSearchLang(searchTerm);
@@ -257,7 +282,12 @@ class FetchedCourseSearch extends React.Component {
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
         />
-        <SchoolFilterForm handleToggleFilter={this.handleToggleFilter} />
+        <SchoolFilterForm
+          handleToggleFilter={this.handleToggleFilter}
+          loadedSchools={this.props.loadedSchools}
+          loadSyllabus={this.loadSyllabus}
+          removeSyllabus={this.removeSyllabus}
+        />
         <RowWrapper>
           <FetchedCourseList
             searchTerm={searchTerm}
@@ -297,4 +327,20 @@ class FetchedCourseSearch extends React.Component {
   }
 }
 
-export default withRouter(withNamespaces("translation")(FetchedCourseSearch));
+const mapStateToProps = (state) => {
+  return {
+    loadedSchools: state.fetchedCourses.schools,
+  };
+};
+
+const mapDispatchToProps = {
+  fetchCourses,
+  addSchool,
+  removeSchool,
+};
+
+export default withRouter(
+  withNamespaces("translation")(
+    connect(mapStateToProps, mapDispatchToProps)(FetchedCourseSearch)
+  )
+);

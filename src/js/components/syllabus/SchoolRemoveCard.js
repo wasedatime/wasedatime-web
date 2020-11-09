@@ -7,20 +7,41 @@ class SchoolRemoveCard extends React.Component {
   };
 
   render() {
-    const { schoolName, schoolIcon, onRemove } = this.props;
+    const {
+      schoolName,
+      schoolIcon,
+      removing,
+      onRemove,
+      isBannedToRemove,
+    } = this.props;
     return (
       <Dimmer.Dimmable
         as={Card}
-        onClick={() => onRemove(schoolName)}
+        onClick={() => (isBannedToRemove ? {} : onRemove(schoolName))}
         onMouseOver={() => this.setState({ isDimmerActive: true })}
         onMouseOut={() => this.setState({ isDimmerActive: false })}
       >
-        <Dimmer active={this.state.isDimmerActive} inverted>
-          <Icon
-            name="trash alternate"
-            size="big"
-            style={{ color: "rgba(255,0,0,0.5)" }}
-          />
+        <Dimmer
+          active={this.state.isDimmerActive || removing || isBannedToRemove}
+          inverted={!isBannedToRemove}
+        >
+          {removing ? (
+            <Icon
+              name="spinner"
+              size="big"
+              style={{ color: "rgba(0,0,0,0.5)" }}
+            />
+          ) : (
+            <Icon
+              name="trash alternate"
+              size="big"
+              style={{
+                color: isBannedToRemove
+                  ? "rgba(255,0,0,0.05)"
+                  : "rgba(255,0,0,0.5)",
+              }}
+            />
+          )}
         </Dimmer>
         <Image src={schoolIcon} />
       </Dimmer.Dimmable>

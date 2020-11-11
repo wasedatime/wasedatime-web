@@ -22,6 +22,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 
 import { ASE, CJL, CSE, FSE, GEC, PSE, SILS, SSS } from "../../data/schools";
+import { termKeysDecoder } from "../../utils/termKeysDecoder";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
@@ -262,7 +263,18 @@ const mapSchoolToIcon = (school) => (
 );
 
 const combineYearTerm = (year, term, t) => {
-  return `${year} ${t(`syllabus.semesterMap.${term}`)}`;
+  var str = `${year} `;
+  term.split(" ").forEach((substr) => {
+    str = str + t(`syllabus.semesterMap.${substr}`);
+  });
+  return str;
+};
+
+const getLang = (course, t) => {
+  return course[SYLLABUS_KEYS.LANG]
+    .toString()
+    .split(",")
+    .map((l, i) => (i > 0 ? " / " : "") + t(`syllabus.languages.${l}`));
 };
 
 const getDay = (day, t) => {
@@ -318,7 +330,12 @@ const CourseItem = ({
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
-  const yearTerm = combineYearTerm("2020", course[SYLLABUS_KEYS.TERM], t);
+  const langTerm = getLang(course, t);
+  const yearTerm = combineYearTerm(
+    "2020",
+    termKeysDecoder(course[SYLLABUS_KEYS.TERM]),
+    t
+  );
   const schoolIcons = mapSchoolToIcon(course[SYLLABUS_KEYS.SCHOOL]);
   const syllabusId = course[SYLLABUS_KEYS.ID];
   const shareLink = `https://wasedatime.com/courseEvals?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
@@ -585,7 +602,7 @@ const CourseItem = ({
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge>{t(`syllabus.${course[SYLLABUS_KEYS.LANG]}`)}</Badge>
+            <Badge>{langTerm}</Badge>
             {/* keywordsList */}
           </IconBadgeWrapper>
           <div

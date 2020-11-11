@@ -260,8 +260,6 @@ class FetchedCourseSearch extends React.Component {
   }
 
   render() {
-    console.log(this.props.fetchedCourses);
-    console.log(this.state.filteredCourses);
     const { inputText, searchTerm } = this.state;
     const searchLang =
       searchTerm === "" ? this.props.lng : getSearchLang(searchTerm);

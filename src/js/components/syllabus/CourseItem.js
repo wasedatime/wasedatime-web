@@ -21,7 +21,24 @@ import {
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 
-import { ASE, CJL, CSE, FSE, GEC, PSE, SILS, SSS } from "../../data/schools";
+import {
+  ASE,
+  CJL,
+  CSE,
+  FSE,
+  GEC,
+  PSE,
+  SILS,
+  SSS,
+  LAW,
+  CMS,
+  HSS,
+  EDU,
+  SOC,
+  HUM,
+  SPS,
+  CIE,
+} from "../../data/schools";
 import { termKeysDecoder } from "../../utils/termKeysDecoder";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";
@@ -36,6 +53,14 @@ import silsIcon from "../../../img/syllabus-icons/sils.png";
 import sssIcon from "../../../img/syllabus-icons/sss.png";
 import cjlIcon from "../../../img/syllabus-icons/cjl.png";
 import gecIcon from "../../../img/syllabus-icons/gec.png";
+import lawIcon from "../../../img/syllabus-icons/law.png";
+import cmsIcon from "../../../img/syllabus-icons/cms.png";
+import hssIcon from "../../../img/syllabus-icons/hss.png";
+import eduIcon from "../../../img/syllabus-icons/edu.png";
+import socIcon from "../../../img/syllabus-icons/soc.png";
+import humIcon from "../../../img/syllabus-icons/hum.png";
+import spsIcon from "../../../img/syllabus-icons/sps.png";
+import cieIcon from "../../../img/syllabus-icons/cie.png";
 // import { matches, size } from "lodash";
 
 const RowWrapper = styled("li")`
@@ -253,7 +278,14 @@ const schoolNameIconMap = {
   [CSE]: cseIcon,
   [ASE]: aseIcon,
   [CJL]: cjlIcon,
-  [GEC]: gecIcon,
+  [LAW]: lawIcon,
+  [CMS]: cmsIcon,
+  [HSS]: hssIcon,
+  [EDU]: eduIcon,
+  [SOC]: socIcon,
+  [HUM]: humIcon,
+  [SPS]: spsIcon,
+  [CIE]: cieIcon,
 };
 
 const mapSchoolToIcon = (school) => (

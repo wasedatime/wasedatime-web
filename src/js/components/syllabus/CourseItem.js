@@ -286,6 +286,7 @@ const schoolNameIconMap = {
   [HUM]: humIcon,
   [SPS]: spsIcon,
   [CIE]: cieIcon,
+  [GEC]: gecIcon,
 };
 
 const mapSchoolToIcon = (school) => (

@@ -109,19 +109,6 @@ class Filter extends React.Component {
       isChecked: filterGroups[langInputName].includes(input.value),
     }));
 
-    const specialLegend = t("syllabus.Special");
-    const specialInputName = "special";
-    const specialInput = {
-      value: "IPSE/English-based Undergraduate Program",
-      label: t("syllabus.IPSE/EN-based Undergrad Program"),
-    };
-    const checkedSpecialInput = [
-      {
-        ...specialInput,
-        isChecked: filterGroups[specialInputName].includes(specialInput.value),
-      },
-    ];
-
     const dayLegend = t("syllabus.day");
     const dayInputName = "day";
     const dayInputs = [
@@ -185,12 +172,6 @@ class Filter extends React.Component {
               legend={periodLegend}
               inputName={periodInputName}
               inputs={checkedPeriodInputs}
-            />
-            <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
-              legend={specialLegend}
-              inputName={specialInputName}
-              inputs={checkedSpecialInput}
             />
           </FilterGroupWrapper>
         </FilterOverlay>

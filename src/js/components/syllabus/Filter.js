@@ -1,25 +1,25 @@
 import React from "react";
 import stickybits from "stickybits";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faFilter} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import {
   headerHeight,
   searchBarHeight,
 } from "../../styled-components/variables";
 import FilterGroup from "./FilterGroup";
-import {Wrapper} from "../../styled-components/Wrapper";
-import {Overlay} from "../../styled-components/Overlay";
+import { Wrapper } from "../../styled-components/Wrapper";
+import { Overlay } from "../../styled-components/Overlay";
 
 const FilterWrapper = styled(Wrapper)`
   flex: none;
   overflow-y: auto;
   height: ${(props) =>
     props.isSideBar
-        ? `calc(100vh - ${props.theme.headerHeight} - ${props.theme.searchBarHeight});`
-        : "auto"};
+      ? `calc(100vh - ${props.theme.headerHeight} - ${props.theme.searchBarHeight});`
+      : "auto"};
 `;
 
 const FilterOverlay = styled(Overlay)`
@@ -93,9 +93,16 @@ class Filter extends React.Component {
     const langLegend = t("syllabus.Languages");
     const langInputName = "lang";
     const langInputs = [
-      { value: "EN", label: t("syllabus.English") },
-      { value: "JP", label: t("syllabus.Japanese") },
-      { value: "others", label: t("syllabus.Others") },
+      { value: "0", label: t("syllabus.languages.0") },
+      { value: "1", label: t("syllabus.languages.1") },
+      { value: "2", label: t("syllabus.languages.2") },
+      { value: "3", label: t("syllabus.languages.3") },
+      { value: "4", label: t("syllabus.languages.4") },
+      { value: "5", label: t("syllabus.languages.5") },
+      { value: "6", label: t("syllabus.languages.6") },
+      { value: "7", label: t("syllabus.languages.7") },
+      { value: "8", label: t("syllabus.languages.8") },
+      { value: "9", label: t("syllabus.languages.9") },
     ];
     const checkedLangInputs = langInputs.map((input) => ({
       ...input,

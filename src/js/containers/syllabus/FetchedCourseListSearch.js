@@ -163,8 +163,12 @@ class FetchedCourseSearch extends React.Component {
     filteredCourses =
       langFilters.length === 0 || langFilters.length === 3
         ? filteredCourses
-        : filteredCourses.filter((course) =>
-            langFilters.includes(course[SYLLABUS_KEYS.LANG])
+        : filteredCourses.filter(
+            (course) =>
+              course[SYLLABUS_KEYS.LANG]
+                .toString()
+                .split(",")
+                .filter((l) => langFilters.includes(l)).length > 0
           );
 
     const dayFilters = filterGroups.day;

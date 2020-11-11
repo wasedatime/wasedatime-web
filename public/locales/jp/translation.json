@@ -103,9 +103,6 @@
     "HSS": "文",
     "CJL": "日本語教育",
     "GEC": "グローバル",
-    "English": "英語",
-    "Japanese": "日本語",
-    "Others": "ほか",
     "IPSE": "理工国際プログラム",
     "EN-based Undergrad Program": "英語による学位取得",
     "IPSE/EN-based Undergrad Program": "理工国際プログラム / 英語による学位取得",
@@ -124,9 +121,6 @@
       "&": "&",
       "undecided": "未定"
     },
-    "JP": "日本語",
-    "EN": "英語",
-    "others": "ほか",
     "languages": {
       "-1": "N/A",
       "0": "日本語",

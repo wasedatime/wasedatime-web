@@ -103,9 +103,6 @@
     "HSS": "HSS",
     "CJL": "CJL",
     "GEC": "GEC (Global)",
-    "English": "English",
-    "Japanese": "Japanese",
-    "Others": "Others",
     "IPSE": "IPSE",
     "EN-based Undergrad Program": "EN-based Undergrad Program",
     "IPSE/EN-based Undergrad Program": "IPSE / EN-based Undergrad Program",
@@ -124,9 +121,6 @@
       "&": "&",
       "undecided": "Undecided"
     },
-    "JP": "JP",
-    "EN": "EN",
-    "others": "others",
     "languages": {
       "-1": "N/A",
       "0": "JP",
@@ -136,9 +130,9 @@
       "4": "Chinese",
       "5": "Spanish",
       "6": "Korean",
-      "7": "Russia",
+      "7": "Russian",
       "8": "Italian",
-      "9": "other"
+      "9": "Others"
     },
     "location": {
       "undecided": "undecided"

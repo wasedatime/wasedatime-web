@@ -1,8 +1,8 @@
 import React from "react";
-import {withRouter} from "react-router-dom";
-import {connect} from "react-redux";
-import {withStyles} from "@material-ui/core/styles";
-import {withNamespaces} from "react-i18next";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { withStyles } from "@material-ui/core/styles";
+import { withNamespaces } from "react-i18next";
 import PropTypes from "prop-types";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import Button from "@material-ui/core/Button";
@@ -11,22 +11,21 @@ import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import noScroll from "no-scroll";
 import ReactGA from "react-ga";
 
-import {setFirstTimeAccessToFalse} from "../../actions/user";
+import { setFirstTimeAccessToFalse } from "../../actions/user";
 import Greeting from "./Greeting";
-import NewFeature from "./NewFeature";
 import Notice from "./Notice";
-import {gaLanguage} from "../../ga/eventCategories";
-import {gaSetLanguage} from "../../ga/eventActions";
+import { gaLanguage } from "../../ga/eventCategories";
+import { gaSetLanguage } from "../../ga/eventActions";
 
 const styles = (theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    dotActive: {
-        backgroundColor: "#000",
-    },
-    buttonLabel: {
-        fontSize: "1.6em",
+  root: {
+    flexGrow: 1,
+  },
+  dotActive: {
+    backgroundColor: "#000",
+  },
+  buttonLabel: {
+    fontSize: "1.6em",
   },
 });
 
@@ -78,7 +77,7 @@ class DialogStepper extends React.Component {
   render() {
     const { classes, t } = this.props;
     const { activeStep } = this.state;
-    const setupSteps = [<Greeting />, <NewFeature />, <Notice />];
+    const setupSteps = [<Greeting />, <Notice />];
     const maxSteps = setupSteps.length;
     const isFirstStep = activeStep === 0;
     const isLastStep = activeStep === maxSteps - 1;

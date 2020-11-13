@@ -15,8 +15,7 @@
   "welcome": {
     "welcome": "Welcome to WasedaTime!",
     "newFeature": "New feature:",
-    "courseEvals": "Course Reviews",
-    "added": "is available!",
+    "newSchoolsAdded": "New schools added",
     "returningUsers": "For returning users, your added courses are preserved.",
     "next": "next",
     "back": "back",
@@ -32,6 +31,7 @@
     "these contributors": "these contributors",
     "a": ".",
     "notice": "Notice",
+    "allSchoolsAdded": "All undergraduate & graduate schools are supported in Syllabus now!",
     "currently": "Currently, we only support the following schools in Syllabus:",
     "supportedSchools": "SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC (Global)",
     "sorry": "We are sorry for any inconvenience caused.",

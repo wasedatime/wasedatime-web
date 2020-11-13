@@ -307,7 +307,9 @@ const getLang = (course, t) => {
   return course[SYLLABUS_KEYS.LANG]
     .toString()
     .split(",")
-    .map((l, i) => (i > 0 ? " / " : "") + t(`syllabus.languages.${l}`));
+    .map((l, i) =>
+      l === -1 ? "N/A" : (i > 0 ? " / " : "") + t(`syllabus.languageKeys.${l}`)
+    );
 };
 
 const getDay = (day, t) => {

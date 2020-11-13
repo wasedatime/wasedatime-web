@@ -3,7 +3,8 @@ import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import {withStyles} from "@material-ui/core/styles";
+import { Dropdown } from "semantic-ui-react";
+import { withStyles } from "@material-ui/core/styles";
 
 const styles = (theme) => ({
   formLabel: {
@@ -35,35 +36,55 @@ const FilterGroup = ({
   inputs,
   inputName,
   classes,
+  filterType,
 }) => {
-  const checkboxes = inputs.map((input) => (
-    <FormControlLabel
-      key={input.value}
-      control={
-        <Checkbox
-          id={input.value}
-          name={inputName}
-          value={input.value}
-          checked={input.isChecked}
-          onChange={(e) => {
-            handleToggleFilter(e.target.name, e.target.value);
-          }}
-          classes={{ root: classes.checkBox, checked: classes.checkBoxChecked }}
-        />
-      }
-      label={input.label}
-      classes={{
-        root: classes.formControlLabel,
-        label: classes.formControlLabel_label,
-      }}
-    />
-  ));
+  var filterItems;
+  if (filterType === "checkbox") {
+    filterItems = inputs.map((input) => (
+      <FormControlLabel
+        key={input.value}
+        control={
+          <Checkbox
+            id={input.value}
+            name={inputName}
+            value={input.value}
+            checked={input.isChecked}
+            onChange={(e) => {
+              handleToggleFilter(e.target.name, e.target.value);
+            }}
+            classes={{
+              root: classes.checkBox,
+              checked: classes.checkBoxChecked,
+            }}
+          />
+        }
+        label={input.label}
+        classes={{
+          root: classes.formControlLabel,
+          label: classes.formControlLabel_label,
+        }}
+      />
+    ));
+  } else if (filterType === "dropdown") {
+    filterItems = (
+      <Dropdown
+        placeholder={legend}
+        fluid
+        multiple
+        selection
+        options={inputs}
+        onChange={(e, data) => {
+          handleToggleFilter(inputName, data.value);
+        }}
+      />
+    );
+  }
 
   return (
     <div>
       <FormLabel className={classes.formLabel}>{legend}</FormLabel>
       <FormGroup row className={classes.formGroup}>
-        {checkboxes}
+        {filterItems}
       </FormGroup>
     </div>
   );

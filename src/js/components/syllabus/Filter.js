@@ -82,8 +82,86 @@ class Filter extends React.Component {
     const semesterLegend = t("syllabus.Semesters");
     const semesterInputName = "semester";
     const semesterInputs = [
-      { value: "spring", label: t("syllabus.Spring / Summer") },
-      { value: "fall", label: t("syllabus.Fall / Winter") },
+      {
+        key:
+          t("syllabus.semesterMap.Spring") + t("syllabus.semesterMap.Semester"),
+        text:
+          t("syllabus.semesterMap.Spring") + t("syllabus.semesterMap.Semester"),
+        value: "0s",
+      },
+      {
+        key:
+          t("syllabus.semesterMap.Fall") + t("syllabus.semesterMap.Semester"),
+        text:
+          t("syllabus.semesterMap.Fall") + t("syllabus.semesterMap.Semester"),
+        value: "2s",
+      },
+      {
+        key:
+          t("syllabus.semesterMap.Spring") + t("syllabus.semesterMap.Quarter"),
+        text:
+          t("syllabus.semesterMap.Spring") + t("syllabus.semesterMap.Quarter"),
+        value: "0q",
+      },
+      {
+        key:
+          t("syllabus.semesterMap.Summer") + t("syllabus.semesterMap.Quarter"),
+        text:
+          t("syllabus.semesterMap.Summer") + t("syllabus.semesterMap.Quarter"),
+        value: "1q",
+      },
+      {
+        key: t("syllabus.semesterMap.Fall") + t("syllabus.semesterMap.Quarter"),
+        text:
+          t("syllabus.semesterMap.Fall") + t("syllabus.semesterMap.Quarter"),
+        value: "2q",
+      },
+      {
+        key:
+          t("syllabus.semesterMap.Winter") + t("syllabus.semesterMap.Quarter"),
+        text:
+          t("syllabus.semesterMap.Winter") + t("syllabus.semesterMap.Quarter"),
+        value: "3q",
+      },
+      {
+        key:
+          t("syllabus.semesterMap.Spring") +
+          t("syllabus.semesterMap.Intensive"),
+        text:
+          t("syllabus.semesterMap.Spring") +
+          t("syllabus.semesterMap.Intensive"),
+        value: "0i",
+      },
+      {
+        key:
+          t("syllabus.semesterMap.Summer") +
+          t("syllabus.semesterMap.Intensive"),
+        text:
+          t("syllabus.semesterMap.Summer") +
+          t("syllabus.semesterMap.Intensive"),
+        value: "1i",
+      },
+      {
+        key:
+          t("syllabus.semesterMap.Fall") + t("syllabus.semesterMap.Intensive"),
+        text:
+          t("syllabus.semesterMap.Fall") + t("syllabus.semesterMap.Intensive"),
+        value: "2i",
+      },
+      {
+        key:
+          t("syllabus.semesterMap.Winter") +
+          t("syllabus.semesterMap.Intensive"),
+        text:
+          t("syllabus.semesterMap.Winter") +
+          t("syllabus.semesterMap.Intensive"),
+        value: "3i",
+      },
+      {
+        key: t("syllabus.semesterMap.Full-Year"),
+        text: t("syllabus.semesterMap.Full-Year"),
+        value: "f",
+      },
     ];
     const checkedSemesterInputs = semesterInputs.map((input) => ({
       ...input,
@@ -93,16 +171,56 @@ class Filter extends React.Component {
     const langLegend = t("syllabus.Languages");
     const langInputName = "lang";
     const langInputs = [
-      { value: "0", label: t("syllabus.languages.0") },
-      { value: "1", label: t("syllabus.languages.1") },
-      { value: "2", label: t("syllabus.languages.2") },
-      { value: "3", label: t("syllabus.languages.3") },
-      { value: "4", label: t("syllabus.languages.4") },
-      { value: "5", label: t("syllabus.languages.5") },
-      { value: "6", label: t("syllabus.languages.6") },
-      { value: "7", label: t("syllabus.languages.7") },
-      { value: "8", label: t("syllabus.languages.8") },
-      { value: "9", label: t("syllabus.languages.9") },
+      {
+        key: t("syllabus.languageKeys.0"),
+        text: t("syllabus.languages.0"),
+        value: "0",
+      },
+      {
+        key: t("syllabus.languageKeys.1"),
+        text: t("syllabus.languages.1"),
+        value: "1",
+      },
+      {
+        key: t("syllabus.languageKeys.2"),
+        text: t("syllabus.languages.2"),
+        value: "2",
+      },
+      {
+        key: t("syllabus.languageKeys.3"),
+        text: t("syllabus.languages.3"),
+        value: "3",
+      },
+      {
+        key: t("syllabus.languageKeys.4"),
+        text: t("syllabus.languages.4"),
+        value: "4",
+      },
+      {
+        key: t("syllabus.languageKeys.5"),
+        text: t("syllabus.languages.5"),
+        value: "5",
+      },
+      {
+        key: t("syllabus.languageKeys.6"),
+        text: t("syllabus.languages.6"),
+        value: "6",
+      },
+      {
+        key: t("syllabus.languageKeys.7"),
+        text: t("syllabus.languages.7"),
+        value: "7",
+      },
+      {
+        key: t("syllabus.languageKeys.8"),
+        text: t("syllabus.languages.8"),
+        value: "8",
+      },
+      {
+        key: t("syllabus.languageKeys.9"),
+        text: t("syllabus.languages.9"),
+        value: "9",
+      },
     ];
     const checkedLangInputs = langInputs.map((input) => ({
       ...input,
@@ -154,24 +272,28 @@ class Filter extends React.Component {
               legend={semesterLegend}
               inputName={semesterInputName}
               inputs={checkedSemesterInputs}
+              filterType={"dropdown"}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
               legend={langLegend}
               inputName={langInputName}
               inputs={checkedLangInputs}
+              filterType={"dropdown"}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
               legend={dayLegend}
               inputName={dayInputName}
               inputs={checkedDayInputs}
+              filterType={"checkbox"}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}
               legend={periodLegend}
               inputName={periodInputName}
               inputs={checkedPeriodInputs}
+              filterType={"checkbox"}
             />
           </FilterGroupWrapper>
         </FilterOverlay>

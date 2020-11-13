@@ -105,12 +105,20 @@ class FetchedCourseSearch extends React.Component {
     this.setState((prevState, props) => {
       const { [inputName]: filters, ...rest } = prevState.filterGroups;
       let newFilters, gaAction;
-      if (filters.includes(value)) {
-        newFilters = filters.filter((elem) => elem !== value);
-        gaAction = gaRemoveFilter;
+      if (Array.isArray(value)) {
+        gaAction =
+          filters && value.length < filters.length
+            ? gaRemoveFilter
+            : gaApplyFilter;
+        newFilters = value;
       } else {
-        newFilters = [...filters, value];
-        gaAction = gaApplyFilter;
+        if (filters.includes(value)) {
+          newFilters = filters.filter((elem) => elem !== value);
+          gaAction = gaRemoveFilter;
+        } else {
+          newFilters = [...filters, value];
+          gaAction = gaApplyFilter;
+        }
       }
       ReactGA.event({
         category: gaFilter,
@@ -133,22 +141,14 @@ class FetchedCourseSearch extends React.Component {
   };
 
   filterCourses = (filterGroups, courses) => {
-    const semesters = filterGroups.semester;
-    let semesterFilters = [];
-    // if not empty not full
-    if (semesters.length !== 0 && semesters.length !== 2) {
-      if (semesters.includes("fall")) {
-        semesterFilters = semesterFilters.concat(fallSemesters);
-      }
-      if (semesters.includes("spring")) {
-        semesterFilters = semesterFilters.concat(springSemesters);
-      }
-    }
+    const semesterFilters = filterGroups.semester;
     let filteredCourses =
       semesterFilters.length === 0
         ? courses
         : courses.filter((course) =>
-            semesterFilters.includes(course[SYLLABUS_KEYS.TERM])
+            semesterFilters.some((filter) =>
+              course[SYLLABUS_KEYS.TERM].includes(filter)
+            )
           );
 
     const schoolFilters = filterGroups.school;
@@ -161,7 +161,7 @@ class FetchedCourseSearch extends React.Component {
 
     const langFilters = filterGroups.lang;
     filteredCourses =
-      langFilters.length === 0 || langFilters.length === 3
+      langFilters.length === 0 || langFilters.length === 10
         ? filteredCourses
         : filteredCourses.filter(
             (course) =>

@@ -92,6 +92,12 @@ const StyledHeading = styled("h3")`
   color: #000;
 `;
 
+const StyledSubHeading = styled(StyledHeading)`
+  font-size: 1em;
+  ${media.phone`font-size: 0.9em;`};
+  color: #777;
+`;
+
 const CourseItemRow = styled("div")`
   display: flex;
   flex-direction: row;
@@ -633,6 +639,9 @@ const CourseItem = ({
     <RowWrapper>
       <CourseItemWrapper>
         <StyledHeading>{highlightedTitle}</StyledHeading>
+        {isInCourseEvalsPage && (
+          <StyledSubHeading>{course[SYLLABUS_KEYS.SUBTITLE]}</StyledSubHeading>
+        )}
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>

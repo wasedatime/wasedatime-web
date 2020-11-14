@@ -1,7 +1,9 @@
 import React from "react";
 import MediaQuery from "react-responsive";
+import { Doughnut } from "react-chartjs-2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
+import { Segment, Grid, Table, Statistic, Divider } from "semantic-ui-react";
 import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -150,6 +152,9 @@ const getRelatedCourses = (
   return sortedRelatedCourses;
 };
 
+const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
+const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
+
 class CourseEvals extends React.Component {
   constructor(props) {
     super(props);
@@ -275,6 +280,71 @@ class CourseEvals extends React.Component {
   };
 
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });
+  mapCourseType = (course) => {
+    if (course[SYLLABUS_KEYS.TYPE] === -1) return "";
+    const courseTypeMap = [
+      "Lecture",
+      "Seminar",
+      "Work",
+      "Foreign Langauge",
+      "On-demand",
+      "Thesis",
+      "Graduate Research",
+      "Practice",
+      "Blended",
+    ];
+    return courseTypeMap[course[SYLLABUS_KEYS.TYPE]];
+  };
+
+  mapCourseLevel = (course) => {
+    if (course[SYLLABUS_KEYS.TYPE] === -1) return "";
+    const courseLevelMap = [
+      "Beginner",
+      "Intermediate",
+      "Advanced",
+      "Final-stage",
+      "Master",
+      "Doctor",
+    ];
+    return courseLevelMap[course[SYLLABUS_KEYS.LEVEL]];
+  };
+
+  evalChartData = (course) => {
+    return {
+      datasets: [
+        {
+          data: course[SYLLABUS_KEYS.EVAL].map(
+            (e) => e[SYLLABUS_KEYS.EVAL_PERCENT]
+          ),
+          backgroundColor: course[SYLLABUS_KEYS.EVAL].map(
+            (e) => evalColorMap[e[SYLLABUS_KEYS.EVAL_TYPE]]
+          ),
+        },
+      ],
+      labels: course[SYLLABUS_KEYS.EVAL].map(
+        (e) => evalTypeMap[e[SYLLABUS_KEYS.EVAL_TYPE]]
+      ),
+    };
+  };
+
+  evalChartOptions = () => ({
+    legend: {
+      position: "left",
+      labels: {
+        boxWidth: 12,
+      },
+    },
+    tooltips: {
+      callbacks: {
+        title: function(tooltipItem, data) {
+          return data["labels"][tooltipItem[0]["index"]];
+        },
+        label: function(tooltipItem, data) {
+          return " " + data["datasets"][0]["data"][tooltipItem["index"]] + "%";
+        },
+      },
+    },
+  });
 
   render() {
     const {
@@ -332,6 +402,93 @@ class CourseEvals extends React.Component {
                   isInCourseEvalsPage={true}
                 />
               )}
+
+              <Segment style={{ fontSize: "1em" }}>
+                <Grid columns={2} stackable>
+                  <Grid.Column>
+                    <Grid columns={2} style={{ padding: "1em 5em" }}>
+                      <Grid.Column style={{ textAlign: "center" }}>
+                        <Statistic>
+                          <Statistic.Value>
+                            {thisCourse[SYLLABUS_KEYS.MIN_YEAR]}
+                          </Statistic.Value>
+                          <Statistic.Label>Min Year</Statistic.Label>
+                        </Statistic>
+                      </Grid.Column>
+                      <Grid.Column style={{ textAlign: "center" }}>
+                        <Statistic>
+                          <Statistic.Value>
+                            {thisCourse[SYLLABUS_KEYS.CREDIT]}
+                          </Statistic.Value>
+                          <Statistic.Label>Credit</Statistic.Label>
+                        </Statistic>
+                      </Grid.Column>
+                    </Grid>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Table unstackable>
+                      <Table.Body>
+                        <Table.Row>
+                          <Table.Cell>Type</Table.Cell>
+                          <Table.Cell>
+                            <b>{this.mapCourseType(thisCourse)}</b>
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell>Category</Table.Cell>
+                          <Table.Cell>
+                            <b>{thisCourse[SYLLABUS_KEYS.CATEGORY]}</b>
+                          </Table.Cell>
+                        </Table.Row>
+                        <Table.Row>
+                          <Table.Cell>Level</Table.Cell>
+                          <Table.Cell>
+                            <b>{this.mapCourseLevel(thisCourse)}</b>
+                          </Table.Cell>
+                        </Table.Row>
+                      </Table.Body>
+                    </Table>
+                  </Grid.Column>
+                </Grid>
+
+                <Divider horizontal style={{ margin: "3em" }}>
+                  Evaluation
+                </Divider>
+
+                <Grid columns={2} stackable>
+                  <Grid.Column>
+                    <Doughnut
+                      data={this.evalChartData(thisCourse)}
+                      options={this.evalChartOptions()}
+                    />
+                  </Grid.Column>
+                  <Grid.Column>
+                    <Table>
+                      <Table.Body>
+                        {thisCourse[SYLLABUS_KEYS.EVAL].map((e) => (
+                          <Table.Row>
+                            <Table.Cell>
+                              <span
+                                style={{
+                                  color:
+                                    evalColorMap[e[SYLLABUS_KEYS.EVAL_TYPE]],
+                                  fontSize: "2em",
+                                }}
+                              >
+                                ●
+                              </span>{" "}
+                              {evalTypeMap[e[SYLLABUS_KEYS.EVAL_TYPE]]}
+                            </Table.Cell>
+                            <Table.Cell>
+                              {e[SYLLABUS_KEYS.EVAL_CRITERIA]}
+                            </Table.Cell>
+                          </Table.Row>
+                        ))}
+                      </Table.Body>
+                    </Table>
+                  </Grid.Column>
+                </Grid>
+              </Segment>
 
               <StyledSubHeading>
                 {this.props.t(`courseEvals.Reviews`)}{" "}

@@ -5,9 +5,9 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import CourseChunk from "./CourseChunk";
-import {Overlay} from "../../styled-components/Overlay";
-import {Wrapper} from "../../styled-components/Wrapper";
-import {withNamespaces} from "react-i18next";
+import { Overlay } from "../../styled-components/Overlay";
+import { Wrapper } from "../../styled-components/Wrapper";
+import { withNamespaces } from "react-i18next";
 import LANGS from "../../config/langs";
 
 const ExtendedWrapper = styled(Wrapper)`
@@ -30,7 +30,7 @@ const CourseChunkWrapper = styled("div")`
 const getChunkKey = (chunk) => {
   const head = chunk[0];
   const tail = chunk[chunk.length - 1];
-  return `${head._id}-${tail._id}`;
+  return `${head.a}-${tail.a}`;
 };
 
 const COURSES_PER_CHUNK = 5;

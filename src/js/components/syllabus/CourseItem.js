@@ -4,7 +4,7 @@ import MediaQuery from "react-responsive";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
-  faCommentDots,
+  faInfoCircle,
   faExternalLinkSquareAlt,
   faMapMarkerAlt,
   faMinusCircle,
@@ -431,8 +431,8 @@ const CourseItem = ({
                 href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
                 target="_blank"
               >
-                <FontAwesomeIcon icon={faCommentDots} />{" "}
-                {t("courseEvals.Reviews")}
+                <FontAwesomeIcon icon={faInfoCircle} />{" "}
+                {t("courseEvals.Details")}
               </ViewEvalsButton>
             </EvalButtonsWrapper>
           )
@@ -469,7 +469,11 @@ const CourseItem = ({
             <ViewEvalsIconButton
               href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
             >
-              <FontAwesomeIcon icon={faCommentDots} size="2x" />{" "}
+              <FontAwesomeIcon
+                icon={faInfoCircle}
+                size="2x"
+                transform="shrink-2"
+              />{" "}
             </ViewEvalsIconButton>
           )
         );
@@ -499,24 +503,23 @@ const CourseItem = ({
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => {
         /* Share Button */
-        return (
-          matches &&
-          isInCourseEvalsPage && (
-            <SocialMediaRow>
-              <a
-                className="twitter-share-button"
-                href={`https://twitter.com/intent/tweet?url=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faTwitterSquare}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#00ACEE" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
+        return matches && isInCourseEvalsPage ? (
+          <SocialMediaRow>
+            <a
+              className="twitter-share-button"
+              href={`https://twitter.com/intent/tweet?url=${shareLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faTwitterSquare}
+                size="lg" // lg = slight large than 1x
+                style={{ color: "#00ACEE" }}
+              />{" "}
+            </a>
+          </SocialMediaRow>
+        ) : (
+          ""
         );
       }}
     </MediaQuery>
@@ -526,24 +529,23 @@ const CourseItem = ({
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => {
         /* Share Button */
-        return (
-          matches &&
-          isInCourseEvalsPage && (
-            <SocialMediaRow>
-              <a
-                className="facebook-share-button"
-                href={`https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faFacebookSquare}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#3B5998" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
+        return matches && isInCourseEvalsPage ? (
+          <SocialMediaRow>
+            <a
+              className="facebook-share-button"
+              href={`https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faFacebookSquare}
+                size="lg" // lg = slight large than 1x
+                style={{ color: "#3B5998" }}
+              />{" "}
+            </a>
+          </SocialMediaRow>
+        ) : (
+          ""
         );
       }}
     </MediaQuery>
@@ -553,24 +555,23 @@ const CourseItem = ({
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => {
         /* Share Button */
-        return (
-          matches &&
-          isInCourseEvalsPage && (
-            <SocialMediaRow>
-              <a
-                className="linkedin-share-button"
-                href={`http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faLinkedin}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#0E76A8" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
+        return matches && isInCourseEvalsPage ? (
+          <SocialMediaRow>
+            <a
+              className="linkedin-share-button"
+              href={`http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faLinkedin}
+                size="lg" // lg = slight large than 1x
+                style={{ color: "#0E76A8" }}
+              />{" "}
+            </a>
+          </SocialMediaRow>
+        ) : (
+          ""
         );
       }}
     </MediaQuery>
@@ -580,24 +581,23 @@ const CourseItem = ({
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => {
         /* Share Button */
-        return (
-          matches &&
-          isInCourseEvalsPage && (
-            <SocialMediaRow>
-              <a
-                className="line-share-button"
-                href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faLine}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#00B400" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
+        return matches && isInCourseEvalsPage ? (
+          <SocialMediaRow>
+            <a
+              className="line-share-button"
+              href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faLine}
+                size="lg" // lg = slight large than 1x
+                style={{ color: "#00B400" }}
+              />{" "}
+            </a>
+          </SocialMediaRow>
+        ) : (
+          ""
         );
       }}
     </MediaQuery>
@@ -607,24 +607,23 @@ const CourseItem = ({
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => {
         /* Share Button */
-        return (
-          matches &&
-          isInCourseEvalsPage && (
-            <SocialMediaRow>
-              <a
-                className="whatapp-share-button"
-                href={`https://wa.me/?text=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faWhatsappSquare}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#4FCE5D" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
+        return matches && isInCourseEvalsPage ? (
+          <SocialMediaRow>
+            <a
+              className="whatapp-share-button"
+              href={`https://wa.me/?text=${shareLink}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                icon={faWhatsappSquare}
+                size="lg" // lg = slight large than 1x
+                style={{ color: "#4FCE5D" }}
+              />{" "}
+            </a>
+          </SocialMediaRow>
+        ) : (
+          ""
         );
       }}
     </MediaQuery>

@@ -1,22 +1,27 @@
 import React from "react";
 import MediaQuery from "react-responsive";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faBullhorn} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import qs from "qs";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import axios from "axios";
-import {wasetimeApiStatic} from "../../config/api";
+import { wasetimeApiStatic } from "../../config/api";
 import ReactGA from "react-ga";
-import {gaRelatedCourses} from "../../ga/eventCategories";
-import {gaAppendActionWithLng, gaCloseModal, gaOpenModal,} from "../../ga/eventActions";
+import { gaRelatedCourses } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaCloseModal,
+  gaOpenModal,
+} from "../../ga/eventActions";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 import levenshtein from "levenshtein-edit-distance";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
 
-import {media, sizes} from "../../styled-components/utils";
-import {RowWrapper, Wrapper} from "../../styled-components/Wrapper";
-import {Overlay} from "../../styled-components/Overlay";
+import { media, sizes } from "../../styled-components/utils";
+import { RowWrapper, Wrapper } from "../../styled-components/Wrapper";
+import { Overlay } from "../../styled-components/Overlay";
 
 import ReviewLangSwitches from "./ReviewLangSwitches";
 import RelatedCoursesButton from "./RelatedCoursesButton";
@@ -104,10 +109,10 @@ const getCourse = (loadedCourses, courseID) => {
 };
 
 const getCourseKey = (course) =>
-  course.ks.find((key) => key.s === "SILS" || key.s === "PSE") &&
-  course.t.toLowerCase().includes("seminar")
-    ? course._id.substring(0, 12)
-    : course._id.substring(0, 10);
+  ["SILS", "PSE"].includes(course[SYLLABUS_KEYS.SCHOOL]) &&
+  course[SYLLABUS_KEYS.TITLE].toLowerCase().includes("seminar")
+    ? course[SYLLABUS_KEYS.ID].substring(0, 12)
+    : course[SYLLABUS_KEYS.ID].substring(0, 10);
 
 const getRelatedCourses = (
   loadedCourses,
@@ -118,7 +123,7 @@ const getRelatedCourses = (
 ) => {
   const relatedCourseIDs = Object.keys(loadedCourses).filter(
     (courseID) =>
-      loadedCourses[courseID].c === courseCode &&
+      loadedCourses[courseID][SYLLABUS_KEYS.CODE] === courseCode &&
       getCourseKey(loadedCourses[courseID]) !== thisCourseKey
   );
   const relatedCourses = relatedCourseIDs.map(
@@ -126,12 +131,19 @@ const getRelatedCourses = (
   );
   const sortedRelatedCourses = relatedCourses
     .sort((a, b) => {
-      if (a.ks[0].s === thisCourseSchool && b.ks[0].s !== thisCourseSchool)
+      if (
+        a[SYLLABUS_KEYS.SCHOOL] === thisCourseSchool &&
+        b[SYLLABUS_KEYS.SCHOOL] !== thisCourseSchool
+      )
         return -1;
-      if (a.ks[0].s !== thisCourseSchool && b.ks[0].s === thisCourseSchool)
+      if (
+        a[SYLLABUS_KEYS.SCHOOL] !== thisCourseSchool &&
+        b[SYLLABUS_KEYS.SCHOOL] === thisCourseSchool
+      )
         return 1;
       return (
-        levenshtein(thisCourseTitle, a.t) - levenshtein(thisCourseTitle, b.t)
+        levenshtein(thisCourseTitle, a[SYLLABUS_KEYS.TITLE]) -
+        levenshtein(thisCourseTitle, b[SYLLABUS_KEYS.TITLE])
       );
     })
     .slice(0, 10);
@@ -184,13 +196,13 @@ class CourseEvals extends React.Component {
     // 1. Get related courses by code, sort them, and get the first k courses (k=10)
     const relatedCourses = getRelatedCourses(
       loadedCourses,
-      thisCourse.c,
+      thisCourse[SYLLABUS_KEYS.CODE],
       thisCourseKey,
-      thisCourse.t,
-      thisCourse.ks[0].s
+      thisCourse[SYLLABUS_KEYS.TITLE],
+      thisCourse[SYLLABUS_KEYS.SCHOOL]
     );
 
-    // 2. Make the key of tis course and keys of top 3 related courses into a list
+    // 2. Make the key of this course and keys of top 3 related courses into a list
     const courseKeysToFetchEvals = [thisCourseKey].concat(
       relatedCourses.slice(0, 3).map((course) => getCourseKey(course))
     );
@@ -237,27 +249,10 @@ class CourseEvals extends React.Component {
 
   async getCourseEvalsByKey(courseKeys) {
     try {
-      const header =
-        process.env.NODE_ENV === "production"
-          ? {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          : {
-              headers: {
-                "Content-Type": "application/json",
-                "X-Api-Key": process.env.REACT_APP_X_API_KEY,
-              },
-            };
       // get reviews by courseKeys
-      const res = await axios.post(
-        wasetimeApiStatic.courseEvalsBaseURL,
-        {
-          course_keys: courseKeys,
-        },
-        header
-      );
+      const res = await axios.post(process.env.REACT_APP_REVIEWS_API_BASE_URL, {
+        course_keys: courseKeys,
+      });
       return res.data.data;
     } catch (error) {
       console.error(error);

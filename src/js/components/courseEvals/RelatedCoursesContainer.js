@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import CourseEvalsGroup from "./CourseEvalsGroup";
 import ReviewLangSwitches from "./ReviewLangSwitches";
-import {media} from "../../styled-components/utils";
-import {Overlay} from "../../styled-components/Overlay";
-import {withNamespaces} from "react-i18next";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
+import { media } from "../../styled-components/utils";
+import { Overlay } from "../../styled-components/Overlay";
+import { withNamespaces } from "react-i18next";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
@@ -55,10 +56,10 @@ const RelatedCoursesExplainTooltipText = styled("span")`
 `;
 
 const getCourseKey = (course) =>
-  course.ks.find((key) => key.s === "SILS" || key.s === "PSE") &&
-  course.t.toLowerCase().includes("seminar")
-    ? course._id.substring(0, 12)
-    : course._id.substring(0, 10);
+  ["SILS", "PSE"].includes(course[SYLLABUS_KEYS.SCHOOL]) &&
+  course[SYLLABUS_KEYS.TITLE].toLowerCase().includes("seminar")
+    ? course[SYLLABUS_KEYS.ID].substring(0, 12)
+    : course[SYLLABUS_KEYS.ID].substring(0, 10);
 
 class RelatedCoursesContainer extends React.Component {
   state = {

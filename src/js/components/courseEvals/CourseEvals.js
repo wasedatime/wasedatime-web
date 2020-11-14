@@ -8,7 +8,6 @@ import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import axios from "axios";
-import { wasetimeApiStatic } from "../../config/api";
 import ReactGA from "react-ga";
 import { gaRelatedCourses } from "../../ga/eventCategories";
 import {

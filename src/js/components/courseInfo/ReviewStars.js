@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faStar, faStarHalf} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
 
 const FilledStar = styled(FontAwesomeIcon)`
   color: orange;
@@ -15,7 +15,7 @@ const BlankStar = styled(FontAwesomeIcon)`
   vertical-align: 0.1em;
 `;
 
-const StyledEvaluationStars = styled("span")`
+const StyledReviewStars = styled("span")`
   white-space: pre;
 `;
 
@@ -47,12 +47,12 @@ const displayBlankStars = (scale) => {
   // return [...Array(5-Math.ceil(scale)).keys()].map(i => <BlankStar key={i} icon={faStar} />)
 };
 
-const EvaluationStars = ({ scale }) => (
-  <StyledEvaluationStars>
+const ReviewStars = ({ scale }) => (
+  <StyledReviewStars>
     {displayFilledStars(scale)}
     {displayHalfStar(scale)}
     {displayBlankStars(scale)}
-  </StyledEvaluationStars>
+  </StyledReviewStars>
 );
 
-export default EvaluationStars;
+export default ReviewStars;

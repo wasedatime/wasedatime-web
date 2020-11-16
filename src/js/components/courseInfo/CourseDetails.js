@@ -38,12 +38,13 @@ const StyledSegment = styled(Segment)`
   width: 100% !important;
   font-size: 1em !important;
   margin: 1em 0px !important;
+  cursor: default !important;
   &:hover {
     transform: none !important;
   }
 `;
 
-const CourseDetailsBlock = ({ course, t }) => {
+const CourseDetails = ({ course, t }) => {
   return (
     <StyledSegment>
       <Grid columns={2} stackable>
@@ -102,4 +103,4 @@ const CourseDetailsBlock = ({ course, t }) => {
   );
 };
 
-export default withNamespaces("translation")(CourseDetailsBlock);
+export default withNamespaces("translation")(CourseDetails);

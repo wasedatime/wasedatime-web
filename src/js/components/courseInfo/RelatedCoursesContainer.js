@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import CourseEvalsGroup from "./CourseEvalsGroup";
+import CourseReviewsGroup from "./CourseReviewsGroup";
 import ReviewLangSwitches from "./ReviewLangSwitches";
 import { media } from "../../styled-components/utils";
 import { Overlay } from "../../styled-components/Overlay";
@@ -69,18 +69,18 @@ class RelatedCoursesContainer extends React.Component {
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });
 
   render() {
-    const { relatedCourses, courseEvals, searchLang, t } = this.props;
+    const { relatedCourses, courseReviews, searchLang, t } = this.props;
     return (
       <ExtendedOverlay>
         <StyledSubHeading>
-          {t(`courseEvals.Related courses`)}{" "}
+          {t(`courseInfo.Related courses`)}{" "}
           <RelatedCoursesExplainTooltip>
             <FontAwesomeIcon
               icon={faQuestionCircle}
               style={{ fontSize: "0.7em" }}
             ></FontAwesomeIcon>
             <RelatedCoursesExplainTooltipText>
-              {t(`courseEvals.Related courses explanation`)}
+              {t(`courseInfo.Related courses explanation`)}
             </RelatedCoursesExplainTooltipText>
           </RelatedCoursesExplainTooltip>
         </StyledSubHeading>
@@ -91,9 +91,9 @@ class RelatedCoursesContainer extends React.Component {
         />
         <RelatedCoursesWrapper>
           {relatedCourses.map((relatedCourse, i) => (
-            <CourseEvalsGroup
+            <CourseReviewsGroup
               course={relatedCourse}
-              reviews={courseEvals[getCourseKey(relatedCourse)]}
+              reviews={courseReviews[getCourseKey(relatedCourse)]}
               searchLang={searchLang}
               reviewLang={this.state.reviewLang}
               key={i}

@@ -170,7 +170,7 @@ const Instructors = styled("div")`
 `;
 */
 
-const EvalButtonsWrapper = styled("div")`
+const InfoButtonsWrapper = styled("div")`
   flex: 1 0 30%;
   display: flex;
   flex-direction: column;
@@ -178,8 +178,8 @@ const EvalButtonsWrapper = styled("div")`
   font-size: 0.9em;
 `;
 
-// Review Button
-const ViewEvalsButton = styled("a")`
+// Info Button
+const ViewInfoButton = styled("a")`
   display: block;
   background-color: #ffae42;
   border: 0px;
@@ -199,7 +199,7 @@ const ViewEvalsButton = styled("a")`
   }
 `; // Case of large Screen
 
-const ViewEvalsIconButton = styled("a")`
+const ViewInfoIconButton = styled("a")`
   display: block;
   background-color: #fff;
   border: 0px;
@@ -308,7 +308,7 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   handleClickSyllabusLink,
-  isInCourseEvalsPage,
+  isInCourseReviewsPage,
   needLineBreak,
   t,
   lng,
@@ -324,7 +324,7 @@ const CourseItem = ({
   );
   const schoolIcons = mapSchoolToIcon(course[SYLLABUS_KEYS.SCHOOL]);
   const syllabusId = course[SYLLABUS_KEYS.ID];
-  const shareLink = `https://wasedatime.com/courseEvals?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
+  const shareLink = `https://wasedatime.com/courseInfo?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
   //Need to use index as keys due to Waseda's data.
   const occurrences = course[SYLLABUS_KEYS.OCCURRENCES].map(
     (occurrence, index) => {
@@ -376,16 +376,16 @@ const CourseItem = ({
       {(matches) => {
         return (
           matches &&
-          !isInCourseEvalsPage && (
-            <EvalButtonsWrapper>
-              <ViewEvalsButton
-                href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+          !isInCourseReviewsPage && (
+            <InfoButtonsWrapper>
+              <ViewInfoButton
+                href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
                 target="_blank"
               >
                 <FontAwesomeIcon icon={faInfoCircle} />{" "}
-                {t("courseEvals.Details")}
-              </ViewEvalsButton>
-            </EvalButtonsWrapper>
+                {t("courseInfo.Details")}
+              </ViewInfoButton>
+            </InfoButtonsWrapper>
           )
         );
       }}
@@ -395,19 +395,19 @@ const CourseItem = ({
   const reviewButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => {
-        /* To course Evaluation Button */
+        /* To course Info Button */
         return (
           matches &&
-          !isInCourseEvalsPage && (
-            <ViewEvalsIconButton
-              href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+          !isInCourseReviewsPage && (
+            <ViewInfoIconButton
+              href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
             >
               <FontAwesomeIcon
                 icon={faInfoCircle}
                 size="2x"
                 transform="shrink-2"
               />{" "}
-            </ViewEvalsIconButton>
+            </ViewInfoIconButton>
           )
         );
       }}
@@ -418,7 +418,7 @@ const CourseItem = ({
     <RowWrapper>
       <CourseItemWrapper>
         <StyledHeading>{highlightedTitle}</StyledHeading>
-        {isInCourseEvalsPage && (
+        {isInCourseReviewsPage && (
           <StyledSubHeading>{course[SYLLABUS_KEYS.SUBTITLE]}</StyledSubHeading>
         )}
         <CourseItemRow>
@@ -465,7 +465,7 @@ const CourseItem = ({
             <InvisibleButton>{reviewButtonIcon}</InvisibleButton>
             <FetchedShareButton
               shareLink={shareLink}
-              isInCourseEvalsPage={isInCourseEvalsPage}
+              isInCourseReviewsPage={isInCourseReviewsPage}
               display="icon"
               sizesDesktop={sizes.desktop}
               needLineBreak={needLineBreak}
@@ -483,7 +483,7 @@ const CourseItem = ({
           </DescriptionWrapper>
           <FetchedShareButton
             shareLink={shareLink}
-            isInCourseEvalsPage={isInCourseEvalsPage}
+            isInCourseReviewsPage={isInCourseReviewsPage}
             display="bar"
             sizesDesktop={sizes.desktop}
             needLineBreak={needLineBreak}

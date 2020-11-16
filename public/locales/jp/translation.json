@@ -20,8 +20,8 @@
     "next": "次へ",
     "back": "前へ",
     "done": "完了",
-    "courseEvalsDetails1": "授業評価はシラバス検索結果でオレンジ色",
-    "courseEvalsDetails2": "のボタンをクリックすると表示できます",
+    "courseReviewsDetails1": "授業評価はシラバス検索結果でオレンジ色",
+    "courseReviewsDetails2": "のボタンをクリックすると表示できます",
     "Meet our developers!": "開発者たち",
     "Founder": "創設者",
     "Frontendtranslation": "フロントエンド &  翻訳",
@@ -162,9 +162,9 @@
     "Course time": "科目時間",
     "langParam": ""
   },
-  "courseEvals": {
+  "courseInfo": {
     "Details": "詳細",
-    "Reviews": "評価",
+    "Reviews": "レビュー",
     "Satisfaction": "満足度",
     "Difficulty": "難易度",
     "Benefit": "有益さ",

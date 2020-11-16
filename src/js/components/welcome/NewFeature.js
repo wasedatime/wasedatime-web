@@ -78,7 +78,7 @@ const NewFeature = ({ classes, t, lng }) => {
         gutterBottom
         className={classes.h3}
       >
-        {t("welcome.courseEvals")}
+        {t("welcome.courseInfo")}
       </Typography>
       <CourseItemWrapper>
         <CourseItem
@@ -88,7 +88,7 @@ const NewFeature = ({ classes, t, lng }) => {
           searchTerm={""}
           searchLang={lng}
           course={dummyCourse}
-          isInCourseEvalsPage={false}
+          isInCourseReviewsPage={false}
         />
       </CourseItemWrapper>
       <Typography
@@ -98,9 +98,9 @@ const NewFeature = ({ classes, t, lng }) => {
         align="center"
         gutterBottom
       >
-        {t("welcome.courseEvalsDetails1")}
+        {t("welcome.courseReviewsDetails1")}
         <br />
-        {t("welcome.courseEvalsDetails2")}
+        {t("welcome.courseReviewsDetails2")}
       </Typography>
     </ExtendedArticle>
   );

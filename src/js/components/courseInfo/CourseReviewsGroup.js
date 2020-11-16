@@ -1,41 +1,41 @@
 import React from "react";
 import styled from "styled-components";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
-import EvalsList from "./EvalsList";
+import ReviewsList from "./ReviewsList";
 
-const CourseEvalsGroupWrapper = styled("div")`
+const CourseReviewsGroupWrapper = styled("div")`
   background: #fff;
   margin-bottom: 1em;
 `;
 
-const EvalsHeader = styled("h3")`
+const ReviewsHeader = styled("h3")`
   margin: 0;
   text-align: center;
   background: #eee;
 `;
 
-const CourseEvalsGroup = ({ course, reviews, searchLang, reviewLang, t }) => {
+const CourseReviewsGroup = ({ course, reviews, searchLang, reviewLang, t }) => {
   return (
-    <CourseEvalsGroupWrapper>
+    <CourseReviewsGroupWrapper>
       <FetchedCourseItem
         searchTerm={""}
         searchLang={searchLang}
         course={course}
-        isInCourseEvalsPage={true}
+        isInCourseReviewsPage={true}
         needLineBreak={true}
       />
-      <EvalsHeader>{t(`courseEvals.Reviews`)}</EvalsHeader>
+      <ReviewsHeader>{t(`courseInfo.Reviews`)}</ReviewsHeader>
       {reviews && (
-        <EvalsList
+        <ReviewsList
           reviews={reviews}
           searchLang={searchLang}
           reviewLang={reviewLang}
         />
       )}
-    </CourseEvalsGroupWrapper>
+    </CourseReviewsGroupWrapper>
   );
 };
 
-export default withNamespaces("translation")(CourseEvalsGroup);
+export default withNamespaces("translation")(CourseReviewsGroup);

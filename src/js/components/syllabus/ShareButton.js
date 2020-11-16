@@ -75,7 +75,7 @@ const ShareButton = ({
   display,
   shareLink,
   sizesDesktop, // = Small or Large Screen
-  isInCourseEvalsPage,
+  isInCourseReviewsPage,
   // logic in containers/syllebus/FetchedShareButton.js
   isPopperOpen,
   handleToggleSharePopper,
@@ -85,7 +85,7 @@ const ShareButton = ({
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizesDesktop}>
       {(matches) => {
-        if (matches && isInCourseEvalsPage && display === "bar") {
+        if (matches && isInCourseReviewsPage && display === "bar") {
           return (
             <Reference>
               {({ ref }) => (
@@ -120,7 +120,7 @@ const ShareButton = ({
   const shareButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizesDesktop}>
       {(matches) => {
-        if (matches && isInCourseEvalsPage && display === "icon") {
+        if (matches && isInCourseReviewsPage && display === "icon") {
           return (
             <Reference>
               {({ ref }) => (

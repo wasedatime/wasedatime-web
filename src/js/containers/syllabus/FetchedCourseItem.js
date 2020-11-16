@@ -13,13 +13,14 @@ import {
   gaRemoveCourse,
   gaClickSyllabusLink,
 } from "../../ga/eventActions";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
 
 class FetchedCourseItem extends React.Component {
   handleAddCourse = (title, lng) => {
     const { course, byId, searchLang } = this.props;
-    const occurrences = course.os;
+    const occurrences = course[SYLLABUS_KEYS.OCCURRENCES];
     ReactGA.event({
       category: gaFetchedCourseItem,
       action: gaAppendActionWithLng(gaAddCourse, lng),
@@ -36,7 +37,12 @@ class FetchedCourseItem extends React.Component {
       return;
     }
     this.props.addCourse(course, searchLang);
-    if (occurrences.some((o) => o.day === -1 || o.start_period === -1)) {
+    if (
+      occurrences.some(
+        (o) =>
+          o[SYLLABUS_KEYS.OCC_DAY] === -1 || o[SYLLABUS_KEYS.OCC_PERIOD] === -1
+      )
+    ) {
       Alert.warning(
         "Course with undecided time cannot be displayed in timetable.",
         {

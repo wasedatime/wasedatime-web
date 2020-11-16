@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
-import { UnstyledUList } from "../../styled-components/List";
+import {UnstyledUList} from "../../styled-components/List";
 
 const CourseChunk = ({ chunk, searchTerm, searchLang }) => {
   return (

@@ -1,13 +1,13 @@
 import React from "react";
 import MediaQuery from "react-responsive";
 import { Doughnut } from "react-chartjs-2";
+import API from "@aws-amplify/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import { Segment, Grid, Table, Statistic, Divider } from "semantic-ui-react";
 import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import axios from "axios";
 import ReactGA from "react-ga";
 import { gaRelatedCourses } from "../../ga/eventCategories";
 import {
@@ -176,6 +176,7 @@ class CourseEvals extends React.Component {
   };
 
   componentDidMount() {
+    API.configure();
     this._isMounted = true;
     this._isMounted && this.loadEvaluationsAndRelatedCourses();
   }
@@ -253,11 +254,13 @@ class CourseEvals extends React.Component {
 
   async getCourseEvalsByKey(courseKeys) {
     try {
-      // get reviews by courseKeys
-      const res = await axios.post(process.env.REACT_APP_REVIEWS_API_BASE_URL, {
-        course_keys: courseKeys,
+      const res = await API.post("wasedatime-dev", "/course-reviews", {
+        body: { course_keys: courseKeys },
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
-      return res.data.data;
+      return res.data;
     } catch (error) {
       console.error(error);
       this.setState({ error: true });

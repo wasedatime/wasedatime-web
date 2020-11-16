@@ -1,5 +1,5 @@
-import axios from "axios";
 import { normalize } from "normalizr";
+import API from "@aws-amplify/api";
 
 import {
   ADD_COURSE,
@@ -41,10 +41,14 @@ export const fetchCourses = () => async (dispatch, getState) => {
   try {
     Promise.all(
       schools.map(async (school) => {
-        const res = await axios.get(
-          `${process.env.REACT_APP_API_BASE_URL}/syllabus/${school}`
-        );
-        coursesBySchool[school] = normalize(res.data, schema.coursesSchema);
+        const res = await API.get("wasedatime-dev", `/syllabus/${school}`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        console.log(res);
+        console.log("===========================");
+        coursesBySchool[school] = normalize(res, schema.coursesSchema);
         return;
       })
     ).then(() => {

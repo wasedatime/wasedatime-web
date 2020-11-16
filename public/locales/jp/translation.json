@@ -44,7 +44,8 @@
     "joinus": "募集中！",
     "bus": "バス",
     "language": "言語",
-    "career": "キャリア"
+    "career": "キャリア",
+    "corona-info": "コロナ情報"
   },
   "footer": {
     "licensed": " ソースコードライセンス ",
@@ -214,5 +215,18 @@
     "Articles": "記事",
     "viewMore": "インターン内容をもっと見る",
     "Entry": "エントリー"
+  },
+  "coronaInfo": {
+    "title": "新型コロナウイルス感染症情報",
+    "attribution": "Johns Hopkins University CSSE より引用",
+    "New Cases": "新規感染数",
+    "Total Cases": "総感染数",
+    "New Deaths": "新規死亡数",
+    "Total Deaths": "総死亡数",
+    "New Recovered": "新規回復数",
+    "Total Recovered": "総回復数",
+    "Tokyo": "東京",
+    "Loading Statistics": "読み込み中",
+    "No data": "データなし"
   }
 }

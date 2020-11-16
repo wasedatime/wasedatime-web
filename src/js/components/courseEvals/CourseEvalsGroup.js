@@ -24,6 +24,7 @@ const CourseEvalsGroup = ({ course, reviews, searchLang, reviewLang, t }) => {
         searchLang={searchLang}
         course={course}
         isInCourseEvalsPage={true}
+        needLineBreak={true}
       />
       <EvalsHeader>{t(`courseEvals.Reviews`)}</EvalsHeader>
       {reviews && (

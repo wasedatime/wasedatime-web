@@ -197,13 +197,11 @@ const ViewEvalsButton = styled("a")`
   margin-bottom: 4px;
   text-align: center;
   text-decoration: none;
-
   &:hover {
     color: #ffae42;
     background-color: #fff;
     border: 2px solid #ffae42;
   }
-
   &:focus {
     outline: none;
   }
@@ -215,11 +213,9 @@ const ViewEvalsIconButton = styled("a")`
   border: 0px;
   color: #ffae42;
   text-decoration: none;
-
   &:hover {
     color: #ffae42;
   }
-
   &:focus {
     outline: none;
   }
@@ -237,7 +233,6 @@ const ShareButton = styled("a")`
   margin-bottom: 4px;
   text-align: center;
   text-decoration: none;
-
   &:hover {
     color: #abc;
   }
@@ -252,7 +247,6 @@ const ShareIconButton = styled("a")`
   border-left: 0px;
   color: #7d7a7c;
   text-decoration: none;
-
   &:focus {
     outline: none;
   }
@@ -723,8 +717,3 @@ CourseItem.propTypes = {
   isAddable: PropTypes.bool.isRequired,
   handleOnClick: PropTypes.func.isRequired,
 };
-
-/*
-- Small Screen
-- Large Screen
-*/

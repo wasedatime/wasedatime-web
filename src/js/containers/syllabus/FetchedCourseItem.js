@@ -81,6 +81,7 @@ class FetchedCourseItem extends React.Component {
       course,
       byId,
       isInCourseEvalsPage,
+      needLineBreak,
     } = this.props;
     const id = course._id;
     const isAddable = !(id in byId);
@@ -95,6 +96,7 @@ class FetchedCourseItem extends React.Component {
         searchLang={searchLang}
         course={course}
         isInCourseEvalsPage={isInCourseEvalsPage}
+        needLineBreak={needLineBreak}
       />
     );
   }

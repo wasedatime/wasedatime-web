@@ -44,7 +44,8 @@
     "joinus": "Join Us!",
     "bus": "Bus",
     "language": "Language",
-    "career": "Career"
+    "career": "Career",
+    "corona-info": "Corona Info"
   },
   "footer": {
     "licensed": " Code Licensed ",
@@ -214,5 +215,18 @@
     "Articles": "Articles",
     "viewMore": "View More",
     "Entry": "Entry"
+  },
+  "coronaInfo": {
+    "title": "COVID-19 Statistics",
+    "attribution": "Data fetched from Johns Hopkins University CSSE",
+    "New Cases": "New Cases",
+    "Total Cases": "Total Cases",
+    "New Deaths": "New Deaths",
+    "Total Deaths": "Total Deaths",
+    "New Recovered": "New Recovered",
+    "Total Recovered": "Total Recovered",
+    "Tokyo": "Tokyo",
+    "Loading Statistics": "Loading Statistics",
+    "No data": "No data"
   }
 }

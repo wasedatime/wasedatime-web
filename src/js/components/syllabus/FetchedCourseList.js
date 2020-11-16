@@ -5,9 +5,9 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import CourseChunk from "./CourseChunk";
-import { Overlay } from "../../styled-components/Overlay";
-import { Wrapper } from "../../styled-components/Wrapper";
-import { withNamespaces } from "react-i18next";
+import {Overlay} from "../../styled-components/Overlay";
+import {Wrapper} from "../../styled-components/Wrapper";
+import {withNamespaces} from "react-i18next";
 import LANGS from "../../config/langs";
 
 const ExtendedWrapper = styled(Wrapper)`

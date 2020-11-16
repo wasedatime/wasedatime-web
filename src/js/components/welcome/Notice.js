@@ -1,11 +1,11 @@
 import React from "react";
-import { withNamespaces } from "react-i18next";
-import { withStyles } from "@material-ui/core/styles";
+import {withNamespaces} from "react-i18next";
+import {withStyles} from "@material-ui/core/styles";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 
-import { Article } from "../../styled-components/Article";
-import { media } from "../../styled-components/utils";
+import {Article} from "../../styled-components/Article";
+import {media} from "../../styled-components/utils";
 
 const ExtendedArticle = styled(Article)`
   display: flex;

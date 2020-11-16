@@ -163,7 +163,21 @@
     "langParam": ""
   },
   "courseInfo": {
-    "Details": "詳細",
+    "Details": {
+      "title": "詳細",
+      "Min Year": "配当年次",
+      "Credit": "単位",
+      "Type": "授業形態",
+      "Category": "科目区分",
+      "Level": "レベル",
+      "Evaluation": {
+        "title": "成績評価",
+        "Exam": "試験",
+        "Papers": "レポート",
+        "Class Participation": "平常点評価",
+        "Others": "その他"
+      }
+    },
     "Reviews": "レビュー",
     "Satisfaction": "満足度",
     "Difficulty": "難易度",

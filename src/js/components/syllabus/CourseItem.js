@@ -383,7 +383,7 @@ const CourseItem = ({
                 target="_blank"
               >
                 <FontAwesomeIcon icon={faInfoCircle} />{" "}
-                {t("courseInfo.Details")}
+                {t("courseInfo.Details.title")}
               </ViewInfoButton>
             </InfoButtonsWrapper>
           )

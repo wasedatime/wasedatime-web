@@ -163,7 +163,21 @@
     "langParam": "&pLng=en"
   },
   "courseInfo": {
-    "Details": "Details",
+    "Details": {
+      "title": "Details",
+      "Min Year": "Min Year",
+      "Credit": "Credit",
+      "Type": "Type",
+      "Category": "Category",
+      "Level": "Level",
+      "Evaluation": {
+        "title": "Evaluation",
+        "Exam": "Exams",
+        "Papers": "Papers",
+        "Class Participation": "Class Participation",
+        "Others": "Others"
+      }
+    },
     "Reviews": "Reviews",
     "Satisfaction": "Satisfaction",
     "Difficulty": "Difficulty",

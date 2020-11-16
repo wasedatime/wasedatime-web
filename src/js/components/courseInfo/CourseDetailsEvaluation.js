@@ -64,7 +64,11 @@ const CourseDetailsEvaluation = ({ course, t }) => {
                   >
                     ●
                   </span>{" "}
-                  {evalTypeMap[e[SYLLABUS_KEYS.EVAL_TYPE]]}
+                  {t(
+                    `courseInfo.Details.Evaluation.${
+                      evalTypeMap[e[SYLLABUS_KEYS.EVAL_TYPE]]
+                    }`
+                  )}
                 </Table.Cell>
                 <Table.Cell>{e[SYLLABUS_KEYS.EVAL_CRITERIA]}</Table.Cell>
               </Table.Row>

@@ -55,7 +55,9 @@ const CourseDetails = ({ course, t }) => {
                 <Statistic.Value>
                   {course[SYLLABUS_KEYS.MIN_YEAR]}
                 </Statistic.Value>
-                <Statistic.Label>Min Year</Statistic.Label>
+                <Statistic.Label>
+                  {t("courseInfo.Details.Min Year")}
+                </Statistic.Label>
               </Statistic>
             </Grid.Column>
             <Grid.Column style={{ textAlign: "center" }}>
@@ -63,7 +65,9 @@ const CourseDetails = ({ course, t }) => {
                 <Statistic.Value>
                   {course[SYLLABUS_KEYS.CREDIT]}
                 </Statistic.Value>
-                <Statistic.Label>Credit</Statistic.Label>
+                <Statistic.Label>
+                  {t("courseInfo.Details.Credit")}
+                </Statistic.Label>
               </Statistic>
             </Grid.Column>
           </Grid>
@@ -72,19 +76,19 @@ const CourseDetails = ({ course, t }) => {
           <Table unstackable>
             <Table.Body>
               <Table.Row>
-                <Table.Cell>Type</Table.Cell>
+                <Table.Cell>{t("courseInfo.Details.Type")}</Table.Cell>
                 <Table.Cell>
                   <b>{mapCourseType(course)}</b>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell>Category</Table.Cell>
+                <Table.Cell>{t("courseInfo.Details.Category")}</Table.Cell>
                 <Table.Cell>
                   <b>{course[SYLLABUS_KEYS.CATEGORY]}</b>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell>Level</Table.Cell>
+                <Table.Cell>{t("courseInfo.Details.Level")}</Table.Cell>
                 <Table.Cell>
                   <b>{mapCourseLevel(course)}</b>
                 </Table.Cell>
@@ -95,7 +99,7 @@ const CourseDetails = ({ course, t }) => {
       </Grid>
 
       <Divider horizontal style={{ margin: "2em", fontSize: "1em" }}>
-        Evaluation
+        {t("courseInfo.Details.Evaluation.title")}
       </Divider>
 
       <CourseDetailsEvaluation course={course} />

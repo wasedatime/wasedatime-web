@@ -14,6 +14,7 @@ import {
   ADD_SCHOOL,
   REMOVE_SCHOOL,
 } from "./types";
+import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 import * as schema from "../data/schema";
 
 export const addSchool = (school) => ({
@@ -46,8 +47,6 @@ export const fetchCourses = () => async (dispatch, getState) => {
             "Content-Type": "application/json",
           },
         });
-        console.log(res);
-        console.log("===========================");
         coursesBySchool[school] = normalize(res, schema.coursesSchema);
         return;
       })
@@ -86,8 +85,8 @@ export const hydrateAddedCourses = (prefs, fetchedCoursesById) => ({
 export const addCourse = (course, displayLang) => ({
   type: ADD_COURSE,
   payload: {
-    id: course._id,
-    semester: course.tm,
+    id: course[SYLLABUS_KEYS.ID],
+    semester: course[SYLLABUS_KEYS.TERM],
     course: course,
     displayLang: displayLang,
   },

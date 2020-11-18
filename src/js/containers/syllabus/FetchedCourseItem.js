@@ -65,7 +65,7 @@ class FetchedCourseItem extends React.Component {
       action: gaAppendActionWithLng(gaRemoveCourse, lng),
       label: title,
     });
-    this.props.removeCourse(course._id);
+    this.props.removeCourse(course[SYLLABUS_KEYS.ID]);
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly",
@@ -89,7 +89,7 @@ class FetchedCourseItem extends React.Component {
       isInCourseReviewsPage,
       needLineBreak,
     } = this.props;
-    const id = course._id;
+    const id = course[SYLLABUS_KEYS.ID];
     const isAddable = !(id in byId);
     return (
       <CourseItem

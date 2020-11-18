@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
-import {media} from "../../styled-components/utils";
-import {getCourseTitleAndInstructor} from "../../utils/courseSearch";
+import { media } from "../../styled-components/utils";
+import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 const StyledCourseColumn = styled("div")`
   display: flex;
@@ -78,8 +79,20 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
   let slotLists = [initSlotList.slice()];
 
   coursesAndProperties.forEach((courseAndProperty) => {
-    const startPeriod = Number(courseAndProperty.course.occurrence.s);
-    const endPeriod = Number(courseAndProperty.course.occurrence.e);
+    let period = courseAndProperty.course.occurrence[SYLLABUS_KEYS.OCC_PERIOD];
+    let startPeriod = 0;
+    let endPeriod = 0;
+    if (period === -1) {
+      startPeriod = endPeriod = -1;
+    } else if (period > 9) {
+      startPeriod = period / 10;
+      endPeriod = period % 10;
+    } else {
+      startPeriod = period;
+      endPeriod = period;
+    }
+    // const startPeriod = Number(courseAndProperty.course.occurrence.s);
+    // const endPeriod = Number(courseAndProperty.course.occurrence.e);
 
     let existsAvailableSlot = true;
     for (let i = 0; i < slotLists.length; i++) {
@@ -121,20 +134,35 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
       const listComponent = distinctCourseList.map((courseAndProperty) => {
         const { course, color, displayLang } = courseAndProperty;
         const { title } = getCourseTitleAndInstructor(course, displayLang);
-        const startPeriod = Number(course.occurrence.s);
-        const endPeriod = Number(course.occurrence.e);
-        let location = t("timetable.undecided");
-        if (course.occurrence.c !== "undecided") {
-          if (course.occurrence.b !== "-1") {
-            location = course.occurrence.l;
-          } else {
-            location = course.occurrence.c;
-          }
+        let period = course.occurrence[SYLLABUS_KEYS.OCC_PERIOD];
+        let startPeriod = 0;
+        let endPeriod = 0;
+        if (period === -1) {
+          startPeriod = endPeriod = -1;
+        } else if (period > 9) {
+          startPeriod = period / 10;
+          endPeriod = period % 10;
+        } else {
+          startPeriod = period;
+          endPeriod = period;
         }
+        // const startPeriod = Number(course.occurrence.s);
+        // const endPeriod = Number(course.occurrence.e);
+        let location = course.occurrence[SYLLABUS_KEYS.OCC_LOCATION];
+        // let location = t("timetable.undecided");
+        // if (course.occurrence.c !== "undecided") {
+        //   if (course.occurrence.b !== "-1") {
+        //     location = course.occurrence.l;
+        //   } else {
+        //     location = course.occurrence.c;
+        //   }
+        // }
         return (
           <CourseItem
             className={`color-${color}`}
-            key={`${course.term}-${course.t}-${startPeriod}-${endPeriod}`}
+            key={`${course[SYLLABUS_KEYS.TERM]}-${
+              course[SYLLABUS_KEYS.TITLE]
+            }-${startPeriod}-${endPeriod}`}
             displayPeriods={displayPeriods}
             top={startPeriod - 1}
             height={endPeriod - startPeriod + 1}

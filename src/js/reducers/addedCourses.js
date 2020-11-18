@@ -13,14 +13,15 @@ import { fallSemesters, springSemesters } from "../data/semesters";
 const createSemesterWrapperReducer = (
   reducerFunction,
   reducerName,
-  reducerSemesters
+  reducerSemestersRegex
 ) => {
   return (state, action) => {
     let semester = null;
     switch (action.type) {
       case ADD_COURSE:
         semester = action.payload.semester;
-        if (reducerSemesters.includes(semester)) {
+        if (semester.match(reducerSemestersRegex)) {
+          // reducerSemesters.includes(semester)
           return reducerFunction(state, action);
         }
         return state;
@@ -45,16 +46,8 @@ const createSemesterWrapperReducer = (
 };
 
 const addedCourses = combineReducers({
-  fall: createSemesterWrapperReducer(
-    addedSemesterCourses,
-    "fall",
-    fallSemesters
-  ),
-  spring: createSemesterWrapperReducer(
-    addedSemesterCourses,
-    "spring",
-    springSemesters
-  ),
+  fall: createSemesterWrapperReducer(addedSemesterCourses, "fall", /2|3/g),
+  spring: createSemesterWrapperReducer(addedSemesterCourses, "spring", /0|1/g),
 });
 
 export default addedCourses;

@@ -6,7 +6,6 @@ import {
   CHANGE_COURSES_SORTING_OPTION,
 } from "../actions/types";
 import addedSemesterCourses, * as fromSemesterCourses from "./addedSemesterCourses";
-import { fallSemesters, springSemesters } from "../data/semesters";
 
 // Higher-order reducer.
 // https://redux.js.org/recipes/structuringreducers/reusingreducerlogic

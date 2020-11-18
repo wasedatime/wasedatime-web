@@ -9,7 +9,6 @@ import {
   faCalendarAlt,
   faBook,
   faBus,
-  faBriefcase,
   faStar,
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";

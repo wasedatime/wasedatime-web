@@ -20,6 +20,7 @@ import {
 } from "../../actions/syllabus";
 import CourseAndPrefItem from "../../components/timetable/CourseAndPrefItem";
 import { courseColors } from "../../data/colors";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 class AddedCourseAndPrefItem extends React.Component {
   state = {
@@ -58,7 +59,7 @@ class AddedCourseAndPrefItem extends React.Component {
       action: gaAppendActionWithLng(gaChangeCourseColor, lng),
       label: courseColors[colorId],
     });
-    this.props.changeCourseColor(course._id, colorId);
+    this.props.changeCourseColor(course[SYLLABUS_KEYS.ID], colorId);
   };
 
   handleToggleVisibility = (id, title) => {

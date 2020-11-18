@@ -53,7 +53,7 @@ const CourseDetails = ({ course, t }) => {
             <Grid.Column style={{ textAlign: "center" }}>
               <Statistic>
                 <Statistic.Value>
-                  {course[SYLLABUS_KEYS.MIN_YEAR]}
+                  {course[SYLLABUS_KEYS.MIN_YEAR]}+
                 </Statistic.Value>
                 <Statistic.Label>
                   {t("courseInfo.Details.Min Year")}

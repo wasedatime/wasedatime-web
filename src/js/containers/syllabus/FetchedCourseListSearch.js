@@ -75,6 +75,10 @@ class FetchedCourseSearch extends React.Component {
         special: [],
         day: [],
         period: [],
+        minYear: [],
+        credit: [],
+        type: [],
+        level: [],
       },
       inputText: searchTerm,
       searchTerm: searchTerm,
@@ -210,6 +214,41 @@ class FetchedCourseSearch extends React.Component {
             }
             return false;
           });
+
+    const minYearFilters = filterGroups.minYear;
+    filteredCourses =
+      minYearFilters.length === 0 || minYearFilters.length === 4
+        ? filteredCourses
+        : filteredCourses.filter((course) =>
+            minYearFilters.includes(course[SYLLABUS_KEYS.MIN_YEAR].toString())
+          );
+
+    const creditFilters = filterGroups.credit;
+    filteredCourses =
+      creditFilters.length === 0 || creditFilters.length === 3
+        ? filteredCourses
+        : filteredCourses.filter((course) =>
+            course[SYLLABUS_KEYS.CREDIT] >= 3
+              ? creditFilters.includes("3")
+              : creditFilters.includes(course[SYLLABUS_KEYS.CREDIT].toString())
+          );
+
+    const typeFilters = filterGroups.type;
+    filteredCourses =
+      typeFilters.length === 0 || typeFilters.length === 9
+        ? filteredCourses
+        : filteredCourses.filter((course) =>
+            typeFilters.includes(course[SYLLABUS_KEYS.TYPE].toString())
+          );
+
+    const levelFilters = filterGroups.level;
+    filteredCourses =
+      levelFilters.length === 0 || levelFilters.length === 6
+        ? filteredCourses
+        : filteredCourses.filter((course) =>
+            levelFilters.includes(course[SYLLABUS_KEYS.LEVEL].toString())
+          );
+
     return filteredCourses;
   };
 

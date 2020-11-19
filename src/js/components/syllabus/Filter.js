@@ -258,6 +258,124 @@ class Filter extends React.Component {
       isChecked: filterGroups[periodInputName].includes(input.value),
     }));
 
+    const minYearLegend = t("syllabus.minYear");
+    const minYearInputName = "minYear";
+    const minYearInputs = [
+      { value: "1", label: "1+" },
+      { value: "2", label: "2+" },
+      { value: "3", label: "3+" },
+      { value: "4", label: "4+" },
+    ];
+    const checkedMinYearInputs = minYearInputs.map((input) => ({
+      ...input,
+      isChecked: filterGroups[minYearInputName].includes(input.value),
+    }));
+
+    const creditLegend = t("syllabus.credit");
+    const creditInputName = "credit";
+    const creditInputs = [
+      { value: "1", label: "1" },
+      { value: "2", label: "2" },
+      { value: "3", label: "3+" },
+    ];
+    const checkedCreditInputs = creditInputs.map((input) => ({
+      ...input,
+      isChecked: filterGroups[creditInputName].includes(input.value),
+    }));
+
+    const typeLegend = t("syllabus.type");
+    const typeInputName = "type";
+    const typeInputs = [
+      {
+        key: "Lecture",
+        text: "Lecture",
+        value: "0",
+      },
+      {
+        key: "Seminar",
+        text: "Seminar",
+        value: "1",
+      },
+      {
+        key: "Work",
+        text: "Work",
+        value: "2",
+      },
+      {
+        key: "Foreign Langauge",
+        text: "Foreign Langauge",
+        value: "3",
+      },
+      {
+        key: "On-demand",
+        text: "On-demand",
+        value: "4",
+      },
+      {
+        key: "Thesis",
+        text: "Thesis",
+        value: "5",
+      },
+      {
+        key: "Graduate Research",
+        text: "Graduate Research",
+        value: "6",
+      },
+      {
+        key: "Practice",
+        text: "Practice",
+        value: "7",
+      },
+      {
+        key: "Blended",
+        text: "Blended",
+        value: "8",
+      },
+    ];
+    const checkedTypeInputs = typeInputs.map((input) => ({
+      ...input,
+      isChecked: filterGroups[typeInputName].includes(input.value),
+    }));
+
+    const levelLegend = t("syllabus.level");
+    const levelInputName = "level";
+    const levelInputs = [
+      {
+        key: "Beginner",
+        text: "Beginner",
+        value: "0",
+      },
+      {
+        key: "Intermediate",
+        text: "Intermediate",
+        value: "1",
+      },
+      {
+        key: "Advanced",
+        text: "Advanced",
+        value: "2",
+      },
+      {
+        key: "Final-stage",
+        text: "Final-stage",
+        value: "3",
+      },
+      {
+        key: "Master",
+        text: "Master",
+        value: "4",
+      },
+      {
+        key: "Doctor",
+        text: "Doctor",
+        value: "5",
+      },
+    ];
+    const checkedLevelInputs = levelInputs.map((input) => ({
+      ...input,
+      isChecked: filterGroups[levelInputName].includes(input.value),
+    }));
+
     const { isSideBar } = this.props;
     return (
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
@@ -294,6 +412,34 @@ class Filter extends React.Component {
               inputName={periodInputName}
               inputs={checkedPeriodInputs}
               filterType={"checkbox"}
+            />
+            <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
+              legend={minYearLegend}
+              inputName={minYearInputName}
+              inputs={checkedMinYearInputs}
+              filterType={"checkbox"}
+            />
+            <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
+              legend={creditLegend}
+              inputName={creditInputName}
+              inputs={checkedCreditInputs}
+              filterType={"checkbox"}
+            />
+            <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
+              legend={typeLegend}
+              inputName={typeInputName}
+              inputs={checkedTypeInputs}
+              filterType={"dropdown"}
+            />
+            <FilterGroup
+              handleToggleFilter={this.props.handleToggleFilter}
+              legend={levelLegend}
+              inputName={levelInputName}
+              inputs={checkedLevelInputs}
+              filterType={"dropdown"}
             />
           </FilterGroupWrapper>
         </FilterOverlay>

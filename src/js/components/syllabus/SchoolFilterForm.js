@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import SchoolImportCard from "./SchoolImportCard";
@@ -106,6 +107,13 @@ const undergradSchoolNameIconMap = (lng) =>
         [SPS]: spsIcon,
         [CIE]: cieIcon,
       };
+
+const StyledSegment = styled(Segment)`
+  cursor: default !important;
+  &:hover {
+    transform: none !important;
+  }
+`;
 
 class SchoolFilterForm extends React.Component {
   state = {
@@ -236,6 +244,7 @@ class SchoolFilterForm extends React.Component {
           removingSchool: null,
           loadedSchools: loadedSchools,
           selectedSchools: selectedSchools,
+          schoolsUpToLimit: loadedSchools.length >= 10,
         });
       }, 1000);
     }
@@ -244,17 +253,24 @@ class SchoolFilterForm extends React.Component {
   render() {
     return (
       <Overlay>
-        <Segment style={{ margin: "1em 2em 0em", padding: "0.5em 1em 0px" }}>
+        <StyledSegment
+          style={{ margin: "1em 2em 0em", padding: "0.5em 1em 0px" }}
+        >
           <Header
             as="h2"
             onClick={() =>
-              this.setState({
-                isSchoolFilterOpened: !this.state.isSchoolFilterOpened,
-              })
+              this.setState((state) => ({
+                isSchoolFilterOpened: !state.isSchoolFilterOpened,
+              }))
             }
             style={{ cursor: "pointer", margin: "0px" }}
           >
-            School filter <Icon name="angle down" />
+            School filter{" "}
+            {this.state.isSchoolFilterOpened ? (
+              <Icon name="angle up" />
+            ) : (
+              <Icon name="angle down" />
+            )}
           </Header>
 
           {this.state.loadedSchools.length > 0 &&
@@ -325,7 +341,7 @@ class SchoolFilterForm extends React.Component {
                     label={{
                       children: (
                         <Image
-                          size="tiny"
+                          style={{ width: "5em" }}
                           src={
                             undergradSchoolNameIconMap(this.props.lng)[
                               schoolName
@@ -342,7 +358,7 @@ class SchoolFilterForm extends React.Component {
               </Form.Group>
             </Form>
           )}
-        </Segment>
+        </StyledSegment>
       </Overlay>
     );
   }

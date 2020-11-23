@@ -59,7 +59,11 @@ export const loadState = () => {
           needsUpdate = currentTime >= nextUpdateTime;
         }
 
-        if (fetchedCourses === null || needsUpdate) {
+        const isOldSchema =
+          Array.isArray(fetchedCourses.list.ids) &&
+          fetchedCourses.byId[fetchedCourses.list.ids[0]]._id;
+
+        if (fetchedCourses === null || needsUpdate || isOldSchema) {
           fetchedCourses = {
             byId: {},
             list: {},
@@ -83,30 +87,33 @@ export const loadState = () => {
       state.addedCourses.fall.prefs = fallPrefs;
       state.addedCourses.spring.prefs = springPrefs;
 
+      // update schema of addedCourses
       [state.addedCourses.fall.byId, state.addedCourses.spring.byId].forEach(
         (addedCoursesById) => {
           Object.keys(addedCoursesById).forEach((id) => {
-            const course = addedCoursesById[id];
-            const occ = course.os.map((o) => ({
-              [SYLLABUS_KEYS.OCC_DAY]: o.d,
-              [SYLLABUS_KEYS.OCC_PERIOD]: o.s === o.e ? o.s : o.s * 10 + o.e,
-              [SYLLABUS_KEYS.OCC_LOCATION]:
-                o.b === "-1" || o.c === "undecided"
-                  ? "undecided"
-                  : o.b + "-" + o.c,
-            }));
-            addedCoursesById[id] = {
-              [SYLLABUS_KEYS.ID]: course._id,
-              [SYLLABUS_KEYS.TITLE]: course.t,
-              [SYLLABUS_KEYS.TITLE_JP]: course.tj,
-              [SYLLABUS_KEYS.INSTRUCTOR]: course.i,
-              [SYLLABUS_KEYS.INSTRUCTOR_JP]: course.ij,
-              [SYLLABUS_KEYS.LANG]: course.l,
-              [SYLLABUS_KEYS.TERM]: course.tm,
-              [SYLLABUS_KEYS.OCCURRENCES]: occ,
-              [SYLLABUS_KEYS.CODE]: course.c,
-              [SYLLABUS_KEYS.SCHOOL]: course.ks[0].s,
-            };
+            if (addedCoursesById[id]._id) {
+              const course = addedCoursesById[id];
+              const occ = course.os.map((o) => ({
+                [SYLLABUS_KEYS.OCC_DAY]: o.d,
+                [SYLLABUS_KEYS.OCC_PERIOD]: o.s === o.e ? o.s : o.s * 10 + o.e,
+                [SYLLABUS_KEYS.OCC_LOCATION]:
+                  o.b === "-1" || o.c === "undecided"
+                    ? "undecided"
+                    : o.b + "-" + o.c,
+              }));
+              addedCoursesById[id] = {
+                [SYLLABUS_KEYS.ID]: course._id,
+                [SYLLABUS_KEYS.TITLE]: course.t,
+                [SYLLABUS_KEYS.TITLE_JP]: course.tj,
+                [SYLLABUS_KEYS.INSTRUCTOR]: course.i,
+                [SYLLABUS_KEYS.INSTRUCTOR_JP]: course.ij,
+                [SYLLABUS_KEYS.LANG]: course.l,
+                [SYLLABUS_KEYS.TERM]: course.tm,
+                [SYLLABUS_KEYS.OCCURRENCES]: occ,
+                [SYLLABUS_KEYS.CODE]: course.c,
+                [SYLLABUS_KEYS.SCHOOL]: course.ks[0].s,
+              };
+            }
           });
         }
       );

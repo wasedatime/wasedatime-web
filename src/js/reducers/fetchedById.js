@@ -11,6 +11,9 @@ const fetchedById = (entityKey, actionTypes) => {
           }
         });
         return coursesById || {};
+      case actionTypes.removeSchool:
+        delete state[action.payload];
+        return state;
       default:
         return state;
     }

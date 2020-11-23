@@ -13,6 +13,9 @@ const fetchedList = (actionTypes) => {
           }
         });
         return ids;
+      case actionTypes.removeSchool:
+        delete state[action.payload];
+        return state;
       default:
         return state;
     }

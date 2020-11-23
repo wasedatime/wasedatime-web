@@ -287,23 +287,24 @@ class FetchedCourseSearch extends React.Component {
 
   removeSyllabus = async (school) => {
     this.props.removeSchool(school);
-    this.setState((prevState, props) => {
-      return {
-        filteredCourses: prevState.filteredCourses.filter((course) =>
+    this.setState((prevState, props) => ({
+      filteredCourses: this.filterCourses(
+        prevState.filterGroups,
+        props.fetchedCourses.filter((course) =>
           props.loadedSchools.includes(course[SYLLABUS_KEYS.SCHOOL])
-        ),
-      };
-    });
+        )
+      ),
+    }));
   };
 
   componentDidUpdate(prevProps) {
     if (prevProps.fetchedCourses !== this.props.fetchedCourses) {
-      this.setState({
+      this.setState((prevState, props) => ({
         filteredCourses: this.filterCourses(
-          this.state.filterGroups,
-          this.props.fetchedCourses
+          prevState.filterGroups,
+          props.fetchedCourses
         ),
-      });
+      }));
     }
   }
 

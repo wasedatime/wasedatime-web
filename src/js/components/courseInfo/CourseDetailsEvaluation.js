@@ -4,20 +4,26 @@ import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 import { Grid, Table } from "semantic-ui-react";
 import { Doughnut } from "react-chartjs-2";
 
-const evalChartData = (course) => {
+const evalChartData = (course, t) => {
   return {
     datasets: [
       {
-        data: course[SYLLABUS_KEYS.EVAL].map(
-          (e) => e[SYLLABUS_KEYS.EVAL_PERCENT]
+        data: course[SYLLABUS_KEYS.EVAL].map((e) =>
+          e[SYLLABUS_KEYS.EVAL_PERCENT] === -1
+            ? 0
+            : e[SYLLABUS_KEYS.EVAL_PERCENT]
         ),
         backgroundColor: course[SYLLABUS_KEYS.EVAL].map(
           (e) => evalColorMap[e[SYLLABUS_KEYS.EVAL_TYPE]]
         ),
       },
     ],
-    labels: course[SYLLABUS_KEYS.EVAL].map(
-      (e) => evalTypeMap[e[SYLLABUS_KEYS.EVAL_TYPE]]
+    labels: course[SYLLABUS_KEYS.EVAL].map((e) =>
+      t(
+        `courseInfo.Details.Evaluation.${
+          evalTypeMap[e[SYLLABUS_KEYS.EVAL_TYPE]]
+        }`
+      )
     ),
   };
 };
@@ -48,7 +54,7 @@ const CourseDetailsEvaluation = ({ course, t }) => {
   return course[SYLLABUS_KEYS.EVAL].length > 0 ? (
     <Grid columns={2} stackable>
       <Grid.Column>
-        <Doughnut data={evalChartData(course)} options={evalChartOptions} />
+        <Doughnut data={evalChartData(course, t)} options={evalChartOptions} />
       </Grid.Column>
       <Grid.Column>
         <Table>

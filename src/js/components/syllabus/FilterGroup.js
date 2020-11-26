@@ -73,6 +73,7 @@ const FilterGroup = ({
         multiple
         selection
         options={inputs}
+        value={inputs.filter((i) => i.isChecked).map((i) => i.value)}
         onChange={(e, data) => {
           handleToggleFilter(inputName, data.value);
         }}

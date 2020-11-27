@@ -1,5 +1,6 @@
 import localForage from "localforage";
 import { SYLLABUS_KEYS } from "./js/config/syllabusKeys";
+import { oldTermMap } from "./js/data/oldTermMap";
 
 export const LNG_KEY = "wasedatime-2020-lng";
 const PREV_STATE_NAME = "wasedatime-2019-state";
@@ -87,7 +88,7 @@ export const loadState = () => {
       state.addedCourses.fall.prefs = fallPrefs;
       state.addedCourses.spring.prefs = springPrefs;
 
-      // update schema of addedCourses
+      // map old schema to new one for addedCourses
       [state.addedCourses.fall.byId, state.addedCourses.spring.byId].forEach(
         (addedCoursesById) => {
           Object.keys(addedCoursesById).forEach((id) => {
@@ -101,14 +102,16 @@ export const loadState = () => {
                     ? "undecided"
                     : o.b + "-" + o.c,
               }));
+
               addedCoursesById[id] = {
                 [SYLLABUS_KEYS.ID]: course._id,
                 [SYLLABUS_KEYS.TITLE]: course.t,
                 [SYLLABUS_KEYS.TITLE_JP]: course.tj,
                 [SYLLABUS_KEYS.INSTRUCTOR]: course.i,
                 [SYLLABUS_KEYS.INSTRUCTOR_JP]: course.ij,
-                [SYLLABUS_KEYS.LANG]: course.l,
-                [SYLLABUS_KEYS.TERM]: course.tm,
+                [SYLLABUS_KEYS.LANG]:
+                  course.l === "JP" ? 0 : course.l === "EN" ? 1 : 9,
+                [SYLLABUS_KEYS.TERM]: oldTermMap[course.tm],
                 [SYLLABUS_KEYS.OCCURRENCES]: occ,
                 [SYLLABUS_KEYS.CODE]: course.c,
                 [SYLLABUS_KEYS.SCHOOL]: course.ks[0].s,

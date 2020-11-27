@@ -293,7 +293,7 @@ class Filter extends React.Component {
       },
       {
         key: "Seminar",
-        text: t("courseInfo.Details.Type.Lecture"),
+        text: t("courseInfo.Details.Type.Seminar"),
         value: "1",
       },
       {

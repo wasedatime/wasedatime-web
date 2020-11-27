@@ -5,6 +5,14 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { Dropdown } from "semantic-ui-react";
 import { withStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
+
+const StyledDropdown = styled(Dropdown)`
+  font-size: 1em !important;
+  .menu .text {
+    font-size: 1.5em !important;
+  }
+`;
 
 const styles = (theme) => ({
   formLabel: {
@@ -67,7 +75,7 @@ const FilterGroup = ({
     ));
   } else if (filterType === "dropdown") {
     filterItems = (
-      <Dropdown
+      <StyledDropdown
         placeholder={legend}
         fluid
         multiple

@@ -65,6 +65,7 @@ export const loadState = () => {
           fetchedCourses.byId[fetchedCourses.list.ids[0]]._id;
 
         if (fetchedCourses === null || needsUpdate || isOldSchema) {
+          if (isOldSchema) state.user.isFirstTimeAccess = true;
           fetchedCourses = {
             byId: {},
             list: {},

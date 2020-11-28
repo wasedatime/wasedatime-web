@@ -20,45 +20,7 @@ import { highlight } from "../../utils/highlight";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 import { media, sizes } from "../../styled-components/utils";
 import { InvisibleButton } from "../../styled-components/Button";
-import fseIcon from "../../../img/syllabus-icons/fse.png";
-import cseIcon from "../../../img/syllabus-icons/cse.png";
-import aseIcon from "../../../img/syllabus-icons/ase.png";
-import pseIcon from "../../../img/syllabus-icons/pse.png";
-import silsIcon from "../../../img/syllabus-icons/sils.png";
-import sssIcon from "../../../img/syllabus-icons/sss.png";
-import cjlIcon from "../../../img/syllabus-icons/cjl.png";
-import gecIcon from "../../../img/syllabus-icons/gec.png";
-import lawIcon from "../../../img/syllabus-icons/law.png";
-import cmsIcon from "../../../img/syllabus-icons/cms.png";
-import hssIcon from "../../../img/syllabus-icons/hss.png";
-import eduIcon from "../../../img/syllabus-icons/edu.png";
-import socIcon from "../../../img/syllabus-icons/soc.png";
-import humIcon from "../../../img/syllabus-icons/hum.png";
-import spsIcon from "../../../img/syllabus-icons/sps.png";
-import cieIcon from "../../../img/syllabus-icons/cie.png";
-import artIcon from "../../../img/syllabus-icons/art.png";
-import gPsIcon from "../../../img/syllabus-icons/g_ps.png";
-import gEIcon from "../../../img/syllabus-icons/g_e.png";
-import gLawIcon from "../../../img/syllabus-icons/g_law.png";
-import gLasIcon from "../../../img/syllabus-icons/g_las.png";
-import gScIcon from "../../../img/syllabus-icons/g_sc.png";
-import gEduIcon from "../../../img/syllabus-icons/g_edu.png";
-import gHumIcon from "../../../img/syllabus-icons/g_hum.png";
-import gSssIcon from "../../../img/syllabus-icons/g_sss.png";
-import gSapsIcon from "../../../img/syllabus-icons/g_saps.png";
-import gItsIcon from "../../../img/syllabus-icons/g_its.png";
-import gSjalIcon from "../../../img/syllabus-icons/g_sjal.png";
-import gIpsIcon from "../../../img/syllabus-icons/g_ips.png";
-import gWospmIcon from "../../../img/syllabus-icons/g_wospm.png";
-import gWlsIcon from "../../../img/syllabus-icons/g_wls.png";
-import gSaIcon from "../../../img/syllabus-icons/g_sa.png";
-import gSpsIcon from "../../../img/syllabus-icons/g_sps.png";
-import gFseIcon from "../../../img/syllabus-icons/g_fse.png";
-import gCseIcon from "../../../img/syllabus-icons/g_cse.png";
-import gAseIcon from "../../../img/syllabus-icons/g_ase.png";
-import gSeeeIcon from "../../../img/syllabus-icons/g_seee.png";
-import gSiccsIcon from "../../../img/syllabus-icons/g_siccs.png";
-import gWbsIcon from "../../../img/syllabus-icons/g_wbs.png";
+import { allSchoolNameIconMap } from "../../utils/schoolNameIconMap";
 import FetchedShareButton from "../../containers/syllabus/FetchedShareButton";
 
 const RowWrapper = styled("li")`
@@ -108,14 +70,6 @@ const IconBadgeWrapper = styled("div")`
   align-items: center;
   flex-wrap: wrap;
 `;
-
-// const MenuIconWrapper = styled("div")`
-//   display: "flex",
-//   flex: "1 0 auto",
-//   flex-direction: column;
-//   align-items: center;
-//   justifyContent: "flex-end",
-// `;
 
 const SchoolIconList = styled("ul")`
   display: flex;
@@ -168,14 +122,6 @@ const Description = styled("div")`
   text-align: left;
 `;
 
-/*
-const Instructors = styled("div")`
-  text-align: left;
-  font-size: 1.2em;
-  ${media.phone`font-size: 1.0em;`};
-`;
-*/
-
 const InfoButtonsWrapper = styled("div")`
   flex: 1 0 30%;
   display: flex;
@@ -226,51 +172,9 @@ const OccurrenceList = styled("ul")`
   text-align: left;
 `;
 
-const schoolNameIconMap = {
-  [Schools.SILS]: silsIcon,
-  [Schools.PSE]: pseIcon,
-  [Schools.SSS]: sssIcon,
-  [Schools.FSE]: fseIcon,
-  [Schools.CSE]: cseIcon,
-  [Schools.ASE]: aseIcon,
-  [Schools.CJL]: cjlIcon,
-  [Schools.LAW]: lawIcon,
-  [Schools.CMS]: cmsIcon,
-  [Schools.HSS]: hssIcon,
-  [Schools.EDU]: eduIcon,
-  [Schools.SOC]: socIcon,
-  [Schools.HUM]: humIcon,
-  [Schools.SPS]: spsIcon,
-  [Schools.CIE]: cieIcon,
-  [Schools.GEC]: gecIcon,
-  [Schools.ART]: artIcon,
-  [Schools.G_ASE]: gAseIcon,
-  [Schools.G_CSE]: gCseIcon,
-  [Schools.G_EDU]: gEduIcon,
-  [Schools.G_FSE]: gFseIcon,
-  [Schools.G_SAPS]: gSapsIcon,
-  [Schools.G_ITS]: gItsIcon,
-  [Schools.G_SA]: gSaIcon,
-  [Schools.G_SC]: gScIcon,
-  [Schools.G_E]: gEIcon,
-  [Schools.G_SJAL]: gSjalIcon,
-  [Schools.G_SICCS]: gSiccsIcon,
-  [Schools.G_PS]: gPsIcon,
-  [Schools.G_SSS]: gSssIcon,
-  [Schools.G_HUM]: gHumIcon,
-  [Schools.G_IPS]: gIpsIcon,
-  [Schools.G_LAS]: gLasIcon,
-  [Schools.G_LAW]: gLawIcon,
-  [Schools.G_SPS]: gSpsIcon,
-  [Schools.G_WBS]: gWbsIcon,
-  [Schools.G_WLS]: gWlsIcon,
-  [Schools.G_WOSPM]: gWospmIcon,
-  [Schools.G_SEEE]: gSeeeIcon,
-};
-
-const mapSchoolToIcon = (school) => (
+const mapSchoolToIcon = (school, lng) => (
   <SchoolIconItem key={school}>
-    <SchoolIconImage src={schoolNameIconMap[school]} />
+    <SchoolIconImage src={allSchoolNameIconMap(lng)[school]} />
   </SchoolIconItem>
 );
 
@@ -353,7 +257,7 @@ const CourseItem = ({
     termKeysDecoder(course[SYLLABUS_KEYS.TERM]),
     t
   );
-  const schoolIcons = mapSchoolToIcon(course[SYLLABUS_KEYS.SCHOOL]);
+  const schoolIcons = mapSchoolToIcon(course[SYLLABUS_KEYS.SCHOOL], lng);
   const syllabusId = course[SYLLABUS_KEYS.ID];
   const shareLink = `https://wasedatime.com/courseInfo?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
   //Need to use index as keys due to Waseda's data.

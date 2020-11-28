@@ -5,31 +5,31 @@ import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 import { Segment, Grid, Table, Statistic, Divider } from "semantic-ui-react";
 import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
 
-const mapCourseType = (course) => {
+const mapCourseType = (course, t) => {
   if (course[SYLLABUS_KEYS.TYPE] === -1) return "";
   const courseTypeMap = [
-    "Lecture",
-    "Seminar",
-    "Work",
-    "Foreign Langauge",
-    "On-demand",
-    "Thesis",
-    "Graduate Research",
-    "Practice",
-    "Blended",
+    t("courseInfo.Details.Type.Lecture"),
+    t("courseInfo.Details.Type.Seminar"),
+    t("courseInfo.Details.Type.Work"),
+    t("courseInfo.Details.Type.Foreign Langauge"),
+    t("courseInfo.Details.Type.On-demand"),
+    t("courseInfo.Details.Type.Thesis"),
+    t("courseInfo.Details.Type.Graduate Research"),
+    t("courseInfo.Details.Type.Practice"),
+    t("courseInfo.Details.Type.Blended"),
   ];
   return courseTypeMap[course[SYLLABUS_KEYS.TYPE]];
 };
 
-const mapCourseLevel = (course) => {
+const mapCourseLevel = (course, t) => {
   if (course[SYLLABUS_KEYS.TYPE] === -1) return "";
   const courseLevelMap = [
-    "Beginner",
-    "Intermediate",
-    "Advanced",
-    "Final-stage",
-    "Master",
-    "Doctor",
+    t("courseInfo.Details.Level.Beginner"),
+    t("courseInfo.Details.Level.Intermediate"),
+    t("courseInfo.Details.Level.Advanced"),
+    t("courseInfo.Details.Level.Final-stage"),
+    t("courseInfo.Details.Level.Master"),
+    t("courseInfo.Details.Level.Doctor"),
   ];
   return courseLevelMap[course[SYLLABUS_KEYS.LEVEL]];
 };
@@ -76,9 +76,9 @@ const CourseDetails = ({ course, t }) => {
           <Table unstackable>
             <Table.Body>
               <Table.Row>
-                <Table.Cell>{t("courseInfo.Details.Type")}</Table.Cell>
+                <Table.Cell>{t("courseInfo.Details.Type.title")}</Table.Cell>
                 <Table.Cell>
-                  <b>{mapCourseType(course)}</b>
+                  <b>{mapCourseType(course, t)}</b>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
@@ -88,9 +88,9 @@ const CourseDetails = ({ course, t }) => {
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell>{t("courseInfo.Details.Level")}</Table.Cell>
+                <Table.Cell>{t("courseInfo.Details.Level.title")}</Table.Cell>
                 <Table.Cell>
-                  <b>{mapCourseLevel(course)}</b>
+                  <b>{mapCourseLevel(course, t)}</b>
                 </Table.Cell>
               </Table.Row>
             </Table.Body>

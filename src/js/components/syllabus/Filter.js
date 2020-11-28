@@ -288,47 +288,47 @@ class Filter extends React.Component {
     const typeInputs = [
       {
         key: "Lecture",
-        text: "Lecture",
+        text: t("courseInfo.Details.Type.Lecture"),
         value: "0",
       },
       {
         key: "Seminar",
-        text: "Seminar",
+        text: t("courseInfo.Details.Type.Seminar"),
         value: "1",
       },
       {
         key: "Work",
-        text: "Work",
+        text: t("courseInfo.Details.Type.Work"),
         value: "2",
       },
       {
         key: "Foreign Langauge",
-        text: "Foreign Langauge",
+        text: t("courseInfo.Details.Type.Foreign Language"),
         value: "3",
       },
       {
         key: "On-demand",
-        text: "On-demand",
+        text: t("courseInfo.Details.Type.On-demand"),
         value: "4",
       },
       {
         key: "Thesis",
-        text: "Thesis",
+        text: t("courseInfo.Details.Type.Thesis"),
         value: "5",
       },
       {
         key: "Graduate Research",
-        text: "Graduate Research",
+        text: t("courseInfo.Details.Type.Graduate Research"),
         value: "6",
       },
       {
         key: "Practice",
-        text: "Practice",
+        text: t("courseInfo.Details.Type.Practice"),
         value: "7",
       },
       {
         key: "Blended",
-        text: "Blended",
+        text: t("courseInfo.Details.Type.Blended"),
         value: "8",
       },
     ];
@@ -342,32 +342,32 @@ class Filter extends React.Component {
     const levelInputs = [
       {
         key: "Beginner",
-        text: "Beginner",
+        text: t("courseInfo.Details.Level.Beginner"),
         value: "0",
       },
       {
         key: "Intermediate",
-        text: "Intermediate",
+        text: t("courseInfo.Details.Level.Intermediate"),
         value: "1",
       },
       {
         key: "Advanced",
-        text: "Advanced",
+        text: t("courseInfo.Details.Level.Advanced"),
         value: "2",
       },
       {
         key: "Final-stage",
-        text: "Final-stage",
+        text: t("courseInfo.Details.Level.Final-stage"),
         value: "3",
       },
       {
         key: "Master",
-        text: "Master",
+        text: t("courseInfo.Details.Level.Master"),
         value: "4",
       },
       {
         key: "Doctor",
-        text: "Doctor",
+        text: t("courseInfo.Details.Level.Doctor"),
         value: "5",
       },
     ];

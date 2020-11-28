@@ -171,9 +171,28 @@
       "title": "Details",
       "Min Year": "Eligible Year",
       "Credit": "Credit",
-      "Type": "Type",
       "Category": "Category",
-      "Level": "Level",
+      "Type": {
+        "title": "Type",
+        "Lecture": "Lecture",
+        "Seminar": "Seminar",
+        "Work": "Work",
+        "Foreign Language": "Foreign Language",
+        "On-demand": "On-demand",
+        "Thesis": "Thesis",
+        "Graduate Research": "Graduate Research",
+        "Practice": "Practice",
+        "Blended": "Blended"
+      },
+      "Level": {
+        "title": "Level",
+        "Beginner": "Beginner",
+        "Intermediate": "Intermediate",
+        "Advanced": "Advanced",
+        "Final-stage": "Final-stage",
+        "Master": "Master",
+        "Doctor": "Doctor"
+      },
       "Evaluation": {
         "title": "Evaluation",
         "Exam": "Exams",

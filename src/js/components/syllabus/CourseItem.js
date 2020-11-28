@@ -296,6 +296,8 @@ const getPeriod = (period, t) => {
     return t("syllabus.location.undecided");
   } else if (period > 9) {
     return `${parseInt(period / 10)}-${period % 10}`;
+  } else if (period === 0) {
+    return t("courseInfo.Details.Type.On-demand");
   } else {
     return `${period}`;
   }
@@ -346,22 +348,7 @@ const CourseItem = ({
       );
     }
   );
-  // const keywords =
-  //   "kws" in course
-  //     ? course.kws.map((keyword, index) => {
-  //         return (
-  //           <li key={keyword} style={{ display: "inline-block" }}>
-  //             <Badge>
-  //               {keyword === "English-based Undergraduate Program"
-  //                 ? t("syllabus.EN-based Undergrad Program")
-  //                 : t(`syllabus.${keyword}`)}
-  //             </Badge>
-  //           </li>
-  //         );
-  //       })
-  //     : null;
-  // const keywordsList =
-  //   keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
+
   const buttonIcon = (
     <FontAwesomeIcon
       style={isAddable ? { color: "#48af37" } : { color: "#ce0115" }}

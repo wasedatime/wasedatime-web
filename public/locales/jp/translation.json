@@ -171,9 +171,28 @@
       "title": "詳細",
       "Min Year": "配当年次",
       "Credit": "単位",
-      "Type": "授業形態",
       "Category": "科目区分",
-      "Level": "レベル",
+      "Type": {
+        "title": "授業形態",
+        "Lecture": "講義",
+        "Seminar": "演習／ゼミ",
+        "Work": "実習／実験／実技",
+        "Foreign Language": "外国語",
+        "On-demand": "オンデマンド",
+        "Thesis": "論文",
+        "Graduate Research": "研究指導",
+        "Practice": "実践／フィールドワーク／インターンシップ／ボランティア",
+        "Blended": "対面／オンデマンド"
+      },
+      "Level": {
+        "title": "レベル",
+        "Beginner": "初級レベル（入門・導入）",
+        "Intermediate": "中級レベル（発展・応用）",
+        "Advanced": "上級レベル",
+        "Final-stage": "総仕上げ",
+        "Master": "修士レベル",
+        "Doctor": "博士レベル"
+      },
       "Evaluation": {
         "title": "成績評価",
         "Exam": "試験",

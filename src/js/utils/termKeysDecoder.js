@@ -14,9 +14,12 @@ const termKeysMap = {
 
 export const termKeysDecoder = (key) => {
   var str = "";
-  key.split("").forEach((k, i) => {
-    if (i !== 0) str += " ";
-    str += termKeysMap[k];
-  });
-  return str;
+  if (Array.isArray(key)) {
+    key.split("").forEach((k, i) => {
+      if (i !== 0) str += " ";
+      str += termKeysMap[k];
+    });
+    return str;
+  }
+  return "";
 };

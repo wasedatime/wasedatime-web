@@ -37,10 +37,10 @@ const evalChartOptions = {
   },
   tooltips: {
     callbacks: {
-      title: function(tooltipItem, data) {
+      title: function (tooltipItem, data) {
         return data["labels"][tooltipItem[0]["index"]];
       },
-      label: function(tooltipItem, data) {
+      label: function (tooltipItem, data) {
         return " " + data["datasets"][0]["data"][tooltipItem["index"]] + "%";
       },
     },
@@ -85,7 +85,7 @@ const CourseDetailsEvaluation = ({ course, t }) => {
     </Grid>
   ) : (
     <p style={{ textAlign: "center" }}>
-      No data / Not found in original data...
+      Click the blue arrow button above to check the details
     </p>
   );
 };

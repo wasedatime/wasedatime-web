@@ -79,7 +79,9 @@ const ReviewScalesCountContainer = ({
           )
         }
       </MediaQuery>{" "}
-      {t(`courseInfo.Reviews`)}
+      {thisCourseReviewsLength > 1
+        ? t(`courseInfo.Reviews`)
+        : t(`courseInfo.Review`)}
     </ReviewsCount>
   </ReviewScalesRow>
 );

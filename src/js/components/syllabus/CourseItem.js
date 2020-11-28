@@ -13,7 +13,6 @@ import {
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 
-import * as Schools from "../../data/schools";
 import { termKeysDecoder } from "../../utils/termKeysDecoder";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";

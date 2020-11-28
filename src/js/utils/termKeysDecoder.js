@@ -14,7 +14,7 @@ const termKeysMap = {
 
 export const termKeysDecoder = (key) => {
   var str = "";
-  if (!Array.isArray(key)) {
+  if (typeof key === "string") {
     key.split("").forEach((k, i) => {
       if (i !== 0) str += " ";
       str += termKeysMap[k];

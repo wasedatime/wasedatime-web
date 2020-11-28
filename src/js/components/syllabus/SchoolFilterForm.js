@@ -28,7 +28,12 @@ import {
 
 const StyledSegment = styled(Segment)`
   cursor: default !important;
+  animation: none !important;
+  border-radius: 5px !important;
+  box-shadow: none !important;
+
   &:hover {
+    border-radius: 5px !important;
     transform: none !important;
   }
 `;
@@ -45,10 +50,11 @@ class SchoolFilterForm extends React.Component {
 
   schoolImportPanes = () => {
     const { loadedSchools, loadingSchool, schoolsUpToLimit } = this.state;
+    const { t } = this.props;
 
     return [
       {
-        menuItem: "Undergraduate",
+        menuItem: t("syllabus.School Filter.Undergraduate"),
         render: () => (
           <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
             {Object.keys(undergradSchoolNameIconMap(this.props.lng)).map(
@@ -75,7 +81,7 @@ class SchoolFilterForm extends React.Component {
         ),
       },
       {
-        menuItem: "Graduate",
+        menuItem: t("syllabus.School Filter.Graduate"),
         render: () => (
           <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
             {Object.keys(gradSchoolNameIconMap(this.props.lng)).map(
@@ -100,7 +106,7 @@ class SchoolFilterForm extends React.Component {
         ),
       },
       {
-        menuItem: "Other",
+        menuItem: t("syllabus.School Filter.Other"),
         render: () => (
           <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
             {Object.keys(otherSchoolNameIconMap(this.props.lng)).map(
@@ -217,6 +223,7 @@ class SchoolFilterForm extends React.Component {
   };
 
   render() {
+    const { t } = this.props;
     return (
       <Overlay>
         <StyledSegment
@@ -231,7 +238,7 @@ class SchoolFilterForm extends React.Component {
             }
             style={{ cursor: "pointer", margin: "0px" }}
           >
-            School filter{" "}
+            {t("syllabus.School Filter.title")}{" "}
             {this.state.isSchoolFilterOpened ? (
               <Icon name="angle up" />
             ) : (
@@ -247,7 +254,7 @@ class SchoolFilterForm extends React.Component {
                     <Button
                       color="green"
                       icon="add"
-                      content="Import syllabus"
+                      content={t("syllabus.School Filter.Import")}
                     />
                   }
                   content={<Tab panes={this.schoolImportPanes()} />}
@@ -261,7 +268,7 @@ class SchoolFilterForm extends React.Component {
                     <Button
                       color="red"
                       icon="minus"
-                      content="Remove syllabus"
+                      content={t("syllabus.School Filter.Remove")}
                     />
                   }
                   content={this.schoolRemoveForm()}
@@ -276,15 +283,17 @@ class SchoolFilterForm extends React.Component {
           {this.state.loadedSchools.length === 0 &&
             this.state.isSchoolFilterOpened && (
               <Message>
-                <Message.Header>No syllabus imported yet</Message.Header>
+                <Message.Header>
+                  {t("syllabus.School Filter.No imported")}
+                </Message.Header>
                 <p>
-                  Please import the syllabus for at least 1 school.{" "}
+                  {t("syllabus.School Filter.Import request")}{" "}
                   <Popup
                     trigger={
                       <Button
                         color="green"
                         icon="add"
-                        content="Import syllabus"
+                        content={t("syllabus.School Filter.Import")}
                       />
                     }
                     content={<Tab panes={this.schoolImportPanes()} />}

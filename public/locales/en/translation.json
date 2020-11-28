@@ -93,6 +93,16 @@
     "credit": "Credit",
     "type": "Type",
     "level": "Level",
+    "School Filter": {
+      "title": "School Filter",
+      "Import": "Import Syllabus",
+      "Remove": "Remove Syllabus",
+      "Undergraduate": "Undergraduate",
+      "Graduate": "Graduate",
+      "Other": "Other",
+      "No imported": "No syllabus imported yet",
+      "Import request": "Please import the syllabus for at least 1 school."
+    },
     "displayedSpringSemester": "Spring Semester",
     "displayedFallSemester": "Fall Semester",
     "searchBarPlaceholder": "Search course, instructor in EN / JP",

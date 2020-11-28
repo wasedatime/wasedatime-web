@@ -93,6 +93,16 @@
     "credit": "単位",
     "type": "授業形態",
     "level": "レベル",
+    "School Filter": {
+      "title": "学部/研究科フィルター",
+      "Import": "シラバスをインポート",
+      "Remove": "シラバスを削除",
+      "Undergraduate": "学部",
+      "Graduate": "大学院",
+      "Other": "ほか",
+      "No imported": "シラバスがインポートされていません",
+      "Import request": "一つ以上の学部/研究科をインポートしてください。"
+    },
     "displayedSpringSemester": "春学期",
     "displayedFallSemester": "秋学期",
     "searchBarPlaceholder": "科目、教師を日本語・英語で検索",

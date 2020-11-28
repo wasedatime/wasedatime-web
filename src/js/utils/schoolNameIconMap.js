@@ -75,10 +75,14 @@ import gSiccsIcon_jp from "../../img/syllabus-icons/g_siccs_jp.png";
 import gWbsIcon_jp from "../../img/syllabus-icons/g_wbs_jp.png";
 
 import artIcon from "../../img/syllabus-icons/art.png";
-import artIcon_jp from "../../img/syllabus-icons/art_jp.png";
 import cjlIcon from "../../img/syllabus-icons/cjl.png";
 import cieIcon from "../../img/syllabus-icons/cie.png";
 import gecIcon from "../../img/syllabus-icons/gec.png";
+
+import artIcon_jp from "../../img/syllabus-icons/art_jp.png";
+import cjlIcon_jp from "../../img/syllabus-icons/cjl_jp.png";
+import cieIcon_jp from "../../img/syllabus-icons/cie_jp.png";
+import gecIcon_jp from "../../img/syllabus-icons/gec_jp.png";
 
 export const undergradSchoolNameIconMap = (lng) =>
   lng === "jp"
@@ -167,9 +171,9 @@ export const gradSchoolNameIconMap = (lng) =>
 export const otherSchoolNameIconMap = (lng) =>
   lng === "jp"
     ? {
-        [Schools.CJL]: cjlIcon,
-        [Schools.GEC]: gecIcon,
-        [Schools.CIE]: cieIcon,
+        [Schools.CJL]: cjlIcon_jp,
+        [Schools.GEC]: gecIcon_jp,
+        [Schools.CIE]: cieIcon_jp,
         [Schools.ART]: artIcon_jp,
       }
     : {

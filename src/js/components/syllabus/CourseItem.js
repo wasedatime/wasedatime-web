@@ -136,10 +136,11 @@ const ViewInfoButton = styled("a")`
   border: 0px;
   border-radius: 5px;
   color: #fff;
-  padding: 5px 1rem;
+  padding: 3px 0.7rem 1px;
   margin-bottom: 4px;
   text-align: center;
   text-decoration: none;
+  border: 2px solid #ffae42;
   &:hover {
     color: #ffae42;
     background-color: #fff;
@@ -186,12 +187,11 @@ const combineYearTerm = (year, term, t) => {
 };
 
 const getLang = (course, t) => {
+  if (course[SYLLABUS_KEYS.LANG].includes(-1)) return "N/A";
   return course[SYLLABUS_KEYS.LANG]
     .toString()
     .split(",")
-    .map((l, i) =>
-      l === -1 ? "N/A" : (i > 0 ? " / " : "") + t(`syllabus.languageKeys.${l}`)
-    );
+    .map((l, i) => (i > 0 ? " / " : "") + t(`syllabus.languageKeys.${l}`));
 };
 
 const getDay = (day, t) => {

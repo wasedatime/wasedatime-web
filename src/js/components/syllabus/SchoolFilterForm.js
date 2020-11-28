@@ -119,6 +119,7 @@ const undergradSchoolNameIconMap = (lng) =>
         [Schools.HUM]: humIcon_jp,
         [Schools.SPS]: spsIcon_jp,
         [Schools.CIE]: cieIcon,
+        [Schools.ART]: artIcon,
       }
     : {
         [Schools.SILS]: silsIcon,
@@ -137,6 +138,7 @@ const undergradSchoolNameIconMap = (lng) =>
         [Schools.HUM]: humIcon,
         [Schools.SPS]: spsIcon,
         [Schools.CIE]: cieIcon,
+        [Schools.ART]: artIcon,
       };
 
 const gradSchoolNameIconMap = (lng) =>

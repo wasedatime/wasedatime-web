@@ -13,24 +13,7 @@ import {
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 
-import {
-  ASE,
-  CJL,
-  CSE,
-  FSE,
-  GEC,
-  PSE,
-  SILS,
-  SSS,
-  LAW,
-  CMS,
-  HSS,
-  EDU,
-  SOC,
-  HUM,
-  SPS,
-  CIE,
-} from "../../data/schools";
+import * as Schools from "../../data/schools";
 import { termKeysDecoder } from "../../utils/termKeysDecoder";
 import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
 import { highlight } from "../../utils/highlight";
@@ -53,6 +36,29 @@ import socIcon from "../../../img/syllabus-icons/soc.png";
 import humIcon from "../../../img/syllabus-icons/hum.png";
 import spsIcon from "../../../img/syllabus-icons/sps.png";
 import cieIcon from "../../../img/syllabus-icons/cie.png";
+import artIcon from "../../../img/syllabus-icons/art.png";
+import gPsIcon from "../../../img/syllabus-icons/g_ps.png";
+import gEIcon from "../../../img/syllabus-icons/g_e.png";
+import gLawIcon from "../../../img/syllabus-icons/g_law.png";
+import gLasIcon from "../../../img/syllabus-icons/g_las.png";
+import gScIcon from "../../../img/syllabus-icons/g_sc.png";
+import gEduIcon from "../../../img/syllabus-icons/g_edu.png";
+import gHumIcon from "../../../img/syllabus-icons/g_hum.png";
+import gSssIcon from "../../../img/syllabus-icons/g_sss.png";
+import gSapsIcon from "../../../img/syllabus-icons/g_saps.png";
+import gItsIcon from "../../../img/syllabus-icons/g_its.png";
+import gSjalIcon from "../../../img/syllabus-icons/g_sjal.png";
+import gIpsIcon from "../../../img/syllabus-icons/g_ips.png";
+import gWospmIcon from "../../../img/syllabus-icons/g_wospm.png";
+import gWlsIcon from "../../../img/syllabus-icons/g_wls.png";
+import gSaIcon from "../../../img/syllabus-icons/g_sa.png";
+import gSpsIcon from "../../../img/syllabus-icons/g_sps.png";
+import gFseIcon from "../../../img/syllabus-icons/g_fse.png";
+import gCseIcon from "../../../img/syllabus-icons/g_cse.png";
+import gAseIcon from "../../../img/syllabus-icons/g_ase.png";
+import gSeeeIcon from "../../../img/syllabus-icons/g_seee.png";
+import gSiccsIcon from "../../../img/syllabus-icons/g_siccs.png";
+import gWbsIcon from "../../../img/syllabus-icons/g_wbs.png";
 import FetchedShareButton from "../../containers/syllabus/FetchedShareButton";
 
 const RowWrapper = styled("li")`
@@ -221,22 +227,45 @@ const OccurrenceList = styled("ul")`
 `;
 
 const schoolNameIconMap = {
-  [SILS]: silsIcon,
-  [PSE]: pseIcon,
-  [SSS]: sssIcon,
-  [FSE]: fseIcon,
-  [CSE]: cseIcon,
-  [ASE]: aseIcon,
-  [CJL]: cjlIcon,
-  [LAW]: lawIcon,
-  [CMS]: cmsIcon,
-  [HSS]: hssIcon,
-  [EDU]: eduIcon,
-  [SOC]: socIcon,
-  [HUM]: humIcon,
-  [SPS]: spsIcon,
-  [CIE]: cieIcon,
-  [GEC]: gecIcon,
+  [Schools.SILS]: silsIcon,
+  [Schools.PSE]: pseIcon,
+  [Schools.SSS]: sssIcon,
+  [Schools.FSE]: fseIcon,
+  [Schools.CSE]: cseIcon,
+  [Schools.ASE]: aseIcon,
+  [Schools.CJL]: cjlIcon,
+  [Schools.LAW]: lawIcon,
+  [Schools.CMS]: cmsIcon,
+  [Schools.HSS]: hssIcon,
+  [Schools.EDU]: eduIcon,
+  [Schools.SOC]: socIcon,
+  [Schools.HUM]: humIcon,
+  [Schools.SPS]: spsIcon,
+  [Schools.CIE]: cieIcon,
+  [Schools.GEC]: gecIcon,
+  [Schools.ART]: artIcon,
+  [Schools.G_ASE]: gAseIcon,
+  [Schools.G_CSE]: gCseIcon,
+  [Schools.G_EDU]: gEduIcon,
+  [Schools.G_FSE]: gFseIcon,
+  [Schools.G_SAPS]: gSapsIcon,
+  [Schools.G_ITS]: gItsIcon,
+  [Schools.G_SA]: gSaIcon,
+  [Schools.G_SC]: gScIcon,
+  [Schools.G_E]: gEIcon,
+  [Schools.G_SJAL]: gSjalIcon,
+  [Schools.G_SICCS]: gSiccsIcon,
+  [Schools.G_PS]: gPsIcon,
+  [Schools.G_SSS]: gSssIcon,
+  [Schools.G_HUM]: gHumIcon,
+  [Schools.G_IPS]: gIpsIcon,
+  [Schools.G_LAS]: gLasIcon,
+  [Schools.G_LAW]: gLawIcon,
+  [Schools.G_SPS]: gSpsIcon,
+  [Schools.G_WBS]: gWbsIcon,
+  [Schools.G_WLS]: gWlsIcon,
+  [Schools.G_WOSPM]: gWospmIcon,
+  [Schools.G_SEEE]: gSeeeIcon,
 };
 
 const mapSchoolToIcon = (school) => (

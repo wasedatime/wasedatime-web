@@ -6,7 +6,6 @@ import Typography from "@material-ui/core/Typography";
 
 import { Article } from "../../styled-components/Article";
 import { media } from "../../styled-components/utils";
-import CourseItem from "../syllabus/CourseItem";
 import { Divider } from "semantic-ui-react";
 
 import { allSchoolNameIconMap } from "../../utils/schoolNameIconMap";
@@ -50,7 +49,11 @@ const NewFeature = ({ classes, t, lng }) => {
         {t("welcome.allSchoolsAdded")}
         <br />
         {Object.keys(schoolNameIconMap).map((name) => (
-          <img src={schoolNameIconMap[name]} style={{ width: "3em" }} />
+          <img
+            src={schoolNameIconMap[name]}
+            alt={name}
+            style={{ width: "3em" }}
+          />
         ))}
       </Typography>
     </ExtendedArticle>

@@ -2,7 +2,7 @@ import React from "react";
 import ShareButton from "../../components/syllabus/ShareButton";
 
 class FetchedShareButton extends React.Component {
-  state = { isPopperOpen: false, };
+  state = { isPopperOpen: false };
 
   handleToggleSharePopper = (event) => {
     event.preventDefault();
@@ -12,7 +12,6 @@ class FetchedShareButton extends React.Component {
   };
 
   render() {
-    // props from components/syllebus/ShareButton.js
     const {
       display,
       shareLink,
@@ -20,8 +19,6 @@ class FetchedShareButton extends React.Component {
       isInCourseReviewsPage,
       needLineBreak,
     } = this.props;
-    // sizesDesktop: Small or Large Screen
-
     return (
       <ShareButton
         display={display}

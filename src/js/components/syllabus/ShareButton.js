@@ -16,6 +16,7 @@ import {
 import { Manager, Reference, Popper } from "react-popper";
 import { InvisibleButton } from "../../styled-components/Button";
 import { Popup } from "semantic-ui-react";
+import { withNamespaces } from "react-i18next";
 //import { element } from "prop-types";
 
 //Propper Style -----
@@ -71,17 +72,16 @@ const ShareButtonIcon = styled("i")`
 `; // Case of Small Screen
 
 const ShareButton = ({
-  // passed from components/syllebus/ShareButton.js
   display,
   shareLink,
-  sizesDesktop, // = Small or Large Screen
+  sizesDesktop,
   isInCourseReviewsPage,
-  // logic in containers/syllebus/FetchedShareButton.js
   isPopperOpen,
   handleToggleSharePopper,
   needLineBreak,
+  t,
 }) => {
-  const shareText = "Wanna search for good courses? Try WasedaTime!";
+  const shareText = t("syllabus.Share text");
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizesDesktop}>
       {(matches) => {
@@ -92,17 +92,23 @@ const ShareButton = ({
                 <ShareButtonBarWrapper>
                   <Popup
                     position="top right"
-                    content="Does this course look good? Share with classmates!"
+                    content={t("syllabus.Share popup message")}
                     on="hover"
                     trigger={
                       <ShareButtonBar
                         innerRef={ref}
                         onClick={handleToggleSharePopper}
+                        style={{
+                          fontSize:
+                            needLineBreak !== undefined && needLineBreak
+                              ? "0.9em"
+                              : "1em",
+                        }}
                       >
                         <FontAwesomeIcon icon={faShareAlt} />
                         {needLineBreak !== undefined && needLineBreak
-                          ? " Share"
-                          : " Share!"}
+                          ? " " + t("syllabus.Share")
+                          : " " + t("syllabus.Share!")}
                       </ShareButtonBar>
                     }
                   />
@@ -321,4 +327,4 @@ const ShareButton = ({
   );
 };
 
-export default ShareButton;
+export default withNamespaces("translation")(ShareButton);

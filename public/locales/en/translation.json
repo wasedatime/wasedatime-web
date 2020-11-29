@@ -181,7 +181,11 @@
     "Added order": "Added order",
     "Course title": "Course title",
     "Course time": "Course time",
-    "langParam": "&pLng=en"
+    "langParam": "&pLng=en",
+    "Share": "Share",
+    "Share!": "Share!",
+    "Share popup message": "Does this course look good? Share with classmates!",
+    "Share text": "Wanna search for good courses? Try WasedaTime!"
   },
   "courseInfo": {
     "Details": {

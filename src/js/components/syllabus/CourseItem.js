@@ -354,7 +354,7 @@ const CourseItem = ({
               borderRadius: "5px",
             }}
           >
-            <a /* Syllebus Button */
+            <a
               style={{ alignSelf: "flex-start" }}
               href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
                 "syllabus.langParam"

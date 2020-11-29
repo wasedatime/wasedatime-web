@@ -181,7 +181,11 @@
     "Added order": "追加時間",
     "Course title": "科目名",
     "Course time": "科目時間",
-    "langParam": ""
+    "langParam": "",
+    "Share": "シェア",
+    "Share!": "シェア！",
+    "Share popup message": "良い授業を発見した？クラスメイトにシェアしよう！",
+    "Share text": "良い授業、なかなか見つからない？早稲田タイムで検索しましょう！"
   },
   "courseInfo": {
     "Details": {

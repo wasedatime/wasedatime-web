@@ -28,6 +28,7 @@ import {
   gaCloseModal,
   gaApplyFilter,
   gaRemoveFilter,
+  gaUpdateFilter,
 } from "../../ga/eventActions";
 
 const ExtendedWrapper = styled(Wrapper)`
@@ -77,6 +78,8 @@ class FetchedCourseSearch extends React.Component {
         period: [],
         minYear: [],
         credit: [],
+        evalType: 0,
+        evalPercent: [0, 100],
         type: [],
         level: [],
       },
@@ -108,12 +111,13 @@ class FetchedCourseSearch extends React.Component {
     this.setState((prevState, props) => {
       const { [inputName]: filters, ...rest } = prevState.filterGroups;
       let newFilters, gaAction;
-      if (Array.isArray(value)) {
-        gaAction =
-          filters && value.length < filters.length
-            ? gaRemoveFilter
-            : gaApplyFilter;
+      if (inputName.includes("eval")) {
         newFilters = value;
+        gaAction = gaUpdateFilter;
+      } else if (Array.isArray(value)) {
+        newFilters = value;
+        gaAction =
+          value.length < filters.length ? gaRemoveFilter : gaApplyFilter;
       } else {
         if (filters.includes(value)) {
           newFilters = filters.filter((elem) => elem !== value);
@@ -232,6 +236,22 @@ class FetchedCourseSearch extends React.Component {
               ? creditFilters.includes("3")
               : creditFilters.includes(course[SYLLABUS_KEYS.CREDIT].toString())
           );
+
+    const evalTypeFilter = filterGroups.evalType;
+    const evalPercentFilters = filterGroups.evalPercent;
+    filteredCourses =
+      evalPercentFilters === [0, 100]
+        ? filteredCourses
+        : filteredCourses.filter((course) => {
+            const targetEval = course[SYLLABUS_KEYS.EVAL].filter(
+              (e) => e[SYLLABUS_KEYS.EVAL_TYPE] === evalTypeFilter
+            )[0];
+            if (!targetEval) return false;
+            return (
+              targetEval[SYLLABUS_KEYS.EVAL_PERCENT] >= evalPercentFilters[0] &&
+              targetEval[SYLLABUS_KEYS.EVAL_PERCENT] <= evalPercentFilters[1]
+            );
+          });
 
     const typeFilters = filterGroups.type;
     filteredCourses =

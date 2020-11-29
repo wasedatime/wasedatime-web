@@ -91,6 +91,13 @@
     "period": "Period",
     "minYear": "Eligible Year",
     "credit": "Credit",
+    "eval": {
+      "title": "Evaluation",
+      "Exam": "Exams",
+      "Papers": "Papers",
+      "Class Participation": "Class Participation",
+      "Others": "Others"
+    },
     "type": "Type",
     "level": "Level",
     "School Filter": {

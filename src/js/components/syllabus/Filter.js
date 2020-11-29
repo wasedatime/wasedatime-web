@@ -10,6 +10,7 @@ import {
   searchBarHeight,
 } from "../../styled-components/variables";
 import FilterGroup from "./FilterGroup";
+import FilterEvalGroup from "./FilterEvalGroup";
 import { Wrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 
@@ -283,6 +284,22 @@ class Filter extends React.Component {
       isChecked: filterGroups[creditInputName].includes(input.value),
     }));
 
+    const evalLegend = t("syllabus.eval.title");
+    const evalTypeInputs = [
+      { key: "Exam", text: t("syllabus.eval.Exam"), value: 0 },
+      { key: "Papers", text: t("syllabus.eval.Papers"), value: 1 },
+      {
+        key: "Class Participation",
+        text: t("syllabus.eval.Class Participation"),
+        value: 2,
+      },
+      { key: "Others", text: t("syllabus.eval.Others"), value: 3 },
+    ];
+    const evalTypeInputName = "evalType";
+    const evalPercentInputName = "evalPercent";
+    const selectedEvalTypeInput = filterGroups[evalTypeInputName];
+    const selectedEvalPercentInputs = filterGroups[evalPercentInputName];
+
     const typeLegend = t("syllabus.type");
     const typeInputName = "type";
     const typeInputs = [
@@ -426,6 +443,15 @@ class Filter extends React.Component {
               inputName={creditInputName}
               inputs={checkedCreditInputs}
               filterType={"checkbox"}
+            />
+            <FilterEvalGroup
+              handleToggleFilter={this.props.handleToggleFilter}
+              legend={evalLegend}
+              typeInputs={evalTypeInputs}
+              typeInputName={evalTypeInputName}
+              selectedTypeInput={selectedEvalTypeInput}
+              percentInputName={evalPercentInputName}
+              selectedPercentInputs={selectedEvalPercentInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}

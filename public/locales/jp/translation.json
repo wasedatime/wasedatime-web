@@ -91,6 +91,13 @@
     "period": "時限",
     "minYear": "配当年次",
     "credit": "単位",
+    "eval": {
+      "title": "成績評価",
+      "Exam": "試験",
+      "Papers": "レポート",
+      "Class Participation": "平常点評価",
+      "Others": "その他"
+    },
     "type": "授業形態",
     "level": "レベル",
     "School Filter": {

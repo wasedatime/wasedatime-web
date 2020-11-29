@@ -22,7 +22,7 @@ const styles = (theme) => ({
   },
   formGroup: {
     fontSize: "1.2em",
-    margin: "5px 0",
+    margin: "0 0 10px",
   },
   formControlLabel: {
     minWidth: "105px",

@@ -141,13 +141,7 @@ class SchoolFilterForm extends React.Component {
         <SchoolRemoveCard
           key={schoolName}
           schoolName={schoolName}
-          schoolIcon={
-            {
-              ...undergradSchoolNameIconMap(this.props.lng),
-              ...gradSchoolNameIconMap(this.props.lng),
-              ...otherSchoolNameIconMap(this.props.lng),
-            }[schoolName]
-          }
+          schoolIcon={allSchoolNameIconMap(this.props.lng)[schoolName]}
           removing={this.state.removingSchool === schoolName}
           onRemove={this.handleSchoolRemove}
           isBannedToRemove={

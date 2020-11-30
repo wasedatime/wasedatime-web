@@ -17,7 +17,12 @@ class SchoolRemoveCard extends React.Component {
     return (
       <Dimmer.Dimmable
         as={Card}
-        onClick={() => (isBannedToRemove ? {} : onRemove(schoolName))}
+        onClick={() => {
+          if (!isBannedToRemove) {
+            console.log(schoolName);
+            onRemove(schoolName);
+          }
+        }}
         onMouseOver={() => this.setState({ isDimmerActive: true })}
         onMouseOut={() => this.setState({ isDimmerActive: false })}
       >

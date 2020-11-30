@@ -51,88 +51,33 @@ class SchoolFilterForm extends React.Component {
   schoolImportPanes = () => {
     const { loadedSchools, loadingSchool, schoolsUpToLimit } = this.state;
     const { t } = this.props;
-
+    const schoolGroupNames = ["Undergraduate", "Graduate", "Other"];
     return [
-      {
-        menuItem: t("syllabus.School Filter.Undergraduate"),
-        render: () => (
-          <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
-            {Object.keys(undergradSchoolNameIconMap(this.props.lng)).map(
-              (schoolName) => (
-                <SchoolImportCard
-                  key={schoolName}
-                  schoolName={schoolName}
-                  loaded={loadedSchools.includes(schoolName)}
-                  loading={this.state.loadingSchool === schoolName}
-                  schoolIcon={
-                    undergradSchoolNameIconMap(this.props.lng)[schoolName]
-                  }
-                  onDownload={this.handleSchoolloading}
-                  isBannedToLoad={
-                    !loadedSchools.includes(schoolName) &&
-                    ((loadingSchool &&
-                      this.state.loadingSchool !== schoolName) ||
-                      schoolsUpToLimit)
-                  }
-                />
-              )
-            )}
-          </Card.Group>
-        ),
-      },
-      {
-        menuItem: t("syllabus.School Filter.Graduate"),
-        render: () => (
-          <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
-            {Object.keys(gradSchoolNameIconMap(this.props.lng)).map(
-              (schoolName) => (
-                <SchoolImportCard
-                  key={schoolName}
-                  schoolName={schoolName}
-                  loaded={loadedSchools.includes(schoolName)}
-                  loading={this.state.loadingSchool === schoolName}
-                  schoolIcon={gradSchoolNameIconMap(this.props.lng)[schoolName]}
-                  onDownload={this.handleSchoolloading}
-                  isBannedToLoad={
-                    !loadedSchools.includes(schoolName) &&
-                    ((loadingSchool &&
-                      this.state.loadingSchool !== schoolName) ||
-                      schoolsUpToLimit)
-                  }
-                />
-              )
-            )}
-          </Card.Group>
-        ),
-      },
-      {
-        menuItem: t("syllabus.School Filter.Other"),
-        render: () => (
-          <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
-            {Object.keys(otherSchoolNameIconMap(this.props.lng)).map(
-              (schoolName) => (
-                <SchoolImportCard
-                  key={schoolName}
-                  schoolName={schoolName}
-                  loaded={loadedSchools.includes(schoolName)}
-                  loading={this.state.loadingSchool === schoolName}
-                  schoolIcon={
-                    otherSchoolNameIconMap(this.props.lng)[schoolName]
-                  }
-                  onDownload={this.handleSchoolloading}
-                  isBannedToLoad={
-                    !loadedSchools.includes(schoolName) &&
-                    ((loadingSchool &&
-                      this.state.loadingSchool !== schoolName) ||
-                      schoolsUpToLimit)
-                  }
-                />
-              )
-            )}
-          </Card.Group>
-        ),
-      },
-    ];
+      undergradSchoolNameIconMap(this.props.lng),
+      gradSchoolNameIconMap(this.props.lng),
+      otherSchoolNameIconMap(this.props.lng),
+    ].map((schoolNameIconMap, i) => ({
+      menuItem: t("syllabus.School Filter." + schoolGroupNames[i]),
+      render: () => (
+        <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
+          {Object.keys(schoolNameIconMap).map((schoolName) => (
+            <SchoolImportCard
+              key={schoolName}
+              schoolName={schoolName}
+              loaded={loadedSchools.includes(schoolName)}
+              loading={this.state.loadingSchool === schoolName}
+              schoolIcon={schoolNameIconMap[schoolName]}
+              onDownload={this.handleSchoolloading}
+              isBannedToLoad={
+                !loadedSchools.includes(schoolName) &&
+                ((loadingSchool && this.state.loadingSchool !== schoolName) ||
+                  schoolsUpToLimit)
+              }
+            />
+          ))}
+        </Card.Group>
+      ),
+    }));
   };
 
   schoolRemoveForm = () => (
@@ -195,17 +140,18 @@ class SchoolFilterForm extends React.Component {
   handleSchoolRemove = async (school) => {
     if (this.state.loadedSchools.includes(school)) {
       let loadedSchools = this.state.loadedSchools;
+      console.log(loadedSchools);
       let selectedSchools = this.state.selectedSchools;
       this.setState({ removingSchool: school });
+      loadedSchools.splice(loadedSchools.indexOf(school), 1);
+      if (selectedSchools.includes(school)) {
+        selectedSchools.splice(selectedSchools.indexOf(school), 1);
+        this.props.handleToggleFilter("school", school);
+      }
 
       await this.props.removeSyllabus(school);
 
       setTimeout(() => {
-        loadedSchools.splice(loadedSchools.indexOf(school), 1);
-        if (selectedSchools.includes(school)) {
-          selectedSchools.splice(selectedSchools.indexOf(school), 1);
-          this.props.handleToggleFilter("school", school);
-        }
         this.setState({
           removingSchool: null,
           loadedSchools: loadedSchools,

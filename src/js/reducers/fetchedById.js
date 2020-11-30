@@ -11,9 +11,15 @@ const fetchedById = (entityKey, actionTypes) => {
           }
         });
         return coursesById || {};
+      case actionTypes.addSchoolFetchSuccess:
+        const courses = { ...action.response["courses"] };
+        const school = action.response["school"];
+        return {
+          ...state,
+          [school]: courses.entities ? courses.entities[entityKey] : {},
+        };
       case actionTypes.removeSchool:
-        delete state[action.payload];
-        return state;
+        return { ...state, [action.payload]: {} };
       default:
         return state;
     }

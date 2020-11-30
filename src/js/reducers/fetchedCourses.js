@@ -5,6 +5,9 @@ import {
   FETCH_COURSES_SUCCESS,
   FETCH_COURSES_FAILURE,
   ADD_SCHOOL,
+  ADD_SCHOOL_FETCH_COURSES_REQUEST,
+  ADD_SCHOOL_FETCH_COURSES_SUCCESS,
+  ADD_SCHOOL_FETCH_COURSES_FAILURE,
   REMOVE_SCHOOL,
 } from "../actions/types";
 import fetchedList, * as fromList from "./fetchedList";
@@ -16,6 +19,9 @@ const actionTypes = {
   fetchSuccess: FETCH_COURSES_SUCCESS,
   fetchFailure: FETCH_COURSES_FAILURE,
   addSchool: ADD_SCHOOL,
+  addSchoolFetchRequest: ADD_SCHOOL_FETCH_COURSES_REQUEST,
+  addSchoolFetchSuccess: ADD_SCHOOL_FETCH_COURSES_SUCCESS,
+  addSchoolFetchFailure: ADD_SCHOOL_FETCH_COURSES_FAILURE,
   removeSchool: REMOVE_SCHOOL,
 };
 

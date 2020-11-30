@@ -13,6 +13,13 @@ const fetchedList = (actionTypes) => {
           }
         });
         return ids;
+      case actionTypes.addSchoolFetchSuccess:
+        const courses = action.response["courses"];
+        const school = action.response["school"];
+        return {
+          ...state,
+          [school]: courses.result || [],
+        };
       case actionTypes.removeSchool:
         delete state[action.payload];
         return state;
@@ -28,6 +35,11 @@ const fetchedList = (actionTypes) => {
       case actionTypes.fetchSuccess:
       case actionTypes.fetchFailure:
         return false;
+      case actionTypes.addSchoolFetchRequest:
+        return true;
+      case actionTypes.addSchoolFetchSuccess:
+      case actionTypes.addSchoolFetchFailure:
+        return false;
       default:
         return state;
     }
@@ -36,6 +48,8 @@ const fetchedList = (actionTypes) => {
   const fetchedTime = (state = null, action) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
+        return action.response.fetchedTime;
+      case actionTypes.addSchoolFetchSuccess:
         return action.response.fetchedTime;
       default:
         return state;
@@ -48,6 +62,11 @@ const fetchedList = (actionTypes) => {
         return action.error;
       case actionTypes.fetchRequest:
       case actionTypes.fetchSuccess:
+        return null;
+      case actionTypes.addSchoolFetchFailure:
+        return action.error;
+      case actionTypes.addSchoolFetchRequest:
+      case actionTypes.addSchoolFetchSuccess:
         return null;
       default:
         return state;

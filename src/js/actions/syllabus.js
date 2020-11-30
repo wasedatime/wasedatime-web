@@ -12,6 +12,9 @@ import {
   REMOVE_COURSE,
   TOGGLE_COURSE_VISIBILITY,
   ADD_SCHOOL,
+  ADD_SCHOOL_FETCH_COURSES_FAILURE,
+  ADD_SCHOOL_FETCH_COURSES_REQUEST,
+  ADD_SCHOOL_FETCH_COURSES_SUCCESS,
   REMOVE_SCHOOL,
 } from "./types";
 import { SYLLABUS_KEYS } from "../config/syllabusKeys";
@@ -27,16 +30,23 @@ export const removeSchool = (school) => ({
   payload: school,
 });
 
-export const fetchCourses = () => async (dispatch, getState) => {
+export const fetchCourses = (schoolToLoad = null) => async (
+  dispatch,
+  getState
+) => {
   dispatch({
-    type: FETCH_COURSES_REQUEST,
+    type: schoolToLoad
+      ? ADD_SCHOOL_FETCH_COURSES_REQUEST
+      : FETCH_COURSES_REQUEST,
   });
   // const res = await axios.get(
   //   `https://api.wasedatime.com/staging/syllabus/`
   // );
   // const normalizedCourses = normalize(res.data, schema.coursesSchema);
 
-  const schools = getState().fetchedCourses.schools;
+  const schools = schoolToLoad
+    ? [schoolToLoad]
+    : getState().fetchedCourses.schools;
   var coursesBySchool = {};
 
   try {
@@ -53,13 +63,24 @@ export const fetchCourses = () => async (dispatch, getState) => {
     ).then(() => {
       // const normalizedCourses = normalize(courses, schema.coursesSchema);
       const fetchedTime = new Date().toISOString();
-      dispatch({
-        type: FETCH_COURSES_SUCCESS,
-        response: {
-          coursesBySchool,
-          fetchedTime,
-        },
-      });
+      dispatch(
+        schoolToLoad
+          ? {
+              type: ADD_SCHOOL_FETCH_COURSES_SUCCESS,
+              response: {
+                courses: coursesBySchool[schoolToLoad],
+                school: schoolToLoad,
+                fetchedTime,
+              },
+            }
+          : {
+              type: FETCH_COURSES_SUCCESS,
+              response: {
+                coursesBySchool,
+                fetchedTime,
+              },
+            }
+      );
     });
   } catch (error) {
     const response = error.response || {
@@ -67,7 +88,9 @@ export const fetchCourses = () => async (dispatch, getState) => {
       statusText: "Not Implemented",
     };
     dispatch({
-      type: FETCH_COURSES_FAILURE,
+      type: schoolToLoad
+        ? ADD_SCHOOL_FETCH_COURSES_FAILURE
+        : FETCH_COURSES_FAILURE,
       error: response,
     });
   }

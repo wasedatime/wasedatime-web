@@ -11,7 +11,7 @@ const mapCourseType = (course, t) => {
     t("courseInfo.Details.Type.Lecture"),
     t("courseInfo.Details.Type.Seminar"),
     t("courseInfo.Details.Type.Work"),
-    t("courseInfo.Details.Type.Foreign Langauge"),
+    t("courseInfo.Details.Type.Foreign Language"),
     t("courseInfo.Details.Type.On-demand"),
     t("courseInfo.Details.Type.Thesis"),
     t("courseInfo.Details.Type.Graduate Research"),

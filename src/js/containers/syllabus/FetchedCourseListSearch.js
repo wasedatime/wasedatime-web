@@ -42,7 +42,7 @@ const modalStyle = {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: "1050",
+    zIndex: "3001",
   },
   content: {
     position: "absolute",

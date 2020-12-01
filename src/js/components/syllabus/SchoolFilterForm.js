@@ -1,9 +1,11 @@
 import React from "react";
+import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import SchoolImportCard from "./SchoolImportCard";
 import SchoolRemoveCard from "./SchoolRemoveCard";
+import { media, sizes } from "../../styled-components/utils";
 
 import {
   Segment,
@@ -17,6 +19,7 @@ import {
   Popup,
   Image,
   Message,
+  Menu,
 } from "semantic-ui-react";
 
 import {
@@ -38,6 +41,12 @@ const StyledSegment = styled(Segment)`
   }
 `;
 
+const WiderPopup = styled(Popup)`
+  div {
+    ${media.tablet`width: 80vw !important;`}
+  }
+`;
+
 class SchoolFilterForm extends React.Component {
   state = {
     isSchoolFilterOpened: true,
@@ -52,51 +61,94 @@ class SchoolFilterForm extends React.Component {
     const { loadedSchools, loadingSchool, schoolsUpToLimit } = this.state;
     const { t } = this.props;
     const schoolGroupNames = ["Undergraduate", "Graduate", "Other"];
+    const ImportCardGroup = ({ schoolNameIconMap, itemsPerRow }) => (
+      <Card.Group itemsPerRow={itemsPerRow} style={{ marginTop: "0.5em" }}>
+        {Object.keys(schoolNameIconMap).map((schoolName) => (
+          <SchoolImportCard
+            key={schoolName}
+            schoolName={schoolName}
+            loaded={loadedSchools.includes(schoolName)}
+            loading={this.state.loadingSchool === schoolName}
+            schoolIcon={schoolNameIconMap[schoolName]}
+            onDownload={this.handleSchoolloading}
+            isBannedToLoad={
+              !loadedSchools.includes(schoolName) &&
+              ((loadingSchool && this.state.loadingSchool !== schoolName) ||
+                schoolsUpToLimit)
+            }
+          />
+        ))}
+      </Card.Group>
+    );
+
     return [
       undergradSchoolNameIconMap(this.props.lng),
       gradSchoolNameIconMap(this.props.lng),
       otherSchoolNameIconMap(this.props.lng),
     ].map((schoolNameIconMap, i) => ({
-      menuItem: t("syllabus.School Filter." + schoolGroupNames[i]),
+      menuItem: (
+        <Menu.Item key={schoolGroupNames[i]} style={{ fontSize: "1.5em" }}>
+          {t("syllabus.School Filter." + schoolGroupNames[i])}
+        </Menu.Item>
+      ),
       render: () => (
-        <Card.Group itemsPerRow={6} style={{ marginTop: "0.5em" }}>
-          {Object.keys(schoolNameIconMap).map((schoolName) => (
-            <SchoolImportCard
-              key={schoolName}
-              schoolName={schoolName}
-              loaded={loadedSchools.includes(schoolName)}
-              loading={this.state.loadingSchool === schoolName}
-              schoolIcon={schoolNameIconMap[schoolName]}
-              onDownload={this.handleSchoolloading}
-              isBannedToLoad={
-                !loadedSchools.includes(schoolName) &&
-                ((loadingSchool && this.state.loadingSchool !== schoolName) ||
-                  schoolsUpToLimit)
-              }
-            />
-          ))}
-        </Card.Group>
+        <MediaQuery minWidth={sizes.tablet}>
+          {(matches) => {
+            return matches ? (
+              <ImportCardGroup
+                key={i}
+                schoolNameIconMap={schoolNameIconMap}
+                itemsPerRow={6}
+              />
+            ) : (
+              <ImportCardGroup
+                key={i}
+                schoolNameIconMap={schoolNameIconMap}
+                itemsPerRow={4}
+              />
+            );
+          }}
+        </MediaQuery>
       ),
     }));
   };
 
-  schoolRemoveForm = () => (
-    <Card.Group itemsPerRow={5}>
-      {this.state.loadedSchools.map((schoolName) => (
-        <SchoolRemoveCard
-          key={schoolName}
-          schoolName={schoolName}
-          schoolIcon={allSchoolNameIconMap(this.props.lng)[schoolName]}
-          removing={this.state.removingSchool === schoolName}
-          onRemove={this.handleSchoolRemove}
-          isBannedToRemove={
-            this.state.removingSchool !== null &&
-            this.state.removingSchool !== schoolName
-          }
-        />
-      ))}
-    </Card.Group>
-  );
+  schoolRemoveForm = () => {
+    const RemoveCardGroup = ({ schoolNameIconMap, itemsPerRow }) => (
+      <Card.Group itemsPerRow={itemsPerRow}>
+        {this.state.loadedSchools.map((schoolName) => (
+          <SchoolRemoveCard
+            key={schoolName}
+            schoolName={schoolName}
+            schoolIcon={schoolNameIconMap[schoolName]}
+            removing={this.state.removingSchool === schoolName}
+            onRemove={this.handleSchoolRemove}
+            isBannedToRemove={
+              this.state.removingSchool !== null &&
+              this.state.removingSchool !== schoolName
+            }
+          />
+        ))}
+      </Card.Group>
+    );
+    return (
+      <MediaQuery minWidth={sizes.tablet}>
+        {(matches) => {
+          return matches ? (
+            <RemoveCardGroup
+              schoolNameIconMap={allSchoolNameIconMap(this.props.lng)}
+              itemsPerRow={6}
+            />
+          ) : (
+            <RemoveCardGroup
+              schoolNameIconMap={allSchoolNameIconMap(this.props.lng)}
+              itemsPerRow={4}
+            />
+          );
+        }}
+      </MediaQuery>
+    );
+  };
 
   toggleSelected = (school) => {
     this.props.handleToggleFilter("school", school);
@@ -189,7 +241,7 @@ class SchoolFilterForm extends React.Component {
           {this.state.loadedSchools.length > 0 &&
             this.state.isSchoolFilterOpened && (
               <Button.Group>
-                <Popup
+                <WiderPopup
                   trigger={
                     <Button
                       color="green"
@@ -203,7 +255,7 @@ class SchoolFilterForm extends React.Component {
                   size="huge"
                   wide="very"
                 />
-                <Popup
+                <WiderPopup
                   trigger={
                     <Button
                       color="red"

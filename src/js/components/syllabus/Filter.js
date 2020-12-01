@@ -319,7 +319,7 @@ class Filter extends React.Component {
         value: "2",
       },
       {
-        key: "Foreign Langauge",
+        key: "Foreign Language",
         text: t("courseInfo.Details.Type.Foreign Language"),
         value: "3",
       },

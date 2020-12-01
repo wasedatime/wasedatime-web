@@ -1,7 +1,6 @@
 import React from "react";
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
-import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import SchoolImportCard from "./SchoolImportCard";
 import SchoolRemoveCard from "./SchoolRemoveCard";
@@ -29,7 +28,16 @@ import {
   allSchoolNameIconMap,
 } from "../../utils/schoolNameIconMap";
 
+const RowWrapper = styled("div")`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  overflow-y: hidden;
+  background-color: #ccc;
+`;
+
 const StyledSegment = styled(Segment)`
+  width: 100% !important;
   cursor: default !important;
   animation: none !important;
   border-radius: 5px !important;
@@ -217,7 +225,7 @@ class SchoolFilterForm extends React.Component {
   render() {
     const { t } = this.props;
     return (
-      <Overlay>
+      <RowWrapper>
         <StyledSegment
           style={{ margin: "1em 2em 0em", padding: "0.5em 1em 0px" }}
         >
@@ -322,7 +330,7 @@ class SchoolFilterForm extends React.Component {
             </Form>
           )}
         </StyledSegment>
-      </Overlay>
+      </RowWrapper>
     );
   }
 }

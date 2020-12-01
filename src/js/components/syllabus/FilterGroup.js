@@ -9,8 +9,12 @@ import styled from "styled-components";
 
 const StyledDropdown = styled(Dropdown)`
   font-size: 1em !important;
+  a.ui.label {
+    line-height: 1.3 !important;
+  }
   .menu .text {
     font-size: 1.5em !important;
+    line-height: 1.2 !important;
   }
 `;
 

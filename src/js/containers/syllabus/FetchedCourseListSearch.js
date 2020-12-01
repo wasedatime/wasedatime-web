@@ -346,18 +346,21 @@ class FetchedCourseSearch extends React.Component {
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
         />
-        <SchoolFilterForm
-          handleToggleFilter={this.handleToggleFilter}
-          loadedSchools={this.props.loadedSchools}
-          loadSyllabus={this.loadSyllabus}
-          removeSyllabus={this.removeSyllabus}
-        />
+
         <RowWrapper>
-          <FetchedCourseList
-            searchTerm={searchTerm}
-            searchLang={searchLang}
-            results={results}
-          />
+          <ExtendedWrapper>
+            <SchoolFilterForm
+              handleToggleFilter={this.handleToggleFilter}
+              loadedSchools={this.props.loadedSchools}
+              loadSyllabus={this.loadSyllabus}
+              removeSyllabus={this.removeSyllabus}
+            />
+            <FetchedCourseList
+              searchTerm={searchTerm}
+              searchLang={searchLang}
+              results={results}
+            />
+          </ExtendedWrapper>
           <MediaQuery minWidth={sizes.desktop}>
             {(matches) => {
               return matches ? (

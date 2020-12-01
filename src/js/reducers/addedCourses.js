@@ -45,8 +45,12 @@ const createSemesterWrapperReducer = (
 };
 
 const addedCourses = combineReducers({
-  fall: createSemesterWrapperReducer(addedSemesterCourses, "fall", /2|3/g),
-  spring: createSemesterWrapperReducer(addedSemesterCourses, "spring", /0|1/g),
+  fall: createSemesterWrapperReducer(addedSemesterCourses, "fall", /2|3|f/g),
+  spring: createSemesterWrapperReducer(
+    addedSemesterCourses,
+    "spring",
+    /0|1|f/g
+  ),
 });
 
 export default addedCourses;

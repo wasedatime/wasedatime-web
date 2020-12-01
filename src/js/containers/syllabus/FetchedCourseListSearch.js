@@ -243,14 +243,19 @@ class FetchedCourseSearch extends React.Component {
       evalPercentFilters === [0, 100]
         ? filteredCourses
         : filteredCourses.filter((course) => {
+            // Check if the target evaluation item (e.g. 'exam') is included in the evaluation of this course
             const targetEval = course[SYLLABUS_KEYS.EVAL].filter(
               (e) => e[SYLLABUS_KEYS.EVAL_TYPE] === evalTypeFilter
             )[0];
-            if (!targetEval) return false;
-            return (
-              targetEval[SYLLABUS_KEYS.EVAL_PERCENT] >= evalPercentFilters[0] &&
-              targetEval[SYLLABUS_KEYS.EVAL_PERCENT] <= evalPercentFilters[1]
-            );
+            // If the target evaluation item (e.g. 'exam') is included, check if its percentage is in the range of the filter
+            // If it is included, return the course; if not included, check if the eval filter includes 0
+            // If yes, return the course
+            return targetEval
+              ? targetEval[SYLLABUS_KEYS.EVAL_PERCENT] >=
+                  evalPercentFilters[0] &&
+                  targetEval[SYLLABUS_KEYS.EVAL_PERCENT] <=
+                    evalPercentFilters[1]
+              : evalPercentFilters[0] === 0;
           });
 
     const typeFilters = filterGroups.type;

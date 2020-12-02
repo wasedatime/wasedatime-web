@@ -44,7 +44,7 @@ const StyledSegment = styled(Segment)`
   }
 `;
 
-const CourseDetails = ({ course, t }) => {
+const CourseDetails = ({ course, t, lng }) => {
   return (
     <StyledSegment>
       <Grid columns={2} stackable>
@@ -84,7 +84,15 @@ const CourseDetails = ({ course, t }) => {
               <Table.Row>
                 <Table.Cell>{t("courseInfo.Details.Category")}</Table.Cell>
                 <Table.Cell>
-                  <b>{course[SYLLABUS_KEYS.CATEGORY]}</b>
+                  <b>
+                    {
+                      course[
+                        lng === "en"
+                          ? SYLLABUS_KEYS.CATEGORY
+                          : SYLLABUS_KEYS.CATEGORY_JP
+                      ]
+                    }
+                  </b>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>

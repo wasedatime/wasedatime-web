@@ -19,13 +19,12 @@ import { Popup } from "semantic-ui-react";
 import { withNamespaces } from "react-i18next";
 //import { element } from "prop-types";
 
-//Propper Style -----
+//Popper Style -----
 const PopperBox = styled("div")`
   display: box;
   border-radius: 5px;
   padding: 0.4em;
   text-align: center;
-  overflow: hidden;
 `;
 
 //ShareButton Style -----
@@ -292,18 +291,7 @@ const ShareButton = ({
     <Manager>
       {shareButtonIcon}
       {shareButtonBar}
-      <Popper
-        style={{ backgroundColor: "#aaa" }}
-        placement="bottom"
-        modifiers={[
-          {
-            preventOverflow: {
-              enabled: true,
-              boundary: "scrollParent",
-            },
-          },
-        ]}
-      >
+      <Popper style={{ backgroundColor: "#aaa" }} placement="bottom">
         {isPopperOpen
           ? ({ ref, style, placement, outOfBoundaries }) => (
               <PopperBox

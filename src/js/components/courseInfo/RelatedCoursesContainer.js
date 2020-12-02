@@ -14,6 +14,11 @@ const ExtendedOverlay = styled(Overlay)`
   ${media.tablet`padding-right: 2rem;`};
 `;
 
+const RelatedCoursesHeading = styled("div")`
+  z-index: 1000;
+  background-color: #ccc;
+`;
+
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
   margin-top: 1em !important;
@@ -26,8 +31,8 @@ const StyledSubHeading = styled("h2")`
 `;
 
 const RelatedCoursesWrapper = styled("div")`
-  margin-top: 0.5rem;
-  max-height: 80vh;
+  padding-top: 0.5rem;
+  max-height: 150vh;
   overflow-y: auto;
 `;
 
@@ -72,23 +77,25 @@ class RelatedCoursesContainer extends React.Component {
     const { relatedCourses, courseReviews, searchLang, t } = this.props;
     return (
       <ExtendedOverlay>
-        <StyledSubHeading>
-          {t(`courseInfo.Related courses`)}{" "}
-          <RelatedCoursesExplainTooltip>
-            <FontAwesomeIcon
-              icon={faQuestionCircle}
-              style={{ fontSize: "0.7em" }}
-            ></FontAwesomeIcon>
-            <RelatedCoursesExplainTooltipText>
-              {t(`courseInfo.Related courses explanation`)}
-            </RelatedCoursesExplainTooltipText>
-          </RelatedCoursesExplainTooltip>
-        </StyledSubHeading>
-        <ReviewLangSwitches
-          reviewLang={this.state.reviewLang}
-          switchReviewLang={this.switchReviewLang}
-          isInHeading={false}
-        />
+        <RelatedCoursesHeading>
+          <StyledSubHeading>
+            {t(`courseInfo.Related courses`)}{" "}
+            <RelatedCoursesExplainTooltip>
+              <FontAwesomeIcon
+                icon={faQuestionCircle}
+                style={{ fontSize: "0.7em" }}
+              ></FontAwesomeIcon>
+              <RelatedCoursesExplainTooltipText>
+                {t(`courseInfo.Related courses explanation`)}
+              </RelatedCoursesExplainTooltipText>
+            </RelatedCoursesExplainTooltip>
+          </StyledSubHeading>
+          <ReviewLangSwitches
+            reviewLang={this.state.reviewLang}
+            switchReviewLang={this.switchReviewLang}
+            isInHeading={false}
+          />
+        </RelatedCoursesHeading>
         <RelatedCoursesWrapper>
           {relatedCourses.map((relatedCourse, i) => (
             <CourseReviewsGroup

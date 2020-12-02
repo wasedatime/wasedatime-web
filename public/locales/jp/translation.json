@@ -93,10 +93,14 @@
     "credit": "単位",
     "eval": {
       "title": "成績評価",
+      "typeDefault": "未選択",
       "Exam": "試験",
       "Papers": "レポート",
       "Class Participation": "平常点評価",
-      "Others": "その他"
+      "Others": "その他",
+      "No exam": "試験なし",
+      "No paper": "レポートなし",
+      "No class participation": "平常点評価なし"
     },
     "type": "授業形態",
     "level": "レベル",

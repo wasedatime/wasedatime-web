@@ -1,6 +1,7 @@
 import React from "react";
 import FormLabel from "@material-ui/core/FormLabel";
 import { Grid, Dropdown } from "semantic-ui-react";
+import FilterGroup from "./FilterGroup";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styled from "styled-components";
@@ -21,21 +22,26 @@ const StyledDropdown = styled(Dropdown)`
 const FilterEvalGroup = ({
   handleToggleFilter,
   legend,
+  typeDefault,
   typeInputs,
   typeInputName,
   selectedTypeInput,
   percentInputName,
   selectedPercentInputs,
+  specialInputName,
+  checkedSpecialInputs,
 }) => (
   <div>
     <FormLabel style={{ fontSize: "1.3em", color: "#000", fontWeight: "bold" }}>
       {legend}
     </FormLabel>
-    <Grid style={{ margin: "0 0 1rem" }}>
+    <Grid style={{ margin: "0" }}>
       <Grid.Column width={7} style={{ paddingLeft: "0px", paddingTop: "0" }}>
         <StyledDropdown
+          placeholder={typeDefault}
           selection
           fluid
+          clearable
           options={typeInputs}
           value={selectedTypeInput}
           onChange={(e, data) => {
@@ -55,6 +61,13 @@ const FilterEvalGroup = ({
         />
       </Grid.Column>
     </Grid>
+    <FilterGroup
+      handleToggleFilter={handleToggleFilter}
+      legend={""}
+      inputName={specialInputName}
+      inputs={checkedSpecialInputs}
+      filterType={"checkbox"}
+    />
   </div>
 );
 

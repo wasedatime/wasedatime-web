@@ -78,8 +78,9 @@ class FetchedCourseSearch extends React.Component {
         period: [],
         minYear: [],
         credit: [],
-        evalType: 0,
+        evalType: null,
         evalPercent: [0, 100],
+        evalSpecial: [],
         type: [],
         level: [],
       },
@@ -111,7 +112,7 @@ class FetchedCourseSearch extends React.Component {
     this.setState((prevState, props) => {
       const { [inputName]: filters, ...rest } = prevState.filterGroups;
       let newFilters, gaAction;
-      if (inputName.includes("eval")) {
+      if (inputName === "evalType" || inputName === "evalPercent") {
         newFilters = value;
         gaAction = gaUpdateFilter;
       } else if (Array.isArray(value)) {
@@ -256,6 +257,30 @@ class FetchedCourseSearch extends React.Component {
                   targetEval[SYLLABUS_KEYS.EVAL_PERCENT] <=
                     evalPercentFilters[1]
               : evalPercentFilters[0] === 0;
+          });
+
+    const evalSpecialFilters = filterGroups.evalSpecial;
+    console.log(evalSpecialFilters);
+    filteredCourses =
+      evalSpecialFilters.length === 0
+        ? filteredCourses
+        : filteredCourses.filter((course) => {
+            var isFiltered = true;
+            ["noExam", "noPaper", "noClassParticipation"].forEach(
+              (filter, i) => {
+                if (evalSpecialFilters.includes(filter)) {
+                  var targetEval = course[SYLLABUS_KEYS.EVAL].filter(
+                    (e) => e[SYLLABUS_KEYS.EVAL_TYPE] === i
+                  )[0];
+                  if (
+                    targetEval !== undefined &&
+                    targetEval[SYLLABUS_KEYS.EVAL_PERCENT] > 0
+                  )
+                    isFiltered = false;
+                }
+              }
+            );
+            return isFiltered;
           });
 
     const typeFilters = filterGroups.type;

@@ -95,7 +95,7 @@ class SchoolFilterForm extends React.Component {
       otherSchoolNameIconMap(this.props.lng),
     ].map((schoolNameIconMap, i) => ({
       menuItem: (
-        <Menu.Item key={schoolGroupNames[i]} style={{ fontSize: "1.5em" }}>
+        <Menu.Item key={schoolGroupNames[i]} style={{ fontSize: "1.2em" }}>
           {t("syllabus.School Filter." + schoolGroupNames[i])}
         </Menu.Item>
       ),

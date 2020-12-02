@@ -93,10 +93,14 @@
     "credit": "Credit",
     "eval": {
       "title": "Evaluation",
+      "typeDefault": "Not selected",
       "Exam": "Exams",
       "Papers": "Papers",
       "Class Participation": "Class Participation",
-      "Others": "Others"
+      "Others": "Others",
+      "No exam": "No exam",
+      "No paper": "No paper",
+      "No class participation": "No class participation"
     },
     "type": "Type",
     "level": "Level",

@@ -285,6 +285,7 @@ class Filter extends React.Component {
     }));
 
     const evalLegend = t("syllabus.eval.title");
+    const evalTypeDefault = t("syllabus.eval.typeDefault");
     const evalTypeInputs = [
       { key: "Exam", text: t("syllabus.eval.Exam"), value: 0 },
       { key: "Papers", text: t("syllabus.eval.Papers"), value: 1 },
@@ -299,6 +300,20 @@ class Filter extends React.Component {
     const evalPercentInputName = "evalPercent";
     const selectedEvalTypeInput = filterGroups[evalTypeInputName];
     const selectedEvalPercentInputs = filterGroups[evalPercentInputName];
+
+    const evalSpecialInputName = "evalSpecial";
+    const evalSpecialInputs = [
+      { value: "noExam", label: t("syllabus.eval.No exam") },
+      { value: "noPaper", label: t("syllabus.eval.No paper") },
+      {
+        value: "noClassParticipation",
+        label: t("syllabus.eval.No class participation"),
+      },
+    ];
+    const checkedEvalSpecialInputs = evalSpecialInputs.map((input) => ({
+      ...input,
+      isChecked: filterGroups[evalSpecialInputName].includes(input.value),
+    }));
 
     const typeLegend = t("syllabus.type");
     const typeInputName = "type";
@@ -447,11 +462,14 @@ class Filter extends React.Component {
             <FilterEvalGroup
               handleToggleFilter={this.props.handleToggleFilter}
               legend={evalLegend}
+              typeDefault={evalTypeDefault}
               typeInputs={evalTypeInputs}
               typeInputName={evalTypeInputName}
               selectedTypeInput={selectedEvalTypeInput}
               percentInputName={evalPercentInputName}
               selectedPercentInputs={selectedEvalPercentInputs}
+              specialInputName={evalSpecialInputName}
+              checkedSpecialInputs={checkedEvalSpecialInputs}
             />
             <FilterGroup
               handleToggleFilter={this.props.handleToggleFilter}

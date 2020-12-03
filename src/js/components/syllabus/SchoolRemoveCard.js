@@ -19,7 +19,6 @@ class SchoolRemoveCard extends React.Component {
         as={Card}
         onClick={() => {
           if (!isBannedToRemove) {
-            console.log(schoolName);
             onRemove(schoolName);
           }
         }}
@@ -48,7 +47,7 @@ class SchoolRemoveCard extends React.Component {
             />
           )}
         </Dimmer>
-        <Image src={schoolIcon} />
+        <Image src={schoolIcon} size="huge" />
       </Dimmer.Dimmable>
     );
   }

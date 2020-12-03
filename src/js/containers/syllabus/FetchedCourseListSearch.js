@@ -270,7 +270,6 @@ class FetchedCourseSearch extends React.Component {
           });
 
     const evalSpecialFilters = filterGroups.evalSpecial;
-    console.log(evalSpecialFilters);
     filteredCourses =
       evalSpecialFilters.length === 0
         ? filteredCourses

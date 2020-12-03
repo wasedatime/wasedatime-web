@@ -64,6 +64,12 @@ class SchoolFilterForm extends React.Component {
     schoolsUpToLimit: this.props.loadedSchools.length >= 10,
   };
 
+  componentDidMount() {
+    const { loadedSchools, selectedSchools, handleToggleFilter } = this.props;
+    if (loadedSchools.length === 1 && selectedSchools.length === 0)
+      handleToggleFilter("school", loadedSchools[0]);
+  }
+
   schoolImportPanes = () => {
     const { loadedSchools, loadingSchool, schoolsUpToLimit } = this.state;
     const { t } = this.props;

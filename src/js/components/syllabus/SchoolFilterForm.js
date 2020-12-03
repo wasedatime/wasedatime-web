@@ -58,7 +58,6 @@ const WiderPopup = styled(Popup)`
 class SchoolFilterForm extends React.Component {
   state = {
     isSchoolFilterOpened: true,
-    selectedSchools: [],
     loadedSchools: this.props.loadedSchools,
     loadingSchool: null,
     removingSchool: null,
@@ -158,22 +157,6 @@ class SchoolFilterForm extends React.Component {
     );
   };
 
-  toggleSelected = (school) => {
-    this.props.handleToggleFilter("school", school);
-
-    if (this.state.selectedSchools.includes(school)) {
-      let selectedSchools = this.state.selectedSchools;
-      selectedSchools.splice(selectedSchools.indexOf(school), 1);
-      this.setState({
-        selectedSchools: selectedSchools,
-      });
-    } else {
-      this.setState({
-        selectedSchools: [...this.state.selectedSchools, school],
-      });
-    }
-  };
-
   handleSchoolloading = async (school) => {
     const { schoolsUpToLimit, loadingSchool, loadedSchools } = this.state;
     if (
@@ -189,10 +172,13 @@ class SchoolFilterForm extends React.Component {
       await this.props.loadSyllabus(school);
 
       setTimeout(() => {
-        this.setState({
-          loadingSchool: null,
-          loadedSchools: [...loadedSchools, school],
-        });
+        this.setState(
+          {
+            loadingSchool: null,
+            loadedSchools: [...loadedSchools, school],
+          },
+          this.props.handleToggleFilter("school", school)
+        );
       }, 1000);
     }
   };
@@ -200,12 +186,9 @@ class SchoolFilterForm extends React.Component {
   handleSchoolRemove = async (school) => {
     if (this.state.loadedSchools.includes(school)) {
       let loadedSchools = this.state.loadedSchools;
-      console.log(loadedSchools);
-      let selectedSchools = this.state.selectedSchools;
       this.setState({ removingSchool: school });
       loadedSchools.splice(loadedSchools.indexOf(school), 1);
-      if (selectedSchools.includes(school)) {
-        selectedSchools.splice(selectedSchools.indexOf(school), 1);
+      if (this.props.selectedSchools.includes(school)) {
         this.props.handleToggleFilter("school", school);
       }
 
@@ -215,7 +198,6 @@ class SchoolFilterForm extends React.Component {
         this.setState({
           removingSchool: null,
           loadedSchools: loadedSchools,
-          selectedSchools: selectedSchools,
           schoolsUpToLimit: loadedSchools.length >= 10,
         });
       }, 1000);
@@ -223,7 +205,7 @@ class SchoolFilterForm extends React.Component {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, handleToggleFilter, selectedSchools } = this.props;
     return (
       <RowWrapper>
         <StyledSegment
@@ -321,9 +303,9 @@ class SchoolFilterForm extends React.Component {
                         />
                       ),
                     }}
-                    checked={this.state.selectedSchools.includes(schoolName)}
+                    checked={selectedSchools.includes(schoolName)}
                     style={{ margin: "1em 0px 0px" }}
-                    onChange={() => this.toggleSelected(schoolName)}
+                    onChange={() => handleToggleFilter("school", schoolName)}
                   />
                 ))}
               </Form.Group>

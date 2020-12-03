@@ -2,6 +2,7 @@ import React from "react";
 import stickybits from "stickybits";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "semantic-ui-react";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 
@@ -408,59 +409,67 @@ class Filter extends React.Component {
       isChecked: filterGroups[levelInputName].includes(input.value),
     }));
 
-    const { isSideBar } = this.props;
+    const { handleToggleFilter, clearFilter, isSideBar } = this.props;
     return (
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
         <FilterOverlay isSideBar={isSideBar}>
           <FilterTitle isSideBar={isSideBar}>
             {t("syllabus.Filter by")}&nbsp;
             <FontAwesomeIcon icon={faFilter} size="1x" />
+            &nbsp;
+            <Button
+              color="gray"
+              onClick={clearFilter}
+              style={{ fontSize: "1.5rem", padding: "0.5rem 1rem" }}
+            >
+              {t("syllabus.Clear filter")}
+            </Button>
           </FilterTitle>
           <FilterGroupWrapper>
             <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
+              handleToggleFilter={handleToggleFilter}
               legend={semesterLegend}
               inputName={semesterInputName}
               inputs={checkedSemesterInputs}
               filterType={"dropdown"}
             />
             <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
+              handleToggleFilter={handleToggleFilter}
               legend={langLegend}
               inputName={langInputName}
               inputs={checkedLangInputs}
               filterType={"dropdown"}
             />
             <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
+              handleToggleFilter={handleToggleFilter}
               legend={dayLegend}
               inputName={dayInputName}
               inputs={checkedDayInputs}
               filterType={"checkbox"}
             />
             <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
+              handleToggleFilter={handleToggleFilter}
               legend={periodLegend}
               inputName={periodInputName}
               inputs={checkedPeriodInputs}
               filterType={"checkbox"}
             />
             <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
+              handleToggleFilter={handleToggleFilter}
               legend={minYearLegend}
               inputName={minYearInputName}
               inputs={checkedMinYearInputs}
               filterType={"checkbox"}
             />
             <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
+              handleToggleFilter={handleToggleFilter}
               legend={creditLegend}
               inputName={creditInputName}
               inputs={checkedCreditInputs}
               filterType={"checkbox"}
             />
             <FilterEvalGroup
-              handleToggleFilter={this.props.handleToggleFilter}
+              handleToggleFilter={handleToggleFilter}
               legend={evalLegend}
               typeDefault={evalTypeDefault}
               typeInputs={evalTypeInputs}
@@ -472,14 +481,14 @@ class Filter extends React.Component {
               checkedSpecialInputs={checkedEvalSpecialInputs}
             />
             <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
+              handleToggleFilter={handleToggleFilter}
               legend={typeLegend}
               inputName={typeInputName}
               inputs={checkedTypeInputs}
               filterType={"dropdown"}
             />
             <FilterGroup
-              handleToggleFilter={this.props.handleToggleFilter}
+              handleToggleFilter={handleToggleFilter}
               legend={levelLegend}
               inputName={levelInputName}
               inputs={checkedLevelInputs}

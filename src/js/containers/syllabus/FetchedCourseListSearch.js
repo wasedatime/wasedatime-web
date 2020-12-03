@@ -69,24 +69,28 @@ class FetchedCourseSearch extends React.Component {
 
     this.state = {
       isModalOpen: false,
-      filterGroups: {
-        semester: [],
-        school: [],
-        lang: [],
-        special: [],
-        day: [],
-        period: [],
-        minYear: [],
-        credit: [],
-        evalType: null,
-        evalPercent: [0, 100],
-        evalSpecial: [],
-        type: [],
-        level: [],
-      },
+      filterGroups: this.initialFilterGroups,
       inputText: searchTerm,
       searchTerm: searchTerm,
       filteredCourses: props.fetchedCourses,
+    };
+  }
+
+  get initialFilterGroups() {
+    return {
+      semester: [],
+      school: [],
+      lang: [],
+      special: [],
+      day: [],
+      period: [],
+      minYear: [],
+      credit: [],
+      evalType: null,
+      evalPercent: [0, 100],
+      evalSpecial: [],
+      type: [],
+      level: [],
     };
   }
 
@@ -107,6 +111,12 @@ class FetchedCourseSearch extends React.Component {
       };
     });
   };
+
+  clearFilter = () =>
+    this.setState({
+      filterGroups: this.initialFilterGroups,
+      filteredCourses: this.props.fetchedCourses,
+    });
 
   handleToggleFilter = (inputName, value) => {
     this.setState((prevState, props) => {
@@ -377,6 +387,7 @@ class FetchedCourseSearch extends React.Component {
             <SchoolFilterForm
               handleToggleFilter={this.handleToggleFilter}
               loadedSchools={this.props.loadedSchools}
+              selectedSchools={this.state.filterGroups.school}
               loadSyllabus={this.loadSyllabus}
               removeSyllabus={this.removeSyllabus}
             />
@@ -393,6 +404,7 @@ class FetchedCourseSearch extends React.Component {
                   <Filter
                     filterGroups={this.state.filterGroups}
                     handleToggleFilter={this.handleToggleFilter}
+                    clearFilter={this.clearFilter}
                     isSideBar={true}
                   />
                 </SideBar>
@@ -406,6 +418,7 @@ class FetchedCourseSearch extends React.Component {
                     <Filter
                       filterGroups={this.state.filterGroups}
                       handleToggleFilter={this.handleToggleFilter}
+                      clearFilter={this.clearFilter}
                       isSideBar={false}
                     />
                   </Modal>

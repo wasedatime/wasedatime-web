@@ -111,7 +111,7 @@ export const loadState = () => {
                 [SYLLABUS_KEYS.INSTRUCTOR]: course.i,
                 [SYLLABUS_KEYS.INSTRUCTOR_JP]: course.ij,
                 [SYLLABUS_KEYS.LANG]:
-                  course.l === "JP" ? 0 : course.l === "EN" ? 1 : 9,
+                  course.l === "JP" ? "0" : course.l === "EN" ? "1" : "9",
                 [SYLLABUS_KEYS.TERM]: oldTermMap[course.tm],
                 [SYLLABUS_KEYS.OCCURRENCES]: occ,
                 [SYLLABUS_KEYS.CODE]: course.c,

@@ -48,10 +48,17 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
     (acc, elem) => {
       const occurrences = elem.course[SYLLABUS_KEYS.OCCURRENCES];
       return occurrences.reduce((acc, occurrence) => {
+        const unformattedPeriod = occurrence[SYLLABUS_KEYS.OCC_PERIOD];
+        const maxPeriod =
+          unformattedPeriod === -1
+            ? 0
+            : unformattedPeriod > 9
+            ? unformattedPeriod % 10
+            : unformattedPeriod;
         return {
           ...acc,
           day: Math.max(acc.day, occurrence[SYLLABUS_KEYS.OCC_DAY]),
-          period: Math.max(acc.period, occurrence[SYLLABUS_KEYS.OCC_PERIOD]),
+          period: Math.max(acc.period, maxPeriod),
         };
       }, acc);
     },

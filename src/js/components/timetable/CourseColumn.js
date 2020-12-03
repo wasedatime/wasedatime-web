@@ -85,7 +85,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
     if (period === -1) {
       startPeriod = endPeriod = -1;
     } else if (period > 9) {
-      startPeriod = period / 10;
+      startPeriod = parseInt(period / 10);
       endPeriod = period % 10;
     } else {
       startPeriod = period;
@@ -140,7 +140,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
         if (period === -1) {
           startPeriod = endPeriod = -1;
         } else if (period > 9) {
-          startPeriod = period / 10;
+          startPeriod = parseInt(period / 10);
           endPeriod = period % 10;
         } else {
           startPeriod = period;

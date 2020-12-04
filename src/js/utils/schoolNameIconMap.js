@@ -40,7 +40,6 @@ import gSapsIcon from "../../img/syllabus-icons/g_saps.png";
 import gItsIcon from "../../img/syllabus-icons/g_its.png";
 import gSjalIcon from "../../img/syllabus-icons/g_sjal.png";
 import gIpsIcon from "../../img/syllabus-icons/g_ips.png";
-import gWospmIcon from "../../img/syllabus-icons/g_wospm.png";
 import gWlsIcon from "../../img/syllabus-icons/g_wls.png";
 import gSaIcon from "../../img/syllabus-icons/g_sa.png";
 import gSpsIcon from "../../img/syllabus-icons/g_sps.png";
@@ -63,7 +62,6 @@ import gSapsIcon_jp from "../../img/syllabus-icons/g_saps_jp.png";
 import gItsIcon_jp from "../../img/syllabus-icons/g_its_jp.png";
 import gSjalIcon_jp from "../../img/syllabus-icons/g_sjal_jp.png";
 import gIpsIcon_jp from "../../img/syllabus-icons/g_ips_jp.png";
-import gWospmIcon_jp from "../../img/syllabus-icons/g_wospm_jp.png";
 import gWlsIcon_jp from "../../img/syllabus-icons/g_wls_jp.png";
 import gSaIcon_jp from "../../img/syllabus-icons/g_sa_jp.png";
 import gSpsIcon_jp from "../../img/syllabus-icons/g_sps_jp.png";
@@ -132,7 +130,6 @@ export const gradSchoolNameIconMap = (lng) =>
         [Schools.G_ITS]: gItsIcon_jp,
         [Schools.G_SJAL]: gSjalIcon_jp,
         [Schools.G_IPS]: gIpsIcon_jp,
-        [Schools.G_WOSPM]: gWospmIcon_jp,
         [Schools.G_WLS]: gWlsIcon_jp,
         [Schools.G_SA]: gSaIcon_jp,
         [Schools.G_SPS]: gSpsIcon_jp,
@@ -156,7 +153,6 @@ export const gradSchoolNameIconMap = (lng) =>
         [Schools.G_ITS]: gItsIcon,
         [Schools.G_SJAL]: gSjalIcon,
         [Schools.G_IPS]: gIpsIcon,
-        [Schools.G_WOSPM]: gWospmIcon,
         [Schools.G_WLS]: gWlsIcon,
         [Schools.G_SA]: gSaIcon,
         [Schools.G_SPS]: gSpsIcon,

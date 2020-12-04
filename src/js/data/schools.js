@@ -31,7 +31,6 @@ export const G_LAW = "G_LAW";
 export const G_SPS = "G_SPS";
 export const G_WBS = "G_WBS";
 export const G_WLS = "G_WLS";
-export const G_WOSPM = "G_WOSPM";
 export const G_SEEE = "G_SEEE";
 export const ART = "ART";
 export const CJL = "CJL";

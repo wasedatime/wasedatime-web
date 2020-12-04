@@ -14,6 +14,7 @@ import ReactGA from "react-ga";
 import { setFirstTimeAccessToFalse } from "../../actions/user";
 import Greeting from "./Greeting";
 import NewFeature from "./NewFeature";
+import Notice from "./Notice";
 import { gaLanguage } from "../../ga/eventCategories";
 import { gaSetLanguage } from "../../ga/eventActions";
 
@@ -77,7 +78,7 @@ class DialogStepper extends React.Component {
   render() {
     const { classes, t } = this.props;
     const { activeStep } = this.state;
-    const setupSteps = [<Greeting />, <NewFeature />];
+    const setupSteps = [<Greeting />, <NewFeature />, <Notice />];
     const maxSteps = setupSteps.length;
     const isFirstStep = activeStep === 0;
     const isLastStep = activeStep === maxSteps - 1;

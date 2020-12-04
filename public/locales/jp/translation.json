@@ -31,6 +31,8 @@
     "these contributors": "貢献者たち",
     "a": "",
     "notice": "お知らせ",
+    "Schools not imported initially": "アプリのパフォーマンスを維持するため、全学部のシラバスは先に入れておいてありません。",
+    "Import schools request": "お手数ですが、シラバス画面に最初に入る際、好きな学部のシラバスを選択してインポートしてください。",
     "allSchoolsAdded": "全学部・研究科のシラバス検索ができるようになりました！",
     "currently": "誠に申し訳ございませんが、シラバスで検索できる授業の学部は以下のみです。",
     "supportedSchools": "国教、政経、社学、基幹、先進、創造、日本語教育、グローバル",
@@ -113,7 +115,10 @@
       "Graduate": "大学院",
       "Other": "ほか",
       "No imported": "シラバスがインポートされていません",
-      "Import request": "一つ以上の学部/研究科をインポートしてください。"
+      "Import request": "学部/研究科一つ以上のシラバスをインポートしてください。",
+      "Loaded schools limit message": "10学部/研究科までのシラバスをインポートできる",
+      "Schools up to limit warning title": "シラバスのインポートは10学部/研究科まで",
+      "Schools up to limit warning text": " 他の学部のシラバスを入手するには、まず「シラバスを削除」ボタンを押し、学部1つ以上を選択して削除してください。"
     },
     "displayedSpringSemester": "春学期",
     "displayedFallSemester": "秋学期",

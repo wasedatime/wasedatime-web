@@ -105,23 +105,37 @@ class SchoolFilterForm extends React.Component {
         </Menu.Item>
       ),
       render: () => (
-        <MediaQuery minWidth={sizes.tablet}>
-          {(matches) => {
-            return matches ? (
-              <ImportCardGroup
-                key={i}
-                schoolNameIconMap={schoolNameIconMap}
-                itemsPerRow={6}
-              />
-            ) : (
-              <ImportCardGroup
-                key={i}
-                schoolNameIconMap={schoolNameIconMap}
-                itemsPerRow={4}
-              />
-            );
-          }}
-        </MediaQuery>
+        <React.Fragment>
+          {schoolsUpToLimit ? (
+            <Message warning>
+              <Message.Header>
+                {t("syllabus.School Filter.Schools up to limit warning title")}
+              </Message.Header>
+              <p>
+                {t("syllabus.School Filter.Schools up to limit warning text")}
+              </p>
+            </Message>
+          ) : (
+            ""
+          )}
+          <MediaQuery minWidth={sizes.tablet}>
+            {(matches) => {
+              return matches ? (
+                <ImportCardGroup
+                  key={i}
+                  schoolNameIconMap={schoolNameIconMap}
+                  itemsPerRow={6}
+                />
+              ) : (
+                <ImportCardGroup
+                  key={i}
+                  schoolNameIconMap={schoolNameIconMap}
+                  itemsPerRow={4}
+                />
+              );
+            }}
+          </MediaQuery>
+        </React.Fragment>
       ),
     }));
   };
@@ -227,10 +241,24 @@ class SchoolFilterForm extends React.Component {
             style={{ cursor: "pointer", margin: "0px" }}
           >
             {t("syllabus.School Filter.title")}{" "}
+            <Popup
+              content={t("syllabus.School Filter.Loaded schools limit message")}
+              on="hover"
+              trigger={
+                <Icon
+                  name="question circle outline"
+                  style={{
+                    display: "inline-block",
+                    fontSize: "1em",
+                    verticalAlign: "top",
+                  }}
+                />
+              }
+            />
             {this.state.isSchoolFilterOpened ? (
-              <Icon name="angle up" />
+              <Icon name="angle up" style={{ display: "inline-block" }} />
             ) : (
-              <Icon name="angle down" />
+              <Icon name="angle down" style={{ display: "inline-block" }} />
             )}
           </Header>
 

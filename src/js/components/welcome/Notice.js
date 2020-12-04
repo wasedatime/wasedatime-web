@@ -47,17 +47,9 @@ const Notice = ({ classes, t }) => {
         align="center"
         gutterBottom
       >
-        {t("welcome.allSchoolsAdded")}
-        {/*
-          <br />
-          <br />
-          {t("welcome.supportedSchools")}
-          <br />
-          <br />
-          {t("welcome.sorry")}
-          <br />
-          {t("welcome.future")}
-        */}
+        {t("welcome.Schools not imported initially")}
+        <br />
+        {t("welcome.Import schools request")}
       </Typography>
     </ExtendedArticle>
   );

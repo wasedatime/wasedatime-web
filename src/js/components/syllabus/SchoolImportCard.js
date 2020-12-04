@@ -23,7 +23,14 @@ const SchoolImportCard = ({
     dimmed={!loaded}
     onClick={() => (isBannedToLoad || loaded ? {} : onDownload(schoolName))}
   >
-    <Dimmer active={!loaded} inverted={!isBannedToLoad}>
+    <Dimmer
+      active={!loaded}
+      style={{
+        background: isBannedToLoad
+          ? "rgba(0,0,0,0.5)"
+          : "rgba(255,255,255,0.7)",
+      }}
+    >
       {!loaded && (
         <Icon
           name={loading ? "spinner" : "download"}
@@ -34,7 +41,10 @@ const SchoolImportCard = ({
         />
       )}
     </Dimmer>
-    <Image src={schoolIcon} />
+    <Image
+      src={schoolIcon}
+      style={loaded ? { border: "2px solid rgba(0,0,200,0.4)" } : {}}
+    />
   </SchoolCardContainer>
 );
 

@@ -31,6 +31,8 @@
     "these contributors": "these contributors",
     "a": ".",
     "notice": "Notice",
+    "Schools not imported initially": "To keep the high performance of our app, syllabus of all schools are not imported initially.",
+    "Import schools request": "Please import the syllabus of schools you are interested when you first access the Syllabus page.",
     "allSchoolsAdded": "All undergraduate & graduate schools are supported in Syllabus now!",
     "currently": "Currently, we only support the following schools in Syllabus:",
     "supportedSchools": "SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC (Global)",
@@ -113,7 +115,10 @@
       "Graduate": "Graduate",
       "Other": "Other",
       "No imported": "No syllabus imported yet",
-      "Import request": "Please import the syllabus for at least 1 school."
+      "Import request": "Please import the syllabus for at least 1 school.",
+      "Loaded schools limit message": "You can load the syllabus of up to 10 schools",
+      "Schools up to limit warning title": "You can only load the syllabus of up to 10 schools",
+      "Schools up to limit warning text": " To import more syllabus from other schools, please click the \"Remove syllabus\" button and remove at least 1 syllabus."
     },
     "displayedSpringSemester": "Spring Semester",
     "displayedFallSemester": "Fall Semester",

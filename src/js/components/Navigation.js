@@ -73,6 +73,11 @@ const Navigation = (props) => {
       path: "/corona-info",
       icon: faExclamationTriangle,
     },
+    // {
+    //   name: t("navigation.career"),
+    //   path: "/career",
+    //   icon: faBriefcase,
+    // },
     {
       name: t("navigation.joinus"),
       path: "/joinus",

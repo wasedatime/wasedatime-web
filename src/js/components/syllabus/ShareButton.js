@@ -16,15 +16,15 @@ import {
 import { Manager, Reference, Popper } from "react-popper";
 import { InvisibleButton } from "../../styled-components/Button";
 import { Popup } from "semantic-ui-react";
+import { withNamespaces } from "react-i18next";
 //import { element } from "prop-types";
 
-//Propper Style -----
+//Popper Style -----
 const PopperBox = styled("div")`
   display: box;
   border-radius: 5px;
   padding: 0.4em;
   text-align: center;
-  overflow: hidden;
 `;
 
 //ShareButton Style -----
@@ -71,38 +71,43 @@ const ShareButtonIcon = styled("i")`
 `; // Case of Small Screen
 
 const ShareButton = ({
-  // passed from components/syllebus/ShareButton.js
   display,
   shareLink,
-  sizesDesktop, // = Small or Large Screen
-  isInCourseEvalsPage,
-  // logic in containers/syllebus/FetchedShareButton.js
+  sizesDesktop,
+  isInCourseReviewsPage,
   isPopperOpen,
   handleToggleSharePopper,
   needLineBreak,
+  t,
 }) => {
-  const shareText = "Wanna search for good courses? Try WasedaTime!";
+  const shareText = t("syllabus.Share text");
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizesDesktop}>
       {(matches) => {
-        if (matches && isInCourseEvalsPage && display === "bar") {
+        if (matches && isInCourseReviewsPage && display === "bar") {
           return (
             <Reference>
               {({ ref }) => (
                 <ShareButtonBarWrapper>
                   <Popup
                     position="top right"
-                    content="Does this course look good? Share with classmates!"
+                    content={t("syllabus.Share popup message")}
                     on="hover"
                     trigger={
                       <ShareButtonBar
                         innerRef={ref}
                         onClick={handleToggleSharePopper}
+                        style={{
+                          fontSize:
+                            needLineBreak !== undefined && needLineBreak
+                              ? "0.9em"
+                              : "1em",
+                        }}
                       >
                         <FontAwesomeIcon icon={faShareAlt} />
                         {needLineBreak !== undefined && needLineBreak
-                          ? " Share"
-                          : " Share!"}
+                          ? " " + t("syllabus.Share")
+                          : " " + t("syllabus.Share!")}
                       </ShareButtonBar>
                     }
                   />
@@ -120,7 +125,7 @@ const ShareButton = ({
   const shareButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizesDesktop}>
       {(matches) => {
-        if (matches && isInCourseEvalsPage && display === "icon") {
+        if (matches && isInCourseReviewsPage && display === "icon") {
           return (
             <Reference>
               {({ ref }) => (
@@ -286,18 +291,7 @@ const ShareButton = ({
     <Manager>
       {shareButtonIcon}
       {shareButtonBar}
-      <Popper
-        style={{ backgroundColor: "#aaa" }}
-        placement="bottom"
-        modifiers={[
-          {
-            preventOverflow: {
-              enabled: true,
-              boundary: "scrollParent",
-            },
-          },
-        ]}
-      >
+      <Popper style={{ backgroundColor: "#aaa" }} placement="bottom">
         {isPopperOpen
           ? ({ ref, style, placement, outOfBoundaries }) => (
               <PopperBox
@@ -321,4 +315,4 @@ const ShareButton = ({
   );
 };
 
-export default ShareButton;
+export default withNamespaces("translation")(ShareButton);

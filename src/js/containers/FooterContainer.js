@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 
-import {fetchStats} from "../actions";
-import {getIsFetching, getInfo, getError} from "../reducers/stats";
+import { fetchStats } from "../actions";
+import { getIsFetching, getInfo, getError } from "../reducers/stats";
 import Footer from "../components/Footer";
 
 //TODO Use a better name instead of 'info'

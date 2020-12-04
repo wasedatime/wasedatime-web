@@ -1,14 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faExternalLinkSquareAlt, faMinusCircle, faToggleOff, faToggleOn,} from "@fortawesome/free-solid-svg-icons";
-import {Manager, Popper, Reference} from "react-popper";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faExternalLinkSquareAlt,
+  faMinusCircle,
+  faToggleOff,
+  faToggleOn,
+} from "@fortawesome/free-solid-svg-icons";
+import { Manager, Popper, Reference } from "react-popper";
 import PropTypes from "prop-types";
 
-import {Arrow, PopperBox} from "../../styled-components/ColorPopper";
+import { Arrow, PopperBox } from "../../styled-components/ColorPopper";
 import ColorSelector from "./ColorSelector";
-import {media} from "../../styled-components/utils";
-import {getCourseTitleAndInstructor} from "../../utils/courseSearch";
+import { media } from "../../styled-components/utils";
+import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -78,7 +84,7 @@ const CourseAndPrefItem = ({
     course,
     displayLang
   );
-  const courseId = course._id;
+  const courseId = course[SYLLABUS_KEYS.ID];
   const removeCourseIcon = (
     <FontAwesomeIcon
       style={{ color: "#ce0115" }}

@@ -1,16 +1,22 @@
 import React from "react";
 import styled from "styled-components";
-import CourseEvalsGroup from "./CourseEvalsGroup";
+import CourseReviewsGroup from "./CourseReviewsGroup";
 import ReviewLangSwitches from "./ReviewLangSwitches";
 import { media } from "../../styled-components/utils";
 import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
   ${media.tablet`padding-right: 2rem;`};
+`;
+
+const RelatedCoursesHeading = styled("div")`
+  z-index: 1000;
+  background-color: #ccc;
 `;
 
 const StyledSubHeading = styled("h2")`
@@ -25,8 +31,8 @@ const StyledSubHeading = styled("h2")`
 `;
 
 const RelatedCoursesWrapper = styled("div")`
-  margin-top: 0.5rem;
-  max-height: 80vh;
+  padding-top: 0.5rem;
+  max-height: 150vh;
   overflow-y: auto;
 `;
 
@@ -55,10 +61,10 @@ const RelatedCoursesExplainTooltipText = styled("span")`
 `;
 
 const getCourseKey = (course) =>
-  course.ks.find((key) => key.s === "SILS" || key.s === "PSE") &&
-  course.t.toLowerCase().includes("seminar")
-    ? course._id.substring(0, 12)
-    : course._id.substring(0, 10);
+  ["SILS", "PSE"].includes(course[SYLLABUS_KEYS.SCHOOL]) &&
+  course[SYLLABUS_KEYS.TITLE].toLowerCase().includes("seminar")
+    ? course[SYLLABUS_KEYS.ID].substring(0, 12)
+    : course[SYLLABUS_KEYS.ID].substring(0, 10);
 
 class RelatedCoursesContainer extends React.Component {
   state = {
@@ -68,31 +74,33 @@ class RelatedCoursesContainer extends React.Component {
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });
 
   render() {
-    const { relatedCourses, courseEvals, searchLang, t } = this.props;
+    const { relatedCourses, courseReviews, searchLang, t } = this.props;
     return (
       <ExtendedOverlay>
-        <StyledSubHeading>
-          {t(`courseEvals.Related courses`)}{" "}
-          <RelatedCoursesExplainTooltip>
-            <FontAwesomeIcon
-              icon={faQuestionCircle}
-              style={{ fontSize: "0.7em" }}
-            ></FontAwesomeIcon>
-            <RelatedCoursesExplainTooltipText>
-              {t(`courseEvals.Related courses explanation`)}
-            </RelatedCoursesExplainTooltipText>
-          </RelatedCoursesExplainTooltip>
-        </StyledSubHeading>
-        <ReviewLangSwitches
-          reviewLang={this.state.reviewLang}
-          switchReviewLang={this.switchReviewLang}
-          isInHeading={false}
-        />
+        <RelatedCoursesHeading>
+          <StyledSubHeading>
+            {t(`courseInfo.Related courses`)}{" "}
+            <RelatedCoursesExplainTooltip>
+              <FontAwesomeIcon
+                icon={faQuestionCircle}
+                style={{ fontSize: "0.7em" }}
+              ></FontAwesomeIcon>
+              <RelatedCoursesExplainTooltipText>
+                {t(`courseInfo.Related courses explanation`)}
+              </RelatedCoursesExplainTooltipText>
+            </RelatedCoursesExplainTooltip>
+          </StyledSubHeading>
+          <ReviewLangSwitches
+            reviewLang={this.state.reviewLang}
+            switchReviewLang={this.switchReviewLang}
+            isInHeading={false}
+          />
+        </RelatedCoursesHeading>
         <RelatedCoursesWrapper>
           {relatedCourses.map((relatedCourse, i) => (
-            <CourseEvalsGroup
+            <CourseReviewsGroup
               course={relatedCourse}
-              reviews={courseEvals[getCourseKey(relatedCourse)]}
+              reviews={courseReviews[getCourseKey(relatedCourse)]}
               searchLang={searchLang}
               reviewLang={this.state.reviewLang}
               key={i}

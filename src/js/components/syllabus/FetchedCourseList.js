@@ -5,14 +5,10 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import CourseChunk from "./CourseChunk";
-import {Overlay} from "../../styled-components/Overlay";
-import {Wrapper} from "../../styled-components/Wrapper";
-import {withNamespaces} from "react-i18next";
+import { Overlay } from "../../styled-components/Overlay";
+import { Wrapper } from "../../styled-components/Wrapper";
+import { withNamespaces } from "react-i18next";
 import LANGS from "../../config/langs";
-
-const ExtendedWrapper = styled(Wrapper)`
-  flex: 1 1 0;
-`;
 
 const ExtendedOverlay = styled(Overlay)`
   flex-direction: row;
@@ -30,7 +26,7 @@ const CourseChunkWrapper = styled("div")`
 const getChunkKey = (chunk) => {
   const head = chunk[0];
   const tail = chunk[chunk.length - 1];
-  return `${head._id}-${tail._id}`;
+  return `${head.a}-${tail.a}`;
 };
 
 const COURSES_PER_CHUNK = 5;
@@ -74,53 +70,53 @@ class FetchedCourseList extends React.Component {
     const resultsInChunks = this.resultsToChunks();
 
     return (
-      <ExtendedWrapper>
-        <ExtendedOverlay>
-          <CourseListWrapper>
-            <div>
-              {resultsInChunks.length ? (
-                resultsInChunks.map((chunk, index) => (
-                  <WayPoint
-                    key={getChunkKey(chunk)}
-                    onEnter={() => {
-                      this.loadMoreChunks(index);
-                    }}
-                  >
-                    <CourseChunkWrapper>
-                      <div>
-                        <span>
-                          {lng === LANGS.JP
-                            ? "全 " +
-                              results.length +
-                              " 件中 " +
-                              (index * 5 + 1) +
-                              " - " +
-                              (index * 5 + chunk.length) +
-                              " 件を表示"
-                            : index * 5 +
-                              1 +
-                              " - " +
-                              (index * 5 + chunk.length) +
-                              " of " +
-                              results.length +
-                              " courses"}
-                        </span>
-                      </div>
-                      <CourseChunk
-                        chunk={chunk}
-                        searchTerm={searchTerm}
-                        searchLang={searchLang}
-                      />
-                    </CourseChunkWrapper>
-                  </WayPoint>
-                ))
-              ) : (
-                <div style={{ marginTop: "0.5em" }}>No results</div>
-              )}
-            </div>
-          </CourseListWrapper>
-        </ExtendedOverlay>
-      </ExtendedWrapper>
+      <ExtendedOverlay>
+        <CourseListWrapper>
+          <div>
+            {resultsInChunks.length ? (
+              resultsInChunks.map((chunk, index) => (
+                <WayPoint
+                  key={getChunkKey(chunk)}
+                  onEnter={() => {
+                    this.loadMoreChunks(index);
+                  }}
+                >
+                  <CourseChunkWrapper>
+                    <div>
+                      <span>
+                        {lng === LANGS.JP
+                          ? "全 " +
+                            results.length +
+                            " 件中 " +
+                            (index * 5 + 1) +
+                            " - " +
+                            (index * 5 + chunk.length) +
+                            " 件を表示"
+                          : index * 5 +
+                            1 +
+                            " - " +
+                            (index * 5 + chunk.length) +
+                            " of " +
+                            results.length +
+                            " courses"}
+                      </span>
+                    </div>
+                    <CourseChunk
+                      chunk={chunk}
+                      searchTerm={searchTerm}
+                      searchLang={searchLang}
+                    />
+                  </CourseChunkWrapper>
+                </WayPoint>
+              ))
+            ) : (
+              <div style={{ marginTop: "0.5em", textAlign: "center" }}>
+                No results? Try importing a school or changing the filter!
+              </div>
+            )}
+          </div>
+        </CourseListWrapper>
+      </ExtendedOverlay>
     );
   }
 }

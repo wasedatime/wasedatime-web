@@ -1,12 +1,14 @@
 import React from "react";
-import {withNamespaces} from "react-i18next";
-import {withStyles} from "@material-ui/core/styles";
+import { withNamespaces } from "react-i18next";
+import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 
-import {Article} from "../../styled-components/Article";
-import {media} from "../../styled-components/utils";
-import CourseItem from "../syllabus/CourseItem";
+import { Article } from "../../styled-components/Article";
+import { media } from "../../styled-components/utils";
+import { Divider } from "semantic-ui-react";
+
+import { allSchoolNameIconMap } from "../../utils/schoolNameIconMap";
 
 const ExtendedArticle = styled(Article)`
   display: flex;
@@ -14,15 +16,6 @@ const ExtendedArticle = styled(Article)`
   align-items: stretch;
   ${media.phone`
     font-size: 16px
-  `};
-`;
-
-const CourseItemWrapper = styled("div")`
-  pointer-events: none !important;
-  font-size: 16px;
-  width: 500px;
-  ${media.phone`
-    width: auto;
   `};
 `;
 
@@ -39,58 +32,13 @@ const styles = {
 };
 
 const NewFeature = ({ classes, t, lng }) => {
-  const dummyCourse = {
-    _id: "11G100101001202011G100101011",
-    y: 2020,
-    tm: "fallSem",
-    t: "Introduction to Political Analysis [E] 01",
-    tj: "Introduction to Political Analysis 01",
-    i: "KELLAM, Marisa",
-    ij: "ケラム マリサ",
-    e: true,
-    os: [
-      {
-        d: 3,
-        s: 2,
-        e: 2,
-        b: "-1",
-        c: "undecided",
-        l: "-1-undecided",
-      },
-      {
-        d: 2,
-        s: 3,
-        e: 3,
-        b: "-1",
-        c: "undecided",
-        l: "-1-undecided",
-      },
-    ],
-    l: "EN",
-    ks: [{ s: "PSE", k: "11G100101001202011G100101011" }],
-  };
+  const schoolNameIconMap = allSchoolNameIconMap(lng);
   return (
     <ExtendedArticle>
-      <Typography
-        variant="h3"
-        component="h3"
-        align="center"
-        gutterBottom
-        className={classes.h3}
-      >
-        {t("welcome.courseEvals")}
-      </Typography>
-      <CourseItemWrapper>
-        <CourseItem
-          handleOnClick={() => {}}
-          handleClickSyllabusLink={() => {}}
-          isAddable={true}
-          searchTerm={""}
-          searchLang={lng}
-          course={dummyCourse}
-          isInCourseEvalsPage={false}
-        />
-      </CourseItemWrapper>
+      <Divider horizontal style={{ fontSize: "1.3em" }}>
+        {t("welcome.newSchoolsAdded")}
+      </Divider>
+
       <Typography
         className={classes.h4}
         variant="h4"
@@ -98,9 +46,15 @@ const NewFeature = ({ classes, t, lng }) => {
         align="center"
         gutterBottom
       >
-        {t("welcome.courseEvalsDetails1")}
+        {t("welcome.allSchoolsAdded")}
         <br />
-        {t("welcome.courseEvalsDetails2")}
+        {Object.keys(schoolNameIconMap).map((name) => (
+          <img
+            src={schoolNameIconMap[name]}
+            alt={name}
+            style={{ width: "3em" }}
+          />
+        ))}
       </Typography>
     </ExtendedArticle>
   );

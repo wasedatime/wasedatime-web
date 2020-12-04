@@ -31,7 +31,7 @@ const wasedaNishiwasedaBusUri =
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
-  padding: 0 25px;
+  padding: 25px;
 `;
 
 const InfoWrapper = styled("div")`

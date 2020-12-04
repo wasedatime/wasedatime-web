@@ -70,9 +70,7 @@ class Greeting extends React.Component {
           gutterBottom
           className={classes.h4}
         >
-          {`${t("welcome.newFeature")} ${t("welcome.courseEvals")} ${t(
-            "welcome.added"
-          )}`}
+          {`${t("welcome.newFeature")} ${t("welcome.newSchoolsAdded")}`}
         </Typography>
         <Typography variant="h4" component="p" align="center" gutterBottom>
           {t("welcome.returningUsers")}

@@ -1,15 +1,24 @@
 import React from "react";
 import stickybits from "stickybits";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMinusCircle, faPlusCircle} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
-import {addedCourseListSwitchHeight, headerHeight,} from "../../styled-components/variables";
+import {
+  addedCourseListSwitchHeight,
+  headerHeight,
+} from "../../styled-components/variables";
 import CourseListSummary from "../CourseListSummary";
 import AddedCourseItem from "../../containers/syllabus/AddedCourseItem";
-import {Wrapper} from "../../styled-components/Wrapper";
-import {Article, ListItem, OList, Section, Subheading,} from "../../styled-components/Article";
+import { Wrapper } from "../../styled-components/Wrapper";
+import {
+  Article,
+  ListItem,
+  OList,
+  Section,
+  Subheading,
+} from "../../styled-components/Article";
 
 const CourseListWrapper = styled(Wrapper)`
   flex: none;
@@ -81,14 +90,16 @@ class AddedCourseList extends React.Component {
         {addedCourses.length ? (
           <div style={{ fontSize: "14px" }}>
             {addedCourses.map((course, index) => (
-              <AddedCourseItem key={course._id} course={course} />
+              <AddedCourseItem key={course.a} course={course} />
             ))}
           </div>
         ) : (
           <ExtendedArticle>
-            <h4>{t("syllabus.Added courses are displayed here")}</h4>
+            <Subheading as="h2">
+              {t("syllabus.Added courses are displayed here")}
+            </Subheading>
             <Section>
-              <Subheading>{t("syllabus.To add a course")}</Subheading>
+              <Subheading as="h2">{t("syllabus.To add a course")}</Subheading>
               <OList>
                 <ListItem>
                   {t(
@@ -116,7 +127,7 @@ class AddedCourseList extends React.Component {
               </OList>
             </Section>
             <Section>
-              <Subheading>{t("syllabus.Pro Tip!")}</Subheading>
+              <Subheading as="h2">{t("syllabus.Pro Tip!")}</Subheading>
               <OList>
                 <ListItem>
                   {t("syllabus.Use")} {t("syllabus.Filter by")}{" "}

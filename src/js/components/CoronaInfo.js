@@ -149,16 +149,16 @@ class CoronaInfo extends React.Component {
   async getRegionInfo(iso) {
     const date = new Date();
     let response = [];
-      try {
-        while (response.length === 0) {
-          const res = await axios.get(
+    try {
+      while (response.length === 0) {
+        const res = await axios.get(
           `https://covid-api.com/api/reports?date=${this.formatDate(
             date
-              )}&iso=${iso}`
-            );
-            response = res.data.data;
-            date.setDate(date.getDate() - 1);
-        }
+          )}&iso=${iso}`
+        );
+        response = res.data.data;
+        date.setDate(date.getDate() - 1);
+      }
 
       var regionData = {
         confirmed_diff: 0,

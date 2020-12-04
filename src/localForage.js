@@ -69,6 +69,7 @@ export const loadState = () => {
           fetchedCourses = {
             byId: {},
             list: {},
+            schools: fetchedCourses.schools,
           };
         }
       }

@@ -33,11 +33,7 @@
     "notice": "Notice",
     "Schools not imported initially": "To keep the high performance of our app, syllabus of all schools are not imported initially.",
     "Import schools request": "Please import the syllabus of schools you are interested when you first access the Syllabus page.",
-    "allSchoolsAdded": "All undergraduate & graduate schools are supported in Syllabus now!",
-    "currently": "Currently, we only support the following schools in Syllabus:",
-    "supportedSchools": "SILS, PSE, SSS, FSE, ASE, CSE, CJL, GEC (Global)",
-    "sorry": "We are sorry for any inconvenience caused.",
-    "future": "In the future, every school will be supported."
+    "allSchoolsAdded": "All undergraduate & graduate schools are supported in Syllabus now!"
   },
   "navigation": {
     "timetable": "Timetable",

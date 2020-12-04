@@ -55,6 +55,11 @@ const WiderPopup = styled(Popup)`
   }
 `;
 
+const LargerButton = styled(Button)`
+  font-size: 14px !important;
+  padding: 0.5em 1em !important;
+`;
+
 class SchoolFilterForm extends React.Component {
   state = {
     isSchoolFilterOpened: true,
@@ -267,7 +272,7 @@ class SchoolFilterForm extends React.Component {
               <Button.Group>
                 <WiderPopup
                   trigger={
-                    <Button
+                    <LargerButton
                       color="green"
                       icon="add"
                       content={t("syllabus.School Filter.Import")}
@@ -281,7 +286,7 @@ class SchoolFilterForm extends React.Component {
                 />
                 <WiderPopup
                   trigger={
-                    <Button
+                    <LargerButton
                       color="red"
                       icon="minus"
                       content={t("syllabus.School Filter.Remove")}
@@ -298,7 +303,7 @@ class SchoolFilterForm extends React.Component {
 
           {this.state.loadedSchools.length === 0 &&
             this.state.isSchoolFilterOpened && (
-              <Message>
+              <Message style={{ fontSize: "1.5em" }}>
                 <Message.Header>
                   {t("syllabus.School Filter.No imported")}
                 </Message.Header>
@@ -306,7 +311,7 @@ class SchoolFilterForm extends React.Component {
                   {t("syllabus.School Filter.Import request")}{" "}
                   <Popup
                     trigger={
-                      <Button
+                      <LargerButton
                         color="green"
                         icon="add"
                         content={t("syllabus.School Filter.Import")}

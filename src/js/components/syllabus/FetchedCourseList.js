@@ -110,7 +110,9 @@ class FetchedCourseList extends React.Component {
                 </WayPoint>
               ))
             ) : (
-              <div style={{ marginTop: "0.5em" }}>No results</div>
+              <div style={{ marginTop: "0.5em", textAlign: "center" }}>
+                No results? Try importing a school or changing the filter!
+              </div>
             )}
           </div>
         </CourseListWrapper>

@@ -6,21 +6,21 @@ import {
   CHANGE_COURSES_SORTING_OPTION,
 } from "../actions/types";
 import addedSemesterCourses, * as fromSemesterCourses from "./addedSemesterCourses";
-import { fallSemesters, springSemesters } from "../data/semesters";
 
 // Higher-order reducer.
 // https://redux.js.org/recipes/structuringreducers/reusingreducerlogic
 const createSemesterWrapperReducer = (
   reducerFunction,
   reducerName,
-  reducerSemesters
+  reducerSemestersRegex
 ) => {
   return (state, action) => {
     let semester = null;
     switch (action.type) {
       case ADD_COURSE:
         semester = action.payload.semester;
-        if (reducerSemesters.includes(semester)) {
+        if (semester.match(reducerSemestersRegex)) {
+          // reducerSemesters.includes(semester)
           return reducerFunction(state, action);
         }
         return state;
@@ -45,15 +45,11 @@ const createSemesterWrapperReducer = (
 };
 
 const addedCourses = combineReducers({
-  fall: createSemesterWrapperReducer(
-    addedSemesterCourses,
-    "fall",
-    fallSemesters
-  ),
+  fall: createSemesterWrapperReducer(addedSemesterCourses, "fall", /2|3|f/g),
   spring: createSemesterWrapperReducer(
     addedSemesterCourses,
     "spring",
-    springSemesters
+    /0|1|f/g
   ),
 });
 

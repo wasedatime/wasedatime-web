@@ -1,6 +1,6 @@
 import { schema } from "normalizr";
 
-const courseSchema = new schema.Entity("courses", {}, { idAttribute: "_id" });
+const courseSchema = new schema.Entity("courses", {}, { idAttribute: "a" });
 
 export const coursesSchema = [courseSchema];
 

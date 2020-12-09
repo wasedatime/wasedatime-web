@@ -45,7 +45,7 @@ const RelatedCoursesButton = ({ isModalOpen, handleToggleModal, t }) => {
               transform="shrink-3"
             />{" "}
           </IconWrapper>
-          <ButtonText>{t(`courseEvals.Related courses`)}</ButtonText>
+          <ButtonText>{t(`courseInfo.Related courses`)}</ButtonText>
         </IconTextWrapper>
       )}
     </FloatingActionButton>

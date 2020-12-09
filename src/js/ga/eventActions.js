@@ -7,8 +7,9 @@ export const gaChangeCourseColor = "Change Course Color";
 
 export const gaOpenModal = "Open modal";
 export const gaCloseModal = "Close modal";
-export const gaApplyFilter = "Appy Filter";
+export const gaApplyFilter = "Apply Filter";
 export const gaRemoveFilter = "Remove Filter";
+export const gaUpdateFilter = "Update Filter";
 
 export const gaSetLanguage = "Set Language";
 export const gaChangeLanguage = "Change Language";

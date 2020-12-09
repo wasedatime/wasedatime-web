@@ -26,7 +26,7 @@ const withFetchCourses = (WrappedComponent) => {
       }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
       const {
         isAddedCoursesEmpty,
         prefs,

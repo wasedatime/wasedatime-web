@@ -11,8 +11,11 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^3.0.2",
     "ajv": "^6.9.1",
+    "aws-amplify": "^3.3.4",
     "axios": "^0.19.0",
+    "chart.js": "^2.9.4",
     "http-proxy-middleware": "^0.19.0",
+    "i18n-iso-countries": "^6.1.0",
     "i18next": "^12.1.0",
     "i18next-browser-languagedetector": "^2.2.4",
     "i18next-xhr-backend": "^1.5.1",
@@ -25,7 +28,10 @@
     "npm-run-all": "^4.1.2",
     "prop-types": "^15.6.2",
     "query-string": "^5.1.1",
-    "react": "^16.4.1",
+    "rc-slider": "^9.6.4",
+    "react": "^16.14.0",
+    "react-chartjs-2": "^2.11.1",
+    "react-copy-to-clipboard": "^5.0.2",
     "react-datepicker": "^2.16.0",
     "react-dom": "^16.4.1",
     "react-ga": "^2.5.7",
@@ -50,7 +56,8 @@
     "smoothscroll": "^0.4.0",
     "stickybits": "^3.3.7",
     "styled-components": "^3.4.9",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.3",
+    "xlsx": "^0.16.8"
   },
   "scripts": {
     "start": "react-scripts start",

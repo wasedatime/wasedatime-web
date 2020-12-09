@@ -1,16 +1,15 @@
 import axios from "axios";
-import {normalize} from "normalizr";
+import { normalize } from "normalizr";
 
 import {
-    FETCH_BUILDINGS_FAILURE,
-    FETCH_BUILDINGS_REQUEST,
-    FETCH_BUILDINGS_SUCCESS,
-    FETCH_STATS_FAILURE,
-    FETCH_STATS_REQUEST,
-    FETCH_STATS_SUCCESS,
+  FETCH_BUILDINGS_FAILURE,
+  FETCH_BUILDINGS_REQUEST,
+  FETCH_BUILDINGS_SUCCESS,
+  FETCH_STATS_FAILURE,
+  FETCH_STATS_REQUEST,
+  FETCH_STATS_SUCCESS,
 } from "./types";
 import * as schema from "../data/schema";
-import {wasetimeApiStatic} from "../config/api";
 
 export const fetchStats = () => async (dispatch, getState) => {
   dispatch({
@@ -18,7 +17,9 @@ export const fetchStats = () => async (dispatch, getState) => {
   });
 
   try {
-    const res = await axios.get(wasetimeApiStatic.scraperStats);
+    const res = await axios.get(
+      process.env.REACT_APP_S3_BASE_URL + "scraper_stats/index.json"
+    );
     const stats = res.data;
     dispatch({
       type: FETCH_STATS_SUCCESS,

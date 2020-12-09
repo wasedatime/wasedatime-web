@@ -3,7 +3,20 @@ import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import {withStyles} from "@material-ui/core/styles";
+import { Dropdown } from "semantic-ui-react";
+import { withStyles } from "@material-ui/core/styles";
+import styled from "styled-components";
+
+const StyledDropdown = styled(Dropdown)`
+  font-size: 1em !important;
+  a.ui.label {
+    line-height: 1.3 !important;
+  }
+  .menu .text {
+    font-size: 1.5em !important;
+    line-height: 1.2 !important;
+  }
+`;
 
 const styles = (theme) => ({
   formLabel: {
@@ -13,7 +26,7 @@ const styles = (theme) => ({
   },
   formGroup: {
     fontSize: "1.2em",
-    margin: "5px 0",
+    margin: "0 0 10px",
   },
   formControlLabel: {
     minWidth: "105px",
@@ -35,35 +48,56 @@ const FilterGroup = ({
   inputs,
   inputName,
   classes,
+  filterType,
 }) => {
-  const checkboxes = inputs.map((input) => (
-    <FormControlLabel
-      key={input.value}
-      control={
-        <Checkbox
-          id={input.value}
-          name={inputName}
-          value={input.value}
-          checked={input.isChecked}
-          onChange={(e) => {
-            handleToggleFilter(e.target.name, e.target.value);
-          }}
-          classes={{ root: classes.checkBox, checked: classes.checkBoxChecked }}
-        />
-      }
-      label={input.label}
-      classes={{
-        root: classes.formControlLabel,
-        label: classes.formControlLabel_label,
-      }}
-    />
-  ));
+  var filterItems;
+  if (filterType === "checkbox") {
+    filterItems = inputs.map((input) => (
+      <FormControlLabel
+        key={input.value}
+        control={
+          <Checkbox
+            id={input.value}
+            name={inputName}
+            value={input.value}
+            checked={input.isChecked}
+            onChange={(e) => {
+              handleToggleFilter(e.target.name, e.target.value);
+            }}
+            classes={{
+              root: classes.checkBox,
+              checked: classes.checkBoxChecked,
+            }}
+          />
+        }
+        label={input.label}
+        classes={{
+          root: classes.formControlLabel,
+          label: classes.formControlLabel_label,
+        }}
+      />
+    ));
+  } else if (filterType === "dropdown") {
+    filterItems = (
+      <StyledDropdown
+        placeholder={legend}
+        fluid
+        multiple
+        selection
+        options={inputs}
+        value={inputs.filter((i) => i.isChecked).map((i) => i.value)}
+        onChange={(e, data) => {
+          handleToggleFilter(inputName, data.value);
+        }}
+      />
+    );
+  }
 
   return (
     <div>
       <FormLabel className={classes.formLabel}>{legend}</FormLabel>
       <FormGroup row className={classes.formGroup}>
-        {checkboxes}
+        {filterItems}
       </FormGroup>
     </div>
   );

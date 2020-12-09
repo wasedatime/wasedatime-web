@@ -1,40 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import MediaQuery from "react-responsive";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faClock,
-    faCommentDots,
-    faExternalLinkSquareAlt,
-    faMapMarkerAlt,
-    faMinusCircle,
-    faPlusCircle,
-    faShareAlt,
+  faClock,
+  faInfoCircle,
+  faExternalLinkSquareAlt,
+  faMapMarkerAlt,
+  faMinusCircle,
+  faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-    faFacebookSquare,
-    faLine,
-    faLinkedin,
-    faTwitterSquare,
-    faWhatsappSquare,
-} from "@fortawesome/free-brands-svg-icons";
 import PropTypes from "prop-types";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
-import {ASE, CJL, CSE, FSE, GEC, PSE, SILS, SSS} from "../../data/schools";
-import {getCourseTitleAndInstructor} from "../../utils/courseSearch";
-import {highlight} from "../../utils/highlight";
-import {media, sizes} from "../../styled-components/utils";
-import {InvisibleButton} from "../../styled-components/Button";
-import fseIcon from "../../../img/syllabus-icons/fse.png";
-import cseIcon from "../../../img/syllabus-icons/cse.png";
-import aseIcon from "../../../img/syllabus-icons/ase.png";
-import pseIcon from "../../../img/syllabus-icons/pse.png";
-import silsIcon from "../../../img/syllabus-icons/sils.png";
-import sssIcon from "../../../img/syllabus-icons/sss.png";
-import cjlIcon from "../../../img/syllabus-icons/cjl.png";
-import gecIcon from "../../../img/syllabus-icons/gec.png";
-// import { matches, size } from "lodash";
+import { termKeysDecoder } from "../../utils/termKeysDecoder";
+import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
+import { highlight } from "../../utils/highlight";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { media, sizes } from "../../styled-components/utils";
+import { InvisibleButton } from "../../styled-components/Button";
+import { allSchoolNameIconMap } from "../../utils/schoolNameIconMap";
+import FetchedShareButton from "../../containers/syllabus/FetchedShareButton";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -65,6 +51,12 @@ const StyledHeading = styled("h3")`
   color: #000;
 `;
 
+const StyledSubHeading = styled(StyledHeading)`
+  font-size: 1em;
+  ${media.phone`font-size: 0.9em;`};
+  color: #777;
+`;
+
 const CourseItemRow = styled("div")`
   display: flex;
   flex-direction: row;
@@ -77,14 +69,6 @@ const IconBadgeWrapper = styled("div")`
   align-items: center;
   flex-wrap: wrap;
 `;
-
-// const MenuIconWrapper = styled("div")`
-//   display: "flex",
-//   flex: "1 0 auto",
-//   flex-direction: column;
-//   align-items: center;
-//   justifyContent: "flex-end",
-// `;
 
 const SchoolIconList = styled("ul")`
   display: flex;
@@ -117,10 +101,6 @@ const Badge = styled("span")`
   line-height: 120%;
 `;
 
-const KeywordList = styled(SchoolIconList)`
-  flex-wrap: wrap;
-`;
-
 const DetailWrapper = styled("div")`
   display: flex;
   flex-direction: row;
@@ -141,15 +121,7 @@ const Description = styled("div")`
   text-align: left;
 `;
 
-/*
-const Instructors = styled("div")`
-  text-align: left;
-  font-size: 1.2em;
-  ${media.phone`font-size: 1.0em;`};
-`;
-*/
-
-const EvalButtonsWrapper = styled("div")`
+const InfoButtonsWrapper = styled("div")`
   flex: 1 0 30%;
   display: flex;
   flex-direction: column;
@@ -157,88 +129,41 @@ const EvalButtonsWrapper = styled("div")`
   font-size: 0.9em;
 `;
 
-// Review Button
-const ViewEvalsButton = styled("a")`
+// Info Button
+const ViewInfoButton = styled("a")`
   display: block;
   background-color: #ffae42;
   border: 0px;
   border-radius: 5px;
   color: #fff;
-  padding: 5px 1rem;
+  padding: 3px 0.7rem 1px;
   margin-bottom: 4px;
   text-align: center;
   text-decoration: none;
-
+  border: 2px solid #ffae42;
   &:hover {
     color: #ffae42;
     background-color: #fff;
     border: 2px solid #ffae42;
   }
-
   &:focus {
     outline: none;
   }
 `; // Case of large Screen
 
-const ViewEvalsIconButton = styled("a")`
+const ViewInfoIconButton = styled("a")`
   display: block;
   background-color: #fff;
   border: 0px;
   color: #ffae42;
   text-decoration: none;
-
   &:hover {
     color: #ffae42;
   }
-
   &:focus {
     outline: none;
   }
 `; // Case of Small Screen
-// ---
-
-// Share Button
-const ShareButton = styled("a")`
-  display: block;
-  background-color: #aaa;
-  border: 0px;
-  border-radius: 5px;
-  color: #554a53;
-  padding: 5px 1rem;
-  margin-bottom: 4px;
-  text-align: center;
-  text-decoration: none;
-
-  &:hover {
-    color: #abc;
-  }
-  &:focus {
-    outline: none;
-  }
-`; // Case of large Screen
-
-const ShareIconButton = styled("a")`
-  display: block;
-  background-color: #fff;
-  border-left: 0px;
-  color: #7d7a7c;
-  text-decoration: none;
-
-  &:focus {
-    outline: none;
-  }
-`; // Case of Small Screen
-// &:hover {
-//   color: #abc;
-// }
-
-const SocialMediaRow = styled("div")`
-  display: block;
-  background-color: #fff;
-  border-left: 0px;
-  text-decoration: none;
-  padding-left: 5px;
-`;
 
 const OccurrenceList = styled("ul")`
   list-style: none;
@@ -247,29 +172,26 @@ const OccurrenceList = styled("ul")`
   text-align: left;
 `;
 
-const schoolNameIconMap = {
-  [SILS]: silsIcon,
-  [PSE]: pseIcon,
-  [SSS]: sssIcon,
-  [FSE]: fseIcon,
-  [CSE]: cseIcon,
-  [ASE]: aseIcon,
-  [CJL]: cjlIcon,
-  [GEC]: gecIcon,
-};
-
-const mapLinkToSchoolIcon = (keys) => {
-  return keys.map((key) => {
-    return (
-      <SchoolIconItem key={key.s}>
-        <SchoolIconImage src={schoolNameIconMap[key.s]} />
-      </SchoolIconItem>
-    );
-  });
-};
+const mapSchoolToIcon = (school, lng) => (
+  <SchoolIconItem key={school}>
+    <SchoolIconImage src={allSchoolNameIconMap(lng)[school]} />
+  </SchoolIconItem>
+);
 
 const combineYearTerm = (year, term, t) => {
-  return `${year} ${t(`syllabus.semesterMap.${term}`)}`;
+  var str = `${year} `;
+  term.split(" ").forEach((substr) => {
+    str = str + t(`syllabus.semesterMap.${substr}`);
+  });
+  return str;
+};
+
+const getLang = (course, t) => {
+  if (course[SYLLABUS_KEYS.LANG].includes(-1)) return "N/A";
+  return course[SYLLABUS_KEYS.LANG]
+    .toString()
+    .split(",")
+    .map((l, i) => (i > 0 ? " / " : "") + t(`syllabus.languageKeys.${l}`));
 };
 
 const getDay = (day, t) => {
@@ -293,24 +215,23 @@ const getDay = (day, t) => {
   }
 };
 
-const getLocation = (building, classroom, t) => {
-  if (building === "-1") {
-    if (classroom === "undecided") {
-      return t("syllabus.location.undecided");
-    }
-    return classroom;
+const getLocation = (location, t) => {
+  if (location === "undecided") {
+    return t("syllabus.location.undecided");
   } else {
-    return `${building}-${classroom}`;
+    return location;
   }
 };
 
-const getPeriod = (start_period, end_period, t) => {
-  if (start_period === -1) {
+const getPeriod = (period, t) => {
+  if (period === -1) {
     return t("syllabus.location.undecided");
-  } else if (start_period === end_period) {
-    return `${start_period}`;
+  } else if (period > 9) {
+    return `${parseInt(period / 10)}-${period % 10}`;
+  } else if (period === 0) {
+    return t("courseInfo.Details.Type.On-demand");
   } else {
-    return `${start_period}-${end_period}`;
+    return `${period}`;
   }
 };
 
@@ -321,53 +242,45 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   handleClickSyllabusLink,
-  isInCourseEvalsPage,
-  //isInSyllabusPage, // Test
+  isInCourseReviewsPage,
+  needLineBreak,
   t,
   lng,
 }) => {
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
-  const yearTerm = combineYearTerm(course.y, course.tm, t);
-  const schoolIcons = mapLinkToSchoolIcon(course.ks);
-  const syllabusId = course._id;
-  const shareLink = `https://wasedatime.com/courseEvals?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
+  const langTerm = getLang(course, t);
+  const yearTerm = combineYearTerm(
+    "2020",
+    termKeysDecoder(course[SYLLABUS_KEYS.TERM]),
+    t
+  );
+  const schoolIcons = mapSchoolToIcon(course[SYLLABUS_KEYS.SCHOOL], lng);
+  const syllabusId = course[SYLLABUS_KEYS.ID];
+  const shareLink = `https://wasedatime.com/courseInfo?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
   //Need to use index as keys due to Waseda's data.
-  const occurrences = course.os.map((occurrence, index) => {
-    const day = getDay(occurrence.d, t);
-    const period = getPeriod(occurrence.s, occurrence.e, t);
-    const location = getLocation(occurrence.b, occurrence.c, t);
-    return (
-      <li key={index}>
-        <span>
-          <FontAwesomeIcon icon={faClock} size="1x" />
-          &nbsp;
-          {`${day}${period}`}
-          &nbsp;&nbsp;
-          <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" />
-          &nbsp;
-          {`${location}`}
-        </span>
-      </li>
-    );
-  });
-  const keywords =
-    "kws" in course
-      ? course.kws.map((keyword, index) => {
-          return (
-            <li key={keyword} style={{ display: "inline-block" }}>
-              <Badge>
-                {keyword === "English-based Undergraduate Program"
-                  ? t("syllabus.EN-based Undergrad Program")
-                  : t(`syllabus.${keyword}`)}
-              </Badge>
-            </li>
-          );
-        })
-      : null;
-  const keywordsList =
-    keywords !== null ? <KeywordList>{keywords}</KeywordList> : null;
+  const occurrences = course[SYLLABUS_KEYS.OCCURRENCES].map(
+    (occurrence, index) => {
+      const day = getDay(occurrence[SYLLABUS_KEYS.OCC_DAY], t);
+      const period = getPeriod(occurrence[SYLLABUS_KEYS.OCC_PERIOD], t);
+      const location = getLocation(occurrence[SYLLABUS_KEYS.OCC_LOCATION], t);
+      return (
+        <li key={index}>
+          <span>
+            <FontAwesomeIcon icon={faClock} size="1x" />
+            &nbsp;
+            {`${day}${period}`}
+            &nbsp;&nbsp;
+            <FontAwesomeIcon icon={faMapMarkerAlt} size="1x" />
+            &nbsp;
+            {`${location}`}
+          </span>
+        </li>
+      );
+    }
+  );
+
   const buttonIcon = (
     <FontAwesomeIcon
       style={isAddable ? { color: "#48af37" } : { color: "#ce0115" }}
@@ -382,37 +295,18 @@ const CourseItem = ({
       {(matches) => {
         return (
           matches &&
-          !isInCourseEvalsPage &&
-          course.e && (
-            <EvalButtonsWrapper>
-              <ViewEvalsButton
-                href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+          !isInCourseReviewsPage && (
+            <InfoButtonsWrapper>
+              <ViewInfoButton
+                href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
                 target="_blank"
               >
-                <FontAwesomeIcon icon={faCommentDots} />{" "}
-                {t("courseEvals.Reviews")}
-              </ViewEvalsButton>
-            </EvalButtonsWrapper>
+                <FontAwesomeIcon icon={faInfoCircle} />{" "}
+                {t("courseInfo.Details.title")}
+              </ViewInfoButton>
+            </InfoButtonsWrapper>
           )
         );
-      }}
-    </MediaQuery>
-  );
-
-  const shareButtonBar = ( // Share Button Function for large page
-    <MediaQuery minWidth={sizes.desktop}>
-      {(matches) => {
-        if (matches && isInCourseEvalsPage) {
-          return (
-            <EvalButtonsWrapper>
-              <ShareButton>
-                <FontAwesomeIcon icon={faShareAlt} /> {t("Share")}
-              </ShareButton>
-            </EvalButtonsWrapper>
-          );
-        } else {
-          return "";
-        }
       }}
     </MediaQuery>
   );
@@ -420,244 +314,37 @@ const CourseItem = ({
   const reviewButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizes.desktop}>
       {(matches) => {
-        /* To course Evaluation Button */
+        /* To course Info Button */
         return (
           matches &&
-          !isInCourseEvalsPage &&
-          course.e && (
-            <ViewEvalsIconButton
-              href={`/courseEvals?courseID=${syllabusId}&searchLang=${searchLang}`}
+          !isInCourseReviewsPage && (
+            <ViewInfoIconButton
+              href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
             >
-              <FontAwesomeIcon icon={faCommentDots} size="2x" />{" "}
-            </ViewEvalsIconButton>
-          )
-        );
-      }}
-    </MediaQuery>
-  );
-
-  const shareButtonIcon = ( // Share Button Function for small page
-    <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => {
-        /* Share Button */
-        if (matches && isInCourseEvalsPage) {
-          return (
-            <ShareIconButton>
               <FontAwesomeIcon
-                icon={faShareAlt}
+                icon={faInfoCircle}
                 size="2x"
-                // onClick={(e) => {
-                //   e.preventDefault();
-                //   render() {
-                //     {twitterButton },
-                //     {facebookButton },
-                //     {linkedinButton },
-                //     {lineButton },
-                //     {whatappButton }
-                //   }
-                // }}
+                transform="shrink-2"
               />{" "}
-            </ShareIconButton>
-          );
-        } else {
-          return "";
-        }
-      }}
-    </MediaQuery>
-    //<MediaQuery maxWidth={sizes.phone || sizes.tablet}></MediaQuery>
-  );
-
-  //Sub button part ---------------------------------------------------
-  const twitterButton = (
-    <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => {
-        /* Share Button */
-        return (
-          matches &&
-          course.e && (
-            <SocialMediaRow>
-              <a
-                class="twitter-share-button"
-                href={`https://twitter.com/intent/tweet?url=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faTwitterSquare}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#00ACEE" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
+            </ViewInfoIconButton>
           )
         );
       }}
     </MediaQuery>
   );
-
-  const facebookButton = (
-    <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => {
-        /* Share Button */
-        return (
-          matches &&
-          course.e && (
-            <SocialMediaRow>
-              <a
-                class="facebook-share-button"
-                href={`https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faFacebookSquare}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#3B5998" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
-        );
-      }}
-    </MediaQuery>
-  );
-
-  const linkedinButton = (
-    <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => {
-        /* Share Button */
-        return (
-          matches &&
-          course.e && (
-            <SocialMediaRow>
-              <a
-                class="linkedin-share-button"
-                href={`http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faLinkedin}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#0E76A8" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
-        );
-      }}
-    </MediaQuery>
-  );
-
-  const lineButton = (
-    <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => {
-        /* Share Button */
-        return (
-          matches &&
-          course.e && (
-            <SocialMediaRow>
-              <a
-                class="line-share-button"
-                href={`https://social-plugins.line.me/lineit/share?url=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faLine}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#00B400" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
-        );
-      }}
-    </MediaQuery>
-  );
-
-  const whatappButton = (
-    <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => {
-        /* Share Button */
-        return (
-          matches &&
-          course.e && (
-            <SocialMediaRow>
-              <a
-                class="whatapp-share-button"
-                href={`https://wa.me/?text=${shareLink}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faWhatsappSquare}
-                  size="lg" // lg = slight large than 1x
-                  style={{ color: "#4FCE5D" }}
-                />{" "}
-              </a>
-            </SocialMediaRow>
-          )
-        );
-      }}
-    </MediaQuery>
-  );
-
-  // const MessengerButton = (
-  //   <MediaQuery maxWidth={sizes.desktop}>
-  //     {(matches) => { /* Share Button */
-  //       return (
-  //         matches &&
-  //         course.e && (
-  //           <SocialMediaRow>
-  //             <a
-  //               class="messenger-share-button"
-  //               href={`fb-messenger://share/?link=${shareLink}`}
-  //               target="_blank"
-  //             >
-  //               <FontAwesomeIcon
-  //                 icon={faFacebookMessenger} size="lg" // lg = slight large than 1x
-  //                 style={{ color: "#0078FF" }}
-  //               />{" "}
-  //             </a>
-  //           </SocialMediaRow>
-  //         )
-  //       );
-  //     }}
-  //   </MediaQuery>
-  // );
-
-  // const copyClipboardButton = (
-  //   <MediaQuery maxWidth={sizes.desktop}>
-  //     {(matches) => { /* Share Button */
-  //       return (
-  //         matches &&
-  //         course.e && (
-  //           <SocialMediaRow>
-  //             <a
-  //               onClick={`copyToClipboard(${shareLink})`}
-  //             >
-  //               <FontAwesomeIcon
-  //                 icon={faLink} size="lg" // lg = slight large than 1x
-  //                 style={{ color: "#4FCE5D" }}
-  //               />{" "}
-  //             </a>
-  //           </SocialMediaRow>
-  //         )
-  //       );
-  //     }}
-  //   </MediaQuery>
-  // );
 
   return (
     <RowWrapper>
       <CourseItemWrapper>
         <StyledHeading>{highlightedTitle}</StyledHeading>
+        {isInCourseReviewsPage && (
+          <StyledSubHeading>{course[SYLLABUS_KEYS.SUBTITLE]}</StyledSubHeading>
+        )}
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge>{t(`syllabus.${course.l}`)}</Badge>
-            {keywordsList}
+            <Badge>{langTerm}</Badge>
+            {/* keywordsList */}
           </IconBadgeWrapper>
           <div
             style={{
@@ -667,7 +354,7 @@ const CourseItem = ({
               borderRadius: "5px",
             }}
           >
-            <a /* Syllebus Button */
+            <a
               style={{ alignSelf: "flex-start" }}
               href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
                 "syllabus.langParam"
@@ -693,20 +380,15 @@ const CourseItem = ({
             >
               {buttonIcon}
             </InvisibleButton>
-            {reviewButtonIcon}
 
-            <InvisibleButton
-            // onClick={(e) => {
-            //   e.preventDefault();
-            //   {twitterButton}
-            //   {facebookButton}
-            //   {linkedinButton}
-            //   {lineButton}
-            //   {whatappButton}
-            // }}
-            >
-              {shareButtonIcon}
-            </InvisibleButton>
+            <InvisibleButton>{reviewButtonIcon}</InvisibleButton>
+            <FetchedShareButton
+              shareLink={shareLink}
+              isInCourseReviewsPage={isInCourseReviewsPage}
+              display="icon"
+              sizesDesktop={sizes.desktop}
+              needLineBreak={needLineBreak}
+            />
           </div>
         </CourseItemRow>
 
@@ -718,17 +400,14 @@ const CourseItem = ({
             </Description>
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
-
-          {facebookButton}
-          {linkedinButton}
-          {twitterButton}
-          {whatappButton}
-          {lineButton}
-
-          <InvisibleButton>
-            {reviewButtonBar}
-            {shareButtonBar}
-          </InvisibleButton>
+          <FetchedShareButton
+            shareLink={shareLink}
+            isInCourseReviewsPage={isInCourseReviewsPage}
+            display="bar"
+            sizesDesktop={sizes.desktop}
+            needLineBreak={needLineBreak}
+          />
+          <InvisibleButton>{reviewButtonBar}</InvisibleButton>
         </DetailWrapper>
       </CourseItemWrapper>
     </RowWrapper>
@@ -745,8 +424,3 @@ CourseItem.propTypes = {
   isAddable: PropTypes.bool.isRequired,
   handleOnClick: PropTypes.func.isRequired,
 };
-
-/*
-- Small Screen
-- Large Screen
-*/

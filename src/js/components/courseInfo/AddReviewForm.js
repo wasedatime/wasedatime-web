@@ -5,6 +5,7 @@ import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { Divider, Statistic } from "semantic-ui-react";
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
@@ -32,8 +33,8 @@ const ScalesList = styled("div")`
   ${media.tablet`flex: 2; flex-direction: column;`};
 `;
 
-const Scale = styled("div")`
-  margin: 0.5em 0;
+const Scale = styled(Statistic)`
+  margin: 0.5em 0 !important;
   flex: 1 0 33%;
   text-align: center;
 `;
@@ -75,7 +76,13 @@ const CloseFormButton = styled("button")`
   padding: 0.3em;
 `;
 
-class AddEvaluationForm extends React.Component {
+const FieldLegend = styled(Divider)`
+  font-size: 1.2em !important;
+  width: 60% !important;
+  margin: 1em 20% !important;
+`;
+
+class AddReviewForm extends React.Component {
   state = {
     paintedSatisfactionStars: 0,
     paintedDifficultyStars: 0,
@@ -167,7 +174,7 @@ class AddEvaluationForm extends React.Component {
     return (
       <Overlay>
         <StyledSubHeading>
-          {t(`courseEvals.Add review to this course`)}
+          {t(`courseInfo.Add review to this course`)}
         </StyledSubHeading>
 
         <StyledForm
@@ -175,31 +182,38 @@ class AddEvaluationForm extends React.Component {
             e.preventDefault();
           }}
         >
-          <b>Scales</b>
+          <FieldLegend horizontal>Scales</FieldLegend>
           <ScalesList>
             <Scale>
-              {this.displayStars(
-                "satisfaction",
-                satisfaction,
-                paintedSatisfactionStars
-              )}{" "}
-              {t(`courseEvals.Satisfaction`)}
+              <Statistic.Value>
+                {this.displayStars(
+                  "satisfaction",
+                  satisfaction,
+                  paintedSatisfactionStars
+                )}
+              </Statistic.Value>
+              <Statistic.Label>{t(`courseInfo.Satisfaction`)}</Statistic.Label>
             </Scale>
             <Scale>
-              {this.displayStars(
-                "difficulty",
-                difficulty,
-                paintedDifficultyStars
-              )}{" "}
-              {t(`courseEvals.Difficulty`)}
+              <Statistic.Value>
+                {this.displayStars(
+                  "difficulty",
+                  difficulty,
+                  paintedDifficultyStars
+                )}
+              </Statistic.Value>
+              <Statistic.Label>{t(`courseInfo.Difficulty`)}</Statistic.Label>
             </Scale>
             <Scale>
-              {this.displayStars("benefit", benefit, paintedBenefitStars)}{" "}
-              {t(`courseEvals.Benefit`)}
+              <Statistic.Value>
+                {this.displayStars("benefit", benefit, paintedBenefitStars)}
+              </Statistic.Value>
+              <Statistic.Label>{t(`courseInfo.Benefit`)}</Statistic.Label>
             </Scale>
           </ScalesList>
+          <br />
 
-          <b>{t(`courseEvals.Review`)}</b>
+          <FieldLegend horizontal>{t(`courseInfo.Review`)}</FieldLegend>
           <StyledTextarea
             placeholder="Please share your experiences, feelings, and even advices about the course!"
             onChange={this.handleTextareaChange}
@@ -217,14 +231,14 @@ class AddEvaluationForm extends React.Component {
               />
               <label htmlFor="shareWithWtsa" style={{ fontSize: "0.8em" }}>
                 {" "}
-                {t(`courseEvals.Agree to share`)}
+                {t(`courseInfo.Agree to share`)}
               </label>
             </CheckboxContainer>
             <SubmitFormButton onClick={handleFormSubmit}>
-              <FontAwesomeIcon icon={faCheck} /> {t(`courseEvals.Submit`)}
+              <FontAwesomeIcon icon={faCheck} /> {t(`courseInfo.Submit`)}
             </SubmitFormButton>
             <CloseFormButton onClick={toggleModal}>
-              <FontAwesomeIcon icon={faTimes} /> {t(`courseEvals.Close`)}
+              <FontAwesomeIcon icon={faTimes} /> {t(`courseInfo.Close`)}
             </CloseFormButton>
           </FormActions>
         </StyledForm>
@@ -233,4 +247,4 @@ class AddEvaluationForm extends React.Component {
   }
 }
 
-export default withNamespaces("translation")(AddEvaluationForm);
+export default withNamespaces("translation")(AddReviewForm);

@@ -15,6 +15,7 @@ import {
 } from "../../ga/eventActions";
 import Alert from "react-s-alert";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { termKeysDecoder } from "../../utils/termKeysDecoder";
 import levenshtein from "levenshtein-edit-distance";
 import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
@@ -32,7 +33,7 @@ import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
 import ReviewScalesCountContainer from "./ReviewScalesCountContainer";
 import RelatedCoursesContainer from "./RelatedCoursesContainer";
 import ReviewsList from "./ReviewsList";
-import AddEvaluationForm from "./AddEvaluationForm";
+import AddReviewForm from "./AddReviewForm";
 import LoadingSpinner from "../LoadingSpinner";
 
 export const LongWrapper = styled(Wrapper)`
@@ -81,14 +82,14 @@ const ReviewsListWrapper = styled("div")`
   overflow-y: auto;
 `;
 
-const AddEvaluationButton = styled("button")`
+const AddReviewButton = styled("button")`
   background-color: #ffae42;
   color: #fff;
   border: 0px;
   border-radius: 5px;
-  font-size: 0.7em;
+  font-size: 0.9em;
   float: right;
-  padding: 0.3em;
+  padding: 0.3em 0.5em;
 `;
 
 const modalStyle = {
@@ -162,35 +163,51 @@ const getRelatedCourses = (
   return sortedRelatedCourses;
 };
 
-const getDay = (day) => {
+const mapDay = (day) => {
   switch (day) {
-    case 1:
+    case 0:
       return "Mon";
-    case 2:
+    case 1:
       return "Tue";
-    case 3:
+    case 2:
       return "Wed";
-    case 4:
+    case 3:
       return "Thu";
-    case 5:
+    case 4:
       return "Fri";
-    case 6:
+    case 5:
       return "Sat";
-    case 7:
+    case 6:
       return "Sun";
     default:
       return "";
   }
 };
 
-const getPeriod = (start_period, end_period) => {
-  if (start_period === -1) {
-    return "undecided";
-  } else if (start_period === end_period) {
-    return `${start_period}`;
+const getPeriod = (period) => {
+  if (period === -1) {
+    return "others";
+  } else if (period > 9) {
+    return `${Math.floor(period / 10)}-${period % 10}`;
   } else {
-    return `${start_period}-${end_period}`;
+    return `${period}`;
   }
+};
+
+const mapLang = (keys) => {
+  const langMap = [
+    "Japanese",
+    "English",
+    "German",
+    "French",
+    "Chinese",
+    "Spanish",
+    "Korean",
+    "Russian",
+    "Italian",
+    "Others",
+  ];
+  return keys.map((key) => (key === -1 ? "N/A" : langMap[key])).join(", ");
 };
 
 class CourseInfo extends React.Component {
@@ -212,12 +229,12 @@ class CourseInfo extends React.Component {
     isLoaded: false,
     isModalOpen: false,
     error: false,
-    isAddEvaluationFormOpen: false,
-    newEvalSatisfaction: 0,
-    newEvalDifficulty: 0,
-    newEvalBenefit: 0,
-    newEvalComment: "",
-    newEvalAgreeToShare: true,
+    isAddReviewFormOpen: false,
+    newReviewSatisfaction: 0,
+    newReviewDifficulty: 0,
+    newReviewBenefit: 0,
+    newReviewComment: "",
+    newReviewAgreeToShare: true,
   };
 
   componentDidMount() {
@@ -330,103 +347,109 @@ class CourseInfo extends React.Component {
 
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });
 
-  toggleAddEvaluationForm = () => {
+  toggleAddReviewForm = () => {
     this.setState({
-      isAddEvaluationFormOpen: !this.state.isAddEvaluationFormOpen,
+      isAddReviewFormOpen: !this.state.isAddReviewFormOpen,
     });
   };
 
-  onNewEvalScaleChange = (target, score) => {
+  onNewReviewScaleChange = (target, score) => {
     switch (target) {
       case "satisfaction":
-        this.setState({ newEvalSatisfaction: score });
+        this.setState({ newReviewSatisfaction: score });
         break;
       case "difficulty":
-        this.setState({ newEvalDifficulty: score });
+        this.setState({ newReviewDifficulty: score });
         break;
       case "benefit":
-        this.setState({ newEvalBenefit: score });
+        this.setState({ newReviewBenefit: score });
         break;
       default:
-        this.setState({ newEvalSatisfaction: score });
+        this.setState({ newReviewSatisfaction: score });
     }
   };
 
-  onNewEvalCommentChange = (text) => this.setState({ newEvalComment: text });
+  onNewReviewCommentChange = (text) =>
+    this.setState({ newReviewComment: text });
 
-  onNewEvalShareAgreementChange = () =>
-    this.setState({ newEvalAgreeToShare: !this.state.newEvalAgreeToShare });
+  onNewReviewShareAgreementChange = () =>
+    this.setState({ newReviewAgreeToShare: !this.state.newReviewAgreeToShare });
 
-  onNewEvalFormSubmit = () => {
+  onNewReviewFormSubmit = () => {
     const {
-      newEvalSatisfaction,
-      newEvalDifficulty,
-      newEvalBenefit,
-      newEvalComment,
-      newEvalAgreeToShare,
+      newReviewSatisfaction,
+      newReviewDifficulty,
+      newReviewBenefit,
+      newReviewComment,
+      newReviewAgreeToShare,
     } = this.state;
     if (
-      newEvalSatisfaction === 0 ||
-      newEvalDifficulty === 0 ||
-      newEvalBenefit === 0 ||
-      newEvalComment.length === 0
+      newReviewSatisfaction === 0 ||
+      newReviewDifficulty === 0 ||
+      newReviewBenefit === 0 ||
+      newReviewComment.length === 0
     ) {
       Alert.warning(
-        this.props.t(`courseEvals.Fill in all fields before sending`),
+        this.props.t(`courseInfo.Fill in all fields before sending`),
         {
           position: "bottom",
           effect: "jelly",
         }
       );
     } else {
-      const { _id, c, t, tj, i, ij, y, l, tm, os, ks } = this.state.thisCourse;
-      const occurrences = os
-        .map((o) => getDay(o.d) + "." + getPeriod(o.s, o.e))
+      const thisCourse = this.state.thisCourse;
+      const occurrences = thisCourse[SYLLABUS_KEYS.OCCURRENCES]
+        .map(
+          (o) =>
+            mapDay(o[SYLLABUS_KEYS.OCC_DAY]) +
+            "." +
+            getPeriod(o[SYLLABUS_KEYS.OCC_PERIOD])
+        )
         .join(", ");
-      const newEval = {
+      const newReview = {
         _id: "",
-        course_id: _id,
-        course_key: getCourseKey(this.state.thisCourse),
-        course_code: c,
-        title: t,
-        title_jp: tj,
-        instructor: i,
-        instructor_jp: ij,
-        school: ks.map((k) => k.s).join(", "),
-        term: tm,
-        year: y,
-        lang: l,
+        course_id: thisCourse[SYLLABUS_KEYS.ID],
+        course_key: getCourseKey(thisCourse),
+        course_code: thisCourse[SYLLABUS_KEYS.CODE],
+        title: thisCourse[SYLLABUS_KEYS.TITLE],
+        title_jp: thisCourse[SYLLABUS_KEYS.TITLE_JP],
+        instructor: thisCourse[SYLLABUS_KEYS.INSTRUCTOR],
+        instructor_jp: thisCourse[SYLLABUS_KEYS.INSTRUCTOR_JP],
+        school: thisCourse[SYLLABUS_KEYS.SCHOOL],
+        term: termKeysDecoder(thisCourse[SYLLABUS_KEYS.TERM]),
+        year: "2020",
+        lang: mapLang(thisCourse[SYLLABUS_KEYS.LANG]),
         occurrences: occurrences,
-        satisfaction: newEvalSatisfaction,
-        difficulty: newEvalDifficulty,
-        benefit: newEvalBenefit,
+        satisfaction: newReviewSatisfaction,
+        difficulty: newReviewDifficulty,
+        benefit: newReviewBenefit,
         comment_src_lng: 0, // 0: en, 1: jp, 2:zh_TW, 3: zh_CN
-        comment_en: newEvalComment,
-        comment_jp: newEvalComment,
-        comment_zh_TW: newEvalComment,
-        comment_zh_CN: newEvalComment,
+        comment_en: newReviewComment,
+        comment_jp: newReviewComment,
+        comment_zh_TW: newReviewComment,
+        comment_zh_CN: newReviewComment,
         commented_date: new Date(),
-        agree_to_share_with_wtsa: newEvalAgreeToShare,
+        agree_to_share_with_wtsa: newReviewAgreeToShare,
       };
 
       try {
         // Send the review
 
-        Alert.success(this.props.t(`courseEvals.Review sent`), {
+        Alert.success(this.props.t(`courseInfo.Review sent`), {
           position: "bottom",
           effect: "jelly",
         });
-        console.log(newEval);
+        console.log(newReview);
         this.setState({
-          isAddEvaluationFormOpen: false,
-          newEvalSatisfaction: 0,
-          newEvalDifficulty: 0,
-          newEvalBenefit: 0,
-          newEvalComment: "",
-          newEvalAgreeToShare: true,
+          isAddReviewFormOpen: false,
+          newReviewSatisfaction: 0,
+          newReviewDifficulty: 0,
+          newReviewBenefit: 0,
+          newReviewComment: "",
+          newReviewAgreeToShare: true,
         });
       } catch (error) {
-        Alert.error(this.props.t(`courseEvals.Review failed to send`), {
+        Alert.error(this.props.t(`courseInfo.Review failed to send`), {
           position: "bottom",
           effect: "jelly",
         });
@@ -448,12 +471,12 @@ class CourseInfo extends React.Component {
       isLoaded,
       isModalOpen,
       error,
-      isAddEvaluationFormOpen,
-      newEvalSatisfaction,
-      newEvalDifficulty,
-      newEvalBenefit,
-      newEvalComment,
-      newEvalAgreeToShare,
+      isAddReviewFormOpen,
+      newReviewSatisfaction,
+      newReviewDifficulty,
+      newReviewBenefit,
+      newReviewComment,
+      newReviewAgreeToShare,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
@@ -500,18 +523,18 @@ class CourseInfo extends React.Component {
 
               <CourseDetails course={thisCourse} />
 
-              {isAddEvaluationFormOpen ? (
-                <AddEvaluationForm
-                  toggleModal={this.toggleAddEvaluationForm}
-                  satisfaction={newEvalSatisfaction}
-                  difficulty={newEvalDifficulty}
-                  benefit={newEvalBenefit}
-                  comment={newEvalComment}
-                  agreeToShare={newEvalAgreeToShare}
-                  handleScaleChange={this.onNewEvalScaleChange}
-                  handleCommentChange={this.onNewEvalCommentChange}
-                  handleCheckboxChange={this.onNewEvalShareAgreementChange}
-                  handleFormSubmit={this.onNewEvalFormSubmit}
+              {isAddReviewFormOpen ? (
+                <AddReviewForm
+                  toggleModal={this.toggleAddReviewForm}
+                  satisfaction={newReviewSatisfaction}
+                  difficulty={newReviewDifficulty}
+                  benefit={newReviewBenefit}
+                  comment={newReviewComment}
+                  agreeToShare={newReviewAgreeToShare}
+                  handleScaleChange={this.onNewReviewScaleChange}
+                  handleCommentChange={this.onNewReviewCommentChange}
+                  handleCheckboxChange={this.onNewReviewShareAgreementChange}
+                  handleFormSubmit={this.onNewReviewFormSubmit}
                 />
               ) : (
                 <React.Fragment>
@@ -524,6 +547,9 @@ class CourseInfo extends React.Component {
                         isInHeading={true}
                       />
                     </span>
+                    <AddReviewButton onClick={this.toggleAddReviewForm}>
+                      <FontAwesomeIcon icon={faPen} /> Write your Review
+                    </AddReviewButton>
                   </StyledSubHeading>
                   <Disclaimer>
                     {this.props.t(`courseInfo.Disclaimer`)}

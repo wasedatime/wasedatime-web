@@ -10,6 +10,19 @@ import "normalize-css/normalize.css";
 import "./styles/styles.css";
 import "./js/components/i18n";
 
+import Amplify from "aws-amplify";
+
+Amplify.configure({
+  API: {
+    endpoints: [
+      {
+        name: "wasedatime-dev",
+        endpoint: process.env.REACT_APP_API_BASE_URL,
+      },
+    ],
+  },
+});
+
 configureStore().then((store) => {
   store.subscribe(
     throttle(() => {

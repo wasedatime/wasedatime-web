@@ -3,32 +3,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
 		<loc>https://wasedatime.com/</loc>
-		<lastmod>2020-09-16</lastmod>
+		<lastmod>2020-10-28</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>0.7</priority>
+		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://wasedatime.com/timetable</loc>
 		<lastmod>2020-09-16</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>1.0</priority>
+		<priority>0.9</priority>
 	</url>
 	<url>
 		<loc>https://wasedatime.com/syllabus</loc>
 		<lastmod>2020-09-16</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>1.0</priority>
+		<priority>0.7</priority>
 	</url>
 	<url>
 		<loc>https://wasedatime.com/bus</loc>
 		<lastmod>2020-09-16</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>0.8</priority>
+		<priority>0.5</priority>
 	</url>
+    <url>
+        <loc>https://wasedatime.com/corona-info</loc>
+        <lastmod>2020-10-30</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.5</priority>
+    </url>
 	<url>
 		<loc>https://wasedatime.com/joinus</loc>
 		<lastmod>2020-09-16</lastmod>
 		<changefreq>weekly</changefreq>
-		<priority>0.9</priority>
+		<priority>0.5</priority>
 	</url>
 </urlset>

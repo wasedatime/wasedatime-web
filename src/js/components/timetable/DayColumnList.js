@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
 import DayColumnItem from "./DayColumnItem";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 const StyledList = styled("ol")`
   display: flex;
@@ -33,10 +34,10 @@ const DayColumnList = ({
   };
   const coursesByDay = addedCoursesAndPrefs.reduce((acc, elem) => {
     const { course, ...restOfElem } = elem;
-    const { os, ...restOfCourse } = course;
-    os.forEach((occ) => {
-      acc[occ.d] = [
-        ...acc[occ.d],
+    const { [SYLLABUS_KEYS.OCCURRENCES]: occs, ...restOfCourse } = course;
+    occs.forEach((occ) => {
+      acc[occ[SYLLABUS_KEYS.OCC_DAY]] = [
+        ...acc[occ[SYLLABUS_KEYS.OCC_DAY]],
         {
           ...restOfElem,
           course: {

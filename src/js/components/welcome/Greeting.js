@@ -1,6 +1,6 @@
 import React from "react";
-import {withNamespaces} from "react-i18next";
-import {withStyles} from "@material-ui/core/styles";
+import { withNamespaces } from "react-i18next";
+import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Radio from "@material-ui/core/Radio";
@@ -8,8 +8,8 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 
-import {Article} from "../../styled-components/Article";
-import {media} from "../../styled-components/utils";
+import { Article } from "../../styled-components/Article";
+import { media } from "../../styled-components/utils";
 import LANGS from "../../config/langs";
 import logo from "../../../img/logo.png";
 
@@ -53,7 +53,7 @@ class Greeting extends React.Component {
     const { classes, t, lng } = this.props;
     return (
       <ExtendedArticle>
-        <Logo src={logo} alt=""/>
+        <Logo src={logo} alt="" width="50" height="50" />
         <Typography
           variant="h3"
           component="h3"
@@ -70,9 +70,7 @@ class Greeting extends React.Component {
           gutterBottom
           className={classes.h4}
         >
-          {`${t("welcome.newFeature")} ${t("welcome.courseEvals")} ${t(
-            "welcome.added"
-          )}`}
+          {`${t("welcome.newFeature")} ${t("welcome.newSchoolsAdded")}`}
         </Typography>
         <Typography variant="h4" component="p" align="center" gutterBottom>
           {t("welcome.returningUsers")}

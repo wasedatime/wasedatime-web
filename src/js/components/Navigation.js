@@ -9,8 +9,8 @@ import {
   faCalendarAlt,
   faBook,
   faBus,
-  faBriefcase,
   faStar,
+  faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
@@ -69,19 +69,24 @@ const Navigation = (props) => {
       icon: faBook,
     },
     {
-      name: t("navigation.bus"),
-      path: "/bus",
-      icon: faBus,
+      name: t("navigation.corona-info"),
+      path: "/corona-info",
+      icon: faExclamationTriangle,
     },
-    {
-      name: t("navigation.career"),
-      path: "/career",
-      icon: faBriefcase,
-    },
+    // {
+    //   name: t("navigation.career"),
+    //   path: "/career",
+    //   icon: faBriefcase,
+    // },
     {
       name: t("navigation.joinus"),
       path: "/joinus",
       icon: faStar,
+    },
+    {
+      name: t("navigation.bus"),
+      path: "/bus",
+      icon: faBus,
     },
   ];
   const styledLinks = navItems.map((item) => {

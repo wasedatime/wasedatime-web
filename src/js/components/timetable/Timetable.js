@@ -1,13 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-import {RowWrapper, Wrapper} from "../../styled-components/Wrapper";
-import {Article, Section} from "../../styled-components/Article";
+import { RowWrapper, Wrapper } from "../../styled-components/Wrapper";
+import { Article, Section } from "../../styled-components/Article";
 import TimeRowList from "./TimeRowList";
 import DayColumnList from "./DayColumnList";
 import AddedCourseAndPrefListContainer from "../../containers/timetable/AddedCourseAndPrefListContainer";
-import {media} from "../../styled-components/utils";
-import {withNamespaces} from "react-i18next";
+import { media } from "../../styled-components/utils";
+import { withNamespaces } from "react-i18next";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
@@ -45,12 +46,19 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
 
   const largestDayAndPeriod = visibleAddedCoursesAndPrefs.reduce(
     (acc, elem) => {
-      const occurrences = elem.course.os;
+      const occurrences = elem.course[SYLLABUS_KEYS.OCCURRENCES];
       return occurrences.reduce((acc, occurrence) => {
+        const unformattedPeriod = occurrence[SYLLABUS_KEYS.OCC_PERIOD];
+        const maxPeriod =
+          unformattedPeriod === -1
+            ? 0
+            : unformattedPeriod > 9
+            ? unformattedPeriod % 10
+            : unformattedPeriod;
         return {
           ...acc,
-          day: Math.max(acc.day, occurrence.d),
-          period: Math.max(acc.period, occurrence.e),
+          day: Math.max(acc.day, occurrence[SYLLABUS_KEYS.OCC_DAY]),
+          period: Math.max(acc.period, maxPeriod),
         };
       }, acc);
     },

@@ -11,6 +11,7 @@ import {
   gaRemoveCourse,
   gaClickSyllabusLink,
 } from "../../ga/eventActions";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 class AddedCourseItem extends React.Component {
   handleClickSyllabusLink = (title, lng) => {
@@ -27,7 +28,7 @@ class AddedCourseItem extends React.Component {
       action: gaAppendActionWithLng(gaRemoveCourse, lng),
       label: title,
     });
-    this.props.removeCourse(course._id);
+    this.props.removeCourse(course[SYLLABUS_KEYS.ID]);
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly",

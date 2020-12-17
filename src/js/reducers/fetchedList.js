@@ -4,7 +4,25 @@ const fetchedList = (actionTypes) => {
   const ids = (state = [], action) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
-        return action.response.result;
+        var ids = {};
+        const coursesBySchool = action.response["coursesBySchool"];
+
+        Object.keys(coursesBySchool).forEach((school) => {
+          if (coursesBySchool[school].result) {
+            ids[school] = coursesBySchool[school].result;
+          }
+        });
+        return ids;
+      case actionTypes.addSchoolFetchSuccess:
+        const courses = action.response["courses"];
+        const school = action.response["school"];
+        return {
+          ...state,
+          [school]: courses.result || [],
+        };
+      case actionTypes.removeSchool:
+        delete state[action.payload];
+        return state;
       default:
         return state;
     }
@@ -17,6 +35,11 @@ const fetchedList = (actionTypes) => {
       case actionTypes.fetchSuccess:
       case actionTypes.fetchFailure:
         return false;
+      case actionTypes.addSchoolFetchRequest:
+        return true;
+      case actionTypes.addSchoolFetchSuccess:
+      case actionTypes.addSchoolFetchFailure:
+        return false;
       default:
         return state;
     }
@@ -25,6 +48,8 @@ const fetchedList = (actionTypes) => {
   const fetchedTime = (state = null, action) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
+        return action.response.fetchedTime;
+      case actionTypes.addSchoolFetchSuccess:
         return action.response.fetchedTime;
       default:
         return state;
@@ -38,6 +63,11 @@ const fetchedList = (actionTypes) => {
       case actionTypes.fetchRequest:
       case actionTypes.fetchSuccess:
         return null;
+      case actionTypes.addSchoolFetchFailure:
+        return action.error;
+      case actionTypes.addSchoolFetchRequest:
+      case actionTypes.addSchoolFetchSuccess:
+        return null;
       default:
         return state;
     }
@@ -47,6 +77,14 @@ const fetchedList = (actionTypes) => {
 
 export default fetchedList;
 
-export const getIds = (state) => state.ids;
+export const getIds = (state) => {
+  var ids = [];
+  const idsBySchool = state.ids;
+  Object.keys(idsBySchool).forEach((school) => {
+    ids = [...ids, ...idsBySchool[school]];
+  });
+  return ids;
+};
+
 export const getIsFetching = (state) => state.isFetching;
 export const getError = (state) => state.error;

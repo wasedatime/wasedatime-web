@@ -34,7 +34,7 @@ const Header = () => {
   return (
     <StyledHeader>
       <StyledLink to="/about">
-        <Logo src={logo} alt="WasedaTime logo" />
+        <Logo src={logo} alt="WasedaTime logo" width="50" height="50" />
       </StyledLink>
       <Navigation />
       <LanguangeMenu />

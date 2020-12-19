@@ -376,12 +376,17 @@ class CourseInfo extends React.Component {
 
       try {
         // Send the review
+        API.put("wasedatime-dev", "/course-reviews", {
+          body: newReview,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then((res) => console.log(res));
 
         Alert.success(this.props.t(`courseInfo.Review sent`), {
           position: "bottom",
           effect: "jelly",
         });
-        console.log(newReview);
         this.setState({
           isAddReviewFormOpen: false,
           newReviewSatisfaction: 0,

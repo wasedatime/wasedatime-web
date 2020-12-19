@@ -5,7 +5,7 @@ import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { Divider, Statistic } from "semantic-ui-react";
+import { Divider, Statistic, Radio } from "semantic-ui-react";
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
@@ -29,7 +29,7 @@ const StyledForm = styled("form")`
 const ScalesList = styled("div")`
   display: flex;
   flex-direction: row;
-  font-size: 1.1em;
+  font-size: 0.8em !important;
   ${media.tablet`flex: 2; flex-direction: column;`};
 `;
 
@@ -37,6 +37,11 @@ const Scale = styled(Statistic)`
   margin: 0.5em 0 !important;
   flex: 1 0 33%;
   text-align: center;
+  ${"" /* font-size: 0.6em !important; */}
+`;
+
+const Stars = styled(Statistic.Value)`
+  font-size: 0.5em !important;
 `;
 
 const StyledTextarea = styled("textarea")`
@@ -49,13 +54,22 @@ const StyledTextarea = styled("textarea")`
   flex: 1 0 auto;
 `;
 
+const RadioList = styled("div")`
+  display: flex;
+  margin: 0.5em 0px;
+`;
+
+const RadioWrapper = styled("span")`
+  flex: 0 0 20%;
+`;
+
+const StyledRadio = styled(Radio)`
+  font-size: 1em !important;
+`;
+
 const FormActions = styled("div")`
   display: flex;
   margin-top: 10px;
-`;
-
-const CheckboxContainer = styled("span")`
-  flex: 0 0 60%;
 `;
 
 const SubmitFormButton = styled("button")`
@@ -149,10 +163,6 @@ class AddReviewForm extends React.Component {
     this.props.handleCommentChange(inputText);
   };
 
-  handleCheckboxChange = (event) => {
-    console.log(event.target.checked);
-  };
-
   render() {
     const {
       toggleModal,
@@ -160,8 +170,8 @@ class AddReviewForm extends React.Component {
       difficulty,
       benefit,
       comment,
-      agreeToShare,
-      handleCheckboxChange,
+      sourceLangCode,
+      handleRadioChange,
       handleFormSubmit,
       t,
     } = this.props;
@@ -184,17 +194,17 @@ class AddReviewForm extends React.Component {
         >
           <FieldLegend horizontal>Scales</FieldLegend>
           <ScalesList>
-            <Scale>
-              <Statistic.Value>
+            <Scale size="small">
+              <Stars>
                 {this.displayStars(
                   "satisfaction",
                   satisfaction,
                   paintedSatisfactionStars
                 )}
-              </Statistic.Value>
+              </Stars>
               <Statistic.Label>{t(`courseInfo.Satisfaction`)}</Statistic.Label>
             </Scale>
-            <Scale>
+            <Scale size="small">
               <Statistic.Value>
                 {this.displayStars(
                   "difficulty",
@@ -204,7 +214,7 @@ class AddReviewForm extends React.Component {
               </Statistic.Value>
               <Statistic.Label>{t(`courseInfo.Difficulty`)}</Statistic.Label>
             </Scale>
-            <Scale>
+            <Scale size="small">
               <Statistic.Value>
                 {this.displayStars("benefit", benefit, paintedBenefitStars)}
               </Statistic.Value>
@@ -219,21 +229,20 @@ class AddReviewForm extends React.Component {
             onChange={this.handleTextareaChange}
             value={comment}
           />
+
+          <RadioList>
+            {["English", "日本語", "繁中", "简中"].map((lng, i) => (
+              <RadioWrapper key={"sourceLangCheckbox_" + i}>
+                <StyledRadio
+                  label={lng}
+                  checked={sourceLangCode === i}
+                  onChange={() => handleRadioChange(i)}
+                />
+              </RadioWrapper>
+            ))}
+          </RadioList>
+
           <FormActions>
-            <CheckboxContainer>
-              <input
-                type="checkbox"
-                id="shareWithWtsa"
-                name="shareWithWtsa"
-                value={true}
-                checked={agreeToShare}
-                onChange={handleCheckboxChange}
-              />
-              <label htmlFor="shareWithWtsa" style={{ fontSize: "0.8em" }}>
-                {" "}
-                {t(`courseInfo.Agree to share`)}
-              </label>
-            </CheckboxContainer>
             <SubmitFormButton onClick={handleFormSubmit}>
               <FontAwesomeIcon icon={faCheck} /> {t(`courseInfo.Submit`)}
             </SubmitFormButton>

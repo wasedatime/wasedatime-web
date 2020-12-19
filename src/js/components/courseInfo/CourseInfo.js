@@ -15,7 +15,6 @@ import {
 } from "../../ga/eventActions";
 import Alert from "react-s-alert";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
-import { termKeysDecoder } from "../../utils/termKeysDecoder";
 import levenshtein from "levenshtein-edit-distance";
 import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
@@ -163,53 +162,6 @@ const getRelatedCourses = (
   return sortedRelatedCourses;
 };
 
-const mapDay = (day) => {
-  switch (day) {
-    case 0:
-      return "Mon";
-    case 1:
-      return "Tue";
-    case 2:
-      return "Wed";
-    case 3:
-      return "Thu";
-    case 4:
-      return "Fri";
-    case 5:
-      return "Sat";
-    case 6:
-      return "Sun";
-    default:
-      return "";
-  }
-};
-
-const getPeriod = (period) => {
-  if (period === -1) {
-    return "others";
-  } else if (period > 9) {
-    return `${Math.floor(period / 10)}-${period % 10}`;
-  } else {
-    return `${period}`;
-  }
-};
-
-const mapLang = (keys) => {
-  const langMap = [
-    "Japanese",
-    "English",
-    "German",
-    "French",
-    "Chinese",
-    "Spanish",
-    "Korean",
-    "Russian",
-    "Italian",
-    "Others",
-  ];
-  return keys.map((key) => (key === -1 ? "N/A" : langMap[key])).join(", ");
-};
-
 class CourseInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -234,7 +186,7 @@ class CourseInfo extends React.Component {
     newReviewDifficulty: 0,
     newReviewBenefit: 0,
     newReviewComment: "",
-    newReviewAgreeToShare: true,
+    sourceLangCode: null,
   };
 
   componentDidMount() {
@@ -372,8 +324,8 @@ class CourseInfo extends React.Component {
   onNewReviewCommentChange = (text) =>
     this.setState({ newReviewComment: text });
 
-  onNewReviewShareAgreementChange = () =>
-    this.setState({ newReviewAgreeToShare: !this.state.newReviewAgreeToShare });
+  onNewReviewReviewLangChange = (code) =>
+    this.setState({ sourceLangCode: code });
 
   onNewReviewFormSubmit = () => {
     const {
@@ -381,13 +333,16 @@ class CourseInfo extends React.Component {
       newReviewDifficulty,
       newReviewBenefit,
       newReviewComment,
-      newReviewAgreeToShare,
+      sourceLangCode,
     } = this.state;
     if (
-      newReviewSatisfaction === 0 ||
-      newReviewDifficulty === 0 ||
-      newReviewBenefit === 0 ||
-      newReviewComment.length === 0
+      [
+        newReviewSatisfaction,
+        newReviewDifficulty,
+        newReviewBenefit,
+        newReviewComment.length,
+      ].some((scale) => scale === 0) ||
+      sourceLangCode === null
     ) {
       Alert.warning(
         this.props.t(`courseInfo.Fill in all fields before sending`),
@@ -398,38 +353,25 @@ class CourseInfo extends React.Component {
       );
     } else {
       const thisCourse = this.state.thisCourse;
-      const occurrences = thisCourse[SYLLABUS_KEYS.OCCURRENCES]
-        .map(
-          (o) =>
-            mapDay(o[SYLLABUS_KEYS.OCC_DAY]) +
-            "." +
-            getPeriod(o[SYLLABUS_KEYS.OCC_PERIOD])
-        )
-        .join(", ");
+      const created_at = Date.now();
       const newReview = {
-        _id: "",
-        course_id: thisCourse[SYLLABUS_KEYS.ID],
         course_key: getCourseKey(thisCourse),
         course_code: thisCourse[SYLLABUS_KEYS.CODE],
         title: thisCourse[SYLLABUS_KEYS.TITLE],
         title_jp: thisCourse[SYLLABUS_KEYS.TITLE_JP],
         instructor: thisCourse[SYLLABUS_KEYS.INSTRUCTOR],
         instructor_jp: thisCourse[SYLLABUS_KEYS.INSTRUCTOR_JP],
-        school: thisCourse[SYLLABUS_KEYS.SCHOOL],
-        term: termKeysDecoder(thisCourse[SYLLABUS_KEYS.TERM]),
         year: "2020",
-        lang: mapLang(thisCourse[SYLLABUS_KEYS.LANG]),
-        occurrences: occurrences,
         satisfaction: newReviewSatisfaction,
         difficulty: newReviewDifficulty,
         benefit: newReviewBenefit,
-        comment_src_lng: 0, // 0: en, 1: jp, 2:zh_TW, 3: zh_CN
-        comment_en: newReviewComment,
-        comment_jp: newReviewComment,
-        comment_zh_TW: newReviewComment,
-        comment_zh_CN: newReviewComment,
-        commented_date: new Date(),
-        agree_to_share_with_wtsa: newReviewAgreeToShare,
+        comment_src_lng: sourceLangCode, // 0: en, 1: jp, 2:zh_TW, 3: zh_CN
+        comment_en: sourceLangCode === 0 ? newReviewComment : "",
+        comment_jp: sourceLangCode === 1 ? newReviewComment : "",
+        comment_zh_TW: sourceLangCode === 2 ? newReviewComment : "",
+        comment_zh_CN: sourceLangCode === 3 ? newReviewComment : "",
+        created_at: created_at,
+        updated_at: created_at,
       };
 
       try {
@@ -446,7 +388,7 @@ class CourseInfo extends React.Component {
           newReviewDifficulty: 0,
           newReviewBenefit: 0,
           newReviewComment: "",
-          newReviewAgreeToShare: true,
+          sourceLangCode: null,
         });
       } catch (error) {
         Alert.error(this.props.t(`courseInfo.Review failed to send`), {
@@ -476,7 +418,7 @@ class CourseInfo extends React.Component {
       newReviewDifficulty,
       newReviewBenefit,
       newReviewComment,
-      newReviewAgreeToShare,
+      sourceLangCode,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
@@ -530,11 +472,11 @@ class CourseInfo extends React.Component {
                   difficulty={newReviewDifficulty}
                   benefit={newReviewBenefit}
                   comment={newReviewComment}
-                  agreeToShare={newReviewAgreeToShare}
                   handleScaleChange={this.onNewReviewScaleChange}
                   handleCommentChange={this.onNewReviewCommentChange}
-                  handleCheckboxChange={this.onNewReviewShareAgreementChange}
+                  handleRadioChange={this.onNewReviewReviewLangChange}
                   handleFormSubmit={this.onNewReviewFormSubmit}
+                  sourceLangCode={sourceLangCode}
                 />
               ) : (
                 <React.Fragment>

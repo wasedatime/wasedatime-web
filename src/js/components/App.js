@@ -96,6 +96,13 @@ const App = ({ isFirstTimeAccess, t }) => {
               <Route path="/career" component={Career} />
               <Route exact path="/corona-info" component={CoronaInfo} />
               <Route exact path="/courseInfo" component={CourseInfo} />
+              <Route
+                exact
+                path="/privacy-policy"
+                render={() => {
+                  window.location.href = "/privacy-policy.html";
+                }}
+              />
               <Route component={NotFound} />
             </Switch>
           )}

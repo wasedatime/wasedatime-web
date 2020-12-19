@@ -54,7 +54,11 @@ const Footer = ({ finishTime, t, lng }) => {
           </StyledLink>
         </StyledListItem>
         <StyledListItem>
-          <StyledLink href="https://twitter.com/WasedaTime" target="_blank" rel="noreferrer">
+          <StyledLink
+            href="https://twitter.com/WasedaTime"
+            target="_blank"
+            rel="noreferrer"
+          >
             <FontAwesomeIcon icon={faTwitter} size="2x" transform="shrink-2" />
           </StyledLink>
         </StyledListItem>
@@ -107,7 +111,10 @@ const Footer = ({ finishTime, t, lng }) => {
         >
           MIT
         </StyledLink>
-        .
+        .{" "}
+        <StyledLink href="/privacy-policy" target="_blank" rel="noreferrer">
+          Privacy Policy
+        </StyledLink>
       </StyledP>
     </StyledFooter>
   );

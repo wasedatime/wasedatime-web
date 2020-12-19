@@ -361,7 +361,7 @@ class CourseInfo extends React.Component {
         title_jp: thisCourse[SYLLABUS_KEYS.TITLE_JP],
         instructor: thisCourse[SYLLABUS_KEYS.INSTRUCTOR],
         instructor_jp: thisCourse[SYLLABUS_KEYS.INSTRUCTOR_JP],
-        year: "2020",
+        year: 2020,
         satisfaction: newReviewSatisfaction,
         difficulty: newReviewDifficulty,
         benefit: newReviewBenefit,

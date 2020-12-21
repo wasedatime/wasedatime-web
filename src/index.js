@@ -36,7 +36,7 @@ const config = {
     userPoolId: "ap-northeast-1_dKhj1aZQy",
 
     // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
-    userPoolWebClientId: "66boeb5d7rmtrgpg6mb7i8rbvi",
+    userPoolWebClientId: "4i0q5hl5u27mili6fnpvjap8fc",
 
     // OPTIONAL - Enforce user authentication prior to accessing AWS resources or not
     mandatorySignIn: true,
@@ -84,6 +84,7 @@ const config = {
 };
 
 Amplify.configure(config);
+Auth.configure(config);
 Auth.signIn("mlapenang1998@asagi.waseda.jp", "huhu871111");
 
 // Auth.configure();

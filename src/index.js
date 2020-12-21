@@ -76,8 +76,8 @@ const config = {
         "openid",
         "aws.cognito.signin.user.admin",
       ],
-      redirectSignIn: "http://localhost:3000/",
-      redirectSignOut: "http://localhost:3000/",
+      redirectSignIn: "https://wasedatime.com/verify",
+      redirectSignOut: "https://wasedatime.com/logout",
       responseType: "code", // or 'token', note that REFRESH token will only be generated when the responseType is code
     },
   },

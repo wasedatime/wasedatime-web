@@ -1,4 +1,5 @@
 import React from "react";
+import { withAuthenticator } from "@aws-amplify/ui-react";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
@@ -120,6 +121,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default withNamespaces("translation")(
-  withRouter(connect(mapStateToProps, null)(App))
+export default withAuthenticator(
+  withNamespaces("translation")(withRouter(connect(mapStateToProps, null)(App)))
 );

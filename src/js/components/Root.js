@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { Authenticator } from "aws-amplify-react";
 import { Provider } from "react-redux";
 import ReactGA from "react-ga";
 import { Route, BrowserRouter } from "react-router-dom";
@@ -53,6 +54,11 @@ class Analytics extends React.Component {
   }
 }
 
+const federatedConfig = {
+  google_client_id:
+    "184356976101-9r6g0till2pt58h45qvc4hp5slhmdtab.apps.googleusercontent.com",
+};
+
 const Root = ({ store }) => {
   // production -> UA-112185819-1, staging -> UA-112185819-4, dev/others -> UA-112185819-3
   let trackingId;
@@ -73,8 +79,10 @@ const Root = ({ store }) => {
     <Provider store={store}>
       <BrowserRouter>
         <div>
-          {analyticsRoute}
-          <App />
+          <Authenticator federated={federatedConfig}>
+            {analyticsRoute}
+            <App />
+          </Authenticator>
         </div>
       </BrowserRouter>
     </Provider>

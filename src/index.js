@@ -69,13 +69,7 @@ const config = {
     // OPTIONAL - Hosted UI configuration
     oauth: {
       domain: "auth.wasedatime.com",
-      scope: [
-        "phone",
-        "email",
-        "profile",
-        "openid",
-        "aws.cognito.signin.user.admin",
-      ],
+      scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
       redirectSignIn: "https://wasedatime.com/verify",
       redirectSignOut: "https://wasedatime.com/logout",
       responseType: "code", // or 'token', note that REFRESH token will only be generated when the responseType is code
@@ -85,7 +79,6 @@ const config = {
 
 Amplify.configure(config);
 Auth.configure(config);
-Auth.signIn("mlapenang1998@asagi.waseda.jp", "huhu871111");
 
 // Auth.configure();
 

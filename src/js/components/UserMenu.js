@@ -1,18 +1,15 @@
 import React from "react";
+import { Auth } from "aws-amplify";
 import PropTypes from "prop-types";
-import i18n from "./i18n";
+// import i18n from "./i18n";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLanguage } from "@fortawesome/free-solid-svg-icons";
+import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
-import ReactGA from "react-ga";
-import { gaLanguage } from "../ga/eventCategories";
-import { gaAppendActionWithLng, gaChangeLanguage } from "../ga/eventActions";
 
 import { media } from "../styled-components/utils";
-import LANGS from "../config/langs";
 
 const StyledButton = styled("button")`
   display: flex;
@@ -32,7 +29,7 @@ const StyledSpan = styled("span")`
   ${media.phone`font-size: 0.5em;`};
 `;
 
-class LanguangeMenu extends React.Component {
+class UserMenu extends React.Component {
   state = {
     anchorEl: null,
   };
@@ -46,25 +43,14 @@ class LanguangeMenu extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  handleMenuItemClick = (event, lang) => {
-    event.preventDefault();
-    ReactGA.event({
-      category: gaLanguage,
-      action: gaAppendActionWithLng(gaChangeLanguage, this.props.lng),
-      label: lang,
-    });
-    i18n.changeLanguage(lang);
-    this.handleClose();
-  };
-
   render() {
     const { anchorEl } = this.state;
-    const { t } = this.props;
+    // const { t } = this.props;
     return (
-      <div style={{ marginLeft: "1em" }}>
+      <div style={{ marginLeft: "auto" }}>
         <StyledButton onClick={this.handleClick}>
-          <FontAwesomeIcon icon={faLanguage} size="2x" transform="shrink-2" />
-          <StyledSpan>{t("navigation.language")}</StyledSpan>
+          <FontAwesomeIcon icon={faUserAlt} size="2x" transform="shrink-2" />
+          <StyledSpan>My Account</StyledSpan>
         </StyledButton>
         <Menu
           id="language-menu"
@@ -75,15 +61,9 @@ class LanguangeMenu extends React.Component {
         >
           <MenuItem
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={(event) => this.handleMenuItemClick(event, LANGS.JP)}
+            onClick={() => Auth.signOut()}
           >
-            日本語
-          </MenuItem>
-          <MenuItem
-            style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={(event) => this.handleMenuItemClick(event, LANGS.EN)}
-          >
-            English
+            Sign out
           </MenuItem>
         </Menu>
       </div>
@@ -91,9 +71,9 @@ class LanguangeMenu extends React.Component {
   }
 }
 
-export default withNamespaces("translation")(LanguangeMenu);
+export default withNamespaces("translation")(UserMenu);
 
-LanguangeMenu.propTypes = {
+UserMenu.propTypes = {
   lng: PropTypes.string.isRequired,
   t: PropTypes.func.isRequired,
 };

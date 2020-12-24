@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import Navigation from "./Navigation";
+import UserMenu from "./UserMenu";
 import LanguangeMenu from "./LanguageMenu";
 import logo from "../../img/logo.png";
 
@@ -37,6 +38,7 @@ const Header = () => {
         <Logo src={logo} alt="WasedaTime logo" width="50" height="50" />
       </StyledLink>
       <Navigation />
+      <UserMenu />
       <LanguangeMenu />
     </StyledHeader>
   );

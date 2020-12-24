@@ -1,11 +1,12 @@
 import React from "react";
-import {Helmet} from "react-helmet";
+import { Auth } from "aws-amplify";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 // import smoothScroll from "smoothscroll";
-import {media} from "../styled-components/utils";
-import {Wrapper, WrapperWithBackground} from "../styled-components/Wrapper";
-import {Overlay} from "../styled-components/Overlay";
+import { media } from "../styled-components/utils";
+import { Wrapper, WrapperWithBackground } from "../styled-components/Wrapper";
+import { Overlay } from "../styled-components/Overlay";
 // import { InvisibleButton } from "../styled-components/Button";
 import homeBackground from "../../img/home_background.jpg";
 import homeBackgroundPhone from "../../img/home_background-phone.jpg";
@@ -18,6 +19,7 @@ import logo from "../../img/logo.png";
 // import syllabusResult from "../../img/syllabusResult-480.gif";
 // import bus from "../../img/bus-480.gif";
 // import roomFinder from "../../img/roomFinder-480.gif";
+import { Button } from "semantic-ui-react";
 
 const HomeWrapper = styled(WrapperWithBackground)`
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
@@ -162,6 +164,22 @@ const Home = ({ t }) => {
               <MainHeading>WasedaTime</MainHeading>
               <Description>{t("about.description")}</Description>
             </Introduction>
+          </StyledHeader>
+          <StyledHeader>
+            <Button
+              color="green"
+              onClick={() => Auth.federatedSignIn({ provider: "Google" })}
+              style={{
+                width: "50%",
+                fontSize: "2rem",
+                padding: "1rem",
+                background: "#b51e36",
+                margin: "25%",
+              }}
+            >
+              Sign in with Waseda mail
+            </Button>
+            {/* <Button onClick={() => Auth.signOut()}>Sign out</Button> */}
           </StyledHeader>
           {
             // <LearnMoreButton onClick={clickHandler}>

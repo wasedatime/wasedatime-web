@@ -1,4 +1,5 @@
 import React from "react";
+// import { Auth } from "aws-amplify";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
@@ -77,15 +78,11 @@ const App = ({ isFirstTimeAccess, t }) => {
             </Switch>
           ) : (
             <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => <Redirect to="/timetable" />}
-              />
+              <Route exact path="/" render={() => <Redirect to="/about" />} />
               <Route
                 exact
                 path="/index.html"
-                render={() => <Redirect to="/timetable" />}
+                render={() => <Redirect to="/about" />}
               />
               <Route exact path="/about" component={About} />
               <Route exact path="/timetable" component={TimetableContainer} />

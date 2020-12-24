@@ -19,7 +19,7 @@ import logo from "../../img/logo.png";
 // import syllabusResult from "../../img/syllabusResult-480.gif";
 // import bus from "../../img/bus-480.gif";
 // import roomFinder from "../../img/roomFinder-480.gif";
-import { Button } from "semantic-ui-react";
+import { Button, Icon } from "semantic-ui-react";
 
 const HomeWrapper = styled(WrapperWithBackground)`
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
@@ -52,6 +52,11 @@ const Logo = styled("img")`
 const Introduction = styled("div")`
   text-align: center;
   max-width: 100%;
+  transform: translate(0, 6vh);
+`;
+
+const SignInWrapper = styled("div")`
+  text-align: center;
   transform: translate(0, 6vh);
 `;
 
@@ -164,22 +169,23 @@ const Home = ({ t }) => {
               <MainHeading>WasedaTime</MainHeading>
               <Description>{t("about.description")}</Description>
             </Introduction>
-          </StyledHeader>
-          <StyledHeader>
-            <Button
-              color="green"
-              onClick={() => Auth.federatedSignIn({ provider: "Google" })}
-              style={{
-                width: "50%",
-                fontSize: "2rem",
-                padding: "1rem",
-                background: "#b51e36",
-                margin: "25%",
-              }}
-            >
-              Sign in with Waseda mail
-            </Button>
-            {/* <Button onClick={() => Auth.signOut()}>Sign out</Button> */}
+            <br />
+            <SignInWrapper>
+              <Button
+                color="red"
+                onClick={() => Auth.federatedSignIn({ provider: "Google" })}
+                style={{
+                  fontSize: "2rem",
+                  padding: "1rem",
+                  background: "#b51e36",
+                }}
+                icon
+                labelPosition="left"
+              >
+                <Icon name="sign-in" />
+                Sign in with Waseda mail
+              </Button>
+            </SignInWrapper>
           </StyledHeader>
           {
             // <LearnMoreButton onClick={clickHandler}>

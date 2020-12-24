@@ -61,7 +61,9 @@ class UserMenu extends React.Component {
         >
           <MenuItem
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={() => Auth.signOut()}
+            onClick={() =>
+              Auth.signOut().then(() => console.log("Signed Out!"))
+            }
           >
             Sign out
           </MenuItem>

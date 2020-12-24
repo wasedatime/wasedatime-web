@@ -25,7 +25,11 @@ import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
 import NotFound from "./NotFound";
-import { getUserIsFirstTimeAccess } from "../reducers/user";
+import {
+  getUserIsFirstTimeAccess,
+  getUserIsAuthenticated,
+} from "../reducers/user";
+import { checkAuthentication } from "../actions/user";
 
 const Wrapper = styled("div")`
   display: flex;
@@ -42,7 +46,13 @@ const StyledMain = styled("main")`
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
-const App = ({ isFirstTimeAccess, t }) => {
+const App = ({ isFirstTimeAccess, isAuthenticated, t }) => {
+  if (isAuthenticated) {
+    console.log("Logged in!");
+  } else {
+    console.log("not login yet");
+    checkAuthentication();
+  }
   window.addEventListener("storage", (e) => {
     if (e.key === "wasedatime-2020-state-ac") {
       Alert.warning(
@@ -114,6 +124,7 @@ const App = ({ isFirstTimeAccess, t }) => {
 const mapStateToProps = (state) => {
   return {
     isFirstTimeAccess: getUserIsFirstTimeAccess(state),
+    isAuthenticated: getUserIsAuthenticated(state),
   };
 };
 

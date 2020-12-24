@@ -5,7 +5,7 @@ import { Overlay } from "../../styled-components/Overlay";
 import { withNamespaces } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { Divider, Statistic, Radio } from "semantic-ui-react";
+import { Divider, Statistic } from "semantic-ui-react";
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
@@ -52,19 +52,6 @@ const StyledTextarea = styled("textarea")`
   margin: 5px 0 0;
   height: 100px;
   flex: 1 0 auto;
-`;
-
-const RadioList = styled("div")`
-  display: flex;
-  margin: 0.5em 0px;
-`;
-
-const RadioWrapper = styled("span")`
-  flex: 0 0 20%;
-`;
-
-const StyledRadio = styled(Radio)`
-  font-size: 1em !important;
 `;
 
 const FormActions = styled("div")`
@@ -170,8 +157,6 @@ class AddReviewForm extends React.Component {
       difficulty,
       benefit,
       comment,
-      sourceLangCode,
-      handleRadioChange,
       handleFormSubmit,
       t,
     } = this.props;
@@ -229,18 +214,6 @@ class AddReviewForm extends React.Component {
             onChange={this.handleTextareaChange}
             value={comment}
           />
-
-          <RadioList>
-            {["English", "日本語", "繁中", "简中"].map((lng, i) => (
-              <RadioWrapper key={"sourceLangCheckbox_" + i}>
-                <StyledRadio
-                  label={lng}
-                  checked={sourceLangCode === i}
-                  onChange={() => handleRadioChange(i)}
-                />
-              </RadioWrapper>
-            ))}
-          </RadioList>
 
           <FormActions>
             <SubmitFormButton onClick={handleFormSubmit}>

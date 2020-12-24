@@ -7,6 +7,7 @@ import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import ReactGA from "react-ga";
+import { uid } from "react-uid";
 import { gaRelatedCourses } from "../../ga/eventCategories";
 import {
   gaAppendActionWithLng,
@@ -186,7 +187,6 @@ class CourseInfo extends React.Component {
     newReviewDifficulty: 0,
     newReviewBenefit: 0,
     newReviewComment: "",
-    sourceLangCode: null,
   };
 
   componentDidMount() {
@@ -324,16 +324,12 @@ class CourseInfo extends React.Component {
   onNewReviewCommentChange = (text) =>
     this.setState({ newReviewComment: text });
 
-  onNewReviewReviewLangChange = (code) =>
-    this.setState({ sourceLangCode: code });
-
   onNewReviewFormSubmit = () => {
     const {
       newReviewSatisfaction,
       newReviewDifficulty,
       newReviewBenefit,
       newReviewComment,
-      sourceLangCode,
     } = this.state;
     if (
       [
@@ -341,8 +337,7 @@ class CourseInfo extends React.Component {
         newReviewDifficulty,
         newReviewBenefit,
         newReviewComment.length,
-      ].some((scale) => scale === 0) ||
-      sourceLangCode === null
+      ].some((scale) => scale === 0)
     ) {
       Alert.warning(
         this.props.t(`courseInfo.Fill in all fields before sending`),
@@ -356,7 +351,6 @@ class CourseInfo extends React.Component {
       const created_at = Date.now();
       const newReview = {
         course_key: getCourseKey(thisCourse),
-        course_code: thisCourse[SYLLABUS_KEYS.CODE],
         title: thisCourse[SYLLABUS_KEYS.TITLE],
         title_jp: thisCourse[SYLLABUS_KEYS.TITLE_JP],
         instructor: thisCourse[SYLLABUS_KEYS.INSTRUCTOR],
@@ -365,19 +359,18 @@ class CourseInfo extends React.Component {
         satisfaction: newReviewSatisfaction,
         difficulty: newReviewDifficulty,
         benefit: newReviewBenefit,
-        comment_src_lng: sourceLangCode, // 0: en, 1: jp, 2:zh_TW, 3: zh_CN
-        comment_en: sourceLangCode === 0 ? newReviewComment : "",
-        comment_jp: sourceLangCode === 1 ? newReviewComment : "",
-        comment_zh_TW: sourceLangCode === 2 ? newReviewComment : "",
-        comment_zh_CN: sourceLangCode === 3 ? newReviewComment : "",
+        comment: newReviewComment,
         created_at: created_at,
-        updated_at: created_at,
       };
+      const newReviewUid = uid(newReview, created_at);
+      newReview.uid = newReviewUid;
 
       try {
         // Send the review
         API.put("wasedatime-dev", "/course-reviews", {
-          body: newReview,
+          body: {
+            data: newReview,
+          },
           headers: {
             "Content-Type": "application/json",
           },
@@ -393,7 +386,6 @@ class CourseInfo extends React.Component {
           newReviewDifficulty: 0,
           newReviewBenefit: 0,
           newReviewComment: "",
-          sourceLangCode: null,
         });
       } catch (error) {
         Alert.error(this.props.t(`courseInfo.Review failed to send`), {
@@ -423,7 +415,6 @@ class CourseInfo extends React.Component {
       newReviewDifficulty,
       newReviewBenefit,
       newReviewComment,
-      sourceLangCode,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
@@ -479,9 +470,7 @@ class CourseInfo extends React.Component {
                   comment={newReviewComment}
                   handleScaleChange={this.onNewReviewScaleChange}
                   handleCommentChange={this.onNewReviewCommentChange}
-                  handleRadioChange={this.onNewReviewReviewLangChange}
                   handleFormSubmit={this.onNewReviewFormSubmit}
-                  sourceLangCode={sourceLangCode}
                 />
               ) : (
                 <React.Fragment>

@@ -1,4 +1,7 @@
 import React from "react";
+import { connect } from "react-redux";
+import { getUserInfo } from "../reducers/user";
+import { clearUserInfo } from "../actions/user";
 import { Auth } from "aws-amplify";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -140,7 +143,7 @@ const Description = styled("p")`
 //   smoothScroll(destination, 600);
 // };
 
-const Home = ({ t }) => {
+const Home = ({ userInfo, clearUserInfo, t }) => {
   return (
     <Wrapper>
       <Helmet>
@@ -171,20 +174,37 @@ const Home = ({ t }) => {
             </Introduction>
             <br />
             <SignInWrapper>
-              <Button
-                color="red"
-                onClick={() => Auth.federatedSignIn({ provider: "Google" })}
-                style={{
-                  fontSize: "2rem",
-                  padding: "1rem",
-                  background: "#b51e36",
-                }}
-                icon
-                labelPosition="left"
-              >
-                <Icon name="sign-in" />
-                Sign in with Waseda mail
-              </Button>
+              {userInfo ? (
+                <Button
+                  color="red"
+                  onClick={() => Auth.signOut().then(() => clearUserInfo())}
+                  style={{
+                    fontSize: "2rem",
+                    padding: "1rem",
+                    background: "#b51e36",
+                  }}
+                  icon
+                  labelPosition="left"
+                >
+                  <Icon name="sign-out" />
+                  Sign out
+                </Button>
+              ) : (
+                <Button
+                  color="red"
+                  onClick={() => Auth.federatedSignIn({ provider: "Google" })}
+                  style={{
+                    fontSize: "2rem",
+                    padding: "1rem",
+                    background: "#b51e36",
+                  }}
+                  icon
+                  labelPosition="left"
+                >
+                  <Icon name="sign-in" />
+                  Sign in with Waseda mail
+                </Button>
+              )}
             </SignInWrapper>
           </StyledHeader>
           {
@@ -262,4 +282,14 @@ const Home = ({ t }) => {
   );
 };
 
-export default withNamespaces("translation")(Home);
+const mapStateToProps = (state) => ({
+  userInfo: getUserInfo(state),
+});
+
+const mapDispatchToProps = {
+  clearUserInfo,
+};
+
+export default withNamespaces("translation")(
+  connect(mapStateToProps, mapDispatchToProps)(Home)
+);

@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { getUserInfo } from "../reducers/user";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -31,17 +33,21 @@ const Logo = styled("img")`
   height: 50px;
 `;
 
-const Header = () => {
+const Header = (userInfo) => {
   return (
     <StyledHeader>
       <StyledLink to="/about">
         <Logo src={logo} alt="WasedaTime logo" width="50" height="50" />
       </StyledLink>
       <Navigation />
-      <UserMenu />
       <LanguangeMenu />
+      {userInfo ? <UserMenu /> : ""}
     </StyledHeader>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  userInfo: getUserInfo(state),
+});
+
+export default connect(mapStateToProps)(Header);

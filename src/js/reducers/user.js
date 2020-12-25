@@ -2,8 +2,8 @@ import { combineReducers } from "redux";
 
 import {
   SET_FIRST_TIME_ACCESS_TO_FALSE,
-  SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE,
+  IS_AUTHENTICATED,
+  NOT_AUTHENTICATED,
 } from "../actions/types";
 
 const isFirstTimeAccess = (state = true, action) => {
@@ -15,12 +15,12 @@ const isFirstTimeAccess = (state = true, action) => {
   }
 };
 
-const isAuthenticated = (state = false, action) => {
+const info = (state = null, action) => {
   switch (action.type) {
-    case SIGN_IN_SUCCESS:
+    case IS_AUTHENTICATED:
       return action.payload;
-    case SIGN_IN_FAILURE:
-      return action.payload;
+    case NOT_AUTHENTICATED:
+      return null;
     default:
       return state;
   }
@@ -28,7 +28,7 @@ const isAuthenticated = (state = false, action) => {
 
 const user = combineReducers({
   isFirstTimeAccess,
-  isAuthenticated,
+  info,
 });
 
 export default user;
@@ -37,6 +37,6 @@ export const getUserIsFirstTimeAccess = (state) => {
   return state.user.isFirstTimeAccess;
 };
 
-export const getUserIsAuthenticated = (state) => {
-  return state.user.isAuthenticated;
+export const getUserInfo = (state) => {
+  return state.user.info;
 };

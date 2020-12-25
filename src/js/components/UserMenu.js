@@ -1,4 +1,5 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Auth } from "aws-amplify";
 import PropTypes from "prop-types";
 // import i18n from "./i18n";
@@ -10,6 +11,7 @@ import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
 
 import { media } from "../styled-components/utils";
+import { clearUserInfo } from "../actions/user";
 
 const StyledButton = styled("button")`
   display: flex;
@@ -47,7 +49,7 @@ class UserMenu extends React.Component {
     const { anchorEl } = this.state;
     // const { t } = this.props;
     return (
-      <div style={{ marginLeft: "auto" }}>
+      <div style={{ marginLeft: "1em" }}>
         <StyledButton onClick={this.handleClick}>
           <FontAwesomeIcon icon={faUserAlt} size="2x" transform="shrink-2" />
           <StyledSpan>My Account</StyledSpan>
@@ -62,7 +64,10 @@ class UserMenu extends React.Component {
           <MenuItem
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
             onClick={() =>
-              Auth.signOut().then(() => console.log("Signed Out!"))
+              Auth.signOut().then(() => {
+                this.props.clearUserInfo();
+                this.handleClose();
+              })
             }
           >
             Sign out
@@ -73,7 +78,13 @@ class UserMenu extends React.Component {
   }
 }
 
-export default withNamespaces("translation")(UserMenu);
+const mapDispatchToProps = {
+  clearUserInfo,
+};
+
+export default withNamespaces("translation")(
+  connect(null, mapDispatchToProps)(UserMenu)
+);
 
 UserMenu.propTypes = {
   lng: PropTypes.string.isRequired,

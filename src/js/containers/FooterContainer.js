@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 
 import { fetchStats } from "../actions";
+import { setUserInfo } from "../actions/user.js";
 import { getIsFetching, getInfo, getError } from "../reducers/stats";
 import Footer from "../components/Footer";
 
@@ -11,6 +12,7 @@ import Footer from "../components/Footer";
 
 class FooterContainer extends React.Component {
   componentDidMount() {
+    this.props.setUserInfo();
     this.props.fetchStats();
   }
 
@@ -39,6 +41,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   fetchStats,
+  setUserInfo,
 };
 
 export default withNamespaces("translation")(

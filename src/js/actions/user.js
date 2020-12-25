@@ -1,7 +1,7 @@
 import {
   SET_FIRST_TIME_ACCESS_TO_FALSE,
-  SIGN_IN_SUCCESS,
-  SIGN_IN_FAILURE,
+  IS_AUTHENTICATED,
+  NOT_AUTHENTICATED,
 } from "./types";
 import { Auth } from "aws-amplify";
 
@@ -12,14 +12,22 @@ export const setFirstTimeAccessToFalse = () => ({
   },
 });
 
-export const checkAuthentication = () => {
-  Auth.currentAuthenticatedUser()
-    .then(() => ({
-      type: SIGN_IN_SUCCESS,
-      payload: true,
-    }))
-    .catch(() => ({
-      type: SIGN_IN_FAILURE,
-      payload: false,
-    }));
+export const setUserInfo = () => async (dispatch) => {
+  await Auth.currentAuthenticatedUser()
+    .then((user) => {
+      dispatch({
+        type: IS_AUTHENTICATED,
+        payload: { ...user.attributes, ...user.signInUserSession },
+      });
+    })
+    .catch((e) => {
+      console.log(e);
+      dispatch({
+        type: NOT_AUTHENTICATED,
+      });
+    });
 };
+
+export const clearUserInfo = () => ({
+  type: NOT_AUTHENTICATED,
+});

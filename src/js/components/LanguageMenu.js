@@ -61,7 +61,7 @@ class LanguangeMenu extends React.Component {
     const { anchorEl } = this.state;
     const { t } = this.props;
     return (
-      <div style={{ marginLeft: "1em" }}>
+      <div style={{ marginLeft: "auto" }}>
         <StyledButton onClick={this.handleClick}>
           <FontAwesomeIcon icon={faLanguage} size="2x" transform="shrink-2" />
           <StyledSpan>{t("navigation.language")}</StyledSpan>

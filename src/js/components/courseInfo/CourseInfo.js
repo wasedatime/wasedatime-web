@@ -108,11 +108,7 @@ const getCourse = (loadedCourses, courseID) => {
   return loadedCourses ? loadedCourses[courseID] : null;
 };
 
-const getCourseKey = (course) =>
-  ["SILS", "PSE"].includes(course[SYLLABUS_KEYS.SCHOOL]) &&
-  course[SYLLABUS_KEYS.TITLE].toLowerCase().includes("seminar")
-    ? course[SYLLABUS_KEYS.ID].substring(0, 12)
-    : course[SYLLABUS_KEYS.ID].substring(0, 10);
+const getCourseKey = (course) => course[SYLLABUS_KEYS.ID].substring(0, 12);
 
 const getRelatedCourses = (
   loadedCourses,
@@ -203,6 +199,11 @@ class CourseInfo extends React.Component {
       thisCourse[SYLLABUS_KEYS.SCHOOL]
     );
 
+    const relatedCoursesByKey = {};
+    relatedCourses.forEach((c) => {
+      relatedCoursesByKey[getCourseKey(c)] = c;
+    });
+
     // 2. Make the key of this course and keys of top 3 related courses into a list
     const courseKeysToFetchReviews = [thisCourseKey].concat(
       relatedCourses.slice(0, 3).map((course) => getCourseKey(course))
@@ -216,7 +217,20 @@ class CourseInfo extends React.Component {
     let relatedCourseReviews = {};
     courseReviews.forEach((c, i) => {
       if (i === 0) thisCourseReviews = c.comments;
-      else relatedCourseReviews[courseKeysToFetchReviews[i]] = c.comments;
+      else {
+        relatedCourseReviews[courseKeysToFetchReviews[i]] = c.comments;
+        // Same first 10 digits of courseKey & same instructors => same course
+        if (
+          thisCourseKey.substring(0, 10) ===
+            courseKeysToFetchReviews[i].substring(0, 10) &&
+          thisCourse[SYLLABUS_KEYS.INSTRUCTOR] ===
+            relatedCoursesByKey[courseKeysToFetchReviews[i]][
+              SYLLABUS_KEYS.INSTRUCTOR
+            ]
+        ) {
+          thisCourseReviews = [...thisCourseReviews, ...c.comments];
+        }
+      }
     });
 
     let satisfactionSum = 0,

@@ -219,7 +219,7 @@ class CourseInfo extends React.Component {
       if (i === 0) thisCourseReviews = c.comments;
       else {
         relatedCourseReviews[courseKeysToFetchReviews[i]] = c.comments;
-        // Same first 10 digits of courseKey & same instructors => same course
+        // Same first 10 digits of courseKey & same instructors => show same reviews
         if (
           thisCourseKey.substring(0, 10) ===
             courseKeysToFetchReviews[i].substring(0, 10) &&

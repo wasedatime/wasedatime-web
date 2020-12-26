@@ -13,6 +13,7 @@ export const setFirstTimeAccessToFalse = () => ({
 });
 
 export const setUserInfo = () => async (dispatch) => {
+  await Auth.currentSession();
   await Auth.currentAuthenticatedUser()
     .then((user) => {
       dispatch({

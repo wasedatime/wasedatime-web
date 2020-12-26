@@ -2,7 +2,6 @@ import React from "react";
 import { connect } from "react-redux";
 import { getUserInfo } from "../reducers/user";
 import { clearUserInfo } from "../actions/user";
-import { Auth } from "aws-amplify";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
@@ -22,7 +21,6 @@ import logo from "../../img/logo.png";
 // import syllabusResult from "../../img/syllabusResult-480.gif";
 // import bus from "../../img/bus-480.gif";
 // import roomFinder from "../../img/roomFinder-480.gif";
-import { Button, Icon } from "semantic-ui-react";
 
 const HomeWrapper = styled(WrapperWithBackground)`
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
@@ -55,11 +53,6 @@ const Logo = styled("img")`
 const Introduction = styled("div")`
   text-align: center;
   max-width: 100%;
-  transform: translate(0, 6vh);
-`;
-
-const SignInWrapper = styled("div")`
-  text-align: center;
   transform: translate(0, 6vh);
 `;
 
@@ -172,40 +165,6 @@ const Home = ({ userInfo, clearUserInfo, t }) => {
               <MainHeading>WasedaTime</MainHeading>
               <Description>{t("about.description")}</Description>
             </Introduction>
-            <br />
-            <SignInWrapper>
-              {userInfo ? (
-                <Button
-                  color="red"
-                  onClick={() => Auth.signOut().then(() => clearUserInfo())}
-                  style={{
-                    fontSize: "2rem",
-                    padding: "1rem",
-                    background: "#b51e36",
-                  }}
-                  icon
-                  labelPosition="left"
-                >
-                  <Icon name="sign-out" />
-                  Sign out
-                </Button>
-              ) : (
-                <Button
-                  color="red"
-                  onClick={() => Auth.federatedSignIn({ provider: "Google" })}
-                  style={{
-                    fontSize: "2rem",
-                    padding: "1rem",
-                    background: "#b51e36",
-                  }}
-                  icon
-                  labelPosition="left"
-                >
-                  <Icon name="sign-in" />
-                  Sign in with Waseda mail
-                </Button>
-              )}
-            </SignInWrapper>
           </StyledHeader>
           {
             // <LearnMoreButton onClick={clickHandler}>

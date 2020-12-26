@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { getUserInfo } from "../../reducers/user";
 import MediaQuery from "react-responsive";
 import API from "@aws-amplify/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,7 +9,6 @@ import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import ReactGA from "react-ga";
-import { uid } from "react-uid";
 import { gaRelatedCourses } from "../../ga/eventCategories";
 import {
   gaAppendActionWithLng,
@@ -300,9 +301,16 @@ class CourseInfo extends React.Component {
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });
 
   toggleAddReviewForm = () => {
-    this.setState({
-      isAddReviewFormOpen: !this.state.isAddReviewFormOpen,
-    });
+    if (this.props.userInfo) {
+      this.setState({
+        isAddReviewFormOpen: !this.state.isAddReviewFormOpen,
+      });
+    } else {
+      Alert.warning("Please sign in first", {
+        position: "bottom",
+        effect: "jelly",
+      });
+    }
   };
 
   onNewReviewScaleChange = (target, score) => {
@@ -361,20 +369,29 @@ class CourseInfo extends React.Component {
         benefit: newReviewBenefit,
         comment: newReviewComment,
         created_at: created_at,
+        uid: this.props.userInfo.sub,
       };
-      const newReviewUid = uid(newReview, created_at);
-      newReview.uid = newReviewUid;
+
+      console.log({
+        data: newReview,
+        token: this.props.userInfo.idToken.jwtToken,
+      });
 
       try {
         // Send the review
-        API.put("wasedatime-dev", "/course-reviews", {
-          body: {
-            data: newReview,
-          },
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }).then((res) => console.log(res));
+        API.put(
+          "wasedatime-dev",
+          "/course-reviews/" + getCourseKey(thisCourse),
+          {
+            body: {
+              data: newReview,
+              token: this.props.userInfo.idToken.jwtToken,
+            },
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        ).then((res) => console.log(res));
 
         Alert.success(this.props.t(`courseInfo.Review sent`), {
           position: "bottom",
@@ -547,4 +564,10 @@ class CourseInfo extends React.Component {
   }
 }
 
-export default withFetchCourses(withNamespaces("translation")(CourseInfo));
+const mapStateToProps = (state) => ({
+  userInfo: getUserInfo(state),
+});
+
+export default withFetchCourses(
+  withNamespaces("translation")(connect(mapStateToProps)(CourseInfo))
+);

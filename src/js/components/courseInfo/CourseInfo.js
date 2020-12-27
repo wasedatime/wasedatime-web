@@ -122,11 +122,7 @@ const getCourse = (loadedCourses, courseID) => {
   return loadedCourses ? loadedCourses[courseID] : null;
 };
 
-const getCourseKey = (course) =>
-  ["SILS", "PSE"].includes(course[SYLLABUS_KEYS.SCHOOL]) &&
-  course[SYLLABUS_KEYS.TITLE].toLowerCase().includes("seminar")
-    ? course[SYLLABUS_KEYS.ID].substring(0, 12)
-    : course[SYLLABUS_KEYS.ID].substring(0, 10);
+const getCourseKey = (course) => course[SYLLABUS_KEYS.ID].substring(0, 12);
 
 const getRelatedCourses = (
   loadedCourses,
@@ -231,11 +227,11 @@ class CourseInfo extends React.Component {
     const courseReviews = await this.getCourseReviewsByKey(
       courseKeysToFetchReviews
     );
-    let thisCourseReviews = {};
+    let thisCourseReviews = [];
     let relatedCourseReviews = {};
     courseReviews.forEach((c, i) => {
-      if (i === 0) thisCourseReviews = c.comments;
-      else relatedCourseReviews[courseKeysToFetchReviews[i]] = c.comments;
+      if (i === 0) thisCourseReviews = c.data;
+      else relatedCourseReviews[courseKeysToFetchReviews[i]] = c.data;
     });
 
     let satisfactionSum = 0,
@@ -271,13 +267,26 @@ class CourseInfo extends React.Component {
 
   async getCourseReviewsByKey(courseKeys) {
     try {
-      const res = await API.post("wasedatime-dev", "/course-reviews", {
-        body: { course_keys: courseKeys },
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      return res.data;
+      const reviews = await Promise.all(
+        courseKeys.map(async (courseKey) => {
+          const res = await API.get(
+            "wasedatime-dev",
+            "/course-reviews?key=" +
+              courseKey +
+              "&uid=" +
+              (this.props.userInfo ? this.props.userInfo.sub : ""),
+            {
+              headers: {
+                "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          return res;
+        })
+      );
+      console.log(reviews);
+      return reviews;
     } catch (error) {
       console.error(error);
       this.setState({ error: true });
@@ -368,7 +377,6 @@ class CourseInfo extends React.Component {
         difficulty: newReviewDifficulty,
         benefit: newReviewBenefit,
         comment: newReviewComment,
-        created_at: created_at,
         uid: this.props.userInfo.sub,
       };
 
@@ -379,9 +387,9 @@ class CourseInfo extends React.Component {
 
       try {
         // Send the review
-        API.put(
+        API.post(
           "wasedatime-dev",
-          "/course-reviews/" + getCourseKey(thisCourse),
+          "/course-reviews?key=" + getCourseKey(thisCourse),
           {
             body: {
               data: newReview,

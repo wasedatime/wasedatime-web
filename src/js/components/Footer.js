@@ -101,7 +101,7 @@ const Footer = ({ finishTime, t, lng }) => {
       )}
       <StyledP>
         <StyledLink href="https://github.com/wasedatime " target="_blank">
-          WasedaTime 2019.
+          WasedaTime 2020.
         </StyledLink>
         {t("footer.licensed")}
         <StyledLink

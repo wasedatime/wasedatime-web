@@ -1,4 +1,5 @@
 import { ADDED_ORDER, COURSE_TITLE, COURSE_TIME } from "../data/sortingOptions";
+import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 
 export const sortAddedCourses = (addedCourses, sortingOption) => {
   switch (sortingOption) {
@@ -7,8 +8,8 @@ export const sortAddedCourses = (addedCourses, sortingOption) => {
     case COURSE_TITLE:
       return addedCourses.sort((a, b) => {
         // ignore upper and lowercase
-        const courseTitleA = a.t.toUpperCase();
-        const courseTitleB = b.t.toUpperCase();
+        const courseTitleA = a[SYLLABUS_KEYS.TITLE].toUpperCase();
+        const courseTitleB = b[SYLLABUS_KEYS.TITLE].toUpperCase();
         if (courseTitleA < courseTitleB) {
           return -1;
         } else if (courseTitleA > courseTitleB) {
@@ -19,10 +20,24 @@ export const sortAddedCourses = (addedCourses, sortingOption) => {
       });
     case COURSE_TIME:
       return addedCourses.sort((a, b) => {
-        const firstOccurrenceDayA = a.os[0].d;
-        const firstOccurrenceDayB = b.os[0].d;
-        const firstOccurrenceStartPeriodA = a.os[0].s;
-        const firstOccurrenceStartPeriodB = b.os[0].s;
+        const firstOccurrenceDayA =
+          a[SYLLABUS_KEYS.OCCURRENCES][0][SYLLABUS_KEYS.OCC_DAY];
+        const firstOccurrenceDayB =
+          b[SYLLABUS_KEYS.OCCURRENCES][0][SYLLABUS_KEYS.OCC_DAY];
+
+        const firstOccurrencePeriodA =
+          a[SYLLABUS_KEYS.OCCURRENCES][0][SYLLABUS_KEYS.OCC_PERIOD];
+        const firstOccurrenceStartPeriodA =
+          firstOccurrencePeriodA > 9
+            ? Math.floor(firstOccurrencePeriodA / 10)
+            : firstOccurrencePeriodA % 10;
+        const firstOccurrencePeriodB =
+          b[SYLLABUS_KEYS.OCCURRENCES][0][SYLLABUS_KEYS.OCC_PERIOD];
+        const firstOccurrenceStartPeriodB =
+          firstOccurrencePeriodB > 9
+            ? Math.floor(firstOccurrencePeriodB / 10)
+            : firstOccurrencePeriodB % 10;
+
         if (firstOccurrenceDayA < firstOccurrenceDayB) {
           return -1;
         } else if (firstOccurrenceDayA > firstOccurrenceDayB) {

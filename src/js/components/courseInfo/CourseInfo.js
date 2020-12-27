@@ -218,6 +218,11 @@ class CourseInfo extends React.Component {
       thisCourse[SYLLABUS_KEYS.SCHOOL]
     );
 
+    const relatedCoursesByKey = {};
+    relatedCourses.forEach((c) => {
+      relatedCoursesByKey[getCourseKey(c)] = c;
+    });
+
     // 2. Make the key of this course and keys of top 3 related courses into a list
     const courseKeysToFetchReviews = [thisCourseKey].concat(
       relatedCourses.slice(0, 3).map((course) => getCourseKey(course))

@@ -78,11 +78,15 @@ const App = ({ isFirstTimeAccess, isAuthenticated, t }) => {
             </Switch>
           ) : (
             <Switch>
-              <Route exact path="/" render={() => <Redirect to="/about" />} />
+              <Route
+                exact
+                path="/"
+                render={() => <Redirect to="/timetable" />}
+              />
               <Route
                 exact
                 path="/index.html"
-                render={() => <Redirect to="/about" />}
+                render={() => <Redirect to="/timetable" />}
               />
               <Route exact path="/about" component={About} />
               <Route exact path="/timetable" component={TimetableContainer} />

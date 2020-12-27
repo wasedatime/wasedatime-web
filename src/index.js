@@ -70,8 +70,8 @@ const config = {
     oauth: {
       domain: "auth.wasedatime.com",
       scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
-      redirectSignIn: "https://wasedatime.com/verify",
-      redirectSignOut: "https://wasedatime.com/logout",
+      redirectSignIn: "https://dev.wasedatime.com/",
+      redirectSignOut: "https://dev.wasedatime.com/",
       responseType: "code", // or 'token', note that REFRESH token will only be generated when the responseType is code
     },
   },

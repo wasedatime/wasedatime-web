@@ -238,7 +238,14 @@
     "Thank WTSA 1": "",
     "WTSA": "早稲田大学台湾留学生会（WTSA）",
     "Thank WTSA 2": "の評価のご提供に感謝を申し上げます。",
-    "Related courses explanation": "同じコード及び似たタイトルを持つ授業の中の前10位"
+    "Related courses explanation": "同じコード及び似たタイトルを持つ授業の中の前10位",
+    "Add review to this course": "評価投稿",
+    "Agree to share": "WTSAに評価をシェアすることを同意します",
+    "Submit": "提出する",
+    "Close": "閉じる",
+    "Review sent": "あなたの評価が提出されました",
+    "Review failed to send": "評価の提出が失敗しました",
+    "Fill in all fields before sending": "提出する前にすべてのフィールドに記入してください"
   },
   "room": {
     "Under Construction": "作成中",

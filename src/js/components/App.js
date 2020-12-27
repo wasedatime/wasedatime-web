@@ -1,4 +1,5 @@
 import React from "react";
+// import { Auth } from "aws-amplify";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
@@ -41,7 +42,7 @@ const StyledMain = styled("main")`
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
-const App = ({ isFirstTimeAccess, t }) => {
+const App = ({ isFirstTimeAccess, isAuthenticated, t }) => {
   window.addEventListener("storage", (e) => {
     if (e.key === "wasedatime-2020-state-ac") {
       Alert.warning(
@@ -77,15 +78,11 @@ const App = ({ isFirstTimeAccess, t }) => {
             </Switch>
           ) : (
             <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => <Redirect to="/timetable" />}
-              />
+              <Route exact path="/" render={() => <Redirect to="/about" />} />
               <Route
                 exact
                 path="/index.html"
-                render={() => <Redirect to="/timetable" />}
+                render={() => <Redirect to="/about" />}
               />
               <Route exact path="/about" component={About} />
               <Route exact path="/timetable" component={TimetableContainer} />
@@ -96,6 +93,13 @@ const App = ({ isFirstTimeAccess, t }) => {
               <Route path="/career" component={Career} />
               <Route exact path="/corona-info" component={CoronaInfo} />
               <Route exact path="/courseInfo" component={CourseInfo} />
+              <Route
+                exact
+                path="/privacy-policy"
+                render={() => {
+                  window.location.href = "/privacy-policy.html";
+                }}
+              />
               <Route component={NotFound} />
             </Switch>
           )}

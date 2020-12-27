@@ -1,11 +1,14 @@
 import React from "react";
-import {Helmet} from "react-helmet";
+import { connect } from "react-redux";
+import { getUserInfo } from "../reducers/user";
+import { clearUserInfo } from "../actions/user";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 // import smoothScroll from "smoothscroll";
-import {media} from "../styled-components/utils";
-import {Wrapper, WrapperWithBackground} from "../styled-components/Wrapper";
-import {Overlay} from "../styled-components/Overlay";
+import { media } from "../styled-components/utils";
+import { Wrapper, WrapperWithBackground } from "../styled-components/Wrapper";
+import { Overlay } from "../styled-components/Overlay";
 // import { InvisibleButton } from "../styled-components/Button";
 import homeBackground from "../../img/home_background.jpg";
 import homeBackgroundPhone from "../../img/home_background-phone.jpg";
@@ -133,7 +136,7 @@ const Description = styled("p")`
 //   smoothScroll(destination, 600);
 // };
 
-const Home = ({ t }) => {
+const Home = ({ userInfo, clearUserInfo, t }) => {
   return (
     <Wrapper>
       <Helmet>
@@ -238,4 +241,14 @@ const Home = ({ t }) => {
   );
 };
 
-export default withNamespaces("translation")(Home);
+const mapStateToProps = (state) => ({
+  userInfo: getUserInfo(state),
+});
+
+const mapDispatchToProps = {
+  clearUserInfo,
+};
+
+export default withNamespaces("translation")(
+  connect(mapStateToProps, mapDispatchToProps)(Home)
+);

@@ -1,8 +1,13 @@
 import React from "react";
+import { Auth } from "aws-amplify";
+import { connect } from "react-redux";
+import { getUserInfo } from "../reducers/user";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Button, Icon } from "semantic-ui-react";
 
 import Navigation from "./Navigation";
+import UserMenu from "./UserMenu";
 import LanguangeMenu from "./LanguageMenu";
 import logo from "../../img/logo.png";
 
@@ -30,7 +35,7 @@ const Logo = styled("img")`
   height: 50px;
 `;
 
-const Header = () => {
+const Header = ({ userInfo }) => {
   return (
     <StyledHeader>
       <StyledLink to="/about">
@@ -38,8 +43,31 @@ const Header = () => {
       </StyledLink>
       <Navigation />
       <LanguangeMenu />
+      {userInfo ? (
+        <UserMenu />
+      ) : (
+        <Button
+          color="red"
+          onClick={() => Auth.federatedSignIn({ provider: "Google" })}
+          style={{
+            fontSize: "1.5rem",
+            padding: "1rem",
+            marginLeft: "1rem",
+            background: "#b51e36",
+          }}
+          icon
+          labelPosition="left"
+        >
+          <Icon name="sign-in" />
+          Sign in
+        </Button>
+      )}
     </StyledHeader>
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  userInfo: getUserInfo(state),
+});
+
+export default connect(mapStateToProps)(Header);

@@ -231,7 +231,20 @@ class CourseInfo extends React.Component {
     let relatedCourseReviews = {};
     courseReviews.forEach((c, i) => {
       if (i === 0) thisCourseReviews = c.data;
-      else relatedCourseReviews[courseKeysToFetchReviews[i]] = c.data;
+      else {
+        relatedCourseReviews[courseKeysToFetchReviews[i]] = c.data;
+        // Same first 10 digits of courseKey & same instructors => show same reviews
+        if (
+          thisCourseKey.substring(0, 10) ===
+            courseKeysToFetchReviews[i].substring(0, 10) &&
+          thisCourse[SYLLABUS_KEYS.INSTRUCTOR] ===
+            relatedCoursesByKey[courseKeysToFetchReviews[i]][
+              SYLLABUS_KEYS.INSTRUCTOR
+            ]
+        ) {
+          thisCourseReviews = [...thisCourseReviews, ...c.data];
+        }
+      }
     });
 
     let satisfactionSum = 0,

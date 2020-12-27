@@ -365,7 +365,6 @@ class CourseInfo extends React.Component {
       );
     } else {
       const thisCourse = this.state.thisCourse;
-      const created_at = Date.now();
       const newReview = {
         course_key: getCourseKey(thisCourse),
         title: thisCourse[SYLLABUS_KEYS.TITLE],

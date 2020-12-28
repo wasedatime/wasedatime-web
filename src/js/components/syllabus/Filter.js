@@ -418,7 +418,7 @@ class Filter extends React.Component {
             <FontAwesomeIcon icon={faFilter} size="1x" />
             &nbsp;
             <Button
-              color="gray"
+              color="grey"
               onClick={clearFilter}
               style={{ fontSize: "1.5rem", padding: "0.5rem 1rem" }}
             >

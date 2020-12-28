@@ -394,7 +394,6 @@ class CourseInfo extends React.Component {
         difficulty: newReviewDifficulty,
         benefit: newReviewBenefit,
         comment: newReviewComment,
-        uid: this.props.userInfo.sub,
       };
 
       console.log({
@@ -410,10 +409,10 @@ class CourseInfo extends React.Component {
           {
             body: {
               data: newReview,
-              token: this.props.userInfo.idToken.jwtToken,
             },
             headers: {
               "Content-Type": "application/json",
+              token: this.props.userInfo.idToken.jwtToken,
             },
           }
         ).then((res) => console.log(res));

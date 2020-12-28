@@ -77,12 +77,13 @@ const ReviewsList = ({ reviews, searchLang, reviewLang, t }) => {
               {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
             </ReviewTitle>
             <span>
-              {review["comment_" + reviewLang].split("\n").map((str) => (
-                <span>
-                  {str}
-                  <br />
-                </span>
-              ))}
+              {review["comment_" + reviewLang] !== undefined &&
+                review["comment_" + reviewLang].split("\n").map((str) => (
+                  <span>
+                    {str}
+                    <br />
+                  </span>
+                ))}
             </span>
             {COURSE_REVIEW_LNG[review["comment_src_lng"]] !== reviewLang && (
               <GoogleTranslationHint>

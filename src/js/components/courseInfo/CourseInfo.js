@@ -362,13 +362,24 @@ class CourseInfo extends React.Component {
           position: "bottom",
           effect: "jelly",
         });
-        this.setState({
+
+        const postedReview = {
+          ...newReview,
+          comment_en: newReviewComment,
+          comment_ja: newReviewComment,
+          "comment_zh-TW": newReviewComment,
+          "comment_zh-CN": newReviewComment,
+          comment_ko: newReviewComment,
+        };
+
+        this.setState((prevState, props) => ({
+          thisCourseReviews: [postedReview, ...prevState.thisCourseReviews],
           isAddReviewFormOpen: false,
           newReviewSatisfaction: 0,
           newReviewDifficulty: 0,
           newReviewBenefit: 0,
           newReviewComment: "",
-        });
+        }));
       } catch (error) {
         Alert.error(this.props.t(`courseInfo.Review failed to send`), {
           position: "bottom",

@@ -3,10 +3,7 @@ import styled from "styled-components";
 import ReviewStars from "./ReviewStars";
 import { media } from "../../styled-components/utils";
 import { withNamespaces } from "react-i18next";
-import {
-  COURSE_REVIEW_LNG,
-  COURSE_REVIEW_LNG_FULL_NAME,
-} from "../../config/course_review_lng";
+import { COURSE_REVIEW_LNG_FULL_NAME } from "../../config/course_review_lng";
 
 const ReviewsWrapper = styled("div")`
   background: #fff;
@@ -85,12 +82,15 @@ const ReviewsList = ({ reviews, searchLang, reviewLang, t }) => {
                   </span>
                 ))}
             </span>
-            {COURSE_REVIEW_LNG[review["comment_src_lng"]] !== reviewLang && (
-              <GoogleTranslationHint>
-                Translated from{" "}
-                {COURSE_REVIEW_LNG_FULL_NAME[review["comment_src_lng"]]} by
-                Google
-              </GoogleTranslationHint>
+            {review["src_lang"] ? (
+              review["src_lang"] !== reviewLang && (
+                <GoogleTranslationHint>
+                  Translated from{" "}
+                  {COURSE_REVIEW_LNG_FULL_NAME[review["src_lang"]]} by Google
+                </GoogleTranslationHint>
+              )
+            ) : (
+              <GoogleTranslationHint>Not translated yet</GoogleTranslationHint>
             )}
           </ReviewText>
           <ReviewScalesList>

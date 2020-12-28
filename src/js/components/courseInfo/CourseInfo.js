@@ -484,7 +484,6 @@ class CourseInfo extends React.Component {
             handleToggleModal={this.handleToggleModal}
           />
         )}
-        )}
       </RowWrapper>
     );
   }

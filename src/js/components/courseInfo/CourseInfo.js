@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../reducers/user";
-import MediaQuery from "react-responsive";
 import API from "@aws-amplify/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullhorn, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -21,29 +20,20 @@ import levenshtein from "levenshtein-edit-distance";
 import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
 
-import { media, sizes } from "../../styled-components/utils";
+import { media } from "../../styled-components/utils";
 import { RowWrapper, Wrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 
 import CourseDetails from "./CourseDetails";
-import ReviewLangSwitches from "./ReviewLangSwitches";
-import RelatedCoursesButton from "./RelatedCoursesButton";
-import Modal from "../../components/Modal";
 import FetchError from "../../components/FetchError";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
-import ReviewScalesCountContainer from "./ReviewScalesCountContainer";
-import RelatedCoursesContainer from "./RelatedCoursesContainer";
-import ReviewsList from "./ReviewsList";
+import CourseReviews from "./CourseReviews";
 import AddReviewForm from "./AddReviewForm";
 import LoadingSpinner from "../LoadingSpinner";
+import RelatedCourses from "./RelatedCourses";
 
 export const LongWrapper = styled(Wrapper)`
   flex: 1 1 auto;
-  ${media.tablet`flex: 0 0 auto; width: 100%`};
-`;
-
-export const ShortWrapper = styled(Wrapper)`
-  flex: 0 0 24em;
   ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
 
@@ -62,60 +52,6 @@ const Announcement = styled("div")`
   border-radius: 3px;
   line-height: normal;
 `;
-
-const Disclaimer = styled(Announcement)`
-  background-color: #aaa;
-  margin: 0.5rem 0px;
-`;
-
-const StyledSubHeading = styled("h2")`
-  align-self: flex-start;
-  margin: 1rem 0px;
-  padding-left: 1rem;
-  border-left: 5px solid rgb(148, 27, 47);
-  font-size: 2rem;
-  font-weight: 300;
-  ${media.tablet`font-size: 2rem;`};
-`;
-
-const ReviewsListWrapper = styled("div")`
-  max-height: 60vh;
-  overflow-y: auto;
-`;
-
-const AddReviewButton = styled("button")`
-  background-color: #ffae42;
-  color: #fff;
-  border: 0px;
-  border-radius: 5px;
-  font-size: 0.9em;
-  float: right;
-  padding: 0.3em 0.5em;
-`;
-
-const modalStyle = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: "3030",
-  },
-  content: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "#ccc",
-    overflowY: "auto",
-    overflowScrolling: "touch",
-    WebkitOverflowScrolling: "touch",
-    outline: "none",
-    padding: 0,
-  },
-};
 
 const getCourse = (loadedCourses, courseID) => {
   // Return null if courses not saved in localStorage or the course to display is not saved in localStorage
@@ -417,7 +353,7 @@ class CourseInfo extends React.Component {
             },
             headers: {
               "Content-Type": "application/json",
-              token: this.props.userInfo.idToken.jwtToken,
+              Authorization: this.props.userInfo.idToken.jwtToken,
             },
           }
         ).then((res) => console.log(res));
@@ -479,7 +415,6 @@ class CourseInfo extends React.Component {
           />
           <meta property="og:site_name" content="WasedaTime - Course Reviews" />
         </Helmet>
-
         <LongWrapper>
           <ExtendedOverlay>
             <div>
@@ -519,38 +454,19 @@ class CourseInfo extends React.Component {
                     handleFormSubmit={this.onNewReviewFormSubmit}
                   />
                 ) : (
-                  <React.Fragment>
-                    <StyledSubHeading>
-                      {this.props.t(`courseInfo.Reviews`)}{" "}
-                      <span style={{ marginLeft: "10px" }}>
-                        <ReviewLangSwitches
-                          reviewLang={reviewLang}
-                          switchReviewLang={this.switchReviewLang}
-                          isInHeading={true}
-                        />
-                      </span>
-                      <AddReviewButton onClick={this.toggleAddReviewForm}>
-                        <FontAwesomeIcon icon={faPen} /> Write your Review
-                      </AddReviewButton>
-                    </StyledSubHeading>
-                    <Disclaimer>
-                      {this.props.t(`courseInfo.Disclaimer`)}
-                    </Disclaimer>
-                    <ReviewsListWrapper>
-                      <ReviewScalesCountContainer
-                        avgSatisfaction={avgSatisfaction}
-                        avgDifficulty={avgDifficulty}
-                        avgBenefit={avgBenefit}
-                        thisCourseReviewsLength={thisCourseReviews.length}
-                      />
-                      <ReviewsList
-                        reviews={thisCourseReviews}
-                        searchLang={searchLang}
-                        reviewLang={reviewLang}
-                      />
-                    </ReviewsListWrapper>
-                    <br />
-                  </React.Fragment>
+                  <CourseReviews
+                    reviews={thisCourseReviews}
+                    scalesAvg={{
+                      satisfaction: avgSatisfaction,
+                      difficulty: avgDifficulty,
+                      benefit: avgBenefit,
+                    }}
+                    searchLang={searchLang}
+                    reviewLang={reviewLang}
+                    switchReviewLang={this.switchReviewLang}
+                    toggleAddReviewForm={this.toggleAddReviewForm}
+                    t={this.props.t}
+                  />
                 )
               ) : (
                 <LoadingSpinner message={"Loading reviews..."} />
@@ -559,35 +475,15 @@ class CourseInfo extends React.Component {
             <br />
           </ExtendedOverlay>
         </LongWrapper>
-
         {isLoaded && (
-          <MediaQuery minWidth={sizes.desktop}>
-            {(matches) => {
-              return matches ? (
-                <ShortWrapper>
-                  <RelatedCoursesContainer
-                    relatedCourses={relatedCourses}
-                    courseReviews={relatedCourseReviews}
-                    searchLang={searchLang}
-                  />
-                </ShortWrapper>
-              ) : (
-                <div>
-                  <RelatedCoursesButton
-                    isModalOpen={isModalOpen}
-                    handleToggleModal={this.handleToggleModal}
-                  />
-                  <Modal isOpen={isModalOpen} style={modalStyle}>
-                    <RelatedCoursesContainer
-                      relatedCourses={relatedCourses}
-                      courseReviews={relatedCourseReviews}
-                      searchLang={searchLang}
-                    />
-                  </Modal>
-                </div>
-              );
-            }}
-          </MediaQuery>
+          <RelatedCourses
+            courses={relatedCourses}
+            reviews={relatedCourseReviews}
+            searchLang={searchLang}
+            isModalOpen={isModalOpen}
+            handleToggleModal={this.handleToggleModal}
+          />
+        )}
         )}
       </RowWrapper>
     );

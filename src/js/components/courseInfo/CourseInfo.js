@@ -160,6 +160,16 @@ const getRelatedCourses = (
   return sortedRelatedCourses;
 };
 
+const getCourseID = (searchQuery) =>
+  qs.parse(searchQuery, {
+    ignoreQueryPrefix: true,
+  }).courseID;
+
+const getSearchLang = (searchQuery) =>
+  qs.parse(searchQuery, {
+    ignoreQueryPrefix: true,
+  }).searchLang;
+
 class CourseInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -167,14 +177,17 @@ class CourseInfo extends React.Component {
   }
 
   state = {
-    thisCourse: {},
+    thisCourse: getCourse(
+      this.props.fetchedCoursesById,
+      getCourseID(this.props.location.search)
+    ),
     relatedCourses: [],
     thisCourseReviews: [],
     relatedCourseReviews: [],
     avgSatisfaction: 0,
     avgDifficulty: 0,
     avgBenefit: 0,
-    searchLang: "",
+    searchLang: getSearchLang(this.props.location.search),
     reviewLang: "",
     isLoaded: false,
     isModalOpen: false,
@@ -197,16 +210,9 @@ class CourseInfo extends React.Component {
   }
 
   async loadReviewsAndRelatedCourses() {
-    const courseID = qs.parse(this.props.location.search, {
-      ignoreQueryPrefix: true,
-    }).courseID;
-    const searchLang = qs.parse(this.props.location.search, {
-      ignoreQueryPrefix: true,
-    }).searchLang;
+    const thisCourse = this.state.thisCourse;
+    const searchLang = this.state.searchLang;
     let loadedCourses = this.props.fetchedCoursesById;
-    //loadState().fetchedCourses.byId;
-
-    const thisCourse = getCourse(loadedCourses, courseID);
     const thisCourseKey = getCourseKey(thisCourse);
 
     // 1. Get related courses by code, sort them, and get the first k courses (k=10)
@@ -270,7 +276,6 @@ class CourseInfo extends React.Component {
 
     this._isMounted &&
       this.setState({
-        thisCourse: thisCourse,
         relatedCourses: relatedCourses,
         thisCourseReviews: thisCourseReviews,
         relatedCourseReviews: relatedCourseReviews,
@@ -459,7 +464,7 @@ class CourseInfo extends React.Component {
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
-    return isLoaded ? (
+    return (
       <RowWrapper>
         <Helmet>
           <title>WasedaTime - Course Reviews</title>
@@ -491,61 +496,64 @@ class CourseInfo extends React.Component {
                 </a>
                 {this.props.t(`courseInfo.Thank WTSA 2`)}
               </Announcement>
-              {isLoaded && (
-                <FetchedCourseItem
-                  searchTerm={""}
-                  searchLang={searchLang}
-                  course={thisCourse}
-                  isInCourseReviewsPage={true}
-                />
-              )}
+
+              <FetchedCourseItem
+                searchTerm={""}
+                searchLang={searchLang}
+                course={thisCourse}
+                isInCourseReviewsPage={true}
+              />
 
               <CourseDetails course={thisCourse} />
 
-              {isAddReviewFormOpen ? (
-                <AddReviewForm
-                  toggleModal={this.toggleAddReviewForm}
-                  satisfaction={newReviewSatisfaction}
-                  difficulty={newReviewDifficulty}
-                  benefit={newReviewBenefit}
-                  comment={newReviewComment}
-                  handleScaleChange={this.onNewReviewScaleChange}
-                  handleCommentChange={this.onNewReviewCommentChange}
-                  handleFormSubmit={this.onNewReviewFormSubmit}
-                />
-              ) : (
-                <React.Fragment>
-                  <StyledSubHeading>
-                    {this.props.t(`courseInfo.Reviews`)}{" "}
-                    <span style={{ marginLeft: "10px" }}>
-                      <ReviewLangSwitches
-                        reviewLang={reviewLang}
-                        switchReviewLang={this.switchReviewLang}
-                        isInHeading={true}
+              {isLoaded ? (
+                isAddReviewFormOpen ? (
+                  <AddReviewForm
+                    toggleModal={this.toggleAddReviewForm}
+                    satisfaction={newReviewSatisfaction}
+                    difficulty={newReviewDifficulty}
+                    benefit={newReviewBenefit}
+                    comment={newReviewComment}
+                    handleScaleChange={this.onNewReviewScaleChange}
+                    handleCommentChange={this.onNewReviewCommentChange}
+                    handleFormSubmit={this.onNewReviewFormSubmit}
+                  />
+                ) : (
+                  <React.Fragment>
+                    <StyledSubHeading>
+                      {this.props.t(`courseInfo.Reviews`)}{" "}
+                      <span style={{ marginLeft: "10px" }}>
+                        <ReviewLangSwitches
+                          reviewLang={reviewLang}
+                          switchReviewLang={this.switchReviewLang}
+                          isInHeading={true}
+                        />
+                      </span>
+                      <AddReviewButton onClick={this.toggleAddReviewForm}>
+                        <FontAwesomeIcon icon={faPen} /> Write your Review
+                      </AddReviewButton>
+                    </StyledSubHeading>
+                    <Disclaimer>
+                      {this.props.t(`courseInfo.Disclaimer`)}
+                    </Disclaimer>
+                    <ReviewsListWrapper>
+                      <ReviewScalesCountContainer
+                        avgSatisfaction={avgSatisfaction}
+                        avgDifficulty={avgDifficulty}
+                        avgBenefit={avgBenefit}
+                        thisCourseReviewsLength={thisCourseReviews.length}
                       />
-                    </span>
-                    <AddReviewButton onClick={this.toggleAddReviewForm}>
-                      <FontAwesomeIcon icon={faPen} /> Write your Review
-                    </AddReviewButton>
-                  </StyledSubHeading>
-                  <Disclaimer>
-                    {this.props.t(`courseInfo.Disclaimer`)}
-                  </Disclaimer>
-                  <ReviewsListWrapper>
-                    <ReviewScalesCountContainer
-                      avgSatisfaction={avgSatisfaction}
-                      avgDifficulty={avgDifficulty}
-                      avgBenefit={avgBenefit}
-                      thisCourseReviewsLength={thisCourseReviews.length}
-                    />
-                    <ReviewsList
-                      reviews={thisCourseReviews}
-                      searchLang={searchLang}
-                      reviewLang={reviewLang}
-                    />
-                  </ReviewsListWrapper>
-                  <br />
-                </React.Fragment>
+                      <ReviewsList
+                        reviews={thisCourseReviews}
+                        searchLang={searchLang}
+                        reviewLang={reviewLang}
+                      />
+                    </ReviewsListWrapper>
+                    <br />
+                  </React.Fragment>
+                )
+              ) : (
+                <LoadingSpinner message={"Loading reviews..."} />
               )}
             </div>
             <br />
@@ -582,8 +590,6 @@ class CourseInfo extends React.Component {
           </MediaQuery>
         )}
       </RowWrapper>
-    ) : (
-      <LoadingSpinner message={"Loading reviews..."} />
     );
   }
 }

@@ -18,7 +18,8 @@ import TimetableContainer from "../containers/timetable/TimetableContainer";
 import Syllabus from "./syllabus/Syllabus";
 import CourseInfo from "./courseInfo/CourseInfo";
 // import RoomFinder from "./RoomFinder";
-import JoinUs from "./JoinUs";
+// import JoinUs from "./JoinUs";
+import AboutUs from "./AboutUs"
 import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
 import Career from "./career/Career";
@@ -91,7 +92,7 @@ const App = ({ isFirstTimeAccess, t }) => {
               <Route exact path="/timetable" component={TimetableContainer} />
               <Route exact path="/syllabus" component={Syllabus} />
               {/* <Route exact path="/roomfinder" component={RoomFinder} /> */}
-              <Route exact path="/joinus" component={JoinUs} />
+              <Route exact path="/aboutus" component={AboutUs} />
               <Route exact path="/bus" component={Bus} />
               <Route path="/career" component={Career} />
               <Route exact path="/corona-info" component={CoronaInfo} />

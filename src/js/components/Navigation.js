@@ -79,8 +79,8 @@ const Navigation = (props) => {
     //   icon: faBriefcase,
     // },
     {
-      name: t("navigation.joinus"),
-      path: "/joinus",
+      name: t("navigation.aboutus"),
+      path: "/AboutUs",
       icon: faStar,
     },
     {

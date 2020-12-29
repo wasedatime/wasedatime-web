@@ -1,5 +1,5 @@
 import React from "react";
-import { Auth } from "aws-amplify";
+import { Auth, Hub } from "aws-amplify";
 import { connect } from "react-redux";
 import { getUserInfo } from "../reducers/user";
 import { Link } from "react-router-dom";
@@ -35,36 +35,60 @@ const Logo = styled("img")`
   height: 50px;
 `;
 
-const Header = ({ userInfo }) => {
-  return (
-    <StyledHeader>
-      <StyledLink to="/about">
-        <Logo src={logo} alt="WasedaTime logo" width="50" height="50" />
-      </StyledLink>
-      <Navigation />
-      <LanguangeMenu />
-      {userInfo ? (
-        <UserMenu />
-      ) : (
-        <Button
-          color="red"
-          onClick={() => Auth.federatedSignIn({ provider: "Google" })}
-          style={{
-            fontSize: "1.5rem",
-            padding: "1rem",
-            marginLeft: "1rem",
-            background: "#b51e36",
-          }}
-          icon
-          labelPosition="left"
-        >
-          <Icon name="sign-in" />
-          Sign in
-        </Button>
-      )}
-    </StyledHeader>
-  );
-};
+class Header extends React.Component {
+  componentDidMount() {
+    Hub.listen("auth", ({ payload: { event, data } }) => {
+      console.log(event);
+      switch (event) {
+        case "signIn":
+          console.log("signIn");
+          console.log(event);
+          console.log(data);
+          break;
+        case "signOut":
+          console.log("signOut");
+          console.log(event);
+          console.log(data);
+          break;
+        default:
+          console.log(event);
+          console.log(data);
+      }
+    });
+  }
+
+  render() {
+    const { userInfo } = this.props;
+    return (
+      <StyledHeader>
+        <StyledLink to="/about">
+          <Logo src={logo} alt="WasedaTime logo" width="50" height="50" />
+        </StyledLink>
+        <Navigation />
+        <LanguangeMenu />
+        {userInfo ? (
+          <UserMenu />
+        ) : (
+          <Button
+            color="red"
+            onClick={() => Auth.federatedSignIn({ provider: "Google" })}
+            style={{
+              fontSize: "1.5rem",
+              padding: "1rem",
+              marginLeft: "1rem",
+              background: "#b51e36",
+            }}
+            icon
+            labelPosition="left"
+          >
+            <Icon name="sign-in" />
+            Sign in
+          </Button>
+        )}
+      </StyledHeader>
+    );
+  }
+}
 
 const mapStateToProps = (state) => ({
   userInfo: getUserInfo(state),

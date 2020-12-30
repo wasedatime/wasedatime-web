@@ -54,7 +54,8 @@ const CourseReviews = ({
   searchLang,
   reviewLang,
   switchReviewLang,
-  toggleAddReviewForm,
+  openReviewNewForm,
+  openReviewEditForm,
   t,
 }) => (
   <div>
@@ -67,7 +68,7 @@ const CourseReviews = ({
           isInHeading={true}
         />
       </span>
-      <AddReviewButton onClick={toggleAddReviewForm}>
+      <AddReviewButton onClick={openReviewNewForm}>
         <FontAwesomeIcon icon={faPen} /> {t(`courseInfo.Write your Review`)}
       </AddReviewButton>
     </StyledSubHeading>
@@ -83,6 +84,7 @@ const CourseReviews = ({
         reviews={reviews}
         searchLang={searchLang}
         reviewLang={reviewLang}
+        openReviewEditForm={openReviewEditForm}
       />
     </ReviewsListWrapper>
     <br />

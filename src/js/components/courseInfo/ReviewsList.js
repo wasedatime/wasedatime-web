@@ -66,9 +66,14 @@ const ReviewScale = styled("div")`
   text-align: end;
 `;
 
-const ReviewsList = ({ reviews, searchLang, reviewLang, t }) => {
+const ReviewsList = ({
+  reviews,
+  searchLang,
+  reviewLang,
+  openReviewEditForm,
+  t,
+}) => {
   return reviews.map((review, i) => {
-    console.log(review);
     return (
       <ReviewsWrapper key={i}>
         {i !== 0 && <ReviewDivider />}
@@ -104,7 +109,17 @@ const ReviewsList = ({ reviews, searchLang, reviewLang, t }) => {
           </ReviewText>
           <ReviewScalesList>
             {review["mod"] && (
-              <Button icon style={{ background: "#ffae42", color: "#fff" }}>
+              <Button
+                icon
+                style={{ background: "#ffae42", color: "#fff" }}
+                onClick={() =>
+                  openReviewEditForm({
+                    ...review,
+                    src_comment: review["comment_" + review["src_lang"]],
+                    index: i,
+                  })
+                }
+              >
                 <Icon name="pencil alternate" />
               </Button>
             )}

@@ -134,6 +134,8 @@ class CourseInfo extends React.Component {
     newReviewBenefit: 0,
     newReviewComment: "",
     newReviewIsSending: false,
+    reviewFormMode: "new",
+    editReviewIndex: 0,
   };
 
   componentDidMount() {
@@ -282,6 +284,33 @@ class CourseInfo extends React.Component {
     }
   };
 
+  openReviewNewForm = () => {
+    this.setState(
+      {
+        reviewFormMode: "new",
+        newReviewSatisfaction: 0,
+        newReviewDifficulty: 0,
+        newReviewBenefit: 0,
+        newReviewComment: "",
+      },
+      this.toggleAddReviewForm
+    );
+  };
+
+  openReviewEditForm = (review) => {
+    this.setState(
+      {
+        reviewFormMode: "edit",
+        newReviewSatisfaction: review["satisfaction"],
+        newReviewDifficulty: review["difficulty"],
+        newReviewBenefit: review["benefit"],
+        newReviewComment: review["src_comment"],
+        editReviewIndex: review["index"],
+      },
+      this.toggleAddReviewForm
+    );
+  };
+
   onNewReviewScaleChange = (target, score) => {
     switch (target) {
       case "satisfaction":
@@ -303,10 +332,13 @@ class CourseInfo extends React.Component {
 
   onNewReviewFormSubmit = () => {
     const {
+      thisCourseReviews,
       newReviewSatisfaction,
       newReviewDifficulty,
       newReviewBenefit,
       newReviewComment,
+      reviewFormMode,
+      editReviewIndex,
     } = this.state;
     if (
       [
@@ -340,45 +372,30 @@ class CourseInfo extends React.Component {
 
       try {
         this.setState({ newReviewIsSending: true });
+        const params = {
+          body: {
+            data: newReview,
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: this.props.userInfo.idToken.jwtToken,
+          },
+        };
 
         // Send the review
-        API.post(
-          "wasedatime-dev",
-          "/course-reviews?key=" + getCourseKey(thisCourse),
-          {
-            body: {
-              data: newReview,
-            },
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: this.props.userInfo.idToken.jwtToken,
-            },
-          }
-        ).then((res) => {
-          Alert.success(this.props.t(`courseInfo.Review sent`), {
-            position: "bottom",
-            effect: "jelly",
-          });
-
-          const postedReview = {
-            ...newReview,
-            comment_en: newReviewComment,
-            comment_ja: newReviewComment,
-            "comment_zh-TW": newReviewComment,
-            "comment_zh-CN": newReviewComment,
-            comment_ko: newReviewComment,
-          };
-
-          this.setState((prevState, props) => ({
-            thisCourseReviews: [postedReview, ...prevState.thisCourseReviews],
-            isAddReviewFormOpen: false,
-            newReviewSatisfaction: 0,
-            newReviewDifficulty: 0,
-            newReviewBenefit: 0,
-            newReviewComment: "",
-            newReviewIsSending: false,
-          }));
-        });
+        if (reviewFormMode === "new") {
+          API.post(
+            "wasedatime-dev",
+            "/course-reviews?key=" + getCourseKey(thisCourse),
+            params
+          ).then(() => this.cleanFormAndUpdateReviews(newReview));
+        } else if (reviewFormMode === "edit") {
+          API.put(
+            "wasedatime-dev",
+            "/course-reviews?key=" + getCourseKey(thisCourse),
+            params
+          ).then(() => this.cleanFormAndUpdateReviews(newReview));
+        }
       } catch (error) {
         Alert.error(this.props.t(`courseInfo.Review failed to send`), {
           position: "bottom",
@@ -386,6 +403,44 @@ class CourseInfo extends React.Component {
         });
       }
     }
+  };
+
+  cleanFormAndUpdateReviews = (newReview) => {
+    const { thisCourseReviews, reviewFormMode, editReviewIndex } = this.state;
+    Alert.success(this.props.t(`courseInfo.Review sent`), {
+      position: "bottom",
+      effect: "jelly",
+    });
+
+    const postedReview = {
+      ...newReview,
+      comment_en: newReview["comment"],
+      comment_ja: newReview["comment"],
+      "comment_zh-TW": newReview["comment"],
+      "comment_zh-CN": newReview["comment"],
+      comment_ko: newReview["comment"],
+    };
+
+    let updatedThisCourseReviews = [];
+
+    if (reviewFormMode === "edit") {
+      updatedThisCourseReviews = thisCourseReviews.map((r, i) =>
+        i === editReviewIndex ? postedReview : r
+      );
+    } else {
+      updatedThisCourseReviews = [postedReview, ...thisCourseReviews];
+    }
+
+    this.setState((prevState, props) => ({
+      thisCourseReviews: updatedThisCourseReviews,
+      isAddReviewFormOpen: false,
+      newReviewSatisfaction: 0,
+      newReviewDifficulty: 0,
+      newReviewBenefit: 0,
+      newReviewComment: "",
+      newReviewIsSending: false,
+      reviewFormMode: "new",
+    }));
   };
 
   render() {
@@ -476,7 +531,8 @@ class CourseInfo extends React.Component {
                     searchLang={searchLang}
                     reviewLang={reviewLang}
                     switchReviewLang={this.switchReviewLang}
-                    toggleAddReviewForm={this.toggleAddReviewForm}
+                    openReviewNewForm={this.openReviewNewForm}
+                    openReviewEditForm={this.openReviewEditForm}
                     t={this.props.t}
                   />
                 )

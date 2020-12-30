@@ -68,7 +68,7 @@ const CourseReviews = ({
         />
       </span>
       <AddReviewButton onClick={toggleAddReviewForm}>
-        <FontAwesomeIcon icon={faPen} /> Write your Review
+        <FontAwesomeIcon icon={faPen} /> {t(`courseInfo.Write your Review`)}
       </AddReviewButton>
     </StyledSubHeading>
     <Disclaimer>{t(`courseInfo.Disclaimer`)}</Disclaimer>

@@ -177,7 +177,7 @@ class AddReviewForm extends React.Component {
             e.preventDefault();
           }}
         >
-          <FieldLegend horizontal>Scales</FieldLegend>
+          <FieldLegend horizontal>{t(`courseInfo.Scales`)}</FieldLegend>
           <ScalesList>
             <Scale size="small">
               <Stars>
@@ -210,7 +210,7 @@ class AddReviewForm extends React.Component {
 
           <FieldLegend horizontal>{t(`courseInfo.Review`)}</FieldLegend>
           <StyledTextarea
-            placeholder="Please share your experiences, feelings, and even advices about the course!"
+            placeholder={t(`courseInfo.Review placeholder`)}
             onChange={this.handleTextareaChange}
             value={comment}
           />

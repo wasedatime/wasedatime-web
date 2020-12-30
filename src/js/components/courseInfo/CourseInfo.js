@@ -233,9 +233,9 @@ class CourseInfo extends React.Component {
         courseKeys.map(async (courseKey) => {
           const res = await API.get(
             "wasedatime-dev",
-            "/course-reviews?key=" +
+            "/course-reviews/" +
               courseKey +
-              "&uid=" +
+              "?uid=" +
               (this.props.userInfo ? this.props.userInfo.sub : ""),
             {
               headers: {
@@ -386,13 +386,13 @@ class CourseInfo extends React.Component {
         if (reviewFormMode === "new") {
           API.post(
             "wasedatime-dev",
-            "/course-reviews?key=" + getCourseKey(thisCourse),
+            "/course-reviews/" + getCourseKey(thisCourse),
             params
           ).then(() => this.cleanFormAndUpdateReviews(newReview));
         } else if (reviewFormMode === "edit") {
           API.put(
             "wasedatime-dev",
-            "/course-reviews?key=" + getCourseKey(thisCourse),
+            "/course-reviews/" + getCourseKey(thisCourse),
             params
           ).then(() => this.cleanFormAndUpdateReviews(newReview));
         }

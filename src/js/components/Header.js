@@ -10,7 +10,7 @@ import { Button, Icon } from "semantic-ui-react";
 import { withNamespaces } from "react-i18next";
 
 import Navigation from "./Navigation";
-import UserMenu from "./UserMenu";
+import UserMenu from "./user/UserMenu";
 import LanguangeMenu from "./LanguageMenu";
 import logo from "../../img/logo.png";
 
@@ -56,7 +56,9 @@ class Header extends React.Component {
           break;
         case "customOAuthState":
           this.props.history.push(data);
+          break;
         default:
+          console.log(event);
           console.log(data);
       }
     });

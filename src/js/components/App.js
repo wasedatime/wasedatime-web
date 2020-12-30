@@ -18,6 +18,7 @@ import InitialDialog from "./welcome/InitialDialog";
 import TimetableContainer from "../containers/timetable/TimetableContainer";
 import Syllabus from "./syllabus/Syllabus";
 import CourseInfo from "./courseInfo/CourseInfo";
+import RedirectPage from "./user/RedirectPage";
 // import RoomFinder from "./RoomFinder";
 import JoinUs from "./JoinUs";
 import FooterContainer from "../containers/FooterContainer";
@@ -97,6 +98,7 @@ const App = ({ isFirstTimeAccess, isAuthenticated, t }) => {
               <Route path="/career" component={Career} />
               <Route exact path="/corona-info" component={CoronaInfo} />
               <Route exact path="/courseInfo" component={CourseInfo} />
+              <Route exact path="/verify" component={RedirectPage} />
               <Route
                 exact
                 path="/privacy-policy"

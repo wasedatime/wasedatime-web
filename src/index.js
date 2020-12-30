@@ -13,7 +13,7 @@ import "./js/components/i18n";
 import Amplify, { Auth } from "aws-amplify";
 
 const authRedirectPath =
-  window.location.protocol + "//" + window.location.host + "/";
+  window.location.protocol + "//" + window.location.host + "/verify";
 
 const config = {
   API: {

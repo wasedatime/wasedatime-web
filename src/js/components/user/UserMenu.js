@@ -4,13 +4,11 @@ import PropTypes from "prop-types";
 // import i18n from "./i18n";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
 import { Image } from "semantic-ui-react";
 
-import { media } from "../styled-components/utils";
+import { media } from "../../styled-components/utils";
 
 const StyledButton = styled("button")`
   display: flex;

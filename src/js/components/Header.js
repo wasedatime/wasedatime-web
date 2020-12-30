@@ -44,11 +44,16 @@ class Header extends React.Component {
   };
 
   componentDidMount() {
-    this.props.updateUserInfo();
-    console.log(window.location.search);
     Hub.listen("auth", ({ payload: { event, data } }) => {
       switch (event) {
         case "signIn":
+          Auth.currentAuthenticatedUser()
+            .then((user) => {
+              this.props.setUserInfo(user);
+            })
+            .catch((e) => {
+              console.error(e);
+            });
           this.props.setUserInfo(data);
           break;
         case "signOut":

@@ -14,10 +14,11 @@ const RedirectMessage = styled(Segment)`
 class RedirectPage extends React.Component {
   async componentDidMount() {
     await Auth.currentAuthenticatedUser()
-      .then((user) => setUserInfo(user))
-      .catch((e) => {
-        console.err(e);
-        this.props.history = "/";
+      .then((user) => {
+        setUserInfo(user);
+      })
+      .catch(() => {
+        this.props.history.push("/");
       });
   }
   render() {

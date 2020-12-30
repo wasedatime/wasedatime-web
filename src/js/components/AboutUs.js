@@ -10,6 +10,7 @@ import JoinUs from "./JoinUs.js";
 // 內容的字變大了，但標籤的字沒受到影響？！
 const LargeTab = styled(Tab)`
   font-size: 2em !important;
+  margin: 0 auto;
 `;
 
 const panes = [

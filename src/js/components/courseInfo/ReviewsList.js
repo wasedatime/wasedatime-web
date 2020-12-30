@@ -33,6 +33,10 @@ const GoogleTranslationHint = styled("p")`
   color: #aaa;
 `;
 
+const ReviewCreatedTime = styled(GoogleTranslationHint)`
+  margin-top: 0px;
+`;
+
 const ReviewTitle = styled("h6")`
   font-size: 0.7em;
   margin-top: 0;
@@ -92,6 +96,9 @@ const ReviewsList = ({ reviews, searchLang, reviewLang, t }) => {
             ) : (
               <GoogleTranslationHint>Not translated yet</GoogleTranslationHint>
             )}
+            <ReviewCreatedTime>
+              {new Date(review["created_at"]).toUTCString()}
+            </ReviewCreatedTime>
           </ReviewText>
           <ReviewScalesList>
             <ReviewScale>

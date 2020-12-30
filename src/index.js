@@ -12,6 +12,9 @@ import "./js/components/i18n";
 
 import Amplify, { Auth } from "aws-amplify";
 
+const authRedirectPath =
+  window.location.protocol + "//" + window.location.host + "/verify";
+
 const config = {
   API: {
     endpoints: [
@@ -70,8 +73,8 @@ const config = {
     oauth: {
       domain: "auth.wasedatime.com",
       scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
-      redirectSignIn: "https://wasedatime.com/verify",
-      redirectSignOut: "https://wasedatime.com/logout",
+      redirectSignIn: authRedirectPath,
+      redirectSignOut: authRedirectPath,
       responseType: "code", // or 'token', note that REFRESH token will only be generated when the responseType is code
     },
   },

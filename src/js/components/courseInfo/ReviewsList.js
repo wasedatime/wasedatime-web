@@ -3,10 +3,8 @@ import styled from "styled-components";
 import ReviewStars from "./ReviewStars";
 import { media } from "../../styled-components/utils";
 import { withNamespaces } from "react-i18next";
-import {
-  COURSE_REVIEW_LNG,
-  COURSE_REVIEW_LNG_FULL_NAME,
-} from "../../config/course_review_lng";
+import { COURSE_REVIEW_LNG_FULL_NAME } from "../../config/course_review_lng";
+import { Button, Icon } from "semantic-ui-react";
 
 const ReviewsWrapper = styled("div")`
   background: #fff;
@@ -34,6 +32,10 @@ const GoogleTranslationHint = styled("p")`
   margin-top: 5px;
   font-size: 0.7em;
   color: #aaa;
+`;
+
+const ReviewCreatedTime = styled(GoogleTranslationHint)`
+  margin-top: 0px;
 `;
 
 const ReviewTitle = styled("h6")`
@@ -64,7 +66,14 @@ const ReviewScale = styled("div")`
   text-align: end;
 `;
 
-const ReviewsList = ({ reviews, searchLang, reviewLang, t }) => {
+const ReviewsList = ({
+  reviews,
+  searchLang,
+  reviewLang,
+  openReviewEditForm,
+  deleteReview,
+  t,
+}) => {
   return reviews.map((review, i) => {
     return (
       <ReviewsWrapper key={i}>
@@ -77,22 +86,53 @@ const ReviewsList = ({ reviews, searchLang, reviewLang, t }) => {
               {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
             </ReviewTitle>
             <span>
-              {review["comment_" + reviewLang].split("\n").map((str) => (
-                <span>
-                  {str}
-                  <br />
-                </span>
-              ))}
+              {review["comment_" + reviewLang] !== undefined &&
+                review["comment_" + reviewLang].split("\n").map((str) => (
+                  <span>
+                    {str}
+                    <br />
+                  </span>
+                ))}
             </span>
-            {COURSE_REVIEW_LNG[review["comment_src_lng"]] !== reviewLang && (
-              <GoogleTranslationHint>
-                Translated from{" "}
-                {COURSE_REVIEW_LNG_FULL_NAME[review["comment_src_lng"]]} by
-                Google
-              </GoogleTranslationHint>
+            {review["src_lang"] ? (
+              review["src_lang"] !== reviewLang && (
+                <GoogleTranslationHint>
+                  Translated from{" "}
+                  {COURSE_REVIEW_LNG_FULL_NAME[review["src_lang"]]} by Google
+                </GoogleTranslationHint>
+              )
+            ) : (
+              <GoogleTranslationHint>Not translated yet</GoogleTranslationHint>
             )}
+            <ReviewCreatedTime>
+              {new Date(review["created_at"]).toUTCString()}
+            </ReviewCreatedTime>
           </ReviewText>
           <ReviewScalesList>
+            {review["mod"] && (
+              <span>
+                <Button
+                  icon
+                  style={{ background: "#ffae42", color: "#fff" }}
+                  onClick={() =>
+                    openReviewEditForm({
+                      ...review,
+                      src_comment: review["comment_" + review["src_lang"]],
+                      index: i,
+                    })
+                  }
+                >
+                  <Icon name="pencil alternate" />
+                </Button>
+                <Button
+                  icon
+                  style={{ background: "red", color: "#fff" }}
+                  onClick={() => deleteReview(review["created_at"], i)}
+                >
+                  <Icon name="trash" />
+                </Button>
+              </span>
+            )}
             <ReviewScale>
               <span>{t(`courseInfo.Satisfaction`)}&nbsp;</span>
               <ReviewStars scale={review["satisfaction"]} />

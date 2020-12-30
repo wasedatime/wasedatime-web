@@ -54,9 +54,8 @@ const StyledSpan = styled("span")`
   ${media.phone`font-size: 0.5em;`};
 `;
 
-const Navigation = (props) => {
-  const pathname = props.location.pathname;
-  const t = props.t;
+const Navigation = ({ t }) => {
+  const pathname = window.location.pathname;
   const navItems = [
     {
       name: t("navigation.timetable"),
@@ -93,13 +92,12 @@ const Navigation = (props) => {
     const itemName = item["name"];
     const itemPath = item["path"];
     const itemIcon = item["icon"];
-    const isClicked = pathname.includes(itemPath);
     const fontBase = (
       <FontAwesomeIcon icon={itemIcon} size="2x" transform="shrink-2" />
     );
     return (
       <StyledLink to={itemPath} key={itemPath}>
-        <StyledButton isClicked={isClicked}>
+        <StyledButton isClicked={pathname === itemPath}>
           {fontBase}
           <StyledSpan>{itemName}</StyledSpan>
         </StyledButton>

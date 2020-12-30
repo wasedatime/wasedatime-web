@@ -23,7 +23,7 @@ const CourseReviewsGroup = ({ course, reviews, searchLang, reviewLang, t }) => {
         searchTerm={""}
         searchLang={searchLang}
         course={course}
-        isInCourseReviewsPage={true}
+        isDetailDisplayed={false}
         needLineBreak={true}
       />
       <ReviewsHeader>{t(`courseInfo.Reviews`)}</ReviewsHeader>

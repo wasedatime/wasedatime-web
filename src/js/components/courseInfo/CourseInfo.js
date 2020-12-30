@@ -1,10 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../reducers/user";
-import MediaQuery from "react-responsive";
 import API from "@aws-amplify/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullhorn, faPen } from "@fortawesome/free-solid-svg-icons";
+import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -21,29 +20,20 @@ import levenshtein from "levenshtein-edit-distance";
 import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
 
-import { media, sizes } from "../../styled-components/utils";
+import { media } from "../../styled-components/utils";
 import { RowWrapper, Wrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 
 import CourseDetails from "./CourseDetails";
-import ReviewLangSwitches from "./ReviewLangSwitches";
-import RelatedCoursesButton from "./RelatedCoursesButton";
-import Modal from "../../components/Modal";
 import FetchError from "../../components/FetchError";
 import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
-import ReviewScalesCountContainer from "./ReviewScalesCountContainer";
-import RelatedCoursesContainer from "./RelatedCoursesContainer";
-import ReviewsList from "./ReviewsList";
+import CourseReviews from "./CourseReviews";
 import AddReviewForm from "./AddReviewForm";
 import LoadingSpinner from "../LoadingSpinner";
+import RelatedCourses from "./RelatedCourses";
 
 export const LongWrapper = styled(Wrapper)`
   flex: 1 1 auto;
-  ${media.tablet`flex: 0 0 auto; width: 100%`};
-`;
-
-export const ShortWrapper = styled(Wrapper)`
-  flex: 0 0 24em;
   ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
 
@@ -62,60 +52,6 @@ const Announcement = styled("div")`
   border-radius: 3px;
   line-height: normal;
 `;
-
-const Disclaimer = styled(Announcement)`
-  background-color: #aaa;
-  margin: 0.5rem 0px;
-`;
-
-const StyledSubHeading = styled("h2")`
-  align-self: flex-start;
-  margin: 1rem 0px;
-  padding-left: 1rem;
-  border-left: 5px solid rgb(148, 27, 47);
-  font-size: 2rem;
-  font-weight: 300;
-  ${media.tablet`font-size: 2rem;`};
-`;
-
-const ReviewsListWrapper = styled("div")`
-  max-height: 60vh;
-  overflow-y: auto;
-`;
-
-const AddReviewButton = styled("button")`
-  background-color: #ffae42;
-  color: #fff;
-  border: 0px;
-  border-radius: 5px;
-  font-size: 0.9em;
-  float: right;
-  padding: 0.3em 0.5em;
-`;
-
-const modalStyle = {
-  overlay: {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    zIndex: "3030",
-  },
-  content: {
-    position: "absolute",
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: "#ccc",
-    overflowY: "auto",
-    overflowScrolling: "touch",
-    WebkitOverflowScrolling: "touch",
-    outline: "none",
-    padding: 0,
-  },
-};
 
 const getCourse = (loadedCourses, courseID) => {
   // Return null if courses not saved in localStorage or the course to display is not saved in localStorage
@@ -160,6 +96,16 @@ const getRelatedCourses = (
   return sortedRelatedCourses;
 };
 
+const getCourseID = (searchQuery) =>
+  qs.parse(searchQuery, {
+    ignoreQueryPrefix: true,
+  }).courseID;
+
+const getSearchLang = (searchQuery) =>
+  qs.parse(searchQuery, {
+    ignoreQueryPrefix: true,
+  }).searchLang;
+
 class CourseInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -167,14 +113,17 @@ class CourseInfo extends React.Component {
   }
 
   state = {
-    thisCourse: {},
+    thisCourse: getCourse(
+      this.props.fetchedCoursesById,
+      getCourseID(this.props.location.search)
+    ),
     relatedCourses: [],
     thisCourseReviews: [],
     relatedCourseReviews: [],
     avgSatisfaction: 0,
     avgDifficulty: 0,
     avgBenefit: 0,
-    searchLang: "",
+    searchLang: getSearchLang(this.props.location.search),
     reviewLang: "",
     isLoaded: false,
     isModalOpen: false,
@@ -184,6 +133,11 @@ class CourseInfo extends React.Component {
     newReviewDifficulty: 0,
     newReviewBenefit: 0,
     newReviewComment: "",
+    newReviewIsSending: false,
+    reviewFormMode: "new",
+    editReviewIndex: 0,
+    editReviewPrimaryKey: "",
+    editReviewOriginalText: "",
   };
 
   componentDidMount() {
@@ -197,16 +151,9 @@ class CourseInfo extends React.Component {
   }
 
   async loadReviewsAndRelatedCourses() {
-    const courseID = qs.parse(this.props.location.search, {
-      ignoreQueryPrefix: true,
-    }).courseID;
-    const searchLang = qs.parse(this.props.location.search, {
-      ignoreQueryPrefix: true,
-    }).searchLang;
+    const thisCourse = this.state.thisCourse;
+    const searchLang = this.state.searchLang;
     let loadedCourses = this.props.fetchedCoursesById;
-    //loadState().fetchedCourses.byId;
-
-    const thisCourse = getCourse(loadedCourses, courseID);
     const thisCourseKey = getCourseKey(thisCourse);
 
     // 1. Get related courses by code, sort them, and get the first k courses (k=10)
@@ -270,7 +217,6 @@ class CourseInfo extends React.Component {
 
     this._isMounted &&
       this.setState({
-        thisCourse: thisCourse,
         relatedCourses: relatedCourses,
         thisCourseReviews: thisCourseReviews,
         relatedCourseReviews: relatedCourseReviews,
@@ -289,9 +235,9 @@ class CourseInfo extends React.Component {
         courseKeys.map(async (courseKey) => {
           const res = await API.get(
             "wasedatime-dev",
-            "/course-reviews?key=" +
+            "/course-reviews/" +
               courseKey +
-              "&uid=" +
+              "?uid=" +
               (this.props.userInfo ? this.props.userInfo.sub : ""),
             {
               headers: {
@@ -340,6 +286,38 @@ class CourseInfo extends React.Component {
     }
   };
 
+  openReviewNewForm = () => {
+    this.setState(
+      {
+        reviewFormMode: "new",
+        newReviewSatisfaction: 0,
+        newReviewDifficulty: 0,
+        newReviewBenefit: 0,
+        newReviewComment: "",
+        editReviewIndex: 0,
+        editReviewPrimaryKey: "",
+        editReviewOriginalText: "",
+      },
+      this.toggleAddReviewForm
+    );
+  };
+
+  openReviewEditForm = (review) => {
+    this.setState(
+      {
+        reviewFormMode: "edit",
+        newReviewSatisfaction: review["satisfaction"],
+        newReviewDifficulty: review["difficulty"],
+        newReviewBenefit: review["benefit"],
+        newReviewComment: review["src_comment"],
+        editReviewIndex: review["index"],
+        editReviewPrimaryKey: review["created_at"],
+        editReviewOriginalText: review["src_comment"],
+      },
+      this.toggleAddReviewForm
+    );
+  };
+
   onNewReviewScaleChange = (target, score) => {
     switch (target) {
       case "satisfaction":
@@ -365,6 +343,9 @@ class CourseInfo extends React.Component {
       newReviewDifficulty,
       newReviewBenefit,
       newReviewComment,
+      reviewFormMode,
+      editReviewPrimaryKey,
+      editReviewOriginalText,
     } = this.state;
     if (
       [
@@ -383,52 +364,61 @@ class CourseInfo extends React.Component {
       );
     } else {
       const thisCourse = this.state.thisCourse;
+
+      let editReview = {
+        satisfaction: newReviewSatisfaction,
+        difficulty: newReviewDifficulty,
+        benefit: newReviewBenefit,
+      };
+      if (editReviewOriginalText !== newReviewComment) {
+        editReview = { ...editReview, comment: newReviewComment };
+      }
       const newReview = {
+        ...editReview,
         course_key: getCourseKey(thisCourse),
         title: thisCourse[SYLLABUS_KEYS.TITLE],
         title_jp: thisCourse[SYLLABUS_KEYS.TITLE_JP],
         instructor: thisCourse[SYLLABUS_KEYS.INSTRUCTOR],
         instructor_jp: thisCourse[SYLLABUS_KEYS.INSTRUCTOR_JP],
         year: 2020,
-        satisfaction: newReviewSatisfaction,
-        difficulty: newReviewDifficulty,
-        benefit: newReviewBenefit,
-        comment: newReviewComment,
-        uid: this.props.userInfo.sub,
       };
 
-      console.log({
-        data: newReview,
-        token: this.props.userInfo.idToken.jwtToken,
-      });
-
       try {
-        // Send the review
-        API.post(
-          "wasedatime-dev",
-          "/course-reviews?key=" + getCourseKey(thisCourse),
-          {
-            body: {
-              data: newReview,
-              token: this.props.userInfo.idToken.jwtToken,
-            },
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        ).then((res) => console.log(res));
+        this.setState({ newReviewIsSending: true });
 
-        Alert.success(this.props.t(`courseInfo.Review sent`), {
-          position: "bottom",
-          effect: "jelly",
-        });
-        this.setState({
-          isAddReviewFormOpen: false,
-          newReviewSatisfaction: 0,
-          newReviewDifficulty: 0,
-          newReviewBenefit: 0,
-          newReviewComment: "",
-        });
+        // Send the review
+        if (reviewFormMode === "new") {
+          API.post(
+            "wasedatime-dev",
+            "/course-reviews/" + getCourseKey(thisCourse),
+            {
+              body: {
+                data: newReview,
+              },
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: this.props.userInfo.idToken.jwtToken,
+              },
+            }
+          ).then(() => this.cleanFormAndUpdateReviews(newReview));
+        } else if (reviewFormMode === "edit") {
+          API.patch(
+            "wasedatime-dev",
+            "/course-reviews/" +
+              getCourseKey(thisCourse) +
+              "?ts=" +
+              editReviewPrimaryKey,
+            {
+              body: {
+                data: editReview,
+              },
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: this.props.userInfo.idToken.jwtToken,
+              },
+            }
+          ).then(() => this.cleanFormAndUpdateReviews(newReview));
+        }
       } catch (error) {
         Alert.error(this.props.t(`courseInfo.Review failed to send`), {
           position: "bottom",
@@ -436,6 +426,72 @@ class CourseInfo extends React.Component {
         });
       }
     }
+  };
+
+  cleanFormAndUpdateReviews = (newReview) => {
+    const { thisCourseReviews, reviewFormMode, editReviewIndex } = this.state;
+    Alert.success(this.props.t(`courseInfo.Review sent`), {
+      position: "bottom",
+      effect: "jelly",
+    });
+
+    const postedReview = {
+      ...newReview,
+      comment_en: newReview["comment"],
+      comment_ja: newReview["comment"],
+      "comment_zh-TW": newReview["comment"],
+      "comment_zh-CN": newReview["comment"],
+      comment_ko: newReview["comment"],
+    };
+
+    let updatedThisCourseReviews = [];
+
+    if (reviewFormMode === "edit") {
+      updatedThisCourseReviews = thisCourseReviews.map((r, i) =>
+        i === editReviewIndex ? postedReview : r
+      );
+    } else {
+      updatedThisCourseReviews = [postedReview, ...thisCourseReviews];
+    }
+
+    this.setState((prevState, props) => ({
+      thisCourseReviews: updatedThisCourseReviews,
+      isAddReviewFormOpen: false,
+      newReviewSatisfaction: 0,
+      newReviewDifficulty: 0,
+      newReviewBenefit: 0,
+      newReviewComment: "",
+      newReviewIsSending: false,
+      reviewFormMode: "new",
+      editReviewPrimaryKey: 0,
+      editReviewOriginalText: "",
+    }));
+  };
+
+  deleteReview = (reviewPrimaryKey, reviewIndex) => {
+    API.del(
+      "wasedatime-dev",
+      "/course-reviews/" +
+        getCourseKey(this.state.thisCourse) +
+        "?ts=" +
+        reviewPrimaryKey,
+      {
+        headers: {
+          Authorization: this.props.userInfo.idToken.jwtToken,
+        },
+      }
+    )
+      .then(() => {
+        Alert.success(this.props.t(`courseInfo.Review deleted`), {
+          position: "bottom",
+          effect: "jelly",
+        });
+
+        const reviews = this.state.thisCourseReviews;
+        reviews.splice(reviewIndex, 1);
+        this.setState({ thisCourseReviews: reviews });
+      })
+      .catch((e) => console.log(e));
   };
 
   render() {
@@ -457,10 +513,11 @@ class CourseInfo extends React.Component {
       newReviewDifficulty,
       newReviewBenefit,
       newReviewComment,
+      newReviewIsSending,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
-    return isLoaded ? (
+    return (
       <RowWrapper>
         <Helmet>
           <title>WasedaTime - Course Reviews</title>
@@ -475,7 +532,6 @@ class CourseInfo extends React.Component {
           />
           <meta property="og:site_name" content="WasedaTime - Course Reviews" />
         </Helmet>
-
         <LongWrapper>
           <ExtendedOverlay>
             <div>
@@ -492,99 +548,63 @@ class CourseInfo extends React.Component {
                 </a>
                 {this.props.t(`courseInfo.Thank WTSA 2`)}
               </Announcement>
-              {isLoaded && (
-                <FetchedCourseItem
-                  searchTerm={""}
-                  searchLang={searchLang}
-                  course={thisCourse}
-                  isInCourseReviewsPage={true}
-                />
-              )}
+
+              <FetchedCourseItem
+                searchTerm={""}
+                searchLang={searchLang}
+                course={thisCourse}
+                isDetailDisplayed={true}
+              />
 
               <CourseDetails course={thisCourse} />
 
-              {isAddReviewFormOpen ? (
-                <AddReviewForm
-                  toggleModal={this.toggleAddReviewForm}
-                  satisfaction={newReviewSatisfaction}
-                  difficulty={newReviewDifficulty}
-                  benefit={newReviewBenefit}
-                  comment={newReviewComment}
-                  handleScaleChange={this.onNewReviewScaleChange}
-                  handleCommentChange={this.onNewReviewCommentChange}
-                  handleFormSubmit={this.onNewReviewFormSubmit}
-                />
+              {isLoaded ? (
+                isAddReviewFormOpen ? (
+                  <AddReviewForm
+                    toggleModal={this.toggleAddReviewForm}
+                    satisfaction={newReviewSatisfaction}
+                    difficulty={newReviewDifficulty}
+                    benefit={newReviewBenefit}
+                    comment={newReviewComment}
+                    handleScaleChange={this.onNewReviewScaleChange}
+                    handleCommentChange={this.onNewReviewCommentChange}
+                    handleFormSubmit={this.onNewReviewFormSubmit}
+                    isSending={newReviewIsSending}
+                  />
+                ) : (
+                  <CourseReviews
+                    reviews={thisCourseReviews}
+                    scalesAvg={{
+                      satisfaction: avgSatisfaction,
+                      difficulty: avgDifficulty,
+                      benefit: avgBenefit,
+                    }}
+                    searchLang={searchLang}
+                    reviewLang={reviewLang}
+                    switchReviewLang={this.switchReviewLang}
+                    openReviewNewForm={this.openReviewNewForm}
+                    openReviewEditForm={this.openReviewEditForm}
+                    deleteReview={this.deleteReview}
+                    t={this.props.t}
+                  />
+                )
               ) : (
-                <React.Fragment>
-                  <StyledSubHeading>
-                    {this.props.t(`courseInfo.Reviews`)}{" "}
-                    <span style={{ marginLeft: "10px" }}>
-                      <ReviewLangSwitches
-                        reviewLang={reviewLang}
-                        switchReviewLang={this.switchReviewLang}
-                        isInHeading={true}
-                      />
-                    </span>
-                    <AddReviewButton onClick={this.toggleAddReviewForm}>
-                      <FontAwesomeIcon icon={faPen} /> Write your Review
-                    </AddReviewButton>
-                  </StyledSubHeading>
-                  <Disclaimer>
-                    {this.props.t(`courseInfo.Disclaimer`)}
-                  </Disclaimer>
-                  <ReviewsListWrapper>
-                    <ReviewScalesCountContainer
-                      avgSatisfaction={avgSatisfaction}
-                      avgDifficulty={avgDifficulty}
-                      avgBenefit={avgBenefit}
-                      thisCourseReviewsLength={thisCourseReviews.length}
-                    />
-                    <ReviewsList
-                      reviews={thisCourseReviews}
-                      searchLang={searchLang}
-                      reviewLang={reviewLang}
-                    />
-                  </ReviewsListWrapper>
-                  <br />
-                </React.Fragment>
+                <LoadingSpinner message={"Loading reviews..."} />
               )}
             </div>
             <br />
           </ExtendedOverlay>
         </LongWrapper>
-
         {isLoaded && (
-          <MediaQuery minWidth={sizes.desktop}>
-            {(matches) => {
-              return matches ? (
-                <ShortWrapper>
-                  <RelatedCoursesContainer
-                    relatedCourses={relatedCourses}
-                    courseReviews={relatedCourseReviews}
-                    searchLang={searchLang}
-                  />
-                </ShortWrapper>
-              ) : (
-                <div>
-                  <RelatedCoursesButton
-                    isModalOpen={isModalOpen}
-                    handleToggleModal={this.handleToggleModal}
-                  />
-                  <Modal isOpen={isModalOpen} style={modalStyle}>
-                    <RelatedCoursesContainer
-                      relatedCourses={relatedCourses}
-                      courseReviews={relatedCourseReviews}
-                      searchLang={searchLang}
-                    />
-                  </Modal>
-                </div>
-              );
-            }}
-          </MediaQuery>
+          <RelatedCourses
+            courses={relatedCourses}
+            reviews={relatedCourseReviews}
+            searchLang={searchLang}
+            isModalOpen={isModalOpen}
+            handleToggleModal={this.handleToggleModal}
+          />
         )}
       </RowWrapper>
-    ) : (
-      <LoadingSpinner message={"Loading reviews..."} />
     );
   }
 }

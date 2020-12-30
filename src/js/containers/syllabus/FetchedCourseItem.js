@@ -86,7 +86,7 @@ class FetchedCourseItem extends React.Component {
       searchLang,
       course,
       byId,
-      isInCourseReviewsPage,
+      isDetailDisplayed,
       needLineBreak,
     } = this.props;
     const id = course[SYLLABUS_KEYS.ID];
@@ -101,7 +101,7 @@ class FetchedCourseItem extends React.Component {
         searchTerm={searchTerm}
         searchLang={searchLang}
         course={course}
-        isInCourseReviewsPage={isInCourseReviewsPage}
+        isDetailDisplayed={isDetailDisplayed}
         needLineBreak={needLineBreak}
       />
     );

@@ -1,17 +1,14 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Auth } from "aws-amplify";
 import PropTypes from "prop-types";
 // import i18n from "./i18n";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
+import { Image } from "semantic-ui-react";
 
-import { media } from "../styled-components/utils";
-import { clearUserInfo } from "../actions/user";
+import { media } from "../../styled-components/utils";
 
 const StyledButton = styled("button")`
   display: flex;
@@ -47,12 +44,12 @@ class UserMenu extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    // const { t } = this.props;
+    const { userInfo, t } = this.props;
     return (
       <div style={{ marginLeft: "1em" }}>
         <StyledButton onClick={this.handleClick}>
-          <FontAwesomeIcon icon={faUserAlt} size="2x" transform="shrink-2" />
-          <StyledSpan>My Account</StyledSpan>
+          <Image src={userInfo.picture} size="mini" circular />
+          <StyledSpan>{userInfo.preferred_username}</StyledSpan>
         </StyledButton>
         <Menu
           id="language-menu"
@@ -65,12 +62,11 @@ class UserMenu extends React.Component {
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
             onClick={() =>
               Auth.signOut().then(() => {
-                this.props.clearUserInfo();
                 this.handleClose();
               })
             }
           >
-            Sign out
+            {t(`user.Sign Out`)}
           </MenuItem>
         </Menu>
       </div>
@@ -78,13 +74,7 @@ class UserMenu extends React.Component {
   }
 }
 
-const mapDispatchToProps = {
-  clearUserInfo,
-};
-
-export default withNamespaces("translation")(
-  connect(null, mapDispatchToProps)(UserMenu)
-);
+export default withNamespaces("translation")(UserMenu);
 
 UserMenu.propTypes = {
   lng: PropTypes.string.isRequired,

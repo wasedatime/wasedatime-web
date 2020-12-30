@@ -136,6 +136,8 @@ class CourseInfo extends React.Component {
     newReviewIsSending: false,
     reviewFormMode: "new",
     editReviewIndex: 0,
+    editReviewPrimaryKey: "",
+    editReviewOriginalText: "",
   };
 
   componentDidMount() {
@@ -292,6 +294,9 @@ class CourseInfo extends React.Component {
         newReviewDifficulty: 0,
         newReviewBenefit: 0,
         newReviewComment: "",
+        editReviewIndex: 0,
+        editReviewPrimaryKey: "",
+        editReviewOriginalText: "",
       },
       this.toggleAddReviewForm
     );
@@ -306,6 +311,8 @@ class CourseInfo extends React.Component {
         newReviewBenefit: review["benefit"],
         newReviewComment: review["src_comment"],
         editReviewIndex: review["index"],
+        editReviewPrimaryKey: review["created_at"],
+        editReviewOriginalText: review["src_comment"],
       },
       this.toggleAddReviewForm
     );
@@ -337,6 +344,8 @@ class CourseInfo extends React.Component {
       newReviewBenefit,
       newReviewComment,
       reviewFormMode,
+      editReviewPrimaryKey,
+      editReviewOriginalText,
     } = this.state;
     if (
       [
@@ -355,43 +364,59 @@ class CourseInfo extends React.Component {
       );
     } else {
       const thisCourse = this.state.thisCourse;
+
+      let editReview = {
+        satisfaction: newReviewSatisfaction,
+        difficulty: newReviewDifficulty,
+        benefit: newReviewBenefit,
+      };
+      if (editReviewOriginalText !== newReviewComment) {
+        editReview = { ...editReview, comment: newReviewComment };
+      }
       const newReview = {
+        ...editReview,
         course_key: getCourseKey(thisCourse),
         title: thisCourse[SYLLABUS_KEYS.TITLE],
         title_jp: thisCourse[SYLLABUS_KEYS.TITLE_JP],
         instructor: thisCourse[SYLLABUS_KEYS.INSTRUCTOR],
         instructor_jp: thisCourse[SYLLABUS_KEYS.INSTRUCTOR_JP],
         year: 2020,
-        satisfaction: newReviewSatisfaction,
-        difficulty: newReviewDifficulty,
-        benefit: newReviewBenefit,
-        comment: newReviewComment,
       };
 
       try {
         this.setState({ newReviewIsSending: true });
-        const params = {
-          body: {
-            data: newReview,
-          },
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: this.props.userInfo.idToken.jwtToken,
-          },
-        };
 
         // Send the review
         if (reviewFormMode === "new") {
           API.post(
             "wasedatime-dev",
             "/course-reviews/" + getCourseKey(thisCourse),
-            params
+            {
+              body: {
+                data: newReview,
+              },
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: this.props.userInfo.idToken.jwtToken,
+              },
+            }
           ).then(() => this.cleanFormAndUpdateReviews(newReview));
         } else if (reviewFormMode === "edit") {
-          API.put(
+          API.patch(
             "wasedatime-dev",
-            "/course-reviews/" + getCourseKey(thisCourse),
-            params
+            "/course-reviews/" +
+              getCourseKey(thisCourse) +
+              "?ts=" +
+              editReviewPrimaryKey,
+            {
+              body: {
+                data: editReview,
+              },
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: this.props.userInfo.idToken.jwtToken,
+              },
+            }
           ).then(() => this.cleanFormAndUpdateReviews(newReview));
         }
       } catch (error) {
@@ -438,6 +463,8 @@ class CourseInfo extends React.Component {
       newReviewComment: "",
       newReviewIsSending: false,
       reviewFormMode: "new",
+      editReviewPrimaryKey: 0,
+      editReviewOriginalText: "",
     }));
   };
 

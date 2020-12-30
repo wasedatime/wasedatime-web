@@ -12,7 +12,12 @@ export const setFirstTimeAccessToFalse = () => ({
   },
 });
 
-export const setUserInfo = () => async (dispatch) => {
+export const setUserInfo = (user) => ({
+  type: IS_AUTHENTICATED,
+  payload: { ...user.attributes, ...user.signInUserSession },
+});
+
+export const updateUserInfo = () => async (dispatch) => {
   await Auth.currentSession();
   await Auth.currentAuthenticatedUser()
     .then((user) => {
@@ -22,7 +27,6 @@ export const setUserInfo = () => async (dispatch) => {
       });
     })
     .catch((e) => {
-      console.log(e);
       dispatch({
         type: NOT_AUTHENTICATED,
       });

@@ -1,7 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
-import { getUserInfo } from "../reducers/user";
-import { clearUserInfo } from "../actions/user";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
@@ -136,7 +133,7 @@ const Description = styled("p")`
 //   smoothScroll(destination, 600);
 // };
 
-const Home = ({ userInfo, clearUserInfo, t }) => {
+const Home = ({ t }) => {
   return (
     <Wrapper>
       <Helmet>
@@ -241,14 +238,4 @@ const Home = ({ userInfo, clearUserInfo, t }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  userInfo: getUserInfo(state),
-});
-
-const mapDispatchToProps = {
-  clearUserInfo,
-};
-
-export default withNamespaces("translation")(
-  connect(mapStateToProps, mapDispatchToProps)(Home)
-);
+export default withNamespaces("translation")(Home);

@@ -1,7 +1,9 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { Auth, Hub } from "aws-amplify";
 import { connect } from "react-redux";
 import { getUserInfo } from "../reducers/user";
+import { setUserInfo, clearUserInfo, updateUserInfo } from "../actions/user";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Icon } from "semantic-ui-react";
@@ -36,22 +38,24 @@ const Logo = styled("img")`
 `;
 
 class Header extends React.Component {
+  state = {
+    currentPath: window.location.pathname,
+  };
+
   componentDidMount() {
+    this.props.updateUserInfo();
+    console.log(window.location.search);
     Hub.listen("auth", ({ payload: { event, data } }) => {
-      console.log(event);
       switch (event) {
         case "signIn":
-          console.log("signIn");
-          console.log(event);
-          console.log(data);
+          this.props.setUserInfo(data);
           break;
         case "signOut":
-          console.log("signOut");
-          console.log(event);
-          console.log(data);
+          this.props.clearUserInfo();
           break;
+        case "customOAuthState":
+          this.props.history.push(data);
         default:
-          console.log(event);
           console.log(data);
       }
     });
@@ -71,7 +75,12 @@ class Header extends React.Component {
         ) : (
           <Button
             color="red"
-            onClick={() => Auth.federatedSignIn({ provider: "Google" })}
+            onClick={() =>
+              Auth.federatedSignIn({
+                provider: "Google",
+                customState: window.location.pathname + window.location.search,
+              })
+            }
             style={{
               fontSize: "1.5rem",
               padding: "1rem",
@@ -94,4 +103,10 @@ const mapStateToProps = (state) => ({
   userInfo: getUserInfo(state),
 });
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = {
+  setUserInfo,
+  clearUserInfo,
+  updateUserInfo,
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

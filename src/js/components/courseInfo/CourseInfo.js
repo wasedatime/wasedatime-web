@@ -332,13 +332,11 @@ class CourseInfo extends React.Component {
 
   onNewReviewFormSubmit = () => {
     const {
-      thisCourseReviews,
       newReviewSatisfaction,
       newReviewDifficulty,
       newReviewBenefit,
       newReviewComment,
       reviewFormMode,
-      editReviewIndex,
     } = this.state;
     if (
       [

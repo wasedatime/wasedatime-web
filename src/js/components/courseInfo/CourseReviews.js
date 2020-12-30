@@ -18,7 +18,7 @@ const StyledSubHeading = styled("h2")`
 `;
 
 const AddReviewButton = styled("button")`
-  background-color: #ffae42;
+  background-color: #b51e36;
   color: #fff;
   border: 0px;
   border-radius: 5px;

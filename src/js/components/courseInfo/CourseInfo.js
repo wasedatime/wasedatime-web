@@ -133,6 +133,7 @@ class CourseInfo extends React.Component {
     newReviewDifficulty: 0,
     newReviewBenefit: 0,
     newReviewComment: "",
+    newReviewIsSending: false,
   };
 
   componentDidMount() {
@@ -337,12 +338,9 @@ class CourseInfo extends React.Component {
         comment: newReviewComment,
       };
 
-      console.log({
-        data: newReview,
-        token: this.props.userInfo.idToken.jwtToken,
-      });
-
       try {
+        this.setState({ newReviewIsSending: true });
+
         // Send the review
         API.post(
           "wasedatime-dev",
@@ -356,30 +354,31 @@ class CourseInfo extends React.Component {
               Authorization: this.props.userInfo.idToken.jwtToken,
             },
           }
-        ).then((res) => console.log(res));
+        ).then((res) => {
+          Alert.success(this.props.t(`courseInfo.Review sent`), {
+            position: "bottom",
+            effect: "jelly",
+          });
 
-        Alert.success(this.props.t(`courseInfo.Review sent`), {
-          position: "bottom",
-          effect: "jelly",
+          const postedReview = {
+            ...newReview,
+            comment_en: newReviewComment,
+            comment_ja: newReviewComment,
+            "comment_zh-TW": newReviewComment,
+            "comment_zh-CN": newReviewComment,
+            comment_ko: newReviewComment,
+          };
+
+          this.setState((prevState, props) => ({
+            thisCourseReviews: [postedReview, ...prevState.thisCourseReviews],
+            isAddReviewFormOpen: false,
+            newReviewSatisfaction: 0,
+            newReviewDifficulty: 0,
+            newReviewBenefit: 0,
+            newReviewComment: "",
+            newReviewIsSending: false,
+          }));
         });
-
-        const postedReview = {
-          ...newReview,
-          comment_en: newReviewComment,
-          comment_ja: newReviewComment,
-          "comment_zh-TW": newReviewComment,
-          "comment_zh-CN": newReviewComment,
-          comment_ko: newReviewComment,
-        };
-
-        this.setState((prevState, props) => ({
-          thisCourseReviews: [postedReview, ...prevState.thisCourseReviews],
-          isAddReviewFormOpen: false,
-          newReviewSatisfaction: 0,
-          newReviewDifficulty: 0,
-          newReviewBenefit: 0,
-          newReviewComment: "",
-        }));
       } catch (error) {
         Alert.error(this.props.t(`courseInfo.Review failed to send`), {
           position: "bottom",
@@ -408,6 +407,7 @@ class CourseInfo extends React.Component {
       newReviewDifficulty,
       newReviewBenefit,
       newReviewComment,
+      newReviewIsSending,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
@@ -463,6 +463,7 @@ class CourseInfo extends React.Component {
                     handleScaleChange={this.onNewReviewScaleChange}
                     handleCommentChange={this.onNewReviewCommentChange}
                     handleFormSubmit={this.onNewReviewFormSubmit}
+                    isSending={newReviewIsSending}
                   />
                 ) : (
                   <CourseReviews

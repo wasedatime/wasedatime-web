@@ -4,6 +4,7 @@ import ReviewStars from "./ReviewStars";
 import { media } from "../../styled-components/utils";
 import { withNamespaces } from "react-i18next";
 import { COURSE_REVIEW_LNG_FULL_NAME } from "../../config/course_review_lng";
+import { Button, Icon } from "semantic-ui-react";
 
 const ReviewsWrapper = styled("div")`
   background: #fff;
@@ -67,6 +68,7 @@ const ReviewScale = styled("div")`
 
 const ReviewsList = ({ reviews, searchLang, reviewLang, t }) => {
   return reviews.map((review, i) => {
+    console.log(review);
     return (
       <ReviewsWrapper key={i}>
         {i !== 0 && <ReviewDivider />}
@@ -101,6 +103,11 @@ const ReviewsList = ({ reviews, searchLang, reviewLang, t }) => {
             </ReviewCreatedTime>
           </ReviewText>
           <ReviewScalesList>
+            {review["mod"] && (
+              <Button icon style={{ background: "#ffae42", color: "#fff" }}>
+                <Icon name="pencil alternate" />
+              </Button>
+            )}
             <ReviewScale>
               <span>{t(`courseInfo.Satisfaction`)}&nbsp;</span>
               <ReviewStars scale={review["satisfaction"]} />

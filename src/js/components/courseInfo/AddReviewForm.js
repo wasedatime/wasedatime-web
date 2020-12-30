@@ -6,6 +6,7 @@ import { withNamespaces } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Divider, Statistic } from "semantic-ui-react";
+import LoadingSpinner from "../LoadingSpinner";
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
@@ -158,6 +159,7 @@ class AddReviewForm extends React.Component {
       benefit,
       comment,
       handleFormSubmit,
+      isSending,
       t,
     } = this.props;
     const {
@@ -172,58 +174,64 @@ class AddReviewForm extends React.Component {
           {t(`courseInfo.Add review to this course`)}
         </StyledSubHeading>
 
-        <StyledForm
-          onSubmit={(e) => {
-            e.preventDefault();
-          }}
-        >
-          <FieldLegend horizontal>{t(`courseInfo.Scales`)}</FieldLegend>
-          <ScalesList>
-            <Scale size="small">
-              <Stars>
-                {this.displayStars(
-                  "satisfaction",
-                  satisfaction,
-                  paintedSatisfactionStars
-                )}
-              </Stars>
-              <Statistic.Label>{t(`courseInfo.Satisfaction`)}</Statistic.Label>
-            </Scale>
-            <Scale size="small">
-              <Statistic.Value>
-                {this.displayStars(
-                  "difficulty",
-                  difficulty,
-                  paintedDifficultyStars
-                )}
-              </Statistic.Value>
-              <Statistic.Label>{t(`courseInfo.Difficulty`)}</Statistic.Label>
-            </Scale>
-            <Scale size="small">
-              <Statistic.Value>
-                {this.displayStars("benefit", benefit, paintedBenefitStars)}
-              </Statistic.Value>
-              <Statistic.Label>{t(`courseInfo.Benefit`)}</Statistic.Label>
-            </Scale>
-          </ScalesList>
-          <br />
+        {isSending ? (
+          <LoadingSpinner message={"Posting your review..."} />
+        ) : (
+          <StyledForm
+            onSubmit={(e) => {
+              e.preventDefault();
+            }}
+          >
+            <FieldLegend horizontal>{t(`courseInfo.Scales`)}</FieldLegend>
+            <ScalesList>
+              <Scale size="small">
+                <Stars>
+                  {this.displayStars(
+                    "satisfaction",
+                    satisfaction,
+                    paintedSatisfactionStars
+                  )}
+                </Stars>
+                <Statistic.Label>
+                  {t(`courseInfo.Satisfaction`)}
+                </Statistic.Label>
+              </Scale>
+              <Scale size="small">
+                <Statistic.Value>
+                  {this.displayStars(
+                    "difficulty",
+                    difficulty,
+                    paintedDifficultyStars
+                  )}
+                </Statistic.Value>
+                <Statistic.Label>{t(`courseInfo.Difficulty`)}</Statistic.Label>
+              </Scale>
+              <Scale size="small">
+                <Statistic.Value>
+                  {this.displayStars("benefit", benefit, paintedBenefitStars)}
+                </Statistic.Value>
+                <Statistic.Label>{t(`courseInfo.Benefit`)}</Statistic.Label>
+              </Scale>
+            </ScalesList>
+            <br />
 
-          <FieldLegend horizontal>{t(`courseInfo.Review`)}</FieldLegend>
-          <StyledTextarea
-            placeholder={t(`courseInfo.Review placeholder`)}
-            onChange={this.handleTextareaChange}
-            value={comment}
-          />
+            <FieldLegend horizontal>{t(`courseInfo.Review`)}</FieldLegend>
+            <StyledTextarea
+              placeholder={t(`courseInfo.Review placeholder`)}
+              onChange={this.handleTextareaChange}
+              value={comment}
+            />
 
-          <FormActions>
-            <SubmitFormButton onClick={handleFormSubmit}>
-              <FontAwesomeIcon icon={faCheck} /> {t(`courseInfo.Submit`)}
-            </SubmitFormButton>
-            <CloseFormButton onClick={toggleModal}>
-              <FontAwesomeIcon icon={faTimes} /> {t(`courseInfo.Close`)}
-            </CloseFormButton>
-          </FormActions>
-        </StyledForm>
+            <FormActions>
+              <SubmitFormButton onClick={handleFormSubmit}>
+                <FontAwesomeIcon icon={faCheck} /> {t(`courseInfo.Submit`)}
+              </SubmitFormButton>
+              <CloseFormButton onClick={toggleModal}>
+                <FontAwesomeIcon icon={faTimes} /> {t(`courseInfo.Close`)}
+              </CloseFormButton>
+            </FormActions>
+          </StyledForm>
+        )}
       </Overlay>
     );
   }

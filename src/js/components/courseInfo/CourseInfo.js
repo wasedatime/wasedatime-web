@@ -482,7 +482,7 @@ class CourseInfo extends React.Component {
       }
     )
       .then(() => {
-        Alert.success(this.props.t(`courseInfo.Review sent`), {
+        Alert.success(this.props.t(`courseInfo.Review deleted`), {
           position: "bottom",
           effect: "jelly",
         });

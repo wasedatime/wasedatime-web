@@ -246,6 +246,8 @@
     "Submit": "Submit",
     "Close": "Close",
     "Review sent": "Review sent",
+    "Review updated": "Review updated",
+    "Review deleted": "Review deleted",
     "Review failed to send": "Review failed to send",
     "Fill in all fields before sending": "Please fill in all fields before sending your review"
   },

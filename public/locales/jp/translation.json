@@ -246,7 +246,9 @@
     "Agree to share": "WTSAに評価をシェアすることを同意します",
     "Submit": "提出する",
     "Close": "閉じる",
-    "Review sent": "あなたの評価が提出されました",
+    "Review sent": "レビューが提出されました",
+    "Review updated": "レビューが更新されました",
+    "Review deleted": "レビューが削除されました",
     "Review failed to send": "評価の提出が失敗しました",
     "Fill in all fields before sending": "提出する前にすべてのフィールドに記入してください"
   },

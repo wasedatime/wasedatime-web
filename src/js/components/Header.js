@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 import { Auth, Hub } from "aws-amplify";
 import { connect } from "react-redux";
 import { getUserInfo } from "../reducers/user";
-import { setUserInfo, clearUserInfo, updateUserInfo } from "../actions/user";
+import { setUserInfo, clearUserInfo, updateUserSession } from "../actions/user";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Icon } from "semantic-ui-react";
@@ -44,6 +44,14 @@ class Header extends React.Component {
   };
 
   componentDidMount() {
+    // await setTimeout(
+    //   Auth.currentSession().then((session) => {
+    //     console.log("update session");
+    //     this.props.updateUserSession(session);
+    //   }),
+    //   3540000
+    // );
+
     Hub.listen("auth", ({ payload: { event, data } }) => {
       switch (event) {
         case "signIn":
@@ -114,7 +122,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   setUserInfo,
   clearUserInfo,
-  updateUserInfo,
+  updateUserSession,
 };
 
 export default withRouter(

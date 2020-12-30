@@ -71,6 +71,7 @@ const ReviewsList = ({
   searchLang,
   reviewLang,
   openReviewEditForm,
+  deleteReview,
   t,
 }) => {
   return reviews.map((review, i) => {
@@ -109,19 +110,28 @@ const ReviewsList = ({
           </ReviewText>
           <ReviewScalesList>
             {review["mod"] && (
-              <Button
-                icon
-                style={{ background: "#ffae42", color: "#fff" }}
-                onClick={() =>
-                  openReviewEditForm({
-                    ...review,
-                    src_comment: review["comment_" + review["src_lang"]],
-                    index: i,
-                  })
-                }
-              >
-                <Icon name="pencil alternate" />
-              </Button>
+              <span>
+                <Button
+                  icon
+                  style={{ background: "#ffae42", color: "#fff" }}
+                  onClick={() =>
+                    openReviewEditForm({
+                      ...review,
+                      src_comment: review["comment_" + review["src_lang"]],
+                      index: i,
+                    })
+                  }
+                >
+                  <Icon name="pencil alternate" />
+                </Button>
+                <Button
+                  icon
+                  style={{ background: "red", color: "#fff" }}
+                  onClick={() => deleteReview(review["created_at"], i)}
+                >
+                  <Icon name="trash" />
+                </Button>
+              </span>
             )}
             <ReviewScale>
               <span>{t(`courseInfo.Satisfaction`)}&nbsp;</span>

@@ -56,6 +56,7 @@ const CourseReviews = ({
   switchReviewLang,
   openReviewNewForm,
   openReviewEditForm,
+  deleteReview,
   t,
 }) => (
   <div>
@@ -85,6 +86,7 @@ const CourseReviews = ({
         searchLang={searchLang}
         reviewLang={reviewLang}
         openReviewEditForm={openReviewEditForm}
+        deleteReview={deleteReview}
       />
     </ReviewsListWrapper>
     <br />

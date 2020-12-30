@@ -2,6 +2,7 @@ import {
   SET_FIRST_TIME_ACCESS_TO_FALSE,
   IS_AUTHENTICATED,
   NOT_AUTHENTICATED,
+  SESSION_UPDATED,
 } from "./types";
 import { Auth } from "aws-amplify";
 
@@ -16,6 +17,15 @@ export const setUserInfo = (user) => ({
   type: IS_AUTHENTICATED,
   payload: { ...user.attributes, ...user.signInUserSession },
 });
+
+export const updateUserSession = () => async (dispatch) => {
+  await Auth.currentSession().then((session) => {
+    dispatch({
+      type: SESSION_UPDATED,
+      payload: session,
+    });
+  });
+};
 
 export const updateUserInfo = () => async (dispatch) => {
   await Auth.currentSession();

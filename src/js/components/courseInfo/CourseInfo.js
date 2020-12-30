@@ -468,6 +468,32 @@ class CourseInfo extends React.Component {
     }));
   };
 
+  deleteReview = (reviewPrimaryKey, reviewIndex) => {
+    API.del(
+      "wasedatime-dev",
+      "/course-reviews/" +
+        getCourseKey(this.state.thisCourse) +
+        "?ts=" +
+        reviewPrimaryKey,
+      {
+        headers: {
+          Authorization: this.props.userInfo.idToken.jwtToken,
+        },
+      }
+    )
+      .then(() => {
+        Alert.success(this.props.t(`courseInfo.Review sent`), {
+          position: "bottom",
+          effect: "jelly",
+        });
+
+        const reviews = this.state.thisCourseReviews;
+        reviews.splice(reviewIndex, 1);
+        this.setState({ thisCourseReviews: reviews });
+      })
+      .catch((e) => console.log(e));
+  };
+
   render() {
     const {
       thisCourse,
@@ -558,6 +584,7 @@ class CourseInfo extends React.Component {
                     switchReviewLang={this.switchReviewLang}
                     openReviewNewForm={this.openReviewNewForm}
                     openReviewEditForm={this.openReviewEditForm}
+                    deleteReview={this.deleteReview}
                     t={this.props.t}
                   />
                 )

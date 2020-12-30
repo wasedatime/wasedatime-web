@@ -447,7 +447,7 @@ class CourseInfo extends React.Component {
                 searchTerm={""}
                 searchLang={searchLang}
                 course={thisCourse}
-                isInCourseReviewsPage={true}
+                isDetailDisplayed={true}
               />
 
               <CourseDetails course={thisCourse} />

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
+import { Image } from "semantic-ui-react";
 
 import { media } from "../styled-components/utils";
 
@@ -45,12 +46,12 @@ class UserMenu extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    // const { t } = this.props;
+    const { userInfo, t } = this.props;
     return (
       <div style={{ marginLeft: "1em" }}>
         <StyledButton onClick={this.handleClick}>
-          <FontAwesomeIcon icon={faUserAlt} size="2x" transform="shrink-2" />
-          <StyledSpan>My Account</StyledSpan>
+          <Image src={userInfo.picture} size="mini" circular />
+          <StyledSpan>{userInfo.preferred_username}</StyledSpan>
         </StyledButton>
         <Menu
           id="language-menu"
@@ -67,7 +68,7 @@ class UserMenu extends React.Component {
               })
             }
           >
-            Sign out
+            {t(`user.Sign Out`)}
           </MenuItem>
         </Menu>
       </div>

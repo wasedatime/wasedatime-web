@@ -242,7 +242,7 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   handleClickSyllabusLink,
-  isInCourseReviewsPage,
+  isDetailDisplayed,
   needLineBreak,
   t,
   lng,
@@ -295,7 +295,7 @@ const CourseItem = ({
       {(matches) => {
         return (
           matches &&
-          !isInCourseReviewsPage && (
+          !isDetailDisplayed && (
             <InfoButtonsWrapper>
               <ViewInfoButton
                 href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
@@ -317,7 +317,7 @@ const CourseItem = ({
         /* To course Info Button */
         return (
           matches &&
-          !isInCourseReviewsPage && (
+          !isDetailDisplayed && (
             <ViewInfoIconButton
               href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
             >
@@ -337,7 +337,7 @@ const CourseItem = ({
     <RowWrapper>
       <CourseItemWrapper>
         <StyledHeading>{highlightedTitle}</StyledHeading>
-        {isInCourseReviewsPage && (
+        {isDetailDisplayed && (
           <StyledSubHeading>{course[SYLLABUS_KEYS.SUBTITLE]}</StyledSubHeading>
         )}
         <CourseItemRow>
@@ -384,7 +384,7 @@ const CourseItem = ({
             <InvisibleButton>{reviewButtonIcon}</InvisibleButton>
             <FetchedShareButton
               shareLink={shareLink}
-              isInCourseReviewsPage={isInCourseReviewsPage}
+              isDetailDisplayed={isDetailDisplayed}
               display="icon"
               sizesDesktop={sizes.desktop}
               needLineBreak={needLineBreak}
@@ -402,7 +402,7 @@ const CourseItem = ({
           </DescriptionWrapper>
           <FetchedShareButton
             shareLink={shareLink}
-            isInCourseReviewsPage={isInCourseReviewsPage}
+            isDetailDisplayed={isDetailDisplayed}
             display="bar"
             sizesDesktop={sizes.desktop}
             needLineBreak={needLineBreak}

@@ -302,5 +302,9 @@
     "Tokyo": "Tokyo",
     "Loading Statistics": "Loading Statistics",
     "No data": "No data"
+  },
+  "user": {
+    "Sign In": "Sign In",
+    "Sign Out": "Sign Out"
   }
 }

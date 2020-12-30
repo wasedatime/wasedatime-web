@@ -7,6 +7,7 @@ import { setUserInfo, clearUserInfo, updateUserInfo } from "../actions/user";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { Button, Icon } from "semantic-ui-react";
+import { withNamespaces } from "react-i18next";
 
 import Navigation from "./Navigation";
 import UserMenu from "./UserMenu";
@@ -62,7 +63,7 @@ class Header extends React.Component {
   }
 
   render() {
-    const { userInfo } = this.props;
+    const { userInfo, t } = this.props;
     return (
       <StyledHeader>
         <StyledLink to="/about">
@@ -71,7 +72,7 @@ class Header extends React.Component {
         <Navigation />
         <LanguangeMenu />
         {userInfo ? (
-          <UserMenu />
+          <UserMenu userInfo={userInfo} />
         ) : (
           <Button
             color="red"
@@ -91,7 +92,7 @@ class Header extends React.Component {
             labelPosition="left"
           >
             <Icon name="sign-in" />
-            Sign in
+            {t(`user.Sign In`)}
           </Button>
         )}
       </StyledHeader>
@@ -109,4 +110,8 @@ const mapDispatchToProps = {
   updateUserInfo,
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
+export default withRouter(
+  withNamespaces("translation")(
+    connect(mapStateToProps, mapDispatchToProps)(Header)
+  )
+);

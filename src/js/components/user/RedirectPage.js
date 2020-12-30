@@ -4,6 +4,7 @@ import { withNamespaces } from "react-i18next";
 import { Segment, Header } from "semantic-ui-react";
 import styled from "styled-components";
 import { Auth } from "aws-amplify";
+import { setUserInfo } from "../../actions/user";
 
 const RedirectMessage = styled(Segment)`
   margin-top: 10% !important;
@@ -13,16 +14,9 @@ const RedirectMessage = styled(Segment)`
 class RedirectPage extends React.Component {
   async componentDidMount() {
     await Auth.currentAuthenticatedUser()
-      .then((user) => {
-        dispatch({
-          type: IS_AUTHENTICATED,
-          payload: { ...user.attributes, ...user.signInUserSession },
-        });
-      })
+      .then((user) => setUserInfo(user))
       .catch((e) => {
-        dispatch({
-          type: NOT_AUTHENTICATED,
-        });
+        console.err(e);
         this.props.history = "/";
       });
   }

@@ -1,6 +1,7 @@
 import React from "react";
 import { hydrate, render } from "react-dom";
 import throttle from "lodash/throttle";
+import * as Sentry from "@sentry/react";
 
 import configureStore from "./configureStore";
 import { saveState } from "./localForage";
@@ -22,6 +23,14 @@ Amplify.configure({
     ],
   },
 });
+
+if (process.env.NODE_ENV !== "development") {
+  Sentry.init({
+    dsn:
+      "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
+    environment: process.env.NODE_ENV,
+  });
+}
 
 configureStore().then((store) => {
   store.subscribe(

@@ -9,7 +9,9 @@ import JoinUs from "./JoinUs.js";
 // 想要override semantic的style需要用「!important」
 // 內容的字變大了，但標籤的字沒受到影響？！
 const LargeTab = styled(Tab)`
-    // margin: 100px 100px !important; 
+    // text-align: center;
+    // width: 80%
+    margin: 0 4% !important; 
     // border: solid;
 `;
 {/* <img></img> */}
@@ -30,7 +32,7 @@ const panes = [
   },
 ];
 const TabExampleSecondary = () => (
-  <LargeTab menu={{ secondary: true }} panes={panes} />
+  <LargeTab menu={{ secondary: true }} panes={panes}/>
 );
 
 export default TabExampleSecondary;

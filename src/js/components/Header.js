@@ -6,12 +6,12 @@ import { getUserInfo } from "../reducers/user";
 import { setUserInfo, clearUserInfo, updateUserSession } from "../actions/user";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Icon } from "semantic-ui-react";
-import { withNamespaces } from "react-i18next";
 
 import Navigation from "./Navigation";
-import UserMenu from "./user/UserMenu";
 import LanguangeMenu from "./LanguageMenu";
+import UserMenu from "./user/UserMenu";
+import SignInModal from "./user/SignInModal";
+import SignInButton from "./user/SignInButton";
 import logo from "../../img/logo.png";
 
 const StyledHeader = styled("header")`
@@ -41,17 +41,42 @@ const Logo = styled("img")`
 class Header extends React.Component {
   state = {
     currentPath: window.location.pathname,
+    needSignInAgain: false,
+    isUserSessionExpired: false,
   };
 
-  componentDidMount() {
-    // await setTimeout(
-    //   Auth.currentSession().then((session) => {
-    //     console.log("update session");
-    //     this.props.updateUserSession(session);
-    //   }),
-    //   3540000
-    // );
+  timeout(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 
+  signIn() {
+    Auth.federatedSignIn({
+      provider: "Google",
+      customState: window.location.pathname + window.location.search,
+    });
+  }
+
+  signOut(dispatchAfterSignOut) {
+    Auth.signOut().then(() => {
+      dispatchAfterSignOut();
+    });
+  }
+
+  openSignInModal = () => {
+    this.setState({ needSignInAgain: true });
+  };
+
+  closeSignInModal = () => {
+    this.setState({ needSignInAgain: false });
+  };
+
+  letUserSignInAfterExpired = () => {
+    this.setState({ isUserSessionExpired: true });
+    this.props.clearUserInfo();
+    this.openSignInModal();
+  };
+
+  async componentDidMount() {
     Hub.listen("auth", ({ payload: { event, data } }) => {
       switch (event) {
         case "signIn":
@@ -75,10 +100,13 @@ class Header extends React.Component {
           console.log(data);
       }
     });
+
+    await this.timeout(3600000);
+    this.letUserSignInAfterExpired();
   }
 
   render() {
-    const { userInfo, t } = this.props;
+    const { userInfo } = this.props;
     return (
       <StyledHeader>
         <StyledLink to="/about">
@@ -87,29 +115,16 @@ class Header extends React.Component {
         <Navigation />
         <LanguangeMenu />
         {userInfo ? (
-          <UserMenu userInfo={userInfo} />
+          <UserMenu userInfo={userInfo} signOut={this.signOut} />
         ) : (
-          <Button
-            color="red"
-            onClick={() =>
-              Auth.federatedSignIn({
-                provider: "Google",
-                customState: window.location.pathname + window.location.search,
-              })
-            }
-            style={{
-              fontSize: "1.5rem",
-              padding: "1rem",
-              marginLeft: "1rem",
-              background: "#b51e36",
-            }}
-            icon
-            labelPosition="left"
-          >
-            <Icon name="sign-in" />
-            {t(`user.Sign In`)}
-          </Button>
+          <SignInButton onClickFunc={this.openSignInModal} inModal={false} />
         )}
+        <SignInModal
+          isModalOpen={this.state.needSignInAgain}
+          isExpired={this.state.isUserSessionExpired}
+          signIn={this.signIn}
+          closeModal={this.closeSignInModal}
+        />
       </StyledHeader>
     );
   }
@@ -125,8 +140,4 @@ const mapDispatchToProps = {
   updateUserSession,
 };
 
-export default withRouter(
-  withNamespaces("translation")(
-    connect(mapStateToProps, mapDispatchToProps)(Header)
-  )
-);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

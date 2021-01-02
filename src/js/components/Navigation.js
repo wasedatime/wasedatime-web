@@ -9,8 +9,8 @@ import {
   faCalendarAlt,
   faBook,
   faBus,
-  faStar,
   faExclamationTriangle,
+  // faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
@@ -77,11 +77,11 @@ const Navigation = ({ t }) => {
     //   path: "/career",
     //   icon: faBriefcase,
     // },
-    {
-      name: t("navigation.joinus"),
-      path: "/joinus",
-      icon: faStar,
-    },
+    // {
+    //   name: t("navigation.joinus"),
+    //   path: "/joinus",
+    //   icon: faStar,
+    // },
     {
       name: t("navigation.bus"),
       path: "/bus",

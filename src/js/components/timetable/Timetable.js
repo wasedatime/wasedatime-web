@@ -83,7 +83,7 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
           {!addedCoursesAndPrefs.length && (
             <Wrapper>
               <Article>
-                <h3>{t("timetable.welcome")}</h3>
+                <h2>{t("timetable.welcome")}</h2>
                 <Section>
                   {t("timetable.You haven't added any courses")}
                   <br />

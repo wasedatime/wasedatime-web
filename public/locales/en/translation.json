@@ -39,11 +39,11 @@
     "timetable": "Timetable",
     "syllabus": "Syllabus",
     "roomfinder": "Rooms",
-    "joinus": "Join Us!",
+    "joinus": "Join Us",
     "bus": "Bus",
     "language": "Language",
     "career": "Career",
-    "corona-info": "Corona Info"
+    "corona-info": "COVID-19"
   },
   "footer": {
     "licensed": " Code Licensed ",
@@ -307,6 +307,15 @@
   },
   "user": {
     "Sign In": "Sign In",
-    "Sign Out": "Sign Out"
+    "Sign Out": "Sign Out",
+    "Sign In with WasedaMail": "Sign In with WasedaMail",
+    "session expired warning": "Your session is expired. Please sign in again.",
+    "sign in description": "Write your comment on a course and view your timetable on different devices by joining WasedaTime!",
+    "agreement on privacy policy 1": "By continuing, you agree to WasedaTime’s ",
+    "agreement on privacy policy 2": " and ",
+    "agreement on privacy policy 3": ".",
+    "Privacy Policy": "Privacy Policy",
+    "Terms of Service": "Terms of Service",
+    "Keep using without sign in": "Keep using without sign in"
   }
 }

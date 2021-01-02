@@ -1,4 +1,5 @@
 import React from "react";
+import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../reducers/user";
 import API from "@aws-amplify/api";
@@ -31,6 +32,7 @@ import CourseReviews from "./CourseReviews";
 import AddReviewForm from "./AddReviewForm";
 import LoadingSpinner from "../LoadingSpinner";
 import RelatedCourses from "./RelatedCourses";
+import SignInModal from "../user/SignInModal";
 
 export const LongWrapper = styled(Wrapper)`
   flex: 1 1 auto;
@@ -138,6 +140,7 @@ class CourseInfo extends React.Component {
     editReviewIndex: 0,
     editReviewPrimaryKey: "",
     editReviewOriginalText: "",
+    isSignInModalOpen: false,
   };
 
   componentDidMount() {
@@ -279,10 +282,7 @@ class CourseInfo extends React.Component {
         isAddReviewFormOpen: !this.state.isAddReviewFormOpen,
       });
     } else {
-      Alert.warning("Please sign in first", {
-        position: "bottom",
-        effect: "jelly",
-      });
+      this.setState({ isSignInModalOpen: true });
     }
   };
 
@@ -494,6 +494,14 @@ class CourseInfo extends React.Component {
       .catch((e) => console.log(e));
   };
 
+  signIn = () =>
+    Auth.federatedSignIn({
+      provider: "Google",
+      customState: window.location.pathname + window.location.search,
+    });
+
+  closeSignInModal = () => this.setState({ isSignInModalOpen: false });
+
   render() {
     const {
       thisCourse,
@@ -514,6 +522,7 @@ class CourseInfo extends React.Component {
       newReviewBenefit,
       newReviewComment,
       newReviewIsSending,
+      isSignInModalOpen,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
@@ -604,6 +613,12 @@ class CourseInfo extends React.Component {
             handleToggleModal={this.handleToggleModal}
           />
         )}
+        <SignInModal
+          isModalOpen={isSignInModalOpen}
+          isExpired={false}
+          signIn={this.signIn}
+          closeModal={this.closeSignInModal}
+        />
       </RowWrapper>
     );
   }

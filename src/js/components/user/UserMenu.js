@@ -1,5 +1,4 @@
 import React from "react";
-import { Auth } from "aws-amplify";
 import PropTypes from "prop-types";
 // import i18n from "./i18n";
 import Menu from "@material-ui/core/Menu";
@@ -44,7 +43,7 @@ class UserMenu extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
-    const { userInfo, t } = this.props;
+    const { userInfo, signOut, t } = this.props;
     return (
       <div style={{ marginLeft: "1em" }}>
         <StyledButton onClick={this.handleClick}>
@@ -60,11 +59,7 @@ class UserMenu extends React.Component {
         >
           <MenuItem
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={() =>
-              Auth.signOut().then(() => {
-                this.handleClose();
-              })
-            }
+            onClick={() => signOut(this.handleClose)}
           >
             {t(`user.Sign Out`)}
           </MenuItem>

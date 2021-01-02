@@ -243,7 +243,10 @@ class CourseInfo extends React.Component {
             "/course-reviews/" +
               courseKey +
               "?uid=" +
-              (this.props.userInfo ? this.props.userInfo.sub : ""),
+              (this.props.userInfo
+                ? this.props.userInfo.sub ||
+                  this.props.userInfo.idToken.payload.sub
+                : ""),
             {
               headers: {
                 "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
@@ -339,6 +342,11 @@ class CourseInfo extends React.Component {
     this.setState({ newReviewComment: text });
 
   onNewReviewFormSubmit = () => {
+    if (!this.props.userInfo) {
+      this.setState({ isSignInModalOpen: true });
+      return;
+    }
+
     const {
       newReviewSatisfaction,
       newReviewDifficulty,
@@ -398,7 +406,9 @@ class CourseInfo extends React.Component {
               },
               headers: {
                 "Content-Type": "application/json",
-                Authorization: this.props.userInfo.idToken.jwtToken,
+                Authorization: this.props.userInfo
+                  ? this.props.userInfo.idToken.jwtToken
+                  : "",
               },
             }
           ).then(() => this.cleanFormAndUpdateReviews(newReview));
@@ -415,7 +425,9 @@ class CourseInfo extends React.Component {
               },
               headers: {
                 "Content-Type": "application/json",
-                Authorization: this.props.userInfo.idToken.jwtToken,
+                Authorization: this.props.userInfo
+                  ? this.props.userInfo.idToken.jwtToken
+                  : "",
               },
             }
           ).then(() => this.cleanFormAndUpdateReviews(newReview));
@@ -470,6 +482,10 @@ class CourseInfo extends React.Component {
   };
 
   deleteReview = (reviewPrimaryKey, reviewIndex) => {
+    if (!this.props.userInfo) {
+      this.setState({ isSignInModalOpen: true });
+      return;
+    }
     API.del(
       "wasedatime-dev",
       "/course-reviews/" +
@@ -478,7 +494,9 @@ class CourseInfo extends React.Component {
         reviewPrimaryKey,
       {
         headers: {
-          Authorization: this.props.userInfo.idToken.jwtToken,
+          Authorization: this.props.userInfo
+            ? this.props.userInfo.idToken.jwtToken
+            : "",
         },
       }
     )

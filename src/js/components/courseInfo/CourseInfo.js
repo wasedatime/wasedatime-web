@@ -121,7 +121,7 @@ class CourseInfo extends React.Component {
     ),
     relatedCourses: [],
     thisCourseReviews: [],
-    relatedCourseReviews: [],
+    relatedCourseReviews: {},
     avgSatisfaction: 0,
     avgDifficulty: 0,
     avgBenefit: 0,
@@ -167,6 +167,8 @@ class CourseInfo extends React.Component {
       thisCourse[SYLLABUS_KEYS.TITLE],
       thisCourse[SYLLABUS_KEYS.SCHOOL]
     );
+
+    this.setState({ relatedCourses: relatedCourses });
 
     const relatedCoursesByKey = {};
     relatedCourses.forEach((c) => {
@@ -252,7 +254,6 @@ class CourseInfo extends React.Component {
           return res;
         })
       );
-      console.log(reviews);
       return reviews;
     } catch (error) {
       console.error(error);
@@ -604,15 +605,13 @@ class CourseInfo extends React.Component {
             <br />
           </ExtendedOverlay>
         </LongWrapper>
-        {isLoaded && (
-          <RelatedCourses
-            courses={relatedCourses}
-            reviews={relatedCourseReviews}
-            searchLang={searchLang}
-            isModalOpen={isModalOpen}
-            handleToggleModal={this.handleToggleModal}
-          />
-        )}
+        <RelatedCourses
+          courses={relatedCourses}
+          reviews={relatedCourseReviews}
+          searchLang={searchLang}
+          isModalOpen={isModalOpen}
+          handleToggleModal={this.handleToggleModal}
+        />
         <SignInModal
           isModalOpen={isSignInModalOpen}
           isExpired={false}

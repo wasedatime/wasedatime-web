@@ -1,5 +1,5 @@
 import logo from "../../img/logo.png";
-import textLogo from "../../img/text-logo.jpg";
+import textLogo from "../../img/text-logo.svg";
 import Navigation from "./Navigation";
 import UserMenu from "./user/UserMenu";
 import SignInModal from "./user/SignInModal";

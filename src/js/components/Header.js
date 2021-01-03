@@ -8,7 +8,9 @@ const StyledHeader = styled("header")`
   border-bottom: 2px solid #f5f5f5;
   height: 67px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
   position: fixed;
   top: 0;
   left: 0;

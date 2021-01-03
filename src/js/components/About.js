@@ -5,9 +5,8 @@ import { withNamespaces } from "react-i18next";
 // import smoothScroll from "smoothscroll";
 import { media } from "../styled-components/utils";
 import { Wrapper, WrapperWithBackground } from "../styled-components/Wrapper";
-import { Overlay } from "../styled-components/Overlay";
 // import { InvisibleButton } from "../styled-components/Button";
-import homeBackground from "../../img/home_background.jpg";
+import homeBackground from "../../img/home_background-lg.jpg";
 import homeBackgroundPhone from "../../img/home_background-phone.jpg";
 import Header from "./Header";
 // import mainBackground from "../../img/main_campus.jpg";
@@ -24,12 +23,7 @@ const HomeWrapper = styled(WrapperWithBackground)`
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
-const ExtendedOverlay = styled(Overlay)`
-  background: rgba(0, 0, 0, 0.2);
-  padding: 67px 25px;
-`;
-
-const StyledHeader = styled("header")`
+const StyledArticle = styled("article")`
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
@@ -154,8 +148,7 @@ const Home = ({ t }) => {
         backgroundPhone={homeBackgroundPhone}
       >
         <Header />
-        <ExtendedOverlay>
-          <StyledHeader>
+          <StyledArticle>
             <LogoWrapper>
               <Logo src={logo} alt="WasedaTime Logo" />
             </LogoWrapper>
@@ -163,14 +156,13 @@ const Home = ({ t }) => {
               <MainHeading>WasedaTime</MainHeading>
               <Description>{t("about.description")}</Description>
             </Introduction>
-          </StyledHeader>
+          </StyledArticle>
           {
             // <LearnMoreButton onClick={clickHandler}>
             //   <Description>Learn More</Description>
             //   <Arrow src={arrow} alt="Scroll Down Arrow" id="get-started" />
             // </LearnMoreButton>
           }
-        </ExtendedOverlay>
       </HomeWrapper>
       {
         // {<StyledSection>

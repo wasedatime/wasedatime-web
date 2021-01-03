@@ -388,7 +388,6 @@ class Bus extends React.Component {
         <Header />
         <ExtendedOverlay>
           <InfoWrapper>
-            <StyledHeading>{t("bus.busStatus")}</StyledHeading>
             <p>
               <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
               {t("bus.Assign a date / time to check the next bus")}：

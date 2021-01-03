@@ -21,9 +21,9 @@ const StyledButton = styled("button")`
   border: none;
   outline: none;
   padding: 0;
-  margin: 0;
+  margin: 0 2rem;
   background-color: inherit;
-  color: #fff;
+  color: #b51e36;
 `;
 
 const StyledSpan = styled("span")`
@@ -64,8 +64,7 @@ class LanguangeMenu extends React.Component {
     return (
       <div style={{ marginLeft: "auto" }}>
         <StyledButton onClick={this.handleClick}>
-          <FontAwesomeIcon icon={faLanguage} size="2x" transform="shrink-2" />
-          <StyledSpan>{t("navigation.language")}</StyledSpan>
+          <FontAwesomeIcon icon={faLanguage} size="3x" transform="shrink-2" />
         </StyledButton>
         <Menu
           id="language-menu"

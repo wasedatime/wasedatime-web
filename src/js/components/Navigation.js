@@ -3,38 +3,45 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import { withRouter } from "react-router";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarAlt,
   faBook,
   faBus,
-  faExclamationTriangle,
+  faVirus,
   // faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
 
+export const expandLink = () =>
+  keyframes`
+    from { width: 0px; }
+    to { width: 85px; }
+  `;
+
 const StyledNav = styled("nav")`
   display: flex;
-  flex-direction: row;
-  max-width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
+  align-items: center;
+  flex-direction: column;
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 const StyledLink = styled(Link)`
-  padding: 0.2em 0.5em 0 0.5em;
   ${media.phone`padding: 0.2em 0.4em 0 0.4em;`};
   text-align: center;
   text-decoration: none;
   font-size: 1.1em;
   font-weight: 330;
+  margin: 10px auto;
+  height: 50px;
 `;
 
 const StyledButton = styled("button")`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   border: none;
   outline: none;
@@ -49,12 +56,17 @@ const StyledButton = styled("button")`
 `;
 
 const StyledSpan = styled("span")`
-  font-size: 0.55em;
+  animation-name: ${expandLink};
+  animation-duration: 0.5s;
+  width: 85px;
+  text-align: left;
+  font-size: 1em;
   font-weight: 100;
-  ${media.phone`font-size: 0.5em;`};
+  margin-left: 1rem;
+  color: #fff;
 `;
 
-const Navigation = ({ t }) => {
+const Navigation = ({ isHovered, t }) => {
   const pathname = window.location.pathname;
   const navItems = [
     {
@@ -70,7 +82,7 @@ const Navigation = ({ t }) => {
     {
       name: t("navigation.corona-info"),
       path: "/corona-info",
-      icon: faExclamationTriangle,
+      icon: faVirus,
     },
     // {
     //   name: t("navigation.career"),
@@ -99,7 +111,7 @@ const Navigation = ({ t }) => {
       <StyledLink to={itemPath} key={itemPath}>
         <StyledButton isClicked={pathname === itemPath}>
           {fontBase}
-          <StyledSpan>{itemName}</StyledSpan>
+          {isHovered && <StyledSpan>{itemName}</StyledSpan>}
         </StyledButton>
       </StyledLink>
     );

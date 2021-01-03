@@ -11,26 +11,13 @@ const RedirectMessage = styled(Segment)`
   font-size: 1.5em !important;
 `;
 
-class RedirectPage extends React.Component {
-  async componentDidMount() {
-    await Auth.currentAuthenticatedUser()
-      .then((user) => {
-        setUserInfo(user);
-      })
-      .catch(() => {
-        this.props.history.push("/");
-      });
-  }
-  render() {
-    return (
-      <RedirectMessage>
-        <Header>Login successfully! Redirecting...</Header>
-        <br />
-        <p>Now you can save your timetable and check it in any device!</p>
-        <p>You can also write and edit your course reviews now!</p>
-      </RedirectMessage>
-    );
-  }
-}
+const RedirectPage = () => (
+  <RedirectMessage>
+    <Header>Login successfully! Redirecting...</Header>
+    <br />
+    <p>Now you can save your timetable and check it in any device!</p>
+    <p>You can also write and edit your course reviews now!</p>
+  </RedirectMessage>
+);
 
 export default withRouter(withNamespaces("translation")(RedirectPage));

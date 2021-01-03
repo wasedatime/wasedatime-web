@@ -12,6 +12,7 @@ import "../../styles/s-alert-custom.css";
 import "react-s-alert/dist/s-alert-css-effects/jelly.css";
 import "semantic-ui-css/semantic.min.css";
 
+import Sidebar from "./Sidebar";
 import Header from "./Header";
 import About from "./About";
 import InitialDialog from "./welcome/InitialDialog";
@@ -21,7 +22,7 @@ import CourseInfo from "./courseInfo/CourseInfo";
 import RedirectPage from "./user/RedirectPage";
 // import RoomFinder from "./RoomFinder";
 import JoinUs from "./JoinUs";
-import FooterContainer from "../containers/FooterContainer";
+// import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
@@ -29,16 +30,19 @@ import NotFound from "./NotFound";
 import { getUserIsFirstTimeAccess } from "../reducers/user";
 
 const Wrapper = styled("div")`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 65px auto;
+  grid-template-rows: 67px auto;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
   min-height: 100vh;
-  padding-top: ${(props) => props.theme.headerHeight};
 `;
 
 const StyledMain = styled("main")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
+  grid-area: 2 / 2 / 3 / 3;
   width: 100%;
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
@@ -70,6 +74,7 @@ const App = ({ isFirstTimeAccess, isAuthenticated, t }) => {
   return (
     <ThemeProvider theme={normalTheme}>
       <Wrapper>
+        <Sidebar />
         <Header />
         <StyledMain>
           {isFirstTimeAccess ? (
@@ -110,7 +115,6 @@ const App = ({ isFirstTimeAccess, isAuthenticated, t }) => {
             </Switch>
           )}
         </StyledMain>
-        <FooterContainer />
         <Alert stack={{ limit: 1 }} timeout={3000} />
       </Wrapper>
     </ThemeProvider>

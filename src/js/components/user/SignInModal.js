@@ -55,7 +55,7 @@ const SignInModal = ({ isModalOpen, isExpired, signIn, closeModal, t }) => (
         )}
         <p>{t(`user.sign in description`)}</p>
         <br />
-        <SignInButton onClickFunc={signIn} inModal={true} />
+        <SignInButton onClickFunc={signIn} />
         <br />
         <br />
         <br />

@@ -4,28 +4,24 @@ import { withNamespaces } from "react-i18next";
 import MediaQuery from "react-responsive";
 import { sizes } from "../../styled-components/utils";
 
-const SignInButton = ({ onClickFunc, inModal, t }) => (
+const SignInButton = ({ onClickFunc, t }) => (
   <MediaQuery minWidth={sizes.desktop}>
     {(matches) => (
       <Button
         color="red"
         onClick={onClickFunc}
         style={{
-          fontSize: inModal ? "1.5em" : "1.5rem",
-          padding: inModal ? "0.5em" : "0.9em",
-          marginLeft: inModal ? "0" : "1rem",
+          fontSize: "1.5em",
+          padding: "0.5em",
+          marginLeft: "0",
           background: "#b51e36",
           borderRadius: "20px",
         }}
         icon
-        labelPosition={matches ? "left" : inModal ? "left" : ""}
+        labelPosition="left"
       >
-        <Icon name="user" />
-        {inModal
-          ? t(`user.Sign In with WasedaMail`)
-          : matches
-          ? t(`user.Sign In`)
-          : ""}
+        <Icon name="google" />
+        {t(`user.Sign In with WasedaMail`)}
       </Button>
     )}
   </MediaQuery>

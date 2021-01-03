@@ -1,73 +1,83 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import i18n from "./i18n";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withNamespaces } from "react-i18next";
-import styled from "styled-components";
-import { Image } from "semantic-ui-react";
-
+import { Dropdown, Icon } from "semantic-ui-react";
 import { media } from "../../styled-components/utils";
+import styled, { keyframes } from "styled-components";
 
-const StyledButton = styled("button")`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: none;
-  outline: none;
-  padding: 0;
-  margin: 0;
-  background-color: inherit;
+export const expandLink = () =>
+  keyframes`
+    from { width: 0px; }
+    to { width: 140px; }
+  `;
+
+const UserMenuTrigger = styled("div")`
   color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 1rem;
+
+  i {
+    margin: 0 !important;
+    font-size: 2.5em !important;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledSpan = styled("span")`
-  font-size: 0.55em;
+  animation-name: ${expandLink};
+  animation-duration: 0.5s;
+  width: 140px
+  text-align: left
+  font-size: 1.1em
   font-weight: 100;
-  ${media.phone`font-size: 0.5em;`};
+  margin-left: 1rem
+  color: #fff;
 `;
 
-class UserMenu extends React.Component {
-  state = {
-    anchorEl: null,
-  };
+const StyledMenu = styled(Dropdown.Menu)`
+  width: 205px;
+  margin-top: 1rem !important;
+  background: #555 !important;
+`;
 
-  handleClick = (event) => {
-    event.preventDefault();
-    this.setState({ anchorEl: event.currentTarget });
-  };
+const StyledMenuItem = styled(Dropdown.Item)`
+  font-size: 1em !important;
+  color: #fff !important;
+`;
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  render() {
-    const { anchorEl } = this.state;
-    const { userInfo, signOut, t } = this.props;
-    return (
-      <div style={{ marginLeft: "1em" }}>
-        <StyledButton onClick={this.handleClick}>
-          <Image src={userInfo.picture} size="mini" circular />
-          <StyledSpan>{userInfo.preferred_username}</StyledSpan>
-        </StyledButton>
-        <Menu
-          id="language-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-          disableAutoFocusItem={true}
-        >
-          <MenuItem
-            style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={() => signOut(this.handleClose)}
-          >
-            {t(`user.Sign Out`)}
-          </MenuItem>
-        </Menu>
-      </div>
-    );
-  }
-}
+const UserMenu = ({ userInfo, signOut, openSignInModal, isHovered, t }) =>
+  userInfo ? (
+    <Dropdown
+      trigger={
+        <UserMenuTrigger>
+          <div>
+            <Icon name="user circle outline" size="big" />
+          </div>
+          {isHovered && <StyledSpan>Welcome!</StyledSpan>}
+        </UserMenuTrigger>
+      }
+      direction="bottom"
+      icon={null}
+    >
+      <StyledMenu>
+        <StyledMenuItem disabled>Profile</StyledMenuItem>
+        <StyledMenuItem onClick={signOut}>{t(`user.Sign Out`)}</StyledMenuItem>
+      </StyledMenu>
+    </Dropdown>
+  ) : (
+    <UserMenuTrigger onClick={openSignInModal}>
+      <Icon name="user circle outline" size="big" />
+      {isHovered && <StyledSpan>Sign in</StyledSpan>}
+    </UserMenuTrigger>
+  );
 
 export default withNamespaces("translation")(UserMenu);
 

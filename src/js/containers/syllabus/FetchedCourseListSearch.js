@@ -12,7 +12,6 @@ import ReactGA from "react-ga";
 import { searchCourses, sortCourses } from "../../utils/courseSearch";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 import Header from "../../components/Header";
-import SearchBar from "../../components/syllabus/SearchBar";
 import FetchedCourseList from "../../components/syllabus/FetchedCourseList";
 import Filter from "../../components/syllabus/Filter";
 import FilterButton from "../../components/syllabus/FilterButton";

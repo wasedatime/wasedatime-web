@@ -3,8 +3,6 @@ import { withRouter } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import { Segment, Header } from "semantic-ui-react";
 import styled from "styled-components";
-import { Auth } from "aws-amplify";
-import { setUserInfo } from "../../actions/user";
 
 const RedirectMessage = styled(Segment)`
   margin-top: 10% !important;

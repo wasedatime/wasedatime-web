@@ -28,6 +28,7 @@ const StyledArticle = styled("article")`
   flex-direction: column;
   flex: 1 1 auto;
   text-align: center;
+  padding-top: 67px;
 `;
 
 const LogoWrapper = styled("div")`
@@ -148,21 +149,21 @@ const Home = ({ t }) => {
         backgroundPhone={homeBackgroundPhone}
       >
         <Header />
-          <StyledArticle>
-            <LogoWrapper>
-              <Logo src={logo} alt="WasedaTime Logo" />
-            </LogoWrapper>
-            <Introduction>
-              <MainHeading>WasedaTime</MainHeading>
-              <Description>{t("about.description")}</Description>
-            </Introduction>
-          </StyledArticle>
-          {
-            // <LearnMoreButton onClick={clickHandler}>
-            //   <Description>Learn More</Description>
-            //   <Arrow src={arrow} alt="Scroll Down Arrow" id="get-started" />
-            // </LearnMoreButton>
-          }
+        <StyledArticle>
+          <LogoWrapper>
+            <Logo src={logo} alt="WasedaTime Logo" />
+          </LogoWrapper>
+          <Introduction>
+            <MainHeading>WasedaTime</MainHeading>
+            <Description>{t("about.description")}</Description>
+          </Introduction>
+        </StyledArticle>
+        {
+          // <LearnMoreButton onClick={clickHandler}>
+          //   <Description>Learn More</Description>
+          //   <Arrow src={arrow} alt="Scroll Down Arrow" id="get-started" />
+          // </LearnMoreButton>
+        }
       </HomeWrapper>
       {
         // {<StyledSection>

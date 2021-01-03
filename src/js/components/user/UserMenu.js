@@ -1,10 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import { withNamespaces } from "react-i18next";
 import { Dropdown, Icon } from "semantic-ui-react";
-import { media } from "../../styled-components/utils";
 import styled, { keyframes } from "styled-components";
 
 export const expandLink = () =>

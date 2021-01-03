@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { RowWrapper, Wrapper } from "../../styled-components/Wrapper";
 import { Article, Section } from "../../styled-components/Article";
+import Header from "../Header";
 import TimeRowList from "./TimeRowList";
 import DayColumnList from "./DayColumnList";
 import AddedCourseAndPrefListContainer from "../../containers/timetable/AddedCourseAndPrefListContainer";
@@ -13,6 +14,7 @@ import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
   padding: 0.2em;
+  padding-top: 67px;
   ${media.phone`
     padding: 0
   `};
@@ -68,6 +70,7 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
   const { day: largestDay, period: largestPeriod } = largestDayAndPeriod;
   return (
     <ExtendedRowWrapper className="theme-default">
+      <Header />
       <Column flexBasis="70%">
         <ScrollableTimetable>
           <TimeRowList largestPeriod={largestPeriod} />

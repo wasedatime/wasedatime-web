@@ -13,7 +13,6 @@ import "react-s-alert/dist/s-alert-css-effects/jelly.css";
 import "semantic-ui-css/semantic.min.css";
 
 import Sidebar from "./Sidebar";
-import Header from "./Header";
 import About from "./About";
 import InitialDialog from "./welcome/InitialDialog";
 import TimetableContainer from "../containers/timetable/TimetableContainer";
@@ -32,7 +31,7 @@ import { getUserIsFirstTimeAccess } from "../reducers/user";
 const Wrapper = styled("div")`
   display: grid;
   grid-template-columns: 65px auto;
-  grid-template-rows: 67px auto;
+  grid-template-rows: 0px auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   min-height: 100vh;
@@ -75,7 +74,6 @@ const App = ({ isFirstTimeAccess, isAuthenticated, t }) => {
     <ThemeProvider theme={normalTheme}>
       <Wrapper>
         <Sidebar />
-        <Header />
         <StyledMain>
           {isFirstTimeAccess ? (
             <Switch>

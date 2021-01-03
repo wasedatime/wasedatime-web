@@ -21,7 +21,7 @@ const StyledButton = styled("button")`
   border: none;
   outline: none;
   padding: 0;
-  margin: 0 2rem;
+  margin: 0 1rem;
   background-color: inherit;
   color: #b51e36;
 `;
@@ -62,7 +62,7 @@ class LanguangeMenu extends React.Component {
     const { anchorEl } = this.state;
     const { t } = this.props;
     return (
-      <div style={{ marginLeft: "auto" }}>
+      <div style={{ float: "right" }}>
         <StyledButton onClick={this.handleClick}>
           <FontAwesomeIcon icon={faLanguage} size="3x" transform="shrink-2" />
         </StyledButton>

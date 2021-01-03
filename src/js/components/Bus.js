@@ -15,6 +15,7 @@ import { withNamespaces } from "react-i18next";
 import LANGS from "../config/langs";
 
 // TODO use modal from other ui framework
+import Header from "./Header";
 import ModalContainer from "../containers/ModalContainer";
 import { media } from "../styled-components/utils";
 import { Wrapper } from "../styled-components/Wrapper";
@@ -32,6 +33,7 @@ const wasedaNishiwasedaBusUri =
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   padding: 25px;
+  padding-top: 100px;
 `;
 
 const InfoWrapper = styled("div")`
@@ -383,6 +385,7 @@ class Bus extends React.Component {
           />
           <meta property="og:site_name" content="WasedaTime - Bus" />
         </Helmet>
+        <Header />
         <ExtendedOverlay>
           <InfoWrapper>
             <StyledHeading>{t("bus.busStatus")}</StyledHeading>

@@ -17,8 +17,8 @@ import { media } from "../styled-components/utils";
 
 export const expandLink = () =>
   keyframes`
-    from { width: 0px; }
-    to { width: 85px; }
+    from { opacity: 0; }
+    to { opacity: 1; }
   `;
 
 const StyledNav = styled("nav")`
@@ -58,7 +58,7 @@ const StyledButton = styled("button")`
 const StyledSpan = styled("span")`
   animation-name: ${expandLink};
   animation-duration: 0.5s;
-  width: 85px;
+  width: 90px;
   text-align: left;
   font-size: 1em;
   font-weight: 100;

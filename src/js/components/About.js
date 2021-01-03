@@ -9,6 +9,7 @@ import { Overlay } from "../styled-components/Overlay";
 // import { InvisibleButton } from "../styled-components/Button";
 import homeBackground from "../../img/home_background.jpg";
 import homeBackgroundPhone from "../../img/home_background-phone.jpg";
+import Header from "./Header";
 // import mainBackground from "../../img/main_campus.jpg";
 // import nishiwasedaBackground from "../../img/nishi_waseda_campus.jpg";
 // import toyamaBackground from "../../img/toyama_campus.jpg";
@@ -25,8 +26,7 @@ const HomeWrapper = styled(WrapperWithBackground)`
 
 const ExtendedOverlay = styled(Overlay)`
   background: rgba(0, 0, 0, 0.2);
-  padding: 0 25px;
-  padding-bottom: 30px;
+  padding: 67px 25px;
 `;
 
 const StyledHeader = styled("header")`
@@ -153,6 +153,7 @@ const Home = ({ t }) => {
         background={homeBackground}
         backgroundPhone={homeBackgroundPhone}
       >
+        <Header />
         <ExtendedOverlay>
           <StyledHeader>
             <LogoWrapper>

@@ -19,8 +19,6 @@ export const setUserInfo = (user) => {
     type: IS_AUTHENTICATED,
     payload: {
       ...user.signInUserSession,
-      userDataKey: user.userDataKey,
-      username: user.username,
     },
   };
 };

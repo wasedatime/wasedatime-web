@@ -64,10 +64,14 @@ class Sidebar extends React.Component {
   }
 
   signIn() {
-    Auth.federatedSignIn({
-      provider: "Google",
-      customState: window.location.pathname + window.location.search,
-    });
+    try {
+      Auth.federatedSignIn({
+        provider: "Google",
+        customState: window.location.pathname + window.location.search,
+      });
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   signOut() {
@@ -89,7 +93,15 @@ class Sidebar extends React.Component {
   };
 
   async componentDidMount() {
+    if (
+      this.props.userInfo &&
+      this.props.userInfo.idToken.payload.exp / 1000 < Date.now()
+    ) {
+      this.props.clearUserInfo();
+    }
+
     Hub.listen("auth", ({ payload: { event, data } }) => {
+      console.log(event);
       switch (event) {
         case "signIn":
           this.props.setUserInfo(data);

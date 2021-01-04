@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
-import { Dropdown, Icon } from "semantic-ui-react";
+import { Dropdown, Image, Icon } from "semantic-ui-react";
 import styled, { keyframes } from "styled-components";
 
 export const expandLink = () =>
   keyframes`
-    from { width: 0px; }
-    to { width: 140px; }
+    from { opacity: 0; }
+    to { opacity: 1; }
   `;
 
 const UserMenuTrigger = styled("div")`
@@ -17,6 +17,7 @@ const UserMenuTrigger = styled("div")`
   flex-direction: row;
   align-items: center;
   padding-left: 1rem;
+  padding-bottom: 1rem;
 
   i {
     margin: 0 !important;
@@ -31,7 +32,7 @@ const UserMenuTrigger = styled("div")`
 const StyledSpan = styled("span")`
   animation-name: ${expandLink};
   animation-duration: 0.5s;
-  width: 140px
+  width: 150px
   text-align: left
   font-size: 1.1em
   font-weight: 100;
@@ -40,12 +41,12 @@ const StyledSpan = styled("span")`
 `;
 
 const StyledMenu = styled(Dropdown.Menu)`
-  width: 205px;
-  margin-top: 1rem !important;
+  width: 210px !important;
   background: #555 !important;
 `;
 
 const StyledMenuItem = styled(Dropdown.Item)`
+  width: 100% !important;
   font-size: 1em !important;
   color: #fff !important;
 `;
@@ -56,13 +57,23 @@ const UserMenu = ({ userInfo, signOut, openSignInModal, isHovered, t }) =>
       trigger={
         <UserMenuTrigger>
           <div>
-            <Icon name="user circle outline" size="big" />
+            <Image
+              src={userInfo.idToken.payload.picture}
+              width="40"
+              height="40"
+              circular
+            />
           </div>
-          {isHovered && <StyledSpan>Welcome!</StyledSpan>}
+          {isHovered && (
+            <StyledSpan>
+              {userInfo.idToken.payload.preferred_username}
+            </StyledSpan>
+          )}
         </UserMenuTrigger>
       }
       direction="bottom"
       icon={null}
+      simple
     >
       <StyledMenu>
         <StyledMenuItem disabled>Profile</StyledMenuItem>

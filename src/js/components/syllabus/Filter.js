@@ -20,14 +20,13 @@ const FilterWrapper = styled(Wrapper)`
   overflow-y: auto;
   height: ${(props) =>
     props.isSideBar
-      ? `calc(100vh - ${props.theme.headerHeight} - ${props.theme.searchBarHeight});`
+      ? "100vh"
       : "auto"};
 `;
 
 const FilterOverlay = styled(Overlay)`
   padding: ${(props) =>
     props.isSideBar ? "0.5em 1em 1em 1em;" : "1.5em 1.2em;"}
-  background-color: ${(props) => (props.isSideBar ? "#ccc;" : "#fff;")};
 `;
 
 const FilterTitle = styled("span")`
@@ -56,7 +55,7 @@ class Filter extends React.Component {
     this.createStickyWrapper = () => {
       if (this.wrapper) {
         const offset = this.props.isSideBar
-          ? parseInt(headerHeight, 10) + parseInt(searchBarHeight, 10)
+          ? parseInt(headerHeight, 10)
           : 0;
         this.stickyWrapper = stickybits(this.wrapper, {
           stickyBitStickyOffset: offset,

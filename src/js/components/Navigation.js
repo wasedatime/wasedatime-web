@@ -27,6 +27,8 @@ const StyledNav = styled("nav")`
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
+  position: absolute;
+  width: 100%;
 `;
 
 const StyledLink = styled(Link)`

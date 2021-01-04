@@ -10,6 +10,7 @@ import styled from "styled-components";
 import ReactGA from "react-ga";
 import { gaLanguage } from "../ga/eventCategories";
 import { gaAppendActionWithLng, gaChangeLanguage } from "../ga/eventActions";
+import { media } from "../styled-components/utils";
 
 import LANGS from "../config/langs";
 
@@ -21,6 +22,7 @@ const StyledButton = styled("button")`
   outline: none;
   padding: 0;
   margin: 0 1rem;
+  ${media.phone`margin: 0 0 0 0.5em; font-size: 0.6em;`}
   background-color: inherit;
   color: #b51e36;
 `;

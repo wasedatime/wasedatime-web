@@ -13,6 +13,7 @@ import "react-s-alert/dist/s-alert-css-effects/jelly.css";
 import "semantic-ui-css/semantic.min.css";
 
 import Sidebar from "./Sidebar";
+import MobileHeader from "./MobileHeader";
 import About from "./About";
 import InitialDialog from "./welcome/InitialDialog";
 import TimetableContainer from "../containers/timetable/TimetableContainer";
@@ -28,6 +29,9 @@ import CoronaInfo from "./CoronaInfo";
 import NotFound from "./NotFound";
 import { getUserIsFirstTimeAccess } from "../reducers/user";
 
+import { media, sizes } from "../styled-components/utils";
+import MediaQuery from "react-responsive";
+
 const Wrapper = styled("div")`
   display: grid;
   grid-template-columns: 65px auto;
@@ -42,6 +46,7 @@ const StyledMain = styled("main")`
   flex-direction: column;
   flex: 1 0 auto;
   grid-area: 2 / 2 / 3 / 3;
+  ${media.tablet`grid-area: 1 / 1 / 4 / 4;`}
   width: 100%;
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
@@ -73,7 +78,10 @@ const App = ({ isFirstTimeAccess, isAuthenticated, t }) => {
   return (
     <ThemeProvider theme={normalTheme}>
       <Wrapper>
-        <Sidebar />
+        <MediaQuery minWidth={sizes.tablet}>
+          {(matches) => (matches ? <Sidebar /> : <MobileHeader />)}
+        </MediaQuery>
+
         <StyledMain>
           {isFirstTimeAccess ? (
             <Switch>

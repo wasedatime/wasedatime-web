@@ -17,7 +17,7 @@ const StyledHeader = styled("header")`
   z-index: 900;
 `;
 
-const Header = ({ onInputChange, placeholder, inputText }) => {
+const Header = ({ onInputChange, placeholder, inputText, disabled }) => {
   return (
     <StyledHeader>
       <Grid style={{ width: "100%" }}>
@@ -35,6 +35,7 @@ const Header = ({ onInputChange, placeholder, inputText }) => {
                     : () => {}
                 }
                 value={inputText || ""}
+                disabled={disabled}
               />
             </div>
           </Grid.Column>

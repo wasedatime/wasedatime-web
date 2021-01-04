@@ -19,10 +19,10 @@ const modalStyle = (isDesktop) => ({
   },
   content: {
     position: "absolute",
-    top: "15%",
-    left: isDesktop ? "30%" : "10%",
-    right: isDesktop ? "30%" : "10%",
-    bottom: isDesktop ? "30%" : "20%",
+    top: isDesktop ? "25vh" : "20vh",
+    left: isDesktop ? "30vw" : "10vw",
+    right: isDesktop ? "30vw" : "10vw",
+    bottom: isDesktop ? "45vh" : "25vh",
     backgroundColor: "#fff",
     overflowY: "auto",
     overflowScrolling: "touch",
@@ -46,7 +46,11 @@ const StyledWarning = styled(Header)`
 const SignInModal = ({ isModalOpen, isExpired, signIn, closeModal, t }) => (
   <MediaQuery minWidth={sizes.desktop}>
     {(matches) => (
-      <Modal isOpen={isModalOpen} style={modalStyle(matches)}>
+      <Modal
+        isOpen={isModalOpen}
+        style={modalStyle(matches)}
+        onRequestClose={closeModal}
+      >
         <StyledHeader>{t(`user.Sign In`)}</StyledHeader>
         {isExpired && (
           <StyledWarning color="red">
@@ -54,9 +58,7 @@ const SignInModal = ({ isModalOpen, isExpired, signIn, closeModal, t }) => (
           </StyledWarning>
         )}
         <p>{t(`user.sign in description`)}</p>
-        <br />
         <SignInButton onClickFunc={signIn} />
-        <br />
         <br />
         <br />
         <p style={{ fontSize: "1rem" }}>
@@ -66,9 +68,6 @@ const SignInModal = ({ isModalOpen, isExpired, signIn, closeModal, t }) => (
           <a href="/">{t(`user.Terms of Service`)}</a>
           {t(`user.agreement on privacy policy 3`)}
         </p>
-        <Button onClick={closeModal}>
-          {t(`user.Keep using without sign in`)}
-        </Button>
       </Modal>
     )}
   </MediaQuery>

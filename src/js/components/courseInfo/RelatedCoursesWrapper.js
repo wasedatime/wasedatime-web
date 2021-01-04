@@ -16,7 +16,7 @@ const ExtendedOverlay = styled(Overlay)`
 
 const RelatedCoursesHeading = styled("div")`
   z-index: 1000;
-  background-color: #ccc;
+  background-color: #fff;
 `;
 
 const StyledSubHeading = styled("h2")`

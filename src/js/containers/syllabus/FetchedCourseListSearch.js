@@ -380,6 +380,7 @@ class FetchedCourseSearch extends React.Component {
           onInputChange={this.handleInputChange}
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
+          disabled={false}
         />
         {/*<SearchBar
           onInputChange={this.handleInputChange}

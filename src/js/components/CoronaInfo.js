@@ -201,7 +201,7 @@ class CoronaInfo extends React.Component {
           <meta property="og:site_name" content="WasedaTime - Corona Info" />
         </Helmet>
 
-        <Topbar />
+        <Topbar placeholder="" disabled={true} />
 
         <Header size="huge" style={{ textAlign: "center", marginTop: "5vw" }}>
           {this.props.t("coronaInfo.title")}

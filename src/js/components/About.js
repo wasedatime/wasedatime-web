@@ -148,7 +148,10 @@ const Home = ({ t }) => {
         background={homeBackground}
         backgroundPhone={homeBackgroundPhone}
       >
-        <Header />
+        <Header
+          placeholder="Search course (in construction...)"
+          disabled={true}
+        />
         <StyledArticle>
           <LogoWrapper>
             <Logo src={logo} alt="WasedaTime Logo" />

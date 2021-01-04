@@ -23,13 +23,13 @@ export const displayLinkText = () =>
 
 export const moveLinkText = () =>
   keyframes`
-    from { margin-left: 12px; }
-    to { margin-left: 40px; }
+    from { padding-left: 12px; }
+    to { padding-left: 35px; }
   `;
 
 const StyledNav = styled("nav")`
   display: flex;
-  align-items: center;
+  align-items: left;
   flex-direction: column;
   overflow-x: hidden;
   overflow-y: auto;
@@ -45,9 +45,12 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 1.1em;
   font-weight: 330;
-  margin: 10px auto;
-  margin-left: ${(props) => (props.isHovered ? "40px" : "12px")};
+  margin: 10px 0px;
+  padding-left: ${(props) => (props.isHovered ? "35px" : "12px")};
   width: ${(props) => (props.isHovered ? "150px" : "40px")};
+  &:hover {
+    color: ${(props) => props.theme.colorPrimary};
+  }
 `;
 
 const StyledButton = styled("button")`
@@ -74,7 +77,7 @@ const StyledButton = styled("button")`
 const StyledSpan = styled("span")`
   animation-name: ${displayLinkText};
   animation-duration: 0.5s;
-  width: 90px;
+  width: 120px;
   text-align: left;
   font-size: 1em;
   font-weight: 100;

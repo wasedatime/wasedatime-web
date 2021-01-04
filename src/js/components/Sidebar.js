@@ -138,7 +138,7 @@ class Sidebar extends React.Component {
             )}
           </StyledLink>
           <Navigation isHovered={isHovered} />
-          <div style={{ position: "absolute", bottom: "3em" }}>
+          <div style={{ position: "absolute", bottom: "5em" }}>
             <UserMenu
               userInfo={userInfo}
               signOut={this.signOut}

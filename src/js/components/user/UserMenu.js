@@ -16,7 +16,7 @@ const UserMenuTrigger = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 1rem;
+  padding-left: 0.9rem;
   padding-bottom: 1rem;
 
   i {

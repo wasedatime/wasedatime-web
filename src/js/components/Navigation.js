@@ -15,10 +15,16 @@ import {
 
 import { media } from "../styled-components/utils";
 
-export const expandLink = () =>
+export const displayLinkText = () =>
   keyframes`
     from { opacity: 0; }
     to { opacity: 1; }
+  `;
+
+export const moveLinkText = () =>
+  keyframes`
+    from { margin-left: 12px; }
+    to { margin-left: 40px; }
   `;
 
 const StyledNav = styled("nav")`
@@ -32,13 +38,16 @@ const StyledNav = styled("nav")`
 `;
 
 const StyledLink = styled(Link)`
+  animation-name: ${(props) => (props.isHovered ? moveLinkText : "none")}
+  animation-duration: 0.5s;
   ${media.phone`padding: 0.2em 0.4em 0 0.4em;`};
-  text-align: center;
+  text-align: left;
   text-decoration: none;
   font-size: 1.1em;
   font-weight: 330;
   margin: 10px auto;
-  height: 50px;
+  margin-left: ${(props) => (props.isHovered ? "40px" : "12px")};
+  width: ${(props) => (props.isHovered ? "150px" : "40px")};
 `;
 
 const StyledButton = styled("button")`
@@ -55,10 +64,15 @@ const StyledButton = styled("button")`
   &:hover {
     color: ${(props) => props.theme.colorPrimary};
   }
+
+  svg {
+    width: 40px !important;
+    text-align: center !important;
+  }
 `;
 
 const StyledSpan = styled("span")`
-  animation-name: ${expandLink};
+  animation-name: ${displayLinkText};
   animation-duration: 0.5s;
   width: 90px;
   text-align: left;
@@ -110,7 +124,7 @@ const Navigation = ({ isHovered, t }) => {
       <FontAwesomeIcon icon={itemIcon} size="2x" transform="shrink-2" />
     );
     return (
-      <StyledLink to={itemPath} key={itemPath}>
+      <StyledLink to={itemPath} key={itemPath} isHovered={isHovered}>
         <StyledButton isClicked={pathname === itemPath}>
           {fontBase}
           {isHovered && <StyledSpan>{itemName}</StyledSpan>}

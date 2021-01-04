@@ -122,7 +122,6 @@ const DatePickerSpan = styled("span")`
 const DatePickerButton = styled("button")`
   padding: 0.5em 1em;
   border: none;
-  border-radius: 5px;
   width: 100%;
   background: #efefef;
 
@@ -138,7 +137,7 @@ const DatePickerButton = styled("button")`
 const DatetimeClearButton = styled("button")`
   padding: 0.5em 1em;
   border: none;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   width: 25%;
   background: #efefef;
 
@@ -337,7 +336,11 @@ const createStatusComponent = (status, t) => {
 };
 
 const DateSelector = forwardRef(({ value, onClick }, ref) => (
-  <DatePickerButton onClick={onClick} ref={ref}>
+  <DatePickerButton
+    onClick={onClick}
+    ref={ref}
+    style={{ borderRadius: "5px 0 0 5px" }}
+  >
     <FontAwesomeIcon icon={faCalendarAlt} size="1x" /> {value}
   </DatePickerButton>
 ));

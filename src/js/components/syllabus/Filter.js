@@ -6,10 +6,7 @@ import { Button } from "semantic-ui-react";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 
-import {
-  headerHeight,
-  searchBarHeight,
-} from "../../styled-components/variables";
+import { headerHeight } from "../../styled-components/variables";
 import FilterGroup from "./FilterGroup";
 import FilterEvalGroup from "./FilterEvalGroup";
 import { Wrapper } from "../../styled-components/Wrapper";
@@ -18,15 +15,12 @@ import { Overlay } from "../../styled-components/Overlay";
 const FilterWrapper = styled(Wrapper)`
   flex: none;
   overflow-y: auto;
-  height: ${(props) =>
-    props.isSideBar
-      ? "100vh"
-      : "auto"};
+  height: ${(props) => (props.isSideBar ? "100vh" : "auto")};
 `;
 
 const FilterOverlay = styled(Overlay)`
   padding: ${(props) =>
-    props.isSideBar ? "0.5em 1em 1em 1em;" : "1.5em 1.2em;"}
+    props.isSideBar ? "0.5em 1em 1em 1em;" : "1.5em 1.2em;"};
 `;
 
 const FilterTitle = styled("span")`
@@ -54,9 +48,7 @@ class Filter extends React.Component {
 
     this.createStickyWrapper = () => {
       if (this.wrapper) {
-        const offset = this.props.isSideBar
-          ? parseInt(headerHeight, 10)
-          : 0;
+        const offset = this.props.isSideBar ? parseInt(headerHeight, 10) : 0;
         this.stickyWrapper = stickybits(this.wrapper, {
           stickyBitStickyOffset: offset,
         });

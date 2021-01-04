@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
-import { Header, Button } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 import Modal from "../Modal";
 import SignInButton from "./SignInButton";
 import MediaQuery from "react-responsive";

@@ -95,7 +95,7 @@ class Sidebar extends React.Component {
   async componentDidMount() {
     if (
       this.props.userInfo &&
-      this.props.userInfo.idToken.payload.exp / 1000 < Date.now()
+      this.props.userInfo.idToken.payload.exp < Date.now() / 1000
     ) {
       this.props.clearUserInfo();
     }

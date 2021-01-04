@@ -35,11 +35,16 @@ const CourseItemWrapper = styled("div")`
   flex: 1 0 auto;
   align-items: stretch;
   background-color: #fff;
-  border: none;
-  margin: 0.2em 0;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;
+  margin: 0.5em 0.5em;
   padding: 0.5em 0.8em;
-  width: 100%;
+  width: 90%;
   line-height: 150%;
+  &:hover {
+      background-color: #eee;
+      box-shadow: none;
+  }
 `;
 
 const StyledHeading = styled("h3")`
@@ -153,7 +158,6 @@ const ViewInfoButton = styled("a")`
 
 const ViewInfoIconButton = styled("a")`
   display: block;
-  background-color: #fff;
   border: 0px;
   color: #ffae42;
   text-decoration: none;

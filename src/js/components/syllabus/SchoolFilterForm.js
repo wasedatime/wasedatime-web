@@ -33,7 +33,6 @@ const RowWrapper = styled("div")`
   flex-direction: row;
   justify-content: center;
   overflow-y: hidden;
-  background-color: #ccc;
 `;
 
 const StyledSegment = styled(Segment)`

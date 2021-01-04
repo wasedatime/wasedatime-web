@@ -23,31 +23,6 @@ export const setUserInfo = (user) => {
   };
 };
 
-export const updateUserSession = () => async (dispatch) => {
-  await Auth.currentSession().then((session) => {
-    dispatch({
-      type: SESSION_UPDATED,
-      payload: session,
-    });
-  });
-};
-
-export const updateUserInfo = () => async (dispatch) => {
-  await Auth.currentSession();
-  await Auth.currentAuthenticatedUser()
-    .then((user) => {
-      dispatch({
-        type: IS_AUTHENTICATED,
-        payload: { ...user.attributes, ...user.signInUserSession },
-      });
-    })
-    .catch((e) => {
-      dispatch({
-        type: NOT_AUTHENTICATED,
-      });
-    });
-};
-
 export const clearUserInfo = () => ({
   type: NOT_AUTHENTICATED,
 });

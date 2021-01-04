@@ -10,7 +10,7 @@ import styled, { keyframes } from "styled-components";
 import { Auth, Hub } from "aws-amplify";
 import { connect } from "react-redux";
 import { getUserInfo } from "../reducers/user";
-import { setUserInfo, clearUserInfo, updateUserSession } from "../actions/user";
+import { setUserInfo, clearUserInfo } from "../actions/user";
 
 export const expandSideBar = () =>
   keyframes`
@@ -165,7 +165,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   setUserInfo,
   clearUserInfo,
-  updateUserSession,
 };
 
 export default withRouter(

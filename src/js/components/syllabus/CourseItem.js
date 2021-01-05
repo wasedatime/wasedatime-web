@@ -42,8 +42,9 @@ const CourseItemWrapper = styled("div")`
   width: 90%;
   line-height: 150%;
   &:hover {
-      background-color: #eee;
-      box-shadow: none;
+    background-color: #eee;
+    box-shadow: none;
+    cursor: pointer;
   }
 `;
 
@@ -294,52 +295,17 @@ const CourseItem = ({
     />
   );
 
-  const reviewButtonBar = (
-    <MediaQuery minWidth={sizes.desktop}>
-      {(matches) => {
-        return (
-          matches &&
-          !isDetailDisplayed && (
-            <InfoButtonsWrapper>
-              <ViewInfoButton
-                href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
-                target="_blank"
-              >
-                <FontAwesomeIcon icon={faInfoCircle} />{" "}
-                {t("courseInfo.Details.title")}
-              </ViewInfoButton>
-            </InfoButtonsWrapper>
-          )
-        );
-      }}
-    </MediaQuery>
-  );
-
-  const reviewButtonIcon = ( // Share Button Function for small page
-    <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => {
-        /* To course Info Button */
-        return (
-          matches &&
-          !isDetailDisplayed && (
-            <ViewInfoIconButton
-              href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
-            >
-              <FontAwesomeIcon
-                icon={faInfoCircle}
-                size="2x"
-                transform="shrink-2"
-              />{" "}
-            </ViewInfoIconButton>
-          )
-        );
-      }}
-    </MediaQuery>
-  );
-
   return (
     <RowWrapper>
-      <CourseItemWrapper>
+      <CourseItemWrapper
+        onClick={() =>
+          !isDetailDisplayed &&
+          window.open(
+            `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`,
+            "_blank"
+          )
+        }
+      >
         <StyledHeading>{highlightedTitle}</StyledHeading>
         {isDetailDisplayed && (
           <StyledSubHeading>{course[SYLLABUS_KEYS.SUBTITLE]}</StyledSubHeading>
@@ -385,7 +351,6 @@ const CourseItem = ({
               {buttonIcon}
             </InvisibleButton>
 
-            <InvisibleButton>{reviewButtonIcon}</InvisibleButton>
             <FetchedShareButton
               shareLink={shareLink}
               isDetailDisplayed={isDetailDisplayed}
@@ -411,7 +376,6 @@ const CourseItem = ({
             sizesDesktop={sizes.desktop}
             needLineBreak={needLineBreak}
           />
-          <InvisibleButton>{reviewButtonBar}</InvisibleButton>
         </DetailWrapper>
       </CourseItemWrapper>
     </RowWrapper>

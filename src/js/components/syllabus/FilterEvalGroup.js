@@ -10,12 +10,23 @@ const Range = Slider.createSliderWithTooltip(Slider.Range);
 
 const StyledDropdown = styled(Dropdown)`
   font-size: 1em !important;
+  min-height: 32px !important;
+  padding: 0px !important;
+  padding-top: 0.3rem !important;
+
   .divider.text {
     line-height: 1.3 !important;
+    font-size: 1.2em !important;
+    margin: 0px 1rem !important;
   }
+
   .menu .text {
     font-size: 1.5em !important;
     line-height: 1.2 !important;
+  }
+
+  i {
+    padding: 0.5rem 0.2rem 0.5rem 0px !important;
   }
 `;
 

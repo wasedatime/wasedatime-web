@@ -15,7 +15,7 @@ import { Overlay } from "../../styled-components/Overlay";
 const FilterWrapper = styled(Wrapper)`
   flex: none;
   overflow-y: auto;
-  height: ${(props) => (props.isSideBar ? "100vh" : "auto")};
+  height: ${(props) => (props.isSideBar ? "90vh" : "auto")};
 `;
 
 const FilterOverlay = styled(Overlay)`

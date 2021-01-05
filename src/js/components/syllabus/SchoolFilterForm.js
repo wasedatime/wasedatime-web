@@ -32,7 +32,6 @@ const RowWrapper = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  overflow-y: hidden;
 `;
 
 const StyledSegment = styled(Segment)`
@@ -77,7 +76,7 @@ class SchoolFilterForm extends React.Component {
   schoolImportPanes = () => {
     const { loadedSchools, loadingSchool, schoolsUpToLimit } = this.state;
     const { t } = this.props;
-    const schoolGroupNames = ["Undergraduate", "Graduate", "Other"];
+    const schoolGroupNames = ["Undergraduate", "Graduate", "Special"];
     const ImportCardGroup = ({ schoolNameIconMap, itemsPerRow }) => (
       <Card.Group itemsPerRow={itemsPerRow} style={{ marginTop: "0.5em" }}>
         {Object.keys(schoolNameIconMap).map((schoolName) => (
@@ -274,7 +273,7 @@ class SchoolFilterForm extends React.Component {
                     <LargerButton
                       color="green"
                       icon="add"
-                      content={t("syllabus.School Filter.Import")}
+                      content={t("syllabus.School Filter.Choose Schools")}
                     />
                   }
                   content={<Tab panes={this.schoolImportPanes()} />}
@@ -288,7 +287,7 @@ class SchoolFilterForm extends React.Component {
                     <LargerButton
                       color="red"
                       icon="minus"
-                      content={t("syllabus.School Filter.Remove")}
+                      content={t("syllabus.School Filter.Remove Schools")}
                     />
                   }
                   content={this.schoolRemoveForm()}
@@ -313,7 +312,7 @@ class SchoolFilterForm extends React.Component {
                       <LargerButton
                         color="green"
                         icon="add"
-                        content={t("syllabus.School Filter.Import")}
+                        content={t("syllabus.School Filter.Choose Schools")}
                       />
                     }
                     content={<Tab panes={this.schoolImportPanes()} />}

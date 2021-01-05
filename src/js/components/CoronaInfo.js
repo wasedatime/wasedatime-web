@@ -203,7 +203,7 @@ class CoronaInfo extends React.Component {
 
         <Topbar placeholder="" disabled={true} />
 
-        <Header size="huge" style={{ textAlign: "center", marginTop: "5vw" }}>
+        <Header size="huge" style={{ textAlign: "center", marginTop: "100px" }}>
           {this.props.t("coronaInfo.title")}
         </Header>
         <p style={{ textAlign: "center" }}>

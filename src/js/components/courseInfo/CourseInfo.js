@@ -186,7 +186,7 @@ class CourseInfo extends React.Component {
     );
     let thisCourseReviews = [];
     let relatedCourseReviews = {};
-    courseReviews.forEach((c, i) => {
+    (courseReviews || []).forEach((c, i) => {
       if (i === 0) thisCourseReviews = c.data;
       else {
         relatedCourseReviews[courseKeysToFetchReviews[i]] = c.data;
@@ -260,7 +260,6 @@ class CourseInfo extends React.Component {
       return reviews;
     } catch (error) {
       console.error(error);
-      this.setState({ error: true });
     }
   }
 

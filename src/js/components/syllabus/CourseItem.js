@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import MediaQuery from "react-responsive";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
-  faInfoCircle,
   faExternalLinkSquareAlt,
   faMapMarkerAlt,
   faMinusCircle,
@@ -126,49 +124,6 @@ const Description = styled("div")`
   flex: 1 0 auto;
   text-align: left;
 `;
-
-const InfoButtonsWrapper = styled("div")`
-  flex: 1 0 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: 0.9em;
-`;
-
-// Info Button
-const ViewInfoButton = styled("a")`
-  display: block;
-  background-color: #ffae42;
-  border: 0px;
-  border-radius: 5px;
-  color: #fff;
-  padding: 3px 0.7rem 1px;
-  margin-bottom: 4px;
-  text-align: center;
-  text-decoration: none;
-  border: 2px solid #ffae42;
-  &:hover {
-    color: #ffae42;
-    background-color: #fff;
-    border: 2px solid #ffae42;
-  }
-  &:focus {
-    outline: none;
-  }
-`; // Case of large Screen
-
-const ViewInfoIconButton = styled("a")`
-  display: block;
-  border: 0px;
-  color: #ffae42;
-  text-decoration: none;
-  &:hover {
-    color: #ffae42;
-  }
-  &:focus {
-    outline: none;
-  }
-`; // Case of Small Screen
 
 const OccurrenceList = styled("ul")`
   list-style: none;

@@ -300,6 +300,7 @@ const CourseItem = ({
             <InvisibleButton /* Add Button */
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 handleOnClick(title, lng);
               }}
             >

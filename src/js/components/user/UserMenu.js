@@ -22,8 +22,7 @@ const UserMenuTrigger = styled("div")`
 
   i {
     margin: 0 !important;
-    font-size: 2.5em !important;
-    ${media.tablet`font-size: 1.5em !important; margin-right: 0.5rem;`}
+    font-size: 2em !important;
   }
 
   &:hover {
@@ -55,7 +54,14 @@ const StyledMenuItem = styled(Dropdown.Item)`
   color: #fff !important;
 `;
 
-const UserMenu = ({ userInfo, signOut, openSignInModal, isHovered, t }) =>
+const UserMenu = ({
+  userInfo,
+  signOut,
+  openSignInModal,
+  isHovered,
+  isMobileMode,
+  t,
+}) =>
   userInfo ? (
     <Dropdown
       trigger={
@@ -63,8 +69,8 @@ const UserMenu = ({ userInfo, signOut, openSignInModal, isHovered, t }) =>
           <div>
             <Image
               src={userInfo.idToken.payload.picture}
-              width="40"
-              height="40"
+              width={isMobileMode ? "35" : "40"}
+              height={isMobileMode ? "35" : "40"}
               circular
             />
           </div>
@@ -75,7 +81,6 @@ const UserMenu = ({ userInfo, signOut, openSignInModal, isHovered, t }) =>
           )}
         </UserMenuTrigger>
       }
-      direction="bottom"
       icon={null}
       simple
     >
@@ -86,8 +91,8 @@ const UserMenu = ({ userInfo, signOut, openSignInModal, isHovered, t }) =>
     </Dropdown>
   ) : (
     <UserMenuTrigger onClick={openSignInModal}>
-      <Icon name="user circle outline" size="big" />
-      <StyledSpan isHovered={isHovered}>Sign in</StyledSpan>
+      <Icon name="user circle outline" size="massive" />
+      {!isMobileMode && <StyledSpan isHovered={isHovered}>Sign in</StyledSpan>}
     </UserMenuTrigger>
   );
 

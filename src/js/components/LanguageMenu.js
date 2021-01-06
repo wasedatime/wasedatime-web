@@ -22,9 +22,9 @@ const StyledButton = styled("button")`
   outline: none;
   padding: 0;
   margin: 0 1rem;
-  ${media.phone`margin: 0 0 0 0.5em; font-size: 0.6em;`}
-  background-color: inherit;
   color: #b51e36;
+  background-color: inherit;
+  ${media.phone`margin: 0 0 0 0.5em; font-size: 0.6em; color: #fff;`}
 `;
 
 class LanguangeMenu extends React.Component {

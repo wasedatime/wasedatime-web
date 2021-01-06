@@ -31,7 +31,7 @@ const Logo = styled("img")`
   height: 50px;
 `;
 
-const MobileHeader = () => {
+const MobileHeader = ({ userInfo, signOut, toggleSignInModal }) => {
   return (
     <StyledHeader>
       <StyledLink to="/about">
@@ -39,8 +39,14 @@ const MobileHeader = () => {
       </StyledLink>
       <MobileNav />
       <div style={{ marginLeft: "auto" }}>
-        <LanguangeMenu />
-        <UserMenu />
+        <LanguangeMenu isMobileMode={true} />
+        <UserMenu
+          userInfo={userInfo}
+          signOut={signOut}
+          openSignInModal={toggleSignInModal}
+          isHovered={false}
+          isMobileMode={true}
+        />
       </div>
     </StyledHeader>
   );

@@ -1,5 +1,6 @@
 import React from "react";
-// import { Auth } from "aws-amplify";
+import API from "@aws-amplify/api";
+import { Auth, Hub } from "aws-amplify";
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
@@ -14,6 +15,7 @@ import "semantic-ui-css/semantic.min.css";
 
 import Sidebar from "./Sidebar";
 import MobileHeader from "./MobileHeader";
+import SignInModal from "./user/SignInModal";
 import About from "./About";
 import InitialDialog from "./welcome/InitialDialog";
 import TimetableContainer from "../containers/timetable/TimetableContainer";
@@ -27,7 +29,9 @@ import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
 import NotFound from "./NotFound";
-import { getUserIsFirstTimeAccess } from "../reducers/user";
+import { getUserInfo, getUserIsFirstTimeAccess } from "../reducers/user";
+import { setUserInfo, clearUserInfo } from "../actions/user";
+import { getAddedCoursesAndPrefs } from "../reducers/addedCourses";
 
 import { media, sizes } from "../styled-components/utils";
 import MediaQuery from "react-responsive";
@@ -51,88 +55,247 @@ const StyledMain = styled("main")`
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
-const App = ({ isFirstTimeAccess, isAuthenticated, t }) => {
-  window.addEventListener("storage", (e) => {
-    if (e.key === "wasedatime-2020-state-ac") {
-      Alert.warning(
-        <React.Fragment>
-          {t("app.courseChange")}
-          <a
-            href={"/"}
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.reload(true);
-            }}
-          >
-            {t("app.RefreshLink")}
-          </a>
-        </React.Fragment>,
-        {
-          timeout: "none",
-          position: "bottom",
-          effect: "jelly",
-        }
-      );
-    }
-  });
-  return (
-    <ThemeProvider theme={normalTheme}>
-      <Wrapper>
-        <MediaQuery minWidth={sizes.tablet}>
-          {(matches) => (matches ? <Sidebar /> : <MobileHeader />)}
-        </MediaQuery>
-
-        <StyledMain>
-          {isFirstTimeAccess ? (
-            <Switch>
-              <Route exact path="/welcome" component={InitialDialog} />
-              <Route render={() => <Redirect to="/welcome" />} />
-            </Switch>
-          ) : (
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={() => <Redirect to="/timetable" />}
-              />
-              <Route
-                exact
-                path="/index.html"
-                render={() => <Redirect to="/timetable" />}
-              />
-              <Route exact path="/about" component={About} />
-              <Route exact path="/timetable" component={TimetableContainer} />
-              <Route exact path="/syllabus" component={Syllabus} />
-              {/* <Route exact path="/roomfinder" component={RoomFinder} /> */}
-              <Route exact path="/joinus" component={JoinUs} />
-              <Route exact path="/bus" component={Bus} />
-              <Route path="/career" component={Career} />
-              <Route exact path="/corona-info" component={CoronaInfo} />
-              <Route exact path="/courseInfo" component={CourseInfo} />
-              <Route exact path="/verify" component={RedirectPage} />
-              <Route
-                exact
-                path="/privacy-policy"
-                render={() => {
-                  window.location.href = "/privacy-policy.html";
-                }}
-              />
-              <Route component={NotFound} />
-            </Switch>
-          )}
-        </StyledMain>
-        <Alert stack={{ limit: 1 }} timeout={3000} />
-      </Wrapper>
-    </ThemeProvider>
-  );
-};
-
-const mapStateToProps = (state) => {
-  return {
-    isFirstTimeAccess: getUserIsFirstTimeAccess(state),
+class App extends React.Component {
+  state = {
+    isSignInModalOpen: false,
+    isUserSessionExpired: false,
   };
+
+  timeout(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  signIn() {
+    try {
+      Auth.federatedSignIn({
+        provider: "Google",
+        customState: window.location.pathname + window.location.search,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  signOut() {
+    Auth.signOut();
+  }
+
+  toggleSignInModal = () => {
+    this.setState((prevState, props) => ({
+      isSignInModalOpen: !prevState.isSignInModalOpen,
+    }));
+  };
+
+  letUserSignInAfterExpired = () => {
+    this.setState({ isUserSessionExpired: true });
+    this.props.clearUserInfo();
+    this.setState({ isSignInModalOpen: true });
+  };
+
+  postTimetable() {
+    const addedCoursesAndPrefs = [
+      ...this.props.addedCoursesAndPrefs.fall,
+      ...this.props.addedCoursesAndPrefs.spring,
+    ];
+    let coursesBySem = {
+      spring_sem: [],
+      fall_sem: [],
+      spring_quart: [],
+      summer_quart: [],
+      fall_quart: [],
+      winter_quart: [],
+      full: [],
+    };
+    addedCoursesAndPrefs.forEach((c) => {
+      const courseAndPref = {
+        id: c.course.a,
+        color: c.color,
+        displayLang: c.displayLang,
+      };
+      if (c.course.h.match(/0s|0i|1i|0t|1t|f/g))
+        coursesBySem.spring_sem.push(courseAndPref);
+      if (c.course.h.match(/2s|2i|3i|2t|3t|f/g))
+        coursesBySem.fall_sem.push(courseAndPref);
+      if (c.course.h.match(/0q/g))
+        coursesBySem.spring_quart.push(courseAndPref);
+      if (c.course.h.match(/1q/g))
+        coursesBySem.summer_quart.push(courseAndPref);
+      if (c.course.h.match(/2q/g)) coursesBySem.fall_quart.push(courseAndPref);
+      if (c.course.h.match(/3q/g))
+        coursesBySem.winter_quart.push(courseAndPref);
+    });
+    const coursesAndPrefs = Object.keys(coursesBySem).map((sem) => {
+      return {
+        semester: sem,
+        courses: coursesBySem[sem],
+      };
+    });
+    console.log(this.props.userInfo.idToken.jwtToken);
+    API.post("wasedatime-dev", "/timetable", {
+      body: { data: coursesAndPrefs },
+      headers: {
+        Authorization: this.props.userInfo
+          ? this.props.userInfo.idToken.jwtToken
+          : "",
+      },
+    });
+  }
+
+  async componentDidMount() {
+    window.addEventListener("storage", (e) => {
+      if (e.key === "wasedatime-2020-state-ac") {
+        Alert.warning(
+          <React.Fragment>
+            {this.props.t("app.courseChange")}
+            <a
+              href={"/"}
+              onClick={(e) => {
+                e.preventDefault();
+                window.location.reload(true);
+              }}
+            >
+              {this.props.t("app.RefreshLink")}
+            </a>
+          </React.Fragment>,
+          {
+            timeout: "none",
+            position: "bottom",
+            effect: "jelly",
+          }
+        );
+      }
+    });
+
+    if (
+      this.props.userInfo &&
+      this.props.userInfo.idToken.payload.exp < Date.now() / 1000
+    ) {
+      this.props.clearUserInfo();
+    }
+
+    Hub.listen("auth", ({ payload: { event, data } }) => {
+      console.log(event);
+      switch (event) {
+        case "signIn":
+          this.props.setUserInfo(data);
+          break;
+        case "signOut":
+          this.props.clearUserInfo();
+          break;
+        case "customOAuthState":
+          this.props.history.push(data);
+          break;
+        default:
+          console.log(event);
+          console.log(data);
+      }
+    });
+
+    if (this.props.userInfo) {
+      this.postTimetable();
+
+      const res = await API.get("wasedatime-dev", "/timetable", {
+        headers: {
+          Authorization: this.props.userInfo
+            ? this.props.userInfo.idToken.jwtToken
+            : "",
+        },
+      });
+      console.log(res);
+    }
+
+    await this.timeout(3600000);
+    this.letUserSignInAfterExpired();
+  }
+
+  render() {
+    const { isFirstTimeAccess, userInfo } = this.props;
+    const { isSignInModalOpen, isUserSessionExpired } = this.state;
+    return (
+      <ThemeProvider theme={normalTheme}>
+        <Wrapper>
+          <MediaQuery minWidth={sizes.tablet}>
+            {(matches) =>
+              matches ? (
+                <Sidebar
+                  userInfo={userInfo}
+                  signOut={this.signOut}
+                  toggleSignInModal={this.toggleSignInModal}
+                />
+              ) : (
+                <MobileHeader
+                  userInfo={userInfo}
+                  signOut={this.signOut}
+                  toggleSignInModal={this.toggleSignInModal}
+                />
+              )
+            }
+          </MediaQuery>
+
+          <StyledMain>
+            {isFirstTimeAccess ? (
+              <Switch>
+                <Route exact path="/welcome" component={InitialDialog} />
+                <Route render={() => <Redirect to="/welcome" />} />
+              </Switch>
+            ) : (
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  render={() => <Redirect to="/timetable" />}
+                />
+                <Route
+                  exact
+                  path="/index.html"
+                  render={() => <Redirect to="/timetable" />}
+                />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/timetable" component={TimetableContainer} />
+                <Route exact path="/syllabus" component={Syllabus} />
+                {/* <Route exact path="/roomfinder" component={RoomFinder} /> */}
+                <Route exact path="/joinus" component={JoinUs} />
+                <Route exact path="/bus" component={Bus} />
+                <Route path="/career" component={Career} />
+                <Route exact path="/corona-info" component={CoronaInfo} />
+                <Route exact path="/courseInfo" component={CourseInfo} />
+                <Route exact path="/verify" component={RedirectPage} />
+                <Route
+                  exact
+                  path="/privacy-policy"
+                  render={() => {
+                    window.location.href = "/privacy-policy.html";
+                  }}
+                />
+                <Route component={NotFound} />
+              </Switch>
+            )}
+          </StyledMain>
+
+          <SignInModal
+            isModalOpen={isSignInModalOpen}
+            isExpired={isUserSessionExpired}
+            signIn={this.signIn}
+            closeModal={this.toggleSignInModal}
+          />
+          <Alert stack={{ limit: 1 }} timeout={3000} />
+        </Wrapper>
+      </ThemeProvider>
+    );
+  }
+}
+
+const mapStateToProps = (state) => ({
+  isFirstTimeAccess: getUserIsFirstTimeAccess(state),
+  userInfo: getUserInfo(state),
+  addedCoursesAndPrefs: getAddedCoursesAndPrefs(state.addedCourses),
+});
+
+const mapDispatchToProps = {
+  setUserInfo,
+  clearUserInfo,
 };
 
 export default withNamespaces("translation")(
-  withRouter(connect(mapStateToProps, null)(App))
+  withRouter(connect(mapStateToProps, mapDispatchToProps)(App))
 );

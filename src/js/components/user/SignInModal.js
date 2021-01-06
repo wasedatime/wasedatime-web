@@ -14,7 +14,7 @@ const modalStyle = (isDesktop) => ({
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: "3030",
+    zIndex: "4010",
     backgroundColor: "rgba(0,0,0,0.5)",
   },
   content: {

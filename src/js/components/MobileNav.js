@@ -23,7 +23,7 @@ const StyledNav = styled("nav")`
 `;
 
 const StyledLink = styled(Link)`
-  padding: 0.2em 0.5em 0 0.5em;
+  padding: 0.2em 0.3em 0 0.3em !important;
   ${media.phone`padding: 0.2em 0.4em 0 0.4em;`};
   text-align: center;
   text-decoration: none;
@@ -33,6 +33,7 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledButton = styled("button")`
+  width: 45px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,9 +50,8 @@ const StyledButton = styled("button")`
 `;
 
 const StyledSpan = styled("span")`
-  font-size: 0.55em;
+  font-size: 0.3em;
   font-weight: 100;
-  ${media.phone`font-size: 0.5em;`}
   color: #fff;
 `;
 
@@ -96,7 +96,7 @@ const MobileNav = (props) => {
     const itemIcon = item["icon"];
     const isClicked = pathname.includes(itemPath);
     const fontBase = (
-      <FontAwesomeIcon icon={itemIcon} size="2x" transform="shrink-2" />
+      <FontAwesomeIcon icon={itemIcon} size="3x" transform="shrink-3" />
     );
     return (
       <StyledLink to={itemPath} key={itemPath}>

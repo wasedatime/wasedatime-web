@@ -15,7 +15,7 @@ import { Overlay } from "../../styled-components/Overlay";
 const FilterWrapper = styled(Wrapper)`
   flex: none;
   overflow-y: auto;
-  height: ${(props) => (props.isSideBar ? "90vh" : "auto")};
+  height: ${(props) => (props.isSideBar ? "100%" : "auto")};
 `;
 
 const FilterOverlay = styled(Overlay)`
@@ -32,7 +32,7 @@ const FilterTitle = styled("span")`
 const FilterGroupWrapper = styled("div")`
   background-color: #fff;
   flex: 1 0 auto;
-  padding: 1em;
+  padding: 1rem;
   margin-top: 0.2em;
   font-size: 14px;
 `;

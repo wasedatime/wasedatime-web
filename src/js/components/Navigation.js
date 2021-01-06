@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import { withRouter } from "react-router";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendarAlt,
@@ -14,18 +14,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
-
-export const displayLinkText = () =>
-  keyframes`
-    from { opacity: 0; }
-    to { opacity: 1; }
-  `;
-
-export const moveLinkText = () =>
-  keyframes`
-    from { padding-left: 12px; }
-    to { padding-left: 35px; }
-  `;
 
 const StyledNav = styled("nav")`
   display: flex;
@@ -38,8 +26,6 @@ const StyledNav = styled("nav")`
 `;
 
 const StyledLink = styled(Link)`
-  animation-name: ${(props) => (props.isHovered ? moveLinkText : "none")}
-  animation-duration: 0.5s;
   ${media.phone`padding: 0.2em 0.4em 0 0.4em;`};
   text-align: left;
   text-decoration: none;
@@ -51,6 +37,7 @@ const StyledLink = styled(Link)`
   &:hover {
     color: ${(props) => props.theme.colorPrimary};
   }
+  transition: padding-left 0.5s;
 `;
 
 const StyledButton = styled("button")`
@@ -75,14 +62,14 @@ const StyledButton = styled("button")`
 `;
 
 const StyledSpan = styled("span")`
-  animation-name: ${displayLinkText};
-  animation-duration: 0.5s;
   width: 120px;
   text-align: left;
   font-size: 1em;
   font-weight: 100;
   margin-left: 1rem;
   color: #fff;
+  opacity: ${(props) => (props.isHovered ? "1" : "0")};
+  transition: opacity 0.3s;
 `;
 
 const Navigation = ({ isHovered, t }) => {
@@ -130,7 +117,7 @@ const Navigation = ({ isHovered, t }) => {
       <StyledLink to={itemPath} key={itemPath} isHovered={isHovered}>
         <StyledButton isClicked={pathname === itemPath}>
           {fontBase}
-          {isHovered && <StyledSpan>{itemName}</StyledSpan>}
+          <StyledSpan isHovered={isHovered}>{itemName}</StyledSpan>
         </StyledButton>
       </StyledLink>
     );

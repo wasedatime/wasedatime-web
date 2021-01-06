@@ -40,6 +40,8 @@ const StyledSpan = styled("span")`
   font-weight: 100;
   margin-left: 1rem
   color: #fff;
+  opacity: ${(props) => (props.isHovered ? "1" : "0")};
+  transition: opacity 0.3s;
 `;
 
 const StyledMenu = styled(Dropdown.Menu)`
@@ -67,7 +69,7 @@ const UserMenu = ({ userInfo, signOut, openSignInModal, isHovered, t }) =>
             />
           </div>
           {isHovered && (
-            <StyledSpan>
+            <StyledSpan isHovered={isHovered}>
               {userInfo.idToken.payload.preferred_username}
             </StyledSpan>
           )}
@@ -85,7 +87,7 @@ const UserMenu = ({ userInfo, signOut, openSignInModal, isHovered, t }) =>
   ) : (
     <UserMenuTrigger onClick={openSignInModal}>
       <Icon name="user circle outline" size="big" />
-      {isHovered && <StyledSpan>Sign in</StyledSpan>}
+      <StyledSpan isHovered={isHovered}>Sign in</StyledSpan>
     </UserMenuTrigger>
   );
 

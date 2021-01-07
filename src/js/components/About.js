@@ -49,7 +49,8 @@ const Introduction = styled("div")`
 `;
 
 const MainHeading = styled("h1")`
-  font-family: Times;
+  font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial,
+    Helvetica, sans-serif;
   font-size: 5rem;
   font-weight: 400;
   color: #000000;

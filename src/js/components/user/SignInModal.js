@@ -19,10 +19,10 @@ const modalStyle = (isDesktop) => ({
   },
   content: {
     position: "absolute",
-    top: isDesktop ? "25vh" : "20vh",
+    top: isDesktop ? "15vh" : "10vh",
     left: isDesktop ? "30vw" : "10vw",
     right: isDesktop ? "30vw" : "10vw",
-    bottom: isDesktop ? "45vh" : "25vh",
+    height: "fit-content(20em)",
     backgroundColor: "#fff",
     overflowY: "auto",
     overflowScrolling: "touch",

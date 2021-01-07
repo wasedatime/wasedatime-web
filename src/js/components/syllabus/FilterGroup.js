@@ -23,7 +23,7 @@ const StyledDropdown = styled(Dropdown)`
   }
 
   .text {
-    margin: 0.3rem 1rem !important;
+    margin: 0.4rem 1rem !important;
   }
 
   i {

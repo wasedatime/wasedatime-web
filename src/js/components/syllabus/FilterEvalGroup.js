@@ -17,7 +17,7 @@ const StyledDropdown = styled(Dropdown)`
   .divider.text {
     line-height: 1.3 !important;
     font-size: 1.2em !important;
-    margin: 0px 1rem !important;
+    margin: 2px 1rem !important;
   }
 
   .menu .text {

@@ -26,7 +26,7 @@ const FilterOverlay = styled(Overlay)`
 const FilterTitle = styled("span")`
   display: flex;
   align-items: center;
-  font-size: ${(props) => (props.isSideBar ? "1em" : "1.3em")};
+  font-size: 1.1em;
 `;
 
 const FilterGroupWrapper = styled("div")`
@@ -34,7 +34,7 @@ const FilterGroupWrapper = styled("div")`
   flex: 1 0 auto;
   padding: 1rem;
   margin-top: 0.2em;
-  font-size: 14px;
+  font-size: 11px;
 `;
 
 class Filter extends React.Component {
@@ -405,8 +405,8 @@ class Filter extends React.Component {
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
         <FilterOverlay isSideBar={isSideBar}>
           <FilterTitle isSideBar={isSideBar}>
-            {t("syllabus.Filter by")}&nbsp;
-            <FontAwesomeIcon icon={faFilter} size="1x" />
+            <FontAwesomeIcon icon={faFilter} size="1x" />&nbsp;
+            <b>{t("syllabus.Filter by")}</b>
             &nbsp;
             <Button
               color="grey"

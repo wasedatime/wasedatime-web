@@ -30,8 +30,6 @@ import CoronaInfo from "./CoronaInfo";
 import NotFound from "./NotFound";
 import { getUserInfo, getUserIsFirstTimeAccess } from "../reducers/user";
 import { setUserInfo, clearUserInfo } from "../actions/user";
-import { getAddedCoursesAndPrefs } from "../reducers/addedCourses";
-import { getFetchedById } from "../reducers/fetchedCourses";
 
 import { media, sizes } from "../styled-components/utils";
 import MediaQuery from "react-responsive";

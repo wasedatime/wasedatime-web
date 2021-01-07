@@ -31,8 +31,6 @@ const withFetchCourses = (WrappedComponent) => {
         fetchedCourseIds,
         fetchedCoursesById,
         fetchedSchools,
-        fetchedlastModBySchool,
-        addedCoursesAndPrefs,
         userInfo,
         fetchCourses,
         saveTimetable,

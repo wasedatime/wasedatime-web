@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import { Dropdown, Image, Icon } from "semantic-ui-react";
 import styled, { keyframes } from "styled-components";
-import { media } from "../../styled-components/utils";
 
 export const expandLink = () =>
   keyframes`

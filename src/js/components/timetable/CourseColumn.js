@@ -29,7 +29,7 @@ const CourseItem = styled("div")`
     100% / ${(props) => props.displayPeriods} * ${(props) => props.height} - 1px
   );
   width: 100%;
-  padding: 0.3rem 0 0 0.1rem;
+  padding: 0.3rem 0.1rem 0 0.1rem;
   border-left-width: 2px;
   border-left-style: solid;
   line-height: normal;
@@ -38,7 +38,7 @@ const CourseItem = styled("div")`
 const CourseTitle = styled("span")`
   flex: 1 1 auto;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   overflow-x: hidden;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -52,7 +52,7 @@ const CourseLocation = styled("span")`
   display: inline-flex;
   flex: 0 0 auto;
   padding: 0.2em 0;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   word-break: break-all;
   align-items: center;
   justify-content: center;

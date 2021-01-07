@@ -14,6 +14,7 @@ import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
   padding: 0.2em;
+  padding-left: 1em;
   ${media.phone`
     padding: 0
   `};

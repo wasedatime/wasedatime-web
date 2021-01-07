@@ -10,39 +10,32 @@ import {
   faBook,
   faBus,
   faVirus,
-  // faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
 
 const StyledNav = styled("nav")`
   display: flex;
-  align-items: left;
-  flex-direction: column;
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: absolute;
-  width: 100%;
+  flex-direction: row;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
 `;
 
 const StyledLink = styled(Link)`
+  padding: 0.2em 0.3em 0 0.3em !important;
   ${media.phone`padding: 0.2em 0.4em 0 0.4em;`};
-  text-align: left;
+  text-align: center;
   text-decoration: none;
   font-size: 1.1em;
   font-weight: 330;
-  margin: 10px 0px;
-  padding-left: ${(props) => (props.isHovered ? "35px" : "12px")};
-  width: ${(props) => (props.isHovered ? "150px" : "40px")};
-  &:hover {
-    color: ${(props) => props.theme.colorPrimary};
-  }
-  transition: padding-left 0.5s;
+  ${media.phone`font-size: 0.9em;`};
 `;
 
 const StyledButton = styled("button")`
+  width: 45px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   border: none;
   outline: none;
@@ -54,26 +47,17 @@ const StyledButton = styled("button")`
   &:hover {
     color: ${(props) => props.theme.colorPrimary};
   }
-
-  svg {
-    width: 40px !important;
-    text-align: center !important;
-  }
 `;
 
 const StyledSpan = styled("span")`
-  width: 120px;
-  text-align: left;
-  font-size: 1em;
+  font-size: 0.3em;
   font-weight: 100;
-  margin-left: 1rem;
   color: #fff;
-  opacity: ${(props) => (props.isHovered ? "1" : "0")};
-  transition: opacity 0.3s;
 `;
 
-const Navigation = ({ isHovered, t }) => {
-  const pathname = window.location.pathname;
+const MobileNav = (props) => {
+  const pathname = props.location.pathname;
+  const t = props.t;
   const navItems = [
     {
       name: t("navigation.timetable"),
@@ -110,14 +94,15 @@ const Navigation = ({ isHovered, t }) => {
     const itemName = item["name"];
     const itemPath = item["path"];
     const itemIcon = item["icon"];
+    const isClicked = pathname.includes(itemPath);
     const fontBase = (
-      <FontAwesomeIcon icon={itemIcon} size="2x" transform="shrink-2" />
+      <FontAwesomeIcon icon={itemIcon} size="3x" transform="shrink-3" />
     );
     return (
-      <StyledLink to={itemPath} key={itemPath} isHovered={isHovered}>
-        <StyledButton isClicked={pathname === itemPath}>
+      <StyledLink to={itemPath} key={itemPath}>
+        <StyledButton isClicked={isClicked}>
           {fontBase}
-          <StyledSpan isHovered={isHovered}>{itemName}</StyledSpan>
+          <StyledSpan>{itemName}</StyledSpan>
         </StyledButton>
       </StyledLink>
     );
@@ -126,9 +111,9 @@ const Navigation = ({ isHovered, t }) => {
   return <StyledNav>{styledLinks}</StyledNav>;
 };
 
-export default withRouter(withNamespaces("translation")(Navigation));
+export default withRouter(withNamespaces("translation")(MobileNav));
 
-Navigation.propTypes = {
+MobileNav.propTypes = {
   location: PropTypes.object.isRequired,
   t: PropTypes.func.isRequired,
 };

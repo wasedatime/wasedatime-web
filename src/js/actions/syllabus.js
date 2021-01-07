@@ -16,13 +16,17 @@ import {
   ADD_SCHOOL_FETCH_COURSES_REQUEST,
   ADD_SCHOOL_FETCH_COURSES_SUCCESS,
   REMOVE_SCHOOL,
+  SAVE_TIMETABLE,
 } from "./types";
 import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 import * as schema from "../data/schema";
 
-export const addSchool = (school) => ({
+export const addSchool = (school, lastMod = "") => ({
   type: ADD_SCHOOL,
-  payload: school,
+  payload: {
+    school: school,
+    lastMod: lastMod,
+  },
 });
 
 export const removeSchool = (school) => ({
@@ -48,16 +52,34 @@ export const fetchCourses = (schoolToLoad = null) => async (
     ? [schoolToLoad]
     : getState().fetchedCourses.schools;
   var coursesBySchool = {};
+  var lastModBySchool = {};
 
   try {
     Promise.all(
       schools.map(async (school) => {
+        // HEAD
+        const resOfHead = await API.head(
+          "wasedatime-dev",
+          `/syllabus/${school}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            response: true,
+          }
+        );
+        lastModBySchool[school] = resOfHead.headers["last-modified"];
+
+        // if lastMod different: GET
         const res = await API.get("wasedatime-dev", `/syllabus/${school}`, {
           headers: {
             "Content-Type": "application/json",
           },
         });
         coursesBySchool[school] = normalize(res, schema.coursesSchema);
+        console.log(coursesBySchool[school]);
+        // else: use original local one
+
         return;
       })
     ).then(() => {
@@ -71,6 +93,7 @@ export const fetchCourses = (schoolToLoad = null) => async (
                 courses: coursesBySchool[schoolToLoad],
                 school: schoolToLoad,
                 fetchedTime,
+                lastMod: lastModBySchool[schoolToLoad],
               },
             }
           : {
@@ -78,6 +101,7 @@ export const fetchCourses = (schoolToLoad = null) => async (
               response: {
                 coursesBySchool,
                 fetchedTime,
+                lastModBySchool,
               },
             }
       );
@@ -105,22 +129,172 @@ export const hydrateAddedCourses = (prefs, fetchedCoursesById) => ({
   },
 });
 
-export const addCourse = (course, displayLang) => ({
-  type: ADD_COURSE,
-  payload: {
-    id: course[SYLLABUS_KEYS.ID],
-    semester: course[SYLLABUS_KEYS.TERM],
-    course: course,
-    displayLang: displayLang,
-  },
-});
+export const addCourse = (course, displayLang) => (dispatch, getState) => {
+  try {
+    API.patch("wasedatime-dev", "/timetable", {
+      body: {
+        data: {
+          operation: "append",
+          course: {
+            id: course[SYLLABUS_KEYS.ID],
+            color: 0,
+            displayLang: displayLang,
+          },
+        },
+      },
+      headers: {
+        Authorization: getState().user.info
+          ? getState().user.info.idToken.jwtToken
+          : "",
+      },
+    });
+  } catch (e) {
+    console.error(e);
+  } finally {
+    dispatch({
+      type: ADD_COURSE,
+      payload: {
+        id: course[SYLLABUS_KEYS.ID],
+        semester: course[SYLLABUS_KEYS.TERM],
+        course: course,
+        displayLang: displayLang,
+      },
+    });
+  }
+};
 
-export const removeCourse = (id) => ({
-  type: REMOVE_COURSE,
-  payload: {
-    id,
-  },
-});
+export const removeCourse = (id) => (dispatch, getState) => {
+  try {
+    API.patch("wasedatime-dev", "/timetable", {
+      body: {
+        data: {
+          operation: "remove",
+          index: getState().addedCourses.ids.indexOf(id),
+        },
+      },
+      headers: {
+        Authorization: getState().user.info
+          ? getState().user.info.idToken.jwtToken
+          : "",
+      },
+    });
+  } catch (e) {
+    console.error(e);
+  } finally {
+    dispatch({
+      type: REMOVE_COURSE,
+      payload: {
+        id,
+      },
+    });
+  }
+};
+
+export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
+  dispatch,
+  getState
+) => {
+  let coursesAndPrefsByTerm = {
+    fall: [],
+    spring: [],
+  };
+  let idsBySchool = {};
+
+  Promise.all(
+    idsAndPrefs.map(async (idAndPref) => {
+      // get course details from fetchedCourses
+      let course = fetchedCoursesById[idAndPref.id];
+
+      // if course not exists in fetchedCourses:
+      if (!course) {
+        // load course details directly through API
+        course = await API.get(
+          "wasedatime-dev",
+          `/syllabus?key=${idAndPref.id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        // load school syllabus if there are spaces
+        if (course && getState().fetchedCourses.schools.length < 10) {
+          const school = course[SYLLABUS_KEYS.SCHOOL];
+          const schoolCourses = await API.get(
+            "wasedatime-dev",
+            `/syllabus/${school}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const normalizedSchoolCourses = normalize(
+            schoolCourses,
+            schema.coursesSchema
+          );
+          dispatch({
+            type: ADD_SCHOOL,
+            payload: {
+              school: school,
+              lastMod: "",
+            },
+          });
+          dispatch({
+            type: ADD_SCHOOL_FETCH_COURSES_SUCCESS,
+            response: {
+              courses: normalizedSchoolCourses,
+              school: school,
+              fetchedTime: new Date().toISOString(),
+            },
+          });
+        }
+      }
+
+      // if course details retrieved successfully
+      if (course) {
+        // push school to addedCourses
+        const school = course[SYLLABUS_KEYS.SCHOOL];
+        if (idsBySchool[school]) {
+          idsBySchool[school].ids.push(idAndPref.id);
+        } else {
+          idsBySchool[school] = {
+            lastMod: "",
+            ids: [idAndPref.id],
+          };
+        }
+
+        // push course details to addedCourses
+        if (course[SYLLABUS_KEYS.TERM].match(/2|3|f/g)) {
+          coursesAndPrefsByTerm.fall.push({
+            ...idAndPref,
+            course: course,
+          });
+        }
+        if (course[SYLLABUS_KEYS.TERM].match(/0|1|f/g)) {
+          coursesAndPrefsByTerm.spring.push({
+            ...idAndPref,
+            course: course,
+          });
+        }
+      }
+      return;
+    })
+  )
+    .then(() => {
+      // save addedCourses
+      dispatch({
+        type: SAVE_TIMETABLE,
+        payload: {
+          coursesAndPrefsByTerm: coursesAndPrefsByTerm,
+          ids: idsAndPrefs.map((ip) => ip.id),
+          idsBySchool: idsBySchool,
+        },
+      });
+    })
+    .catch((e) => console.error(e));
+};
 
 export const changeCourseColor = (id, color) => ({
   type: CHANGE_COURSE_COLOR,

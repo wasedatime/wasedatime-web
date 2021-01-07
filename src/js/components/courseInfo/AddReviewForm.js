@@ -46,7 +46,8 @@ const Stars = styled(Statistic.Value)`
 `;
 
 const StyledTextarea = styled("textarea")`
-  border: none;
+  border: 1px solid #eee;
+  border-radius: 10px;
   background-color: ${(props) => props.theme.white};
   outline: none;
   padding: 10px;
@@ -111,7 +112,7 @@ class AddReviewForm extends React.Component {
       const color =
         n <= paintedStar || (paintedStar === 0 && n <= selectedStar)
           ? "orange"
-          : "#fff";
+          : "#eee";
 
       stars.push(
         <FontAwesomeIcon

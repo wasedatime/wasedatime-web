@@ -13,6 +13,7 @@ import {
 import fetchedList, * as fromList from "./fetchedList";
 import fetchedById from "./fetchedById";
 import fetchedSchools from "./fetchedSchools";
+import fetchedlastModBySchool from "./fetchedlastModBySchool";
 import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 
 const actionTypes = {
@@ -30,6 +31,7 @@ const fetchedCourses = combineReducers({
   list: fetchedList(actionTypes),
   byId: fetchedById("courses", actionTypes),
   schools: fetchedSchools(actionTypes),
+  lastModBySchool: fetchedlastModBySchool(actionTypes),
 });
 
 export default fetchedCourses;

@@ -1,4 +1,5 @@
 import React from "react";
+import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
 import { getUserInfo } from "../../reducers/user";
 import API from "@aws-amplify/api";
@@ -31,6 +32,7 @@ import CourseReviews from "./CourseReviews";
 import AddReviewForm from "./AddReviewForm";
 import LoadingSpinner from "../LoadingSpinner";
 import RelatedCourses from "./RelatedCourses";
+import SignInModal from "../user/SignInModal";
 
 export const LongWrapper = styled(Wrapper)`
   flex: 1 1 auto;
@@ -119,7 +121,7 @@ class CourseInfo extends React.Component {
     ),
     relatedCourses: [],
     thisCourseReviews: [],
-    relatedCourseReviews: [],
+    relatedCourseReviews: {},
     avgSatisfaction: 0,
     avgDifficulty: 0,
     avgBenefit: 0,
@@ -138,6 +140,7 @@ class CourseInfo extends React.Component {
     editReviewIndex: 0,
     editReviewPrimaryKey: "",
     editReviewOriginalText: "",
+    isSignInModalOpen: false,
   };
 
   componentDidMount() {
@@ -165,6 +168,8 @@ class CourseInfo extends React.Component {
       thisCourse[SYLLABUS_KEYS.SCHOOL]
     );
 
+    this.setState({ relatedCourses: relatedCourses });
+
     const relatedCoursesByKey = {};
     relatedCourses.forEach((c) => {
       relatedCoursesByKey[getCourseKey(c)] = c;
@@ -181,7 +186,7 @@ class CourseInfo extends React.Component {
     );
     let thisCourseReviews = [];
     let relatedCourseReviews = {};
-    courseReviews.forEach((c, i) => {
+    (courseReviews || []).forEach((c, i) => {
       if (i === 0) thisCourseReviews = c.data;
       else {
         relatedCourseReviews[courseKeysToFetchReviews[i]] = c.data;
@@ -238,7 +243,10 @@ class CourseInfo extends React.Component {
             "/course-reviews/" +
               courseKey +
               "?uid=" +
-              (this.props.userInfo ? this.props.userInfo.sub : ""),
+              (this.props.userInfo
+                ? this.props.userInfo.sub ||
+                  this.props.userInfo.idToken.payload.sub
+                : ""),
             {
               headers: {
                 "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
@@ -249,11 +257,9 @@ class CourseInfo extends React.Component {
           return res;
         })
       );
-      console.log(reviews);
       return reviews;
     } catch (error) {
       console.error(error);
-      this.setState({ error: true });
     }
   }
 
@@ -279,10 +285,7 @@ class CourseInfo extends React.Component {
         isAddReviewFormOpen: !this.state.isAddReviewFormOpen,
       });
     } else {
-      Alert.warning("Please sign in first", {
-        position: "bottom",
-        effect: "jelly",
-      });
+      this.setState({ isSignInModalOpen: true });
     }
   };
 
@@ -338,6 +341,11 @@ class CourseInfo extends React.Component {
     this.setState({ newReviewComment: text });
 
   onNewReviewFormSubmit = () => {
+    if (!this.props.userInfo) {
+      this.setState({ isSignInModalOpen: true });
+      return;
+    }
+
     const {
       newReviewSatisfaction,
       newReviewDifficulty,
@@ -397,7 +405,9 @@ class CourseInfo extends React.Component {
               },
               headers: {
                 "Content-Type": "application/json",
-                Authorization: this.props.userInfo.idToken.jwtToken,
+                Authorization: this.props.userInfo
+                  ? this.props.userInfo.idToken.jwtToken
+                  : "",
               },
             }
           ).then(() => this.cleanFormAndUpdateReviews(newReview));
@@ -414,7 +424,9 @@ class CourseInfo extends React.Component {
               },
               headers: {
                 "Content-Type": "application/json",
-                Authorization: this.props.userInfo.idToken.jwtToken,
+                Authorization: this.props.userInfo
+                  ? this.props.userInfo.idToken.jwtToken
+                  : "",
               },
             }
           ).then(() => this.cleanFormAndUpdateReviews(newReview));
@@ -469,6 +481,10 @@ class CourseInfo extends React.Component {
   };
 
   deleteReview = (reviewPrimaryKey, reviewIndex) => {
+    if (!this.props.userInfo) {
+      this.setState({ isSignInModalOpen: true });
+      return;
+    }
     API.del(
       "wasedatime-dev",
       "/course-reviews/" +
@@ -477,7 +493,9 @@ class CourseInfo extends React.Component {
         reviewPrimaryKey,
       {
         headers: {
-          Authorization: this.props.userInfo.idToken.jwtToken,
+          Authorization: this.props.userInfo
+            ? this.props.userInfo.idToken.jwtToken
+            : "",
         },
       }
     )
@@ -493,6 +511,14 @@ class CourseInfo extends React.Component {
       })
       .catch((e) => console.log(e));
   };
+
+  signIn = () =>
+    Auth.federatedSignIn({
+      provider: "Google",
+      customState: window.location.pathname + window.location.search,
+    });
+
+  closeSignInModal = () => this.setState({ isSignInModalOpen: false });
 
   render() {
     const {
@@ -514,6 +540,7 @@ class CourseInfo extends React.Component {
       newReviewBenefit,
       newReviewComment,
       newReviewIsSending,
+      isSignInModalOpen,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
@@ -595,15 +622,19 @@ class CourseInfo extends React.Component {
             <br />
           </ExtendedOverlay>
         </LongWrapper>
-        {isLoaded && (
-          <RelatedCourses
-            courses={relatedCourses}
-            reviews={relatedCourseReviews}
-            searchLang={searchLang}
-            isModalOpen={isModalOpen}
-            handleToggleModal={this.handleToggleModal}
-          />
-        )}
+        <RelatedCourses
+          courses={relatedCourses}
+          reviews={relatedCourseReviews}
+          searchLang={searchLang}
+          isModalOpen={isModalOpen}
+          handleToggleModal={this.handleToggleModal}
+        />
+        <SignInModal
+          isModalOpen={isSignInModalOpen}
+          isExpired={false}
+          signIn={this.signIn}
+          closeModal={this.closeSignInModal}
+        />
       </RowWrapper>
     );
   }

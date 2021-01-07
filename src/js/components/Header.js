@@ -1,132 +1,59 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import { Auth, Hub } from "aws-amplify";
-import { connect } from "react-redux";
-import { getUserInfo } from "../reducers/user";
-import { setUserInfo, clearUserInfo, updateUserSession } from "../actions/user";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Icon } from "semantic-ui-react";
-import { withNamespaces } from "react-i18next";
-
-import Navigation from "./Navigation";
-import UserMenu from "./user/UserMenu";
 import LanguangeMenu from "./LanguageMenu";
-import logo from "../../img/logo.png";
+import { Grid, Input } from "semantic-ui-react";
 
 const StyledHeader = styled("header")`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0.3rem 1rem;
-  height: ${(props) => props.theme.headerHeight};
-  background: ${(props) => props.theme.grey2};
+  padding-top: 1rem;
+  border-bottom: 2px solid #f5f5f5;
+  height: 67px;
+  width: 100%;
+  background: ${(props) =>
+    props.isBlur ? "rgba(255, 255, 255, 0.3)" : "#fff"};
+  -webkit-backdrop-filter: ${(props) => (props.isBlur ? "blur(5px)" : "none")};
+  backdrop-filter: ${(props) => (props.isBlur ? "blur(5px)" : "none")};
   position: fixed;
   top: 0;
-  right: 0;
   left: 0;
-  z-index: 1030;
+  z-index: 900;
+  grid-row: 1 / 2;
 `;
 
-const StyledLink = styled(Link)`
-  display: flex;
-  margin-right: 0.5rem;
-`;
-
-const Logo = styled("img")`
-  width: 50px;
-  height: 50px;
-`;
-
-class Header extends React.Component {
-  state = {
-    currentPath: window.location.pathname,
-  };
-
-  componentDidMount() {
-    // await setTimeout(
-    //   Auth.currentSession().then((session) => {
-    //     console.log("update session");
-    //     this.props.updateUserSession(session);
-    //   }),
-    //   3540000
-    // );
-
-    Hub.listen("auth", ({ payload: { event, data } }) => {
-      switch (event) {
-        case "signIn":
-          Auth.currentAuthenticatedUser()
-            .then((user) => {
-              this.props.setUserInfo(user);
-            })
-            .catch((e) => {
-              console.error(e);
-            });
-          this.props.setUserInfo(data);
-          break;
-        case "signOut":
-          this.props.clearUserInfo();
-          break;
-        case "customOAuthState":
-          this.props.history.push(data);
-          break;
-        default:
-          console.log(event);
-          console.log(data);
-      }
-    });
-  }
-
-  render() {
-    const { userInfo, t } = this.props;
-    return (
-      <StyledHeader>
-        <StyledLink to="/about">
-          <Logo src={logo} alt="WasedaTime logo" width="50" height="50" />
-        </StyledLink>
-        <Navigation />
-        <LanguangeMenu />
-        {userInfo ? (
-          <UserMenu userInfo={userInfo} />
-        ) : (
-          <Button
-            color="red"
-            onClick={() =>
-              Auth.federatedSignIn({
-                provider: "Google",
-                customState: window.location.pathname + window.location.search,
-              })
-            }
-            style={{
-              fontSize: "1.5rem",
-              padding: "1rem",
-              marginLeft: "1rem",
-              background: "#b51e36",
-            }}
-            icon
-            labelPosition="left"
-          >
-            <Icon name="sign-in" />
-            {t(`user.Sign In`)}
-          </Button>
-        )}
-      </StyledHeader>
-    );
-  }
-}
-
-const mapStateToProps = (state) => ({
-  userInfo: getUserInfo(state),
-});
-
-const mapDispatchToProps = {
-  setUserInfo,
-  clearUserInfo,
-  updateUserSession,
+const Header = ({
+  onInputChange,
+  placeholder,
+  inputText,
+  disabled,
+  isBlur,
+}) => {
+  return (
+    <StyledHeader isBlur={isBlur}>
+      <Grid style={{ width: "100%" }}>
+        <Grid.Row>
+          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={8}>
+            <div style={{ marginLeft: "0" }}>
+              <Input
+                fluid
+                icon="search"
+                placeholder={placeholder || "Search..."}
+                onChange={
+                  onInputChange
+                    ? (e) => onInputChange(e.target.value)
+                    : () => {}
+                }
+                value={inputText || ""}
+                disabled={disabled}
+              />
+            </div>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <LanguangeMenu />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </StyledHeader>
+  );
 };
 
-export default withRouter(
-  withNamespaces("translation")(
-    connect(mapStateToProps, mapDispatchToProps)(Header)
-  )
-);
+export default Header;

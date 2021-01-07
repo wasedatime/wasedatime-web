@@ -2,6 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet";
 
 import { Wrapper } from "../../styled-components/Wrapper";
+import Header from "../../components/Header";
 import Timetable from "../../components/timetable/Timetable";
 import SemesterSwitcher from "../../components/timetable/SemesterSwitcher";
 import withFetchCourses from "../../hocs/withFetchCourses";
@@ -63,6 +64,10 @@ class TimetableContainer extends React.Component {
           />
           <meta property="og:site_name" content="WasedaTime - Timetable" />
         </Helmet>
+        <Header
+          placeholder="Search course (in construction...)"
+          disabled={true}
+        />
         <SemesterSwitcher
           semesterTitle={t(`timetable.${title}`)}
           handleIncreaseSemesterIndex={this.handleIncreaseSemesterIndex}

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { media } from "../styled-components/utils";
 import { Helmet } from "react-helmet";
 import { Wrapper } from "../styled-components/Wrapper";
+import Topbar from "./Header";
 import { Grid, Statistic, Divider, Header, Dropdown } from "semantic-ui-react";
 import { withNamespaces } from "react-i18next";
 import axios from "axios";
@@ -200,7 +201,9 @@ class CoronaInfo extends React.Component {
           <meta property="og:site_name" content="WasedaTime - Corona Info" />
         </Helmet>
 
-        <Header size="huge" style={{ textAlign: "center", marginTop: "5vw" }}>
+        <Topbar placeholder="" disabled={true} />
+
+        <Header size="huge" style={{ textAlign: "center", marginTop: "100px" }}>
           {this.props.t("coronaInfo.title")}
         </Header>
         <p style={{ textAlign: "center" }}>

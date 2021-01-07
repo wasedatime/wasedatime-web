@@ -1,78 +1,99 @@
 import React from "react";
-import { Auth } from "aws-amplify";
 import PropTypes from "prop-types";
-// import i18n from "./i18n";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import { withNamespaces } from "react-i18next";
-import styled from "styled-components";
-import { Image } from "semantic-ui-react";
+import { Dropdown, Image, Icon } from "semantic-ui-react";
+import styled, { keyframes } from "styled-components";
 
-import { media } from "../../styled-components/utils";
+export const expandLink = () =>
+  keyframes`
+    from { opacity: 0; }
+    to { opacity: 1; }
+  `;
 
-const StyledButton = styled("button")`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border: none;
-  outline: none;
-  padding: 0;
-  margin: 0;
-  background-color: inherit;
+const UserMenuTrigger = styled("div")`
   color: #fff;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 0.9rem;
+  padding-bottom: 1rem;
+
+  i {
+    margin: 0 !important;
+    font-size: 2em !important;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const StyledSpan = styled("span")`
-  font-size: 0.55em;
+  animation-name: ${expandLink};
+  animation-duration: 0.5s;
+  width: 150px
+  text-align: left
+  font-size: 1.1em
   font-weight: 100;
-  ${media.phone`font-size: 0.5em;`};
+  margin-left: 1rem
+  color: #fff;
+  opacity: ${(props) => (props.isHovered ? "1" : "0")};
+  transition: opacity 0.3s;
 `;
 
-class UserMenu extends React.Component {
-  state = {
-    anchorEl: null,
-  };
+const StyledMenu = styled(Dropdown.Menu)`
+  width: 210px !important;
+  background: #555 !important;
+`;
 
-  handleClick = (event) => {
-    event.preventDefault();
-    this.setState({ anchorEl: event.currentTarget });
-  };
+const StyledMenuItem = styled(Dropdown.Item)`
+  width: 100% !important;
+  font-size: 1em !important;
+  color: #fff !important;
+`;
 
-  handleClose = () => {
-    this.setState({ anchorEl: null });
-  };
-
-  render() {
-    const { anchorEl } = this.state;
-    const { userInfo, t } = this.props;
-    return (
-      <div style={{ marginLeft: "1em" }}>
-        <StyledButton onClick={this.handleClick}>
-          <Image src={userInfo.picture} size="mini" circular />
-          <StyledSpan>{userInfo.preferred_username}</StyledSpan>
-        </StyledButton>
-        <Menu
-          id="language-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-          disableAutoFocusItem={true}
-        >
-          <MenuItem
-            style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={() =>
-              Auth.signOut().then(() => {
-                this.handleClose();
-              })
-            }
-          >
-            {t(`user.Sign Out`)}
-          </MenuItem>
-        </Menu>
-      </div>
-    );
-  }
-}
+const UserMenu = ({
+  userInfo,
+  signOut,
+  openSignInModal,
+  isHovered,
+  isMobileMode,
+  t,
+}) =>
+  userInfo ? (
+    <Dropdown
+      trigger={
+        <UserMenuTrigger>
+          <div>
+            <Image
+              src={userInfo.idToken.payload.picture}
+              width={isMobileMode ? "35" : "40"}
+              height={isMobileMode ? "35" : "40"}
+              circular
+            />
+          </div>
+          {isHovered && (
+            <StyledSpan isHovered={isHovered}>
+              {userInfo.idToken.payload.preferred_username}
+            </StyledSpan>
+          )}
+        </UserMenuTrigger>
+      }
+      icon={null}
+      simple
+    >
+      <StyledMenu>
+        <StyledMenuItem disabled>Profile</StyledMenuItem>
+        <StyledMenuItem onClick={signOut}>{t(`user.Sign Out`)}</StyledMenuItem>
+      </StyledMenu>
+    </Dropdown>
+  ) : (
+    <UserMenuTrigger onClick={openSignInModal}>
+      <Icon name="user circle outline" size="massive" />
+      {!isMobileMode && <StyledSpan isHovered={isHovered}>Sign in</StyledSpan>}
+    </UserMenuTrigger>
+  );
 
 export default withNamespaces("translation")(UserMenu);
 

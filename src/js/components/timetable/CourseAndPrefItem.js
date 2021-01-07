@@ -165,7 +165,7 @@ const CourseAndPrefItem = ({
 
             <a
               style={{ alignSelf: "flex-start" }}
-              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${courseId}&pLng=en`}
+              href={`/courseInfo?courseID=${courseId}&searchLang=${displayLang}`}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => {
@@ -173,7 +173,7 @@ const CourseAndPrefItem = ({
               }}
             >
               <FontAwesomeIcon
-                style={{ color: "#6495ED" }}
+                style={{ color: "#ffae42" }}
                 icon={faExternalLinkSquareAlt}
                 size="2x"
                 transform="shrink-2"

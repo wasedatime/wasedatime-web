@@ -9,12 +9,25 @@ import styled from "styled-components";
 
 const StyledDropdown = styled(Dropdown)`
   font-size: 1em !important;
+  min-height: 32px !important;
+  padding: 0.2rem 0.5rem 0.1rem 0.5rem !important;
+
   a.ui.label {
-    line-height: 1.3 !important;
+    line-height: 1 !important;
+    padding: 0px 1rem 0.5rem 1rem !important;
+    font-size: 0.9em !important;
   }
   .menu .text {
     font-size: 1.5em !important;
     line-height: 1.2 !important;
+  }
+
+  .text {
+    margin: 0.3rem 1rem !important;
+  }
+
+  i {
+    padding: 0.5rem 1rem !important;
   }
 `;
 
@@ -29,12 +42,13 @@ const styles = (theme) => ({
     margin: "0 0 10px",
   },
   formControlLabel: {
-    minWidth: "105px",
+    minWidth: "80px",
   },
   formControlLabel_label: {
     fontSize: "1em",
   },
   checkBox: {
+    width: "40px",
     height: "30px",
   },
   checkBoxChecked: {

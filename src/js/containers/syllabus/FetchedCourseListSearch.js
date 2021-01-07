@@ -11,7 +11,7 @@ import ReactGA from "react-ga";
 
 import { searchCourses, sortCourses } from "../../utils/courseSearch";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
-import SearchBar from "../../components/syllabus/SearchBar";
+import Header from "../../components/Header";
 import FetchedCourseList from "../../components/syllabus/FetchedCourseList";
 import Filter from "../../components/syllabus/Filter";
 import FilterButton from "../../components/syllabus/FilterButton";
@@ -376,14 +376,22 @@ class FetchedCourseSearch extends React.Component {
         : this.state.filteredCourses;
     return (
       <ExtendedWrapper>
-        <SearchBar
+        <Header
           onInputChange={this.handleInputChange}
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
+          disabled={false}
         />
+        {/*<SearchBar
+          onInputChange={this.handleInputChange}
+          placeholder={t("syllabus.searchBarPlaceholder")}
+          inputText={inputText}
+        />*/}
 
         <RowWrapper>
-          <ExtendedWrapper>
+          <ExtendedWrapper
+            style={{ height: "calc(100vh - 70px)", overflowY: "scroll" }}
+          >
             <SchoolFilterForm
               handleToggleFilter={this.handleToggleFilter}
               loadedSchools={this.props.loadedSchools}

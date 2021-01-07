@@ -27,7 +27,7 @@ const modalStyle = {
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: "#ccc",
+    backgroundColor: "#fff",
     overflowY: "auto",
     overflowScrolling: "touch",
     WebkitOverflowScrolling: "touch",

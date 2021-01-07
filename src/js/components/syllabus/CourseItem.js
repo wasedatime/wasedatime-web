@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import MediaQuery from "react-responsive";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
-  faInfoCircle,
   faExternalLinkSquareAlt,
   faMapMarkerAlt,
   faMinusCircle,
@@ -35,11 +33,17 @@ const CourseItemWrapper = styled("div")`
   flex: 1 0 auto;
   align-items: stretch;
   background-color: #fff;
-  border: none;
-  margin: 0.2em 0;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;
+  margin: 0.5em 0.5em;
   padding: 0.5em 0.8em;
-  width: 100%;
+  width: 90%;
   line-height: 150%;
+  &:hover {
+    background-color: #eee;
+    box-shadow: none;
+    cursor: pointer;
+  }
 `;
 
 const StyledHeading = styled("h3")`
@@ -120,50 +124,6 @@ const Description = styled("div")`
   flex: 1 0 auto;
   text-align: left;
 `;
-
-const InfoButtonsWrapper = styled("div")`
-  flex: 1 0 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  font-size: 0.9em;
-`;
-
-// Info Button
-const ViewInfoButton = styled("a")`
-  display: block;
-  background-color: #ffae42;
-  border: 0px;
-  border-radius: 5px;
-  color: #fff;
-  padding: 3px 0.7rem 1px;
-  margin-bottom: 4px;
-  text-align: center;
-  text-decoration: none;
-  border: 2px solid #ffae42;
-  &:hover {
-    color: #ffae42;
-    background-color: #fff;
-    border: 2px solid #ffae42;
-  }
-  &:focus {
-    outline: none;
-  }
-`; // Case of large Screen
-
-const ViewInfoIconButton = styled("a")`
-  display: block;
-  background-color: #fff;
-  border: 0px;
-  color: #ffae42;
-  text-decoration: none;
-  &:hover {
-    color: #ffae42;
-  }
-  &:focus {
-    outline: none;
-  }
-`; // Case of Small Screen
 
 const OccurrenceList = styled("ul")`
   list-style: none;
@@ -290,52 +250,17 @@ const CourseItem = ({
     />
   );
 
-  const reviewButtonBar = (
-    <MediaQuery minWidth={sizes.desktop}>
-      {(matches) => {
-        return (
-          matches &&
-          !isDetailDisplayed && (
-            <InfoButtonsWrapper>
-              <ViewInfoButton
-                href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
-                target="_blank"
-              >
-                <FontAwesomeIcon icon={faInfoCircle} />{" "}
-                {t("courseInfo.Details.title")}
-              </ViewInfoButton>
-            </InfoButtonsWrapper>
-          )
-        );
-      }}
-    </MediaQuery>
-  );
-
-  const reviewButtonIcon = ( // Share Button Function for small page
-    <MediaQuery maxWidth={sizes.desktop}>
-      {(matches) => {
-        /* To course Info Button */
-        return (
-          matches &&
-          !isDetailDisplayed && (
-            <ViewInfoIconButton
-              href={`/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`}
-            >
-              <FontAwesomeIcon
-                icon={faInfoCircle}
-                size="2x"
-                transform="shrink-2"
-              />{" "}
-            </ViewInfoIconButton>
-          )
-        );
-      }}
-    </MediaQuery>
-  );
-
   return (
     <RowWrapper>
-      <CourseItemWrapper>
+      <CourseItemWrapper
+        onClick={() =>
+          !isDetailDisplayed &&
+          window.open(
+            `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`,
+            "_blank"
+          )
+        }
+      >
         <StyledHeading>{highlightedTitle}</StyledHeading>
         {isDetailDisplayed && (
           <StyledSubHeading>{course[SYLLABUS_KEYS.SUBTITLE]}</StyledSubHeading>
@@ -375,13 +300,13 @@ const CourseItem = ({
             <InvisibleButton /* Add Button */
               onClick={(e) => {
                 e.preventDefault();
+                e.stopPropagation();
                 handleOnClick(title, lng);
               }}
             >
               {buttonIcon}
             </InvisibleButton>
 
-            <InvisibleButton>{reviewButtonIcon}</InvisibleButton>
             <FetchedShareButton
               shareLink={shareLink}
               isDetailDisplayed={isDetailDisplayed}
@@ -407,7 +332,6 @@ const CourseItem = ({
             sizesDesktop={sizes.desktop}
             needLineBreak={needLineBreak}
           />
-          <InvisibleButton>{reviewButtonBar}</InvisibleButton>
         </DetailWrapper>
       </CourseItemWrapper>
     </RowWrapper>

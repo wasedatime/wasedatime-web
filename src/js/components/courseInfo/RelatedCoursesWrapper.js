@@ -16,7 +16,7 @@ const ExtendedOverlay = styled(Overlay)`
 
 const RelatedCoursesHeading = styled("div")`
   z-index: 1000;
-  background-color: #ccc;
+  background-color: #fff;
 `;
 
 const StyledSubHeading = styled("h2")`
@@ -60,11 +60,7 @@ const RelatedCoursesExplainTooltipText = styled("span")`
   ${media.phoneMini`left: -400%; top: 100%;`};
 `;
 
-const getCourseKey = (course) =>
-  ["SILS", "PSE"].includes(course[SYLLABUS_KEYS.SCHOOL]) &&
-  course[SYLLABUS_KEYS.TITLE].toLowerCase().includes("seminar")
-    ? course[SYLLABUS_KEYS.ID].substring(0, 12)
-    : course[SYLLABUS_KEYS.ID].substring(0, 10);
+const getCourseKey = (course) => course[SYLLABUS_KEYS.ID].substring(0, 12);
 
 class RelatedCoursesContainer extends React.Component {
   state = {

@@ -11,7 +11,7 @@ const CourseReviewsGroupWrapper = styled("div")`
 `;
 
 const ReviewsHeader = styled("h3")`
-  margin: 0;
+  margin: -8px 8px 0 8px;
   text-align: center;
   background: #eee;
 `;

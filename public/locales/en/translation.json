@@ -39,11 +39,11 @@
     "timetable": "Timetable",
     "syllabus": "Syllabus",
     "roomfinder": "Rooms",
-    "joinus": "Join Us!",
+    "joinus": "Join Us",
     "bus": "Bus",
     "language": "Language",
     "career": "Career",
-    "corona-info": "Corona Info"
+    "corona-info": "COVID19"
   },
   "footer": {
     "licensed": " Code Licensed ",
@@ -105,11 +105,11 @@
     "level": "Level",
     "School Filter": {
       "title": "School Filter",
-      "Import": "Import Syllabus",
-      "Remove": "Remove Syllabus",
+      "Choose Schools": "Choose your Schools",
+      "Remove Schools": "Remove Schools",
       "Undergraduate": "Undergraduate",
       "Graduate": "Graduate",
-      "Other": "Other",
+      "Special": "Special",
       "No imported": "No syllabus imported yet",
       "Import request": "Please import the syllabus for at least 1 school.",
       "Loaded schools limit message": "You can load the syllabus of up to 10 schools",
@@ -307,6 +307,15 @@
   },
   "user": {
     "Sign In": "Sign In",
-    "Sign Out": "Sign Out"
+    "Sign Out": "Sign Out",
+    "Sign In with WasedaMail": "Sign In with WasedaMail",
+    "session expired warning": "Your session is expired. Please sign in again.",
+    "sign in description": "Write your comment on a course and view your timetable on different devices by joining WasedaTime!",
+    "agreement on privacy policy 1": "By continuing, you agree to WasedaTime’s ",
+    "agreement on privacy policy 2": " and ",
+    "agreement on privacy policy 3": ".",
+    "Privacy Policy": "Privacy Policy",
+    "Terms of Service": "Terms of Service",
+    "Keep using without sign in": "Keep using without sign in"
   }
 }

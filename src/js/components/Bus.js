@@ -15,6 +15,7 @@ import { withNamespaces } from "react-i18next";
 import LANGS from "../config/langs";
 
 // TODO use modal from other ui framework
+import Header from "./Header";
 import ModalContainer from "../containers/ModalContainer";
 import { media } from "../styled-components/utils";
 import { Wrapper } from "../styled-components/Wrapper";
@@ -32,6 +33,7 @@ const wasedaNishiwasedaBusUri =
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   padding: 25px;
+  padding-top: 100px;
 `;
 
 const InfoWrapper = styled("div")`
@@ -120,7 +122,6 @@ const DatePickerSpan = styled("span")`
 const DatePickerButton = styled("button")`
   padding: 0.5em 1em;
   border: none;
-  border-radius: 5px;
   width: 100%;
   background: #efefef;
 
@@ -136,7 +137,7 @@ const DatePickerButton = styled("button")`
 const DatetimeClearButton = styled("button")`
   padding: 0.5em 1em;
   border: none;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   width: 25%;
   background: #efefef;
 
@@ -335,7 +336,11 @@ const createStatusComponent = (status, t) => {
 };
 
 const DateSelector = forwardRef(({ value, onClick }, ref) => (
-  <DatePickerButton onClick={onClick} ref={ref}>
+  <DatePickerButton
+    onClick={onClick}
+    ref={ref}
+    style={{ borderRadius: "5px 0 0 5px" }}
+  >
     <FontAwesomeIcon icon={faCalendarAlt} size="1x" /> {value}
   </DatePickerButton>
 ));
@@ -383,9 +388,12 @@ class Bus extends React.Component {
           />
           <meta property="og:site_name" content="WasedaTime - Bus" />
         </Helmet>
+        <Header
+          placeholder="Search classroom (in construction...)"
+          disabled={true}
+        />
         <ExtendedOverlay>
           <InfoWrapper>
-            <StyledHeading>{t("bus.busStatus")}</StyledHeading>
             <p>
               <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
               {t("bus.Assign a date / time to check the next bus")}：

@@ -4,7 +4,6 @@ import {
   SET_FIRST_TIME_ACCESS_TO_FALSE,
   IS_AUTHENTICATED,
   NOT_AUTHENTICATED,
-  SESSION_UPDATED,
 } from "../actions/types";
 
 const isFirstTimeAccess = (state = true, action) => {
@@ -22,8 +21,6 @@ const info = (state = null, action) => {
       return action.payload;
     case NOT_AUTHENTICATED:
       return null;
-    case SESSION_UPDATED:
-      return { ...state, ...action.payload };
     default:
       return state;
   }

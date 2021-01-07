@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { RowWrapper, Wrapper } from "../../styled-components/Wrapper";
 import { Article, Section } from "../../styled-components/Article";
+import { Message } from "semantic-ui-react";
 import TimeRowList from "./TimeRowList";
 import DayColumnList from "./DayColumnList";
 import AddedCourseAndPrefListContainer from "../../containers/timetable/AddedCourseAndPrefListContainer";
@@ -85,13 +86,21 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
               <Article>
                 <h2>{t("timetable.welcome")}</h2>
                 <Section>
-                  {t("timetable.You haven't added any courses")}
-                  <br />
-                  {t("timetable.Go to")}{" "}
-                  <a href="./syllabus">{t("timetable.Syllabus")} </a>{" "}
-                  {t("timetable.and try adding one!")}
+                  <Message
+                    warning
+                    header={t("timetable.You haven't added any courses")}
+                    content={
+                      <p>
+                        {t("timetable.Go to")}{" "}
+                        <a href="./syllabus">{t("timetable.Syllabus")} </a>{" "}
+                        {t("timetable.and try adding one!")}
+                      </p>
+                    }
+                  />
                 </Section>
-                <Section> {t("timetable.SaveSpace")} </Section>
+                <Section>
+                  <Message success>{t("timetable.SaveSpace")}</Message>
+                </Section>
               </Article>
             </Wrapper>
           )}

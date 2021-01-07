@@ -9,7 +9,7 @@ import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 const StyledCourseColumn = styled("div")`
   display: flex;
   flex: 1 0 calc(63rem / 7 * ${(props) => props.displayPeriods});
-  border-right: solid 1px #ccc;
+  border-right: 0px solid #ccc;
   border-bottom: solid 1px #ccc;
   background: linear-gradient(180deg, #fff 50%, #eee 50%);
   background-size: 100% calc(100% / ${(props) => props.displayPeriods} * 2);

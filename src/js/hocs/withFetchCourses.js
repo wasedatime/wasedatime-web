@@ -1,7 +1,12 @@
 import React from "react";
+import API from "@aws-amplify/api";
 import { connect } from "react-redux";
 
-import { fetchCourses, hydrateAddedCourses } from "../actions/syllabus";
+import {
+  fetchCourses,
+  hydrateAddedCourses,
+  saveTimetable,
+} from "../actions/syllabus";
 import {
   getIsFetching,
   getFetchedIds,
@@ -15,15 +20,92 @@ import {
   getIsPrefsEmpty,
   getAddedCoursesAndPrefs,
 } from "../reducers/addedCourses";
+import { getUserInfo } from "../reducers/user";
 import LoadingSpinner from "../components/LoadingSpinner";
 import FetchError from "../components/FetchError";
 
 const withFetchCourses = (WrappedComponent) => {
   class WithFetchCoursesComponent extends React.Component {
-    componentDidMount() {
-      if (!this.props.fetchedCourseIds.length) {
-        this.props.fetchCourses();
+    async componentDidMount() {
+      const {
+        fetchedCourseIds,
+        fetchedCoursesById,
+        fetchedSchools,
+        fetchedlastModBySchool,
+        addedCoursesAndPrefs,
+        userInfo,
+        fetchCourses,
+        saveTimetable,
+      } = this.props;
+
+      if (!fetchedCourseIds.length) {
+        fetchCourses();
       }
+
+      await Promise.all(
+        fetchedSchools.map(async (school) => {
+          await API.head("wasedatime-dev", `/syllabus/${school}`, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            response: true,
+          })
+            .then((res) => console.log(res.headers["last-modified"]))
+            .catch((e) => console.log(e));
+          return;
+        })
+      );
+
+      // Only signed in user can sync timetable
+      if (
+        userInfo &&
+        userInfo &&
+        userInfo.idToken.payload.exp > Date.now() / 1000
+      ) {
+        API.get("wasedatime-dev", "/timetable", {
+          headers: {
+            Authorization: userInfo ? userInfo.idToken.jwtToken : "",
+          },
+          response: true,
+        })
+          .then((res) => {
+            // res.data: {
+            //  success: BOOL,
+            //  data: [
+            //     {id: STR, color: INT, displayLang: STR}
+            //  ],
+            //  message: STR
+            // }
+            saveTimetable(res.data.data.courses, fetchedCoursesById);
+          })
+          .catch((e) => {
+            console.error(e.response);
+            if (e.response && !e.response.data.data) this.postTimetable();
+          });
+      }
+    }
+
+    uniqueCoursesAndPrefs(v, i, self) {
+      return self.indexOf(self.find((c) => c.id === v.id)) === i;
+    }
+
+    postTimetable() {
+      const { addedCoursesAndPrefs, userInfo } = this.props;
+      const combinedAddedCoursesAndPrefs = [
+        ...addedCoursesAndPrefs.fall,
+        ...addedCoursesAndPrefs.spring,
+      ].filter(this.uniqueCoursesAndPrefs);
+      const coursesAndPrefsToSave = combinedAddedCoursesAndPrefs.map((c) => ({
+        id: c.id,
+        color: c.color,
+        displayLang: c.displayLang,
+      }));
+      API.post("wasedatime-dev", "/timetable", {
+        body: { data: { courses: coursesAndPrefsToSave || [] } },
+        headers: {
+          Authorization: userInfo ? userInfo.idToken.jwtToken : "",
+        },
+      });
     }
 
     componentDidUpdate(prevProps) {
@@ -94,12 +176,16 @@ const withFetchCourses = (WrappedComponent) => {
       prefs: getPrefs(state.addedCourses),
       isPrefsEmpty: getIsPrefsEmpty(state.addedCourses),
       addedCoursesAndPrefs: getAddedCoursesAndPrefs(state.addedCourses),
+      userInfo: getUserInfo(state),
+      fetchedSchools: state.fetchedCourses.schools,
+      fetchedlastModBySchool: state.fetchedCourses.lastModBySchool,
     };
   };
 
   const mapDispatchToProps = {
     fetchCourses,
     hydrateAddedCourses,
+    saveTimetable,
   };
 
   return connect(

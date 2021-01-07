@@ -151,6 +151,7 @@ const Home = ({ t }) => {
         <Header
           placeholder="Search course (in construction...)"
           disabled={true}
+          isBlur={true}
         />
         <StyledArticle>
           <LogoWrapper>

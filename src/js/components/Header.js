@@ -8,18 +8,26 @@ const StyledHeader = styled("header")`
   border-bottom: 2px solid #f5f5f5;
   height: 67px;
   width: 100%;
-  background: rgba(255, 255, 255, 0.3);
-  -webkit-backdrop-filter: blur(5px);
-  backdrop-filter: blur(5px);
+  background: ${(props) =>
+    props.isBlur ? "rgba(255, 255, 255, 0.3)" : "#fff"};
+  -webkit-backdrop-filter: ${(props) => (props.isBlur ? "blur(5px)" : "none")};
+  backdrop-filter: ${(props) => (props.isBlur ? "blur(5px)" : "none")};
   position: fixed;
   top: 0;
   left: 0;
   z-index: 900;
+  grid-row: 1 / 2;
 `;
 
-const Header = ({ onInputChange, placeholder, inputText, disabled }) => {
+const Header = ({
+  onInputChange,
+  placeholder,
+  inputText,
+  disabled,
+  isBlur,
+}) => {
   return (
-    <StyledHeader>
+    <StyledHeader isBlur={isBlur}>
       <Grid style={{ width: "100%" }}>
         <Grid.Row>
           <Grid.Column width={4}></Grid.Column>

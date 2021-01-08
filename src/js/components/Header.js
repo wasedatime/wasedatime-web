@@ -19,6 +19,12 @@ const StyledHeader = styled("header")`
   grid-row: 1 / 2;
 `;
 
+const RoundedInput = styled(Input)`
+  input {
+    border-radius: 25px !important;
+  }
+`;
+
 const Header = ({
   onInputChange,
   placeholder,
@@ -33,7 +39,7 @@ const Header = ({
           <Grid.Column width={4}></Grid.Column>
           <Grid.Column width={8}>
             <div style={{ marginLeft: "0" }}>
-              <Input
+              <RoundedInput
                 fluid
                 icon="search"
                 placeholder={placeholder || "Search..."}

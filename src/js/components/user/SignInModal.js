@@ -4,13 +4,7 @@ import { withNamespaces } from "react-i18next";
 import { Header, Modal } from "semantic-ui-react";
 // import Modal from "../Modal";
 import SignInButton from "./SignInButton";
-import MediaQuery from "react-responsive";
-import { media, sizes } from "../../styled-components/utils";
-
-const StyledHeader = styled(Header)`
-  font-size: 2em !important;
-  margin-bottom: 1em !important;
-`;
+import { media } from "../../styled-components/utils";
 
 const StyledWarning = styled(Header)`
   font-size: 1.2em !important;

@@ -211,55 +211,57 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
 
   Promise.all(
     idsAndPrefs.map(async (idAndPref) => {
+      // check if school of the course is modified or not loaded yet
+      //
+      // const resOfHead = await API.head(
+      //   "wasedatime-dev",
+      //   `/syllabus/${idAndPref.school}`,
+      //   {
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //     },
+      //   }
+      // );
+      // const lastModLocal = getState().fetchedCourses.lastModBySchool[idAndPref.school]
+      // if (!lastModLocal || lastModLocal !== resOfHead.headers["last-modified"]) {
+      //   if (getState().fetchedCourses.schools.length === 10) {
+      //     dispatch({
+      //       type: REMOVE_SCHOOL,
+      //       payload: getState().fetchedCourses.schools[0]
+      //     });
+      //   }
+      //   const schoolCourses = await API.get(
+      //     "wasedatime-dev",
+      //     `/syllabus/${idAndPref.school}`,
+      //     {
+      //       headers: {
+      //         "Content-Type": "application/json",
+      //       },
+      //     }
+      //   );
+      //   const normalizedSchoolCourses = normalize(
+      //     schoolCourses,
+      //     schema.coursesSchema
+      //   );
+      //   dispatch({
+      //     type: ADD_SCHOOL,
+      //     payload: {
+      //       school: school,
+      //       lastMod: resOfHead.headers["last-modified"],
+      //     },
+      //   });
+      //   dispatch({
+      //     type: ADD_SCHOOL_FETCH_COURSES_SUCCESS,
+      //     response: {
+      //       courses: normalizedSchoolCourses,
+      //       school: school,
+      //       fetchedTime: new Date().toISOString(),
+      //     },
+      //   });
+      // }
+
       // get course details from fetchedCourses
       let course = fetchedCoursesById[idAndPref.id];
-
-      // if course not exists in fetchedCourses:
-      if (!course) {
-        // load course details directly through API
-        course = await API.get(
-          "wasedatime-dev",
-          `/syllabus?key=${idAndPref.id}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        // load school syllabus if there are spaces
-        if (course && getState().fetchedCourses.schools.length < 10) {
-          const school = course[SYLLABUS_KEYS.SCHOOL];
-          const schoolCourses = await API.get(
-            "wasedatime-dev",
-            `/syllabus/${school}`,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-            }
-          );
-          const normalizedSchoolCourses = normalize(
-            schoolCourses,
-            schema.coursesSchema
-          );
-          dispatch({
-            type: ADD_SCHOOL,
-            payload: {
-              school: school,
-              lastMod: "",
-            },
-          });
-          dispatch({
-            type: ADD_SCHOOL_FETCH_COURSES_SUCCESS,
-            response: {
-              courses: normalizedSchoolCourses,
-              school: school,
-              fetchedTime: new Date().toISOString(),
-            },
-          });
-        }
-      }
 
       // if course details retrieved successfully
       if (course) {

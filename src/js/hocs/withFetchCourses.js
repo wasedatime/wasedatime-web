@@ -28,6 +28,7 @@ const withFetchCourses = (WrappedComponent) => {
   class WithFetchCoursesComponent extends React.Component {
     async componentDidMount() {
       const {
+        addedCoursesAndPrefs,
         fetchedCourseIds,
         fetchedCoursesById,
         fetchedSchools,
@@ -68,13 +69,28 @@ const withFetchCourses = (WrappedComponent) => {
         })
           .then((res) => {
             // res.data: {
-            //  success: BOOL,
-            //  data: [
-            //     {id: STR, color: INT, displayLang: STR}
-            //  ],
-            //  message: STR
+            //   success: BOOL,
+            //   data: {
+            //     created_at: STR,
+            //     updated_at: STR,
+            //     courses: [{id: STR, color: INT, displayLang: STR}, ...]
+            //   },
+            //   message: STR
             // }
-            saveTimetable(res.data.data.courses, fetchedCoursesById);
+
+            // addedCourses GET from API ✖, addedCourses in local ✖: nothing
+            // addedCourses GET from API ✖, addedCourses in local ✔: post
+            // addedCourses GET from API ✔: save to local
+            if (res.data.data.courses.length === 0) {
+              if (
+                addedCoursesAndPrefs.fall.length +
+                  addedCoursesAndPrefs.spring.length >
+                0
+              )
+                this.postTimetable();
+            } else {
+              saveTimetable(res.data.data.courses, fetchedCoursesById);
+            }
           })
           .catch((e) => {
             console.error(e.response);

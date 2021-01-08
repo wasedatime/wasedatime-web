@@ -51,7 +51,8 @@
     "update": ""
   },
   "about": {
-    "description": "An unofficial app for syllabus searching, classroom finding, and bus schedule checking at Waseda University."
+    "title": "WasedaTime",
+    "description": "Student-created unprofit app for syllabus searching, classroom finding, and bus schedule checking at Waseda University."
   },
   "timetable": {
     "welcome": "Welcome to WasedaTime!",

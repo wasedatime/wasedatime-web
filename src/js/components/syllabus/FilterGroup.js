@@ -9,6 +9,7 @@ import styled from "styled-components";
 
 const StyledDropdown = styled(Dropdown)`
   font-size: 1em !important;
+  font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial;
   min-height: 32px !important;
   padding: 0.2rem 0.5rem 0.1rem 0.5rem !important;
 
@@ -36,16 +37,20 @@ const styles = (theme) => ({
     fontSize: "1.3em",
     color: "#000",
     fontWeight: "bold",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
   },
   formGroup: {
     fontSize: "1.2em",
     margin: "0 0 10px",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
   },
   formControlLabel: {
     minWidth: "80px",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
   },
   formControlLabel_label: {
     fontSize: "1em",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
   },
   checkBox: {
     width: "40px",

@@ -51,8 +51,7 @@ const StyledAnchor = styled("a")`
 
 const StyledHeading = styled("h1")`
   margin: 2rem 0px 0px 0px;
-  font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial,
-    Helvetica, sans-serif;
+  font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial;
   font-size: 4rem;
   font-weight: 400;
   color: #000000;

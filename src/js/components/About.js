@@ -49,10 +49,9 @@ const Introduction = styled("div")`
 `;
 
 const MainHeading = styled("h1")`
-  font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial,
-    Helvetica, sans-serif;
+  font-family: Optima, Yu Mincho, Lato, "Helvetica Neue", Arial;
   font-size: 5rem;
-  font-weight: 400;
+  font-weight: 500;
   color: #000000;
   ${media.phone`font-size: 4.2rem;`};
 `;
@@ -159,7 +158,7 @@ const Home = ({ t }) => {
             <Logo src={logo} alt="WasedaTime Logo" />
           </LogoWrapper>
           <Introduction>
-            <MainHeading>WasedaTime</MainHeading>
+            <MainHeading>{t("about.title")}</MainHeading>
             <Description>{t("about.description")}</Description>
           </Introduction>
         </StyledArticle>

@@ -32,18 +32,19 @@ const RowWrapper = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: center;
-  padding: 1em;
-  min-height: 45px;
+  padding: 1em 1em 0px 1em;
 `;
 
 const StyledSegment = styled(Segment)`
   width: 100% !important;
+  min-height: ${(props) => (props.isSchoolFilterOpened ? "120px" : "40px")};
   cursor: default !important;
   animation: none !important;
   border-radius: 5px !important;
   box-shadow: none !important;
   margin: 1em 2em 0em;
-  padding: 0.5em 1em 0px;
+  padding: 0.5rem 1em 0px !important;
+  transition: min-height 0.3s !important;
 
   &:hover {
     border-radius: 5px !important;
@@ -60,6 +61,7 @@ const WiderPopup = styled(Popup)`
 const LargerButton = styled(Button)`
   font-size: 14px !important;
   padding: 0.5em 1em !important;
+  ${media.phoneMini`font-size: 11px !important;`}
 `;
 
 class SchoolFilterForm extends React.Component {
@@ -235,7 +237,7 @@ class SchoolFilterForm extends React.Component {
     const { t, handleToggleFilter, selectedSchools } = this.props;
     return (
       <RowWrapper>
-        <StyledSegment>
+        <StyledSegment isSchoolFilterOpened={this.state.isSchoolFilterOpened}>
           <Header
             as="h2"
             onClick={() =>

@@ -71,14 +71,22 @@ export const fetchCourses = (schoolToLoad = null) => async (
         lastModBySchool[school] = resOfHead.headers["last-modified"];
 
         // if lastMod different: GET
-        const res = await API.get("wasedatime-dev", `/syllabus/${school}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
-        coursesBySchool[school] = normalize(res, schema.coursesSchema);
-        console.log(coursesBySchool[school]);
-        // else: use original local one
+        // else: remain the local syllabus
+        const oldModifiedTime = getState().fetchedCourses.lastModBySchool[
+          school
+        ];
+        if (
+          !oldModifiedTime ||
+          oldModifiedTime !== resOfHead.headers["last-modified"] ||
+          !getState().fetchedCourses.list.ids[school]
+        ) {
+          const res = await API.get("wasedatime-dev", `/syllabus/${school}`, {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          });
+          coursesBySchool[school] = normalize(res, schema.coursesSchema);
+        }
 
         return;
       })

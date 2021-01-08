@@ -2,7 +2,7 @@ const fetchedById = (entityKey, actionTypes) => {
   return (state = {}, action) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
-        var coursesById = {};
+        var coursesById = { ...state };
         const coursesBySchool = { ...action.response["coursesBySchool"] };
 
         Object.keys(coursesBySchool).forEach((school) => {

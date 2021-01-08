@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
 
 const fetchedList = (actionTypes) => {
-  const ids = (state = [], action) => {
+  const ids = (state = {}, action) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
-        var ids = {};
+        var ids = { ...state };
         const coursesBySchool = action.response["coursesBySchool"];
 
         Object.keys(coursesBySchool).forEach((school) => {

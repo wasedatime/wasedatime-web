@@ -37,23 +37,7 @@ const withFetchCourses = (WrappedComponent) => {
         saveTimetable,
       } = this.props;
 
-      if (!fetchedCourseIds.length) {
-        fetchCourses();
-      }
-
-      await Promise.all(
-        fetchedSchools.map(async (school) => {
-          await API.head("wasedatime-dev", `/syllabus/${school}`, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            response: true,
-          })
-            .then((res) => console.log(res.headers["last-modified"]))
-            .catch((e) => console.log(e));
-          return;
-        })
-      );
+      fetchCourses();
 
       // Only signed in user can sync timetable
       if (
@@ -93,7 +77,8 @@ const withFetchCourses = (WrappedComponent) => {
             }
           })
           .catch((e) => {
-            console.error(e.response);
+            // addedCourses GET from API ✖, addedCourses in local ✖: nothing
+            // addedCourses GET from API ✖, addedCourses in local ✔: post
             if (
               e.response &&
               !e.response.data.data &&

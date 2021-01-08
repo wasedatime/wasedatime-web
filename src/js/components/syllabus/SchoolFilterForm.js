@@ -32,6 +32,8 @@ const RowWrapper = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 1em;
+  min-height: 45px;
 `;
 
 const StyledSegment = styled(Segment)`
@@ -40,6 +42,8 @@ const StyledSegment = styled(Segment)`
   animation: none !important;
   border-radius: 5px !important;
   box-shadow: none !important;
+  margin: 1em 2em 0em;
+  padding: 0.5em 1em 0px;
 
   &:hover {
     border-radius: 5px !important;
@@ -231,9 +235,7 @@ class SchoolFilterForm extends React.Component {
     const { t, handleToggleFilter, selectedSchools } = this.props;
     return (
       <RowWrapper>
-        <StyledSegment
-          style={{ margin: "1em 2em 0em", padding: "0.5em 1em 0px" }}
-        >
+        <StyledSegment>
           <Header
             as="h2"
             onClick={() =>

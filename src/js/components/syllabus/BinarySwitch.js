@@ -10,9 +10,10 @@ const ExtendedWrapper = styled(RowWrapper)`
   align-items: center;
   justify-content: space-around;
   height: ${(props) => props.height};
-  width: 100%;
+  width: 21em;
   background-color: ${(props) => props.theme.white};
   z-index: 103;
+  position: fixed !important;
 `;
 
 const SwitchButton = styled("button")`

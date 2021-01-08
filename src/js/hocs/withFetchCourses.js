@@ -94,7 +94,14 @@ const withFetchCourses = (WrappedComponent) => {
           })
           .catch((e) => {
             console.error(e.response);
-            if (e.response && !e.response.data.data) this.postTimetable();
+            if (
+              e.response &&
+              !e.response.data.data &&
+              addedCoursesAndPrefs.fall.length +
+                addedCoursesAndPrefs.spring.length >
+                0
+            )
+              this.postTimetable();
           });
       }
     }

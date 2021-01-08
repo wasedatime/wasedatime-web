@@ -20,7 +20,7 @@ const StyledModal = styled(Modal)`
 const SignInModal = ({ isModalOpen, isExpired, signIn, closeModal, t }) => (
   <StyledModal onClose={closeModal} open={isModalOpen}>
     <Modal.Header>
-      <h2>{t(`user.Sign In`)}</h2>
+      <h1>{t(`user.Sign In`)}</h1>
     </Modal.Header>
     <Modal.Content>
       <Modal.Description>
@@ -35,7 +35,7 @@ const SignInModal = ({ isModalOpen, isExpired, signIn, closeModal, t }) => (
     </Modal.Content>
 
     <Modal.Actions style={{ textAlign: "center" }}>
-      <p style={{ marginBottom: "1em", color: "#888" }}>
+      <p style={{ marginBottom: "0.5rem", color: "#888" }}>
         {t(`user.agreement on privacy policy 1`)}
         <a href="/">{t(`user.Privacy Policy`)}</a>
         {t(`user.agreement on privacy policy 2`)}

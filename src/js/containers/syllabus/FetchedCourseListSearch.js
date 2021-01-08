@@ -389,9 +389,7 @@ class FetchedCourseSearch extends React.Component {
         />*/}
 
         <RowWrapper>
-          <ExtendedWrapper
-            style={{ height: "calc(100vh - 70px)", overflowY: "scroll" }}
-          >
+          <ExtendedWrapper style={{ height: "calc(100vh - 70px)" }}>
             <SchoolFilterForm
               handleToggleFilter={this.handleToggleFilter}
               loadedSchools={this.props.loadedSchools}

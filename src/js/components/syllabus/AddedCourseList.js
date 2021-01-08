@@ -23,8 +23,10 @@ import {
 
 const CourseListWrapper = styled(Wrapper)`
   flex: none;
+  position: fixed !important;
   padding: 0.5em 1em 1em 1em;
   overflow-y: auto;
+  width: 21em;
   height: calc(
     100vh - ${(props) => props.theme.headerHeight} -
       ${(props) => props.theme.addedCourseListSwitchHeight}

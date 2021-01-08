@@ -14,8 +14,9 @@ import { Overlay } from "../../styled-components/Overlay";
 
 const FilterWrapper = styled(Wrapper)`
   flex: none;
+  position: fixed !important
+  height: 100%;
   overflow-y: auto;
-  height: ${(props) => (props.isSideBar ? "100%" : "auto")};
 `;
 
 const FilterOverlay = styled(Overlay)`
@@ -405,7 +406,8 @@ class Filter extends React.Component {
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
         <FilterOverlay isSideBar={isSideBar}>
           <FilterTitle isSideBar={isSideBar}>
-            <FontAwesomeIcon icon={faFilter} size="1x" />&nbsp;
+            <FontAwesomeIcon icon={faFilter} size="1x" />
+            &nbsp;
             <b>{t("syllabus.Filter by")}</b>
             &nbsp;
             <Button

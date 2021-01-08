@@ -50,7 +50,7 @@ const StyledButton = styled("button")`
 `;
 
 const StyledSpan = styled("span")`
-  font-size: 0.3em;
+  font-size: 0.8em;
   font-weight: 100;
   color: #fff;
 `;

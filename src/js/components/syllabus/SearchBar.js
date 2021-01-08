@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import stickybits from "stickybits";
 import PropTypes from "prop-types";
 
-import {headerHeight} from "../../styled-components/variables";
-import {RowWrapper} from "../../styled-components/Wrapper";
+import { headerHeight } from "../../styled-components/variables";
+import { RowWrapper } from "../../styled-components/Wrapper";
 
 const ExtendedWrapper = styled(RowWrapper)`
   flex: none;
@@ -15,7 +15,7 @@ const ExtendedWrapper = styled(RowWrapper)`
   width: 100%;
   padding: 0 1em;
   background-color: ${(props) => props.theme.grey7};
-  z-index: 1030;
+  z-index: 103;
 `;
 
 const StyledForm = styled("form")`

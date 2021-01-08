@@ -1,11 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { media } from "../../styled-components/utils";
+import MediaQuery from "react-responsive";
+import { media, sizes } from "../../styled-components/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import ReviewLangSwitches from "./ReviewLangSwitches";
 import ReviewScalesCountContainer from "./ReviewScalesCountContainer";
 import ReviewsList from "./ReviewsList";
+
+const StyledReviewsWrapper = styled("div")`
+  ${media.phone`padding: 0 1em;`}
+`;
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
@@ -24,6 +29,8 @@ const AddReviewButton = styled("button")`
   border-radius: 5px;
   font-size: 0.9em;
   float: right;
+  ${media.phone`float: none;`}
+  ${media.phone`width: 100%;`}
   padding: 0.3em 0.5em;
 `;
 
@@ -59,9 +66,12 @@ const CourseReviews = ({
   deleteReview,
   t,
 }) => (
-  <div>
+  <StyledReviewsWrapper>
     <StyledSubHeading>
       {t(`courseInfo.Reviews`)}{" "}
+      <MediaQuery minWidth={sizes.phone}>
+        {(matches) => (matches ? " " : <br />)}
+      </MediaQuery>
       <span style={{ marginLeft: "10px" }}>
         <ReviewLangSwitches
           reviewLang={reviewLang}
@@ -69,10 +79,26 @@ const CourseReviews = ({
           isInHeading={true}
         />
       </span>
-      <AddReviewButton onClick={openReviewNewForm}>
-        <FontAwesomeIcon icon={faPen} /> {t(`courseInfo.Write your Review`)}
-      </AddReviewButton>
+      <MediaQuery minWidth={sizes.phone}>
+        {(matches) =>
+          matches && (
+            <AddReviewButton onClick={openReviewNewForm}>
+              <FontAwesomeIcon icon={faPen} />{" "}
+              {t(`courseInfo.Write your Review`)}
+            </AddReviewButton>
+          )
+        }
+      </MediaQuery>
     </StyledSubHeading>
+    <MediaQuery minWidth={sizes.phone}>
+      {(matches) =>
+        !matches && (
+          <AddReviewButton onClick={openReviewNewForm}>
+            <FontAwesomeIcon icon={faPen} /> {t(`courseInfo.Write your Review`)}
+          </AddReviewButton>
+        )
+      }
+    </MediaQuery>
     <Disclaimer>{t(`courseInfo.Disclaimer`)}</Disclaimer>
     <ReviewsListWrapper>
       <ReviewScalesCountContainer
@@ -90,7 +116,7 @@ const CourseReviews = ({
       />
     </ReviewsListWrapper>
     <br />
-  </div>
+  </StyledReviewsWrapper>
 );
 
 export default CourseReviews;

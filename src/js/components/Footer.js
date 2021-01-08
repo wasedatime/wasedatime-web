@@ -15,7 +15,7 @@ const StyledFooter = styled("footer")`
   background-color: #222222;
   font-size: 1.4rem;
   font-weight: 300;
-  z-index: 3000;
+  z-index: 300;
 `;
 
 const StyledP = styled("p")`

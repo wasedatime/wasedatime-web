@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import { Dropdown, Image, Icon } from "semantic-ui-react";
 import styled, { keyframes } from "styled-components";
+import { media } from "../../styled-components/utils";
 
 export const expandLink = () =>
   keyframes`
@@ -16,12 +17,18 @@ const UserMenuTrigger = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 0.9rem;
-  padding-bottom: 1rem;
+  padding: 1rem 0.5rem 1rem 1.2rem;
+  ${media.phone`padding: 0.5rem;`}
 
   i {
     margin: 0 !important;
     font-size: 2em !important;
+  }
+
+  img.ui.circular.image {
+    width: 40px !important;
+    min-width: 40px !important;
+    ${media.phone`width: 35px !important; min-width: 35px !important;`}
   }
 
   &:hover {
@@ -31,8 +38,8 @@ const UserMenuTrigger = styled("div")`
 
 const StyledSpan = styled("span")`
   animation-name: ${expandLink};
-  animation-duration: 0.5s;
-  width: 150px
+  animation-duration: 0.3s;
+  width: 145px
   text-align: left
   font-size: 1.1em
   font-weight: 100;
@@ -44,6 +51,7 @@ const StyledSpan = styled("span")`
 
 const StyledMenu = styled(Dropdown.Menu)`
   width: 210px !important;
+  ${media.phone`width: 60px !important;`}
   background: #555 !important;
 `;
 
@@ -65,14 +73,12 @@ const UserMenu = ({
     <Dropdown
       trigger={
         <UserMenuTrigger>
-          <div>
-            <Image
-              src={userInfo.idToken.payload.picture}
-              width={isMobileMode ? "35" : "40"}
-              height={isMobileMode ? "35" : "40"}
-              circular
-            />
-          </div>
+          <Image
+            src={userInfo.idToken.payload.picture}
+            width={isMobileMode ? "35" : "40"}
+            height={isMobileMode ? "35" : "40"}
+            circular
+          />
           {isHovered && (
             <StyledSpan isHovered={isHovered}>
               {userInfo.idToken.payload.preferred_username}
@@ -82,6 +88,7 @@ const UserMenu = ({
       }
       icon={null}
       simple
+      direction={isMobileMode ? "left" : "right"}
     >
       <StyledMenu>
         <StyledMenuItem disabled>Profile</StyledMenuItem>

@@ -15,7 +15,7 @@ const StyledHeader = styled("header")`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 900;
+  z-index: 90;
   grid-row: 1 / 2;
 `;
 

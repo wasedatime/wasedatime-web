@@ -204,6 +204,7 @@ const CourseItem = ({
   handleClickSyllabusLink,
   isDetailDisplayed,
   needLineBreak,
+  openNewTabOnClick,
   t,
   lng,
 }) => {
@@ -253,13 +254,18 @@ const CourseItem = ({
   return (
     <RowWrapper>
       <CourseItemWrapper
-        onClick={() =>
-          !isDetailDisplayed &&
-          window.open(
-            `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`,
-            "_blank"
-          )
-        }
+        onClick={() => {
+          if (!isDetailDisplayed) {
+            if (openNewTabOnClick) {
+              window.open(
+                `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`,
+                "_blank"
+              );
+            } else {
+              window.location.href = `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`;
+            }
+          }
+        }}
       >
         <StyledHeading>{highlightedTitle}</StyledHeading>
         {isDetailDisplayed && (

@@ -12,7 +12,7 @@ const ExtendedWrapper = styled(RowWrapper)`
   height: ${(props) => props.height};
   width: 100%;
   background-color: ${(props) => props.theme.white};
-  z-index: 1030;
+  z-index: 103;
 `;
 
 const SwitchButton = styled("button")`

@@ -41,7 +41,8 @@ export const LongWrapper = styled(Wrapper)`
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
-  ${media.tablet`padding-right: 2rem;`};
+  ${media.tablet`padding: 0 2rem 0 80px;`}
+  ${media.phone`padding: 0;`}
 `;
 
 const Announcement = styled("div")`

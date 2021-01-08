@@ -13,7 +13,7 @@ const ExtendedWrapper = styled(RowWrapper)`
   height: ${(props) => props.theme.semesterTabsHeight};
   width: 100%;
   background-color: ${(props) => props.theme.grey7};
-  z-index: 1030;
+  z-index: 103;
 `;
 
 const SemesterButton = styled("button")`

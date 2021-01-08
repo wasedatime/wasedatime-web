@@ -12,7 +12,7 @@ const StyledSidebar = styled("aside")`
   width: 65px;
   height: 100vh;
   position: fixed;
-  z-index: 4000;
+  z-index: 400;
   box-shadow: rgba(0, 0, 0, 0.45) 4px 0px 12px;
   transition: width 0.5s;
 

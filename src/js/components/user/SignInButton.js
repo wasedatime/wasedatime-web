@@ -12,7 +12,7 @@ const SignInButton = ({ onClickFunc, t }) => (
         onClick={onClickFunc}
         style={{
           fontSize: "1.5em",
-          padding: "0.5em",
+          padding: "0.5em ",
           marginLeft: "0",
           background: "#b51e36",
           borderRadius: "20px",

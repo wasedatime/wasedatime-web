@@ -64,7 +64,7 @@ const getCourseKey = (course) => course[SYLLABUS_KEYS.ID].substring(0, 12);
 
 class RelatedCoursesContainer extends React.Component {
   state = {
-    reviewLang: this.props.lng,
+    reviewLang: this.props.lng === "jp" ? "ja" : this.props.lng,
   };
 
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });

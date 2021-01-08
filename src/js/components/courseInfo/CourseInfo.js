@@ -229,7 +229,7 @@ class CourseInfo extends React.Component {
         avgDifficulty: avgDifficulty,
         avgBenefit: avgBenefit,
         searchLang: searchLang,
-        reviewLang: this.props.lng,
+        reviewLang: this.props.lng === "jp" ? "ja" : this.props.lng,
         isLoaded: true,
       });
   }

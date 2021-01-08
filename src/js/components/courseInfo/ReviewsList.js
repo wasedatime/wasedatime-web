@@ -87,8 +87,8 @@ const ReviewsList = ({
             </ReviewTitle>
             <span>
               {review["comment_" + reviewLang] !== undefined &&
-                review["comment_" + reviewLang].split("\n").map((str) => (
-                  <span>
+                review["comment_" + reviewLang].split("\n").map((str, j) => (
+                  <span key={j}>
                     {str}
                     <br />
                   </span>

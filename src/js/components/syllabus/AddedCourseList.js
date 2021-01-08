@@ -13,13 +13,7 @@ import {
 import CourseListSummary from "../CourseListSummary";
 import AddedCourseItem from "../../containers/syllabus/AddedCourseItem";
 import { Wrapper } from "../../styled-components/Wrapper";
-import {
-  Article,
-  ListItem,
-  OList,
-  Section,
-  Subheading,
-} from "../../styled-components/Article";
+import { Article, Section, Subheading } from "../../styled-components/Article";
 
 const CourseListWrapper = styled(Wrapper)`
   flex: none;

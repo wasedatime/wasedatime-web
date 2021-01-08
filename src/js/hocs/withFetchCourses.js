@@ -1,6 +1,7 @@
 import React from "react";
 import API from "@aws-amplify/api";
 import { connect } from "react-redux";
+import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 
 import {
   fetchCourses,
@@ -29,9 +30,7 @@ const withFetchCourses = (WrappedComponent) => {
     async componentDidMount() {
       const {
         addedCoursesAndPrefs,
-        fetchedCourseIds,
         fetchedCoursesById,
-        fetchedSchools,
         userInfo,
         fetchCourses,
         saveTimetable,
@@ -105,6 +104,7 @@ const withFetchCourses = (WrappedComponent) => {
         id: c.id,
         color: c.color,
         displayLang: c.displayLang,
+        school: c.course[SYLLABUS_KEYS.SCHOOL],
       }));
       API.post("wasedatime-dev", "/timetable", {
         body: { data: { courses: coursesAndPrefsToSave || [] } },

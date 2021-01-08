@@ -1,9 +1,10 @@
 import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../actions/types";
+import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 
 const addedIdsBySchool = (state = {}, action) => {
   switch (action.type) {
     case ADD_COURSE:
-      const school = action.payload.course.r;
+      const school = action.payload.course[SYLLABUS_KEYS.SCHOOL];
       const newIds = state[school]
         ? [...state[school].ids, action.payload.id]
         : [action.payload.id];

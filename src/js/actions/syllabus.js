@@ -147,6 +147,7 @@ export const addCourse = (course, displayLang) => (dispatch, getState) => {
             id: course[SYLLABUS_KEYS.ID],
             color: 0,
             displayLang: displayLang,
+            school: course[SYLLABUS_KEYS.SCHOOL],
           },
         },
       },

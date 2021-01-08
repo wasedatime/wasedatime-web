@@ -1,8 +1,6 @@
 import React from "react";
 import { Button, Icon } from "semantic-ui-react";
 import { withNamespaces } from "react-i18next";
-import MediaQuery from "react-responsive";
-import { sizes } from "../../styled-components/utils";
 
 const SignInButton = ({ onClickFunc, t }) => (
   <Button

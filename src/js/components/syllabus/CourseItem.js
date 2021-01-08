@@ -1,9 +1,9 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
-  faExternalLinkSquareAlt,
   faMapMarkerAlt,
   faMinusCircle,
   faPlusCircle,
@@ -40,9 +40,9 @@ const CourseItemWrapper = styled("div")`
   width: 90%;
   line-height: 150%;
   &:hover {
-    background-color: #eee;
-    box-shadow: none;
-    cursor: pointer;
+    ${(props) =>
+      !props.isDetailDisplayed &&
+      "background-color: #eee; box-shadow: none; cursor: pointer;"}
   }
 `;
 
@@ -205,6 +205,7 @@ const CourseItem = ({
   isDetailDisplayed,
   needLineBreak,
   openNewTabOnClick,
+  history,
   t,
   lng,
 }) => {
@@ -254,6 +255,7 @@ const CourseItem = ({
   return (
     <RowWrapper>
       <CourseItemWrapper
+        isDetailDisplayed={isDetailDisplayed}
         onClick={() => {
           if (!isDetailDisplayed) {
             if (openNewTabOnClick) {
@@ -262,7 +264,9 @@ const CourseItem = ({
                 "_blank"
               );
             } else {
-              window.location.href = `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`;
+              history.push(
+                `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`
+              );
             }
           }
         }}
@@ -285,24 +289,6 @@ const CourseItem = ({
               borderRadius: "5px",
             }}
           >
-            <a
-              style={{ alignSelf: "flex-start" }}
-              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
-                "syllabus.langParam"
-              )}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => {
-                handleClickSyllabusLink(title, lng);
-              }}
-            >
-              <FontAwesomeIcon
-                style={{ color: "#6495ED" }}
-                icon={faExternalLinkSquareAlt}
-                size="2x"
-                transform="shrink-2"
-              />
-            </a>
             <InvisibleButton /* Add Button */
               onClick={(e) => {
                 e.preventDefault();
@@ -346,7 +332,7 @@ const CourseItem = ({
 
 // <Instructors>{highlightedInstructor}</Instructors>
 
-export default withNamespaces("translation")(CourseItem);
+export default withRouter(withNamespaces("translation")(CourseItem));
 
 CourseItem.propTypes = {
   searchTerm: PropTypes.string.isRequired,

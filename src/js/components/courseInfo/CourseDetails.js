@@ -4,6 +4,7 @@ import { withNamespaces } from "react-i18next";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 import { Segment, Grid, Table, Statistic, Divider } from "semantic-ui-react";
 import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
+import { media } from "../../styled-components/utils";
 
 const mapCourseType = (course, t) => {
   if (course[SYLLABUS_KEYS.TYPE] === -1) return "";
@@ -39,6 +40,9 @@ const StyledSegment = styled(Segment)`
   font-size: 1em !important;
   margin: 1em 0px !important;
   cursor: default !important;
+  border: none !important;
+  margin-top: 0 !important;
+  box-shadow: none !important;
   &:hover {
     transform: none !important;
   }

@@ -1,5 +1,6 @@
 import { normalize } from "normalizr";
 import API from "@aws-amplify/api";
+import { schoolCodeMap } from "../data/schools";
 
 import {
   ADD_COURSE,
@@ -212,61 +213,66 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
   Promise.all(
     idsAndPrefs.map(async (idAndPref) => {
       // check if school of the course is modified or not loaded yet
-      //
-      // const resOfHead = await API.head(
-      //   "wasedatime-dev",
-      //   `/syllabus/${idAndPref.school}`,
-      //   {
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   }
-      // );
-      // const lastModLocal = getState().fetchedCourses.lastModBySchool[idAndPref.school]
-      // if (!lastModLocal || lastModLocal !== resOfHead.headers["last-modified"]) {
-      //   if (getState().fetchedCourses.schools.length === 10) {
-      //     dispatch({
-      //       type: REMOVE_SCHOOL,
-      //       payload: getState().fetchedCourses.schools[0]
-      //     });
-      //   }
-      //   const schoolCourses = await API.get(
-      //     "wasedatime-dev",
-      //     `/syllabus/${idAndPref.school}`,
-      //     {
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //     }
-      //   );
-      //   const normalizedSchoolCourses = normalize(
-      //     schoolCourses,
-      //     schema.coursesSchema
-      //   );
-      //   dispatch({
-      //     type: ADD_SCHOOL,
-      //     payload: {
-      //       school: school,
-      //       lastMod: resOfHead.headers["last-modified"],
-      //     },
-      //   });
-      //   dispatch({
-      //     type: ADD_SCHOOL_FETCH_COURSES_SUCCESS,
-      //     response: {
-      //       courses: normalizedSchoolCourses,
-      //       school: school,
-      //       fetchedTime: new Date().toISOString(),
-      //     },
-      //   });
-      // }
 
+      const school = schoolCodeMap[idAndPref.id.substring(0, 2)];
+
+      const resOfHead = await API.head(
+        "wasedatime-dev",
+        `/syllabus/${school}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const lastModLocal = getState().fetchedCourses.lastModBySchool[school];
+      if (
+        !lastModLocal ||
+        lastModLocal !== resOfHead.headers["last-modified"]
+      ) {
+        if (getState().fetchedCourses.schools.length === 10) {
+          dispatch({
+            type: REMOVE_SCHOOL,
+            payload: getState().fetchedCourses.schools[0],
+          });
+        }
+        const schoolCourses = await API.get(
+          "wasedatime-dev",
+          `/syllabus/${school}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const normalizedSchoolCourses = normalize(
+          schoolCourses,
+          schema.coursesSchema
+        );
+        dispatch({
+          type: ADD_SCHOOL,
+          payload: {
+            school: school,
+            lastMod: resOfHead.headers["last-modified"],
+          },
+        });
+        dispatch({
+          type: ADD_SCHOOL_FETCH_COURSES_SUCCESS,
+          response: {
+            courses: normalizedSchoolCourses,
+            school: school,
+            fetchedTime: new Date().toISOString(),
+          },
+        });
+      }
+
+      // After schools are loaded or updated
       // get course details from fetchedCourses
       let course = fetchedCoursesById[idAndPref.id];
 
       // if course details retrieved successfully
       if (course) {
         // push school to addedCourses
-        const school = course[SYLLABUS_KEYS.SCHOOL];
         if (idsBySchool[school]) {
           idsBySchool[school].ids.push(idAndPref.id);
         } else {

@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.wasedatime.web",
+      "sha256_cert_fingerprints": [
+        "F2:50:26:2B:25:B8:0A:CA:BE:36:81:FA:00:16:35:8E:AD:7C:4F:7A:FF:A3:02:AA:F9:A7:CE:3E:88:C0:04:D8"
+      ]
+    }
+  }
+]

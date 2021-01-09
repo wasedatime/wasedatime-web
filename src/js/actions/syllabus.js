@@ -212,6 +212,7 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
 
   Promise.all(
     idsAndPrefs.map(async (idAndPref) => {
+      let course = null;
       // check if school of the course is modified or not loaded yet
 
       const school = schoolCodeMap[idAndPref.id.substring(0, 2)];
@@ -223,6 +224,7 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
           headers: {
             "Content-Type": "application/json",
           },
+          response: true,
         }
       );
       const lastModLocal = getState().fetchedCourses.lastModBySchool[school];
@@ -249,6 +251,9 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
           schoolCourses,
           schema.coursesSchema
         );
+        // After syllabus loaded or updated
+        // get course details from fetchedCourses
+        course = normalizedSchoolCourses.entities.courses[idAndPref.id];
         dispatch({
           type: ADD_SCHOOL,
           payload: {
@@ -264,11 +269,10 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
             fetchedTime: new Date().toISOString(),
           },
         });
+      } else {
+        // get course details from fetchedCourses if syllabus is already loaded
+        course = fetchedCoursesById[idAndPref.id];
       }
-
-      // After schools are loaded or updated
-      // get course details from fetchedCourses
-      let course = fetchedCoursesById[idAndPref.id];
 
       // if course details retrieved successfully
       if (course) {

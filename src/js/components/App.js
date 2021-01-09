@@ -139,8 +139,8 @@ class App extends React.Component {
       }
     });
 
-    await this.timeout(3600000);
-    this.letUserSignInAfterExpired();
+    // await this.timeout(3600000);
+    // this.letUserSignInAfterExpired();
   }
 
   render() {

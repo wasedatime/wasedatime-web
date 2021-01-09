@@ -395,18 +395,22 @@ class FetchedCourseSearch extends React.Component {
 
         <RowWrapper>
           <FetchedCourseListWrapper>
-            <SchoolFilterForm
-              handleToggleFilter={this.handleToggleFilter}
-              loadedSchools={this.props.loadedSchools}
-              selectedSchools={this.state.filterGroups.school}
-              loadSyllabus={this.loadSyllabus}
-              removeSyllabus={this.removeSyllabus}
-            />
-            <FetchedCourseList
-              searchTerm={searchTerm}
-              searchLang={searchLang}
-              results={results}
-            />
+            <div>
+              <SchoolFilterForm
+                handleToggleFilter={this.handleToggleFilter}
+                loadedSchools={this.props.loadedSchools}
+                selectedSchools={this.state.filterGroups.school}
+                loadSyllabus={this.loadSyllabus}
+                removeSyllabus={this.removeSyllabus}
+              />
+            </div>
+            <div>
+              <FetchedCourseList
+                searchTerm={searchTerm}
+                searchLang={searchLang}
+                results={results}
+              />
+            </div>
           </FetchedCourseListWrapper>
           <MediaQuery minWidth={sizes.desktop}>
             {(matches) => {

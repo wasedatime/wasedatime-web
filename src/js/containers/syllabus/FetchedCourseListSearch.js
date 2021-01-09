@@ -19,7 +19,7 @@ import SchoolFilterForm from "../../components/syllabus/SchoolFilterForm";
 import Modal from "../../components/Modal";
 import { Wrapper, RowWrapper } from "../../styled-components/Wrapper";
 import { SideBar } from "../../styled-components/SideBar";
-import { media, sizes } from "../../styled-components/utils";
+import { sizes } from "../../styled-components/utils";
 import { getSearchLang } from "../../utils/courseSearch";
 import { gaFilter } from "../../ga/eventCategories";
 import {

@@ -1,7 +1,6 @@
 import React from "react";
 import API from "@aws-amplify/api";
 import { connect } from "react-redux";
-import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 
 import {
   fetchCourses,

@@ -91,7 +91,8 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    const { userInfo, setUserInfo, clearUserInfo, history, t } = this.props;
+    // const { userInfo, setUserInfo, clearUserInfo, history, t } = this.props;
+    const { setUserInfo, clearUserInfo, history, t } = this.props;
 
     window.addEventListener("storage", (e) => {
       console.log(e);

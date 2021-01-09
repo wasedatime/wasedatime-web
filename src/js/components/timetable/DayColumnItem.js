@@ -7,7 +7,7 @@ const StyledDayColumnItem = styled("li")`
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
-  height: calc(90vh - 100px);
+  min-height: calc(100vh - 150px);
 `;
 
 const DayItem = styled("div")`

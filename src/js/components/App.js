@@ -118,8 +118,8 @@ class App extends React.Component {
       }
     });
 
-    if (userInfo && userInfo.idToken.payload.exp <= Date.now() / 1000)
-      this.props.clearUserInfo();
+    // if (userInfo && userInfo.idToken.payload.exp <= Date.now() / 1000)
+    //   this.props.clearUserInfo();
 
     Hub.listen("auth", ({ payload: { event, data } }) => {
       console.log(event);

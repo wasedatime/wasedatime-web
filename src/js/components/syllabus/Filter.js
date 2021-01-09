@@ -15,7 +15,7 @@ import { Overlay } from "../../styled-components/Overlay";
 const FilterWrapper = styled(Wrapper)`
   flex: none;
   position: fixed !important
-  height: 100%;
+  height: calc(100vh - 70px);
   overflow-y: auto;
 `;
 

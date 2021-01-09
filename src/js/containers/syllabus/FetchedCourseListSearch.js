@@ -19,7 +19,7 @@ import SchoolFilterForm from "../../components/syllabus/SchoolFilterForm";
 import Modal from "../../components/Modal";
 import { Wrapper, RowWrapper } from "../../styled-components/Wrapper";
 import { SideBar } from "../../styled-components/SideBar";
-import { sizes } from "../../styled-components/utils";
+import { media, sizes } from "../../styled-components/utils";
 import { getSearchLang } from "../../utils/courseSearch";
 import { gaFilter } from "../../ga/eventCategories";
 import {
@@ -33,6 +33,11 @@ import {
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
+`;
+
+const FetchedCourseListWrapper = styled(ExtendedWrapper)`
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
 `;
 
 const modalStyle = {
@@ -389,7 +394,7 @@ class FetchedCourseSearch extends React.Component {
         />*/}
 
         <RowWrapper>
-          <ExtendedWrapper style={{ maxHeight: "calc(100vh - 70px)" }}>
+          <FetchedCourseListWrapper>
             <SchoolFilterForm
               handleToggleFilter={this.handleToggleFilter}
               loadedSchools={this.props.loadedSchools}
@@ -402,7 +407,7 @@ class FetchedCourseSearch extends React.Component {
               searchLang={searchLang}
               results={results}
             />
-          </ExtendedWrapper>
+          </FetchedCourseListWrapper>
           <MediaQuery minWidth={sizes.desktop}>
             {(matches) => {
               return matches ? (

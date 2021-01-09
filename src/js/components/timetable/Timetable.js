@@ -37,7 +37,7 @@ const ScrollableTimetable = styled("div")`
   display: flex;
   flex-direction: row;
   flex: 1 0 0;
-  overflow-x: scroll;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 `;
 

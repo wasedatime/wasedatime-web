@@ -140,13 +140,14 @@ export const hydrateAddedCourses = (prefs, fetchedCoursesById) => ({
 
 export const addCourse = (course, displayLang) => (dispatch, getState) => {
   try {
+    const term = course[SYLLABUS_KEYS.TERM].match(/0|1|f/g) ? "spring" : "fall";
     API.patch("wasedatime-dev", "/timetable", {
       body: {
         data: {
           operation: "append",
           course: {
             id: course[SYLLABUS_KEYS.ID],
-            color: 0,
+            color: getState().addedCourses[term].prefs.length % 8,
             displayLang: displayLang,
             school: course[SYLLABUS_KEYS.SCHOOL],
           },

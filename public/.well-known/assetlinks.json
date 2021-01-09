@@ -1,12 +1,5 @@
-[
-  {
-    "relation": ["delegate_permission/common.handle_all_urls"],
-    "target": {
-      "namespace": "android_app",
-      "package_name": "com.wasedatime.web",
-      "sha256_cert_fingerprints": [
-        "F2:50:26:2B:25:B8:0A:CA:BE:36:81:FA:00:16:35:8E:AD:7C:4F:7A:FF:A3:02:AA:F9:A7:CE:3E:88:C0:04:D8"
-      ]
-    }
-  }
-]
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target" : { "namespace": "android_app", "package_name": "com.wasedatime.web",
+    "sha256_cert_fingerprints": ["BB:17:58:BF:8C:FB:E8:E7:D2:72:F6:77:D9:BD:0E:24:A7:F9:C3:F7:21:D2:48:A0:42:B7:63:BC:05:FA:9E:6D"] }
+}]

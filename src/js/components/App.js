@@ -95,8 +95,11 @@ class App extends React.Component {
     const { setUserInfo, clearUserInfo, history, t } = this.props;
 
     window.addEventListener("storage", (e) => {
-      console.log(e);
-      if (e.key === "wasedatime-2020-state-ac" && e.oldValue) {
+      if (
+        window.innerWidth < sizes.desktop &&
+        e.key === "wasedatime-2020-state-ac" &&
+        e.oldValue
+      ) {
         Alert.warning(
           <React.Fragment>
             {t("app.courseChange")}

@@ -11,6 +11,7 @@ import "./styles/styles.css";
 import "./js/components/i18n";
 
 import Amplify, { Auth } from "aws-amplify";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const authRedirectPath =
   window.location.protocol + "//" + window.location.host + "/verify";
@@ -100,3 +101,5 @@ configureStore().then((store) => {
     render(<Root store={store} />, rootElement);
   }
 });
+
+serviceWorkerRegistration.register();

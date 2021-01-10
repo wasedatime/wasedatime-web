@@ -5,13 +5,16 @@ import SortingOptions from "./SortingOptions";
 import { RowWrapper } from "../styled-components/Wrapper";
 import { InvisibleButton } from "../styled-components/Button";
 import { withNamespaces } from "react-i18next";
+import { Label } from "semantic-ui-react";
+import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 import PropTypes from "prop-types";
 
 const CourseAddedMessageWrapper = styled(RowWrapper)`
-  justify-content: space-between;
+  // justify-content: space-between;
 `;
 
 const SortByButton = styled(InvisibleButton)`
+  margin-left: auto;
   display: flex;
   &:hover {
     fill: #b51e36;
@@ -25,6 +28,16 @@ const SortByButton = styled(InvisibleButton)`
   color: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
 `;
 
+const creditSum = (coursesAndPrefs) => {
+  return coursesAndPrefs
+    .map((courseAndPref) =>
+      courseAndPref.course
+        ? courseAndPref.course[SYLLABUS_KEYS.CREDIT]
+        : courseAndPref[SYLLABUS_KEYS.CREDIT]
+    )
+    .reduce((a, b) => a + b, 0);
+};
+
 const CourseListSummary = ({
   courses,
   isSortingOptionOpen,
@@ -36,9 +49,12 @@ const CourseListSummary = ({
   return (
     <div>
       <CourseAddedMessageWrapper>
-        <span>
+        <Label size="big" color="grey" basic>
           {`${courses.length}`} {t("timetable.courses added")}{" "}
-        </span>
+        </Label>
+        <Label size="big" color="grey" basic>
+          {creditSum(courses)} Credits
+        </Label>
         <SortByButton
           isSortingOptionOpen={isSortingOptionOpen}
           onClick={handleToggleSortingOptions}

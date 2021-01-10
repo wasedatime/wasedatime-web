@@ -3,9 +3,9 @@ import styled from "styled-components";
 
 import CourseListSummary from "../CourseListSummary";
 import AddedCourseAndPrefItem from "../../containers/timetable/AddedCourseAndPrefItem";
-import {Wrapper} from "../../styled-components/Wrapper";
-import {media} from "../../styled-components/utils";
-import {UnstyledUList} from "../../styled-components/List";
+import { Wrapper } from "../../styled-components/Wrapper";
+import { media } from "../../styled-components/utils";
+import { UnstyledUList } from "../../styled-components/List";
 
 const ExtendedWrapper = styled(Wrapper)`
   padding: 0 1em;

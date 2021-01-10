@@ -38,5 +38,6 @@ configureStore().then((store) => {
   } else {
     render(<Root store={store} />, rootElement);
   }
-  serviceWorkerRegistration.register();
 });
+
+serviceWorkerRegistration.register();

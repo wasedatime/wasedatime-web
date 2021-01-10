@@ -88,20 +88,6 @@ const withFetchCourses = (WrappedComponent) => {
           });
       }
 
-      await Promise.all(
-        fetchedSchools.map(async (school) => {
-          await API.head("wasedatime-dev", `/syllabus/${school}`, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            response: true,
-          })
-            .then((res) => console.log(res.headers["last-modified"]))
-            .catch((e) => console.log(e));
-          return;
-        })
-      );
-
       // Only signed in user can sync timetable
       if (
         userInfo &&
@@ -129,29 +115,6 @@ const withFetchCourses = (WrappedComponent) => {
             if (e.response && !e.response.data.data) this.postTimetable();
           });
       }
-    }
-
-    uniqueCoursesAndPrefs(v, i, self) {
-      return self.indexOf(self.find((c) => c.id === v.id)) === i;
-    }
-
-    postTimetable() {
-      const { addedCoursesAndPrefs, userInfo } = this.props;
-      const combinedAddedCoursesAndPrefs = [
-        ...addedCoursesAndPrefs.fall,
-        ...addedCoursesAndPrefs.spring,
-      ].filter(this.uniqueCoursesAndPrefs);
-      const coursesAndPrefsToSave = combinedAddedCoursesAndPrefs.map((c) => ({
-        id: c.id,
-        color: c.color,
-        displayLang: c.displayLang,
-      }));
-      API.post("wasedatime-dev", "/timetable", {
-        body: { data: { courses: coursesAndPrefsToSave || [] } },
-        headers: {
-          Authorization: userInfo ? userInfo.idToken.jwtToken : "",
-        },
-      });
     }
 
     uniqueCoursesAndPrefs(v, i, self) {

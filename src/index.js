@@ -11,7 +11,7 @@ import "./styles/styles.css";
 import "./js/components/i18n";
 
 import Amplify from "aws-amplify";
-import registerServiceWorker from "./registerServiceWorker";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 Amplify.configure({
   API: {
@@ -38,5 +38,5 @@ configureStore().then((store) => {
   } else {
     render(<Root store={store} />, rootElement);
   }
-  registerServiceWorker();
+  serviceWorkerRegistration.register();
 });

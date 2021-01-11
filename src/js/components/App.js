@@ -161,17 +161,18 @@ class App extends React.Component {
         case "customOAuthState":
           history.push(data);
           break;
+        case "tokenRefresh":
+          break;
         default:
           console.log(event);
-          console.log(data);
       }
     });
 
-    // refresh user session every hour
+    // refresh user session every 10 min
     setTimeout(function refreshSessionEveryHour() {
       getCurrentSessionAndRefresh(userInfo);
-      setTimeout(refreshSessionEveryHour, 3600000);
-    }, 3600000);
+      setTimeout(refreshSessionEveryHour, 600000);
+    }, 600000);
   }
 
   render() {

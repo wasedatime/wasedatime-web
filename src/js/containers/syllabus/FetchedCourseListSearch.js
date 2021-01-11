@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCourses, addSchool, removeSchool } from "../../actions/syllabus";
+import { fetchCoursesBySchool, removeSchool } from "../../actions/syllabus";
 import debounce from "lodash/debounce";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router";
@@ -346,8 +346,7 @@ class FetchedCourseSearch extends React.Component {
   };
 
   loadSyllabus = async (school) => {
-    this.props.addSchool(school);
-    this.props.fetchCourses(school);
+    this.props.fetchCoursesBySchool(school);
   };
 
   removeSyllabus = async (school) => {
@@ -454,8 +453,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  fetchCourses,
-  addSchool,
+  fetchCoursesBySchool,
   removeSchool,
 };
 

@@ -12,7 +12,7 @@ const addedIdsBySchool = (state = {}, action) => {
         ...state,
         [school]: {
           ids: newIds,
-          lastMod: state[school] ? state[school].lastMod : "",
+          exp: action.payload.schoolExp,
         },
       };
     case REMOVE_COURSE:
@@ -29,11 +29,14 @@ const addedIdsBySchool = (state = {}, action) => {
           ids: state[schoolToRemoveFrom].ids.filter(
             (id) => id !== action.payload.id
           ),
-          lastMod: state[schoolToRemoveFrom].lastMod,
+          exp: state[schoolToRemoveFrom].exp,
         },
       };
     case SAVE_TIMETABLE:
-      return action.payload.idsBySchool;
+      return {
+        ...state,
+        ...action.payload.idsBySchool,
+      };
     default:
       return state;
   }

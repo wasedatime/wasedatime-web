@@ -1,17 +1,20 @@
-const fetchedlastModBySchool = (actionTypes) => {
+const fetchedExpBySchool = (actionTypes) => {
   return (state = {}, action) => {
     switch (action.type) {
       case actionTypes.addSchoolFetchSuccess:
         return {
           ...state,
-          [action.response.school]: action.response.lastMod,
+          [action.payload.school]: action.payload.exp,
         };
       case actionTypes.fetchSuccess:
-        return action.response.lastModBySchool;
+        return {
+          ...state,
+          ...action.payload.updatedExpBySchool,
+        };
       default:
         return state;
     }
   };
 };
 
-export default fetchedlastModBySchool;
+export default fetchedExpBySchool;

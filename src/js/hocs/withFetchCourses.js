@@ -38,11 +38,7 @@ const withFetchCourses = (WrappedComponent) => {
       fetchCourses();
 
       // Only signed in user can sync timetable
-      if (
-        userInfo &&
-        userInfo &&
-        userInfo.idToken.payload.exp > Date.now() / 1000
-      ) {
+      if (userInfo && userInfo.idToken.payload.exp > Date.now() / 1000) {
         API.get("wasedatime-dev", "/timetable", {
           headers: {
             Authorization: userInfo ? userInfo.idToken.jwtToken : "",
@@ -85,34 +81,6 @@ const withFetchCourses = (WrappedComponent) => {
                 0
             )
               this.postTimetable();
-          });
-      }
-
-      // Only signed in user can sync timetable
-      if (
-        userInfo &&
-        userInfo &&
-        userInfo.idToken.payload.exp > Date.now() / 1000
-      ) {
-        API.get("wasedatime-dev", "/timetable", {
-          headers: {
-            Authorization: userInfo ? userInfo.idToken.jwtToken : "",
-          },
-          response: true,
-        })
-          .then((res) => {
-            // res.data: {
-            //  success: BOOL,
-            //  data: [
-            //     {id: STR, color: INT, displayLang: STR}
-            //  ],
-            //  message: STR
-            // }
-            saveTimetable(res.data.data.courses, fetchedCoursesById);
-          })
-          .catch((e) => {
-            console.error(e.response);
-            if (e.response && !e.response.data.data) this.postTimetable();
           });
       }
     }
@@ -210,7 +178,7 @@ const withFetchCourses = (WrappedComponent) => {
       addedCoursesAndPrefs: getAddedCoursesAndPrefs(state.addedCourses),
       userInfo: getUserInfo(state),
       fetchedSchools: state.fetchedCourses.schools,
-      fetchedlastModBySchool: state.fetchedCourses.lastModBySchool,
+      fetchedExpBySchool: state.fetchedCourses.expBySchool,
     };
   };
 

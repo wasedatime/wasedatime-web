@@ -3,7 +3,7 @@ const fetchedById = (entityKey, actionTypes) => {
     switch (action.type) {
       case actionTypes.fetchSuccess:
         var coursesById = { ...state };
-        const coursesBySchool = { ...action.response["coursesBySchool"] };
+        const coursesBySchool = { ...action.payload["coursesBySchool"] };
 
         Object.keys(coursesBySchool).forEach((school) => {
           if (coursesBySchool[school].entities) {
@@ -12,8 +12,8 @@ const fetchedById = (entityKey, actionTypes) => {
         });
         return coursesById || {};
       case actionTypes.addSchoolFetchSuccess:
-        const courses = { ...action.response["courses"] };
-        const school = action.response["school"];
+        const courses = { ...action.payload["courses"] };
+        const school = action.payload["school"];
         return {
           ...state,
           [school]: courses.entities ? courses.entities[entityKey] : {},

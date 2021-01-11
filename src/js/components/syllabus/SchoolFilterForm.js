@@ -79,6 +79,12 @@ class SchoolFilterForm extends React.Component {
       handleToggleFilter("school", loadedSchools[0]);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.loadedSchools !== this.props.loadedSchools) {
+      this.setState({ loadedSchools: this.props.loadedSchools });
+    }
+  }
+
   schoolImportPanes = () => {
     const { loadedSchools, loadingSchool, schoolsUpToLimit } = this.state;
     const { t } = this.props;

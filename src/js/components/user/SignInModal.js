@@ -18,18 +18,13 @@ const StyledModal = styled(Modal)`
   ${media.phone`font-size: 1.4rem !important;`}
 `;
 
-const SignInModal = ({ isModalOpen, isExpired, signIn, closeModal, t }) => (
+const SignInModal = ({ isModalOpen, signIn, closeModal, t }) => (
   <StyledModal onClose={closeModal} open={isModalOpen}>
     <Modal.Header>
       <h1>{t(`user.Sign In`)}</h1>
     </Modal.Header>
     <Modal.Content>
       <Modal.Description>
-        {isExpired && (
-          <StyledWarning color="red">
-            {t(`user.session expired warning`)}
-          </StyledWarning>
-        )}
         <p>{t(`user.sign in description`)}</p>
         <SignInButton onClickFunc={signIn} />
       </Modal.Description>

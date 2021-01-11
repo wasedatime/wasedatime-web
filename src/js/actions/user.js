@@ -12,12 +12,18 @@ export const setFirstTimeAccessToFalse = () => ({
 });
 
 export const setUserInfo = (user) => {
-  console.log(user);
   return {
     type: IS_AUTHENTICATED,
     payload: {
       ...user.signInUserSession,
     },
+  };
+};
+
+export const refreshUserSession = (session) => {
+  return {
+    type: IS_AUTHENTICATED,
+    payload: session,
   };
 };
 

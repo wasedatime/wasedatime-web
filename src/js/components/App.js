@@ -29,7 +29,11 @@ import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
 import NotFound from "./NotFound";
 import { getUserInfo, getUserIsFirstTimeAccess } from "../reducers/user";
-import { setUserInfo, clearUserInfo } from "../actions/user";
+import {
+  setUserInfo,
+  clearUserInfo,
+  refreshUserSession,
+} from "../actions/user";
 
 import { media, sizes } from "../styled-components/utils";
 import MediaQuery from "react-responsive";
@@ -53,10 +57,24 @@ const StyledMain = styled("main")`
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
 
+const getCurrentSessionAndRefresh = async (userInfo) => {
+  if (userInfo) {
+    try {
+      const cognitoUser = await Auth.currentAuthenticatedUser();
+      const currentSession = await Auth.currentSession();
+
+      cognitoUser.refreshSession(currentSession.refreshToken, (err, session) =>
+        refreshUserSession(session)
+      );
+    } catch (e) {
+      console.log(e);
+    }
+  }
+};
+
 class App extends React.Component {
   state = {
     isSignInModalOpen: false,
-    isUserSessionExpired: false,
   };
 
   timeout(ms) {
@@ -75,7 +93,10 @@ class App extends React.Component {
   }
 
   signOut() {
-    Auth.signOut();
+    Auth.signOut({
+      oAuth: "signOut",
+      customState: window.location.pathname + window.location.search,
+    });
   }
 
   toggleSignInModal = () => {
@@ -84,15 +105,17 @@ class App extends React.Component {
     }));
   };
 
-  letUserSignInAfterExpired = () => {
-    this.setState({ isUserSessionExpired: true });
-    this.props.clearUserInfo();
-    this.setState({ isSignInModalOpen: true });
-  };
-
   async componentDidMount() {
-    // const { userInfo, setUserInfo, clearUserInfo, history, t } = this.props;
-    const { setUserInfo, clearUserInfo, history, t } = this.props;
+    const {
+      userInfo,
+      setUserInfo,
+      clearUserInfo,
+      refreshUserSession,
+      history,
+      t,
+    } = this.props;
+
+    getCurrentSessionAndRefresh(userInfo);
 
     window.addEventListener("storage", (e) => {
       if (
@@ -122,17 +145,18 @@ class App extends React.Component {
       }
     });
 
-    // if (userInfo && userInfo.idToken.payload.exp <= Date.now() / 1000)
-    //   this.props.clearUserInfo();
-
     Hub.listen("auth", ({ payload: { event, data } }) => {
-      console.log(event);
       switch (event) {
         case "signIn":
+          // data: CognitoUser object
           setUserInfo(data);
           break;
         case "signOut":
           clearUserInfo();
+          break;
+        case "oAuthSignOut":
+          clearUserInfo();
+          Auth.signOut();
           break;
         case "customOAuthState":
           history.push(data);
@@ -143,13 +167,16 @@ class App extends React.Component {
       }
     });
 
-    // await this.timeout(3600000);
-    // this.letUserSignInAfterExpired();
+    // refresh user session every hour
+    setTimeout(function refreshSessionEveryHour() {
+      getCurrentSessionAndRefresh(userInfo);
+      setTimeout(refreshSessionEveryHour, 3600000);
+    }, 3600000);
   }
 
   render() {
     const { isFirstTimeAccess, userInfo } = this.props;
-    const { isSignInModalOpen, isUserSessionExpired } = this.state;
+    const { isSignInModalOpen } = this.state;
     return (
       <ThemeProvider theme={normalTheme}>
         <Wrapper>
@@ -213,7 +240,6 @@ class App extends React.Component {
 
           <SignInModal
             isModalOpen={isSignInModalOpen}
-            isExpired={isUserSessionExpired}
             signIn={this.signIn}
             closeModal={this.toggleSignInModal}
           />
@@ -232,6 +258,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = {
   setUserInfo,
   clearUserInfo,
+  refreshUserSession,
 };
 
 export default withNamespaces("translation")(

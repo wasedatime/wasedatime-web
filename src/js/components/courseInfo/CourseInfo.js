@@ -632,7 +632,6 @@ class CourseInfo extends React.Component {
         />
         <SignInModal
           isModalOpen={isSignInModalOpen}
-          isExpired={false}
           signIn={this.signIn}
           closeModal={this.closeSignInModal}
         />

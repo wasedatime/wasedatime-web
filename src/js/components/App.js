@@ -96,7 +96,7 @@ class App extends React.Component {
 
     window.addEventListener("storage", (e) => {
       if (
-        window.innerWidth < sizes.desktop &&
+        window.innerWidth > sizes.tablet &&
         e.key === "wasedatime-2020-state-ac" &&
         e.oldValue
       ) {

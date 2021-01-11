@@ -218,7 +218,7 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
       idsAndPrefs.forEach((idAndPref) => {
         const school = schoolCodeMap[idAndPref.id.substring(0, 2)];
         const course = {
-          ...getState().fetchedCourses.byId[school][idAndPref.id],
+          ...updatedFetchedCoursesById[school][idAndPref.id],
           [SYLLABUS_KEYS.SCHOOL]: school,
         };
 

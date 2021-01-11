@@ -117,7 +117,6 @@ class ReviewsList extends React.Component {
       searchLang,
       reviewLang,
       openReviewEditForm,
-      deleteReview,
       t,
     } = this.props;
     return reviews.map((review, i) => (

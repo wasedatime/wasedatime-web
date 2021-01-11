@@ -106,14 +106,7 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    const {
-      userInfo,
-      setUserInfo,
-      clearUserInfo,
-      refreshUserSession,
-      history,
-      t,
-    } = this.props;
+    const { userInfo, setUserInfo, clearUserInfo, history, t } = this.props;
 
     getCurrentSessionAndRefresh(userInfo);
 

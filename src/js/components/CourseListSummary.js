@@ -32,6 +32,7 @@ const StyledLabel = styled(Label)`
 const StyledDropdown = styled(Dropdown)`
   font-size: 1.4rem !important;
   font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial;
+  font-display: swap;
   height: 2em !important;
   min-height: 2em !important;
   width: 40% !important;

@@ -254,7 +254,10 @@
     "Review updated": "レビューが更新されました",
     "Review deleted": "レビューが削除されました",
     "Review failed to send": "評価の提出が失敗しました",
-    "Fill in all fields before sending": "提出する前にすべてのフィールドに記入してください"
+    "Fill in all fields before sending": "提出する前にすべてのフィールドに記入してください",
+    "delete review confirmation": "レビューを削除してよろしいですか？",
+    "delete review yes": "はい、削除します",
+    "delete review no": "いいえ"
   },
   "room": {
     "Under Construction": "作成中",

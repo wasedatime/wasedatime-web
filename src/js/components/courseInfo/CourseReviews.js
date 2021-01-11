@@ -31,7 +31,9 @@ const AddReviewButton = styled("button")`
   float: right;
   ${media.phone`float: none;`}
   ${media.phone`width: 100%;`}
-  padding: 0.3em 0.5em;
+  padding: 0.3rem 0.5em;
+  font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial !important;
+  font-display: swap;
 `;
 
 const Announcement = styled("div")`

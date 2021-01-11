@@ -10,6 +10,7 @@ import styled from "styled-components";
 const StyledDropdown = styled(Dropdown)`
   font-size: 1em !important;
   font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial;
+  font-display: swap;
   min-height: 32px !important;
   padding: 0.2rem 0.5rem 0.1rem 0.5rem !important;
 

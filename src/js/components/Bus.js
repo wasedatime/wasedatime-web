@@ -54,6 +54,7 @@ const StyledHeading = styled("h1")`
   font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial;
   font-size: 4rem;
   font-weight: 400;
+  font-display: swap;
   color: #000000;
   ${media.phone`font-size: 3.6rem;`};
 `;

@@ -12,6 +12,7 @@ html {
 body {
   font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial !important;
   font-size: 1.6rem;
+  font-display: swap;
 }
 
 a:focus {
@@ -69,4 +70,8 @@ https://www.materialpalette.com/colors
   color: #222;
   background-color: #aaa;
   border-color: #222;
+}
+
+.ui.dimmer {
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }

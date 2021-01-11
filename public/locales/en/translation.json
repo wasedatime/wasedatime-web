@@ -253,7 +253,10 @@
     "Review updated": "Review updated",
     "Review deleted": "Review deleted",
     "Review failed to send": "Review failed to send",
-    "Fill in all fields before sending": "Please fill in all fields before sending your review"
+    "Fill in all fields before sending": "Please fill in all fields before sending your review",
+    "delete review confirmation": "Are you sure to delete the review?",
+    "delete review yes": "Yes, I'm sure",
+    "delete review no": "No"
   },
   "room": {
     "Under Construction": "Under Construction",

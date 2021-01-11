@@ -34,12 +34,14 @@ const ExtendedArticle = styled(Article)`
 
 const StyledMessageHeader = styled(Message.Header)`
   font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
+  font-display: swap;
 `;
 
 const StyledStepGroup = styled(Step.Group)`
   margin-top: 0px !important;
   .title {
     font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
+    font-display: swap;
   }
 `;
 

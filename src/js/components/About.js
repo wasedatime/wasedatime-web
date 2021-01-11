@@ -52,6 +52,7 @@ const MainHeading = styled("h1")`
   font-family: Optima, Yu Mincho, Lato, "Helvetica Neue", Arial;
   font-size: 5rem;
   font-weight: 500;
+  font-display: swap;
   color: #000000;
   ${media.phone`font-size: 4.2rem;`};
 `;

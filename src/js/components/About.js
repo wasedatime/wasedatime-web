@@ -156,7 +156,12 @@ const Home = ({ t }) => {
           </LogoWrapper>
           <Introduction>
             <MainHeading>
-              <img src={titleLogo} />
+              <img
+                width="250"
+                height="50"
+                src={titleLogo}
+                alt="WasedaTime Text Logo"
+              />
             </MainHeading>
             <Description>{t("about.description")}</Description>
           </Introduction>

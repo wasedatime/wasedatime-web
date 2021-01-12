@@ -562,6 +562,7 @@ class CourseInfo extends React.Component {
           <meta property="og:site_name" content="WasedaTime - Course Reviews" />
         </Helmet>
         <Header
+          title={this.props.t("navigation.course info")}
           placeholder="Search course (in construction...)"
           disabled={true}
         />

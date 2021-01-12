@@ -26,6 +26,7 @@ const RoundedInput = styled(Input)`
 `;
 
 const Header = ({
+  title,
   onInputChange,
   placeholder,
   inputText,
@@ -36,7 +37,10 @@ const Header = ({
     <StyledHeader isBlur={isBlur}>
       <Grid style={{ width: "100%" }}>
         <Grid.Row>
-          <Grid.Column width={4}></Grid.Column>
+          <Grid.Column width={1}></Grid.Column>
+          <Grid.Column width={3}>
+            <h1>{title}</h1>
+          </Grid.Column>
           <Grid.Column width={8}>
             <div style={{ marginLeft: "0" }}>
               <RoundedInput

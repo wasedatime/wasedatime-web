@@ -382,6 +382,7 @@ class FetchedCourseSearch extends React.Component {
     return (
       <ExtendedWrapper>
         <Header
+          title={t("navigation.syllabus")}
           onInputChange={this.handleInputChange}
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}

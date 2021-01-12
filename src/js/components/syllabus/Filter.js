@@ -411,9 +411,12 @@ class Filter extends React.Component {
             <b>{t("syllabus.Filter by")}</b>
             &nbsp;
             <Button
-              color="grey"
+              size="small"
               onClick={clearFilter}
-              style={{ fontSize: "1.5rem", padding: "0.5rem 1rem" }}
+              style={{
+                color: "#b51e36",
+                background: "#fff",
+              }}
             >
               {t("syllabus.Clear filter")}
             </Button>

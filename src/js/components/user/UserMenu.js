@@ -85,6 +85,7 @@ const UserMenu = ({
             width={isMobileMode ? "35" : "40"}
             height={isMobileMode ? "35" : "40"}
             circular
+            alt="Image of User account"
           />
           <StyledSpan isHovered={isHovered}>
             {userInfo.idToken.payload.preferred_username}

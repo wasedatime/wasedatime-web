@@ -94,6 +94,7 @@ class Sidebar extends React.Component {
             <TextLogo
               src={textLogo}
               alt="WasedaTime text logo"
+              width="150"
               height="50"
               isHovered={isHovered}
             />

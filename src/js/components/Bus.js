@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
   faAngleDoubleRight,
-  faEllipsisV,
   faSearch,
   faCalendarAlt,
   faTimes,
@@ -16,19 +15,15 @@ import LANGS from "../config/langs";
 
 // TODO use modal from other ui framework
 import Header from "./Header";
-import ModalContainer from "../containers/ModalContainer";
 import { media } from "../styled-components/utils";
 import { Wrapper } from "../styled-components/Wrapper";
 import { Overlay } from "../styled-components/Overlay";
 import { busSchedule } from "../data/busSchedule.js";
-import safariExport from "../../img/safari-export.svg";
-import a2hsChrome from "../../img/bus_a2hs_chrome.png";
-import a2hsSafari from "../../img/bus_a2hs_safari.png";
 import "../../styles/datetime.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 const wasedaNishiwasedaBusUri =
-  "https://www.waseda.jp/fsci/assets/uploads/2019/03/2019waseda-nishiwaseda-shuttlebus-timetable03.pdf";
+  "https://www.waseda.jp/fsci/assets/uploads/2020/09/20200925_waseda_nishiwaseda-1.pdf";
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
@@ -84,29 +79,6 @@ const Status = styled("section")`
 
 const Remark = styled("section")`
   font-size: 1.5rem;
-`;
-
-const ModalImage = styled("img")`
-  width: 270px;
-  ${media.phone`width: 100%;`};
-`;
-
-const ModalArticle = styled("article")`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ModalHeading = styled("h3")`
-  font-size: 2.2rem;
-  margin: 0px;
-`;
-
-const ModalSection = styled("section")`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 20px 0px;
 `;
 
 const DatetimeSelection = styled("div")`
@@ -448,41 +420,6 @@ class Bus extends React.Component {
               <Status>{nishiStatusComponent.status}</Status>
               <Remark>{nishiStatusComponent.remark}</Remark>
             </BusStatus>
-            <ModalContainer
-              linkText={t("bus.Add to home screen")}
-              text={t("bus.and never miss a bus again!")}
-            >
-              <ModalArticle>
-                <ModalSection>
-                  <ModalHeading>Android / Chrome:</ModalHeading>
-                  <p>
-                    {t("bus.Tap on the top-right icon")}
-                    &nbsp;
-                    <FontAwesomeIcon icon={faEllipsisV} size="1x" />
-                    &nbsp;
-                    {t("bus.and select Add to Home screen")}
-                  </p>
-                  <ModalImage
-                    src={a2hsChrome}
-                    alt="Add to home screen image for Chrome"
-                  />
-                </ModalSection>
-                <ModalSection>
-                  <ModalHeading>IOS / Safari:</ModalHeading>
-                  <p>
-                    {t("bus.Tap on the bottom-middle icon")}
-                    &nbsp;
-                    <img src={safariExport} alt="Safari export icon" />
-                    &nbsp;
-                    {t("bus.and select Add to Home screen")}
-                  </p>
-                  <ModalImage
-                    src={a2hsSafari}
-                    alt="Add to home screen image for Safari"
-                  />
-                </ModalSection>
-              </ModalArticle>
-            </ModalContainer>
             <StyledHeading>{t("bus.Official Link")}</StyledHeading>
             <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
               {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}

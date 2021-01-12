@@ -1,11 +1,8 @@
 import React from "react";
-import { Helmet } from "react-helmet";
-import { Wrapper } from "../styled-components/Wrapper";
 import { Overlay } from "../styled-components/Overlay";
 import styled from "styled-components";
-import { Header, List, Divider } from "semantic-ui-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { media, sizes } from "../styled-components/utils";
+import { Header, List } from "semantic-ui-react";
+import { media } from "../styled-components/utils";
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: left;
@@ -429,7 +426,7 @@ const PrivacyPolicy = () => (
       <a
         href="https://termly.io/products/privacy-policy-generator/"
         target="_blank"
-        rel="noreferrer"
+        rel="noopener noreferrer"
       >
         Termly's Privacy Policy Generator.
       </a>

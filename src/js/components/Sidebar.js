@@ -107,7 +107,7 @@ class Sidebar extends React.Component {
               <a
                 href="https://github.com/wasedatime/wasedatime-web"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
                   icon={faGithub}
@@ -118,7 +118,7 @@ class Sidebar extends React.Component {
               <a
                 href="https://twitter.com/WasedaTime"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
                   icon={faTwitter}
@@ -129,7 +129,7 @@ class Sidebar extends React.Component {
               <a
                 href="https://www.facebook.com/wasedatime"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
                   icon={faFacebook}
@@ -140,7 +140,7 @@ class Sidebar extends React.Component {
               <a
                 href="https://www.instagram.com/wasedatime/"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon
                   icon={faInstagram}

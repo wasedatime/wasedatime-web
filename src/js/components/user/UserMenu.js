@@ -39,20 +39,26 @@ const UserMenuTrigger = styled("div")`
 const StyledSpan = styled("span")`
   animation-name: ${expandLink};
   animation-duration: 0.3s;
-  width: 145px
   text-align: left
   font-size: 1.1em
   font-weight: 100;
   margin-left: 1rem
   color: #fff;
   opacity: ${(props) => (props.isHovered ? "1" : "0")};
-  transition: opacity 0.3s;
+  width: ${(props) => (props.isHovered ? "145px" : "0px")};
+  white-space: nowrap;
+  overflow-x: hidden;
+  transition: ${(props) =>
+    props.isHovered
+      ? "width 0.3s ease-out, opacity 0.5s ease 0.2s"
+      : "opacity 0.3s ease, width 0.3s ease-out 0.2s"};
 `;
 
 const StyledMenu = styled(Dropdown.Menu)`
   width: 210px !important;
   ${media.phone`width: 60px !important;`}
   background: #555 !important;
+  z-index: 999;
 `;
 
 const StyledMenuItem = styled(Dropdown.Item)`
@@ -71,6 +77,7 @@ const UserMenu = ({
 }) =>
   userInfo ? (
     <Dropdown
+      isHovered={isHovered}
       trigger={
         <UserMenuTrigger>
           <Image
@@ -79,11 +86,9 @@ const UserMenu = ({
             height={isMobileMode ? "35" : "40"}
             circular
           />
-          {isHovered && (
-            <StyledSpan isHovered={isHovered}>
-              {userInfo.idToken.payload.preferred_username}
-            </StyledSpan>
-          )}
+          <StyledSpan isHovered={isHovered}>
+            {userInfo.idToken.payload.preferred_username}
+          </StyledSpan>
         </UserMenuTrigger>
       }
       icon={null}

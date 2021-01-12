@@ -28,6 +28,7 @@ import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
 import NotFound from "./NotFound";
+import PrivacyPolicy from "./PrivacyPolicy";
 import { getUserInfo, getUserIsFirstTimeAccess } from "../reducers/user";
 import {
   setUserInfo,
@@ -219,14 +220,8 @@ class App extends React.Component {
                 <Route path="/career" component={Career} />
                 <Route exact path="/corona-info" component={CoronaInfo} />
                 <Route exact path="/courseInfo" component={CourseInfo} />
+                <Route exact path="/privacy-policy" component={PrivacyPolicy} />
                 <Route exact path="/verify" component={RedirectPage} />
-                <Route
-                  exact
-                  path="/privacy-policy"
-                  render={() => {
-                    window.location.href = "/privacy-policy.html";
-                  }}
-                />
                 <Route component={NotFound} />
               </Switch>
             )}

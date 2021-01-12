@@ -33,8 +33,10 @@ import AddReviewForm from "./AddReviewForm";
 import LoadingSpinner from "../LoadingSpinner";
 import RelatedCourses from "./RelatedCourses";
 import SignInModal from "../user/SignInModal";
+import Header from "../Header";
 
 export const LongWrapper = styled(Wrapper)`
+  margin-top: 70px;
   flex: 1 1 auto;
   ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
@@ -48,8 +50,7 @@ const ExtendedOverlay = styled(Overlay)`
 const Announcement = styled("div")`
   background-color: #48af37;
   color: #fff;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  margin: 20px 7px 5px 7px;
   padding: 5px 10px;
   font-size: 0.7em;
   border-radius: 3px;
@@ -560,6 +561,10 @@ class CourseInfo extends React.Component {
           />
           <meta property="og:site_name" content="WasedaTime - Course Reviews" />
         </Helmet>
+        <Header
+          placeholder="Search course (in construction...)"
+          disabled={true}
+        />
         <LongWrapper>
           <ExtendedOverlay>
             <div>

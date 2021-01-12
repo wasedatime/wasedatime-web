@@ -8,6 +8,7 @@ import RelatedCoursesButton from "./RelatedCoursesButton";
 import Modal from "../../components/Modal";
 
 export const ShortWrapper = styled(Wrapper)`
+  margin-top: 70px;
   flex: 0 0 24em;
   ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;

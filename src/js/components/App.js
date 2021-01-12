@@ -21,14 +21,13 @@ import TimetableContainer from "../containers/timetable/TimetableContainer";
 import Syllabus from "./syllabus/Syllabus";
 import CourseInfo from "./courseInfo/CourseInfo";
 import RedirectPage from "./user/RedirectPage";
-// import RoomFinder from "./RoomFinder";
 import JoinUs from "./JoinUs";
-// import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
-import NotFound from "./NotFound";
 import PrivacyPolicy from "./PrivacyPolicy";
+import Footer from "./Footer";
+import NotFound from "./NotFound";
 import { getUserInfo, getUserIsFirstTimeAccess } from "../reducers/user";
 import {
   setUserInfo,
@@ -214,7 +213,6 @@ class App extends React.Component {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/timetable" component={TimetableContainer} />
                 <Route exact path="/syllabus" component={Syllabus} />
-                {/* <Route exact path="/roomfinder" component={RoomFinder} /> */}
                 <Route exact path="/joinus" component={JoinUs} />
                 <Route exact path="/bus" component={Bus} />
                 <Route path="/career" component={Career} />
@@ -225,6 +223,9 @@ class App extends React.Component {
                 <Route component={NotFound} />
               </Switch>
             )}
+            <MediaQuery maxWidth={sizes.tablet}>
+              {(matches) => matches && <Footer />}
+            </MediaQuery>
           </StyledMain>
 
           <SignInModal

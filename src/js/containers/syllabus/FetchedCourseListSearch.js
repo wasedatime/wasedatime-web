@@ -37,7 +37,7 @@ const ExtendedWrapper = styled(Wrapper)`
 `;
 
 const FetchedCourseListWrapper = styled(ExtendedWrapper)`
-  max-height: calc(100vh - 70px);
+  max-height: calc(100vh - 67px);
   overflow-y: auto;
 `;
 

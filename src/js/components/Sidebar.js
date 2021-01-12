@@ -105,6 +105,14 @@ class Sidebar extends React.Component {
               <a href="/privacy-policy">Privacy Policy</a>
               <br />
               <a
+                href="https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Code Licensed MIT
+              </a>
+              <br />
+              <a
                 href="https://github.com/wasedatime/wasedatime-web"
                 target="_blank"
                 rel="noopener noreferrer"

@@ -28,13 +28,13 @@ const wasedaNishiwasedaBusUri =
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   padding: 25px;
-  padding-top: 100px;
+  padding-top: 120px;
+  height: 85vh;
 `;
 
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  margin-top: ;
 `;
 
 const StyledAnchor = styled("a")`
@@ -42,16 +42,6 @@ const StyledAnchor = styled("a")`
   font-size: 1.8rem;
   font-weight: 400;
   text-decoration: underline;
-`;
-
-const StyledHeading = styled("h1")`
-  margin: 2rem 0px 0px 0px;
-  font-family: Segoe UI, Yu Gothic Medium, Lato, "Helvetica Neue", Arial;
-  font-size: 4rem;
-  font-weight: 400;
-  font-display: swap;
-  color: #000000;
-  ${media.phone`font-size: 3.6rem;`};
 `;
 
 const BusStatus = styled("article")`
@@ -420,7 +410,6 @@ class Bus extends React.Component {
               <Status>{nishiStatusComponent.status}</Status>
               <Remark>{nishiStatusComponent.remark}</Remark>
             </BusStatus>
-            <StyledHeading>{t("bus.Official Link")}</StyledHeading>
             <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
               {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}
             </StyledAnchor>

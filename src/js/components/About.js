@@ -13,6 +13,7 @@ import Header from "./Header";
 // import nishiwasedaBackground from "../../img/nishi_waseda_campus.jpg";
 // import toyamaBackground from "../../img/toyama_campus.jpg";
 import logo from "../../img/logo.png";
+import titleLogo from "../../img/title-logo.svg";
 // import arrow from "../../img/arrow.png";
 // import navigation from "../../img/navigation-480.gif";
 // import syllabusResult from "../../img/syllabusResult-480.gif";
@@ -49,12 +50,7 @@ const Introduction = styled("div")`
 `;
 
 const MainHeading = styled("h1")`
-  font-family: Optima, Yu Mincho, Lato, "Helvetica Neue", Arial;
-  font-size: 5rem;
-  font-weight: 500;
-  font-display: swap;
-  color: #000000;
-  ${media.phone`font-size: 4.2rem;`};
+  padding-top: 1em;
 `;
 
 const Description = styled("p")`
@@ -159,7 +155,9 @@ const Home = ({ t }) => {
             <Logo src={logo} alt="WasedaTime Logo" />
           </LogoWrapper>
           <Introduction>
-            <MainHeading>{t("about.title")}</MainHeading>
+            <MainHeading>
+              <img src={titleLogo} />
+            </MainHeading>
             <Description>{t("about.description")}</Description>
           </Introduction>
         </StyledArticle>

@@ -13,6 +13,7 @@ import { searchCourses, sortCourses } from "../../utils/courseSearch";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 import Header from "../../components/Header";
 import FetchedCourseList from "../../components/syllabus/FetchedCourseList";
+import SearchBar from "../../components/syllabus/SearchBar";
 import Filter from "../../components/syllabus/Filter";
 import FilterButton from "../../components/syllabus/FilterButton";
 import SchoolFilterForm from "../../components/syllabus/SchoolFilterForm";
@@ -386,14 +387,22 @@ class FetchedCourseSearch extends React.Component {
           inputText={inputText}
           disabled={false}
         />
-        {/*<SearchBar
-          onInputChange={this.handleInputChange}
-          placeholder={t("syllabus.searchBarPlaceholder")}
-          inputText={inputText}
-        />*/}
 
         <RowWrapper>
           <FetchedCourseListWrapper>
+            <div>
+              <MediaQuery maxWidth={sizes.tablet}>
+                {(matches) =>
+                  matches && (
+                    <SearchBar
+                      onInputChange={this.handleInputChange}
+                      placeholder={t("syllabus.searchBarPlaceholder")}
+                      inputText={inputText}
+                    />
+                  )
+                }
+              </MediaQuery>
+            </div>
             <div>
               <SchoolFilterForm
                 handleToggleFilter={this.handleToggleFilter}

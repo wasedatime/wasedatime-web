@@ -79,11 +79,11 @@ const DatetimeSelection = styled("div")`
 
 const DatePickerSpan = styled("span")`
   display: inline-block;
-  width: 37.5%;
+  width: 38%;
 `;
 
 const DatePickerButton = styled("button")`
-  padding: 0.5em 1em;
+  padding: 0.5em 0.8em;
   border: none;
   width: 100%;
   background: #efefef;
@@ -98,10 +98,10 @@ const DatePickerButton = styled("button")`
 `;
 
 const DatetimeClearButton = styled("button")`
-  padding: 0.5em 1em;
+  padding: 0.5em 0.8em 0.5em 0.4em;
   border: none;
   border-radius: 0 5px 5px 0;
-  width: 25%;
+  width: 24%;
   background: #efefef;
 
   &:hover {

@@ -48,7 +48,6 @@ class LanguangeMenu extends React.Component {
       action: gaAppendActionWithLng(gaChangeLanguage, this.props.lng),
       label: lang,
     });
-    console.log(lang);
     i18n.changeLanguage(lang);
     this.handleClose();
   };

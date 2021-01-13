@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import LanguangeMenu from "./LanguageMenu";
 import { Grid, Input } from "semantic-ui-react";
+import MediaQuery from "react-responsive";
+import { sizes } from "../styled-components/utils";
 
 const StyledHeader = styled("header")`
   padding-top: 1rem;
@@ -39,7 +41,9 @@ const Header = ({
         <Grid.Row>
           <Grid.Column width={1}></Grid.Column>
           <Grid.Column width={3}>
-            <h1>{title}</h1>
+            <MediaQuery minWidth={sizes.tablet}>
+              {(matches) => matches && <h1>{title}</h1>}
+            </MediaQuery>
           </Grid.Column>
           <Grid.Column width={8}>
             <div style={{ marginLeft: "0" }}>

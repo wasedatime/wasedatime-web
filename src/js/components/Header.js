@@ -38,33 +38,69 @@ const Header = ({
   return (
     <StyledHeader isBlur={isBlur}>
       <Grid style={{ width: "100%" }}>
-        <Grid.Row>
-          <Grid.Column width={1}></Grid.Column>
-          <Grid.Column width={3}>
-            <MediaQuery minWidth={sizes.tablet}>
-              {(matches) => matches && <h1>{title}</h1>}
-            </MediaQuery>
-          </Grid.Column>
-          <Grid.Column width={8}>
-            <div style={{ marginLeft: "0" }}>
-              <RoundedInput
-                fluid
-                icon="search"
-                placeholder={placeholder || "Search..."}
-                onChange={
-                  onInputChange
-                    ? (e) => onInputChange(e.target.value)
-                    : () => {}
-                }
-                value={inputText || ""}
-                disabled={disabled}
-              />
-            </div>
-          </Grid.Column>
-          <Grid.Column width={4}>
-            <LanguangeMenu />
-          </Grid.Column>
-        </Grid.Row>
+        <MediaQuery minWidth={sizes.desktop}>
+          {(matches) =>
+            matches ? (
+              <Grid.Row>
+                <Grid.Column width={1}></Grid.Column>
+                <Grid.Column width={3}>
+                  <MediaQuery minWidth={sizes.tablet}>
+                    <h1>{title}</h1>
+                  </MediaQuery>
+                </Grid.Column>
+
+                <Grid.Column width={8}>
+                  <div style={{ marginLeft: "0" }}>
+                    <RoundedInput
+                      fluid
+                      icon="search"
+                      placeholder={placeholder || "Search..."}
+                      onChange={
+                        onInputChange
+                          ? (e) => onInputChange(e.target.value)
+                          : () => {}
+                      }
+                      value={inputText || ""}
+                      disabled={disabled}
+                    />
+                  </div>
+                </Grid.Column>
+                <Grid.Column width={4}>
+                  <LanguangeMenu />
+                </Grid.Column>
+              </Grid.Row>
+            ) : (
+              <Grid.Row>
+                <Grid.Column width={2}></Grid.Column>
+                <Grid.Column width={4}>
+                  <MediaQuery minWidth={sizes.tablet}>
+                    <h1>{title}</h1>
+                  </MediaQuery>
+                </Grid.Column>
+
+                <Grid.Column width={8}>
+                  <div style={{ marginLeft: "0" }}>
+                    <RoundedInput
+                      fluid
+                      icon="search"
+                      placeholder={placeholder || "Search..."}
+                      onChange={
+                        onInputChange
+                          ? (e) => onInputChange(e.target.value)
+                          : () => {}
+                      }
+                      value={inputText || ""}
+                      disabled={disabled}
+                    />
+                  </div>
+                </Grid.Column>
+                <Grid.Column width={2}>
+                  <LanguangeMenu />
+                </Grid.Column>
+              </Grid.Row>
+            )
+          }
+        </MediaQuery>
       </Grid>
     </StyledHeader>
   );

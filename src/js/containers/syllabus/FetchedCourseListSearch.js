@@ -392,7 +392,7 @@ class FetchedCourseSearch extends React.Component {
         <RowWrapper>
           <FetchedCourseListWrapper>
             <div>
-              <MediaQuery maxWidth={sizes.tablet}>
+              <MediaQuery maxWidth={sizes.tablet - 1}>
                 {(matches) =>
                   matches && (
                     <SearchBar

@@ -52,7 +52,7 @@ const StyledMain = styled("main")`
   flex-direction: column;
   flex: 1 0 auto;
   grid-area: 2 / 2 / 3 / 3;
-  ${media.tablet`grid-area: 1 / 1 / 4 / 4;`}
+  ${media.phone`grid-area: 1 / 1 / 4 / 4;`}
   width: 100%;
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
@@ -223,7 +223,7 @@ class App extends React.Component {
                 <Route component={NotFound} />
               </Switch>
             )}
-            <MediaQuery maxWidth={sizes.tablet}>
+            <MediaQuery maxWidth={sizes.tablet - 1}>
               {(matches) => matches && <Footer />}
             </MediaQuery>
           </StyledMain>

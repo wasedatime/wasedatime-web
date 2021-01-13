@@ -36,10 +36,17 @@ const AddedCourseAndPrefList = ({
       <Wrapper>
         <ExtendedUnstyledUList>
           {addedCoursesAndPrefs.map((addedCourseAndPref) => (
-            <AddedCourseAndPrefItem
-              key={addedCourseAndPref.id}
-              addedCourseAndPref={addedCourseAndPref}
-            />
+            <React.Fragment>
+              <AddedCourseAndPrefItem
+                key={addedCourseAndPref.id}
+                addedCourseAndPref={addedCourseAndPref}
+              />
+              <hr
+                style={{
+                  border: "none",
+                }}
+              />
+            </React.Fragment>
           ))}
         </ExtendedUnstyledUList>
       </Wrapper>

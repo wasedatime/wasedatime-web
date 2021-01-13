@@ -66,7 +66,7 @@ const Home = ({ t }) => {
         <meta property="og:title" content="WasedaTime - Home" />
         <meta
           property="og:description"
-          content="An unofficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University."
+          content="Non-profit, student-run, open-source app aiming to support and improve the campus lives of Waseda University students."
         />
         <meta property="og:site_name" content="WasedaTime - Home" />
       </Helmet>

@@ -18,23 +18,45 @@ const CardArea = styled("div")`
     width: 90%;
     margin:0 auto;
     font-size:0.9em;
-    background-color:green;
+    // background-color:green;
 `;
 
 
 
 const Card = styled("div")`
-    border:solid;
+    // border:solid;
     float:left;
     margin: 20px;
     width: 280px;
-
+    position: relative
 `;
 
 const MemberImage = styled('img')`
     width:90%;
-    margin: 0 auto;
-`
+    position:relative;
+    
+`;
+const MemberName = styled('div')`
+    font-size:1.3em;
+    // border:solid red;
+    text-align:center;
+`;
+
+const MemberPosition = styled('div')`
+    // border:solid red;
+    text-align:center;
+`;
+
+const MemberVision = styled('div')`
+    // border:solid red;
+    text-align:center;
+`;
+
+
+const SocialMedia = styled('div')`
+    // border:solid red;
+    text-align:center;
+`;
 
 const MeetOurTeam = () => {
     return (
@@ -44,24 +66,32 @@ const MeetOurTeam = () => {
                 <CardArea>
                     <Card>
                         <MemberImage src={testImage}></MemberImage>
+                        <MemberName>cat</MemberName>
+                        <MemberPosition>software engineer</MemberPosition>
+                        <MemberVision>"think different"</MemberVision>
                     </Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
-                    <Card>aaaaaa</Card>
+                    <Card>
+                        <MemberImage src={testImage}></MemberImage>
+                        <MemberName>cat</MemberName>
+                        <MemberPosition>software engineer</MemberPosition>
+                        <MemberVision>"think different"</MemberVision>
+                    </Card>
+                    <Card>
+                        <MemberImage src={testImage}></MemberImage>
+                        <MemberName>cat</MemberName>
+                        <MemberPosition>software engineer</MemberPosition>
+                        <MemberVision>"think different"</MemberVision>
+                    </Card>
+                    <Card>
+                        <MemberImage src={testImage}></MemberImage>
+                        <MemberName>cat</MemberName>
+                        <MemberPosition>software engineer</MemberPosition>
+                        <MemberVision>"think different"</MemberVision>
+                    </Card>
                 </CardArea>
         </Wrapper>
         
     );
-}
+};
 
 export default MeetOurTeam;

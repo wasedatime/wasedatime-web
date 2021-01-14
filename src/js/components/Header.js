@@ -27,6 +27,10 @@ const RoundedInput = styled(Input)`
   }
 `;
 
+const PageTitle = styled("h1")`
+  font-weight: 500;
+`;
+
 const Header = ({
   title,
   onInputChange,
@@ -45,7 +49,9 @@ const Header = ({
                 <Grid.Column width={1}></Grid.Column>
                 <Grid.Column width={3}>
                   <MediaQuery minWidth={sizes.tablet}>
-                    <h1>{title}</h1>
+                    <PageTitle style={{ paddingLeft: "1em" }}>
+                      {title}
+                    </PageTitle>
                   </MediaQuery>
                 </Grid.Column>
 
@@ -74,7 +80,9 @@ const Header = ({
                 <Grid.Column width={2}></Grid.Column>
                 <Grid.Column width={4}>
                   <MediaQuery minWidth={sizes.tablet}>
-                    <h1>{title}</h1>
+                    <PageTitle style={{ paddingLeft: "1em" }}>
+                      {title}
+                    </PageTitle>
                   </MediaQuery>
                 </Grid.Column>
 

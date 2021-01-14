@@ -30,6 +30,12 @@ const FilterTitle = styled("span")`
   font-size: 1.1em;
 `;
 
+const FilterClearButton = styled(Button)`
+  color: #b51e36 !important;
+  background: #fff !important;
+  font-weight: 500 !important;
+`;
+
 const FilterGroupWrapper = styled("div")`
   background-color: #fff;
   flex: 1 0 auto;
@@ -410,16 +416,9 @@ class Filter extends React.Component {
             &nbsp;
             <b>{t("syllabus.Filter by")}</b>
             &nbsp;
-            <Button
-              size="small"
-              onClick={clearFilter}
-              style={{
-                color: "#b51e36",
-                background: "#fff",
-              }}
-            >
+            <FilterClearButton size="big" onClick={clearFilter}>
               {t("syllabus.Clear filter")}
-            </Button>
+            </FilterClearButton>
           </FilterTitle>
           <FilterGroupWrapper>
             <FilterGroup

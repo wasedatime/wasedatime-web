@@ -16,7 +16,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const StatisticsGroupWrapper = styled("div")`
-  padding: 5em 10em;
+  padding: 2em 10em;
   text-align: center;
   ${media.desktop`padding: 0em;`};
 `;
@@ -207,10 +207,7 @@ class CoronaInfo extends React.Component {
           disabled={true}
         />
 
-        <Header size="huge" style={{ textAlign: "center", marginTop: "100px" }}>
-          {this.props.t("coronaInfo.title")}
-        </Header>
-        <p style={{ textAlign: "center" }}>
+        <p style={{ textAlign: "center", marginTop: "100px" }}>
           {this.props.t("coronaInfo.attribution")}
         </p>
 

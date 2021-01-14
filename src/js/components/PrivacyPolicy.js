@@ -23,7 +23,7 @@ const PrivacyPolicy = () => (
       "us", "our"). We are committed to protecting your personal information and
       your right to privacy. If you have any questions or concerns about this
       privacy notice, or our practices with regards to your personal
-      information, please contact us at wasedatime@gmail.com.
+      information, please contact us at inquiry@wasedatime.com.
     </p>
     <p>
       When you visit our website https://wasedatime.com (the "Website"), and
@@ -166,7 +166,7 @@ const PrivacyPolicy = () => (
         may contain personal information. Prior to posting a testimonial, we
         will obtain your consent to use your name and the content of the
         testimonial. If you wish to update, or delete your testimonial, please
-        contact us at wasedatime@gmail.com and be sure to include your name,
+        contact us at inquiry@wasedatime.com and be sure to include your name,
         testimonial location, and contact information.
       </List.Item>
       <List.Item>
@@ -347,7 +347,7 @@ const PrivacyPolicy = () => (
       will deactivate the account and take reasonable measures to promptly
       delete such data from our records. If you become aware of any data we may
       have collected from children under age 18, please contact us at
-      wasedatime@gmail.com.
+      inquiry@wasedatime.com.
     </p>
     <Header as="h1" style={{ textAlign: "center" }}>
       9. WHAT ARE YOUR PRIVACY RIGHTS?
@@ -370,7 +370,7 @@ const PrivacyPolicy = () => (
     </p>
     <p>
       If you have questions or comments about your privacy rights, you may email
-      us at wasedatime@gmail.com.
+      us at inquiry@wasedatime.com.
     </p>
     <Header as="h1" style={{ textAlign: "center" }}>
       10. CONTROLS FOR DO-NOT-TRACK FEATURES
@@ -408,7 +408,7 @@ const PrivacyPolicy = () => (
     </Header>
     <p>
       If you have questions or comments about this notice, you may email us at
-      wasedatime@gmail.com
+      inquiry@wasedatime.com
     </p>
     <Header as="h1" style={{ textAlign: "center" }}>
       13. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?
@@ -418,7 +418,7 @@ const PrivacyPolicy = () => (
       request access to the personal information we collect from you, change
       that information, or delete it in some circumstances. To request to
       review, update, or delete your personal information, please email us
-      directly at wasedatime@gmail.com. We will respond to your request within
+      directly at inquiry@wasedatime.com. We will respond to your request within
       30 days.
     </p>
     <p>

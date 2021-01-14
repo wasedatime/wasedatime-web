@@ -14,7 +14,7 @@ const ExtendedWrapper = styled(RowWrapper)`
   height: ${(props) => props.theme.searchBarHeight};
   width: 100%;
   padding: 0 1em;
-  background-color: ${(props) => props.theme.grey7};
+  background-color: #fff;
   z-index: 103;
 `;
 
@@ -29,11 +29,13 @@ const StyledForm = styled("form")`
 `;
 
 const StyledInput = styled("input")`
-  border: none;
+  border: 1px solid ${(props) => props.theme.grey12};
+  border-radius: 5em;
   background: none;
   outline: none;
-  padding: 3px;
+  padding: 3px 0px 3px 10px;
   margin: 0;
+  margin-top: 5px;
   flex: 1 0 auto;
 `;
 
@@ -42,6 +44,7 @@ const StyledClearButton = styled("span")`
   align-items: center;
   cursor: pointer;
   color: ${(props) => props.theme.grey7};
+  margin-left: -15px;
   &:focus {
     outline: 0;
   }

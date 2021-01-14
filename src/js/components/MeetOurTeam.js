@@ -24,16 +24,18 @@ const CardArea = styled("div")`
 
 
 const Card = styled("div")`
-    // border:solid;
+    border:solid;
     float:left;
-    margin: 20px;
-    width: 280px;
-    position: relative
+    margin: 30px;
+    width: 230px;
+    // position: relative
+    text-align:center;
 `;
 
 const MemberImage = styled('img')`
     width:90%;
-    position:relative;
+    // position:relative;
+    display: inline-block;
     
 `;
 const MemberName = styled('div')`

@@ -77,7 +77,7 @@ const OurMission = () => {
             favored by thousands of students. More than 50% of international
             students are using this website. We never expect this could happen and
             are always grateful for all our users.</MainParagraph>
-            <FeatureArew>
+            {/* <FeatureArew>
                 <ImageAndDescription>
                     <Picture1 src={syllabusPageImg}></Picture1>
                     <Description>jiaosjdioajsodijsa</Description>
@@ -89,7 +89,7 @@ const OurMission = () => {
 
                 </ImageAndDescription>
                 
-            </FeatureArew>
+            </FeatureArew> */}
 
                 
 

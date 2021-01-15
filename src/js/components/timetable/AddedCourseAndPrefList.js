@@ -35,8 +35,8 @@ const AddedCourseAndPrefList = ({
       />
       <Wrapper>
         <ExtendedUnstyledUList>
-          {addedCoursesAndPrefs.map((addedCourseAndPref) => (
-            <React.Fragment>
+          {addedCoursesAndPrefs.map((addedCourseAndPref, i) => (
+            <React.Fragment key={i}>
               <AddedCourseAndPrefItem
                 key={addedCourseAndPref.id}
                 addedCourseAndPref={addedCourseAndPref}

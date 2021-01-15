@@ -23,12 +23,14 @@ const UserMenuTrigger = styled("div")`
   i {
     margin: 0 !important;
     font-size: 2em !important;
+    width: 32px;
+    min-width: 32px;
   }
 
   img.ui.circular.image {
-    width: 40px !important;
-    min-width: 40px !important;
-    ${media.phone`width: 35px !important; min-width: 35px !important;`}
+    width: 40px;
+    min-width: 40px;
+    ${media.phone`width: 35px; min-width: 35px;`}
   }
 
   &:hover {

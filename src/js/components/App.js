@@ -28,12 +28,12 @@ import CoronaInfo from "./CoronaInfo";
 import PrivacyPolicy from "./PrivacyPolicy";
 import Footer from "./Footer";
 import NotFound from "./NotFound";
-import { getUserInfo, getUserIsFirstTimeAccess } from "../reducers/user";
 import {
-  setUserInfo,
-  clearUserInfo,
-  refreshUserSession,
-} from "../actions/user";
+  getUserInfo,
+  getUserTokens,
+  getUserIsFirstTimeAccess,
+} from "../reducers/user";
+import { setUserInfo, clearUserInfo, updateUserSession } from "../actions/user";
 
 import { media, sizes } from "../styled-components/utils";
 import MediaQuery from "react-responsive";
@@ -56,21 +56,6 @@ const StyledMain = styled("main")`
   width: 100%;
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
 `;
-
-const getCurrentSessionAndRefresh = async (userInfo) => {
-  if (userInfo) {
-    try {
-      const cognitoUser = await Auth.currentAuthenticatedUser();
-      const currentSession = await Auth.currentSession();
-
-      cognitoUser.refreshSession(currentSession.refreshToken, (err, session) =>
-        refreshUserSession(session)
-      );
-    } catch (e) {
-      console.log(e);
-    }
-  }
-};
 
 class App extends React.Component {
   state = {
@@ -105,10 +90,25 @@ class App extends React.Component {
     }));
   };
 
-  async componentDidMount() {
-    const { userInfo, setUserInfo, clearUserInfo, history, t } = this.props;
+  getCurrentSessionAndRefresh = async () => {
+    try {
+      const cognitoUser = await Auth.currentAuthenticatedUser();
+      const currentSession = await Auth.currentSession();
 
-    getCurrentSessionAndRefresh(userInfo);
+      cognitoUser.refreshSession(
+        currentSession.refreshToken,
+        (err, session) => {
+          this.props.updateUserSession(session);
+        }
+      );
+    } catch (e) {
+      console.log(e);
+      this.props.clearUserInfo();
+    }
+  };
+
+  async componentDidMount() {
+    const { userTokens, setUserInfo, clearUserInfo, history, t } = this.props;
 
     window.addEventListener("storage", (e) => {
       if (
@@ -161,11 +161,21 @@ class App extends React.Component {
       }
     });
 
-    // refresh user session every 10 min
-    setTimeout(function refreshSessionEveryHour() {
-      getCurrentSessionAndRefresh(userInfo);
-      setTimeout(refreshSessionEveryHour, 600000);
-    }, 600000);
+    if (userTokens) {
+      // if not expired: wait until expired, and then refresh
+      // if already expired: refresh immediately
+      if (userTokens.exp * 1000 >= Date.now()) {
+        await this.timeout(userTokens.exp * 1000 - Date.now() - 5000);
+      }
+      this.getCurrentSessionAndRefresh();
+
+      // refresh user session every hour
+      let self = this;
+      setTimeout(function refreshSessionEveryHour() {
+        self.getCurrentSessionAndRefresh();
+        setTimeout(refreshSessionEveryHour, 3595000);
+      }, 3595000);
+    }
   }
 
   render() {
@@ -243,12 +253,13 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({
   isFirstTimeAccess: getUserIsFirstTimeAccess(state),
   userInfo: getUserInfo(state),
+  userTokens: getUserTokens(state),
 });
 
 const mapDispatchToProps = {
   setUserInfo,
   clearUserInfo,
-  refreshUserSession,
+  updateUserSession,
 };
 
 export default withNamespaces("translation")(

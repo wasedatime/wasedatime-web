@@ -1,7 +1,7 @@
 import React from "react";
 import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
-import { getUserInfo } from "../../reducers/user";
+import { getUserTokens } from "../../reducers/user";
 import API from "@aws-amplify/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
@@ -245,10 +245,7 @@ class CourseInfo extends React.Component {
             "/course-reviews/" +
               courseKey +
               "?uid=" +
-              (this.props.userInfo
-                ? this.props.userInfo.sub ||
-                  this.props.userInfo.idToken.payload.sub
-                : ""),
+              (this.props.userTokens ? this.props.userTokens.sub : ""),
             {
               headers: {
                 "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
@@ -282,7 +279,7 @@ class CourseInfo extends React.Component {
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });
 
   toggleAddReviewForm = () => {
-    if (this.props.userInfo) {
+    if (this.props.userTokens) {
       this.setState({
         isAddReviewFormOpen: !this.state.isAddReviewFormOpen,
       });
@@ -343,7 +340,7 @@ class CourseInfo extends React.Component {
     this.setState({ newReviewComment: text });
 
   onNewReviewFormSubmit = () => {
-    if (!this.props.userInfo) {
+    if (!this.props.userTokens) {
       this.setState({ isSignInModalOpen: true });
       return;
     }
@@ -407,8 +404,8 @@ class CourseInfo extends React.Component {
               },
               headers: {
                 "Content-Type": "application/json",
-                Authorization: this.props.userInfo
-                  ? this.props.userInfo.idToken.jwtToken
+                Authorization: this.props.userTokens
+                  ? this.props.userTokens.idToken
                   : "",
               },
             }
@@ -426,8 +423,8 @@ class CourseInfo extends React.Component {
               },
               headers: {
                 "Content-Type": "application/json",
-                Authorization: this.props.userInfo
-                  ? this.props.userInfo.idToken.jwtToken
+                Authorization: this.props.userTokens
+                  ? this.props.userTokens.idToken
                   : "",
               },
             }
@@ -483,7 +480,7 @@ class CourseInfo extends React.Component {
   };
 
   deleteReview = (reviewPrimaryKey, reviewIndex) => {
-    if (!this.props.userInfo) {
+    if (!this.props.userTokens) {
       this.setState({ isSignInModalOpen: true });
       return;
     }
@@ -495,8 +492,8 @@ class CourseInfo extends React.Component {
         reviewPrimaryKey,
       {
         headers: {
-          Authorization: this.props.userInfo
-            ? this.props.userInfo.idToken.jwtToken
+          Authorization: this.props.userTokens
+            ? this.props.userTokens.idToken
             : "",
         },
       }
@@ -647,7 +644,7 @@ class CourseInfo extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  userInfo: getUserInfo(state),
+  userTokens: getUserTokens(state),
 });
 
 export default withFetchCourses(

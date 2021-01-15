@@ -20,7 +20,7 @@ import {
   getIsPrefsEmpty,
   getAddedCoursesAndPrefs,
 } from "../reducers/addedCourses";
-import { getUserInfo } from "../reducers/user";
+import { getUserTokens } from "../reducers/user";
 import LoadingSpinner from "../components/LoadingSpinner";
 import FetchError from "../components/FetchError";
 
@@ -30,7 +30,7 @@ const withFetchCourses = (WrappedComponent) => {
       const {
         addedCoursesAndPrefs,
         fetchedCoursesById,
-        userInfo,
+        userTokens,
         fetchCourses,
         saveTimetable,
       } = this.props;
@@ -38,10 +38,10 @@ const withFetchCourses = (WrappedComponent) => {
       fetchCourses();
 
       // Only signed in user can sync timetable
-      if (userInfo && userInfo.idToken.payload.exp > Date.now() / 1000) {
+      if (userTokens && userTokens.exp > Date.now() / 1000) {
         API.get("wasedatime-dev", "/timetable", {
           headers: {
-            Authorization: userInfo ? userInfo.idToken.jwtToken : "",
+            Authorization: userTokens ? userTokens.idToken : "",
           },
           response: true,
         })
@@ -90,7 +90,7 @@ const withFetchCourses = (WrappedComponent) => {
     }
 
     postTimetable() {
-      const { addedCoursesAndPrefs, userInfo } = this.props;
+      const { addedCoursesAndPrefs, userTokens } = this.props;
       const combinedAddedCoursesAndPrefs = [
         ...addedCoursesAndPrefs.fall,
         ...addedCoursesAndPrefs.spring,
@@ -103,7 +103,7 @@ const withFetchCourses = (WrappedComponent) => {
       API.post("wasedatime-dev", "/timetable", {
         body: { data: { courses: coursesAndPrefsToSave || [] } },
         headers: {
-          Authorization: userInfo ? userInfo.idToken.jwtToken : "",
+          Authorization: userTokens ? userTokens.idToken : "",
         },
       });
     }
@@ -176,7 +176,7 @@ const withFetchCourses = (WrappedComponent) => {
       prefs: getPrefs(state.addedCourses),
       isPrefsEmpty: getIsPrefsEmpty(state.addedCourses),
       addedCoursesAndPrefs: getAddedCoursesAndPrefs(state.addedCourses),
-      userInfo: getUserInfo(state),
+      userTokens: getUserTokens(state),
       fetchedSchools: state.fetchedCourses.schools,
       fetchedExpBySchool: state.fetchedCourses.expBySchool,
     };

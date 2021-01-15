@@ -81,14 +81,14 @@ const UserMenu = ({
       trigger={
         <UserMenuTrigger>
           <Image
-            src={userInfo.idToken.payload.picture}
+            src={userInfo.picture}
             width={isMobileMode ? "35" : "40"}
             height={isMobileMode ? "35" : "40"}
             circular
             alt="Image of User account"
           />
           <StyledSpan isHovered={isHovered}>
-            {userInfo.idToken.payload.preferred_username}
+            {userInfo.preferred_username}
           </StyledSpan>
         </UserMenuTrigger>
       }

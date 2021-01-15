@@ -130,8 +130,8 @@ export const addCourse = (course, displayLang) => (dispatch, getState) => {
         },
       },
       headers: {
-        Authorization: getState().user.info
-          ? getState().user.info.idToken.jwtToken
+        Authorization: getState().user.tokens
+          ? getState().user.tokens.idToken
           : "",
       },
     });
@@ -163,8 +163,8 @@ export const removeCourse = (id) => (dispatch, getState) => {
         },
       },
       headers: {
-        Authorization: getState().user.info
-          ? getState().user.info.idToken.jwtToken
+        Authorization: getState().user.tokens
+          ? getState().user.tokens.idToken
           : "",
       },
     });

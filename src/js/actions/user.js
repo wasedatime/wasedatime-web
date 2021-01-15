@@ -20,12 +20,10 @@ export const setUserInfo = (user) => {
   };
 };
 
-export const refreshUserSession = (session) => {
-  return {
-    type: IS_AUTHENTICATED,
-    payload: session,
-  };
-};
+export const updateUserSession = (session) => ({
+  type: IS_AUTHENTICATED,
+  payload: session,
+});
 
 export const clearUserInfo = () => ({
   type: NOT_AUTHENTICATED,

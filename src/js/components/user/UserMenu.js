@@ -23,8 +23,8 @@ const UserMenuTrigger = styled("div")`
   i {
     margin: 0 !important;
     font-size: 2em !important;
-    width: 32px;
-    min-width: 32px;
+    width: 40px;
+    min-width: 40px;
   }
 
   img.ui.circular.image {

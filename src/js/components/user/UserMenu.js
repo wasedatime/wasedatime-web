@@ -87,9 +87,7 @@ const UserMenu = ({
             circular
             alt="Image of User account"
           />
-          <StyledSpan isHovered={isHovered}>
-            {userInfo.preferred_username}
-          </StyledSpan>
+          <StyledSpan isHovered={isHovered}>{userInfo.username}</StyledSpan>
         </UserMenuTrigger>
       }
       icon={null}

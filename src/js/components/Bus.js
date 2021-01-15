@@ -27,9 +27,8 @@ const wasedaNishiwasedaBusUri =
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
-  padding: 25px;
-  padding-top: 120px;
-  height: 85vh;
+  padding: 120px 25px 0px 25px;
+  ${media.tablet`padding-top: 2em;`}
 `;
 
 const InfoWrapper = styled("div")`

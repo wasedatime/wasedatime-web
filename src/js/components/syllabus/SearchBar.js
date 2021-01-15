@@ -35,7 +35,7 @@ const StyledInput = styled("input")`
   outline: none;
   padding: 3px 0px 3px 10px;
   margin: 0;
-  margin-top: 5px;
+  margin-top: 10px;
   flex: 1 0 auto;
 `;
 
@@ -44,7 +44,7 @@ const StyledClearButton = styled("span")`
   align-items: center;
   cursor: pointer;
   color: ${(props) => props.theme.grey7};
-  margin-left: -15px;
+  margin: 10px 0 0 -15px;
   &:focus {
     outline: 0;
   }

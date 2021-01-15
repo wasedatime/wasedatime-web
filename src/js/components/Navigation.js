@@ -30,9 +30,9 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   font-size: 1.1em;
   font-weight: 330;
-  margin: 10px 0px;
+  padding: 1vh 0px;
   padding-left: ${(props) => (props.isHovered ? "35px" : "12px")};
-  width: ${(props) => (props.isHovered ? "150px" : "40px")};
+  width: ${(props) => (props.isHovered ? "150px" : "67px")};
   &:hover {
     color: ${(props) => props.theme.colorPrimary};
   }

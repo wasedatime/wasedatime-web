@@ -40,8 +40,8 @@ import MediaQuery from "react-responsive";
 
 const Wrapper = styled("div")`
   display: grid;
+  grid-template-rows: 67px auto auto;
   grid-template-columns: 65px auto;
-  grid-template-rows: 0px auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   min-height: 100vh;
@@ -51,10 +51,14 @@ const StyledMain = styled("main")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  grid-area: 2 / 2 / 3 / 3;
-  ${media.phone`grid-area: 1 / 1 / 4 / 4;`}
+  grid-area: 1 / 2 / span 3 / span 1;
+  ${media.tablet`grid-area: 2 / 1 / span 1 / span 2;`}
   width: 100%;
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
+`;
+
+const GridFooter = styled("div")`
+  grid-area: 3 / 1 / span 1 / span 2 !important;
 `;
 
 class App extends React.Component {
@@ -184,7 +188,7 @@ class App extends React.Component {
     return (
       <ThemeProvider theme={normalTheme}>
         <Wrapper>
-          <MediaQuery minWidth={sizes.tablet}>
+          <MediaQuery minWidth={sizes.tablet + 1}>
             {(matches) =>
               matches ? (
                 <Sidebar
@@ -233,10 +237,16 @@ class App extends React.Component {
                 <Route component={NotFound} />
               </Switch>
             )}
-            <MediaQuery maxWidth={sizes.tablet - 1}>
-              {(matches) => matches && <Footer />}
-            </MediaQuery>
           </StyledMain>
+          <MediaQuery maxWidth={sizes.tablet}>
+            {(matches) =>
+              matches && (
+                <GridFooter>
+                  <Footer />
+                </GridFooter>
+              )
+            }
+          </MediaQuery>
 
           <SignInModal
             isModalOpen={isSignInModalOpen}

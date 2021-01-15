@@ -49,7 +49,7 @@ const OtherLinks = styled("div")`
   ${(props) => (props.isHovered ? "width: 210px;" : "width: 100%;")}
   overflow-x: hidden;
   padding: 0px;
-  margin-bottom: 3em;
+  margin-bottom: 0.5vh;
   font-size: 1rem;
   color: ${(props) => props.theme.grey7};
   a {

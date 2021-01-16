@@ -315,23 +315,21 @@ class SchoolFilterForm extends React.Component {
                 <Message.Header>
                   {t("syllabus.School Filter.No imported")}
                 </Message.Header>
-                <p>
-                  {t("syllabus.School Filter.Import request")}{" "}
-                  <Popup
-                    trigger={
-                      <LargerButton
-                        color="green"
-                        icon="add"
-                        content={t("syllabus.School Filter.Choose Schools")}
-                      />
-                    }
-                    content={<Tab panes={this.schoolImportPanes()} />}
-                    on="click"
-                    position="bottom left"
-                    size="huge"
-                    wide="very"
-                  />
-                </p>
+                <p>{t("syllabus.School Filter.Import request")}</p>
+                <Popup
+                  trigger={
+                    <LargerButton
+                      color="green"
+                      icon="add"
+                      content={t("syllabus.School Filter.Choose Schools")}
+                    />
+                  }
+                  content={<Tab panes={this.schoolImportPanes()} />}
+                  on="click"
+                  position="bottom left"
+                  size="huge"
+                  wide="very"
+                />
               </Message>
             )}
 

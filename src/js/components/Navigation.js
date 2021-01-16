@@ -32,9 +32,12 @@ const StyledLink = styled(Link)`
   font-weight: 330;
   padding: 1vh 0px;
   padding-left: ${(props) => (props.isHovered ? "35px" : "12px")};
-  width: ${(props) => (props.isHovered ? "150px" : "67px")};
+  width: ${(props) => (props.isHovered ? "210px" : "67px")};
   &:hover {
     color: ${(props) => props.theme.colorPrimary};
+    button {
+      color: ${(props) => props.theme.colorPrimary};
+    }
   }
   transition: padding-left 0.5s;
 `;
@@ -50,9 +53,6 @@ const StyledButton = styled("button")`
   background-color: inherit;
   color: ${(props) =>
     props.isClicked ? props.theme.colorPrimary : props.theme.white};
-  &:hover {
-    color: ${(props) => props.theme.colorPrimary};
-  }
 
   svg {
     width: 40px !important;

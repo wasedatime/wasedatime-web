@@ -59,7 +59,7 @@ const OtherLinks = styled("div")`
   transition: ${(props) =>
     props.isHovered
       ? "opacity 0.4s ease 0.2s"
-      : "opacity 0.3s ease, width 0.3s ease-out 0.2s"};
+      : "opacity 0.2s ease, width 0.3s ease-out 0.2s"};
 `;
 
 const Logo = styled("img")`

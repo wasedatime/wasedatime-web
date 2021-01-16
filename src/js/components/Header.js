@@ -30,7 +30,7 @@ const RoundedInput = styled(Input)`
 const PageTitle = styled("h1")`
   font-weight: 500;
   padding-left: 100px;
-  ${media.desktop`padding-left: 80px;`}
+  ${media.desktop`padding: 0.5rem 0px 0px 80px; font-size: 1.5em;`}
 `;
 
 const Header = ({
@@ -45,13 +45,13 @@ const Header = ({
     <StyledHeader isBlur={isBlur}>
       <Grid style={{ width: "100%" }}>
         <Grid.Row>
-          <Grid.Column width={5}>
+          <Grid.Column width={4} style={{ paddingRight: "0" }}>
             <MediaQuery minWidth={sizes.tablet}>
               <PageTitle>{title}</PageTitle>
             </MediaQuery>
           </Grid.Column>
 
-          <Grid.Column width={9}>
+          <Grid.Column width={8}>
             <div style={{ marginLeft: "0" }}>
               <RoundedInput
                 fluid
@@ -67,7 +67,7 @@ const Header = ({
               />
             </div>
           </Grid.Column>
-          <Grid.Column width={2}>
+          <Grid.Column width={4}>
             <LanguangeMenu />
           </Grid.Column>
         </Grid.Row>

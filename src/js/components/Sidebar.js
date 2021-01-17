@@ -2,17 +2,11 @@ import logo from "../../img/logo.png";
 import textLogo from "../../img/text-logo.svg";
 import Navigation from "./Navigation";
 import UserMenu from "./user/UserMenu";
+import OtherInfo from "./OtherInfo";
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faGithub,
-  faFacebook,
-  faTwitter,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
 
 const StyledSidebar = styled("aside")`
   background: ${(props) => props.theme.grey2};
@@ -23,10 +17,7 @@ const StyledSidebar = styled("aside")`
   box-shadow: rgba(0, 0, 0, 0.45) 4px 0px 12px;
   transition: width 0.5s;
 
-  &:hover {
-    width: 210px;
-    transition: width 0.5s;
-  }
+  ${(props) => props.isHovered && "width: 210px; transition: width 0.5s;"}
 `;
 
 const StyledLink = styled(Link)`
@@ -45,23 +36,6 @@ const Footer = styled("div")`
   text-align: center;
 `;
 
-const OtherLinks = styled("div")`
-  ${(props) => (props.isHovered ? "width: 210px;" : "width: 100%;")}
-  overflow-x: hidden;
-  padding: 0px;
-  margin-bottom: 0.5vh;
-  font-size: 1rem;
-  color: ${(props) => props.theme.grey7};
-  a {
-    color: ${(props) => props.theme.grey7};
-  }
-  opacity: ${(props) => (props.isHovered ? "1" : "0")};
-  transition: ${(props) =>
-    props.isHovered
-      ? "opacity 0.4s ease 0.2s"
-      : "opacity 0.2s ease, width 0.3s ease-out 0.2s"};
-`;
-
 const Logo = styled("img")`
   width: 50px;
   height: 50px;
@@ -76,8 +50,26 @@ const TextLogo = styled("img")`
 `;
 
 class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+  }
+
   state = {
     isHovered: false,
+  };
+
+  // Close sidebar when touching outside of the sidebar (mobile mode)
+  componentDidMount() {
+    document.addEventListener("touchstart", this.handleTouchOutside);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("touchstart", this.handleTouchOutside);
+  }
+  handleTouchOutside = (event) => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({ isHovered: false });
+    }
   };
 
   render() {
@@ -85,7 +77,10 @@ class Sidebar extends React.Component {
     const { isHovered } = this.state;
     return (
       <StyledSidebar
+        innerRef={(aside) => (this.wrapperRef = aside)}
+        isHovered={isHovered}
         onMouseEnter={() => this.setState({ isHovered: true })}
+        onTouchStart={() => this.setState({ isHovered: true })}
         onMouseLeave={() => this.setState({ isHovered: false })}
       >
         <div style={{ position: "relative", height: "100%" }}>
@@ -101,64 +96,7 @@ class Sidebar extends React.Component {
           </StyledLink>
           <Navigation isHovered={isHovered} />
           <Footer>
-            <OtherLinks isHovered={isHovered}>
-              <a href="/privacy-policy">Privacy Policy</a>
-              <br />
-              <a
-                href="https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Code Licensed MIT
-              </a>
-              <br />
-              <a
-                href="https://github.com/wasedatime/wasedatime-web"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faGithub}
-                  size="2x"
-                  transform="shrink-2"
-                />
-              </a>
-              <a
-                href="https://twitter.com/WasedaTime"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faTwitter}
-                  size="2x"
-                  transform="shrink-2"
-                />
-              </a>
-              <a
-                href="https://www.facebook.com/wasedatime"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faFacebook}
-                  size="2x"
-                  transform="shrink-2"
-                />
-              </a>
-              <a
-                href="https://www.instagram.com/wasedatime/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  icon={faInstagram}
-                  size="2x"
-                  transform="shrink-2"
-                />
-              </a>
-              <br />
-              Copyright © 2021 WasedaTime
-            </OtherLinks>
+            <OtherInfo isHovered={isHovered} />
             <UserMenu
               userInfo={userInfo}
               signOut={signOut}

@@ -149,7 +149,7 @@ const TermsOfService = () => (
 
     <p>
       Any claim related to WasedaTime's Website shall be governed by the laws of
-      jp without regards to its conflict of law provisions.
+      Japan without regards to its conflict of law provisions.
     </p>
   </ExtendedOverlay>
 );

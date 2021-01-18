@@ -47,15 +47,15 @@ const ExtendedOverlay = styled(Overlay)`
   ${media.phone`padding: 0;`}
 `;
 
-// const Announcement = styled("div")`
-//   background-color: #48af37;
-//   color: #fff;
-//   margin: 20px 7px 5px 7px;
-//   padding: 5px 10px;
-//   font-size: 0.7em;
-//   border-radius: 3px;
-//   line-height: normal;
-// `;
+const Announcement = styled("div")`
+  background-color: #48af37;
+  color: #fff;
+  margin: 20px 7px 5px 7px;
+  padding: 5px 10px;
+  font-size: 0.7em;
+  border-radius: 3px;
+  line-height: normal;
+`;
 
 const getCourse = (loadedCourses, courseID) => {
   // Return null if courses not saved in localStorage or the course to display is not saved in localStorage
@@ -566,8 +566,7 @@ class CourseInfo extends React.Component {
         <LongWrapper>
           <ExtendedOverlay>
             <div>
-              {/*<Announcement>
-                <FontAwesomeIcon icon={faBullhorn} />{" "}
+              <Announcement>
                 {this.props.t(`courseInfo.Thank WTSA 1`)}{" "}
                 <a
                   href="https://www.facebook.com/WasedaTaiwaneseStudentAssociation/"
@@ -578,7 +577,7 @@ class CourseInfo extends React.Component {
                   {this.props.t(`courseInfo.WTSA`)}
                 </a>
                 {this.props.t(`courseInfo.Thank WTSA 2`)}
-              </Announcement>*/}
+              </Announcement>
 
               <FetchedCourseItem
                 searchTerm={""}

@@ -10,21 +10,23 @@ self.addEventListener("fetch", (event) => {
     ? event.request.url + "index.html"
     : event.request.url;
   event.respondWith(
-    new Promise(function (resolve) {
-      if (precacheController.getCachedUrls().indexOf(url) > -1) {
-        resolve(
-          caches
-            .open(workbox.core.cacheNames.precache)
-            .then((cache) => {
-              return cache.match(url);
-            })
-            .then((cachedResponse) => {
-              return cachedResponse || fetch(url);
-            })
-        );
-      } else {
-        resolve(fetch(event.request));
-      }
+    fetch(url).catch(function () {
+      new Promise(function (resolve) {
+        if (precacheController.getCachedUrls().indexOf(url) > -1) {
+          resolve(
+            caches
+              .open(workbox.core.cacheNames.precache)
+              .then((cache) => {
+                return cache.match(url);
+              })
+              .then((cachedResponse) => {
+                return cachedResponse;
+              })
+          );
+        } else {
+          resolve(fetch(event.request));
+        }
+      });
     })
   );
 });

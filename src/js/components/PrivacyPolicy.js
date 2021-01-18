@@ -75,7 +75,11 @@ const PrivacyPolicy = () => (
       <b>Social Media Login Data.</b> We provide you with the option to register
       with us using your existing Google student account details. If you
       register in this way, we will collect the Information described in the
-      section called "HOW DO WE HANDLE YOUR SOCIAL LOGINS" below.
+      section called{" "}
+      <a href="#how_to_handle_social_logins">
+        "HOW DO WE HANDLE YOUR SOCIAL LOGINS"
+      </a>{" "}
+      below.
     </p>
     <p>
       All personal information that you provide to us must be true, complete and
@@ -158,8 +162,11 @@ const PrivacyPolicy = () => (
         to link your account with us to a third-party account (such as your
         Google account), we use the information you allowed us to collect from
         those third parties to facilitate account creation and logon process.
-        See the section below headed "HOW DO WE HANDLE YOUR SOCIAL LOGINS" for
-        further information.
+        See the section below headed{" "}
+        <a href="#how_to_handle_social_logins">
+          "HOW DO WE HANDLE YOUR SOCIAL LOGINS"
+        </a>{" "}
+        for further information.
       </List.Item>
       <List.Item>
         <b>To post testimonials.</b> We post testimonials on our Website that
@@ -239,7 +246,11 @@ const PrivacyPolicy = () => (
         involved.
       </List.Item>
     </List>
-    <Header as="h1" style={{ textAlign: "center" }}>
+    <Header
+      as="h1"
+      style={{ textAlign: "center" }}
+      id="how_to_handle_social_logins"
+    >
       4. HOW DO WE HANDLE YOUR SOCIAL LOGINS?
     </Header>
     <p>

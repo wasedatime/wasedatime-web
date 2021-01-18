@@ -38,7 +38,7 @@ import Header from "../Header";
 export const LongWrapper = styled(Wrapper)`
   margin-top: 70px;
   flex: 1 1 auto;
-  ${media.tablet`flex: 0 0 auto; width: 100%`};
+  ${media.tablet`margin-top: 0px; flex: 0 0 auto; width: 100%`};
 `;
 
 const ExtendedOverlay = styled(Overlay)`

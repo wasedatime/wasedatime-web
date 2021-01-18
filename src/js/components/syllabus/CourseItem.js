@@ -7,6 +7,7 @@ import {
   faMapMarkerAlt,
   faMinusCircle,
   faPlusCircle,
+  faExternalLinkSquareAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
@@ -289,6 +290,26 @@ const CourseItem = ({
               borderRadius: "5px",
             }}
           >
+            {isDetailDisplayed && (
+              <a
+                style={{ alignSelf: "flex-start" }}
+                href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
+                  "syllabus.langParam"
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => {
+                  handleClickSyllabusLink(title, lng);
+                }}
+              >
+                <FontAwesomeIcon
+                  style={{ color: "#6495ED" }}
+                  icon={faExternalLinkSquareAlt}
+                  size="2x"
+                  transform="shrink-2"
+                />
+              </a>
+            )}
             <InvisibleButton /* Add Button */
               onClick={(e) => {
                 e.preventDefault();

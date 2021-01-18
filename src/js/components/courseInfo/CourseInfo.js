@@ -3,8 +3,6 @@ import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
 import { getUserTokens } from "../../reducers/user";
 import API from "@aws-amplify/api";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
 import qs from "qs";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
@@ -45,16 +43,6 @@ const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
   ${media.tablet`padding: 0 2rem 0 80px;`}
   ${media.phone`padding: 0;`}
-`;
-
-const Announcement = styled("div")`
-  background-color: #48af37;
-  color: #fff;
-  margin: 20px 7px 5px 7px;
-  padding: 5px 10px;
-  font-size: 0.7em;
-  border-radius: 3px;
-  line-height: normal;
 `;
 
 const getCourse = (loadedCourses, courseID) => {
@@ -566,20 +554,6 @@ class CourseInfo extends React.Component {
         <LongWrapper>
           <ExtendedOverlay>
             <div>
-              <Announcement>
-                <FontAwesomeIcon icon={faBullhorn} />{" "}
-                {this.props.t(`courseInfo.Thank WTSA 1`)}{" "}
-                <a
-                  href="https://www.facebook.com/WasedaTaiwaneseStudentAssociation/"
-                  style={{ color: "#fff" }}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {this.props.t(`courseInfo.WTSA`)}
-                </a>
-                {this.props.t(`courseInfo.Thank WTSA 2`)}
-              </Announcement>
-
               <FetchedCourseItem
                 searchTerm={""}
                 searchLang={searchLang}

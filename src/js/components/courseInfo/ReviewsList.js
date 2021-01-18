@@ -4,7 +4,7 @@ import ReviewStars from "./ReviewStars";
 import { media } from "../../styled-components/utils";
 import { withNamespaces } from "react-i18next";
 import { COURSE_REVIEW_LNG_FULL_NAME } from "../../config/course_review_lng";
-import { Button, Icon } from "semantic-ui-react";
+import { Button, Icon, Modal } from "semantic-ui-react";
 
 const ReviewsWrapper = styled("div")`
   background: #fff;
@@ -66,16 +66,60 @@ const ReviewScale = styled("div")`
   text-align: end;
 `;
 
-const ReviewsList = ({
-  reviews,
-  searchLang,
-  reviewLang,
-  openReviewEditForm,
-  deleteReview,
-  t,
-}) => {
-  return reviews.map((review, i) => {
-    return (
+const DeleteModal = styled(Modal)`
+  text-align: center !important;
+  font-size: 1.5em !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
+  ${media.phone`font-size: 1.4rem !important;`}
+  .header {
+    font-size: 2rem !important;
+    font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
+    font-display: swap;
+  }
+  .button {
+    font-size: 1.7rem !important;
+    font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
+    font-display: swap;
+  }
+`;
+
+class ReviewsList extends React.Component {
+  state = {
+    isDeleteModalOpen: false,
+    reviewToDelete: {},
+    reviewIndexToDelete: -1,
+  };
+
+  openDeleteModal = (review, i) => {
+    this.setState({
+      isDeleteModalOpen: true,
+      reviewToDelete: review,
+      reviewIndexToDelete: i,
+    });
+  };
+  closeDeleteModal = () =>
+    this.setState({
+      isDeleteModalOpen: false,
+      reviewToDelete: {},
+      reviewIndexToDelete: -1,
+    });
+  confirmDeleteReview = () => {
+    this.props.deleteReview(
+      this.state.reviewToDelete["created_at"],
+      this.state.reviewIndexToDelete
+    );
+    this.closeDeleteModal();
+  };
+
+  render() {
+    const {
+      reviews,
+      searchLang,
+      reviewLang,
+      openReviewEditForm,
+      t,
+    } = this.props;
+    return reviews.map((review, i) => (
       <ReviewsWrapper key={i}>
         {i !== 0 && <ReviewDivider />}
         <Review>
@@ -87,8 +131,8 @@ const ReviewsList = ({
             </ReviewTitle>
             <span>
               {review["comment_" + reviewLang] !== undefined &&
-                review["comment_" + reviewLang].split("\n").map((str) => (
-                  <span>
+                review["comment_" + reviewLang].split("\n").map((str, j) => (
+                  <span key={j}>
                     {str}
                     <br />
                   </span>
@@ -127,7 +171,7 @@ const ReviewsList = ({
                 <Button
                   icon
                   style={{ background: "red", color: "#fff" }}
-                  onClick={() => deleteReview(review["created_at"], i)}
+                  onClick={() => this.openDeleteModal(review, i)}
                 >
                   <Icon name="trash" />
                 </Button>
@@ -147,9 +191,35 @@ const ReviewsList = ({
             </ReviewScale>
           </ReviewScalesList>
         </Review>
+        <DeleteModal
+          open={this.state.isDeleteModalOpen}
+          onClose={this.closeDeleteModal}
+        >
+          <Modal.Header>
+            {t(`courseInfo.delete review confirmation`)}
+          </Modal.Header>
+          <Modal.Content>
+            <Modal.Description>
+              <Button
+                icon
+                style={{ background: "red", color: "#fff" }}
+                onClick={() => this.confirmDeleteReview()}
+              >
+                <Icon name="check" /> {t(`courseInfo.delete review yes`)}
+              </Button>
+              <Button
+                icon
+                style={{ background: "green", color: "#fff" }}
+                onClick={this.closeDeleteModal}
+              >
+                <Icon name="close" /> {t(`courseInfo.delete review no`)}
+              </Button>
+            </Modal.Description>
+          </Modal.Content>
+        </DeleteModal>
       </ReviewsWrapper>
-    );
-  });
-};
+    ));
+  }
+}
 
 export default withNamespaces("translation")(ReviewsList);

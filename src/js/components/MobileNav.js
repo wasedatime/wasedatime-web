@@ -24,16 +24,16 @@ const StyledNav = styled("nav")`
 
 const StyledLink = styled(Link)`
   padding: 0.2em 0.3em 0 0.3em !important;
-  ${media.phone`padding: 0.2em 0.4em 0 0.4em;`};
+  ${media.tablet`padding: 0.2em 0.1em 0 0.1em !important;`}
   text-align: center;
   text-decoration: none;
   font-size: 1.1em;
   font-weight: 330;
-  ${media.phone`font-size: 0.9em;`};
+  ${media.tablet`font-size: 0.8em;`};
 `;
 
 const StyledButton = styled("button")`
-  width: 45px;
+  width: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +50,7 @@ const StyledButton = styled("button")`
 `;
 
 const StyledSpan = styled("span")`
-  font-size: 0.3em;
+  font-size: 0.8em;
   font-weight: 100;
   color: #fff;
 `;

@@ -38,12 +38,13 @@
   "navigation": {
     "timetable": "時間割",
     "syllabus": "シラバス",
+    "course info": "授業詳細",
     "roomfinder": "空き教室",
     "joinus": "募集中！",
     "bus": "バス",
     "language": "言語",
     "career": "キャリア",
-    "corona-info": "コロナ情報"
+    "corona-info": "コロナ"
   },
   "footer": {
     "licensed": " ソースコードライセンス ",
@@ -51,7 +52,8 @@
     "update": "に更新されました"
   },
   "about": {
-    "description": "早稲田大学におけるシラバス検索、空き教室探し、バス運行状況のチェックなどの目的に役立つアプリです。"
+    "title": "早稲田タイム",
+    "description": "早稲田大学の学生のキャンパスライフを支え、向上させることを目的とした非営利・学生運営・オープンソースのアプリ"
   },
   "timetable": {
     "welcome": "WasedaTime へようこそ！",
@@ -61,6 +63,8 @@
     "and try adding one!": "から授業の登録ができます。",
     "SaveSpace": "6、7限および土曜日対応する授業を登録すると表示されます。",
     "Sort by": "並べ替え",
+    "courses": "コマ",
+    "credits": "単位",
     "courses added": "個の授業が登録済",
     "Spring Semester": "春学期",
     "Fall Semester": "秋学期",
@@ -70,13 +74,14 @@
     "Spring Semester": "春学期",
     "Fall Semester": "秋学期",
     "Added courses are displayed here": "登録された授業はここに表示されます。",
-    "To add a course": "授業を登録する方法",
-    "Search for courses and instructors in the top search bar": "検索欄で授業もしくは教師を検索してください。",
-    "Japanese is supported": "英語で検索することも可能です。",
-    "try": "例えば \"英語\" \"田中\" \"english\" \"tanaka\"",
+    "To add a course": "授業を登録する：",
+    "Search with keywords": "キーワード検索",
+    "With course or instructor's name": "授業名もしくは教師名で検索",
+    "English & Japanese supported": "英語/日本語対応",
     "Click on": "",
-    "to add": "をクリックと、授業を登録できる",
-    "to remove": "をクリックと、授業を削除できる。",
+    "to add": "を押すと登録される",
+    "To remove": "授業を削除：",
+    "to remove suffix": "をクリック",
     "Pro Tip!": "おすすめ！",
     "Use": "",
     "Filter by": "フィルター",
@@ -250,7 +255,10 @@
     "Review updated": "レビューが更新されました",
     "Review deleted": "レビューが削除されました",
     "Review failed to send": "評価の提出が失敗しました",
-    "Fill in all fields before sending": "提出する前にすべてのフィールドに記入してください"
+    "Fill in all fields before sending": "提出する前にすべてのフィールドに記入してください",
+    "delete review confirmation": "レビューを削除してよろしいですか？",
+    "delete review yes": "はい、削除します",
+    "delete review no": "いいえ"
   },
   "room": {
     "Under Construction": "作成中",
@@ -277,7 +285,7 @@
     "Tap on the top-right icon": "右上のアイコン",
     "and select Add to Home screen": "をクリックして、'ホーム画面に追加' を選択する",
     "Tap on the bottom-middle icon": "底部中央のアイコン",
-    "Assign a date / time to check the next bus": "日時を指定し、次のバスを検索しよう"
+    "Assign a date / time to check the next bus": "日時を指定し、次のバスを検索しましょう"
   },
   "updates": {
     "header": "2020のシラバスについて",

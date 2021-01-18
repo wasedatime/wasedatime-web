@@ -14,8 +14,9 @@ import { Overlay } from "../../styled-components/Overlay";
 
 const FilterWrapper = styled(Wrapper)`
   flex: none;
+  position: fixed !important
+  height: calc(100vh - 70px);
   overflow-y: auto;
-  height: ${(props) => (props.isSideBar ? "100%" : "auto")};
 `;
 
 const FilterOverlay = styled(Overlay)`
@@ -26,7 +27,13 @@ const FilterOverlay = styled(Overlay)`
 const FilterTitle = styled("span")`
   display: flex;
   align-items: center;
-  font-size: ${(props) => (props.isSideBar ? "1em" : "1.3em")};
+  font-size: 1.1em;
+`;
+
+const FilterClearButton = styled(Button)`
+  color: #b51e36 !important;
+  background: #fff !important;
+  font-weight: 500 !important;
 `;
 
 const FilterGroupWrapper = styled("div")`
@@ -34,7 +41,7 @@ const FilterGroupWrapper = styled("div")`
   flex: 1 0 auto;
   padding: 1rem;
   margin-top: 0.2em;
-  font-size: 14px;
+  font-size: 11px;
 `;
 
 class Filter extends React.Component {
@@ -405,16 +412,13 @@ class Filter extends React.Component {
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
         <FilterOverlay isSideBar={isSideBar}>
           <FilterTitle isSideBar={isSideBar}>
-            {t("syllabus.Filter by")}&nbsp;
             <FontAwesomeIcon icon={faFilter} size="1x" />
             &nbsp;
-            <Button
-              color="grey"
-              onClick={clearFilter}
-              style={{ fontSize: "1.5rem", padding: "0.5rem 1rem" }}
-            >
+            <b>{t("syllabus.Filter by")}</b>
+            &nbsp;
+            <FilterClearButton size="big" onClick={clearFilter}>
               {t("syllabus.Clear filter")}
-            </Button>
+            </FilterClearButton>
           </FilterTitle>
           <FilterGroupWrapper>
             <FilterGroup

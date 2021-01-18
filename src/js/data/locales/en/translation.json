@@ -38,6 +38,7 @@
   "navigation": {
     "timetable": "Timetable",
     "syllabus": "Syllabus",
+    "course info": "Course",
     "roomfinder": "Rooms",
     "joinus": "Join Us",
     "bus": "Bus",
@@ -51,7 +52,8 @@
     "update": ""
   },
   "about": {
-    "description": "An unofficial app for syllabus searching, classroom finding, and bus schedule checking at Waseda University."
+    "title": "WasedaTime",
+    "description": "Non-profit, student-run, open-source app aiming to support and improve the campus lives of Waseda University students."
   },
   "timetable": {
     "welcome": "Welcome to WasedaTime!",
@@ -61,6 +63,8 @@
     "and try adding one!": "and try adding one!",
     "SaveSpace": "Period 6, 7 and Saturday are hidden by default to save space. They will appear once the corresponding course is selected.",
     "Sort by": "Sort by",
+    "courses": "courses",
+    "credits": "credits",
     "courses added": "courses added",
     "Spring Semester": "Spring Semester",
     "Fall Semester": "Fall Semester",
@@ -70,16 +74,17 @@
     "Spring Semester": "Spring Semester",
     "Fall Semester": "Fall Semester",
     "Added courses are displayed here": "Added courses are displayed here.",
-    "To add a course": "To add a course",
-    "Search for courses and instructors in the top search bar": "Search for courses and instructors in the top search bar.",
-    "Japanese is supported": " Japanese is supported.",
-    "try": "Try: \"kanji\" \"tanaka\" \"漢字\" \"田中\"",
+    "To add a course": "To add a course:",
+    "Search with keywords": "Search with keywords",
+    "With course or instructor's name": "With course or instructor's name",
+    "English & Japanese supported": "English & Japanese supported",
     "Click on": "Click on",
     "to add": "to add",
-    "to remove": "to remove.",
+    "To remove": "To remove: ",
+    "to remove suffix": "",
     "Pro Tip!": "Pro Tip!",
     "Use": "Use",
-    "Filter by": "Filter by",
+    "Filter by": "Filter",
     "Clear filter": "Clear filter",
     "to narrow down your search": "to narrow down your search.",
     "Semesters": "Semesters",
@@ -140,7 +145,7 @@
     "IPSE": "IPSE",
     "EN-based Undergrad Program": "EN-based Undergrad Program",
     "IPSE/EN-based Undergrad Program": "IPSE / EN-based Undergrad Program",
-    "Filter by": "Filter by",
+    "Filter by": "Filter",
     "semesterMap": {
       "Spring": "Spring",
       "Summer": "Summer",
@@ -249,7 +254,10 @@
     "Review updated": "Review updated",
     "Review deleted": "Review deleted",
     "Review failed to send": "Review failed to send",
-    "Fill in all fields before sending": "Please fill in all fields before sending your review"
+    "Fill in all fields before sending": "Please fill in all fields before sending your review",
+    "delete review confirmation": "Are you sure to delete the review?",
+    "delete review yes": "Yes, I'm sure",
+    "delete review no": "No"
   },
   "room": {
     "Under Construction": "Under Construction",

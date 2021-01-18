@@ -20,7 +20,7 @@ import {
   getIsPrefsEmpty,
   getAddedCoursesAndPrefs,
 } from "../reducers/addedCourses";
-import { getUserInfo } from "../reducers/user";
+import { getUserTokens } from "../reducers/user";
 import LoadingSpinner from "../components/LoadingSpinner";
 import FetchError from "../components/FetchError";
 
@@ -28,57 +28,59 @@ const withFetchCourses = (WrappedComponent) => {
   class WithFetchCoursesComponent extends React.Component {
     async componentDidMount() {
       const {
-        fetchedCourseIds,
+        addedCoursesAndPrefs,
         fetchedCoursesById,
-        fetchedSchools,
-        userInfo,
+        userTokens,
         fetchCourses,
         saveTimetable,
       } = this.props;
 
-      if (!fetchedCourseIds.length) {
-        fetchCourses();
-      }
-
-      await Promise.all(
-        fetchedSchools.map(async (school) => {
-          await API.head("wasedatime-dev", `/syllabus/${school}`, {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            response: true,
-          })
-            .then((res) => console.log(res.headers["last-modified"]))
-            .catch((e) => console.log(e));
-          return;
-        })
-      );
+      fetchCourses();
 
       // Only signed in user can sync timetable
-      if (
-        userInfo &&
-        userInfo &&
-        userInfo.idToken.payload.exp > Date.now() / 1000
-      ) {
+      if (userTokens && userTokens.exp > Date.now() / 1000) {
         API.get("wasedatime-dev", "/timetable", {
           headers: {
-            Authorization: userInfo ? userInfo.idToken.jwtToken : "",
+            Authorization: userTokens ? userTokens.idToken : "",
           },
           response: true,
         })
           .then((res) => {
             // res.data: {
-            //  success: BOOL,
-            //  data: [
-            //     {id: STR, color: INT, displayLang: STR}
-            //  ],
-            //  message: STR
+            //   success: BOOL,
+            //   data: {
+            //     created_at: STR,
+            //     updated_at: STR,
+            //     courses: [{id: STR, color: INT, displayLang: STR}, ...]
+            //   },
+            //   message: STR
             // }
-            saveTimetable(res.data.data.courses, fetchedCoursesById);
+
+            // addedCourses GET from API ✖, addedCourses in local ✖: nothing
+            // addedCourses GET from API ✖, addedCourses in local ✔: post
+            // addedCourses GET from API ✔: save to local
+            if (res.data.data.courses.length === 0) {
+              if (
+                addedCoursesAndPrefs.fall.length +
+                  addedCoursesAndPrefs.spring.length >
+                0
+              )
+                this.postTimetable();
+            } else {
+              saveTimetable(res.data.data.courses, fetchedCoursesById);
+            }
           })
           .catch((e) => {
-            console.error(e.response);
-            if (e.response && !e.response.data.data) this.postTimetable();
+            // addedCourses GET from API ✖, addedCourses in local ✖: nothing
+            // addedCourses GET from API ✖, addedCourses in local ✔: post
+            if (
+              e.response &&
+              !e.response.data.data &&
+              addedCoursesAndPrefs.fall.length +
+                addedCoursesAndPrefs.spring.length >
+                0
+            )
+              this.postTimetable();
           });
       }
     }
@@ -88,7 +90,7 @@ const withFetchCourses = (WrappedComponent) => {
     }
 
     postTimetable() {
-      const { addedCoursesAndPrefs, userInfo } = this.props;
+      const { addedCoursesAndPrefs, userTokens } = this.props;
       const combinedAddedCoursesAndPrefs = [
         ...addedCoursesAndPrefs.fall,
         ...addedCoursesAndPrefs.spring,
@@ -101,7 +103,7 @@ const withFetchCourses = (WrappedComponent) => {
       API.post("wasedatime-dev", "/timetable", {
         body: { data: { courses: coursesAndPrefsToSave || [] } },
         headers: {
-          Authorization: userInfo ? userInfo.idToken.jwtToken : "",
+          Authorization: userTokens ? userTokens.idToken : "",
         },
       });
     }
@@ -174,9 +176,9 @@ const withFetchCourses = (WrappedComponent) => {
       prefs: getPrefs(state.addedCourses),
       isPrefsEmpty: getIsPrefsEmpty(state.addedCourses),
       addedCoursesAndPrefs: getAddedCoursesAndPrefs(state.addedCourses),
-      userInfo: getUserInfo(state),
+      userTokens: getUserTokens(state),
       fetchedSchools: state.fetchedCourses.schools,
-      fetchedlastModBySchool: state.fetchedCourses.lastModBySchool,
+      fetchedExpBySchool: state.fetchedCourses.expBySchool,
     };
   };
 

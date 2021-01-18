@@ -18,6 +18,7 @@ const ExtendedRowWrapper = styled(RowWrapper)`
     font-size: 1.1em;
   `};
   padding: 80px 0 0.1em 0;
+  ${media.tablet`padding-top: 1rem;`}
 `;
 
 const ExtendedInvisibleButton = styled(InvisibleButton)`

@@ -4,7 +4,6 @@ import {
   FETCH_COURSES_REQUEST,
   FETCH_COURSES_SUCCESS,
   FETCH_COURSES_FAILURE,
-  ADD_SCHOOL,
   ADD_SCHOOL_FETCH_COURSES_REQUEST,
   ADD_SCHOOL_FETCH_COURSES_SUCCESS,
   ADD_SCHOOL_FETCH_COURSES_FAILURE,
@@ -13,14 +12,13 @@ import {
 import fetchedList, * as fromList from "./fetchedList";
 import fetchedById from "./fetchedById";
 import fetchedSchools from "./fetchedSchools";
-import fetchedlastModBySchool from "./fetchedlastModBySchool";
+import fetchedExpBySchool from "./fetchedExpBySchool";
 import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 
 const actionTypes = {
   fetchRequest: FETCH_COURSES_REQUEST,
   fetchSuccess: FETCH_COURSES_SUCCESS,
   fetchFailure: FETCH_COURSES_FAILURE,
-  addSchool: ADD_SCHOOL,
   addSchoolFetchRequest: ADD_SCHOOL_FETCH_COURSES_REQUEST,
   addSchoolFetchSuccess: ADD_SCHOOL_FETCH_COURSES_SUCCESS,
   addSchoolFetchFailure: ADD_SCHOOL_FETCH_COURSES_FAILURE,
@@ -31,7 +29,7 @@ const fetchedCourses = combineReducers({
   list: fetchedList(actionTypes),
   byId: fetchedById("courses", actionTypes),
   schools: fetchedSchools(actionTypes),
-  lastModBySchool: fetchedlastModBySchool(actionTypes),
+  expBySchool: fetchedExpBySchool(actionTypes),
 });
 
 export default fetchedCourses;

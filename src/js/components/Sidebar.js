@@ -2,6 +2,7 @@ import logo from "../../img/logo.png";
 import textLogo from "../../img/text-logo.svg";
 import Navigation from "./Navigation";
 import UserMenu from "./user/UserMenu";
+import OtherInfo from "./OtherInfo";
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
@@ -12,14 +13,11 @@ const StyledSidebar = styled("aside")`
   width: 65px;
   height: 100vh;
   position: fixed;
-  z-index: 4000;
+  z-index: 400;
   box-shadow: rgba(0, 0, 0, 0.45) 4px 0px 12px;
   transition: width 0.5s;
 
-  &:hover {
-    width: 210px;
-    transition: width 0.5s;
-  }
+  ${(props) => props.isHovered && "width: 210px; transition: width 0.5s;"}
 `;
 
 const StyledLink = styled(Link)`
@@ -28,6 +26,14 @@ const StyledLink = styled(Link)`
   align-items: center;
   padding: 7.5px;
   border-bottom: 2px solid ${(props) => props.theme.colorPrimary};
+`;
+
+const Footer = styled("div")`
+  width: 100%;
+  position: absolute;
+  bottom: 70px;
+  align-items: center;
+  text-align: center;
 `;
 
 const Logo = styled("img")`
@@ -44,39 +50,62 @@ const TextLogo = styled("img")`
 `;
 
 class Sidebar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.wrapperRef = React.createRef();
+  }
+
   state = {
     isHovered: false,
+  };
+
+  // Close sidebar when touching outside of the sidebar (mobile mode)
+  componentDidMount() {
+    document.addEventListener("touchstart", this.handleTouchOutside);
+  }
+  componentWillUnmount() {
+    document.removeEventListener("touchstart", this.handleTouchOutside);
+  }
+  handleTouchOutside = (event) => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState({ isHovered: false });
+    }
   };
 
   render() {
     const { userInfo, signOut, toggleSignInModal } = this.props;
     const { isHovered } = this.state;
     return (
-      <React.Fragment>
-        <StyledSidebar
-          onMouseEnter={() => this.setState({ isHovered: true })}
-          onMouseLeave={() => this.setState({ isHovered: false })}
-        >
+      <StyledSidebar
+        innerRef={(aside) => (this.wrapperRef = aside)}
+        isHovered={isHovered}
+        onMouseEnter={() => this.setState({ isHovered: true })}
+        onTouchStart={() => this.setState({ isHovered: true })}
+        onMouseLeave={() => this.setState({ isHovered: false })}
+      >
+        <div style={{ position: "relative", height: "100%" }}>
           <StyledLink to="/about">
             <Logo src={logo} alt="WasedaTime logo" width="50" height="50" />
             <TextLogo
               src={textLogo}
               alt="WasedaTime text logo"
+              width="150"
               height="50"
               isHovered={isHovered}
             />
           </StyledLink>
           <Navigation isHovered={isHovered} />
-          <div style={{ position: "absolute", bottom: "5em" }}>
+          <Footer>
+            <OtherInfo isHovered={isHovered} />
             <UserMenu
               userInfo={userInfo}
               signOut={signOut}
               openSignInModal={toggleSignInModal}
               isHovered={isHovered}
             />
-          </div>
-        </StyledSidebar>
-      </React.Fragment>
+          </Footer>
+        </div>
+      </StyledSidebar>
     );
   }
 }

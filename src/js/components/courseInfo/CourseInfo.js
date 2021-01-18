@@ -1,7 +1,7 @@
 import React from "react";
 import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
-import { getUserInfo } from "../../reducers/user";
+import { getUserTokens } from "../../reducers/user";
 import API from "@aws-amplify/api";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn } from "@fortawesome/free-solid-svg-icons";
@@ -33,22 +33,24 @@ import AddReviewForm from "./AddReviewForm";
 import LoadingSpinner from "../LoadingSpinner";
 import RelatedCourses from "./RelatedCourses";
 import SignInModal from "../user/SignInModal";
+import Header from "../Header";
 
 export const LongWrapper = styled(Wrapper)`
+  margin-top: 70px;
   flex: 1 1 auto;
   ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
-  ${media.tablet`padding-right: 2rem;`};
+  ${media.tablet`padding: 0 2rem 0 80px;`}
+  ${media.phone`padding: 0;`}
 `;
 
 const Announcement = styled("div")`
   background-color: #48af37;
   color: #fff;
-  margin-top: 20px;
-  margin-bottom: 5px;
+  margin: 20px 7px 5px 7px;
   padding: 5px 10px;
   font-size: 0.7em;
   border-radius: 3px;
@@ -229,7 +231,7 @@ class CourseInfo extends React.Component {
         avgDifficulty: avgDifficulty,
         avgBenefit: avgBenefit,
         searchLang: searchLang,
-        reviewLang: this.props.lng,
+        reviewLang: this.props.lng === "jp" ? "ja" : this.props.lng,
         isLoaded: true,
       });
   }
@@ -243,10 +245,7 @@ class CourseInfo extends React.Component {
             "/course-reviews/" +
               courseKey +
               "?uid=" +
-              (this.props.userInfo
-                ? this.props.userInfo.sub ||
-                  this.props.userInfo.idToken.payload.sub
-                : ""),
+              (this.props.userTokens ? this.props.userTokens.sub : ""),
             {
               headers: {
                 "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
@@ -280,7 +279,7 @@ class CourseInfo extends React.Component {
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });
 
   toggleAddReviewForm = () => {
-    if (this.props.userInfo) {
+    if (this.props.userTokens) {
       this.setState({
         isAddReviewFormOpen: !this.state.isAddReviewFormOpen,
       });
@@ -341,7 +340,7 @@ class CourseInfo extends React.Component {
     this.setState({ newReviewComment: text });
 
   onNewReviewFormSubmit = () => {
-    if (!this.props.userInfo) {
+    if (!this.props.userTokens) {
       this.setState({ isSignInModalOpen: true });
       return;
     }
@@ -405,8 +404,8 @@ class CourseInfo extends React.Component {
               },
               headers: {
                 "Content-Type": "application/json",
-                Authorization: this.props.userInfo
-                  ? this.props.userInfo.idToken.jwtToken
+                Authorization: this.props.userTokens
+                  ? this.props.userTokens.idToken
                   : "",
               },
             }
@@ -424,8 +423,8 @@ class CourseInfo extends React.Component {
               },
               headers: {
                 "Content-Type": "application/json",
-                Authorization: this.props.userInfo
-                  ? this.props.userInfo.idToken.jwtToken
+                Authorization: this.props.userTokens
+                  ? this.props.userTokens.idToken
                   : "",
               },
             }
@@ -481,7 +480,7 @@ class CourseInfo extends React.Component {
   };
 
   deleteReview = (reviewPrimaryKey, reviewIndex) => {
-    if (!this.props.userInfo) {
+    if (!this.props.userTokens) {
       this.setState({ isSignInModalOpen: true });
       return;
     }
@@ -493,8 +492,8 @@ class CourseInfo extends React.Component {
         reviewPrimaryKey,
       {
         headers: {
-          Authorization: this.props.userInfo
-            ? this.props.userInfo.idToken.jwtToken
+          Authorization: this.props.userTokens
+            ? this.props.userTokens.idToken
             : "",
         },
       }
@@ -559,6 +558,11 @@ class CourseInfo extends React.Component {
           />
           <meta property="og:site_name" content="WasedaTime - Course Reviews" />
         </Helmet>
+        <Header
+          title={this.props.t("navigation.course info")}
+          placeholder="Search course (in construction...)"
+          disabled={true}
+        />
         <LongWrapper>
           <ExtendedOverlay>
             <div>
@@ -631,7 +635,6 @@ class CourseInfo extends React.Component {
         />
         <SignInModal
           isModalOpen={isSignInModalOpen}
-          isExpired={false}
           signIn={this.signIn}
           closeModal={this.closeSignInModal}
         />
@@ -641,7 +644,7 @@ class CourseInfo extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  userInfo: getUserInfo(state),
+  userTokens: getUserTokens(state),
 });
 
 export default withFetchCourses(

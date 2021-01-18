@@ -39,6 +39,9 @@ const StyledSegment = styled(Segment)`
   font-size: 1em !important;
   margin: 1em 0px !important;
   cursor: default !important;
+  border: none !important;
+  margin-top: 0 !important;
+  box-shadow: none !important;
   &:hover {
     transform: none !important;
   }

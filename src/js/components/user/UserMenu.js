@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withNamespaces } from "react-i18next";
 import { Dropdown, Image, Icon } from "semantic-ui-react";
 import styled, { keyframes } from "styled-components";
+import { media } from "../../styled-components/utils";
 
 export const expandLink = () =>
   keyframes`
@@ -16,12 +17,20 @@ const UserMenuTrigger = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 0.9rem;
-  padding-bottom: 1rem;
+  padding: 0.5vh 0.5rem 1rem 1.2rem;
+  ${media.tablet`padding: 0.5rem;`}
 
   i {
     margin: 0 !important;
     font-size: 2em !important;
+    width: 40px;
+    min-width: 40px;
+  }
+
+  img.ui.circular.image {
+    width: 40px;
+    min-width: 40px;
+    ${media.phone`width: 35px; min-width: 35px;`}
   }
 
   &:hover {
@@ -31,20 +40,27 @@ const UserMenuTrigger = styled("div")`
 
 const StyledSpan = styled("span")`
   animation-name: ${expandLink};
-  animation-duration: 0.5s;
-  width: 150px
+  animation-duration: 0.3s;
   text-align: left
   font-size: 1.1em
   font-weight: 100;
   margin-left: 1rem
   color: #fff;
   opacity: ${(props) => (props.isHovered ? "1" : "0")};
-  transition: opacity 0.3s;
+  width: ${(props) => (props.isHovered ? "145px" : "0px")};
+  white-space: nowrap;
+  overflow-x: hidden;
+  transition: ${(props) =>
+    props.isHovered
+      ? "width 0.3s ease-out, opacity 0.5s ease 0.2s"
+      : "opacity 0.3s ease, width 0.3s ease-out 0.2s"};
 `;
 
 const StyledMenu = styled(Dropdown.Menu)`
   width: 210px !important;
+  ${media.phone`width: 60px !important;`}
   background: #555 !important;
+  z-index: 999;
 `;
 
 const StyledMenuItem = styled(Dropdown.Item)`
@@ -63,25 +79,22 @@ const UserMenu = ({
 }) =>
   userInfo ? (
     <Dropdown
+      isHovered={isHovered}
       trigger={
         <UserMenuTrigger>
-          <div>
-            <Image
-              src={userInfo.idToken.payload.picture}
-              width={isMobileMode ? "35" : "40"}
-              height={isMobileMode ? "35" : "40"}
-              circular
-            />
-          </div>
-          {isHovered && (
-            <StyledSpan isHovered={isHovered}>
-              {userInfo.idToken.payload.preferred_username}
-            </StyledSpan>
-          )}
+          <Image
+            src={userInfo.picture}
+            width={isMobileMode ? "35" : "40"}
+            height={isMobileMode ? "35" : "40"}
+            circular
+            alt="Image of User account"
+          />
+          <StyledSpan isHovered={isHovered}>{userInfo.username}</StyledSpan>
         </UserMenuTrigger>
       }
       icon={null}
       simple
+      direction={isMobileMode ? "left" : "right"}
     >
       <StyledMenu>
         <StyledMenuItem disabled>Profile</StyledMenuItem>

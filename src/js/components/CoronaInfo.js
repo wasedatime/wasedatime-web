@@ -16,13 +16,18 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const StatisticsGroupWrapper = styled("div")`
-  padding: 5em 10em;
+  padding: 10em 10em 2em 10em;
+  ${media.tablet`padding: 2em 1rem;`}
   text-align: center;
-  ${media.desktop`padding: 0em;`};
 `;
 
-const StatisticsWrapper = styled("div")`
-  ${media.desktop`padding-bottom: 3em;`};
+const StyledDivider = styled(Divider)`
+  ${media.tablet`margin: 1rem 2em !important;`}
+`;
+
+const Attribution = styled("p")`
+  text-align: center;
+  margin: 2em;
 `;
 
 const getGMT = (date) => {
@@ -52,7 +57,7 @@ const CoronaInfoStatistics = ({ statisticData, t }) => {
             <Statistic.Value>{statisticData["confirmed"]}</Statistic.Value>
             <Statistic.Label>{t("coronaInfo.Total Cases")}</Statistic.Label>
           </Statistic>
-          <Divider />
+          <StyledDivider />
           <Statistic size="huge" color="red">
             <Statistic.Value>{statisticData["deaths_diff"]}</Statistic.Value>
             <Statistic.Label>{t("coronaInfo.New Deaths")}</Statistic.Label>
@@ -61,7 +66,7 @@ const CoronaInfoStatistics = ({ statisticData, t }) => {
             <Statistic.Value>{statisticData["deaths"]}</Statistic.Value>
             <Statistic.Label>{t("coronaInfo.Total Deaths")}</Statistic.Label>
           </Statistic>
-          <Divider />
+          <StyledDivider />
           <Statistic size="huge" color="green">
             <Statistic.Value>{statisticData["recovered_diff"]}</Statistic.Value>
             <Statistic.Label>{t("coronaInfo.New Recovered")}</Statistic.Label>
@@ -201,74 +206,66 @@ class CoronaInfo extends React.Component {
           <meta property="og:site_name" content="WasedaTime - Corona Info" />
         </Helmet>
 
-        <Topbar placeholder="" disabled={true} />
-
-        <Header size="huge" style={{ textAlign: "center", marginTop: "100px" }}>
-          {this.props.t("coronaInfo.title")}
-        </Header>
-        <p style={{ textAlign: "center" }}>
-          {this.props.t("coronaInfo.attribution")}
-        </p>
+        <Topbar
+          title={this.props.t("navigation.corona-info")}
+          placeholder=""
+          disabled={true}
+        />
 
         <StatisticsGroupWrapper>
           <Grid stackable columns={2}>
             <Grid.Row>
               <Grid.Column>
-                <StatisticsWrapper>
-                  <Header size="huge">
-                    {this.props.t("coronaInfo.Tokyo")}
-                  </Header>
-                  <CoronaInfoStatistics
-                    statisticData={tokyoData}
-                    t={this.props.t}
+                <Header size="huge">{this.props.t("coronaInfo.Tokyo")}</Header>
+                <CoronaInfoStatistics
+                  statisticData={tokyoData}
+                  t={this.props.t}
+                />
+                <br />
+                <a
+                  href="https://stopcovid19.metro.tokyo.lg.jp/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  More info{" "}
+                  <FontAwesomeIcon
+                    style={{ color: "#6495ED" }}
+                    icon={faExternalLinkSquareAlt}
                   />
-                  <br />
-                  <a
-                    href="https://stopcovid19.metro.tokyo.lg.jp/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    More info{" "}
-                    <FontAwesomeIcon
-                      style={{ color: "#6495ED" }}
-                      icon={faExternalLinkSquareAlt}
-                    />
-                  </a>
-                </StatisticsWrapper>
+                </a>
               </Grid.Column>
 
               <Grid.Column>
-                <StatisticsWrapper>
-                  <div style={{ marginBottom: "3px" }}>
-                    <Dropdown
-                      placeholder="Region"
-                      search
-                      selection
-                      options={this.getCountryOptions()}
-                      defaultValue={"JPN"}
-                      onChange={this.selectCountry}
-                    />
-                  </div>
-                  <CoronaInfoStatistics
-                    statisticData={regionData}
-                    t={this.props.t}
+                <div style={{ marginBottom: "3px" }}>
+                  <Dropdown
+                    placeholder="Region"
+                    search
+                    selection
+                    options={this.getCountryOptions()}
+                    defaultValue={"JPN"}
+                    onChange={this.selectCountry}
                   />
-                  <br />
-                  <a
-                    href="https://covid19.who.int/table"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    More info{" "}
-                    <FontAwesomeIcon
-                      style={{ color: "#6495ED" }}
-                      icon={faExternalLinkSquareAlt}
-                    />
-                  </a>
-                </StatisticsWrapper>
+                </div>
+                <CoronaInfoStatistics
+                  statisticData={regionData}
+                  t={this.props.t}
+                />
+                <br />
+                <a
+                  href="https://covid19.who.int/table"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  More info{" "}
+                  <FontAwesomeIcon
+                    style={{ color: "#6495ED" }}
+                    icon={faExternalLinkSquareAlt}
+                  />
+                </a>
               </Grid.Column>
             </Grid.Row>
           </Grid>
+          <Attribution>{this.props.t("coronaInfo.attribution")}</Attribution>
         </StatisticsGroupWrapper>
       </Wrapper>
     );

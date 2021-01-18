@@ -12,7 +12,6 @@ export const setFirstTimeAccessToFalse = () => ({
 });
 
 export const setUserInfo = (user) => {
-  console.log(user);
   return {
     type: IS_AUTHENTICATED,
     payload: {
@@ -20,6 +19,11 @@ export const setUserInfo = (user) => {
     },
   };
 };
+
+export const updateUserSession = (session) => ({
+  type: IS_AUTHENTICATED,
+  payload: session,
+});
 
 export const clearUserInfo = () => ({
   type: NOT_AUTHENTICATED,

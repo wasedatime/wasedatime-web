@@ -65,6 +65,7 @@ class TimetableContainer extends React.Component {
           <meta property="og:site_name" content="WasedaTime - Timetable" />
         </Helmet>
         <Header
+          title={t("navigation.timetable")}
           placeholder="Search course (in construction...)"
           disabled={true}
         />

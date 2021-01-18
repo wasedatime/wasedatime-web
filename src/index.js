@@ -16,6 +16,8 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const authRedirectPath =
   window.location.protocol + "//" + window.location.host + "/verify";
+const authSignOutPath =
+  window.location.protocol + "//" + window.location.host + "/";
 
 const config = {
   API: {
@@ -76,7 +78,7 @@ const config = {
       domain: "auth.wasedatime.com",
       scope: ["email", "profile", "openid", "aws.cognito.signin.user.admin"],
       redirectSignIn: authRedirectPath,
-      redirectSignOut: authRedirectPath,
+      redirectSignOut: authSignOutPath,
       responseType: "code", // or 'token', note that REFRESH token will only be generated when the responseType is code
     },
   },

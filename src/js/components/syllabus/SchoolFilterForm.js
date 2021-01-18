@@ -32,14 +32,19 @@ const RowWrapper = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 1em 1em 0px 1em;
 `;
 
 const StyledSegment = styled(Segment)`
   width: 100% !important;
+  min-height: ${(props) => (props.isSchoolFilterOpened ? "120px" : "40px")};
   cursor: default !important;
   animation: none !important;
   border-radius: 5px !important;
   box-shadow: none !important;
+  margin: 1em 2em 0em;
+  padding: 0.5rem 1em 0px !important;
+  transition: min-height 0.3s !important;
 
   &:hover {
     border-radius: 5px !important;
@@ -56,6 +61,7 @@ const WiderPopup = styled(Popup)`
 const LargerButton = styled(Button)`
   font-size: 14px !important;
   padding: 0.5em 1em !important;
+  ${media.phoneMini`font-size: 11px !important;`}
 `;
 
 class SchoolFilterForm extends React.Component {
@@ -71,6 +77,12 @@ class SchoolFilterForm extends React.Component {
     const { loadedSchools, selectedSchools, handleToggleFilter } = this.props;
     if (loadedSchools.length === 1 && selectedSchools.length === 0)
       handleToggleFilter("school", loadedSchools[0]);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.loadedSchools !== this.props.loadedSchools) {
+      this.setState({ loadedSchools: this.props.loadedSchools });
+    }
   }
 
   schoolImportPanes = () => {
@@ -231,9 +243,7 @@ class SchoolFilterForm extends React.Component {
     const { t, handleToggleFilter, selectedSchools } = this.props;
     return (
       <RowWrapper>
-        <StyledSegment
-          style={{ margin: "1em 2em 0em", padding: "0.5em 1em 0px" }}
-        >
+        <StyledSegment isSchoolFilterOpened={this.state.isSchoolFilterOpened}>
           <Header
             as="h2"
             onClick={() =>
@@ -305,23 +315,21 @@ class SchoolFilterForm extends React.Component {
                 <Message.Header>
                   {t("syllabus.School Filter.No imported")}
                 </Message.Header>
-                <p>
-                  {t("syllabus.School Filter.Import request")}{" "}
-                  <Popup
-                    trigger={
-                      <LargerButton
-                        color="green"
-                        icon="add"
-                        content={t("syllabus.School Filter.Choose Schools")}
-                      />
-                    }
-                    content={<Tab panes={this.schoolImportPanes()} />}
-                    on="click"
-                    position="bottom left"
-                    size="huge"
-                    wide="very"
-                  />
-                </p>
+                <p>{t("syllabus.School Filter.Import request")}</p>
+                <Popup
+                  trigger={
+                    <LargerButton
+                      color="green"
+                      icon="add"
+                      content={t("syllabus.School Filter.Choose Schools")}
+                    />
+                  }
+                  content={<Tab panes={this.schoolImportPanes()} />}
+                  on="click"
+                  position="bottom left"
+                  size="huge"
+                  wide="very"
+                />
               </Message>
             )}
 

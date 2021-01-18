@@ -14,6 +14,7 @@ import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
   padding: 0.2em;
+  padding-left: 1em;
   ${media.phone`
     padding: 0
   `};
@@ -24,11 +25,11 @@ const Column = styled("div")`
   max-width: ${(props) => `${props.flexBasis};`}
   ${media.tablet`
     flex: 1 0 auto;
-    max-width: 100%;
+    max-width: 100vw;
   `};
   ${media.phone`
     flex: 1 0 auto;
-    max-width: 100%;
+    max-width: 100vw;
   `};
 `;
 
@@ -36,7 +37,7 @@ const ScrollableTimetable = styled("div")`
   display: flex;
   flex-direction: row;
   flex: 1 0 0;
-  overflow-x: scroll;
+  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 `;
 

@@ -21,23 +21,27 @@ import TimetableContainer from "../containers/timetable/TimetableContainer";
 import Syllabus from "./syllabus/Syllabus";
 import CourseInfo from "./courseInfo/CourseInfo";
 import RedirectPage from "./user/RedirectPage";
-// import RoomFinder from "./RoomFinder";
 import JoinUs from "./JoinUs";
-// import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
+import PrivacyPolicy from "./PrivacyPolicy";
+import Footer from "./Footer";
 import NotFound from "./NotFound";
-import { getUserInfo, getUserIsFirstTimeAccess } from "../reducers/user";
-import { setUserInfo, clearUserInfo } from "../actions/user";
+import {
+  getUserInfo,
+  getUserTokens,
+  getUserIsFirstTimeAccess,
+} from "../reducers/user";
+import { setUserInfo, clearUserInfo, updateUserSession } from "../actions/user";
 
 import { media, sizes } from "../styled-components/utils";
 import MediaQuery from "react-responsive";
 
 const Wrapper = styled("div")`
   display: grid;
+  grid-template-rows: 67px auto auto;
   grid-template-columns: 65px auto;
-  grid-template-rows: 0px auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
   min-height: 100vh;
@@ -47,16 +51,19 @@ const StyledMain = styled("main")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  grid-area: 2 / 2 / 3 / 3;
-  ${media.tablet`grid-area: 1 / 1 / 4 / 4;`}
+  grid-area: 1 / 2 / span 3 / span 1;
+  ${media.tablet`grid-area: 2 / 1 / span 1 / span 2;`}
   width: 100%;
   min-height: calc(100vh - ${(props) => props.theme.headerHeight});
+`;
+
+const GridFooter = styled("div")`
+  grid-area: 3 / 1 / span 1 / span 2 !important;
 `;
 
 class App extends React.Component {
   state = {
     isSignInModalOpen: false,
-    isUserSessionExpired: false,
   };
 
   timeout(ms) {
@@ -75,7 +82,10 @@ class App extends React.Component {
   }
 
   signOut() {
-    Auth.signOut();
+    Auth.signOut({
+      oAuth: "signOut",
+      customState: window.location.pathname + window.location.search,
+    });
   }
 
   toggleSignInModal = () => {
@@ -84,17 +94,32 @@ class App extends React.Component {
     }));
   };
 
-  letUserSignInAfterExpired = () => {
-    this.setState({ isUserSessionExpired: true });
-    this.props.clearUserInfo();
-    this.setState({ isSignInModalOpen: true });
+  getCurrentSessionAndRefresh = async () => {
+    try {
+      const cognitoUser = await Auth.currentAuthenticatedUser();
+      const currentSession = await Auth.currentSession();
+
+      cognitoUser.refreshSession(
+        currentSession.refreshToken,
+        (err, session) => {
+          this.props.updateUserSession(session);
+        }
+      );
+    } catch (e) {
+      console.log(e);
+      this.props.clearUserInfo();
+    }
   };
 
   async componentDidMount() {
-    const { userInfo, setUserInfo, clearUserInfo, history, t } = this.props;
+    const { userTokens, setUserInfo, clearUserInfo, history, t } = this.props;
 
     window.addEventListener("storage", (e) => {
-      if (e.key === "wasedatime-2020-state-ac") {
+      if (
+        window.innerWidth > sizes.tablet &&
+        e.key === "wasedatime-2020-state-ac" &&
+        e.oldValue
+      ) {
         Alert.warning(
           <React.Fragment>
             {t("app.courseChange")}
@@ -117,38 +142,53 @@ class App extends React.Component {
       }
     });
 
-    if (userInfo && userInfo.idToken.payload.exp <= Date.now() / 1000)
-      this.props.clearUserInfo();
-
     Hub.listen("auth", ({ payload: { event, data } }) => {
-      console.log(event);
       switch (event) {
         case "signIn":
+          // data: CognitoUser object
           setUserInfo(data);
           break;
         case "signOut":
           clearUserInfo();
           break;
+        case "oAuthSignOut":
+          clearUserInfo();
+          Auth.signOut();
+          break;
         case "customOAuthState":
           history.push(data);
           break;
+        case "tokenRefresh":
+          break;
         default:
           console.log(event);
-          console.log(data);
       }
     });
 
-    await this.timeout(3600000);
-    this.letUserSignInAfterExpired();
+    if (userTokens) {
+      // if not expired: wait until expired, and then refresh
+      // if already expired: refresh immediately
+      if (userTokens.exp * 1000 >= Date.now()) {
+        await this.timeout(userTokens.exp * 1000 - Date.now() - 5000);
+      }
+      this.getCurrentSessionAndRefresh();
+
+      // refresh user session every hour
+      let self = this;
+      setTimeout(function refreshSessionEveryHour() {
+        self.getCurrentSessionAndRefresh();
+        setTimeout(refreshSessionEveryHour, 3595000);
+      }, 3595000);
+    }
   }
 
   render() {
     const { isFirstTimeAccess, userInfo } = this.props;
-    const { isSignInModalOpen, isUserSessionExpired } = this.state;
+    const { isSignInModalOpen } = this.state;
     return (
       <ThemeProvider theme={normalTheme}>
         <Wrapper>
-          <MediaQuery minWidth={sizes.tablet}>
+          <MediaQuery minWidth={sizes.tablet + 1}>
             {(matches) =>
               matches ? (
                 <Sidebar
@@ -187,28 +227,29 @@ class App extends React.Component {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/timetable" component={TimetableContainer} />
                 <Route exact path="/syllabus" component={Syllabus} />
-                {/* <Route exact path="/roomfinder" component={RoomFinder} /> */}
                 <Route exact path="/joinus" component={JoinUs} />
                 <Route exact path="/bus" component={Bus} />
                 <Route path="/career" component={Career} />
                 <Route exact path="/corona-info" component={CoronaInfo} />
                 <Route exact path="/courseInfo" component={CourseInfo} />
+                <Route exact path="/privacy-policy" component={PrivacyPolicy} />
                 <Route exact path="/verify" component={RedirectPage} />
-                <Route
-                  exact
-                  path="/privacy-policy"
-                  render={() => {
-                    window.location.href = "/privacy-policy.html";
-                  }}
-                />
                 <Route component={NotFound} />
               </Switch>
             )}
           </StyledMain>
+          <MediaQuery maxWidth={sizes.tablet}>
+            {(matches) =>
+              matches && (
+                <GridFooter>
+                  <Footer />
+                </GridFooter>
+              )
+            }
+          </MediaQuery>
 
           <SignInModal
             isModalOpen={isSignInModalOpen}
-            isExpired={isUserSessionExpired}
             signIn={this.signIn}
             closeModal={this.toggleSignInModal}
           />
@@ -222,11 +263,13 @@ class App extends React.Component {
 const mapStateToProps = (state) => ({
   isFirstTimeAccess: getUserIsFirstTimeAccess(state),
   userInfo: getUserInfo(state),
+  userTokens: getUserTokens(state),
 });
 
 const mapDispatchToProps = {
   setUserInfo,
   clearUserInfo,
+  updateUserSession,
 };
 
 export default withNamespaces("translation")(

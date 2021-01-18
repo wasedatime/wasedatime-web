@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchCourses, addSchool, removeSchool } from "../../actions/syllabus";
+import { fetchCoursesBySchool, removeSchool } from "../../actions/syllabus";
 import debounce from "lodash/debounce";
 import MediaQuery from "react-responsive";
 import { withRouter } from "react-router";
@@ -13,6 +13,7 @@ import { searchCourses, sortCourses } from "../../utils/courseSearch";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 import Header from "../../components/Header";
 import FetchedCourseList from "../../components/syllabus/FetchedCourseList";
+import SearchBar from "../../components/syllabus/SearchBar";
 import Filter from "../../components/syllabus/Filter";
 import FilterButton from "../../components/syllabus/FilterButton";
 import SchoolFilterForm from "../../components/syllabus/SchoolFilterForm";
@@ -35,6 +36,11 @@ const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
 `;
 
+const FetchedCourseListWrapper = styled(ExtendedWrapper)`
+  max-height: calc(100vh - 67px);
+  overflow-y: auto;
+`;
+
 const modalStyle = {
   overlay: {
     position: "fixed",
@@ -42,7 +48,7 @@ const modalStyle = {
     left: 0,
     right: 0,
     bottom: 0,
-    zIndex: "3001",
+    zIndex: "401",
   },
   content: {
     position: "absolute",
@@ -341,8 +347,7 @@ class FetchedCourseSearch extends React.Component {
   };
 
   loadSyllabus = async (school) => {
-    this.props.addSchool(school);
-    this.props.fetchCourses(school);
+    this.props.fetchCoursesBySchool(school);
   };
 
   removeSyllabus = async (school) => {
@@ -377,34 +382,45 @@ class FetchedCourseSearch extends React.Component {
     return (
       <ExtendedWrapper>
         <Header
+          title={t("navigation.syllabus")}
           onInputChange={this.handleInputChange}
           placeholder={t("syllabus.searchBarPlaceholder")}
           inputText={inputText}
           disabled={false}
         />
-        {/*<SearchBar
-          onInputChange={this.handleInputChange}
-          placeholder={t("syllabus.searchBarPlaceholder")}
-          inputText={inputText}
-        />*/}
 
         <RowWrapper>
-          <ExtendedWrapper
-            style={{ height: "calc(100vh - 70px)", overflowY: "scroll" }}
-          >
-            <SchoolFilterForm
-              handleToggleFilter={this.handleToggleFilter}
-              loadedSchools={this.props.loadedSchools}
-              selectedSchools={this.state.filterGroups.school}
-              loadSyllabus={this.loadSyllabus}
-              removeSyllabus={this.removeSyllabus}
-            />
-            <FetchedCourseList
-              searchTerm={searchTerm}
-              searchLang={searchLang}
-              results={results}
-            />
-          </ExtendedWrapper>
+          <FetchedCourseListWrapper>
+            <div>
+              <MediaQuery maxWidth={sizes.tablet - 1}>
+                {(matches) =>
+                  matches && (
+                    <SearchBar
+                      onInputChange={this.handleInputChange}
+                      placeholder={t("syllabus.searchBarPlaceholder")}
+                      inputText={inputText}
+                    />
+                  )
+                }
+              </MediaQuery>
+            </div>
+            <div>
+              <SchoolFilterForm
+                handleToggleFilter={this.handleToggleFilter}
+                loadedSchools={this.props.loadedSchools}
+                selectedSchools={this.state.filterGroups.school}
+                loadSyllabus={this.loadSyllabus}
+                removeSyllabus={this.removeSyllabus}
+              />
+            </div>
+            <div>
+              <FetchedCourseList
+                searchTerm={searchTerm}
+                searchLang={searchLang}
+                results={results}
+              />
+            </div>
+          </FetchedCourseListWrapper>
           <MediaQuery minWidth={sizes.desktop}>
             {(matches) => {
               return matches ? (
@@ -447,8 +463,7 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = {
-  fetchCourses,
-  addSchool,
+  fetchCoursesBySchool,
   removeSchool,
 };
 

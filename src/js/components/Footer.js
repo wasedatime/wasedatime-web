@@ -68,7 +68,8 @@ const Footer = ({ t, lng }) => {
       >
         MIT
       </StyledLink>
-      . <StyledLink href="/privacy-policy">Privacy Policy</StyledLink>
+      . <StyledLink href="/terms-of-service">Terms of Service</StyledLink>.{" "}
+      <StyledLink href="/privacy-policy">Privacy Policy</StyledLink>
     </StyledFooter>
   );
 };

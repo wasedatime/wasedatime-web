@@ -15,8 +15,19 @@ const StyledModal = styled(Modal)`
 `;
 
 const SignInModal = ({ isModalOpen, signIn, closeModal, t }) => (
-  <StyledModal onClose={closeModal} open={isModalOpen}>
-    <Modal.Header>
+  <StyledModal
+    onClose={closeModal}
+    open={isModalOpen}
+    style={{
+      borderRadius: "27px",
+    }}
+  >
+    <Modal.Header
+      style={{
+        borderTopLeftRadius: "25px",
+        borderTopRightRadius: "25px",
+      }}
+    >
       <h1>{t(`user.Sign In`)}</h1>
     </Modal.Header>
     <Modal.Content>
@@ -26,7 +37,13 @@ const SignInModal = ({ isModalOpen, signIn, closeModal, t }) => (
       </Modal.Description>
     </Modal.Content>
 
-    <Modal.Actions style={{ textAlign: "center" }}>
+    <Modal.Actions
+      style={{
+        textAlign: "center",
+        borderBottomRightRadius: "25px",
+        borderBottomLeftRadius: "25px",
+      }}
+    >
       <p style={{ marginBottom: "0.5rem", color: "#888" }}>
         {t(`user.agreement on privacy policy 1`)}
         <a href="/">{t(`user.Privacy Policy`)}</a>

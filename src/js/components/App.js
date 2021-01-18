@@ -26,6 +26,7 @@ import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
 import PrivacyPolicy from "./PrivacyPolicy";
+import TermsOfService from "./TermsOfService";
 import Footer from "./Footer";
 import NotFound from "./NotFound";
 import {
@@ -233,6 +234,11 @@ class App extends React.Component {
                 <Route exact path="/corona-info" component={CoronaInfo} />
                 <Route exact path="/courseInfo" component={CourseInfo} />
                 <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+                <Route
+                  exact
+                  path="/terms-of-service"
+                  component={TermsOfService}
+                />
                 <Route exact path="/verify" component={RedirectPage} />
                 <Route component={NotFound} />
               </Switch>

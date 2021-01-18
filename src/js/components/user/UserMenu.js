@@ -46,12 +46,12 @@ const StyledSpan = styled("span")`
   font-weight: 100;
   margin-left: 1rem
   color: #fff;
-  opacity: ${(props) => (props.isHovered ? "1" : "0")};
-  width: ${(props) => (props.isHovered ? "145px" : "0px")};
+  opacity: ${(props) => (props.ishovered ? "1" : "0")};
+  width: ${(props) => (props.ishovered ? "145px" : "0px")};
   white-space: nowrap;
   overflow-x: hidden;
   transition: ${(props) =>
-    props.isHovered
+    props.ishovered
       ? "width 0.3s ease-out, opacity 0.5s ease 0.2s"
       : "opacity 0.3s ease, width 0.3s ease-out 0.2s"};
 `;
@@ -89,7 +89,7 @@ const UserMenu = ({
             circular
             alt="Image of User account"
           />
-          <StyledSpan isHovered={isHovered}>{userInfo.username}</StyledSpan>
+          <StyledSpan ishovered={isHovered}>{userInfo.username}</StyledSpan>
         </UserMenuTrigger>
       }
       icon={null}
@@ -104,7 +104,7 @@ const UserMenu = ({
   ) : (
     <UserMenuTrigger onClick={openSignInModal}>
       <Icon name="user circle outline" size="massive" />
-      {!isMobileMode && <StyledSpan isHovered={isHovered}>Sign in</StyledSpan>}
+      {!isMobileMode && <StyledSpan ishovered={isHovered}>Sign in</StyledSpan>}
     </UserMenuTrigger>
   );
 

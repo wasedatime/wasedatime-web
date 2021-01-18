@@ -17,7 +17,7 @@ const StyledSidebar = styled("aside")`
   box-shadow: rgba(0, 0, 0, 0.45) 4px 0px 12px;
   transition: width 0.5s;
 
-  ${(props) => props.isHovered && "width: 210px; transition: width 0.5s;"}
+  ${(props) => props.ishovered && "width: 210px; transition: width 0.5s;"}
 `;
 
 const StyledLink = styled(Link)`
@@ -45,7 +45,7 @@ const TextLogo = styled("img")`
   height: 25px;
   margin: 0.5rem;
   overflow-x: hidden;
-  opacity: ${(props) => (props.isHovered ? "1" : "0")};
+  opacity: ${(props) => (props.ishovered ? "1" : "0")};
   transition: opacity 0.3s;
 `;
 
@@ -56,7 +56,7 @@ class Sidebar extends React.Component {
   }
 
   state = {
-    isHovered: false,
+    isHovered: 0,
   };
 
   // Close sidebar when touching outside of the sidebar (mobile mode)
@@ -68,7 +68,7 @@ class Sidebar extends React.Component {
   }
   handleTouchOutside = (event) => {
     if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({ isHovered: false });
+      this.setState({ isHovered: 0 });
     }
   };
 
@@ -78,10 +78,10 @@ class Sidebar extends React.Component {
     return (
       <StyledSidebar
         innerRef={(aside) => (this.wrapperRef = aside)}
-        isHovered={isHovered}
-        onMouseEnter={() => this.setState({ isHovered: true })}
-        onTouchStart={() => this.setState({ isHovered: true })}
-        onMouseLeave={() => this.setState({ isHovered: false })}
+        ishovered={isHovered}
+        onMouseEnter={() => this.setState({ isHovered: 1 })}
+        onTouchStart={() => this.setState({ isHovered: 1 })}
+        onMouseLeave={() => this.setState({ isHovered: 0 })}
       >
         <div style={{ position: "relative", height: "100%" }}>
           <StyledLink to="/about">
@@ -91,7 +91,7 @@ class Sidebar extends React.Component {
               alt="WasedaTime text logo"
               width="150"
               height="50"
-              isHovered={isHovered}
+              ishovered={isHovered}
             />
           </StyledLink>
           <Navigation isHovered={isHovered} />

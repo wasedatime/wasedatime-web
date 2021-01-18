@@ -3,7 +3,6 @@ import { withRouter } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import { Segment, Header } from "semantic-ui-react";
 import styled from "styled-components";
-import { Auth } from "aws-amplify";
 
 const RedirectMessage = styled(Segment)`
   margin-top: 10% !important;
@@ -13,8 +12,7 @@ const RedirectMessage = styled(Segment)`
 class RedirectPage extends React.Component {
   async componentDidMount() {
     if (window.location.search.includes("error_description")) {
-      Auth.signOut();
-      this.timeout(5000);
+      await this.timeout(5000);
       this.props.history.push("/");
     }
   }

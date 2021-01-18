@@ -31,8 +31,8 @@ const StyledLink = styled(Link)`
   font-size: 1.1em;
   font-weight: 330;
   padding: 1vh 0px;
-  padding-left: ${(props) => (props.isHovered ? "35px" : "12px")};
-  width: ${(props) => (props.isHovered ? "210px" : "67px")};
+  padding-left: ${(props) => (props.ishovered ? "35px" : "12px")};
+  width: ${(props) => (props.ishovered ? "210px" : "67px")};
   &:hover {
     color: ${(props) => props.theme.colorPrimary};
     button {
@@ -67,7 +67,7 @@ const StyledSpan = styled("span")`
   font-weight: 100;
   margin-left: 1rem;
   color: #fff;
-  opacity: ${(props) => (props.isHovered ? "1" : "0")};
+  opacity: ${(props) => (props.ishovered ? "1" : "0")};
   transition: opacity 0.3s;
 `;
 
@@ -113,10 +113,10 @@ const Navigation = ({ isHovered, t }) => {
       <FontAwesomeIcon icon={itemIcon} size="2x" transform="shrink-2" />
     );
     return (
-      <StyledLink to={itemPath} key={itemPath} isHovered={isHovered}>
+      <StyledLink to={itemPath} key={itemPath} ishovered={isHovered}>
         <StyledButton isClicked={pathname === itemPath}>
           {fontBase}
-          <StyledSpan isHovered={isHovered}>{itemName}</StyledSpan>
+          <StyledSpan ishovered={isHovered}>{itemName}</StyledSpan>
         </StyledButton>
       </StyledLink>
     );

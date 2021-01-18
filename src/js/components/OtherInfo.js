@@ -9,7 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 const LinksWrapper = styled("div")`
-  ${(props) => (props.isHovered ? "width: 210px;" : "width: 100%;")}
+  ${(props) => (props.ishovered ? "width: 210px;" : "width: 100%;")}
   overflow-x: hidden;
   padding: 0px;
   margin-bottom: 0.5vh;
@@ -18,15 +18,17 @@ const LinksWrapper = styled("div")`
   a {
     color: ${(props) => props.theme.grey7};
   }
-  opacity: ${(props) => (props.isHovered ? "1" : "0")};
+  opacity: ${(props) => (props.ishovered ? "1" : "0")};
   transition: ${(props) =>
-    props.isHovered
+    props.ishovered
       ? "opacity 0.4s ease 0.2s"
       : "opacity 0.15s ease, width 0.2s ease-out 0.15s"};
 `;
 
 const OtherInfo = ({ isHovered }) => (
-  <LinksWrapper isHovered={isHovered}>
+  <LinksWrapper ishovered={isHovered}>
+    <a href="/terms-of-service">Terms of Service</a>
+    <br />
     <a href="/privacy-policy">Privacy Policy</a>
     <br />
     <a

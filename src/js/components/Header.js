@@ -6,7 +6,7 @@ import MediaQuery from "react-responsive";
 import { media, sizes } from "../styled-components/utils";
 
 const StyledHeader = styled("header")`
-  padding-top: 1rem;
+  padding: 11px 0px;
   border-bottom: 2px solid #f5f5f5;
   height: 67px;
   width: 100%;
@@ -24,6 +24,7 @@ const StyledHeader = styled("header")`
 const RoundedInput = styled(Input)`
   input {
     border-radius: 25px !important;
+    max-height: 45px;
   }
 `;
 

@@ -23,12 +23,15 @@ const LinksWrapper = styled("div")`
     props.ishovered
       ? "opacity 0.4s ease 0.2s"
       : "opacity 0.15s ease, width 0.2s ease-out 0.15s"};
+
+  // Solve 'OtherInfo covering Nav' problem in iphone X wide mode
+  ${(window.innerWidth < 400 || window.innerHeight < 450) &&
+  "line-height: 4vh;"}
 `;
 
 const OtherInfo = ({ isHovered }) => (
   <LinksWrapper ishovered={isHovered}>
-    <a href="/terms-of-service">Terms of Service</a>
-    <br />
+    <a href="/terms-of-service">Terms of Service</a>・
     <a href="/privacy-policy">Privacy Policy</a>
     <br />
     <a
@@ -68,7 +71,7 @@ const OtherInfo = ({ isHovered }) => (
       <FontAwesomeIcon icon={faInstagram} size="2x" transform="shrink-2" />
     </a>
     <br />
-    Copyright © 2021 WasedaTime
+    Copyright © 2018-2021 WasedaTime
   </LinksWrapper>
 );
 

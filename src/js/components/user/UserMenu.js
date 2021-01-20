@@ -97,7 +97,7 @@ const UserMenu = ({
       direction={isMobileMode ? "left" : "right"}
     >
       <StyledMenu>
-        <StyledMenuItem disabled>Profile</StyledMenuItem>
+        {/*<StyledMenuItem disabled>Profile</StyledMenuItem>*/}
         <StyledMenuItem onClick={signOut}>{t(`user.Sign Out`)}</StyledMenuItem>
       </StyledMenu>
     </Dropdown>

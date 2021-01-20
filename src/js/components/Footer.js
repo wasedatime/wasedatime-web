@@ -58,7 +58,7 @@ const Footer = ({ t, lng }) => {
         <FontAwesomeIcon icon={faInstagram} size="2x" transform="shrink-2" />
       </StyledLink>
       <br />
-      Copyright © 2021 WasedaTime
+      Copyright © 2018-2021 WasedaTime
       <br />
       {t("footer.licensed")}
       <StyledLink

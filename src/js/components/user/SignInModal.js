@@ -46,9 +46,9 @@ const SignInModal = ({ isModalOpen, signIn, closeModal, t }) => (
     >
       <p style={{ marginBottom: "0.5rem", color: "#888" }}>
         {t(`user.agreement on privacy policy 1`)}
-        <a href="/">{t(`user.Privacy Policy`)}</a>
+        <a href="/privacy-policy">{t(`user.Privacy Policy`)}</a>
         {t(`user.agreement on privacy policy 2`)}
-        <a href="/">{t(`user.Terms of Service`)}</a>
+        <a href="/terms-of-service">{t(`user.Terms of Service`)}</a>
         {t(`user.agreement on privacy policy 3`)}
       </p>
     </Modal.Actions>

@@ -33,25 +33,36 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
+// const StyledFormControlLabel = styled(FormControlLabel)`
+//   label {
+//     padding-left: 50px !important;
+//   }
+// `;
+
 const styles = (theme) => ({
   formLabel: {
     fontSize: "1.3em",
     color: "#000",
     fontWeight: "bold",
     fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
+    fontDisplay: "swap",
   },
   formGroup: {
     fontSize: "1.2em",
     margin: "0 0 10px",
     fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
+    fontDisplay: "swap",
   },
   formControlLabel: {
     minWidth: "80px",
+    paddingLeft: "0.4rem",
     fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
+    fontDisplay: "swap",
   },
   formControlLabel_label: {
     fontSize: "1em",
     fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
+    fontDisplay: "swap",
   },
   checkBox: {
     width: "40px",

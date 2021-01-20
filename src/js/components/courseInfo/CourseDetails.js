@@ -52,7 +52,7 @@ const CourseDetails = ({ course, t, lng }) => {
     <StyledSegment>
       <Grid columns={2} stackable>
         <Grid.Column>
-          <Grid columns={2} style={{ padding: "1em 5em" }}>
+          <Grid columns={2} style={{ padding: "1em 2.5em" }}>
             <Grid.Column style={{ textAlign: "center" }}>
               <Statistic>
                 <Statistic.Value>

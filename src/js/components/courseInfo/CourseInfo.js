@@ -36,13 +36,15 @@ import Header from "../Header";
 export const LongWrapper = styled(Wrapper)`
   margin-top: 70px;
   flex: 1 1 auto;
-  ${media.tablet`margin-top: 0px; flex: 0 0 auto; width: 100%`};
+  width: calc(70vw - 65px);
+  max-width: calc(70vw - 65px);
+  ${media.tablet`margin-top: 0px; flex: 0 0 auto; width: 100%; max-width: 100%;`};
 `;
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
-  ${media.tablet`padding: 0 2rem 0 80px;`}
-  ${media.phone`padding: 0;`}
+  ${media.tablet`padding: 1rem 2rem;`}
+  ${media.phone`padding: 1rem;`}
 `;
 
 const getCourse = (loadedCourses, courseID) => {

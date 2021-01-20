@@ -18,10 +18,6 @@ const ExtendedArticle = styled(Article)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  p {
-    font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
-    font-display: swap;
-  }
 `;
 
 const Logo = styled("img")`

@@ -15,19 +15,21 @@ import { Overlay } from "../../styled-components/Overlay";
 const FilterWrapper = styled(Wrapper)`
   flex: none;
   position: fixed !important
-  height: calc(100vh - 70px);
+  height: ${(props) => (props.isSideBar ? "calc(100vh - 70px)" : "100vh")};
   overflow-y: auto;
 `;
 
 const FilterOverlay = styled(Overlay)`
   padding: ${(props) =>
-    props.isSideBar ? "0.5em 1em 1em 1em;" : "1.5em 1.2em;"};
+    props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em;"};
 `;
 
 const FilterTitle = styled("span")`
   display: flex;
   align-items: center;
   font-size: 1.1em;
+  font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial;
+  font-display: swap;
 `;
 
 const FilterClearButton = styled(Button)`

@@ -44,7 +44,7 @@ const styles = (theme) => ({
     fontSize: "1.3em",
     color: "#000",
     fontWeight: "bold",
-    fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
+    fontFamily: "Lato, Yu Gothic Medium, Helvetica Neue, Arial",
     fontDisplay: "swap",
   },
   formGroup: {

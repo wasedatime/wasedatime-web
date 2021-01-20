@@ -15,18 +15,23 @@ body {
   font-display: swap;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
 p,
 a,
 button,
 .header,
 .button {
   font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
+  font-display: swap;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b {
+  font-family: Lato, Yu Gothic Medium, Helvetica Neue, Arial !important;
   font-display: swap;
 }
 

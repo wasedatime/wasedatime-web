@@ -1,3 +1,14 @@
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI"), url("../fonts/segoe-ui.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Yu Gothic Medium";
+  src: local("Yu Gothic Medium"),
+    url("../fonts/yugothic-medium.otf") format("opentype");
+}
+
 *,
 *:before,
 *:after {

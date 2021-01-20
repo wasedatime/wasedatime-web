@@ -8,7 +8,7 @@ import { media } from "../../styled-components/utils";
 
 const StyledModal = styled(Modal)`
   text-align: center !important;
-  font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
+  font-family: Segoe UI, Yu Gothic Medium, Lato !important;
   font-display: swap;
   font-size: 1.2em !important;
   ${media.phone`font-size: 1.4rem !important;`}

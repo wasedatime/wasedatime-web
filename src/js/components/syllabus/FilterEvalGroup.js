@@ -15,7 +15,7 @@ const StyledDropdown = styled(Dropdown)`
   padding-top: 0.3rem !important;
 
   label {
-    font-family: Lato, Yu Gothic Medium, Helvetica Neue, Arial !important;
+    font-family: Lato, Yu Gothic Medium, Segoe UI !important;
     font-display: swap;
   }
 

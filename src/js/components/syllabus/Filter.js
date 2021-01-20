@@ -28,7 +28,7 @@ const FilterTitle = styled("span")`
   display: flex;
   align-items: center;
   font-size: 1.1em;
-  font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial;
+  font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-display: swap;
 `;
 

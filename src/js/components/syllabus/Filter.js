@@ -15,19 +15,21 @@ import { Overlay } from "../../styled-components/Overlay";
 const FilterWrapper = styled(Wrapper)`
   flex: none;
   position: fixed !important
-  height: calc(100vh - 70px);
+  height: ${(props) => (props.isSideBar ? "calc(100vh - 70px)" : "100vh")};
   overflow-y: auto;
 `;
 
 const FilterOverlay = styled(Overlay)`
   padding: ${(props) =>
-    props.isSideBar ? "0.5em 1em 1em 1em;" : "1.5em 1.2em;"};
+    props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em;"};
 `;
 
 const FilterTitle = styled("span")`
   display: flex;
   align-items: center;
   font-size: 1.1em;
+  font-family: Segoe UI, Yu Gothic Medium, Lato;
+  font-display: swap;
 `;
 
 const FilterClearButton = styled(Button)`
@@ -242,16 +244,16 @@ class Filter extends React.Component {
       isChecked: filterGroups[dayInputName].includes(input.value),
     }));
 
-    const periodLegend = t("syllabus.period");
+    const periodLegend = t("syllabus.period.Period");
     const periodInputName = "period";
     const periodInputs = [
-      { value: "1", label: "1" },
-      { value: "2", label: "2" },
-      { value: "3", label: "3" },
-      { value: "4", label: "4" },
-      { value: "5", label: "5" },
-      { value: "6", label: "6" },
-      { value: "7", label: "7" },
+      { value: "1", label: t("syllabus.period.1") },
+      { value: "2", label: t("syllabus.period.2") },
+      { value: "3", label: t("syllabus.period.3") },
+      { value: "4", label: t("syllabus.period.4") },
+      { value: "5", label: t("syllabus.period.5") },
+      { value: "6", label: t("syllabus.period.6") },
+      { value: "7", label: t("syllabus.period.7") },
     ];
     const checkedPeriodInputs = periodInputs.map((input) => ({
       ...input,

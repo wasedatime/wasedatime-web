@@ -31,7 +31,7 @@ const StyledLink = styled(Link)`
 const Footer = styled("div")`
   width: 100%;
   position: absolute;
-  bottom: 70px;
+  bottom: 35px;
   align-items: center;
   text-align: center;
 `;

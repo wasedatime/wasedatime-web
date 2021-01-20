@@ -10,6 +10,9 @@ import Modal from "../../components/Modal";
 export const ShortWrapper = styled(Wrapper)`
   margin-top: 70px;
   flex: 0 0 24em;
+  position: fixed;
+  right: 0;
+  width: 30vw;
   ${media.tablet`flex: 0 0 auto; width: 100%`};
 `;
 
@@ -44,7 +47,7 @@ const RelatedCourses = ({
   isModalOpen,
   handleToggleModal,
 }) => (
-  <MediaQuery minWidth={sizes.desktop}>
+  <MediaQuery minWidth={sizes.tablet + 1}>
     {(matches) => {
       return matches ? (
         <ShortWrapper>

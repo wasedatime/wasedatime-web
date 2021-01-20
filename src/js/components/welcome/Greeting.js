@@ -18,10 +18,6 @@ const ExtendedArticle = styled(Article)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  p {
-    font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
-    font-display: swap;
-  }
 `;
 
 const Logo = styled("img")`
@@ -39,18 +35,18 @@ const StyledList = styled(List)`
 const styles = {
   h3: {
     wordBreak: "keep-all",
-    fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
     fontDisplay: "swap",
   },
   h4: {
     wordBreak: "keep-all",
     color: "#0b35c8 !important",
-    fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
     fontDisplay: "swap",
   },
   formControlLabelLabel: {
     fontSize: "1em",
-    fontFamily: "Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
     fontDisplay: "swap",
   },
   radioChecked: {

@@ -14,6 +14,11 @@ const StyledDropdown = styled(Dropdown)`
   padding: 0px !important;
   padding-top: 0.3rem !important;
 
+  label {
+    font-family: Lato, Yu Gothic Medium, Segoe UI !important;
+    font-display: swap;
+  }
+
   .divider.text {
     line-height: 1.3 !important;
     font-size: 1.2em !important;
@@ -43,7 +48,7 @@ const FilterEvalGroup = ({
   checkedSpecialInputs,
 }) => (
   <div>
-    <FormLabel style={{ fontSize: "1.3em", color: "#000", fontWeight: "bold" }}>
+    <FormLabel style={{ fontSize: "1.2em", color: "#000", fontWeight: "bold" }}>
       {legend}
     </FormLabel>
     <Grid style={{ margin: "0" }}>

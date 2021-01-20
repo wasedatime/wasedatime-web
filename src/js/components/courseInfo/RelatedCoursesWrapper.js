@@ -15,8 +15,9 @@ const ExtendedOverlay = styled(Overlay)`
 `;
 
 const RelatedCoursesHeading = styled("div")`
-  z-index: 100;
+  z-index: 80;
   background-color: #fff;
+  height: 75px;
 `;
 
 const StyledSubHeading = styled("h2")`
@@ -32,8 +33,9 @@ const StyledSubHeading = styled("h2")`
 
 const RelatedCoursesWrapper = styled("div")`
   padding-top: 0.5rem;
-  max-height: 150vh;
+  max-height: calc(100vh - 145px);
   overflow-y: auto;
+  ${media.tablet`max-height: calc(100vh - 77px);`};
 `;
 
 const RelatedCoursesExplainTooltip = styled("div")`

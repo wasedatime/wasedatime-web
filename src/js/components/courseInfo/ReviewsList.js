@@ -73,13 +73,9 @@ const DeleteModal = styled(Modal)`
   ${media.phone`font-size: 1.4rem !important;`}
   .header {
     font-size: 2rem !important;
-    font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
-    font-display: swap;
   }
   .button {
     font-size: 1.7rem !important;
-    font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
-    font-display: swap;
   }
 `;
 
@@ -149,7 +145,7 @@ class ReviewsList extends React.Component {
               <GoogleTranslationHint>Not translated yet</GoogleTranslationHint>
             )}
             <ReviewCreatedTime>
-              {new Date(review["created_at"]).toUTCString()}
+              {new Date(review["created_at"]).toLocaleString()}
             </ReviewCreatedTime>
           </ReviewText>
           <ReviewScalesList>

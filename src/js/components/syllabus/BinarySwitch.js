@@ -25,7 +25,6 @@ const SwitchButton = styled("button")`
   border-bottom: ${(props) => (props.isSelected ? "3px solid #ccc" : "none")};
   padding: 5px;
   color: ${(props) => props.theme.grey2};
-  font-weight: bold;
   &:hover {
     background-color: #ccc;
     border-bottom: "3px solid #ccc";

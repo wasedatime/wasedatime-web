@@ -22,7 +22,7 @@
     "loginExplain2": "アイコンを押すとログインできます！",
     "useWasedaGmail1": "",
     "useWasedaGmail2": "でのログインのみ承認します。",
-    "Waseda Gmail": "早稲田Gmailアカウント",
+    "Waseda Gmail": "早稲田Gメールアカウント",
     "writeReviewsExplain1": "ログインすると、あらゆる言語で授業レビューを作成・編集・削除することができます！",
     "writeReviewsExplain2": "（英語、日本語、中国語、韓国語に自動翻訳されます。）",
     "timetableSyncExplain": "ログインすると、複数のデバイスで時間割が同期されます！",
@@ -101,7 +101,16 @@
     "Languages": "言語",
     "Special": "ほか",
     "day": "曜日",
-    "period": "時限",
+    "period": {
+      "Period": "時限",
+      "1": "1限",
+      "2": "2限",
+      "3": "3限",
+      "4": "4限",
+      "5": "5限",
+      "6": "6限",
+      "7": "7限"
+    },
     "minYear": "配当年次",
     "credit": "単位",
     "eval": {

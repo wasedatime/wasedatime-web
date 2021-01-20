@@ -31,6 +31,7 @@ const StyledLink = styled(Link)`
   font-size: 1.1em;
   font-weight: 330;
   padding: 1vh 0px;
+  ${window.innerHeight < 450 && "padding: 0.5vh 0px;"}
   padding-left: ${(props) => (props.ishovered ? "35px" : "12px")};
   width: ${(props) => (props.ishovered ? "210px" : "67px")};
   &:hover {

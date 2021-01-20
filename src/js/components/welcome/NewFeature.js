@@ -17,10 +17,6 @@ const ExtendedArticle = styled(Article)`
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  p {
-    font-family: Segoe UI, Yu Gothic Medium, Lato, Helvetica Neue, Arial !important;
-    font-display: swap;
-  }
   ${media.phone`
     font-size: 16px
   `};

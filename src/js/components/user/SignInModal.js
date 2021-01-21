@@ -28,7 +28,7 @@ const SignInModal = ({ isModalOpen, signIn, closeModal, t }) => (
         borderTopRightRadius: "25px",
       }}
     >
-      <h1>{t(`user.Sign In`)}</h1>
+      <h1>{t(`user.Sign in`)}</h1>
     </Modal.Header>
     <Modal.Content>
       <Modal.Description>

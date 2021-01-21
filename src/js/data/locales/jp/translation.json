@@ -333,9 +333,9 @@
     "No data": "データなし"
   },
   "user": {
-    "Sign In": "ログイン",
+    "Sign in": "ログイン",
     "Sign Out": "ログアウト",
-    "Sign In with WasedaMail": "早稲田メールでログイン",
+    "Sign in with WasedaMail": "早稲田メールでログイン",
     "session expired warning": "セッションが切れました。お手数ですが、再ログインをお願い致します。",
     "sign in description": "早稲田タイムの会員に加入することにより、授業にレビューを書くこと、及び異なる端末で同じ時間割を利用することが可能になります！",
     "agreement on privacy policy 1": "会員に加入した時点で、早稲田タイムの",

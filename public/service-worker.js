@@ -68,6 +68,10 @@ self.addEventListener("install", function (event) {
 });
 
 self.addEventListener("message", function (event) {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+    self.clients.claim();
+  }
   if (event.data.action === "cleanupCache") {
     //move files from temp cache to permanent cache
     precacheController.activate().finally(function () {

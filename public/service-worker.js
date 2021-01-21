@@ -2,6 +2,9 @@ importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js"
 );
 
+workbox.skipWaiting();
+workbox.clientsClaim();
+
 const precacheController = new workbox.precaching.PrecacheController();
 precacheController.addToCacheList([]); //populated at build-time with workbox-cli
 

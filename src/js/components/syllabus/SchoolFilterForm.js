@@ -76,6 +76,9 @@ const ChooseSchoolButton = styled("button")`
       color: #fff;
     }
   }
+  &:focus {
+    outline: 0;
+  }
 `;
 
 const RemoveSchoolButton = styled(ChooseSchoolButton)`

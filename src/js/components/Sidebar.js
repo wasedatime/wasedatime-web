@@ -35,7 +35,7 @@ const Footer = styled("div")`
   bottom: 35px;
   align-items: center;
   text-align: center;
-  ${media.desktop`bottom: 100px;`}
+  ${media.desktop`bottom: 135px;`}
 `;
 
 const Logo = styled("img")`

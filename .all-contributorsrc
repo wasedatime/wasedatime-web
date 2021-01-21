@@ -155,6 +155,50 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "",
+      "name": "Hatori Cao",
+      "avatar_url": "",
+      "profile": "",
+      "contributions": [
+        "tutorial",
+        "ideas"
+      ]
+    },
+    {
+      "login": "",
+      "name": "Zenda Chen",
+      "avatar_url": "",
+      "profile": "",
+      "contributions": [
+        "business",
+        "content",
+        "design",
+        "ideas"
+      ]
+    },
+    {
+      "login": "",
+      "name": "Kaiqing Chang",
+      "avatar_url": "",
+      "profile": "",
+      "contributions": [
+        "business",
+        "content",
+        "design",
+        "ideas"
+      ]
+    },
+    {
+      "login": "kaedejima",
+      "name": "Kaede Iijima",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49092226?s=400&u=7f7d80600a0007aadc8a9e6d0df69e38088c5562&v=4",
+      "profile": "https://github.com/kaedejima",
+      "contributions": [
+        "tutorial",
+        "design",
+      ]
     }
   ],
   "contributorsPerLine": 7

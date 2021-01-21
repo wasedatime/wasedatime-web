@@ -9,7 +9,7 @@ jobs:
   build_dev:
     if: github.ref != 'refs/heads/master'
     env:
-      REACT_APP_API_BASE_URL: ${{secret.REACT_APP_API_BASE_URL_D}}
+      REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL_D }}
     runs-on: ubuntu-latest
 
     steps:
@@ -31,7 +31,7 @@ jobs:
   build_master:
     if: github.ref == 'refs/heads/master'
     env:
-      REACT_APP_API_BASE_URL: ${{secret.REACT_APP_API_BASE_URL_M}}
+      REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL_M }}
     runs-on: ubuntu-latest
 
     steps:

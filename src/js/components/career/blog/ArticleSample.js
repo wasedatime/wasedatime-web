@@ -10,7 +10,7 @@ import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
-class CareerArticles extends React.Component {
+class ArticleSample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -110,4 +110,4 @@ class CareerArticles extends React.Component {
   }
 };
 
-export default CareerArticles;
+export default ArticleSample;

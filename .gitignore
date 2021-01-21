@@ -1,6 +1,7 @@
 # credentials
 .env
 credentials.md
+.history
 
 .DS_STORE
 node_modules

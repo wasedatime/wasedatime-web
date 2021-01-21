@@ -58,10 +58,20 @@ const WiderPopup = styled(Popup)`
   }
 `;
 
-const LargerButton = styled(Button)`
+const ChooseSchoolButton = styled(Button)`
   font-size: 14px !important;
   padding: 0.5em 1em !important;
+  color: #777 !important;
   ${media.phoneMini`font-size: 11px !important;`}
+  i {
+    color: #48af37 !important;
+  }
+`;
+
+const RemoveSchoolButton = styled(ChooseSchoolButton)`
+  i {
+    color: #ce0115 !important;
+  }
 `;
 
 class SchoolFilterForm extends React.Component {
@@ -280,8 +290,9 @@ class SchoolFilterForm extends React.Component {
               <Button.Group>
                 <WiderPopup
                   trigger={
-                    <LargerButton
-                      color="green"
+                    <ChooseSchoolButton
+                      inverted
+                      color="grey"
                       icon="add"
                       content={t("syllabus.School Filter.Choose Schools")}
                     />
@@ -294,8 +305,9 @@ class SchoolFilterForm extends React.Component {
                 />
                 <WiderPopup
                   trigger={
-                    <LargerButton
-                      color="red"
+                    <RemoveSchoolButton
+                      inverted
+                      color="grey"
                       icon="minus"
                       content={t("syllabus.School Filter.Remove Schools")}
                     />
@@ -318,8 +330,9 @@ class SchoolFilterForm extends React.Component {
                 <p>{t("syllabus.School Filter.Import request")}</p>
                 <Popup
                   trigger={
-                    <LargerButton
-                      color="green"
+                    <ChooseSchoolButton
+                      inverted
+                      color="grey"
                       icon="add"
                       content={t("syllabus.School Filter.Choose Schools")}
                     />

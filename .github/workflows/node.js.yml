@@ -26,7 +26,7 @@ jobs:
       run: npm test
 
     - name: Build
-      run: npm run build-dev
+      run: npm run build-dev --if-present
       
   build_master:
     if: github.ref == 'refs/heads/master'
@@ -48,4 +48,4 @@ jobs:
       run: npm test
 
     - name: Build
-      run: npm run build-dev
+      run: npm run build --if-present

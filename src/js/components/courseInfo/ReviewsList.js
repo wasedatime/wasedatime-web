@@ -79,6 +79,16 @@ const DeleteModal = styled(Modal)`
   }
 `;
 
+const Editbutton = styled(Button)`
+  background: #fff !important;
+  color: orange !important;
+  padding: 0px !important;
+`;
+
+const Deletebutton = styled(Editbutton)`
+  color: red !important;
+`;
+
 class ReviewsList extends React.Component {
   state = {
     isDeleteModalOpen: false,
@@ -151,9 +161,9 @@ class ReviewsList extends React.Component {
           <ReviewScalesList>
             {review["mod"] && (
               <span>
-                <Button
+                <Editbutton
                   icon
-                  style={{ background: "#ffae42", color: "#fff" }}
+                  size='massive'
                   onClick={() =>
                     openReviewEditForm({
                       ...review,
@@ -163,14 +173,14 @@ class ReviewsList extends React.Component {
                   }
                 >
                   <Icon name="pencil alternate" />
-                </Button>
-                <Button
+                </Editbutton>
+                <Deletebutton
                   icon
-                  style={{ background: "red", color: "#fff" }}
+                  size='massive'
                   onClick={() => this.openDeleteModal(review, i)}
                 >
                   <Icon name="trash" />
-                </Button>
+                </Deletebutton>
               </span>
             )}
             <ReviewScale>

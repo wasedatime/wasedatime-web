@@ -82,7 +82,7 @@ const CourseListSummary = ({
   t,
 }) => {
   return (
-    <div>
+    <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
         <StyledLabel size="big" color="grey" basic>
           {`${courses.length}`} {t("timetable.courses")}{" "}

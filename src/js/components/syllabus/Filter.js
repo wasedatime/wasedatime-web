@@ -13,6 +13,7 @@ import { Wrapper } from "../../styled-components/Wrapper";
 import { Overlay } from "../../styled-components/Overlay";
 
 const FilterWrapper = styled(Wrapper)`
+  ${(props) => !props.isSideBar && "width: 100%;"}
   flex: none;
   position: fixed !important
   height: ${(props) => (props.isSideBar ? "calc(100vh - 70px)" : "100vh")};

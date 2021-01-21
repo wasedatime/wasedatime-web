@@ -2,6 +2,9 @@ importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/5.0.0/workbox-sw.js"
 );
 
+workbox.core.skipWaiting();
+workbox.core.clientsClaim();
+
 const precacheController = new workbox.precaching.PrecacheController();
 precacheController.addToCacheList([]); //populated at build-time with workbox-cli
 
@@ -37,6 +40,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("install", function (event) {
+  self.skipWaiting();
   var timeoutId = null;
   event.waitUntil(
     new Promise(function (resolve, reject) {
@@ -64,6 +68,10 @@ self.addEventListener("install", function (event) {
 });
 
 self.addEventListener("message", function (event) {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+    self.clients.claim();
+  }
   if (event.data.action === "cleanupCache") {
     //move files from temp cache to permanent cache
     precacheController.activate().finally(function () {

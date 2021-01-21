@@ -9,8 +9,7 @@ import { UnstyledUList } from "../../styled-components/List";
 
 const ExtendedWrapper = styled(Wrapper)`
   padding: 0 1em;
-  ${media.tablet`margin-top: 2em;`};
-  ${media.phone`margin-top: 2em;`};
+  ${media.tablet`margin-top: 1rem;`};
 `;
 
 const ExtendedUnstyledUList = styled(UnstyledUList)`

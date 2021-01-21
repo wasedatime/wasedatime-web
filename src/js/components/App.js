@@ -21,7 +21,8 @@ import TimetableContainer from "../containers/timetable/TimetableContainer";
 import Syllabus from "./syllabus/Syllabus";
 import CourseInfo from "./courseInfo/CourseInfo";
 import RedirectPage from "./user/RedirectPage";
-import JoinUs from "./JoinUs";
+import AboutUs from "./AboutUs"
+import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
@@ -228,7 +229,7 @@ class App extends React.Component {
                 <Route exact path="/about" component={About} />
                 <Route exact path="/timetable" component={TimetableContainer} />
                 <Route exact path="/syllabus" component={Syllabus} />
-                <Route exact path="/joinus" component={JoinUs} />
+                <Route exact path="/aboutus" component={AboutUs} />
                 <Route exact path="/bus" component={Bus} />
                 <Route path="/career" component={Career} />
                 <Route exact path="/corona-info" component={CoronaInfo} />

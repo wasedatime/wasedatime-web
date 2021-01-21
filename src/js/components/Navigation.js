@@ -10,8 +10,8 @@ import {
   faBook,
   faBus,
   faStar,
-  faExclamationTriangle,
-  faBriefcase
+  faVirus,
+  faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
@@ -72,18 +72,18 @@ const Navigation = (props) => {
     {
       name: t("navigation.corona-info"),
       path: "/corona-info",
-      icon: faExclamationTriangle,
+      icon: faVirus,
     },
     {
       name: t("navigation.career"),
       path: "/career",
       icon: faBriefcase,
     },
-    {
-      name: t("navigation.joinus"),
-      path: "/joinus",
-      icon: faStar,
-    },
+    // {
+    //   name: t("navigation.joinus"),
+    //   path: "/joinus",
+    //   icon: faStar,
+    // },
     {
       name: t("navigation.bus"),
       path: "/bus",

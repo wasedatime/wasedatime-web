@@ -70,7 +70,7 @@ function registerValidSW(swUrl, config) {
               // so skip the previous service worker in order to serve new changes
               const waitingWorker = registration.waiting;
               if (waitingWorker) {
-                console.log("New changes found!");
+                console.log("New changes found! Refresh to activate changes.");
                 waitingWorker.postMessage({ type: "SKIP_WAITING" });
               }
 

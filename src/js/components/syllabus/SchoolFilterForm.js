@@ -337,12 +337,10 @@ class SchoolFilterForm extends React.Component {
                 <p>{t("syllabus.School Filter.Import request")}</p>
                 <Popup
                   trigger={
-                    <ChooseSchoolButton
-                      inverted
-                      color="grey"
-                      icon="add"
-                      content={t("syllabus.School Filter.Choose Schools")}
-                    />
+                    <ChooseSchoolButton>
+                      <Icon name="add" />{" "}
+                      {t("syllabus.School Filter.Choose Schools")}
+                    </ChooseSchoolButton>
                   }
                   content={<Tab panes={this.schoolImportPanes()} />}
                   on="click"

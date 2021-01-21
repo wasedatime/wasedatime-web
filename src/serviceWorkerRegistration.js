@@ -65,11 +65,6 @@ function registerValidSW(swUrl, config) {
         }
         var refreshing;
         installingWorker.onstatechange = () => {
-          if (installingWorker.state == "activated") {
-            if (refreshing) return;
-            window.location.reload();
-            refreshing = true;
-          }
           if (installingWorker.state === "installed") {
             if (navigator.serviceWorker.controller) {
               // The updated precached content has been fetched,
@@ -78,6 +73,9 @@ function registerValidSW(swUrl, config) {
               if (waitingWorker) {
                 console.log("New changes found! Refresh to activate changes.");
                 waitingWorker.postMessage({ type: "SKIP_WAITING" });
+                if (refreshing) return;
+                window.location.reload();
+                refreshing = true;
               }
 
               // Execute callback

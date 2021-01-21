@@ -7,7 +7,6 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
-import { media } from "../styled-components/utils";
 
 const StyledSidebar = styled("aside")`
   background: ${(props) => props.theme.grey2};
@@ -32,10 +31,10 @@ const StyledLink = styled(Link)`
 const Footer = styled("div")`
   width: 100%;
   position: absolute;
-  bottom: 35px;
+  bottom: 150px;
   align-items: center;
   text-align: center;
-  ${media.desktop`bottom: 135px;`}
+  ${(window.innerWidth < 400 || window.innerHeight < 450) && "bottom: 0px;"}
 `;
 
 const Logo = styled("img")`
@@ -98,13 +97,18 @@ class Sidebar extends React.Component {
           </StyledLink>
           <Navigation isHovered={isHovered} />
           <Footer>
-            <OtherInfo isHovered={isHovered} />
+            {window.innerWidth >= 400 && window.innerHeight >= 450 && (
+              <OtherInfo isHovered={isHovered} />
+            )}
             <UserMenu
               userInfo={userInfo}
               signOut={signOut}
               openSignInModal={toggleSignInModal}
               isHovered={isHovered}
             />
+            {(window.innerWidth < 400 || window.innerHeight < 450) && (
+              <OtherInfo isHovered={isHovered} />
+            )}
           </Footer>
         </div>
       </StyledSidebar>

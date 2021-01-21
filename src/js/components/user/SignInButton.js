@@ -17,7 +17,7 @@ const SignInButton = ({ onClickFunc, t }) => (
     labelPosition="left"
   >
     <Icon name="google" />
-    {t(`user.Sign In with WasedaMail`)}
+    {t(`user.Sign in with WasedaMail`)}
   </Button>
 );
 

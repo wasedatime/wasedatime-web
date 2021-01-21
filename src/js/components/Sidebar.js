@@ -31,9 +31,10 @@ const StyledLink = styled(Link)`
 const Footer = styled("div")`
   width: 100%;
   position: absolute;
-  bottom: 35px;
+  bottom: 150px;
   align-items: center;
   text-align: center;
+  ${(window.innerWidth < 400 || window.innerHeight < 450) && "bottom: 0px;"}
 `;
 
 const Logo = styled("img")`
@@ -96,13 +97,18 @@ class Sidebar extends React.Component {
           </StyledLink>
           <Navigation isHovered={isHovered} />
           <Footer>
-            <OtherInfo isHovered={isHovered} />
+            {window.innerWidth >= 400 && window.innerHeight >= 450 && (
+              <OtherInfo isHovered={isHovered} />
+            )}
             <UserMenu
               userInfo={userInfo}
               signOut={signOut}
               openSignInModal={toggleSignInModal}
               isHovered={isHovered}
             />
+            {(window.innerWidth < 400 || window.innerHeight < 450) && (
+              <OtherInfo isHovered={isHovered} />
+            )}
           </Footer>
         </div>
       </StyledSidebar>

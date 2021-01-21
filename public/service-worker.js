@@ -37,6 +37,7 @@ self.addEventListener("activate", (event) => {
 });
 
 self.addEventListener("install", function (event) {
+  self.skipWaiting();
   var timeoutId = null;
   event.waitUntil(
     new Promise(function (resolve, reject) {

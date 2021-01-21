@@ -69,6 +69,7 @@ const ChooseSchoolButton = styled(Button)`
 `;
 
 const RemoveSchoolButton = styled(ChooseSchoolButton)`
+  margin-left: 1rem;
   i {
     color: #ce0115 !important;
   }

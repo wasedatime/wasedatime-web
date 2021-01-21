@@ -8,6 +8,7 @@ import CareerList from "./CareerInternList";
 import CareerArticles from "./CareerArticles";
 import CareerRecruit from "./CareerRecruit";
 import CareerSeminar from "./CareerSeminar";
+import Blog from "./blog/Blog"
 
 const Career = ({ t }) => {
   return (
@@ -38,6 +39,9 @@ const Career = ({ t }) => {
         <Link to="/career/articles">
           <button className="ui button">{t("career.Articles")}</button>
         </Link>
+        <Link to="/career/blog">
+          <button className="ui button">{t("career.Blog")}</button>
+        </Link>
         <Switch>
           <Route
             exact
@@ -48,6 +52,7 @@ const Career = ({ t }) => {
           <Route exact path="/career/recruit" component={CareerRecruit} />
           <Route exact path="/career/seminar" component={CareerSeminar} />
           <Route exact path="/career/articles" component={CareerArticles} />
+          <Route exact path="/career/blog" component={Blog} />
         </Switch>
       </div>
     </Wrapper>

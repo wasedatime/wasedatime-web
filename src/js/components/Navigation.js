@@ -9,8 +9,9 @@ import {
   faCalendarAlt,
   faBook,
   faBus,
+  faStar,
   faVirus,
-  // faStar,
+  faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
@@ -90,11 +91,11 @@ const Navigation = ({ isHovered, t }) => {
       path: "/corona-info",
       icon: faVirus,
     },
-    // {
-    //   name: t("navigation.career"),
-    //   path: "/career",
-    //   icon: faBriefcase,
-    // },
+    {
+      name: t("navigation.career"),
+      path: "/career",
+      icon: faBriefcase,
+    },
     // {
     //   name: t("navigation.joinus"),
     //   path: "/joinus",

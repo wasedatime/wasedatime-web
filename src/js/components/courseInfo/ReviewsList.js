@@ -153,7 +153,8 @@ class ReviewsList extends React.Component {
               <span>
                 <Button
                   icon
-                  style={{ background: "#ffae42", color: "#fff" }}
+                  inverted
+                  color="orange"
                   onClick={() =>
                     openReviewEditForm({
                       ...review,
@@ -166,7 +167,8 @@ class ReviewsList extends React.Component {
                 </Button>
                 <Button
                   icon
-                  style={{ background: "red", color: "#fff" }}
+                  inverted
+                  color="red"
                   onClick={() => this.openDeleteModal(review, i)}
                 >
                   <Icon name="trash" />

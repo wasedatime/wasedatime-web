@@ -65,6 +65,7 @@ function registerValidSW(swUrl, config) {
         }
         installingWorker.onstatechange = () => {
           if (installingWorker.state === "waiting") {
+            console.log("New changes found!");
             installingWorker.postMessage({ type: "SKIP_WAITING" });
           }
           if (installingWorker.state === "installed") {

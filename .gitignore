@@ -42,11 +42,8 @@ packages/react-devtools-shell/dist
 packages/react-devtools-scheduling-profiler/dist
 
 #amplify
-amplify/\#current-cloud-backend
-amplify/.config/local-*
-amplify/mock-data
-amplify/backend/amplify-meta.json
-amplify/backend/awscloudformation
+amplify/
+build/
 dist/
 node_modules/
 aws-exports.js

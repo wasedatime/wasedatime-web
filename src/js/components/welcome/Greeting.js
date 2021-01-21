@@ -1,15 +1,16 @@
 import React from "react";
-import {withNamespaces} from "react-i18next";
-import {withStyles} from "@material-ui/core/styles";
+import { withNamespaces } from "react-i18next";
+import { withStyles } from "@material-ui/core/styles";
 import styled from "styled-components";
 import Typography from "@material-ui/core/Typography";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
+import { Divider, List } from "semantic-ui-react";
 
-import {Article} from "../../styled-components/Article";
-import {media} from "../../styled-components/utils";
+import { Article } from "../../styled-components/Article";
+import { media } from "../../styled-components/utils";
 import LANGS from "../../config/langs";
 import logo from "../../../img/logo.png";
 
@@ -26,16 +27,27 @@ const Logo = styled("img")`
   ${media.phone`width: 90px; height: 90px;`};
 `;
 
+const StyledList = styled(List)`
+  margin: 10px 0px !important;
+  text-align: left;
+`;
+
 const styles = {
   h3: {
     wordBreak: "keep-all",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+    fontDisplay: "swap",
   },
   h4: {
     wordBreak: "keep-all",
     color: "#0b35c8 !important",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+    fontDisplay: "swap",
   },
   formControlLabelLabel: {
     fontSize: "1em",
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+    fontDisplay: "swap",
   },
   radioChecked: {
     color: "#b51e36 !important",
@@ -53,7 +65,7 @@ class Greeting extends React.Component {
     const { classes, t, lng } = this.props;
     return (
       <ExtendedArticle>
-        <Logo src={logo} alt=""/>
+        <Logo src={logo} alt="" width="50" height="50" />
         <Typography
           variant="h3"
           component="h3"
@@ -62,20 +74,6 @@ class Greeting extends React.Component {
           className={classes.h3}
         >
           {t("welcome.welcome")}
-        </Typography>
-        <Typography
-          variant="h4"
-          component="h4"
-          align="center"
-          gutterBottom
-          className={classes.h4}
-        >
-          {`${t("welcome.newFeature")} ${t("welcome.courseEvals")} ${t(
-            "welcome.added"
-          )}`}
-        </Typography>
-        <Typography variant="h4" component="p" align="center" gutterBottom>
-          {t("welcome.returningUsers")}
         </Typography>
         <FormControl component="fieldset" className={undefined}>
           <RadioGroup
@@ -99,6 +97,31 @@ class Greeting extends React.Component {
             />
           </RadioGroup>
         </FormControl>
+        <Divider horizontal style={{ fontSize: "1.3em" }}>
+          {t("welcome.newFeature")}
+        </Divider>
+        <Typography
+          variant="h4"
+          component="h4"
+          align="center"
+          gutterBottom
+          className={classes.h4}
+        >
+          <StyledList>
+            <List.Item>
+              <List.Icon name="user circle outline" />
+              <List.Content>{t("welcome.userLogin")}</List.Content>
+            </List.Item>
+            <List.Item>
+              <List.Icon name="write" />
+              <List.Content>{t("welcome.writeReviews")}</List.Content>
+            </List.Item>
+            <List.Item>
+              <List.Icon name="calendar alternate outline" />
+              <List.Content>{t("welcome.timetableSync")}</List.Content>
+            </List.Item>
+          </StyledList>
+        </Typography>
       </ExtendedArticle>
     );
   }

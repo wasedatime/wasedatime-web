@@ -1,6 +1,7 @@
 import sortBy from "lodash/sortBy";
 
 import LANGS from "../config/langs";
+import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 import UnsupportedLanguageError from "../errors/UnsupportedLanguageError";
 
 // Unicode for Japanese: http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
@@ -30,9 +31,15 @@ export const regexify = (token, searchLang) => {
 export const getCourseTitleAndInstructor = (course, searchLang) => {
   switch (searchLang) {
     case LANGS.JP:
-      return { title: course.tj, instructor: course.ij };
+      return {
+        title: course[SYLLABUS_KEYS.TITLE_JP],
+        instructor: course[SYLLABUS_KEYS.INSTRUCTOR_JP],
+      };
     case LANGS.EN:
-      return { title: course.t, instructor: course.i };
+      return {
+        title: course[SYLLABUS_KEYS.TITLE],
+        instructor: course[SYLLABUS_KEYS.INSTRUCTOR],
+      };
     default:
       throw new UnsupportedLanguageError(searchLang);
   }
@@ -67,11 +74,11 @@ export const sortCourses = (searchTerm, courses, searchLang) => {
     let sum = 0;
     for (let i = 0; i < searchRegexes.length; i++) {
       if (searchRegexes[i].test(title)) {
-        sum += course.e ? 1 : 3;
+        sum += 1;
       } else if (searchRegexes[i].test(instructor)) {
-        sum += course.e ? 2 : 4;
+        sum += 2;
       } else {
-        sum += course.e ? 5 : 6;
+        sum += 3;
       }
       return sum;
     }

@@ -1,14 +1,15 @@
 import React from "react";
 import styled from "styled-components";
-import {withNamespaces} from "react-i18next";
+import { withNamespaces } from "react-i18next";
 
-import {media} from "../../styled-components/utils";
-import {getCourseTitleAndInstructor} from "../../utils/courseSearch";
+import { media } from "../../styled-components/utils";
+import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
 
 const StyledCourseColumn = styled("div")`
   display: flex;
   flex: 1 0 calc(63rem / 7 * ${(props) => props.displayPeriods});
-  border-right: solid 1px #ccc;
+  border-right: 1px solid #f7f7f7;
   border-bottom: solid 1px #ccc;
   background: linear-gradient(180deg, #fff 50%, #eee 50%);
   background-size: 100% calc(100% / ${(props) => props.displayPeriods} * 2);
@@ -28,7 +29,7 @@ const CourseItem = styled("div")`
     100% / ${(props) => props.displayPeriods} * ${(props) => props.height} - 1px
   );
   width: 100%;
-  padding: 0.3rem 0 0 0.1rem;
+  padding: 0.3rem 0.1rem 0 0.1rem;
   border-left-width: 2px;
   border-left-style: solid;
   line-height: normal;
@@ -37,7 +38,7 @@ const CourseItem = styled("div")`
 const CourseTitle = styled("span")`
   flex: 1 1 auto;
   font-weight: bold;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   overflow-x: hidden;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -51,7 +52,7 @@ const CourseLocation = styled("span")`
   display: inline-flex;
   flex: 0 0 auto;
   padding: 0.2em 0;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   word-break: break-all;
   align-items: center;
   justify-content: center;
@@ -78,8 +79,20 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
   let slotLists = [initSlotList.slice()];
 
   coursesAndProperties.forEach((courseAndProperty) => {
-    const startPeriod = Number(courseAndProperty.course.occurrence.s);
-    const endPeriod = Number(courseAndProperty.course.occurrence.e);
+    let period = courseAndProperty.course.occurrence[SYLLABUS_KEYS.OCC_PERIOD];
+    let startPeriod = 0;
+    let endPeriod = 0;
+    if (period === -1) {
+      startPeriod = endPeriod = -1;
+    } else if (period > 9) {
+      startPeriod = parseInt(period / 10);
+      endPeriod = period % 10;
+    } else {
+      startPeriod = period;
+      endPeriod = period;
+    }
+    // const startPeriod = Number(courseAndProperty.course.occurrence.s);
+    // const endPeriod = Number(courseAndProperty.course.occurrence.e);
 
     let existsAvailableSlot = true;
     for (let i = 0; i < slotLists.length; i++) {
@@ -121,20 +134,35 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
       const listComponent = distinctCourseList.map((courseAndProperty) => {
         const { course, color, displayLang } = courseAndProperty;
         const { title } = getCourseTitleAndInstructor(course, displayLang);
-        const startPeriod = Number(course.occurrence.s);
-        const endPeriod = Number(course.occurrence.e);
-        let location = t("timetable.undecided");
-        if (course.occurrence.c !== "undecided") {
-          if (course.occurrence.b !== "-1") {
-            location = course.occurrence.l;
-          } else {
-            location = course.occurrence.c;
-          }
+        let period = course.occurrence[SYLLABUS_KEYS.OCC_PERIOD];
+        let startPeriod = 0;
+        let endPeriod = 0;
+        if (period === -1) {
+          startPeriod = endPeriod = -1;
+        } else if (period > 9) {
+          startPeriod = parseInt(period / 10);
+          endPeriod = period % 10;
+        } else {
+          startPeriod = period;
+          endPeriod = period;
         }
+        // const startPeriod = Number(course.occurrence.s);
+        // const endPeriod = Number(course.occurrence.e);
+        let location = course.occurrence[SYLLABUS_KEYS.OCC_LOCATION];
+        // let location = t("timetable.undecided");
+        // if (course.occurrence.c !== "undecided") {
+        //   if (course.occurrence.b !== "-1") {
+        //     location = course.occurrence.l;
+        //   } else {
+        //     location = course.occurrence.c;
+        //   }
+        // }
         return (
           <CourseItem
             className={`color-${color}`}
-            key={`${course.term}-${course.t}-${startPeriod}-${endPeriod}`}
+            key={`${course[SYLLABUS_KEYS.TERM]}-${
+              course[SYLLABUS_KEYS.TITLE]
+            }-${startPeriod}-${endPeriod}`}
             displayPeriods={displayPeriods}
             top={startPeriod - 1}
             height={endPeriod - startPeriod + 1}

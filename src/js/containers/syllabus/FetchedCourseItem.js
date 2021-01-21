@@ -13,13 +13,16 @@ import {
   gaRemoveCourse,
   gaClickSyllabusLink,
 } from "../../ga/eventActions";
+import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import MediaQuery from "react-responsive";
+import { sizes } from "../../styled-components/utils";
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
 
 class FetchedCourseItem extends React.Component {
   handleAddCourse = (title, lng) => {
     const { course, byId, searchLang } = this.props;
-    const occurrences = course.os;
+    const occurrences = course[SYLLABUS_KEYS.OCCURRENCES];
     ReactGA.event({
       category: gaFetchedCourseItem,
       action: gaAppendActionWithLng(gaAddCourse, lng),
@@ -36,7 +39,12 @@ class FetchedCourseItem extends React.Component {
       return;
     }
     this.props.addCourse(course, searchLang);
-    if (occurrences.some((o) => o.day === -1 || o.start_period === -1)) {
+    if (
+      occurrences.some(
+        (o) =>
+          o[SYLLABUS_KEYS.OCC_DAY] === -1 || o[SYLLABUS_KEYS.OCC_PERIOD] === -1
+      )
+    ) {
       Alert.warning(
         "Course with undecided time cannot be displayed in timetable.",
         {
@@ -59,7 +67,7 @@ class FetchedCourseItem extends React.Component {
       action: gaAppendActionWithLng(gaRemoveCourse, lng),
       label: title,
     });
-    this.props.removeCourse(course._id);
+    this.props.removeCourse(course[SYLLABUS_KEYS.ID]);
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly",
@@ -80,22 +88,45 @@ class FetchedCourseItem extends React.Component {
       searchLang,
       course,
       byId,
-      isInCourseEvalsPage,
+      isDetailDisplayed,
+      needLineBreak,
     } = this.props;
-    const id = course._id;
+    const id = course[SYLLABUS_KEYS.ID];
     const isAddable = !(id in byId);
     return (
-      <CourseItem
-        handleOnClick={
-          isAddable ? this.handleAddCourse : this.handleRemoveCourse
+      <MediaQuery minWidth={sizes.desktop}>
+        {(matches) =>
+          matches ? (
+            <CourseItem
+              handleOnClick={
+                isAddable ? this.handleAddCourse : this.handleRemoveCourse
+              }
+              handleClickSyllabusLink={this.handleClickSyllabusLink}
+              isAddable={isAddable}
+              searchTerm={searchTerm}
+              searchLang={searchLang}
+              course={course}
+              isDetailDisplayed={isDetailDisplayed}
+              needLineBreak={needLineBreak}
+              openNewTabOnClick={true}
+            />
+          ) : (
+            <CourseItem
+              handleOnClick={
+                isAddable ? this.handleAddCourse : this.handleRemoveCourse
+              }
+              handleClickSyllabusLink={this.handleClickSyllabusLink}
+              isAddable={isAddable}
+              searchTerm={searchTerm}
+              searchLang={searchLang}
+              course={course}
+              isDetailDisplayed={isDetailDisplayed}
+              needLineBreak={needLineBreak}
+              openNewTabOnClick={false}
+            />
+          )
         }
-        handleClickSyllabusLink={this.handleClickSyllabusLink}
-        isAddable={isAddable}
-        searchTerm={searchTerm}
-        searchLang={searchLang}
-        course={course}
-        isInCourseEvalsPage={isInCourseEvalsPage}
-      />
+      </MediaQuery>
     );
   }
 }

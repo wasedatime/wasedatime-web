@@ -1,16 +1,12 @@
 import localForage from "localforage";
+import { SYLLABUS_KEYS } from "./js/config/syllabusKeys";
+import { oldTermMap } from "./js/data/oldTermMap";
 
 export const LNG_KEY = "wasedatime-2020-lng";
 const PREV_STATE_NAME = "wasedatime-2019-state";
 const STATE_NAME = "wasedatime-2020-state";
 const STATE_FETCHED_COURSES_NAME = "wasedatime-2020-state-fc";
 const STATE_ADDED_COURSES_NAME = "wasedatime-2020-state-ac";
-const DATA_TO_SAVE = [
-  LNG_KEY,
-  STATE_NAME,
-  STATE_FETCHED_COURSES_NAME,
-  STATE_ADDED_COURSES_NAME,
-];
 
 export const loadState = () => {
   let prevState = null;
@@ -58,10 +54,23 @@ export const loadState = () => {
           needsUpdate = currentTime >= nextUpdateTime;
         }
 
-        if (fetchedCourses === null || needsUpdate) {
+        const isOldSchema =
+          Array.isArray(fetchedCourses.list.ids) &&
+          fetchedCourses.byId[fetchedCourses.list.ids[0]]._id;
+        const newFeaturesAvailable = !("tokens" in state.user);
+
+        if (isOldSchema || newFeaturesAvailable) {
+          state.user.isFirstTimeAccess = true;
           fetchedCourses = {
             byId: {},
             list: {},
+            schools: fetchedCourses.schools,
+          };
+        } else if (fetchedCourses === null || needsUpdate) {
+          fetchedCourses = {
+            byId: {},
+            list: {},
+            schools: fetchedCourses.schools,
           };
         }
       }
@@ -82,6 +91,39 @@ export const loadState = () => {
       state.addedCourses.fall.prefs = fallPrefs;
       state.addedCourses.spring.prefs = springPrefs;
 
+      // map old schema to new one for addedCourses
+      [state.addedCourses.fall.byId, state.addedCourses.spring.byId].forEach(
+        (addedCoursesById) => {
+          Object.keys(addedCoursesById).forEach((id) => {
+            if (addedCoursesById[id]._id) {
+              const course = addedCoursesById[id];
+              const occ = course.os.map((o) => ({
+                [SYLLABUS_KEYS.OCC_DAY]: o.d,
+                [SYLLABUS_KEYS.OCC_PERIOD]: o.s === o.e ? o.s : o.s * 10 + o.e,
+                [SYLLABUS_KEYS.OCC_LOCATION]:
+                  o.b === "-1" || o.c === "undecided"
+                    ? "undecided"
+                    : o.b + "-" + o.c,
+              }));
+
+              addedCoursesById[id] = {
+                [SYLLABUS_KEYS.ID]: course._id,
+                [SYLLABUS_KEYS.TITLE]: course.t,
+                [SYLLABUS_KEYS.TITLE_JP]: course.tj,
+                [SYLLABUS_KEYS.INSTRUCTOR]: course.i,
+                [SYLLABUS_KEYS.INSTRUCTOR_JP]: course.ij,
+                [SYLLABUS_KEYS.LANG]:
+                  course.l === "JP" ? "0" : course.l === "EN" ? "1" : "9",
+                [SYLLABUS_KEYS.TERM]: oldTermMap[course.tm],
+                [SYLLABUS_KEYS.OCCURRENCES]: occ,
+                [SYLLABUS_KEYS.CODE]: course.c,
+                [SYLLABUS_KEYS.SCHOOL]: course.ks[0].s,
+              };
+            }
+          });
+        }
+      );
+
       return {
         ...state,
         fetchedCourses,
@@ -95,18 +137,6 @@ export const loadState = () => {
 };
 
 export const saveState = (state) => {
-  for (let i = 0, len = localStorage.length; i < len; ++i) {
-    const key = localStorage.key(i);
-    if (!DATA_TO_SAVE.includes(key)) {
-      localStorage.clear();
-      localForage
-        .clear()
-        .then(() => {})
-        .catch((error) => {
-          console.error(error);
-        });
-    }
-  }
   const { fetchedCourses, ...rest } = state;
   localStorage.setItem(
     STATE_ADDED_COURSES_NAME,

@@ -7,6 +7,7 @@ import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { withNamespaces } from "react-i18next";
 import styled from "styled-components";
+import { media } from "../styled-components/utils";
 
 const StyledSidebar = styled("aside")`
   background: ${(props) => props.theme.grey2};
@@ -34,6 +35,7 @@ const Footer = styled("div")`
   bottom: 35px;
   align-items: center;
   text-align: center;
+  ${media.desktop`bottom: 100px;`}
 `;
 
 const Logo = styled("img")`

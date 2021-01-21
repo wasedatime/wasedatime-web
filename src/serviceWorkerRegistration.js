@@ -68,7 +68,9 @@ function registerValidSW(swUrl, config) {
             if (navigator.serviceWorker.controller) {
               // The updated precached content has been fetched,
               // so skip the previous service worker in order to serve new changes
-              navigator.serviceWorker.controller.postMessage({ type: "SKIP_WAITING" });
+              console.log("New changes found.");
+              const waitingWorker = registration.waiting;
+              if (waitingWorker) waitingWorker.postMessage({ type: "SKIP_WAITING" });
 
               // Execute callback
               if (config && config.onUpdate) {

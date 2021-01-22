@@ -23,15 +23,17 @@ const addedIdsBySchool = (state = {}, action) => {
           break;
         }
       }
-      return {
-        ...state,
-        [schoolToRemoveFrom]: {
-          ids: state[schoolToRemoveFrom].ids.filter(
-            (id) => id !== action.payload.id
-          ),
-          exp: state[schoolToRemoveFrom].exp,
-        },
-      };
+      return state[schoolToRemoveFrom]
+        ? {
+            ...state,
+            [schoolToRemoveFrom]: {
+              ids: state[schoolToRemoveFrom].ids.filter(
+                (id) => id !== action.payload.id
+              ),
+              exp: state[schoolToRemoveFrom].exp,
+            },
+          }
+        : state;
     case SAVE_TIMETABLE:
       return {
         ...state,

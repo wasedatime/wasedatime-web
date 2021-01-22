@@ -22,7 +22,7 @@ import Syllabus from "./syllabus/Syllabus";
 import CourseInfo from "./courseInfo/CourseInfo";
 import RedirectPage from "./user/RedirectPage";
 import AboutUs from "./AboutUs"
-import FooterContainer from "../containers/FooterContainer";
+// import FooterContainer from "../containers/FooterContainer";
 import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";

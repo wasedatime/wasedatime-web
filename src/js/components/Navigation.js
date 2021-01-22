@@ -10,7 +10,7 @@ import {
   faBook,
   faBus,
   faVirus,
-  // faStar,
+  faStar
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";

@@ -28,6 +28,8 @@ const Title = styled("h2")`
     margin:0 auto;
     text-align:center;
     color: #444 !important;
+    // background-color:green;
+
 `;
 
 
@@ -35,45 +37,58 @@ const CardArea = styled("div")`
     width: 90%;
     margin:0 auto;
     font-size:0.9em;
-    text-align: center;
+    display: flex;
+    // text-align: center;
     // background-color:green;
+    flex-wrap:wrap;
+    justify-content:space-evenly;
 `;
 
 
 
 const Card = styled("div")`
-    // background-co lor:blue;
+    display: flex;
+    flex-direction:column;
+    // justify-content:center;
+    align-items: center;
+    // background-color:blue;
     // border:solid;
-    float:left;
-    margin: 30px;
+    // float:left;
+    margin: 40px 20px 20px 0px;
     width: 230px;
     // position: relative
     text-align:center;
 `;
 
 const MemberImage = styled('img')`
+    // background-color:yellow;
     width:80%;
     border: white 7px solid;
     // position:relative;
-    display: inline-block;
+    // display: inline-block;
     border-radius: 50%;
     box-shadow: 0px 0px 8px;
     
 `;
 const MemberName = styled('div')`
+    // background-color:red;
+    width:100%;
     font-size:1.3em;
     // border:solid red;
     text-align:center;
 `;
 
 const MemberPosition = styled('div')`
+    width:100%;
     // border:solid red;
     text-align:center;
 `;
 
 const MemberVision = styled('div')`
+    max-width:100%;
     // border:solid red;
-    text-align:center;
+    // text-align:center;
+    // flex-wrap: wrap;
 `;
 
 
@@ -83,11 +98,13 @@ const SocialMedia = styled('div')`
 `;
 
 const SocialMediaArea = styled('div')`
+    width:100%;
     // background-color:red;
     text-align:center;
 `
 
 const MediaIcon = styled('img')`
+    width:100%;
     width:1.3em;
     margin:4px;
     text-align:center;
@@ -98,121 +115,135 @@ const MeetOurTeam = () => {
     return (
         <Wrapper>
             <br></br>
+            <br></br>
             <Title>Meet Our Talented Team!</Title>
-                <CardArea>
+            <br></br>
+            <br></br>
+            <CardArea>
 
-                    {/* ----------------------------------Oscar */}
-                    <Card>
-                        <MemberImage src={oscar}></MemberImage>
-                        <MemberName>Oscar Wang</MemberName>
-                        <MemberPosition>Founder(Alumni)</MemberPosition>
-                        <MemberVision></MemberVision>
-                        <SocialMediaArea>
-                            <a href="https://github.com/oscarwang114" target="_blank">
-                                <MediaIcon src={github}></MediaIcon>
-                            </a>
-                            <a href="https://twitter.com/OscarWang114" target="_blank">
-                                <MediaIcon src={twitter}></MediaIcon>
-                            </a>
-                            <a href="https://www.facebook.com/haohaowang.oscar" target="_blank">
-                                <MediaIcon src={facebook}></MediaIcon>
-                            </a>
-                        </SocialMediaArea>
-                    </Card>
+                {/* ----------------------------------Oscar */}
+                <Card>
+                    <MemberImage src={oscar}></MemberImage>
+                    <MemberName>Oscar Wang</MemberName>
+                    <MemberPosition>Founder(Alumni)</MemberPosition>
+                    <MemberVision></MemberVision>
+                    <SocialMediaArea>
+                        <a href="https://github.com/oscarwang114" target="_blank">
+                            <MediaIcon src={github}></MediaIcon>
+                        </a>
+                        <a href="https://twitter.com/OscarWang114" target="_blank">
+                            <MediaIcon src={twitter}></MediaIcon>
+                        </a>
+                        <a href="https://www.facebook.com/haohaowang.oscar" target="_blank">
+                            <MediaIcon src={facebook}></MediaIcon>
+                        </a>
+                    </SocialMediaArea>
+                </Card>
 
-                    {/* ----------------------------------Hao */}
-                    <Card>
-                        <MemberImage src={hao}></MemberImage>
-                        <MemberName>Hao</MemberName>
-                        <MemberPosition>Project Leader</MemberPosition>
-                        <MemberVision></MemberVision>
-                        <SocialMediaArea>
-                            <a href="https://github.com/YHhaoareyou" target="_blank">
-                                <MediaIcon src={github}></MediaIcon>
-                            </a>
-                            <a href="https://www.facebook.com/hao8711/" target="_blank">
-                                <MediaIcon src={facebook}></MediaIcon>
-                            </a>
-                            <a href="https://www.instagram.com/yh_hao_are_you/" target="_blank">
-                                <MediaIcon src={instagram}></MediaIcon>
-                            </a>
-                        </SocialMediaArea>
-                    </Card>
+                {/* ----------------------------------Hao */}
+                <Card>
+                    <MemberImage src={hao}></MemberImage>
+                    <MemberName>Hao</MemberName>
+                    <MemberPosition>Project Leader</MemberPosition>
+                    <MemberVision></MemberVision>
+                    <SocialMediaArea>
+                        <a href="https://github.com/YHhaoareyou" target="_blank">
+                            <MediaIcon src={github}></MediaIcon>
+                        </a>
+                        <a href="https://www.facebook.com/hao8711/" target="_blank">
+                            <MediaIcon src={facebook}></MediaIcon>
+                        </a>
+                        <a href="https://www.instagram.com/yh_hao_are_you/" target="_blank">
+                            <MediaIcon src={instagram}></MediaIcon>
+                        </a>
+                    </SocialMediaArea>
+                </Card>
 
-                    {/* ----------------------------------Austin */}
-                    <Card>
-                        <MemberImage src={austin}></MemberImage>
-                        <MemberName>Austin Zhu</MemberName>
-                        <MemberPosition>Project Co-leader</MemberPosition>
-                        <MemberVision></MemberVision>
-                        <SocialMediaArea>
-                            <a href="https://www.instagram.com/austinzhu123/" target="_blank">
-                                <MediaIcon src={instagram}></MediaIcon>
-                            </a>
-                            <a href="https://austinzhu.dev/" target="_blank">
-                                <MediaIcon src={homepage}></MediaIcon>
-                            </a>
-                        </SocialMediaArea>
-                    </Card>
+                {/* ----------------------------------Austin */}
+                <Card>
+                    <MemberImage src={austin}></MemberImage>
+                    <MemberName>Austin Zhu</MemberName>
+                    <MemberPosition>Project Co-leader</MemberPosition>
+                    <MemberVision></MemberVision>
+                    <SocialMediaArea>
+                        <a href="https://www.instagram.com/austinzhu123/" target="_blank">
+                            <MediaIcon src={instagram}></MediaIcon>
+                        </a>
+                        <a href="https://austinzhu.dev/" target="_blank">
+                            <MediaIcon src={homepage}></MediaIcon>
+                        </a>
+                    </SocialMediaArea>
+                </Card>
 
-                    {/* ----------------------------------Mei */}
-                    <Card>
-                        <MemberImage src={mei}></MemberImage>
-                        <MemberName>Mei</MemberName>
-                        <MemberPosition>software engineer</MemberPosition>
-                        <MemberVision></MemberVision>
-                        <SocialMediaArea>
-                            <a href="https://twitter.com/Rimei9623" target="_blank">
-                                <MediaIcon src={twitter}></MediaIcon>
-                            </a>
-                            <a href="https://www.instagram.com/limengmmmm/" target="_blank">
-                                <MediaIcon src={instagram}></MediaIcon>
-                            </a>
-                            <a href="https://www.weibo.com/u/5000065316/home" target="_blank">
-                                <MediaIcon src={weibo}></MediaIcon>
-                            </a>
-                        </SocialMediaArea>
-                    </Card>
+                {/* ----------------------------------Mei */}
+                <Card>
+                    <MemberImage src={mei}></MemberImage>
+                    <MemberName>Mei</MemberName>
+                    <MemberPosition>software engineer</MemberPosition>
+                    <MemberVision></MemberVision>
+                    <SocialMediaArea>
+                        <a href="https://twitter.com/Rimei9623" target="_blank">
+                            <MediaIcon src={twitter}></MediaIcon>
+                        </a>
+                        <a href="https://www.instagram.com/limengmmmm/" target="_blank">
+                            <MediaIcon src={instagram}></MediaIcon>
+                        </a>
+                        <a href="https://www.weibo.com/u/5000065316/home" target="_blank">
+                            <MediaIcon src={weibo}></MediaIcon>
+                        </a>
+                    </SocialMediaArea>
+                </Card>
 
-                    {/* ----------------------------------Tang */}
-                    {/* <Card>
-                        <MemberImage src={tang}></MemberImage>
-                        <MemberName>Yeping Tang</MemberName>
-                        <MemberPosition>software engineer</MemberPosition>
-                        <MemberVision></MemberVision>
-                        <SocialMediaArea>
-                            <a href="https://www.google.com" target="_blank">
-                                <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
-                            </a>
-                        </SocialMediaArea>
-                    </Card> */}
+                {/* ----------------------------------Tang */}
+                {/* <Card>
+                    <MemberImage src={tang}></MemberImage>
+                    <MemberName>Yeping Tang</MemberName>
+                    <MemberPosition>software engineer</MemberPosition>
+                    <MemberVision></MemberVision>
+                    <SocialMediaArea>
+                        <a href="https://www.google.com" target="_blank">
+                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        </a>
+                    </SocialMediaArea>
+                </Card> */}
 
-                    <Card>
-                        <MemberImage src={testImage}></MemberImage>
-                        <MemberName>cat</MemberName>
-                        <MemberPosition>software engineer</MemberPosition>
-                        <MemberVision>"think different"</MemberVision>
-                        <SocialMediaArea>
-                            <a href="https://www.google.com" target="_blank">
-                                <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
-                            </a>
-                        </SocialMediaArea>
-                    </Card>
-                    <Card>
-                        <MemberImage src={testImage}></MemberImage>
-                        <MemberName>cat</MemberName>
-                        <MemberPosition>software engineer</MemberPosition>
-                        <MemberVision>"think different"</MemberVision>
-                        <SocialMediaArea>
-                            <a href="https://www.google.com" target="_blank">
-                                <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
-                            </a>
-                            <a href="https://www.google.com" target="_blank">
-                                <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
-                            </a>
-                        </SocialMediaArea>
-                    </Card>
-                </CardArea>
+                <Card>
+                    <MemberImage src={testImage}></MemberImage>
+                    <MemberName>cat</MemberName>
+                    <MemberPosition>software engineer</MemberPosition>
+                    <MemberVision>"think different"</MemberVision>
+                    <SocialMediaArea>
+                        <a href="https://www.google.com" target="_blank">
+                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        </a>
+                    </SocialMediaArea>
+                </Card>
+                <Card>
+                    <MemberImage src={testImage}></MemberImage>
+                    <MemberName>cat</MemberName>
+                    <MemberPosition>software engineer</MemberPosition>
+                    <MemberVision>"think different"</MemberVision>
+                    <SocialMediaArea>
+                        <a href="https://www.google.com" target="_blank">
+                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        </a>
+                        <a href="https://www.google.com" target="_blank">
+                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        </a>
+                    </SocialMediaArea>
+                </Card>
+                <Card>
+                    
+                </Card>
+                <Card>
+                    
+                </Card>
+            </CardArea>
+            <br></br>
+            <br></br>
+
+            <br></br>
+
         </Wrapper>
         
     );

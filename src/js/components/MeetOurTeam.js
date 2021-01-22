@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Wrapper } from "../styled-components/Wrapper";
+import WeChatQRcode from "./WeChatQRcode.js"
 
 import oscar from "../../img/aboutus/contributors/oscar.jpg"
 import mei from "../../img/aboutus/contributors/mei.jpg"
@@ -19,7 +20,7 @@ import weibo from "../../img/aboutus/socialmediaicon/sina-weibo.png"
 import twitter from "../../img/aboutus/socialmediaicon/twitter.png"
 import wechat from "../../img/aboutus/socialmediaicon/wechat.png"
 import github from "../../img/aboutus/socialmediaicon/github.png"
-
+import GuWeChatQRcode from "../../img/aboutus/wechatqrcode/gu-qrcode.jpg"
 
 const Title = styled("h2")`
     width: 50%;
@@ -72,6 +73,7 @@ const MemberImage = styled('img')`
 `;
 const MemberName = styled('div')`
     // background-color:red;
+    padding: 10px 0px 0px 0px;
     width:100%;
     font-size:1.3em;
     // border:solid red;
@@ -118,7 +120,6 @@ const MeetOurTeam = () => {
             <br></br>
             <Title>Meet Our Talented Team!</Title>
             <br></br>
-            <br></br>
             <CardArea>
 
                 {/* ----------------------------------Oscar */}
@@ -137,6 +138,7 @@ const MeetOurTeam = () => {
                         <a href="https://www.facebook.com/haohaowang.oscar" target="_blank">
                             <MediaIcon src={facebook}></MediaIcon>
                         </a>
+                        <WeChatQRcode qrcode={GuWeChatQRcode} Icon={wechat}/>
                     </SocialMediaArea>
                 </Card>
 
@@ -172,6 +174,12 @@ const MeetOurTeam = () => {
                         <a href="https://austinzhu.dev/" target="_blank">
                             <MediaIcon src={homepage}></MediaIcon>
                         </a>
+                        <a href="https://www.linkedin.com/in/yiming-zhu-622a98152" target="_blank">
+                            <MediaIcon src={linkedin}></MediaIcon>
+                        </a>
+                        {/* <a href="" target="_blank">
+                            <MediaIcon src={wechat}></MediaIcon>
+                        </a> */}
                     </SocialMediaArea>
                 </Card>
 

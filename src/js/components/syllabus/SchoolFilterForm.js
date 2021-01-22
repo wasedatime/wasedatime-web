@@ -324,7 +324,7 @@ class SchoolFilterForm extends React.Component {
                   }
                   content={this.schoolRemoveForm()}
                   on="click"
-                  position="bottom left"
+                  position="bottom right"
                   size="huge"
                   wide="very"
                 />

@@ -11,7 +11,7 @@ import styled from "styled-components";
 const StyledSidebar = styled("aside")`
   background: ${(props) => props.theme.grey2};
   width: 65px;
-  height: 100vh;
+  height: 100%;
   position: fixed;
   z-index: 400;
   box-shadow: rgba(0, 0, 0, 0.45) 4px 0px 12px;
@@ -31,7 +31,7 @@ const StyledLink = styled(Link)`
 const Footer = styled("div")`
   width: 100%;
   position: absolute;
-  bottom: 150px;
+  bottom: 70px;
   align-items: center;
   text-align: center;
   ${(window.innerWidth < 400 || window.innerHeight < 450) && "bottom: 0px;"}

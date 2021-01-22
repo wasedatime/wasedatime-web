@@ -14,6 +14,9 @@ const ExtendedWrapper = styled(Wrapper)`
 
 const ExtendedUnstyledUList = styled(UnstyledUList)`
   font-size: 14px;
+  max-height: calc(100vh - 160px);
+  overflow-y: auto;
+  ${media.tablet`max-height: none;`};
 `;
 
 const AddedCourseAndPrefList = ({

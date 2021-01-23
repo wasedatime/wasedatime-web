@@ -136,6 +136,7 @@ class CourseInfo extends React.Component {
   };
 
   componentDidMount() {
+    if (!this.state.thisCourse) window.history.back();
     API.configure();
     this._isMounted = true;
     this._isMounted && this.loadReviewsAndRelatedCourses();
@@ -552,14 +553,18 @@ class CourseInfo extends React.Component {
         <LongWrapper>
           <ExtendedOverlay>
             <div>
-              <FetchedCourseItem
+              {
+                thisCourse && <FetchedCourseItem
                 searchTerm={""}
                 searchLang={searchLang}
                 course={thisCourse}
                 isDetailDisplayed={true}
               />
-
-              <CourseDetails course={thisCourse} />
+              }
+              
+              {
+                thisCourse && <CourseDetails course={thisCourse} />
+              }
 
               {isLoaded ? (
                 isAddReviewFormOpen ? (

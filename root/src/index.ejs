@@ -34,7 +34,8 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@single-spa/welcome": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+        "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
         "@wasedatime/root-config": "/wasedatime-root-config.js",
         "@wasedatime/syllabus": "/wasedatime-syllabus.js",
         "@wasedatime/campus": "/wasedatime-campus.js",
@@ -52,12 +53,9 @@
   <script type="systemjs-importmap">
     {
       "imports": {
-        "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
         "@wasedatime/root-config": "//localhost:9000/wasedatime-root-config.js",
         "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.js",
-        "@wasedatime/campus": "//localhost:8081/wasedatime-campus.js",
-        "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.development.js",
-        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.development.js"
+        "@wasedatime/campus": "//localhost:8081/wasedatime-campus.js"
       }
     }
   </script>

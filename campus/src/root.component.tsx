@@ -1,5 +1,7 @@
 import React from "react";
+import "./components/i18n.ts";
+import Bus from "./components/Bus";
 
 export default function Root(props) {
-  return <section>{props.name} is mounted!</section>;
+  return <section><Bus /></section>;
 }

@@ -8,11 +8,6 @@
     "build": "webpack --mode=production",
     "dev": "concurrently --kill-others \"npm start\" \"cd ../syllabus && npm start\" \"cd ../campus && npm start\""
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && concurrently npm:test npm:lint"
-    }
-  },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/plugin-transform-runtime": "^7.12.1",
@@ -28,7 +23,6 @@
     "eslint-config-ts-important-stuff": "^1.1.0",
     "eslint-plugin-prettier": "^3.2.0",
     "html-webpack-plugin": "^4.5.0",
-    "husky": "^4.3.5",
     "jest": "^26.6.3",
     "jest-cli": "^26.6.3",
     "prettier": "^2.2.1",

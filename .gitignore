@@ -72,3 +72,8 @@ typings/
 .DS_Store
 .old
 .old/**
+
+# bit
+.bit
+.bitmap
+bit.json

@@ -138,12 +138,12 @@ class CourseInfo extends React.Component {
   };
 
   componentDidMount() {
-    if (getCourseID(this.props.location.search)) {
+    if (!getCourseID(this.props.location.search)) {
+      this.setState({ isWrongQuery: true });
+    } else if (this.state.thisCourse) {
       API.configure();
       this._isMounted = true;
       this._isMounted && this.loadReviewsAndRelatedCourses();
-    } else {
-      this.setState({ isWrongQuery: true });
     }
   }
 
@@ -534,15 +534,29 @@ class CourseInfo extends React.Component {
       isSignInModalOpen,
       isWrongQuery,
     } = this.state;
+    const { t } = this.props;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
+    if (!thisCourse)
+      return (
+        <WarningAndRedirect
+          title={t("courseInfo.warning.course not found.title")}
+          contents={[
+            t("courseInfo.warning.course not found.message 1"),
+            t("courseInfo.warning.course not found.message 2"),
+            t("courseInfo.warning.course not found.message 3"),
+          ]}
+          redirectPath={"/syllabus"}
+          redirectSec={5}
+        />
+      );
     if (isWrongQuery)
       return (
         <WarningAndRedirect
-          title={this.props.t("courseInfo.wrong url redirect message title")}
+          title={t("courseInfo.warning.wrong url.title")}
           contents={[
-            this.props.t("courseInfo.wrong url redirect message content 1"),
-            this.props.t("courseInfo.wrong url redirect message content 2"),
+            t("courseInfo.warning.wrong url.message 1"),
+            t("courseInfo.warning.wrong url.message 2"),
           ]}
           redirectPath={"/syllabus"}
           redirectSec={5}
@@ -564,7 +578,7 @@ class CourseInfo extends React.Component {
           <meta property="og:site_name" content="WasedaTime - Course Reviews" />
         </Helmet>
         <Header
-          title={this.props.t("navigation.course info")}
+          title={t("navigation.course info")}
           placeholder="Search course (in construction...)"
           disabled={true}
         />
@@ -609,7 +623,7 @@ class CourseInfo extends React.Component {
                     openReviewNewForm={this.openReviewNewForm}
                     openReviewEditForm={this.openReviewEditForm}
                     deleteReview={this.deleteReview}
-                    t={this.props.t}
+                    t={t}
                   />
                 )
               ) : (

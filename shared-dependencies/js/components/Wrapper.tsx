@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-import { media } from "./utils";
-
 export const Wrapper = styled("div")`
   display: flex;
   flex-direction: column;
@@ -19,7 +17,6 @@ export const WrapperWithBackground = styled(Wrapper)`
   background-position: center, center;
   background-size: cover;
   background-repeat: no-repeat;
-  ${media.phone`background-image: url(${(props) => props.backgroundPhone});`};
 `;
 
 export default Wrapper;

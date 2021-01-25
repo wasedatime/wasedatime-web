@@ -1,3 +1,5 @@
+import styled from "styled-components";
+
 export default ShadowedText = styled("p")`
   font-size: 2.4rem;
   font-weight: 300;

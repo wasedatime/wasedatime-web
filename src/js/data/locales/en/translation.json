@@ -276,9 +276,19 @@
     "delete review confirmation": "Are you sure to delete the review?",
     "delete review yes": "Yes, I'm sure",
     "delete review no": "No",
-    "wrong url redirect message title": "Wrong url!",
-    "wrong url redirect message content 1": "Search the course you want to check in our Syllabus page,",
-    "wrong url redirect message content 2": "and then click the course card to access its detail page."
+    "warning": {
+      "wrong url": {
+        "title": "Wrong url!",
+        "message 1": "Search the course you want to check in our Syllabus page,",
+        "message 2": "and then click the course card to access its detail page."
+      },
+      "course not found": {
+        "title": "Course Not Found...",
+        "message 1": "Perhaps you haven't choosed the corresponding school in Syllabus page.",
+        "message 2": "We apologize for the unconvenience, and we are dealing with this issue.",
+        "message 3": "For now, please choose the school in Syllabus page first."
+      }
+    }
   },
   "room": {
     "Under Construction": "Under Construction",

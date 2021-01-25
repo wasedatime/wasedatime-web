@@ -278,9 +278,19 @@
     "delete review confirmation": "レビューを削除してよろしいですか？",
     "delete review yes": "はい、削除します",
     "delete review no": "いいえ",
-    "wrong url redirect message title": "不正なURL",
-    "wrong url redirect message content 1": "シラバスで授業を検索し、",
-    "wrong url redirect message content 2": "該当授業のカートをクリックすることで詳細画面に遷移してください。"
+    "warning": {
+      "wrong url": {
+        "title": "不正なURL",
+        "message 1": "シラバスで授業を検索し、",
+        "message 2": "該当授業のカートをクリックすることで詳細画面に遷移してください。"
+      },
+      "course not found": {
+        "title": "該当授業が見つかりません...",
+        "message 1": "該当授業の学部が選択されていないかもしれません。",
+        "message 2": "ご不便おかけし申し訳ございません。現在対応中です。",
+        "message 3": "今のところ、お手数ですが、先にシラバスから学部の選択をお願いします。"
+      }
+    }
   },
   "room": {
     "Under Construction": "作成中",

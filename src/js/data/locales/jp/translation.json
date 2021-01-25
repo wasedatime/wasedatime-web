@@ -53,7 +53,8 @@
     "bus": "バス",
     "language": "言語",
     "career": "キャリア",
-    "corona-info": "コロナ"
+    "corona-info": "コロナ",
+    "home": "ホーム"
   },
   "footer": {
     "licensed": " ソースコードライセンス ",
@@ -276,7 +277,10 @@
     "Fill in all fields before sending": "提出する前にすべてのフィールドに記入してください",
     "delete review confirmation": "レビューを削除してよろしいですか？",
     "delete review yes": "はい、削除します",
-    "delete review no": "いいえ"
+    "delete review no": "いいえ",
+    "wrong url redirect message title": "不正なURL",
+    "wrong url redirect message content 1": "シラバスで授業を検索し、",
+    "wrong url redirect message content 2": "該当授業のカートをクリックすることで詳細画面に遷移してください。"
   },
   "room": {
     "Under Construction": "作成中",
@@ -344,5 +348,10 @@
     "Privacy Policy": "プライバシーポリシー",
     "Terms of Service": "利用規約",
     "Keep using without sign in": "ログインせずに使用し続ける"
+  },
+  "redirect": {
+    "countdown 1": "",
+    "countdown 2": "秒後",
+    "countdown 3": "へ遷移させます..."
   }
 }

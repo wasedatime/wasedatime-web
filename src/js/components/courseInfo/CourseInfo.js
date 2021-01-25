@@ -32,6 +32,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import RelatedCourses from "./RelatedCourses";
 import SignInModal from "../user/SignInModal";
 import Header from "../Header";
+import WarningAndRedirect from "../WarningAndRedirect";
 
 export const LongWrapper = styled(Wrapper)`
   margin-top: 70px;
@@ -133,13 +134,17 @@ class CourseInfo extends React.Component {
     editReviewPrimaryKey: "",
     editReviewOriginalText: "",
     isSignInModalOpen: false,
+    isWrongQuery: false,
   };
 
   componentDidMount() {
-    if (!this.state.thisCourse) window.history.back();
-    API.configure();
-    this._isMounted = true;
-    this._isMounted && this.loadReviewsAndRelatedCourses();
+    if (getCourseID(this.props.location.search)) {
+      API.configure();
+      this._isMounted = true;
+      this._isMounted && this.loadReviewsAndRelatedCourses();
+    } else {
+      this.setState({ isWrongQuery: true });
+    }
   }
 
   componentWillUnmount() {
@@ -527,9 +532,22 @@ class CourseInfo extends React.Component {
       newReviewComment,
       newReviewIsSending,
       isSignInModalOpen,
+      isWrongQuery,
     } = this.state;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
+    if (isWrongQuery)
+      return (
+        <WarningAndRedirect
+          title={this.props.t("courseInfo.wrong url redirect message title")}
+          contents={[
+            this.props.t("courseInfo.wrong url redirect message content 1"),
+            this.props.t("courseInfo.wrong url redirect message content 2"),
+          ]}
+          redirectPath={"/syllabus"}
+          redirectSec={5}
+        />
+      );
     return (
       <RowWrapper>
         <Helmet>
@@ -553,18 +571,16 @@ class CourseInfo extends React.Component {
         <LongWrapper>
           <ExtendedOverlay>
             <div>
-              {
-                thisCourse && <FetchedCourseItem
-                searchTerm={""}
-                searchLang={searchLang}
-                course={thisCourse}
-                isDetailDisplayed={true}
-              />
-              }
-              
-              {
-                thisCourse && <CourseDetails course={thisCourse} />
-              }
+              {thisCourse && (
+                <FetchedCourseItem
+                  searchTerm={""}
+                  searchLang={searchLang}
+                  course={thisCourse}
+                  isDetailDisplayed={true}
+                />
+              )}
+
+              {thisCourse && <CourseDetails course={thisCourse} />}
 
               {isLoaded ? (
                 isAddReviewFormOpen ? (

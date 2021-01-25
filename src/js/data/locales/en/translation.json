@@ -275,7 +275,10 @@
     "Fill in all fields before sending": "Please fill in all fields before sending your review",
     "delete review confirmation": "Are you sure to delete the review?",
     "delete review yes": "Yes, I'm sure",
-    "delete review no": "No"
+    "delete review no": "No",
+    "wrong url redirect message title": "Wrong url!",
+    "wrong url redirect message content 1": "Search the course you want to check in our Syllabus page,",
+    "wrong url redirect message content 2": "and then click the course card to access its detail page."
   },
   "room": {
     "Under Construction": "Under Construction",
@@ -343,5 +346,10 @@
     "Privacy Policy": "Privacy Policy",
     "Terms of Service": "Terms of Service",
     "Keep using without sign in": "Keep using without sign in"
+  },
+  "redirect": {
+    "countdown 1": "In ",
+    "countdown 2": " seconds, redirect to ",
+    "countdown 3": " page ..."
   }
 }

@@ -27,6 +27,10 @@ chrome-user-data
 .vscode
 *.swp
 *.swo
+.bit
+.bitmap
+bit.json
+.old
 
 packages/react-devtools-core/dist
 packages/react-devtools-extensions/chrome/build

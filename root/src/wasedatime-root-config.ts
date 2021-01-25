@@ -15,6 +15,7 @@ const applications = constructApplications({
     return System.import(name);
   },
 });
+
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);

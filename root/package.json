@@ -6,7 +6,8 @@
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write \"./**\"",
     "build": "webpack --mode=production",
-    "dev": "concurrently --kill-others \"npm start\" \"cd ../syllabus && npm start\" \"cd ../campus && npm start\""
+    "build-dev": "webpack --mode=production --env isDev",
+    "local": "concurrently --kill-others \"npm start\" \"cd ../syllabus && npm start\" \"cd ../campus && npm start\""
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

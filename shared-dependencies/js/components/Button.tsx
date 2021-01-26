@@ -50,4 +50,49 @@ export const FloatingActionButton = styled(InvisibleButton)`
   -webkit-tap-highlight-color: transparent;
 `;
 
+export const TransparentButton = styled("button")`
+  color: #b51e36;
+  background: rgba(255, 255, 255, 0);
+  font-weight: 500;
+  border: none;
+`;
+
+export const HoverableTealButton = styled("button")`
+  display: block;
+  background-color: rgb(86, 162, 146);
+  border: 0px;
+  border-radius: 5px;
+  color: #fff;
+  padding: 5px 1rem;
+  margin-bottom: 4px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(86, 162, 146, 0.3);
+    color: rgb(86, 162, 146);
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+const FloatRightRedButton = styled("button")`
+  background-color: #b51e36;
+  color: #fff;
+  border: 0px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  float: right;
+  padding: 0.3rem 0.5em;
+`;
+
+const FluidRedButton = styled(FloatRightRedButton)`
+  float: none;
+  width: 100%;
+`;
+
+// fluid, color, float, hoverable, transparent
+
 export default Button;

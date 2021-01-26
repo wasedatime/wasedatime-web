@@ -32,6 +32,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import RelatedCourses from "./RelatedCourses";
 import SignInModal from "../user/SignInModal";
 import Header from "../Header";
+import WarningAndRedirect from "../WarningAndRedirect";
 
 export const LongWrapper = styled(Wrapper)`
   margin-top: 70px;
@@ -133,12 +134,17 @@ class CourseInfo extends React.Component {
     editReviewPrimaryKey: "",
     editReviewOriginalText: "",
     isSignInModalOpen: false,
+    isWrongQuery: false,
   };
 
   componentDidMount() {
-    API.configure();
-    this._isMounted = true;
-    this._isMounted && this.loadReviewsAndRelatedCourses();
+    if (!getCourseID(this.props.location.search)) {
+      this.setState({ isWrongQuery: true });
+    } else if (this.state.thisCourse) {
+      API.configure();
+      this._isMounted = true;
+      this._isMounted && this.loadReviewsAndRelatedCourses();
+    }
   }
 
   componentWillUnmount() {
@@ -526,9 +532,36 @@ class CourseInfo extends React.Component {
       newReviewComment,
       newReviewIsSending,
       isSignInModalOpen,
+      isWrongQuery,
     } = this.state;
+    const { t } = this.props;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
+    if (!thisCourse)
+      return (
+        <WarningAndRedirect
+          title={t("courseInfo.warning.course not found.title")}
+          contents={[
+            t("courseInfo.warning.course not found.message 1"),
+            t("courseInfo.warning.course not found.message 2"),
+            t("courseInfo.warning.course not found.message 3"),
+          ]}
+          redirectPath={"/syllabus"}
+          redirectSec={5}
+        />
+      );
+    if (isWrongQuery)
+      return (
+        <WarningAndRedirect
+          title={t("courseInfo.warning.wrong url.title")}
+          contents={[
+            t("courseInfo.warning.wrong url.message 1"),
+            t("courseInfo.warning.wrong url.message 2"),
+          ]}
+          redirectPath={"/syllabus"}
+          redirectSec={5}
+        />
+      );
     return (
       <RowWrapper>
         <Helmet>
@@ -545,21 +578,23 @@ class CourseInfo extends React.Component {
           <meta property="og:site_name" content="WasedaTime - Course Reviews" />
         </Helmet>
         <Header
-          title={this.props.t("navigation.course info")}
+          title={t("navigation.course info")}
           placeholder="Search course (in construction...)"
           disabled={true}
         />
         <LongWrapper>
           <ExtendedOverlay>
             <div>
-              <FetchedCourseItem
-                searchTerm={""}
-                searchLang={searchLang}
-                course={thisCourse}
-                isDetailDisplayed={true}
-              />
+              {thisCourse && (
+                <FetchedCourseItem
+                  searchTerm={""}
+                  searchLang={searchLang}
+                  course={thisCourse}
+                  isDetailDisplayed={true}
+                />
+              )}
 
-              <CourseDetails course={thisCourse} />
+              {thisCourse && <CourseDetails course={thisCourse} />}
 
               {isLoaded ? (
                 isAddReviewFormOpen ? (
@@ -588,7 +623,7 @@ class CourseInfo extends React.Component {
                     openReviewNewForm={this.openReviewNewForm}
                     openReviewEditForm={this.openReviewEditForm}
                     deleteReview={this.deleteReview}
-                    t={this.props.t}
+                    t={t}
                   />
                 )
               ) : (

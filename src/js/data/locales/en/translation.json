@@ -275,7 +275,20 @@
     "Fill in all fields before sending": "Please fill in all fields before sending your review",
     "delete review confirmation": "Are you sure to delete the review?",
     "delete review yes": "Yes, I'm sure",
-    "delete review no": "No"
+    "delete review no": "No",
+    "warning": {
+      "wrong url": {
+        "title": "Wrong url!",
+        "message 1": "Search the course you want to check in our Syllabus page,",
+        "message 2": "and then click the course card to access its detail page."
+      },
+      "course not found": {
+        "title": "Course Not Found...",
+        "message 1": "Perhaps you haven't choosed the corresponding school in Syllabus page.",
+        "message 2": "We apologize for the unconvenience, and we are dealing with this issue.",
+        "message 3": "For now, please choose the school in Syllabus page first."
+      }
+    }
   },
   "room": {
     "Under Construction": "Under Construction",
@@ -343,5 +356,10 @@
     "Privacy Policy": "Privacy Policy",
     "Terms of Service": "Terms of Service",
     "Keep using without sign in": "Keep using without sign in"
+  },
+  "redirect": {
+    "countdown 1": "In ",
+    "countdown 2": " seconds, redirect to ",
+    "countdown 3": " page ..."
   }
 }

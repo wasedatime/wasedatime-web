@@ -7,9 +7,11 @@ import oscar from "../../img/aboutus/contributors/oscar.jpg"
 import mei from "../../img/aboutus/contributors/mei.jpg"
 import hao from "../../img/aboutus/contributors/hao.jpg"
 import austin from "../../img/aboutus/contributors/austin.jpg"
-// import tang from "../../img/aboutus/contributors/tang.jpg"
-// import kong from "../../img/aboutus/contributors/kong.jpg"
-// import gujiaxian from "../../img/aboutus/contributors/gujiaxian.jpg"
+import tang from "../../img/aboutus/contributors/tang.jpg"
+import kong from "../../img/aboutus/contributors/kong.jpg"
+import george from "../../img/aboutus/contributors/george.jpg"
+import isabella from "../../img/aboutus/contributors/isabella.jpg"
+import gu from "../../img/aboutus/contributors/gu.jpg"
 
 import testImage from "../../img/aboutus/test/test.jpeg"
 import facebook from "../../img/aboutus/socialmediaicon/facebook.png"
@@ -21,6 +23,8 @@ import twitter from "../../img/aboutus/socialmediaicon/twitter.png"
 import wechat from "../../img/aboutus/socialmediaicon/wechat.png"
 import github from "../../img/aboutus/socialmediaicon/github.png"
 import GuWeChatQRcode from "../../img/aboutus/wechatqrcode/gu-qrcode.jpg"
+import email from "../../img/aboutus/socialmediaicon/email.png"
+
 
 const Title = styled("h2")`
     width: 50%;
@@ -112,6 +116,9 @@ const MediaIcon = styled('img')`
     text-align:center;
 
 `
+const QRcode = styled('img')`
+  width:2em;
+`
 
 const MeetOurTeam = () => {
     return (
@@ -121,27 +128,7 @@ const MeetOurTeam = () => {
             <Title>Meet Our Talented Team!</Title>
             <br></br>
             <CardArea>
-
-                {/* ----------------------------------Oscar */}
-                <Card>
-                    <MemberImage src={oscar}></MemberImage>
-                    <MemberName>Oscar Wang</MemberName>
-                    <MemberPosition>Founder(Alumni)</MemberPosition>
-                    <MemberVision></MemberVision>
-                    <SocialMediaArea>
-                        <a href="https://github.com/oscarwang114" target="_blank">
-                            <MediaIcon src={github}></MediaIcon>
-                        </a>
-                        <a href="https://twitter.com/OscarWang114" target="_blank">
-                            <MediaIcon src={twitter}></MediaIcon>
-                        </a>
-                        <a href="https://www.facebook.com/haohaowang.oscar" target="_blank">
-                            <MediaIcon src={facebook}></MediaIcon>
-                        </a>
-                        <WeChatQRcode qrcode={GuWeChatQRcode} Icon={wechat}/>
-                    </SocialMediaArea>
-                </Card>
-
+                
                 {/* ----------------------------------Hao */}
                 <Card>
                     <MemberImage src={hao}></MemberImage>
@@ -203,43 +190,98 @@ const MeetOurTeam = () => {
                 </Card>
 
                 {/* ----------------------------------Tang */}
-                {/* <Card>
+                <Card>
                     <MemberImage src={tang}></MemberImage>
                     <MemberName>Yeping Tang</MemberName>
                     <MemberPosition>software engineer</MemberPosition>
                     <MemberVision></MemberVision>
                     <SocialMediaArea>
-                        <a href="https://www.google.com" target="_blank">
-                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        <a href="https://www.facebook.com/nero.archer.94" target="_blank">
+                            <MediaIcon src={facebook}></MediaIcon>
                         </a>
                     </SocialMediaArea>
-                </Card> */}
+                </Card>
 
+                {/* ----------------------------------Gu */}
                 <Card>
-                    <MemberImage src={testImage}></MemberImage>
-                    <MemberName>cat</MemberName>
+                    <MemberImage src={gu}></MemberImage>
+                    <MemberName>Jiaxian Gu</MemberName>
                     <MemberPosition>software engineer</MemberPosition>
-                    <MemberVision>"think different"</MemberVision>
+                    <MemberVision></MemberVision>
                     <SocialMediaArea>
-                        <a href="https://www.google.com" target="_blank">
-                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        <a href="https://www.instagram.com/jiaxiangu/" target="_blank">
+                            <MediaIcon src={instagram}></MediaIcon>
+                        </a>
+                        <a href="mailto:gujiaxian1997@gmail.com" target="_blank">
+                            <MediaIcon src={email}></MediaIcon>
+                        </a>
+                        <a href="https://www.faeook.com/GuJiaxian" target="_blank">
+                            <MediaIcon src={facebook}></MediaIcon>
                         </a>
                     </SocialMediaArea>
                 </Card>
+
+                {/* ----------------------------------kong */}
                 <Card>
-                    <MemberImage src={testImage}></MemberImage>
-                    <MemberName>cat</MemberName>
+                    <MemberImage src={kong}></MemberImage>
+                    <MemberName>Kong</MemberName>
                     <MemberPosition>software engineer</MemberPosition>
-                    <MemberVision>"think different"</MemberVision>
+                    <MemberVision></MemberVision>
+                    {/* <SocialMediaArea>
+                        <a href="https://www.google.com" target="_blank">
+                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        </a>
+                    </SocialMediaArea> */}
+                </Card>
+                
+                {/* ----------------------------------george */}
+                <Card>
+                    <MemberImage src={george}></MemberImage>
+                    <MemberName>George Xia</MemberName>
+                    <MemberPosition>Product Management</MemberPosition>
+                    <MemberVision></MemberVision>
+                    {/* <SocialMediaArea>
+                        <a href="https://www.google.com" target="_blank">
+                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        </a>
+                    </SocialMediaArea> */}
+                </Card>
+
+                {/* ----------------------------------Oscar */}
+                <Card>
+                    <MemberImage src={oscar}></MemberImage>
+                    <MemberName>Oscar Wang</MemberName>
+                    <MemberPosition>Founder (Alumni) </MemberPosition>
+                    <MemberVision></MemberVision>
                     <SocialMediaArea>
-                        <a href="https://www.google.com" target="_blank">
-                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        <a href="https://github.com/oscarwang114" target="_blank">
+                            <MediaIcon src={github}></MediaIcon>
                         </a>
-                        <a href="https://www.google.com" target="_blank">
-                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        <a href="https://twitter.com/OscarWang114" target="_blank">
+                            <MediaIcon src={twitter}></MediaIcon>
                         </a>
+                        <a href="https://www.facebook.com/haohaowang.oscar" target="_blank">
+                            <MediaIcon src={facebook}></MediaIcon>
+                        </a>
+                        {/* <WeChatQRcode qrcode={GuWeChatQRcode}/> */}
                     </SocialMediaArea>
                 </Card>
+
+                {/* ----------------------------------isabella */}
+                <Card>
+                    <MemberImage src={isabella}></MemberImage>
+                    <MemberName>Isabella Hu</MemberName>
+                    <MemberPosition>Strategy (Alumni)</MemberPosition>
+                    <MemberVision></MemberVision>
+                    {/* <SocialMediaArea>
+                        <a href="https://www.google.com" target="_blank">
+                            <MediaIcon src={facebook} href="www.google.com" target="_blank"></MediaIcon>
+                        </a>
+                    </SocialMediaArea> */}
+                </Card>
+
+                
+                
                 <Card>
                     
                 </Card>

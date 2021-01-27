@@ -96,7 +96,7 @@ const Navigation = ({ isHovered, t }) => {
     //   icon: faBriefcase,
     // },
     {
-      name: t("navigation.aboutus"),
+      name: t("navigation.AboutUs"),
       path: "/AboutUs",
       icon: faStar,
     },

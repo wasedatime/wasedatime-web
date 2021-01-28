@@ -28,7 +28,6 @@ const withFetchCourses = (WrappedComponent) => {
   class WithFetchCoursesComponent extends React.Component {
     async componentDidMount() {
       const {
-        addedCoursesAndPrefs,
         fetchedCoursesById,
         userTokens,
         fetchCourses,

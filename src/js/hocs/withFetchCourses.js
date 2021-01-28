@@ -56,31 +56,10 @@ const withFetchCourses = (WrappedComponent) => {
             //   message: STR
             // }
 
-            // addedCourses GET from API ✖, addedCourses in local ✖: nothing
-            // addedCourses GET from API ✖, addedCourses in local ✔: post
-            // addedCourses GET from API ✔: save to local
-            if (res.data.data.courses.length === 0) {
-              if (
-                addedCoursesAndPrefs.fall.length +
-                  addedCoursesAndPrefs.spring.length >
-                0
-              )
-                this.postTimetable();
-            } else {
-              saveTimetable(res.data.data.courses, fetchedCoursesById);
-            }
+            saveTimetable(res.data.data.courses, fetchedCoursesById);
           })
           .catch((e) => {
-            // addedCourses GET from API ✖, addedCourses in local ✖: nothing
-            // addedCourses GET from API ✖, addedCourses in local ✔: post
-            if (
-              e.response &&
-              !e.response.data.data &&
-              addedCoursesAndPrefs.fall.length +
-                addedCoursesAndPrefs.spring.length >
-                0
-            )
-              this.postTimetable();
+            this.postTimetable();
           });
       }
     }

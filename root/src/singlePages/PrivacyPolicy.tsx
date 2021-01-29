@@ -1,19 +1,19 @@
 import React from "react";
-import { Overlay } from "./common/Overlay";
+// import { Overlay } from "@bit/wasedatime.core.ts.ui.overlay";
 import styled from "styled-components";
 import { Header, List } from "semantic-ui-react";
-import { media } from "./common/utils";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
-const ExtendedOverlay = styled(Overlay)`
-  align-items: left;
-  background-color: #fff;
-  padding: 5vh 10vw;
-  color: #666;
-  ${media.phone`padding: 0 5vw;`};
-`;
+// const ExtendedOverlay = styled(Overlay)`
+//   align-items: left;
+//   background-color: #fff;
+//   padding: 5vh 10vw;
+//   color: #666;
+//   ${"" /*media.phone`padding: 0 5vw;`*/}
+// `;
 
 const PrivacyPolicy = () => (
-  <ExtendedOverlay>
+  <div>
     <Header style={{ fontSize: "2em", textAlign: "center" }}>
       PRIVACY NOTICE
     </Header>
@@ -442,7 +442,7 @@ const PrivacyPolicy = () => (
         Termly's Privacy Policy Generator.
       </a>
     </p>
-  </ExtendedOverlay>
+  </div>
 );
 
 export default PrivacyPolicy;

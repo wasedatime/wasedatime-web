@@ -41,6 +41,8 @@
   "dependencies": {
     "@bit/wasedatime.core.js.ui.logo": "0.0.4",
     "@bit/wasedatime.core.js.ui.sidebar-wrapper": "0.0.4",
+    "@bit/wasedatime.core.ts.ui.overlay": "0.0.4",
+    "@bit/wasedatime.core.ts.utils.responsive-utils": "0.0.4",
     "@types/jest": "^26.0.16",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
@@ -50,6 +52,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
+    "semantic-ui-react": "^2.0.3",
     "single-spa": "^5.8.2",
     "single-spa-layout": "1.4.0"
   }

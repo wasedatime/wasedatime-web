@@ -13,3 +13,5 @@ const StyledHeader = styled("header")`
   left: 0;
   z-index: 400;
 `;
+
+export default StyledHeader;

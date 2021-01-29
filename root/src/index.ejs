@@ -86,22 +86,64 @@
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
   <% } %>
 
+  <style>
+  #layout {
+    margin: 0px;
+    display: grid;
+    grid-template-rows: 67px auto 67px;
+    grid-template-columns: 65px auto;
+    font-family: Segoe UI, Yu Gothic Medium, Lato;
+    font-display: swap;
+  }
+  main {
+    padding: 1rem 1em;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+  #nav {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+  @media only screen and (max-width:768px) {
+    main {
+      padding: 1rem;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 2;
+      grid-row-end: 3;
+    }
+    #nav {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+  }
+  </style>
+
   <template id="single-spa-layout">
     <single-spa-router>
-      <!-- <nav>
+      <div id="layout">
+        <!-- <nav>
         <application name="@wasedatime/navbar"></application>
       </nav> -->
-      <main>
-        <route path="syllabus">
-          <application name="@wasedatime/syllabus"></application>
-        </route>
-        <route path="campus">
-          <application name="@wasedatime/campus"></application>
-        </route>
-        <route default>
-          <application name="@single-spa/welcome"></application>
-        </route>
-      </main>
+        <div id="nav"></div>
+        <main>
+          <route path="syllabus">
+            <application name="@wasedatime/syllabus"></application>
+          </route>
+          <route path="campus">
+            <application name="@wasedatime/campus"></application>
+          </route>
+          <route default>
+            <application name="@single-spa/welcome"></application>
+          </route>
+        </main>
+      </div>
     </single-spa-router>
   </template>
 </head>

@@ -1,5 +1,8 @@
 {
-  "presets": ["@babel/preset-env", "@babel/preset-typescript"],
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-typescript"
+  ],
   "plugins": [
     [
       "@babel/plugin-transform-runtime",
@@ -12,12 +15,9 @@
   "env": {
     "test": {
       "presets": [
-        [
-          "@babel/preset-env",
-          {
-            "targets": "current node"
-          }
-        ]
+        ["@babel/preset-env", {
+          "targets": "current node"
+        }]
       ]
     }
   }

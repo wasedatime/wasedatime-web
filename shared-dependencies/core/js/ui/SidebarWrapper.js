@@ -14,3 +14,5 @@ const StyledSidebar = styled("aside")`
     transition: width 0.5s;
   }
 `;
+
+export default StyledSidebar;

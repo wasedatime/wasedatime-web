@@ -10,3 +10,5 @@ const FooterWrapper = styled("footer")`
   z-index: 300;
   padding-top: 0.5rem;
 `;
+
+export default FooterWrapper;

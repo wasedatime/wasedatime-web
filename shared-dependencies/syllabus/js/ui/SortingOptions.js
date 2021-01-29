@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Wrapper } from "@bit/wasedatime.core.js.ui.wrapper";
-import { Button } from "@bit/wasedatime.core.js.ui.button";
+import { RowWrapper } from "@bit/wasedatime.core.js.ui.wrapper";
+import { InvisibleButton } from "@bit/wasedatime.core.js.ui.button";
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   padding: 0.3em 0;

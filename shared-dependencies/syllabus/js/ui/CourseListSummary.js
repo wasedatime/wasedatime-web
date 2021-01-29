@@ -72,6 +72,7 @@ const CourseListSummary = ({
   handleToggleSortingOptions,
   selectedSortingOption,
   handleChangeSortingOption,
+  dropdownPlaceholder,
   courseUnit,
   creditUnit,
 }) => {
@@ -79,16 +80,16 @@ const CourseListSummary = ({
     <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
         <StyledLabel size="big" color="grey" basic>
-          {`${courses.length}`} courseUnit{" "}
+          {`${courses.length}`} {courseUnit}{" "}
         </StyledLabel>
         <StyledLabel size="big" color="grey" basic>
-          {creditSum(courses)} creditUnit
+          {creditSum(courses)} {creditUnit}
         </StyledLabel>
 
         <StyledDropdown
-          placeholder={t("timetable.Sort by")}
+          placeholder={dropdownPlaceholder}
           selection
-          options={sortingOptions(t)}
+          options={sortingOptions}
           onChange={(e, data) => {
             handleChangeSortingOption(data.value);
           }}
@@ -96,6 +97,7 @@ const CourseListSummary = ({
       </RowWrapper>
       {isSortingOptionOpen && (
         <SortingOptions
+          sortingOptions={sortingOptions}
           selectedSortingOption={selectedSortingOption}
           handleChangeSortingOption={handleChangeSortingOption}
         />

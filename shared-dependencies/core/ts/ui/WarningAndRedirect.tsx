@@ -1,5 +1,6 @@
+import React from "react";
 import { Segment, Header } from "semantic-ui-react";
-import "@types/node";
+import "node";
 import styled from "styled-components";
 
 const RedirectMessage = styled(Segment)`

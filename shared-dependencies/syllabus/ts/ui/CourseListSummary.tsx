@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { SortingOptions } from "@bit/wasedatime.shared-library-js.syllabus.ui.sorting-options";
-import { Wrapper } from "@bit/wasedatime.shared-library-js.core.ui.wrapper";
-import { Button } from "@bit/wasedatime.shared-library-js.core.ui.button";
+import SortingOptions from "@bit/wasedatime.syllabus.ts.ui.sorting-options";
+import { RowWrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
 import { Label, Dropdown } from "semantic-ui-react";
-import SYLLABUS_KEYS from "@bit/wasedatime.shared-library-js.syllabus.constants.syllabus-keys";
+import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
 const SortByButton = styled(InvisibleButton)`
   margin-left: auto;
@@ -65,30 +65,41 @@ const creditSum = (coursesAndPrefs) => {
 //   },
 // ];
 
+type Props = {
+  courses: any[];
+  sortingOptions: any[];
+  isSortingOptionOpen: boolean;
+  selectedSortingOption: string;
+  handleChangeSortingOption: (x: string) => void;
+  dropdownPlaceholder: string;
+  courseUnit: string;
+  creditUnit: string;
+};
+
 const CourseListSummary = ({
   courses,
   sortingOptions,
   isSortingOptionOpen,
-  handleToggleSortingOptions,
   selectedSortingOption,
   handleChangeSortingOption,
+  dropdownPlaceholder,
   courseUnit,
   creditUnit,
-}) => {
+}: Props) => {
   return (
     <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
         <StyledLabel size="big" color="grey" basic>
-          {`${courses.length}`} courseUnit{" "}
+          {`${courses.length}`} {courseUnit}{" "}
         </StyledLabel>
         <StyledLabel size="big" color="grey" basic>
-          {creditSum(courses)} creditUnit
+          {creditSum(courses)} {creditUnit}
         </StyledLabel>
 
         <StyledDropdown
-          placeholder={t("timetable.Sort by")}
+          placeholder={dropdownPlaceholder}
           selection
-          options={sortingOptions(t)}
+          options={sortingOptions}
           onChange={(e, data) => {
             handleChangeSortingOption(data.value);
           }}
@@ -96,7 +107,8 @@ const CourseListSummary = ({
       </RowWrapper>
       {isSortingOptionOpen && (
         <SortingOptions
-          selectedSortingOption={selectedSortingOption}
+          sortingOptions={sortingOptions}
+          selectedSortingOptionValue={selectedSortingOption}
           handleChangeSortingOption={handleChangeSortingOption}
         />
       )}

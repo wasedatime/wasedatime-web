@@ -72,7 +72,8 @@ small {
   font-size: 12px;
 }
 
-a:focus {
+a:focus,
+button:focus {
   outline: 0;
 }
 
@@ -123,10 +124,58 @@ https://www.materialpalette.com/colors
   border-color: #3e2723;
 }
 
-.theme-default .color-7 .dark {
+.theme-default .color-7 .grey {
   color: #222;
   background-color: #aaa;
   border-color: #222;
+}
+
+.dark-red {
+  color: #ef9a9a;
+  background-color: #580505;
+  border-color: #ef9a9a;
+}
+
+.dark-orange {
+  color: #ffcc80;
+  background-color: #9e2c08;
+  border-color: #ffcc80;
+}
+
+.dark-yellow {
+  color: #fff59d;
+  background-color: #845125;
+  border-color: #fff59d;
+}
+
+.dark-green {
+  color: #a5d6a7;
+  background-color: #114615;
+  border-color: #a5d6a7;
+}
+
+.dark-blue {
+  color: #90caf9;
+  background-color: #0c2a58;
+  border-color: #90caf9;
+}
+
+.dark-purple {
+  color: #b39ddb;
+  background-color: #221361;
+  border-color: #b39ddb;
+}
+
+.dark-brown {
+  color: #c7a59a;
+  background-color: #3e2723;
+  border-color: #c7a59a;
+}
+
+.dark-grey {
+  color: #aaa;
+  background-color: #222;
+  border-color: #aaa;
 }
 
 .ui.dimmer {

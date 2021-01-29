@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Wrapper } from "@bit/wasedatime.shared-library-js.core.ui.wrapper";
-import { Button } from "@bit/wasedatime.shared-library-js.core.ui.button";
+import { RowWrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   padding: 0.3em 0;
@@ -27,11 +27,17 @@ const ExtendedInvisibleButton = styled(InvisibleButton)`
 //   { value: "course_title", label: "Course title" },
 // ]
 
+type Props = {
+  sortingOptions: any[];
+  selectedSortingOptionValue: string;
+  handleChangeSortingOption: (x: string) => void;
+};
+
 const SortingOptions = ({
   sortingOptions,
   selectedSortingOptionValue,
   handleChangeSortingOption,
-}) => {
+}: Props) => {
   return (
     <ExtendedRowWrapper>
       {sortingOptions.map((sortingOption) => {

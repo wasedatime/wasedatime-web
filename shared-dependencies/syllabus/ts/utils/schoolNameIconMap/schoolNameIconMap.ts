@@ -1,4 +1,4 @@
-import * as Schools from "@bit/wasedatime.shared-library-ts.syllabus.constants.schools";
+import * as Schools from "@bit/wasedatime.syllabus.ts.constants.schools";
 
 import fseIcon from "./icons/fse.png";
 import cseIcon from "./icons/cse.png";

@@ -2,8 +2,8 @@ import {
   ADDED_ORDER,
   COURSE_TITLE,
   COURSE_TIME,
-} from "@bit/wasedatime.shared-library-ts.syllabus.constants.sorting-options";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.shared-library-ts.syllabus.constants.syllabus-keys";
+} from "@bit/wasedatime.syllabus.ts.constants.sorting-options";
+import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
 export const sortAddedCourses = (addedCourses, sortingOption) => {
   switch (sortingOption) {

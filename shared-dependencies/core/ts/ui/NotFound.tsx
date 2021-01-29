@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import "@types/node";
 import styled from "styled-components";
 
-import { Wrapper } from "@bit/wasedatime.shared-library-js.core.ui.wrapper";
-import { Overlay } from "@bit/wasedatime.shared-library-js.core.ui.overlay";
-import { Button } from "@bit/wasedatime.shared-library-js.core.ui.button";
+import { Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+import { Overlay } from "@bit/wasedatime.core.ts.ui.overlay";
+import { Button } from "@bit/wasedatime.core.ts.ui.button";
 
 const ExtendedOverlay = styled(Overlay)`
   justify-content: center;

@@ -2,9 +2,9 @@ import React from "react";
 import "@types/node";
 import styled from "styled-components";
 
-import { Wrapper } from "@bit/wasedatime.shared-library-js.core.ui.wrapper";
-import { Button } from "@bit/wasedatime.shared-library-js.core.ui.button";
-import { Overlay } from "@bit/wasedatime.shared-library-js.core.ui.overlay";
+import { Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+import { Button } from "@bit/wasedatime.core.ts.ui.button";
+import { Overlay } from "@bit/wasedatime.core.ts.ui.overlay";
 
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;

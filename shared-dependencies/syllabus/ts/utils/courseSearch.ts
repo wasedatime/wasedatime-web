@@ -1,7 +1,7 @@
 import sortBy from "lodash/sortBy";
 
-import LANGS from "@bit/wasedatime.shared-library-ts.core.constants.langs";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.shared-library-ts.syllabus.constants.syllabus-keys";
+import LANGS from "@bit/wasedatime.core.ts.constants.langs";
+import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
 // Unicode for Japanese: http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
 export const jpRegex = "\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf";

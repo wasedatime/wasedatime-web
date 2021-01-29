@@ -1,4 +1,4 @@
-import * as Schools from "@bit/wasedatime.shared-library-ts.syllabus.constants.schools";
+import * as Schools from "@bit/wasedatime.syllabus.ts.constants.schools";
 export const schoolCodeMap = {
   11: Schools.PSE,
   12: Schools.LAW,

@@ -2,9 +2,9 @@ import React from "react";
 import "@types/node";
 import styled, { keyframes } from "styled-components";
 
-import { Wrapper } from "@bit/wasedatime.shared-library-js.core.ui.wrapper";
-import { Overlay } from "@bit/wasedatime.shared-library-js.core.ui.overlay";
-import { Logo } from "@bit/wasedatime.shared-library-js.core.ui.logo";
+import { Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+import { Overlay } from "@bit/wasedatime.core.ts.ui.overlay";
+import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
 
 const spin = keyframes`
   from {

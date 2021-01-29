@@ -1,7 +1,7 @@
 import React from "react";
 
-import { tokenize } from "@bit/wasedatime.shared-library-ts.syllabus.utils.course-search";
-import LANGS from "@bit/wasedatime.shared-library-ts.core.constants.langs";
+import { tokenize } from "@bit/wasedatime.syllabus.ts.utils.course-search";
+import LANGS from "@bit/wasedatime.core.ts.constants.langs";
 
 export const highlight = function (
   searchTerm: string,

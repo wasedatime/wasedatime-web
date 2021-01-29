@@ -1,7 +1,8 @@
+import "@types/node";
 import styled from "styled-components";
 import { Step } from "semantic-ui-react";
 
-export default VerticalStep = styled(Step)`
+export const VerticalStep = styled(Step)`
   &:after {
     display: block !important;
     position: absolute;
@@ -21,3 +22,5 @@ export default VerticalStep = styled(Step)`
     transform: translateY(-50%) translateX(50%) rotate(45deg) !important;
   }
 `;
+
+export default VerticalStep;

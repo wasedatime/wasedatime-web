@@ -41,9 +41,12 @@
     "webpack-merge": "^5.7.3"
   },
   "dependencies": {
+    "@bit/wasedatime.core.assets.text-logo": "0.0.1",
     "@bit/wasedatime.core.ts.constants.theme": "0.0.1",
     "@bit/wasedatime.core.ts.ui.logo": "0.0.5",
+    "@bit/wasedatime.core.ts.ui.mobile-header-wrapper": "0.0.5",
     "@bit/wasedatime.core.ts.ui.overlay": "0.0.5",
+    "@bit/wasedatime.core.ts.ui.sidebar": "0.0.1",
     "@bit/wasedatime.core.ts.ui.sidebar-wrapper": "0.0.5",
     "@bit/wasedatime.core.ts.utils.responsive-utils": "0.0.5",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",
@@ -58,6 +61,7 @@
     "@types/webpack-env": "^1.16.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",

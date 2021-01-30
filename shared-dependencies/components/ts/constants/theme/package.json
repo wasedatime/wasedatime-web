@@ -1,0 +1,87 @@
+{
+  "name": "@bit/wasedatime.core.ts.constants.theme",
+  "version": "0.0.1",
+  "homepage": "https://bit.dev/wasedatime/core/ts/constants/theme",
+  "main": "dist/theme.js",
+  "componentId": {
+    "scope": "wasedatime.core",
+    "name": "ts/constants/theme",
+    "version": "0.0.1"
+  },
+  "dependencies": {
+    "@bit/wasedatime.core.ts.constants.size-variables": "0.0.1"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "license": "SEE LICENSE IN LICENSE",
+  "bit": {
+    "env": {
+      "compiler": {
+        "bit.envs/compilers/react-typescript@3.1.64": {
+          "rawConfig": {
+            "compilerPath": "typescript/bin/tsc",
+            "compilerArguments": [
+              "--declaration"
+            ],
+            "compiledFileTypes": [
+              ".ts",
+              ".tsx"
+            ],
+            "configFileName": "tsconfig.json",
+            "tsconfig": {
+              "compilerOptions": {
+                "outDir": "dist",
+                "target": "ES2015",
+                "sourceMap": false,
+                "moduleResolution": "Node",
+                "esModuleInterop": true,
+                "module": "ES6",
+                "allowSyntheticDefaultImports": true,
+                "resolveJsonModule": true,
+                "declaration": true,
+                "experimentalDecorators": true,
+                "inlineSourceMap": false,
+                "inlineSources": false,
+                "lib": [
+                  "dom",
+                  "es2015"
+                ],
+                "jsx": "react",
+                "rootDir": "./",
+                "removeComments": true,
+                "typeRoots": [
+                  "./node_modules/@types"
+                ],
+                "importHelpers": false
+              },
+              "include": [
+                "./**/*"
+              ],
+              "exclude": [
+                "node_modules",
+                ".dependencies",
+                "dist"
+              ]
+            },
+            "development": false,
+            "copyPolicy": {
+              "ignorePatterns": [
+                "package.json",
+                "package-lock.json",
+                "tsconfig.json"
+              ],
+              "disable": false
+            }
+          },
+          "options": {}
+        }
+      }
+    }
+  }
+}

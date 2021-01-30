@@ -1,12 +1,12 @@
 @font-face {
   font-family: "Segoe UI";
-  src: local("Segoe UI"), url(../fonts/segoe-ui.ttf) format("truetype");
+  src: local("Segoe UI"), url("../fonts/segoe-ui.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Yu Gothic Medium";
   src: local("Yu Gothic Medium"),
-    url(../fonts/yugothic-medium.otf) format("opentype");
+    url("../fonts/yugothic-medium.otf") format("opentype");
 }
 
 *,
@@ -131,4 +131,9 @@ https://www.materialpalette.com/colors
 
 .ui.dimmer {
   background-color: rgba(0, 0, 0, 0.2) !important;
+}
+
+/* semantic override */
+.ui.vertical.text.menu .item {
+  margin: 0px;
 }

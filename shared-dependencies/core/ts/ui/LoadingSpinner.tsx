@@ -1,5 +1,4 @@
 import React from "react";
-import "@types/node";
 import styled, { keyframes } from "styled-components";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
@@ -41,8 +40,17 @@ const Description = styled("p")`
   text-align: center;
 `;
 
-class LoadingSpinner extends React.Component<{ message: string }, {}> {
-  constructor(props) {
+type Props = {
+  message: string;
+};
+
+type State = {
+  delayMessage: string;
+};
+
+class LoadingSpinner extends React.Component<Props, State> {
+  _isMounted: boolean;
+  constructor(props: Props) {
     super(props);
 
     // isMounted pattern to prevent setTimeOut executing after the component unmounts.

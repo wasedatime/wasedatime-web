@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "@types/node";
 import styled from "styled-components";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";

@@ -1,5 +1,4 @@
 import React from "react";
-import "@types/node";
 import styled from "styled-components";
 import LanguageMenu from "@bit/wasedatime.core.ts.ui.language-menu";
 import { Grid, Input } from "semantic-ui-react";
@@ -43,12 +42,12 @@ const PageTitle = styled("h1")`
 
 type HeaderProps = {
   title: string;
-  onInputChange(): void;
+  onInputChange(x: string): void;
   placeholder: string;
   inputText: string;
   disabled: boolean;
   isBlur: boolean;
-  changeLang(): void;
+  changeLang(x: string): void;
 };
 
 const Header = ({
@@ -87,7 +86,7 @@ const Header = ({
             </div>
           </Grid.Column>
           <Grid.Column width={4}>
-            <LanguangeMenu changeLang={changeLang} />
+            <LanguageMenu changeLang={changeLang} />
           </Grid.Column>
         </Grid.Row>
       </Grid>

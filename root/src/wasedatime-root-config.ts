@@ -7,8 +7,10 @@ import {
 import React from "react";
 import ReactDom from "react-dom";
 import { BrowserRouter } from "react-router-dom";
-import Nav from "./Nav";
+import Nav from "./frame/Nav";
 import App from "./App";
+import "semantic-ui-css/semantic.min.css";
+import "./styles/styles.css";
 
 const routes = constructRoutes(
   document.querySelector("#single-spa-layout") as HTMLTemplateElement

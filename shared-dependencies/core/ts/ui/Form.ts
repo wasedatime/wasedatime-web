@@ -1,4 +1,3 @@
-import "@types/node";
 import styled from "styled-components";
 import { Divider } from "semantic-ui-react";
 

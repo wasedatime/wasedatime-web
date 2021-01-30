@@ -1,4 +1,3 @@
-import "@types/node";
 import { css } from "styled-components";
 
 export const sizes = {
@@ -8,13 +7,20 @@ export const sizes = {
   phoneMini: 375,
 };
 
-// Iterate through the sizes and create a media template
-export const media = Object.keys(sizes).reduce((acc, label) => {
-  acc[label] = (...args: TemplateStringsArray) => css`
-    @media (max-width: ${sizes[label] / 16}em) {
-      ${css(args)};
-    }
-  `;
+type accProps = {
+  [key: string]: (x: TemplateStringsArray) => string[];
+};
 
-  return acc;
-}, {});
+// Iterate through the sizes and create a media template
+export const media = Object.keys(sizes).reduce(
+  (acc: accProps, label: string) => {
+    acc[label] = (...args) => css`
+      @media (max-width: ${sizes[label] / 16}em) {
+        ${css(args)};
+      }
+    `;
+
+    return acc;
+  },
+  {}
+);

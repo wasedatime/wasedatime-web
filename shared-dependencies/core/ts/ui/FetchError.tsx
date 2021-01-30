@@ -1,5 +1,4 @@
 import React from "react";
-import "@types/node";
 import styled from "styled-components";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
@@ -17,12 +16,12 @@ const ExtendedOverlay = styled(Overlay)`
   padding: 25px;
 `;
 
-type CardProps = {
+type Props = {
   onRetry(): void;
   email: string;
 };
 
-const FetchError = ({ onRetry, email }: CardProps) => {
+const FetchError = ({ onRetry, email }: Props) => {
   return (
     <ExtendedWrapper>
       <ExtendedOverlay>

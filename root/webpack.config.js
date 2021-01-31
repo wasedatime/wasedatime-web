@@ -1,6 +1,7 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "wasedatime";
@@ -21,6 +22,12 @@ module.exports = (webpackConfigEnv, argv) => {
           test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)(\?[a-z0-9=.]+)?$/,
           loader: "url-loader",
         },
+        {
+          test: /\.m?js/,
+          resolve: {
+            fullySpecified: false,
+          },
+        },
       ],
     },
     plugins: [
@@ -33,6 +40,7 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
+      new Dotenv(),
     ],
   });
 };

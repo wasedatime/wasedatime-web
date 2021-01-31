@@ -1,8 +1,8 @@
 import React from "react";
-import { Overlay } from "./common/Overlay";
+import { Overlay } from "@bit/wasedatime.core.ts.ui.overlay";
 import styled from "styled-components";
 import { Header } from "semantic-ui-react";
-import { media } from "./common/utils";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: left;

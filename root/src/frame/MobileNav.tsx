@@ -1,18 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { withNamespaces } from "react-i18next";
-import { withRouter } from "react-router";
+import { Link } from "@reach/router";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCalendarAlt,
-  faBook,
-  faBus,
-  faVirus,
-} from "@fortawesome/free-solid-svg-icons";
 
-import { media } from "./common/utils";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const StyledNav = styled("nav")`
   display: flex;
@@ -55,52 +47,21 @@ const StyledSpan = styled("span")`
   color: #fff;
 `;
 
-const MobileNav = (props) => {
-  const pathname = props.location.pathname;
-  const t = props.t;
-  const navItems = [
-    {
-      name: t("navigation.timetable"),
-      path: "/timetable",
-      icon: faCalendarAlt,
-    },
-    {
-      name: t("navigation.syllabus"),
-      path: "/syllabus",
-      icon: faBook,
-    },
-    {
-      name: t("navigation.corona-info"),
-      path: "/corona-info",
-      icon: faVirus,
-    },
-    // {
-    //   name: t("navigation.career"),
-    //   path: "/career",
-    //   icon: faBriefcase,
-    // },
-    // {
-    //   name: t("navigation.joinus"),
-    //   path: "/joinus",
-    //   icon: faStar,
-    // },
-    {
-      name: t("navigation.bus"),
-      path: "/bus",
-      icon: faBus,
-    },
-  ];
+type Props = {
+  navItems: any;
+};
+
+const MobileNav = ({ navItems }: Props) => {
   const styledLinks = navItems.map((item) => {
     const itemName = item["name"];
     const itemPath = item["path"];
     const itemIcon = item["icon"];
-    const isClicked = pathname.includes(itemPath);
     const fontBase = (
       <FontAwesomeIcon icon={itemIcon} size="3x" transform="shrink-3" />
     );
     return (
       <StyledLink to={itemPath} key={itemPath}>
-        <StyledButton isClicked={isClicked}>
+        <StyledButton>
           {fontBase}
           <StyledSpan>{itemName}</StyledSpan>
         </StyledButton>
@@ -111,7 +72,7 @@ const MobileNav = (props) => {
   return <StyledNav>{styledLinks}</StyledNav>;
 };
 
-export default withRouter(withNamespaces("translation")(MobileNav));
+export default MobileNav;
 
 MobileNav.propTypes = {
   location: PropTypes.object.isRequired,

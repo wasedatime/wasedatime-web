@@ -25,7 +25,8 @@
     "babel-jest": "^26.6.3",
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.3",
-    "eslint": "^7.15.0",
+    "dotenv-webpack": "^6.0.0",
+    "eslint": "^7.19.0",
     "eslint-config-prettier": "^7.0.0",
     "eslint-config-ts-react-important-stuff": "^3.0.0",
     "eslint-plugin-prettier": "^3.2.0",
@@ -37,7 +38,7 @@
     "single-spa-react": "^3.2.0",
     "ts-config-single-spa": "^2.0.0-beta.1",
     "typescript": "^4.1.2",
-    "webpack": "^5.8.0",
+    "webpack": "^5.19.0",
     "webpack-cli": "^4.2.0",
     "webpack-config-single-spa-react": "^2.0.0-beta.1",
     "webpack-config-single-spa-react-ts": "^2.0.0-beta.1",
@@ -46,12 +47,23 @@
     "webpack-merge": "^5.4.0"
   },
   "dependencies": {
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "@aws-amplify/api": "^3.2.18",
+    "@bit/wasedatime.syllabus.ts.constants.school-code-map": "0.0.3",
+    "@bit/wasedatime.syllabus.ts.constants.syllabus-keys": "0.0.2",
     "@types/jest": "^26.0.16",
+    "@types/react": "^16.9.32",
+    "@types/react-dom": "^16.9.6",
     "@types/systemjs": "^6.1.0",
     "@types/webpack-env": "^1.16.0",
-    "@types/react": "^16.9.32",
-    "@types/react-dom": "^16.9.6"
+    "aws-amplify": "^3.3.15",
+    "graphql": "^15.5.0",
+    "localforage": "^1.9.0",
+    "lodash": "^4.17.20",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-redux": "^7.2.2",
+    "redux": "^4.0.5",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
   }
 }

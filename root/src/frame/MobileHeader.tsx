@@ -1,27 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@reach/router";
 import styled from "styled-components";
 import { Grid } from "semantic-ui-react";
 
 import MobileNav from "./MobileNav";
-import LanguangeMenu from "./LanguageMenu";
-import UserMenu from "./user/UserMenu";
-import logo from "../../img/logo.png";
-
-// to be imported from Bit
-const StyledHeader = styled("header")`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 0.3rem 1rem;
-  height: 67px;
-  background: #222;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: 400;
-`;
+import LanguangeMenu from "@bit/wasedatime.core.ts.ui.language-menu";
+// import UserMenu from "./user/UserMenu";
+import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
+import MobileHeaderWrapper from "@bit/wasedatime.core.ts.ui.mobile-header-wrapper";
 
 const StyledLink = styled(Link)`
   display: flex;
@@ -45,31 +31,31 @@ const StyledNavWrapper = styled(StyledGridColumn)`
   padding: 0px 0.5rem !important;
 `;
 
-const MobileHeader = ({ userInfo, signOut, toggleSignInModal }) => {
+const MobileHeader = ({ navItems }) => {
   return (
-    <StyledHeader>
+    <MobileHeaderWrapper>
       <StyledLink to="/about">
-        <Logo src={logo} alt="WasedaTime logo" width="50" height="50" />
+        <SmallLogo />
       </StyledLink>
 
       <StyledGrid>
         <StyledNavWrapper width={12} floated="left">
-          <MobileNav />
+          <MobileNav navItems={navItems} />
         </StyledNavWrapper>
         <StyledGridColumn width={2} floated="right">
-          <LanguangeMenu isMobileMode={true} />
+          {/*<LanguangeMenu />*/}
         </StyledGridColumn>
         <StyledGridColumn width={2} floated="right">
-          <UserMenu
+          {/*<UserMenu
             userInfo={userInfo}
             signOut={signOut}
             openSignInModal={toggleSignInModal}
             isHovered={false}
             isMobileMode={true}
-          />
+          />*/}
         </StyledGridColumn>
       </StyledGrid>
-    </StyledHeader>
+    </MobileHeaderWrapper>
   );
 };
 

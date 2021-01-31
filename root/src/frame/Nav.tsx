@@ -2,7 +2,7 @@ import React from "react";
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import Sidebar from "@bit/wasedatime.core.ts.ui.sidebar";
-import MobileHeaderWrapper from "@bit/wasedatime.core.ts.ui.mobile-header-wrapper";
+import MobileHeader from "./MobileHeader";
 import {
   faCalendarAlt,
   faBook,
@@ -30,7 +30,11 @@ const navItems = [
 const Nav = () => (
   <MediaQuery maxWidth={sizes.tablet}>
     {(matches) =>
-      matches ? <MobileHeaderWrapper /> : <Sidebar navItems={navItems} />
+      matches ? (
+        <MobileHeader navItems={navItems} />
+      ) : (
+        <Sidebar navItems={navItems} />
+      )
     }
   </MediaQuery>
 );

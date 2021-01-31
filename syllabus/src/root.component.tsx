@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { createStore, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
 import rootReducer from "./redux/reducers";
 import App from "./App";
 import Amplify from "aws-amplify";
-import logger from "redux-logger";
-import thunk from "redux-thunk";
 import configureStore from "./configureStore";
 import { saveState } from "./localForage";
 import throttle from "lodash/throttle";
@@ -21,14 +18,6 @@ const config = {
   },
 };
 Amplify.configure(config);
-
-const middlewares = [thunk];
-if (
-  process.env.NODE_ENV !== "production" ||
-  process.env.REACT_APP_ENV === "staging"
-) {
-  middlewares.push(logger);
-}
 
 const Root = ({ name, fetchCourses, fetchCoursesBySchool }) => {
   const [reduxStore, setReduxStore] = useState(null);

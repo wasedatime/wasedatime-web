@@ -1,17 +1,15 @@
 import { combineReducers } from "redux";
-// import fetchedList, * as fromList from "./fetchedList";
 import byId from "./byId";
-import schools from "./schools";
-import isFetching from "./isFetching";
-// import { SYLLABUS_KEYS } from "../config/syllabusKeys";
+import idsBySchool from "./idsBySchool";
+import orderedIds from "./orderedIds";
 
-const fetchedCourses = combineReducers({
+const addedCourses = combineReducers({
   byId,
-  schools,
-  isFetching,
+  idsBySchool,
+  orderedIds,
 });
 
-export default fetchedCourses;
+export default addedCourses;
 
 // export const getFetchedIds = (state) => fromList.getIds(state.list);
 //

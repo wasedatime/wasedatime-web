@@ -1,19 +1,23 @@
+import {
+  FETCH_COURSES_REQUEST,
+  FETCH_COURSES_SUCCESS,
+  FETCH_COURSES_FAILURE,
+} from "../../actions/types";
+
 interface ActionProps {
   type: string;
 }
 
-const isFetching = (actionTypes: { [key: string]: string }) => {
-  return (state = false, action: ActionProps): boolean => {
-    switch (action.type) {
-      case actionTypes.fetchRequest:
-        return true;
-      case actionTypes.fetchSuccess:
-      case actionTypes.fetchFailure:
-        return false;
-      default:
-        return state;
-    }
-  };
+const isFetching = (state = false, action: ActionProps): boolean => {
+  switch (action.type) {
+    case FETCH_COURSES_REQUEST:
+      return true;
+    case FETCH_COURSES_SUCCESS:
+    case FETCH_COURSES_FAILURE:
+      return false;
+    default:
+      return state;
+  }
 };
 
 export default isFetching;

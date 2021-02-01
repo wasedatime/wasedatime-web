@@ -25,7 +25,7 @@ const wasedaNishiwasedaBusUri =
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  padding: 1em;
+  padding: 1rem;
 `;
 
 const StyledAnchor = styled("a")`

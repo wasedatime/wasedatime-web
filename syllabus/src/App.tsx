@@ -1,29 +1,17 @@
 import React from "react";
-import { Provider, connect } from "react-redux";
-import { fetchCourses, fetchCoursesBySchool } from "./redux/actions/syllabus";
+import { Router } from "@reach/router";
+// import Timetable from "./timetable/containers/TimetableContainer";
+import Syllabus from "./syllabus/containers/SyllabusContainer";
 
-interface Props {
-  fetchCourses: () => void;
-  fetchCoursesBySchool: (school: string) => void;
-}
-
-const App = ({ fetchCourses, fetchCoursesBySchool }: Props) => {
+const App = () => {
   return (
     <div>
-      <button onClick={() => fetchCoursesBySchool("ART")}>
-        Load ART courses
-      </button>
-      <button onClick={() => fetchCoursesBySchool("SSS")}>
-        Load SSS courses
-      </button>
-      <button onClick={fetchCourses}>Load courses</button>
+      <Router>
+        {/*<Timetable path="timetable" />*/}
+        <Syllabus path="syllabus" />
+      </Router>
     </div>
   );
 };
 
-const mapDispatchToProps = {
-  fetchCourses,
-  fetchCoursesBySchool,
-};
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

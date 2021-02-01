@@ -1,5 +1,5 @@
 import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
-import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../actions/types";
+import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../../actions/types";
 
 interface courseAndPrefTypes {
   id: string;
@@ -18,12 +18,19 @@ interface ActionProps {
   payload: PayloadProps;
 }
 
+interface SchoolsProps {
+  [id: string]: {
+    ids: string[];
+  };
+}
+
 const initialState: SchoolsProps = {};
 
 const schools = (state = initialState, action: ActionProps): SchoolsProps => {
+  let school;
   switch (action.type) {
     case ADD_COURSE:
-      const school = action.payload.course[SYLLABUS_KEYS.SCHOOL];
+      school = action.payload.course[SYLLABUS_KEYS.SCHOOL];
       const id = action.payload.course[SYLLABUS_KEYS.ID];
       const newIds = state[school] ? [...state[school].ids, id] : [id];
       return {
@@ -33,7 +40,7 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
         },
       };
     case REMOVE_COURSE:
-      const school = action.payload.course[SYLLABUS_KEYS.SCHOOL];
+      school = action.payload.course[SYLLABUS_KEYS.SCHOOL];
       return {
         ...state,
         [school]: {

@@ -3,7 +3,6 @@ import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 import { media } from "./common/utils";
-import { Wrapper, WrapperWithBackground } from "./common/Wrapper";
 // import { InvisibleButton } from "../styled-components/Button";
 import homeBackground from "../../img/home_background-lg.jpg";
 import homeBackgroundPhone from "../../img/home_background-phone.jpg";

@@ -1,5 +1,5 @@
 import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
-import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../actions/types";
+import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../../actions/types";
 
 interface courseAndPrefTypes {
   id: string;
@@ -33,7 +33,7 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
         ...state,
         [id]: {
           pref: {
-            color: state.length % 8,
+            color: Object.keys(state).length % 8,
             visibility: true,
             displayLang: action.payload.displayLang,
           },
@@ -42,7 +42,7 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
       };
     case REMOVE_COURSE:
       let restCourses = { ...state };
-      delete restCourses[course[SYLLABUS_KEYS.ID]];
+      delete restCourses[action.payload.course[SYLLABUS_KEYS.ID]];
       return restCourses;
     case SAVE_TIMETABLE:
       let newCoursesAndPrefs = {};

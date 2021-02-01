@@ -3,7 +3,7 @@ import {
   FETCH_COURSES_SUCCESS,
   ADD_SCHOOL_FETCH_COURSES_SUCCESS,
   REMOVE_SCHOOL,
-} from "../actions/types";
+} from "../../actions/types";
 
 interface PayloadProps {
   coursesBySchool?: {

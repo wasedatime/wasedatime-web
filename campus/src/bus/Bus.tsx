@@ -25,6 +25,7 @@ const wasedaNishiwasedaBusUri =
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
+  padding: 1em;
 `;
 
 const StyledAnchor = styled("a")`
@@ -325,7 +326,7 @@ const Bus = (): JSX.Element => {
   const nishiStatusComponent = createStatusComponent(nishiStatus, t);
 
   return (
-    <div>
+    <React.Fragment>
       <Helmet>
         <title>WasedaTime -　Bus</title>
         <meta
@@ -402,7 +403,7 @@ const Bus = (): JSX.Element => {
           {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}
         </StyledAnchor>
       </InfoWrapper>
-    </div>
+    </React.Fragment>
   );
 };
 

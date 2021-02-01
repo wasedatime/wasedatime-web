@@ -2,10 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import stickybits from "stickybits";
 
-import { headerHeight } from "../common/variables";
-import { RowWrapper } from "../common/Wrapper";
-
-const ExtendedWrapper = styled(RowWrapper)`
+const ExtendedWrapper = styled.div`
   flex: none;
   align-items: center;
   justify-content: space-around;
@@ -34,9 +31,27 @@ const SwitchButton = styled("button")`
   }
 `;
 
-export default class BinarySwitch extends React.Component {
-  constructor() {
-    super();
+interface Props {
+  switchHeight: string;
+  handleSwitchValue: (value: string) => void;
+  value: string;
+  leftButtonId: string;
+  rightButtonId: string;
+  leftValue: string;
+  rightValue: string;
+  leftDisplayedValue: string;
+  rightDisplayedValue: string;
+}
+
+export default class BinarySwitch extends React.Component<Props> {
+  wrapper: any;
+  setWrapperRef: (element: any) => void;
+  createStickyWrapper: () => void;
+  cleanupStickyWrapper: () => void;
+  stickyWrapper: any;
+
+  constructor(props) {
+    super(props);
     this.wrapper = null;
     this.setWrapperRef = (element) => {
       this.wrapper = element;
@@ -45,7 +60,7 @@ export default class BinarySwitch extends React.Component {
     this.createStickyWrapper = () => {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: parseInt(headerHeight, 10),
+          stickyBitStickyOffset: parseInt("67px", 10),
         });
       }
     };

@@ -1,8 +1,8 @@
 import React from "react";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 import SyllabusSearch from "./SyllabusSearch";
-import {RowWrapper} from "../common/Wrapper";
+import { RowWrapper } from "../common/Wrapper";
 
 const Syllabus = (props) => {
   return (

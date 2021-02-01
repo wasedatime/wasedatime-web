@@ -13,6 +13,17 @@ const fetchedCourses = combineReducers({
 
 export default fetchedCourses;
 
+export const getFetchedCoursesList = (coursesBySchool) => {
+  let courses = [];
+  for (const school in coursesBySchool) {
+    const coursesById = coursesBySchool[school];
+    for (const courseId in coursesById) {
+      courses.push(coursesById[courseId]);
+    }
+  }
+  return courses;
+};
+
 // export const getFetchedIds = (state) => fromList.getIds(state.list);
 //
 // export const getFetchedById = (state) => {

@@ -6,6 +6,7 @@ import Amplify from "aws-amplify";
 import configureStore from "./configureStore";
 import { saveState } from "./localForage";
 import throttle from "lodash/throttle";
+import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 
 const config = {
   API: {
@@ -18,6 +19,8 @@ const config = {
   },
 };
 Amplify.configure(config);
+
+i18nConfig();
 
 const Root = ({ name, fetchCourses, fetchCoursesBySchool }) => {
   const [reduxStore, setReduxStore] = useState(null);

@@ -11,6 +11,11 @@ const addedCourses = combineReducers({
 
 export default addedCourses;
 
+export const getAddedCoursesList = (addedCoursesAndPrefs) =>
+  Object.keys(addedCoursesAndPrefs).map(
+    (courseId) => addedCoursesAndPrefs[courseId].course
+  );
+
 // export const getFetchedIds = (state) => fromList.getIds(state.list);
 //
 // export const getFetchedById = (state) => {

@@ -4,6 +4,7 @@
     "start": "webpack serve --port 8081",
     "start:standalone": "webpack serve --env standalone",
     "build": "webpack --mode=production",
+    "build-dev": "webpack --mode=production --env isDev",
     "analyze": "webpack --mode=production --env analyze",
     "lint": "eslint src --ext js,ts,tsx",
     "format": "prettier --write \"./**\"",

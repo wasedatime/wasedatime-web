@@ -36,6 +36,7 @@ jobs:
     if: github.ref == 'refs/heads/master'
     env:
       REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL_M }}
+      BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
     runs-on: ubuntu-latest
 
     steps:
@@ -47,7 +48,10 @@ jobs:
 
       - name: Install
         run: |
-          npm login --registry=https://node.bit.dev --scope=@bit
+          echo "Adding bit.dev to npm registry"
+          npm config set @bit:registry https://node.bit.dev
+          npm config set //node.bit.dev/:_authToken ${BIT_TOKEN}
+          echo "Completed adding bit.dev to npm registry"
           npm ci
 
       - name: Test

@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 
 // TODO use modal from other ui framework
 // import Header from "../../src/js/components/Header";
-// import { media } from "../../src/js/components/common/utils";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { busSchedule } from "../constants/busSchedule";
 import "../styles/datetime.css";
 import "react-datepicker/dist/react-datepicker.css";
@@ -49,7 +49,7 @@ const StyledSubHeading = styled("h2")`
   font-size: 2.5rem;
   font-weight: 300;
   color: #ffffff;
-  ${""/* media.phone`font-size: 2rem;` */}
+  ${media.phone`font-size: 2rem;`}
 `;
 
 const Status = styled("section")`
@@ -83,8 +83,8 @@ const DatePickerButton = styled("button")`
     background: #ddd;
   }
 
-  ${""/* media.phone`padding: 0.5em 0.3em;` */}
-  ${""/* media.phoneMini`font-size: 0.9em;` */}
+  ${media.phone`padding: 0.5em 0.3em;`}
+  ${media.phoneMini`font-size: 0.9em;`}
 `;
 
 const DatetimeClearButton = styled("button")`
@@ -103,14 +103,13 @@ const DatetimeClearButton = styled("button")`
     outline: none;
   }
 
-  ${""/* media.phone`padding: 0.5em 0.3em;` */}
-  ${""/* media.phoneMini`font-size: 0.9em;` */}
+  ${media.phone`padding: 0.5em 0.3em;`}
+  ${media.phoneMini`font-size: 0.9em;`}
 `;
 
-
 interface PropsType {
-  value: string,
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
+  value: string;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 const binarySearch = (value, arr) => {
@@ -294,9 +293,9 @@ const createStatusComponent = (status, t) => {
   };
 };
 
-const DateSelectorWrapper = (props: any) => <DateSelector {...props} />
+const DateSelectorWrapper = (props: any) => <DateSelector {...props} />;
 
-const TimeSelectorWrapper = (props: any) => <TimeSelector {...props} />
+const TimeSelectorWrapper = (props: any) => <TimeSelector {...props} />;
 
 const DateSelector = forwardRef<any, PropsType>(({ value, onClick }, ref) => (
   <DatePickerButton
@@ -315,100 +314,96 @@ const TimeSelector = forwardRef<any, PropsType>(({ value, onClick }, ref) => (
 ));
 
 const Bus = (): JSX.Element => {
-  const [date, setDate] = useState<Date>(new Date())
+  const [date, setDate] = useState<Date>(new Date());
   const onDatetimeChange = (date: Date): void => setDate(date || new Date());
   const clearDatetime = (): void => setDate(new Date());
 
   const { t, i18n } = useTranslation();
-    const lng = i18n.language;
-    const { wasedaStatus, nishiStatus } = getBusStatuses(
-      date,
-      lng,
-      t
-    );
-    const wasedaStatusComponent = createStatusComponent(wasedaStatus, t);
-    const nishiStatusComponent = createStatusComponent(nishiStatus, t);
-    
-    return (
-      <div>
-        <Helmet>
-          <title>WasedaTime -　Bus</title>
-          <meta
-            name="description"
-            content="Shuttle Bus Arrival Time Checking at Waseda University."
-          />
-          <meta property="og:title" content="WasedaTime - Bus" />
-          <meta
-            property="og:description"
-            content="Shuttle Bus Arrival Time Checking at Waseda University."
-          />
-          <meta property="og:site_name" content="WasedaTime - Bus" />
-        </Helmet>
-        {/* <Header
+  const lng = i18n.language;
+  const { wasedaStatus, nishiStatus } = getBusStatuses(date, lng, t);
+  const wasedaStatusComponent = createStatusComponent(wasedaStatus, t);
+  const nishiStatusComponent = createStatusComponent(nishiStatus, t);
+
+  return (
+    <div>
+      <Helmet>
+        <title>WasedaTime -　Bus</title>
+        <meta
+          name="description"
+          content="Shuttle Bus Arrival Time Checking at Waseda University."
+        />
+        <meta property="og:title" content="WasedaTime - Bus" />
+        <meta
+          property="og:description"
+          content="Shuttle Bus Arrival Time Checking at Waseda University."
+        />
+        <meta property="og:site_name" content="WasedaTime - Bus" />
+      </Helmet>
+      {/* <Header
           title={t("navigation.bus")}
           placeholder="Search classroom (in construction...)"
           disabled={true}
         /> */}
-          <InfoWrapper>
-            <p>
-              <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
-              {t("bus.Assign a date / time to check the next bus")}：
-            </p>
+      <InfoWrapper>
+        <p>
+          <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
+          {t("bus.Assign a date / time to check the next bus")}：
+        </p>
 
-            <DatetimeSelection>
-              <DatePickerSpan>
-                <DatePicker
-                  selected={date}
-                  onChange={(d: Date) => onDatetimeChange(d)}
-                  dateFormat="yyyy-MM-dd"
-                  customInput={<DateSelectorWrapper />}
-                  popperPlacement="bottom-start"
-                />
-              </DatePickerSpan>
-              <DatePickerSpan>
-                <DatePicker
-                  selected={date}
-                  onChange={(d: Date) => onDatetimeChange(d)}
-                  showTimeSelect
-                  showTimeSelectOnly
-                  minTime={new Date().setHours(9, 0)}
-                  maxTime={new Date().setHours(18, 20)}
-                  timeIntervals={5}
-                  timeCaption="Time"
-                  dateFormat="hh:mm aa"
-                  customInput={<TimeSelectorWrapper />}
-                  popperPlacement="bottom-start"
-                />
-              </DatePickerSpan>
-              <DatetimeClearButton onClick={clearDatetime}>
-                <FontAwesomeIcon icon={faTimes} size="1x" /> Clear
-              </DatetimeClearButton>
-            </DatetimeSelection>
+        <DatetimeSelection>
+          <DatePickerSpan>
+            <DatePicker
+              selected={date}
+              onChange={(d: Date) => onDatetimeChange(d)}
+              dateFormat="yyyy-MM-dd"
+              customInput={<DateSelectorWrapper />}
+              popperPlacement="bottom-start"
+            />
+          </DatePickerSpan>
+          <DatePickerSpan>
+            <DatePicker
+              selected={date}
+              onChange={(d: Date) => onDatetimeChange(d)}
+              showTimeSelect
+              showTimeSelectOnly
+              minTime={new Date().setHours(9, 0)}
+              maxTime={new Date().setHours(18, 20)}
+              timeIntervals={5}
+              timeCaption="Time"
+              dateFormat="hh:mm aa"
+              customInput={<TimeSelectorWrapper />}
+              popperPlacement="bottom-start"
+            />
+          </DatePickerSpan>
+          <DatetimeClearButton onClick={clearDatetime}>
+            <FontAwesomeIcon icon={faTimes} size="1x" /> Clear
+          </DatetimeClearButton>
+        </DatetimeSelection>
 
-            <BusStatus>
-              <StyledSubHeading>
-                {t("bus.Waseda")}{" "}
-                <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
-                {t("bus.NishiWaseda")}
-              </StyledSubHeading>
-              <Status>{wasedaStatusComponent.status}</Status>
-              <Remark>{wasedaStatusComponent.remark}</Remark>
-            </BusStatus>
-            <BusStatus>
-              <StyledSubHeading>
-                {t("bus.NishiWaseda")}{" "}
-                <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
-                {t("bus.Waseda")}
-              </StyledSubHeading>
-              <Status>{nishiStatusComponent.status}</Status>
-              <Remark>{nishiStatusComponent.remark}</Remark>
-            </BusStatus>
-            <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
-              {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}
-            </StyledAnchor>
-          </InfoWrapper>
-      </div>
-    );
-}
+        <BusStatus>
+          <StyledSubHeading>
+            {t("bus.Waseda")}{" "}
+            <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
+            {t("bus.NishiWaseda")}
+          </StyledSubHeading>
+          <Status>{wasedaStatusComponent.status}</Status>
+          <Remark>{wasedaStatusComponent.remark}</Remark>
+        </BusStatus>
+        <BusStatus>
+          <StyledSubHeading>
+            {t("bus.NishiWaseda")}{" "}
+            <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
+            {t("bus.Waseda")}
+          </StyledSubHeading>
+          <Status>{nishiStatusComponent.status}</Status>
+          <Remark>{nishiStatusComponent.remark}</Remark>
+        </BusStatus>
+        <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
+          {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}
+        </StyledAnchor>
+      </InfoWrapper>
+    </div>
+  );
+};
 
 export default Bus;

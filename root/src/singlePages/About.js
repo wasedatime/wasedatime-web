@@ -2,7 +2,6 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
-// import smoothScroll from "smoothscroll";
 import { media } from "./common/utils";
 import { Wrapper, WrapperWithBackground } from "./common/Wrapper";
 // import { InvisibleButton } from "../styled-components/Button";

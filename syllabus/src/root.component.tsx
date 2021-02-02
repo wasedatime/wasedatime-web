@@ -44,7 +44,6 @@ const Root = ({ name, fetchCourses, fetchCoursesBySchool }) => {
 
   return reduxStore ? (
     <Provider store={reduxStore}>
-      <section>{name} is mounted!</section>
       <App />
     </Provider>
   ) : (

@@ -11,10 +11,16 @@ import { getAddedCoursesListWithLang } from "../../redux/reducers/addedCourses";
 import { getFetchedCoursesList } from "../../redux/reducers/fetchedCourses";
 import AddedCourseListSwitch from "./AddedCourseListSwitch";
 import FetchedCourseList from "../components/FetchedCourseList";
+import Filter from "../components/Filter";
+import FilterButton from "../components/FilterButton";
 import queryString from "query-string";
 import { getSearchLang } from "@bit/wasedatime.syllabus.ts.utils.course-search";
 import { createHistory, LocationProvider } from "@reach/router";
 import { WithTranslation, withTranslation } from "react-i18next";
+import MediaQuery from "react-responsive";
+import Modal from "@bit/wasedatime.core.ts.ui.modal";
+import filterCourses from "../utils/filterCourses";
+import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const SyllabusFlex = styled.div`
   display: flex;
@@ -48,7 +54,7 @@ interface OwnProps extends WithTranslation {
 
 interface OwnState {
   isModalOpen: boolean;
-  filterGroups: object;
+  filterGroups: { [filterName: string]: any };
   fetchedCourses: object[];
   searchTerm: string | string[];
   inputText: string | string[];
@@ -56,20 +62,35 @@ interface OwnState {
 
 let history = createHistory(window);
 
+const modalStyle = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: "401",
+  },
+  content: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: "#fff",
+    overflowY: "auto",
+    overflowScrolling: "touch",
+    WebkitOverflowScrolling: "touch",
+    outline: "none",
+    fontSize: "16px",
+    padding: 0,
+  },
+};
+
 class SyllabusContainer extends React.Component<
   ReduxStateProps & ReduxDispatchProps & OwnProps,
   OwnState
 > {
-  // get addedCourses & fetchedCourses from redux
-  // get filter items and filter courses
-
-  // state = {
-  //   isModalOpen: false,
-  //   filterGroups: this.initialFilterGroups,
-  //   inputText: searchTerm,
-  //   searchTerm: searchTerm,
-  //   filteredCourses: props.fetchedCourses,
-  // };
   constructor(props) {
     super(props);
     const parsedSearch = queryString.parse(this.props.location.search);
@@ -113,6 +134,47 @@ class SyllabusContainer extends React.Component<
     );
   };
 
+  handleToggleModal = () => {
+    this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));
+  };
+
+  handleToggleFilter = (name: string, value: any) => {
+    this.setState((prevState, props) => {
+      const { [name]: filters, ...rest } = prevState.filterGroups;
+      let newFilters;
+      if (["evalType", "evalPercent"].includes(name) || Array.isArray(value)) {
+        newFilters = value; // change the whole value of the filter group
+      } else if (!filters) {
+        newFilters = [value]; // add first item to an unselected filter group
+      } else if (filters.includes(value)) {
+        newFilters = filters.filter((elem) => elem !== value); // cancel an item from a filter group
+      } else {
+        newFilters = [...filters, value]; // add an item to a filter group
+      }
+      const newFilterGroups =
+        Array.isArray(newFilters) && newFilters.length === 0
+          ? rest
+          : { [name]: newFilters, ...rest };
+
+      const newFilteredCourses = filterCourses(
+        newFilterGroups,
+        props.fetchedCourses
+      );
+
+      return {
+        filterGroups: newFilterGroups,
+        fetchedCourses: newFilteredCourses,
+      };
+    });
+  };
+
+  clearFilter = () => {
+    this.setState({
+      filterGroups: {},
+      fetchedCourses: this.props.fetchedCourses,
+    });
+  };
+
   render() {
     const {
       fetchCourses,
@@ -127,9 +189,16 @@ class SyllabusContainer extends React.Component<
     return (
       <LocationProvider history={history}>
         <SyllabusFlex>
-          <SideColumn>
-            <AddedCourseListSwitch addedCourses={addedCourses} />
-          </SideColumn>
+          <MediaQuery minWidth={sizes.tablet}>
+            {(matches) =>
+              matches && (
+                <SideColumn>
+                  <AddedCourseListSwitch addedCourses={addedCourses} />
+                </SideColumn>
+              )
+            }
+          </MediaQuery>
+
           <MiddleColumn>
             <FetchedCourseList
               searchTerm={searchTerm}
@@ -138,14 +207,35 @@ class SyllabusContainer extends React.Component<
               onSearchInputChange={this.handleInputChange}
             />
           </MiddleColumn>
-          <SideColumn>
-            {/*<Filter
-            filterGroups={this.state.filterGroups}
-            handleToggleFilter={this.handleToggleFilter}
-            clearFilter={this.clearFilter}
-            isSideBar={true}
-          />*/}
-          </SideColumn>
+          <MediaQuery minWidth={sizes.desktop}>
+            {(matches) => {
+              return matches ? (
+                <SideColumn>
+                  <Filter
+                    filterGroups={this.state.filterGroups}
+                    handleToggleFilter={this.handleToggleFilter}
+                    clearFilter={this.clearFilter}
+                    isSideBar={true}
+                  />
+                </SideColumn>
+              ) : (
+                <div>
+                  <FilterButton
+                    isModalOpen={this.state.isModalOpen}
+                    handleToggleModal={this.handleToggleModal}
+                  />
+                  <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                    <Filter
+                      filterGroups={this.state.filterGroups}
+                      handleToggleFilter={this.handleToggleFilter}
+                      clearFilter={this.clearFilter}
+                      isSideBar={false}
+                    />
+                  </Modal>
+                </div>
+              );
+            }}
+          </MediaQuery>
         </SyllabusFlex>
       </LocationProvider>
     );

@@ -4,23 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "semantic-ui-react";
 import styled from "styled-components";
-import { withNamespaces } from "react-i18next";
-
-import { headerHeight } from "../common/variables";
+import { withTranslation } from "react-i18next";
+import { headerHeight } from "@bit/wasedatime.core.ts.constants.size-variables";
 import FilterGroup from "./FilterGroup";
 import FilterEvalGroup from "./FilterEvalGroup";
-import { Wrapper } from "../common/Wrapper";
-import { Overlay } from "../common/Overlay";
 
-const FilterWrapper = styled(Wrapper)`
+const FilterWrapper = styled.div`
   ${(props) => !props.isSideBar && "width: 100%;"}
   flex: none;
   position: fixed !important
   height: ${(props) => (props.isSideBar ? "calc(100vh - 70px)" : "100vh")};
   overflow-y: auto;
-`;
-
-const FilterOverlay = styled(Overlay)`
   padding: ${(props) =>
     props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em;"};
 `;
@@ -168,7 +162,10 @@ class Filter extends React.Component {
     ];
     const checkedSemesterInputs = semesterInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[semesterInputName].includes(input.value),
+      ischecked:
+        (filterGroups[semesterInputName] &&
+          filterGroups[semesterInputName].includes(input.value)) ||
+        false,
     }));
 
     const langLegend = t("syllabus.Languages");
@@ -227,7 +224,10 @@ class Filter extends React.Component {
     ];
     const checkedLangInputs = langInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[langInputName].includes(input.value),
+      ischecked:
+        (filterGroups[langInputName] &&
+          filterGroups[langInputName].includes(input.value)) ||
+        false,
     }));
 
     const dayLegend = t("syllabus.day");
@@ -242,7 +242,10 @@ class Filter extends React.Component {
     ];
     const checkedDayInputs = dayInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[dayInputName].includes(input.value),
+      ischecked:
+        (filterGroups[dayInputName] &&
+          filterGroups[dayInputName].includes(input.value)) ||
+        false,
     }));
 
     const periodLegend = t("syllabus.period.Period");
@@ -258,7 +261,10 @@ class Filter extends React.Component {
     ];
     const checkedPeriodInputs = periodInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[periodInputName].includes(input.value),
+      ischecked:
+        (filterGroups[periodInputName] &&
+          filterGroups[periodInputName].includes(input.value)) ||
+        false,
     }));
 
     const minYearLegend = t("syllabus.minYear");
@@ -271,7 +277,10 @@ class Filter extends React.Component {
     ];
     const checkedMinYearInputs = minYearInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[minYearInputName].includes(input.value),
+      ischecked:
+        (filterGroups[minYearInputName] &&
+          filterGroups[minYearInputName].includes(input.value)) ||
+        false,
     }));
 
     const creditLegend = t("syllabus.credit");
@@ -283,7 +292,10 @@ class Filter extends React.Component {
     ];
     const checkedCreditInputs = creditInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[creditInputName].includes(input.value),
+      ischecked:
+        (filterGroups[creditInputName] &&
+          filterGroups[creditInputName].includes(input.value)) ||
+        false,
     }));
 
     const evalLegend = t("syllabus.eval.title");
@@ -300,8 +312,11 @@ class Filter extends React.Component {
     ];
     const evalTypeInputName = "evalType";
     const evalPercentInputName = "evalPercent";
-    const selectedEvalTypeInput = filterGroups[evalTypeInputName];
-    const selectedEvalPercentInputs = filterGroups[evalPercentInputName];
+    const selectedEvalTypeInput = filterGroups[evalTypeInputName] || "";
+    const selectedEvalPercentInputs = filterGroups[evalPercentInputName] || [
+      0,
+      100,
+    ];
 
     const evalSpecialInputName = "evalSpecial";
     const evalSpecialInputs = [
@@ -314,7 +329,10 @@ class Filter extends React.Component {
     ];
     const checkedEvalSpecialInputs = evalSpecialInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[evalSpecialInputName].includes(input.value),
+      ischecked:
+        (filterGroups[evalSpecialInputName] &&
+          filterGroups[evalSpecialInputName].includes(input.value)) ||
+        false,
     }));
 
     const typeLegend = t("syllabus.type");
@@ -368,7 +386,10 @@ class Filter extends React.Component {
     ];
     const checkedTypeInputs = typeInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[typeInputName].includes(input.value),
+      ischecked:
+        (filterGroups[typeInputName] &&
+          filterGroups[typeInputName].includes(input.value)) ||
+        false,
     }));
 
     const levelLegend = t("syllabus.level");
@@ -407,96 +428,97 @@ class Filter extends React.Component {
     ];
     const checkedLevelInputs = levelInputs.map((input) => ({
       ...input,
-      isChecked: filterGroups[levelInputName].includes(input.value),
+      ischecked:
+        (filterGroups[levelInputName] &&
+          filterGroups[levelInputName].includes(input.value)) ||
+        false,
     }));
 
     const { handleToggleFilter, clearFilter, isSideBar } = this.props;
     return (
       <FilterWrapper innerRef={this.setWrapperRef} isSideBar={isSideBar}>
-        <FilterOverlay isSideBar={isSideBar}>
-          <FilterTitle isSideBar={isSideBar}>
-            <FontAwesomeIcon icon={faFilter} size="1x" />
-            &nbsp;
-            <b>{t("syllabus.Filter by")}</b>
-            &nbsp;
-            <FilterClearButton size="big" onClick={clearFilter}>
-              {t("syllabus.Clear filter")}
-            </FilterClearButton>
-          </FilterTitle>
-          <FilterGroupWrapper>
-            <FilterGroup
-              handleToggleFilter={handleToggleFilter}
-              legend={semesterLegend}
-              inputName={semesterInputName}
-              inputs={checkedSemesterInputs}
-              filterType={"dropdown"}
-            />
-            <FilterGroup
-              handleToggleFilter={handleToggleFilter}
-              legend={langLegend}
-              inputName={langInputName}
-              inputs={checkedLangInputs}
-              filterType={"dropdown"}
-            />
-            <FilterGroup
-              handleToggleFilter={handleToggleFilter}
-              legend={dayLegend}
-              inputName={dayInputName}
-              inputs={checkedDayInputs}
-              filterType={"checkbox"}
-            />
-            <FilterGroup
-              handleToggleFilter={handleToggleFilter}
-              legend={periodLegend}
-              inputName={periodInputName}
-              inputs={checkedPeriodInputs}
-              filterType={"checkbox"}
-            />
-            <FilterGroup
-              handleToggleFilter={handleToggleFilter}
-              legend={minYearLegend}
-              inputName={minYearInputName}
-              inputs={checkedMinYearInputs}
-              filterType={"checkbox"}
-            />
-            <FilterGroup
-              handleToggleFilter={handleToggleFilter}
-              legend={creditLegend}
-              inputName={creditInputName}
-              inputs={checkedCreditInputs}
-              filterType={"checkbox"}
-            />
-            <FilterEvalGroup
-              handleToggleFilter={handleToggleFilter}
-              legend={evalLegend}
-              typeDefault={evalTypeDefault}
-              typeInputs={evalTypeInputs}
-              typeInputName={evalTypeInputName}
-              selectedTypeInput={selectedEvalTypeInput}
-              percentInputName={evalPercentInputName}
-              selectedPercentInputs={selectedEvalPercentInputs}
-              specialInputName={evalSpecialInputName}
-              checkedSpecialInputs={checkedEvalSpecialInputs}
-            />
-            <FilterGroup
-              handleToggleFilter={handleToggleFilter}
-              legend={typeLegend}
-              inputName={typeInputName}
-              inputs={checkedTypeInputs}
-              filterType={"dropdown"}
-            />
-            <FilterGroup
-              handleToggleFilter={handleToggleFilter}
-              legend={levelLegend}
-              inputName={levelInputName}
-              inputs={checkedLevelInputs}
-              filterType={"dropdown"}
-            />
-          </FilterGroupWrapper>
-        </FilterOverlay>
+        <FilterTitle isSideBar={isSideBar}>
+          <FontAwesomeIcon icon={faFilter} size="1x" />
+          &nbsp;
+          <b>{t("syllabus.Filter by")}</b>
+          &nbsp;
+          <FilterClearButton size="big" onClick={clearFilter}>
+            {t("syllabus.Clear filter")}
+          </FilterClearButton>
+        </FilterTitle>
+        <FilterGroupWrapper>
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={semesterLegend}
+            inputName={semesterInputName}
+            inputs={checkedSemesterInputs}
+            filterType={"dropdown"}
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={langLegend}
+            inputName={langInputName}
+            inputs={checkedLangInputs}
+            filterType={"dropdown"}
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={dayLegend}
+            inputName={dayInputName}
+            inputs={checkedDayInputs}
+            filterType={"checkbox"}
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={periodLegend}
+            inputName={periodInputName}
+            inputs={checkedPeriodInputs}
+            filterType={"checkbox"}
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={minYearLegend}
+            inputName={minYearInputName}
+            inputs={checkedMinYearInputs}
+            filterType={"checkbox"}
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={creditLegend}
+            inputName={creditInputName}
+            inputs={checkedCreditInputs}
+            filterType={"checkbox"}
+          />
+          <FilterEvalGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={evalLegend}
+            typeDefault={evalTypeDefault}
+            typeInputs={evalTypeInputs}
+            typeInputName={evalTypeInputName}
+            selectedTypeInput={selectedEvalTypeInput}
+            percentInputName={evalPercentInputName}
+            selectedPercentInputs={selectedEvalPercentInputs}
+            specialInputName={evalSpecialInputName}
+            checkedSpecialInputs={checkedEvalSpecialInputs}
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={typeLegend}
+            inputName={typeInputName}
+            inputs={checkedTypeInputs}
+            filterType={"dropdown"}
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={levelLegend}
+            inputName={levelInputName}
+            inputs={checkedLevelInputs}
+            filterType={"dropdown"}
+          />
+        </FilterGroupWrapper>
       </FilterWrapper>
     );
   }
 }
 
-export default withNamespaces("translation")(Filter);
+export default withTranslation("translation")(Filter);

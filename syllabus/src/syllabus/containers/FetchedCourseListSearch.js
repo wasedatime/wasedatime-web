@@ -215,7 +215,7 @@ class FetchedCourseSearch extends React.Component {
     const periodFilters = filterGroups.period;
 
     filteredCourses =
-      periodFilters.length === 0 || periodFilters.length === 6
+      periodFilters.length === 0 || periodFilters.length === 7
         ? filteredCourses
         : filteredCourses.filter((course) => {
             const occurrences = course[SYLLABUS_KEYS.OCCURRENCES];

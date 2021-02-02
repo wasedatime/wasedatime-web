@@ -91,7 +91,7 @@ const FilterGroup = ({
             id={input.value}
             name={inputName}
             value={input.value}
-            checked={input.isChecked}
+            checked={input.ischecked}
             onChange={(e) => {
               handleToggleFilter(e.target.name, e.target.value);
             }}
@@ -115,8 +115,11 @@ const FilterGroup = ({
         fluid
         multiple
         selection
-        options={inputs}
-        value={inputs.filter((i) => i.isChecked).map((i) => i.value)}
+        options={inputs.map((i) => ({
+          ...i,
+          ischecked: i.ischecked.toString(),
+        }))}
+        value={inputs.filter((i) => i.ischecked).map((i) => i.value)}
         onChange={(e, data) => {
           handleToggleFilter(inputName, data.value);
         }}

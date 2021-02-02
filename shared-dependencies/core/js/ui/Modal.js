@@ -2,7 +2,7 @@ import React from "react";
 import ReactModal from "react-modal";
 import noScroll from "no-scroll";
 
-ReactModal.setAppElement("#root");
+ReactModal.setAppElement("#layout");
 
 class Modal extends React.Component {
   componentDidMount() {

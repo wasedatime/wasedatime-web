@@ -2,16 +2,16 @@ import React from "react";
 import ReactModal from "react-modal";
 import noScroll from "no-scroll";
 
-ReactModal.setAppElement("#root");
+ReactModal.setAppElement("#layout");
 
 type ModalProps = {
   isOpen: boolean;
-  closeTimeoutMS: number;
-  style: any;
-  overlayClassName: string;
-  className: string;
   children: any;
-  onRequestClose(): void;
+  closeTimeoutMS?: number;
+  style?: any;
+  overlayClassName?: string;
+  className?: string;
+  onRequestClose?: () => void;
 };
 
 class Modal extends React.Component<ModalProps> {

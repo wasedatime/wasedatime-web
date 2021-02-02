@@ -11,10 +11,19 @@ const addedCourses = combineReducers({
 
 export default addedCourses;
 
-export const getAddedCoursesList = (addedCoursesAndPrefs) =>
-  Object.keys(addedCoursesAndPrefs).map(
-    (courseId) => addedCoursesAndPrefs[courseId].course
-  );
+export const getAddedCoursesListWithLang = (addedCoursesAndPrefs) =>
+  Object.keys(addedCoursesAndPrefs).map((courseId) => ({
+    ...addedCoursesAndPrefs[courseId].course,
+    displayLang: addedCoursesAndPrefs[courseId].pref.displayLang,
+  }));
+
+export const getAddedCoursesById = (byId) => {
+  let coursesById = {};
+  for (const courseId in byId) {
+    coursesById[courseId] = byId[courseId].course;
+  }
+  return coursesById;
+};
 
 // export const getFetchedIds = (state) => fromList.getIds(state.list);
 //

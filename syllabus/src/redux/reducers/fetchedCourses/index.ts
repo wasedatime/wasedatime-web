@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import byId from "./byId";
 import schools from "./schools";
 import isFetching from "./isFetching";
-// import { SYLLABUS_KEYS } from "../config/syllabusKeys";
+import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
 const fetchedCourses = combineReducers({
   byId,
@@ -18,7 +18,10 @@ export const getFetchedCoursesList = (coursesBySchool) => {
   for (const school in coursesBySchool) {
     const coursesById = coursesBySchool[school];
     for (const courseId in coursesById) {
-      courses.push(coursesById[courseId]);
+      courses.push({
+        ...coursesById[courseId],
+        [SYLLABUS_KEYS.SCHOOL]: school,
+      });
     }
   }
   return courses;

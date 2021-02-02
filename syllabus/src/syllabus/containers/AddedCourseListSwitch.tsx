@@ -1,14 +1,13 @@
 import React from "react";
-// import { withTranslation } from "react-i18next";
 
 // import { addedCourseListSwitchHeight } from "../../components/common/variables";
 import BinarySwitch from "../components/BinarySwitch";
 import { WithTranslation, withTranslation } from "react-i18next";
-// import AddedCourseListContainer from "./AddedCourseListContainer";
+import AddedCourseListContainer from "./AddedCourseListContainer";
 // import { getCurrentSemester, SEMESTERS } from "../../config/semesters";
 
 interface Props extends WithTranslation {
-  addedCourses: object[];
+  addedCourses: { [key: string]: any }[];
 }
 
 interface State {
@@ -20,10 +19,10 @@ class AddedCourseListSwitch extends React.Component<Props, State> {
   fallSemester: string;
   constructor(props) {
     super(props);
-    this.springSemester = "spring";
-    this.fallSemester = "fall";
+    this.springSemester = "springSem";
+    this.fallSemester = "fallSem";
     this.state = {
-      selectedSemester: "fall",
+      selectedSemester: "fallSem",
     };
   }
 
@@ -47,15 +46,15 @@ class AddedCourseListSwitch extends React.Component<Props, State> {
           value={selectedSemester}
           leftButtonId={`button--semester-spring`}
           rightButtonId={`button--semester-fall`}
-          leftValue={"spring"}
-          rightValue={"fall"}
+          leftValue={"springSem"}
+          rightValue={"fallSem"}
           leftDisplayedValue={t("syllabus.displayedSpringSemester")}
           rightDisplayedValue={t("syllabus.displayedFallSemester")}
         />
-        {/*<AddedCourseListContainer
-          addedCoursesAndPrefs={courses}
+        <AddedCourseListContainer
+          addedCourses={addedCourses}
           semesterKey={selectedSemester}
-        />*/}
+        />
       </div>
     );
   }

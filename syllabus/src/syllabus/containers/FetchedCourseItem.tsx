@@ -1,34 +1,38 @@
 import React from "react";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
-import ReactGA from "react-ga";
-
-import { addCourse, removeCourse } from "../../actions/syllabus";
-import { getById } from "../../reducers/addedCourses";
-import CourseItem from "../../components/syllabus/CourseItem";
-import { gaFetchedCourseItem } from "../../config/ga/eventCategories";
-import {
-  gaAppendActionWithLng,
-  gaAddCourse,
-  gaRemoveCourse,
-  gaClickSyllabusLink,
-} from "../../config/ga/eventActions";
-import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { addCourse, removeCourse } from "../../redux/actions/syllabus";
+import CourseItem from "../components/CourseItem";
+import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 import MediaQuery from "react-responsive";
-import { sizes } from "../../components/common/utils";
+import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
 
-class FetchedCourseItem extends React.Component {
+interface ReduxStateProps {
+  addedCourseIds: string[];
+}
+
+interface ReduxDispatchProps {
+  addCourse: (course: object, displayLang: string | string[]) => void;
+  removeCourse: (course: object) => void;
+}
+
+interface OwnProps {
+  searchTerm: string | string[];
+  searchLang: string | string[];
+  course: object;
+  isDetailDisplayed: boolean;
+  needLineBreak: boolean;
+}
+
+class FetchedCourseItem extends React.Component<
+  ReduxStateProps & ReduxDispatchProps & OwnProps
+> {
   handleAddCourse = (title, lng) => {
-    const { course, byId, searchLang } = this.props;
+    const { course, addedCourseIds, searchLang } = this.props;
     const occurrences = course[SYLLABUS_KEYS.OCCURRENCES];
-    ReactGA.event({
-      category: gaFetchedCourseItem,
-      action: gaAppendActionWithLng(gaAddCourse, lng),
-      label: title,
-    });
-    if (Object.keys(byId).length >= ADDED_COURSES_NUMBER_LIMIT) {
+    if (addedCourseIds.length >= ADDED_COURSES_NUMBER_LIMIT) {
       Alert.error(
         `Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`,
         {
@@ -62,23 +66,10 @@ class FetchedCourseItem extends React.Component {
 
   handleRemoveCourse = (title, lng) => {
     const { course } = this.props;
-    ReactGA.event({
-      category: gaFetchedCourseItem,
-      action: gaAppendActionWithLng(gaRemoveCourse, lng),
-      label: title,
-    });
-    this.props.removeCourse(course[SYLLABUS_KEYS.ID]);
+    this.props.removeCourse(course);
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly",
-    });
-  };
-
-  handleClickSyllabusLink = (title, lng) => {
-    ReactGA.event({
-      category: gaFetchedCourseItem,
-      action: gaAppendActionWithLng(gaClickSyllabusLink, lng),
-      label: title,
     });
   };
 
@@ -87,12 +78,11 @@ class FetchedCourseItem extends React.Component {
       searchTerm,
       searchLang,
       course,
-      byId,
+      addedCourseIds,
       isDetailDisplayed,
       needLineBreak,
     } = this.props;
-    const id = course[SYLLABUS_KEYS.ID];
-    const isAddable = !(id in byId);
+    const isAddable = !addedCourseIds.includes(course[SYLLABUS_KEYS.ID]);
     return (
       <MediaQuery minWidth={sizes.desktop}>
         {(matches) =>
@@ -101,7 +91,6 @@ class FetchedCourseItem extends React.Component {
               handleOnClick={
                 isAddable ? this.handleAddCourse : this.handleRemoveCourse
               }
-              handleClickSyllabusLink={this.handleClickSyllabusLink}
               isAddable={isAddable}
               searchTerm={searchTerm}
               searchLang={searchLang}
@@ -115,7 +104,6 @@ class FetchedCourseItem extends React.Component {
               handleOnClick={
                 isAddable ? this.handleAddCourse : this.handleRemoveCourse
               }
-              handleClickSyllabusLink={this.handleClickSyllabusLink}
               isAddable={isAddable}
               searchTerm={searchTerm}
               searchLang={searchLang}
@@ -133,7 +121,7 @@ class FetchedCourseItem extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    byId: getById(state.addedCourses),
+    addedCourseIds: state.addedCourses.orderedIds,
   };
 };
 

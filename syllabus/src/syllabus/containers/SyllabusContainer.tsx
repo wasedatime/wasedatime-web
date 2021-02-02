@@ -7,13 +7,14 @@ import {
   fetchCoursesBySchool,
 } from "../../redux/actions/syllabus";
 import { ReduxRootState } from "../../redux/reducers";
-import { getAddedCoursesList } from "../../redux/reducers/addedCourses";
+import { getAddedCoursesListWithLang } from "../../redux/reducers/addedCourses";
 import { getFetchedCoursesList } from "../../redux/reducers/fetchedCourses";
 import AddedCourseListSwitch from "./AddedCourseListSwitch";
 import FetchedCourseList from "../components/FetchedCourseList";
 import queryString from "query-string";
 import { getSearchLang } from "@bit/wasedatime.syllabus.ts.utils.course-search";
 import { createHistory, LocationProvider } from "@reach/router";
+import { WithTranslation, withTranslation } from "react-i18next";
 
 const SyllabusFlex = styled.div`
   display: flex;
@@ -32,8 +33,8 @@ const MiddleColumn = styled.div`
 `;
 
 interface ReduxStateProps {
-  addedCourses: object;
-  fetchedCourses: object;
+  addedCourses: { [key: string]: any }[];
+  fetchedCourses: { [key: string]: any }[];
 }
 
 interface ReduxDispatchProps {
@@ -41,14 +42,13 @@ interface ReduxDispatchProps {
   fetchCoursesBySchool: (school: string) => void;
 }
 
-interface OwnProps {
+interface OwnProps extends WithTranslation {
   location: any;
 }
 
 interface OwnState {
   isModalOpen: boolean;
   filterGroups: object;
-  addedCourses: object[];
   fetchedCourses: object[];
   searchTerm: string | string[];
   inputText: string | string[];
@@ -79,7 +79,6 @@ class SyllabusContainer extends React.Component<
     this.state = {
       isModalOpen: false,
       filterGroups: {},
-      addedCourses: props.addedCourses,
       fetchedCourses: props.fetchedCourses,
       searchTerm: searchTerm,
       inputText: searchTerm,
@@ -115,11 +114,16 @@ class SyllabusContainer extends React.Component<
   };
 
   render() {
-    // const { fetchCourses, fetchCoursesBySchool, lng } = this.props;
-    const { fetchCourses, fetchCoursesBySchool } = this.props;
-    const { addedCourses, fetchedCourses, searchTerm } = this.state;
-    // const searchLang = searchTerm === "" ? lng : getSearchLang(searchTerm);
-    const searchLang = getSearchLang(searchTerm);
+    const {
+      fetchCourses,
+      fetchCoursesBySchool,
+      addedCourses,
+      i18n,
+    } = this.props;
+    const { fetchedCourses, searchTerm } = this.state;
+    const searchLang =
+      searchTerm === "" ? i18n.language : getSearchLang(searchTerm);
+
     return (
       <LocationProvider history={history}>
         <SyllabusFlex>
@@ -150,7 +154,7 @@ class SyllabusContainer extends React.Component<
 
 const mapStateToProps = (state: ReduxRootState) => {
   return {
-    addedCourses: getAddedCoursesList(state.addedCourses.byId),
+    addedCourses: getAddedCoursesListWithLang(state.addedCourses.byId),
     fetchedCourses: getFetchedCoursesList(state.fetchedCourses.byId),
   };
 };
@@ -163,4 +167,4 @@ const mapDispatchToProps = {
 export default connect<ReduxStateProps, ReduxDispatchProps>(
   mapStateToProps,
   mapDispatchToProps
-)(SyllabusContainer);
+)(withTranslation("translation")(SyllabusContainer));

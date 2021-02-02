@@ -4,8 +4,8 @@ import { tokenize } from "@bit/wasedatime.syllabus.ts.utils.course-search";
 import LANGS from "@bit/wasedatime.core.ts.constants.langs";
 
 export const highlight = function (
-  searchTerm: string,
-  searchLang: string,
+  searchTerm: string | string[],
+  searchLang: string | string[],
   text: string
 ): string | any[] {
   if (searchTerm.length > 0) {

@@ -3,21 +3,25 @@ import stickybits from "stickybits";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
-import { withNamespaces } from "react-i18next";
+import { WithTranslation, withTranslation } from "react-i18next";
 import { Step, Icon, Message } from "semantic-ui-react";
+import { VerticalStep } from "@bit/wasedatime.syllabus.ts.ui.vertical-step";
 
 import {
   addedCourseListSwitchHeight,
   headerHeight,
-} from "../common/variables";
-import CourseListSummary from "../CourseListSummary";
-import AddedCourseItem from "../../containers/syllabus/AddedCourseItem";
-import { Wrapper } from "../common/Wrapper";
-import { Article, Section, Subheading } from "../common/Article";
+} from "@bit/wasedatime.core.ts.constants.size-variables";
+// import CourseListSummary from "../CourseListSummary";
+import AddedCourseItem from "../containers/AddedCourseItem";
+import {
+  Article,
+  Section,
+  Subheading,
+} from "@bit/wasedatime.core.ts.ui.article";
 
-const CourseListWrapper = styled(Wrapper)`
-  flex: none;
+const CourseListWrapper = styled("div")`
   position: fixed !important;
+  margin-top: 32px;
   padding: 0.5em 1em 1em 1em;
   overflow-y: auto;
   width: 21em;
@@ -45,28 +49,26 @@ const StyledStepGroup = styled(Step.Group)`
   }
 `;
 
-const StepWithDownwardArrow = styled(Step)`
-  &:after {
-    display: block !important;
-    position: absolute;
-    z-index: 2;
-    content: "";
-    top: 101% !important;
-    left: 50% !important;
-    border: medium none;
-    background-color: #fff;
-    width: 1.14285714em;
-    height: 1.14285714em;
-    border-style: solid;
-    border-color: rgba(34, 36, 38, 0.15);
-    border-width: 0 1px 1px 0;
-    transition: background-color 0.1s ease, opacity 0.1s ease, color 0.1s ease,
-      box-shadow 0.1s ease;
-    transform: translateY(-50%) translateX(50%) rotate(45deg) !important;
-  }
-`;
+interface Props extends WithTranslation {
+  addedCourses: { [key: string]: any }[];
+  sortingOptions: { label: string; value: string }[];
+  isSortingOptionOpen: boolean;
+  handleToggleSortingOptions: () => void;
+  selectedSortingOption: string;
+  handleChangeSortingOption: (value: string) => void;
+}
 
-class AddedCourseList extends React.Component {
+interface State {
+  courses: { [key: string]: any }[];
+}
+
+class AddedCourseList extends React.Component<Props, State> {
+  wrapper: any;
+  stickyWrapper: any;
+  setWrapperRef: any;
+  createStickyWrapper: () => void;
+  cleanupStickyWrapper: () => void;
+
   constructor(props) {
     super(props);
     this.wrapper = null;
@@ -90,6 +92,10 @@ class AddedCourseList extends React.Component {
         this.stickyWrapper.cleanup();
       }
     };
+
+    this.state = {
+      courses: props.addedCourses,
+    };
   }
 
   componentDidMount() {
@@ -100,29 +106,48 @@ class AddedCourseList extends React.Component {
     this.cleanupStickyWrapper();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.addedCourses !== this.props.addedCourses) {
+      this.setState({ courses: this.props.addedCourses });
+    }
+  }
+
+  removeCourseFromList = (course) => {
+    this.setState((prevState) => ({
+      courses: prevState.courses.filter((c) => c !== course),
+    }));
+  };
+
   render() {
     const {
-      addedCourses,
+      sortingOptions,
       isSortingOptionOpen,
       handleToggleSortingOptions,
       selectedSortingOption,
       handleChangeSortingOption,
       t,
     } = this.props;
+    const { courses } = this.state;
 
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>
-        <CourseListSummary
+        {/*<CourseListSummary
           courses={addedCourses}
+          sortingOptions={sortingOptions}
           isSortingOptionOpen={isSortingOptionOpen}
           handleToggleSortingOptions={handleToggleSortingOptions}
           selectedSortingOption={selectedSortingOption}
           handleChangeSortingOption={handleChangeSortingOption}
-        />
-        {addedCourses.length ? (
+        />*/}
+
+        {courses.length ? (
           <div style={{ fontSize: "14px" }}>
-            {addedCourses.map((course, index) => (
-              <AddedCourseItem key={course.a} course={course} />
+            {courses.map((course, index) => (
+              <AddedCourseItem
+                key={index}
+                course={course}
+                removeCourseFromList={this.removeCourseFromList}
+              />
             ))}
           </div>
         ) : (
@@ -135,7 +160,7 @@ class AddedCourseList extends React.Component {
             <Section>
               <Subheading as="h2">{t("syllabus.To add a course")}</Subheading>
               <StyledStepGroup size="huge" vertical fluid>
-                <StepWithDownwardArrow>
+                <VerticalStep>
                   <Icon name="search" />
                   <Step.Content>
                     <Step.Title>
@@ -148,7 +173,7 @@ class AddedCourseList extends React.Component {
                       {t("syllabus.English & Japanese supported")}
                     </Step.Description>
                   </Step.Content>
-                </StepWithDownwardArrow>
+                </VerticalStep>
 
                 <Step>
                   <Icon name="plus" />
@@ -192,4 +217,4 @@ class AddedCourseList extends React.Component {
   }
 }
 
-export default withNamespaces("translation")(AddedCourseList);
+export default withTranslation("translation")(AddedCourseList);

@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,17 +8,16 @@ import {
   faPlusCircle,
   faExternalLinkSquareAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
-
-import { termKeysDecoder } from "../../utils/termKeysDecoder";
-import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
-import { highlight } from "../../utils/highlight";
-import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
-import { media, sizes } from "../common/utils";
-import { InvisibleButton } from "../common/Button";
-import { allSchoolNameIconMap } from "../../utils/schoolNameIconMap";
-import FetchedShareButton from "../../containers/syllabus/FetchedShareButton";
+import { WithTranslation, withTranslation } from "react-i18next";
+import { termKeysDecoder } from "@bit/wasedatime.syllabus.ts.utils.term-keys-decoder";
+import { getCourseTitleAndInstructor } from "@bit/wasedatime.syllabus.ts.utils.course-search";
+import { highlight } from "@bit/wasedatime.syllabus.ts.utils.highlight";
+import { allSchoolNameIconMap } from "@bit/wasedatime.syllabus.ts.utils.school-name-icon-map";
+import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
+import { Badge } from "@bit/wasedatime.core.ts.ui.badge";
+import ShareButton from "./ShareButton";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -92,18 +90,6 @@ const SchoolIconItem = styled("li")`
 
 const SchoolIconImage = styled("img")`
   height: 2.1em;
-`;
-
-const Badge = styled("span")`
-  display: inline-block;
-  background-color: #666;
-  color: #fff;
-  padding: 0.15em 0.3em;
-  border: none;
-  border-radius: 0.2em;
-  font-size: 0.8em;
-  margin: 0.1em 0.3em 0.1em 0;
-  line-height: 120%;
 `;
 
 const DetailWrapper = styled("div")`
@@ -188,7 +174,7 @@ const getPeriod = (period, t) => {
   if (period === -1) {
     return t("syllabus.location.undecided");
   } else if (period > 9) {
-    return `${parseInt(period / 10)}-${period % 10}`;
+    return `${(period / 10) | 0}-${period % 10}`;
   } else if (period === 0) {
     return t("courseInfo.Details.Type.On-demand");
   } else {
@@ -196,20 +182,31 @@ const getPeriod = (period, t) => {
   }
 };
 
+interface Props extends WithTranslation {
+  searchTerm: string | string[];
+  searchLang: string | string[];
+  course: object;
+  isAddable: boolean;
+  handleOnClick: (title: string, lng: string) => void;
+  isDetailDisplayed: boolean;
+  openNewTabOnClick: boolean;
+  needLineBreak?: boolean;
+  history?: any;
+}
+
 const CourseItem = ({
   searchTerm,
   searchLang,
   course,
   isAddable,
   handleOnClick,
-  handleClickSyllabusLink,
   isDetailDisplayed,
   needLineBreak,
   openNewTabOnClick,
   history,
   t,
-  lng,
-}) => {
+  i18n,
+}: Props) => {
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
@@ -219,7 +216,10 @@ const CourseItem = ({
     termKeysDecoder(course[SYLLABUS_KEYS.TERM]),
     t
   );
-  const schoolIcons = mapSchoolToIcon(course[SYLLABUS_KEYS.SCHOOL], lng);
+  const schoolIcons = mapSchoolToIcon(
+    course[SYLLABUS_KEYS.SCHOOL],
+    i18n.language
+  );
   const syllabusId = course[SYLLABUS_KEYS.ID];
   const shareLink = `https://wasedatime.com/courseInfo?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
   //Need to use index as keys due to Waseda's data.
@@ -258,18 +258,18 @@ const CourseItem = ({
       <CourseItemWrapper
         isDetailDisplayed={isDetailDisplayed}
         onClick={() => {
-          if (!isDetailDisplayed) {
-            if (openNewTabOnClick) {
-              window.open(
-                `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`,
-                "_blank"
-              );
-            } else {
-              history.push(
-                `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`
-              );
-            }
-          }
+          // if (!isDetailDisplayed) {
+          //   if (openNewTabOnClick) {
+          //     window.open(
+          //       `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`,
+          //       "_blank"
+          //     );
+          //   } else {
+          //     history.push(
+          //       `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`
+          //     );
+          //   }
+          // }
         }}
       >
         <StyledHeading>{highlightedTitle}</StyledHeading>
@@ -298,9 +298,6 @@ const CourseItem = ({
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => {
-                  handleClickSyllabusLink(title, lng);
-                }}
               >
                 <FontAwesomeIcon
                   style={{ color: "#6495ED" }}
@@ -310,17 +307,18 @@ const CourseItem = ({
                 />
               </a>
             )}
-            <InvisibleButton /* Add Button */
+            <InvisibleButton
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                handleOnClick(title, lng);
+                handleOnClick(title, i18n.language);
               }}
+              style={{ cursor: "pointer" }}
             >
               {buttonIcon}
             </InvisibleButton>
 
-            <FetchedShareButton
+            <ShareButton
               shareLink={shareLink}
               isDetailDisplayed={isDetailDisplayed}
               display="icon"
@@ -338,7 +336,7 @@ const CourseItem = ({
             </Description>
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
-          <FetchedShareButton
+          <ShareButton
             shareLink={shareLink}
             isDetailDisplayed={isDetailDisplayed}
             display="bar"
@@ -351,13 +349,4 @@ const CourseItem = ({
   );
 };
 
-// <Instructors>{highlightedInstructor}</Instructors>
-
-export default withRouter(withNamespaces("translation")(CourseItem));
-
-CourseItem.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
-  course: PropTypes.object.isRequired,
-  isAddable: PropTypes.bool.isRequired,
-  handleOnClick: PropTypes.func.isRequired,
-};
+export default withTranslation("translation")(CourseItem);

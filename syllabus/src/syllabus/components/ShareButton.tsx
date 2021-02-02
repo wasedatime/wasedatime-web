@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import MediaQuery from "react-responsive";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -10,16 +10,17 @@ import {
   faLinkedin,
   faLine,
   faWhatsappSquare,
-  //faWeixin,
-  //faFacebookMessenger,
 } from "@fortawesome/free-brands-svg-icons";
 import { Manager, Reference, Popper } from "react-popper";
-import { InvisibleButton } from "../common/Button";
+import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
 import { Popup } from "semantic-ui-react";
-import { withNamespaces } from "react-i18next";
-//import { element } from "prop-types";
+import { withTranslation } from "react-i18next";
 
 //Popper Style -----
+const WhitePopper = styled(Popper)`
+  background-color: #aaa;
+`;
+
 const PopperBox = styled("div")`
   display: box;
   border-radius: 5px;
@@ -75,11 +76,10 @@ const ShareButton = ({
   shareLink,
   sizesDesktop,
   isDetailDisplayed,
-  isPopperOpen,
-  handleToggleSharePopper,
   needLineBreak,
   t,
 }) => {
+  const [isPopperOpen, setIsPopperOpen] = useState(false);
   const shareText = t("syllabus.Share text");
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizesDesktop}>
@@ -96,7 +96,7 @@ const ShareButton = ({
                     trigger={
                       <ShareButtonBar
                         innerRef={ref}
-                        onClick={handleToggleSharePopper}
+                        onClick={setIsPopperOpen(!isPopperOpen)}
                         style={{
                           fontSize:
                             needLineBreak !== undefined && needLineBreak
@@ -131,7 +131,7 @@ const ShareButton = ({
               {({ ref }) => (
                 <ShareButtonIcon
                   innerRef={ref}
-                  onClick={handleToggleSharePopper}
+                  onClick={setIsPopperOpen(!isPopperOpen)}
                 >
                   <FontAwesomeIcon
                     icon={faShareAlt}
@@ -164,10 +164,9 @@ const ShareButton = ({
           >
             <FontAwesomeIcon
               icon={faTwitterSquare}
-              size="lg" // lg = slight large than 1x
+              size="lg"
               style={{
                 color: "#00ACEE",
-                // backgroundColor: "#fff",
               }}
             />{" "}
           </a>
@@ -189,7 +188,7 @@ const ShareButton = ({
           >
             <FontAwesomeIcon
               icon={faFacebookSquare}
-              size="lg" // lg = slight large than 1x
+              size="lg"
               style={{ color: "#3B5998" }}
             />{" "}
           </a>
@@ -210,7 +209,7 @@ const ShareButton = ({
           >
             <FontAwesomeIcon
               icon={faLinkedin}
-              size="lg" // lg = slight large than 1x
+              size="lg"
               style={{ color: "#0E76A8" }}
             />{" "}
           </a>
@@ -231,7 +230,7 @@ const ShareButton = ({
           >
             <FontAwesomeIcon
               icon={faLine}
-              size="lg" // lg = slight large than 1x
+              size="lg"
               style={{ color: "#00B400" }}
             />{" "}
           </a>
@@ -252,7 +251,7 @@ const ShareButton = ({
           >
             <FontAwesomeIcon
               icon={faWhatsappSquare}
-              size="lg" // lg = slight large than 1x
+              size="lg"
               style={{ color: "#4FCE5D" }}
             />{" "}
           </a>
@@ -291,7 +290,7 @@ const ShareButton = ({
     <Manager>
       {shareButtonIcon}
       {shareButtonBar}
-      <Popper style={{ backgroundColor: "#aaa" }} placement="bottom">
+      <WhitePopper placement="bottom">
         {isPopperOpen
           ? ({ ref, style, placement, outOfBoundaries }) => (
               <PopperBox
@@ -309,10 +308,9 @@ const ShareButton = ({
               </PopperBox>
             )
           : () => null}
-      </Popper>
+      </WhitePopper>
     </Manager>
-    // </div>
   );
 };
 
-export default withNamespaces("translation")(ShareButton);
+export default withTranslation("translation")(ShareButton);

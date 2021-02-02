@@ -6,6 +6,11 @@ import CourseChunk from "./CourseChunk";
 import { WithTranslation, withTranslation } from "react-i18next";
 import LANGS from "@bit/wasedatime.core.ts.constants.langs";
 
+const CourseListWrapper = styled.div`
+  height: 100%;
+  overflow-y: scroll;
+`;
+
 const CourseChunkWrapper = styled("div")`
   margin: 0.5em 0;
 `;
@@ -68,7 +73,7 @@ class FetchedCourseList extends React.Component<Props, State> {
     const resultsInChunks = this.resultsToChunks();
 
     return (
-      <div>
+      <CourseListWrapper>
         {resultsInChunks.length ? (
           resultsInChunks.map((chunk, index) => (
             <Waypoint
@@ -110,7 +115,7 @@ class FetchedCourseList extends React.Component<Props, State> {
             No results? Try importing a school or changing the filter!
           </div>
         )}
-      </div>
+      </CourseListWrapper>
     );
   }
 }

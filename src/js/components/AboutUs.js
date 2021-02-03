@@ -35,7 +35,8 @@ const panes = [
     render: () => <JoinUs /> 
   },
 ];
-const AboutUs = () => (
+// const { t, lng } = this.props;
+const AboutUs = ({t}) => (
   <Wrapper>
     <Helmet>
       <title>WasedaTime -　About Us</title>

@@ -365,5 +365,8 @@
     "countdown 1": "",
     "countdown 2": "秒後",
     "countdown 3": "へ遷移させます..."
+  },
+  "aboutus":{
+    "We are on a mission": "ミッション"
   }
 }

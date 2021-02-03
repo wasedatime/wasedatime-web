@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Wrapper } from "../styled-components/Wrapper";
+import { withNamespaces } from "react-i18next";
 
 // import reviewPageImg from "../../img/aboutus/reviewpage.jpeg"
 import syllabusPageImg from "../../img/aboutus/syllabus.png"
@@ -66,11 +67,11 @@ const Picture4 = styled("img")`
 
 
 
-const OurMission = () => {
+const OurMission = ({t}) => {
     return (
         <Wrapper>
             <br></br>
-            <Title>We are on a mission</Title>
+            <Title>{t("aboutus.We are on a mission")}</Title>
             <br></br>
             <MainParagraph>WasedaTime has been working on supporting students' academic
             activities since launching. Its well-tested Syllabus Search feature is
@@ -103,4 +104,4 @@ const OurMission = () => {
     );
 }
 
-export default OurMission;
+export default withNamespaces("translation")(OurMission);

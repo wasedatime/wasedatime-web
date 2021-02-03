@@ -40,6 +40,7 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
           exp: action.payload.exp,
           ids: action.payload.courses.map((c) => c[SYLLABUS_KEYS.ID]),
           active: true,
+          timestamp: Date.now(),
         },
       };
     case REMOVE_SCHOOL:
@@ -50,6 +51,7 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
           exp: "",
           ids: [],
           active: false,
+          timestamp: 0,
         },
       };
     default:
@@ -58,3 +60,9 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
 };
 
 export default schools;
+
+export const getSchools = (schoolsObj) =>
+  Object.keys(schoolsObj)
+    .filter((school) => schoolsObj[school].active)
+    .sort((a, b) => schoolsObj[a].timestamp - schoolsObj[b].timestamp)
+    .map((school) => school);

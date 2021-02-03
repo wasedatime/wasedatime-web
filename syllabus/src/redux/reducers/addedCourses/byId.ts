@@ -12,6 +12,7 @@ interface PayloadProps {
   course?: object;
   coursesAndPrefs?: courseAndPrefTypes[];
   displayLang?: string;
+  id?: string;
 }
 
 interface ActionProps {
@@ -42,7 +43,7 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
       };
     case REMOVE_COURSE:
       let restCourses = { ...state };
-      delete restCourses[action.payload.course[SYLLABUS_KEYS.ID]];
+      delete restCourses[action.payload.id];
       return restCourses;
     case SAVE_TIMETABLE:
       let newCoursesAndPrefs = {};

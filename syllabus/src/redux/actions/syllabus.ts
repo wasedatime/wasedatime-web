@@ -156,7 +156,7 @@ export const addCourse = (course: object, displayLang: string) => (
   }
 };
 
-export const removeCourse = (course: object) => (
+export const removeCourse = (id: string) => (
   dispatch: (x: any) => void,
   getState: any
 ) => {
@@ -182,7 +182,7 @@ export const removeCourse = (course: object) => (
     dispatch({
       type: REMOVE_COURSE,
       payload: {
-        course,
+        id,
       },
     });
   }

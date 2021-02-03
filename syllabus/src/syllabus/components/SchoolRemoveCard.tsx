@@ -1,7 +1,19 @@
 import React from "react";
 import { Card, Icon, Dimmer, Image } from "semantic-ui-react";
 
-class SchoolRemoveCard extends React.Component {
+interface Props {
+  schoolName: string;
+  schoolIcon: string;
+  removing: boolean;
+  onRemove: (school: string) => void;
+  isBannedToRemove: boolean;
+}
+
+interface State {
+  isDimmerActive: boolean;
+}
+
+class SchoolRemoveCard extends React.Component<Props, State> {
   state = {
     isDimmerActive: false,
   };

@@ -6,7 +6,7 @@ import CourseItem from "../components/CourseItem";
 import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
 interface ReduxDispatchProps {
-  removeCourse: (course: object) => void;
+  removeCourse: (id: string) => void;
 }
 
 interface OwnProps {
@@ -18,7 +18,7 @@ class AddedCourseItem extends React.Component<ReduxDispatchProps & OwnProps> {
   handleRemoveCourse = (title, lng) => {
     const { course, removeCourse, removeCourseFromList } = this.props;
     removeCourseFromList(course);
-    removeCourse(course);
+    removeCourse(course[SYLLABUS_KEYS.ID]);
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly",

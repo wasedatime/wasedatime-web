@@ -11,6 +11,7 @@ interface courseAndPrefTypes {
 interface PayloadProps {
   course?: object;
   coursesAndPrefs?: courseAndPrefTypes[];
+  id?: string;
 }
 
 interface ActionProps {
@@ -26,7 +27,7 @@ const orderedIds = (state = initialState, action: ActionProps): string[] => {
       return [...state, action.payload.course[SYLLABUS_KEYS.ID]];
     case REMOVE_COURSE:
       let newIds = [...state];
-      const index = newIds.indexOf(action.payload.course[SYLLABUS_KEYS.ID]);
+      const index = newIds.indexOf(action.payload.id);
       if (index > -1) {
         newIds.splice(index, 1);
       }

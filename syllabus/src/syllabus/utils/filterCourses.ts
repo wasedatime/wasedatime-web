@@ -51,6 +51,7 @@ const filterCourses = (
             const period = parseInt(filters[i], 10);
             for (let j = 0; j < occurrences.length; j++) {
               const op = occurrences[j][SYLLABUS_KEYS.OCC_PERIOD];
+              // fix me!
               if (op > 9) {
                 const start = (op / 10) | 0;
                 const end = op % 10;

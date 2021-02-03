@@ -15,7 +15,7 @@ interface ReduxStateProps {
 
 interface ReduxDispatchProps {
   addCourse: (course: object, displayLang: string | string[]) => void;
-  removeCourse: (course: object) => void;
+  removeCourse: (id: string) => void;
 }
 
 interface OwnProps {
@@ -66,7 +66,7 @@ class FetchedCourseItem extends React.Component<
 
   handleRemoveCourse = (title, lng) => {
     const { course } = this.props;
-    this.props.removeCourse(course);
+    this.props.removeCourse(course[SYLLABUS_KEYS.ID]);
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly",

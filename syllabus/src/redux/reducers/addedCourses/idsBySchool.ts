@@ -11,6 +11,7 @@ interface courseAndPrefTypes {
 interface PayloadProps {
   course?: object;
   coursesAndPrefs?: courseAndPrefTypes[];
+  id?: string;
 }
 
 interface ActionProps {
@@ -44,9 +45,7 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
       return {
         ...state,
         [school]: {
-          ids: state[school].ids.filter(
-            (id) => id !== action.payload.course[SYLLABUS_KEYS.ID]
-          ),
+          ids: state[school].ids.filter((id) => id !== action.payload.id),
         },
       };
     case SAVE_TIMETABLE:

@@ -6,6 +6,7 @@ import { Button } from "semantic-ui-react";
 import styled from "styled-components";
 import { withTranslation } from "react-i18next";
 import { headerHeight } from "@bit/wasedatime.core.ts.constants.size-variables";
+import SchoolFilterContainer from "../containers/SchoolFilterContainer";
 import FilterGroup from "./FilterGroup";
 import FilterEvalGroup from "./FilterEvalGroup";
 
@@ -447,6 +448,7 @@ class Filter extends React.Component {
           </FilterClearButton>
         </FilterTitle>
         <FilterGroupWrapper>
+          <SchoolFilterContainer handleToggleFilter={handleToggleFilter} />
           <FilterGroup
             handleToggleFilter={handleToggleFilter}
             legend={semesterLegend}

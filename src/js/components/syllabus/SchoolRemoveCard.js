@@ -28,6 +28,7 @@ class SchoolRemoveCard extends React.Component {
         <Dimmer
           active={this.state.isDimmerActive || removing || isBannedToRemove}
           inverted={!isBannedToRemove}
+          style={{ maxWidth: "100%" }}
         >
           {removing ? (
             <Icon

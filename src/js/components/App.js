@@ -104,11 +104,14 @@ class App extends React.Component {
       cognitoUser.refreshSession(
         currentSession.refreshToken,
         (err, session) => {
-          this.props.updateUserSession(session);
+          if (err) {
+            this.props.clearUserInfo();
+          } else {
+            this.props.updateUserSession(session);
+          }
         }
       );
     } catch (e) {
-      console.log(e);
       this.props.clearUserInfo();
     }
   };
@@ -163,7 +166,6 @@ class App extends React.Component {
         case "tokenRefresh":
           break;
         default:
-          console.log(event);
       }
     });
 
@@ -179,8 +181,8 @@ class App extends React.Component {
       let self = this;
       setTimeout(function refreshSessionEveryHour() {
         self.getCurrentSessionAndRefresh();
-        setTimeout(refreshSessionEveryHour, 3595000);
-      }, 3595000);
+        setTimeout(refreshSessionEveryHour, 3540000);
+      }, 3540000);
     }
   }
 

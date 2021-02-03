@@ -15,6 +15,7 @@ import {
 } from "../../ga/eventActions";
 import Alert from "react-s-alert";
 import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { courseSchemaFullToShort } from "../../utils/mapCourseSchema.js";
 import levenshtein from "levenshtein-edit-distance";
 import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
@@ -32,6 +33,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import RelatedCourses from "./RelatedCourses";
 import SignInModal from "../user/SignInModal";
 import Header from "../Header";
+import WarningAndRedirect from "../WarningAndRedirect";
 
 export const LongWrapper = styled(Wrapper)`
   margin-top: 70px;
@@ -133,12 +135,33 @@ class CourseInfo extends React.Component {
     editReviewPrimaryKey: "",
     editReviewOriginalText: "",
     isSignInModalOpen: false,
+    isWrongQuery: false,
   };
 
-  componentDidMount() {
-    API.configure();
-    this._isMounted = true;
-    this._isMounted && this.loadReviewsAndRelatedCourses();
+  async componentDidMount() {
+    const courseID = getCourseID(this.props.location.search);
+    if (!courseID) {
+      this.setState({ isWrongQuery: true });
+    } else if (this.state.thisCourse) {
+      API.configure();
+      this._isMounted = true;
+      this._isMounted && this.loadReviewsAndRelatedCourses();
+    } else {
+      const res = await API.get(
+        "wasedatime-dev",
+        "/syllabus?id=" + courseID + "&offset=1&limit=1",
+        {
+          headers: {
+            "x-api-key": process.env.REACT_APP_X_API_KEY,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      this.setState({ thisCourse: courseSchemaFullToShort(res.data) }, () => {
+        this._isMounted = true;
+        this._isMounted && this.loadReviewsAndRelatedCourses();
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -238,7 +261,7 @@ class CourseInfo extends React.Component {
               (this.props.userTokens ? this.props.userTokens.sub : ""),
             {
               headers: {
-                "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
+                "x-api-key": process.env.REACT_APP_X_API_KEY,
                 "Content-Type": "application/json",
               },
             }
@@ -445,7 +468,7 @@ class CourseInfo extends React.Component {
         (this.props.userTokens ? this.props.userTokens.sub : ""),
       {
         headers: {
-          "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
+          "x-api-key": process.env.REACT_APP_X_API_KEY,
           "Content-Type": "application/json",
         },
       }
@@ -526,9 +549,23 @@ class CourseInfo extends React.Component {
       newReviewComment,
       newReviewIsSending,
       isSignInModalOpen,
+      isWrongQuery,
     } = this.state;
+    const { t } = this.props;
     if (error)
       return <FetchError onRetry={this.loadReviewsAndRelatedCourses} />;
+    if (isWrongQuery)
+      return (
+        <WarningAndRedirect
+          title={t("courseInfo.warning.wrong url.title")}
+          contents={[
+            t("courseInfo.warning.wrong url.message 1"),
+            t("courseInfo.warning.wrong url.message 2"),
+          ]}
+          redirectPath={"/syllabus"}
+          redirectSec={5}
+        />
+      );
     return (
       <RowWrapper>
         <Helmet>
@@ -545,21 +582,23 @@ class CourseInfo extends React.Component {
           <meta property="og:site_name" content="WasedaTime - Course Reviews" />
         </Helmet>
         <Header
-          title={this.props.t("navigation.course info")}
+          title={t("navigation.course info")}
           placeholder="Search course (in construction...)"
           disabled={true}
         />
         <LongWrapper>
           <ExtendedOverlay>
             <div>
-              <FetchedCourseItem
-                searchTerm={""}
-                searchLang={searchLang}
-                course={thisCourse}
-                isDetailDisplayed={true}
-              />
+              {thisCourse && (
+                <FetchedCourseItem
+                  searchTerm={""}
+                  searchLang={searchLang}
+                  course={thisCourse}
+                  isDetailDisplayed={true}
+                />
+              )}
 
-              <CourseDetails course={thisCourse} />
+              {thisCourse && <CourseDetails course={thisCourse} />}
 
               {isLoaded ? (
                 isAddReviewFormOpen ? (
@@ -588,7 +627,7 @@ class CourseInfo extends React.Component {
                     openReviewNewForm={this.openReviewNewForm}
                     openReviewEditForm={this.openReviewEditForm}
                     deleteReview={this.deleteReview}
-                    t={this.props.t}
+                    t={t}
                   />
                 )
               ) : (

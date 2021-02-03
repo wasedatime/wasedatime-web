@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,13 +19,6 @@ import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
 import { Badge } from "@bit/wasedatime.core.ts.ui.badge";
 import ShareButton from "./ShareButton";
 
-const RowWrapper = styled("li")`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  overflow-y: hidden;
-`;
-
 const CourseItemWrapper = styled("div")`
   display: flex;
   flex-direction: column;
@@ -34,9 +27,9 @@ const CourseItemWrapper = styled("div")`
   background-color: #fff;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;
-  margin: 0.5em 0.5em;
+  margin: 1em 0.5em;
   padding: 0.5em 0.8em;
-  width: 90%;
+  width: 95%;
   line-height: 150%;
   &:hover {
     ${(props) =>
@@ -44,6 +37,8 @@ const CourseItemWrapper = styled("div")`
       "background-color: #eee; box-shadow: none; cursor: pointer;"}
   }
 `;
+
+const CourseIntro = styled.div``;
 
 const StyledHeading = styled("h3")`
   margin: 0;
@@ -207,6 +202,8 @@ const CourseItem = ({
   t,
   i18n,
 }: Props) => {
+  const [expanded, setExpanded] = useState(false);
+
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
@@ -254,24 +251,8 @@ const CourseItem = ({
   );
 
   return (
-    <RowWrapper>
-      <CourseItemWrapper
-        isDetailDisplayed={isDetailDisplayed}
-        onClick={() => {
-          // if (!isDetailDisplayed) {
-          //   if (openNewTabOnClick) {
-          //     window.open(
-          //       `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`,
-          //       "_blank"
-          //     );
-          //   } else {
-          //     history.push(
-          //       `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`
-          //     );
-          //   }
-          // }
-        }}
-      >
+    <CourseItemWrapper isDetailDisplayed={isDetailDisplayed}>
+      <CourseIntro onClick={() => setExpanded(!expanded)}>
         <StyledHeading>{highlightedTitle}</StyledHeading>
         {isDetailDisplayed && (
           <StyledSubHeading>{course[SYLLABUS_KEYS.SUBTITLE]}</StyledSubHeading>
@@ -344,8 +325,9 @@ const CourseItem = ({
             needLineBreak={needLineBreak}
           />
         </DetailWrapper>
-      </CourseItemWrapper>
-    </RowWrapper>
+      </CourseIntro>
+      {expanded && <div>Course Details</div>}
+    </CourseItemWrapper>
   );
 };
 

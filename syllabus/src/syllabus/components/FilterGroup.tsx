@@ -5,6 +5,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import { Dropdown } from "semantic-ui-react";
 import { withStyles } from "@material-ui/core/styles";
+import { WithStyles, createStyles } from "@material-ui/core";
 import styled from "styled-components";
 
 const StyledDropdown = styled(Dropdown)`
@@ -39,39 +40,49 @@ const StyledDropdown = styled(Dropdown)`
 //   }
 // `;
 
-const styles = (theme) => ({
-  formLabel: {
-    fontSize: "1.3em",
-    color: "#000",
-    fontWeight: "bold",
-    fontFamily: "Lato, Yu Gothic Medium, Segoe UI",
-    fontDisplay: "swap",
-  },
-  formGroup: {
-    fontSize: "1.2em",
-    margin: "0 0 10px",
-    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
-    fontDisplay: "swap",
-  },
-  formControlLabel: {
-    minWidth: "80px",
-    paddingLeft: "0.4rem",
-    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
-    fontDisplay: "swap",
-  },
-  formControlLabel_label: {
-    fontSize: "1em",
-    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
-    fontDisplay: "swap",
-  },
-  checkBox: {
-    width: "40px",
-    height: "30px",
-  },
-  checkBoxChecked: {
-    color: "#b51e36 !important",
-  },
-});
+const styles = (theme) =>
+  createStyles({
+    formLabel: {
+      fontSize: "1.3em",
+      color: "#000",
+      fontWeight: "bold",
+      fontFamily: "Lato, Yu Gothic Medium, Segoe UI",
+      fontDisplay: "swap",
+    },
+    formGroup: {
+      fontSize: "1.2em",
+      margin: "0 0 10px",
+      fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+      fontDisplay: "swap",
+    },
+    formControlLabel: {
+      minWidth: "80px",
+      paddingLeft: "0.4rem",
+      fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+      fontDisplay: "swap",
+    },
+    formControlLabel_label: {
+      fontSize: "1em",
+      fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+      fontDisplay: "swap",
+    },
+    checkBox: {
+      width: "40px",
+      height: "30px",
+    },
+    checkBoxChecked: {
+      color: "#b51e36 !important",
+    },
+  });
+
+interface Props extends WithStyles<typeof styles> {
+  handleToggleFilter: (name: string, value: any) => void;
+  legend: string;
+  inputs: any;
+  inputName: string;
+  classes: any;
+  filterType: string;
+}
 
 const FilterGroup = ({
   handleToggleFilter,
@@ -80,7 +91,7 @@ const FilterGroup = ({
   inputName,
   classes,
   filterType,
-}) => {
+}: Props) => {
   var filterItems;
   if (filterType === "checkbox") {
     filterItems = inputs.map((input) => (

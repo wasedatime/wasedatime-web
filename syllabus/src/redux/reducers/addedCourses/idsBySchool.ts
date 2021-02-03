@@ -41,13 +41,17 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
         },
       };
     case REMOVE_COURSE:
-      school = action.payload.course[SYLLABUS_KEYS.SCHOOL];
-      return {
-        ...state,
-        [school]: {
-          ids: state[school].ids.filter((id) => id !== action.payload.id),
-        },
-      };
+      for (const school in state) {
+        if (state[school].ids.includes(id)) {
+          return {
+            ...state,
+            [school]: {
+              ids: state[school].ids.filter((id) => id !== action.payload.id),
+            },
+          };
+        }
+      }
+      return state;
     case SAVE_TIMETABLE:
       let newCoursesAndPrefs = {};
       action.payload.coursesAndPrefs.forEach((cp) => {

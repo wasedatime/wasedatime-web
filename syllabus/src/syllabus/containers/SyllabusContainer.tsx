@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import debounce from "lodash/debounce";
 import { connect } from "react-redux";
@@ -13,6 +14,7 @@ import AddedCourseListSwitchContainer from "./AddedCourseListSwitchContainer";
 import FetchedCourseList from "../components/FetchedCourseList";
 import Filter from "../components/Filter";
 import FilterButton from "../components/FilterButton";
+import SearchBar from "../components/SearchBar";
 import queryString from "query-string";
 import {
   getSearchLang,
@@ -172,6 +174,7 @@ class SyllabusContainer extends React.Component<
       } else {
         newFilters = [...filters, value]; // add an item to a filter group
       }
+
       const newFilterGroups =
         Array.isArray(newFilters) && newFilters.length === 0
           ? rest
@@ -205,8 +208,6 @@ class SyllabusContainer extends React.Component<
       i18n,
     } = this.props;
     let newI18n = { ...i18n };
-    console.log(i18n);
-    console.log(newI18n);
 
     const { fetchedCourses, searchTerm, inputText } = this.state;
     const searchLang =
@@ -222,17 +223,41 @@ class SyllabusContainer extends React.Component<
 
     return (
       <SyllabusWrapper>
-        <HeaderWrapper>
-          <Header
-            title={t("navigation.syllabus")}
-            onInputChange={this.handleInputChange}
-            placeholder={t("syllabus.searchBarPlaceholder")}
-            inputText={inputText}
-            disabled={false}
-            isBlur={true}
-            changeLang={(lng) => i18n.changeLanguage(lng)}
+        <Helmet>
+          <title>WasedaTime - Syllabus Search</title>
+          <meta
+            name="description"
+            content="Syllabus Searching at Waseda University."
           />
-        </HeaderWrapper>
+          <meta property="og:title" content="WasedaTime - Syllabus Search" />
+          <meta
+            property="og:description"
+            content="Syllabus Searching at Waseda University."
+          />
+          <meta
+            property="og:site_name"
+            content="WasedaTime - Syllabus Search"
+          />
+        </Helmet>
+
+        <MediaQuery minWidth={sizes.tablet}>
+          {(matches) =>
+            matches && (
+              <HeaderWrapper>
+                <Header
+                  title={t("navigation.syllabus")}
+                  onInputChange={this.handleInputChange}
+                  placeholder={t("syllabus.searchBarPlaceholder")}
+                  inputText={inputText}
+                  disabled={false}
+                  isBlur={true}
+                  changeLang={(lng) => i18n.changeLanguage(lng)}
+                />
+              </HeaderWrapper>
+            )
+          }
+        </MediaQuery>
+
         <SyllabusFlex>
           <MediaQuery minWidth={sizes.tablet}>
             {(matches) =>
@@ -245,6 +270,17 @@ class SyllabusContainer extends React.Component<
           </MediaQuery>
 
           <MiddleColumn>
+            <MediaQuery maxWidth={sizes.tablet - 1}>
+              {(matches) =>
+                matches && (
+                  <SearchBar
+                    placeholder={t("syllabus.searchBarPlaceholder")}
+                    value={inputText}
+                    onInputChange={this.handleInputChange}
+                  />
+                )
+              }
+            </MediaQuery>
             <FetchedCourseList
               searchTerm={searchTerm}
               searchLang={searchLang}

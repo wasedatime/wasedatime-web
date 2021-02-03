@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { Button } from "semantic-ui-react";
 import styled from "styled-components";
-import { withTranslation } from "react-i18next";
+import { WithTranslation, withTranslation } from "react-i18next";
 import { headerHeight } from "@bit/wasedatime.core.ts.constants.size-variables";
 import SchoolFilterContainer from "../containers/SchoolFilterContainer";
 import FilterGroup from "./FilterGroup";
@@ -42,7 +42,20 @@ const FilterGroupWrapper = styled("div")`
   font-size: 11px;
 `;
 
-class Filter extends React.Component {
+interface Props extends WithTranslation {
+  filterGroups: { [name: string]: any };
+  handleToggleFilter: (name: string, value: any) => void;
+  clearFilter: () => void;
+  isSideBar: boolean;
+}
+
+class Filter extends React.Component<Props> {
+  wrapper: any;
+  stickyWrapper: any;
+  setWrapperRef: (element: any) => void;
+  createStickyWrapper: () => void;
+  cleanupStickyWrapper: () => void;
+
   constructor(props) {
     super(props);
     this.wrapper = null;
@@ -313,7 +326,11 @@ class Filter extends React.Component {
     ];
     const evalTypeInputName = "evalType";
     const evalPercentInputName = "evalPercent";
-    const selectedEvalTypeInput = filterGroups[evalTypeInputName] || "";
+    const selectedEvalTypeInput = Number.isInteger(
+      filterGroups[evalTypeInputName]
+    )
+      ? filterGroups[evalTypeInputName]
+      : "";
     const selectedEvalPercentInputs = filterGroups[evalPercentInputName] || [
       0,
       100,

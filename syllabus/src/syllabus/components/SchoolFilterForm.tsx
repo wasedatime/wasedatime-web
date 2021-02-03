@@ -124,9 +124,8 @@ class SchoolFilterForm extends React.Component<Props, State> {
   schoolImportPanes = () => {
     const { loadedSchools, loadingSchool } = this.state;
     const { t, i18n, selectedSchools, handleToggleFilter } = this.props;
-    console.log(selectedSchools);
-
     const schoolGroupNames = ["Undergraduate", "Graduate", "Special"];
+
     const ImportCardGroup = ({ schoolNameIconMap, itemsPerRow }) => (
       <Card.Group itemsPerRow={itemsPerRow} style={{ marginTop: "0.5em" }}>
         {Object.keys(schoolNameIconMap).map((schoolName) => (

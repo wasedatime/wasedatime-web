@@ -2,7 +2,7 @@ import React from "react";
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
 
-import AddedCourseListSwitch from "../../containers/syllabus/AddedCourseListSwitch";
+import AddedCourseListSwitchContainer from "../../containers/syllabus/AddedCourseListSwitchContainer";
 import FetchedCourseListSearch from "../../containers/syllabus/FetchedCourseListSearch";
 import { RowWrapper } from "../common/Wrapper";
 import { SideBar } from "../common/SideBar";
@@ -23,7 +23,7 @@ const SyllabusSearch = (props) => {
         {(matches) =>
           matches && (
             <SideBar flexBasis="21em">
-              <AddedCourseListSwitch
+              <AddedCourseListSwitchContainer
                 addedCoursesAndPrefs={addedCoursesAndPrefs}
               />
             </SideBar>

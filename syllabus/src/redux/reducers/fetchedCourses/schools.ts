@@ -23,6 +23,7 @@ interface SchoolsProps {
     exp: string;
     ids: any[];
     active: boolean;
+    timestamp: number;
   };
 }
 

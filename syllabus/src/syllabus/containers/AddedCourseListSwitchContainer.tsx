@@ -14,7 +14,7 @@ interface State {
   selectedSemester: string;
 }
 
-class AddedCourseListSwitch extends React.Component<Props, State> {
+class AddedCourseListSwitchContainer extends React.Component<Props, State> {
   springSemester: string;
   fallSemester: string;
   constructor(props) {
@@ -60,4 +60,4 @@ class AddedCourseListSwitch extends React.Component<Props, State> {
   }
 }
 
-export default withTranslation("translation")(AddedCourseListSwitch);
+export default withTranslation("translation")(AddedCourseListSwitchContainer);

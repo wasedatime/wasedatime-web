@@ -12,7 +12,7 @@ import {
   headerHeight,
 } from "@bit/wasedatime.core.ts.constants.size-variables";
 // import CourseListSummary from "../CourseListSummary";
-import AddedCourseItem from "../containers/AddedCourseItem";
+import AddedCourseItemContainer from "../containers/AddedCourseItemContainer";
 import {
   Article,
   Section,
@@ -143,7 +143,7 @@ class AddedCourseList extends React.Component<Props, State> {
         {courses.length ? (
           <div style={{ fontSize: "14px" }}>
             {courses.map((course, index) => (
-              <AddedCourseItem
+              <AddedCourseItemContainer
                 key={index}
                 course={course}
                 removeCourseFromList={this.removeCourseFromList}

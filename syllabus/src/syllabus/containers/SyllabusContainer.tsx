@@ -9,20 +9,35 @@ import {
 import { ReduxRootState } from "../../redux/reducers";
 import { getAddedCoursesListWithLang } from "../../redux/reducers/addedCourses";
 import { getFetchedCoursesList } from "../../redux/reducers/fetchedCourses";
-import AddedCourseListSwitch from "./AddedCourseListSwitch";
+import AddedCourseListSwitchContainer from "./AddedCourseListSwitchContainer";
 import FetchedCourseList from "../components/FetchedCourseList";
 import Filter from "../components/Filter";
 import FilterButton from "../components/FilterButton";
 import queryString from "query-string";
-import { getSearchLang } from "@bit/wasedatime.syllabus.ts.utils.course-search";
-import { createHistory, LocationProvider } from "@reach/router";
+import {
+  getSearchLang,
+  searchCourses,
+  sortCourses,
+} from "@bit/wasedatime.syllabus.ts.utils.course-search";
+import { createHistory, LocationProvider, navigate } from "@reach/router";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
+import Header from "@bit/wasedatime.core.ts.ui.header";
 import filterCourses from "../utils/filterCourses";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
+const SyllabusWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const HeaderWrapper = styled.div`
+  flex: 67px;
+`;
+
 const SyllabusFlex = styled.div`
+  flex: calc(100% - 67px);
   display: flex;
   flex-direction: row;
   height: 100vh;
@@ -50,6 +65,7 @@ interface ReduxDispatchProps {
 
 interface OwnProps extends WithTranslation {
   location: any;
+  history: any;
 }
 
 interface OwnState {
@@ -60,7 +76,7 @@ interface OwnState {
   inputText: string | string[];
 }
 
-let history = createHistory(window);
+// let history = createHistory(window);
 
 const modalStyle = {
   overlay: {
@@ -106,13 +122,18 @@ class SyllabusContainer extends React.Component<
     };
   }
 
+  // componentDidUpdate() {
+  //   elementToFocusRef.current.focus();
+  // }
+
   // handle text searching
 
   pushHistory = () => {
-    history.push({
-      pathname: "/syllabus",
-      search: this.state.inputText === "" ? "" : `q=${this.state.inputText}`,
-    });
+    this.props.history.push(
+      `/syllabus?${
+        this.state.inputText === "" ? "" : `q=${this.state.inputText}`
+      }`
+    );
   };
 
   updateSearchTerm = () => {
@@ -180,20 +201,44 @@ class SyllabusContainer extends React.Component<
       fetchCourses,
       fetchCoursesBySchool,
       addedCourses,
+      t,
       i18n,
     } = this.props;
-    const { fetchedCourses, searchTerm } = this.state;
+    let newI18n = { ...i18n };
+    console.log(i18n);
+    console.log(newI18n);
+
+    const { fetchedCourses, searchTerm, inputText } = this.state;
     const searchLang =
-      searchTerm === "" ? i18n.language : getSearchLang(searchTerm);
+      searchTerm === "" ? newI18n.language : getSearchLang(searchTerm);
+    const results =
+      searchTerm.length > 0
+        ? sortCourses(
+            searchTerm,
+            searchCourses(searchTerm, fetchedCourses, searchLang),
+            searchLang
+          )
+        : fetchedCourses;
 
     return (
-      <LocationProvider history={history}>
+      <SyllabusWrapper>
+        <HeaderWrapper>
+          <Header
+            title={t("navigation.syllabus")}
+            onInputChange={this.handleInputChange}
+            placeholder={t("syllabus.searchBarPlaceholder")}
+            inputText={inputText}
+            disabled={false}
+            isBlur={true}
+            changeLang={(lng) => i18n.changeLanguage(lng)}
+          />
+        </HeaderWrapper>
         <SyllabusFlex>
           <MediaQuery minWidth={sizes.tablet}>
             {(matches) =>
               matches && (
                 <SideColumn>
-                  <AddedCourseListSwitch addedCourses={addedCourses} />
+                  <AddedCourseListSwitchContainer addedCourses={addedCourses} />
                 </SideColumn>
               )
             }
@@ -203,7 +248,7 @@ class SyllabusContainer extends React.Component<
             <FetchedCourseList
               searchTerm={searchTerm}
               searchLang={searchLang}
-              results={fetchedCourses /* filtered courses */}
+              results={results}
               onSearchInputChange={this.handleInputChange}
             />
           </MiddleColumn>
@@ -237,7 +282,7 @@ class SyllabusContainer extends React.Component<
             }}
           </MediaQuery>
         </SyllabusFlex>
-      </LocationProvider>
+      </SyllabusWrapper>
     );
   }
 }

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
 
-import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
+import CourseItemContainer from "../../containers/syllabus/CourseItemContainer";
 import ReviewsList from "./ReviewsList";
 
 const CourseReviewsGroupWrapper = styled("div")`
@@ -19,7 +19,7 @@ const ReviewsHeader = styled("h3")`
 const CourseReviewsGroup = ({ course, reviews, searchLang, reviewLang, t }) => {
   return (
     <CourseReviewsGroupWrapper>
-      <FetchedCourseItem
+      <CourseItemContainer
         searchTerm={""}
         searchLang={searchLang}
         course={course}

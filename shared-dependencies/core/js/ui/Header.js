@@ -66,6 +66,7 @@ const Header = ({
                 }
                 value={inputText || ""}
                 disabled={disabled}
+                autoFocus={true}
               />
             </div>
           </Grid.Column>

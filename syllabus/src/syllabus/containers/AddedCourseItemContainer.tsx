@@ -14,7 +14,7 @@ interface OwnProps {
   removeCourseFromList: (course: { [key: string]: any }) => void;
 }
 
-class AddedCourseItem extends React.Component<ReduxDispatchProps & OwnProps> {
+class AddedCourseItemContainer extends React.Component<ReduxDispatchProps & OwnProps> {
   handleRemoveCourse = (title, lng) => {
     const { course, removeCourse, removeCourseFromList } = this.props;
     removeCourseFromList(course);
@@ -45,4 +45,4 @@ const mapDispatchToProps = {
   removeCourse,
 };
 
-export default connect(null, mapDispatchToProps)(AddedCourseItem);
+export default connect(null, mapDispatchToProps)(AddedCourseItemContainer);

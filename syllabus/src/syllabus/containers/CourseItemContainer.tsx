@@ -26,7 +26,7 @@ interface OwnProps {
   needLineBreak: boolean;
 }
 
-class FetchedCourseItem extends React.Component<
+class CourseItemContainer extends React.Component<
   ReduxStateProps & ReduxDispatchProps & OwnProps
 > {
   handleAddCourse = (title, lng) => {
@@ -130,4 +130,4 @@ const mapDispatchToProps = {
   removeCourse,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FetchedCourseItem);
+export default connect(mapStateToProps, mapDispatchToProps)(CourseItemContainer);

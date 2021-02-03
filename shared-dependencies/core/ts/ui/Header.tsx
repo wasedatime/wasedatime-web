@@ -44,8 +44,8 @@ type HeaderProps = {
   title: string;
   onInputChange(x: string): void;
   placeholder: string;
-  inputText: string;
-  disabled: boolean;
+  inputText: string | string[];
+  disabled?: boolean;
   isBlur: boolean;
   changeLang(x: string): void;
 };
@@ -82,6 +82,7 @@ const Header = ({
                 }
                 value={inputText || ""}
                 disabled={disabled}
+                autoFocus={true}
               />
             </div>
           </Grid.Column>

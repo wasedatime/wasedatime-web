@@ -1,6 +1,6 @@
 import React from "react";
 
-import FetchedCourseItem from "../containers/FetchedCourseItem";
+import CourseItemContainer from "../containers/CourseItemContainer";
 import { UnstyledUList } from "@bit/wasedatime.core.ts.ui.list";
 import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
@@ -14,7 +14,7 @@ const CourseChunk = ({ chunk, searchTerm, searchLang }: Props) => {
   return (
     <UnstyledUList>
       {chunk.map((course) => (
-        <FetchedCourseItem
+        <CourseItemContainer
           key={course[SYLLABUS_KEYS.ID]}
           searchTerm={searchTerm}
           searchLang={searchLang}

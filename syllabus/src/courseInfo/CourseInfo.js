@@ -25,7 +25,7 @@ import { Overlay } from "../../styled-components/Overlay";
 
 import CourseDetails from "./CourseDetails";
 import FetchError from "../../components/FetchError";
-import FetchedCourseItem from "../../containers/syllabus/FetchedCourseItem";
+import CourseItemContainer from "../../containers/syllabus/CourseItemContainer";
 import CourseReviews from "./CourseReviews";
 import AddReviewForm from "./AddReviewForm";
 import LoadingSpinner from "../LoadingSpinner";
@@ -572,7 +572,7 @@ class CourseInfo extends React.Component {
           <ExtendedOverlay>
             <div>
               {thisCourse && (
-                <FetchedCourseItem
+                <CourseItemContainer
                   searchTerm={""}
                   searchLang={searchLang}
                   course={thisCourse}

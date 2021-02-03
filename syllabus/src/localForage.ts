@@ -13,7 +13,7 @@ export const loadState = () => {
     .catch((err) => console.error(err));
 };
 
-export const saveState = (state) => {
+export const saveState = (state: object) => {
   localForage
     .setItem("wasedatime-2021-state", state)
     .then((value) => {})

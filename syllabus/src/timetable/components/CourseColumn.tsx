@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { withNamespaces } from "react-i18next";
+import { WithTranslation, withTranslation } from "react-i18next";
 
-import { media } from "../common/utils";
-import { getCourseTitleAndInstructor } from "../../utils/courseSearch";
-import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { getCourseTitleAndInstructor } from "@bit/wasedatime.syllabus.ts.utils.course-search";
+import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
 const StyledCourseColumn = styled("div")`
   display: flex;
@@ -69,7 +69,21 @@ const CourseList = styled("div")`
   position: relative;
 `;
 
-const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
+interface Props extends WithTranslation {
+  largestPeriod: number;
+  coursesAndProperties: {
+    pref: {
+      color: number;
+      displayLang: string;
+      visibility: boolean;
+    };
+    course: {
+      [key: string]: any;
+    };
+  }[];
+}
+
+const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
   const displayPeriods = Math.max(largestPeriod, 5);
   // a distinct course list has no occurrence overlaps between its course items.
   let distinctCourseLists = [[]];
@@ -85,7 +99,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
     if (period === -1) {
       startPeriod = endPeriod = -1;
     } else if (period > 9) {
-      startPeriod = parseInt(period / 10);
+      startPeriod = (period / 10) | 0;
       endPeriod = period % 10;
     } else {
       startPeriod = period;
@@ -132,7 +146,8 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
   const distinctCourseListsComponent = distinctCourseLists.map(
     (distinctCourseList, index) => {
       const listComponent = distinctCourseList.map((courseAndProperty) => {
-        const { course, color, displayLang } = courseAndProperty;
+        const course = courseAndProperty.course;
+        const { color, displayLang } = courseAndProperty.pref;
         const { title } = getCourseTitleAndInstructor(course, displayLang);
         let period = course.occurrence[SYLLABUS_KEYS.OCC_PERIOD];
         let startPeriod = 0;
@@ -140,7 +155,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
         if (period === -1) {
           startPeriod = endPeriod = -1;
         } else if (period > 9) {
-          startPeriod = parseInt(period / 10);
+          startPeriod = (period / 10) | 0;
           endPeriod = period % 10;
         } else {
           startPeriod = period;
@@ -183,4 +198,4 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }) => {
   );
 };
 
-export default withNamespaces("translation")(CourseColumn);
+export default withTranslation("translation")(CourseColumn);

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { withNamespaces } from "react-i18next";
+import { WithTranslation, withTranslation } from "react-i18next";
 
 import DayColumnItem from "./DayColumnItem";
-import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
 const StyledList = styled("ol")`
   display: flex;
@@ -16,12 +16,27 @@ const StyledList = styled("ol")`
   list-style-type: none;
 `;
 
+interface Props extends WithTranslation {
+  largestDay: number;
+  largestPeriod: number;
+  addedCoursesAndPrefs: {
+    pref: {
+      color: number;
+      displayLang: string;
+      visibility: boolean;
+    };
+    course: {
+      [key: string]: any;
+    };
+  }[];
+}
+
 const DayColumnList = ({
   largestDay,
   largestPeriod,
   addedCoursesAndPrefs,
   t,
-}) => {
+}: Props) => {
   const initCoursesByDay = {
     "-1": [],
     0: [],
@@ -75,4 +90,4 @@ const DayColumnList = ({
   return <StyledList>{dayColumns}</StyledList>;
 };
 
-export default withNamespaces("translation")(DayColumnList);
+export default withTranslation("translation")(DayColumnList);

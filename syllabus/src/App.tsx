@@ -1,17 +1,15 @@
 import React from "react";
-import { Router } from "@reach/router";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-// import Timetable from "./timetable/containers/TimetableContainer";
+import { Router, Redirect } from "@reach/router";
+import Timetable from "./timetable/containers/TimetableContainer";
 import Syllabus from "./syllabus/containers/SyllabusContainer";
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Switch>{/*<Timetable path="timetable" />*/}</Switch>
-      <Switch>
-        <Route exact path="/syllabus" component={Syllabus} />
-      </Switch>
-    </BrowserRouter>
+    <Router>
+      <Timetable path="courses/timetable" />
+      <Syllabus path="courses/syllabus" />
+      <Redirect from="timetable" to="courses/timetable" default noThrow />
+    </Router>
   );
 };
 

@@ -17,7 +17,11 @@ const StyledList = styled("ol")`
   left: 0;
 `;
 
-const TimeRowList = ({ largestPeriod }) => {
+interface Props {
+  largestPeriod: number;
+}
+
+const TimeRowList = ({ largestPeriod }: Props) => {
   const periods = [
     {
       s: "0900",

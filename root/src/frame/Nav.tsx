@@ -12,12 +12,12 @@ import {
 const navItems = [
   {
     name: "Timetable",
-    path: "/timetable",
+    path: "/courses/timetable",
     icon: faCalendarAlt,
   },
   {
     name: "Syllabus",
-    path: "/syllabus",
+    path: "/courses/syllabus",
     icon: faBook,
   },
   {

@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-import { RowWrapper, Wrapper } from "../common/Wrapper";
-import { Article, Section } from "../common/Article";
+import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+import { Article, Section } from "@bit/wasedatime.core.ts.ui.article";
 import { Message } from "semantic-ui-react";
 import TimeRowList from "./TimeRowList";
 import DayColumnList from "./DayColumnList";
-import AddedCourseAndPrefListContainer from "../../containers/timetable/AddedCourseAndPrefListContainer";
-import { media } from "../common/utils";
-import { withNamespaces } from "react-i18next";
-import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+// import AddedCourseAndPrefListContainer from "../containers/AddedCourseAndPrefListContainer";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { WithTranslation, withTranslation } from "react-i18next";
+import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
@@ -41,9 +41,23 @@ const ScrollableTimetable = styled("div")`
   -webkit-overflow-scrolling: touch;
 `;
 
-const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
+interface Props extends WithTranslation {
+  addedCoursesAndPrefs: {
+    pref: {
+      color: number;
+      displayLang: string;
+      visibility: boolean;
+    };
+    course: {
+      [key: string]: any;
+    };
+  }[];
+  semesterKey: string;
+}
+
+const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }: Props) => {
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(
-    (elem) => elem.visibility === true
+    (elem) => elem.pref.visibility === true
   );
 
   const largestDayAndPeriod = visibleAddedCoursesAndPrefs.reduce(
@@ -85,7 +99,7 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
           {!addedCoursesAndPrefs.length && (
             <Wrapper>
               <Article>
-                <h2>{t("timetable.welcome")}</h2>
+                <h3>{t("timetable.welcome")}</h3>
                 <Section>
                   <Message
                     warning
@@ -105,14 +119,14 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }) => {
               </Article>
             </Wrapper>
           )}
-          <AddedCourseAndPrefListContainer
+          {/*<AddedCourseAndPrefListContainer
             addedCoursesAndPrefs={addedCoursesAndPrefs}
             semesterKey={semesterKey}
-          />
+          />*/}
         </Wrapper>
       </Column>
     </ExtendedRowWrapper>
   );
 };
 
-export default withNamespaces("translation")(Timetable);
+export default withTranslation("translation")(Timetable);

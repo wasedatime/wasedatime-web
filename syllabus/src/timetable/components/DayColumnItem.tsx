@@ -20,7 +20,22 @@ const DayItem = styled("div")`
   border-bottom: solid 1px #ccc;
 `;
 
-const DayColumnItem = ({ day, largestPeriod, coursesAndProperties }) => {
+interface Props {
+  day: string;
+  largestPeriod: number;
+  coursesAndProperties: {
+    pref: {
+      color: number;
+      displayLang: string;
+      visibility: boolean;
+    };
+    course: {
+      [key: string]: any;
+    };
+  }[];
+}
+
+const DayColumnItem = ({ day, largestPeriod, coursesAndProperties }: Props) => {
   return (
     <StyledDayColumnItem>
       <DayItem>

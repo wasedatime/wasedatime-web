@@ -1,13 +1,15 @@
 import React from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Router, Redirect } from "@reach/router";
 import TermsOfService from "./singlePages/TermsOfService";
 import PrivacyPolicy from "./singlePages/PrivacyPolicy";
 
 const App = () => (
-  <Switch>
-    <Route exact path="/terms-of-service" component={TermsOfService} />
-    <Route exact path="/privacy-policy" component={PrivacyPolicy} />
-  </Switch>
+  <Router>
+    <TermsOfService path="/terms-of-service" />
+    <PrivacyPolicy path="/privacy-policy" />
+    <Redirect from="/timetable" to="/courses/timetable" noThrow />
+    <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
+  </Router>
 );
 
-export default withRouter(App);
+export default App;

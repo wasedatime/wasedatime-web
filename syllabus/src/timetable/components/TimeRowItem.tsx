@@ -20,7 +20,11 @@ const StyledTime = styled("time")`
   color: #333;
 `;
 
-const TimeRowItem = ({ period }) => {
+interface Props {
+  period: { s: number; p: number; e: number };
+}
+
+const TimeRowItem = ({ period }: Props) => {
   return (
     <StyledListItem>
       <StyledTime>{period.s}</StyledTime>

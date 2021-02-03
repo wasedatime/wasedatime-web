@@ -29,8 +29,5 @@ start();
 
 ReactDom.render(React.createElement(Nav), document.getElementById("nav"));
 if (document.getElementById("default")) {
-  ReactDom.render(
-    React.createElement(BrowserRouter, {}, React.createElement(App)),
-    document.getElementById("default")
-  );
+  ReactDom.render(React.createElement(App), document.getElementById("default"));
 }

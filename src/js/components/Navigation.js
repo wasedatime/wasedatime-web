@@ -96,14 +96,14 @@ const Navigation = ({ isHovered, t }) => {
     //   icon: faBriefcase,
     // },
     {
-      name: t("navigation.AboutUs"),
-      path: "/AboutUs",
-      icon: faStar,
-    },
-    {
       name: t("navigation.bus"),
       path: "/bus",
       icon: faBus,
+    },
+    {
+      name: t("navigation.aboutus"),
+      path: "/aboutus",
+      icon: faStar,
     },
   ];
   const styledLinks = navItems.map((item) => {

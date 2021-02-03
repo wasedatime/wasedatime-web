@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import { Tab, Menu } from "semantic-ui-react";
+import { withNamespaces } from "react-i18next";
+import Header from "./Header";
+import { Wrapper } from "../styled-components/Wrapper";
+import { Helmet } from "react-helmet";
 
 import OurMission from "./OurMission.js";
 import MeetOurTeam from "./MeetOurTeam.js";
@@ -31,10 +35,30 @@ const panes = [
     render: () => <JoinUs /> 
   },
 ];
-const TabExampleSecondary = () => (
+const AboutUs = () => (
+  <Wrapper>
+    <Helmet>
+      <title>WasedaTime -　About Us</title>
+      <meta
+            name="description"
+            content="Introduce Wasedatime's mission and meet the team."
+          />
+          <meta property="og:title" content="WasedaTime - About Us" />
+          <meta
+            property="og:description"
+            content="Introduce Wasedatime's mission and meet the team."
+          />
+          <meta property="og:site_name" content="WasedaTime - About Us" />
+    </Helmet>
+  <Header
+    title={t("navigation.aboutus")}
+    placeholder="Search..."
+    disabled={true}
+  />
   <LargeTab menu={{ secondary: true }} panes={panes}/>
+  </Wrapper>
 );
 
-export default TabExampleSecondary;
+export default withNamespaces("translation")(AboutUs);
 
 

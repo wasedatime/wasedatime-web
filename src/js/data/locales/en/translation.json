@@ -53,7 +53,8 @@
     "bus": "Bus",
     "language": "Language",
     "career": "Career",
-    "corona-info": "COVID19"
+    "corona-info": "COVID19",
+    "aboutus":"About Us"
   },
   "footer": {
     "licensed": " Code Licensed ",

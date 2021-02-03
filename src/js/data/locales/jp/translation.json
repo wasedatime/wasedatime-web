@@ -54,7 +54,9 @@
     "language": "言語",
     "career": "キャリア",
     "corona-info": "コロナ",
-    "home": "ホーム"
+    "home": "ホーム",
+    "aboutus":"私たち"
+
   },
   "footer": {
     "licensed": " ソースコードライセンス ",

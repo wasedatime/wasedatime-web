@@ -34,6 +34,7 @@ const evalChartOptions = {
     labels: {
       boxWidth: 12,
     },
+    onClick: (e) => e.stopPropagation(),
   },
   tooltips: {
     callbacks: {
@@ -59,8 +60,8 @@ const CourseDetailsEvaluation = ({ course, t }) => {
       <Grid.Column>
         <Table>
           <Table.Body>
-            {course[SYLLABUS_KEYS.EVAL].map((e) => (
-              <Table.Row>
+            {course[SYLLABUS_KEYS.EVAL].map((e, i) => (
+              <Table.Row key={i}>
                 <Table.Cell>
                   <span
                     style={{

@@ -64,6 +64,8 @@
     "@bit/wasedatime.syllabus.ts.constants.school-code-map": "0.0.3",
     "@bit/wasedatime.syllabus.ts.constants.semesters": "0.0.3",
     "@bit/wasedatime.syllabus.ts.constants.syllabus-keys": "0.0.2",
+    "@bit/wasedatime.syllabus.ts.constants.syllabus-theme": "0.0.1",
+    "@bit/wasedatime.syllabus.ts.ui.color-popper": "0.0.3",
     "@bit/wasedatime.syllabus.ts.ui.vertical-step": "0.0.3",
     "@bit/wasedatime.syllabus.ts.utils.added-courses": "0.0.3",
     "@bit/wasedatime.syllabus.ts.utils.course-search": "0.0.3",

@@ -1,5 +1,5 @@
 import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
-import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../../actions/types";
+import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE, TOGGLE_COURSE_VISIBILITY, CHANGE_COURSE_COLOR } from "../../actions/types";
 
 interface courseAndPrefTypes {
   id: string;
@@ -13,6 +13,7 @@ interface PayloadProps {
   coursesAndPrefs?: courseAndPrefTypes[];
   displayLang?: string;
   id?: string;
+  color?: number;
 }
 
 interface ActionProps {
@@ -21,12 +22,22 @@ interface ActionProps {
 }
 
 interface byIdProps {
-  [id: string]: object;
+  [id: string]: {
+    pref: {
+      color: number;
+      visibility: boolean;
+      displayLang: string;
+    },
+    course: {
+      [key: string]: any;
+    }
+  };
 }
 
 const initialState: byIdProps = {};
 
 const byId = (state = initialState, action: ActionProps): byIdProps => {
+  const courseId = action.payload ? action.payload.id : "";
   switch (action.type) {
     case ADD_COURSE:
       const id: string = action.payload.course[SYLLABUS_KEYS.ID];
@@ -45,6 +56,28 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
       let restCourses = { ...state };
       delete restCourses[action.payload.id];
       return restCourses;
+    case TOGGLE_COURSE_VISIBILITY:
+      return {
+        ...state,
+        [courseId]: {
+          ...state[courseId],
+          pref: {
+            ...state[courseId].pref,
+            visibility: !state[courseId].pref.visibility
+          }
+        }
+      }
+    case CHANGE_COURSE_COLOR:
+      return {
+        ...state,
+        [courseId]: {
+          ...state[courseId],
+          pref: {
+            ...state[courseId].pref,
+            color: action.payload.color
+          }
+        }
+      }
     case SAVE_TIMETABLE:
       let newCoursesAndPrefs = {};
       action.payload.coursesAndPrefs.forEach((cp) => {

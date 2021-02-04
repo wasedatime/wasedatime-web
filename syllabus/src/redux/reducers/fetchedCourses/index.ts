@@ -13,10 +13,13 @@ const fetchedCourses = combineReducers({
 
 export default fetchedCourses;
 
-export const getFetchedCoursesList = (coursesBySchool) => {
+// todo create type for course
+// todo rename files to xxx-xxx
+
+export const getFetchedCoursesList = (syllabusBySchool) => {
   let courses = [];
-  for (const school in coursesBySchool) {
-    const coursesById = coursesBySchool[school];
+  for (const school in syllabusBySchool) {
+    const coursesById = syllabusBySchool[school];
     for (const courseId in coursesById) {
       courses.push({
         ...coursesById[courseId],

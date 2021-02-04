@@ -187,3 +187,18 @@ export const removeCourse = (id: string) => (
     });
   }
 };
+
+export const changeCourseColor = (id, color) => ({
+  type: CHANGE_COURSE_COLOR,
+  payload: {
+    id,
+    color,
+  },
+});
+
+export const toggleCourseVisibility = (id: string) => ({
+  type: TOGGLE_COURSE_VISIBILITY,
+  payload: {
+    id,
+  },
+});

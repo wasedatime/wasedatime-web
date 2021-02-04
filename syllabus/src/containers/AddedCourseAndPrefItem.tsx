@@ -1,0 +1,79 @@
+import React from "react";
+import { connect } from "react-redux";
+import Alert from "react-s-alert";
+import { withTranslation } from "react-i18next";
+
+import {
+  removeCourse,
+  changeCourseColor,
+  toggleCourseVisibility,
+} from "../redux/actions/syllabus";
+import CourseAndPrefItem from "../components/CourseAndPrefItem";
+import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+
+interface ReduxDispatchProps {
+  removeCourse: (id: string) => void
+  changeCourseColor: (id: string, color: string) => void
+  toggleCourseVisibility: (id: string) => void
+}
+
+interface OwnProps {
+  addedCourseAndPref: {
+    pref: {
+      color: number;
+      displayLang: string;
+      visibility: boolean;
+    };
+    course: {
+      [key: string]: any;
+    };
+  };
+}
+
+class AddedCourseAndPrefItem extends React.Component<ReduxDispatchProps & OwnProps, {}> {
+  handleRemoveCourse = (id) => {    
+    this.props.removeCourse(id);
+    Alert.success("Course removed.", {
+      position: "bottom",
+      effect: "jelly",
+    });
+  };
+
+  handleChangeColor = (colorId) => {
+    const { addedCourseAndPref } = this.props;
+    const { course } = addedCourseAndPref;
+    this.props.changeCourseColor(course[SYLLABUS_KEYS.ID], colorId);
+  };
+
+  handleToggleVisibility = (id) => {
+    console.log(id);
+    this.props.toggleCourseVisibility(id);
+  };
+
+  render() {
+    const { addedCourseAndPref } = this.props;
+    const { pref, course } = addedCourseAndPref;
+    const { color, visibility, displayLang } = pref;
+    return (
+      <CourseAndPrefItem
+        color={color}
+        visibility={visibility}
+        displayLang={displayLang}
+        course={course}
+        handleRemoveCourse={this.handleRemoveCourse}
+        handleChangeColor={this.handleChangeColor}
+        handleToggleVisibility={this.handleToggleVisibility}
+      />
+    );
+  }
+}
+
+const mapDispatchToProps = {
+  removeCourse,
+  changeCourseColor,
+  toggleCourseVisibility,
+};
+
+export default withTranslation("translation")(
+  connect(null, mapDispatchToProps)(AddedCourseAndPrefItem)
+);

@@ -2,12 +2,14 @@ import { combineReducers } from "redux";
 import byId from "./byId";
 import idsBySchool from "./idsBySchool";
 import orderedIds from "./orderedIds";
+import sortingOption from "./sorting-option";
 import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
 
 const addedCourses = combineReducers({
   byId,
   idsBySchool,
   orderedIds,
+  sortingOption
 });
 
 export default addedCourses;

@@ -1,3 +1,5 @@
+// todo move to ui
+
 import React from "react";
 
 import { tokenize } from "@bit/wasedatime.syllabus.ts.utils.course-search";

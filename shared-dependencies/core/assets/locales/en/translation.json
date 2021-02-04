@@ -178,7 +178,7 @@
       "&": " & ",
       "undecided": "Undecided"
     },
-    "languageKeys": {
+    "languageCodes": {
       "-1": "N/A",
       "0": "JP",
       "1": "EN",

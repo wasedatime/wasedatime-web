@@ -1,3 +1,4 @@
+// todo jp  to ja
 {
   "app": {
     "courseChange": "科目の変更が検出されました。別のタブで科目を登録/取り消した場合は、変更を反映するために",
@@ -178,7 +179,7 @@
       "&": " & ",
       "undecided": "未定"
     },
-    "languageKeys": {
+    "languageCodes": {
       "-1": "N/A",
       "0": "日",
       "1": "英",

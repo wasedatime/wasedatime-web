@@ -1,7 +1,7 @@
 import React from "react";
 import { Router, Redirect } from "@reach/router";
-import Timetable from "./timetable/containers/TimetableContainer";
-import Syllabus from "./syllabus/containers/SyllabusContainer";
+import Timetable from "./containers/TimetableContainer";
+import Syllabus from "./containers/SyllabusContainer";
 
 const App = () => {
   return (

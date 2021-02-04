@@ -9,14 +9,10 @@ import {
   faCalendarAlt,
   faBook,
   faBus,
-<<<<<<< HEAD
   faStar,
-  faExclamationTriangle,
-  faBriefcase
-=======
-  faVirus,
-  // faStar,
->>>>>>> develop
+  faNewspaper,
+  faBriefcase,
+  faVirus
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
@@ -96,29 +92,21 @@ const Navigation = ({ isHovered, t }) => {
       path: "/corona-info",
       icon: faVirus,
     },
-<<<<<<< HEAD
     {
       name: t("navigation.career"),
       path: "/career",
       icon: faBriefcase,
     },
     {
+      name: t("navigation.blog"),
+      path: "/blog",
+      icon: faNewspaper,
+    },
+    {
       name: t("navigation.joinus"),
       path: "/joinus",
       icon: faStar,
     },
-=======
-    // {
-    //   name: t("navigation.career"),
-    //   path: "/career",
-    //   icon: faBriefcase,
-    // },
-    // {
-    //   name: t("navigation.joinus"),
-    //   path: "/joinus",
-    //   icon: faStar,
-    // },
->>>>>>> develop
     {
       name: t("navigation.bus"),
       path: "/bus",

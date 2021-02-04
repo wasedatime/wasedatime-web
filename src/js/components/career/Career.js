@@ -8,7 +8,7 @@ import CareerList from "./CareerInternList";
 import CareerArticles from "./CareerArticles";
 import CareerRecruit from "./CareerRecruit";
 import CareerSeminar from "./CareerSeminar";
-import Blog from "./blog/Blog"
+import BlogIndex from "./blog/BlogIndex"
 
 const Career = ({ t }) => {
   return (
@@ -52,7 +52,7 @@ const Career = ({ t }) => {
           <Route exact path="/career/recruit" component={CareerRecruit} />
           <Route exact path="/career/seminar" component={CareerSeminar} />
           <Route exact path="/career/articles" component={CareerArticles} />
-          <Route exact path="/career/blog" component={Blog} />
+          <Route exact path="/career/blog" component={BlogIndex} />
         </Switch>
       </div>
     </Wrapper>

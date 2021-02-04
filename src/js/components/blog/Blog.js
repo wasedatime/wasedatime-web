@@ -4,7 +4,6 @@ import { Helmet } from "react-helmet";
 import { Wrapper } from "../../styled-components/Wrapper";
 import { withNamespaces } from "react-i18next";
 
-
 import BlogIndex from "./BlogIndex"
 
 const Career = ({ t }) => {
@@ -24,19 +23,19 @@ const Career = ({ t }) => {
         <meta property="og:site_name" content="WasedaTime - Career" />
       </Helmet>
       <div>
-        <Link to="/career/articles">
+        <Link to="/blog/articles">
           <button className="ui button">{t("career.Articles")}</button>
         </Link>
-        <Link to="/career/blog">
+        <Link to="/blog">
           <button className="ui button">{t("career.Blog")}</button>
         </Link>
         <Switch>
-          <Route exact path="/career/articles" component={CareerArticles} />
-          <Route exact path="/career/blog" component={Blog} />
+          <Route exact path="/blog/articles" component={CareerArticles} />
+          <Route exact path="/blog" component={BlogIndex} />
         </Switch>
       </div>
     </Wrapper>
   );
 };
 
-export default withNamespaces("translation")(Career);
+export default withNamespaces("translation")(Blog);

@@ -10,7 +10,7 @@ import axios from 'axios';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 
-class CareerArticles extends React.Component {
+class ArticleSample extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,7 +62,7 @@ class CareerArticles extends React.Component {
          <Container className='markdown-body'>
             <StyledMarkdown source={content}/>
          </Container>
-        {/* <Menu fixed='top' inverted>
+        <Menu fixed='top' inverted>
           <Container>
             <Menu.Item as='a' header>
               <Image size='mini' src='/logo.png' style={{ marginRight: '1.5em' }} />
@@ -88,7 +88,7 @@ class CareerArticles extends React.Component {
               </Dropdown.Menu>
             </Dropdown>
           </Container>
-        </Menu> */}
+        </Menu>
 
         <Container text style={{ marginTop: '7em' }}>
           <Header as='h1'>Semantic UI React Fixed Template</Header>
@@ -110,4 +110,4 @@ class CareerArticles extends React.Component {
   }
 };
 
-export default CareerArticles;
+export default ArticleSample;

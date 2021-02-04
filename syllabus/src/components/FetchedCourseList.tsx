@@ -4,7 +4,8 @@ import { Waypoint } from "react-waypoint";
 import styled from "styled-components";
 import CourseChunk from "./CourseChunk";
 import { WithTranslation, withTranslation } from "react-i18next";
-import LANGS from "@bit/wasedatime.core.ts.constants.langs";
+import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import Course from "../types/course";
 
 const CourseListWrapper = styled.div`
   height: 100%;
@@ -27,7 +28,7 @@ const INIT_CHUNKS_NUM = 2;
 interface Props extends WithTranslation {
   searchTerm: string | string[];
   searchLang: string | string[];
-  results: object[];
+  results: Course[];
   onSearchInputChange: (inputText: string) => void;
 }
 
@@ -85,7 +86,7 @@ class FetchedCourseList extends React.Component<Props, State> {
               <CourseChunkWrapper>
                 <div>
                   <span>
-                    {i18n.language === LANGS.JP
+                    {i18n.language === Lang.JA
                       ? "全 " +
                         results.length +
                         " 件中 " +

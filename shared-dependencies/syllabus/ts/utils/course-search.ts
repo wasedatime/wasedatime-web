@@ -1,7 +1,7 @@
 import sortBy from "lodash/sortBy";
 
-import LANGS from "@bit/wasedatime.core.ts.constants.langs";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 
 // Unicode for Japanese: http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
 export const jpRegex = "\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf";
@@ -13,14 +13,14 @@ export const tokenize = (string) => {
 };
 
 export const getSearchLang = (searchTerm) => {
-  return new RegExp(`[${jpRegex}]`).test(searchTerm) ? LANGS.JP : LANGS.EN;
+  return new RegExp(`[${jpRegex}]`).test(searchTerm) ? Lang.JA : Lang.EN;
 };
 
 export const regexify = (token, searchLang) => {
   switch (searchLang) {
-    case LANGS.JP:
+    case Lang.JA:
       return new RegExp(token, "i");
-    case LANGS.EN:
+    case Lang.EN:
       return new RegExp(`\\b${token}`, "i");
     default:
       alert("Unsupported language: " + searchLang);
@@ -29,15 +29,15 @@ export const regexify = (token, searchLang) => {
 
 export const getCourseTitleAndInstructor = (course, searchLang) => {
   switch (searchLang) {
-    case LANGS.JP:
+    case Lang.JA:
       return {
-        title: course[SYLLABUS_KEYS.TITLE_JP],
-        instructor: course[SYLLABUS_KEYS.INSTRUCTOR_JP],
+        title: course[SyllabusKey.TITLE_JP],
+        instructor: course[SyllabusKey.INSTRUCTOR_JP],
       };
-    case LANGS.EN:
+    case Lang.EN:
       return {
-        title: course[SYLLABUS_KEYS.TITLE],
-        instructor: course[SYLLABUS_KEYS.INSTRUCTOR],
+        title: course[SyllabusKey.TITLE],
+        instructor: course[SyllabusKey.INSTRUCTOR],
       };
     default:
       alert("Unsupported language: " + searchLang);

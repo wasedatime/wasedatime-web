@@ -1,12 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 import { withNamespaces } from "react-i18next";
-import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import { Segment, Grid, Table, Statistic, Divider } from "semantic-ui-react";
 import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
 
 const mapCourseType = (course, t) => {
-  if (course[SYLLABUS_KEYS.TYPE] === -1) return "";
+  if (course[SyllabusKey.TYPE] === -1) return "";
   const courseTypeMap = [
     t("courseInfo.Details.Type.Lecture"),
     t("courseInfo.Details.Type.Seminar"),
@@ -18,11 +18,11 @@ const mapCourseType = (course, t) => {
     t("courseInfo.Details.Type.Practice"),
     t("courseInfo.Details.Type.Blended"),
   ];
-  return courseTypeMap[course[SYLLABUS_KEYS.TYPE]];
+  return courseTypeMap[course[SyllabusKey.TYPE]];
 };
 
 const mapCourseLevel = (course, t) => {
-  if (course[SYLLABUS_KEYS.TYPE] === -1) return "";
+  if (course[SyllabusKey.TYPE] === -1) return "";
   const courseLevelMap = [
     t("courseInfo.Details.Level.Beginner"),
     t("courseInfo.Details.Level.Intermediate"),
@@ -31,7 +31,7 @@ const mapCourseLevel = (course, t) => {
     t("courseInfo.Details.Level.Master"),
     t("courseInfo.Details.Level.Doctor"),
   ];
-  return courseLevelMap[course[SYLLABUS_KEYS.LEVEL]];
+  return courseLevelMap[course[SyllabusKey.LEVEL]];
 };
 
 const StyledSegment = styled(Segment)`
@@ -56,7 +56,7 @@ const CourseDetails = ({ course, t, lng }) => {
             <Grid.Column style={{ textAlign: "center" }}>
               <Statistic>
                 <Statistic.Value>
-                  {course[SYLLABUS_KEYS.MIN_YEAR]}+
+                  {course[SyllabusKey.MIN_YEAR]}+
                 </Statistic.Value>
                 <Statistic.Label>
                   {t("courseInfo.Details.Min Year")}
@@ -65,9 +65,7 @@ const CourseDetails = ({ course, t, lng }) => {
             </Grid.Column>
             <Grid.Column style={{ textAlign: "center" }}>
               <Statistic>
-                <Statistic.Value>
-                  {course[SYLLABUS_KEYS.CREDIT]}
-                </Statistic.Value>
+                <Statistic.Value>{course[SyllabusKey.CREDIT]}</Statistic.Value>
                 <Statistic.Label>
                   {t("courseInfo.Details.Credit")}
                 </Statistic.Label>
@@ -91,8 +89,8 @@ const CourseDetails = ({ course, t, lng }) => {
                     {
                       course[
                         lng === "en"
-                          ? SYLLABUS_KEYS.CATEGORY
-                          : SYLLABUS_KEYS.CATEGORY_JP
+                          ? SyllabusKey.CATEGORY
+                          : SyllabusKey.CATEGORY_JP
                       ]
                     }
                   </b>

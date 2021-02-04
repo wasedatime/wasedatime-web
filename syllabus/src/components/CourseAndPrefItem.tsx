@@ -7,13 +7,12 @@ import {
   faToggleOff,
   faToggleOn,
 } from "@fortawesome/free-solid-svg-icons";
-import { Manager, Popper, Reference } from "react-popper";
-import { Arrow, PopperBox } from "@bit/wasedatime.syllabus.ts.ui.color-popper";
 import ColorSelector from "./ColorSelector";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getCourseTitleAndInstructor } from "@bit/wasedatime.syllabus.ts.utils.course-search";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
-import { Popup } from 'semantic-ui-react'
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { Popup } from "semantic-ui-react";
+import Course from "../types/course";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -63,7 +62,7 @@ interface Props {
   color: number;
   visibility: boolean;
   displayLang: string;
-  course: { [key: string]: any };
+  course: Course;
   handleToggleVisibility: (id: string) => void;
   handleRemoveCourse: (id: string) => void;
   handleChangeColor: (color: number) => void;
@@ -82,7 +81,7 @@ const CourseAndPrefItem = ({
     course,
     displayLang
   );
-  const courseId = course[SYLLABUS_KEYS.ID];
+  const courseId = course[SyllabusKey.ID];
   const removeCourseIcon = (
     <FontAwesomeIcon
       style={{ color: "#ce0115" }}
@@ -103,9 +102,9 @@ const CourseAndPrefItem = ({
     <RowWrapper>
       <Popup
         trigger={<ColorButton className={`color-${color}`} />}
-        on='click'
+        on="click"
         pinned
-        size='huge'
+        size="huge"
       >
         <ColorSelector handleChangeColor={handleChangeColor} />
       </Popup>

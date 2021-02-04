@@ -5,7 +5,7 @@ import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { Step, Icon, Message } from "semantic-ui-react";
-import { VerticalStep } from "@bit/wasedatime.syllabus.ts.ui.vertical-step";
+import { VerticalStep } from "@bit/wasedatime.syllabus.ts.styles.vertical-step";
 
 import {
   addedCourseListSwitchHeight,
@@ -17,7 +17,8 @@ import {
   Article,
   Section,
   Subheading,
-} from "@bit/wasedatime.core.ts.ui.article";
+} from "@bit/wasedatime.core.ts.styles.article";
+import Course from "../types/course";
 
 const CourseListWrapper = styled("div")`
   position: fixed !important;
@@ -50,7 +51,7 @@ const StyledStepGroup = styled(Step.Group)`
 `;
 
 interface Props extends WithTranslation {
-  addedCourses: { [key: string]: any }[];
+  addedCourses: Course[];
   sortingOptions: { label: string; value: string }[];
   isSortingOptionOpen: boolean;
   handleToggleSortingOptions: () => void;
@@ -59,7 +60,7 @@ interface Props extends WithTranslation {
 }
 
 interface State {
-  courses: { [key: string]: any }[];
+  courses: Course[];
 }
 
 class AddedCourseList extends React.Component<Props, State> {

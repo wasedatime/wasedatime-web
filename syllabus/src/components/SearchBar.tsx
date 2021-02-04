@@ -5,7 +5,7 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import stickybits from "stickybits";
 
 import { headerHeight } from "@bit/wasedatime.core.ts.constants.size-variables";
-// import { RowWrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+// import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 
 // const ExtendedWrapper = styled(RowWrapper)`
 //   flex: none;

@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Link } from "@reach/router";
 import { Menu } from "semantic-ui-react";
 import styled, { ThemeProvider } from "styled-components";
-import { normalTheme } from "@bit/wasedatime.core.ts.constants.theme";
+import { normalTheme } from "@bit/wasedatime.core.js.constants.theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SidebarWrapper from "@bit/wasedatime.core.ts.ui.sidebar-wrapper";
-import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
+import SidebarWrapper from "@bit/wasedatime.core.js.styles.sidebar-wrapper";
+import { SmallLogo } from "@bit/wasedatime.core.js.ui.logo";
 import textLogo from "@bit/wasedatime.core.assets.text-logo";
 
 const LogoWrapper = styled.a`

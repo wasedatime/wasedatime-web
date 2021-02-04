@@ -3,9 +3,10 @@ import styled from "styled-components";
 
 import CourseListSummary from "./CourseListSummary";
 import AddedCourseAndPrefItem from "../containers/AddedCourseAndPrefItem";
-import { Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { UnstyledUList } from "@bit/wasedatime.core.ts.ui.list";
+import { UnstyledUList } from "@bit/wasedatime.core.ts.styles.list";
+import Course from "../types/course";
 
 const ExtendedWrapper = styled(Wrapper)`
   padding: 0 1em;
@@ -26,9 +27,7 @@ interface Props {
       displayLang: string;
       visibility: boolean;
     };
-    course: {
-      [key: string]: any;
-    };
+    course: Course;
   }[];
 }
 
@@ -46,9 +45,7 @@ const AddedCourseAndPrefList = ({ addedCoursesAndPrefs }: Props) => {
         <ExtendedUnstyledUList>
           {addedCoursesAndPrefs.map((courseAndPref, i) => (
             <React.Fragment key={i}>
-              <AddedCourseAndPrefItem
-                addedCourseAndPref={courseAndPref}
-              />
+              <AddedCourseAndPrefItem addedCourseAndPref={courseAndPref} />
               <hr
                 style={{
                   border: "none",

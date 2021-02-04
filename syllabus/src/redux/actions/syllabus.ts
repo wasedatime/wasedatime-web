@@ -16,8 +16,9 @@ import {
   REMOVE_SCHOOL,
   SAVE_TIMETABLE,
 } from "./types";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
-import { schoolCodeMap } from "@bit/wasedatime.syllabus.ts.constants.school-code-map";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { schoolCodeMap } from "@bit/wasedatime.syllabus.ts.constants.school-code";
+import Course from "../../types/course";
 
 export const removeSchool = (school: string) => ({
   type: REMOVE_SCHOOL,
@@ -90,7 +91,7 @@ export const fetchCourses = () => async (
           updatedSchools[school.name] = {
             name: school.name,
             exp: res.headers["expires"],
-            ids: res.data.map((c) => c[SYLLABUS_KEYS.ID]),
+            ids: res.data.map((c) => c[SyllabusKey.ID]),
           };
         }
         return;
@@ -116,13 +117,13 @@ export const fetchCourses = () => async (
   }
 };
 
-export const addCourse = (course: object, displayLang: string) => (
+export const addCourse = (course: Course, displayLang: string) => (
   dispatch: (x: any) => void,
   getState: any
 ) => {
   try {
     // if (getState().user.tokens) {
-    //   const term = course[SYLLABUS_KEYS.TERM].match(/0|1|f/g)
+    //   const term = course[SyllabusKey.TERM].match(/0|1|f/g)
     //     ? "spring"
     //     : "fall";
     //   API.patch("wasedatime-dev", "/timetable", {
@@ -130,7 +131,7 @@ export const addCourse = (course: object, displayLang: string) => (
     //       data: {
     //         operation: "append",
     //         course: {
-    //           id: course[SYLLABUS_KEYS.ID],
+    //           id: course[SyllabusKey.ID],
     //           color: getState().addedCourses.orderedIds.length % 8,
     //           displayLang: displayLang,
     //         },

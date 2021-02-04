@@ -3,9 +3,10 @@ import { connect } from "react-redux";
 import Alert from "react-s-alert";
 import { addCourse, removeCourse } from "../redux/actions/syllabus";
 import CourseItem from "../components/CourseItem";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import Course from "../types/course";
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
 
@@ -14,14 +15,14 @@ interface ReduxStateProps {
 }
 
 interface ReduxDispatchProps {
-  addCourse: (course: object, displayLang: string | string[]) => void;
+  addCourse: (course: Course, displayLang: string | string[]) => void;
   removeCourse: (id: string) => void;
 }
 
 interface OwnProps {
   searchTerm: string | string[];
   searchLang: string | string[];
-  course: object;
+  course: Course;
   isDetailDisplayed: boolean;
   needLineBreak: boolean;
 }
@@ -31,7 +32,7 @@ class CourseItemContainer extends React.Component<
 > {
   handleAddCourse = (title, lng) => {
     const { course, addedCourseIds, searchLang } = this.props;
-    const occurrences = course[SYLLABUS_KEYS.OCCURRENCES];
+    const occurrences = course[SyllabusKey.OCCURRENCES];
     if (addedCourseIds.length >= ADDED_COURSES_NUMBER_LIMIT) {
       Alert.error(
         `Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`,
@@ -45,8 +46,7 @@ class CourseItemContainer extends React.Component<
     this.props.addCourse(course, searchLang);
     if (
       occurrences.some(
-        (o) =>
-          o[SYLLABUS_KEYS.OCC_DAY] === -1 || o[SYLLABUS_KEYS.OCC_PERIOD] === -1
+        (o) => o[SyllabusKey.OCC_DAY] === -1 || o[SyllabusKey.OCC_PERIOD] === -1
       )
     ) {
       Alert.warning(
@@ -66,7 +66,7 @@ class CourseItemContainer extends React.Component<
 
   handleRemoveCourse = (title, lng) => {
     const { course } = this.props;
-    this.props.removeCourse(course[SYLLABUS_KEYS.ID]);
+    this.props.removeCourse(course[SyllabusKey.ID]);
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly",
@@ -82,7 +82,7 @@ class CourseItemContainer extends React.Component<
       isDetailDisplayed,
       needLineBreak,
     } = this.props;
-    const isAddable = !addedCourseIds.includes(course[SYLLABUS_KEYS.ID]);
+    const isAddable = !addedCourseIds.includes(course[SyllabusKey.ID]);
     return (
       <MediaQuery minWidth={sizes.desktop}>
         {(matches) =>
@@ -130,4 +130,7 @@ const mapDispatchToProps = {
   removeCourse,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(CourseItemContainer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CourseItemContainer);

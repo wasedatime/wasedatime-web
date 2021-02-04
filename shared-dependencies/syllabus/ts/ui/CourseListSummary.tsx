@@ -1,25 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import SortingOptions from "@bit/wasedatime.syllabus.ts.ui.sorting-options";
-import { RowWrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
-import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
+import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
+import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import { Label, Dropdown } from "semantic-ui-react";
-import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
-
-const SortByButton = styled(InvisibleButton)`
-  margin-left: auto;
-  display: flex;
-  &:hover {
-    fill: #b51e36;
-    color: #b51e36;
-  }
-  &:focus {
-    fill: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
-    color: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
-  }
-  fill: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
-  color: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
-`;
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 
 const StyledLabel = styled(Label)`
   padding: 0.6rem !important;
@@ -45,8 +29,8 @@ const creditSum = (coursesAndPrefs) => {
   return coursesAndPrefs
     .map((courseAndPref) =>
       courseAndPref.course
-        ? courseAndPref.course[SYLLABUS_KEYS.CREDIT]
-        : courseAndPref[SYLLABUS_KEYS.CREDIT]
+        ? courseAndPref.course[SyllabusKey.CREDIT]
+        : courseAndPref[SyllabusKey.CREDIT]
     )
     .reduce((a, b) => a + b, 0);
 };
@@ -68,7 +52,6 @@ const creditSum = (coursesAndPrefs) => {
 type Props = {
   courses: any[];
   sortingOptions: any[];
-  isSortingOptionOpen: boolean;
   selectedSortingOption: string;
   handleChangeSortingOption: (x: string) => void;
   dropdownPlaceholder: string;
@@ -79,7 +62,6 @@ type Props = {
 const CourseListSummary = ({
   courses,
   sortingOptions,
-  isSortingOptionOpen,
   selectedSortingOption,
   handleChangeSortingOption,
   dropdownPlaceholder,
@@ -105,13 +87,6 @@ const CourseListSummary = ({
           }}
         />
       </RowWrapper>
-      {isSortingOptionOpen && (
-        <SortingOptions
-          sortingOptions={sortingOptions}
-          selectedSortingOptionValue={selectedSortingOption}
-          handleChangeSortingOption={handleChangeSortingOption}
-        />
-      )}
     </div>
   );
 };

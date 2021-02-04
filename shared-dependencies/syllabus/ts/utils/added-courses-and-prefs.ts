@@ -1,19 +1,18 @@
-import {
-  ADDED_ORDER,
-  COURSE_TITLE,
-  COURSE_TIME,
-} from "@bit/wasedatime.syllabus.ts.constants.sorting-options";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import SortingOption from "@bit/wasedatime.syllabus.ts.constants.sorting-options";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 
-export const sortAddedCourses = (addedCourses, sortingOption) => {
+export const sortAddedCoursesAndPrefs = (
+  addedCoursesAndPrefs,
+  sortingOption
+) => {
   switch (sortingOption) {
-    case ADDED_ORDER:
-      return addedCourses;
-    case COURSE_TITLE:
-      return addedCourses.sort((a, b) => {
+    case SortingOption.ADDED_ORDER:
+      return addedCoursesAndPrefs;
+    case SortingOption.COURSE_TITLE:
+      return addedCoursesAndPrefs.sort((a, b) => {
         // ignore upper and lowercase
-        const courseTitleA = a[SYLLABUS_KEYS.TITLE].toUpperCase();
-        const courseTitleB = b[SYLLABUS_KEYS.TITLE].toUpperCase();
+        const courseTitleA = a.course[SyllabusKey.TITLE].toUpperCase();
+        const courseTitleB = b.course[SyllabusKey.TITLE].toUpperCase();
         if (courseTitleA < courseTitleB) {
           return -1;
         } else if (courseTitleA > courseTitleB) {
@@ -22,21 +21,21 @@ export const sortAddedCourses = (addedCourses, sortingOption) => {
           return 0;
         }
       });
-    case COURSE_TIME:
-      return addedCourses.sort((a, b) => {
+    case SortingOption.COURSE_TIME:
+      return addedCoursesAndPrefs.sort((a, b) => {
         const firstOccurrenceDayA =
-          a[SYLLABUS_KEYS.OCCURRENCES][0][SYLLABUS_KEYS.OCC_DAY];
+          a.course[SyllabusKey.OCCURRENCES][0][SyllabusKey.OCC_DAY];
         const firstOccurrenceDayB =
-          b[SYLLABUS_KEYS.OCCURRENCES][0][SYLLABUS_KEYS.OCC_DAY];
+          b.course[SyllabusKey.OCCURRENCES][0][SyllabusKey.OCC_DAY];
 
         const firstOccurrencePeriodA =
-          a[SYLLABUS_KEYS.OCCURRENCES][0][SYLLABUS_KEYS.OCC_PERIOD];
+          a.course[SyllabusKey.OCCURRENCES][0][SyllabusKey.OCC_PERIOD];
         const firstOccurrenceStartPeriodA =
           firstOccurrencePeriodA > 9
             ? Math.floor(firstOccurrencePeriodA / 10)
             : firstOccurrencePeriodA % 10;
         const firstOccurrencePeriodB =
-          b[SYLLABUS_KEYS.OCCURRENCES][0][SYLLABUS_KEYS.OCC_PERIOD];
+          b.course[SyllabusKey.OCCURRENCES][0][SyllabusKey.OCC_PERIOD];
         const firstOccurrenceStartPeriodB =
           firstOccurrencePeriodB > 9
             ? Math.floor(firstOccurrencePeriodB / 10)
@@ -59,6 +58,6 @@ export const sortAddedCourses = (addedCourses, sortingOption) => {
         }
       });
     default:
-      return addedCourses;
+      return addedCoursesAndPrefs;
   }
 };

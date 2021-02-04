@@ -14,7 +14,7 @@ import {
   gaOpenModal,
 } from "../../ga/eventActions";
 import Alert from "react-s-alert";
-import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import levenshtein from "levenshtein-edit-distance";
 import { withNamespaces } from "react-i18next";
 import withFetchCourses from "../../hocs/withFetchCourses";
@@ -53,7 +53,7 @@ const getCourse = (loadedCourses, courseID) => {
   return loadedCourses ? loadedCourses[courseID] : null;
 };
 
-const getCourseKey = (course) => course[SYLLABUS_KEYS.ID].substring(0, 12);
+const getCourseKey = (course) => course[SyllabusKey.ID].substring(0, 12);
 
 const getRelatedCourses = (
   loadedCourses,
@@ -64,7 +64,7 @@ const getRelatedCourses = (
 ) => {
   const relatedCourseIDs = Object.keys(loadedCourses).filter(
     (courseID) =>
-      loadedCourses[courseID][SYLLABUS_KEYS.CODE] === courseCode &&
+      loadedCourses[courseID][SyllabusKey.CODE] === courseCode &&
       getCourseKey(loadedCourses[courseID]) !== thisCourseKey
   );
   const relatedCourses = relatedCourseIDs.map(
@@ -73,18 +73,18 @@ const getRelatedCourses = (
   const sortedRelatedCourses = relatedCourses
     .sort((a, b) => {
       if (
-        a[SYLLABUS_KEYS.SCHOOL] === thisCourseSchool &&
-        b[SYLLABUS_KEYS.SCHOOL] !== thisCourseSchool
+        a[SyllabusKey.SCHOOL] === thisCourseSchool &&
+        b[SyllabusKey.SCHOOL] !== thisCourseSchool
       )
         return -1;
       if (
-        a[SYLLABUS_KEYS.SCHOOL] !== thisCourseSchool &&
-        b[SYLLABUS_KEYS.SCHOOL] === thisCourseSchool
+        a[SyllabusKey.SCHOOL] !== thisCourseSchool &&
+        b[SyllabusKey.SCHOOL] === thisCourseSchool
       )
         return 1;
       return (
-        levenshtein(thisCourseTitle, a[SYLLABUS_KEYS.TITLE]) -
-        levenshtein(thisCourseTitle, b[SYLLABUS_KEYS.TITLE])
+        levenshtein(thisCourseTitle, a[SyllabusKey.TITLE]) -
+        levenshtein(thisCourseTitle, b[SyllabusKey.TITLE])
       );
     })
     .slice(0, 10);
@@ -160,10 +160,10 @@ class CourseInfo extends React.Component {
     // 1. Get related courses by code, sort them, and get the first k courses (k=10)
     const relatedCourses = getRelatedCourses(
       loadedCourses,
-      thisCourse[SYLLABUS_KEYS.CODE],
+      thisCourse[SyllabusKey.CODE],
       thisCourseKey,
-      thisCourse[SYLLABUS_KEYS.TITLE],
-      thisCourse[SYLLABUS_KEYS.SCHOOL]
+      thisCourse[SyllabusKey.TITLE],
+      thisCourse[SyllabusKey.SCHOOL]
     );
 
     this.setState({ relatedCourses: relatedCourses });
@@ -192,9 +192,9 @@ class CourseInfo extends React.Component {
         if (
           thisCourseKey.substring(0, 10) ===
             courseKeysToFetchReviews[i].substring(0, 10) &&
-          thisCourse[SYLLABUS_KEYS.INSTRUCTOR] ===
+          thisCourse[SyllabusKey.INSTRUCTOR] ===
             relatedCoursesByKey[courseKeysToFetchReviews[i]][
-              SYLLABUS_KEYS.INSTRUCTOR
+              SyllabusKey.INSTRUCTOR
             ]
         ) {
           thisCourseReviews = [...thisCourseReviews, ...c.data];
@@ -227,7 +227,7 @@ class CourseInfo extends React.Component {
         avgDifficulty: avgDifficulty,
         avgBenefit: avgBenefit,
         searchLang: searchLang,
-        reviewLang: this.props.lng === "jp" ? "ja" : this.props.lng,
+        reviewLang: this.props.lng === "ja" ? "ja" : this.props.lng,
         isLoaded: true,
       });
   }
@@ -379,10 +379,10 @@ class CourseInfo extends React.Component {
       const newReview = {
         ...editReview,
         course_key: getCourseKey(thisCourse),
-        title: thisCourse[SYLLABUS_KEYS.TITLE],
-        title_jp: thisCourse[SYLLABUS_KEYS.TITLE_JP],
-        instructor: thisCourse[SYLLABUS_KEYS.INSTRUCTOR],
-        instructor_jp: thisCourse[SYLLABUS_KEYS.INSTRUCTOR_JP],
+        title: thisCourse[SyllabusKey.TITLE],
+        title_jp: thisCourse[SyllabusKey.TITLE_JP],
+        instructor: thisCourse[SyllabusKey.INSTRUCTOR],
+        instructor_jp: thisCourse[SyllabusKey.INSTRUCTOR_JP],
         year: 2020,
       };
 

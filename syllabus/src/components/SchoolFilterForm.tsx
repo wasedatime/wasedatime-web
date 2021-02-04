@@ -19,12 +19,9 @@ import {
   Menu,
 } from "semantic-ui-react";
 
-import {
-  undergradSchoolNameIconMap,
-  gradSchoolNameIconMap,
-  otherSchoolNameIconMap,
-  allSchoolNameIconMap,
-} from "@bit/wasedatime.syllabus.ts.utils.school-name-icon-map";
+import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import * as schoolIconEnMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en";
+import * as schoolIconJaMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja";
 
 const RowWrapper = styled("div")`
   display: flex;
@@ -148,11 +145,19 @@ class SchoolFilterForm extends React.Component<Props, State> {
     );
 
     const lng = i18n.language;
-    return [
-      undergradSchoolNameIconMap(lng),
-      gradSchoolNameIconMap(lng),
-      otherSchoolNameIconMap(lng),
-    ].map((schoolNameIconMap, i) => ({
+    const schoolIconMap =
+      i18n.language === Lang.EN
+        ? [
+            schoolIconEnMap.undergradSchoolNameIconMap,
+            schoolIconEnMap.gradSchoolNameIconMap,
+            schoolIconEnMap.otherSchoolNameIconMap,
+          ]
+        : [
+            schoolIconJaMap.undergradSchoolNameIconMap,
+            schoolIconJaMap.gradSchoolNameIconMap,
+            schoolIconJaMap.otherSchoolNameIconMap,
+          ];
+    return schoolIconMap.map((schoolNameIconMap, i) => ({
       menuItem: (
         <Menu.Item key={schoolGroupNames[i]} style={{ fontSize: "1.2em" }}>
           {t("syllabus.School Filter." + schoolGroupNames[i])}

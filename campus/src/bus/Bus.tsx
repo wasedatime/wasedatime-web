@@ -12,7 +12,6 @@ import DatePicker from "react-datepicker";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-// TODO use modal from other ui framework
 // import Header from "../../src/js/components/Header";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { busSchedule } from "../constants/busSchedule";
@@ -200,7 +199,6 @@ const binarySearchSchedule = (totalMins, schedule) => {
 const totalMinsToTimeStr = (totalMins) => {
   const hours = Math.floor(totalMins / 60);
   const minutes = totalMins - hours * 60;
-  // TODO duplicated code from ClassroomList
   const hoursString = hours < 10 ? `0${hours}` : `${hours}`;
   const minsString = minutes < 10 ? `0${minutes}` : `${minutes}`;
   return `${hoursString}:${minsString}`;
@@ -258,7 +256,7 @@ const getBusStatuses = (targetDate, lng, t) => {
       nishiSchedule.remarks_en,
       t
     );
-  } else if (lng === "jp") {
+  } else if (lng === "ja") {
     wasedaStatus = getBusStatus(
       totalMins,
       wasedaSchedule.occurrences,

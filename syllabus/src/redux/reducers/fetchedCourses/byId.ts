@@ -1,15 +1,16 @@
-import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import {
   FETCH_COURSES_SUCCESS,
   ADD_SCHOOL_FETCH_COURSES_SUCCESS,
   REMOVE_SCHOOL,
 } from "../../actions/types";
+import Course from "../../../types/course";
 
 interface PayloadProps {
   coursesBySchool?: {
-    [school: string]: object[];
+    [school: string]: Course[];
   };
-  courses?: object[];
+  courses?: Course[];
   school?: string;
 }
 
@@ -19,7 +20,9 @@ interface ActionProps {
 }
 
 interface byIdProps {
-  [school: string]: object;
+  [school: string]: {
+    [courseId: string]: Course;
+  };
 }
 
 const initialState: byIdProps = {};
@@ -32,7 +35,7 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
 
       Object.keys(coursesBySchool).forEach((school) => {
         coursesBySchool[school].forEach((course) => {
-          const courseId = course[SYLLABUS_KEYS.ID];
+          const courseId = course[SyllabusKey.ID];
           coursesByIdSchool[school][courseId] = course;
         });
       });
@@ -42,7 +45,7 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
       const school = action.payload.school;
       let coursesById = {};
       courses.forEach((course) => {
-        const courseId = course[SYLLABUS_KEYS.ID];
+        const courseId = course[SyllabusKey.ID];
         coursesById[courseId] = course;
       });
       return {

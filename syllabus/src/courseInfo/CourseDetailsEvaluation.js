@@ -1,6 +1,6 @@
 import React from "react";
 import { withNamespaces } from "react-i18next";
-import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import { Grid, Table } from "semantic-ui-react";
 import { Doughnut } from "react-chartjs-2";
 
@@ -8,21 +8,17 @@ const evalChartData = (course, t) => {
   return {
     datasets: [
       {
-        data: course[SYLLABUS_KEYS.EVAL].map((e) =>
-          e[SYLLABUS_KEYS.EVAL_PERCENT] === -1
-            ? 0
-            : e[SYLLABUS_KEYS.EVAL_PERCENT]
+        data: course[SyllabusKey.EVAL].map((e) =>
+          e[SyllabusKey.EVAL_PERCENT] === -1 ? 0 : e[SyllabusKey.EVAL_PERCENT]
         ),
-        backgroundColor: course[SYLLABUS_KEYS.EVAL].map(
-          (e) => evalColorMap[e[SYLLABUS_KEYS.EVAL_TYPE]]
+        backgroundColor: course[SyllabusKey.EVAL].map(
+          (e) => evalColorMap[e[SyllabusKey.EVAL_TYPE]]
         ),
       },
     ],
-    labels: course[SYLLABUS_KEYS.EVAL].map((e) =>
+    labels: course[SyllabusKey.EVAL].map((e) =>
       t(
-        `courseInfo.Details.Evaluation.${
-          evalTypeMap[e[SYLLABUS_KEYS.EVAL_TYPE]]
-        }`
+        `courseInfo.Details.Evaluation.${evalTypeMap[e[SyllabusKey.EVAL_TYPE]]}`
       )
     ),
   };
@@ -52,7 +48,7 @@ const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
 const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
 
 const CourseDetailsEvaluation = ({ course, t }) => {
-  return course[SYLLABUS_KEYS.EVAL].length > 0 ? (
+  return course[SyllabusKey.EVAL].length > 0 ? (
     <Grid columns={2} stackable>
       <Grid.Column>
         <Doughnut data={evalChartData(course, t)} options={evalChartOptions} />
@@ -60,12 +56,12 @@ const CourseDetailsEvaluation = ({ course, t }) => {
       <Grid.Column>
         <Table>
           <Table.Body>
-            {course[SYLLABUS_KEYS.EVAL].map((e, i) => (
+            {course[SyllabusKey.EVAL].map((e, i) => (
               <Table.Row key={i}>
                 <Table.Cell>
                   <span
                     style={{
-                      color: evalColorMap[e[SYLLABUS_KEYS.EVAL_TYPE]],
+                      color: evalColorMap[e[SyllabusKey.EVAL_TYPE]],
                       fontSize: "2em",
                     }}
                   >
@@ -73,11 +69,11 @@ const CourseDetailsEvaluation = ({ course, t }) => {
                   </span>{" "}
                   {t(
                     `courseInfo.Details.Evaluation.${
-                      evalTypeMap[e[SYLLABUS_KEYS.EVAL_TYPE]]
+                      evalTypeMap[e[SyllabusKey.EVAL_TYPE]]
                     }`
                   )}
                 </Table.Cell>
-                <Table.Cell>{e[SYLLABUS_KEYS.EVAL_CRITERIA]}</Table.Cell>
+                <Table.Cell>{e[SyllabusKey.EVAL_CRITERIA]}</Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>

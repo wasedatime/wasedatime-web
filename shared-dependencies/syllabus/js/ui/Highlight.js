@@ -1,18 +1,18 @@
 import React from "react";
 
 import { tokenize } from "@bit/wasedatime.syllabus.js.utils.course-search";
-import LANGS from "@bit/wasedatime.core.js.constants.langs";
+import Lang from "@bit/wasedatime.core.js.constants.langs";
 
-export const highlight = (searchTerm, searchLang, text) => {
+export const Highlight = (searchTerm, searchLang, text) => {
   if (searchTerm.length > 0) {
     const termUnion = tokenize(searchTerm).join("|");
     //Capturing parentheses () allows matched results to be included in the array.
     let regex;
     switch (searchLang) {
-      case LANGS.JP:
+      case Lang.JA:
         regex = new RegExp(`(${termUnion})`, "i");
         break;
-      case LANGS.EN:
+      case Lang.EN:
         regex = new RegExp(`\\b(${termUnion})`, "i");
         break;
       default:

@@ -7,8 +7,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
-import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
-import { RowWrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
+import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import {
   SEMESTERS,

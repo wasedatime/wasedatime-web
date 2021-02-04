@@ -9,12 +9,13 @@ import {
   toggleCourseVisibility,
 } from "../redux/actions/syllabus";
 import CourseAndPrefItem from "../components/CourseAndPrefItem";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import Course from "../types/course";
 
 interface ReduxDispatchProps {
-  removeCourse: (id: string) => void
-  changeCourseColor: (id: string, color: string) => void
-  toggleCourseVisibility: (id: string) => void
+  removeCourse: (id: string) => void;
+  changeCourseColor: (id: string, color: string) => void;
+  toggleCourseVisibility: (id: string) => void;
 }
 
 interface OwnProps {
@@ -24,14 +25,15 @@ interface OwnProps {
       displayLang: string;
       visibility: boolean;
     };
-    course: {
-      [key: string]: any;
-    };
+    course: Course;
   };
 }
 
-class AddedCourseAndPrefItem extends React.Component<ReduxDispatchProps & OwnProps, {}> {
-  handleRemoveCourse = (id) => {    
+class AddedCourseAndPrefItem extends React.Component<
+  ReduxDispatchProps & OwnProps,
+  {}
+> {
+  handleRemoveCourse = (id) => {
     this.props.removeCourse(id);
     Alert.success("Course removed.", {
       position: "bottom",
@@ -42,7 +44,7 @@ class AddedCourseAndPrefItem extends React.Component<ReduxDispatchProps & OwnPro
   handleChangeColor = (colorId) => {
     const { addedCourseAndPref } = this.props;
     const { course } = addedCourseAndPref;
-    this.props.changeCourseColor(course[SYLLABUS_KEYS.ID], colorId);
+    this.props.changeCourseColor(course[SyllabusKey.ID], colorId);
   };
 
   handleToggleVisibility = (id) => {

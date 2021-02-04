@@ -1,6 +1,6 @@
-const LANGS = Object.freeze({
+const Lang = Object.freeze({
   EN: "en",
-  JP: "jp",
+  JA: "ja",
 });
 
-export default LANGS;
+export default Lang;

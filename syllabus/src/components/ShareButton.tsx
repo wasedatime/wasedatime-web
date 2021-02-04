@@ -12,7 +12,7 @@ import {
   faWhatsappSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import { Manager, Reference, Popper } from "react-popper";
-import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
+import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import { Popup } from "semantic-ui-react";
 import { withTranslation } from "react-i18next";
 

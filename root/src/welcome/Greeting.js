@@ -11,7 +11,7 @@ import { Divider, List } from "semantic-ui-react";
 
 import { Article } from "../common/Article";
 import { media } from "../common/utils";
-import LANGS from "../../config/langs";
+import Lang from "../../config/langs";
 import logo from "../../../img/logo.png";
 
 const ExtendedArticle = styled(Article)`
@@ -85,13 +85,13 @@ class Greeting extends React.Component {
           >
             <FormControlLabel
               classes={{ label: classes.formControlLabelLabel }}
-              value={LANGS.JP}
+              value={Lang.JA}
               control={<Radio classes={{ checked: classes.radioChecked }} />}
               label="日本語"
             />
             <FormControlLabel
               classes={{ label: classes.formControlLabelLabel }}
-              value={LANGS.EN}
+              value={Lang.EN}
               control={<Radio classes={{ checked: classes.radioChecked }} />}
               label="English"
             />

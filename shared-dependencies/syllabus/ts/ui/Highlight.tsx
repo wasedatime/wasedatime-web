@@ -1,11 +1,9 @@
-// todo move to ui
-
 import React from "react";
 
 import { tokenize } from "@bit/wasedatime.syllabus.ts.utils.course-search";
-import LANGS from "@bit/wasedatime.core.ts.constants.langs";
+import Lang from "@bit/wasedatime.core.ts.constants.langs";
 
-export const highlight = function (
+export const Highlight = function (
   searchTerm: string | string[],
   searchLang: string | string[],
   text: string
@@ -15,10 +13,10 @@ export const highlight = function (
     //Capturing parentheses () allows matched results to be included in the array.
     let regex;
     switch (searchLang) {
-      case LANGS.JP:
+      case Lang.JA:
         regex = new RegExp(`(${termUnion})`, "i");
         break;
-      case LANGS.EN:
+      case Lang.EN:
         regex = new RegExp(`\\b(${termUnion})`, "i");
         break;
       default:
@@ -36,4 +34,4 @@ export const highlight = function (
   }
 };
 
-export default highlight;
+export default Highlight;

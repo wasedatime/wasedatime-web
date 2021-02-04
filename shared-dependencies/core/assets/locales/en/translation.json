@@ -141,7 +141,7 @@
     },
     "displayedSpringSemester": "Spring Semester",
     "displayedFallSemester": "Fall Semester",
-    "searchBarPlaceholder": "Search course, instructor in EN / JP",
+    "searchBarPlaceholder": "Search course, instructor in EN / JA",
     "Spring / Summer": "Spring / Summer",
     "Fall / Winter": "Fall / Winter",
     "SILS": "SILS",
@@ -180,7 +180,7 @@
     },
     "languageCodes": {
       "-1": "N/A",
-      "0": "JP",
+      "0": "ja",
       "1": "EN",
       "2": "DE",
       "3": "FR",

@@ -1,8 +1,8 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 
-import { Wrapper } from "@bit/wasedatime.core.js.ui.wrapper";
-import { Overlay } from "@bit/wasedatime.core.js.ui.overlay";
+import { Wrapper } from "@bit/wasedatime.core.js.styles.wrapper";
+import { Overlay } from "@bit/wasedatime.core.js.styles.overlay";
 import { Logo } from "@bit/wasedatime.core.js.ui.logo";
 
 const spin = keyframes`

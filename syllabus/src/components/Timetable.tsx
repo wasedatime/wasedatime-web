@@ -1,15 +1,16 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { timetableTheme } from "@bit/wasedatime.syllabus.ts.constants.syllabus-theme";
-import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
-import { Article, Section } from "@bit/wasedatime.core.ts.ui.article";
+import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
+import { Article, Section } from "@bit/wasedatime.core.ts.styles.article";
 import { Message } from "semantic-ui-react";
 import TimeRowList from "./TimeRowList";
 import DayColumnList from "./DayColumnList";
 import AddedCourseAndPrefList from "./AddedCourseAndPrefList";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import Course from "../types/course";
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
@@ -48,23 +49,20 @@ interface Props extends WithTranslation {
       displayLang: string;
       visibility: boolean;
     };
-    course: {
-      [key: string]: any;
-    };
+    course: Course;
   }[];
-  semesterKey: string;
 }
 
-const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }: Props) => {
+const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(
     (elem) => elem.pref.visibility === true
   );
 
   const largestDayAndPeriod = visibleAddedCoursesAndPrefs.reduce(
     (acc, elem) => {
-      const occurrences = elem.course[SYLLABUS_KEYS.OCCURRENCES];
+      const occurrences = elem.course[SyllabusKey.OCCURRENCES];
       return occurrences.reduce((acc, occurrence) => {
-        const unformattedPeriod = occurrence[SYLLABUS_KEYS.OCC_PERIOD];
+        const unformattedPeriod = occurrence[SyllabusKey.OCC_PERIOD];
         const maxPeriod =
           unformattedPeriod === -1
             ? 0
@@ -73,7 +71,7 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }: Props) => {
             : unformattedPeriod;
         return {
           ...acc,
-          day: Math.max(acc.day, occurrence[SYLLABUS_KEYS.OCC_DAY]),
+          day: Math.max(acc.day, occurrence[SyllabusKey.OCC_DAY]),
           period: Math.max(acc.period, maxPeriod),
         };
       }, acc);
@@ -82,7 +80,7 @@ const Timetable = ({ addedCoursesAndPrefs, semesterKey, t }: Props) => {
   );
 
   const { day: largestDay, period: largestPeriod } = largestDayAndPeriod;
-  
+
   return (
     <ExtendedRowWrapper className="theme-default">
       <ThemeProvider theme={timetableTheme}>

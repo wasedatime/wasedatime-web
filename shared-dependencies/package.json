@@ -2,7 +2,12 @@
   "dependencies": {
     "@bit/wasedatime.core.assets.locales.en": "0.0.1",
     "@bit/wasedatime.core.assets.locales.jp": "0.0.1",
-    "@bit/wasedatime.core.ts.constants.theme": "file:./components/ts/constants/theme",
+    "@bit/wasedatime.core.ts.styles.article": "0.0.1",
+    "@bit/wasedatime.core.ts.styles.badge": "0.0.1",
+    "@bit/wasedatime.core.ts.styles.button": "0.0.1",
+    "@bit/wasedatime.core.ts.styles.overlay": "0.0.1",
+    "@bit/wasedatime.core.ts.styles.wrapper": "0.0.1",
+    "@bit/wasedatime.syllabus.ts.constants.syllabus-data": "0.0.1",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
     "@material-ui/core": "^4.11.3",

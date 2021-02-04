@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import CourseColumn from "./CourseColumn";
+import { CourseWithOcc } from "../types/course";
 
 const StyledDayColumnItem = styled("li")`
   display: flex;
@@ -29,9 +30,7 @@ interface Props {
       displayLang: string;
       visibility: boolean;
     };
-    course: {
-      [key: string]: any;
-    };
+    course: CourseWithOcc;
   }[];
 }
 

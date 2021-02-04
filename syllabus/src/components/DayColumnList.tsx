@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 
 import DayColumnItem from "./DayColumnItem";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import Course from "../types/course";
 
 const StyledList = styled("ol")`
   display: flex;
@@ -25,9 +26,7 @@ interface Props extends WithTranslation {
       displayLang: string;
       visibility: boolean;
     };
-    course: {
-      [key: string]: any;
-    };
+    course: Course;
   }[];
 }
 
@@ -49,10 +48,10 @@ const DayColumnList = ({
   };
   const coursesByDay = addedCoursesAndPrefs.reduce((acc, elem) => {
     const { course, ...restOfElem } = elem;
-    const { [SYLLABUS_KEYS.OCCURRENCES]: occs, ...restOfCourse } = course;
+    const { [SyllabusKey.OCCURRENCES]: occs, ...restOfCourse } = course;
     occs.forEach((occ) => {
-      acc[occ[SYLLABUS_KEYS.OCC_DAY]] = [
-        ...acc[occ[SYLLABUS_KEYS.OCC_DAY]],
+      acc[occ[SyllabusKey.OCC_DAY]] = [
+        ...acc[occ[SyllabusKey.OCC_DAY]],
         {
           ...restOfElem,
           course: {

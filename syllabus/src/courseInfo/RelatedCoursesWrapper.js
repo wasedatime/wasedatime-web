@@ -7,7 +7,7 @@ import { Overlay } from "../common/Overlay";
 import { withNamespaces } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from "@fortawesome/free-solid-svg-icons";
-import { SYLLABUS_KEYS } from "../../config/syllabusKeys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 
 const ExtendedOverlay = styled(Overlay)`
   padding: 0 25px;
@@ -62,11 +62,11 @@ const RelatedCoursesExplainTooltipText = styled("span")`
   ${media.phoneMini`left: -400%; top: 100%;`};
 `;
 
-const getCourseKey = (course) => course[SYLLABUS_KEYS.ID].substring(0, 12);
+const getCourseKey = (course) => course[SyllabusKey.ID].substring(0, 12);
 
 class RelatedCoursesContainer extends React.Component {
   state = {
-    reviewLang: this.props.lng === "jp" ? "ja" : this.props.lng,
+    reviewLang: this.props.lng === "ja" ? "ja" : this.props.lng,
   };
 
   switchReviewLang = (lang) => this.setState({ reviewLang: lang });

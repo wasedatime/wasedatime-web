@@ -1,14 +1,15 @@
-import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import {
   FETCH_COURSES_SUCCESS,
   ADD_SCHOOL_FETCH_COURSES_SUCCESS,
   REMOVE_SCHOOL,
 } from "../../actions/types";
+import Course from "../../../types/course";
 
 interface PayloadProps {
   school?: string;
   exp?: string;
-  courses?: object[];
+  courses?: Course[];
   updatedSchools: SchoolsProps;
 }
 
@@ -39,7 +40,7 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
         [action.payload.school]: {
           name: action.payload.school,
           exp: action.payload.exp,
-          ids: action.payload.courses.map((c) => c[SYLLABUS_KEYS.ID]),
+          ids: action.payload.courses.map((c) => c[SyllabusKey.ID]),
           active: true,
           timestamp: Date.now(),
         },

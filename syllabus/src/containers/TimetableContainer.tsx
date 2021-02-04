@@ -3,7 +3,7 @@ import { ReduxRootState } from "../redux/reducers";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
 
-import { Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
+import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import Timetable from "../components/Timetable";
 import SemesterSwitcher from "../components/SemesterSwitcher";
@@ -13,6 +13,7 @@ import {
 } from "@bit/wasedatime.syllabus.ts.constants.semesters";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { getAddedCoursesAndPrefsByTerm } from "../redux/reducers/addedCourses";
+import Course from "../types/course";
 
 interface ReduxStateProps {
   addedCoursesAndPrefsByTerm: {
@@ -22,8 +23,8 @@ interface ReduxStateProps {
         displayLang: string;
         visibility: boolean;
       };
-      course: { [key: string]: any; };
-    }[]
+      course: Course;
+    }[];
   };
   selectedSortingOption: string;
 }
@@ -91,7 +92,12 @@ class TimetableContainer extends React.Component<
   };
 
   render() {
-    const { t, i18n, addedCoursesAndPrefsByTerm, selectedSortingOption } = this.props;
+    const {
+      t,
+      i18n,
+      addedCoursesAndPrefsByTerm,
+      selectedSortingOption,
+    } = this.props;
     const { semesterIndex, selectedQuarter } = this.state;
     const { title, key } = this.semesters[semesterIndex];
     const semesterKey: string = key;
@@ -103,7 +109,7 @@ class TimetableContainer extends React.Component<
     //   addedCoursesAndPrefs,
     //   selectedSortingOption
     // );
-    
+
     return (
       <Wrapper>
         <Helmet>
@@ -147,7 +153,7 @@ const mapStateToProps = (state: ReduxRootState) => {
     addedCoursesAndPrefsByTerm: getAddedCoursesAndPrefsByTerm(
       state.addedCourses.byId
     ),
-    selectedSortingOption: state.addedCourses.sortingOption
+    selectedSortingOption: state.addedCourses.sortingOption,
   };
 };
 

@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { Wrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
-import { Overlay } from "@bit/wasedatime.core.ts.ui.overlay";
-import { Button } from "@bit/wasedatime.core.ts.ui.button";
+import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
+import { Overlay } from "@bit/wasedatime.core.ts.styles.overlay";
+import { Button } from "@bit/wasedatime.core.ts.styles.button";
 
 const ExtendedOverlay = styled(Overlay)`
   justify-content: center;

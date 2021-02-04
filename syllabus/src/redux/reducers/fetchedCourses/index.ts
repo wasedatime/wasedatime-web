@@ -3,7 +3,7 @@ import { combineReducers } from "redux";
 import byId from "./byId";
 import schools from "./schools";
 import isFetching from "./isFetching";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 
 const fetchedCourses = combineReducers({
   byId,
@@ -13,9 +13,6 @@ const fetchedCourses = combineReducers({
 
 export default fetchedCourses;
 
-// todo create type for course
-// todo rename files to xxx-xxx
-
 export const getFetchedCoursesList = (syllabusBySchool) => {
   let courses = [];
   for (const school in syllabusBySchool) {
@@ -23,7 +20,7 @@ export const getFetchedCoursesList = (syllabusBySchool) => {
     for (const courseId in coursesById) {
       courses.push({
         ...coursesById[courseId],
-        [SYLLABUS_KEYS.SCHOOL]: school,
+        [SyllabusKey.SCHOOL]: school,
       });
     }
   }
@@ -39,7 +36,7 @@ export const getFetchedCoursesList = (syllabusBySchool) => {
 //     var coursesById = coursesBySchool[school];
 //     if (coursesById) {
 //       Object.keys(coursesById).forEach((id) => {
-//         coursesById[id][SYLLABUS_KEYS.SCHOOL] = school;
+//         coursesById[id][SyllabusKey.SCHOOL] = school;
 //       });
 //
 //       courses = {

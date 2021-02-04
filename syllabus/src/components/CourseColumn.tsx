@@ -4,7 +4,8 @@ import { WithTranslation, withTranslation } from "react-i18next";
 
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getCourseTitleAndInstructor } from "@bit/wasedatime.syllabus.ts.utils.course-search";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { CourseWithOcc } from "../types/course";
 
 const StyledCourseColumn = styled("div")`
   display: flex;
@@ -77,9 +78,7 @@ interface Props extends WithTranslation {
       displayLang: string;
       visibility: boolean;
     };
-    course: {
-      [key: string]: any;
-    };
+    course: CourseWithOcc;
   }[];
 }
 
@@ -93,7 +92,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
   let slotLists = [initSlotList.slice()];
 
   coursesAndProperties.forEach((courseAndProperty) => {
-    let period = courseAndProperty.course.occurrence[SYLLABUS_KEYS.OCC_PERIOD];
+    let period = courseAndProperty.course.occurrence[SyllabusKey.OCC_PERIOD];
     let startPeriod = 0;
     let endPeriod = 0;
     if (period === -1) {
@@ -149,7 +148,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
         const course = courseAndProperty.course;
         const { color, displayLang } = courseAndProperty.pref;
         const { title } = getCourseTitleAndInstructor(course, displayLang);
-        let period = course.occurrence[SYLLABUS_KEYS.OCC_PERIOD];
+        let period = course.occurrence[SyllabusKey.OCC_PERIOD];
         let startPeriod = 0;
         let endPeriod = 0;
         if (period === -1) {
@@ -163,7 +162,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
         }
         // const startPeriod = Number(course.occurrence.s);
         // const endPeriod = Number(course.occurrence.e);
-        let location = course.occurrence[SYLLABUS_KEYS.OCC_LOCATION];
+        let location = course.occurrence[SyllabusKey.OCC_LOCATION];
         // let location = t("timetable.undecided");
         // if (course.occurrence.c !== "undecided") {
         //   if (course.occurrence.b !== "-1") {
@@ -175,8 +174,8 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
         return (
           <CourseItem
             className={`color-${color}`}
-            key={`${course[SYLLABUS_KEYS.TERM]}-${
-              course[SYLLABUS_KEYS.TITLE]
+            key={`${course[SyllabusKey.TERM]}-${
+              course[SyllabusKey.TITLE]
             }-${startPeriod}-${endPeriod}`}
             displayPeriods={displayPeriods}
             top={startPeriod - 1}

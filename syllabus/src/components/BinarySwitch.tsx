@@ -45,81 +45,42 @@ interface Props {
   rightDisplayedValue: string;
 }
 
-export default class BinarySwitch extends React.Component<Props> {
-  wrapper: any;
-  setWrapperRef: (element: any) => void;
-  createStickyWrapper: () => void;
-  cleanupStickyWrapper: () => void;
-  stickyWrapper: any;
-
-  constructor(props) {
-    super(props);
-    this.wrapper = null;
-    this.setWrapperRef = (element) => {
-      this.wrapper = element;
-    };
-
-    this.createStickyWrapper = () => {
-      if (this.wrapper) {
-        this.stickyWrapper = stickybits(this.wrapper, {
-          stickyBitStickyOffset: parseInt("67px", 10),
-        });
-      }
-    };
-
-    this.cleanupStickyWrapper = () => {
-      if (this.stickyWrapper) {
-        this.stickyWrapper.cleanup();
-      }
-    };
-  }
-
-  handleOnClick = (event) => {
+const BinarySwitch = ({
+  switchHeight,
+  handleSwitchValue,
+  value,
+  leftButtonId,
+  rightButtonId,
+  leftValue,
+  rightValue,
+  leftDisplayedValue,
+  rightDisplayedValue,
+}: Props) => {
+  const handleOnClick = (event) => {
     event.preventDefault();
     const buttonId = event.target.id;
-    const { leftButtonId, leftValue, rightValue } = this.props;
     const value = buttonId === leftButtonId ? leftValue : rightValue;
-    this.props.handleSwitchValue(value);
+    handleSwitchValue(value);
   };
 
-  componentDidMount() {
-    this.createStickyWrapper();
-  }
-
-  componentWillUnmount() {
-    this.cleanupStickyWrapper();
-  }
-
-  render() {
-    const {
-      leftButtonId,
-      rightButtonId,
-      leftValue,
-      rightValue,
-      value,
-      leftDisplayedValue,
-      rightDisplayedValue,
-    } = this.props;
-    return (
-      <ExtendedWrapper
-        height={this.props.switchHeight}
-        innerRef={this.setWrapperRef}
+  return (
+    <ExtendedWrapper height={switchHeight}>
+      <SwitchButton
+        id={leftButtonId}
+        onClick={handleOnClick}
+        isSelected={value === leftValue}
       >
-        <SwitchButton
-          id={leftButtonId}
-          onClick={this.handleOnClick}
-          isSelected={value === leftValue}
-        >
-          {leftDisplayedValue}
-        </SwitchButton>
-        <SwitchButton
-          id={rightButtonId}
-          onClick={this.handleOnClick}
-          isSelected={value === rightValue}
-        >
-          {rightDisplayedValue}
-        </SwitchButton>
-      </ExtendedWrapper>
-    );
-  }
-}
+        {leftDisplayedValue}
+      </SwitchButton>
+      <SwitchButton
+        id={rightButtonId}
+        onClick={handleOnClick}
+        isSelected={value === rightValue}
+      >
+        {rightDisplayedValue}
+      </SwitchButton>
+    </ExtendedWrapper>
+  );
+};
+
+export default BinarySwitch;

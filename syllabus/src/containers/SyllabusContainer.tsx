@@ -3,10 +3,7 @@ import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import debounce from "lodash/debounce";
 import { connect } from "react-redux";
-import {
-  fetchCourses,
-  fetchCoursesBySchool,
-} from "../redux/actions/syllabus";
+import { fetchCourses, fetchCoursesBySchool } from "../redux/actions/syllabus";
 import { ReduxRootState } from "../redux/reducers";
 import { getAddedCoursesListWithLang } from "../redux/reducers/addedCourses";
 import { getFetchedCoursesList } from "../redux/reducers/fetchedCourses";
@@ -28,6 +25,7 @@ import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import filterCourses from "../utils/filterCourses";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import Course from "../types/course";
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -56,8 +54,8 @@ const MiddleColumn = styled.div`
 `;
 
 interface ReduxStateProps {
-  addedCourses: { [key: string]: any }[];
-  fetchedCourses: { [key: string]: any }[];
+  addedCourses: Course[];
+  fetchedCourses: Course[];
 }
 
 interface ReduxDispatchProps {
@@ -73,7 +71,7 @@ interface OwnProps extends WithTranslation {
 interface OwnState {
   isModalOpen: boolean;
   filterGroups: { [filterName: string]: any };
-  fetchedCourses: object[];
+  fetchedCourses: Course[];
   searchTerm: string | string[];
   inputText: string | string[];
 }

@@ -3,7 +3,7 @@ import {
   searchBarHeight,
   addedCourseListSwitchHeight,
   fetchedCourseListSwitchHeight,
-} from "@bit/wasedatime.core.ts.constants.size-variables";
+} from "@bit/wasedatime.core.js.constants.size-variables";
 
 // Adapted from https://medium.com/codyhouse/create-your-design-system-part-3-colors-798e4729921f
 const sizes = {

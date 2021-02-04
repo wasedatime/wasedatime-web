@@ -3,13 +3,13 @@ import byId from "./byId";
 import idsBySchool from "./idsBySchool";
 import orderedIds from "./orderedIds";
 import sortingOption from "./sorting-option";
-import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 
 const addedCourses = combineReducers({
   byId,
   idsBySchool,
   orderedIds,
-  sortingOption
+  sortingOption,
 });
 
 export default addedCourses;
@@ -31,7 +31,7 @@ export const getAddedCoursesAndPrefsByTerm = (byId) => {
   };
   for (const courseId in byId) {
     const courseAndPref = byId[courseId];
-    const term = courseAndPref.course[SYLLABUS_KEYS.TERM];
+    const term = courseAndPref.course[SyllabusKey.TERM];
     if (term.match(/0|f/g)) byTerm.springQuart.push(courseAndPref);
     if (term.match(/1|f|0s/g)) byTerm.summerQuart.push(courseAndPref);
     if (term.match(/2|f/g)) byTerm.fallQuart.push(courseAndPref);
@@ -59,7 +59,7 @@ export const getAddedCoursesById = (byId) => {
 //     var coursesById = coursesBySchool[school];
 //     if (coursesById) {
 //       Object.keys(coursesById).forEach((id) => {
-//         coursesById[id][SYLLABUS_KEYS.SCHOOL] = school;
+//         coursesById[id][SyllabusKey.SCHOOL] = school;
 //       });
 //
 //       courses = {

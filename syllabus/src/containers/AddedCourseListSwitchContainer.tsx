@@ -5,9 +5,10 @@ import BinarySwitch from "../components/BinarySwitch";
 import { WithTranslation, withTranslation } from "react-i18next";
 import AddedCourseListContainer from "./AddedCourseListContainer";
 // import { getCurrentSemester, SEMESTERS } from "../../config/semesters";
+import Course from "../types/course";
 
 interface Props extends WithTranslation {
-  addedCourses: { [key: string]: any }[];
+  addedCourses: Course[];
 }
 
 interface State {

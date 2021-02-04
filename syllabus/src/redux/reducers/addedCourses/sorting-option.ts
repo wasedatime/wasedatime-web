@@ -11,7 +11,7 @@ const sortingOption = (state = "ADDED_ORDER", action: ActionProps): string => {
   return state;
   // switch (action.type) {
   //   case ADD_COURSE:
-  //     return [...state, action.payload.course[SYLLABUS_KEYS.ID]];
+  //     return [...state, action.payload.course[SyllabusKey.ID]];
   //   case REMOVE_COURSE:
   //     let newIds = [...state];
   //     const index = newIds.indexOf(action.payload.id);
@@ -21,7 +21,7 @@ const sortingOption = (state = "ADDED_ORDER", action: ActionProps): string => {
   //     return newIds;
   //   case SAVE_TIMETABLE:
   //     return action.payload.coursesAndPrefs.map(
-  //       (cp) => cp.course[SYLLABUS_KEYS.ID]
+  //       (cp) => cp.course[SyllabusKey.ID]
   //     );
   //   default:
   //     return state;

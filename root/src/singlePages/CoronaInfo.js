@@ -104,7 +104,7 @@ class CoronaInfo extends React.Component {
     countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
     countries.registerLocale(require("i18n-iso-countries/langs/ja.json"));
     const countryNames = countries.getNames(
-      this.props.lng === "jp" ? "ja" : this.props.lng
+      this.props.lng === "ja" ? "ja" : this.props.lng
     );
     const countryOptions = Object.keys(countryNames).map((iso2) => {
       const iso3 = countries.alpha2ToAlpha3(iso2);

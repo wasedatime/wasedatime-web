@@ -1,15 +1,16 @@
-import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../../actions/types";
+import Course from "../../../types/course";
 
 interface courseAndPrefTypes {
   id: string;
   color: number;
   displayLang: string;
-  course: object;
+  course: Course;
 }
 
 interface PayloadProps {
-  course?: object;
+  course?: Course;
   coursesAndPrefs?: courseAndPrefTypes[];
   id?: string;
 }
@@ -31,8 +32,8 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
   let school;
   switch (action.type) {
     case ADD_COURSE:
-      school = action.payload.course[SYLLABUS_KEYS.SCHOOL];
-      const id = action.payload.course[SYLLABUS_KEYS.ID];
+      school = action.payload.course[SyllabusKey.SCHOOL];
+      const id = action.payload.course[SyllabusKey.ID];
       const newIds = state[school] ? [...state[school].ids, id] : [id];
       return {
         ...state,
@@ -55,8 +56,8 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
     case SAVE_TIMETABLE:
       let newCoursesAndPrefs = {};
       action.payload.coursesAndPrefs.forEach((cp) => {
-        const school = cp.course[SYLLABUS_KEYS.SCHOOL];
-        const id = cp.course[SYLLABUS_KEYS.ID];
+        const school = cp.course[SyllabusKey.SCHOOL];
+        const id = cp.course[SyllabusKey.ID];
         newCoursesAndPrefs[school] = {
           ids: newCoursesAndPrefs[school]
             ? [...newCoursesAndPrefs[school].ids, id]

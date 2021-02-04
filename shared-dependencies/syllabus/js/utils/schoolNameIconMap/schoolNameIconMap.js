@@ -83,7 +83,7 @@ import cieIcon_jp from "@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie_j
 import gecIcon_jp from "@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp";
 
 export const undergradSchoolNameIconMap = (lng) =>
-  lng === "jp"
+  lng === "ja"
     ? {
         [Schools.SILS]: silsIcon_jp,
         [Schools.PSE]: pseIcon_jp,
@@ -116,7 +116,7 @@ export const undergradSchoolNameIconMap = (lng) =>
       };
 
 export const gradSchoolNameIconMap = (lng) =>
-  lng === "jp"
+  lng === "ja"
     ? {
         [Schools.G_PS]: gPsIcon_jp,
         [Schools.G_E]: gEIcon_jp,
@@ -165,7 +165,7 @@ export const gradSchoolNameIconMap = (lng) =>
       };
 
 export const otherSchoolNameIconMap = (lng) =>
-  lng === "jp"
+  lng === "ja"
     ? {
         [Schools.CJL]: cjlIcon_jp,
         [Schools.GEC]: gecIcon_jp,

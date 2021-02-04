@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { RowWrapper } from "@bit/wasedatime.core.ts.ui.wrapper";
-import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
+import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
+import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import { Label, Dropdown } from "semantic-ui-react";
-import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 
 const SortByButton = styled(InvisibleButton)`
   margin-left: auto;
@@ -44,8 +44,8 @@ const creditSum = (coursesAndPrefs) => {
   return coursesAndPrefs
     .map((courseAndPref) =>
       courseAndPref.course
-        ? courseAndPref.course[SYLLABUS_KEYS.CREDIT]
-        : courseAndPref[SYLLABUS_KEYS.CREDIT]
+        ? courseAndPref.course[SyllabusKey.CREDIT]
+        : courseAndPref[SyllabusKey.CREDIT]
     )
     .reduce((a, b) => a + b, 0);
 };

@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { sortAddedCourses } from "@bit/wasedatime.syllabus.ts.utils.added-courses";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import AddedCourseList from "../components/AddedCourseList";
+import Course from "../types/course";
 
 const sortingOptions = [
   {
@@ -21,7 +22,7 @@ const sortingOptions = [
 ];
 
 interface Props extends WithTranslation {
-  addedCourses: { [key: string]: any }[];
+  addedCourses: Course[];
   semesterKey: string;
 }
 
@@ -30,10 +31,9 @@ const AddedCourseListContainer = ({ addedCourses, semesterKey }: Props) => {
   const [isSortingOptionOpen, setIsSortingOptionOpen] = useState(false);
 
   const addedCoursesOfTerm = addedCourses.filter((c) => {
-    if (semesterKey === "springSem")
-      return c[SYLLABUS_KEYS.TERM].match(/0|1|f/g);
+    if (semesterKey === "springSem") return c[SyllabusKey.TERM].match(/0|1|f/g);
     else if (semesterKey === "fallSem")
-      return c[SYLLABUS_KEYS.TERM].match(/2|3|f/g);
+      return c[SyllabusKey.TERM].match(/2|3|f/g);
   });
   const sortedAddedCourses = sortAddedCourses(
     addedCoursesOfTerm,

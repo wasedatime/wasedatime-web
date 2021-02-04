@@ -54,7 +54,7 @@ class LanguangeMenu extends React.Component {
         >
           <MenuItem
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={(event) => this.handleMenuItemClick(event, "jp")}
+            onClick={(event) => this.handleMenuItemClick(event, "ja")}
           >
             日本語
           </MenuItem>

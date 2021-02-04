@@ -1,7 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FloatingActionButton } from "@bit/wasedatime.core.ts.ui.button";
+import { FloatingActionButton } from "@bit/wasedatime.core.ts.styles.button";
 
 interface Props {
   isModalOpen: boolean;

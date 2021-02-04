@@ -1,15 +1,16 @@
-import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../../actions/types";
+import Course from "../../../types/course";
 
 interface courseAndPrefTypes {
   id: string;
   color: number;
   displayLang: string;
-  course: object;
+  course: Course;
 }
 
 interface PayloadProps {
-  course?: object;
+  course?: Course;
   coursesAndPrefs?: courseAndPrefTypes[];
   id?: string;
 }
@@ -24,7 +25,7 @@ const initialState = [];
 const orderedIds = (state = initialState, action: ActionProps): string[] => {
   switch (action.type) {
     case ADD_COURSE:
-      return [...state, action.payload.course[SYLLABUS_KEYS.ID]];
+      return [...state, action.payload.course[SyllabusKey.ID]];
     case REMOVE_COURSE:
       let newIds = [...state];
       const index = newIds.indexOf(action.payload.id);
@@ -34,7 +35,7 @@ const orderedIds = (state = initialState, action: ActionProps): string[] => {
       return newIds;
     case SAVE_TIMETABLE:
       return action.payload.coursesAndPrefs.map(
-        (cp) => cp.course[SYLLABUS_KEYS.ID]
+        (cp) => cp.course[SyllabusKey.ID]
       );
     default:
       return state;

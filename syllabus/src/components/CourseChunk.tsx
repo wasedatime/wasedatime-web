@@ -1,11 +1,12 @@
 import React from "react";
 
 import CourseItemContainer from "../containers/CourseItemContainer";
-import { UnstyledUList } from "@bit/wasedatime.core.ts.ui.list";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { UnstyledUList } from "@bit/wasedatime.core.ts.styles.list";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import Course from "../types/course";
 
 interface Props {
-  chunk: object[];
+  chunk: Course[];
   searchTerm: string | string[];
   searchLang: string | string[];
 }
@@ -15,7 +16,7 @@ const CourseChunk = ({ chunk, searchTerm, searchLang }: Props) => {
     <UnstyledUList>
       {chunk.map((course) => (
         <CourseItemContainer
-          key={course[SYLLABUS_KEYS.ID]}
+          key={course[SyllabusKey.ID]}
           searchTerm={searchTerm}
           searchLang={searchLang}
           course={course}

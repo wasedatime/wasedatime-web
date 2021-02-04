@@ -1,6 +1,5 @@
 enum Lang {
   EN = "en",
-  JP = "jp"
-};
-
+  JA = "ja",
+}
 export default Lang;

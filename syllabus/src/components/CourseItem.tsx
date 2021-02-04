@@ -11,13 +11,16 @@ import {
 import { WithTranslation, withTranslation } from "react-i18next";
 import { termKeysDecoder } from "@bit/wasedatime.syllabus.ts.utils.term-keys-decoder";
 import { getCourseTitleAndInstructor } from "@bit/wasedatime.syllabus.ts.utils.course-search";
-import { highlight } from "@bit/wasedatime.syllabus.ts.utils.highlight";
-import { allSchoolNameIconMap } from "@bit/wasedatime.syllabus.ts.utils.school-name-icon-map";
-import { SYLLABUS_KEYS } from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
+import { Highlight } from "@bit/wasedatime.syllabus.ts.ui.highlight";
+import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import * as schoolIconEnMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en";
+import * as schoolIconJaMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { InvisibleButton } from "@bit/wasedatime.core.ts.ui.button";
-import { Badge } from "@bit/wasedatime.core.ts.ui.badge";
+import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
+import { Badge } from "@bit/wasedatime.core.ts.styles.badge";
 import ShareButton from "./ShareButton";
+import Course from "../types/course";
 
 const CourseItemWrapper = styled("div")`
   display: flex;
@@ -116,7 +119,13 @@ const OccurrenceList = styled("ul")`
 
 const mapSchoolToIcon = (school, lng) => (
   <SchoolIconItem key={school}>
-    <SchoolIconImage src={allSchoolNameIconMap(lng)[school]} />
+    <SchoolIconImage
+      src={
+        lng === Lang.EN
+          ? schoolIconEnMap.allSchoolNameIconMap[school]
+          : schoolIconJaMap.allSchoolNameIconMap[school]
+      }
+    />
   </SchoolIconItem>
 );
 
@@ -129,8 +138,8 @@ const combineYearTerm = (year, term, t) => {
 };
 
 const getLang = (course, t) => {
-  if (course[SYLLABUS_KEYS.LANG].includes(-1)) return "N/A";
-  return course[SYLLABUS_KEYS.LANG]
+  if (course[SyllabusKey.LANG].includes(-1)) return "N/A";
+  return course[SyllabusKey.LANG]
     .toString()
     .split(",")
     .map((l, i) => (i > 0 ? " / " : "") + t(`syllabus.languageKeys.${l}`));
@@ -180,7 +189,7 @@ const getPeriod = (period, t) => {
 interface Props extends WithTranslation {
   searchTerm: string | string[];
   searchLang: string | string[];
-  course: object;
+  course: Course;
   isAddable: boolean;
   handleOnClick: (title: string, lng: string) => void;
   isDetailDisplayed: boolean;
@@ -205,26 +214,26 @@ const CourseItem = ({
   const [expanded, setExpanded] = useState(false);
 
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
-  const highlightedTitle = highlight(searchTerm, searchLang, title);
-  const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
+  const highlightedTitle = Highlight(searchTerm, searchLang, title);
+  const highlightedInstructor = Highlight(searchTerm, searchLang, instructor);
   const langTerm = getLang(course, t);
   const yearTerm = combineYearTerm(
     "2020",
-    termKeysDecoder(course[SYLLABUS_KEYS.TERM]),
+    termKeysDecoder(course[SyllabusKey.TERM]),
     t
   );
   const schoolIcons = mapSchoolToIcon(
-    course[SYLLABUS_KEYS.SCHOOL],
+    course[SyllabusKey.SCHOOL],
     i18n.language
   );
-  const syllabusId = course[SYLLABUS_KEYS.ID];
+  const syllabusId = course[SyllabusKey.ID];
   const shareLink = `https://wasedatime.com/courseInfo?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
   //Need to use index as keys due to Waseda's data.
-  const occurrences = course[SYLLABUS_KEYS.OCCURRENCES].map(
+  const occurrences = course[SyllabusKey.OCCURRENCES].map(
     (occurrence, index) => {
-      const day = getDay(occurrence[SYLLABUS_KEYS.OCC_DAY], t);
-      const period = getPeriod(occurrence[SYLLABUS_KEYS.OCC_PERIOD], t);
-      const location = getLocation(occurrence[SYLLABUS_KEYS.OCC_LOCATION], t);
+      const day = getDay(occurrence[SyllabusKey.OCC_DAY], t);
+      const period = getPeriod(occurrence[SyllabusKey.OCC_PERIOD], t);
+      const location = getLocation(occurrence[SyllabusKey.OCC_LOCATION], t);
       return (
         <li key={index}>
           <span>
@@ -255,7 +264,7 @@ const CourseItem = ({
       <CourseIntro onClick={() => setExpanded(!expanded)}>
         <StyledHeading>{highlightedTitle}</StyledHeading>
         {isDetailDisplayed && (
-          <StyledSubHeading>{course[SYLLABUS_KEYS.SUBTITLE]}</StyledSubHeading>
+          <StyledSubHeading>{course[SyllabusKey.SUBTITLE]}</StyledSubHeading>
         )}
         <CourseItemRow>
           <IconBadgeWrapper>

@@ -1,15 +1,22 @@
-import SYLLABUS_KEYS from "@bit/wasedatime.syllabus.ts.constants.syllabus-keys";
-import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE, TOGGLE_COURSE_VISIBILITY, CHANGE_COURSE_COLOR } from "../../actions/types";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import {
+  ADD_COURSE,
+  REMOVE_COURSE,
+  SAVE_TIMETABLE,
+  TOGGLE_COURSE_VISIBILITY,
+  CHANGE_COURSE_COLOR,
+} from "../../actions/types";
+import Course from "../../../types/course";
 
 interface courseAndPrefTypes {
   id: string;
   color: number;
   displayLang: string;
-  course: object;
+  course: Course;
 }
 
 interface PayloadProps {
-  course?: object;
+  course?: Course;
   coursesAndPrefs?: courseAndPrefTypes[];
   displayLang?: string;
   id?: string;
@@ -27,10 +34,8 @@ interface byIdProps {
       color: number;
       visibility: boolean;
       displayLang: string;
-    },
-    course: {
-      [key: string]: any;
-    }
+    };
+    course: Course;
   };
 }
 
@@ -40,7 +45,7 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
   const courseId = action.payload ? action.payload.id : "";
   switch (action.type) {
     case ADD_COURSE:
-      const id: string = action.payload.course[SYLLABUS_KEYS.ID];
+      const id: string = action.payload.course[SyllabusKey.ID];
       return {
         ...state,
         [id]: {
@@ -63,10 +68,10 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
           ...state[courseId],
           pref: {
             ...state[courseId].pref,
-            visibility: !state[courseId].pref.visibility
-          }
-        }
-      }
+            visibility: !state[courseId].pref.visibility,
+          },
+        },
+      };
     case CHANGE_COURSE_COLOR:
       return {
         ...state,
@@ -74,10 +79,10 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
           ...state[courseId],
           pref: {
             ...state[courseId].pref,
-            color: action.payload.color
-          }
-        }
-      }
+            color: action.payload.color,
+          },
+        },
+      };
     case SAVE_TIMETABLE:
       let newCoursesAndPrefs = {};
       action.payload.coursesAndPrefs.forEach((cp) => {

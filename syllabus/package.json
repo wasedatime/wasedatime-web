@@ -67,6 +67,7 @@
     "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja": "0.0.1",
     "@bit/wasedatime.syllabus.ts.constants.semesters": "0.0.3",
     "@bit/wasedatime.syllabus.ts.constants.syllabus-data": "0.0.1",
+    "@bit/wasedatime.syllabus.ts.constants.syllabus-filter": "0.0.1",
     "@bit/wasedatime.syllabus.ts.constants.syllabus-theme": "0.0.1",
     "@bit/wasedatime.syllabus.ts.constants.timetable-terms": "0.0.1",
     "@bit/wasedatime.syllabus.ts.styles.color-popper": "0.0.1",

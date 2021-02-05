@@ -9,6 +9,7 @@ import { headerHeight } from "@bit/wasedatime.core.ts.constants.size-variables";
 import SchoolFilterContainer from "../containers/SchoolFilterContainer";
 import FilterGroup from "./FilterGroup";
 import FilterEvalGroup from "./FilterEvalGroup";
+import FilterGroups from "../types/filter";
 
 const FilterWrapper = styled.div`
   ${(props) => !props.isSideBar && "width: 100%;"}
@@ -43,7 +44,7 @@ const FilterGroupWrapper = styled("div")`
 `;
 
 interface Props extends WithTranslation {
-  filterGroups: { [name: string]: any };
+  filterGroups: FilterGroups;
   handleToggleFilter: (name: string, value: any) => void;
   clearFilter: () => void;
   isSideBar: boolean;
@@ -281,11 +282,8 @@ const Filter = ({
   ];
   const evalTypeInputName = "evalType";
   const evalPercentInputName = "evalPercent";
-  const selectedEvalTypeInput = Number.isInteger(
-    filterGroups[evalTypeInputName]
-  )
-    ? filterGroups[evalTypeInputName]
-    : "";
+  const selectedEvalTypeInput =
+    filterGroups[evalTypeInputName] >= 0 ? filterGroups[evalTypeInputName] : -1;
   const selectedEvalPercentInputs = filterGroups[evalPercentInputName] || [
     0,
     100,

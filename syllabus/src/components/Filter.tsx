@@ -10,6 +10,7 @@ import SchoolFilterContainer from "../containers/SchoolFilterContainer";
 import FilterGroup from "./FilterGroup";
 import FilterEvalGroup from "./FilterEvalGroup";
 import FilterGroups from "../types/filter";
+import FilterOption from "@bit/wasedatime.syllabus.ts.constants.syllabus-filter";
 
 const FilterWrapper = styled.div`
   ${(props) => !props.isSideBar && "width: 100%;"}
@@ -57,10 +58,8 @@ const Filter = ({
   isSideBar,
   t,
 }: Props) => {
-  // todo filter types
-
   const semesterLegend = t("syllabus.Semesters");
-  const semesterInputName = "semester";
+  const semesterInputName = FilterOption.SEMESTER;
   const semesterInputs = [
     {
       key:
@@ -139,7 +138,7 @@ const Filter = ({
   }));
 
   const langLegend = t("syllabus.Languages");
-  const langInputName = "lang";
+  const langInputName = FilterOption.LANG;
   const langInputs = [
     {
       key: t("syllabus.languageCodes.0"),
@@ -201,7 +200,7 @@ const Filter = ({
   }));
 
   const dayLegend = t("syllabus.day");
-  const dayInputName = "day";
+  const dayInputName = FilterOption.DAY;
   const dayInputs = [
     { value: "1", label: t("common.mon") },
     { value: "2", label: t("common.tue") },
@@ -219,7 +218,7 @@ const Filter = ({
   }));
 
   const periodLegend = t("syllabus.period.Period");
-  const periodInputName = "period";
+  const periodInputName = FilterOption.PERIOD;
   const periodInputs = [
     { value: "1", label: t("syllabus.period.1") },
     { value: "2", label: t("syllabus.period.2") },
@@ -238,7 +237,7 @@ const Filter = ({
   }));
 
   const minYearLegend = t("syllabus.minYear");
-  const minYearInputName = "minYear";
+  const minYearInputName = FilterOption.MIN_YEAR;
   const minYearInputs = [
     { value: "1", label: "1+" },
     { value: "2", label: "2+" },
@@ -254,7 +253,7 @@ const Filter = ({
   }));
 
   const creditLegend = t("syllabus.credit");
-  const creditInputName = "credit";
+  const creditInputName = FilterOption.CREDIT;
   const creditInputs = [
     { value: "1", label: "1" },
     { value: "2", label: "2" },
@@ -280,8 +279,8 @@ const Filter = ({
     },
     { key: "Others", text: t("syllabus.eval.Others"), value: 3 },
   ];
-  const evalTypeInputName = "evalType";
-  const evalPercentInputName = "evalPercent";
+  const evalTypeInputName = FilterOption.EVAL_TYPE;
+  const evalPercentInputName = FilterOption.EVAL_PERCENT;
   const selectedEvalTypeInput =
     filterGroups[evalTypeInputName] >= 0 ? filterGroups[evalTypeInputName] : -1;
   const selectedEvalPercentInputs = filterGroups[evalPercentInputName] || [
@@ -289,7 +288,7 @@ const Filter = ({
     100,
   ];
 
-  const evalSpecialInputName = "evalSpecial";
+  const evalSpecialInputName = FilterOption.EVAL_SPECIAL;
   const evalSpecialInputs = [
     { value: "noExam", label: t("syllabus.eval.No exam") },
     { value: "noPaper", label: t("syllabus.eval.No paper") },
@@ -307,7 +306,7 @@ const Filter = ({
   }));
 
   const typeLegend = t("syllabus.type");
-  const typeInputName = "type";
+  const typeInputName = FilterOption.TYPE;
   const typeInputs = [
     {
       key: "Lecture",
@@ -364,7 +363,7 @@ const Filter = ({
   }));
 
   const levelLegend = t("syllabus.level");
-  const levelInputName = "level";
+  const levelInputName = FilterOption.LEVEL;
   const levelInputs = [
     {
       key: "Beginner",

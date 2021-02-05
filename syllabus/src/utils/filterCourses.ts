@@ -1,8 +1,9 @@
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import Course from "../types/course";
+import FilterGroups from "../types/filter";
 
 const filterCourses = (
-  filterGroups: { [filterName: string]: any }, //todo use enum
+  filterGroups: FilterGroups,
   courses: Course[]
 ): Course[] => {
   let filteredCourses = courses;

@@ -350,11 +350,11 @@ class Bus extends React.Component {
           />
           <meta property="og:site_name" content="WasedaTime - Bus" />
         </Helmet>
-        <Header
+        {/* <Header
           title={t("navigation.bus")}
           placeholder="Search classroom (in construction...)"
           disabled={true}
-        />
+        /> */}
         <ExtendedOverlay>
           <InfoWrapper>
             <p>

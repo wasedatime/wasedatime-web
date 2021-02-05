@@ -1,8 +1,10 @@
 import React from "react";
-
+import { Wrapper } from "../styled-components/Wrapper";
 const JoinUs = () => {
     return (
-        <p>ccc</p>
+    <wrapper>    
+        ccc
+    </wrapper>
     ); 
 }
 

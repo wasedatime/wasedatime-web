@@ -367,6 +367,13 @@
     "countdown 3": "へ遷移させます..."
   },
   "aboutus":{
-    "We are on a mission": "ミッション"
+    "We are on a mission": "ミッション",
+    "Frontend Engineer": "フロントエンドエンジニア",
+    "Backend Engineer": "バックエンドエンジニア",
+
+    "Kaiqing": "晴",
+    "Yeping Tang": "トウ  ナリヒラ ",
+    
+    "":""
   }
 }

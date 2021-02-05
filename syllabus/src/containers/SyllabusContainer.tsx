@@ -11,7 +11,6 @@ import FetchedCourseList from "../components/FetchedCourseList";
 import Filter from "../components/Filter";
 import FilterButton from "../components/FilterButton";
 import SearchBar from "../components/SearchBar";
-import queryString from "query-string";
 import {
   getSearchLang,
   searchCourses,
@@ -107,39 +106,22 @@ class SyllabusContainer extends React.Component<
 > {
   constructor(props) {
     super(props);
-    const parsedSearch = queryString.parse(this.props.location.search);
-    const parsedSearchQ = parsedSearch.q;
-    const searchTerm = parsedSearchQ === undefined ? "" : parsedSearchQ;
 
     this.state = {
       isModalOpen: false,
       filterGroups: {},
       fetchedCourses: props.fetchedCourses,
-      searchTerm: searchTerm,
-      inputText: searchTerm,
+      searchTerm: "",
+      inputText: "",
     };
   }
-
-  // componentDidUpdate() {
-  //   elementToFocusRef.current.focus();
-  // }
-
-  // handle text searching
-
-  pushHistory = () => {
-    this.props.history.push(
-      `/syllabus?${
-        this.state.inputText === "" ? "" : `q=${this.state.inputText}`
-      }`
-    );
-  };
 
   updateSearchTerm = () => {
     this.setState((prevState, props) => {
       return {
         searchTerm: prevState.inputText,
       };
-    }, this.pushHistory);
+    });
   };
 
   handleInputChange = (inputText) => {

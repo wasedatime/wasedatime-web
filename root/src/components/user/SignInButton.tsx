@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Icon } from "semantic-ui-react";
-import { withNamespaces } from "react-i18next";
+import { withTranslation } from "react-i18next";
 
 const SignInButton = ({ onClickFunc, t }) => (
   <Button
@@ -21,4 +21,4 @@ const SignInButton = ({ onClickFunc, t }) => (
   </Button>
 );
 
-export default withNamespaces("translation")(SignInButton);
+export default withTranslation("translation")(SignInButton);

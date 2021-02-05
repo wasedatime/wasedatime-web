@@ -1,6 +1,6 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
-import { withNamespaces } from "react-i18next";
+import { navigate } from "@reach/router";
+import { withTranslation } from "react-i18next";
 import { Segment, Header } from "semantic-ui-react";
 import styled from "styled-components";
 
@@ -13,7 +13,7 @@ class RedirectPage extends React.Component {
   async componentDidMount() {
     if (window.location.search.includes("error_description")) {
       await this.timeout(5000);
-      this.props.history.push("/");
+      navigate("/");
     }
   }
 
@@ -41,4 +41,4 @@ class RedirectPage extends React.Component {
   }
 }
 
-export default withRouter(withNamespaces("translation")(RedirectPage));
+export default withTranslation("translation")(RedirectPage);

@@ -12,7 +12,11 @@ const ExtendedOverlay = styled(Overlay)`
   ${media.phone`padding: 0 5vw;`};
 `;
 
-const TermsOfService = () => (
+interface Props {
+  path: string;
+}
+
+const TermsOfService = (props: Props) => (
   <ExtendedOverlay>
     <Header style={{ fontSize: "2em", textAlign: "center" }}>
       TERMS OF SERVICE

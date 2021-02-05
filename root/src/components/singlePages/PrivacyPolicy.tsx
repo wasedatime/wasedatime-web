@@ -12,7 +12,11 @@ const ExtendedOverlay = styled(Overlay)`
   ${media.phone`padding: 0 5vw;`}
 `;
 
-const PrivacyPolicy = () => (
+interface Props {
+  path: string;
+}
+
+const PrivacyPolicy = (props: Props) => (
   <ExtendedOverlay>
     <Header style={{ fontSize: "2em", textAlign: "center" }}>
       PRIVACY NOTICE

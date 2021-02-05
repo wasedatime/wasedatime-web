@@ -1,9 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { withNamespaces } from "react-i18next";
+import React, { useState } from "react";
+import { WithTranslation, withTranslation } from "react-i18next";
 import { Dropdown, Image, Icon } from "semantic-ui-react";
 import styled, { keyframes } from "styled-components";
-import { media } from "../common/utils";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import {
+  getUserAttr,
+  signOut,
+  getIdToken,
+} from "@bit/wasedatime.core.ts.utils.user";
 
 export const expandLink = () =>
   keyframes`
@@ -52,7 +56,7 @@ const StyledSpan = styled("span")`
   overflow-x: hidden;
   transition: ${(props) =>
     props.ishovered
-      ? "width 0.3s ease-out, opacity 0.5s ease 0.2s"
+      ? "width 0.3s ease-out, opacity 0.3s ease 0.2s"
       : "opacity 0.3s ease, width 0.3s ease-out 0.2s"};
 `;
 
@@ -69,27 +73,38 @@ const StyledMenuItem = styled(Dropdown.Item)`
   color: #fff !important;
 `;
 
-const UserMenu = ({
-  userInfo,
-  signOut,
-  openSignInModal,
-  isHovered,
-  isMobileMode,
-  t,
-}) =>
-  userInfo ? (
+interface Props extends WithTranslation {
+  openSignInModal: () => void;
+  isHovered: boolean;
+  isMobileMode: boolean;
+}
+
+const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
+  const [userAttr, setUserAttr] = useState(null);
+  const notSignedIn = !userAttr;
+  if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr));
+
+  return notSignedIn ? (
+    <React.Fragment>
+      <UserMenuTrigger onClick={openSignInModal}>
+        <Icon name="user circle outline" size="massive" />
+        {!isMobileMode && (
+          <StyledSpan ishovered={isHovered}>Sign in</StyledSpan>
+        )}
+      </UserMenuTrigger>
+    </React.Fragment>
+  ) : (
     <Dropdown
-      isHovered={isHovered}
       trigger={
         <UserMenuTrigger>
           <Image
-            src={userInfo.picture}
+            src={userAttr.picture}
             width={isMobileMode ? "35" : "40"}
             height={isMobileMode ? "35" : "40"}
             circular
             alt="Image of User account"
           />
-          <StyledSpan ishovered={isHovered}>{userInfo.username}</StyledSpan>
+          <StyledSpan ishovered={isHovered}>{userAttr.name}</StyledSpan>
         </UserMenuTrigger>
       }
       icon={null}
@@ -98,19 +113,10 @@ const UserMenu = ({
     >
       <StyledMenu>
         {/*<StyledMenuItem disabled>Profile</StyledMenuItem>*/}
-        <StyledMenuItem onClick={signOut}>{t(`user.Sign Out`)}</StyledMenuItem>
+        <StyledMenuItem onClick={signOut}>{t("user.Sign Out")}</StyledMenuItem>
       </StyledMenu>
     </Dropdown>
-  ) : (
-    <UserMenuTrigger onClick={openSignInModal}>
-      <Icon name="user circle outline" size="massive" />
-      {!isMobileMode && <StyledSpan ishovered={isHovered}>Sign in</StyledSpan>}
-    </UserMenuTrigger>
   );
-
-export default withNamespaces("translation")(UserMenu);
-
-UserMenu.propTypes = {
-  lng: PropTypes.string.isRequired,
-  t: PropTypes.func.isRequired,
 };
+
+export default withTranslation("translation")(UserMenu);

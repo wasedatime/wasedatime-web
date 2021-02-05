@@ -31,7 +31,7 @@ const StyledNavWrapper = styled(StyledGridColumn)`
   padding: 0px 0.5rem !important;
 `;
 
-const MobileHeader = ({ navItems }) => {
+const MobileHeader = ({ navItems, openSignInModal }) => {
   return (
     <MobileHeaderWrapper>
       <StyledLink to="/about">

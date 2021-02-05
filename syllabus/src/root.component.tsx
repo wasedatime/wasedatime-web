@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Provider } from "react-redux";
 import rootReducer from "./redux/reducers";
 import App from "./App";
-import Amplify from "aws-amplify";
+import API from "@aws-amplify/api";
 import configureStore from "./configureStore";
 import { saveState } from "./localForage";
 import throttle from "lodash/throttle";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
+import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 
 const config = {
   API: {
@@ -18,8 +19,9 @@ const config = {
     ],
   },
 };
-Amplify.configure(config);
+API.configure(config);
 
+configAuth();
 i18nConfig();
 
 const Root = ({ name, fetchCourses, fetchCoursesBySchool }) => {

@@ -48,6 +48,7 @@
     "webpack-merge": "^5.4.0"
   },
   "dependencies": {
+    "@aws-amplify/auth": "^3.4.20",
     "@bit/wasedatime.core.ts.utils.responsive-utils": "0.0.6",
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@fortawesome/fontawesome-svg-core": "^1.2.34",

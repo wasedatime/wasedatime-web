@@ -7,6 +7,8 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import ReviewLangSwitches from "./ReviewLangSwitches";
 import ReviewScalesCountContainer from "./ReviewScalesCountContainer";
 import ReviewsList from "./ReviewsList";
+import { WithTranslation, withTranslation } from "react-i18next";
+import { getAvgScales } from "../../utils/get-avg-scales";
 
 const StyledReviewsWrapper = styled("div")`
   ${media.phone`padding: 0 1em;`}
@@ -55,24 +57,6 @@ const ReviewsListWrapper = styled("div")`
   overflow-y: auto;
 `;
 
-const getAvgScales = (reviews) => {
-  let satisfactionSum = 0,
-    difficultySum = 0,
-    benefitSum = 0;
-  reviews.forEach((review) => {
-    satisfactionSum += review.satisfaction;
-    difficultySum += review.difficulty;
-    benefitSum += review.benefit;
-  });
-  // calculate the averages of scales and round them to the nearest .5
-  return {
-    satisfaction:
-      Math.round((satisfactionSum / thisCourseReviews.length) * 2) / 2,
-    difficulty: Math.round((difficultySum / thisCourseReviews.length) * 2) / 2,
-    benefit: Math.round((benefitSum / thisCourseReviews.length) * 2) / 2,
-  };
-};
-
 class CourseReviews extends React.Component {
   constructor(props) {
     super(props);
@@ -80,13 +64,14 @@ class CourseReviews extends React.Component {
     this.state = {
       reviews: props.reviews,
       scalesAvg: getAvgScales(props.reviews),
+      reviewLang: props.searchLang,
     };
   }
 
   render() {
-    const { searchLang, reviewLang, t } = this.props;
+    const { searchLang, t } = this.props;
 
-    const { reviews, scalesAvg } = this.props;
+    const { reviews, scalesAvg, reviewLang } = this.state;
 
     return (
       <StyledReviewsWrapper>
@@ -98,7 +83,7 @@ class CourseReviews extends React.Component {
           <span style={{ marginLeft: "10px" }}>
             <ReviewLangSwitches
               reviewLang={reviewLang}
-              switchReviewLang={(x) => {}}
+              switchReviewLang={(lng) => this.setState({ reviewLang: lng })}
               isInHeading={true}
             />
           </span>
@@ -145,4 +130,4 @@ class CourseReviews extends React.Component {
   }
 }
 
-export default CourseReviews;
+export default withTranslation("translation")(CourseReviews);

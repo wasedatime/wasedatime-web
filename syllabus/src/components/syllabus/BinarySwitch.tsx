@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import stickybits from "stickybits";
 
 const ExtendedWrapper = styled.div`
   display: flex;

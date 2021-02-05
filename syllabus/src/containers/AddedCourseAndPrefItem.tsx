@@ -2,13 +2,12 @@ import React from "react";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
 import { withTranslation } from "react-i18next";
-
 import {
   removeCourse,
   changeCourseColor,
   toggleCourseVisibility,
 } from "../redux/actions";
-import CourseAndPrefItem from "../components/CourseAndPrefItem";
+import CourseAndPrefItem from "../components/timetable/CourseAndPrefItem";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import Course from "../types/course";
 

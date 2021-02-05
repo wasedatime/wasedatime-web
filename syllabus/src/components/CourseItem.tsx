@@ -19,7 +19,8 @@ import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import { Badge } from "@bit/wasedatime.core.ts.styles.badge";
-import ShareButton from "./ShareButton";
+import ShareButton from "./syllabus/ShareButton";
+import CourseInfo from "./syllabus/CourseInfo";
 import Course from "../types/course";
 
 const CourseItemWrapper = styled("div")`
@@ -32,7 +33,7 @@ const CourseItemWrapper = styled("div")`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;
   margin: 1em 0.5em;
   padding: 0.5em 0.8em;
-  width: 95%;
+  width: 98%;
   line-height: 150%;
   &:hover {
     ${(props) =>
@@ -335,7 +336,7 @@ const CourseItem = ({
           />
         </DetailWrapper>
       </CourseIntro>
-      {expanded && <div>Course Details</div>}
+      {expanded && <CourseInfo course={course} searchLang={searchLang} />}
     </CourseItemWrapper>
   );
 };

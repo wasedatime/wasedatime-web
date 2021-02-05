@@ -5,7 +5,7 @@ import {
   fetchCoursesBySchool,
   removeSchool,
 } from "../redux/actions";
-import SchoolFilterForm from "../components/SchoolFilterForm";
+import SchoolFilterForm from "../components/syllabus/SchoolFilterForm";
 
 interface ReduxStateProps {
   loadedSchools: string[];

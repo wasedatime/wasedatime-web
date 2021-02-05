@@ -7,10 +7,10 @@ import { fetchCourses, fetchCoursesBySchool } from "../redux/actions";
 import { ReduxRootState } from "../redux/reducers";
 import { getFetchedCoursesList } from "../redux/reducers/fetchedCourses";
 import AddedCourseListContainer from "./AddedCourseListContainer";
-import FetchedCourseList from "../components/FetchedCourseList";
-import Filter from "../components/Filter";
-import FilterButton from "../components/FilterButton";
-import SearchBar from "../components/SearchBar";
+import FetchedCourseList from "../components/syllabus/FetchedCourseList";
+import Filter from "../components/syllabus/Filter";
+import FilterButton from "../components/syllabus/FilterButton";
+import SearchBar from "../components/syllabus/SearchBar";
 import {
   getSearchLang,
   searchCourses,

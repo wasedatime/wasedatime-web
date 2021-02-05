@@ -10,7 +10,7 @@ import AddedCourseAndPrefList from "./AddedCourseAndPrefList";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import Course from "../types/course";
+import Course from "../../types/course";
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;

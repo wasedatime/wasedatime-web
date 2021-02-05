@@ -5,7 +5,7 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getCourseTitleAndInstructor } from "@bit/wasedatime.syllabus.ts.utils.course-search";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import { CourseWithOcc } from "../types/course";
+import { CourseWithOcc } from "../../types/course";
 
 const StyledCourseColumn = styled("div")`
   display: flex;

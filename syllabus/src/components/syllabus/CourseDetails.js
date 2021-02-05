@@ -35,12 +35,9 @@ const mapCourseLevel = (course, t) => {
 };
 
 const StyledSegment = styled(Segment)`
-  width: 100% !important;
-  font-size: 1em !important;
-  margin: 1em 0px !important;
+  font-size: 1rem !important;
   cursor: default !important;
   border: none !important;
-  margin-top: 0 !important;
   box-shadow: none !important;
   &:hover {
     transform: none !important;
@@ -59,7 +56,7 @@ const CourseDetails = ({ course, t, lng }) => {
                   {course[SyllabusKey.MIN_YEAR]}+
                 </Statistic.Value>
                 <Statistic.Label>
-                  {t("courseInfo.Details.Min Year")}
+                  <p>{t("courseInfo.Details.Min Year")}</p>
                 </Statistic.Label>
               </Statistic>
             </Grid.Column>
@@ -67,51 +64,61 @@ const CourseDetails = ({ course, t, lng }) => {
               <Statistic>
                 <Statistic.Value>{course[SyllabusKey.CREDIT]}</Statistic.Value>
                 <Statistic.Label>
-                  {t("courseInfo.Details.Credit")}
+                  <p>{t("courseInfo.Details.Credit")}</p>
                 </Statistic.Label>
               </Statistic>
             </Grid.Column>
           </Grid>
-        </Grid.Column>
-        <Grid.Column>
           <Table unstackable>
             <Table.Body>
               <Table.Row>
-                <Table.Cell>{t("courseInfo.Details.Type.title")}</Table.Cell>
                 <Table.Cell>
-                  <b>{mapCourseType(course, t)}</b>
+                  <p>{t("courseInfo.Details.Type.title")}</p>
+                </Table.Cell>
+                <Table.Cell>
+                  <p>
+                    <b>{mapCourseType(course, t)}</b>
+                  </p>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell>{t("courseInfo.Details.Category")}</Table.Cell>
                 <Table.Cell>
-                  <b>
-                    {
-                      course[
-                        lng === "en"
-                          ? SyllabusKey.CATEGORY
-                          : SyllabusKey.CATEGORY_JP
-                      ]
-                    }
-                  </b>
+                  <p>{t("courseInfo.Details.Category")}</p>
+                </Table.Cell>
+                <Table.Cell>
+                  <p>
+                    <b>
+                      {
+                        course[
+                          lng === "en"
+                            ? SyllabusKey.CATEGORY
+                            : SyllabusKey.CATEGORY_JP
+                        ]
+                      }
+                    </b>
+                  </p>
                 </Table.Cell>
               </Table.Row>
               <Table.Row>
-                <Table.Cell>{t("courseInfo.Details.Level.title")}</Table.Cell>
                 <Table.Cell>
-                  <b>{mapCourseLevel(course, t)}</b>
+                  <p>{t("courseInfo.Details.Level.title")}</p>
+                </Table.Cell>
+                <Table.Cell>
+                  <p>
+                    <b>{mapCourseLevel(course, t)}</b>
+                  </p>
                 </Table.Cell>
               </Table.Row>
             </Table.Body>
           </Table>
         </Grid.Column>
+        <Grid.Column>
+          <Divider horizontal style={{ marginBottom: "2em" }}>
+            <p>{t("courseInfo.Details.Evaluation.title")}</p>
+          </Divider>
+          <CourseDetailsEvaluation course={course} />
+        </Grid.Column>
       </Grid>
-
-      <Divider horizontal style={{ margin: "2em", fontSize: "1em" }}>
-        {t("courseInfo.Details.Evaluation.title")}
-      </Divider>
-
-      <CourseDetailsEvaluation course={course} />
     </StyledSegment>
   );
 };

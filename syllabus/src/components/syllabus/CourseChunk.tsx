@@ -1,9 +1,9 @@
 import React from "react";
 
-import CourseItemContainer from "../containers/CourseItemContainer";
+import CourseItemContainer from "../../containers/CourseItemContainer";
 import { UnstyledUList } from "@bit/wasedatime.core.ts.styles.list";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import Course from "../types/course";
+import Course from "../../types/course";
 
 interface Props {
   chunk: Course[];

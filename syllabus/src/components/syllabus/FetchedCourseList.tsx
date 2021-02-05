@@ -5,7 +5,7 @@ import styled from "styled-components";
 import CourseChunk from "./CourseChunk";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import Course from "../types/course";
+import Course from "../../types/course";
 
 const CourseListWrapper = styled.div`
   height: 100%;

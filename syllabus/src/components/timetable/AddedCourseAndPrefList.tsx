@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import CourseListSummaryContainer from "../containers/CourseListSummaryContainer";
-import AddedCourseAndPrefItem from "../containers/AddedCourseAndPrefItem";
+import CourseListSummaryContainer from "../../containers/CourseListSummaryContainer";
+import AddedCourseAndPrefItem from "../../containers/AddedCourseAndPrefItem";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { UnstyledUList } from "@bit/wasedatime.core.ts.styles.list";
-import Course from "../types/course";
+import Course from "../../types/course";
 
 const ExtendedWrapper = styled(Wrapper)`
   padding: 0 1em;

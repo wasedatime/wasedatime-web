@@ -5,8 +5,8 @@ import { Helmet } from "react-helmet";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
-import Timetable from "../components/Timetable";
-import SemesterSwitcher from "../components/SemesterSwitcher";
+import Timetable from "../components/timetable/Timetable";
+import SemesterSwitcher from "../components/timetable/SemesterSwitcher";
 import {
   SEMESTERS,
   getCurrentSemester,

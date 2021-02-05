@@ -9,7 +9,11 @@ const RedirectMessage = styled(Segment)`
   font-size: 1.5em !important;
 `;
 
-class RedirectPage extends React.Component {
+interface Props {
+  path: string
+}
+
+class RedirectPage extends React.Component<Props> {
   async componentDidMount() {
     if (window.location.search.includes("error_description")) {
       await this.timeout(5000);

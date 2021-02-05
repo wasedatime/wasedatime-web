@@ -11,14 +11,14 @@ import {
   addedCourseListSwitchHeight,
   headerHeight,
 } from "@bit/wasedatime.core.ts.constants.size-variables";
-import CourseListSummaryContainer from "../containers/CourseListSummaryContainer";
-import AddedCourseItemContainer from "../containers/AddedCourseItemContainer";
+import CourseListSummaryContainer from "../../containers/CourseListSummaryContainer";
+import AddedCourseItemContainer from "../../containers/AddedCourseItemContainer";
 import {
   Article,
   Section,
   Subheading,
 } from "@bit/wasedatime.core.ts.styles.article";
-import Course from "../types/course";
+import Course from "../../types/course";
 
 const CourseListWrapper = styled("div")`
   position: fixed !important;

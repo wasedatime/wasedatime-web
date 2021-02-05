@@ -7,7 +7,7 @@ import {
   removeCourse,
   changeCourseColor,
   toggleCourseVisibility,
-} from "../redux/actions/syllabus";
+} from "../redux/actions";
 import CourseAndPrefItem from "../components/CourseAndPrefItem";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import Course from "../types/course";

@@ -121,5 +121,4 @@ class FetchedCourseList extends React.Component<Props, State> {
   }
 }
 
-// export default FetchedCourseList;
 export default withTranslation("translation")(FetchedCourseList);

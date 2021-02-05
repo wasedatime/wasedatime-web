@@ -3,11 +3,10 @@ import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import debounce from "lodash/debounce";
 import { connect } from "react-redux";
-import { fetchCourses, fetchCoursesBySchool } from "../redux/actions/syllabus";
+import { fetchCourses, fetchCoursesBySchool } from "../redux/actions";
 import { ReduxRootState } from "../redux/reducers";
-import { getAddedCoursesListWithLang } from "../redux/reducers/addedCourses";
 import { getFetchedCoursesList } from "../redux/reducers/fetchedCourses";
-import AddedCourseListSwitchContainer from "./AddedCourseListSwitchContainer";
+import AddedCourseListContainer from "./AddedCourseListContainer";
 import FetchedCourseList from "../components/FetchedCourseList";
 import Filter from "../components/Filter";
 import FilterButton from "../components/FilterButton";
@@ -54,7 +53,6 @@ const MiddleColumn = styled.div`
 `;
 
 interface ReduxStateProps {
-  addedCourses: Course[];
   fetchedCourses: Course[];
 }
 
@@ -198,13 +196,7 @@ class SyllabusContainer extends React.Component<
   };
 
   render() {
-    const {
-      fetchCourses,
-      fetchCoursesBySchool,
-      addedCourses,
-      t,
-      i18n,
-    } = this.props;
+    const { fetchCourses, fetchCoursesBySchool, t, i18n } = this.props;
     let newI18n = { ...i18n };
 
     const { fetchedCourses, searchTerm, inputText } = this.state;
@@ -261,7 +253,7 @@ class SyllabusContainer extends React.Component<
             {(matches) =>
               matches && (
                 <SideColumn>
-                  <AddedCourseListSwitchContainer addedCourses={addedCourses} />
+                  <AddedCourseListContainer />
                 </SideColumn>
               )
             }
@@ -323,7 +315,6 @@ class SyllabusContainer extends React.Component<
 
 const mapStateToProps = (state: ReduxRootState) => {
   return {
-    addedCourses: getAddedCoursesListWithLang(state.addedCourses.byId),
     fetchedCourses: getFetchedCoursesList(state.fetchedCourses.byId),
   };
 };

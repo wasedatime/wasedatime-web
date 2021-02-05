@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-import CourseListSummary from "./CourseListSummary";
+import CourseListSummaryContainer from "../containers/CourseListSummaryContainer";
 import AddedCourseAndPrefItem from "../containers/AddedCourseAndPrefItem";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
@@ -34,13 +34,7 @@ interface Props {
 const AddedCourseAndPrefList = ({ addedCoursesAndPrefs }: Props) => {
   return (
     <ExtendedWrapper>
-      <CourseListSummary
-        courses={addedCoursesAndPrefs}
-        handleChangeSortingOption={(value) => console.log(value)}
-        dropdownPlaceholder={"Sort by"}
-        courseUnit={"courses"}
-        creditUnit={"credits"}
-      />
+      <CourseListSummaryContainer courses={addedCoursesAndPrefs} />
       <Wrapper>
         <ExtendedUnstyledUList>
           {addedCoursesAndPrefs.map((courseAndPref, i) => (

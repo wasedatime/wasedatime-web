@@ -13,6 +13,7 @@ import {
 } from "@bit/wasedatime.syllabus.ts.constants.semesters";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { getAddedCoursesAndPrefsByTerm } from "../redux/reducers/addedCourses";
+import { sortAddedCoursesAndPrefs } from "@bit/wasedatime.syllabus.ts.utils.added-courses-and-prefs";
 import Course from "../types/course";
 
 interface ReduxStateProps {
@@ -61,9 +62,6 @@ class TimetableContainer extends React.Component<
     };
   }
 
-  // get all addedcourses from redux
-  // parse into each semester and quarter
-
   handleIncreaseSemesterIndex = (event) => {
     event.preventDefault();
     const newSemesterIndex =
@@ -105,10 +103,10 @@ class TimetableContainer extends React.Component<
       selectedQuarter.length > 0
         ? addedCoursesAndPrefsByTerm[selectedQuarter]
         : addedCoursesAndPrefsByTerm[semesterKey];
-    // const sortedAddedCourses = sortAddedCourses(
-    //   addedCoursesAndPrefs,
-    //   selectedSortingOption
-    // );
+    const sortedAddedCoursesAndPrefs = sortAddedCoursesAndPrefs(
+      addedCoursesAndPrefs,
+      selectedSortingOption
+    );
 
     return (
       <Wrapper>
@@ -142,22 +140,20 @@ class TimetableContainer extends React.Component<
           handleDecreaseSemesterIndex={this.handleDecreaseSemesterIndex}
           handleToggleQuarter={this.handleToggleQuarter}
         />
-        <Timetable addedCoursesAndPrefs={addedCoursesAndPrefs} />
+        <Timetable addedCoursesAndPrefs={sortedAddedCoursesAndPrefs} />
       </Wrapper>
     );
   }
 }
 
-const mapStateToProps = (state: ReduxRootState) => {
-  return {
-    addedCoursesAndPrefsByTerm: getAddedCoursesAndPrefsByTerm(
-      state.addedCourses.byId
-    ),
-    selectedSortingOption: state.addedCourses.sortingOption,
-  };
-};
+const mapStateToProps = (state: ReduxRootState) => ({
+  addedCoursesAndPrefsByTerm: getAddedCoursesAndPrefsByTerm(
+    state.addedCourses.byId
+  ),
+  selectedSortingOption: state.addedCourses.sortingOption,
+});
 
-export default connect<ReduxStateProps, null>(
+export default connect<ReduxStateProps, {}>(
   mapStateToProps,
   null
 )(withTranslation("translation")(TimetableContainer));

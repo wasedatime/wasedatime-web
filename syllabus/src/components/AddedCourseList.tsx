@@ -11,7 +11,7 @@ import {
   addedCourseListSwitchHeight,
   headerHeight,
 } from "@bit/wasedatime.core.ts.constants.size-variables";
-// import CourseListSummary from "../CourseListSummary";
+import CourseListSummaryContainer from "../containers/CourseListSummaryContainer";
 import AddedCourseItemContainer from "../containers/AddedCourseItemContainer";
 import {
   Article,
@@ -52,11 +52,6 @@ const StyledStepGroup = styled(Step.Group)`
 
 interface Props extends WithTranslation {
   addedCourses: Course[];
-  sortingOptions: { label: string; value: string }[];
-  isSortingOptionOpen: boolean;
-  handleToggleSortingOptions: () => void;
-  selectedSortingOption: string;
-  handleChangeSortingOption: (value: string) => void;
 }
 
 interface State {
@@ -120,30 +115,15 @@ class AddedCourseList extends React.Component<Props, State> {
   };
 
   render() {
-    const {
-      sortingOptions,
-      isSortingOptionOpen,
-      handleToggleSortingOptions,
-      selectedSortingOption,
-      handleChangeSortingOption,
-      t,
-    } = this.props;
-    const { courses } = this.state;
+    const { addedCourses, t } = this.props;
 
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>
-        {/*<CourseListSummary
-          courses={addedCourses}
-          sortingOptions={sortingOptions}
-          isSortingOptionOpen={isSortingOptionOpen}
-          handleToggleSortingOptions={handleToggleSortingOptions}
-          selectedSortingOption={selectedSortingOption}
-          handleChangeSortingOption={handleChangeSortingOption}
-        />*/}
+        <CourseListSummaryContainer courses={addedCourses} />
 
-        {courses.length ? (
+        {addedCourses.length ? (
           <div style={{ fontSize: "14px" }}>
-            {courses.map((course, index) => (
+            {addedCourses.map((course, index) => (
               <AddedCourseItemContainer
                 key={index}
                 course={course}

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
-import { addCourse, removeCourse } from "../redux/actions/syllabus";
+import { addCourse, removeCourse } from "../redux/actions";
 import CourseItem from "../components/CourseItem";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import MediaQuery from "react-responsive";

@@ -203,3 +203,10 @@ export const toggleCourseVisibility = (id: string) => ({
     id,
   },
 });
+
+export const changeSortingOption = (sortingOption: string) => ({
+  type: CHANGE_COURSES_SORTING_OPTION,
+  payload: {
+    sortingOption,
+  },
+});

@@ -1,3 +1,5 @@
+import { CHANGE_COURSES_SORTING_OPTION } from "../../actions/types";
+
 interface PayloadProps {
   sortingOption: string;
 }
@@ -7,25 +9,9 @@ interface ActionProps {
   payload: PayloadProps;
 }
 
-const sortingOption = (state = "ADDED_ORDER", action: ActionProps): string => {
-  return state;
-  // switch (action.type) {
-  //   case ADD_COURSE:
-  //     return [...state, action.payload.course[SyllabusKey.ID]];
-  //   case REMOVE_COURSE:
-  //     let newIds = [...state];
-  //     const index = newIds.indexOf(action.payload.id);
-  //     if (index > -1) {
-  //       newIds.splice(index, 1);
-  //     }
-  //     return newIds;
-  //   case SAVE_TIMETABLE:
-  //     return action.payload.coursesAndPrefs.map(
-  //       (cp) => cp.course[SyllabusKey.ID]
-  //     );
-  //   default:
-  //     return state;
-  // }
-};
+const sortingOption = (state = "ADDED_ORDER", action: ActionProps): string =>
+  action.type === CHANGE_COURSES_SORTING_OPTION
+    ? action.payload.sortingOption
+    : state;
 
 export default sortingOption;

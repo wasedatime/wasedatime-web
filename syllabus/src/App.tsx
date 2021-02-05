@@ -6,9 +6,8 @@ import Syllabus from "./containers/SyllabusContainer";
 const App = () => {
   return (
     <Router>
-      <Timetable path="courses/timetable" />
-      <Syllabus path="courses/syllabus" />
-      <Redirect from="timetable" to="courses/timetable" default noThrow />
+      <Syllabus exact path="courses/syllabus" />
+      <Timetable exact path="courses/timetable" />
     </Router>
   );
 };

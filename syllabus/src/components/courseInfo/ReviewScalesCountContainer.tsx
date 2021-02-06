@@ -3,7 +3,7 @@ import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import ReviewStars from "./ReviewStars";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { withTranslation } from "react-i18next";
+import { WithTranslation, withTranslation } from "react-i18next";
 
 const ReviewScalesRow = styled("div")`
   display: flex;
@@ -46,13 +46,20 @@ const ReviewsCount = styled("div")`
   font-size: 0.6em;
 `;
 
+interface Props extends WithTranslation {
+  avgSatisfaction: number;
+  avgDifficulty: number;
+  avgBenefit: number;
+  thisCourseReviewsLength: number;
+}
+
 const ReviewScalesCountContainer = ({
   avgSatisfaction,
   avgDifficulty,
   avgBenefit,
   thisCourseReviewsLength,
   t,
-}) => (
+}: Props) => (
   <ReviewScalesRow>
     <ReviewScalesList>
       <ReviewScale>

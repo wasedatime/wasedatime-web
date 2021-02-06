@@ -60,6 +60,7 @@ const ReviewsListWrapper = styled("div")`
 
 interface Props extends WithTranslation {
   searchLang: string;
+  reviews: Review[];
 }
 
 interface State {

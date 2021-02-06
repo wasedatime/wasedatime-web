@@ -19,7 +19,7 @@ const StyledReviewStars = styled("span")`
   white-space: pre;
 `;
 
-const displayFilledStars = (scale) => {
+const displayFilledStars = (scale: number): JSX.Element[] => {
   let stars = [];
   for (let n = Math.floor(scale); n > 0; n--) {
     stars.push(<FilledStar key={n} icon={faStar} />);
@@ -30,7 +30,7 @@ const displayFilledStars = (scale) => {
   // })
 };
 
-const displayHalfStar = (scale) => {
+const displayHalfStar = (scale: number): JSX.Element | string => {
   return (scale - Math.floor(scale)) * 2 ? (
     <FilledStar icon={faStarHalf} />
   ) : (
@@ -38,7 +38,7 @@ const displayHalfStar = (scale) => {
   );
 };
 
-const displayBlankStars = (scale) => {
+const displayBlankStars = (scale: number): JSX.Element[] => {
   let stars = [];
   for (let n = 5 - Math.ceil(scale); n > 0; n--) {
     stars.push(<BlankStar key={n} icon={faStar} />);
@@ -47,7 +47,11 @@ const displayBlankStars = (scale) => {
   // return [...Array(5-Math.ceil(scale)).keys()].map(i => <BlankStar key={i} icon={faStar} />)
 };
 
-const ReviewStars = ({ scale }) => (
+interface Props {
+  scale: number;
+}
+
+const ReviewStars = ({ scale }: Props) => (
   <StyledReviewStars>
     {displayFilledStars(scale)}
     {displayHalfStar(scale)}

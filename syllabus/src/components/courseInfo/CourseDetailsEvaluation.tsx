@@ -3,26 +3,7 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import { Grid, Table } from "semantic-ui-react";
 import { Doughnut } from "react-chartjs-2";
-
-const evalChartData = (course, t) => {
-  return {
-    datasets: [
-      {
-        data: course[SyllabusKey.EVAL].map((e) =>
-          e[SyllabusKey.EVAL_PERCENT] === -1 ? 0 : e[SyllabusKey.EVAL_PERCENT]
-        ),
-        backgroundColor: course[SyllabusKey.EVAL].map(
-          (e) => evalColorMap[e[SyllabusKey.EVAL_TYPE]]
-        ),
-      },
-    ],
-    labels: course[SyllabusKey.EVAL].map((e) =>
-      t(
-        `courseInfo.Details.Evaluation.${evalTypeMap[e[SyllabusKey.EVAL_TYPE]]}`
-      )
-    ),
-  };
-};
+import Course from "../../types/course";
 
 const evalChartOptions = {
   legend: {
@@ -47,11 +28,33 @@ const evalChartOptions = {
 const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
 const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
 
-const CourseDetailsEvaluation = ({ course, t }) => {
+interface Props extends WithTranslation {
+  course: Course;
+}
+
+const CourseDetailsEvaluation = ({ course, t }: Props) => {
+  const evalChartData = {
+    datasets: [
+      {
+        data: course[SyllabusKey.EVAL].map((e) =>
+          e[SyllabusKey.EVAL_PERCENT] === -1 ? 0 : e[SyllabusKey.EVAL_PERCENT]
+        ),
+        backgroundColor: course[SyllabusKey.EVAL].map(
+          (e) => evalColorMap[e[SyllabusKey.EVAL_TYPE]]
+        ),
+      },
+    ],
+    labels: course[SyllabusKey.EVAL].map((e) =>
+      t(
+        `courseInfo.Details.Evaluation.${evalTypeMap[e[SyllabusKey.EVAL_TYPE]]}`
+      )
+    ),
+  };
+
   return course[SyllabusKey.EVAL].length > 0 ? (
     <Grid columns={2} stackable>
       <Grid.Column>
-        <Doughnut data={evalChartData(course, t)} options={evalChartOptions} />
+        <Doughnut data={evalChartData} options={evalChartOptions} />
       </Grid.Column>
       <Grid.Column>
         <Table>

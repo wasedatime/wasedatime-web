@@ -9,7 +9,7 @@ import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import textLogo from "@bit/wasedatime.core.assets.text-logo";
 import UserMenu from "../user/UserMenu";
 
-const LogoWrapper = styled.a`
+const LogoWrapper = styled(Link)`
   display: flex;
   width: 100%;
   align-items: center;
@@ -83,7 +83,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
         onTouchStart={() => setExpanded(true)}
         onMouseLeave={() => setExpanded(false)}
       >
-        <LogoWrapper>
+        <LogoWrapper to={"/home"}>
           <SmallLogo />
           <TextLogo
             src={textLogo}

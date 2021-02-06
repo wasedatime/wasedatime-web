@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Course from "../../types/course";
+import Review from "../../types/review";
 import CourseDetails from "./CourseDetails";
 import CourseReviews from "./CourseReviews";
 import CourseItemContainer from "../../containers/CourseItemContainer";
@@ -88,7 +89,7 @@ interface OwnProps extends WithTranslation {
 
 interface OwnState {
   relatedCourses: Course[];
-  thisCourseReviews: object[];
+  thisCourseReviews: Review[];
   isLoaded: boolean;
 }
 
@@ -121,7 +122,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
     });
   }
 
-  async getCourseReviewsByKey(courseKey) {
+  getCourseReviewsByKey = async (courseKey: string): Promise<Review[]> => {
     try {
       const userAttr = await getUserAttr();
       const res = await API.get(
@@ -141,7 +142,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
     } catch (error) {
       console.error(error);
     }
-  }
+  };
 
   componentDidMount() {
     this.loadReviewsAndRelatedCourses();
@@ -156,7 +157,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
         {isLoaded ? (
           <CourseReviews reviews={thisCourseReviews} searchLang={searchLang} />
         ) : (
-          <LoadingSpinner />
+          <LoadingSpinner message={"Loading reviews..."} />
         )}
         <StyledSubHeading>{t(`courseInfo.Related courses`)}</StyledSubHeading>
         <RelatedCourses>
@@ -173,7 +174,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
               </RelatedCourse>
             ))
           ) : (
-            <LoadingSpinner />
+            <LoadingSpinner message={"Loading related courses..."} />
           )}
         </RelatedCourses>
       </CourseInfoWrapper>

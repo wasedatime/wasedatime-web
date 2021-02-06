@@ -2,9 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import ReviewStars from "./ReviewStars";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { withTranslation } from "react-i18next";
+import { WithTranslation, withTranslation } from "react-i18next";
 import ReviewLang from "@bit/wasedatime.syllabus.ts.constants.review-lang";
 import { Button, Icon, Modal } from "semantic-ui-react";
+import ReviewType from "../../types/review";
 
 const ReviewsWrapper = styled("div")`
   background: #fff;
@@ -86,7 +87,26 @@ const Deletebutton = styled(Editbutton)`
   color: red !important;
 `;
 
-class ReviewsList extends React.Component {
+interface ReviewToEdit extends ReviewType {
+  src_comment: string;
+  index: number;
+}
+
+interface Props extends WithTranslation {
+  reviews: ReviewType[];
+  searchLang: string;
+  reviewLang: string;
+  openReviewEditForm: (review: ReviewToEdit) => void;
+  deleteReview: (review: ReviewType, index: number) => void;
+}
+
+interface State {
+  isDeleteModalOpen: boolean;
+  reviewToDelete: ReviewType | object;
+  reviewIndexToDelete: number;
+}
+
+class ReviewsList extends React.Component<Props, State> {
   state = {
     isDeleteModalOpen: false,
     reviewToDelete: {},

@@ -23,12 +23,17 @@ const ReviewLangSwitch = styled("button")`
   }
 `;
 
+interface Props {
+  reviewLang: string;
+  switchReviewLang: (lng: string) => void;
+  isInHeading: boolean;
+}
+
 const ReviewLangSwitches = ({
   reviewLang,
   switchReviewLang,
   isInHeading,
-  t,
-}) => (
+}: Props) => (
   <span>
     <ReviewLangSwitch
       active={reviewLang === "en"}

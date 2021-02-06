@@ -1,10 +1,12 @@
+import Review from "../types/review";
+
 export interface Scales {
   satisfaction: number;
   difficulty: number;
   benefit: number;
 }
 
-export const getAvgScales = (reviews: object[]): Scales => {
+export const getAvgScales = (reviews: Review[]): Scales => {
   let satisfactionSum = 0,
     difficultySum = 0,
     benefitSum = 0;

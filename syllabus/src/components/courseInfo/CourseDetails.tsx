@@ -4,35 +4,7 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import { Segment, Grid, Table, Statistic, Divider } from "semantic-ui-react";
 import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
-
-const mapCourseType = (course, t) => {
-  if (course[SyllabusKey.TYPE] === -1) return "";
-  const courseTypeMap = [
-    t("courseInfo.Details.Type.Lecture"),
-    t("courseInfo.Details.Type.Seminar"),
-    t("courseInfo.Details.Type.Work"),
-    t("courseInfo.Details.Type.Foreign Language"),
-    t("courseInfo.Details.Type.On-demand"),
-    t("courseInfo.Details.Type.Thesis"),
-    t("courseInfo.Details.Type.Graduate Research"),
-    t("courseInfo.Details.Type.Practice"),
-    t("courseInfo.Details.Type.Blended"),
-  ];
-  return courseTypeMap[course[SyllabusKey.TYPE]];
-};
-
-const mapCourseLevel = (course, t) => {
-  if (course[SyllabusKey.TYPE] === -1) return "";
-  const courseLevelMap = [
-    t("courseInfo.Details.Level.Beginner"),
-    t("courseInfo.Details.Level.Intermediate"),
-    t("courseInfo.Details.Level.Advanced"),
-    t("courseInfo.Details.Level.Final-stage"),
-    t("courseInfo.Details.Level.Master"),
-    t("courseInfo.Details.Level.Doctor"),
-  ];
-  return courseLevelMap[course[SyllabusKey.LEVEL]];
-};
+import Course from "../../types/course";
 
 const StyledSegment = styled(Segment)`
   font-size: 1rem !important;
@@ -44,7 +16,41 @@ const StyledSegment = styled(Segment)`
   }
 `;
 
-const CourseDetails = ({ course, t, lng }) => {
+interface Props extends WithTranslation {
+  course: Course;
+}
+
+const CourseDetails = ({ course, t, i18n }: Props) => {
+  const courseTypes = [
+    t("courseInfo.Details.Type.Lecture"),
+    t("courseInfo.Details.Type.Seminar"),
+    t("courseInfo.Details.Type.Work"),
+    t("courseInfo.Details.Type.Foreign Language"),
+    t("courseInfo.Details.Type.On-demand"),
+    t("courseInfo.Details.Type.Thesis"),
+    t("courseInfo.Details.Type.Graduate Research"),
+    t("courseInfo.Details.Type.Practice"),
+    t("courseInfo.Details.Type.Blended"),
+  ];
+
+  const courseLevels = [
+    t("courseInfo.Details.Level.Beginner"),
+    t("courseInfo.Details.Level.Intermediate"),
+    t("courseInfo.Details.Level.Advanced"),
+    t("courseInfo.Details.Level.Final-stage"),
+    t("courseInfo.Details.Level.Master"),
+    t("courseInfo.Details.Level.Doctor"),
+  ];
+
+  const courseType =
+    course[SyllabusKey.TYPE] === -1
+      ? ""
+      : courseTypes[course[SyllabusKey.TYPE]];
+  const courseLevel =
+    course[SyllabusKey.LEVEL] === -1
+      ? ""
+      : courseLevels[course[SyllabusKey.LEVEL]];
+
   return (
     <StyledSegment>
       <Grid columns={2} stackable>
@@ -77,7 +83,7 @@ const CourseDetails = ({ course, t, lng }) => {
                 </Table.Cell>
                 <Table.Cell>
                   <p>
-                    <b>{mapCourseType(course, t)}</b>
+                    <b>{courseType}</b>
                   </p>
                 </Table.Cell>
               </Table.Row>
@@ -90,7 +96,7 @@ const CourseDetails = ({ course, t, lng }) => {
                     <b>
                       {
                         course[
-                          lng === "en"
+                          i18n.language === "en"
                             ? SyllabusKey.CATEGORY
                             : SyllabusKey.CATEGORY_JP
                         ]
@@ -105,7 +111,7 @@ const CourseDetails = ({ course, t, lng }) => {
                 </Table.Cell>
                 <Table.Cell>
                   <p>
-                    <b>{mapCourseLevel(course, t)}</b>
+                    <b>{courseLevel}</b>
                   </p>
                 </Table.Cell>
               </Table.Row>

@@ -7,7 +7,7 @@ import MobileNav from "./MobileNav";
 import LanguangeMenu from "@bit/wasedatime.core.ts.ui.language-menu";
 // import UserMenu from "./user/UserMenu";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
-import MobileHeaderWrapper from "@bit/wasedatime.core.ts.ui.mobile-header-wrapper";
+import MobileHeaderWrapper from "@bit/wasedatime.core.ts.styles.mobile-header-wrapper";
 
 const StyledLink = styled(Link)`
   display: flex;

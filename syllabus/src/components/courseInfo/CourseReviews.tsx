@@ -9,6 +9,7 @@ import ReviewScalesCountContainer from "./ReviewScalesCountContainer";
 import ReviewsList from "./ReviewsList";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { getAvgScales } from "../../utils/get-avg-scales";
+import { Review, Scales } from "../../types/review";
 
 const StyledReviewsWrapper = styled("div")`
   ${media.phone`padding: 0 1em;`}
@@ -57,7 +58,17 @@ const ReviewsListWrapper = styled("div")`
   overflow-y: auto;
 `;
 
-class CourseReviews extends React.Component {
+interface Props extends WithTranslation {
+  searchLang: string;
+}
+
+interface State {
+  reviews: Review[];
+  scalesAvg: Scales;
+  reviewLang: string;
+}
+
+class CourseReviews extends React.Component<Props, State> {
   constructor(props) {
     super(props);
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Overlay } from "@bit/wasedatime.core.ts.ui.overlay";
+import { Overlay } from "@bit/wasedatime.core.ts.styles.overlay";
 import styled from "styled-components";
 import { Header } from "semantic-ui-react";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";

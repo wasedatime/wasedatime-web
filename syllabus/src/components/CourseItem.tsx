@@ -20,7 +20,7 @@ import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import { Badge } from "@bit/wasedatime.core.ts.styles.badge";
 import ShareButton from "./syllabus/ShareButton";
-import CourseInfo from "./syllabus/CourseInfo";
+import CourseInfo from "./courseInfo/CourseInfo";
 import Course from "../types/course";
 
 const CourseItemWrapper = styled("div")`

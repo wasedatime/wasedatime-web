@@ -10,6 +10,14 @@ import ReviewsList from "./ReviewsList";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { getAvgScales } from "../../utils/get-avg-scales";
 import { Review, Scales } from "../../types/review";
+import { Course } from "../../types/course";
+import AddReviewForm from "./AddReviewForm";
+import { getIdToken, getUserAttr } from "../../utils/user";
+import API from "@aws-amplify/api";
+import Alert from "react-s-alert";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+
+// todo: make alert works
 
 const StyledReviewsWrapper = styled("div")`
   ${media.phone`padding: 0 1em;`}
@@ -59,6 +67,8 @@ const ReviewsListWrapper = styled("div")`
 `;
 
 interface Props extends WithTranslation {
+  courseKey: string;
+  course: Course;
   searchLang: string;
   reviews: Review[];
 }
@@ -67,6 +77,14 @@ interface State {
   reviews: Review[];
   scalesAvg: Scales;
   reviewLang: string;
+  isFormOpen: boolean;
+  formScales: Scales;
+  formText: string;
+  formMode: string;
+  editReviewIndex: number;
+  editReviewPrimaryKey: string;
+  editReviewOriginalText: string;
+  isFormSending: boolean;
 }
 
 class CourseReviews extends React.Component<Props, State> {
@@ -77,15 +95,214 @@ class CourseReviews extends React.Component<Props, State> {
       reviews: props.reviews,
       scalesAvg: getAvgScales(props.reviews),
       reviewLang: props.searchLang,
+      isFormOpen: false,
+      formMode: "new",
+      formScales: { satisfaction: 0, difficulty: 0, benefit: 0 },
+      formText: "",
+      editReviewIndex: -1,
+      editReviewPrimaryKey: "",
+      editReviewOriginalText: "",
+      isFormSending: false,
     };
   }
+
+  onFormScaleChange = (target, score) => {
+    this.setState((prevState) => ({
+      formScales: { ...prevState.formScales, [target]: score },
+    }));
+  };
+
+  onFormTextChange = (text) => this.setState({ formText: text });
+
+  openEditForm = (review) => {
+    this.setState(
+      {
+        formMode: "edit",
+        formScales: {
+          satisfaction: review["satisfaction"],
+          difficulty: review["difficulty"],
+          benefit: review["benefit"],
+        },
+        formText: review["src_comment"],
+        editReviewIndex: review["index"],
+        editReviewPrimaryKey: review["created_at"],
+        editReviewOriginalText: review["src_comment"],
+      },
+      () => this.setState({ isFormOpen: true })
+    );
+  };
+
+  onNewReviewFormSubmit = async () => {
+    const idToken = await getIdToken();
+    const {
+      formScales,
+      formText,
+      formMode,
+      editReviewPrimaryKey,
+      editReviewOriginalText,
+    } = this.state;
+
+    if (idToken.length === 0) {
+      // this.setState({ isSignInModalOpen: true });
+      return;
+    }
+    const { course, courseKey, t } = this.props;
+
+    if (Object.values(formScales).indexOf(0) > -1 || formText.length === 0) {
+      Alert.warning(t(`courseInfo.Fill in all fields before sending`), {
+        position: "bottom",
+        effect: "jelly",
+      });
+    } else {
+      const editReview = { ...formScales, comment: formText };
+      const newReview = {
+        ...editReview,
+        course_key: courseKey,
+        title: course[SyllabusKey.TITLE],
+        title_jp: course[SyllabusKey.TITLE_JP],
+        instructor: course[SyllabusKey.INSTRUCTOR],
+        instructor_jp: course[SyllabusKey.INSTRUCTOR_JP],
+        year: new Date().getFullYear(),
+      };
+
+      try {
+        this.setState({ isFormSending: true });
+
+        // Send the review
+        if (formMode === "new") {
+          API.post("wasedatime-dev", "/course-reviews/" + courseKey, {
+            body: {
+              data: newReview,
+            },
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: idToken,
+            },
+          }).then(async () => this.cleanFormAndUpdateReviews(newReview));
+        } else if (formMode === "edit") {
+          API.patch(
+            "wasedatime-dev",
+            "/course-reviews/" + courseKey + "?ts=" + editReviewPrimaryKey,
+            {
+              body: {
+                data: editReview,
+              },
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: idToken,
+              },
+            }
+          ).then(async () => this.cleanFormAndUpdateReviews(newReview));
+        }
+      } catch (error) {
+        Alert.error(this.props.t(`courseInfo.Review failed to send`), {
+          position: "bottom",
+          effect: "jelly",
+        });
+      }
+    }
+  };
+
+  cleanFormAndUpdateReviews = async (newReview) => {
+    const idToken = await getIdToken();
+    const userAttr = await getUserAttr();
+    const uid = userAttr.id;
+    const { courseKey, t } = this.props;
+
+    Alert.success(t(`courseInfo.Review sent`), {
+      position: "bottom",
+      effect: "jelly",
+    });
+
+    const res = await API.get(
+      "wasedatime-dev",
+      "/course-reviews/" + courseKey + "?uid=" + uid,
+      {
+        headers: {
+          "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    this.setState({
+      reviews: res.data,
+      scalesAvg: getAvgScales(res.data),
+      isFormOpen: false,
+      formScales: {
+        satisfaction: 0,
+        difficulty: 0,
+        benefit: 0,
+      },
+      formText: "",
+      isFormSending: false,
+      formMode: "new",
+      editReviewIndex: -1,
+      editReviewPrimaryKey: "",
+      editReviewOriginalText: "",
+    });
+  };
+
+  deleteReview = async (reviewPrimaryKey, reviewIndex) => {
+    const idToken = await getIdToken();
+    if (idToken.length === 0) {
+      // this.setState({ isSignInModalOpen: true });
+      return;
+    }
+
+    const { reviews } = this.state;
+    const { courseKey, t } = this.props;
+    API.del(
+      "wasedatime-dev",
+      "/course-reviews/" + courseKey + "?ts=" + reviewPrimaryKey,
+      {
+        headers: {
+          Authorization: idToken,
+        },
+      }
+    )
+      .then(() => {
+        Alert.success(t(`courseInfo.Review deleted`), {
+          position: "bottom",
+          effect: "jelly",
+        });
+
+        const updatedReviews = reviews;
+        updatedReviews.splice(reviewIndex, 1);
+        this.setState({
+          reviews: updatedReviews,
+          scalesAvg: getAvgScales(updatedReviews),
+        });
+      })
+      .catch((e) => console.log(e));
+  };
 
   render() {
     const { searchLang, t } = this.props;
 
-    const { reviews, scalesAvg, reviewLang } = this.state;
+    const {
+      reviews,
+      scalesAvg,
+      reviewLang,
+      formScales,
+      formText,
+      isFormOpen,
+      isFormSending,
+    } = this.state;
 
-    return (
+    return isFormOpen ? (
+      <StyledReviewsWrapper>
+        <AddReviewForm
+          closeModal={() => this.setState({ isFormOpen: false })}
+          scales={formScales}
+          text={formText}
+          handleScaleChange={this.onFormScaleChange}
+          handleTextChange={this.onFormTextChange}
+          handleFormSubmit={this.onNewReviewFormSubmit}
+          isSending={isFormSending}
+        />
+      </StyledReviewsWrapper>
+    ) : (
       <StyledReviewsWrapper>
         <StyledSubHeading>
           {t(`courseInfo.Reviews`)}{" "}
@@ -102,9 +319,11 @@ class CourseReviews extends React.Component<Props, State> {
           <MediaQuery minWidth={sizes.phone}>
             {(matches) =>
               matches && (
-                <AddReviewButton onClick={() => {}}>
+                <AddReviewButton
+                  onClick={() => this.setState({ isFormOpen: true })}
+                >
                   <FontAwesomeIcon icon={faPen} />{" "}
-                  {t(`courseInfo.Write your Review`)}
+                  {this.props.t(`courseInfo.Write your Review`)}
                 </AddReviewButton>
               )
             }
@@ -113,9 +332,11 @@ class CourseReviews extends React.Component<Props, State> {
         <MediaQuery minWidth={sizes.phone}>
           {(matches) =>
             !matches && (
-              <AddReviewButton onClick={() => {}}>
+              <AddReviewButton
+                onClick={() => this.setState({ isFormOpen: true })}
+              >
                 <FontAwesomeIcon icon={faPen} />{" "}
-                {t(`courseInfo.Write your Review`)}
+                {this.props.t(`courseInfo.Write your Review`)}
               </AddReviewButton>
             )
           }
@@ -132,11 +353,10 @@ class CourseReviews extends React.Component<Props, State> {
             reviews={reviews}
             searchLang={searchLang}
             reviewLang={reviewLang}
-            openReviewEditForm={() => {}}
-            deleteReview={() => {}}
+            openEditForm={this.openEditForm}
+            deleteReview={this.deleteReview}
           />
         </ReviewsListWrapper>
-        <br />
       </StyledReviewsWrapper>
     );
   }

@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { media } from "../common/utils";
-import { Overlay } from "../common/Overlay";
-import { withNamespaces } from "react-i18next";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { WithTranslation, withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { Divider, Statistic } from "semantic-ui-react";
-import LoadingSpinner from "../LoadingSpinner";
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 
 const StyledSubHeading = styled("h2")`
   align-self: flex-start;
@@ -112,7 +111,7 @@ class AddReviewForm extends React.Component {
       const color =
         n <= paintedStar || (paintedStar === 0 && n <= selectedStar)
           ? "orange"
-          : "#eee";
+          : "#ddd";
 
       stars.push(
         <FontAwesomeIcon
@@ -154,11 +153,9 @@ class AddReviewForm extends React.Component {
 
   render() {
     const {
-      toggleModal,
-      satisfaction,
-      difficulty,
-      benefit,
-      comment,
+      closeModal,
+      scales,
+      text,
       handleFormSubmit,
       isSending,
       t,
@@ -170,7 +167,7 @@ class AddReviewForm extends React.Component {
     } = this.state;
 
     return (
-      <Overlay>
+      <div>
         <StyledSubHeading>
           {t(`courseInfo.Add review to this course`)}
         </StyledSubHeading>
@@ -189,7 +186,7 @@ class AddReviewForm extends React.Component {
                 <Stars>
                   {this.displayStars(
                     "satisfaction",
-                    satisfaction,
+                    scales.satisfaction,
                     paintedSatisfactionStars
                   )}
                 </Stars>
@@ -201,7 +198,7 @@ class AddReviewForm extends React.Component {
                 <Statistic.Value>
                   {this.displayStars(
                     "difficulty",
-                    difficulty,
+                    scales.difficulty,
                     paintedDifficultyStars
                   )}
                 </Statistic.Value>
@@ -209,7 +206,11 @@ class AddReviewForm extends React.Component {
               </Scale>
               <Scale size="small">
                 <Statistic.Value>
-                  {this.displayStars("benefit", benefit, paintedBenefitStars)}
+                  {this.displayStars(
+                    "benefit",
+                    scales.benefit,
+                    paintedBenefitStars
+                  )}
                 </Statistic.Value>
                 <Statistic.Label>{t(`courseInfo.Benefit`)}</Statistic.Label>
               </Scale>
@@ -220,22 +221,22 @@ class AddReviewForm extends React.Component {
             <StyledTextarea
               placeholder={t(`courseInfo.Review placeholder`)}
               onChange={this.handleTextareaChange}
-              value={comment}
+              value={text}
             />
 
             <FormActions>
               <SubmitFormButton onClick={handleFormSubmit}>
                 <FontAwesomeIcon icon={faCheck} /> {t(`courseInfo.Submit`)}
               </SubmitFormButton>
-              <CloseFormButton onClick={toggleModal}>
+              <CloseFormButton onClick={closeModal}>
                 <FontAwesomeIcon icon={faTimes} /> {t(`courseInfo.Close`)}
               </CloseFormButton>
             </FormActions>
           </StyledForm>
         )}
-      </Overlay>
+      </div>
     );
   }
 }
 
-export default withNamespaces("translation")(AddReviewForm);
+export default withTranslation("translation")(AddReviewForm);

@@ -155,7 +155,12 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
       <CourseInfoWrapper>
         <CourseDetails course={course} />
         {isLoaded ? (
-          <CourseReviews reviews={thisCourseReviews} searchLang={searchLang} />
+          <CourseReviews
+            courseKey={getCourseKey(course)}
+            course={course}
+            reviews={thisCourseReviews}
+            searchLang={searchLang}
+          />
         ) : (
           <LoadingSpinner message={"Loading reviews..."} />
         )}

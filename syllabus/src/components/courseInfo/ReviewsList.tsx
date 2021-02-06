@@ -96,7 +96,7 @@ interface Props extends WithTranslation {
   reviews: ReviewType[];
   searchLang: string;
   reviewLang: string;
-  openReviewEditForm: (review: ReviewToEdit) => void;
+  openEditForm: (review: ReviewToEdit) => void;
   deleteReview: (review: ReviewType, index: number) => void;
 }
 
@@ -135,13 +135,7 @@ class ReviewsList extends React.Component<Props, State> {
   };
 
   render() {
-    const {
-      reviews,
-      searchLang,
-      reviewLang,
-      openReviewEditForm,
-      t,
-    } = this.props;
+    const { reviews, searchLang, reviewLang, openEditForm, t } = this.props;
 
     return reviews.map((review, i) => (
       <ReviewsWrapper key={i}>
@@ -182,7 +176,7 @@ class ReviewsList extends React.Component<Props, State> {
                   icon
                   size="massive"
                   onClick={() =>
-                    openReviewEditForm({
+                    openEditForm({
                       ...review,
                       src_comment: review["comment_" + review["src_lang"]],
                       index: i,

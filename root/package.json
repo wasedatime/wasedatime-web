@@ -7,7 +7,7 @@
     "format": "prettier --write \"./**\"",
     "build": "webpack --mode=production",
     "build-dev": "webpack --mode=production --env isDev",
-    "local": "concurrently --kill-others \"npm start\" \"cd ../syllabus && npm start\" \"cd ../campus && npm start\""
+    "local": "concurrently --kill-others \"npm start\" \"cd ../syllabus && npm start\" \"cd ../campus && npm start\" \"cd ../career && npm start\""
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",

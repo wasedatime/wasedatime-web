@@ -1,6 +1,9 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
-const Dotenv = require("dotenv-webpack");
+
+// use .env
+const webpack = require("webpack");
+const dotenv = require("dotenv");
 
 module.exports = (webpackConfigEnv, argv) => {
   const defaultConfig = singleSpaDefaults({
@@ -26,6 +29,10 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       ],
     },
-    plugins: [new Dotenv()],
+    plugins: [
+      new webpack.DefinePlugin({
+        "process.env": JSON.stringify(dotenv.config().parsed),
+      }),
+    ],
   });
 };

@@ -289,8 +289,8 @@ class FetchedCourseSearch extends React.Component {
                     (e) => e[SYLLABUS_KEYS.EVAL_TYPE] === i
                   )[0];
                   if (
-                    targetEval !== undefined &&
-                    targetEval[SYLLABUS_KEYS.EVAL_PERCENT] > 0
+                    course[SYLLABUS_KEYS.EVAL].length === 0 ||
+                    (targetEval && targetEval[SYLLABUS_KEYS.EVAL_PERCENT] !== 0)
                   )
                     isFiltered = false;
                 }

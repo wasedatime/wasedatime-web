@@ -56,8 +56,8 @@ const StyledSpan = styled("span")`
   overflow-x: hidden;
   transition: ${(props) =>
     props.ishovered
-      ? "width 0.3s ease-out, opacity 0.3s ease 0.2s"
-      : "opacity 0.3s ease, width 0.3s ease-out 0.2s"};
+      ? "width 0.5s ease, opacity 0.5s ease 0.1s"
+      : "width 0.5s, opacity 0.2s"};
 `;
 
 const StyledMenu = styled(Dropdown.Menu)`

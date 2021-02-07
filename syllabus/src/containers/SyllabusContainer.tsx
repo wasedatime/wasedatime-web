@@ -106,6 +106,8 @@ class SyllabusContainer extends React.Component<
 > {
   constructor(props) {
     super(props);
+    if (window.location.pathname.includes("timetable"))
+      navigate("/courses/timetable");
 
     this.state = {
       isModalOpen: false,

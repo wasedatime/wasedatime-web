@@ -1,5 +1,5 @@
 import React from "react";
-import { Router, Redirect } from "@reach/router";
+import { Router, Redirect, navigate } from "@reach/router";
 import Timetable from "./containers/TimetableContainer";
 import Syllabus from "./containers/SyllabusContainer";
 

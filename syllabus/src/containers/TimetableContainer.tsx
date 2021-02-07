@@ -1,4 +1,5 @@
 import React from "react";
+import { navigate } from "@reach/router";
 import { ReduxRootState } from "../redux/reducers";
 import { connect } from "react-redux";
 import { Helmet } from "react-helmet";
@@ -48,6 +49,9 @@ class TimetableContainer extends React.Component<
 
   constructor(props) {
     super(props);
+    if (window.location.pathname.includes("syllabus"))
+      navigate("/courses/syllabus");
+
     this.semesters = [
       { title: "Spring Semester", key: SEMESTERS.SPRING },
       { title: "Fall Semester", key: SEMESTERS.FALL },

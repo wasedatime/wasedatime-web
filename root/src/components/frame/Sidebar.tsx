@@ -8,6 +8,7 @@ import SidebarWrapper from "@bit/wasedatime.core.ts.styles.sidebar-wrapper";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import textLogo from "@bit/wasedatime.core.assets.text-logo";
 import UserMenu from "../user/UserMenu";
+import OtherLinks from "./OtherLinks";
 
 const LogoWrapper = styled(Link)`
   display: flex;
@@ -22,7 +23,7 @@ const TextLogo = styled.img`
   margin: 0.5rem;
   overflow-x: hidden;
   opacity: ${(props) => (props.expanded ? "1" : "0")};
-  transition: opacity 0.3s;
+  transition: opacity 0.3s ease-out;
 `;
 
 const NavItem = styled(Menu.Item)`
@@ -62,7 +63,12 @@ const NavItemText = styled.span`
   height: 40px;
   opacity: ${(props) => (props.expanded ? "1" : "0")};
   width: ${(props) => (props.expanded ? "120px" : "0px")};
-  transition: opacity 0.3s, width 0.5s;
+  transition: opacity 0.3s ease-out, width 0.5s;
+`;
+
+const SidebarFooter = styled.div`
+  position: absolute;
+  bottom: 70px;
 `;
 
 type Props = {
@@ -76,12 +82,22 @@ type Props = {
 
 const Sidebar = ({ navItems, openSignInModal }: Props) => {
   const [expanded, setExpanded] = useState(false);
+
+  const expandSidebar = () => {
+    if (!expanded) setExpanded(true);
+  };
+
+  const foldSidebar = () => {
+    if (expanded) setExpanded(false);
+  };
+
   return (
     <ThemeProvider theme={normalTheme}>
       <SidebarWrapper
-        onMouseEnter={() => setExpanded(true)}
-        onTouchStart={() => setExpanded(true)}
-        onMouseLeave={() => setExpanded(false)}
+        expanded={expanded}
+        onMouseEnter={expandSidebar}
+        onTouchStart={expandSidebar}
+        onMouseLeave={foldSidebar}
       >
         <LogoWrapper to={"/home"}>
           <SmallLogo />
@@ -115,12 +131,14 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
             </NavItem>
           ))}
         </Menu>
-
-        <UserMenu
-          openSignInModal={openSignInModal}
-          isHovered={expanded}
-          isMobileMode={false}
-        />
+        <SidebarFooter>
+          <OtherLinks expanded={expanded} />
+          <UserMenu
+            openSignInModal={openSignInModal}
+            isHovered={expanded}
+            isMobileMode={false}
+          />
+        </SidebarFooter>
       </SidebarWrapper>
     </ThemeProvider>
   );

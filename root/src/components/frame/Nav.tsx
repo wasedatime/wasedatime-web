@@ -31,6 +31,7 @@ const navItems = [
 
 const Nav = () => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
+
   return (
     <React.Fragment>
       <MediaQuery maxWidth={sizes.tablet}>

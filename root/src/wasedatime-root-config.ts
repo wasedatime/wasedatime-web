@@ -5,7 +5,8 @@ import {
   constructLayoutEngine,
 } from "single-spa-layout";
 import React from "react";
-import ReactDom from "react-dom";
+import ReactDOM from "react-dom";
+import singleSpaReact from "single-spa-react";
 import { BrowserRouter } from "react-router-dom";
 import Auth from "@aws-amplify/auth";
 import Nav from "./components/frame/Nav";
@@ -14,6 +15,16 @@ import "semantic-ui-css/semantic.min.css";
 import "./styles/styles.css";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
+
+const lifecycles = singleSpaReact({
+  React,
+  ReactDOM,
+  rootComponent: App,
+  errorBoundary(err, info, props) {
+    // Customize the root error boundary for your microfrontend here.
+    return null;
+  },
+});
 
 const routes = constructRoutes(
   document.querySelector("#single-spa-layout") as HTMLTemplateElement
@@ -33,7 +44,10 @@ start();
 configAuth();
 i18nConfig();
 
-ReactDom.render(React.createElement(Nav), document.getElementById("nav"));
-if (document.getElementById("default")) {
-  ReactDom.render(React.createElement(App), document.getElementById("default"));
-}
+ReactDOM.render(React.createElement(Nav), document.getElementById("nav"));
+
+export const { bootstrap, mount, unmount } = lifecycles;
+
+// if (document.getElementById("default")) {
+//   ReactDom.render(React.createElement(App), document.getElementById("default"));
+// }

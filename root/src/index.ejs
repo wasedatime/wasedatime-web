@@ -131,9 +131,6 @@
   <template id="single-spa-layout">
     <single-spa-router>
       <div id="layout">
-        <!-- <nav>
-        <application name="@wasedatime/navbar"></application>
-      </nav> -->
         <div id="nav"></div>
         <main>
           <route path="courses">
@@ -145,10 +142,8 @@
           <route path="career">
             <application name="@wasedatime/career"></application>
           </route>
-
           <route default>
-            <div id="default"></div>
-            <!-- <application name="@single-spa/welcome"></application> -->
+            <application name="@wasedatime/root-config"></application>
           </route>
         </main>
       </div>

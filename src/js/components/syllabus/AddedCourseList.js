@@ -15,16 +15,21 @@ import AddedCourseItem from "../../containers/syllabus/AddedCourseItem";
 import { Wrapper } from "../../styled-components/Wrapper";
 import { Article, Section, Subheading } from "../../styled-components/Article";
 
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
+
 const CourseListWrapper = styled(Wrapper)`
   flex: none;
   position: fixed !important;
   padding: 0.5em 1em 1em 1em;
-  overflow-y: auto;
   width: 21em;
   height: calc(
     100vh - ${(props) => props.theme.headerHeight} -
       ${(props) => props.theme.addedCourseListSwitchHeight}
   );
+  .simplebar-scrollbar::before {
+    background-color: #999;
+  }
 `;
 
 const ExtendedArticle = styled(Article)`
@@ -120,11 +125,14 @@ class AddedCourseList extends React.Component {
           handleChangeSortingOption={handleChangeSortingOption}
         />
         {addedCourses.length ? (
-          <div style={{ fontSize: "14px" }}>
+          <SimpleBar
+            autoHide={true}
+            style={{ height: "99%", fontSize: "14px" }}
+          >
             {addedCourses.map((course, index) => (
               <AddedCourseItem key={course.a} course={course} />
             ))}
-          </div>
+          </SimpleBar>
         ) : (
           <ExtendedArticle>
             <Message info size="tiny">

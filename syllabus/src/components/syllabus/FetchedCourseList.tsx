@@ -6,10 +6,15 @@ import CourseChunk from "./CourseChunk";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import Course from "../../types/course";
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
 
-const CourseListWrapper = styled.div`
+const CourseListWrapper = styled(SimpleBar)`
   height: 100%;
-  overflow-y: scroll;
+  overflow-x: hidden;
+  .simplebar-scrollbar::before {
+    background-color: #999;
+  }
 `;
 
 const CourseChunkWrapper = styled("div")`
@@ -74,7 +79,7 @@ class FetchedCourseList extends React.Component<Props, State> {
     const resultsInChunks = this.resultsToChunks();
 
     return (
-      <CourseListWrapper>
+      <CourseListWrapper autoHide={true}>
         {resultsInChunks.length ? (
           resultsInChunks.map((chunk, index) => (
             <Waypoint

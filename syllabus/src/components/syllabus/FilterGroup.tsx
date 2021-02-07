@@ -56,8 +56,9 @@ const styles = (theme) =>
       fontDisplay: "swap",
     },
     formControlLabel: {
-      minWidth: "80px",
-      paddingLeft: "0.4rem",
+      minWidth: "75px",
+      paddingLeft: "0.6rem",
+      marginRight: "0px",
       fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
       fontDisplay: "swap",
     },
@@ -67,7 +68,7 @@ const styles = (theme) =>
       fontDisplay: "swap",
     },
     checkBox: {
-      width: "40px",
+      width: "25px",
       height: "30px",
     },
     checkBoxChecked: {

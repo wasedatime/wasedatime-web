@@ -20,16 +20,21 @@ import {
 } from "@bit/wasedatime.core.ts.styles.article";
 import Course from "../../types/course";
 
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
+
 const CourseListWrapper = styled("div")`
   position: fixed !important;
   margin-top: 32px;
   padding: 0.5em 1em 1em 1em;
-  overflow-y: auto;
   width: 21em;
   height: calc(
     100vh - ${(props) => props.theme.headerHeight} -
       ${(props) => props.theme.addedCourseListSwitchHeight}
   );
+  .simplebar-scrollbar::before {
+    background-color: #999;
+  }
 `;
 
 const ExtendedArticle = styled(Article)`
@@ -122,7 +127,15 @@ class AddedCourseList extends React.Component<Props, State> {
         <CourseListSummaryContainer courses={addedCourses} />
 
         {addedCourses.length ? (
-          <div style={{ fontSize: "14px" }}>
+          <SimpleBar
+            autoHide={true}
+            style={{
+              height: "calc(100vh - 150px)",
+              fontSize: "14px",
+              padding: "0px 1rem",
+              overflowX: "hidden",
+            }}
+          >
             {addedCourses.map((course, index) => (
               <AddedCourseItemContainer
                 key={index}
@@ -130,7 +143,7 @@ class AddedCourseList extends React.Component<Props, State> {
                 removeCourseFromList={this.removeCourseFromList}
               />
             ))}
-          </div>
+          </SimpleBar>
         ) : (
           <ExtendedArticle>
             <Message info size="tiny">

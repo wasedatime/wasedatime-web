@@ -141,6 +141,7 @@ class CourseInfo extends React.Component {
     if (!getCourseID(this.props.location.search)) {
       this.setState({ isWrongQuery: true });
     } else if (this.state.thisCourse) {
+      console.log(this.state.thisCourse);
       API.configure();
       this._isMounted = true;
       this._isMounted && this.loadReviewsAndRelatedCourses();

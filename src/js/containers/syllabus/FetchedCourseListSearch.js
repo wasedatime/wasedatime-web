@@ -32,13 +32,18 @@ import {
   gaUpdateFilter,
 } from "../../ga/eventActions";
 
+import SimpleBar from "simplebar-react";
+import "simplebar/dist/simplebar.min.css";
+
 const ExtendedWrapper = styled(Wrapper)`
   flex: 1 0 0;
 `;
 
 const FetchedCourseListWrapper = styled(ExtendedWrapper)`
   max-height: calc(100vh - 67px);
-  overflow-y: auto;
+  .simplebar-scrollbar::before {
+    background-color: #999;
+  }
 `;
 
 const modalStyle = {
@@ -289,8 +294,8 @@ class FetchedCourseSearch extends React.Component {
                     (e) => e[SYLLABUS_KEYS.EVAL_TYPE] === i
                   )[0];
                   if (
-                    targetEval !== undefined &&
-                    targetEval[SYLLABUS_KEYS.EVAL_PERCENT] > 0
+                    course[SYLLABUS_KEYS.EVAL].length === 0 ||
+                    (targetEval && targetEval[SYLLABUS_KEYS.EVAL_PERCENT] !== 0)
                   )
                     isFiltered = false;
                 }
@@ -391,35 +396,37 @@ class FetchedCourseSearch extends React.Component {
 
         <RowWrapper>
           <FetchedCourseListWrapper>
-            <div>
-              <MediaQuery maxWidth={sizes.tablet - 1}>
-                {(matches) =>
-                  matches && (
-                    <SearchBar
-                      onInputChange={this.handleInputChange}
-                      placeholder={t("syllabus.searchBarPlaceholder")}
-                      inputText={inputText}
-                    />
-                  )
-                }
-              </MediaQuery>
-            </div>
-            <div>
-              <SchoolFilterForm
-                handleToggleFilter={this.handleToggleFilter}
-                loadedSchools={this.props.loadedSchools}
-                selectedSchools={this.state.filterGroups.school}
-                loadSyllabus={this.loadSyllabus}
-                removeSyllabus={this.removeSyllabus}
-              />
-            </div>
-            <div>
-              <FetchedCourseList
-                searchTerm={searchTerm}
-                searchLang={searchLang}
-                results={results}
-              />
-            </div>
+            <SimpleBar style={{ height: "100%" }}>
+              <div>
+                <MediaQuery maxWidth={sizes.tablet - 1}>
+                  {(matches) =>
+                    matches && (
+                      <SearchBar
+                        onInputChange={this.handleInputChange}
+                        placeholder={t("syllabus.searchBarPlaceholder")}
+                        inputText={inputText}
+                      />
+                    )
+                  }
+                </MediaQuery>
+              </div>
+              <div>
+                <SchoolFilterForm
+                  handleToggleFilter={this.handleToggleFilter}
+                  loadedSchools={this.props.loadedSchools}
+                  selectedSchools={this.state.filterGroups.school}
+                  loadSyllabus={this.loadSyllabus}
+                  removeSyllabus={this.removeSyllabus}
+                />
+              </div>
+              <div>
+                <FetchedCourseList
+                  searchTerm={searchTerm}
+                  searchLang={searchLang}
+                  results={results}
+                />
+              </div>
+            </SimpleBar>
           </FetchedCourseListWrapper>
           <MediaQuery minWidth={sizes.desktop}>
             {(matches) => {

@@ -21,6 +21,7 @@ import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data
 
 const StyledReviewsWrapper = styled("div")`
   ${media.phone`padding: 0 1em;`}
+  font-size: 1.3rem;
 `;
 
 const StyledSubHeading = styled("h2")`

@@ -8,7 +8,7 @@ const ExtendedWrapper = styled.div`
   align-items: center;
   justify-content: space-around;
   height: ${(props) => props.height};
-  width: 21em;
+  width: 18em;
   background-color: ${(props) => props.theme.white};
   z-index: 103;
   position: fixed !important;

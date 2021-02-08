@@ -27,7 +27,7 @@ const CourseListWrapper = styled("div")`
   position: fixed !important;
   margin-top: 32px;
   padding: 0.5em 1em 1em 1em;
-  width: 21em;
+  width: 20em;
   height: calc(
     100vh - ${(props) => props.theme.headerHeight} -
       ${(props) => props.theme.addedCourseListSwitchHeight}

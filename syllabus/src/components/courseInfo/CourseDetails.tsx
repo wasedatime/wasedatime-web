@@ -6,16 +6,6 @@ import { Segment, Grid, Table, Statistic, Divider } from "semantic-ui-react";
 import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
 import Course from "../../types/course";
 
-const StyledSegment = styled(Segment)`
-  font-size: 1rem !important;
-  cursor: default !important;
-  border: none !important;
-  box-shadow: none !important;
-  &:hover {
-    transform: none !important;
-  }
-`;
-
 interface Props extends WithTranslation {
   course: Course;
 }
@@ -52,10 +42,10 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
       : courseLevels[course[SyllabusKey.LEVEL]];
 
   return (
-    <StyledSegment>
-      <Grid columns={2} stackable>
-        <Grid.Column>
-          <Grid columns={2} style={{ padding: "1em 2.5em" }}>
+    <div>
+      <Grid>
+        <Grid.Column tablet={16} computer={6}>
+          <Grid columns={2} style={{ padding: "1em" }}>
             <Grid.Column style={{ textAlign: "center" }}>
               <Statistic>
                 <Statistic.Value>
@@ -118,14 +108,14 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
             </Table.Body>
           </Table>
         </Grid.Column>
-        <Grid.Column>
+        <Grid.Column tablet={16} computer={10}>
           <Divider horizontal style={{ marginBottom: "2em" }}>
             <p>{t("courseInfo.Details.Evaluation.title")}</p>
           </Divider>
           <CourseDetailsEvaluation course={course} />
         </Grid.Column>
       </Grid>
-    </StyledSegment>
+    </div>
   );
 };
 

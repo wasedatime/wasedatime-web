@@ -1,4 +1,5 @@
 import React from "react";
+import MediaQuery from "react-responsive";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import { Grid, Table } from "semantic-ui-react";
@@ -51,41 +52,56 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
     ),
   };
 
+  const evalsTable = (
+    <Table>
+      <Table.Body>
+        {course[SyllabusKey.EVAL].map((e, i) => (
+          <Table.Row key={i}>
+            <Table.Cell>
+              <p>
+                <span
+                  style={{
+                    color: evalColorMap[e[SyllabusKey.EVAL_TYPE]],
+                  }}
+                >
+                  ●
+                </span>{" "}
+                {t(
+                  `courseInfo.Details.Evaluation.${
+                    evalTypeMap[e[SyllabusKey.EVAL_TYPE]]
+                  }`
+                )}
+              </p>
+            </Table.Cell>
+            <Table.Cell>
+              <p>{e[SyllabusKey.EVAL_CRITERIA]}</p>
+            </Table.Cell>
+          </Table.Row>
+        ))}
+      </Table.Body>
+    </Table>
+  );
+
   return course[SyllabusKey.EVAL].length > 0 ? (
-    <Grid columns={2} stackable>
-      <Grid.Column>
-        <Doughnut data={evalChartData} options={evalChartOptions} />
-      </Grid.Column>
-      <Grid.Column>
-        <Table>
-          <Table.Body>
-            {course[SyllabusKey.EVAL].map((e, i) => (
-              <Table.Row key={i}>
-                <Table.Cell>
-                  <p>
-                    <span
-                      style={{
-                        color: evalColorMap[e[SyllabusKey.EVAL_TYPE]],
-                      }}
-                    >
-                      ●
-                    </span>{" "}
-                    {t(
-                      `courseInfo.Details.Evaluation.${
-                        evalTypeMap[e[SyllabusKey.EVAL_TYPE]]
-                      }`
-                    )}
-                  </p>
-                </Table.Cell>
-                <Table.Cell>
-                  <p>{e[SyllabusKey.EVAL_CRITERIA]}</p>
-                </Table.Cell>
-              </Table.Row>
-            ))}
-          </Table.Body>
-        </Table>
-      </Grid.Column>
-    </Grid>
+    <MediaQuery minWidth={1400}>
+      {(matches) =>
+        matches ? (
+          <Grid columns={2}>
+            <Grid.Column>
+              <Doughnut data={evalChartData} options={evalChartOptions} />
+            </Grid.Column>
+            <Grid.Column>{evalsTable}</Grid.Column>
+          </Grid>
+        ) : (
+          <Grid columns={1}>
+            <Grid.Column>
+              <Doughnut data={evalChartData} options={evalChartOptions} />
+            </Grid.Column>
+            <Grid.Column>{evalsTable}</Grid.Column>
+          </Grid>
+        )
+      }
+    </MediaQuery>
   ) : (
     <p style={{ textAlign: "center" }}>
       Click the blue arrow button above to check the details

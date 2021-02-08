@@ -37,7 +37,7 @@ class AddedCourseItemContainer extends React.Component<
         searchTerm={""}
         searchLang={course.displayLang}
         course={course}
-        isDetailDisplayed={false}
+        expandable={false}
         openNewTabOnClick={true}
       />
     );

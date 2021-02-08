@@ -75,7 +75,6 @@ const ShareButton = ({
   display,
   shareLink,
   sizesDesktop,
-  isDetailDisplayed,
   needLineBreak,
   t,
 }) => {
@@ -84,7 +83,7 @@ const ShareButton = ({
   const shareButtonBar = ( // Share Button Function for large page
     <MediaQuery minWidth={sizesDesktop}>
       {(matches) => {
-        if (matches && isDetailDisplayed && display === "bar") {
+        if (matches && display === "bar") {
           return (
             <Reference>
               {({ ref }) => (
@@ -96,7 +95,7 @@ const ShareButton = ({
                     trigger={
                       <ShareButtonBar
                         innerRef={ref}
-                        onClick={setIsPopperOpen(!isPopperOpen)}
+                        onClick={() => setIsPopperOpen(!isPopperOpen)}
                         style={{
                           fontSize:
                             needLineBreak !== undefined && needLineBreak
@@ -125,7 +124,7 @@ const ShareButton = ({
   const shareButtonIcon = ( // Share Button Function for small page
     <MediaQuery maxWidth={sizesDesktop}>
       {(matches) => {
-        if (matches && isDetailDisplayed && display === "icon") {
+        if (matches && display === "icon") {
           return (
             <Reference>
               {({ ref }) => (

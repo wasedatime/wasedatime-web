@@ -23,7 +23,10 @@ import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import filterCourses from "../utils/filterCourses";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import Course from "../types/course";
+import queryString from "query-string";
+import API from "@aws-amplify/api";
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -42,7 +45,7 @@ const SyllabusFlex = styled.div`
 `;
 
 const SideColumn = styled.div`
-  flex: 21em;
+  flex: 20em;
   flex-grow: 0;
   flex-shrink: 0;
 `;
@@ -116,6 +119,31 @@ class SyllabusContainer extends React.Component<
       searchTerm: "",
       inputText: "",
     };
+  }
+
+  async componentDidMount() {
+    const courseId = queryString.parse(window.location.search).courseId;
+    if (courseId) {
+      let course = this.state.fetchedCourses.filter(
+        (c) => c[SyllabusKey.ID] === courseId
+      )[0];
+      if (!course) {
+        const res = await API.get(
+          "wasedatime-dev",
+          `/syllabus?id=${courseId}&limit=1&offset=0`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            response: true,
+          }
+        );
+        course = res.data;
+      }
+      this.setState((prevState) => ({
+        fetchedCourses: [course, ...prevState.fetchedCourses],
+      }));
+    }
   }
 
   updateSearchTerm = () => {

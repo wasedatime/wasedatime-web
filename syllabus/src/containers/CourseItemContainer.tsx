@@ -4,8 +4,6 @@ import Alert from "react-s-alert";
 import { addCourse, removeCourse } from "../redux/actions";
 import CourseItem from "../components/CourseItem";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import MediaQuery from "react-responsive";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import Course from "../types/course";
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
@@ -23,7 +21,6 @@ interface OwnProps {
   searchTerm: string | string[];
   searchLang: string | string[];
   course: Course;
-  isDetailDisplayed: boolean;
   needLineBreak: boolean;
 }
 
@@ -79,42 +76,22 @@ class CourseItemContainer extends React.Component<
       searchLang,
       course,
       addedCourseIds,
-      isDetailDisplayed,
       needLineBreak,
     } = this.props;
     const isAddable = !addedCourseIds.includes(course[SyllabusKey.ID]);
     return (
-      <MediaQuery minWidth={sizes.desktop}>
-        {(matches) =>
-          matches ? (
-            <CourseItem
-              handleOnClick={
-                isAddable ? this.handleAddCourse : this.handleRemoveCourse
-              }
-              isAddable={isAddable}
-              searchTerm={searchTerm}
-              searchLang={searchLang}
-              course={course}
-              isDetailDisplayed={isDetailDisplayed}
-              needLineBreak={needLineBreak}
-              openNewTabOnClick={true}
-            />
-          ) : (
-            <CourseItem
-              handleOnClick={
-                isAddable ? this.handleAddCourse : this.handleRemoveCourse
-              }
-              isAddable={isAddable}
-              searchTerm={searchTerm}
-              searchLang={searchLang}
-              course={course}
-              isDetailDisplayed={isDetailDisplayed}
-              needLineBreak={needLineBreak}
-              openNewTabOnClick={false}
-            />
-          )
+      <CourseItem
+        handleOnClick={
+          isAddable ? this.handleAddCourse : this.handleRemoveCourse
         }
-      </MediaQuery>
+        isAddable={isAddable}
+        searchTerm={searchTerm}
+        searchLang={searchLang}
+        course={course}
+        expandable={true}
+        needLineBreak={needLineBreak}
+        openNewTabOnClick={true}
+      />
     );
   }
 }

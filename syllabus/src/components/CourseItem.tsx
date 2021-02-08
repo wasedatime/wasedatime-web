@@ -19,7 +19,6 @@ import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import { Badge } from "@bit/wasedatime.core.ts.styles.badge";
-import ShareButton from "./syllabus/ShareButton";
 import CourseInfo from "./courseInfo/CourseInfo";
 import Course from "../types/course";
 
@@ -37,12 +36,10 @@ const CourseItemWrapper = styled("div")`
   line-height: 150%;
   &:hover {
     ${(props) =>
-      !props.isDetailDisplayed &&
+      props.expandable &&
       "background-color: #eee; box-shadow: none; cursor: pointer;"}
   }
 `;
-
-const CourseIntro = styled.div``;
 
 const StyledHeading = styled("h3")`
   margin: 0;
@@ -193,7 +190,7 @@ interface Props extends WithTranslation {
   course: Course;
   isAddable: boolean;
   handleOnClick: (title: string, lng: string) => void;
-  isDetailDisplayed: boolean;
+  expandable: boolean;
   openNewTabOnClick: boolean;
   needLineBreak?: boolean;
   history?: any;
@@ -205,14 +202,16 @@ const CourseItem = ({
   course,
   isAddable,
   handleOnClick,
-  isDetailDisplayed,
+  expandable,
   needLineBreak,
   openNewTabOnClick,
   history,
   t,
   i18n,
 }: Props) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(
+    window.location.search.includes(course[SyllabusKey.ID])
+  );
 
   const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
   const highlightedTitle = Highlight(searchTerm, searchLang, title);
@@ -227,8 +226,6 @@ const CourseItem = ({
     course[SyllabusKey.SCHOOL],
     i18n.language
   );
-  const syllabusId = course[SyllabusKey.ID];
-  const shareLink = `https://wasedatime.com/courseInfo?courseID=${syllabusId}%26searchLang=${searchLang}`; // share link
   //Need to use index as keys due to Waseda's data.
   const occurrences = course[SyllabusKey.OCCURRENCES].map(
     (occurrence, index) => {
@@ -261,10 +258,10 @@ const CourseItem = ({
   );
 
   return (
-    <CourseItemWrapper isDetailDisplayed={isDetailDisplayed}>
-      <CourseIntro onClick={() => setExpanded(!expanded)}>
+    <CourseItemWrapper expandable={expandable}>
+      <div onClick={() => setExpanded(!expanded)}>
         <StyledHeading>{highlightedTitle}</StyledHeading>
-        {isDetailDisplayed && (
+        {expandable && (
           <StyledSubHeading>{course[SyllabusKey.SUBTITLE]}</StyledSubHeading>
         )}
         <CourseItemRow>
@@ -281,23 +278,6 @@ const CourseItem = ({
               borderRadius: "5px",
             }}
           >
-            {isDetailDisplayed && (
-              <a
-                style={{ alignSelf: "flex-start" }}
-                href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${syllabusId}${t(
-                  "syllabus.langParam"
-                )}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FontAwesomeIcon
-                  style={{ color: "#6495ED" }}
-                  icon={faExternalLinkSquareAlt}
-                  size="2x"
-                  transform="shrink-2"
-                />
-              </a>
-            )}
             <InvisibleButton
               onClick={(e) => {
                 e.preventDefault();
@@ -308,14 +288,6 @@ const CourseItem = ({
             >
               {buttonIcon}
             </InvisibleButton>
-
-            <ShareButton
-              shareLink={shareLink}
-              isDetailDisplayed={isDetailDisplayed}
-              display="icon"
-              sizesDesktop={sizes.desktop}
-              needLineBreak={needLineBreak}
-            />
           </div>
         </CourseItemRow>
 
@@ -327,16 +299,11 @@ const CourseItem = ({
             </Description>
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
-          <ShareButton
-            shareLink={shareLink}
-            isDetailDisplayed={isDetailDisplayed}
-            display="bar"
-            sizesDesktop={sizes.desktop}
-            needLineBreak={needLineBreak}
-          />
         </DetailWrapper>
-      </CourseIntro>
-      {expanded && <CourseInfo course={course} searchLang={searchLang} />}
+      </div>
+      {expandable && expanded && (
+        <CourseInfo course={course} searchLang={searchLang} />
+      )}
     </CourseItemWrapper>
   );
 };

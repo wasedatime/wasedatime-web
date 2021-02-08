@@ -4,6 +4,7 @@ import byId from "./byId";
 import schools from "./schools";
 import isFetching from "./isFetching";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import schoolCodeMap from "@bit/wasedatime.syllabus.ts.constants.school-code";
 
 const fetchedCourses = combineReducers({
   byId,

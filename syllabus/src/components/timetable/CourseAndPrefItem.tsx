@@ -1,4 +1,5 @@
 import React from "react";
+import { navigate } from "@reach/router";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -141,7 +142,7 @@ const CourseAndPrefItem = ({
 
             <a
               style={{ alignSelf: "flex-start" }}
-              href={`/courseInfo?courseID=${courseId}&searchLang=${displayLang}`}
+              onClick={() => navigate(`/courses/syllabus?courseId=${courseId}`)}
               target="_blank"
               rel="noopener noreferrer"
             >

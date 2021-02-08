@@ -5,6 +5,7 @@ import Course from "../../types/course";
 import Review from "../../types/review";
 import CourseDetails from "./CourseDetails";
 import CourseReviews from "./CourseReviews";
+import ShareButtons from "./ShareButtons";
 import CourseItemContainer from "../../containers/CourseItemContainer";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
@@ -15,23 +16,34 @@ import { connect } from "react-redux";
 import { ReduxRootState } from "../../redux/reducers";
 import { getFetchedCoursesList } from "../../redux/reducers/fetchedCourses";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Segment, Grid } from "semantic-ui-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookSquare,
+  faTwitterSquare,
+  faLinkedin,
+  faLine,
+  faWhatsappSquare,
+} from "@fortawesome/free-brands-svg-icons";
 
-const CourseInfoWrapper = styled.div`
+const CourseInfoWrapper = styled(Segment)`
   width: 100%;
   display: block;
+  cursor: auto;
 `;
 
 const RelatedCourses = styled.div`
   display: flex;
   flex-direction: row;
-  width: calc(100vw - 53em);
-  overflow-x: scroll;
+  width: 100%;
+  overflow-x: auto;
   padding: none;
   margin: none;
 `;
 
 const RelatedCourse = styled.div`
-  flex: 0 0 22em;
+  flex: 0 0 25%;
 `;
 
 const StyledSubHeading = styled("h2")`
@@ -151,9 +163,32 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
   render() {
     const { course, searchLang, t } = this.props;
     const { isLoaded, thisCourseReviews, relatedCourses } = this.state;
+
     return (
       <CourseInfoWrapper>
         <CourseDetails course={course} />
+        <Grid style={{ textAlign: "center", margin: "1em 0px" }}>
+          <Grid.Column width={6}>
+            <p style={{ marginBottom: "0px" }}>Official Syllabus:</p>
+            <a
+              style={{ alignSelf: "flex-start" }}
+              href={`https://www.wsl.waseda.jp/syllabus/JAA104.php?pKey=${
+                course.a
+              }${t("syllabus.langParam")}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FontAwesomeIcon
+                style={{ color: "#6495ED" }}
+                icon={faExternalLinkSquareAlt}
+                size="2x"
+              />
+            </a>
+          </Grid.Column>
+          <Grid.Column width={10}>
+            <ShareButtons courseId={course.a} />
+          </Grid.Column>
+        </Grid>
         {isLoaded ? (
           <CourseReviews
             courseKey={getCourseKey(course)}
@@ -173,7 +208,6 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
                   searchTerm={""}
                   searchLang={searchLang}
                   course={course}
-                  isDetailDisplayed={false}
                   needLineBreak={true}
                 />
               </RelatedCourse>

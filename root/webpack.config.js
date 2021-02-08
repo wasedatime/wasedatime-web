@@ -18,7 +18,7 @@ module.exports = (webpackConfigEnv, argv) => {
       rules: [
         { test: /\.tsx$/, use: "awesome-typescript-loader" },
         {
-          test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)(\?[a-z0-9=.]+)?$/,
+          test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)(\?[a-z0-9=.]+)?$/,
           loader: "url-loader",
         },
         {

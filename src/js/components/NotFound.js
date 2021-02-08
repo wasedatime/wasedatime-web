@@ -22,7 +22,7 @@ const NotFound = () => {
         <Link to="/">
           <Button>Take Me Home</Button>
         </Link>
-        <p>Contact us if this is caused by a bug: bug@wasedatime.com</p>
+        <p>Contact us if this is caused by a bug: bugs@wasedatime.com</p>
       </ExtendedOverlay>
     </Wrapper>
   );

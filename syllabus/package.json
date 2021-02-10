@@ -1,7 +1,7 @@
 {
   "name": "@wasedatime/syllabus",
   "scripts": {
-    "start": "webpack serve --port 8080",
+    "start": "webpack serve --port 8080 --env isLocal",
     "start:standalone": "webpack serve --env standalone",
     "build": "webpack --mode=production",
     "build-dev": "webpack --mode=production --env isDev",

@@ -9,7 +9,6 @@ import Course from "../../../types/course";
 interface PayloadProps {
   school?: string;
   exp?: string;
-  courses?: Course[];
   updatedSchools: SchoolsProps;
 }
 
@@ -22,7 +21,6 @@ interface SchoolsProps {
   [school: string]: {
     name: string;
     exp: string;
-    ids: any[];
     active: boolean;
     timestamp: number;
   };
@@ -40,7 +38,6 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
         [action.payload.school]: {
           name: action.payload.school,
           exp: action.payload.exp,
-          ids: action.payload.courses.map((c) => c[SyllabusKey.ID]),
           active: true,
           timestamp: Date.now(),
         },
@@ -51,7 +48,6 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
         [action.payload.school]: {
           name: action.payload.school,
           exp: "",
-          ids: [],
           active: false,
           timestamp: 0,
         },

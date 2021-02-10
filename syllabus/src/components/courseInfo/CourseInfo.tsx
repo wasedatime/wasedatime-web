@@ -222,7 +222,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
 }
 
 const mapStateToProps = (state: ReduxRootState) => ({
-  fetchedCourses: getFetchedCoursesList(state.fetchedCourses.byId),
+  fetchedCourses: getFetchedCoursesList(state.fetchedCourses.coursesBySchool),
 });
 
 export default connect<ReduxStateProps, {}>(

@@ -327,7 +327,7 @@ class SyllabusContainer extends React.Component<
 
 const mapStateToProps = (state: ReduxRootState) => {
   return {
-    fetchedCourses: getFetchedCoursesList(state.fetchedCourses.byId),
+    fetchedCourses: getFetchedCoursesList(state.fetchedCourses.coursesBySchool),
   };
 };
 

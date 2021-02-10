@@ -12,7 +12,7 @@ import { getAvgScales } from "../../utils/get-avg-scales";
 import { Review, Scales } from "../../types/review";
 import { Course } from "../../types/course";
 import AddReviewForm from "./AddReviewForm";
-import { getIdToken, getUserAttr } from "../../utils/user";
+import { getIdToken, getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
 import API from "@aws-amplify/api";
 import Alert from "react-s-alert";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";

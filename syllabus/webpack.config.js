@@ -35,6 +35,15 @@ module.exports = (webpackConfigEnv, argv) => {
             "process.env": JSON.stringify(dotenv.config().parsed),
           }),
         ]
-      : [new webpack.EnvironmentPlugin({ ...process.env })],
+      : [
+          new webpack.EnvironmentPlugin([
+            "REACT_APP_X_API_KEY",
+            "REACT_APP_SYLLABUS_API_BASE_URL",
+            "REACT_APP_REVIEWS_API_BASE_URL",
+            "REACT_APP_S3_BASE_URL",
+            "REACT_APP_S3_BASE_URL_MASTER",
+            "REACT_APP_API_BASE_URL",
+          ]),
+        ],
   });
 };

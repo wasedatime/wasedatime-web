@@ -13,6 +13,11 @@ module.exports = (webpackConfigEnv, argv) => {
     argv,
   });
 
+  const envKeys = Object.keys(env).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+    return prev;
+  }, {});
+
   return merge(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
     module: {
@@ -30,6 +35,7 @@ module.exports = (webpackConfigEnv, argv) => {
       ],
     },
     plugins: [
+      new webpack.DefinePlugin(envKeys),
       new webpack.DefinePlugin({
         "process.env": JSON.stringify(dotenv.config().parsed),
       }),

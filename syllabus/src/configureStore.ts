@@ -8,10 +8,7 @@ import rootReducer from "./redux/reducers";
 
 const configureStore = async () => {
   const middlewares = [thunk];
-  if (
-    process.env.NODE_ENV !== "production" ||
-    process.env.REACT_APP_ENV === "staging"
-  ) {
+  if (process.env.NODE_ENV !== "production") {
     middlewares.push(logger);
   }
   try {

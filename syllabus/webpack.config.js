@@ -13,8 +13,8 @@ module.exports = (webpackConfigEnv, argv) => {
     argv,
   });
 
-  const envKeys = Object.keys(env).reduce((prev, next) => {
-    prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  const envKeys = Object.keys(webpackConfigEnv).reduce((prev, next) => {
+    prev[`process.env.${next}`] = JSON.stringify(webpackConfigEnv[next]);
     return prev;
   }, {});
 

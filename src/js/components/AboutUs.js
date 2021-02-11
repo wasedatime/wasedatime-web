@@ -30,10 +30,14 @@ const LargeTab = styled(Tab)`
     // border: solid;
 `;
 {/* <img></img> */}
+
+const Our_Mission = ({t}) => (
+  <div>t{("aboutus.our mission")}</div>
+);
 const panes = [
   {
     // 要直接override menuItem本身的style（個案）
-    menuItem: <Menu.Item style={{ fontSize:"1.5em"}}>Our Mission</Menu.Item>,
+    menuItem: <Menu.Item style={{ fontSize:"1.5em"}}>{Our_Mission}</Menu.Item>,
     render: () => <OurMission />,
   },
   // 其他的就麻煩你修改然後繼續開發～

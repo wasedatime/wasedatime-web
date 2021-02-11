@@ -16,6 +16,12 @@ import gu from "../../img/aboutus/contributors/gu.jpg"
 import zenda from "../../img/aboutus/contributors/zenda.jpg"
 import kaede from "../../img/aboutus/contributors/kaede.jpg"
 import kaiqing from "../../img/aboutus/contributors/kaiqing.jpg"
+import zhaohuaibo from "../../img/aboutus/contributors/zhaohuaibo.jpg"
+import hatori from "../../img/aboutus/contributors/hatori.jpg"
+import yaoyuan from "../../img/aboutus/contributors/yaoyuan.jpg"
+import naomi from "../../img/aboutus/contributors/naomi.jpg"
+
+
 
 import testImage from "../../img/aboutus/test/test.jpeg"
 import facebook from "../../img/aboutus/socialmediaicon/facebook.png"
@@ -301,6 +307,68 @@ const MeetOurTeam = ({t}) => {
                             <MediaIcon src={email}></MediaIcon>
                         </a>
                     </SocialMediaArea>
+                </Card>
+
+
+                {/* ----------------------------------Hatori */}
+                <Card>
+                    <MemberImage src={hatori}></MemberImage>
+                    <MemberName>Zhen Chao</MemberName>
+                    <MemberPosition>Frontend Engineer</MemberPosition>
+                    <MemberVision></MemberVision>
+                    <SocialMediaArea>
+                        <a href="https://www.linkedin.com/in/%E8%87%BB-%E6%9B%B9-771718186/" target="_blank">
+                            <MediaIcon src={linkedin}></MediaIcon>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=100023624678107" target="_blank">
+                            <MediaIcon src={facebook}></MediaIcon>
+                        </a>
+                        {/* <WeChatQRcode qrcode={GuWeChatQRcode}/> */}
+                    </SocialMediaArea>
+                    <MemberVision>いまが最高！</MemberVision>
+                </Card>
+
+                {/* ----------------------------------yaoyuan */}
+                <Card>
+                    <MemberImage src={yaoyuan}></MemberImage>
+                    <MemberName>Yuan Yao</MemberName>
+                    <MemberPosition>Backend Engineer</MemberPosition>
+                    <MemberVision></MemberVision>
+                    <SocialMediaArea>
+                        
+                        <a href="https://github.com/youenn98/" target="_blank">
+                            <MediaIcon src={github}></MediaIcon>
+                        </a>
+                        {/* <WeChatQRcode qrcode={GuWeChatQRcode}/> */}
+                    </SocialMediaArea>
+                </Card>
+
+                {/* ----------------------------------zhaohuaibo */}
+                <Card>
+                    <MemberImage src={zhaohuaibo}></MemberImage>
+                    <MemberName>{t("aboutus.Huaibo Zhao")}</MemberName>
+                    <MemberPosition>{t("aboutus.Frontend Engineer")}</MemberPosition>
+                    
+                    <SocialMediaArea>
+                        <a href="mailto:huaibozhao3@gmail.com" target="_blank">
+                            <MediaIcon src={email}></MediaIcon>
+                        </a>
+                    </SocialMediaArea>
+                    <MemberVision>For those who are or will be a member of Waseda university, I hope our project will add more joy to your campus life.</MemberVision>
+                </Card>
+
+                {/* ----------------------------------naomi */}
+                <Card>
+                    <MemberImage src={naomi}></MemberImage>
+                    <MemberName>{t("aboutus.Naomi Shen")}</MemberName>
+                    <MemberPosition>{t("aboutus.Marketing")}</MemberPosition>
+                    
+                    <SocialMediaArea>
+                        <a href="https://www.instagram.com/naomi.shen.1088/" target="_blank">
+                            <MediaIcon src={instagram}></MediaIcon>
+                        </a>
+                    </SocialMediaArea>
+                    <MemberVision>Potato life is da best life</MemberVision>
                 </Card>
 
                 {/* ----------------------------------Oscar */}

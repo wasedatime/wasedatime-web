@@ -3,13 +3,19 @@ import { connect } from "react-redux";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { sortAddedCourses } from "@bit/wasedatime.syllabus.ts.utils.added-courses";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import BinarySwitch from "../components/syllabus/BinarySwitch";
+import SemesterSwitcher from "../components/SemesterSwitcher";
 import AddedCourseList from "../components/syllabus/AddedCourseList";
 import { Semester } from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
 import { getCurrentSemester } from "@bit/wasedatime.syllabus.ts.utils.get-current-semesters";
+import { SEMESTERS } from "@bit/wasedatime.syllabus.ts.constants.semesters";
 import Course from "../types/course";
 import { getAddedCoursesListWithLang } from "../redux/reducers/addedCourses";
 import { ReduxRootState } from "../redux/reducers";
+
+const semesterTitles = {
+  [SEMESTERS.SPRING]: "Spring Semester",
+  [SEMESTERS.FALL]: "Fall Semester",
+};
 
 interface ReduxStateProps {
   addedCourses: Course[];
@@ -23,8 +29,9 @@ const AddedCourseListContainer = ({
 }: ReduxStateProps & WithTranslation) => {
   const [semester, setSemester] = useState(getCurrentSemester());
 
-  const handleChangeSemester = (targetSemester) => {
-    if (semester !== targetSemester) setSemester(targetSemester);
+  const handleToggleSemester = () => {
+    if (semester === SEMESTERS.SPRING) setSemester(SEMESTERS.FALL);
+    else setSemester(SEMESTERS.SPRING);
   };
 
   const addedCoursesOfTerm = addedCourses.filter((c) => {
@@ -41,16 +48,13 @@ const AddedCourseListContainer = ({
 
   return (
     <div>
-      <BinarySwitch
-        switchHeight={"32px"}
-        handleSwitchValue={handleChangeSemester}
-        value={semester}
-        leftButtonId={`button--semester-spring`}
-        rightButtonId={`button--semester-fall`}
-        leftValue={Semester.SPRING}
-        rightValue={Semester.FALL}
-        leftDisplayedValue={t("syllabus.displayedSpringSemester")}
-        rightDisplayedValue={t("syllabus.displayedFallSemester")}
+      <SemesterSwitcher
+        semesterTitle={t(`timetable.${semesterTitles[semester]}`)}
+        selectedSemester={semester}
+        selectedQuarter={null}
+        isQuarterDisplayed={false}
+        toggleSemester={handleToggleSemester}
+        toggleQuarter={() => {}}
       />
       <AddedCourseList addedCourses={sortedAddedCourses} />
     </div>

@@ -9,25 +9,30 @@ import { Button, Icon } from "semantic-ui-react";
 interface Props extends WithTranslation {
   semesterKey: string;
   selectedQuarter: string;
-  handleToggleQuarter: (quarter: string) => void;
+  toggleQuarter: (quarter: string) => void;
 }
 
 const QuarterSwitch = ({
   semesterKey,
   selectedQuarter,
-  handleToggleQuarter,
+  toggleQuarter,
   t,
 }: Props) => {
   return semesterKey === SEMESTERS.SPRING ? (
     <Button.Group>
-      <Button color="pink" onClick={() => handleToggleQuarter(QUARTERS.SPRING)}>
+      <Button
+        inverted
+        color="pink"
+        onClick={() => toggleQuarter(QUARTERS.SPRING)}
+      >
         {selectedQuarter === QUARTERS.SPRING && <Icon name="check" />}
         {t("syllabus.semesterMap.Spring")}
       </Button>
       <Button.Or />
       <Button
+        inverted
         color="orange"
-        onClick={() => handleToggleQuarter(QUARTERS.SUMMER)}
+        onClick={() => toggleQuarter(QUARTERS.SUMMER)}
       >
         {selectedQuarter === QUARTERS.SUMMER && <Icon name="check" />}
         {t("syllabus.semesterMap.Summer")}
@@ -35,12 +40,20 @@ const QuarterSwitch = ({
     </Button.Group>
   ) : (
     <Button.Group>
-      <Button color="brown" onClick={() => handleToggleQuarter(QUARTERS.FALL)}>
+      <Button
+        inverted
+        color="brown"
+        onClick={() => toggleQuarter(QUARTERS.FALL)}
+      >
         {selectedQuarter === QUARTERS.FALL && <Icon name="check" />}
         {t("syllabus.semesterMap.Fall")}
       </Button>
       <Button.Or />
-      <Button color="blue" onClick={() => handleToggleQuarter(QUARTERS.WINTER)}>
+      <Button
+        inverted
+        color="blue"
+        onClick={() => toggleQuarter(QUARTERS.WINTER)}
+      >
         {selectedQuarter === QUARTERS.WINTER && <Icon name="check" />}
         {t("syllabus.semesterMap.Winter")}
       </Button>

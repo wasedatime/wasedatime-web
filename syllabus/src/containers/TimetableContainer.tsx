@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 import { navigate } from "@reach/router";
 import { ReduxRootState } from "../redux/reducers";
 import { connect } from "react-redux";
@@ -7,7 +8,7 @@ import { Helmet } from "react-helmet";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import Timetable from "../components/timetable/Timetable";
-import SemesterSwitcher from "../components/timetable/SemesterSwitcher";
+import SemesterSwitcher from "../components/SemesterSwitcher";
 import {
   SEMESTERS,
   getCurrentSemester,
@@ -16,6 +17,19 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { getAddedCoursesAndPrefsByTerm } from "../redux/reducers/addedCourses";
 import { sortAddedCoursesAndPrefs } from "@bit/wasedatime.syllabus.ts.utils.added-courses-and-prefs";
 import Course from "../types/course";
+
+const TimetableWrapper = styled(Wrapper)`
+  display: flex;
+  flex-direction: column;
+`;
+
+const HeaderWrapper = styled.div`
+  flex: 67px;
+`;
+
+const TimetableFlex = styled.div`
+  flex: calc(100% - 67px);
+`;
 
 interface ReduxStateProps {
   addedCoursesAndPrefsByTerm: {
@@ -32,59 +46,42 @@ interface ReduxStateProps {
 }
 
 interface OwnState {
-  semesterIndex: number;
+  selectedSemester: string;
   selectedQuarter: string;
 }
 
-interface SemesterType {
-  title: string;
-  key: string;
+interface SemesterTitlesType {
+  [key: string]: string;
 }
 
 class TimetableContainer extends React.Component<
   ReduxStateProps & WithTranslation,
   OwnState
 > {
-  semesters: SemesterType[];
+  semesterTitles: SemesterTitlesType;
 
   constructor(props) {
     super(props);
     if (window.location.pathname.includes("syllabus"))
       navigate("/courses/syllabus");
 
-    this.semesters = [
-      { title: "Spring Semester", key: SEMESTERS.SPRING },
-      { title: "Fall Semester", key: SEMESTERS.FALL },
-    ];
-    const currentSemester = getCurrentSemester();
-    const semesterIndex = this.semesters.findIndex(
-      (semester) => semester.key === currentSemester
-    );
+    this.semesterTitles = {
+      [SEMESTERS.SPRING]: "Spring Semester",
+      [SEMESTERS.FALL]: "Fall Semester",
+    };
+
     this.state = {
-      semesterIndex: semesterIndex,
+      selectedSemester: getCurrentSemester(),
       selectedQuarter: "",
     };
   }
 
-  handleIncreaseSemesterIndex = (event) => {
-    event.preventDefault();
-    const newSemesterIndex =
-      (this.state.semesterIndex + 1) % this.semesters.length;
-    this.setState({
-      semesterIndex: newSemesterIndex,
-      selectedQuarter: "",
-    });
-  };
-
-  handleDecreaseSemesterIndex = (event) => {
-    event.preventDefault();
-    const newSemesterIndex = Math.abs(
-      (this.state.semesterIndex - 1) % this.semesters.length
-    );
-    this.setState({
-      semesterIndex: newSemesterIndex,
-      selectedQuarter: "",
-    });
+  handleToggleSemester = () => {
+    if (this.state.selectedSemester === SEMESTERS.SPRING) {
+      this.setState({ selectedSemester: SEMESTERS.FALL });
+    } else {
+      this.setState({ selectedSemester: SEMESTERS.SPRING });
+    }
   };
 
   handleToggleQuarter = (quarter) => {
@@ -100,20 +97,20 @@ class TimetableContainer extends React.Component<
       addedCoursesAndPrefsByTerm,
       selectedSortingOption,
     } = this.props;
-    const { semesterIndex, selectedQuarter } = this.state;
-    const { title, key } = this.semesters[semesterIndex];
-    const semesterKey: string = key;
+    const { selectedSemester, selectedQuarter } = this.state;
+
     const addedCoursesAndPrefs =
       selectedQuarter.length > 0
         ? addedCoursesAndPrefsByTerm[selectedQuarter]
-        : addedCoursesAndPrefsByTerm[semesterKey];
+        : addedCoursesAndPrefsByTerm[selectedSemester];
+
     const sortedAddedCoursesAndPrefs = sortAddedCoursesAndPrefs(
       addedCoursesAndPrefs,
       selectedSortingOption
     );
 
     return (
-      <Wrapper>
+      <TimetableWrapper>
         <Helmet>
           <title>WasedaTime - Timetable</title>
           <meta
@@ -127,25 +124,31 @@ class TimetableContainer extends React.Component<
           />
           <meta property="og:site_name" content="WasedaTime - Timetable" />
         </Helmet>
-        <Header
-          title={t("navigation.timetable")}
-          onInputChange={() => {}}
-          placeholder={"Search course (in construction...)"}
-          inputText={""}
-          disabled={true}
-          isBlur={true}
-          changeLang={(lng) => i18n.changeLanguage(lng)}
-        />
-        <SemesterSwitcher
-          semesterTitle={t(`timetable.${title}`)}
-          semesterKey={semesterKey}
-          selectedQuarter={selectedQuarter}
-          handleIncreaseSemesterIndex={this.handleIncreaseSemesterIndex}
-          handleDecreaseSemesterIndex={this.handleDecreaseSemesterIndex}
-          handleToggleQuarter={this.handleToggleQuarter}
-        />
-        <Timetable addedCoursesAndPrefs={sortedAddedCoursesAndPrefs} />
-      </Wrapper>
+        <HeaderWrapper>
+          <Header
+            title={t("navigation.timetable")}
+            onInputChange={() => {}}
+            placeholder={"Search course (in construction...)"}
+            inputText={""}
+            disabled={true}
+            isBlur={true}
+            changeLang={(lng) => i18n.changeLanguage(lng)}
+          />
+        </HeaderWrapper>
+        <TimetableFlex>
+          <SemesterSwitcher
+            semesterTitle={t(
+              `timetable.${this.semesterTitles[selectedSemester]}`
+            )}
+            selectedSemester={selectedSemester}
+            selectedQuarter={selectedQuarter}
+            isQuarterDisplayed={true}
+            toggleSemester={this.handleToggleSemester}
+            toggleQuarter={this.handleToggleQuarter}
+          />
+          <Timetable addedCoursesAndPrefs={sortedAddedCoursesAndPrefs} />
+        </TimetableFlex>
+      </TimetableWrapper>
     );
   }
 }

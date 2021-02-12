@@ -49,3 +49,11 @@ export const getAddedCoursesById = (byId) => {
   }
   return coursesById;
 };
+
+export const getAddedCoursePrefs = (byId) => {
+  return Object.keys(byId).map((id) => ({
+    id: id,
+    color: byId[id].color,
+    displayLang: byId[id].displayLang,
+  }));
+};

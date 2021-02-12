@@ -1,4 +1,5 @@
 import API from "@aws-amplify/api";
+import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
 
 import {
   ADD_COURSE,
@@ -31,6 +32,19 @@ export const fetchCoursesBySchool = (school: string) => async (
   dispatch: (x: any) => void,
   getState: any
 ) => {
+  const bySchool = getState().fetchedCourses.schools;
+  const schoolKeys = Object.keys(bySchool).filter(
+    (school) => bySchool[school].active
+  );
+  if (schoolKeys.length >= 10) {
+    dispatch(
+      removeSchool(
+        schoolKeys.sort(
+          (a, b) => bySchool[a].timestamp - bySchool[b].timestamp
+        )[0]
+      )
+    );
+  }
   dispatch({
     type: ADD_SCHOOL_FETCH_COURSES_REQUEST,
   });
@@ -97,7 +111,6 @@ export const fetchCourses = () => async (
         return;
       })
     ).then(() => {
-      // const normalizedCourses = normalize(courses, schema.coursesSchema);
       dispatch({
         type: FETCH_COURSES_SUCCESS,
         payload: {
@@ -117,33 +130,29 @@ export const fetchCourses = () => async (
   }
 };
 
-export const addCourse = (course: Course, displayLang: string) => (
+export const addCourse = (course: Course, displayLang: string) => async (
   dispatch: (x: any) => void,
   getState: any
 ) => {
   try {
-    // if (getState().user.tokens) {
-    //   const term = course[SyllabusKey.TERM].match(/0|1|f/g)
-    //     ? "spring"
-    //     : "fall";
-    //   API.patch("wasedatime-dev", "/timetable", {
-    //     body: {
-    //       data: {
-    //         operation: "append",
-    //         course: {
-    //           id: course[SyllabusKey.ID],
-    //           color: getState().addedCourses.orderedIds.length % 8,
-    //           displayLang: displayLang,
-    //         },
-    //       },
-    //     },
-    //     headers: {
-    //       Authorization: getState().user.tokens
-    //         ? getState().user.tokens.idToken
-    //         : "",
-    //     },
-    //   });
-    // }
+    const idToken = await getIdToken();
+    if (idToken) {
+      API.patch("wasedatime-dev", "/timetable", {
+        body: {
+          data: {
+            operation: "append",
+            course: {
+              id: course[SyllabusKey.ID],
+              color: getState().addedCourses.orderedIds.length % 8,
+              displayLang: displayLang,
+            },
+          },
+        },
+        headers: {
+          Authorization: idToken,
+        },
+      });
+    }
   } catch (e) {
     console.error(e);
   } finally {
@@ -157,26 +166,25 @@ export const addCourse = (course: Course, displayLang: string) => (
   }
 };
 
-export const removeCourse = (id: string) => (
+export const removeCourse = (id: string) => async (
   dispatch: (x: any) => void,
   getState: any
 ) => {
   try {
-    // if (getState().user.tokens) {
-    //   API.patch("wasedatime-dev", "/timetable", {
-    //     body: {
-    //       data: {
-    //         operation: "remove",
-    //         index: getState().addedCourses.ids.indexOf(id),
-    //       },
-    //     },
-    //     headers: {
-    //       Authorization: getState().user.tokens
-    //         ? getState().user.tokens.idToken
-    //         : "",
-    //     },
-    //   });
-    // }
+    const idToken = await getIdToken();
+    if (idToken) {
+      API.patch("wasedatime-dev", "/timetable", {
+        body: {
+          data: {
+            operation: "remove",
+            index: getState().addedCourses.orderedIds.indexOf(id),
+          },
+        },
+        headers: {
+          Authorization: idToken,
+        },
+      });
+    }
   } catch (e) {
     console.error(e);
   } finally {
@@ -187,6 +195,51 @@ export const removeCourse = (id: string) => (
       },
     });
   }
+};
+
+export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
+  let unloadSchools = [];
+  const schools = getState().fetchedCourses.schools;
+  idsAndPrefs.forEach((ip) => {
+    const school = schoolCodeMap[ip.id.substring(0, 2)];
+    if (
+      (!schools[school] || !schools[school].active) &&
+      !unloadSchools.includes(school)
+    )
+      unloadSchools.push(school);
+  });
+
+  Promise.all(
+    unloadSchools.map(async (school) => {
+      await dispatch(fetchCoursesBySchool(school));
+    })
+  ).then(() => {
+    const coursesBySchool = getState().fetchedCourses.coursesBySchool;
+    let coursesAndPrefs = [];
+    idsAndPrefs.forEach((ip) => {
+      const school = schoolCodeMap[ip.id.substring(0, 2)];
+      const course = coursesBySchool[school].find(
+        (c) => c[SyllabusKey.ID] === ip.id
+      );
+      if (course) {
+        coursesAndPrefs.push({
+          id: ip.id,
+          color: ip.color,
+          displayLang: ip.displayLang === "jp" ? "ja" : ip.displayLang,
+          course: {
+            ...course,
+            [SyllabusKey.SCHOOL]: school,
+          },
+        });
+      }
+    });
+    dispatch({
+      type: SAVE_TIMETABLE,
+      payload: {
+        coursesAndPrefs: coursesAndPrefs,
+      },
+    });
+  });
 };
 
 export const changeCourseColor = (id, color) => ({

@@ -9,7 +9,7 @@ import {
   faBook,
   faMapMarkedAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import SignInModal from "../user/SignInModal";
+import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
 
 const navItems = [
   {

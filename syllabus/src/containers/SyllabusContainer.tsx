@@ -27,6 +27,7 @@ import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data
 import Course from "../types/course";
 import queryString from "query-string";
 import API from "@aws-amplify/api";
+import { schoolCodeMap } from "@bit/wasedatime.syllabus.ts.constants.school-code";
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -74,6 +75,8 @@ interface OwnState {
   fetchedCourses: Course[];
   searchTerm: string | string[];
   inputText: string | string[];
+  topCourse: Course | null;
+  topCourseId: string;
 }
 
 // let history = createHistory(window);
@@ -118,33 +121,49 @@ class SyllabusContainer extends React.Component<
       fetchedCourses: props.fetchedCourses,
       searchTerm: "",
       inputText: "",
+      topCourse: null,
+      topCourseId: "",
     };
   }
 
   async componentDidMount() {
     const courseId = queryString.parse(window.location.search).courseId;
-    if (courseId) {
-      let course = this.state.fetchedCourses.filter(
-        (c) => c[SyllabusKey.ID] === courseId
-      )[0];
-      if (!course) {
-        const res = await API.get(
-          "wasedatime-dev",
-          `/syllabus?id=${courseId}&limit=1&offset=0`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-            response: true,
-          }
-        );
-        course = res.data;
-      }
-      this.setState((prevState) => ({
-        fetchedCourses: [course, ...prevState.fetchedCourses],
-      }));
+    if (courseId) await this.setTopCourse(courseId);
+  }
+
+  async componentDidUpdate() {
+    const courseId = queryString.parse(window.location.search).courseId;
+    if (courseId && this.state.topCourseId !== courseId) {
+      await this.setTopCourse(courseId);
     }
   }
+
+  setTopCourse = async (courseId) => {
+    let course = this.state.fetchedCourses.find(
+      (c) => c[SyllabusKey.ID] === courseId
+    );
+    const school = schoolCodeMap[courseId.substring(0, 2)];
+    if (!course) {
+      await this.props.fetchCoursesBySchool(school);
+      const res = await API.get("wasedatime-dev", `/syllabus/${school}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        response: true,
+      });
+      course = res.data.find((c) => c[SyllabusKey.ID] === courseId);
+    }
+    if (course) {
+      this.setState((prevState) => ({
+        topCourseId: courseId,
+        topCourse: { ...course, [SyllabusKey.SCHOOL]: school },
+        fetchedCourses: [
+          { ...course, [SyllabusKey.SCHOOL]: school },
+          ...prevState.fetchedCourses,
+        ],
+      }));
+    }
+  };
 
   updateSearchTerm = () => {
     this.setState((prevState, props) => {
@@ -190,7 +209,9 @@ class SyllabusContainer extends React.Component<
 
       const newFilteredCourses = filterCourses(
         newFilterGroups,
-        props.fetchedCourses
+        prevState.topCourse
+          ? [prevState.topCourse, ...props.fetchedCourses]
+          : props.fetchedCourses
       );
 
       return {
@@ -208,7 +229,7 @@ class SyllabusContainer extends React.Component<
   };
 
   render() {
-    const { fetchCourses, fetchCoursesBySchool, t, i18n } = this.props;
+    const { fetchCourses, t, i18n } = this.props;
     let newI18n = { ...i18n };
 
     const { fetchedCourses, searchTerm, inputText } = this.state;

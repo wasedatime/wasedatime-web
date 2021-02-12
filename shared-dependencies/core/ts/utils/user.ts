@@ -32,30 +32,44 @@ export const configAuth = () => {
 };
 
 export const getIdToken = async () => {
-  const session = await Auth.currentSession();
-  if (session) return session.getIdToken().getJwtToken() || "";
+  try {
+    const session = await Auth.currentSession();
+    if (session) return session.getIdToken().getJwtToken();
+  } catch (error) {
+    return "";
+  }
 };
 
 export const getAccessToken = async () => {
-  const session = await Auth.currentSession();
-  if (session) return session.getAccessToken().getJwtToken() || "";
+  try {
+    const session = await Auth.currentSession();
+
+    if (session) return session.getAccessToken().getJwtToken();
+  } catch (error) {
+    return "";
+  }
 };
 
 export const getRefreshToken = async () => {
-  const session = await Auth.currentSession();
-  if (session) return session.getRefreshToken().getToken() || "";
+  try {
+    const session = await Auth.currentSession();
+    if (session) return session.getRefreshToken().getToken();
+  } catch (error) {
+    return "";
+  }
 };
 
 export const getUserAttr = async () => {
-  const info = await Auth.currentUserInfo();
-  if (info)
-    return (
-      {
-        id: info.attributes.sub,
-        name: info.attributes.preferred_username,
-        picture: info.attributes.picture,
-      } || null
-    );
+  try {
+    const info = await Auth.currentUserInfo();
+    return {
+      id: info.attributes.sub,
+      name: info.attributes.preferred_username,
+      picture: info.attributes.picture,
+    };
+  } catch (error) {
+    return null;
+  }
 };
 
 export const signIn = () => {

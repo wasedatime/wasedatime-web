@@ -20,6 +20,7 @@ const CourseChunk = ({ chunk, searchTerm, searchLang }: Props) => {
           searchTerm={searchTerm}
           searchLang={searchLang}
           course={course}
+          expandable={true}
         />
       ))}
     </UnstyledUList>

@@ -16,6 +16,7 @@ import { getIdToken, getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
 import API from "@aws-amplify/api";
 import Alert from "react-s-alert";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
 
 // todo: make alert works
 
@@ -86,6 +87,7 @@ interface State {
   editReviewPrimaryKey: string;
   editReviewOriginalText: string;
   isFormSending: boolean;
+  isSignInModalOpen: boolean;
 }
 
 class CourseReviews extends React.Component<Props, State> {
@@ -104,6 +106,7 @@ class CourseReviews extends React.Component<Props, State> {
       editReviewPrimaryKey: "",
       editReviewOriginalText: "",
       isFormSending: false,
+      isSignInModalOpen: false,
     };
   }
 
@@ -143,8 +146,8 @@ class CourseReviews extends React.Component<Props, State> {
       editReviewOriginalText,
     } = this.state;
 
-    if (idToken.length === 0) {
-      // this.setState({ isSignInModalOpen: true });
+    if (!idToken.length) {
+      this.setState({ isSignInModalOpen: true });
       return;
     }
     const { course, courseKey, t } = this.props;
@@ -246,8 +249,8 @@ class CourseReviews extends React.Component<Props, State> {
 
   deleteReview = async (reviewPrimaryKey, reviewIndex) => {
     const idToken = await getIdToken();
-    if (idToken.length === 0) {
-      // this.setState({ isSignInModalOpen: true });
+    if (!idToken.length) {
+      this.setState({ isSignInModalOpen: true });
       return;
     }
 
@@ -278,6 +281,12 @@ class CourseReviews extends React.Component<Props, State> {
       .catch((e) => console.log(e));
   };
 
+  openReviewForm = async () => {
+    const idToken = await getIdToken();
+    if (idToken) this.setState({ isFormOpen: true });
+    else this.setState({ isSignInModalOpen: true });
+  };
+
   render() {
     const { searchLang, t } = this.props;
 
@@ -289,6 +298,7 @@ class CourseReviews extends React.Component<Props, State> {
       formText,
       isFormOpen,
       isFormSending,
+      isSignInModalOpen,
     } = this.state;
 
     return isFormOpen ? (
@@ -320,9 +330,7 @@ class CourseReviews extends React.Component<Props, State> {
           <MediaQuery minWidth={sizes.phone}>
             {(matches) =>
               matches && (
-                <AddReviewButton
-                  onClick={() => this.setState({ isFormOpen: true })}
-                >
+                <AddReviewButton onClick={this.openReviewForm}>
                   <FontAwesomeIcon icon={faPen} />{" "}
                   {this.props.t(`courseInfo.Write your Review`)}
                 </AddReviewButton>
@@ -358,6 +366,10 @@ class CourseReviews extends React.Component<Props, State> {
             deleteReview={this.deleteReview}
           />
         </ReviewsListWrapper>
+        <SignInModal
+          isModalOpen={isSignInModalOpen}
+          closeModal={() => this.setState({ isSignInModalOpen: false })}
+        />
       </StyledReviewsWrapper>
     );
   }

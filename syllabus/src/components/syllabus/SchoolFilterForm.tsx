@@ -192,10 +192,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
     const oldestLoadedSchool = loadedSchools[0];
     let newLoadedSchools = [...loadedSchools];
 
-    if (loadedSchools.length >= 10) {
-      newLoadedSchools.splice(0, 1);
-      this.props.removeSyllabus(oldestLoadedSchool);
-    }
+    if (loadedSchools.length >= 10) newLoadedSchools.splice(0, 1);
 
     this.setState({ loadingSchool: school });
     newLoadedSchools.push(school);

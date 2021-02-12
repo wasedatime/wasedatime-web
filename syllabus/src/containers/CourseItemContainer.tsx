@@ -21,7 +21,7 @@ interface OwnProps {
   searchTerm: string | string[];
   searchLang: string | string[];
   course: Course;
-  needLineBreak: boolean;
+  expandable: boolean;
 }
 
 class CourseItemContainer extends React.Component<
@@ -76,7 +76,7 @@ class CourseItemContainer extends React.Component<
       searchLang,
       course,
       addedCourseIds,
-      needLineBreak,
+      expandable,
     } = this.props;
     const isAddable = !addedCourseIds.includes(course[SyllabusKey.ID]);
     return (
@@ -88,8 +88,7 @@ class CourseItemContainer extends React.Component<
         searchTerm={searchTerm}
         searchLang={searchLang}
         course={course}
-        expandable={true}
-        needLineBreak={needLineBreak}
+        expandable={expandable}
         openNewTabOnClick={true}
       />
     );

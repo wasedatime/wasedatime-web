@@ -208,7 +208,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
                   searchTerm={""}
                   searchLang={searchLang}
                   course={course}
-                  needLineBreak={true}
+                  expandable={false}
                 />
               </RelatedCourse>
             ))

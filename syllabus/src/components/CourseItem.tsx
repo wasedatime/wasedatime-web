@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { navigate } from "@reach/router";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -35,9 +36,9 @@ const CourseItemWrapper = styled("div")`
   width: 98%;
   line-height: 150%;
   &:hover {
-    ${(props) =>
-      props.expandable &&
-      "background-color: #eee; box-shadow: none; cursor: pointer;"}
+    background-color: #eee;
+    box-shadow: none;
+    cursor: pointer;
   }
 `;
 
@@ -192,7 +193,6 @@ interface Props extends WithTranslation {
   handleOnClick: (title: string, lng: string) => void;
   expandable: boolean;
   openNewTabOnClick: boolean;
-  needLineBreak?: boolean;
   history?: any;
 }
 
@@ -203,7 +203,6 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   expandable,
-  needLineBreak,
   openNewTabOnClick,
   history,
   t,
@@ -257,9 +256,17 @@ const CourseItem = ({
     />
   );
 
+  const navigateToCourse = async () => {
+    await navigate(`/courses/syllabus?courseId=${course[SyllabusKey.ID]}`);
+  };
+
   return (
     <CourseItemWrapper expandable={expandable}>
-      <div onClick={() => setExpanded(!expanded)}>
+      <div
+        onClick={async () => {
+          expandable ? setExpanded(!expanded) : await navigateToCourse();
+        }}
+      >
         <StyledHeading>{highlightedTitle}</StyledHeading>
         {expandable && (
           <StyledSubHeading>{course[SyllabusKey.SUBTITLE]}</StyledSubHeading>

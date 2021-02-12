@@ -91,7 +91,7 @@ const ShareButtons = ({ courseId, t }) => {
   );
 
   const copyClipboardButton = (
-    <CopyToClipboard text={window.location.href}>
+    <CopyToClipboard text={shareLink}>
       <InvisibleButton>
         <Popup
           basic

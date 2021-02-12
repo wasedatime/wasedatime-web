@@ -1,9 +1,9 @@
 import React from "react";
 import { WithTranslation, withTranslation } from "react-i18next";
 import {
-  SEMESTERS,
-  QUARTERS,
-} from "@bit/wasedatime.syllabus.ts.constants.semesters";
+  Semester,
+  Quarter,
+} from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
 import { Button, Icon } from "semantic-ui-react";
 
 interface Props extends WithTranslation {
@@ -18,23 +18,23 @@ const QuarterSwitch = ({
   toggleQuarter,
   t,
 }: Props) => {
-  return semesterKey === SEMESTERS.SPRING ? (
+  return semesterKey === Semester.SPRING ? (
     <Button.Group>
       <Button
         inverted
         color="pink"
-        onClick={() => toggleQuarter(QUARTERS.SPRING)}
+        onClick={() => toggleQuarter(Quarter.SPRING)}
       >
-        {selectedQuarter === QUARTERS.SPRING && <Icon name="check" />}
+        {selectedQuarter === Quarter.SPRING && <Icon name="check" />}
         {t("syllabus.semesterMap.Spring")}
       </Button>
       <Button.Or />
       <Button
         inverted
         color="orange"
-        onClick={() => toggleQuarter(QUARTERS.SUMMER)}
+        onClick={() => toggleQuarter(Quarter.SUMMER)}
       >
-        {selectedQuarter === QUARTERS.SUMMER && <Icon name="check" />}
+        {selectedQuarter === Quarter.SUMMER && <Icon name="check" />}
         {t("syllabus.semesterMap.Summer")}
       </Button>
     </Button.Group>
@@ -43,18 +43,18 @@ const QuarterSwitch = ({
       <Button
         inverted
         color="brown"
-        onClick={() => toggleQuarter(QUARTERS.FALL)}
+        onClick={() => toggleQuarter(Quarter.FALL)}
       >
-        {selectedQuarter === QUARTERS.FALL && <Icon name="check" />}
+        {selectedQuarter === Quarter.FALL && <Icon name="check" />}
         {t("syllabus.semesterMap.Fall")}
       </Button>
       <Button.Or />
       <Button
         inverted
         color="blue"
-        onClick={() => toggleQuarter(QUARTERS.WINTER)}
+        onClick={() => toggleQuarter(Quarter.WINTER)}
       >
-        {selectedQuarter === QUARTERS.WINTER && <Icon name="check" />}
+        {selectedQuarter === Quarter.WINTER && <Icon name="check" />}
         {t("syllabus.semesterMap.Winter")}
       </Button>
     </Button.Group>

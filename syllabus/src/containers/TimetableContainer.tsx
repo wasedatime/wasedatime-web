@@ -9,10 +9,8 @@ import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import Timetable from "../components/timetable/Timetable";
 import SemesterSwitcher from "../components/SemesterSwitcher";
-import {
-  SEMESTERS,
-  getCurrentSemester,
-} from "@bit/wasedatime.syllabus.ts.constants.semesters";
+import { Semester } from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
+import { getCurrentSemester } from "@bit/wasedatime.syllabus.ts.utils.get-current-semesters";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { getAddedCoursesAndPrefsByTerm } from "../redux/reducers/addedCourses";
 import { sortAddedCoursesAndPrefs } from "@bit/wasedatime.syllabus.ts.utils.added-courses-and-prefs";
@@ -66,8 +64,8 @@ class TimetableContainer extends React.Component<
       navigate("/courses/syllabus");
 
     this.semesterTitles = {
-      [SEMESTERS.SPRING]: "Spring Semester",
-      [SEMESTERS.FALL]: "Fall Semester",
+      [Semester.SPRING]: "Spring Semester",
+      [Semester.FALL]: "Fall Semester",
     };
 
     this.state = {
@@ -77,10 +75,10 @@ class TimetableContainer extends React.Component<
   }
 
   handleToggleSemester = () => {
-    if (this.state.selectedSemester === SEMESTERS.SPRING) {
-      this.setState({ selectedSemester: SEMESTERS.FALL });
+    if (this.state.selectedSemester === Semester.SPRING) {
+      this.setState({ selectedSemester: Semester.FALL });
     } else {
-      this.setState({ selectedSemester: SEMESTERS.SPRING });
+      this.setState({ selectedSemester: Semester.SPRING });
     }
   };
 
@@ -131,7 +129,7 @@ class TimetableContainer extends React.Component<
             placeholder={"Search course (in construction...)"}
             inputText={""}
             disabled={true}
-            isBlur={true}
+            isBlur={false}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>

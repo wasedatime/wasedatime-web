@@ -7,14 +7,13 @@ import SemesterSwitcher from "../components/SemesterSwitcher";
 import AddedCourseList from "../components/syllabus/AddedCourseList";
 import { Semester } from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
 import { getCurrentSemester } from "@bit/wasedatime.syllabus.ts.utils.get-current-semesters";
-import { SEMESTERS } from "@bit/wasedatime.syllabus.ts.constants.semesters";
 import Course from "../types/course";
 import { getAddedCoursesListWithLang } from "../redux/reducers/addedCourses";
 import { ReduxRootState } from "../redux/reducers";
 
 const semesterTitles = {
-  [SEMESTERS.SPRING]: "Spring Semester",
-  [SEMESTERS.FALL]: "Fall Semester",
+  [Semester.SPRING]: "Spring Semester",
+  [Semester.FALL]: "Fall Semester",
 };
 
 interface ReduxStateProps {
@@ -30,8 +29,8 @@ const AddedCourseListContainer = ({
   const [semester, setSemester] = useState(getCurrentSemester());
 
   const handleToggleSemester = () => {
-    if (semester === SEMESTERS.SPRING) setSemester(SEMESTERS.FALL);
-    else setSemester(SEMESTERS.SPRING);
+    if (semester === Semester.SPRING) setSemester(Semester.FALL);
+    else setSemester(Semester.SPRING);
   };
 
   const addedCoursesOfTerm = addedCourses.filter((c) => {

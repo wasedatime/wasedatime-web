@@ -273,7 +273,7 @@ class SyllabusContainer extends React.Component<
                   placeholder={t("syllabus.searchBarPlaceholder")}
                   inputText={inputText}
                   disabled={false}
-                  isBlur={true}
+                  isBlur={false}
                   changeLang={(lng) => i18n.changeLanguage(lng)}
                 />
               </HeaderWrapper>

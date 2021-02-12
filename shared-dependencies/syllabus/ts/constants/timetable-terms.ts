@@ -3,6 +3,11 @@ export enum Semester {
   SPRING = "springSem",
 }
 
+export enum SemesterTitle {
+  FALL = "Fall Semester",
+  SPRING = "Spring Semester",
+}
+
 export enum Quarter {
   SPRING = "springQuart",
   SUMMER = "summerQuart",

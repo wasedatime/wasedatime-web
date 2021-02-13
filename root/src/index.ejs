@@ -110,6 +110,11 @@
     grid-row-start: 1;
     grid-row-end: 4;
   }
+  #loading canvas {
+    background-image: url("/src/assets/img/home_background-lg.jpg");
+    width: 100vw;
+    height: 100vh;
+  }
   @media only screen and (max-width:768px) {
     main {
       grid-column-start: 1;
@@ -122,6 +127,11 @@
       grid-column-end: 3;
       grid-row-start: 3;
       grid-row-end: 4;
+    }
+    #loading canvas {
+      background-image: url("/src/assets/img/home_background-phone.jpg");
+      background-repeat: no-repeat;
+      background-size: 100vw 100vh;
     }
   }
   </style>
@@ -150,7 +160,7 @@
 </head>
 <body>
   <div id="loading">
-    <h1>Welcome!</h1>
+    <canvas></canvas>
   </div>
   <script>
     System.import('@wasedatime/root-config');

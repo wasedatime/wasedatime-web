@@ -40,5 +40,6 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       }),
     ],
+    externals: ["single-spa", "react", "react-dom"],
   });
 };

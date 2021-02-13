@@ -79,8 +79,6 @@
     "graphql": "^15.5.0",
     "localforage": "^1.9.0",
     "lodash": "^4.17.20",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
@@ -88,6 +86,7 @@
     "semantic-ui-react": "^2.0.3",
     "single-spa": "^5.9.1",
     "single-spa-layout": "1.4.0",
-    "single-spa-react": "^4.0.0"
+    "single-spa-react": "^4.0.0",
+    "workbox-webpack-plugin": "^6.1.0"
   }
 }

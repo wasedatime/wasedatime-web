@@ -15,6 +15,7 @@ import "semantic-ui-css/semantic.min.css";
 import "./styles/index.css";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
+import * as serviceWorkerRegistration from "../serviceWorkerRegistration";
 
 const lifecycles = singleSpaReact({
   React,
@@ -43,6 +44,7 @@ start();
 
 configAuth();
 i18nConfig();
+serviceWorkerRegistration.register();
 
 ReactDOM.render(
   React.createElement("span"),

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
-import { Menu } from "semantic-ui-react";
 import styled, { ThemeProvider } from "styled-components";
 import { normalTheme } from "@bit/wasedatime.core.ts.constants.theme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,25 +9,12 @@ import textLogo from "@bit/wasedatime.core.assets.text-logo";
 import UserMenu from "../user/UserMenu";
 import OtherLinks from "./OtherLinks";
 
-const LogoWrapper = styled(Link)`
-  display: flex;
-  width: 100%;
-  align-items: center;
-  padding: 7.5px;
-  border-bottom: 2px solid ${(props) => props.theme.colorPrimary};
-`;
-
 const TextLogo = styled.img`
   height: 25px;
   margin: 0.5rem;
   overflow-x: hidden;
   opacity: ${(props) => (props.expanded ? "1" : "0")};
   transition: opacity 0.3s ease-out;
-`;
-
-const NavItem = styled(Menu.Item)`
-  padding: 0px;
-  overflow-x: hidden;
 `;
 
 const NavItemBlock = styled.div`
@@ -66,11 +52,6 @@ const NavItemText = styled.span`
   transition: opacity 0.3s ease-out, width 0.5s;
 `;
 
-const SidebarFooter = styled.div`
-  position: absolute;
-  bottom: 70px;
-`;
-
 type Props = {
   navItems: {
     name: string;
@@ -99,7 +80,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
         onTouchStart={expandSidebar}
         onMouseLeave={foldSidebar}
       >
-        <LogoWrapper to={"/home"}>
+        <Link to={"/home"} className="flex flex-row items-center p-3">
           <SmallLogo />
           <TextLogo
             src={textLogo}
@@ -108,11 +89,10 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
             height="50"
             expanded={expanded}
           />
-        </LogoWrapper>
-        <Menu text vertical style={{ width: "100%", margin: "0px" }}>
+        </Link>
+        <div style={{ width: "100%", margin: "0px" }}>
           {navItems.map((item) => (
-            <NavItem
-              as={Link}
+            <Link
               to={item.path}
               key={item.name}
               onClick={() => {}}
@@ -128,17 +108,17 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
                   {item.name}
                 </NavItemText>
               </NavItemBlock>
-            </NavItem>
+            </Link>
           ))}
-        </Menu>
-        <SidebarFooter>
+        </div>
+        <div className="absolute bottom-60">
           <OtherLinks expanded={expanded} />
           <UserMenu
             openSignInModal={openSignInModal}
             isHovered={expanded}
             isMobileMode={false}
           />
-        </SidebarFooter>
+        </div>
       </SidebarWrapper>
     </ThemeProvider>
   );

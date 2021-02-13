@@ -1,27 +1,15 @@
 import React from "react";
-import { Overlay } from "@bit/wasedatime.core.ts.styles.overlay";
 import styled from "styled-components";
-import { Header, List } from "semantic-ui-react";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-
-const ExtendedOverlay = styled(Overlay)`
-  align-items: left;
-  background-color: #fff;
-  padding: 5vh 10vw;
-  color: #666;
-  ${media.phone`padding: 0 5vw;`}
-`;
 
 interface Props {
   path: string;
 }
 
 const PrivacyPolicy = (props: Props) => (
-  <ExtendedOverlay>
-    <Header style={{ fontSize: "2em", textAlign: "center" }}>
-      PRIVACY NOTICE
-    </Header>
-    <p style={{ textAlign: "center" }}>Last updated January 13, 2021</p>
+  <div className="p-6 md:py-24 md:px-60">
+    <h1 className="text-center my-4">PRIVACY NOTICE</h1>
+    <p className="text-center my-4">Last updated January 13, 2021</p>
     <p>
       Thank you for choosing to be part of our community at WasedaTime ("we",
       "us", "our"). We are committed to protecting your personal information and
@@ -50,12 +38,10 @@ const PrivacyPolicy = (props: Props) => (
       what we do with the information that we collect.
     </b>
     <br />
-    <Header as="h1" style={{ textAlign: "center" }}>
-      1. WHAT INFORMATION DO WE COLLECT?
-    </Header>
-    <Header as="h2" style={{ textAlign: "center" }}>
+    <h3 className="text-center my-4">1. WHAT INFORMATION DO WE COLLECT?</h3>
+    <h4 className="text-center my-4">
       Personal information you disclose to us
-    </Header>
+    </h4>
     <p>
       <b>In Short:</b> We collect personal information that you provide to us.
     </p>
@@ -90,9 +76,7 @@ const PrivacyPolicy = (props: Props) => (
       accurate, and you must notify us of any changes to such personal
       information.
     </p>
-    <Header as="h2" style={{ textAlign: "center" }}>
-      Information automatically collected
-    </Header>
+    <h4 className="text-center my-4">Information automatically collected</h4>
     <p>
       <b>In Short:</b> Some information — such as your Internet Protocol (IP)
       address and/or browser and device characteristics — is collected
@@ -110,8 +94,8 @@ const PrivacyPolicy = (props: Props) => (
       internal analytics and reporting purposes.
     </p>
     <p>The information we collect includes:</p>
-    <List bulleted relaxed>
-      <List.Item>
+    <ul>
+      <li>
         <i>Log and Usage Data.</i> Log and usage data is service-related,
         diagnostic, usage and performance information our servers automatically
         collect when you access or use our Website and which we record in log
@@ -122,8 +106,8 @@ const PrivacyPolicy = (props: Props) => (
         other actions you take such as which features you use), device event
         information (such as system activity, error reports (sometimes called
         'crash dumps') and hardware settings).
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <i>Device Data.</i> We collect device data such as information about
         your computer, phone, tablet or other device you use to access the
         Website. Depending on the device used, this device data may include
@@ -131,8 +115,8 @@ const PrivacyPolicy = (props: Props) => (
         application identification numbers, location, browser type, hardware
         model Internet service provider and/or mobile carrier, operating system
         and system configuration information.
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <i>Location Data.</i> We collect location data such as information about
         your device's location, which can be either precise or imprecise. How
         much information we collect depends on the type and settings of the
@@ -143,11 +127,9 @@ const PrivacyPolicy = (props: Props) => (
         information or by disabling your Location setting on your device. Note
         however, if you choose to opt out, you may not be able to use certain
         aspects of the Services.
-      </List.Item>
-    </List>
-    <Header as="h1" style={{ textAlign: "center" }}>
-      2. HOW DO WE USE YOUR INFORMATION?
-    </Header>
+      </li>
+    </ul>
+    <h3 className="text-center my-4">2. HOW DO WE USE YOUR INFORMATION?</h3>
     <p>
       <b>In Short:</b> We process your information for purposes based on
       compliance with our legal obligations and/or your consent.
@@ -160,8 +142,8 @@ const PrivacyPolicy = (props: Props) => (
       to each purpose listed below.
     </p>
     <p>We use the information we collect or receive:</p>
-    <List bulleted relaxed>
-      <List.Item>
+    <ul>
+      <li>
         <b>To facilitate account creation and logon process.</b> If you choose
         to link your account with us to a third-party account (such as your
         Google account), we use the information you allowed us to collect from
@@ -171,54 +153,54 @@ const PrivacyPolicy = (props: Props) => (
           "HOW DO WE HANDLE YOUR SOCIAL LOGINS"
         </a>{" "}
         for further information.
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>To post testimonials.</b> We post testimonials on our Website that
         may contain personal information. Prior to posting a testimonial, we
         will obtain your consent to use your name and the content of the
         testimonial. If you wish to update, or delete your testimonial, please
         contact us at inquiry@wasedatime.com and be sure to include your name,
         testimonial location, and contact information.
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>Request feedback.</b> We may use your information to request feedback
         and to contact you about your use of our Website.
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>To enable user-to-user communications.</b> We may use your
         information in order to enable user-to-user communications with each
         user's consent.
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>To manage user accounts.</b> We may use your information for the
         purposes of managing our account and keeping it in working order.
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>To send administrative information to you.</b> We may use your
         personal information to send you product, service and new feature
         information and/or information about changes to our terms, conditions,
         and policies.
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>To protect our Services.</b> We may use your information as part of
         our efforts to keep our Website safe and secure (for example, for fraud
         monitoring and prevention).
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>
           To enforce our terms, conditions and policies or to comply with legal
           and regulatory requirements.
         </b>
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>To respond to legal requests and prevent harm.</b> If we receive a
         subpoena or other legal request, we may need to inspect the data we hold
         to determine how to respond.
-      </List.Item>
-    </List>
-    <Header as="h1" style={{ textAlign: "center" }}>
+      </li>
+    </ul>
+    <h3 className="text-center my-4">
       3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?
-    </Header>
+    </h3>
     <p>
       <b>In Short:</b> We only share information with your consent, to comply
       with laws, to provide you with services, to protect your rights, or to
@@ -228,35 +210,31 @@ const PrivacyPolicy = (props: Props) => (
       We may process or share your data that we hold based on the following
       legal basis:
     </p>
-    <List bulleted relaxed>
-      <List.Item>
+    <ul>
+      <li>
         <b>Consent:</b> We may process your data if you have given us specific
         consent to use your personal information for a specific purpose.
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>Legal Obligations:</b> We may disclose your information where we are
         legally required to do so in order to comply with applicable law,
         governmental requests, a judicial proceeding, court order, or legal
         process, such as in response to a court order or a subpoena (including
         in response to public authorities to meet national security or law
         enforcement requirements).
-      </List.Item>
-      <List.Item>
+      </li>
+      <li>
         <b>Vital Interests:</b> We may disclose your information where we
         believe it is necessary to investigate, prevent, or take action
         regarding potential violations of our policies, suspected fraud,
         situations involving potential threats to the safety of any person and
         illegal activities, or as evidence in litigation in which we are
         involved.
-      </List.Item>
-    </List>
-    <Header
-      as="h1"
-      style={{ textAlign: "center" }}
-      id="how_to_handle_social_logins"
-    >
+      </li>
+    </ul>
+    <h3 className="text-center my-4" id="how_to_handle_social_logins">
       4. HOW DO WE HANDLE YOUR SOCIAL LOGINS?
-    </Header>
+    </h3>
     <p>
       <b>In Short:</b> If you choose to register or log in to our services using
       a social media account, we may have access to certain information about
@@ -281,9 +259,9 @@ const PrivacyPolicy = (props: Props) => (
       information, and how you can set your privacy preferences on their sites
       and apps.
     </p>
-    <Header as="h1" style={{ textAlign: "center" }}>
+    <h3 className="text-center my-4">
       5. IS YOUR INFORMATION TRANSFERRED INTERNATIONALLY?
-    </Header>
+    </h3>
     <p>
       <b>In Short:</b> We may transfer, store, and process your information in
       countries other than your own.
@@ -302,9 +280,9 @@ const PrivacyPolicy = (props: Props) => (
       measures to protect your personal information in accordance with this
       privacy notice and applicable law.
     </p>
-    <Header as="h1" style={{ textAlign: "center" }}>
+    <h3 className="text-center my-4">
       6. HOW LONG DO WE KEEP YOUR INFORMATION?
-    </Header>
+    </h3>
     <p>
       <b>In Short:</b> We keep your information for as long as necessary to
       fulfill the purposes outlined in this privacy notice unless otherwise
@@ -326,9 +304,9 @@ const PrivacyPolicy = (props: Props) => (
       information and isolate it from any further processing until deletion is
       possible.
     </p>
-    <Header as="h1" style={{ textAlign: "center" }}>
+    <h3 className="text-center my-4">
       7. HOW DO WE KEEP YOUR INFORMATION SAFE?
-    </Header>
+    </h3>
     <p>
       <b>In Short:</b> We aim to protect your personal information through a
       system of organizational and technical security measures.
@@ -346,9 +324,9 @@ const PrivacyPolicy = (props: Props) => (
       information to and from our Website is at your own risk. You should only
       access the Website within a secure environment.
     </p>
-    <Header as="h1" style={{ textAlign: "center" }}>
+    <h3 className="text-center my-4">
       8. DO WE COLLECT INFORMATION FROM MINORS?
-    </Header>
+    </h3>
     <p>
       <b>In Short:</b> We do not knowingly collect data from or market to
       children under 18 years of age.
@@ -364,9 +342,7 @@ const PrivacyPolicy = (props: Props) => (
       have collected from children under age 18, please contact us at
       inquiry@wasedatime.com.
     </p>
-    <Header as="h1" style={{ textAlign: "center" }}>
-      9. WHAT ARE YOUR PRIVACY RIGHTS?
-    </Header>
+    <h3 className="text-center my-4">9. WHAT ARE YOUR PRIVACY RIGHTS?</h3>
     <p>
       <b>In Short:</b> You may review, change, or terminate your account at any
       time.
@@ -387,9 +363,7 @@ const PrivacyPolicy = (props: Props) => (
       If you have questions or comments about your privacy rights, you may email
       us at inquiry@wasedatime.com.
     </p>
-    <Header as="h1" style={{ textAlign: "center" }}>
-      10. CONTROLS FOR DO-NOT-TRACK FEATURES
-    </Header>
+    <h3 className="text-center my-4">10. CONTROLS FOR DO-NOT-TRACK FEATURES</h3>
     <p>
       Most web browsers and some mobile operating systems and mobile
       applications include a Do-Not-Track ("DNT") feature or setting you can
@@ -402,9 +376,7 @@ const PrivacyPolicy = (props: Props) => (
       that we must follow in the future, we will inform you about that practice
       in a revised version of this privacy notice.{" "}
     </p>
-    <Header as="h1" style={{ textAlign: "center" }}>
-      11. DO WE MAKE UPDATES TO THIS NOTICE?
-    </Header>
+    <h3 className="text-center my-4">11. DO WE MAKE UPDATES TO THIS NOTICE?</h3>
     <p>
       <b>In Short:</b> Yes, we will update this notice as necessary to stay
       compliant with relevant laws.
@@ -418,16 +390,16 @@ const PrivacyPolicy = (props: Props) => (
       encourage you to review this privacy notice frequently to be informed of
       how we are protecting your information.
     </p>
-    <Header as="h1" style={{ textAlign: "center" }}>
+    <h3 className="text-center my-4">
       12. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?
-    </Header>
+    </h3>
     <p>
       If you have questions or comments about this notice, you may email us at
       inquiry@wasedatime.com
     </p>
-    <Header as="h1" style={{ textAlign: "center" }}>
+    <h3 className="text-center my-4">
       13. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?
-    </Header>
+    </h3>
     <p>
       Based on the applicable laws of your country, you may have the right to
       request access to the personal information we collect from you, change
@@ -446,7 +418,7 @@ const PrivacyPolicy = (props: Props) => (
         Termly's Privacy Policy Generator.
       </a>
     </p>
-  </ExtendedOverlay>
+  </div>
 );
 
 export default PrivacyPolicy;

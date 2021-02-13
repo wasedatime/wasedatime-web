@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import styled from "styled-components";
 import { navigate } from "@reach/router";
 import { ReduxRootState } from "../redux/reducers";
@@ -7,7 +7,8 @@ import { Helmet } from "react-helmet";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
-import Timetable from "../components/timetable/Timetable";
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+const Timetable = lazy(() => import("../components/timetable/Timetable"));
 import SemesterSwitcher from "../components/SemesterSwitcher";
 import { Semester } from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
 import { getCurrentSemester } from "@bit/wasedatime.syllabus.ts.utils.get-current-semesters";
@@ -144,7 +145,9 @@ class TimetableContainer extends React.Component<
             toggleSemester={this.handleToggleSemester}
             toggleQuarter={this.handleToggleQuarter}
           />
-          <Timetable addedCoursesAndPrefs={sortedAddedCoursesAndPrefs} />
+          <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+            <Timetable addedCoursesAndPrefs={sortedAddedCoursesAndPrefs} />
+          </Suspense>
         </TimetableFlex>
       </TimetableWrapper>
     );

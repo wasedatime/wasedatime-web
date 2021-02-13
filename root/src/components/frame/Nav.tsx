@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 // import Sidebar from "@bit/wasedatime.core.ts.ui.sidebar";
-import Sidebar from "./Sidebar";
-import MobileHeader from "./MobileHeader";
+// import Sidebar from "./Sidebar";
+// import MobileHeader from "./MobileHeader";
 import {
   faCalendarAlt,
   faBook,
   faMapMarkedAlt,
+  faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
+// import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
+const Sidebar = lazy(() => import("./Sidebar"));
+const MobileNav = lazy(() => import("./MobileNav"));
+const SignInModal = lazy(
+  () => import("@bit/wasedatime.core.ts.ui.sign-in-modal")
+);
 
 const navItems = [
   {
@@ -33,13 +39,19 @@ const Nav = () => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
 
   return (
-    <React.Fragment>
+    <Suspense fallback={""}>
       <MediaQuery maxWidth={sizes.tablet}>
         {(matches) =>
           matches ? (
-            <MobileHeader
-              navItems={navItems}
-              openSignInModal={() => setSignInModalOpen(true)}
+            <MobileNav
+              navItems={[
+                ...navItems,
+                {
+                  name: "Account",
+                  path: "",
+                  icon: faUserCircle,
+                },
+              ]}
             />
           ) : (
             <Sidebar
@@ -53,7 +65,7 @@ const Nav = () => {
         isModalOpen={isSignInModalOpen}
         closeModal={() => setSignInModalOpen(false)}
       />
-    </React.Fragment>
+    </Suspense>
   );
 };
 

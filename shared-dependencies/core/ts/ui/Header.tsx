@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import LanguageMenu from "@bit/wasedatime.core.ts.ui.language-menu";
 import { Grid, Input } from "semantic-ui-react";
 import MediaQuery from "react-responsive";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
+import { navigate } from "@reach/router";
 
 type StyledHeaderProps = {
   isBlur: boolean;
@@ -59,36 +61,72 @@ const Header = ({
   isBlur,
   changeLang,
 }: HeaderProps) => {
+  const searchBar = (
+    <div style={{ marginLeft: "0" }}>
+      <RoundedInput
+        fluid
+        icon="search"
+        placeholder={placeholder || "Search..."}
+        onChange={
+          onInputChange ? (e) => onInputChange(e.target.value) : () => {}
+        }
+        value={inputText || ""}
+        disabled={disabled}
+        autoFocus={true}
+      />
+    </div>
+  );
+
   return (
     <StyledHeader isBlur={isBlur}>
       <Grid style={{ width: "100%" }}>
         <Grid.Row>
-          <Grid.Column width={4} style={{ paddingRight: "0" }}>
-            <MediaQuery minWidth={sizes.tablet}>
-              <PageTitle>{title}</PageTitle>
-            </MediaQuery>
-          </Grid.Column>
+          <MediaQuery minWidth={sizes.tablet}>
+            {(matches) =>
+              matches ? (
+                <Grid.Column width={4} style={{ paddingRight: "0" }}>
+                  <MediaQuery minWidth={sizes.tablet}>
+                    <PageTitle>{title}</PageTitle>
+                  </MediaQuery>
+                </Grid.Column>
+              ) : (
+                <Grid.Column width={3} style={{ paddingRight: "0px" }}>
+                  <div
+                    style={{
+                      paddingLeft: "1rem",
+                    }}
+                    onClick={() => navigate("/home")}
+                  >
+                    <SmallLogo />
+                  </div>
+                </Grid.Column>
+              )
+            }
+          </MediaQuery>
 
-          <Grid.Column width={8}>
-            <div style={{ marginLeft: "0" }}>
-              <RoundedInput
-                fluid
-                icon="search"
-                placeholder={placeholder || "Search..."}
-                onChange={
-                  onInputChange
-                    ? (e) => onInputChange(e.target.value)
-                    : () => {}
-                }
-                value={inputText || ""}
-                disabled={disabled}
-                autoFocus={true}
-              />
-            </div>
-          </Grid.Column>
-          <Grid.Column width={4}>
-            <LanguageMenu changeLang={changeLang} />
-          </Grid.Column>
+          <MediaQuery minWidth={sizes.tablet}>
+            {(matches) =>
+              matches ? (
+                <Grid.Column width={8}>{searchBar}</Grid.Column>
+              ) : (
+                <Grid.Column width={10}>{searchBar}</Grid.Column>
+              )
+            }
+          </MediaQuery>
+
+          <MediaQuery minWidth={sizes.tablet}>
+            {(matches) =>
+              matches ? (
+                <Grid.Column width={4}>
+                  <LanguageMenu changeLang={changeLang} />
+                </Grid.Column>
+              ) : (
+                <Grid.Column width={3} style={{ padding: "0px" }}>
+                  <LanguageMenu changeLang={changeLang} />
+                </Grid.Column>
+              )
+            }
+          </MediaQuery>
         </Grid.Row>
       </Grid>
     </StyledHeader>

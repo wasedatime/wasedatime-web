@@ -1,3 +1,9 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
 @font-face {
   font-family: "Segoe UI";
   src: local("Segoe UI"), url("../fonts/segoe-ui.ttf") format("truetype");
@@ -81,6 +87,12 @@ Incredibly useful site:
 https://www.materialpalette.com/colors
 */
 
+.theme-default .primary {
+  color: #b51e36;
+  background-color: #b51e36;
+  border-color: #b51e36;
+}
+
 .theme-default .color-0,
 .theme-default .red {
   color: #580505;
@@ -144,4 +156,9 @@ https://www.materialpalette.com/colors
 /* semantic override */
 .ui.vertical.text.menu .item {
   margin: 0px;
+}
+
+#loading {
+  text-align: center;
+  padding: auto;
 }

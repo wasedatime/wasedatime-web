@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { Dropdown, Image, Icon } from "semantic-ui-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import styled, { keyframes } from "styled-components";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import {
@@ -60,19 +61,6 @@ const StyledSpan = styled("span")`
       : "width 0.5s, opacity 0.2s"};
 `;
 
-const StyledMenu = styled(Dropdown.Menu)`
-  width: 210px !important;
-  ${media.phone`width: 60px !important;`}
-  background: #555 !important;
-  z-index: 999;
-`;
-
-const StyledMenuItem = styled(Dropdown.Item)`
-  width: 100% !important;
-  font-size: 1em !important;
-  color: #fff !important;
-`;
-
 interface Props extends WithTranslation {
   openSignInModal: () => void;
   isHovered: boolean;
@@ -87,35 +75,58 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
   return notSignedIn ? (
     <React.Fragment>
       <UserMenuTrigger onClick={openSignInModal}>
-        <Icon name="user circle outline" size="massive" />
+        <FontAwesomeIcon icon={faUserCircle} size="2x" />
         {!isMobileMode && (
           <StyledSpan ishovered={isHovered}>Sign in</StyledSpan>
         )}
       </UserMenuTrigger>
     </React.Fragment>
   ) : (
-    <Dropdown
-      trigger={
-        <UserMenuTrigger>
-          <Image
+    <div className="relative inline-block text-left">
+      <div>
+        <button
+          type="button"
+          className="inline-flex justify-center w-full rounded-md shadow-sm p-4 bg-blank text-3xl text-white focus:outline-none"
+          id="options-menu"
+          aria-haspopup="true"
+          aria-expanded="true"
+        >
+          <img
             src={userAttr.picture}
-            width={isMobileMode ? "35" : "40"}
-            height={isMobileMode ? "35" : "40"}
-            circular
+            width="40"
+            height="40"
+            className="rounded-full"
             alt="Image of User account"
           />
-          <StyledSpan ishovered={isHovered}>{userAttr.name}</StyledSpan>
-        </UserMenuTrigger>
-      }
-      icon={null}
-      simple
-      direction={isMobileMode ? "left" : "right"}
-    >
-      <StyledMenu>
-        {/*<StyledMenuItem disabled>Profile</StyledMenuItem>*/}
-        <StyledMenuItem onClick={signOut}>{t("user.Sign Out")}</StyledMenuItem>
-      </StyledMenu>
-    </Dropdown>
+          <StyledSpan className="pt-3" ishovered={isHovered}>
+            {userAttr.name}
+          </StyledSpan>
+        </button>
+      </div>
+
+      <div
+        className={`transition-opacity ${
+          isHovered
+            ? "duration-500 delay-100 opacity-100"
+            : "duration-300 opacity-0"
+        } w-full origin-top-left absolute right-0 m-0 rounded-md shadow-lg text-white`}
+      >
+        <div
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="options-menu"
+        >
+          <a
+            href="#"
+            className="block px-4 py-2 rounded text-white hover:text-gray-500 bg-gray-500 hover:bg-gray-300"
+            role="menuitem"
+            onClick={signOut}
+          >
+            {t("user.Sign Out")}
+          </a>
+        </div>
+      </div>
+    </div>
   );
 };
 

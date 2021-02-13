@@ -12,14 +12,18 @@ const StyledArticle = styled("article")`
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  text-align: center;
+  text-align: center !important;
+  align-item: center;
   padding-top: 67px;
   height: 100vh;
 `;
 
 const LogoWrapper = styled("div")`
-  text-align: center;
   transform: translate(0, 6vh);
+  img {
+    text-align: center;
+    margin: auto;
+  }
 `;
 
 const Introduction = styled("div")`
@@ -30,6 +34,9 @@ const Introduction = styled("div")`
 
 const MainHeading = styled("h1")`
   padding-top: 1em;
+  img {
+    margin: 1rem auto 1em auto;
+  }
 `;
 
 // to be imported from Bit

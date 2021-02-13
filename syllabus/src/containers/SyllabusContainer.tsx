@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import debounce from "lodash/debounce";
@@ -6,11 +6,15 @@ import { connect } from "react-redux";
 import { fetchCourses, fetchCoursesBySchool } from "../redux/actions";
 import { ReduxRootState } from "../redux/reducers";
 import { getFetchedCoursesList } from "../redux/reducers/fetchedCourses";
-import AddedCourseListContainer from "./AddedCourseListContainer";
-import FetchedCourseList from "../components/syllabus/FetchedCourseList";
+const AddedCourseListContainer = lazy(
+  () => import("./AddedCourseListContainer")
+);
+const FetchedCourseList = lazy(
+  () => import("../components/syllabus/FetchedCourseList")
+);
 import Filter from "../components/syllabus/Filter";
 import FilterButton from "../components/syllabus/FilterButton";
-import SearchBar from "../components/syllabus/SearchBar";
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import {
   getSearchLang,
   searchCourses,
@@ -263,53 +267,40 @@ class SyllabusContainer extends React.Component<
           />
         </Helmet>
 
-        <MediaQuery minWidth={sizes.tablet}>
-          {(matches) =>
-            matches && (
-              <HeaderWrapper>
-                <Header
-                  title={t("navigation.syllabus")}
-                  onInputChange={this.handleInputChange}
-                  placeholder={t("syllabus.searchBarPlaceholder")}
-                  inputText={inputText}
-                  disabled={false}
-                  isBlur={false}
-                  changeLang={(lng) => i18n.changeLanguage(lng)}
-                />
-              </HeaderWrapper>
-            )
-          }
-        </MediaQuery>
+        <HeaderWrapper>
+          <Header
+            title={t("navigation.syllabus")}
+            onInputChange={this.handleInputChange}
+            placeholder={t("syllabus.searchBarPlaceholder")}
+            inputText={inputText}
+            disabled={false}
+            isBlur={false}
+            changeLang={(lng) => i18n.changeLanguage(lng)}
+          />
+        </HeaderWrapper>
 
         <SyllabusFlex>
           <MediaQuery minWidth={sizes.tablet}>
             {(matches) =>
               matches && (
                 <SideColumn>
-                  <AddedCourseListContainer />
+                  <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+                    <AddedCourseListContainer />
+                  </Suspense>
                 </SideColumn>
               )
             }
           </MediaQuery>
 
           <MiddleColumn>
-            <MediaQuery maxWidth={sizes.tablet - 1}>
-              {(matches) =>
-                matches && (
-                  <SearchBar
-                    placeholder={t("syllabus.searchBarPlaceholder")}
-                    value={inputText}
-                    onInputChange={this.handleInputChange}
-                  />
-                )
-              }
-            </MediaQuery>
-            <FetchedCourseList
-              searchTerm={searchTerm}
-              searchLang={searchLang}
-              results={results}
-              onSearchInputChange={this.handleInputChange}
-            />
+            <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+              <FetchedCourseList
+                searchTerm={searchTerm}
+                searchLang={searchLang}
+                results={results}
+                onSearchInputChange={this.handleInputChange}
+              />
+            </Suspense>
           </MiddleColumn>
           <MediaQuery minWidth={sizes.desktop}>
             {(matches) => {

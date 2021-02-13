@@ -1,31 +1,17 @@
 import React from "react";
-import { Overlay } from "@bit/wasedatime.core.ts.styles.overlay";
 import styled from "styled-components";
-import { Header } from "semantic-ui-react";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-
-const ExtendedOverlay = styled(Overlay)`
-  align-items: left;
-  background-color: #fff;
-  padding: 5vh 10vw;
-  color: #666;
-  ${media.phone`padding: 0 5vw;`};
-`;
 
 interface Props {
   path: string;
 }
 
 const TermsOfService = (props: Props) => (
-  <ExtendedOverlay>
-    <Header style={{ fontSize: "2em", textAlign: "center" }}>
-      TERMS OF SERVICE
-    </Header>
-    <p style={{ textAlign: "center" }}>Last updated January 18, 2021</p>
+  <div className="p-6 md:py-24 md:px-60">
+    <h2 className="text-center my-4">TERMS OF SERVICE</h2>
+    <p className="text-center my-4">Last updated January 18, 2021</p>
 
-    <Header as="h1" style={{ textAlign: "center" }}>
-      1. Terms
-    </Header>
+    <h4 className="text-center my-4">1. Terms</h4>
 
     <p>
       By accessing this Website, accessible from https://wasedatime.com, you are
@@ -36,9 +22,7 @@ const TermsOfService = (props: Props) => (
       by copyright and trade mark law.
     </p>
 
-    <Header as="h1" style={{ textAlign: "center" }}>
-      2. Use License
-    </Header>
+    <h4 className="text-center my-4">2. Use License</h4>
 
     <p>
       Permission is granted to temporarily download one copy of the materials on
@@ -48,21 +32,32 @@ const TermsOfService = (props: Props) => (
     </p>
 
     <ul>
-      <li>modify or copy the materials;</li>
       <li>
-        use the materials for any commercial purpose or for any public display;
+        <p>・modify or copy the materials;</p>
       </li>
       <li>
-        attempt to reverse engineer any software contained on WasedaTime's
-        Website;
+        <p>
+          ・use the materials for any commercial purpose or for any public
+          display;
+        </p>
       </li>
       <li>
-        remove any copyright or other proprietary notations from the materials;
-        or
+        <p>
+          ・attempt to reverse engineer any software contained on WasedaTime's
+          Website;
+        </p>
       </li>
       <li>
-        transferring the materials to another person or "mirror" the materials
-        on any other server.
+        <p>
+          ・remove any copyright or other proprietary notations from the
+          materials; or
+        </p>
+      </li>
+      <li>
+        <p>
+          ・transferring the materials to another person or "mirror" the
+          materials on any other server.
+        </p>
       </li>
     </ul>
 
@@ -78,9 +73,7 @@ const TermsOfService = (props: Props) => (
       .
     </p>
 
-    <Header as="h1" style={{ textAlign: "center" }}>
-      3. Disclaimer
-    </Header>
+    <h4 className="text-center my-4">3. Disclaimer</h4>
 
     <p>
       All the materials on WasedaTime’s Website are provided "as is". WasedaTime
@@ -91,9 +84,7 @@ const TermsOfService = (props: Props) => (
       sites linked to this Website.
     </p>
 
-    <Header as="h1" style={{ textAlign: "center" }}>
-      4. Limitations
-    </Header>
+    <h4 className="text-center my-4">4. Limitations</h4>
 
     <p>
       WasedaTime or its suppliers will not be hold accountable for any damages
@@ -105,9 +96,7 @@ const TermsOfService = (props: Props) => (
       limitations may not apply to you.
     </p>
 
-    <Header as="h1" style={{ textAlign: "center" }}>
-      5. Revisions and Errata
-    </Header>
+    <h4 className="text-center my-4">5. Revisions and Errata</h4>
 
     <p>
       The materials appearing on WasedaTime’s Website may include technical,
@@ -118,9 +107,7 @@ const TermsOfService = (props: Props) => (
       materials.
     </p>
 
-    <Header as="h1" style={{ textAlign: "center" }}>
-      6. Links
-    </Header>
+    <h4 className="text-center my-4">6. Links</h4>
 
     <p>
       WasedaTime has not reviewed all of the sites linked to its Website and is
@@ -129,9 +116,7 @@ const TermsOfService = (props: Props) => (
       any linked website is at the user’s own risk.
     </p>
 
-    <Header as="h1" style={{ textAlign: "center" }}>
-      7. Site Terms of Use Modifications
-    </Header>
+    <h4 className="text-center my-4">7. Site Terms of Use Modifications</h4>
 
     <p>
       WasedaTime may revise these Terms of Use for its Website at any time
@@ -139,23 +124,19 @@ const TermsOfService = (props: Props) => (
       by the current version of these Terms and Conditions of Use.
     </p>
 
-    <Header as="h1" style={{ textAlign: "center" }}>
-      8. Your Privacy
-    </Header>
+    <h4 className="text-center my-4">8. Your Privacy</h4>
 
     <p>
       Please read our <a href="/privacy-policy">Privacy Policy</a>.
     </p>
 
-    <Header as="h1" style={{ textAlign: "center" }}>
-      9. Governing Law
-    </Header>
+    <h4 className="text-center my-4">9. Governing Law</h4>
 
     <p>
       Any claim related to WasedaTime's Website shall be governed by the laws of
       Japan without regards to its conflict of law provisions.
     </p>
-  </ExtendedOverlay>
+  </div>
 );
 
 export default TermsOfService;

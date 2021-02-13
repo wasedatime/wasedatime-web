@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Router, Redirect, navigate } from "@reach/router";
-import Timetable from "./containers/TimetableContainer";
-import Syllabus from "./containers/SyllabusContainer";
+// import Timetable from "./containers/TimetableContainer";
+// import Syllabus from "./containers/SyllabusContainer";
 import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
 import { getAddedCoursePrefs } from "./redux/reducers/addedCourses";
 import { ReduxRootState } from "./redux/reducers";
 import { saveTimetable } from "./redux/actions";
 import { connect } from "react-redux";
 import API from "@aws-amplify/api";
+const Timetable = lazy(() => import("./containers/TimetableContainer"));
+const Syllabus = lazy(() => import("./containers/SyllabusContainer"));
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 
 interface IdAndPrefType {
   id: string;
@@ -74,10 +77,12 @@ const App = ({
   }, []);
 
   return (
-    <Router>
-      <Syllabus exact path="courses/syllabus" />
-      <Timetable exact path="courses/timetable" />
-    </Router>
+    <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+      <Router>
+        <Syllabus exact path="courses/syllabus" />
+        <Timetable exact path="courses/timetable" />
+      </Router>
+    </Suspense>
   );
 };
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "@reach/router";
 import styled from "styled-components";
-import { Grid } from "semantic-ui-react";
+import { WithTranslation, withTranslation } from "react-i18next";
 
 import MobileNav from "./MobileNav";
 import LanguangeMenu from "@bit/wasedatime.core.ts.ui.language-menu";
-// import UserMenu from "./user/UserMenu";
+import UserMenu from "../user/UserMenu";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import MobileHeaderWrapper from "@bit/wasedatime.core.ts.styles.mobile-header-wrapper";
 
@@ -19,44 +19,19 @@ const Logo = styled("img")`
   height: 50px;
 `;
 
-const StyledGrid = styled(Grid)`
-  width: calc(100vw - 70px) !important;
-`;
-
-const StyledGridColumn = styled(Grid.Column)`
-  padding: 0.5rem !important;
-`;
-
-const StyledNavWrapper = styled(StyledGridColumn)`
-  padding: 0px 0.5rem !important;
-`;
-
-const MobileHeader = ({ navItems, openSignInModal }) => {
+const MobileHeader = ({ navItems, openSignInModal, i18n }) => {
   return (
     <MobileHeaderWrapper>
       <StyledLink to="/about">
         <SmallLogo />
       </StyledLink>
 
-      <StyledGrid>
-        <StyledNavWrapper width={12} floated="left">
-          <MobileNav navItems={navItems} />
-        </StyledNavWrapper>
-        <StyledGridColumn width={2} floated="right">
-          {/*<LanguangeMenu />*/}
-        </StyledGridColumn>
-        <StyledGridColumn width={2} floated="right">
-          {/*<UserMenu
-            userInfo={userInfo}
-            signOut={signOut}
-            openSignInModal={toggleSignInModal}
-            isHovered={false}
-            isMobileMode={true}
-          />*/}
-        </StyledGridColumn>
-      </StyledGrid>
+      <MobileNav navItems={navItems} />
+      <div className="ml-auto">
+        <LanguangeMenu changeLang={(lng) => i18n.changeLanguage(lng)} />
+      </div>
     </MobileHeaderWrapper>
   );
 };
 
-export default MobileHeader;
+export default withTranslation("translation")(MobileHeader);

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "@reach/router";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -39,8 +40,8 @@ interface Props {
 
 const OtherLinks = ({ expanded }: Props) => (
   <LinksWrapper expanded={expanded}>
-    <a href="/terms-of-service">Terms of Service</a>・
-    <a href="/privacy-policy">Privacy Policy</a>
+    <Link to="/terms-of-service">Terms of Service</Link>・
+    <Link to="/privacy-policy">Privacy Policy</Link>
     <br />
     <a
       href="https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md"

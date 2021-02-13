@@ -12,7 +12,7 @@ import Auth from "@aws-amplify/auth";
 import Nav from "./components/frame/Nav";
 import App from "./App";
 import "semantic-ui-css/semantic.min.css";
-import "./styles/styles.css";
+import "./styles/index.css";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 
@@ -44,6 +44,10 @@ start();
 configAuth();
 i18nConfig();
 
+ReactDOM.render(
+  React.createElement("span"),
+  document.getElementById("loading")
+);
 ReactDOM.render(React.createElement(Nav), document.getElementById("nav"));
 
 export const { bootstrap, mount, unmount } = lifecycles;

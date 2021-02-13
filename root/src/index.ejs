@@ -30,7 +30,7 @@
 
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
-  <script type="systemjs-importmap">
+  <script type="systemjs-importmap" defer>
     {
       "imports": {
         "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
@@ -48,7 +48,7 @@
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
   <% if (isDev) { %>
-  <script type="systemjs-importmap">
+  <script type="systemjs-importmap" defer>
     {
       "imports": {
         "@wasedatime/syllabus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
@@ -59,7 +59,7 @@
   <% } %>
 
   <% if (isLocal) { %>
-  <script type="systemjs-importmap">
+  <script type="systemjs-importmap" defer>
     {
       "imports": {
         "@wasedatime/root-config": "//localhost:9000/wasedatime-root-config.js",
@@ -77,13 +77,13 @@
   -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/zone.js@0.11.3/dist/zone.min.js"></script> -->
 
-  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script> -->
   <% if (isLocal) { %>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js" async></script>
   <% } else { %>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js" async></script>
   <% } %>
 
   <style>
@@ -112,17 +112,16 @@
   }
   @media only screen and (max-width:768px) {
     main {
-      padding: 1rem;
       grid-column-start: 1;
       grid-column-end: 3;
-      grid-row-start: 2;
+      grid-row-start: 1;
       grid-row-end: 3;
     }
     #nav {
       grid-column-start: 1;
       grid-column-end: 3;
-      grid-row-start: 1;
-      grid-row-end: 2;
+      grid-row-start: 3;
+      grid-row-end: 4;
     }
   }
   </style>
@@ -150,9 +149,12 @@
   </template>
 </head>
 <body>
+  <div id="loading">
+    <h1>Welcome!</h1>
+  </div>
   <script>
     System.import('@wasedatime/root-config');
   </script>
-  <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
+  <!-- <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full> -->
 </body>
 </html>

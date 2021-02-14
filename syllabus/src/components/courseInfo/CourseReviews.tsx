@@ -22,7 +22,6 @@ import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
 
 const StyledReviewsWrapper = styled("div")`
   ${media.phone`padding: 0 1em;`}
-  font-size: 1.3rem;
 `;
 
 const StyledSubHeading = styled("h2")`
@@ -30,7 +29,6 @@ const StyledSubHeading = styled("h2")`
   margin: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
-  font-size: 2rem;
   font-weight: 300;
   ${media.tablet`font-size: 2rem;`};
 `;
@@ -40,7 +38,7 @@ const AddReviewButton = styled("button")`
   color: #fff;
   border: 0px;
   border-radius: 5px;
-  font-size: 0.9em;
+  font-size: 0.8em;
   float: right;
   ${media.phone`float: none;`}
   ${media.phone`width: 100%;`}

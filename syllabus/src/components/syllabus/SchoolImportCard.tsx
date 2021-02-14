@@ -4,7 +4,7 @@ import { Card, Icon, Dimmer, Image } from "semantic-ui-react";
 
 const SchoolCardWrapper = styled(Dimmer.Dimmable)`
   color: rgba(0, 0, 0, 0.05);
-  width: 5em !important;
+  width: 3em !important;
 
   &:hover i {
     color: rgba(0, 0, 0, 0.5);
@@ -54,7 +54,6 @@ const SchoolImportCard = ({
         {!loaded && (
           <Icon
             name={loading ? "spinner" : "download"}
-            size="big"
             style={{
               color: loading ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0.05)",
             }}
@@ -68,8 +67,8 @@ const SchoolImportCard = ({
         }
         style={{
           border: loaded ? "2px solid rgba(0,0,200,0.4)" : "none",
-          width: "5em",
-          height: "5em",
+          width: "3em",
+          height: "3em",
         }}
       />
     </SchoolCardWrapper>

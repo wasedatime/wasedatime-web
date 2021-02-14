@@ -83,7 +83,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
   );
 
   return course[SyllabusKey.EVAL].length > 0 ? (
-    <MediaQuery minWidth={1400}>
+    <MediaQuery minWidth={1453}>
       {(matches) =>
         matches ? (
           <Grid columns={2}>

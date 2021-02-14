@@ -24,7 +24,7 @@ const SortByButton = styled(InvisibleButton)`
 `;
 
 const StyledLabel = styled(Label)`
-  padding: 0.6rem !important;
+  height: 30px;
 `;
 
 const SortingIcon = styled(Icon)`
@@ -32,12 +32,12 @@ const SortingIcon = styled(Icon)`
 `;
 
 const StyledDropdown = styled(Dropdown)`
-  font-size: 1.4rem !important;
   font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-display: swap;
+  height: 30px;
+  padding: 0.5em !important;
   min-height: 2em !important;
   min-width: 40% !important;
-  padding: 0.6rem !important;
 
   .divider.text + i.dropdown.icon {
     padding: 0.6rem;
@@ -86,10 +86,10 @@ const CourseListSummary = ({
   return (
     <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
-        <StyledLabel size="big" color="grey" basic>
+        <StyledLabel size="tiny" color="grey" basic>
           {`${courses.length}`} courses
         </StyledLabel>
-        <StyledLabel size="big" color="grey" basic>
+        <StyledLabel size="tiny" color="grey" basic>
           {creditSum(courses)} credits
         </StyledLabel>
         <SortingIcon name="sort content ascending" />

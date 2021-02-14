@@ -9,13 +9,13 @@ import { CourseWithOcc } from "../../types/course";
 
 const StyledCourseColumn = styled("div")`
   display: flex;
-  flex: 1 0 calc(63rem / 7 * ${(props) => props.displayPeriods});
+  flex: 1 0 calc(30rem / 7 * ${(props) => props.displayPeriods});
   border-right: 1px solid #f7f7f7;
   border-bottom: solid 1px #ccc;
   background: linear-gradient(180deg, #fff 50%, #eee 50%);
   background-size: 100% calc(100% / ${(props) => props.displayPeriods} * 2);
   position: relative;
-  min-width: 6.8rem;
+  min-width: 4rem;
   flex-direction: row;
 `;
 
@@ -39,34 +39,34 @@ const CourseItem = styled("div")`
 const CourseTitle = styled("span")`
   flex: 1 1 auto;
   font-weight: bold;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   overflow-x: hidden;
   overflow-wrap: break-word;
   word-wrap: break-word;
   text-overflow: ellipsis;
   text-align: center;
-  ${media.tablet`font-size: 1.2rem;`};
-  ${media.phone`font-size: 1.2rem;`};
+  ${media.tablet`font-size: 0.8rem;`};
+  ${media.phone`font-size: 0.8rem;`};
 `;
 
 const CourseLocation = styled("span")`
   display: inline-flex;
   flex: 0 0 auto;
   padding: 0.2em 0;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   word-break: break-all;
   align-items: center;
   justify-content: center;
   text-align: center;
-  ${media.tablet`font-size: 1.2rem;`};
-  ${media.phone`font-size: 1.2rem;`};
+  ${media.tablet`font-size: 0.8rem;`};
+  ${media.phone`font-size: 0.8rem;`};
 `;
 
 const CourseList = styled("div")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  min-width: 6.8rem;
+  min-width: 4rem;
   position: relative;
 `;
 

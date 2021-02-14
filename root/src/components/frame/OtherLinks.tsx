@@ -15,7 +15,7 @@ const LinksWrapper = styled("div")`
   overflow-x: hidden;
   padding: 0px;
   margin-bottom: 0.5vh;
-  font-size: 1rem;
+  font-size: 0.8em;
   text-align: center;
   color: ${(props) => props.theme.grey7};
   a {

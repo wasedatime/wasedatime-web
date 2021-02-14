@@ -7,16 +7,16 @@ const StyledListItem = styled("li")`
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  width: 3rem;
+  width: 2em;
   border-right: solid 1px #ccc;
 `;
 const StyledSpan = styled("span")`
-  font-size: 2.2rem;
+  font-size: 1.5em;
   font-weight: 600;
 `;
 
 const StyledTime = styled("time")`
-  font-size: 1.2rem;
+  font-size: 0.8em;
   color: #333;
 `;
 

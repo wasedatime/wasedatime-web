@@ -26,7 +26,6 @@ const StyledDropdown = styled(Dropdown)`
   }
 
   .menu .text {
-    font-size: 1.5em !important;
     line-height: 1.2 !important;
   }
 

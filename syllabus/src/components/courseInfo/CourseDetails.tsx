@@ -5,6 +5,7 @@ import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data
 import { Segment, Grid, Table, Statistic, Divider } from "semantic-ui-react";
 import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
 import Course from "../../types/course";
+import MediaQuery from "react-responsive";
 
 interface Props extends WithTranslation {
   course: Course;
@@ -41,81 +42,97 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
       ? ""
       : courseLevels[course[SyllabusKey.LEVEL]];
 
-  return (
-    <div>
-      <Grid>
-        <Grid.Column tablet={16} computer={6}>
-          <Grid columns={2} style={{ padding: "1em" }}>
-            <Grid.Column style={{ textAlign: "center" }}>
-              <Statistic>
-                <Statistic.Value>
-                  {course[SyllabusKey.MIN_YEAR]}+
-                </Statistic.Value>
-                <Statistic.Label>
-                  <p>{t("courseInfo.Details.Min Year")}</p>
-                </Statistic.Label>
-              </Statistic>
-            </Grid.Column>
-            <Grid.Column style={{ textAlign: "center" }}>
-              <Statistic>
-                <Statistic.Value>{course[SyllabusKey.CREDIT]}</Statistic.Value>
-                <Statistic.Label>
-                  <p>{t("courseInfo.Details.Credit")}</p>
-                </Statistic.Label>
-              </Statistic>
-            </Grid.Column>
-          </Grid>
-          <Table unstackable>
-            <Table.Body>
-              <Table.Row>
-                <Table.Cell>
-                  <p>{t("courseInfo.Details.Type.title")}</p>
-                </Table.Cell>
-                <Table.Cell>
-                  <p>
-                    <b>{courseType}</b>
-                  </p>
-                </Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell>
-                  <p>{t("courseInfo.Details.Category")}</p>
-                </Table.Cell>
-                <Table.Cell>
-                  <p>
-                    <b>
-                      {
-                        course[
-                          i18n.language === "en"
-                            ? SyllabusKey.CATEGORY
-                            : SyllabusKey.CATEGORY_JP
-                        ]
-                      }
-                    </b>
-                  </p>
-                </Table.Cell>
-              </Table.Row>
-              <Table.Row>
-                <Table.Cell>
-                  <p>{t("courseInfo.Details.Level.title")}</p>
-                </Table.Cell>
-                <Table.Cell>
-                  <p>
-                    <b>{courseLevel}</b>
-                  </p>
-                </Table.Cell>
-              </Table.Row>
-            </Table.Body>
-          </Table>
+  const courseDetails = (
+    <React.Fragment>
+      <Grid columns={2} style={{ padding: "1em" }}>
+        <Grid.Column style={{ textAlign: "center" }}>
+          <Statistic>
+            <Statistic.Value>{course[SyllabusKey.MIN_YEAR]}+</Statistic.Value>
+            <Statistic.Label>
+              <p>{t("courseInfo.Details.Min Year")}</p>
+            </Statistic.Label>
+          </Statistic>
         </Grid.Column>
-        <Grid.Column tablet={16} computer={10}>
-          <Divider horizontal style={{ marginBottom: "2em" }}>
-            <p>{t("courseInfo.Details.Evaluation.title")}</p>
-          </Divider>
-          <CourseDetailsEvaluation course={course} />
+        <Grid.Column style={{ textAlign: "center" }}>
+          <Statistic>
+            <Statistic.Value>{course[SyllabusKey.CREDIT]}</Statistic.Value>
+            <Statistic.Label>
+              <p>{t("courseInfo.Details.Credit")}</p>
+            </Statistic.Label>
+          </Statistic>
         </Grid.Column>
       </Grid>
-    </div>
+      <Table unstackable>
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>
+              <p>{t("courseInfo.Details.Type.title")}</p>
+            </Table.Cell>
+            <Table.Cell>
+              <p>
+                <b>{courseType}</b>
+              </p>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>
+              <p>{t("courseInfo.Details.Category")}</p>
+            </Table.Cell>
+            <Table.Cell>
+              <p>
+                <b>
+                  {
+                    course[
+                      i18n.language === "en"
+                        ? SyllabusKey.CATEGORY
+                        : SyllabusKey.CATEGORY_JP
+                    ]
+                  }
+                </b>
+              </p>
+            </Table.Cell>
+          </Table.Row>
+          <Table.Row>
+            <Table.Cell>
+              <p>{t("courseInfo.Details.Level.title")}</p>
+            </Table.Cell>
+            <Table.Cell>
+              <p>
+                <b>{courseLevel}</b>
+              </p>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      </Table>
+    </React.Fragment>
+  );
+
+  return (
+    <MediaQuery minWidth={1280}>
+      {(matches) =>
+        matches ? (
+          <Grid>
+            <Grid.Column width={6}>{courseDetails}</Grid.Column>
+            <Grid.Column width={10}>
+              <Divider horizontal style={{ marginBottom: "2em" }}>
+                <p>{t("courseInfo.Details.Evaluation.title")}</p>
+              </Divider>
+              <CourseDetailsEvaluation course={course} />
+            </Grid.Column>
+          </Grid>
+        ) : (
+          <Grid>
+            <Grid.Column width={16}>{courseDetails}</Grid.Column>
+            <Grid.Column width={16}>
+              <Divider horizontal style={{ marginBottom: "2em" }}>
+                <p>{t("courseInfo.Details.Evaluation.title")}</p>
+              </Divider>
+              <CourseDetailsEvaluation course={course} />
+            </Grid.Column>
+          </Grid>
+        )
+      }
+    </MediaQuery>
   );
 };
 

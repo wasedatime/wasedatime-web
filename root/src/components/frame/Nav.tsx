@@ -1,16 +1,12 @@
 import React, { useState, lazy, Suspense } from "react";
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-// import Sidebar from "@bit/wasedatime.core.ts.ui.sidebar";
-// import Sidebar from "./Sidebar";
-// import MobileHeader from "./MobileHeader";
 import {
   faCalendarAlt,
   faBook,
   faMapMarkedAlt,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
-// import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
 const Sidebar = lazy(() => import("./Sidebar"));
 const MobileNav = lazy(() => import("./MobileNav"));
 const SignInModal = lazy(
@@ -50,6 +46,7 @@ const Nav = () => {
                   name: "Account",
                   path: "",
                   icon: faUserCircle,
+                  onClickFunc: () => setSignInModalOpen(true),
                 },
               ]}
             />

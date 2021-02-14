@@ -15,12 +15,11 @@ import QuarterSwitch from "./timetable/QuarterSwitch";
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex: none;
   justify-content: center;
-  font-size: 1.3em;
+  font-size: 1.5em;
   ${media.phone`
-    font-size: 1.1em;
+    font-size: 1.3em;
   `};
-  padding: 1rem;
-  ${media.tablet`padding-top: 1rem;`}
+  padding: 0.3em;
 `;
 
 const ExtendedInvisibleButton = styled(InvisibleButton)`

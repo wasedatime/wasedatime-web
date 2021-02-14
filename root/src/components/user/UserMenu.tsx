@@ -4,11 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import styled, { keyframes } from "styled-components";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import {
-  getUserAttr,
-  signOut,
-  getIdToken,
-} from "@bit/wasedatime.core.ts.utils.user";
+import { getUserAttr, signOut, getIdToken } from "../../utils/user";
 
 export const expandLink = () =>
   keyframes`
@@ -46,10 +42,9 @@ const UserMenuTrigger = styled("div")`
 const StyledSpan = styled("span")`
   animation-name: ${expandLink};
   animation-duration: 0.3s;
-  text-align: left
-  font-size: 1.1em
+  text-align: left;
   font-weight: 100;
-  margin-left: 1rem
+  margin-left: 1rem;
   color: #fff;
   opacity: ${(props) => (props.ishovered ? "1" : "0")};
   width: ${(props) => (props.ishovered ? "145px" : "0px")};
@@ -86,7 +81,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
       <div>
         <button
           type="button"
-          className="inline-flex justify-center w-full rounded-md shadow-sm p-4 bg-blank text-3xl text-white focus:outline-none"
+          className="inline-flex justify-center w-full rounded-md shadow-sm p-4 bg-blank text-white focus:outline-none"
           id="options-menu"
           aria-haspopup="true"
           aria-expanded="true"

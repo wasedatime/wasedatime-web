@@ -26,7 +26,7 @@ import "simplebar/dist/simplebar.min.css";
 const CourseListWrapper = styled("div")`
   position: fixed !important;
   padding: 0.5em 1em 1em 1em;
-  width: 20em;
+  width: 22em;
   height: calc(
     100vh - ${(props) => props.theme.headerHeight} -
       ${(props) => props.theme.addedCourseListSwitchHeight}

@@ -8,7 +8,7 @@ const StyledList = styled("ol")`
   flex-direction: column;
   justify-content: space-between;
   padding: 0;
-  margin: 3rem 0 0 0;
+  margin: 2rem 0 0 0;
   background-color: rgba(255, 255, 255, 0.7);
   list-style: none;
   list-style-type: none;

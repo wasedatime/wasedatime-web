@@ -51,7 +51,6 @@ const StyledSubHeading = styled("h2")`
   margin: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
-  font-size: 2rem;
   font-weight: 300;
   ${media.tablet`font-size: 2rem;`};
 `;

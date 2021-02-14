@@ -21,7 +21,6 @@ const StyledDropdown = styled(Dropdown)`
     font-size: 0.9em !important;
   }
   .menu .text {
-    font-size: 1.5em !important;
     line-height: 1.2 !important;
   }
 
@@ -56,8 +55,8 @@ const styles = (theme) =>
       fontDisplay: "swap",
     },
     formControlLabel: {
-      minWidth: "75px",
-      paddingLeft: "0.6rem",
+      minWidth: "70px",
+      paddingLeft: "0.5rem",
       marginRight: "0px",
       fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
       fontDisplay: "swap",

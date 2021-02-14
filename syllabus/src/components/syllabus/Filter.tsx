@@ -25,7 +25,6 @@ const FilterWrapper = styled.div`
 const FilterTitle = styled("span")`
   display: flex;
   align-items: center;
-  font-size: 1.1em;
   font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-display: swap;
 `;
@@ -411,7 +410,7 @@ const Filter = ({
         &nbsp;
         <b>{t("syllabus.Filter by")}</b>
         &nbsp;
-        <FilterClearButton size="big" onClick={clearFilter}>
+        <FilterClearButton onClick={clearFilter}>
           {t("syllabus.Clear filter")}
         </FilterClearButton>
       </FilterTitle>

@@ -86,7 +86,8 @@ const SchoolIconItem = styled("li")`
 `;
 
 const SchoolIconImage = styled("img")`
-  height: 2.1em;
+  width: 24px;
+  height: 24px;
 `;
 
 const DetailWrapper = styled("div")`
@@ -124,6 +125,8 @@ const mapSchoolToIcon = (school, lng) => (
           ? schoolIconEnMap.allSchoolNameIconMap[school]
           : schoolIconJaMap.allSchoolNameIconMap[school]
       }
+      width="24px"
+      height="24px"
     />
   </SchoolIconItem>
 );

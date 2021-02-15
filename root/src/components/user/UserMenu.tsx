@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import styled, { keyframes } from "styled-components";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { getUserAttr, signOut, getIdToken } from "../../utils/user";
+import { getUserAttr, signOut } from "../../utils/user";
 
 export const expandLink = () =>
   keyframes`

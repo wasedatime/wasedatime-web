@@ -47,15 +47,22 @@ const App = () => {
         <meta property="og:site_name" content="WasedaTime - Home" />
       </Helmet>
       <Suspense fallback={<LoadingSpinner message={"Loading..."} />}>
-        <Router>
-          <TermsOfService path="/terms-of-service" />
-          <PrivacyPolicy path="/privacy-policy" />
-          <RedirectPage path="/verify" />
-          <About path="/home" />
-          <Redirect from="/" to="/courses/timetable" noThrow />
-          <Redirect from="/timetable" to="/courses/timetable" noThrow />
-          <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
-        </Router>
+          {
+            localStorage.getItem("isFirstAccess") === null ? (
+              <About path="/" />
+            ) : (
+              <Router>
+                <TermsOfService path="/terms-of-service" />
+                <PrivacyPolicy path="/privacy-policy" />
+                <RedirectPage path="/verify" />
+                <About path="/home" />
+                <Redirect from="/" to="/courses/timetable" noThrow default />
+                <Redirect from="/" to="/courses/timetable" noThrow />
+                <Redirect from="/timetable" to="/courses/timetable" noThrow />
+                <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
+              </Router>
+            )
+          }
       </Suspense>
       <MediaQuery maxWidth={sizes.tablet}>
         {(matches) => matches && <Footer />}

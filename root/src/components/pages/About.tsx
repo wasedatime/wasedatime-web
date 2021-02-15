@@ -67,6 +67,7 @@ interface Props extends WithTranslation {
 }
 
 const Home = ({ path, t, i18n }: Props) => {
+  if(localStorage.getItem("isFirstAccess") === null) localStorage.setItem("isFirstAccess", "false");
   return (
     <StyledWrapper background={homeBackground}>
       <Header

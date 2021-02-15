@@ -3,7 +3,6 @@ import { Provider } from "react-redux";
 import rootReducer from "./redux/reducers";
 import App from "./App";
 import API from "@aws-amplify/api";
-import "semantic-ui-css/semantic.min.css";
 import configureStore from "./configureStore";
 import { saveState } from "./localForage";
 import throttle from "lodash/throttle";

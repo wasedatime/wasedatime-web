@@ -162,3 +162,9 @@ https://www.materialpalette.com/colors
   text-align: center;
   padding: auto;
 }
+
+@layer components {
+  .segment {
+    @apply bg-white rounded p-4;
+  }
+}

@@ -1,7 +1,7 @@
 {
   "name": "@wasedatime/root-config",
   "scripts": {
-    "start": "npm run watch:css && webpack serve --port 9000 --env isLocal",
+    "start": "npm run watch:css && webpack serve --port 3000 --env isLocal",
     "lint": "eslint src --ext js,ts,tsx",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write \"./**\"",

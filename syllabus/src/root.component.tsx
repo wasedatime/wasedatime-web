@@ -24,7 +24,7 @@ API.configure(config);
 configAuth();
 i18nConfig();
 
-const Root = ({ name, fetchCourses, fetchCoursesBySchool }) => {
+const Root = () => {
   const [reduxStore, setReduxStore] = useState(null);
 
   useEffect(() => {
@@ -35,6 +35,7 @@ const Root = ({ name, fetchCourses, fetchCoursesBySchool }) => {
 
   const storeConfig = async () => {
     const store = await configureStore();
+    
     store.subscribe(
       throttle(() => {
         const state = store.getState();

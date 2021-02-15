@@ -8,7 +8,6 @@ import {
   FETCH_COURSES_FAILURE,
   FETCH_COURSES_REQUEST,
   FETCH_COURSES_SUCCESS,
-  HYDRATE_ADDED_COURSES,
   REMOVE_COURSE,
   TOGGLE_COURSE_VISIBILITY,
   ADD_SCHOOL_FETCH_COURSES_FAILURE,
@@ -78,44 +77,49 @@ export const fetchCourses = () => async (
   dispatch: (x: any) => void,
   getState: any
 ) => {
+  const schools = getState().fetchedCourses.schools;
+  var coursesBySchool = {};
+  var updatedSchools = {};
+  const schoolKeys = Object.keys(schools).filter(schoolKey => {
+    const exp = schools[schoolKey].exp;
+    return !exp || Date.parse(exp) <= Date.now();
+  })
+
+  if (schoolKeys.length === 0) return;
+
   dispatch({
     type: FETCH_COURSES_REQUEST,
   });
 
-  const schools = getState().fetchedCourses.schools;
-  var coursesBySchool = {};
-  var updatedSchools = {};
-
   try {
     Promise.all(
-      Object.keys(schools).map(async (schoolKey) => {
+      schoolKeys.map(async (schoolKey) => {
         const school = schools[schoolKey];
-        if (!school.exp || Date.parse(school.exp) <= Date.now()) {
-          const res = await API.get(
-            "wasedatime-dev",
-            `/syllabus/${school.name}`,
-            {
-              headers: {
-                "Content-Type": "application/json",
-              },
-              response: true,
-            }
-          );
-          coursesBySchool[school.name] = res.data;
-          updatedSchools[school.name] = {
-            name: school.name,
-            exp: res.headers["expires"],
-            ids: res.data.map((c) => c[SyllabusKey.ID]),
-          };
-        }
+        const res = await API.get(
+          "wasedatime-dev",
+          `/syllabus/${school.name}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            response: true,
+          }
+        );
+        coursesBySchool[school.name] = res.data;
+        updatedSchools[school.name] = {
+          name: school.name,
+          exp: res.headers["expires"],
+          ids: res.data.map((c) => c[SyllabusKey.ID]),
+          active: true
+        };
         return;
       })
     ).then(() => {
       dispatch({
         type: FETCH_COURSES_SUCCESS,
         payload: {
-          coursesBySchool,
-          updatedSchools,
+          coursesBySchool: {...getState().fetchedCourses.coursesBySchool, ...coursesBySchool},
+          updatedSchools: {...schools, ...updatedSchools},
         },
       });
     });

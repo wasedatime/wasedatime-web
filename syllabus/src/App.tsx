@@ -5,7 +5,7 @@ import { Router, Redirect, navigate } from "@reach/router";
 import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
 import { getAddedCoursePrefs } from "./redux/reducers/addedCourses";
 import { ReduxRootState } from "./redux/reducers";
-import { saveTimetable } from "./redux/actions";
+import { fetchCourses, saveTimetable } from "./redux/actions";
 import { connect } from "react-redux";
 import API from "@aws-amplify/api";
 const Timetable = lazy(() => import("./containers/TimetableContainer"));
@@ -23,15 +23,15 @@ interface ReduxStateProps {
 }
 
 interface ReduxDispatchProps {
+  fetchCourses: () => void;
   saveTimetable: (idsAndPrefs: IdAndPrefType) => void;
 }
 
 const App = ({
   addedCoursesPrefs,
+  fetchCourses,
   saveTimetable,
 }: ReduxStateProps & ReduxDispatchProps) => {
-  const [timetableSavedOrPosted, setTimetableSavedOrPosted] = useState(false);
-
   const postTimetable = async (idsAndPrefs) => {
     const idToken = await getIdToken();
     API.post("wasedatime-dev", "/timetable", {
@@ -43,37 +43,36 @@ const App = ({
   };
 
   useEffect(() => {
-    if (!timetableSavedOrPosted) {
-      const f = async () => {
-        const idToken = await getIdToken();
-        if (idToken) {
-          API.get("wasedatime-dev", "/timetable", {
-            headers: {
-              Authorization: idToken,
-            },
-            response: true,
-          })
-            .then((res) => {
-              if (res.data.data.courses.length === 0) {
-                if (addedCoursesPrefs.length > 0)
-                  postTimetable(addedCoursesPrefs);
-              } else {
-                saveTimetable(res.data.data.courses);
-              }
-            })
-            .catch((e) => {
-              if (
-                e.response &&
-                !e.response.data.data &&
-                addedCoursesPrefs.length > 0
-              )
+    const f = async () => {
+      await fetchCourses();
+
+      const idToken = await getIdToken();
+      if (idToken) {
+        API.get("wasedatime-dev", "/timetable", {
+          headers: {
+            Authorization: idToken,
+          },
+          response: true,
+        })
+          .then((res) => {
+            if (res.data.data.courses.length === 0) {
+              if (addedCoursesPrefs.length > 0)
                 postTimetable(addedCoursesPrefs);
-            });
-        }
-        setTimetableSavedOrPosted(true);
-      };
-      f();
-    }
+            } else {
+              saveTimetable(res.data.data.courses);
+            }
+          })
+          .catch((e) => {
+            if (
+              e.response &&
+              !e.response.data.data &&
+              addedCoursesPrefs.length > 0
+            )
+              postTimetable(addedCoursesPrefs);
+          });
+      }
+    };
+    f();
   }, []);
 
   return (
@@ -91,6 +90,7 @@ const mapStateToProps = (state: ReduxRootState) => ({
 });
 
 const mapDispatchToProps = {
+  fetchCourses,
   saveTimetable,
 };
 

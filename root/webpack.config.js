@@ -70,7 +70,7 @@ module.exports = (webpackConfigEnv, argv) => {
             }
           },
           {
-            urlPattern: /\.(?:html|css|js|ts|tsx|ejs|json)$/,
+            urlPattern: /src\/.*\.(?:html|css|js|ts|tsx|ejs|json)$/,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'wasedatime-codes',

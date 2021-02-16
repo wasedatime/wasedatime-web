@@ -80,7 +80,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
         onTouchStart={expandSidebar}
         onMouseLeave={foldSidebar}
       >
-        <Link to={"/home"} className="flex flex-row items-center p-3">
+        <Link to={"/home"} className="flex flex-row items-center p-2">
           <SmallLogo />
           <TextLogo
             src={textLogo}

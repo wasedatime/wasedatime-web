@@ -151,8 +151,8 @@ class AddedCourseList extends React.Component<Props, State> {
               </StyledMessageHeader>
             </Message>
             <Section>
-              <Subheading as="h2">{t("syllabus.To add a course")}</Subheading>
-              <StyledStepGroup size="huge" vertical fluid>
+              <Subheading as="h3">{t("syllabus.To add a course")}</Subheading>
+              <StyledStepGroup vertical fluid>
                 <VerticalStep>
                   <Icon name="search" />
                   <Step.Content>

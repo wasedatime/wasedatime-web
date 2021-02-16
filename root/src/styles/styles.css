@@ -165,6 +165,6 @@ https://www.materialpalette.com/colors
 
 @layer components {
   .segment {
-    @apply bg-white rounded p-4;
+    @apply bg-white rounded p-4 bg-opacity-70;
   }
 }

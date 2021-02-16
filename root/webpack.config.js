@@ -40,50 +40,6 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
-      new WorkboxWebpackPlugin.GenerateSW({
-        swDest: __dirname + '/sw.js',
-        clientsClaim: true,
-        skipWaiting: true,
-        exclude: [/\.map$/, /manifest\.json$/, /sw\.js$/],
-        runtimeCaching: [
-          {
-            urlPattern: /\.(?:woff|woff2|eot|ttf|otf)$/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'wasedatime-fonts',
-              expiration: {
-                maxEntries: 5,
-                maxAgeSeconds: 180 * 24 * 60 * 60
-              },
-              cacheableResponse: { statuses: [0, 200] },
-            }
-          },
-          {
-            urlPattern: /\.(?:jpg|jpeg|png|gif|svg)$/,
-            handler: 'CacheFirst',
-            options: {
-              cacheName: 'wasedatime-images',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 90 * 24 * 60 * 60
-              },
-              cacheableResponse: { statuses: [0, 200] },
-            }
-          },
-          {
-            urlPattern: /src\/.*\.(?:html|css|js|ts|tsx|ejs|json)$/,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'wasedatime-codes',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 14 * 24 * 60 * 60
-              },
-              cacheableResponse: { statuses: [0, 200] },
-            }
-          },
-        ],
-      }),
     ],
     externals: ["single-spa", "react", "react-dom"],
   });

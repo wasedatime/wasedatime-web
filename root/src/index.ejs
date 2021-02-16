@@ -85,8 +85,6 @@
   <% } else { %>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.min.js" async></script>
-  <% } %>
-
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
@@ -94,6 +92,7 @@
       })
     }
   </script>
+  <% } %>
 
   <style>
   body {

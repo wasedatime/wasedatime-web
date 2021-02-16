@@ -47,6 +47,7 @@
     "webpack-config-single-spa-ts": "^2.0.0",
     "webpack-dev-server": "^4.0.0-beta.0",
     "webpack-merge": "^5.7.3",
+    "workbox-cli": "^6.1.0",
     "workbox-sw": "^6.1.0",
     "workbox-webpack-plugin": "^6.1.0"
   },
@@ -87,6 +88,12 @@
     "semantic-ui-css": "^2.4.1",
     "single-spa": "^5.9.1",
     "single-spa-layout": "1.4.0",
-    "single-spa-react": "^4.0.0"
+    "single-spa-react": "^4.0.0",
+    "workbox-cacheable-response": "^6.1.0",
+    "workbox-core": "^6.1.0",
+    "workbox-expiration": "^6.1.0",
+    "workbox-precaching": "^6.1.0",
+    "workbox-routing": "^6.1.0",
+    "workbox-strategies": "^6.1.0"
   }
 }

@@ -44,6 +44,7 @@ module.exports = (webpackConfigEnv, argv) => {
         swDest: __dirname + '/sw.js',
         clientsClaim: true,
         skipWaiting: true,
+        exclude: [/\.map$/, /manifest\.json$/, /sw\.js$/],
         runtimeCaching: [
           {
             urlPattern: /\.(?:woff|woff2|eot|ttf|otf)$/,

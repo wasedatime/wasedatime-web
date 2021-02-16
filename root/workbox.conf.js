@@ -4,5 +4,6 @@ module.exports = {
     "**/*.{html,ejs,js,ts,tsx}"
   ],
   "swDest": "/sw.js",
-  "swSrc": "/service-worker.js"
+  "swSrc": "/service-worker.js",
+  "exclude": [/\.map$/, /manifest\.json$/, /sw\.js$/]
 };

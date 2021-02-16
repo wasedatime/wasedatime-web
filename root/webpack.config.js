@@ -1,7 +1,7 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-import WebpackPwaManifest from 'webpack-pwa-manifest'
+const WebpackPwaManifest = require("webpack-pwa-manifest");
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "wasedatime";

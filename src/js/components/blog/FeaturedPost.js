@@ -1,19 +1,19 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Hidden from '@material-ui/core/Hidden';
+import * as React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import Hidden from "@material-ui/core/Hidden";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import ArticleSample from './ArticleSample';
+import ArticleSample from "./ArticleSample";
 
 const useStyles = makeStyles({
   card: {
-    display: 'flex',
+    display: "flex",
   },
   cardDetails: {
     flex: 1,
@@ -30,7 +30,7 @@ function FeaturedPost(props) {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
-        <Link to={`/career/${post.src}`}>
+        <Link to={`/article/${post.src}`}>
           <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent>
@@ -51,8 +51,8 @@ function FeaturedPost(props) {
             <Hidden smDown>
               <CardMedia
                 className={classes.cardMedia}
-                image ={`https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${post.src}cover.jpg`}
-                title='Article Cover'
+                image={`https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${post.src}cover.jpg`}
+                title="Article Cover"
               />
             </Hidden>
           </Card>

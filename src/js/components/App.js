@@ -27,6 +27,8 @@ import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsOfService from "./TermsOfService";
+import BlogIndex from "./blog/BlogIndex";
+import CareerArticles from "./blog/CareerArticles";
 import Footer from "./Footer";
 import NotFound from "./NotFound";
 import {
@@ -233,6 +235,12 @@ class App extends React.Component {
                 <Route exact path="/joinus" component={JoinUs} />
                 <Route exact path="/bus" component={Bus} />
                 <Route path="/career" component={Career} />
+                <Route path="/blog" component={BlogIndex} />
+                <Route
+                  exact
+                  path="/article/:title"
+                  component={CareerArticles}
+                />
                 <Route exact path="/corona-info" component={CoronaInfo} />
                 <Route exact path="/courseInfo" component={CourseInfo} />
                 <Route exact path="/privacy-policy" component={PrivacyPolicy} />

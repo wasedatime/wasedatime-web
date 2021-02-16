@@ -41,26 +41,26 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       }),
       new WebpackPwaManifest({
-        name: 'WasedaTime',
-        short_name: 'WasedaTime',
+        name: "WasedaTime",
+        short_name: "WasedaTime",
         start_url: "/index.html",
         display: "standalone",
         theme_color: "#000000",
         background_color: "#ffffff",
         icons: [
           {
-            src: path.resolve('/src/assets/img/favicon.ico'),
+            src: "/src/assets/img/favicon.ico",
             sizes: [64, 32, 24, 16],
             type: "image/x-icon"
           },
           {
-            src: path.resolve('/src/assets/img/logo.png'),
-            size: '512x512',
+            src: "/src/assets/img/logo.png",
+            size: "512x512",
             type: "image/png"
           },
           {
-            src: path.resolve('/src/assets/img/maskable_icon.png'),
-            size: '627x627',
+            src: "/src/assets/img/maskable_icon.png",
+            size: "627x627",
             type: "image/png",
             purpose: "any maskable"
           }

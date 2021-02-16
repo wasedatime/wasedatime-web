@@ -56,7 +56,7 @@ const App = () => {
                 <PrivacyPolicy path="/privacy-policy" />
                 <RedirectPage path="/verify" />
                 <About path="/home" />
-                <Redirect from="/" to="/courses/timetable" noThrow default />
+                <Redirect from="/" to="/courses/timetable" noThrow />
                 <Redirect from="/" to="/courses/timetable" noThrow />
                 <Redirect from="/timetable" to="/courses/timetable" noThrow />
                 <Redirect from="/syllabus" to="/courses/syllabus" noThrow />

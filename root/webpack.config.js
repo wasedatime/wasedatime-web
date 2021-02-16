@@ -49,17 +49,17 @@ module.exports = (webpackConfigEnv, argv) => {
         background_color: "#ffffff",
         icons: [
           {
-            src: "/src/assets/img/favicon.ico",
+            src: "./src/assets/img/favicon.ico",
             sizes: [64, 32, 24, 16],
             type: "image/x-icon"
           },
           {
-            src: "/src/assets/img/logo.png",
+            src: "./src/assets/img/logo.png",
             size: "512x512",
             type: "image/png"
           },
           {
-            src: "/src/assets/img/maskable_icon.png",
+            src: "./src/assets/img/maskable_icon.png",
             size: "627x627",
             type: "image/png",
             purpose: "any maskable"

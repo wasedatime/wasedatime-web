@@ -2,6 +2,11 @@ const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const CompressionWebpackPlugin = require('compression-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "wasedatime";
@@ -28,6 +33,10 @@ module.exports = (webpackConfigEnv, argv) => {
             fullySpecified: false,
           },
         },
+        {
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader],
+        },
       ],
     },
     plugins: [
@@ -40,6 +49,7 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
+      new CompressionWebpackPlugin(),
       new WebpackPwaManifest({
         name: "WasedaTime",
         short_name: "WasedaTime",
@@ -65,8 +75,23 @@ module.exports = (webpackConfigEnv, argv) => {
             purpose: "any maskable"
           }
         ]
-      })
+      }),
+      new MiniCssExtractPlugin({
+        filename: 'src/styles/[name].css',
+      }),
+      new OptimizeCssAssetsPlugin({
+        cssProcessorPluginOptions: {
+          preset: ['default', { discardComments: { removeAll: true } }],
+        },
+      }),
+      // new BundleAnalyzerPlugin()
     ],
+    optimization: {
+      minimize: true,
+      minimizer: [
+        new CssMinimizerPlugin(),
+      ]
+    },
     externals: ["single-spa", "react", "react-dom"],
   });
 };

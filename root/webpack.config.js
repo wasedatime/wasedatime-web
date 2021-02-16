@@ -2,11 +2,11 @@ const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "wasedatime";
@@ -35,7 +35,7 @@ module.exports = (webpackConfigEnv, argv) => {
         },
         {
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader],
+          use: [MiniCssExtractPlugin.loader, "css-loader"],
         },
       ],
     },
@@ -76,20 +76,17 @@ module.exports = (webpackConfigEnv, argv) => {
           }
         ]
       }),
-      new MiniCssExtractPlugin({
-        filename: 'src/styles/[name].css',
-      }),
       new OptimizeCssAssetsPlugin({
         cssProcessorPluginOptions: {
           preset: ['default', { discardComments: { removeAll: true } }],
         },
       }),
-      // new BundleAnalyzerPlugin()
+      new BundleAnalyzerPlugin()
     ],
     optimization: {
       minimize: true,
       minimizer: [
-        new CssMinimizerPlugin(),
+        new UglifyJsPlugin()
       ]
     },
     externals: ["single-spa", "react", "react-dom"],

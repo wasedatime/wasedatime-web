@@ -1,7 +1,7 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+import WebpackPwaManifest from 'webpack-pwa-manifest'
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "wasedatime";
@@ -40,6 +40,32 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
+      new WebpackPwaManifest({
+        name: 'WasedaTime',
+        short_name: 'WasedaTime',
+        start_url: "/index.html",
+        display: "standalone",
+        theme_color: "#000000",
+        background_color: "#ffffff",
+        icons: [
+          {
+            src: path.resolve('/src/assets/img/favicon.ico'),
+            sizes: [64, 32, 24, 16],
+            type: "image/x-icon"
+          },
+          {
+            src: path.resolve('/src/assets/img/logo.png'),
+            size: '512x512',
+            type: "image/png"
+          },
+          {
+            src: path.resolve('/src/assets/img/maskable_icon.png'),
+            size: '627x627',
+            type: "image/png",
+            purpose: "any maskable"
+          }
+        ]
+      })
     ],
     externals: ["single-spa", "react", "react-dom"],
   });

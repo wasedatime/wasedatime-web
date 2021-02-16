@@ -89,6 +89,7 @@
     "single-spa": "^5.9.1",
     "single-spa-layout": "1.4.0",
     "single-spa-react": "^4.0.0",
+    "webpack-pwa-manifest": "^4.3.0",
     "workbox-cacheable-response": "^6.1.0",
     "workbox-core": "^6.1.0",
     "workbox-expiration": "^6.1.0",

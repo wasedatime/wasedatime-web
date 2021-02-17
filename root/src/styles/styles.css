@@ -1,3 +1,6 @@
+
+@import "semantic.min.css";
+
 @tailwind base;
 
 @tailwind components;

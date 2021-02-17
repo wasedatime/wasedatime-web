@@ -11,10 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 import Auth from "@aws-amplify/auth";
 import Nav from "./components/frame/Nav";
 import App from "./App";
-// import "./styles/main.css";
-// import '/main.css'
 import "./styles/styles.css";
-import "semantic-ui-css/semantic.min.css";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 // import * as serviceWorkerRegistration from "../serviceWorkerRegistration";

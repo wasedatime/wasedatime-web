@@ -95,7 +95,6 @@
     "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "sass-loader": "^11.0.1",
-    "semantic-ui-css": "^2.4.1",
     "single-spa": "^5.9.1",
     "single-spa-layout": "1.4.0",
     "single-spa-react": "^4.0.0",

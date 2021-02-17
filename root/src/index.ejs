@@ -31,6 +31,9 @@
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
   <link rel="manifest" href="/manifest.json">
+  <% if (!isLocal) { %>
+  <link rel="stylesheet" href="/dist/main.css">
+  <% } %>
   <script type="systemjs-importmap" defer>
     {
       "imports": {

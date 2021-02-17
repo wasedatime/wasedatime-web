@@ -1,11 +1,10 @@
-const { merge } = require("webpack-merge");
+const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const CompressionWebpackPlugin = require('compression-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -18,7 +17,14 @@ module.exports = (webpackConfigEnv, argv) => {
     disableHtmlGeneration: true,
   });
 
-  return merge(defaultConfig, {
+  return mergeWithRules({
+    module: {
+      rules: {
+        test: "match",
+        use: "replace",
+      },
+    },
+  })(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
     module: {
       rules: [
@@ -35,7 +41,15 @@ module.exports = (webpackConfigEnv, argv) => {
         },
         {
           test: /\.css$/i,
-          use: [MiniCssExtractPlugin.loader, "css-loader"],
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: "css-loader",
+              options: {
+                modules: false,
+              },
+            },
+          ],
         },
       ],
     },
@@ -49,7 +63,6 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
-      new CompressionWebpackPlugin(),
       new WebpackPwaManifest({
         name: "WasedaTime",
         short_name: "WasedaTime",
@@ -76,19 +89,9 @@ module.exports = (webpackConfigEnv, argv) => {
           }
         ]
       }),
-      new OptimizeCssAssetsPlugin({
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        },
-      }),
-      new BundleAnalyzerPlugin()
+      new MiniCssExtractPlugin(),
+      // new BundleAnalyzerPlugin()
     ],
-    optimization: {
-      minimize: true,
-      minimizer: [
-        new UglifyJsPlugin()
-      ]
-    },
     externals: ["single-spa", "react", "react-dom"],
   });
 };

@@ -1,4 +1,12 @@
-const tailwindcss = require("tailwindcss");
-module.exports = {
-  plugins: [tailwindcss("./tailwind.config.js"), require("autoprefixer"), require('cssnano')({ preset: 'default' })], minimize: true
+module.exports = () => {
+  return {
+    plugins: [
+      require('postcss-fixes'),
+      require('postcss-import'),
+      require('tailwindcss'),
+      require('autoprefixer'),
+      require('cssnano')({ preset: 'default' })
+    ],
+    minimize: true
+  };
 };

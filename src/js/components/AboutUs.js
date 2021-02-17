@@ -14,7 +14,7 @@ import JoinUs from "./JoinUs.js";
 
 const PlaceHolder = styled("div")`
   margin-top: 65px;
-${media.tablet`margin-top: 0em;`}
+  ${media.tablet`margin-top: 0em;`}
 `;
 // const ExtendedOverlay = styled(Overlay)`
 //   align-items: center;
@@ -24,61 +24,61 @@ ${media.tablet`margin-top: 0em;`}
 // 想要override semantic的style需要用「!important」
 // 內容的字變大了，但標籤的字沒受到影響？！
 const LargeTab = styled(Tab)`
-    // text-align: center;
-    // width: 80%
-    margin: 0 4% !important; 
-    // border: solid;
+  // text-align: center;
+  // width: 80%
+  margin: 0 4% !important;
+  // border: solid;
 `;
-{/* <img></img> */}
+{
+  /* <img></img> */
+}
 
-const Our_Mission = ({t}) => (
-  <div>{t("aboutus.our mission")}</div>
-);
-const panes = [
-  { 
-    menuItem: <Menu.Item style={{ fontSize:"1.5em"}}>Join Us</Menu.Item>, 
-    render: () => <JoinUs /> 
+const panes = (t) => [
+  {
+    menuItem: <Menu.Item style={{ fontSize: "1.5em" }}>Join Us</Menu.Item>,
+    render: () => <JoinUs />,
   },
   {
     // 要直接override menuItem本身的style（個案）
-    menuItem: <Menu.Item style={{ fontSize:"1.5em"}}>{Our_Mission}</Menu.Item>,
+    menuItem: (
+      <Menu.Item style={{ fontSize: "1.5em" }}>
+        {t("aboutus.our mission")}
+      </Menu.Item>
+    ),
     render: () => <OurMission />,
   },
   // 其他的就麻煩你修改然後繼續開發～
-  { 
-    menuItem: <Menu.Item style={{ fontSize:"1.5em"}}>Meet Our Team</Menu.Item>, 
-    render: () => <MeetOurTeam /> 
+  {
+    menuItem: (
+      <Menu.Item style={{ fontSize: "1.5em" }}>Meet Our Team</Menu.Item>
+    ),
+    render: () => <MeetOurTeam />,
   },
-  
 ];
 // const { t, lng } = this.props;
-const AboutUs = ({t}) => (
+const AboutUs = ({ t }) => (
   <Wrapper>
     <Helmet>
       <title>WasedaTime -　About Us</title>
-          <meta
-            name="description"
-            content="Introduce Wasedatime's mission and meet the team."
-          />
-          <meta property="og:title" content="WasedaTime - About Us" />
-          <meta
-            property="og:description"
-            content="Introduce Wasedatime's mission and meet the team."
-          />
-          <meta property="og:site_name" content="WasedaTime - About Us" />
+      <meta
+        name="description"
+        content="Introduce Wasedatime's mission and meet the team."
+      />
+      <meta property="og:title" content="WasedaTime - About Us" />
+      <meta
+        property="og:description"
+        content="Introduce Wasedatime's mission and meet the team."
+      />
+      <meta property="og:site_name" content="WasedaTime - About Us" />
     </Helmet>
-  <Header
-    title={t("navigation.aboutus")}
-    placeholder="Search..."
-    disabled={true}
-  />
-  <PlaceHolder></PlaceHolder>
-  <LargeTab menu={{ secondary: true }} panes={panes}/>
-  
-  
+    <Header
+      title={t("navigation.aboutus")}
+      placeholder="Search..."
+      disabled={true}
+    />
+    <PlaceHolder></PlaceHolder>
+    <LargeTab menu={{ secondary: true }} panes={panes(t)} />
   </Wrapper>
 );
 
 export default withNamespaces("translation")(AboutUs);
-
-

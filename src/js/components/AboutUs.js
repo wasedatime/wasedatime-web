@@ -32,9 +32,13 @@ const LargeTab = styled(Tab)`
 {/* <img></img> */}
 
 const Our_Mission = ({t}) => (
-  <div>t{("aboutus.our mission")}</div>
+  <div>{t("aboutus.our mission")}</div>
 );
 const panes = [
+  { 
+    menuItem: <Menu.Item style={{ fontSize:"1.5em"}}>Join Us</Menu.Item>, 
+    render: () => <JoinUs /> 
+  },
   {
     // 要直接override menuItem本身的style（個案）
     menuItem: <Menu.Item style={{ fontSize:"1.5em"}}>{Our_Mission}</Menu.Item>,
@@ -45,10 +49,7 @@ const panes = [
     menuItem: <Menu.Item style={{ fontSize:"1.5em"}}>Meet Our Team</Menu.Item>, 
     render: () => <MeetOurTeam /> 
   },
-  { 
-    menuItem: <Menu.Item style={{ fontSize:"1.5em"}}>Join Us</Menu.Item>, 
-    render: () => <JoinUs /> 
-  },
+  
 ];
 // const { t, lng } = this.props;
 const AboutUs = ({t}) => (

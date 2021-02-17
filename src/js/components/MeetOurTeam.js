@@ -144,7 +144,7 @@ const MeetOurTeam = ({t}) => {
                     <MemberImage src={hao}></MemberImage>
                     <MemberName>Hao</MemberName>
                     <MemberPosition>Project Leader</MemberPosition>
-                    <MemberVision></MemberVision>
+                    
                     <SocialMediaArea>
                         <a href="https://github.com/YHhaoareyou" target="_blank">
                             <MediaIcon src={github}></MediaIcon>
@@ -156,6 +156,7 @@ const MeetOurTeam = ({t}) => {
                             <MediaIcon src={instagram}></MediaIcon>
                         </a>
                     </SocialMediaArea>
+                    <MemberVision>WasedaTime, a better Waseda life</MemberVision>
                 </Card>
 
                 {/* ----------------------------------Austin */}
@@ -217,7 +218,7 @@ const MeetOurTeam = ({t}) => {
                     <MemberImage src={gu}></MemberImage>
                     <MemberName>Jiaxian Gu</MemberName>
                     <MemberPosition>{t("aboutus.Frontend Engineer")}</MemberPosition>
-                    <MemberVision></MemberVision>
+                    
                     <SocialMediaArea>
                         <a href="https://www.instagram.com/jiaxiangu/" target="_blank">
                             <MediaIcon src={instagram}></MediaIcon>
@@ -229,6 +230,7 @@ const MeetOurTeam = ({t}) => {
                             <MediaIcon src={facebook}></MediaIcon>
                         </a>
                     </SocialMediaArea>
+                    <MemberVision>Think different</MemberVision>
                 </Card>
 
                 {/* ----------------------------------kong */}

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Root Config</title>
+  <title>WasedaTime</title>
   <!--
     Remove this if you only support browsers that support async/await.
     This is needed by babel to share largeish helper code for compiling async/await in older
@@ -37,7 +37,7 @@
   <% if (isLocal) { %>
   <link rel="stylesheet" href="/src/styles/index.css">
   <% } else { %>
-  <link rel="stylesheet" href="./main.css">
+  <link rel="stylesheet" href="main.css">
   <% } %>
   
   <script type="systemjs-importmap" defer>
@@ -97,7 +97,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        navigator.serviceWorker.register('service-worker.js')
       })
     }
   </script>

@@ -5,6 +5,7 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const {InjectManifest} = require('workbox-webpack-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "wasedatime";
@@ -58,7 +59,11 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
+      new InjectManifest({
+        swSrc: './service-worker.js',
+      }),
       new WebpackPwaManifest({
+        filename: "[name].json",
         name: "WasedaTime",
         short_name: "WasedaTime",
         start_url: "/index.html",

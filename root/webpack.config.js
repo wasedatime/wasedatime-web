@@ -63,7 +63,7 @@ module.exports = (webpackConfigEnv, argv) => {
         swSrc: './service-worker.js',
       }),
       new WebpackPwaManifest({
-        filename: "[name].json",
+        filename: "/[name].json",
         name: "WasedaTime",
         short_name: "WasedaTime",
         start_url: "/index.html",

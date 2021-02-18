@@ -37,7 +37,7 @@
   <% if (isLocal) { %>
   <link rel="stylesheet" href="/src/styles/index.css">
   <% } else { %>
-  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="/main.css">
   <% } %>
   
   <script type="systemjs-importmap" defer>
@@ -97,7 +97,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
+        navigator.serviceWorker.register('/service-worker.js')
       })
     }
   </script>

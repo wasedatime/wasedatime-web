@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import Auth from "@aws-amplify/auth";
 import { Hub } from "@aws-amplify/core";
@@ -11,6 +11,7 @@ import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import Footer from "./components/frame/Footer";
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { useTranslation } from "react-i18next";
 
 const App = () => {
   Hub.listen("auth", ({ payload: { event, data } }) => {
@@ -30,6 +31,11 @@ const App = () => {
         break;
     }
   });
+  
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
+  }, []);
 
   return (
     <React.Fragment>

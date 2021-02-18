@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Provider } from "react-redux";
-import rootReducer from "./redux/reducers";
 import App from "./App";
 import API from "@aws-amplify/api";
 import configureStore from "./configureStore";
@@ -8,6 +7,7 @@ import { saveState } from "./localForage";
 import throttle from "lodash/throttle";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
+import 'semantic-ui-css/semantic.min.css'
 
 const config = {
   API: {

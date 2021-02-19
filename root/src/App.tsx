@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { Hub } from "@aws-amplify/core";
 import { Router, Redirect, navigate } from "@reach/router";

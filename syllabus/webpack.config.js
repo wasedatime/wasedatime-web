@@ -37,7 +37,7 @@ module.exports = (webpackConfigEnv, argv) => {
         },
         {
           test: /\.css$/i,
-          include: [/src\/styles/, /node_modules/],
+          include: [/src/, /node_modules/],
           use: [
             MiniCssExtractPlugin.loader,
             "css-loader"

@@ -12,22 +12,10 @@ workbox.core.setCacheNameDetails({
   runtime: 'runtime',
 });
 
-self.addEventListener('install', (event) => {
-  const pagesCache = new workbox.strategies.NetworkFirst({
-    cacheName: 'wasedatime-pages-cache' 
-  });
-  
-  const pagesCacheHandler = (args) => {
-    return pagesCache.handle(args)
-      .then(res => res || caches.match("/"))
-      .catch(err => caches.match("/"));
-  };
-  
-  workbox.routing.registerRoute(
-    /\/home|\/courses\/syllabus|\/courses\/timetable|\/campus/, 
-    pagesCacheHandler
-  );
-});
+workbox.routing.registerRoute(
+  ({event}) => event.request.mode === 'navigate',
+  new workbox.strategies.NetworkFirst()
+);
 
 workbox.routing.registerRoute(
   new RegExp('.*\.(?:html|js|ts|tsx|ejs)'),

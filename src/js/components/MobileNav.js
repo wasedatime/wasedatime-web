@@ -9,7 +9,6 @@ import {
   faCalendarAlt,
   faBook,
   faBus,
-  faVirus,
   faStar,
 } from "@fortawesome/free-solid-svg-icons";
 

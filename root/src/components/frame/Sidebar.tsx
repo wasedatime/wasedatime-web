@@ -15,7 +15,7 @@ const TextLogo = styled.img`
   overflow-x: hidden;
   width: ${(props) => (props.expanded ? "150px" : "0px")};;
   opacity: ${(props) => (props.expanded ? "1" : "0")};
-  transition: opacity 0.3s ease-out;
+  transition: ${(props) => (props.expanded ? "opacity 0.5s ease-out 0.3s" : "opacity 0.3s")}, width 0.3s;
   display: inline-block;
 `;
 
@@ -86,7 +86,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
           <div style={{ flex: "0 0 50px" }}>
             <SmallLogo />
           </div>
-          {expanded && <div style={{ flex: "0 0 150px" }}>
+          <div style={{ flex: "0 0 150px" }}>
             <TextLogo
               src={textLogo}
               alt="WasedaTime text logo"
@@ -94,7 +94,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
               height="50"
               expanded={expanded}
             />
-          </div>}
+          </div>
         </Link>
         <div style={{ width: "100%", margin: "0px" }}>
           {navItems.map((item) => (

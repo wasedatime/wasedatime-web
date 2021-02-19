@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { timetableTheme } from "@bit/wasedatime.syllabus.ts.constants.syllabus-theme";
 import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { Article, Section } from "@bit/wasedatime.core.ts.styles.article";
-import { Message } from "semantic-ui-react";
+import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import TimeRowList from "./TimeRowList";
 import DayColumnList from "./DayColumnList";
 import AddedCourseAndPrefList from "./AddedCourseAndPrefList";

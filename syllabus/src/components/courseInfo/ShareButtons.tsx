@@ -10,7 +10,7 @@ import {
   faWhatsappSquare,
 } from "@fortawesome/free-brands-svg-icons";
 import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
-import { Popup } from "semantic-ui-react";
+import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
 import { withTranslation } from "react-i18next";
 
 const ShareButtons = ({ courseId, t }) => {

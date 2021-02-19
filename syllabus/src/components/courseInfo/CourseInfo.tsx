@@ -16,7 +16,8 @@ import { connect } from "react-redux";
 import { ReduxRootState } from "../../redux/reducers";
 import { getFetchedCoursesList } from "../../redux/reducers/fetchedCourses";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { Segment, Grid } from "semantic-ui-react";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
 

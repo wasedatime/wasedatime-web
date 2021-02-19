@@ -5,19 +5,11 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import SchoolImportCard from "./SchoolImportCard";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
-import {
-  Segment,
-  Tab,
-  Card,
-  Header,
-  Icon,
-  Checkbox,
-  Form,
-  Popup,
-  Image,
-  Message,
-  Menu,
-} from "semantic-ui-react";
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
+import Tab from "semantic-ui-react/dist/commonjs/modules/Tab";
+import Card from "semantic-ui-react/dist/commonjs/views/Card";
+import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
+import Menu from "semantic-ui-react/dist/commonjs/collections/Menu";
 
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import * as schoolIconEnMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en";

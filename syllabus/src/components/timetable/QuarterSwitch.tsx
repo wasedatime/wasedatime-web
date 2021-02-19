@@ -4,7 +4,8 @@ import {
   Semester,
   Quarter,
 } from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
-import { Button, Icon } from "semantic-ui-react";
+import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
+import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 
 interface Props extends WithTranslation {
   semesterKey: string;

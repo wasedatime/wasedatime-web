@@ -1,6 +1,7 @@
 import React from "react";
 import FormLabel from "@material-ui/core/FormLabel";
-import { Grid, Dropdown } from "semantic-ui-react";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import FilterGroup from "./FilterGroup";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";

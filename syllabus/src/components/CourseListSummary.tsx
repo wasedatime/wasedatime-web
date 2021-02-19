@@ -3,7 +3,11 @@ import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
-import { Label, Icon, Dropdown } from "semantic-ui-react";
+
+import Label from "semantic-ui-react/dist/commonjs/elements/Label";
+import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
+
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import SortingOption from "@bit/wasedatime.syllabus.ts.constants.sorting-options";
 import Course from "../types/course";

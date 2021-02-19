@@ -4,7 +4,9 @@ import ReviewStars from "./ReviewStars";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
 import ReviewLang from "@bit/wasedatime.syllabus.ts.constants.review-lang";
-import { Button, Icon, Modal } from "semantic-ui-react";
+import Button from "semantic-ui-react/dist/commonjs/elements/Button";
+import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
+import Modal from "semantic-ui-react/dist/commonjs/modules/Modal";
 import ReviewType from "../../types/review";
 
 const ReviewsWrapper = styled("div")`

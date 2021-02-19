@@ -2,7 +2,8 @@ import React from "react";
 import MediaQuery from "react-responsive";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import { Grid, Table } from "semantic-ui-react";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
+import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import { Doughnut } from "react-chartjs-2";
 import Course from "../../types/course";
 

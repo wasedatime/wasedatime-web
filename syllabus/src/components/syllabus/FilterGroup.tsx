@@ -3,7 +3,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import { Dropdown } from "semantic-ui-react";
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import { withStyles } from "@material-ui/core/styles";
 import { WithStyles, createStyles } from "@material-ui/core";
 import styled from "styled-components";

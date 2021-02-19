@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Card, Icon, Dimmer, Image } from "semantic-ui-react";
+import Card from "semantic-ui-react/dist/commonjs/views/Card";
+import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
+import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer";
+import Image from "semantic-ui-react/dist/commonjs/elements/Image";
 
 const SchoolCardWrapper = styled(Dimmer.Dimmable)`
   color: rgba(0, 0, 0, 0.05);

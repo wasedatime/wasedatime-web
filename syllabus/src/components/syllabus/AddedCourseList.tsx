@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { Step, Icon, Message } from "semantic-ui-react";
+import Step from "semantic-ui-react/dist/commonjs/elements/Step";
+import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
+import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import { VerticalStep } from "@bit/wasedatime.syllabus.ts.styles.vertical-step";
 
 import {

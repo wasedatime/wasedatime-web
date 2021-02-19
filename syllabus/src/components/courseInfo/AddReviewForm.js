@@ -4,7 +4,8 @@ import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { Divider, Statistic } from "semantic-ui-react";
+import Divider from "semantic-ui-react/dist/commonjs/elements/Divider";
+import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 
 const StyledSubHeading = styled("h2")`

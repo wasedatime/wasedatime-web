@@ -1,8 +1,10 @@
 import React from "react";
-import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import { Segment, Grid, Table, Statistic, Divider } from "semantic-ui-react";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
+import Table from "semantic-ui-react/dist/commonjs/collections/Table";
+import Divider from "semantic-ui-react/dist/commonjs/elements/Divider";
+import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
 import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
 import Course from "../../types/course";
 import MediaQuery from "react-responsive";

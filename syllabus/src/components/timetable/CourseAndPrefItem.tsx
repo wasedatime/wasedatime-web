@@ -12,7 +12,7 @@ import ColorSelector from "./ColorSelector";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getCourseTitleAndInstructor } from "@bit/wasedatime.syllabus.ts.utils.course-search";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import { Popup } from "semantic-ui-react";
+import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
 import Course from "../../types/course";
 
 const RowWrapper = styled("li")`

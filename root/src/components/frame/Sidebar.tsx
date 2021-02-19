@@ -83,7 +83,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
         onMouseLeave={foldSidebar}
       >
         <Link to={"/home"} className="flex flex-row items-center p-2">
-          <div style={{ flex: "1 1 50px" }}>
+          <div style={{ flex: "0 0 50px" }}>
             <SmallLogo />
           </div>
           {expanded && <div style={{ flex: "0 0 150px" }}>

@@ -12,6 +12,9 @@ workbox.core.setCacheNameDetails({
   runtime: 'runtime',
 });
 
+const precacheController = new workbox.precaching.PrecacheController();
+precacheController.addToCacheList([]);
+
 workbox.routing.registerRoute(
   new RegExp('.*\.(?:html|js|ts|tsx|ejs)'),
   new workbox.strategies.NetworkFirst({
@@ -82,6 +85,3 @@ workbox.routing.registerRoute(
     ],
   })
 );
-
-const precacheController = new workbox.precaching.PrecacheController();
-precacheController.addToCacheList([]);

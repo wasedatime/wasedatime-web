@@ -19,7 +19,7 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   new RegExp('.*\.(?:html|js|ts|tsx|ejs)'),
-  new workbox.strategies.NetworkFirst({
+  new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'wasedatime-code-cache',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({
@@ -35,7 +35,7 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   new RegExp('.*\.(?:css)'),
-  new workbox.strategies.NetworkFirst({
+  new workbox.strategies.StaleWhileRevalidate({
     cacheName: 'wasedatime-style-cache',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({

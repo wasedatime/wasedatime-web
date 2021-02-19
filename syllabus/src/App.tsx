@@ -9,6 +9,8 @@ import API from "@aws-amplify/api";
 const Timetable = lazy(() => import("./containers/TimetableContainer"));
 const Syllabus = lazy(() => import("./containers/SyllabusContainer"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import "./styles/styles.css"
+// import "semantic-ui-css/semantic.min.css"
 
 interface IdAndPrefType {
   id: string;

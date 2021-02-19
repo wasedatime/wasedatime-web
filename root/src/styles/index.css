@@ -627,6 +627,10 @@ video {
   margin-bottom: 1rem;
 }
 
+.mb-4{
+  margin-bottom: 1rem;
+}
+
 .mt-10{
   margin-top: 2.5rem;
 }
@@ -722,12 +726,8 @@ video {
   bottom: 0px;
 }
 
-.bottom-40{
-  bottom: 10rem;
-}
-
-.-top-8{
-  top: -2rem;
+.bottom-28{
+  bottom: 7rem;
 }
 
 *{
@@ -997,22 +997,6 @@ small {
 
 a:focus {
   outline: 0;
-}
-
-/*
-Incredibly useful site:
-https://www.materialpalette.com/colors
-*/
-
-/* semantic override */
-
-.ui.vertical.text.menu .item {
-  margin: 0px;
-}
-
-#loading {
-  text-align: center;
-  padding: auto;
 }
 
 @media (min-width: 768px){

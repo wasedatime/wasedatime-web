@@ -81,7 +81,9 @@ class LoadingSpinner extends React.Component<Props, State> {
     return (
       <ExtendedWrapper>
         <ExtendedOverlay>
-          <AnimatedLogo alt="WasedaTime logo" />
+          <div>
+            <AnimatedLogo alt="WasedaTime logo" />
+          </div>
           <Description>{this.props.message || "Loading..."}</Description>
           <Description>{this.state.delayMessage}</Description>
         </ExtendedOverlay>

@@ -40,15 +40,8 @@ const Nav = () => {
         {(matches) =>
           matches ? (
             <MobileNav
-              navItems={[
-                ...navItems,
-                {
-                  name: "Account",
-                  path: "",
-                  icon: faUserCircle,
-                  onClickFunc: () => setSignInModalOpen(true),
-                },
-              ]}
+              navItems={navItems}
+              openSignInModal={() => setSignInModalOpen(true)}
             />
           ) : (
             <Sidebar

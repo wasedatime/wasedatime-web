@@ -18,7 +18,7 @@ const CourseListWrapper = styled(SimpleBar)`
 `;
 
 const CourseChunkWrapper = styled("div")`
-  margin: 0.5em 0;
+  margin: 0.5em;
 `;
 
 const getChunkKey = (chunk) => {

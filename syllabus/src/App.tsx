@@ -1,7 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-import { Router, Redirect, navigate } from "@reach/router";
-// import Timetable from "./containers/TimetableContainer";
-// import Syllabus from "./containers/SyllabusContainer";
+import "./styles/styles.css";
+import { Router, LocationProvider, navigate } from "@reach/router";
 import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
 import { getAddedCoursePrefs } from "./redux/reducers/addedCourses";
 import { ReduxRootState } from "./redux/reducers";
@@ -43,7 +42,7 @@ const App = ({
   };
 
   useEffect(() => {
-    const f = async () => {
+    const f = async () => {      
       await fetchCourses();
 
       const idToken = await getIdToken();
@@ -77,9 +76,16 @@ const App = ({
 
   return (
     <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+      <LocationProvider>
+        {context => {
+          if (!context.location.pathname.includes("courses") && window.location.pathname.includes("courses")) {
+            navigate(window.location.pathname);
+          }
+        }}
+      </LocationProvider>
       <Router>
-        <Syllabus exact path="courses/syllabus" />
-        <Timetable exact path="courses/timetable" />
+        <Syllabus path="courses/syllabus" />
+        <Timetable path="courses/timetable" />
       </Router>
     </Suspense>
   );

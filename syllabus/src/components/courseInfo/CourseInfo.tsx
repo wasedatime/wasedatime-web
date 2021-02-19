@@ -19,13 +19,6 @@ import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { Segment, Grid } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebookSquare,
-  faTwitterSquare,
-  faLinkedin,
-  faLine,
-  faWhatsappSquare,
-} from "@fortawesome/free-brands-svg-icons";
 
 const CourseInfoWrapper = styled(Segment)`
   width: 100%;

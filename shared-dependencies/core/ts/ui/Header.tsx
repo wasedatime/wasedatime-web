@@ -1,8 +1,7 @@
 import React, { useState } from "react";
+import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import LanguageMenu from "@bit/wasedatime.core.ts.ui.language-menu";
-import { Grid, Input } from "semantic-ui-react";
-import MediaQuery from "react-responsive";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import { navigate } from "@reach/router";
@@ -27,12 +26,34 @@ const StyledHeader = styled("header")`
   left: 0;
   z-index: 90;
   grid-row: 1 / 2;
+  display: flex;
+  flex-direction: row;
 `;
 
-const RoundedInput = styled(Input)`
-  input {
-    border-radius: 25px !important;
-    max-height: 45px;
+const TitleLogoWrapper = styled("header")`
+  flex: 4;
+  ${media.tablet`flex: 3`};
+  padding-right: 0px;
+`;
+
+const SearchBarWrapper = styled.div`
+  flex: 8;
+  ${media.tablet`flex: 10`};
+`;
+
+const LanguageMenuWrapper = styled.div`
+  flex: 4;
+  ${media.tablet`flex: 3`};
+`;
+
+const RoundedInput = styled.input`
+  width: 100%;
+  border-radius: 25px;
+  height: 40px;
+  padding: 0px 1em;
+  border: 1px solid #ddd;
+  &:focus {
+    outline: none;
   }
 `;
 
@@ -64,8 +85,6 @@ const Header = ({
   const searchBar = (
     <div style={{ marginLeft: "0" }}>
       <RoundedInput
-        fluid
-        icon="search"
         placeholder={placeholder || "Search..."}
         onChange={
           onInputChange ? (e) => onInputChange(e.target.value) : () => {}
@@ -79,56 +98,32 @@ const Header = ({
 
   return (
     <StyledHeader isBlur={isBlur}>
-      <Grid style={{ width: "100%" }}>
-        <Grid.Row>
-          <MediaQuery minWidth={sizes.tablet}>
-            {(matches) =>
-              matches ? (
-                <Grid.Column width={4} style={{ paddingRight: "0" }}>
-                  <MediaQuery minWidth={sizes.tablet}>
-                    <PageTitle>{title}</PageTitle>
-                  </MediaQuery>
-                </Grid.Column>
-              ) : (
-                <Grid.Column width={3} style={{ paddingRight: "0px" }}>
-                  <div
-                    style={{
-                      paddingLeft: "1rem",
-                    }}
-                    onClick={() => navigate("/home")}
-                  >
-                    <SmallLogo />
-                  </div>
-                </Grid.Column>
-              )
-            }
-          </MediaQuery>
+      <TitleLogoWrapper>
+        <MediaQuery minWidth={sizes.tablet}>
+          {(matches) =>
+            matches ? (
+              <PageTitle>{title}</PageTitle>
+            ) : (
+              <div
+                style={{
+                  paddingLeft: "1rem",
+                }}
+                onClick={() => navigate("/home")}
+              >
+                <SmallLogo />
+              </div>
+            )
+          }
+        </MediaQuery>
+      </TitleLogoWrapper>
+      
+      <SearchBarWrapper>
+        {searchBar}
+      </SearchBarWrapper>
 
-          <MediaQuery minWidth={sizes.tablet}>
-            {(matches) =>
-              matches ? (
-                <Grid.Column width={8}>{searchBar}</Grid.Column>
-              ) : (
-                <Grid.Column width={10}>{searchBar}</Grid.Column>
-              )
-            }
-          </MediaQuery>
-
-          <MediaQuery minWidth={sizes.tablet}>
-            {(matches) =>
-              matches ? (
-                <Grid.Column width={4}>
-                  <LanguageMenu changeLang={changeLang} />
-                </Grid.Column>
-              ) : (
-                <Grid.Column width={3} style={{ padding: "0px" }}>
-                  <LanguageMenu changeLang={changeLang} />
-                </Grid.Column>
-              )
-            }
-          </MediaQuery>
-        </Grid.Row>
-      </Grid>
+      <LanguageMenuWrapper>
+        <LanguageMenu changeLang={changeLang} />
+      </LanguageMenuWrapper>
     </StyledHeader>
   );
 };

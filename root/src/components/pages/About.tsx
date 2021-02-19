@@ -7,8 +7,6 @@ import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
 import titleLogo from "../../assets/img/title-logo.svg";
 import homeBackground from "../../assets/img/home_background-lg.jpg";
 import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
-import MediaQuery from "react-responsive";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import reviewsImg from "../../assets/img/reviews-example.png";
 import timetableImg1 from "../../assets/img/timetable-example-1.png";
 import timetableImg2 from "../../assets/img/timetable-example-2.png";

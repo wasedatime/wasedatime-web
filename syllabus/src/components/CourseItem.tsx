@@ -33,7 +33,7 @@ const CourseItemWrapper = styled("div")`
   box-shadow: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;
   margin: 1em 0.5em;
   padding: 0.5em 0.8em;
-  width: 98%;
+  width: 96%;
   line-height: 150%;
   &:hover {
     background-color: #eee;

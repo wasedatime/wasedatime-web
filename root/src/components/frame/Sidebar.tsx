@@ -111,7 +111,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
             </Link>
           ))}
         </div>
-        <div className="absolute bottom-40">
+        <div className="absolute bottom-28">
           <OtherLinks expanded={expanded} />
           <UserMenu
             openSignInModal={openSignInModal}

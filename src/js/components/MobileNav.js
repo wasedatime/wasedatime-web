@@ -10,7 +10,7 @@ import {
   faBook,
   faBus,
   faVirus,
-  faStar
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
@@ -70,11 +70,11 @@ const MobileNav = (props) => {
       path: "/syllabus",
       icon: faBook,
     },
-    {
-      name: t("navigation.corona-info"),
-      path: "/corona-info",
-      icon: faVirus,
-    },
+    // {
+    //   name: t("navigation.corona-info"),
+    //   path: "/corona-info",
+    //   icon: faVirus,
+    // },
     // {
     //   name: t("navigation.career"),
     //   path: "/career",

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
-import "./styles/styles.css";
 import { Router, LocationProvider, navigate } from "@reach/router";
 import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
 import { getAddedCoursePrefs } from "./redux/reducers/addedCourses";

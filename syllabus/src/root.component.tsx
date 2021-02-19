@@ -8,7 +8,8 @@ import throttle from "lodash/throttle";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 import { useTranslation } from "react-i18next";
-import 'semantic-ui-css/semantic.min.css'
+import "./styles/styles.css"
+// import "semantic-ui-css/semantic.min.css"
 
 const config = {
   API: {

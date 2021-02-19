@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const {InjectManifest} = require('workbox-webpack-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -92,11 +91,6 @@ module.exports = (webpackConfigEnv, argv) => {
       new MiniCssExtractPlugin({
         filename: "[name].css"
       }),
-      // new CopyWebpackPlugin({
-      //   patterns: [
-      //     { from: './manifest.json', to: './dist/manifest.json' },
-      //   ]
-      // })
       // new BundleAnalyzerPlugin(),
     ],
     externals: ["single-spa", "react", "react-dom"],

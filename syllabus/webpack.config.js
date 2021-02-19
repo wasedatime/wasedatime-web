@@ -1,5 +1,6 @@
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // use .env
 const webpack = require("webpack");
@@ -33,8 +34,10 @@ module.exports = (webpackConfigEnv, argv) => {
       ? [
           new webpack.DefinePlugin({
             "process.env": JSON.stringify(dotenv.config().parsed),
-          }),
+          })
         ]
-      : [new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"])],
+      : [
+          new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"])
+        ],
   });
 };

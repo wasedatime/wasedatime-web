@@ -120,7 +120,7 @@ const Home = ({ path, t, i18n }: Props) => {
               <br />
               {t("welcome.writeReviewsExplain2")}
               <br />
-              <img src={reviewsImg} alt="reviews example" width="100%" />
+              <img src={reviewsImg} alt="reviews example" width="100%" height="100%" />
             </div>
 
             <div className="segment">
@@ -132,13 +132,13 @@ const Home = ({ path, t, i18n }: Props) => {
               {t("welcome.timetableDisplayCredits")}
               <div className="grid grid-cols-8">
                 <div className="col-span-5">
-                  <img src={timetableImg1} alt="timetable example 1" width="100%" />
+                  <img src={timetableImg1} alt="timetable example 1" width="100%" height="100%" />
                 </div>
                 <div style={{ padding: "0px", paddingTop: "20%" }}>
                   <FontAwesomeIcon icon={faExchangeAlt} size="2x" />
                 </div>
                 <div className="col-span-2">
-                  <img src={timetableImg2} alt="timetable example 2" width="100%" />
+                  <img src={timetableImg2} alt="timetable example 2" width="100%" height="100%" />
                 </div>
               </div>
             </div>

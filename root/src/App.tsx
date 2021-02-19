@@ -1,6 +1,5 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
-import Auth from "@aws-amplify/auth";
 import { Hub } from "@aws-amplify/core";
 import { Router, Redirect, navigate } from "@reach/router";
 const TermsOfService = lazy(() => import("./components/pages/TermsOfService"));

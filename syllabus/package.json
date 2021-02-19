@@ -1,6 +1,5 @@
 {
   "name": "@wasedatime/syllabus",
-  "sideEffects": ["*.css"],
   "scripts": {
     "start": "webpack serve --port 8080 --env isLocal",
     "start:standalone": "webpack serve --env standalone",

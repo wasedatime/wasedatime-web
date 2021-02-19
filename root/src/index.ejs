@@ -159,6 +159,9 @@
         <div id="nav"></div>
         <main>
           <route path="courses">
+            <% if (!isLocal) { %>
+            <link rel="stylesheet" href="/syllabus/main.css">
+            <% } %>
             <application name="@wasedatime/syllabus"></application>
           </route>
           <route path="campus">

@@ -1,6 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import "../styles/styles.css"
-import "semantic-ui-css/semantic.min.css"
 import { Helmet } from "react-helmet";
 import styled from "styled-components";
 import debounce from "lodash/debounce";

@@ -1,6 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import "../styles/styles.css"
-import "semantic-ui-css/semantic.min.css"
 import styled from "styled-components";
 import { navigate } from "@reach/router";
 import { ReduxRootState } from "../redux/reducers";

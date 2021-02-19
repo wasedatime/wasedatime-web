@@ -24,7 +24,6 @@ module.exports = (webpackConfigEnv, argv) => {
       },
     },
   })(defaultConfig, {
-    // modify the webpack config however you'd like to by adding to this object
     module: {
       rules: [
         { test: /\.tsx$/, use: "awesome-typescript-loader" },

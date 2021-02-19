@@ -37,9 +37,10 @@ module.exports = (webpackConfigEnv, argv) => {
         },
         {
           test: /\.css$/i,
+          include: [/src\/styles/, /node_modules/],
           use: [
-            webpackConfigEnv.isLocal ? "style-loader" : MiniCssExtractPlugin.loader,
-            { loader: "css-loader", options: { url: false } }
+            MiniCssExtractPlugin.loader,
+            "css-loader"
           ],
           sideEffects: true
         },
@@ -49,6 +50,9 @@ module.exports = (webpackConfigEnv, argv) => {
       ? [
           new webpack.DefinePlugin({
             "process.env": JSON.stringify(dotenv.config().parsed),
+          }),
+          new MiniCssExtractPlugin({
+            filename: "[name].[contenthash].css"
           })
         ]
       : [

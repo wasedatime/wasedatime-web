@@ -11,10 +11,12 @@ import OtherLinks from "./OtherLinks";
 
 const TextLogo = styled.img`
   height: 25px;
-  margin: 0.5rem;
+  margin: 0px !important;
   overflow-x: hidden;
+  width: ${(props) => (props.expanded ? "150px" : "0px")};;
   opacity: ${(props) => (props.expanded ? "1" : "0")};
   transition: opacity 0.3s ease-out;
+  display: inline-block;
 `;
 
 const NavItemBlock = styled.div`
@@ -81,14 +83,18 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
         onMouseLeave={foldSidebar}
       >
         <Link to={"/home"} className="flex flex-row items-center p-2">
-          <SmallLogo />
-          <TextLogo
-            src={textLogo}
-            alt="WasedaTime text logo"
-            width="150"
-            height="50"
-            expanded={expanded}
-          />
+          <div style={{ flex: "1 1 50px" }}>
+            <SmallLogo />
+          </div>
+          {expanded && <div style={{ flex: "0 0 150px" }}>
+            <TextLogo
+              src={textLogo}
+              alt="WasedaTime text logo"
+              width="150"
+              height="50"
+              expanded={expanded}
+            />
+          </div>}
         </Link>
         <div style={{ width: "100%", margin: "0px" }}>
           {navItems.map((item) => (

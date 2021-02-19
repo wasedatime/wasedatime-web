@@ -19,7 +19,7 @@ workbox.routing.registerRoute(
 
 workbox.routing.registerRoute(
   new RegExp('.*\.(?:html|js|ts|tsx|ejs)'),
-  new workbox.strategies.StaleWhileRevalidate({
+  new workbox.strategies.NetworkFirst({
     cacheName: 'wasedatime-code-cache',
     plugins: [
       new workbox.cacheableResponse.CacheableResponsePlugin({

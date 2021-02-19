@@ -40,6 +40,7 @@
   <link rel="stylesheet" href="/main.css">
   <% } %>
 
+  <% if (isLocal) { %>
   <link rel="shortcut icon" sizes="16x16" href="/src/assets/img/favicon.ico" />
   <link rel="icon" sizes="192x192" href="/src/assets/img/logo.png" />
   <link
@@ -62,6 +63,30 @@
     sizes="180x180"
     href="/src/assets/img/maskable_icon.png"
   />
+  <% } else { %>
+  <link rel="shortcut icon" sizes="16x16" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="icon" sizes="192x192" href="%PUBLIC_URL%/logo.png" />
+  <link
+    rel="apple-touch-icon"
+    sizes="128x128"
+    href="%PUBLIC_URL%/maskable_icon.png"
+  />
+  <link
+    rel="apple-touch-icon"
+    sizes="152x152"
+    href="%PUBLIC_URL%/maskable_icon.png"
+  />
+  <link
+    rel="apple-touch-icon"
+    sizes="167x167"
+    href="%PUBLIC_URL%/maskable_icon.png"
+  />
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="%PUBLIC_URL%/maskable_icon.png"
+  />
+  <% } %>
   
   <script type="systemjs-importmap" defer>
     {

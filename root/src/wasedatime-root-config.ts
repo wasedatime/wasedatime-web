@@ -14,7 +14,6 @@ import App from "./App";
 import "./styles/styles.css";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
-// import * as serviceWorkerRegistration from "../serviceWorkerRegistration";
 
 const lifecycles = singleSpaReact({
   React,

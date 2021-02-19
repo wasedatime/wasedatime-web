@@ -41,6 +41,7 @@ module.exports = (webpackConfigEnv, argv) => {
             webpackConfigEnv.isLocal ? "style-loader" : MiniCssExtractPlugin.loader,
             { loader: "css-loader", options: { url: false } }
           ],
+          sideEffects: true
         },
       ],
     },

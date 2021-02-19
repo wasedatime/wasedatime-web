@@ -55,7 +55,7 @@
     "career": "キャリア",
     "corona-info": "コロナ",
     "home": "ホーム",
-    "aboutus":"私たち"
+    "aboutus":"組織概要"
 
   },
   "footer": {
@@ -367,6 +367,10 @@
     "countdown 3": "へ遷移させます..."
   },
   "aboutus":{
+    "our mission":"理念",
+    "join us":"メンバー募集",
+    "meet our team":"チームメンバー",
+
     "We are on a mission": "ミッション",
     "Frontend Engineer": "フロントエンドエンジニア",
     "Backend Engineer": "バックエンドエンジニア",

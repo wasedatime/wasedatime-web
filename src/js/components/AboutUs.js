@@ -35,7 +35,11 @@ const LargeTab = styled(Tab)`
 
 const panes = (t) => [
   {
-    menuItem: <Menu.Item style={{ fontSize: "1.5em" }}>Join Us</Menu.Item>,
+    menuItem: (
+      <Menu.Item style={{ fontSize: "1.5em" }}>
+        {t("aboutus.join us")}
+      </Menu.Item>
+    ),
     render: () => <JoinUs />,
   },
   {
@@ -50,7 +54,9 @@ const panes = (t) => [
   // 其他的就麻煩你修改然後繼續開發～
   {
     menuItem: (
-      <Menu.Item style={{ fontSize: "1.5em" }}>Meet Our Team</Menu.Item>
+      <Menu.Item style={{ fontSize: "1.5em" }}>
+        {t("aboutus.meet our team")}
+      </Menu.Item>
     ),
     render: () => <MeetOurTeam />,
   },

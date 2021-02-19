@@ -119,9 +119,36 @@ const JoinUs = () => {
                 <List.Item value=''>Have passion on learning & creating</List.Item>
                 <List.Item value=''>Self-motivation</List.Item>
                 <List.Item value=''>Have learned any programming language</List.Item>
-                <List.Item value=''>Not necessary but better to know about Git, <br></br>React or HTML/CSS (for frontend), AWS (for backend)</List.Item>
+                <small>* Not necessary but better to know about Git, <br></br> &nbsp; React or HTML/CSS (for frontend), AWS (for backend)</small>
             </List>
             <br></br>
+
+            <Header.Subheader size="huge">
+               <b>Job description</b>
+            </Header.Subheader> 
+            <List bulleted size="medium">
+                <List.Item value=''>Develop new features for WasedaTime</List.Item>
+                <List.Item value=''>Backend automation & maintenance</List.Item>
+                <List.Item value=''>Direction: Make WasedaTime a <b>platform</b> for students</List.Item>
+                <small>* Using React on Frontend and AWS on Backend</small>
+                <br></br>
+                <small>* Preparing for adoption of other frontend frameworks</small>
+            </List>
+            <br></br>
+
+            <Header.Subheader size="huge">
+               <b>What you will get</b>
+            </Header.Subheader> 
+            <List bulleted size="medium">
+                <List.Item value=''>Technical skills and Practical experience on development</List.Item>
+                <List.Item value=''>Knowledges shared by each other</List.Item>
+                <List.Item value=''>Teammates who can fight together to make Waseda better<b>platform</b> for students</List.Item>
+                <small>* All students are welcome, especially 1st & 2nd grade students</small>
+                <br></br>
+                
+            </List>
+            <br></br>
+            
           <Divider hidden />
           <DividerTitle horizontal>
             <Header size="huge">
@@ -136,13 +163,7 @@ const JoinUs = () => {
               & Business Operations
             </Header>
           </DividerTitle>
-  
-          <List bulleted size="medium">
-            <List.Item>Product management</List.Item>
-            <List.Item>Marketing & Advertising</List.Item>
-            <List.Item>Business expansion/liaison</List.Item>
-            <List.Item>Finance</List.Item>
-          </List>
+
           <p>
             The “Non-Tech” team builds bridges across technology to users. They
             transform WasedaTime from code to a vivid product. We are looking for
@@ -151,6 +172,45 @@ const JoinUs = () => {
             business schools and interned at prestigious companies: Morgan
             Stanley, Accenture, etc.
           </p>
+
+          <Header.Subheader size="huge">
+              <b>Roles</b>
+          </Header.Subheader> 
+          <List bulleted size="medium">
+            <List.Item value=''>Product management</List.Item>
+            <List.Item value=''>Marketing & Advertising</List.Item>
+            <List.Item value=''>Business expansion/liaison</List.Item>
+          </List>
+            <br></br>
+
+          <Header.Subheader size="huge">
+            <b>Requirements</b>
+          </Header.Subheader> 
+          <List bulleted size="medium">
+            <List.Item value=''>Have passion on learning, presenting new ideas, building connection</List.Item>
+            <List.Item value=''>Sense of responsibility, business sense (experience in product operation is better)</List.Item>
+          </List>
+            <br></br>
+
+          <Header.Subheader size="huge">
+            <b>Job description</b>
+          </Header.Subheader> 
+          <List bulleted size="medium">
+            <List.Item value=''>Marketing & Advertising（Assist in the growth of new users of the platform、increase awareness、Market research & user analysis）</List.Item>
+            <List.Item value=''>Business development (Looking for business partners) </List.Item>
+            <List.Item value=''>Participate in the new function design and brain storm of Wasedatime.</List.Item>
+          </List>
+            <br></br>
+
+          <Header.Subheader size="huge">
+            <b>What you will get</b>
+          </Header.Subheader> 
+          <List bulleted size="medium">
+            <List.Item value=''>A unique project experience on marketing/advertising/business or opportunities to realize your unique ideas</List.Item>
+            <List.Item value=''>Knowledges shared by each other</List.Item>
+            <List.Item value=''>You will meet creative people with different backgrounds, fighting together to make Waseda better!</List.Item>
+          </List>
+            <br></br>
   
           <Divider hidden />
           <DividerTitle horizontal>

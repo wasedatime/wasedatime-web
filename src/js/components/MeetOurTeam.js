@@ -185,7 +185,8 @@ const MeetOurTeam = ({t}) => {
                 <Card>
                     <MemberImage src={mei}></MemberImage>
                     <MemberName>Mei</MemberName>
-                    <MemberPosition>{t("aboutus.Frontend Engineer")}</MemberPosition>
+                    <MemberPosition>Frontend Engineer</MemberPosition>
+                    {/* <MemberPosition>{t("aboutus.Frontend Engineer")}</MemberPosition> */}
                     <MemberVision></MemberVision>
                     <SocialMediaArea>
                         <a href="https://twitter.com/Rimei9623" target="_blank">
@@ -203,8 +204,9 @@ const MeetOurTeam = ({t}) => {
                 {/* ----------------------------------Tang */}
                 <Card>
                     <MemberImage src={tang}></MemberImage>
-                    <MemberName>{t("aboutus.Yeping Tang")}</MemberName>
-                    <MemberPosition>{t("aboutus.Frontend Engineer")}</MemberPosition>
+                    <MemberName>Yeping Tang</MemberName>
+                    {/* <MemberName>{t("aboutus.Yeping Tang")}</MemberName> */}
+                    <MemberPosition>Frontend Engineer</MemberPosition>
                     <SocialMediaArea>
                         <a href="https://www.facebook.com/nero.archer.94" target="_blank">
                             <MediaIcon src={facebook}></MediaIcon>
@@ -217,7 +219,7 @@ const MeetOurTeam = ({t}) => {
                 <Card>
                     <MemberImage src={gu}></MemberImage>
                     <MemberName>Jiaxian Gu</MemberName>
-                    <MemberPosition>{t("aboutus.Frontend Engineer")}</MemberPosition>
+                    <MemberPosition>Frontend Engineer</MemberPosition>
                     
                     <SocialMediaArea>
                         <a href="https://www.instagram.com/jiaxiangu/" target="_blank">
@@ -237,7 +239,7 @@ const MeetOurTeam = ({t}) => {
                 <Card>
                     <MemberImage src={kong}></MemberImage>
                     <MemberName>Kong</MemberName>
-                    <MemberPosition>{t("aboutus.Backend Engineer")}</MemberPosition>
+                    <MemberPosition>Backend Engineer</MemberPosition>
                     <MemberVision></MemberVision>
                     {/* <SocialMediaArea>
                         <a href="https://www.google.com" target="_blank">
@@ -250,7 +252,7 @@ const MeetOurTeam = ({t}) => {
                 <Card>
                     <MemberImage src={george}></MemberImage>
                     <MemberName>George Xia</MemberName>
-                    <MemberPosition>Product Management</MemberPosition>
+                    <MemberPosition>Product Manager</MemberPosition>
                     <MemberVision></MemberVision>
                     {/* <SocialMediaArea>
                         <a href="https://www.google.com" target="_blank">
@@ -263,7 +265,7 @@ const MeetOurTeam = ({t}) => {
                 <Card>
                     <MemberImage src={zenda}></MemberImage>
                     <MemberName>Zenda Chen</MemberName>
-                    <MemberPosition>Content Creator</MemberPosition>
+                    <MemberPosition>Marketing</MemberPosition>
                     <MemberVision></MemberVision>
                     <SocialMediaArea>
                         <a href="mailto:zenda0211@fuji.waseda.jp" target="_blank">
@@ -280,7 +282,7 @@ const MeetOurTeam = ({t}) => {
                 <Card>
                     <MemberImage src={kaede}></MemberImage>
                     <MemberName>Kaede Iijima</MemberName>
-                    <MemberPosition>{t("aboutus.Software Engineer")}</MemberPosition>
+                    <MemberPosition>Software Engineer</MemberPosition>
                     <MemberVision></MemberVision>
                     <SocialMediaArea>
                         <a href="https://github.com/kaedejima" target="_blank">
@@ -295,8 +297,8 @@ const MeetOurTeam = ({t}) => {
                 {/* ----------------------------------kaiqing */}
                 <Card>
                     <MemberImage src={kaiqing}></MemberImage>
-                    <MemberName>{t("aboutus.Kaiqing")}</MemberName>
-                    <MemberPosition>{t("aboutus.Community Operation")}</MemberPosition>
+                    <MemberName>Kaiqing</MemberName>
+                    <MemberPosition>Marketing</MemberPosition>
                     <MemberVision></MemberVision>
                     <SocialMediaArea>
                         <a href=" https://instagram.com/kaiqing_chang?r=nametag" target="_blank">
@@ -348,8 +350,8 @@ const MeetOurTeam = ({t}) => {
                 {/* ----------------------------------zhaohuaibo */}
                 <Card>
                     <MemberImage src={zhaohuaibo}></MemberImage>
-                    <MemberName>{t("aboutus.Huaibo Zhao")}</MemberName>
-                    <MemberPosition>{t("aboutus.Frontend Engineer")}</MemberPosition>
+                    <MemberName>Huaibo Zhao</MemberName>
+                    <MemberPosition>Frontend Engineer</MemberPosition>
                     
                     <SocialMediaArea>
                         <a href="mailto:huaibozhao3@gmail.com" target="_blank">
@@ -362,8 +364,8 @@ const MeetOurTeam = ({t}) => {
                 {/* ----------------------------------naomi */}
                 <Card>
                     <MemberImage src={naomi}></MemberImage>
-                    <MemberName>{t("aboutus.Naomi Shen")}</MemberName>
-                    <MemberPosition>{t("aboutus.Marketing")}</MemberPosition>
+                    <MemberName>Naomi Shen</MemberName>
+                    <MemberPosition>Marketing</MemberPosition>
                     
                     <SocialMediaArea>
                         <a href="https://www.instagram.com/naomi.shen.1088/" target="_blank">

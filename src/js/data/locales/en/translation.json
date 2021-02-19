@@ -364,10 +364,12 @@
     "countdown 3": " page ..."
   },
   "aboutus":{
+    "our mission":"Our Mission",
+    "join us":"Join Us",
+    "meet our team":"Meet Our Team",
     "We are on a mission": "We are on a mission",
     "Frontend Engineer": "Frontend Engineer",
     "Backend Engineer": "Backend Engineer",
-    "our mission":"Our Mission",
 
     "Kaiqing": "Kaiqing",
     "Yeping Tang": "Yeping Tang",

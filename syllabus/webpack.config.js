@@ -52,13 +52,15 @@ module.exports = (webpackConfigEnv, argv) => {
             "process.env": JSON.stringify(dotenv.config().parsed),
           }),
           new MiniCssExtractPlugin({
-            filename: "[name].[contenthash].css"
+            filename: "[name].[contenthash].css",
+            insert: "#single-spa-application:@wasedatime/syllabus"
           })
         ]
       : [
           new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
           new MiniCssExtractPlugin({
-            filename: "[name].[contenthash].css"
+            filename: "[name].[contenthash].css",
+            insert: "#single-spa-application:@wasedatime/syllabus"
           })
         ],
   });

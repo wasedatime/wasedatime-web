@@ -7,8 +7,6 @@ import {
 import React from "react";
 import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";
-import { BrowserRouter } from "react-router-dom";
-import Auth from "@aws-amplify/auth";
 import Nav from "./components/frame/Nav";
 import App from "./App";
 import "./styles/styles.css";

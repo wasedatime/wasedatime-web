@@ -15,7 +15,7 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     fetch(url).catch(function () {
       new Promise(function (resolve) {
-        if (precacheController.getCachedUrls().indexOf(url) > -1) {
+        if (precacheController.getCacheKeyForURL(url)) {
           resolve(
             caches
               .open(workbox.core.cacheNames.precache)
@@ -41,6 +41,7 @@ self.addEventListener("activate", (event) => {
 
 self.addEventListener("install", function (event) {
   self.skipWaiting();
+  self.clients.claim();
   var timeoutId = null;
   event.waitUntil(
     new Promise(function (resolve, reject) {

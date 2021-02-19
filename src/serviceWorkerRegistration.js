@@ -58,12 +58,7 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
-      console.log(registration);
       registration.onupdatefound = () => {
-        console.log(registration.scope);
-        console.log(registration.installing);
-        console.log(registration.waiting);
-        console.log(registration.active);
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
@@ -79,8 +74,14 @@ function registerValidSW(swUrl, config) {
                 console.log("New changes found! Refresh to activate changes.");
                 waitingWorker.postMessage({ type: "SKIP_WAITING" });
                 if (refreshing) return;
-                window.location.reload();
                 refreshing = true;
+                if (
+                  window.confirm(
+                    "New changes found! Refresh to activate changes?"
+                  )
+                ) {
+                  window.location.reload();
+                }
               }
 
               // Execute callback

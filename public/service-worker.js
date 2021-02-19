@@ -4,81 +4,87 @@ importScripts(
 
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
-
 const precacheController = new workbox.precaching.PrecacheController();
-precacheController.addToCacheList([]); //populated at build-time with workbox-cli
+precacheController.addToCacheList([]);
 
-self.addEventListener("fetch", (event) => {
-  var url = event.request.url.endsWith("/")
-    ? event.request.url + "index.html"
-    : event.request.url;
-  event.respondWith(
-    fetch(url).catch(function () {
-      new Promise(function (resolve) {
-        if (precacheController.getCacheKeyForURL(url)) {
-          resolve(
-            caches
-              .open(workbox.core.cacheNames.precache)
-              .then((cache) => {
-                return cache.match(url);
-              })
-              .then((cachedResponse) => {
-                return cachedResponse;
-              })
-          );
-        } else {
-          resolve(fetch(event.request));
-        }
-      });
-    })
-  );
+workbox.core.setCacheNameDetails({
+  prefix: "wasedatime-cache",
+  precache: "precache",
+  runtime: "runtime",
 });
 
-self.addEventListener("activate", (event) => {
-  event.waitUntil(precacheController.activate());
-  self.clients.claim();
-});
+workbox.routing.registerRoute(
+  ({ event }) => event.request.mode === "navigate",
+  new workbox.strategies.NetworkFirst()
+);
 
-self.addEventListener("install", function (event) {
-  self.skipWaiting();
-  self.clients.claim();
-  var timeoutId = null;
-  event.waitUntil(
-    new Promise(function (resolve, reject) {
-      if (self.registration.waiting) {
-        var channel = new MessageChannel();
-        channel.port1.onmessage = function (event) {
-          resolve();
-        };
+workbox.routing.registerRoute(
+  new RegExp(".*.(?:html|js|ts|tsx|ejs)"),
+  new workbox.strategies.NetworkFirst({
+    cacheName: "wasedatime-code-cache",
+    plugins: [
+      new workbox.cacheableResponse.CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new workbox.expiration.ExpirationPlugin({
+        // Cache for a maximum of 2 weeks
+        maxAgeSeconds: 14 * 24 * 60 * 60,
+      }),
+    ],
+  })
+);
 
-        //tell the current 'waiting' instance to cleanup its temp cache
-        self.registration.waiting.postMessage(
-          {
-            action: "cleanupCache",
-          },
-          [channel.port2]
-        );
-      } else {
-        resolve();
-      }
-    }).finally(function () {
-      //once temp cache is cleaned up from any 'waiting' instance, begin my install
-      return precacheController.install();
-    })
-  );
-});
+workbox.routing.registerRoute(
+  new RegExp(".*.(?:css)"),
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: "wasedatime-style-cache",
+    plugins: [
+      new workbox.cacheableResponse.CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 10,
+        // Cache for a maximum of 1 month
+        maxAgeSeconds: 30 * 24 * 60 * 60,
+      }),
+    ],
+  })
+);
 
-self.addEventListener("message", function (event) {
-  if (event.data && event.data.type === "SKIP_WAITING") {
-    self.skipWaiting();
-    self.clients.claim();
-  }
-  if (event.data.action === "cleanupCache") {
-    //move files from temp cache to permanent cache
-    precacheController.activate().finally(function () {
-      if (event.ports[0]) {
-        event.ports[0].postMessage("cleanupComplete");
-      }
-    });
-  }
-});
+workbox.routing.registerRoute(
+  /.*\.(?:png|jpg|jpeg|svg|gif)/,
+  // Use the cache if it's available
+  new workbox.strategies.StaleWhileRevalidate({
+    // Use a custom cache name
+    cacheName: "wasedatime-image-cache",
+    plugins: [
+      new workbox.cacheableResponse.CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 100,
+        // Cache for a maximum of 3 months
+        maxAgeSeconds: 90 * 24 * 60 * 60,
+      }),
+    ],
+  })
+);
+
+workbox.routing.registerRoute(
+  /.*\.(?:woff|woff2|eot|ttf|otf)/,
+  // Use the cache if it's available
+  new workbox.strategies.StaleWhileRevalidate({
+    // Use a custom cache name
+    cacheName: "wasedatime-fonts-cache",
+    plugins: [
+      new workbox.cacheableResponse.CacheableResponsePlugin({
+        statuses: [0, 200],
+      }),
+      new workbox.expiration.ExpirationPlugin({
+        maxEntries: 5,
+        // Cache for a maximum of 6 months
+        maxAgeSeconds: 180 * 24 * 60 * 60,
+      }),
+    ],
+  })
+);

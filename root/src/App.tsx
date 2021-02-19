@@ -16,14 +16,6 @@ import { useTranslation } from "react-i18next";
 const App = () => {
   Hub.listen("auth", ({ payload: { event, data } }) => {
     switch (event) {
-      // case "signIn":
-      //   break;
-      // case "signOut":
-      //   break;
-      // case "oAuthSignOut":
-      //   break;
-      // case "tokenRefresh":
-      //   break;
       case "customOAuthState":
         navigate(data);
         break;

@@ -39,6 +39,29 @@
   <% } else { %>
   <link rel="stylesheet" href="/main.css">
   <% } %>
+
+  <link rel="shortcut icon" sizes="16x16" href="/src/assets/img/favicon.ico" />
+  <link rel="icon" sizes="192x192" href="/src/assets/img/logo.png" />
+  <link
+    rel="apple-touch-icon"
+    sizes="128x128"
+    href="/src/assets/img/maskable_icon.png"
+  />
+  <link
+    rel="apple-touch-icon"
+    sizes="152x152"
+    href="/src/assets/img/maskable_icon.png"
+  />
+  <link
+    rel="apple-touch-icon"
+    sizes="167x167"
+    href="/src/assets/img/maskable_icon.png"
+  />
+  <link
+    rel="apple-touch-icon"
+    sizes="180x180"
+    href="/src/assets/img/maskable_icon.png"
+  />
   
   <script type="systemjs-importmap" defer>
     {
@@ -180,7 +203,7 @@
 </head>
 <body>
   <div id="loading">
-    <canvas></canvas>
+    <noscript><canvas></canvas></noscript>
   </div>
   <script>
     System.import('@wasedatime/root-config');

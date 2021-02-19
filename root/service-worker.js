@@ -12,8 +12,22 @@ workbox.core.setCacheNameDetails({
   runtime: 'runtime',
 });
 
-const precacheController = new workbox.precaching.PrecacheController();
-precacheController.addToCacheList([]);
+self.addEventListener('install', (event) => {
+  const pagesCache = new workbox.strategies.NetworkFirst({
+    cacheName: 'wasedatime-pages-cache' 
+  });
+  
+  const pagesCacheHandler = (args) => {
+    return pagesCache.handle(args)
+      .then(res => res || caches.match("/"))
+      .catch(err => caches.match("/"));
+  };
+  
+  workbox.routing.registerRoute(
+    /\/home|\/courses\/syllabus|\/courses\/timetable|\/campus/, 
+    pagesCacheHandler
+  );
+});
 
 workbox.routing.registerRoute(
   new RegExp('.*\.(?:html|js|ts|tsx|ejs)'),

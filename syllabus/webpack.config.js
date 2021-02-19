@@ -1,6 +1,6 @@
-const { merge } = require("webpack-merge");
+const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // use .env
 const webpack = require("webpack");
@@ -14,7 +14,14 @@ module.exports = (webpackConfigEnv, argv) => {
     argv,
   });
 
-  return merge(defaultConfig, {
+  return mergeWithRules({
+    module: {
+      rules: {
+        test: "match",
+        use: "replace",
+      },
+    },
+  })(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
     module: {
       rules: [
@@ -28,6 +35,13 @@ module.exports = (webpackConfigEnv, argv) => {
           test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)(\?[a-z0-9=.]+)?$/,
           loader: "url-loader",
         },
+        {
+          test: /\.css$/i,
+          use: [
+            webpackConfigEnv.isLocal ? "style-loader" : MiniCssExtractPlugin.loader,
+            { loader: "css-loader", options: { url: false } }
+          ],
+        },
       ],
     },
     plugins: webpackConfigEnv.isLocal
@@ -37,7 +51,8 @@ module.exports = (webpackConfigEnv, argv) => {
           })
         ]
       : [
-          new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"])
+          new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
+          new MiniCssExtractPlugin()
         ],
   });
 };

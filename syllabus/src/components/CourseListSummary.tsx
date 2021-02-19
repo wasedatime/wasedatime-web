@@ -101,6 +101,7 @@ const CourseListSummary = ({
           onChange={(e, data) => {
             changeSortingOption(data.value);
           }}
+          aria-label="Sort added courses"
         />
       </RowWrapper>
     </div>

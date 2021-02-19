@@ -65,11 +65,11 @@ const SemesterSwitcher = ({
 }) => {
   return (
     <ExtendedRowWrapper>
-      <ExtendedInvisibleButton onClick={toggleSemester}>
+      <ExtendedInvisibleButton onClick={toggleSemester} aria-label="Semester toggle">
         <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
       </ExtendedInvisibleButton>
       <SemesterTitle>{semesterTitle}</SemesterTitle>
-      <ExtendedInvisibleButton onClick={toggleSemester}>
+      <ExtendedInvisibleButton onClick={toggleSemester} aria-label="Semester toggle">
         <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
       </ExtendedInvisibleButton>
       {isQuarterDisplayed && (

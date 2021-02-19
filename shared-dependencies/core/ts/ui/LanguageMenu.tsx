@@ -44,7 +44,7 @@ class LanguangeMenu extends React.Component<
     const { anchorEl } = this.state;
     return (
       <div style={{ float: "right" }}>
-        <StyledButton onClick={this.handleClick}>
+        <StyledButton onClick={this.handleClick} aria-label="Language toggle">
           <FontAwesomeIcon icon={faLanguage} size="3x" transform="shrink-2" />
         </StyledButton>
         <Menu

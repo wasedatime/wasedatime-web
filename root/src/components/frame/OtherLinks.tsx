@@ -55,6 +55,7 @@ const OtherLinks = ({ expanded }: Props) => (
       href="https://github.com/wasedatime/wasedatime-web"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="GitHub link"
     >
       <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
     </SnsLink>
@@ -62,6 +63,7 @@ const OtherLinks = ({ expanded }: Props) => (
       href="https://twitter.com/WasedaTime"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="Twitter link"
     >
       <FontAwesomeIcon icon={faTwitter} size="2x" transform="shrink-2" />
     </SnsLink>
@@ -69,6 +71,7 @@ const OtherLinks = ({ expanded }: Props) => (
       href="https://www.facebook.com/wasedatime"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="Facebook link"
     >
       <FontAwesomeIcon icon={faFacebook} size="2x" transform="shrink-2" />
     </SnsLink>
@@ -76,6 +79,7 @@ const OtherLinks = ({ expanded }: Props) => (
       href="https://www.instagram.com/wasedatime/"
       target="_blank"
       rel="noopener noreferrer"
+      aria-label="Instagram link"
     >
       <FontAwesomeIcon icon={faInstagram} size="2x" transform="shrink-2" />
     </SnsLink>

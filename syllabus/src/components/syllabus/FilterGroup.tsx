@@ -99,7 +99,7 @@ const FilterGroup = ({
         key={input.value}
         control={
           <Checkbox
-            id={input.value}
+            id={inputName + "_" + input.value}
             name={inputName}
             value={input.value}
             checked={input.ischecked}
@@ -134,6 +134,7 @@ const FilterGroup = ({
         onChange={(e, data) => {
           handleToggleFilter(inputName, data.value);
         }}
+        aria-label={inputName}
       />
     );
   }

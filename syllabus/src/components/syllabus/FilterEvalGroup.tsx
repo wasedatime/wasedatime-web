@@ -78,6 +78,7 @@ const FilterEvalGroup = ({
             onChange={(e, data) => {
               handleToggleFilter(typeInputName, data.value);
             }}
+            aria-label={typeInputName}
           />
         </Grid.Column>
         <Grid.Column width={9} style={{ paddingTop: "0" }}>
@@ -89,6 +90,7 @@ const FilterEvalGroup = ({
             tipFormatter={(value) => value + "%"}
             tipProps={{ placement: "bottom", visible: true }}
             onAfterChange={(v) => handleToggleFilter(percentInputName, v)}
+            ariaLabelGroupForHandles={[percentInputName + "Min", percentInputName + "Max"]}
           />
         </Grid.Column>
       </Grid>

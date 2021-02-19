@@ -23,7 +23,7 @@ import { Badge } from "@bit/wasedatime.core.ts.styles.badge";
 import CourseInfo from "./courseInfo/CourseInfo";
 import Course from "../types/course";
 
-const CourseItemWrapper = styled("div")`
+const CourseItemWrapper = styled("li")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
@@ -127,6 +127,7 @@ const mapSchoolToIcon = (school, lng) => (
       }
       width="24px"
       height="24px"
+      alt={school}
     />
   </SchoolIconItem>
 );
@@ -295,6 +296,7 @@ const CourseItem = ({
                 handleOnClick(title, i18n.language);
               }}
               style={{ cursor: "pointer" }}
+              aria-label="Add course button"
             >
               {buttonIcon}
             </InvisibleButton>

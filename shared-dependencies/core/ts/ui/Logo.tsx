@@ -13,9 +13,9 @@ const StyledSmallLogo = styled("img")`
   height: 50px;
 `;
 
-export const Logo = () => <StyledLogo src={logo} width="120" height="120" />;
-export const LogoJp = () => <StyledLogo src={logoJp} width="120" height="120" />;
-export const SmallLogo = () => <StyledSmallLogo src={logo} width="50" height="50" />;
-export const SmallLogoJp = () => <StyledSmallLogo src={logoJp} width="50" height="50" />;
+export const Logo = () => <StyledLogo src={logo} width="120" height="120" alt="WasedaTime Logo" />;
+export const LogoJp = () => <StyledLogo src={logoJp} width="120" height="120" alt="WasedaTime JP Logo" />;
+export const SmallLogo = () => <StyledSmallLogo src={logo} width="50" height="50" alt="WasedaTime small Logo" />;
+export const SmallLogoJp = () => <StyledSmallLogo src={logoJp} width="50" height="50" alt="WasedaTime small JP Logo" />;
 
 export default Logo;

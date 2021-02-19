@@ -83,7 +83,7 @@ const Header = ({
   changeLang,
 }: HeaderProps) => {
   const searchBar = (
-    <div style={{ marginLeft: "0" }}>
+    <label style={{ marginLeft: "0" }}>
       <RoundedInput
         placeholder={placeholder || "Search..."}
         onChange={
@@ -93,7 +93,7 @@ const Header = ({
         disabled={disabled}
         autoFocus={true}
       />
-    </div>
+    </label>
   );
 
   return (

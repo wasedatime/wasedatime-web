@@ -135,13 +135,15 @@ class AddedCourseList extends React.Component<Props, State> {
               overflowX: "hidden",
             }}
           >
-            {addedCourses.map((course, index) => (
-              <AddedCourseItemContainer
-                key={index}
-                course={course}
-                removeCourseFromList={this.removeCourseFromList}
-              />
-            ))}
+            <ul>
+              {addedCourses.map((course, index) => (
+                <AddedCourseItemContainer
+                  key={index}
+                  course={course}
+                  removeCourseFromList={this.removeCourseFromList}
+                />
+              ))}
+            </ul>
           </SimpleBar>
         ) : (
           <ExtendedArticle>

@@ -4,8 +4,7 @@ importScripts(
 
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
-const precacheController = new workbox.precaching.PrecacheController();
-precacheController.addToCacheList([]);
+workbox.precaching.precacheAndRoute([]);
 
 workbox.core.setCacheNameDetails({
   prefix: "wasedatime-cache",

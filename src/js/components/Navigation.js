@@ -95,11 +95,11 @@ const Navigation = ({ isHovered, t }) => {
     //   path: "/career",
     //   icon: faBriefcase,
     // },
-    {
-      name: t("navigation.bus"),
-      path: "/bus",
-      icon: faBus,
-    },
+    // {
+    //   name: t("navigation.bus"),
+    //   path: "/bus",
+    //   icon: faBus,
+    // },
     {
       name: t("navigation.aboutus"),
       path: "/aboutus",

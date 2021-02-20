@@ -1,18 +1,29 @@
 export function register() {
-  if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
+  if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker
         .register(`${process.env.PUBLIC_URL}/sw.js`)
-        .then(function (reg) {
-          var refreshing;
-          navigator.serviceWorker.addEventListener(
-            "controllerchange",
-            function () {
-              if (refreshing) return;
-              refreshing = true;
-              window.location.reload();
-            }
-          );
+        .then(function (registration) {
+          const installingWorker = registration.installing;
+          if (installingWorker) {
+            var refreshing;
+            installingWorker.onstatechange = () => {
+              if (installingWorker.state === "installed") {
+                if (navigator.serviceWorker.controller) {
+                  const waitingWorker = registration.waiting;
+                  if (waitingWorker) {
+                    waitingWorker.postMessage({ type: "SKIP_WAITING" });
+                    if (refreshing) return;
+                    refreshing = true;
+                    window.location.reload();
+                  }
+                }
+              }
+            };
+          }
+        })
+        .catch((error) => {
+          console.error("Error during service worker registration:", error);
         });
     });
   }

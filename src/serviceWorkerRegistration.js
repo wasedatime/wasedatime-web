@@ -3,7 +3,7 @@ export function register() {
     window.addEventListener("load", () => {
       navigator.serviceWorker
         .register(`${process.env.PUBLIC_URL}/sw.js`)
-        .then(function (reg) {
+        .then(function (registration) {
           var refreshing;
           navigator.serviceWorker.addEventListener(
             "controllerchange",
@@ -13,6 +13,9 @@ export function register() {
               window.location.reload();
             }
           );
+        })
+        .catch((error) => {
+          console.error("Error during service worker registration:", error);
         });
     });
   }

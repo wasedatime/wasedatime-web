@@ -1,5 +1,5 @@
 export function register() {
-  if ("serviceWorker" in navigator) {
+  if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker
         .register("/service-worker.js")
@@ -9,14 +9,8 @@ export function register() {
             "controllerchange",
             function () {
               if (refreshing) return;
-              if (
-                window.confirm(
-                  "New update available! Please confirm to refresh"
-                )
-              ) {
-                window.location.reload();
-                refreshing = true;
-              }
+              refreshing = true;
+              window.location.reload();
             }
           );
         });

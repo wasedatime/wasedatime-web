@@ -9,14 +9,8 @@ export function register() {
             "controllerchange",
             function () {
               if (refreshing) return;
-              if (
-                window.confirm(
-                  "New update available! Please confirm to refresh"
-                )
-              ) {
-                window.location.reload();
-                refreshing = true;
-              }
+              refreshing = true;
+              window.location.reload();
             }
           );
         });

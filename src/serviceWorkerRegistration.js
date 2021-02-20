@@ -2,7 +2,7 @@ export function register() {
   if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
     window.addEventListener("load", () => {
       navigator.serviceWorker
-        .register("/service-worker.js")
+        .register(`${process.env.PUBLIC_URL}/sw.js`)
         .then(function (reg) {
           var refreshing;
           navigator.serviceWorker.addEventListener(

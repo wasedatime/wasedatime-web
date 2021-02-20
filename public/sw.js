@@ -26,3 +26,10 @@ workbox.routing.registerRoute(
   /.*\.(?:png|jpg|jpeg|svg|gif|woff|woff2|eot|ttf|otf)/,
   new workbox.strategies.StaleWhileRevalidate()
 );
+
+self.addEventListener("message", function (event) {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+    self.clients.claim();
+  }
+});

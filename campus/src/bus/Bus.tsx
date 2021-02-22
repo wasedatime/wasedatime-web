@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 // import Header from "../../src/js/components/Header";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { busSchedule } from "../constants/busSchedule";
-import "../styles/datetime.css";
+import "../styles/styles.css";
 import "react-datepicker/dist/react-datepicker.css";
 
 const wasedaNishiwasedaBusUri =
@@ -320,7 +320,7 @@ const Bus = (): JSX.Element => {
 
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
   }, []);
 
   const lng = i18n.language;

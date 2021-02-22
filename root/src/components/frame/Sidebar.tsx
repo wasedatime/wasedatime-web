@@ -13,9 +13,11 @@ const TextLogo = styled.img`
   height: 25px;
   margin: 0px !important;
   overflow-x: hidden;
-  width: ${(props) => (props.expanded ? "150px" : "0px")};;
+  width: ${(props) => (props.expanded ? "150px" : "0px")};
   opacity: ${(props) => (props.expanded ? "1" : "0")};
-  transition: ${(props) => (props.expanded ? "opacity 0.5s ease-out 0.3s" : "opacity 0.3s")}, width 0.3s;
+  transition: ${(props) =>
+      props.expanded ? "opacity 0.5s ease-out 0.3s" : "opacity 0.3s"},
+    width 0.3s;
   display: inline-block;
 `;
 
@@ -117,7 +119,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
             </Link>
           ))}
         </div>
-        <div className="absolute bottom-28">
+        <div className="absolute bottom-20">
           <OtherLinks expanded={expanded} />
           <UserMenu
             openSignInModal={openSignInModal}

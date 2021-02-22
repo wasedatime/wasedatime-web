@@ -11,7 +11,7 @@ import {
 
 const LinksWrapper = styled("div")`
   ${(props) => (props.expanded ? "width: 210px;" : "width: 100%;")}
-  height: 130px;
+  height: 120px;
   overflow-x: hidden;
   padding: 0px;
   margin-bottom: 0.1vh;

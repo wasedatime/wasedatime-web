@@ -2,8 +2,9 @@ const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const {InjectManifest} = require('workbox-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { InjectManifest } = require("workbox-webpack-plugin");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -28,7 +29,7 @@ module.exports = (webpackConfigEnv, argv) => {
       rules: [
         { test: /\.tsx$/, use: "awesome-typescript-loader" },
         {
-          test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)(\?[a-z0-9=.]+)?$/,
+          test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)$/,
           loader: "url-loader",
         },
         {
@@ -57,8 +58,11 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
+      new CopyWebpackPlugin({
+        patterns: [{ from: "./src/styles/fonts", to: "./fonts" }],
+      }),
       new InjectManifest({
-        swSrc: './service-worker.js',
+        swSrc: "./service-worker.js",
       }),
       new WebpackPwaManifest({
         filename: "/[name].json",
@@ -72,23 +76,23 @@ module.exports = (webpackConfigEnv, argv) => {
           {
             src: "./src/assets/img/favicon.ico",
             sizes: [64, 32, 24, 16],
-            type: "image/x-icon"
+            type: "image/x-icon",
           },
           {
             src: "./src/assets/img/logo.png",
             size: "512x512",
-            type: "image/png"
+            type: "image/png",
           },
           {
             src: "./src/assets/img/maskable_icon.png",
             size: "627x627",
             type: "image/png",
-            purpose: "any maskable"
-          }
-        ]
+            purpose: "any maskable",
+          },
+        ],
       }),
       new MiniCssExtractPlugin({
-        filename: "[name].css"
+        filename: "[name].css",
       }),
       // new BundleAnalyzerPlugin(),
     ],

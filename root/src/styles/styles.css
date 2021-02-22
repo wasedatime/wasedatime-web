@@ -1,13 +1,13 @@
 @font-face {
   font-family: "Segoe UI";
-  src: local("Segoe UI"), url("./fonts/segoe-ui.ttf") format("truetype");
+  src: local("Segoe UI"), url("/fonts/segoe-ui.ttf") format("truetype");
   font-display: swap;
 }
 
 @font-face {
   font-family: "Yu Gothic Medium";
   src: local("Yu Gothic Medium"),
-    url("./fonts/yugothic-medium.otf") format("opentype");
+    url("/fonts/yugothic-medium.otf") format("opentype");
   font-display: swap;
 }
 

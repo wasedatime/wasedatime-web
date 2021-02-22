@@ -11,6 +11,7 @@ import Footer from "./components/frame/Footer";
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { useTranslation } from "react-i18next";
+import CommonStyle from "./common-style";
 
 const App = () => {
   Hub.listen("auth", ({ payload: { event, data } }) => {
@@ -22,10 +23,10 @@ const App = () => {
         break;
     }
   });
-  
+
   const { i18n } = useTranslation();
   useEffect(() => {
-    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
   }, []);
 
   return (
@@ -43,23 +44,22 @@ const App = () => {
         />
         <meta property="og:site_name" content="WasedaTime - Home" />
       </Helmet>
+      <CommonStyle />
       <Suspense fallback={<LoadingSpinner message={"Loading..."} />}>
-          {
-            localStorage.getItem("isFirstAccess") === null ? (
-              <About path="/" />
-            ) : (
-              <Router>
-                <TermsOfService path="/terms-of-service" />
-                <PrivacyPolicy path="/privacy-policy" />
-                <RedirectPage path="/verify" />
-                <About path="/home" />
-                <Redirect from="/" to="/courses/timetable" noThrow />
-                <Redirect from="/" to="/courses/timetable" noThrow />
-                <Redirect from="/timetable" to="/courses/timetable" noThrow />
-                <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
-              </Router>
-            )
-          }
+        {localStorage.getItem("isFirstAccess") === null ? (
+          <About path="/" />
+        ) : (
+          <Router>
+            <TermsOfService path="/terms-of-service" />
+            <PrivacyPolicy path="/privacy-policy" />
+            <RedirectPage path="/verify" />
+            <About path="/home" />
+            <Redirect from="/" to="/courses/timetable" noThrow />
+            <Redirect from="/" to="/courses/timetable" noThrow />
+            <Redirect from="/timetable" to="/courses/timetable" noThrow />
+            <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
+          </Router>
+        )}
       </Suspense>
       <MediaQuery maxWidth={sizes.tablet}>
         {(matches) => matches && <Footer />}

@@ -1,3 +1,6 @@
+import { createGlobalStyle } from "styled-components";
+
+const CommonStyle = createGlobalStyle`
 *,
 *:before,
 *:after {
@@ -64,3 +67,7 @@ small {
 a:focus {
   outline: 0;
 }
+
+`;
+
+export default CommonStyle;

@@ -16,9 +16,9 @@ const StyledDropdown = styled(Dropdown)`
   padding: 0.2rem 0.5rem 0.1rem 0.5rem !important;
 
   a.ui.label {
-    line-height: 1 !important;
-    padding: 0px 1rem 0.5rem 1rem !important;
-    font-size: 0.9em !important;
+    .delete.icon {
+      padding: 0px !important;
+    }
   }
   .menu .text {
     line-height: 1.2 !important;

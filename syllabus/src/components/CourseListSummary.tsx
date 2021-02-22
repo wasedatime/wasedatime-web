@@ -29,6 +29,7 @@ const SortByButton = styled(InvisibleButton)`
 
 const StyledLabel = styled(Label)`
   height: 30px;
+  padding: 0.5em !important;
 `;
 
 const SortingIcon = styled(Icon)`
@@ -90,10 +91,10 @@ const CourseListSummary = ({
   return (
     <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
-        <StyledLabel size="tiny" color="grey" basic>
+        <StyledLabel size="small" color="grey" basic>
           {`${courses.length}`} courses
         </StyledLabel>
-        <StyledLabel size="tiny" color="grey" basic>
+        <StyledLabel size="small" color="grey" basic>
           {creditSum(courses)} credits
         </StyledLabel>
         <SortingIcon name="sort content ascending" />

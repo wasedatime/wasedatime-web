@@ -1,4 +1,3 @@
-// todo use binary switch
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -65,11 +64,17 @@ const SemesterSwitcher = ({
 }) => {
   return (
     <ExtendedRowWrapper>
-      <ExtendedInvisibleButton onClick={toggleSemester} aria-label="Semester toggle">
+      <ExtendedInvisibleButton
+        onClick={toggleSemester}
+        aria-label="Semester toggle"
+      >
         <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
       </ExtendedInvisibleButton>
       <SemesterTitle>{semesterTitle}</SemesterTitle>
-      <ExtendedInvisibleButton onClick={toggleSemester} aria-label="Semester toggle">
+      <ExtendedInvisibleButton
+        onClick={toggleSemester}
+        aria-label="Semester toggle"
+      >
         <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
       </ExtendedInvisibleButton>
       {isQuarterDisplayed && (

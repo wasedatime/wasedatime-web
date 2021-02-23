@@ -319,7 +319,6 @@ const MeetOurTeam = ({t}) => {
                     <MemberImage src={hatori}></MemberImage>
                     <MemberName>Zhen Chao</MemberName>
                     <MemberPosition>Frontend Engineer</MemberPosition>
-                    <MemberVision></MemberVision>
                     <SocialMediaArea>
                         <a href="https://www.linkedin.com/in/%E8%87%BB-%E6%9B%B9-771718186/" target="_blank">
                             <MediaIcon src={linkedin}></MediaIcon>
@@ -329,7 +328,7 @@ const MeetOurTeam = ({t}) => {
                         </a>
                         {/* <WeChatQRcode qrcode={GuWeChatQRcode}/> */}
                     </SocialMediaArea>
-                    <MemberVision>いまが最高！</MemberVision>
+                    <MemberVision>{t("aboutus.seize the day")}</MemberVision>
                 </Card>
 
                 {/* ----------------------------------yaoyuan */}

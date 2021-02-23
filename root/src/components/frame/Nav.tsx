@@ -12,27 +12,29 @@ const MobileNav = lazy(() => import("./MobileNav"));
 const SignInModal = lazy(
   () => import("@bit/wasedatime.core.ts.ui.sign-in-modal")
 );
-
-const navItems = [
-  {
-    name: "Timetable",
-    path: "/courses/timetable",
-    icon: faCalendarAlt,
-  },
-  {
-    name: "Syllabus",
-    path: "/courses/syllabus",
-    icon: faBook,
-  },
-  {
-    name: "Campus",
-    path: "/campus",
-    icon: faMapMarkedAlt,
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const Nav = () => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const navItems = [
+    {
+      name: t("navigation.timetable"),
+      path: "/courses/timetable",
+      icon: faCalendarAlt,
+    },
+    {
+      name: t("navigation.syllabus"),
+      path: "/courses/syllabus",
+      icon: faBook,
+    },
+    {
+      name: t("navigation.bus"),
+      path: "/campus",
+      icon: faMapMarkedAlt,
+    },
+  ];
 
   return (
     <Suspense fallback={""}>

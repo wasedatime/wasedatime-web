@@ -70,9 +70,13 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
   return notSignedIn ? (
     <React.Fragment>
       <UserMenuTrigger onClick={openSignInModal}>
-        <FontAwesomeIcon icon={faUserCircle} size="2x" />
+        <FontAwesomeIcon
+          icon={faUserCircle}
+          size="2x"
+          style={{ marginLeft: "4px" }}
+        />
         {!isMobileMode && (
-          <StyledSpan ishovered={isHovered}>Sign in</StyledSpan>
+          <StyledSpan ishovered={isHovered}>{t("user.Sign in")}</StyledSpan>
         )}
       </UserMenuTrigger>
     </React.Fragment>

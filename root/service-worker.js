@@ -4,86 +4,32 @@ importScripts(
 
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
-workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+workbox.precaching.precacheAndRoute([]);
 
 workbox.core.setCacheNameDetails({
-  prefix: 'wasedatime-cache',
-  precache: 'precache',
-  runtime: 'runtime',
+  prefix: "wasedatime-cache",
+  precache: "precache",
+  runtime: "runtime",
 });
 
 workbox.routing.registerRoute(
-  ({event}) => event.request.mode === 'navigate',
+  ({ event }) => event.request.mode === "navigate",
   new workbox.strategies.NetworkFirst()
 );
 
 workbox.routing.registerRoute(
-  new RegExp('.*\.(?:html|js|ts|tsx|ejs)'),
-  new workbox.strategies.NetworkFirst({
-    cacheName: 'wasedatime-code-cache',
-    plugins: [
-      new workbox.cacheableResponse.CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new workbox.expiration.ExpirationPlugin({
-        // Cache for a maximum of 2 weeks
-        maxAgeSeconds: 14 * 24 * 60 * 60,
-      })
-    ],
-  })
+  /.*\.(?:js|css)/,
+  new workbox.strategies.NetworkFirst()
 );
 
 workbox.routing.registerRoute(
-  new RegExp('.*\.(?:css)'),
-  new workbox.strategies.StaleWhileRevalidate({
-    cacheName: 'wasedatime-style-cache',
-    plugins: [
-      new workbox.cacheableResponse.CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 10,
-        // Cache for a maximum of 1 month
-        maxAgeSeconds: 30 * 24 * 60 * 60,
-      })
-    ],
-  })
+  /.*\.(?:png|jpg|jpeg|svg|gif|woff|woff2|eot|ttf|otf)/,
+  new workbox.strategies.StaleWhileRevalidate()
 );
 
-workbox.routing.registerRoute(
-  /.*\.(?:png|jpg|jpeg|svg|gif)/,
-  // Use the cache if it's available
-  new workbox.strategies.StaleWhileRevalidate({
-    // Use a custom cache name
-    cacheName: 'wasedatime-image-cache',
-    plugins: [
-      new workbox.cacheableResponse.CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 100,
-        // Cache for a maximum of 3 months
-        maxAgeSeconds: 90 * 24 * 60 * 60,
-      })
-    ],
-  })
-);
-
-workbox.routing.registerRoute(
-  /.*\.(?:woff|woff2|eot|ttf|otf)/,
-  // Use the cache if it's available
-  new workbox.strategies.StaleWhileRevalidate({
-    // Use a custom cache name
-    cacheName: 'wasedatime-fonts-cache',
-    plugins: [
-      new workbox.cacheableResponse.CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new workbox.expiration.ExpirationPlugin({
-        maxEntries: 5,
-        // Cache for a maximum of 6 months
-        maxAgeSeconds: 180 * 24 * 60 * 60,
-      })
-    ],
-  })
-);
+self.addEventListener("message", function (event) {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+    self.clients.claim();
+  }
+});

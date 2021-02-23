@@ -22,6 +22,7 @@ const ExtendedRowWrapper = styled(RowWrapper)`
 `;
 
 const ExtendedInvisibleButton = styled(InvisibleButton)`
+  max-width: 50px;
   color: #000;
   &:hover {
     color: #b51e36;

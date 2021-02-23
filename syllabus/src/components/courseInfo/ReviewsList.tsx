@@ -5,7 +5,8 @@ import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
 import ReviewLang from "@bit/wasedatime.syllabus.ts.constants.review-lang";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
-import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Modal from "semantic-ui-react/dist/commonjs/modules/Modal";
 import ReviewType from "../../types/review";
 
@@ -185,14 +186,14 @@ class ReviewsList extends React.Component<Props, State> {
                     })
                   }
                 >
-                  <Icon name="pencil alternate" />
+                  <FontAwesomeIcon icon={faPen} />
                 </Editbutton>
                 <Deletebutton
                   icon
                   size="massive"
                   onClick={() => this.openDeleteModal(review, i)}
                 >
-                  <Icon name="trash" />
+                  <FontAwesomeIcon icon={faTrash} />
                 </Deletebutton>
               </span>
             )}

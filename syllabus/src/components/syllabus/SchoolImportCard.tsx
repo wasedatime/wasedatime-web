@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import Card from "semantic-ui-react/dist/commonjs/views/Card";
-import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
 import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer";
 import Image from "semantic-ui-react/dist/commonjs/elements/Image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDownload, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const SchoolCardWrapper = styled(Dimmer.Dimmable)`
   color: rgba(0, 0, 0, 0.05);
@@ -55,8 +56,8 @@ const SchoolImportCard = ({
         }}
       >
         {!loaded && (
-          <Icon
-            name={loading ? "spinner" : "download"}
+          <FontAwesomeIcon
+            icon={loading ? faSpinner : faDownload}
             style={{
               color: loading ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0.05)",
             }}

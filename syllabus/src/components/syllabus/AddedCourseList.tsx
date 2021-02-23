@@ -1,11 +1,15 @@
 import React from "react";
 import stickybits from "stickybits";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faMinusCircle,
+  faPlusCircle,
+  faSearch,
+  faPlus,
+} from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Step from "semantic-ui-react/dist/commonjs/elements/Step";
-import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import { VerticalStep } from "@bit/wasedatime.syllabus.ts.styles.vertical-step";
 
@@ -158,7 +162,7 @@ class AddedCourseList extends React.Component<Props, State> {
               <Subheading as="h3">{t("syllabus.To add a course")}</Subheading>
               <StyledStepGroup vertical fluid>
                 <VerticalStep>
-                  <Icon name="search" />
+                  <FontAwesomeIcon icon={faSearch} />
                   <Step.Content>
                     <Step.Title>
                       {t("syllabus.Search with keywords")}
@@ -173,7 +177,7 @@ class AddedCourseList extends React.Component<Props, State> {
                 </VerticalStep>
 
                 <Step>
-                  <Icon name="plus" />
+                  <FontAwesomeIcon icon={faPlus} />
                   <Step.Content>
                     <Step.Title>
                       {t("syllabus.Click on")}{" "}

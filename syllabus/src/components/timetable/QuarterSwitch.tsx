@@ -4,9 +4,9 @@ import {
   Semester,
   Quarter,
 } from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
-import Icon from "semantic-ui-react/dist/commonjs/elements/Icon";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 interface Props extends WithTranslation {
   semesterKey: string;
   selectedQuarter: string;
@@ -27,7 +27,9 @@ const QuarterSwitch = ({
         onClick={() => toggleQuarter(Quarter.SPRING)}
         style={{ padding: "0px 1em", height: "24px" }}
       >
-        {selectedQuarter === Quarter.SPRING && <Icon name="check" />}
+        {selectedQuarter === Quarter.SPRING && (
+          <FontAwesomeIcon icon={faCheck} />
+        )}
         {t("syllabus.semesterMap.Spring")}
       </Button>
       <Button.Or style={{ height: "24px" }} />
@@ -37,7 +39,9 @@ const QuarterSwitch = ({
         onClick={() => toggleQuarter(Quarter.SUMMER)}
         style={{ padding: "0px 1em", height: "24px" }}
       >
-        {selectedQuarter === Quarter.SUMMER && <Icon name="check" />}
+        {selectedQuarter === Quarter.SUMMER && (
+          <FontAwesomeIcon icon={faCheck} />
+        )}
         {t("syllabus.semesterMap.Summer")}
       </Button>
     </Button.Group>
@@ -49,7 +53,7 @@ const QuarterSwitch = ({
         onClick={() => toggleQuarter(Quarter.FALL)}
         style={{ padding: "0px 1em", height: "24px" }}
       >
-        {selectedQuarter === Quarter.FALL && <Icon name="check" />}
+        {selectedQuarter === Quarter.FALL && <FontAwesomeIcon icon={faCheck} />}
         {t("syllabus.semesterMap.Fall")}
       </Button>
       <Button.Or style={{ height: "24px" }} />
@@ -59,7 +63,9 @@ const QuarterSwitch = ({
         onClick={() => toggleQuarter(Quarter.WINTER)}
         style={{ padding: "0px 1em", height: "24px" }}
       >
-        {selectedQuarter === Quarter.WINTER && <Icon name="check" />}
+        {selectedQuarter === Quarter.WINTER && (
+          <FontAwesomeIcon icon={faCheck} />
+        )}
         {t("syllabus.semesterMap.Winter")}
       </Button>
     </Button.Group>

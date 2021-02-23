@@ -9,8 +9,25 @@ import API from "@aws-amplify/api";
 const Timetable = lazy(() => import("./containers/TimetableContainer"));
 const Syllabus = lazy(() => import("./containers/SyllabusContainer"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import "./styles/styles.css"
-import "semantic-ui-css/semantic.min.css"
+import "semantic-ui-css/components/label.css";
+import "semantic-ui-css/components/dropdown.css";
+import "semantic-ui-css/components/divider.css";
+import "semantic-ui-css/components/statistic.css";
+import "semantic-ui-css/components/grid.css";
+import "semantic-ui-css/components/table.css";
+import "semantic-ui-css/components/segment.css";
+import "semantic-ui-css/components/label.css";
+import "semantic-ui-css/components/button.css";
+import "semantic-ui-css/components/modal.css";
+import "semantic-ui-css/components/popup.css";
+import "semantic-ui-css/components/step.css";
+import "semantic-ui-css/components/message.css";
+import "semantic-ui-css/components/tab.css";
+import "semantic-ui-css/components/card.css";
+import "semantic-ui-css/components/menu.css";
+import "semantic-ui-css/components/dimmer.css";
+import "semantic-ui-css/components/image.css";
+import "./styles/styles.css";
 
 interface IdAndPrefType {
   id: string;
@@ -43,7 +60,7 @@ const App = ({
   };
 
   useEffect(() => {
-    const f = async () => {      
+    const f = async () => {
       await fetchCourses();
 
       const idToken = await getIdToken();
@@ -78,8 +95,11 @@ const App = ({
   return (
     <Suspense fallback={<LoadingSpinner message="Loading..." />}>
       <LocationProvider>
-        {context => {
-          if (!context.location.pathname.includes("courses") && window.location.pathname.includes("courses")) {
+        {(context) => {
+          if (
+            !context.location.pathname.includes("courses") &&
+            window.location.pathname.includes("courses")
+          ) {
             navigate(window.location.pathname);
           }
         }}

@@ -40,13 +40,12 @@ const RelatedCourse = styled.div`
   flex: 0 0 25%;
 `;
 
-const StyledSubHeading = styled("h2")`
+const StyledSubHeading = styled("h6")`
   align-self: flex-start;
   margin: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-weight: 300;
-  ${media.tablet`font-size: 2rem;`};
 `;
 
 const getCourseKey = (course) => course[SyllabusKey.ID].substring(0, 12);

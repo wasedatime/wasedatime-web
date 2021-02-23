@@ -4,11 +4,8 @@ import styled from "styled-components";
 const ReviewLangSwitch = styled("button")`
   font-size: 0.6em;
   border: none;
-  padding: 5px 10px;
+  padding: 2px 10px;
   background-color: #ddd;
-  height: 2em;
-  vertical-align: 0.3em;
-  line-height: 15px;
   ${(props) =>
     props.active && "border-bottom: 2px solid #fff; background-color: #eee;"};
   ${(props) => props.isInHeading && "line-height: 20px;"};

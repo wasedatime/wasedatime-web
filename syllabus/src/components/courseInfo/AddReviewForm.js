@@ -8,12 +8,11 @@ import Divider from "semantic-ui-react/dist/commonjs/elements/Divider";
 import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 
-const StyledSubHeading = styled("h2")`
+const StyledSubHeading = styled("h5")`
   align-self: flex-start;
   margin: 1rem 0px !important;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
-  font-size: 2rem;
   font-weight: 300;
   ${media.tablet`font-size: 2rem;`};
 `;
@@ -30,20 +29,18 @@ const StyledForm = styled("form")`
 const ScalesList = styled("div")`
   display: flex;
   flex-direction: row;
-  font-size: 0.8em !important;
   ${media.tablet`flex: 2; flex-direction: column;`};
 `;
 
 const Scale = styled(Statistic)`
-  margin: 0.5em 0 !important;
+  margin: 0.5em 0px !important;
+  padding: 0px 2em !important;
   flex: 1 0 33%;
   text-align: center;
-  ${"" /* font-size: 0.6em !important; */}
-`;
-
-const Stars = styled(Statistic.Value)`
   font-size: 0.5em !important;
 `;
+
+const Stars = styled(Statistic.Value)``;
 
 const StyledTextarea = styled("textarea")`
   border: 1px solid #eee;
@@ -54,11 +51,13 @@ const StyledTextarea = styled("textarea")`
   margin: 5px 0 0;
   height: 100px;
   flex: 1 0 auto;
+  font-size: 1.5em !important;
 `;
 
 const FormActions = styled("div")`
   display: flex;
   margin-top: 10px;
+  font-size: 1.5em !important;
 `;
 
 const SubmitFormButton = styled("button")`
@@ -67,7 +66,6 @@ const SubmitFormButton = styled("button")`
   color: #fff;
   border: 0px;
   border-radius: 5px 0 0 5px;
-  padding: 0.3em;
 `;
 
 const CloseFormButton = styled("button")`
@@ -76,11 +74,10 @@ const CloseFormButton = styled("button")`
   color: #fff;
   border: 0px;
   border-radius: 0 5px 5px 0;
-  padding: 0.3em;
 `;
 
 const FieldLegend = styled(Divider)`
-  font-size: 1.2em !important;
+  font-size: 1.5em !important;
   width: 60% !important;
   margin: 1em 20% !important;
 `;
@@ -183,7 +180,7 @@ class AddReviewForm extends React.Component {
           >
             <FieldLegend horizontal>{t(`courseInfo.Scales`)}</FieldLegend>
             <ScalesList>
-              <Scale size="small">
+              <Scale size="tiny">
                 <Stars>
                   {this.displayStars(
                     "satisfaction",
@@ -195,7 +192,7 @@ class AddReviewForm extends React.Component {
                   {t(`courseInfo.Satisfaction`)}
                 </Statistic.Label>
               </Scale>
-              <Scale size="small">
+              <Scale size="tiny">
                 <Statistic.Value>
                   {this.displayStars(
                     "difficulty",
@@ -205,7 +202,7 @@ class AddReviewForm extends React.Component {
                 </Statistic.Value>
                 <Statistic.Label>{t(`courseInfo.Difficulty`)}</Statistic.Label>
               </Scale>
-              <Scale size="small">
+              <Scale size="tiny">
                 <Statistic.Value>
                   {this.displayStars(
                     "benefit",

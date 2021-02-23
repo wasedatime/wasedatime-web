@@ -28,13 +28,15 @@ const ReviewDivider = styled("hr")`
 `;
 
 const ReviewText = styled("div")`
-  ${media.phoneMini`font-size: 1.4rem; flex: 1 0 60%;`};
+  font-size: 1.3em;
+  line-height: 1.5em;
+  ${media.phoneMini`font-size: 1.5em; flex: 1 0 60%;`};
 `;
 
 const GoogleTranslationHint = styled("p")`
   margin: 0;
   margin-top: 5px;
-  font-size: 0.7em;
+  font-size: 0.8em;
   color: #aaa;
 `;
 
@@ -43,7 +45,7 @@ const ReviewCreatedTime = styled(GoogleTranslationHint)`
 `;
 
 const ReviewTitle = styled("h6")`
-  font-size: 0.7em;
+  line-height: 1.5em;
   margin-top: 0;
   margin-bottom: 0.5em;
 `;
@@ -61,9 +63,9 @@ const ReviewScalesList = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  font-size: 1em;
-  ${media.tablet`font-size: 1em;`};
-  ${media.phoneMini`font-size: 1.2rem; flex: 1 0 40%;`};
+  font-size: 1.4em;
+  line-height: 1.5em;
+  ${media.phoneMini`flex: 1 0 40%;`};
 `;
 
 const ReviewScale = styled("div")`

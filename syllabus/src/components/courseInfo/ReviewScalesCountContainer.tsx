@@ -28,7 +28,6 @@ const ReviewScale = styled("div")`
   padding: 1rem 0px;
   text-align: center;
   color: #333;
-  font-size: 0.8em;
   ${media.tablet`
     flex: 1;
     padding: 0.2rem 0px;
@@ -43,7 +42,6 @@ const ReviewsCount = styled("div")`
   text-align: center;
   justify-content: flex-start;
   color: #777;
-  font-size: 0.6em;
 `;
 
 interface Props extends WithTranslation {
@@ -64,14 +62,23 @@ const ReviewScalesCountContainer = ({
     <ReviewScalesList>
       <ReviewScale>
         <ReviewStars scale={avgSatisfaction} />
+        <MediaQuery maxWidth={sizes.tablet}>
+          {(matches) => !matches && <br />}
+        </MediaQuery>
         <span>&nbsp;{t(`courseInfo.Satisfaction`)}</span>
       </ReviewScale>
       <ReviewScale>
         <ReviewStars scale={avgDifficulty} />
+        <MediaQuery maxWidth={sizes.tablet}>
+          {(matches) => !matches && <br />}
+        </MediaQuery>
         <span>&nbsp;{t(`courseInfo.Difficulty`)}</span>
       </ReviewScale>
       <ReviewScale>
         <ReviewStars scale={avgBenefit} />
+        <MediaQuery maxWidth={sizes.tablet}>
+          {(matches) => !matches && <br />}
+        </MediaQuery>
         <span>&nbsp;{t(`courseInfo.Benefit`)}</span>
       </ReviewScale>
     </ReviewScalesList>

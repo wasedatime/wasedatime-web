@@ -55,6 +55,12 @@ const SideColumn = styled.div`
   flex-shrink: 0;
 `;
 
+const ShorterSideColumn = styled.div`
+  flex: 15em;
+  flex-grow: 0;
+  flex-shrink: 0;
+`;
+
 const MiddleColumn = styled.div`
   flex: auto;
 `;
@@ -237,7 +243,7 @@ class SyllabusContainer extends React.Component<
   };
 
   render() {
-    const { fetchCourses, isFetching, t, i18n } = this.props;
+    const { fetchCourses, t, i18n } = this.props;
     let newI18n = { ...i18n };
 
     const { fetchedCourses, searchTerm, inputText } = this.state;
@@ -252,9 +258,7 @@ class SyllabusContainer extends React.Component<
           )
         : fetchedCourses;
 
-    return isFetching ? (
-      <LoadingSpinner message="Fetching courses..." />
-    ) : (
+    return (
       <SyllabusWrapper>
         <Helmet>
           <title>WasedaTime - Syllabus Search</title>
@@ -308,9 +312,9 @@ class SyllabusContainer extends React.Component<
               />
             </Suspense>
           </MiddleColumn>
-          <MediaQuery minWidth={sizes.desktop}>
-            {(matches) => {
-              return matches ? (
+          <MediaQuery minWidth={1280}>
+            {(matches) =>
+              matches && (
                 <SideColumn>
                   <Filter
                     filterGroups={this.state.filterGroups}
@@ -319,7 +323,26 @@ class SyllabusContainer extends React.Component<
                     isSideBar={true}
                   />
                 </SideColumn>
-              ) : (
+              )
+            }
+          </MediaQuery>
+          <MediaQuery minWidth={sizes.desktop} maxWidth={1279}>
+            {(matches) =>
+              matches && (
+                <ShorterSideColumn>
+                  <Filter
+                    filterGroups={this.state.filterGroups}
+                    handleToggleFilter={this.handleToggleFilter}
+                    clearFilter={this.clearFilter}
+                    isSideBar={true}
+                  />
+                </ShorterSideColumn>
+              )
+            }
+          </MediaQuery>
+          <MediaQuery maxWidth={sizes.desktop - 1}>
+            {(matches) =>
+              matches && (
                 <div>
                   <FilterButton
                     isModalOpen={this.state.isModalOpen}
@@ -334,8 +357,8 @@ class SyllabusContainer extends React.Component<
                     />
                   </Modal>
                 </div>
-              );
-            }}
+              )
+            }
           </MediaQuery>
         </SyllabusFlex>
       </SyllabusWrapper>

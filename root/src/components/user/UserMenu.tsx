@@ -78,26 +78,25 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
     </React.Fragment>
   ) : (
     <div className="relative inline-block text-left">
-      <div>
-        <button
-          type="button"
-          className="inline-flex justify-center w-full rounded-md shadow-sm p-4 bg-blank text-white focus:outline-none"
-          id="options-menu"
-          aria-haspopup="true"
-          aria-expanded="true"
-        >
-          <img
-            src={userAttr.picture}
-            width="40"
-            height="40"
-            className="rounded-full"
-            alt="Image of User account"
-          />
-          <StyledSpan className="pt-3" ishovered={isHovered}>
-            {userAttr.name}
-          </StyledSpan>
-        </button>
-      </div>
+      <button
+        type="button"
+        className="inline-flex w-full rounded-md shadow-sm p-4 bg-blank text-white focus:outline-none"
+        id="options-menu"
+        aria-haspopup="true"
+        aria-expanded="true"
+      >
+        <img
+          src={userAttr.picture}
+          width="40"
+          height="40"
+          className="rounded-full"
+          alt="Image of User account"
+          style={{ marginLeft: "2px" }}
+        />
+        <StyledSpan className="pt-3" ishovered={isHovered}>
+          {userAttr.name}
+        </StyledSpan>
+      </button>
 
       <div
         className={`transition-opacity ${

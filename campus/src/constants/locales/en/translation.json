@@ -1,4 +1,7 @@
 {
+  "navigation": {
+    "campus": "Campus"
+  },
   "room": {
     "Under Construction": "Under Construction",
     "Want to help?": "Wanna build an amazing app with us?",

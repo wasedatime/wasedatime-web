@@ -1,4 +1,7 @@
 {
+  "navigation": {
+    "campus": "キャンパス"
+  },
   "room": {
     "Under Construction": "作成中",
     "Want to help?": "一緒に楽しく開発しませんか？",

@@ -11,9 +11,9 @@ import OtherLinks from "./OtherLinks";
 
 const TextLogo = styled.img`
   height: 25px;
-  margin: 0px !important;
+  margin: 0 0 0 10px !important;
   overflow-x: hidden;
-  width: ${(props) => (props.expanded ? "150px" : "0px")};
+  width: ${(props) => (props.expanded ? "130px" : "0px")};
   opacity: ${(props) => (props.expanded ? "1" : "0")};
   transition: ${(props) =>
       props.expanded ? "opacity 0.5s ease-out 0.3s" : "opacity 0.3s"},
@@ -86,17 +86,21 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
       >
         <Link
           to={"/home"}
-          className="flex flex-row items-center p-2"
-          style={{ height: "67px" }}
+          className="flex flex-row items-center"
+          style={{
+            height: "67px",
+            borderBottom: "2px solid #b51e36",
+            padding: "8px",
+          }}
         >
-          <div style={{ flex: "0 0 50px" }}>
+          <div style={{ flex: "0 0 50px", textAlign: "center" }}>
             <SmallLogo />
           </div>
-          <div style={{ flex: "0 0 150px" }}>
+          <div style={{ flex: "0 0 130px" }}>
             <TextLogo
               src={textLogo}
               alt="WasedaTime text logo"
-              width="150"
+              width="130"
               height="50"
               expanded={expanded}
             />

@@ -12,7 +12,7 @@ import DatePicker from "react-datepicker";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-// import Header from "../../src/js/components/Header";
+import Header from "@bit/wasedatime.core.ts.ui.header";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { busSchedule } from "../constants/busSchedule";
 import "../styles/styles.css";
@@ -343,11 +343,15 @@ const Bus = (): JSX.Element => {
         />
         <meta property="og:site_name" content="WasedaTime - Bus" />
       </Helmet>
-      {/* <Header
-          title={t("navigation.bus")}
-          placeholder="Search classroom (in construction...)"
-          disabled={true}
-        /> */}
+      <Header
+        title={t("navigation.campus")}
+        onInputChange={() => {}}
+        placeholder={"Search classroom (in construction...)"}
+        inputText={""}
+        disabled={true}
+        isBlur={false}
+        changeLang={(lng) => i18n.changeLanguage(lng)}
+      />
       <InfoWrapper>
         <p>
           <FontAwesomeIcon icon={faSearch} size="1x" />{" "}

@@ -17,7 +17,7 @@ const FooterWrapper = styled("footer")`
   background-color: #222222;
   font-weight: 300;
   z-index: 900;
-  padding-top: 0.5rem;
+  padding: 0.5rem 0px;
 `;
 
 const StyledLink = styled("a")`

@@ -42,7 +42,7 @@ const ExtendedInvisibleButton = styled(InvisibleButton)`
 `;
 
 const SemesterTitle = styled("div")`
-  width: 10em;
+  width: 300px;
   text-align: center;
 `;
 
@@ -79,7 +79,7 @@ const SemesterSwitcher = ({
         <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
       </ExtendedInvisibleButton>
       {isQuarterDisplayed && (
-        <div style={{ marginLeft: "2em" }}>
+        <div style={{ marginLeft: "5vw" }}>
           <QuarterSwitch
             semesterKey={selectedSemester}
             selectedQuarter={selectedQuarter}

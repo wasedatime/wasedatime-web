@@ -34,7 +34,8 @@ const StyledLabel = styled(Label)`
 `;
 
 const SortingIcon = styled(FontAwesomeIcon)`
-  margin-left: auto !important;
+  margin: auto;
+  margin-right: 0.5em;
 `;
 
 const StyledDropdown = styled(Dropdown)`
@@ -92,13 +93,13 @@ const CourseListSummary = ({
   return (
     <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
-        <StyledLabel size="small" color="grey" basic>
+        <StyledLabel size="big" color="grey" basic>
           {`${courses.length}`} courses
         </StyledLabel>
-        <StyledLabel size="small" color="grey" basic>
+        <StyledLabel size="big" color="grey" basic>
           {creditSum(courses)} credits
         </StyledLabel>
-        <SortingIcon icon={faSort} />
+        <SortingIcon icon={faSort} />{" "}
         <StyledDropdown
           placeholder={"Sort by"}
           selection

@@ -10,7 +10,7 @@ const Timetable = lazy(() => import("./containers/TimetableContainer"));
 const Syllabus = lazy(() => import("./containers/SyllabusContainer"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import "semantic-ui-css/components/label.css";
-import "semantic-ui-css/components/dropdown.css";
+import "semantic-ui-css/components/dropdown.min.css";
 import "semantic-ui-css/components/divider.css";
 import "semantic-ui-css/components/statistic.css";
 import "semantic-ui-css/components/grid.css";
@@ -27,6 +27,7 @@ import "semantic-ui-css/components/card.css";
 import "semantic-ui-css/components/menu.css";
 import "semantic-ui-css/components/dimmer.css";
 import "semantic-ui-css/components/image.css";
+import "semantic-ui-css/components/icon.css";
 import "./styles/styles.css";
 
 interface IdAndPrefType {

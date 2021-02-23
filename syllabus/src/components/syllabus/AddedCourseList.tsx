@@ -1,12 +1,7 @@
 import React from "react";
 import stickybits from "stickybits";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faMinusCircle,
-  faPlusCircle,
-  faSearch,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
+import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Step from "semantic-ui-react/dist/commonjs/elements/Step";
@@ -57,6 +52,10 @@ const StyledStepGroup = styled(Step.Group)`
   .title {
     font-family: Segoe UI, Yu Gothic Medium, Lato !important;
     font-display: swap;
+    font-size: 1.5em !important;
+  }
+  .description {
+    font-size: 1.5em !important;
   }
 `;
 
@@ -159,10 +158,9 @@ class AddedCourseList extends React.Component<Props, State> {
               </StyledMessageHeader>
             </Message>
             <Section>
-              <Subheading as="h3">{t("syllabus.To add a course")}</Subheading>
+              <Subheading as="h5">{t("syllabus.To add a course")}</Subheading>
               <StyledStepGroup vertical fluid>
                 <VerticalStep>
-                  <FontAwesomeIcon icon={faSearch} />
                   <Step.Content>
                     <Step.Title>
                       {t("syllabus.Search with keywords")}
@@ -177,7 +175,6 @@ class AddedCourseList extends React.Component<Props, State> {
                 </VerticalStep>
 
                 <Step>
-                  <FontAwesomeIcon icon={faPlus} />
                   <Step.Content>
                     <Step.Title>
                       {t("syllabus.Click on")}{" "}

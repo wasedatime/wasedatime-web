@@ -80,10 +80,10 @@ export const fetchCourses = () => async (
   const schools = getState().fetchedCourses.schools;
   var coursesBySchool = {};
   var updatedSchools = {};
-  const schoolKeys = Object.keys(schools).filter(schoolKey => {
+  const schoolKeys = Object.keys(schools).filter((schoolKey) => {
     const exp = schools[schoolKey].exp;
     return !exp || Date.parse(exp) <= Date.now();
-  })
+  });
 
   if (schoolKeys.length === 0) return;
 
@@ -110,7 +110,7 @@ export const fetchCourses = () => async (
           name: school.name,
           exp: res.headers["expires"],
           ids: res.data.map((c) => c[SyllabusKey.ID]),
-          active: true
+          active: true,
         };
         return;
       })
@@ -118,8 +118,11 @@ export const fetchCourses = () => async (
       dispatch({
         type: FETCH_COURSES_SUCCESS,
         payload: {
-          coursesBySchool: {...getState().fetchedCourses.coursesBySchool, ...coursesBySchool},
-          updatedSchools: {...schools, ...updatedSchools},
+          coursesBySchool: {
+            ...getState().fetchedCourses.coursesBySchool,
+            ...coursesBySchool,
+          },
+          updatedSchools: { ...schools, ...updatedSchools },
         },
       });
     });
@@ -211,6 +214,10 @@ export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
       !unloadSchools.includes(school)
     )
       unloadSchools.push(school);
+  });
+
+  dispatch({
+    type: FETCH_COURSES_REQUEST,
   });
 
   Promise.all(

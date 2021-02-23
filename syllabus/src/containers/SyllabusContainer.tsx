@@ -61,6 +61,7 @@ const MiddleColumn = styled.div`
 
 interface ReduxStateProps {
   fetchedCourses: Course[];
+  isFetching: boolean;
 }
 
 interface ReduxDispatchProps {
@@ -135,7 +136,10 @@ class SyllabusContainer extends React.Component<
     if (courseId) await this.setTopCourse(courseId);
   }
 
-  async componentDidUpdate() {
+  async componentDidUpdate(prevProps) {
+    if (prevProps.isFetching && !this.props.isFetching) {
+      this.setState({ fetchedCourses: this.props.fetchedCourses });
+    }
     const courseId = queryString.parse(window.location.search).courseId;
     if (courseId && this.state.topCourseId !== courseId) {
       await this.setTopCourse(courseId);
@@ -233,7 +237,7 @@ class SyllabusContainer extends React.Component<
   };
 
   render() {
-    const { fetchCourses, t, i18n } = this.props;
+    const { fetchCourses, isFetching, t, i18n } = this.props;
     let newI18n = { ...i18n };
 
     const { fetchedCourses, searchTerm, inputText } = this.state;
@@ -248,7 +252,9 @@ class SyllabusContainer extends React.Component<
           )
         : fetchedCourses;
 
-    return (
+    return isFetching ? (
+      <LoadingSpinner message="Fetching courses..." />
+    ) : (
       <SyllabusWrapper>
         <Helmet>
           <title>WasedaTime - Syllabus Search</title>
@@ -337,11 +343,10 @@ class SyllabusContainer extends React.Component<
   }
 }
 
-const mapStateToProps = (state: ReduxRootState) => {
-  return {
-    fetchedCourses: getFetchedCoursesList(state.fetchedCourses.coursesBySchool),
-  };
-};
+const mapStateToProps = (state: ReduxRootState) => ({
+  fetchedCourses: getFetchedCoursesList(state.fetchedCourses.coursesBySchool),
+  isFetching: state.fetchedCourses.isFetching,
+});
 
 const mapDispatchToProps = {
   fetchCourses,

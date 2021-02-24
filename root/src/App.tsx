@@ -4,7 +4,7 @@ import { Hub } from "@aws-amplify/core";
 import { Router, Redirect, navigate } from "@reach/router";
 const TermsOfService = lazy(() => import("./components/pages/TermsOfService"));
 const PrivacyPolicy = lazy(() => import("./components/pages/PrivacyPolicy"));
-const About = lazy(() => import("./components/pages/About"));
+const Home = lazy(() => import("./components/pages/Home"));
 import RedirectPage from "./components/user/RedirectPage";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import Footer from "./components/frame/Footer";
@@ -47,13 +47,13 @@ const App = () => {
       <CommonStyle />
       <Suspense fallback={<LoadingSpinner message={"Loading..."} />}>
         {localStorage.getItem("isFirstAccess") === null ? (
-          <About path="/" />
+          <Home path="/" showFeatures={true} />
         ) : (
           <Router>
             <TermsOfService path="/terms-of-service" />
             <PrivacyPolicy path="/privacy-policy" />
             <RedirectPage path="/verify" />
-            <About path="/home" />
+            <Home path="/home" showFeatures={false} />
             <Redirect from="/" to="/courses/timetable" noThrow />
             <Redirect from="/" to="/courses/timetable" noThrow />
             <Redirect from="/timetable" to="/courses/timetable" noThrow />

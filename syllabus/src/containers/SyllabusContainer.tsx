@@ -259,7 +259,7 @@ class SyllabusContainer extends React.Component<
         : fetchedCourses;
 
     return (
-      <SyllabusWrapper>
+      <SyllabusWrapper className="theme-default">
         <Helmet>
           <title>WasedaTime - Syllabus Search</title>
           <meta

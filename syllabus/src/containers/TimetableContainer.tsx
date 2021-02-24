@@ -109,7 +109,7 @@ class TimetableContainer extends React.Component<
     );
 
     return (
-      <TimetableWrapper>
+      <TimetableWrapper className="theme-default">
         <Helmet>
           <title>WasedaTime - Timetable</title>
           <meta

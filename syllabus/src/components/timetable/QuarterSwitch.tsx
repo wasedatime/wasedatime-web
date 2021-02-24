@@ -7,6 +7,15 @@ import {
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+
+const OrButton = styled(Button.Or)`
+  height: 24px;
+  &:before {
+    color: #777 !important;
+  }
+`;
+
 interface Props extends WithTranslation {
   semesterKey: string;
   selectedQuarter: string;
@@ -40,7 +49,7 @@ const QuarterSwitch = ({
         )}{" "}
         {t("syllabus.semesterMap.Spring")}
       </Button>
-      <Button.Or style={{ height: "24px" }} />
+      <OrButton />
       <Button
         inverted
         color="orange"
@@ -64,7 +73,7 @@ const QuarterSwitch = ({
         {selectedQuarter === Quarter.FALL && <FontAwesomeIcon icon={faCheck} />}{" "}
         {t("syllabus.semesterMap.Fall")}
       </Button>
-      <Button.Or style={{ height: "24px", color: "#222" }} />
+      <OrButton />
       <Button
         inverted
         color="blue"

@@ -45,6 +45,17 @@ module.exports = (webpackConfigEnv, argv) => {
           ],
           sideEffects: true,
         },
+        {
+          test: /\.scss$/i,
+          use: [
+            webpackConfigEnv.isLocal
+              ? "style-loader"
+              : MiniCssExtractPlugin.loader,
+            "css-loader",
+            "sass-loader",
+          ],
+          sideEffects: true,
+        },
       ],
     },
     plugins:

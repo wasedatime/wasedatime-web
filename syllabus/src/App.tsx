@@ -9,26 +9,9 @@ import API from "@aws-amplify/api";
 const Timetable = lazy(() => import("./containers/TimetableContainer"));
 const Syllabus = lazy(() => import("./containers/SyllabusContainer"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import "semantic-ui-css/components/label.css";
 import "semantic-ui-css/components/dropdown.min.css";
-import "semantic-ui-css/components/divider.css";
-import "semantic-ui-css/components/statistic.css";
-import "semantic-ui-css/components/grid.css";
-import "semantic-ui-css/components/table.css";
-import "semantic-ui-css/components/segment.css";
-import "semantic-ui-css/components/label.css";
-import "semantic-ui-css/components/button.css";
-import "semantic-ui-css/components/modal.css";
-import "semantic-ui-css/components/popup.css";
-import "semantic-ui-css/components/step.css";
-import "semantic-ui-css/components/message.css";
-import "semantic-ui-css/components/tab.css";
-import "semantic-ui-css/components/card.css";
-import "semantic-ui-css/components/menu.css";
-import "semantic-ui-css/components/dimmer.css";
-import "semantic-ui-css/components/image.css";
-import "semantic-ui-css/components/icon.css";
-import "./styles/styles.css";
+import "semantic-ui-css/components/icon.min.css";
+import "./styles/styles.scss";
 
 interface IdAndPrefType {
   id: string;

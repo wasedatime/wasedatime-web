@@ -164,7 +164,6 @@ const MeetOurTeam = ({t}) => {
                     <MemberImage src={austin}></MemberImage>
                     <MemberName>Austin Zhu</MemberName>
                     <MemberPosition>Project Co-leader</MemberPosition>
-                    <MemberVision></MemberVision>
                     <SocialMediaArea>
                         <a href="https://www.instagram.com/austinzhu123/" target="_blank">
                             <MediaIcon src={instagram}></MediaIcon>
@@ -179,6 +178,7 @@ const MeetOurTeam = ({t}) => {
                             <MediaIcon src={wechat}></MediaIcon>
                         </a> */}
                     </SocialMediaArea>
+                    <MemberVision>WasedaTime is gonna be legendary.</MemberVision>
                 </Card>
 
                 {/* ----------------------------------Mei */}

@@ -153,7 +153,6 @@ const MeetOurTeam = ({ t }) => {
           <MemberImage src={austin}></MemberImage>
           <MemberName>Austin Zhu</MemberName>
           <MemberPosition>Project Co-leader</MemberPosition>
-          <MemberVision></MemberVision>
           <SocialMediaArea>
             <a
               href="https://www.instagram.com/austinzhu123/"
@@ -180,6 +179,7 @@ const MeetOurTeam = ({ t }) => {
                             <MediaIcon src={wechat}></MediaIcon>
                         </a> */}
           </SocialMediaArea>
+          <MemberVision>WasedaTime is gonna be legendary.</MemberVision>
         </Card>
 
         {/* ----------------------------------Mei */}
@@ -376,7 +376,6 @@ const MeetOurTeam = ({ t }) => {
           <MemberImage src={hatori}></MemberImage>
           <MemberName>Zhen Chao</MemberName>
           <MemberPosition>Frontend Engineer</MemberPosition>
-          <MemberVision></MemberVision>
           <SocialMediaArea>
             <a
               href="https://www.linkedin.com/in/%E8%87%BB-%E6%9B%B9-771718186/"
@@ -393,7 +392,7 @@ const MeetOurTeam = ({ t }) => {
               <MediaIcon src={facebook}></MediaIcon>
             </a>
           </SocialMediaArea>
-          <MemberVision>いまが最高！</MemberVision>
+          <MemberVision>{t("aboutus.seize the day")}</MemberVision>
         </Card>
 
         {/* ----------------------------------yaoyuan */}

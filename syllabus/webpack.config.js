@@ -1,6 +1,6 @@
 const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // use .env
 const webpack = require("webpack");
@@ -38,24 +38,27 @@ module.exports = (webpackConfigEnv, argv) => {
         {
           test: /\.css$/i,
           use: [
-            webpackConfigEnv.isLocal ? "style-loader" : MiniCssExtractPlugin.loader,
-            "css-loader"
+            webpackConfigEnv.isLocal
+              ? "style-loader"
+              : MiniCssExtractPlugin.loader,
+            "css-loader",
           ],
-          sideEffects: true
+          sideEffects: true,
         },
       ],
     },
-    plugins: webpackConfigEnv.isLocal
-      ? [
-          new webpack.DefinePlugin({
-            "process.env": JSON.stringify(dotenv.config().parsed),
-          })
-        ]
-      : [
-          new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
-          new MiniCssExtractPlugin({
-            filename: "[name].css"
-          })
-        ],
+    plugins:
+      webpackConfigEnv.isLocal || webpackConfigEnv.standalone
+        ? [
+            new webpack.DefinePlugin({
+              "process.env": JSON.stringify(dotenv.config().parsed),
+            }),
+          ]
+        : [
+            new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
+            new MiniCssExtractPlugin({
+              filename: "[name].css",
+            }),
+          ],
   });
 };

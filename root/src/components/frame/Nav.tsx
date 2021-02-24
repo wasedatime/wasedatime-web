@@ -1,4 +1,4 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import {
@@ -16,7 +16,13 @@ import { useTranslation } from "react-i18next";
 
 const Nav = () => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    window.onstorage = () => {
+      i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
+    };
+  }, []);
 
   const navItems = [
     {

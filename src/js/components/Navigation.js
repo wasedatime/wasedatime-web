@@ -10,7 +10,8 @@ import {
   faBook,
   faBus,
   faVirus,
-  faStar
+  faStar,
+  faUsers
 } from "@fortawesome/free-solid-svg-icons";
 
 import { media } from "../styled-components/utils";
@@ -103,7 +104,7 @@ const Navigation = ({ isHovered, t }) => {
     {
       name: t("navigation.aboutus"),
       path: "/aboutus",
-      icon: faStar,
+      icon: faUsers,
     },
   ];
   const styledLinks = navItems.map((item) => {

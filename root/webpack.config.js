@@ -46,6 +46,10 @@ module.exports = (webpackConfigEnv, argv) => {
             "postcss-loader",
           ],
         },
+        {
+          test: /\.scss$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        },
       ],
     },
     plugins: [
@@ -59,7 +63,14 @@ module.exports = (webpackConfigEnv, argv) => {
         },
       }),
       new CopyWebpackPlugin({
-        patterns: [{ from: "./src/styles/fonts", to: "./fonts" }],
+        patterns: [
+          { from: "./src/styles/fonts", to: "./fonts" },
+          { from: "./src/assets/img/contributors", to: "./img/contributors" },
+          {
+            from: "./src/assets/img/socialmediaicon",
+            to: "./img/socialmediaicon",
+          },
+        ],
       }),
       new InjectManifest({
         swSrc: "./service-worker.js",

@@ -4,6 +4,7 @@ import { Hub } from "@aws-amplify/core";
 import { Router, Redirect, navigate } from "@reach/router";
 const TermsOfService = lazy(() => import("./components/pages/TermsOfService"));
 const PrivacyPolicy = lazy(() => import("./components/pages/PrivacyPolicy"));
+const AboutUs = lazy(() => import("./components/pages/aboutUs/AboutUs"));
 const Home = lazy(() => import("./components/pages/Home"));
 import RedirectPage from "./components/user/RedirectPage";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
@@ -52,6 +53,7 @@ const App = () => {
           <Router>
             <TermsOfService path="/terms-of-service" />
             <PrivacyPolicy path="/privacy-policy" />
+            <AboutUs path="/aboutus" />
             <RedirectPage path="/verify" />
             <Home path="/home" showFeatures={false} />
             <Redirect from="/" to="/courses/timetable" noThrow />

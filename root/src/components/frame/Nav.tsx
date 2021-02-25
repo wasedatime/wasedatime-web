@@ -5,7 +5,7 @@ import {
   faCalendarAlt,
   faBook,
   faMapMarkedAlt,
-  faUserCircle,
+  faStar,
 } from "@fortawesome/free-solid-svg-icons";
 const Sidebar = lazy(() => import("./Sidebar"));
 const MobileNav = lazy(() => import("./MobileNav"));
@@ -39,6 +39,11 @@ const Nav = () => {
       name: t("navigation.bus"),
       path: "/campus",
       icon: faMapMarkedAlt,
+    },
+    {
+      name: t("navigation.About Us"),
+      path: "/aboutus",
+      icon: faStar,
     },
   ];
 

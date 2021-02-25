@@ -10,9 +10,11 @@ import singleSpaReact from "single-spa-react";
 import Nav from "./components/frame/Nav";
 import App from "./App";
 import "./styles/styles.css";
-import "./styles/aboutUs.scss";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
+import translationEN from "./constants/locales/en/translation.json";
+import translationJP from "./constants/locales/jp/translation.json";
+import Lang from "@bit/wasedatime.core.ts.constants.langs";
 
 const lifecycles = singleSpaReact({
   React,
@@ -40,8 +42,10 @@ layoutEngine.activate();
 start();
 
 configAuth();
-i18nConfig();
-// serviceWorkerRegistration.register();
+i18nConfig({
+  [Lang.EN]: translationEN,
+  [Lang.JA]: translationJP,
+});
 
 ReactDOM.render(
   React.createElement("span"),

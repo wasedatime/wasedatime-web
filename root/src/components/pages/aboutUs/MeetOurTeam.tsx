@@ -3,33 +3,31 @@ import styled from "styled-components";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { useTranslation } from "react-i18next";
 
-const imagePath =
-  process.env.NODE_ENV === "production" ? "/img" : "../../../assets/img";
-const oscar = require(imagePath + "/contributors/oscar.jpg");
-const mei = require(imagePath + "/contributors/mei.jpg");
-const hao = require(imagePath + "/contributors/hao.jpg");
-const austin = require(imagePath + "/contributors/austin.jpg");
-const tang = require(imagePath + "/contributors/tang.jpg");
-const kong = require(imagePath + "/contributors/kong.jpg");
-const george = require(imagePath + "/contributors/george.jpg");
-const isabella = require(imagePath + "/contributors/isabella.jpg");
-const gu = require(imagePath + "/contributors/gu.jpg");
-const zenda = require(imagePath + "/contributors/zenda.jpg");
-const kaede = require(imagePath + "/contributors/kaede.jpg");
-const kaiqing = require(imagePath + "/contributors/kaiqing.jpg");
-const zhaohuaibo = require(imagePath + "/contributors/zhaohuaibo.jpg");
-const hatori = require(imagePath + "/contributors/hatori.jpg");
-const yaoyuan = require(imagePath + "/contributors/yaoyuan.jpg");
-const naomi = require(imagePath + "/contributors/naomi.jpg");
+import oscar from "../../../assets/img/contributors/oscar.jpg";
+import mei from "../../../assets/img/contributors/mei.jpg";
+import hao from "../../../assets/img/contributors/hao.jpg";
+import austin from "../../../assets/img/contributors/austin.jpg";
+import tang from "../../../assets/img/contributors/tang.jpg";
+import kong from "../../../assets/img/contributors/kong.jpg";
+import george from "../../../assets/img/contributors/george.jpg";
+import isabella from "../../../assets/img/contributors/isabella.jpg";
+import gu from "../../../assets/img/contributors/gu.jpg";
+import zenda from "../../../assets/img/contributors/zenda.jpg";
+import kaede from "../../../assets/img/contributors/kaede.jpg";
+import kaiqing from "../../../assets/img/contributors/kaiqing.jpg";
+import zhaohuaibo from "../../../assets/img/contributors/zhaohuaibo.jpg";
+import hatori from "../../../assets/img/contributors/hatori.jpg";
+import yaoyuan from "../../../assets/img/contributors/yaoyuan.jpg";
+import naomi from "../../../assets/img/contributors/naomi.jpg";
 
-const facebook = require(imagePath + "/socialmediaicon/facebook.png");
-const homepage = require(imagePath + "/socialmediaicon/homepage.png");
-const instagram = require(imagePath + "/socialmediaicon/instagram.png");
-const linkedin = require(imagePath + "/socialmediaicon/linkedin.png");
-const weibo = require(imagePath + "/socialmediaicon/weibo.png");
-const twitter = require(imagePath + "/socialmediaicon/twitter.png");
-const github = require(imagePath + "/socialmediaicon/github.png");
-const email = require(imagePath + "/socialmediaicon/email.png");
+import facebook from "../../../assets/img/socialmediaicon/facebook.png";
+import homepage from "../../../assets/img/socialmediaicon/homepage.png";
+import instagram from "../../../assets/img/socialmediaicon/instagram.png";
+import linkedin from "../../../assets/img/socialmediaicon/linkedin.png";
+import weibo from "../../../assets/img/socialmediaicon/sina-weibo.png";
+import twitter from "../../../assets/img/socialmediaicon/twitter.png";
+import github from "../../../assets/img/socialmediaicon/github.png";
+import email from "../../../assets/img/socialmediaicon/email.png";
 
 const Title = styled("h2")`
   width: 50%;
@@ -38,7 +36,6 @@ const Title = styled("h2")`
   margin: 0 auto;
   text-align: center;
   color: #444 !important;
-  // background-color:green;
 `;
 
 const CardArea = styled("div")`
@@ -46,8 +43,6 @@ const CardArea = styled("div")`
   margin: 0 auto;
   font-size: 0.9em;
   display: flex;
-  // text-align: center;
-  // background-color:green;
   flex-wrap: wrap;
   justify-content: space-evenly;
 `;
@@ -55,52 +50,40 @@ const CardArea = styled("div")`
 const Card = styled("div")`
   display: flex;
   flex-direction: column;
-  // justify-content:center;
   align-items: center;
-  // background-color:blue;
-  // border:solid;
-  // float:left;
   margin: 40px 20px 20px 0px;
   width: 230px;
-  // position: relative
   text-align: center;
 `;
 
 const MemberImage = styled("img")`
-  // background-color:yellow;
   width: 80%;
   border: white 7px solid;
-  // position:relative;
-  // display: inline-block;
   border-radius: 50%;
   box-shadow: 0px 0px 8px;
 `;
 const MemberName = styled("div")`
-  // background-color:red;
   padding: 10px 0px 0px 0px;
   width: 100%;
   font-size: 1.3em;
-  // border:solid red;
   text-align: center;
 `;
 
 const MemberPosition = styled("div")`
   width: 100%;
-  // border:solid red;
   text-align: center;
 `;
 
 const MemberVision = styled("div")`
   max-width: 100%;
-  // border:solid red;
-  // text-align:center;
-  // flex-wrap: wrap;
 `;
 
 const SocialMediaArea = styled("div")`
   width: 100%;
-  // background-color:red;
   text-align: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `;
 
 const MediaIcon = styled("img")`

@@ -14,6 +14,9 @@ const ExtendedOverlay = styled(Overlay)`
   padding: 0 20vw;
   color: #666;
   ${media.phone`padding: 0 10vw;`};
+  hr {
+    width: 80%;
+  }
 `;
 
 const JoinUs = () => {
@@ -39,11 +42,11 @@ const JoinUs = () => {
           {(matches) =>
             matches ? (
               <h2 style={{ color: "#555", textAlign: "center" }}>
-                WasedaTime is back, AND WE WANT YOU!
+                <b>WasedaTime is back, AND WE WANT YOU!</b>
               </h2>
             ) : (
               <h3 style={{ color: "#555", textAlign: "center" }}>
-                WasedaTime is back, AND WE WANT YOU!
+                <b>WasedaTime is back, AND WE WANT YOU!</b>
               </h3>
             )
           }
@@ -65,9 +68,12 @@ const JoinUs = () => {
 
         <br />
         <h2>
-          <FontAwesomeIcon icon={faUserCog} /> Technology
+          <b>
+            <FontAwesomeIcon icon={faUserCog} /> Technology
+          </b>
         </h2>
         <hr />
+        <br />
         <p>
           We are looking for experienced developers, but we also love to provide
           mentorship to passionate beginners with little background! You will be
@@ -80,24 +86,20 @@ const JoinUs = () => {
           </span>{" "}
         </p>
 
-        <h3>
-          <b>Roles</b>
-        </h3>
+        <h3>Roles</h3>
         <ul>
-          <li>General Software Developer / Apprentice</li>
-          <li>Frontend Developer / Apprentice</li>
-          <li>Backend Developer / Apprentice</li>
-          <li>Infrastructure Developer / Apprentice</li>
+          <li>・General Software Developer / Apprentice</li>
+          <li>・Frontend Developer / Apprentice</li>
+          <li>・Backend Developer / Apprentice</li>
+          <li>・Infrastructure Developer / Apprentice</li>
         </ul>
         <br></br>
 
-        <h3>
-          <b>Requirements</b>
-        </h3>
+        <h3>Requirements</h3>
         <ul>
-          <li>Have passion on learning & creating</li>
-          <li>Self-motivation</li>
-          <li>Have learned any programming language</li>
+          <li>・Have passion on learning & creating</li>
+          <li>・Self-motivation</li>
+          <li>・Have learned any programming language</li>
           <small>
             * Not necessary but better to know about Git, <br></br> &nbsp; React
             or HTML/CSS (for frontend), AWS (for backend)
@@ -105,14 +107,12 @@ const JoinUs = () => {
         </ul>
         <br></br>
 
-        <h3>
-          <b>Job description</b>
-        </h3>
+        <h3>Job description</h3>
         <ul>
-          <li>Develop new features for WasedaTime</li>
-          <li>Backend automation & maintenance</li>
+          <li>・Develop new features for WasedaTime</li>
+          <li>・Backend automation & maintenance</li>
           <li>
-            Direction: Make WasedaTime a <b>platform</b> for students
+            ・ Direction: Make WasedaTime a <b>platform</b> for students
           </li>
           <small>* Using React on Frontend and AWS on Backend</small>
           <br></br>
@@ -120,14 +120,12 @@ const JoinUs = () => {
         </ul>
         <br></br>
 
-        <h3>
-          <b>What you will get</b>
-        </h3>
+        <h3>What you will get</h3>
         <ul>
-          <li>Technical skills and Practical experience on development</li>
-          <li>Knowledges shared by each other</li>
+          <li>・Technical skills and Practical experience on development</li>
+          <li>・Knowledges shared by each other</li>
           <li>
-            Teammates who can fight together to make Waseda better
+            ・ Teammates who can fight together to make Waseda better
             <b>platform</b> for students
           </li>
           <small>
@@ -139,17 +137,20 @@ const JoinUs = () => {
 
         <br />
         <h2>
-          <FontAwesomeIcon icon={faUserTie} />
-          <MediaQuery minWidth={sizes.desktop}>
-            {(matches) => (matches ? " " : <br />)}
-          </MediaQuery>
-          Performance Marketing
-          <MediaQuery minWidth={sizes.desktop}>
-            {(matches) => (matches ? " " : <br />)}
-          </MediaQuery>
-          & Business Operations
+          <b>
+            <FontAwesomeIcon icon={faUserTie} />
+            <MediaQuery minWidth={sizes.desktop}>
+              {(matches) => (matches ? " " : <br />)}
+            </MediaQuery>
+            Performance Marketing
+            <MediaQuery minWidth={sizes.desktop}>
+              {(matches) => (matches ? " " : <br />)}
+            </MediaQuery>
+            & Business Operations
+          </b>
         </h2>
         <hr />
+        <br />
 
         <p>
           The “Non-Tech” team builds bridges across technology to users. They
@@ -160,70 +161,66 @@ const JoinUs = () => {
           Stanley, Accenture, etc.
         </p>
 
-        <h3>
-          <b>Roles</b>
-        </h3>
+        <h3>Roles</h3>
         <ul>
-          <li>Product management</li>
-          <li>Marketing & Advertising</li>
-          <li>Business expansion/liaison</li>
+          <li>・Product management</li>
+          <li>・Marketing & Advertising</li>
+          <li>・Business expansion/liaison</li>
         </ul>
         <br></br>
 
-        <h3>
-          <b>Requirements</b>
-        </h3>
+        <h3>Requirements</h3>
         <ul>
           <li>
-            Have passion on learning, presenting new ideas, building connection
+            ・ Have passion on learning, presenting new ideas, building
+            connection
           </li>
           <li>
-            Sense of responsibility, business sense (experience in product
+            ・ Sense of responsibility, business sense (experience in product
             operation is better)
           </li>
         </ul>
         <br></br>
 
-        <h3>
-          <b>Job description</b>
-        </h3>
+        <h3>Job description</h3>
         <ul>
           <li>
-            Marketing & Advertising（Assist in the growth of new users of the
+            ・ Marketing & Advertising（Assist in the growth of new users of the
             platform、increase awareness、Market research & user analysis）
           </li>
-          <li>Business development (Looking for business partners) </li>
+          <li>・Business development (Looking for business partners) </li>
           <li>
-            Participate in the new function design and brain storm of
+            ・ Participate in the new function design and brain storm of
             Wasedatime.
           </li>
         </ul>
         <br></br>
 
-        <h3>
-          <b>What you will get</b>
-        </h3>
+        <h3>What you will get</h3>
         <ul>
           <li>
-            A unique project experience on marketing/advertising/business or
+            ・ A unique project experience on marketing/advertising/business or
             opportunities to realize your unique ideas
           </li>
-          <li>Knowledges shared by each other</li>
+          <li>・Knowledges shared by each other</li>
           <li>
-            You will meet creative people with different backgrounds, fighting
-            together to make Waseda better!
+            ・ You will meet creative people with different backgrounds,
+            fighting together to make Waseda better!
           </li>
         </ul>
         <br></br>
 
         <br />
         <h2>
-          <span role="img" aria-label="smile">
-            🤗
-          </span>{" "}
-          How to get started
+          <b>
+            <span role="img" aria-label="smile">
+              🤗
+            </span>{" "}
+            How to get started
+          </b>
         </h2>
         <hr />
+        <br />
         <p>
           We welcome students who are interested to send an email with a brief
           self-introduction or a CV/resume to the following address:{" "}

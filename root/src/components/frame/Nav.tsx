@@ -36,12 +36,12 @@ const Nav = () => {
       icon: faBook,
     },
     {
-      name: t("navigation.bus"),
+      name: t("navigation.campus"),
       path: "/campus",
       icon: faMapMarkedAlt,
     },
     {
-      name: t("navigation.About Us"),
+      name: t("navigation.aboutus"),
       path: "/aboutus",
       icon: faStar,
     },

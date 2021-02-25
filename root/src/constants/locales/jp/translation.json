@@ -1,5 +1,11 @@
 {
   "navigation": {
+    "timetable": "時間割",
+    "syllabus": "シラバス",
+    "campus": "キャンパス",
+    "career": "キャリア",
+    "corona-info": "コロナ",
+    "home": "ホーム",
     "aboutus": "組織概要"
   },
   "aboutus": {

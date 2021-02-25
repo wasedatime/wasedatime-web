@@ -1,5 +1,11 @@
 {
   "navigation": {
+    "timetable": "Timetable",
+    "syllabus": "Syllabus",
+    "campus": "Campus",
+    "career": "Career",
+    "corona-info": "COVID19",
+    "home": "Home",
     "aboutus": "About Us"
   },
   "aboutus": {

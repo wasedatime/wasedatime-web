@@ -43,7 +43,7 @@ const NavItemBlock = styled.div`
 `;
 
 const NavItemText = styled.span`
-  overflow-x: hidden;
+  overflow: hidden;
   margin-left: 1rem;
   text-align: left;
   color: #fff;

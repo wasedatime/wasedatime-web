@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, lazy, Suspense } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import Header from "@bit/wasedatime.core.ts.ui.header";
@@ -6,9 +6,9 @@ import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { Helmet } from "react-helmet";
 
 import OurMission from "./OurMission";
-// import MeetOurTeam from "./MeetOurTeam";
 import JoinUs from "./JoinUs";
-import MeetOurTeam from "./MeetOurTeam";
+const MeetOurTeam = lazy(() => import("./MeetOurTeam"));
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 
 const AboutUsWrapper = styled(Wrapper)`
   display: flex;
@@ -50,7 +50,7 @@ const AboutUs = (props: { path: string }) => {
           placeholder={"Search course (in construction...)"}
           inputText={""}
           disabled={true}
-          isBlur={true}
+          isBlur={false}
           changeLang={(lng) => i18n.changeLanguage(lng)}
         />
       </HeaderWrapper>
@@ -98,7 +98,15 @@ const AboutUs = (props: { path: string }) => {
 
         {activePage === "our mission" && <OurMission />}
         {activePage === "join us" && <JoinUs />}
-        {activePage === "meet our team" && <MeetOurTeam />}
+        {activePage === "meet our team" && (
+          <Suspense
+            fallback={
+              <LoadingSpinner message={"Loading members information..."} />
+            }
+          >
+            <MeetOurTeam />
+          </Suspense>
+        )}
       </AboutUsFlex>
     </AboutUsWrapper>
   );

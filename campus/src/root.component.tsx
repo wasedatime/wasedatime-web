@@ -13,6 +13,7 @@ i18nConfig({
 export default function Root(props) {
   return (
     <section>
+      <RoomFinder />
       <Bus />
     </section>
   );

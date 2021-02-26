@@ -54,6 +54,7 @@ const AddedCourseListContainer = ({
         isQuarterDisplayed={false}
         toggleSemester={handleToggleSemester}
         toggleQuarter={() => {}}
+        isSmallSize={true}
       />
       <AddedCourseList addedCourses={sortedAddedCourses} />
     </div>

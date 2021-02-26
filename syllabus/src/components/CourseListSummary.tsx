@@ -7,7 +7,7 @@ import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import Label from "semantic-ui-react/dist/commonjs/elements/Label";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSort } from "@fortawesome/free-solid-svg-icons";
+import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
 
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import SortingOption from "@bit/wasedatime.syllabus.ts.constants.sorting-options";
@@ -99,7 +99,7 @@ const CourseListSummary = ({
         <StyledLabel size="big" color="grey" basic>
           {creditSum(courses)} credits
         </StyledLabel>
-        <SortingIcon icon={faSort} />{" "}
+        <SortingIcon icon={faSortAmountDown} />{" "}
         <StyledDropdown
           placeholder={"Sort by"}
           selection

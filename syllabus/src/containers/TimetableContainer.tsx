@@ -144,6 +144,7 @@ class TimetableContainer extends React.Component<
             isQuarterDisplayed={true}
             toggleSemester={this.handleToggleSemester}
             toggleQuarter={this.handleToggleQuarter}
+            isSmallSize={false}
           />
           <Suspense fallback={<LoadingSpinner message="Loading..." />}>
             <Timetable addedCoursesAndPrefs={sortedAddedCoursesAndPrefs} />

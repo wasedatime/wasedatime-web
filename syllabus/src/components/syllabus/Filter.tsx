@@ -33,6 +33,7 @@ const FilterClearButton = styled(Button)`
   color: #b51e36 !important;
   background: #fff !important;
   font-weight: 500 !important;
+  font-size: 0.8em !important;
 `;
 
 const FilterGroupWrapper = styled("div")`

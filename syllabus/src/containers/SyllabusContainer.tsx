@@ -12,7 +12,7 @@ const AddedCourseListContainer = lazy(
 const FetchedCourseList = lazy(
   () => import("../components/syllabus/FetchedCourseList")
 );
-import Filter from "../components/syllabus/Filter";
+const Filter = lazy(() => import("../components/syllabus/Filter"));
 import FilterButton from "../components/syllabus/FilterButton";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import {
@@ -294,7 +294,7 @@ class SyllabusContainer extends React.Component<
             {(matches) =>
               matches && (
                 <SideColumn>
-                  <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+                  <Suspense fallback={""}>
                     <AddedCourseListContainer />
                   </Suspense>
                 </SideColumn>
@@ -316,12 +316,14 @@ class SyllabusContainer extends React.Component<
             {(matches) =>
               matches && (
                 <SideColumn>
-                  <Filter
-                    filterGroups={this.state.filterGroups}
-                    handleToggleFilter={this.handleToggleFilter}
-                    clearFilter={this.clearFilter}
-                    isSideBar={true}
-                  />
+                  <Suspense fallback={""}>
+                    <Filter
+                      filterGroups={this.state.filterGroups}
+                      handleToggleFilter={this.handleToggleFilter}
+                      clearFilter={this.clearFilter}
+                      isSideBar={true}
+                    />
+                  </Suspense>
                 </SideColumn>
               )
             }

@@ -14,10 +14,8 @@ import QuarterSwitch from "./timetable/QuarterSwitch";
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex: none;
   justify-content: center;
-  font-size: 1.5em;
-  ${media.phone`
-    font-size: 1.3em;
-  `};
+  font-size: 1.3em;
+  ${(props) => props.small && "font-size: 1em;"}
   padding: 0.3em;
 `;
 
@@ -53,6 +51,7 @@ interface Props {
   isQuarterDisplayed: boolean;
   toggleSemester: (semester: string) => void;
   toggleQuarter: (quarter: string) => void;
+  isSmallSize: boolean;
 }
 
 const SemesterSwitcher = ({
@@ -62,9 +61,10 @@ const SemesterSwitcher = ({
   isQuarterDisplayed,
   toggleSemester,
   toggleQuarter,
+  isSmallSize,
 }) => {
   return (
-    <ExtendedRowWrapper>
+    <ExtendedRowWrapper small={isSmallSize}>
       <ExtendedInvisibleButton
         onClick={toggleSemester}
         aria-label="Semester toggle"

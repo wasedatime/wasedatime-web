@@ -39,27 +39,23 @@ const CourseItem = styled("div")`
 const CourseTitle = styled("span")`
   flex: 1 1 auto;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1em;
   overflow-x: hidden;
   overflow-wrap: break-word;
   word-wrap: break-word;
   text-overflow: ellipsis;
   text-align: center;
-  ${media.tablet`font-size: 0.8rem;`};
-  ${media.phone`font-size: 0.8rem;`};
 `;
 
 const CourseLocation = styled("span")`
   display: inline-flex;
   flex: 0 0 auto;
   padding: 0.2em 0;
-  font-size: 1.2rem;
+  font-size: 1em;
   word-break: break-all;
   align-items: center;
   justify-content: center;
   text-align: center;
-  ${media.tablet`font-size: 0.8rem;`};
-  ${media.phone`font-size: 0.8rem;`};
 `;
 
 const CourseList = styled("div")`

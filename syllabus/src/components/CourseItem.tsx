@@ -221,7 +221,7 @@ const CourseItem = ({
   const highlightedInstructor = Highlight(searchTerm, searchLang, instructor);
   const langTerm = getLang(course, t);
   const yearTerm = combineYearTerm(
-    "2020",
+    "2021",
     termKeysDecoder(course[SyllabusKey.TERM]),
     t
   );

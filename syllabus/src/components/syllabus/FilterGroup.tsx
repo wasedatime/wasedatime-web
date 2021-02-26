@@ -25,11 +25,11 @@ const StyledDropdown = styled(Dropdown)`
   }
 
   .text {
-    margin: 0.4rem 1rem !important;
+    margin: 0.4rem 1em !important;
   }
 
   i {
-    padding: 0.5rem 1rem !important;
+    padding: 0.5rem 1em !important;
   }
 `;
 
@@ -42,22 +42,21 @@ const StyledDropdown = styled(Dropdown)`
 const styles = (theme) =>
   createStyles({
     formLabel: {
-      fontSize: "1.3em",
+      fontSize: "1.5em",
       color: "#000",
       fontWeight: "bold",
       fontFamily: "Lato, Yu Gothic Medium, Segoe UI",
       fontDisplay: "swap",
     },
     formGroup: {
-      fontSize: "1.2em",
+      fontSize: "1.5em",
       margin: "0 0 10px",
       fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
       fontDisplay: "swap",
     },
     formControlLabel: {
       minWidth: "70px",
-      paddingLeft: "0.5rem",
-      marginRight: "0px",
+      paddingLeft: "4px",
       fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
       fontDisplay: "swap",
     },

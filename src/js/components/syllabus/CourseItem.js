@@ -214,8 +214,11 @@ const CourseItem = ({
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
   const langTerm = getLang(course, t);
+  const currentTime = new Date();
   const yearTerm = combineYearTerm(
-    "2020",
+    currentTime.getMonth() + 1 >= 3
+      ? currentTime.getFullYear()
+      : currentTime.getFullYear() - 1,
     termKeysDecoder(course[SYLLABUS_KEYS.TERM]),
     t
   );

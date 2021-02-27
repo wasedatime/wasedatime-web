@@ -42,6 +42,7 @@ const Introduction = styled("div")`
 
 const MainHeading = styled("h1")`
   padding-top: 1em;
+  margin: 0.5em 0px;
   img {
     margin: 1em auto 0px auto;
   }

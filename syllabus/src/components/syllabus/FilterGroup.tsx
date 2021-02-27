@@ -9,7 +9,7 @@ import { WithStyles, createStyles } from "@material-ui/core";
 import styled from "styled-components";
 
 const StyledDropdown = styled(Dropdown)`
-  font-size: 1em !important;
+  font-size: 0.9em !important;
   font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-display: swap;
   min-height: 32px !important;

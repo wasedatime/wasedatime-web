@@ -25,7 +25,7 @@ const AboutUsFlex = styled.div`
 `;
 
 const AboutUs = (props: { path: string }) => {
-  const [activePage, setActivePage] = useState("our mission");
+  const [activePage, setActivePage] = useState("join us");
   const { t, i18n } = useTranslation();
 
   return (

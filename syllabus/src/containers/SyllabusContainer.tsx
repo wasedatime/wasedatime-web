@@ -46,7 +46,7 @@ const SyllabusFlex = styled.div`
   flex: calc(100% - 67px);
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: calc(100vh - 67px);
 `;
 
 const SideColumn = styled.div`

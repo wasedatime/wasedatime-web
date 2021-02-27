@@ -43,7 +43,6 @@ module.exports = (webpackConfigEnv, argv) => {
               : MiniCssExtractPlugin.loader,
             "css-loader",
           ],
-          sideEffects: true,
         },
         {
           test: /\.scss$/i,
@@ -54,7 +53,6 @@ module.exports = (webpackConfigEnv, argv) => {
             "css-loader",
             "sass-loader",
           ],
-          sideEffects: true,
         },
       ],
     },

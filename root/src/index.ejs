@@ -37,7 +37,8 @@
   <% if (isLocal) { %>
   <link rel="stylesheet" href="/src/styles/index.css">
   <% } else { %>
-  <link rel="stylesheet" href="/main.css">
+  <link rel="preload" href="/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/main.css"></noscript>
   <% } %>
 
   <% if (isLocal) { %>
@@ -101,7 +102,7 @@
       }
     }
   </script>
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
+  <!-- <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script"> -->
 
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
@@ -210,7 +211,8 @@
         <main>
           <route path="courses">
             <% if (!isLocal) { %>
-            <link rel="stylesheet" href="/syllabus/main.css">
+            <link rel="preload" href="/syllabus/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+            <noscript><link rel="stylesheet" href="/syllabus/main.css"></noscript>
             <% } %>
             <application name="@wasedatime/syllabus"></application>
           </route>

@@ -38,12 +38,12 @@ const reactLifecycles = singleSpaReact({
 // Export an array of lifecycles to integrate with a framework's
 // single-spa lifecycles. The order matters.
 export const bootstrap =
-  process.env.NODE_ENV !== "production"
+  process.env.NODE_ENV === "production"
     ? [cssLifecycles.bootstrap, reactLifecycles.bootstrap]
     : reactLifecycles.bootstrap;
 
 export const mount =
-  process.env.NODE_ENV !== "production"
+  process.env.NODE_ENV === "production"
     ? [
         // The css lifecycles should be before your framework's mount lifecycle,
         // to avoid a Flicker of Unstyled Content (FOUC)
@@ -53,7 +53,7 @@ export const mount =
     : reactLifecycles.mount;
 
 export const unmount =
-  process.env.NODE_ENV !== "production"
+  process.env.NODE_ENV === "production"
     ? [
         // The css lifecycles should be after your framework's unmount lifecycle,
         // to avoid a Flicker of Unstyled Content (FOUC)

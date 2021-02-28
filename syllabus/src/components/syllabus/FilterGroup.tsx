@@ -18,6 +18,9 @@ const StyledDropdown = styled(Dropdown)`
   a.ui.label {
     .delete.icon {
       padding: 0px !important;
+      &:before {
+        content: "×";
+      }
     }
   }
   .menu .text {

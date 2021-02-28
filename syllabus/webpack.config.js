@@ -2,6 +2,8 @@ const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ExposeRuntimeCssAssetsPlugin = require("single-spa-css/ExposeRuntimeCssAssetsPlugin.cjs");
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+  .BundleAnalyzerPlugin;
 
 // use .env
 const webpack = require("webpack");
@@ -65,7 +67,8 @@ module.exports = (webpackConfigEnv, argv) => {
             }),
           ]
         : [
-            new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
+            new BundleAnalyzerPlugin(),
+            // new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
             new MiniCssExtractPlugin({
               filename: "[name].css",
             }),

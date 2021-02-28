@@ -22,6 +22,16 @@ const SchoolCardWrapper = styled(Dimmer.Dimmable)`
   }
 `;
 
+const SchoolImage = styled(Image)`
+  border: ${(props) => (props.loaded ? "2px solid rgba(0,0,200,0.4)" : "none")};
+  width: 70px;
+  height: 70px;
+  span {
+    display: block;
+    transform: translate(-6px, 3px);
+  }
+`;
+
 interface Props {
   loaded: boolean;
   loading: boolean;
@@ -64,16 +74,17 @@ const SchoolImportCard = ({
           />
         )}
       </Dimmer>
-      <Image
+      <SchoolImage
         src={schoolIcon}
         label={
-          checked && { as: "a", corner: "left", icon: "check", color: "red" }
+          checked && {
+            as: "a",
+            corner: "left",
+            content: <span>{"✔"}</span>,
+            color: "red",
+          }
         }
-        style={{
-          border: loaded ? "2px solid rgba(0,0,200,0.4)" : "none",
-          width: "70px",
-          height: "70px",
-        }}
+        loaded={loaded}
         width="70"
         height="70"
       />

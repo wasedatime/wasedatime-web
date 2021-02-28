@@ -69,6 +69,15 @@ module.exports = (webpackConfigEnv, argv) => {
         : [
             new BundleAnalyzerPlugin(),
             new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
+            new PreloadWebpackPlugin({
+              rel: "preload",
+              as(entry) {
+                if (/\.(s?css)$/.test(entry)) return "style";
+                if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
+                if (/\.(jpe?g|png|gif|svg)$/.test(entry)) return "image";
+                return "script";
+              },
+            }),
             new MiniCssExtractPlugin({
               filename: "[name].css",
             }),

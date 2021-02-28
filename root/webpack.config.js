@@ -66,6 +66,10 @@ module.exports = (webpackConfigEnv, argv) => {
             from: "./src/assets/img/socialmediaicon",
             to: "./img/socialmediaicon",
           },
+          {
+            from: "./src/assets/img/favicon.ico",
+            to: "./favicon.ico",
+          },
         ],
       }),
       new InjectManifest({

@@ -67,7 +67,7 @@ module.exports = (webpackConfigEnv, argv) => {
             }),
           ]
         : [
-            // new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
+            new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
             // new PreloadWebpackPlugin({
             //   rel: "preload",
             //   as(entry) {

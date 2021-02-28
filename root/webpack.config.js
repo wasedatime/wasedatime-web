@@ -50,6 +50,7 @@ module.exports = (webpackConfigEnv, argv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
+        inject: true,
         template: "src/index.ejs",
         templateParameters: {
           isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,

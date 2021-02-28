@@ -122,6 +122,7 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
     "simplebar-react": "^2.3.0",
+    "single-spa-css": "^1.1.2",
     "stickybits": "^3.7.8",
     "url-loader": "^4.1.1"
   }

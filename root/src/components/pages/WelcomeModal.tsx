@@ -10,6 +10,7 @@ import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { navigateToUrl } from "single-spa";
 
 const modalStyle = {
   overlay: {
@@ -24,7 +25,7 @@ const modalStyle = {
   content: {
     position: "absolute",
     top: "20vh",
-    height: "50vh",
+    height: "450px",
     left: "30vw",
     right: "30vw",
     background: "#fff",
@@ -42,7 +43,7 @@ const mobileModalStyle = {
   content: {
     ...modalStyle.content,
     top: "5vh",
-    bottom: "5vh",
+    height: "570px",
     left: "10vw",
     right: "10vw",
   },
@@ -61,7 +62,7 @@ interface Props extends WithTranslation {
   closeModal: () => void;
 }
 
-const WelcomeModal = ({ isModalOpen, closeModal, t, i18n }) => {
+const WelcomeModal = ({ isModalOpen, closeModal, isFirstAccess, t, i18n }) => {
   const [pageIndex, setPageIndex] = useState(0);
   const pages = [
     <div>
@@ -194,7 +195,9 @@ const WelcomeModal = ({ isModalOpen, closeModal, t, i18n }) => {
         </button>
         <button
           className="border-2 border-red-700 text-red-700 rounded-lg px-4 mx-4 hover:bg-red-700 hover:text-white focus:outline-none"
-          onClick={closeModal}
+          onClick={() =>
+            isFirstAccess ? navigateToUrl("/courses/timetable") : closeModal()
+          }
         >
           {t("welcome.done").toUpperCase()}
         </button>

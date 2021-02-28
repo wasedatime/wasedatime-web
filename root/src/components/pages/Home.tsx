@@ -9,6 +9,7 @@ import homeBackground from "../../assets/img/home_background-lg.jpg";
 import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
 import WelcomeModal from "./WelcomeModal";
 import { navigate } from "@reach/router";
+import { navigateToUrl } from "single-spa";
 
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
@@ -59,16 +60,15 @@ const Description = styled("p")`
 
 interface Props extends WithTranslation {
   path: string;
-  showFeatures: boolean;
+  isFirstAccess: boolean;
 }
 
-const Home = ({ showFeatures, t, i18n }: Props) => {
-  if (localStorage.getItem("isFirstAccess") === null)
-    localStorage.setItem("isFirstAccess", "false");
-  const [modalOpen, setModalOpen] = useState(showFeatures);
+const Home = ({ isFirstAccess, t, i18n }: Props) => {
+  if (isFirstAccess) localStorage.setItem("isFirstAccess", "false");
+  const [modalOpen, setModalOpen] = useState(isFirstAccess);
   const closeModal = () => {
     setModalOpen(false);
-    if (showFeatures) navigate("/courses/timetable");
+    if (isFirstAccess) navigateToUrl("/courses/timetable");
   };
 
   return (
@@ -105,7 +105,11 @@ const Home = ({ showFeatures, t, i18n }: Props) => {
           </button>
         </Introduction>
 
-        <WelcomeModal isModalOpen={modalOpen} closeModal={closeModal} />
+        <WelcomeModal
+          isModalOpen={modalOpen}
+          closeModal={closeModal}
+          isFirstAccess={isFirstAccess}
+        />
       </StyledArticle>
     </StyledWrapper>
   );

@@ -47,15 +47,16 @@ const App = () => {
       </Helmet>
       <CommonStyle />
       <Suspense fallback={<LoadingSpinner message={"Loading..."} />}>
-        {localStorage.getItem("isFirstAccess") === null ? (
-          <Home path="/" showFeatures={true} />
+        {localStorage.getItem("isFirstAccess") === null ||
+        localStorage.getItem("isFirstAccess") === "true" ? (
+          <Home path="/" isFirstAccess={true} />
         ) : (
           <Router>
             <TermsOfService path="/terms-of-service" />
             <PrivacyPolicy path="/privacy-policy" />
             <AboutUs path="/aboutus" />
             <RedirectPage path="/verify" />
-            <Home path="/home" showFeatures={false} />
+            <Home path="/home" isFirstAccess={false} />
             <Redirect from="/" to="/courses/timetable" noThrow />
             <Redirect from="/" to="/courses/timetable" noThrow />
             <Redirect from="/timetable" to="/courses/timetable" noThrow />

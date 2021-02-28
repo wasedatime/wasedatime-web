@@ -5,6 +5,7 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { InjectManifest } = require("workbox-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const PreloadWebpackPlugin = require("preload-webpack-plugin");
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -56,6 +57,15 @@ module.exports = (webpackConfigEnv, argv) => {
           isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,
           isDev: webpackConfigEnv && webpackConfigEnv.isDev,
           orgName,
+        },
+      }),
+      new PreloadWebpackPlugin({
+        rel: "preload",
+        as(entry) {
+          if (/\.(s?css)$/.test(entry)) return "style";
+          if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
+          if (/\.(jpe?g|png|gif|bmp|tiff|svg)$/.test(entry)) return "image";
+          return "script";
         },
       }),
       new CopyWebpackPlugin({

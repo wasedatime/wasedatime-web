@@ -2,8 +2,7 @@ const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ExposeRuntimeCssAssetsPlugin = require("single-spa-css/ExposeRuntimeCssAssetsPlugin.cjs");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const PreloadWebpackPlugin = require("preload-webpack-plugin");
 
 // use .env
@@ -68,14 +67,14 @@ module.exports = (webpackConfigEnv, argv) => {
             }),
           ]
         : [
-            new BundleAnalyzerPlugin(),
             new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
             new PreloadWebpackPlugin({
               rel: "preload",
               as(entry) {
                 if (/\.(s?css)$/.test(entry)) return "style";
                 if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
-                if (/\.(jpe?g|png|gif|svg)$/.test(entry)) return "image";
+                if (/\.(jpe?g|png|gif|svg|bmp|tiff)$/.test(entry))
+                  return "image";
                 return "script";
               },
             }),

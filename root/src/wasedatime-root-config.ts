@@ -54,7 +54,3 @@ ReactDOM.render(
 ReactDOM.render(React.createElement(Nav), document.getElementById("nav"));
 
 export const { bootstrap, mount, unmount } = lifecycles;
-
-// if (document.getElementById("default")) {
-//   ReactDom.render(React.createElement(App), document.getElementById("default"));
-// }

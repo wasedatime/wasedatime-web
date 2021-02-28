@@ -4,28 +4,8 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import { Doughnut } from "react-chartjs-2";
 import Course from "../../types/course";
-
-const evalChartOptions = {
-  legend: {
-    position: "left",
-    labels: {
-      boxWidth: 12,
-    },
-    onClick: (e) => e.stopPropagation(),
-  },
-  tooltips: {
-    callbacks: {
-      title: function (tooltipItem, data) {
-        return data["labels"][tooltipItem[0]["index"]];
-      },
-      label: function (tooltipItem, data) {
-        return " " + data["datasets"][0]["data"][tooltipItem["index"]] + "%";
-      },
-    },
-  },
-};
+import { PieChart } from "react-minimal-pie-chart";
 
 const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
 const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
@@ -35,23 +15,15 @@ interface Props extends WithTranslation {
 }
 
 const CourseDetailsEvaluation = ({ course, t }: Props) => {
-  const evalChartData = {
-    datasets: [
-      {
-        data: course[SyllabusKey.EVAL].map((e) =>
-          e[SyllabusKey.EVAL_PERCENT] === -1 ? 0 : e[SyllabusKey.EVAL_PERCENT]
-        ),
-        backgroundColor: course[SyllabusKey.EVAL].map(
-          (e) => evalColorMap[e[SyllabusKey.EVAL_TYPE]]
-        ),
-      },
-    ],
-    labels: course[SyllabusKey.EVAL].map((e) =>
-      t(
+  const evalChartData = course[SyllabusKey.EVAL]
+    .filter((e) => e[SyllabusKey.EVAL_PERCENT] > 0)
+    .map((e) => ({
+      title: t(
         `courseInfo.Details.Evaluation.${evalTypeMap[e[SyllabusKey.EVAL_TYPE]]}`
-      )
-    ),
-  };
+      ),
+      value: e[SyllabusKey.EVAL_PERCENT],
+      color: evalColorMap[e[SyllabusKey.EVAL_TYPE]],
+    }));
 
   const evalsTable = (
     <Table>
@@ -63,6 +35,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
                 <span
                   style={{
                     color: evalColorMap[e[SyllabusKey.EVAL_TYPE]],
+                    fontSize: "1.5em",
                   }}
                 >
                   ●
@@ -83,21 +56,36 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
     </Table>
   );
 
+  const evalsChart = (
+    <PieChart
+      data={evalChartData}
+      radius={PieChart.defaultProps.radius - 6}
+      lineWidth={60}
+      segmentsStyle={{ transition: "stroke .3s", cursor: "pointer" }}
+      animate
+      label={({ dataEntry }) => dataEntry.value + "%"}
+      labelPosition={100 - 60 / 2}
+      labelStyle={{
+        fill: "#fff",
+        opacity: 0.75,
+        pointerEvents: "none",
+      }}
+      viewBoxSize={[150, 100]}
+      center={[75, 50]}
+    />
+  );
+
   return course[SyllabusKey.EVAL].length > 0 ? (
     <MediaQuery minWidth={1453}>
       {(matches) =>
         matches ? (
           <Grid columns={2}>
-            <Grid.Column>
-              <Doughnut data={evalChartData} options={evalChartOptions} />
-            </Grid.Column>
+            <Grid.Column>{evalsChart}</Grid.Column>
             <Grid.Column>{evalsTable}</Grid.Column>
           </Grid>
         ) : (
           <Grid columns={1}>
-            <Grid.Column>
-              <Doughnut data={evalChartData} options={evalChartOptions} />
-            </Grid.Column>
+            <Grid.Column>{evalsChart}</Grid.Column>
             <Grid.Column>{evalsTable}</Grid.Column>
           </Grid>
         )

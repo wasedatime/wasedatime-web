@@ -68,7 +68,7 @@ module.exports = (webpackConfigEnv, argv) => {
           ]
         : [
             new BundleAnalyzerPlugin(),
-            // new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
+            new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
             new MiniCssExtractPlugin({
               filename: "[name].css",
             }),

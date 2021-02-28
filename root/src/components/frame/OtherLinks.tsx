@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "@reach/router";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -40,10 +40,22 @@ interface Props {
   expanded: boolean;
 }
 
+const getWindowHeight = () => window.innerHeight;
+
 const OtherLinks = ({ expanded }: Props) => {
   const { t } = useTranslation();
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
-  return (
+  useEffect(() => {
+    function handleResize() {
+      setWindowHeight(window.innerHeight);
+    }
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return windowHeight >= 480 ? (
     <LinksWrapper expanded={expanded}>
       <Link to="/terms-of-service">{t("user.Terms of Service")}</Link>・
       <Link to="/privacy-policy">{t("user.Privacy Policy")}</Link>
@@ -91,6 +103,8 @@ const OtherLinks = ({ expanded }: Props) => {
       <br />
       Copyright © 2018-2021 WasedaTime
     </LinksWrapper>
+  ) : (
+    <div></div>
   );
 };
 

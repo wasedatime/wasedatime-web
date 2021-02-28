@@ -11,7 +11,10 @@ const Syllabus = lazy(() => import("./containers/SyllabusContainer"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import "semantic-ui-css/components/dropdown.min.css";
 import "semantic-ui-css/components/icon.min.css";
+import "react-s-alert/dist/s-alert-default.css";
 import "./styles/styles.scss";
+import "react-s-alert/dist/s-alert-css-effects/jelly.css";
+import Alert from "react-s-alert";
 
 interface IdAndPrefType {
   id: string;
@@ -92,6 +95,7 @@ const App = ({
         <Syllabus path="courses/syllabus" />
         <Timetable path="courses/timetable" />
       </Router>
+      <Alert stack={{ limit: 1 }} timeout={3000} />
     </Suspense>
   );
 };

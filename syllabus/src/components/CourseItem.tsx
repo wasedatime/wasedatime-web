@@ -220,8 +220,11 @@ const CourseItem = ({
   const highlightedTitle = Highlight(searchTerm, searchLang, title);
   const highlightedInstructor = Highlight(searchTerm, searchLang, instructor);
   const langTerm = getLang(course, t);
+  const currentTime = new Date();
   const yearTerm = combineYearTerm(
-    "2021",
+    currentTime.getMonth() + 1 >= 3
+      ? currentTime.getFullYear()
+      : currentTime.getFullYear() - 1,
     termKeysDecoder(course[SyllabusKey.TERM]),
     t
   );

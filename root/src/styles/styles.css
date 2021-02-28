@@ -11,8 +11,6 @@
   font-display: swap;
 }
 
-@import "s-alert-custom.css";
-
 @tailwind base;
 
 @tailwind components;

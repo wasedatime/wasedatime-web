@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { getSchools } from "../redux/reducers/fetchedCourses/schools";
-import {
-  fetchCoursesBySchool,
-  removeSchool,
-} from "../redux/actions";
+import { fetchCoursesBySchool, removeSchool } from "../redux/actions";
 import SchoolFilterForm from "../components/syllabus/SchoolFilterForm";
 
 interface ReduxStateProps {
@@ -41,13 +38,15 @@ const SchoolFilterContainer = ({
   };
 
   return (
-    <SchoolFilterForm
-      loadedSchools={loadedSchools}
-      selectedSchools={selectedSchools}
-      handleToggleFilter={handleToggleSchoolFilter}
-      loadSyllabus={addSchool}
-      removeSyllabus={removeSchool}
-    />
+    <div className="theme-default">
+      <SchoolFilterForm
+        loadedSchools={loadedSchools}
+        selectedSchools={selectedSchools}
+        handleToggleFilter={handleToggleSchoolFilter}
+        loadSyllabus={addSchool}
+        removeSyllabus={removeSchool}
+      />
+    </div>
   );
 };
 

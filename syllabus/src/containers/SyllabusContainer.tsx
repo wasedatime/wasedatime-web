@@ -14,13 +14,14 @@ const FetchedCourseList = lazy(
 );
 const Filter = lazy(() => import("../components/syllabus/Filter"));
 import FilterButton from "../components/syllabus/FilterButton";
+import SchoolFilterContainer from "./SchoolFilterContainer";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import {
   getSearchLang,
   searchCourses,
   sortCourses,
 } from "@bit/wasedatime.syllabus.ts.utils.course-search";
-import { createHistory, LocationProvider, navigate } from "@reach/router";
+import { navigate } from "@reach/router";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
@@ -150,6 +151,13 @@ class SyllabusContainer extends React.Component<
     if (courseId && this.state.topCourseId !== courseId) {
       await this.setTopCourse(courseId);
     }
+    if (
+      prevProps.fetchedCourses.length === 0 &&
+      this.props.fetchedCourses.length > 0 &&
+      this.state.fetchedCourses.length === 0
+    ) {
+      this.setState({ fetchedCourses: this.props.fetchedCourses });
+    }
   }
 
   setTopCourse = async (courseId) => {
@@ -243,7 +251,8 @@ class SyllabusContainer extends React.Component<
   };
 
   render() {
-    const { fetchCourses, t, i18n } = this.props;
+    const { fetchedCourses: allFetchedCourses, t, i18n } = this.props;
+
     let newI18n = { ...i18n };
 
     const { fetchedCourses, searchTerm, inputText } = this.state;
@@ -304,12 +313,18 @@ class SyllabusContainer extends React.Component<
 
           <MiddleColumn>
             <Suspense fallback={<LoadingSpinner message="Loading..." />}>
-              <FetchedCourseList
-                searchTerm={searchTerm}
-                searchLang={searchLang}
-                results={results}
-                onSearchInputChange={this.handleInputChange}
-              />
+              {allFetchedCourses.length > 0 ? (
+                <FetchedCourseList
+                  searchTerm={searchTerm}
+                  searchLang={searchLang}
+                  results={results}
+                  onSearchInputChange={this.handleInputChange}
+                />
+              ) : (
+                <div style={{ marginTop: "1em" }}>
+                  <SchoolFilterContainer handleToggleFilter={() => {}} />
+                </div>
+              )}
             </Suspense>
           </MiddleColumn>
           <MediaQuery minWidth={1280}>

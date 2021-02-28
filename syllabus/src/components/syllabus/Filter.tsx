@@ -1,11 +1,9 @@
 import React from "react";
-import stickybits from "stickybits";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { headerHeight } from "@bit/wasedatime.core.ts.constants.size-variables";
 import SchoolFilterContainer from "../../containers/SchoolFilterContainer";
 import FilterGroup from "./FilterGroup";
 import FilterEvalGroup from "./FilterEvalGroup";

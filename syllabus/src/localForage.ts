@@ -2,7 +2,10 @@ import localForage from "localforage";
 
 interface oldAddedCoursesBySemType {
   prefs: {
-    id: string; color: number; displayLang: string; visibility: boolean;
+    id: string;
+    color: number;
+    displayLang: string;
+    visibility: boolean;
   }[];
   sortingOption: string;
   byId: {
@@ -19,9 +22,9 @@ interface oldStateType {
       [school: string]: {
         ids: string[];
         exp: string;
-      }
-    }
-  },
+      };
+    };
+  };
   fetchedBuildings: any;
   stats: any;
   user: any;
@@ -31,7 +34,7 @@ interface oldStateFcType {
   byId: {
     [school: string]: {
       [id: string]: any;
-    }
+    };
   };
   schools: string[];
   expBySchool: {
@@ -44,12 +47,10 @@ interface oldStateFcType {
     error: any;
     fetchedTime: string;
     isFetching: boolean;
-  }
+  };
 }
 
 const parseOldState = () => {
-  console.log("old state");
-  
   return Promise.all([
     localForage.getItem("wasedatime-2020-state"),
     localForage.getItem("wasedatime-2020-state-fc"),
@@ -60,73 +61,75 @@ const parseOldState = () => {
         const oldAddedCourseIdsBySchool = oldStates[0].addedCourses.idsBySchool;
         const oldFallAddedCourses = oldStates[0].addedCourses.fall;
         const oldSpringAddedCourses = oldStates[0].addedCourses.spring;
-  
+
         let newIdsBySchool = {};
         for (const school in oldAddedCourseIdsBySchool) {
           newIdsBySchool[school] = {
-            ids: []
+            ids: [],
           };
-          newIdsBySchool[school].ids = oldAddedCourseIdsBySchool[school].ids
+          newIdsBySchool[school].ids = oldAddedCourseIdsBySchool[school].ids;
         }
-  
+
         let byId = {};
         for (const id of oldAddedCourseIds) {
-          const oldAddedCourses = oldFallAddedCourses.byId[id] ? oldFallAddedCourses : oldSpringAddedCourses
-          const course = oldAddedCourses.byId[id]
-          const pref = oldAddedCourses.prefs.find(p => p.id === id);
-            byId[id] = {
-              course: course,
-              pref: {
-                color: pref.color,
-                displayLang: pref.displayLang === "jp" ? "ja" : pref.displayLang,
-                visibility: pref.visibility
-              }
-            }
+          const oldAddedCourses = oldFallAddedCourses.byId[id]
+            ? oldFallAddedCourses
+            : oldSpringAddedCourses;
+          const course = oldAddedCourses.byId[id];
+          const pref = oldAddedCourses.prefs.find((p) => p.id === id);
+          byId[id] = {
+            course: course,
+            pref: {
+              color: pref.color,
+              displayLang: pref.displayLang === "jp" ? "ja" : pref.displayLang,
+              visibility: pref.visibility,
+            },
+          };
         }
-  
+
         const addedCourses = {
           orderedIds: oldAddedCourseIds,
           sortingOption: "ADDED_ORDER",
           idsBySchool: newIdsBySchool,
-          byId: byId
-        }
-  
-        let parsedSchools = {}
-        oldStates[1].schools.map(school => {
+          byId: byId,
+        };
+
+        let parsedSchools = {};
+        oldStates[1].schools.map((school) => {
           parsedSchools[school] = {
             name: school,
             active: true,
             exp: undefined,
-            timestamp: 0
-          }
-        })
+            timestamp: 0,
+          };
+        });
         const fetchedCourses = {
           coursesBySchool: {},
           isFetching: false,
-          schools: parsedSchools
-        }
-  
+          schools: parsedSchools,
+        };
+
         localForage.removeItem("wasedatime-2020-state");
         localForage.removeItem("wasedatime-2020-state-fc");
-  
+
         saveState({
           addedCourses,
-          fetchedCourses
+          fetchedCourses,
         });
 
         return {
           addedCourses,
-          fetchedCourses
-        }
+          fetchedCourses,
+        };
       } else {
         saveState({
           addedCourses: {},
-          fetchedCourses: {}
+          fetchedCourses: {},
         });
 
         return {
           addedCourses: {},
-          fetchedCourses: {}
+          fetchedCourses: {},
         };
       }
     })
@@ -135,7 +138,7 @@ const parseOldState = () => {
       // In case of any errors, play safe and let reducers initialize the state.
       return undefined;
     });
-}
+};
 
 export const loadState = () => {
   return localForage

@@ -15,6 +15,13 @@ import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import * as schoolIconEnMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en";
 import * as schoolIconJaMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja";
 
+import "semantic-ui-css/components/menu.min.css";
+import "semantic-ui-css/components/tab.min.css";
+import "semantic-ui-css/components/card.min.css";
+import "semantic-ui-css/components/dimmer.min.css";
+import "semantic-ui-css/components/popup.min.css";
+import "semantic-ui-css/components/label.min.css";
+
 const RowWrapper = styled("div")`
   display: flex;
   flex-direction: row;
@@ -190,15 +197,13 @@ class SchoolFilterForm extends React.Component<Props, State> {
     newLoadedSchools.push(school);
     await this.props.loadSyllabus(school);
 
-    setTimeout(() => {
-      this.setState(
-        {
-          loadingSchool: null,
-          loadedSchools: newLoadedSchools,
-        },
-        () => this.props.handleToggleFilter(school)
-      );
-    }, 1000);
+    this.setState(
+      {
+        loadingSchool: null,
+        loadedSchools: newLoadedSchools,
+      },
+      () => this.props.handleToggleFilter(school)
+    );
   };
 
   render() {

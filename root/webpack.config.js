@@ -114,7 +114,6 @@ module.exports = (webpackConfigEnv, argv) => {
       new MiniCssExtractPlugin({
         filename: "[name].css",
       }),
-      // new BundleAnalyzerPlugin(),
     ],
     externals: ["single-spa", "react", "react-dom"],
   });

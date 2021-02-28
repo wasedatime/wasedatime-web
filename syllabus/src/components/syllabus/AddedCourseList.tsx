@@ -22,7 +22,6 @@ import {
 import Course from "../../types/course";
 
 import SimpleBar from "simplebar-react";
-import "simplebar/dist/simplebar.min.css";
 
 const CourseListWrapper = styled("div")`
   position: fixed !important;

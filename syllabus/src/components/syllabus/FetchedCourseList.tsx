@@ -7,7 +7,6 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import Course from "../../types/course";
 import SimpleBar from "simplebar-react";
-import "simplebar/dist/simplebar.min.css";
 
 const CourseListWrapper = styled(SimpleBar)`
   height: 100%;

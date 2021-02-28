@@ -1,6 +1,5 @@
 const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ExposeRuntimeCssAssetsPlugin = require("single-spa-css/ExposeRuntimeCssAssetsPlugin.cjs");
 const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
@@ -68,9 +67,6 @@ module.exports = (webpackConfigEnv, argv) => {
             }),
           ]
         : [
-            new HtmlWebpackPlugin({
-              inject: true,
-            }),
             new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
             new PreloadWebpackPlugin({
               rel: "preload",

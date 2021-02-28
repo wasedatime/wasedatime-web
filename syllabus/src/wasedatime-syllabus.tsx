@@ -7,12 +7,20 @@ import Root from "./root.component";
 const cssLifecycles = singleSpaCss({
   // required: a list of CSS URLs to load
   // can be omitted if webpackExtractedCss is set to true, do not specify webpack extracted css files here
-  cssUrls: [],
+  cssUrls: [
+    "simplebar/dist/simplebar.min.css",
+    "semantic-ui-css/components/menu.min.css",
+    "semantic-ui-css/components/tab.min.css",
+    "semantic-ui-css/components/card.min.css",
+    "semantic-ui-css/components/dimmer.min.css",
+    "semantic-ui-css/components/popup.min.css",
+    "semantic-ui-css/components/label.min.css",
+  ],
 
   // optional: defaults to false. This controls whether extracted CSS files from webpack
   // will automatically be loaded. This requires using the ExposeRuntimeCssAssetsPlugin,
   // which is documented below.
-  webpackExtractedCss: process.env.NODE_ENV === "production",
+  webpackExtractedCss: false,
 
   // optional: defaults to true. Indicates whether the <link> element for the CSS will be
   // unmounted when the single-spa microfrontend is unmounted.

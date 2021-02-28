@@ -9,6 +9,10 @@ import textLogo from "@bit/wasedatime.core.assets.text-logo";
 import UserMenu from "../user/UserMenu";
 import OtherLinks from "./OtherLinks";
 
+const TextLogoWrapper = styled.div`
+  ${(props) => props.expanded && "flex: 0 0 130px;"}
+`;
+
 const TextLogo = styled.img`
   height: 25px;
   margin: 0 0 0 10px !important;
@@ -16,8 +20,8 @@ const TextLogo = styled.img`
   width: ${(props) => (props.expanded ? "130px" : "0px")};
   opacity: ${(props) => (props.expanded ? "1" : "0")};
   transition: ${(props) =>
-      props.expanded ? "opacity 0.5s ease-out 0.3s" : "opacity 0.3s"},
-    width 0.3s;
+      props.expanded ? "opacity 0.5s ease-out 0.1s" : "opacity 0.3s"},
+    width 0.3s ${(props) => !props.expanded && "0.2s"};
   display: inline-block;
 `;
 
@@ -96,7 +100,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
           <div style={{ flex: "0 0 50px", textAlign: "center" }}>
             <SmallLogo />
           </div>
-          <div style={{ flex: "0 0 130px" }}>
+          <TextLogoWrapper expanded={expanded}>
             <TextLogo
               src={textLogo}
               alt="WasedaTime text logo"
@@ -104,7 +108,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
               height="50"
               expanded={expanded}
             />
-          </div>
+          </TextLogoWrapper>
         </Link>
         <div style={{ width: "100%", margin: "0px" }}>
           {navItems.map((item) => (
@@ -119,6 +123,12 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
                   icon={item.icon}
                   size="2x"
                   transform="shrink-2"
+                  style={{
+                    color:
+                      item.path === window.location.pathname
+                        ? "#b51e36"
+                        : "#fff",
+                  }}
                 />
                 <NavItemText expanded={expanded ? 1 : 0}>
                   {item.name}

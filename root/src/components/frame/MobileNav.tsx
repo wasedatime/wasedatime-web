@@ -14,6 +14,7 @@ type Props = {
 const MobileNav = ({ navItems, openSignInModal }: Props) => {
   const [userAttr, setUserAttr] = useState(null);
   const [signOutAvailable, setSignOutAvailable] = useState(false);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
   const notSignedIn = !userAttr;
   if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr));
 
@@ -23,17 +24,18 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
     const itemIcon = item["icon"];
     const fontBase = (
       <FontAwesomeIcon
-          icon={itemIcon}
-          className="text-white"
-          size="2x"
-          transform="shrink-2"
-        />
+        icon={itemIcon}
+        className={itemPath === currentPath ? "text-red-800" : "text-white"}
+        size="2x"
+        transform="shrink-2"
+      />
     );
     return (
       <Link
         to={itemPath}
         key={itemPath}
         className="flex-1 text-center"
+        onClick={() => setCurrentPath(itemPath)}
       >
         <button className="focus:outline-none">
           {fontBase}
@@ -50,39 +52,37 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
       style={{ height: "50px", zIndex: 1000 }}
     >
       {styledLinks}
-      
+
       <div className="flex-1 text-center">
         <button
           className="w-full focus:outline-none"
-          onClick={() => userAttr ? setSignOutAvailable(true) : openSignInModal()}
+          onClick={() =>
+            userAttr ? setSignOutAvailable(true) : openSignInModal()
+          }
           onMouseLeave={() => setSignOutAvailable(false)}
         >
-          {
-            userAttr ? (
-              <img
-                src={userAttr.picture}
-                width="35"
-                height="35"
-                className="rounded-full"
-                alt="Image of User account"
-                style={{ margin: "5px auto" }}
-              />           
-            ) : (
-              <FontAwesomeIcon
-                icon={faUserCircle}
-                className="text-white"
-                size="2x"
-                transform="shrink-2"
-              />
-            )
-          }
+          {userAttr ? (
+            <img
+              src={userAttr.picture}
+              width="35"
+              height="35"
+              className="rounded-full"
+              alt="Image of User account"
+              style={{ margin: "5px auto" }}
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faUserCircle}
+              className="text-white"
+              size="2x"
+              transform="shrink-2"
+            />
+          )}
 
           <br />
-          
-          {
-            !userAttr && <span className="text-white">Sign in</span>
-          }
-          
+
+          {!userAttr && <span className="text-white">Sign in</span>}
+
           {signOutAvailable && (
             <button
               className="absolute right-0 mb-4 bg-gray-700 rounded text-white p-2 w-1/4 focus:outline-none"

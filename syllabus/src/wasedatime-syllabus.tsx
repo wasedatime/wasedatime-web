@@ -7,12 +7,12 @@ import Root from "./root.component";
 const cssLifecycles = singleSpaCss({
   // required: a list of CSS URLs to load
   // can be omitted if webpackExtractedCss is set to true, do not specify webpack extracted css files here
-  cssUrls: ["syllabus/main.css"],
+  cssUrls: [],
 
   // optional: defaults to false. This controls whether extracted CSS files from webpack
   // will automatically be loaded. This requires using the ExposeRuntimeCssAssetsPlugin,
   // which is documented below.
-  webpackExtractedCss: false,
+  webpackExtractedCss: true,
 
   // optional: defaults to true. Indicates whether the <link> element for the CSS will be
   // unmounted when the single-spa microfrontend is unmounted.

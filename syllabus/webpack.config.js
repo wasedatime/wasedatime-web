@@ -1,8 +1,8 @@
 const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const ExposeRuntimeCssAssetsPlugin = require("single-spa-css/ExposeRuntimeCssAssetsPlugin.cjs");
-// const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
+const ExposeRuntimeCssAssetsPlugin = require("single-spa-css/ExposeRuntimeCssAssetsPlugin.cjs");
+const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 // use .env
@@ -68,17 +68,21 @@ module.exports = (webpackConfigEnv, argv) => {
           ]
         : [
             new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
-            // new PreloadWebpackPlugin({
-            //   rel: "preload",
-            //   as(entry) {
-            //     if (/\.(s?css)$/.test(entry)) return "style";
-            //     if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
-            //     if (/\.(jpe?g|png|gif|bmp|tiff|svg)$/.test(entry))
-            //       return "image";
-            //     return "script";
-            //   },
-            // }),
+            new PreloadWebpackPlugin({
+              rel: "preload",
+              as(entry) {
+                if (/\.(s?css)$/.test(entry)) return "style";
+                if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
+                if (/\.(jpe?g|png|gif|bmp|tiff|svg)$/.test(entry))
+                  return "image";
+                return "script";
+              },
+            }),
             new MiniCssExtractPlugin({
+              filename: "[name].css",
+            }),
+            new ExposeRuntimeCssAssetsPlugin({
+              // The filename here must match the filename for the MiniCssExtractPlugin
               filename: "[name].css",
             }),
           ],

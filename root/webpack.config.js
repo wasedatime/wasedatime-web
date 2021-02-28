@@ -59,6 +59,15 @@ module.exports = (webpackConfigEnv, argv) => {
           orgName,
         },
       }),
+      new PreloadWebpackPlugin({
+        rel: "preload",
+        as(entry) {
+          if (/\.(s?css)$/.test(entry)) return "style";
+          if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
+          if (/\.(jpe?g|png|gif|bmp|tiff|svg)$/.test(entry)) return "image";
+          return "script";
+        },
+      }),
       new CopyWebpackPlugin({
         patterns: [
           { from: "./src/styles/fonts", to: "./fonts" },
@@ -72,15 +81,6 @@ module.exports = (webpackConfigEnv, argv) => {
             to: "./favicon.ico",
           },
         ],
-      }),
-      new PreloadWebpackPlugin({
-        rel: "preload",
-        as(entry) {
-          if (/\.(s?css)$/.test(entry)) return "style";
-          if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
-          if (/\.(jpe?g|png|gif|bmp|tiff|svg)$/.test(entry)) return "image";
-          return "script";
-        },
       }),
       new InjectManifest({
         swSrc: "./service-worker.js",

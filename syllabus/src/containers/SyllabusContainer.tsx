@@ -321,7 +321,7 @@ class SyllabusContainer extends React.Component<
                   onSearchInputChange={this.handleInputChange}
                 />
               ) : (
-                <div style={{ marginTop: "1em" }}>
+                <div style={{ padding: "2em" }}>
                   <SchoolFilterContainer handleToggleFilter={() => {}} />
                 </div>
               )}

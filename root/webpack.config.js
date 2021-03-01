@@ -79,6 +79,14 @@ module.exports = (webpackConfigEnv, argv) => {
             from: "./src/assets/img/favicon.ico",
             to: "./favicon.ico",
           },
+          {
+            from: "./robots.txt",
+            to: "./robots.txt",
+          },
+          {
+            from: "./sitemap.xml",
+            to: "./sitemap.xml",
+          },
         ],
       }),
       new InjectManifest({

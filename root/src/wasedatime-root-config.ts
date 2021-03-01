@@ -15,6 +15,7 @@ import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 import translationEN from "./constants/locales/en/translation.json";
 import translationJP from "./constants/locales/jp/translation.json";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import * as Sentry from "@sentry/react";
 
 const lifecycles = singleSpaReact({
   React,
@@ -46,6 +47,13 @@ i18nConfig({
   [Lang.EN]: translationEN,
   [Lang.JA]: translationJP,
 });
+if (process.env.NODE_ENV === "production") {
+  Sentry.init({
+    dsn:
+      "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
+    environment: process.env.NODE_ENV,
+  });
+}
 
 ReactDOM.render(
   React.createElement("span"),

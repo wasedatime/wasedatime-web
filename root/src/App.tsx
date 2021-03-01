@@ -13,6 +13,7 @@ import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { useTranslation } from "react-i18next";
 import CommonStyle from "./common-style";
+import { ErrorBoundary } from "@sentry/react";
 
 const App = () => {
   Hub.listen("auth", ({ payload: { event, data } }) => {
@@ -46,24 +47,47 @@ const App = () => {
         <meta property="og:site_name" content="WasedaTime - Home" />
       </Helmet>
       <CommonStyle />
-      <Suspense fallback={<LoadingSpinner message={"Loading..."} />}>
-        {localStorage.getItem("isFirstAccess") === null ||
-        localStorage.getItem("isFirstAccess") === "true" ? (
-          <Home path="/" isFirstAccess={true} />
-        ) : (
-          <Router>
-            <TermsOfService path="/terms-of-service" />
-            <PrivacyPolicy path="/privacy-policy" />
-            <AboutUs path="/aboutus" />
-            <RedirectPage path="/verify" />
-            <Home path="/home" isFirstAccess={false} />
-            <Redirect from="/" to="/courses/timetable" noThrow />
-            <Redirect from="/" to="/courses/timetable" noThrow />
-            <Redirect from="/timetable" to="/courses/timetable" noThrow />
-            <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
-          </Router>
+      <ErrorBoundary
+        fallback={({ error, componentStack, resetError }) => (
+          <div style={{ textAlign: "center", padding: "10vw 10vh" }}>
+            <h2>You have encountered an error!</h2>
+            <h2>エラーが発生しました！</h2>
+            <div>{error.toString()}</div>
+            <div style={{ textAlign: "left" }}>
+              <p>
+                Please send an email to bugs@wasedatime.com and describe how the
+                bugs happened.
+              </p>
+              <p>
+                お手数ですが、エラー発生の前に行われた操作をメールに述べ、
+                bugs@wasedatime.com へ送っていただければ助かります。
+              </p>
+              <p>We appreciate your help!</p>
+              <p>ご協力ありがとうございます！</p>
+            </div>
+            <button onClick={resetError}>Click here to reset!</button>
+          </div>
         )}
-      </Suspense>
+      >
+        <Suspense fallback={<LoadingSpinner message={"Loading..."} />}>
+          {localStorage.getItem("isFirstAccess") === null ||
+          localStorage.getItem("isFirstAccess") === "true" ? (
+            <Home path="/" isFirstAccess={true} />
+          ) : (
+            <Router>
+              <TermsOfService path="/terms-of-service" />
+              <PrivacyPolicy path="/privacy-policy" />
+              <AboutUs path="/aboutus" />
+              <RedirectPage path="/verify" />
+              <Home path="/home" isFirstAccess={false} />
+              <Redirect from="/" to="/courses/timetable" noThrow />
+              <Redirect from="/" to="/courses/timetable" noThrow />
+              <Redirect from="/timetable" to="/courses/timetable" noThrow />
+              <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
+            </Router>
+          )}
+        </Suspense>
+      </ErrorBoundary>
       <MediaQuery maxWidth={sizes.tablet}>
         {(matches) => matches && <Footer />}
       </MediaQuery>

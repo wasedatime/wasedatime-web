@@ -9,6 +9,7 @@ import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 import { useTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
+import ReactGA from "react-ga";
 
 const config = {
   API: {
@@ -24,6 +25,14 @@ API.configure(config);
 
 configAuth();
 i18nConfig();
+ReactGA.initialize("UA-112185819-3", { debug: false, titleCase: false });
+// if (process.env.NODE_ENV === "production") {
+//   Sentry.init({
+//     dsn:
+//       "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
+//     environment: process.env.NODE_ENV,
+//   });
+// }
 
 const Root = () => {
   const [reduxStore, setReduxStore] = useState(null);

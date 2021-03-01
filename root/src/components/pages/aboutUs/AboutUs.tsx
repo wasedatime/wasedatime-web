@@ -9,6 +9,12 @@ import OurMission from "./OurMission";
 import JoinUs from "./JoinUs";
 const MeetOurTeam = lazy(() => import("./MeetOurTeam"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import ReactGA from "react-ga";
+import { gaLanguage } from "../../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaChangeLanguage,
+} from "../../../ga/eventActions";
 
 const AboutUsWrapper = styled(Wrapper)`
   display: flex;
@@ -27,6 +33,14 @@ const AboutUsFlex = styled.div`
 const AboutUs = (props: { path: string }) => {
   const [activePage, setActivePage] = useState("join us");
   const { t, i18n } = useTranslation();
+  const changeLanguage = (lng) => {
+    ReactGA.event({
+      category: gaLanguage,
+      action: gaAppendActionWithLng(gaChangeLanguage, lng),
+      label: lng,
+    });
+    i18n.changeLanguage(lng);
+  };
 
   return (
     <AboutUsWrapper id="aboutus_wrapper">
@@ -51,7 +65,7 @@ const AboutUs = (props: { path: string }) => {
           inputText={""}
           disabled={true}
           isBlur={false}
-          changeLang={(lng) => i18n.changeLanguage(lng)}
+          changeLang={changeLanguage}
         />
       </HeaderWrapper>
       <AboutUsFlex>

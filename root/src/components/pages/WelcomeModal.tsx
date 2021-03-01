@@ -11,6 +11,9 @@ import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { navigateToUrl } from "single-spa";
+import ReactGA from "react-ga";
+import { gaSetLanguage } from "../../ga/eventActions";
+import { gaLanguage } from "../../ga/eventCategories";
 
 const modalStyle = {
   overlay: {
@@ -64,6 +67,15 @@ interface Props extends WithTranslation {
 
 const WelcomeModal = ({ isModalOpen, closeModal, isFirstAccess, t, i18n }) => {
   const [pageIndex, setPageIndex] = useState(0);
+  const changeLanguage = (lng) => {
+    ReactGA.event({
+      category: gaLanguage,
+      action: gaSetLanguage,
+      label: lng,
+    });
+    i18n.changeLanguage(lng);
+  };
+
   const pages = [
     <div>
       <LogoWrapper style={{ transform: "none" }}>
@@ -77,7 +89,7 @@ const WelcomeModal = ({ isModalOpen, closeModal, isFirstAccess, t, i18n }) => {
           className={`border-2 border-red-700 rounded-lg px-4 mx-2 hover:bg-red-700 hover:text-white focus:outline-none ${
             i18n.language === "en" ? "bg-red-700 text-white" : "text-red-700"
           }`}
-          onClick={() => i18n.changeLanguage("en")}
+          onClick={() => changeLanguage("en")}
         >
           English
         </button>
@@ -85,7 +97,7 @@ const WelcomeModal = ({ isModalOpen, closeModal, isFirstAccess, t, i18n }) => {
           className={`border-2 border-red-700 rounded-lg px-4 mx-2 hover:bg-red-700 hover:text-white focus:outline-none ${
             i18n.language === "ja" ? "bg-red-700 text-white" : "text-red-700"
           }`}
-          onClick={() => i18n.changeLanguage("ja")}
+          onClick={() => changeLanguage("ja")}
         >
           日本語
         </button>

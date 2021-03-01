@@ -8,8 +8,10 @@ import titleLogo from "../../assets/img/title-logo.svg";
 import homeBackground from "../../assets/img/home_background-lg.jpg";
 import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
 import WelcomeModal from "./WelcomeModal";
-import { navigate } from "@reach/router";
 import { navigateToUrl } from "single-spa";
+import ReactGA from "react-ga";
+import { gaAppendActionWithLng, gaChangeLanguage } from "../../ga/eventActions";
+import { gaLanguage } from "../../ga/eventCategories";
 
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
@@ -71,6 +73,15 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
     if (isFirstAccess) navigateToUrl("/courses/timetable");
   };
 
+  const changeLanguage = (lng) => {
+    ReactGA.event({
+      category: gaLanguage,
+      action: gaAppendActionWithLng(gaChangeLanguage, lng),
+      label: lng,
+    });
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <StyledWrapper background={homeBackground}>
       <Header
@@ -80,7 +91,7 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
         inputText={""}
         disabled={true}
         isBlur={true}
-        changeLang={(lng) => i18n.changeLanguage(lng)}
+        changeLang={changeLanguage}
       />
       <StyledArticle>
         <LogoWrapper>

@@ -13,6 +13,8 @@ const SignInModal = lazy(
   () => import("@bit/wasedatime.core.ts.ui.sign-in-modal")
 );
 import { useTranslation } from "react-i18next";
+import { globalHistory } from "@reach/router";
+import ReactGA from "react-ga";
 
 const Nav = () => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
@@ -22,6 +24,16 @@ const Nav = () => {
     window.onstorage = () => {
       i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
     };
+
+    const page = window.location.pathname + window.location.search;
+    ReactGA.set({ page });
+    ReactGA.pageview(page);
+    return globalHistory.listen(({ action }) => {
+      if (action === "PUSH") {
+        ReactGA.set({ page });
+        ReactGA.pageview(page);
+      }
+    });
   }, []);
 
   const navItems = [

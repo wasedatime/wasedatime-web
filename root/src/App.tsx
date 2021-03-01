@@ -1,7 +1,7 @@
 import React, { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { Hub } from "@aws-amplify/core";
-import { Router, Redirect, navigate, Location } from "@reach/router";
+import { Router, Redirect, navigate } from "@reach/router";
 const TermsOfService = lazy(() => import("./components/pages/TermsOfService"));
 const PrivacyPolicy = lazy(() => import("./components/pages/PrivacyPolicy"));
 const AboutUs = lazy(() => import("./components/pages/aboutUs/AboutUs"));
@@ -13,7 +13,6 @@ import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { useTranslation } from "react-i18next";
 import CommonStyle from "./common-style";
-import debounce from "lodash/debounce";
 import { ErrorBoundary } from "@sentry/react";
 import ReactGA from "react-ga";
 import { gaUser } from "./ga/eventCategories";
@@ -22,48 +21,6 @@ import {
   gaUserSignInFailure,
   gaUserSignOut,
 } from "./ga/eventActions";
-
-class Analytics extends React.Component<{ path: string; location: Location }> {
-  componentDidMount() {
-    this.sendPageChange(
-      this.props.location.pathname,
-      this.props.location.search
-    );
-  }
-
-  componentDidUpdate(prevProps) {
-    const prevPathname = prevProps.location.pathname;
-    const thisPathname = this.props.location.pathname;
-    const prevSearch = prevProps.location.search;
-    const thisSearch = this.props.location.search;
-
-    if (prevPathname !== thisPathname) {
-      this.sendPageChange(thisPathname, thisSearch);
-    } else {
-      if (
-        prevSearch !== thisSearch &&
-        thisSearch !== "" &&
-        thisPathname === "/syllabus"
-      ) {
-        this.debounceSendPageChange(thisPathname, thisSearch);
-      }
-    }
-  }
-
-  sendPageChange(pathname, search) {
-    const page = pathname + search;
-    ReactGA.set({ page });
-    ReactGA.pageview(page);
-  }
-
-  debounceSendPageChange = debounce(this.sendPageChange, 2000, {
-    leading: false,
-  });
-
-  render() {
-    return null;
-  }
-}
 
 const App = () => {
   Hub.listen("auth", ({ payload: { event, data } }) => {
@@ -140,27 +97,19 @@ const App = () => {
         <Suspense fallback={<LoadingSpinner message={"Loading..."} />}>
           {localStorage.getItem("isFirstAccess") === null ||
           localStorage.getItem("isFirstAccess") === "true" ? (
-            <Location>
-              <Router>
-                <Analytics path="/" location={location} />
-                <Home path="/" isFirstAccess={true} />
-              </Router>
-            </Location>
+            <Home path="/" isFirstAccess={true} />
           ) : (
-            <Location>
-              <Router>
-                <Analytics path="/" location={location} />
-                <TermsOfService path="/terms-of-service" />
-                <PrivacyPolicy path="/privacy-policy" />
-                <AboutUs path="/aboutus" />
-                <RedirectPage path="/verify" />
-                <Home path="/home" isFirstAccess={false} />
-                <Redirect from="/" to="/courses/timetable" noThrow />
-                <Redirect from="/" to="/courses/timetable" noThrow />
-                <Redirect from="/timetable" to="/courses/timetable" noThrow />
-                <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
-              </Router>
-            </Location>
+            <Router>
+              <TermsOfService path="/terms-of-service" />
+              <PrivacyPolicy path="/privacy-policy" />
+              <AboutUs path="/aboutus" />
+              <RedirectPage path="/verify" />
+              <Home path="/home" isFirstAccess={false} />
+              <Redirect from="/" to="/courses/timetable" noThrow />
+              <Redirect from="/" to="/courses/timetable" noThrow />
+              <Redirect from="/timetable" to="/courses/timetable" noThrow />
+              <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
+            </Router>
           )}
         </Suspense>
       </ErrorBoundary>

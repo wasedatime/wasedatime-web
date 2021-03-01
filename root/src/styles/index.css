@@ -867,6 +867,11 @@ video {
   color: rgba(107, 114, 128, var(--tw-text-opacity));
 }
 
+.hover\:text-red-800:hover {
+  --tw-text-opacity: 1;
+  color: rgba(153, 27, 27, var(--tw-text-opacity));
+}
+
 .w-1\/4 {
   width: 25%;
 }

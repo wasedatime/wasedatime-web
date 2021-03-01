@@ -12,7 +12,7 @@ const cssLifecycles = singleSpaCss({
   // optional: defaults to false. This controls whether extracted CSS files from webpack
   // will automatically be loaded. This requires using the ExposeRuntimeCssAssetsPlugin,
   // which is documented below.
-  webpackExtractedCss: true,
+  webpackExtractedCss: process.env.NODE_ENV === "production",
 
   // optional: defaults to true. Indicates whether the <link> element for the CSS will be
   // unmounted when the single-spa microfrontend is unmounted.

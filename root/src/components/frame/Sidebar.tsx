@@ -28,7 +28,8 @@ const TextLogo = styled.img`
 const NavItemBlock = styled.div`
   display: flex;
   flex-direction: row;
-  color: #fff;
+  color: ${(props) =>
+    props.isCurrentPath ? props.theme.colorPrimary : "#fff"};
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;
@@ -118,17 +119,14 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
               onClick={() => {}}
               expanded={expanded ? 1 : 0}
             >
-              <NavItemBlock expanded={expanded ? 1 : 0}>
+              <NavItemBlock
+                expanded={expanded ? 1 : 0}
+                isCurrentPath={item.path === window.location.pathname}
+              >
                 <FontAwesomeIcon
                   icon={item.icon}
                   size="2x"
                   transform="shrink-2"
-                  style={{
-                    color:
-                      item.path === window.location.pathname
-                        ? "#b51e36"
-                        : "#fff",
-                  }}
                 />
                 <NavItemText expanded={expanded ? 1 : 0}>
                   {item.name}

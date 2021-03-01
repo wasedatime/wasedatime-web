@@ -1,4 +1,4 @@
-import { registerApplication, start } from "single-spa";
+import { navigateToUrl, registerApplication, start } from "single-spa";
 import {
   constructApplications,
   constructRoutes,
@@ -52,5 +52,9 @@ ReactDOM.render(
   document.getElementById("loading")
 );
 ReactDOM.render(React.createElement(Nav), document.getElementById("nav"));
+
+(localStorage.getItem("isFirstAccess") === null ||
+  localStorage.getItem("isFirstAccess") === "true") &&
+  navigateToUrl("/");
 
 export const { bootstrap, mount, unmount } = lifecycles;

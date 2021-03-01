@@ -69,6 +69,7 @@
     "react": "^17.0.1",
     "react-datepicker": "^3.4.1",
     "react-dom": "^17.0.1",
+    "react-ga": "^3.3.0",
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.8.5",
     "styled-components": "^5.2.1"

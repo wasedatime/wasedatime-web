@@ -5,6 +5,9 @@ import { removeCourse } from "../redux/actions";
 import CourseItem from "../components/CourseItem";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import Course from "../types/course";
+import ReactGA from "react-ga";
+import { gaAddedCourseItem } from "../ga/eventCategories";
+import { gaAppendActionWithLng, gaRemoveCourse } from "../ga/eventActions";
 
 interface ReduxDispatchProps {
   removeCourse: (id: string) => void;
@@ -20,6 +23,11 @@ class AddedCourseItemContainer extends React.Component<
 > {
   handleRemoveCourse = (title, lng) => {
     const { course, removeCourse, removeCourseFromList } = this.props;
+    ReactGA.event({
+      category: gaAddedCourseItem,
+      action: gaAppendActionWithLng(gaRemoveCourse, lng),
+      label: title,
+    });
     removeCourseFromList(course);
     removeCourse(course[SyllabusKey.ID]);
     Alert.success("Course removed.", {
@@ -38,7 +46,6 @@ class AddedCourseItemContainer extends React.Component<
         searchLang={course.displayLang}
         course={course}
         expandable={false}
-        openNewTabOnClick={true}
       />
     );
   }

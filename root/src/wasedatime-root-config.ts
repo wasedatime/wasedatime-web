@@ -48,6 +48,7 @@ i18nConfig({
   [Lang.EN]: translationEN,
   [Lang.JA]: translationJP,
 });
+ReactGA.initialize("UA-112185819-3", { debug: false, titleCase: false });
 // if (process.env.NODE_ENV === "production") {
 //   Sentry.init({
 //     dsn:
@@ -55,7 +56,6 @@ i18nConfig({
 //     environment: process.env.NODE_ENV,
 //   });
 // }
-ReactGA.initialize("UA-112185819-3", { debug: false, titleCase: false });
 
 ReactDOM.render(
   React.createElement("span"),

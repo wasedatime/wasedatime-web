@@ -17,6 +17,14 @@ import API from "@aws-amplify/api";
 import Alert from "react-s-alert";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
+import ReactGA from "react-ga";
+import { gaCourseReviews } from "../../ga/eventCategories";
+import {
+  gaCreateCourseReview,
+  gaDeleteCourseReview,
+  gaEditCourseReview,
+  gaSwitchReviewLanguage,
+} from "../../ga/eventActions";
 
 // todo: make alert works
 
@@ -171,6 +179,10 @@ class CourseReviews extends React.Component<Props, State> {
 
         // Send the review
         if (formMode === "new") {
+          ReactGA.event({
+            category: gaCourseReviews,
+            action: gaCreateCourseReview,
+          });
           API.post("wasedatime-dev", "/course-reviews/" + courseKey, {
             body: {
               data: newReview,
@@ -181,6 +193,10 @@ class CourseReviews extends React.Component<Props, State> {
             },
           }).then(async () => this.cleanFormAndUpdateReviews(newReview));
         } else if (formMode === "edit") {
+          ReactGA.event({
+            category: gaCourseReviews,
+            action: gaEditCourseReview,
+          });
           API.patch(
             "wasedatime-dev",
             "/course-reviews/" + courseKey + "?ts=" + editReviewPrimaryKey,
@@ -267,6 +283,10 @@ class CourseReviews extends React.Component<Props, State> {
           position: "bottom",
           effect: "jelly",
         });
+        ReactGA.event({
+          category: gaCourseReviews,
+          action: gaDeleteCourseReview,
+        });
 
         const updatedReviews = reviews;
         updatedReviews.splice(reviewIndex, 1);
@@ -320,7 +340,14 @@ class CourseReviews extends React.Component<Props, State> {
           <span style={{ marginLeft: "10px" }}>
             <ReviewLangSwitches
               reviewLang={reviewLang}
-              switchReviewLang={(lng) => this.setState({ reviewLang: lng })}
+              switchReviewLang={(lng) => {
+                ReactGA.event({
+                  category: gaCourseReviews,
+                  action: gaSwitchReviewLanguage,
+                  label: lng,
+                });
+                this.setState({ reviewLang: lng });
+              }}
               isInHeading={true}
             />
           </span>

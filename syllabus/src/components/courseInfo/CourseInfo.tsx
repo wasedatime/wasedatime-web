@@ -20,6 +20,14 @@ import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
+import ReactGA from "react-ga";
+import { gaCourseDetails, gaFetchedCourseItem } from "../../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaClickRelatedCourse,
+  gaClickSyllabusLink,
+  gaOpenCourseDetails,
+} from "../../ga/eventActions";
 
 const CourseInfoWrapper = styled(Segment)`
   width: 100%;
@@ -37,7 +45,7 @@ const RelatedCourses = styled.div`
 `;
 
 const RelatedCourse = styled.div`
-  flex: 0 0 25%;
+  flex: 0 0 33%;
 `;
 
 const StyledSubHeading = styled("h6")`
@@ -149,11 +157,16 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
   };
 
   componentDidMount() {
+    ReactGA.event({
+      category: gaCourseDetails,
+      action: gaOpenCourseDetails,
+      label: this.props.course[SyllabusKey.TITLE],
+    });
     this.loadReviewsAndRelatedCourses();
   }
 
   render() {
-    const { course, searchLang, t } = this.props;
+    const { course, searchLang, t, i18n } = this.props;
     const { isLoaded, thisCourseReviews, relatedCourses } = this.state;
 
     return (
@@ -169,6 +182,16 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
               }${t("syllabus.langParam")}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                ReactGA.event({
+                  category: gaCourseDetails,
+                  action: gaAppendActionWithLng(
+                    gaClickSyllabusLink,
+                    i18n.language
+                  ),
+                  label: course[SyllabusKey.TITLE],
+                })
+              }
             >
               <FontAwesomeIcon
                 style={{ color: "#6495ED" }}
@@ -195,7 +218,16 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
         <RelatedCourses>
           {isLoaded ? (
             relatedCourses.map((course, i) => (
-              <RelatedCourse key={i}>
+              <RelatedCourse
+                key={i}
+                onClick={() =>
+                  ReactGA.event({
+                    category: gaCourseDetails,
+                    action: gaClickRelatedCourse,
+                    label: course[SyllabusKey.TITLE],
+                  })
+                }
+              >
                 <CourseItemContainer
                   searchTerm={""}
                   searchLang={searchLang}

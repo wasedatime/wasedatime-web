@@ -33,6 +33,16 @@ import Course from "../types/course";
 import queryString from "query-string";
 import API from "@aws-amplify/api";
 import { schoolCodeMap } from "@bit/wasedatime.syllabus.ts.constants.school-code";
+import ReactGA from "react-ga";
+import { gaFilter } from "../ga/eventCategories";
+import {
+  gaAppendActionWithLng,
+  gaApplyFilter,
+  gaCloseModal,
+  gaOpenModal,
+  gaRemoveFilter,
+  gaUpdateFilter,
+} from "../ga/eventActions";
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -207,22 +217,37 @@ class SyllabusContainer extends React.Component<
   };
 
   handleToggleModal = () => {
+    const gaAction = this.state.isModalOpen ? gaCloseModal : gaOpenModal;
+    ReactGA.event({
+      category: gaFilter,
+      action: gaAppendActionWithLng(gaAction, this.props.i18n.language),
+    });
     this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));
   };
 
   handleToggleFilter = (name: string, value: any) => {
     this.setState((prevState, props) => {
       const { [name]: filters, ...rest } = prevState.filterGroups;
-      let newFilters;
+      let newFilters, gaAction;
       if (["evalType", "evalPercent"].includes(name) || Array.isArray(value)) {
         newFilters = value; // change the whole value of the filter group
+        gaAction = gaUpdateFilter;
       } else if (!filters) {
         newFilters = [value]; // add first item to an unselected filter group
+        gaAction = gaApplyFilter;
       } else if (filters.includes(value)) {
         newFilters = filters.filter((elem) => elem !== value); // cancel an item from a filter group
+        gaAction = gaRemoveFilter;
       } else {
         newFilters = [...filters, value]; // add an item to a filter group
+        gaAction = gaApplyFilter;
       }
+
+      ReactGA.event({
+        category: gaFilter,
+        action: gaAppendActionWithLng(gaAction, this.props.i18n.language),
+        label: `${name} - ${value}`,
+      });
 
       const newFilterGroups =
         Array.isArray(newFilters) && newFilters.length === 0

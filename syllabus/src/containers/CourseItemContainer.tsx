@@ -5,6 +5,13 @@ import { addCourse, removeCourse } from "../redux/actions";
 import CourseItem from "../components/CourseItem";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import Course from "../types/course";
+import ReactGA from "react-ga";
+import { gaFetchedCourseItem } from "../ga/eventCategories";
+import {
+  gaAddCourse,
+  gaAppendActionWithLng,
+  gaRemoveCourse,
+} from "../ga/eventActions";
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
 
@@ -30,6 +37,11 @@ class CourseItemContainer extends React.Component<
   handleAddCourse = (title, lng) => {
     const { course, addedCourseIds, searchLang } = this.props;
     const occurrences = course[SyllabusKey.OCCURRENCES];
+    ReactGA.event({
+      category: gaFetchedCourseItem,
+      action: gaAppendActionWithLng(gaAddCourse, lng),
+      label: title,
+    });
     if (addedCourseIds.length >= ADDED_COURSES_NUMBER_LIMIT) {
       Alert.error(
         `Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`,
@@ -63,6 +75,11 @@ class CourseItemContainer extends React.Component<
 
   handleRemoveCourse = (title, lng) => {
     const { course } = this.props;
+    ReactGA.event({
+      category: gaFetchedCourseItem,
+      action: gaAppendActionWithLng(gaRemoveCourse, lng),
+      label: title,
+    });
     this.props.removeCourse(course[SyllabusKey.ID]);
     Alert.success("Course removed.", {
       position: "bottom",
@@ -89,7 +106,6 @@ class CourseItemContainer extends React.Component<
         searchLang={searchLang}
         course={course}
         expandable={expandable}
-        openNewTabOnClick={true}
       />
     );
   }

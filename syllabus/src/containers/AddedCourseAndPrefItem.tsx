@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
-import { withTranslation } from "react-i18next";
+import { WithTranslation, withTranslation } from "react-i18next";
 import {
   removeCourse,
   changeCourseColor,
@@ -10,6 +10,14 @@ import {
 import CourseAndPrefItem from "../components/timetable/CourseAndPrefItem";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import Course from "../types/course";
+import ReactGA from "react-ga";
+import {
+  gaAppendActionWithLng,
+  gaChangeCourseColor,
+  gaMakeCourseInVisible,
+  gaRemoveCourse,
+} from "../ga/eventActions";
+import { gaAddedCourseAndPrefItem } from "../ga/eventCategories";
 
 interface ReduxDispatchProps {
   removeCourse: (id: string) => void;
@@ -17,7 +25,7 @@ interface ReduxDispatchProps {
   toggleCourseVisibility: (id: string) => void;
 }
 
-interface OwnProps {
+interface OwnProps extends WithTranslation {
   addedCourseAndPref: {
     pref: {
       color: number;
@@ -33,7 +41,13 @@ class AddedCourseAndPrefItem extends React.Component<
   {}
 > {
   handleRemoveCourse = (id) => {
+    const { addedCourseAndPref, i18n } = this.props;
     this.props.removeCourse(id);
+    ReactGA.event({
+      category: gaAddedCourseAndPrefItem,
+      action: gaAppendActionWithLng(gaRemoveCourse, i18n.language),
+      label: addedCourseAndPref.course[SyllabusKey.TITLE],
+    });
     Alert.success("Course removed.", {
       position: "bottom",
       effect: "jelly",
@@ -41,13 +55,27 @@ class AddedCourseAndPrefItem extends React.Component<
   };
 
   handleChangeColor = (colorId) => {
-    const { addedCourseAndPref } = this.props;
+    const { addedCourseAndPref, i18n } = this.props;
     const { course } = addedCourseAndPref;
     this.props.changeCourseColor(course[SyllabusKey.ID], colorId);
+    ReactGA.event({
+      category: gaAddedCourseAndPrefItem,
+      action: gaAppendActionWithLng(gaChangeCourseColor, i18n.language),
+      label: "color" + colorId,
+    });
   };
 
   handleToggleVisibility = (id) => {
-    console.log(id);
+    const { addedCourseAndPref, i18n } = this.props;
+    const gaAction =
+      addedCourseAndPref.pref.visibility === true
+        ? gaMakeCourseInVisible
+        : gaMakeCourseInVisible;
+    ReactGA.event({
+      category: gaAddedCourseAndPrefItem,
+      action: gaAppendActionWithLng(gaAction, i18n.language),
+      label: addedCourseAndPref.course[SyllabusKey.TITLE],
+    });
     this.props.toggleCourseVisibility(id);
   };
 

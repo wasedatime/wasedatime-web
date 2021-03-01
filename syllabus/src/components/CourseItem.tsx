@@ -7,7 +7,6 @@ import {
   faMapMarkerAlt,
   faMinusCircle,
   faPlusCircle,
-  faExternalLinkSquareAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { termKeysDecoder } from "@bit/wasedatime.syllabus.ts.utils.term-keys-decoder";
@@ -17,7 +16,7 @@ import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import * as schoolIconEnMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en";
 import * as schoolIconJaMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import { Badge } from "@bit/wasedatime.core.ts.styles.badge";
 import CourseInfo from "./courseInfo/CourseInfo";
@@ -196,8 +195,6 @@ interface Props extends WithTranslation {
   isAddable: boolean;
   handleOnClick: (title: string, lng: string) => void;
   expandable: boolean;
-  openNewTabOnClick: boolean;
-  history?: any;
 }
 
 const CourseItem = ({
@@ -207,8 +204,6 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   expandable,
-  openNewTabOnClick,
-  history,
   t,
   i18n,
 }: Props) => {

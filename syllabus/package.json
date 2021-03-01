@@ -108,6 +108,7 @@
     "react": "^17.0.1",
     "react-copy-to-clipboard": "^5.0.3",
     "react-dom": "^17.0.1",
+    "react-ga": "^3.3.0",
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.8.5",
     "react-minimal-pie-chart": "^8.1.0",

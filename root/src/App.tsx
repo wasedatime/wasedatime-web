@@ -2,6 +2,7 @@ import React, { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { Hub } from "@aws-amplify/core";
 import { Router, Redirect, navigate } from "@reach/router";
+
 const TermsOfService = lazy(() => import("./components/pages/TermsOfService"));
 const PrivacyPolicy = lazy(() => import("./components/pages/PrivacyPolicy"));
 const AboutUs = lazy(() => import("./components/pages/aboutUs/AboutUs"));
@@ -9,11 +10,14 @@ const Home = lazy(() => import("./components/pages/Home"));
 import RedirectPage from "./components/user/RedirectPage";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import Footer from "./components/frame/Footer";
+
 import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { useTranslation } from "react-i18next";
 import CommonStyle from "./common-style";
+
 import { ErrorBoundary } from "@sentry/react";
+
 import ReactGA from "react-ga";
 import { gaUser } from "./ga/eventCategories";
 import {

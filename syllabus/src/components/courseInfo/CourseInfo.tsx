@@ -33,6 +33,8 @@ const CourseInfoWrapper = styled(Segment)`
   width: 100%;
   display: block;
   cursor: auto;
+  margin-top: 0px !important;
+  border: none !important;
 `;
 
 const RelatedCourses = styled.div`

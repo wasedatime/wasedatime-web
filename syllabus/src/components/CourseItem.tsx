@@ -7,6 +7,7 @@ import {
   faMapMarkerAlt,
   faMinusCircle,
   faPlusCircle,
+  faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { termKeysDecoder } from "@bit/wasedatime.syllabus.ts.utils.term-keys-decoder";
@@ -31,14 +32,28 @@ const CourseItemWrapper = styled("li")`
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;
   margin: 1em 0.5em;
-  padding: 0.5em 0.8em;
   width: 96%;
   line-height: 150%;
-  &:hover {
-    background-color: #eee;
-    box-shadow: none;
-    cursor: pointer;
-  }
+`;
+
+const CourseItemIntroWrapper = styled.div`
+  padding: 0.5em 0.8em;
+  ${(props) =>
+    !props.expanded &&
+    `
+      border-radius: 10px;
+      &:hover {
+        background: #eee;
+        cursor: pointer;
+      }
+    `}
+`;
+
+const CloseCourseInfoButton = styled.p`
+  text-align: center;
+  margin: none;
+  background: #eee;
+  cursor: pointer;
 `;
 
 const StyledHeading = styled("h3")`
@@ -264,10 +279,11 @@ const CourseItem = ({
 
   return (
     <CourseItemWrapper expandable={expandable}>
-      <div
+      <CourseItemIntroWrapper
         onClick={async () => {
-          expandable ? setExpanded(!expanded) : await navigateToCourse();
+          expandable ? setExpanded(true) : await navigateToCourse();
         }}
+        expanded={expanded}
       >
         <StyledHeading>{highlightedTitle}</StyledHeading>
         {expandable && (
@@ -310,7 +326,14 @@ const CourseItem = ({
             <Description>{highlightedInstructor}</Description>
           </DescriptionWrapper>
         </DetailWrapper>
-      </div>
+      </CourseItemIntroWrapper>
+
+      {expandable && expanded && (
+        <CloseCourseInfoButton onClick={() => setExpanded(false)}>
+          <FontAwesomeIcon icon={faChevronUp} />
+        </CloseCourseInfoButton>
+      )}
+
       {expandable && expanded && (
         <CourseInfo course={course} searchLang={searchLang} />
       )}

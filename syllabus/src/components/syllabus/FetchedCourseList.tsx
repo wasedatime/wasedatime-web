@@ -116,8 +116,11 @@ class FetchedCourseList extends React.Component<Props, State> {
             </Waypoint>
           ))
         ) : (
-          <div style={{ marginTop: "0.5em", textAlign: "center" }}>
-            No results? Try importing a school or changing the filter!
+          <div style={{ marginTop: "1em", textAlign: "center" }}>
+            <h3>No results? Try importing a school or changing the filter!</h3>
+            <h3>
+              結果が表示されていない？学部を選択するか、フィルタ条件を変更しましょう！
+            </h3>
           </div>
         )}
       </CourseListWrapper>

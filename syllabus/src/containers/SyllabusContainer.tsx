@@ -171,13 +171,13 @@ class SyllabusContainer extends React.Component<
   }
 
   setTopCourse = async (courseId) => {
-    let course = this.state.fetchedCourses.find(
+    let course = this.props.fetchedCourses.find(
       (c) => c[SyllabusKey.ID] === courseId
     );
     const school = schoolCodeMap[courseId.substring(0, 2)];
     if (!course) {
       await this.props.fetchCoursesBySchool(school);
-      const res = await API.get("wasedatime-dev", `/syllabus/${school}`, {
+      const res = await API.get("wasedatime-dev", `/syllabus?id=${courseId}`, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -186,13 +186,12 @@ class SyllabusContainer extends React.Component<
       course = res.data.find((c) => c[SyllabusKey.ID] === courseId);
     }
     if (course) {
+      course = { ...course, [SyllabusKey.SCHOOL]: school };
+
       this.setState((prevState) => ({
         topCourseId: courseId,
-        topCourse: { ...course, [SyllabusKey.SCHOOL]: school },
-        fetchedCourses: [
-          { ...course, [SyllabusKey.SCHOOL]: school },
-          ...prevState.fetchedCourses,
-        ],
+        topCourse: course,
+        fetchedCourses: [course].concat(prevState.fetchedCourses),
       }));
     }
   };
@@ -280,10 +279,10 @@ class SyllabusContainer extends React.Component<
 
     let newI18n = { ...i18n };
 
-    const { fetchedCourses, searchTerm, inputText } = this.state;
+    const { fetchedCourses, searchTerm, inputText, topCourseId } = this.state;
     const searchLang =
       searchTerm === "" ? newI18n.language : getSearchLang(searchTerm);
-    const results =
+    let results =
       searchTerm.length > 0
         ? sortCourses(
             searchTerm,
@@ -291,6 +290,11 @@ class SyllabusContainer extends React.Component<
             searchLang
           )
         : fetchedCourses;
+    results = results.sort((a, b) => {
+      if (a.a === topCourseId) return -1;
+      else if (b.a === topCourseId) return 1;
+      else return 0;
+    });
 
     return (
       <SyllabusWrapper className="theme-default">

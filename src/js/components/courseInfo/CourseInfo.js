@@ -1,6 +1,7 @@
 import React from "react";
 import { Auth } from "aws-amplify";
 import { connect } from "react-redux";
+import { fetchCoursesBySchool } from "../../actions/syllabus";
 import { getUserTokens } from "../../reducers/user";
 import API from "@aws-amplify/api";
 import qs from "qs";
@@ -136,32 +137,39 @@ class CourseInfo extends React.Component {
     editReviewOriginalText: "",
     isSignInModalOpen: false,
     isWrongQuery: false,
+    courseNotFound: false
   };
 
   async componentDidMount() {
     const courseID = getCourseID(this.props.location.search);
     if (!courseID) {
       this.setState({ isWrongQuery: true });
-    } else if (this.state.thisCourse) {
-      console.log(this.state.thisCourse);
-      API.configure();
-      this._isMounted = true;
-      this._isMounted && this.loadReviewsAndRelatedCourses();
     } else {
-      const res = await API.get(
-        "wasedatime-dev",
-        "/syllabus?id=" + courseID + "&offset=1&limit=1",
-        {
-          headers: {
-            "x-api-key": process.env.REACT_APP_X_API_KEY,
-            "Content-Type": "application/json",
-          },
+      API.configure();
+      try {
+        const res = await API.get(
+          "wasedatime-dev",
+          "/syllabus?id=" + courseID,
+          {
+            headers: {
+              "x-api-key": process.env.REACT_APP_X_API_KEY,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        this.setState({ thisCourse: courseSchemaFullToShort(res.data) }, () => {
+          this._isMounted = true;
+          this._isMounted && this.loadReviewsAndRelatedCourses();
+        });
+      } catch (error) {
+        if (this.state.thisCourse) {
+          // Use local
+          this._isMounted = true;
+          this._isMounted && this.loadReviewsAndRelatedCourses();
+        } else {
+          this.setState({ courseNotFound: true })
         }
-      );
-      this.setState({ thisCourse: courseSchemaFullToShort(res.data) }, () => {
-        this._isMounted = true;
-        this._isMounted && this.loadReviewsAndRelatedCourses();
-      });
+      }
     }
   }
 
@@ -551,6 +559,7 @@ class CourseInfo extends React.Component {
       newReviewIsSending,
       isSignInModalOpen,
       isWrongQuery,
+      courseNotFound
     } = this.state;
     const { t } = this.props;
     if (error)
@@ -566,6 +575,13 @@ class CourseInfo extends React.Component {
           redirectPath={"/syllabus"}
           redirectSec={5}
         />
+      );
+    if (courseNotFound)
+      return (
+        <div style={{ textAlign: "center", padding: "2em" }}>
+          <h2>Course details not found...</h2>
+          <h2>授業の詳細情報が見つかりません...</h2>
+        </div>
       );
     return (
       <RowWrapper>
@@ -659,6 +675,10 @@ const mapStateToProps = (state) => ({
   userTokens: getUserTokens(state),
 });
 
+const mapDispatchToProps = {
+  fetchCoursesBySchool,
+};
+
 export default withFetchCourses(
-  withNamespaces("translation")(connect(mapStateToProps)(CourseInfo))
+  withNamespaces("translation")(connect(mapStateToProps, mapDispatchToProps)(CourseInfo))
 );

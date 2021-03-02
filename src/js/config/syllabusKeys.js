@@ -46,11 +46,11 @@ export const SYLLABUS_ATTR = Object.freeze({
   r: "school",
 });
 
-export const SYLLABUS_OCC_ATTR = Object.freeze({
-  d: "day",
-  p: "period",
-  l: "location",
-});
+// export const SYLLABUS_OCC_ATTR = Object.freeze({
+//   d: "day",
+//   p: "period",
+//   l: "location",
+// });
 
 export const SYLLABUS_EVAL_ATTR = Object.freeze({
   t: "type",

@@ -1,18 +1,17 @@
 import {
   SYLLABUS_KEYS,
   SYLLABUS_ATTR,
-  SYLLABUS_OCC_ATTR,
   SYLLABUS_EVAL_ATTR,
 } from "../config/syllabusKeys";
 import { schoolCodeMap } from "../data/schoolCodeMap";
 
 export const courseSchemaFullToShort = (course) => {
   const occs = course[SYLLABUS_ATTR[SYLLABUS_KEYS.OCCURRENCES]].map((occ) => ({
-    [SYLLABUS_KEYS.OCC_DAY]: occ[SYLLABUS_OCC_ATTR[SYLLABUS_KEYS.OCC_DAY]],
+    [SYLLABUS_KEYS.OCC_DAY]: occ[SYLLABUS_KEYS.OCC_DAY],
     [SYLLABUS_KEYS.OCC_PERIOD]:
-      occ[SYLLABUS_OCC_ATTR[SYLLABUS_KEYS.OCC_PERIOD]],
+      occ[SYLLABUS_KEYS.OCC_PERIOD],
     [SYLLABUS_KEYS.OCC_LOCATION]:
-      occ[SYLLABUS_OCC_ATTR[SYLLABUS_KEYS.OCC_LOCATION]],
+      occ[SYLLABUS_KEYS.OCC_LOCATION],
   }));
   const evals = course[SYLLABUS_ATTR[SYLLABUS_KEYS.EVAL]].map((e) => ({
     [SYLLABUS_KEYS.EVAL_TYPE]: e[SYLLABUS_EVAL_ATTR[SYLLABUS_KEYS.EVAL_TYPE]],
@@ -47,10 +46,10 @@ export const courseSchemaFullToShort = (course) => {
 
 export const courseSchemaShortToFull = (course) => {
   const occs = course[SYLLABUS_ATTR[SYLLABUS_KEYS.OCCURRENCES]].map((occ) => ({
-    [SYLLABUS_OCC_ATTR[SYLLABUS_KEYS.OCC_DAY]]: occ[SYLLABUS_KEYS.OCC_DAY],
-    [SYLLABUS_OCC_ATTR[SYLLABUS_KEYS.OCC_PERIOD]]:
+    [SYLLABUS_KEYS.OCC_DAY]: occ[SYLLABUS_KEYS.OCC_DAY],
+    [SYLLABUS_KEYS.OCC_PERIOD]:
       occ[SYLLABUS_KEYS.OCC_PERIOD],
-    [SYLLABUS_OCC_ATTR[SYLLABUS_KEYS.OCC_LOCATION]]:
+    [SYLLABUS_KEYS.OCC_LOCATION]:
       occ[SYLLABUS_KEYS.OCC_LOCATION],
   }));
   const evals = course[SYLLABUS_KEYS.EVAL].map((e) => ({

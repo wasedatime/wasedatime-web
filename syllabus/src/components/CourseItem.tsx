@@ -148,9 +148,11 @@ const mapSchoolToIcon = (school, lng) => (
 
 const combineYearTerm = (year, term, t) => {
   var str = `${year} `;
-  term.split(" ").forEach((substr) => {
-    str = str + t(`syllabus.semesterMap.${substr}`);
-  });
+  if (term.length > 0) {
+    term.split(" ").forEach((substr) => {
+      str = str + t(`syllabus.semesterMap.${substr}`);
+    });
+  }
   return str;
 };
 

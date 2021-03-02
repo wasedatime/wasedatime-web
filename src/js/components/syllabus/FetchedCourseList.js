@@ -111,7 +111,12 @@ class FetchedCourseList extends React.Component {
               ))
             ) : (
               <div style={{ marginTop: "0.5em", textAlign: "center" }}>
-                No results? Try importing a school or changing the filter!
+                <h3>
+                  No results? Try importing a school or changing the filter!
+                </h3>
+                <h3>
+                  結果が表示されていない？学部を選択するか、フィルタを変更しましょう！
+                </h3>
               </div>
             )}
           </div>

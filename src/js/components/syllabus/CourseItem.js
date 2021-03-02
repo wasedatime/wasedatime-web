@@ -141,9 +141,11 @@ const mapSchoolToIcon = (school, lng) => (
 
 const combineYearTerm = (year, term, t) => {
   var str = `${year} `;
-  term.split(" ").forEach((substr) => {
-    str = str + t(`syllabus.semesterMap.${substr}`);
-  });
+  if (term.length > 0) {
+    term.split(" ").forEach((substr) => {
+      str = str + t(`syllabus.semesterMap.${substr}`);
+    });
+  }
   return str;
 };
 
@@ -210,7 +212,7 @@ const CourseItem = ({
   t,
   lng,
 }) => {
-  const { title, instructor } = getCourseTitleAndInstructor(course, searchLang);
+  const { title, instructor } = getCourseTitleAndInstructor(course, isDetailDisplayed ? lng : searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
   const langTerm = getLang(course, t);

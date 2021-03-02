@@ -34,23 +34,23 @@ export const SYLLABUS_ATTR = Object.freeze({
   f: "lang",
   g: "type",
   h: "term",
-  i: "occurrences",
-  j: "min_year",
-  k: "category",
-  q: "category_jp",
-  l: "credit",
-  m: "level",
+  i: "occ",
+  j: "year",
+  k: "cat",
+  q: "cat_jp",
+  l: "cred",
+  m: "lvl",
   n: "eval",
   o: "code",
-  p: "subtitle",
+  p: "sub",
   r: "school",
 });
 
-export const SYLLABUS_OCC_ATTR = Object.freeze({
-  d: "day",
-  p: "period",
-  l: "location",
-});
+// export const SYLLABUS_OCC_ATTR = Object.freeze({
+//   d: "day",
+//   p: "period",
+//   l: "location",
+// });
 
 export const SYLLABUS_EVAL_ATTR = Object.freeze({
   t: "type",

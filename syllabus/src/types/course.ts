@@ -26,6 +26,12 @@ export interface Course {
   [SyllabusKey.CODE]: string;
   [SyllabusKey.SUBTITLE]: string;
   [SyllabusKey.SCHOOL]: string;
+  mod?: number;
+  obj?: string;
+  outline?: string;
+  schedule?: string;
+  ref?: string;
+  text?: string;
   displayLang?: string;
 }
 

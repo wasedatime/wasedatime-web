@@ -6,6 +6,7 @@ import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import Course from "../../types/course";
 import { PieChart } from "react-minimal-pie-chart";
+import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
 const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
@@ -76,15 +77,15 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
   );
 
   return course[SyllabusKey.EVAL].length > 0 ? (
-    <MediaQuery minWidth={1453}>
+    <MediaQuery maxWidth={sizes.tablet}>
       {(matches) =>
         matches ? (
-          <Grid columns={2}>
+          <Grid columns={1}>
             <Grid.Column>{evalsChart}</Grid.Column>
             <Grid.Column>{evalsTable}</Grid.Column>
           </Grid>
         ) : (
-          <Grid columns={1}>
+          <Grid columns={2}>
             <Grid.Column>{evalsChart}</Grid.Column>
             <Grid.Column>{evalsTable}</Grid.Column>
           </Grid>

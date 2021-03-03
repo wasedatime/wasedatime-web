@@ -8,6 +8,10 @@ import {
   faMinusCircle,
   faPlusCircle,
   faChevronUp,
+  faChalkboardTeacher,
+  faVideo,
+  faBroadcastTower,
+  faWifi,
 } from "@fortawesome/free-solid-svg-icons";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { termKeysDecoder } from "@bit/wasedatime.syllabus.ts.utils.term-keys-decoder";
@@ -266,6 +270,25 @@ const CourseItem = ({
     }
   );
 
+  const courseModalityIcons = [
+    <span>
+      <FontAwesomeIcon icon={faChalkboardTeacher} />
+    </span>,
+    <span>
+      <FontAwesomeIcon icon={faChalkboardTeacher} />{" "}
+      <FontAwesomeIcon icon={faWifi} />
+    </span>,
+    <span>
+      <FontAwesomeIcon icon={faVideo} />
+    </span>,
+    <span>
+      <FontAwesomeIcon icon={faVideo} /> <FontAwesomeIcon icon={faClock} />
+    </span>,
+    <span>
+      <FontAwesomeIcon icon={faBroadcastTower} />
+    </span>,
+  ];
+
   const buttonIcon = (
     <FontAwesomeIcon
       style={isAddable ? { color: "#48af37" } : { color: "#ce0115" }}
@@ -295,7 +318,7 @@ const CourseItem = ({
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
             <Badge>{langTerm}</Badge>
-            {/* keywordsList */}
+            {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
           <div
             style={{

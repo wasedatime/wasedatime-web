@@ -28,6 +28,7 @@ import {
   gaClickSyllabusLink,
   gaOpenCourseDetails,
 } from "../../ga/eventActions";
+import { courseSchemaFullToShort } from "../../utils/map-single-course-schema";
 
 const CourseInfoWrapper = styled(Segment)`
   width: 100%;
@@ -102,16 +103,20 @@ interface OwnProps extends WithTranslation {
 }
 
 interface OwnState {
+  courseWithMoreDetails: Course;
   relatedCourses: Course[];
   thisCourseReviews: Review[];
-  isLoaded: boolean;
+  areDetailsLoaded: boolean;
+  areReviewsLoaded: boolean;
 }
 
 class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
   state = {
+    courseWithMoreDetails: null,
     relatedCourses: [],
     thisCourseReviews: [],
-    isLoaded: false,
+    areDetailsLoaded: false,
+    areReviewsLoaded: false,
   };
 
   async loadReviewsAndRelatedCourses() {
@@ -132,7 +137,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
     this.setState({
       relatedCourses: relatedCourses,
       thisCourseReviews: thisCourseReviews,
-      isLoaded: true,
+      areReviewsLoaded: true,
     });
   }
 
@@ -158,20 +163,52 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
     }
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     ReactGA.event({
       category: gaCourseDetails,
       action: gaOpenCourseDetails,
       label: this.props.course[SyllabusKey.TITLE],
     });
-    this.loadReviewsAndRelatedCourses();
+    try {
+      const res = await API.get(
+        "wasedatime-dev",
+        `/syllabus?id=${this.props.course[SyllabusKey.ID]}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          response: true,
+        }
+      );
+      this.setState(
+        {
+          courseWithMoreDetails: courseSchemaFullToShort(res.data.data),
+          areDetailsLoaded: true,
+        },
+        this.loadReviewsAndRelatedCourses
+      );
+    } catch (error) {
+      this.setState(
+        {
+          areDetailsLoaded: true,
+        },
+        this.loadReviewsAndRelatedCourses
+      );
+    }
   }
 
   render() {
-    const { course, searchLang, t, i18n } = this.props;
-    const { isLoaded, thisCourseReviews, relatedCourses } = this.state;
+    const { course: courseFromProps, searchLang, t, i18n } = this.props;
+    const {
+      courseWithMoreDetails,
+      areDetailsLoaded,
+      areReviewsLoaded,
+      thisCourseReviews,
+      relatedCourses,
+    } = this.state;
+    const course = courseWithMoreDetails || courseFromProps;
 
-    return (
+    return areDetailsLoaded ? (
       <CourseInfoWrapper>
         <CourseDetails course={course} />
         <Grid style={{ textAlign: "center", margin: "1em 0px" }}>
@@ -206,7 +243,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
             <ShareButtons courseId={course.a} />
           </Grid.Column>
         </Grid>
-        {isLoaded ? (
+        {areReviewsLoaded ? (
           <CourseReviews
             courseKey={getCourseKey(course)}
             course={course}
@@ -218,7 +255,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
         )}
         <StyledSubHeading>{t(`courseInfo.Related courses`)}</StyledSubHeading>
         <RelatedCourses>
-          {isLoaded ? (
+          {areReviewsLoaded ? (
             relatedCourses.map((course, i) => (
               <RelatedCourse
                 key={i}
@@ -243,6 +280,8 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
           )}
         </RelatedCourses>
       </CourseInfoWrapper>
+    ) : (
+      <LoadingSpinner message={"Loading course details..."} />
     );
   }
 }

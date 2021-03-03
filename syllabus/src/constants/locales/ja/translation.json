@@ -1,0 +1,10 @@
+{
+  "classModalities": {
+    "label": "授業形態",
+    "In person": "対面",
+    "In person / Online": "対面／オンライン",
+    "Full On-demand": "オンデマンド（曜日時限なし）",
+    "Scheduled On-demand": "オンデマンド（曜日時限あり）",
+    "Realtime streaming": "リアルタイム配信"
+  }
+}

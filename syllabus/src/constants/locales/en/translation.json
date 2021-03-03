@@ -1,0 +1,10 @@
+{
+  "classModalities": {
+    "label": "Class modality",
+    "In person": "In person",
+    "In person / Online": "In person / Online",
+    "Full On-demand": "Full On-demand",
+    "Scheduled On-demand": "Scheduled On-demand",
+    "Realtime streaming": "Realtime streaming"
+  }
+}

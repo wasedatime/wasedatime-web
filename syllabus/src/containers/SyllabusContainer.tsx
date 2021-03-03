@@ -171,21 +171,22 @@ class SyllabusContainer extends React.Component<
   }
 
   setTopCourse = async (courseId) => {
-    let course = this.props.fetchedCourses.find(
-      (c) => c[SyllabusKey.ID] === courseId
-    );
-    const school = schoolCodeMap[courseId.substring(0, 2)];
-    if (!course) {
-      await this.props.fetchCoursesBySchool(school);
+    let course;
+    try {
       const res = await API.get("wasedatime-dev", `/syllabus?id=${courseId}`, {
         headers: {
           "Content-Type": "application/json",
         },
         response: true,
       });
-      course = res.data.find((c) => c[SyllabusKey.ID] === courseId);
+      course = res.data.data;
+    } catch (error) {
+      course = this.props.fetchedCourses.find(
+        (c) => c[SyllabusKey.ID] === courseId
+      );
     }
     if (course) {
+      const school = schoolCodeMap[courseId.substring(0, 2)];
       course = { ...course, [SyllabusKey.SCHOOL]: school };
 
       this.setState((prevState) => ({

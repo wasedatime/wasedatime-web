@@ -197,6 +197,43 @@ const Filter = ({
       false,
   }));
 
+  const modalityLegend = t("classModalities.label");
+  const modalityInputName = FilterOption.MODALITY;
+  const modalityInputs = [
+    {
+      key: t("classModalities.In person"),
+      text: t("classModalities.In person"),
+      value: "0",
+    },
+    {
+      key: t("classModalities.In person / Online"),
+      text: t("classModalities.In person / Online"),
+      value: "1",
+    },
+    {
+      key: t("classModalities.Full On-demand"),
+      text: t("classModalities.Full On-demand"),
+      value: "2",
+    },
+    {
+      key: t("classModalities.Scheduled On-demand"),
+      text: t("classModalities.Scheduled On-demand"),
+      value: "3",
+    },
+    {
+      key: t("classModalities.Realtime streaming"),
+      text: t("classModalities.Realtime streaming"),
+      value: "4",
+    },
+  ];
+  const checkedModalityInputs = modalityInputs.map((input) => ({
+    ...input,
+    ischecked:
+      (filterGroups[modalityInputName] &&
+        filterGroups[modalityInputName].includes(input.value)) ||
+      false,
+  }));
+
   const dayLegend = t("syllabus.day");
   const dayInputName = FilterOption.DAY;
   const dayInputs = [
@@ -427,6 +464,13 @@ const Filter = ({
           legend={langLegend}
           inputName={langInputName}
           inputs={checkedLangInputs}
+          filterType={"dropdown"}
+        />
+        <FilterGroup
+          handleToggleFilter={handleToggleFilter}
+          legend={modalityLegend}
+          inputName={modalityInputName}
+          inputs={checkedModalityInputs}
           filterType={"dropdown"}
         />
         <FilterGroup

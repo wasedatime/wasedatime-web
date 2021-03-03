@@ -13,6 +13,7 @@ export interface FilterGroups {
   [FilterOption.EVAL_SPECIAL]?: string[];
   [FilterOption.TYPE]?: string[];
   [FilterOption.LEVEL]?: string[];
+  [FilterOption.MODALITY]?: string[];
 }
 
 export default FilterGroups;

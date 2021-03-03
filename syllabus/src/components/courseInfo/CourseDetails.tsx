@@ -8,6 +8,14 @@ import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
 import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
 import Course from "../../types/course";
 import MediaQuery from "react-responsive";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBroadcastTower,
+  faChalkboardTeacher,
+  faClock,
+  faVideo,
+  faWifi,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface Props extends WithTranslation {
   course: Course;
@@ -35,6 +43,50 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
     t("courseInfo.Details.Level.Doctor"),
   ];
 
+  const courseModalities = [
+    {
+      label: t("classModalities.In person"),
+      icons: (
+        <span>
+          <FontAwesomeIcon icon={faChalkboardTeacher} />
+        </span>
+      ),
+    },
+    {
+      label: t("classModalities.In person / Online"),
+      icons: (
+        <span>
+          <FontAwesomeIcon icon={faChalkboardTeacher} />{" "}
+          <FontAwesomeIcon icon={faWifi} />
+        </span>
+      ),
+    },
+    {
+      label: t("classModalities.Full On-demand"),
+      icons: (
+        <span>
+          <FontAwesomeIcon icon={faVideo} />
+        </span>
+      ),
+    },
+    {
+      label: t("classModalities.Scheduled On-demand"),
+      icons: (
+        <span>
+          <FontAwesomeIcon icon={faVideo} /> <FontAwesomeIcon icon={faClock} />
+        </span>
+      ),
+    },
+    {
+      label: t("classModalities.Realtime streaming"),
+      icons: (
+        <span>
+          <FontAwesomeIcon icon={faBroadcastTower} />
+        </span>
+      ),
+    },
+  ];
+
   const courseType =
     course[SyllabusKey.TYPE] === -1
       ? ""
@@ -43,12 +95,13 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
     course[SyllabusKey.LEVEL] === -1
       ? ""
       : courseLevels[course[SyllabusKey.LEVEL]];
+  const courseModality = courseModalities[course[SyllabusKey.MODALITY]];
 
   const courseDetails = (
     <React.Fragment>
-      <Grid columns={2} style={{ padding: "1em" }}>
+      <Grid columns={courseModality ? 4 : 2} style={{ padding: "1em" }}>
         <Grid.Column style={{ textAlign: "center" }}>
-          <Statistic>
+          <Statistic size="small">
             <Statistic.Value>{course[SyllabusKey.MIN_YEAR]}+</Statistic.Value>
             <Statistic.Label>
               <p>{t("courseInfo.Details.Min Year")}</p>
@@ -56,13 +109,23 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
           </Statistic>
         </Grid.Column>
         <Grid.Column style={{ textAlign: "center" }}>
-          <Statistic>
+          <Statistic size="small">
             <Statistic.Value>{course[SyllabusKey.CREDIT]}</Statistic.Value>
             <Statistic.Label>
               <p>{t("courseInfo.Details.Credit")}</p>
             </Statistic.Label>
           </Statistic>
         </Grid.Column>
+        {courseModality && (
+          <Grid.Column width={8} style={{ textAlign: "center" }}>
+            <Statistic size="small">
+              <Statistic.Value>{courseModality.icons}</Statistic.Value>
+              <Statistic.Label>
+                <p>{courseModality.label}</p>
+              </Statistic.Label>
+            </Statistic>
+          </Grid.Column>
+        )}
       </Grid>
       <Table unstackable>
         <Table.Body>
@@ -110,31 +173,10 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
   );
 
   return (
-    <MediaQuery minWidth={1280}>
-      {(matches) =>
-        matches ? (
-          <Grid>
-            <Grid.Column width={6}>{courseDetails}</Grid.Column>
-            <Grid.Column width={10}>
-              <Divider horizontal style={{ marginBottom: "2em" }}>
-                <p>{t("courseInfo.Details.Evaluation.title")}</p>
-              </Divider>
-              <CourseDetailsEvaluation course={course} />
-            </Grid.Column>
-          </Grid>
-        ) : (
-          <Grid>
-            <Grid.Column width={16}>{courseDetails}</Grid.Column>
-            <Grid.Column width={16}>
-              <Divider horizontal style={{ marginBottom: "2em" }}>
-                <p>{t("courseInfo.Details.Evaluation.title")}</p>
-              </Divider>
-              <CourseDetailsEvaluation course={course} />
-            </Grid.Column>
-          </Grid>
-        )
-      }
-    </MediaQuery>
+    <div>
+      {courseDetails}
+      <CourseDetailsEvaluation course={course} />
+    </div>
   );
 };
 

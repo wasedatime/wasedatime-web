@@ -22,27 +22,18 @@ import "semantic-ui-css/components/dimmer.min.css";
 import "semantic-ui-css/components/popup.min.css";
 import "semantic-ui-css/components/label.min.css";
 
-const RowWrapper = styled("div")`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  padding: 1em 1em 0px 1em;
-`;
-
-const StyledSegment = styled(Segment)`
-  width: 100% !important;
-  min-height: ${(props) => (props.open ? "120px" : "40px")};
-  cursor: default !important;
-  animation: none !important;
-  border-radius: 5px !important;
-  box-shadow: none !important;
-  margin: 1em 2em 0em;
-  padding: 0.5rem 1em 0px !important;
-  transition: min-height 0.3s !important;
-
-  &:hover {
-    border-radius: 5px !important;
-    transform: none !important;
+const Cards = styled(Card.Group)`
+  .ui.card > .ui.image {
+    width: 70px !important;
+    img {
+      width: 70px;
+    }
+  }
+  .ui.card > .ui.dimmer {
+    width: 70px !important;
+    .content {
+      width: 70px !important;
+    }
   }
 `;
 
@@ -123,7 +114,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
     const schoolGroupNames = ["Undergraduate", "Graduate", "Special"];
 
     const ImportCardGroup = ({ schoolNameIconMap, itemsPerRow }) => (
-      <Card.Group itemsPerRow={itemsPerRow} style={{ marginTop: "0.5em" }}>
+      <Cards itemsPerRow={itemsPerRow} style={{ marginTop: "0.5em" }}>
         {Object.keys(schoolNameIconMap).map((schoolName) => (
           <SchoolImportCard
             key={schoolName}
@@ -140,7 +131,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
             onCheck={() => handleToggleFilter(schoolName)}
           />
         ))}
-      </Card.Group>
+      </Cards>
     );
 
     const lng = i18n.language;

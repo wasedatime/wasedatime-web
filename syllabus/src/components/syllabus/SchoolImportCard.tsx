@@ -13,19 +13,10 @@ const SchoolCardWrapper = styled(Dimmer.Dimmable)`
   &:hover i {
     color: rgba(0, 0, 0, 0.5);
   }
-
-  .ui.dimmer {
-    width: 100% !important;
-    .content {
-      width: 100% !important;
-    }
-  }
 `;
 
 const SchoolImage = styled(Image)`
   border: ${(props) => (props.loaded ? "2px solid rgba(0,0,200,0.4)" : "none")};
-  width: 70px;
-  height: 70px;
   span {
     display: block;
     transform: translate(-6px, 3px);

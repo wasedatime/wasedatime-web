@@ -1,10 +1,12 @@
 import React from "react";
-import MediaQuery from "react-responsive";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { useTranslation } from "react-i18next";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import {
+  VerticalTimeline,
+  VerticalTimelineElement,
+} from "react-vertical-timeline-component";
+import "react-vertical-timeline-component/style.min.css";
 
 const Title = styled("h2")`
   width: 50%;
@@ -153,6 +155,66 @@ const OurMission = () => {
           fantastic results won’t be far.
         </p>
       </MainParagraph>
+
+      <VerticalTimeline>
+        <VerticalTimelineElement
+          contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
+          className="vertical-timeline-element--work"
+          date="February 2021"
+          iconStyle={{ background: "rgb(38, 38, 38)", color: "#fff" }}
+        >
+          <h4 className="vertical-timeline-element-subtitle">
+            New layout, User login, About US Page
+          </h4>
+        </VerticalTimelineElement>
+        <VerticalTimelineElement
+          className="vertical-timeline-element--work"
+          date="December 2020"
+          iconStyle={{ background: "rgb(130,46,43)", color: "#fff" }}
+        >
+          <h4 className="vertical-timeline-element-subtitle">
+            All schools support
+          </h4>
+        </VerticalTimelineElement>
+        <VerticalTimelineElement
+          className="vertical-timeline-element--work"
+          date="September 2020"
+          iconStyle={{ background: "rgb(38,38,38)", color: "#fff" }}
+        >
+          <h4 className="vertical-timeline-element-subtitle">
+            Course reviews release
+          </h4>
+          <p>User Experience, Visual Design</p>
+        </VerticalTimelineElement>
+
+        <VerticalTimelineElement
+          className="vertical-timeline-element--work"
+          date="May 2020"
+          iconStyle={{ background: "rgb(130,46,43)", color: "#fff" }}
+        >
+          <h4 className="vertical-timeline-element-subtitle">
+            Development resumes
+          </h4>
+        </VerticalTimelineElement>
+        <VerticalTimelineElement
+          className="vertical-timeline-element--work"
+          date="? 2020"
+          iconStyle={{ background: "rgb(38,38,38)", color: "#fff" }}
+        >
+          <h4 className="vertical-timeline-element-subtitle">
+            Timetable, Syllabus, Bus
+          </h4>
+        </VerticalTimelineElement>
+        <VerticalTimelineElement
+          className="vertical-timeline-element--education"
+          date="Late 2017"
+          iconStyle={{ background: "rgb(130,46,43)", color: "#fff" }}
+        >
+          <h4 className="vertical-timeline-element-subtitle">
+            Development starts
+          </h4>
+        </VerticalTimelineElement>
+      </VerticalTimeline>
     </Wrapper>
   );
 };

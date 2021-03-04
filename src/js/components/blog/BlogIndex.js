@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {styled } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+// import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -10,11 +10,10 @@ import MainFeaturedPost from './MainFeaturedPost';
 import FeaturedPost from './FeaturedPost';
 import Main from './Main';
 import Sidebar from './Sidebar';
-import ArticleSample from './ArticleSample';
 import post1 from './blog-post.1.md';
 import post2 from './blog-post.2.md';
 import post3 from './blog-post.3.md';
-import axios from 'axios';
+// import axios from 'axios';
 import careerAPI from "./careerAPI";
 
 
@@ -22,33 +21,33 @@ const MainContainer = styled(Container)({
   padding: '50px',
 });
 
-const mainFeaturedPost = {
-  title: 'Title of a longer featured blog post',
-  description:
-    "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-  image: 'https://source.unsplash.com/random',
-  imageText: 'main image description',
-  linkText: 'Continue reading…',
-};
+// const mainFeaturedPost = {
+//   title: 'Title of a longer featured blog post',
+//   description:
+//     "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
+//   image: 'https://source.unsplash.com/random',
+//   imageText: 'main image description',
+//   linkText: 'Continue reading…',
+// };
 
-const featuredPosts = [
-  {
-    title: 'Featured post',
-    date: 'Nov 12',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
-  },
-  {
-    title: 'Post title',
-    date: 'Nov 11',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    image: 'https://source.unsplash.com/random',
-    imageText: 'Image Text',
-  },
-];
+// const featuredPosts = [
+//   {
+//     title: 'Featured post',
+//     date: 'Nov 12',
+//     description:
+//       'This is a wider card with supporting text below as a natural lead-in to additional content.',
+//     image: 'https://source.unsplash.com/random',
+//     imageText: 'Image Text',
+//   },
+//   {
+//     title: 'Post title',
+//     date: 'Nov 11',
+//     description:
+//       'This is a wider card with supporting text below as a natural lead-in to additional content.',
+//     image: 'https://source.unsplash.com/random',
+//     imageText: 'Image Text',
+//   },
+// ];
 
 const posts = [post1, post2, post3];
 
@@ -117,7 +116,6 @@ class BlogIndex extends React.Component {
     const { mainFeaturedPost, featuredPosts } = this.state;
     return (
       <React.Fragment>
-        <CssBaseline />
         <MainContainer maxWidth="lg">
           <main>
             <MainFeaturedPost post={mainFeaturedPost} />
@@ -126,7 +124,7 @@ class BlogIndex extends React.Component {
                 <FeaturedPost key={post.title} post={post} />
               ))}
             </Grid>
-            <Grid container spacing={5}>
+            {/* <Grid container spacing={5}>
               <Main title="From the firehose" posts={posts} />
               <Sidebar
                 title={sidebar.title}
@@ -134,7 +132,7 @@ class BlogIndex extends React.Component {
                 archives={sidebar.archives}
                 social={sidebar.social}
               />
-            </Grid>
+            </Grid> */}
           </main>
         </MainContainer>
       </React.Fragment>

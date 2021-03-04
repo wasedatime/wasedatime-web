@@ -1,10 +1,8 @@
 import React from 'react';
 import {
   Container,
-  Dropdown,
   Header,
-  Image,
-  Menu
+  Image
 } from 'semantic-ui-react';
 import axios from 'axios';
 import ReactMarkdown from 'react-markdown';

@@ -3,7 +3,7 @@ import { Switch, Route, Link, Redirect } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import { Wrapper } from "../../styled-components/Wrapper";
 import { withNamespaces } from "react-i18next";
-
+import CareerArticles from "./CareerArticles"
 import BlogIndex from "./BlogIndex"
 
 const Career = ({ t }) => {

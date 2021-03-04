@@ -23,6 +23,7 @@
     "levenshtein-edit-distance": "^2.0.5",
     "localforage": "^1.9.0",
     "lodash": "^4.17.20",
+    "moment": "^2.29.1",
     "no-scroll": "^2.1.1",
     "normalize-css": "^2.3.1",
     "normalizr": "^3.2.4",

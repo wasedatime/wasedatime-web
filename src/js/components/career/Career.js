@@ -8,7 +8,6 @@ import CareerList from "./CareerInternList";
 import CareerArticles from "./CareerArticles";
 import CareerRecruit from "./CareerRecruit";
 import CareerSeminar from "./CareerSeminar";
-import BlogIndex from "./blog/BlogIndex";
 
 const Career = ({ t }) => {
   return (

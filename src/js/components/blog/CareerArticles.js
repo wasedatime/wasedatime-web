@@ -27,35 +27,47 @@ class CareerArticles extends React.Component {
   render() {
     const { urlFile, content } = this.state;
     const StyledMarkdown = styled(ReactMarkdown)`
-    font-family: 'Open Sans', sans-serif;
-    padding: 30px;
-
+    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
+    * {
+      font-family: 'ZCOOL XiaoWei', serif !important;
+      padding: 0px;
+    }
     & p {
-    font-size: 1.6rem;
-    margin-top: 0;
-    margin-bottom: 0;
-    border-bottom: 4px solid red;
-    padding-bottom: 2px;
+      font-size: 1.8rem;
+      margin-top: 0;
+      margin-bottom: 0;
+      padding-bottom: 2px;
     }
     & ul {
-    list-style: square;
-    margin-top: 10px;
-    font-size:  1rem;
+      list-style: square;
+      margin-top: 10px;
+      font-size:  1rem;
     }
     & li {
-    padding-bottom: 2px;
+      padding-bottom: 2px;
     }
     & h1 {
       font-size: 1.6rem;
+    }
+    & h2 {
+      display: none;
+    }
+    & img{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 50px;
+      margin-bottom: 50px;
     }
     }
    `;
     return (
       <div>
-        <h3> Fetched from: </h3> {urlFile}
-        <hr />
+        {/* <h3> Fetched from: </h3> {urlFile} */}
+        {/* <hr /> */}
         <Container className="markdown-body">
           <StyledMarkdown source={content} />
+
         </Container>
         {/* <Menu fixed='top' inverted>
           <Container>
@@ -84,7 +96,7 @@ class CareerArticles extends React.Component {
             </Dropdown>
           </Container>
         </Menu> */}
-        <Container text style={{ marginTop: "7em" }}>
+        {/* <Container text style={{ marginTop: "7em" }}>
           <Header as="h1">Semantic UI React Fixed Template</Header>
           <p>
             This is a basic fixed menu template using fixed size containers.
@@ -122,7 +134,7 @@ class CareerArticles extends React.Component {
             src="/images/wireframe/paragraph.png"
             style={{ marginTop: "2em" }}
           />
-        </Container>
+        </Container> */}
       </div>
     );
   }

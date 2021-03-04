@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import Link from '@material-ui/core/Link';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import CareerArticles from "./CareerArticles";
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
 function MainFeaturedPost(props) {
   const classes = useStyles();
   const { post } = props;
-
+  
   return (
     <Paper
       className={classes.mainFeaturedPost}
@@ -57,12 +58,15 @@ function MainFeaturedPost(props) {
             <Typography variant="h5" color="inherit" paragraph>
               {post.summary}
             </Typography>
-            <Link variant="subtitle1" href="#">
+            <Link to={`/article/${post.src}`}>
               Continue reading...
             </Link>
           </div>
         </Grid>
       </Grid>
+      <Router>
+        <Route path={`/user/${post.src}`} component={CareerArticles} />
+      </Router>
     </Paper>
   );
 }

@@ -330,7 +330,8 @@
     "Intern": "Intern",
     "Articles": "Articles",
     "viewMore": "View More",
-    "Entry": "Entry"
+    "Entry": "Entry",
+    "moment": "en"
   },
   "coronaInfo": {
     "title": "COVID-19 Statistics",

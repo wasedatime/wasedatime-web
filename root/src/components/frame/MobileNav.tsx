@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "@reach/router";
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
+import { useTranslation } from "react-i18next";
 
 type Props = {
   navItems: any;
@@ -12,6 +11,7 @@ type Props = {
 };
 
 const MobileNav = ({ navItems, openSignInModal }: Props) => {
+  const { t } = useTranslation();
   const [userAttr, setUserAttr] = useState(null);
   const [signOutAvailable, setSignOutAvailable] = useState(false);
   const [currentPath, setCurrentPath] = useState(window.location.pathname);
@@ -26,8 +26,7 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
       <FontAwesomeIcon
         icon={itemIcon}
         className={itemPath === currentPath ? "text-red-800" : "text-white"}
-        size="2x"
-        transform="shrink-2"
+        size="lg"
       />
     );
     return (
@@ -48,12 +47,12 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
 
   return (
     <nav
-      className="fixed bottom-0 flex flex-row p-1 bg-black w-full"
+      className="fixed bottom-0 flex flex-row px-1 py-2 bg-black w-full"
       style={{ height: "50px", zIndex: 1000 }}
     >
       {styledLinks}
 
-      <div className="flex-1 text-center">
+      <a className="flex-1 text-center">
         <button
           className="w-full focus:outline-none"
           onClick={() =>
@@ -68,20 +67,19 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
               height="35"
               className="rounded-full"
               alt="Image of User account"
-              style={{ margin: "5px auto" }}
+              style={{ margin: "2px auto" }}
             />
           ) : (
             <FontAwesomeIcon
               icon={faUserCircle}
               className="text-white"
-              size="2x"
-              transform="shrink-2"
+              size="lg"
             />
           )}
 
           <br />
 
-          {!userAttr && <span className="text-white">Sign in</span>}
+          {!userAttr && <span className="text-white">{t("user.Sign in")}</span>}
 
           {signOutAvailable && (
             <button
@@ -89,11 +87,11 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
               onClick={signOut}
               style={{ top: "-2em" }}
             >
-              Sign Out
+              {t("user.Sign Out")}
             </button>
           )}
         </button>
-      </div>
+      </a>
     </nav>
   );
 };

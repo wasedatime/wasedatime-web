@@ -15,9 +15,9 @@ import API from "@aws-amplify/api";
 import { connect } from "react-redux";
 import { ReduxRootState } from "../../redux/reducers";
 import { getFetchedCoursesList } from "../../redux/reducers/fetchedCourses";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
+import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
 import ReactGA from "react-ga";
@@ -251,7 +251,14 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
             searchLang={searchLang}
           />
         ) : (
-          <LoadingSpinner message={"Loading reviews..."} />
+          <Placeholder style={{ margin: "1em" }}>
+            <Placeholder.Paragraph>
+              <Placeholder.Line />
+              <Placeholder.Line />
+              <Placeholder.Line />
+              <Placeholder.Line />
+            </Placeholder.Paragraph>
+          </Placeholder>
         )}
         <StyledSubHeading>{t(`courseInfo.Related courses`)}</StyledSubHeading>
         <RelatedCourses>
@@ -276,12 +283,26 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
               </RelatedCourse>
             ))
           ) : (
-            <LoadingSpinner message={"Loading related courses..."} />
+            <Placeholder style={{ margin: "1em" }}>
+              <Placeholder.Paragraph>
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+                <Placeholder.Line />
+              </Placeholder.Paragraph>
+            </Placeholder>
           )}
         </RelatedCourses>
       </CourseInfoWrapper>
     ) : (
-      <LoadingSpinner message={"Loading course details..."} />
+      <Placeholder style={{ margin: "1em" }}>
+        <Placeholder.Paragraph>
+          <Placeholder.Line />
+          <Placeholder.Line />
+          <Placeholder.Line />
+          <Placeholder.Line />
+        </Placeholder.Paragraph>
+      </Placeholder>
     );
   }
 }

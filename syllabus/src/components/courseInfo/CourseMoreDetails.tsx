@@ -6,7 +6,7 @@ import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion";
 import Course from "../../types/course";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
 
 interface Props extends WithTranslation {
   course: Course;
@@ -55,7 +55,17 @@ const Textbooks = ({ content }: TextbooksProps) => {
             </a>
           ))
         ) : (
-          <LoadingSpinner message="Loading books..." />
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            <Placeholder style={{ width: 100, height: 150, margin: "1em" }}>
+              <Placeholder.Image />
+            </Placeholder>
+            <Placeholder style={{ width: 100, height: 150, margin: "1em" }}>
+              <Placeholder.Image />
+            </Placeholder>
+            <Placeholder style={{ width: 100, height: 150, margin: "1em" }}>
+              <Placeholder.Image />
+            </Placeholder>
+          </div>
         )}
       </div>
     </div>
@@ -98,7 +108,7 @@ const CourseMoreDetails = ({ course, t }: Props) => {
     {
       title: t(`courseMoreDetails.Reference`),
       content: course[SyllabusKey.REFERENCE] && (
-        <p>{course[SyllabusKey.REFERENCE]}</p>
+        <Textbooks content={course[SyllabusKey.REFERENCE]} />
       ),
     },
     {

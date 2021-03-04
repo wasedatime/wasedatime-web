@@ -42,15 +42,19 @@ const CourseItemWrapper = styled("li")`
 
 const CourseItemIntroWrapper = styled.div`
   padding: 0.5em 0.8em;
-  ${(props) =>
-    !props.expanded &&
-    `
-      border-radius: 10px;
-      &:hover {
-        background: #eee;
-        cursor: pointer;
-      }
-    `}
+  &:hover {
+    background: #eee;
+    cursor: pointer;
+  }
+  ${(props) => !props.expanded && "border-radius: 10px;"}
+  ${media.tablet`
+    &:hover {
+      background: #fff;
+    }
+    &:active {
+      background: #eee;
+    }
+  `}
 `;
 
 const CloseCourseInfoButton = styled.p`

@@ -8,8 +8,9 @@ import styled from "styled-components";
 
 import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import QuarterSwitch from "./timetable/QuarterSwitch";
+import MediaQuery from "react-responsive";
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex: none;
@@ -64,30 +65,51 @@ const SemesterSwitcher = ({
   isSmallSize,
 }) => {
   return (
-    <ExtendedRowWrapper small={isSmallSize}>
-      <ExtendedInvisibleButton
-        onClick={toggleSemester}
-        aria-label="Semester toggle"
-      >
-        <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
-      </ExtendedInvisibleButton>
-      <SemesterTitle>{semesterTitle}</SemesterTitle>
-      <ExtendedInvisibleButton
-        onClick={toggleSemester}
-        aria-label="Semester toggle"
-      >
-        <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
-      </ExtendedInvisibleButton>
-      {isQuarterDisplayed && (
-        <div style={{ marginLeft: "5vw" }}>
-          <QuarterSwitch
-            semesterKey={selectedSemester}
-            selectedQuarter={selectedQuarter}
-            toggleQuarter={toggleQuarter}
-          />
-        </div>
-      )}
-    </ExtendedRowWrapper>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <ExtendedRowWrapper small={isSmallSize}>
+        <ExtendedInvisibleButton
+          onClick={toggleSemester}
+          aria-label="Semester toggle"
+        >
+          <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
+        </ExtendedInvisibleButton>
+        <SemesterTitle>{semesterTitle}</SemesterTitle>
+        <ExtendedInvisibleButton
+          onClick={toggleSemester}
+          aria-label="Semester toggle"
+        >
+          <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
+        </ExtendedInvisibleButton>
+        <MediaQuery minWidth={sizes.tablet + 1}>
+          {(matches) =>
+            matches &&
+            isQuarterDisplayed && (
+              <div style={{ marginLeft: "5vw" }}>
+                <QuarterSwitch
+                  semesterKey={selectedSemester}
+                  selectedQuarter={selectedQuarter}
+                  toggleQuarter={toggleQuarter}
+                />
+              </div>
+            )
+          }
+        </MediaQuery>
+      </ExtendedRowWrapper>
+      <MediaQuery maxWidth={sizes.tablet}>
+        {(matches) =>
+          matches &&
+          isQuarterDisplayed && (
+            <div style={{ textAlign: "center" }}>
+              <QuarterSwitch
+                semesterKey={selectedSemester}
+                selectedQuarter={selectedQuarter}
+                toggleQuarter={toggleQuarter}
+              />
+            </div>
+          )
+        }
+      </MediaQuery>
+    </div>
   );
 };
 

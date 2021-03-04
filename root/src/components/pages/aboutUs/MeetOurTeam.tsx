@@ -79,7 +79,6 @@ const MemberVision = styled("div")`
 `;
 
 const SocialMediaArea = styled("div")`
-  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: row;

@@ -45,6 +45,7 @@ const CourseTitle = styled("span")`
   word-wrap: break-word;
   text-overflow: ellipsis;
   text-align: center;
+  ${media.phone`font-size: 0.7em;`}
 `;
 
 const CourseLocation = styled("span")`
@@ -56,6 +57,7 @@ const CourseLocation = styled("span")`
   align-items: center;
   justify-content: center;
   text-align: center;
+  ${media.phone`font-size: 0.7em;`}
 `;
 
 const CourseList = styled("div")`

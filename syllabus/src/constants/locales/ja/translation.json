@@ -6,5 +6,15 @@
     "Full On-demand": "オンデマンド（曜日時限なし）",
     "Scheduled On-demand": "オンデマンド（曜日時限あり）",
     "Realtime streaming": "リアルタイム配信"
+  },
+  "courseMoreDetails": {
+    "title": "もっと",
+    "Outline": "授業概要",
+    "Objective": "到達目標",
+    "Schedule": "授業計画",
+    "Self Study": "事前・事後学習",
+    "Note": "備考・関連URL",
+    "Reference": "参考文献",
+    "Textbook": "教科書"
   }
 }

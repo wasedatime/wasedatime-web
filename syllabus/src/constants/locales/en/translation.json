@@ -6,5 +6,15 @@
     "Full On-demand": "Full On-demand",
     "Scheduled On-demand": "Scheduled On-demand",
     "Realtime streaming": "Realtime streaming"
+  },
+  "courseMoreDetails": {
+    "title": "More Details",
+    "Outline": "Outline",
+    "Objective": "Objective",
+    "Schedule": "Schedule",
+    "Self Study": "Self Study",
+    "Note": "Note",
+    "Reference": "Reference",
+    "Textbook": "Textbook"
   }
 }

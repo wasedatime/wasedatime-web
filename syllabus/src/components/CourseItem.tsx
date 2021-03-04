@@ -161,7 +161,8 @@ const combineYearTerm = (year, term, t) => {
 };
 
 const getLang = (course, t) => {
-  if (course[SyllabusKey.LANG].includes(-1)) return "N/A";
+  if (!course[SyllabusKey.LANG] || course[SyllabusKey.LANG].includes(-1))
+    return "N/A";
   return course[SyllabusKey.LANG]
     .toString()
     .split(",")
@@ -249,8 +250,9 @@ const CourseItem = ({
     i18n.language
   );
   //Need to use index as keys due to Waseda's data.
-  const occurrences = course[SyllabusKey.OCCURRENCES].map(
-    (occurrence, index) => {
+  const occurrences =
+    course[SyllabusKey.OCCURRENCES] &&
+    course[SyllabusKey.OCCURRENCES].map((occurrence, index) => {
       const day = getDay(occurrence[SyllabusKey.OCC_DAY], t);
       const period = getPeriod(occurrence[SyllabusKey.OCC_PERIOD], t);
       const location = getLocation(occurrence[SyllabusKey.OCC_LOCATION], t);
@@ -267,8 +269,7 @@ const CourseItem = ({
           </span>
         </li>
       );
-    }
-  );
+    });
 
   const courseModalityIcons = [
     <span>

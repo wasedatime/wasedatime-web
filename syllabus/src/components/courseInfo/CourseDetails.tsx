@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import Divider from "semantic-ui-react/dist/commonjs/elements/Divider";
 import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
 import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
 import Course from "../../types/course";
-import MediaQuery from "react-responsive";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBroadcastTower,
@@ -16,12 +15,23 @@ import {
   faVideo,
   faWifi,
 } from "@fortawesome/free-solid-svg-icons";
+import CourseMoreDetails from "./CourseMoreDetails";
+
+const StyledSubHeading = styled("h6")`
+  align-self: flex-start;
+  margin: 1rem 0px;
+  padding-left: 1rem;
+  border-left: 5px solid rgb(148, 27, 47);
+  font-weight: 300;
+`;
 
 interface Props extends WithTranslation {
   course: Course;
 }
 
 const CourseDetails = ({ course, t, i18n }: Props) => {
+  const [activeDetailsIndex, setActiveDetailsIndex] = useState(-1);
+
   const courseTypes = [
     t("courseInfo.Details.Type.Lecture"),
     t("courseInfo.Details.Type.Seminar"),
@@ -174,8 +184,14 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
 
   return (
     <div>
+      <StyledSubHeading>{t(`courseInfo.Details.title`)}</StyledSubHeading>
       {courseDetails}
+      <StyledSubHeading>
+        {t(`courseInfo.Details.Evaluation.title`)}
+      </StyledSubHeading>
       <CourseDetailsEvaluation course={course} />
+      <StyledSubHeading>{t(`courseMoreDetails.title`)}</StyledSubHeading>
+      <CourseMoreDetails course={course} />
     </div>
   );
 };

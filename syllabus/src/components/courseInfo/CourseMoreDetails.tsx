@@ -21,23 +21,22 @@ const Textbooks = ({ content }: TextbooksProps) => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    try {
-      API.post("wasedatime-dev", "/syllabus/book-info", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: {
-          data: content,
-        },
-      }).then((res) => {
+    API.post("wasedatime-dev", "/syllabus/book-info", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: {
+        data: content,
+      },
+    })
+      .then((res) => {
         setBooks(res.data);
         setIsBookLoaded(true);
+      })
+      .catch((error) => {
+        setBooks([]);
+        setIsBookLoaded(true);
       });
-    } catch (error) {
-      console.log(error);
-      setBooks([]);
-      setIsBookLoaded(true);
-    }
   }, []);
 
   return (

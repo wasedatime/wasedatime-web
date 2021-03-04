@@ -12,7 +12,7 @@ const AddedCourseListContainer = lazy(
 const FetchedCourseList = lazy(
   () => import("../components/syllabus/FetchedCourseList")
 );
-const Filter = lazy(() => import("../components/syllabus/Filter"));
+import Filter from "../components/syllabus/Filter";
 import FilterButton from "../components/syllabus/FilterButton";
 import SchoolFilterContainer from "./SchoolFilterContainer";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";

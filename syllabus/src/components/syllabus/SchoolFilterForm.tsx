@@ -5,7 +5,6 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import SchoolImportCard from "./SchoolImportCard";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
-import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
 import Tab from "semantic-ui-react/dist/commonjs/modules/Tab";
 import Card from "semantic-ui-react/dist/commonjs/views/Card";
 import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
@@ -15,24 +14,19 @@ import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import * as schoolIconEnMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en";
 import * as schoolIconJaMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja";
 
-import "semantic-ui-css/components/menu.min.css";
-import "semantic-ui-css/components/tab.min.css";
-import "semantic-ui-css/components/card.min.css";
-import "semantic-ui-css/components/dimmer.min.css";
 import "semantic-ui-css/components/popup.min.css";
-import "semantic-ui-css/components/label.min.css";
 
 const Cards = styled(Card.Group)`
   .ui.card > .ui.image {
-    width: 70px !important;
+    width: 60px !important;
     img {
-      width: 70px;
+      width: 60px;
     }
   }
   .ui.card > .ui.dimmer {
-    width: 70px !important;
+    width: 60px !important;
     .content {
-      width: 70px !important;
+      width: 60px !important;
     }
   }
 `;
@@ -198,9 +192,10 @@ class SchoolFilterForm extends React.Component<Props, State> {
   };
 
   render() {
-    const { handleToggleFilter, selectedSchools, t, i18n } = this.props;
+    const { t } = this.props;
     return (
       <WiderPopup
+        id="school_filter_form"
         trigger={
           <ChooseSchoolButton>
             {t("syllabus.School Filter.Choose Schools")}

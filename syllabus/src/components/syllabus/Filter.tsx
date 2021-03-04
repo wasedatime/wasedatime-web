@@ -56,6 +56,8 @@ const Filter = ({
   isSideBar,
   t,
 }: Props) => {
+  const checkedSchools = filterGroups[FilterOption.SCHOOL];
+
   const semesterLegend = t("syllabus.Semesters");
   const semesterInputName = FilterOption.SEMESTER;
   const semesterInputs = [
@@ -451,7 +453,10 @@ const Filter = ({
         </FilterClearButton>
       </FilterTitle>
       <FilterGroupWrapper>
-        <SchoolFilterContainer handleToggleFilter={handleToggleFilter} />
+        <SchoolFilterContainer
+          checkedSchools={checkedSchools}
+          handleToggleFilter={handleToggleFilter}
+        />
         <FilterGroup
           handleToggleFilter={handleToggleFilter}
           legend={semesterLegend}

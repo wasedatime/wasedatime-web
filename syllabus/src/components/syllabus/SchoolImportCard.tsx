@@ -8,7 +8,7 @@ import { faDownload, faSpinner } from "@fortawesome/free-solid-svg-icons";
 
 const SchoolCardWrapper = styled(Dimmer.Dimmable)`
   color: rgba(0, 0, 0, 0.05);
-  width: 70px !important;
+  width: 60px !important;
 
   &:hover i {
     color: rgba(0, 0, 0, 0.5);

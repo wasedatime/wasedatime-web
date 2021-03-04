@@ -28,6 +28,14 @@ https://www.materialpalette.com/colors
   @import "~semantic-ui-css/components/placeholder.min";
 }
 
+#school_filter_form {
+  @import "~semantic-ui-css/components/menu.min";
+  @import "~semantic-ui-css/components/tab.min";
+  @import "~semantic-ui-css/components/card.min";
+  @import "~semantic-ui-css/components/dimmer.min";
+  @import "~semantic-ui-css/components/label.min";
+}
+
 .theme-default .primary {
   color: #b51e36;
   background-color: #b51e36;

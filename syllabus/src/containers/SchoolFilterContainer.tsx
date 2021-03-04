@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { getSchools } from "../redux/reducers/fetchedCourses/schools";
 import { fetchCoursesBySchool, removeSchool } from "../redux/actions";
@@ -14,39 +14,29 @@ interface ReduxDispatchProps {
 }
 
 interface OwnProps {
+  checkedSchools: string[];
   handleToggleFilter: (name: string, value: string) => void;
 }
 
 const SchoolFilterContainer = ({
+  checkedSchools,
   loadedSchools,
   addSchool,
   removeSchool,
   handleToggleFilter,
 }: ReduxStateProps & ReduxDispatchProps & OwnProps) => {
-  const [selectedSchools, setSelectedSchools] = useState([]);
-
   const handleToggleSchoolFilter = (school: string) => {
-    let newSelectedSchools = [...selectedSchools];
-    const index = selectedSchools.indexOf(school);
-    if (index > -1) {
-      newSelectedSchools.splice(index, 1);
-    } else {
-      newSelectedSchools = [...selectedSchools, school];
-    }
-    setSelectedSchools(newSelectedSchools);
     handleToggleFilter("school", school);
   };
 
   return (
-    <div className="theme-default">
-      <SchoolFilterForm
-        loadedSchools={loadedSchools}
-        selectedSchools={selectedSchools}
-        handleToggleFilter={handleToggleSchoolFilter}
-        loadSyllabus={addSchool}
-        removeSyllabus={removeSchool}
-      />
-    </div>
+    <SchoolFilterForm
+      loadedSchools={loadedSchools}
+      selectedSchools={checkedSchools || []}
+      handleToggleFilter={handleToggleSchoolFilter}
+      loadSyllabus={addSchool}
+      removeSyllabus={removeSchool}
+    />
   );
 };
 

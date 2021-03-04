@@ -67,7 +67,12 @@ const OurMission = () => {
       <MainParagraph>
         <br />
         <h2 style={{ color: "#555", textAlign: "center" }}>
-          <b>Who we are</b>
+          <b>
+            <span role="img" aria-label="smile">
+              🔎
+            </span>{" "}
+            Who we are
+          </b>
         </h2>
         <hr />
         <br />
@@ -82,7 +87,12 @@ const OurMission = () => {
         </p>
         <br />
         <h2 style={{ color: "#555", textAlign: "center" }}>
-          <b>Future goals</b>
+          <b>
+            <span role="img" aria-label="smile">
+              🚀
+            </span>{" "}
+            Future goals
+          </b>
         </h2>
         <hr />
         <br />
@@ -97,11 +107,21 @@ const OurMission = () => {
         </p>
         <br />
         <h2 style={{ color: "#555", textAlign: "center" }}>
-          <b>Member description</b>
+          <b>
+            <span role="img" aria-label="smile">
+              😎
+            </span>{" "}
+            Member description
+          </b>
         </h2>
         <hr />
         <br />
-        <h3 style={{ color: "#555", textAlign: "center" }}>Tech</h3>
+        <h3 style={{ color: "#555", textAlign: "center" }}>
+          <span role="img" aria-label="smile">
+            💻
+          </span>{" "}
+          Tech
+        </h3>
         <p>
           From the driven newcomer to the experienced veteran, wasedatime's tech
           team will be responsible for turning ideas into reality. With a wealth
@@ -113,7 +133,12 @@ const OurMission = () => {
           contributing to the students.
         </p>
         <br></br>
-        <h3 style={{ color: "#555", textAlign: "center" }}>Non-Tech</h3>
+        <h3 style={{ color: "#555", textAlign: "center" }}>
+          <span role="img" aria-label="smile">
+            💼
+          </span>{" "}
+          Non-Tech
+        </h3>
 
         <p>
           Our marketers come from various academic and cultural backgrounds.

@@ -154,29 +154,57 @@ const OurMission = () => {
           the smooth cooperation with the tech team, We believe that the
           fantastic results won’t be far.
         </p>
+        <br></br>
+        <h2 style={{ color: "#555", textAlign: "center" }}>
+          <b>
+            <span role="img" aria-label="smile">
+              📆
+            </span>{" "}
+            Timeline
+          </b>
+        </h2>
+        <hr />
+        <br></br>
       </MainParagraph>
 
       <VerticalTimeline>
         <VerticalTimelineElement
-          contentArrowStyle={{ borderRight: "7px solid  rgb(33, 150, 243)" }}
+          contentStyle={{
+            background: "rgb(38, 38, 38)",
+            color: "#fff",
+            textAlign: "center",
+          }}
+          contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
           className="vertical-timeline-element--work"
           date="February 2021"
           iconStyle={{ background: "rgb(38, 38, 38)", color: "#fff" }}
         >
-          <h4 className="vertical-timeline-element-subtitle">
-            New layout, User login, About US Page
-          </h4>
+          <h4 className="vertical-timeline-element-subtitle">New layout</h4>
+          <h4 className="vertical-timeline-element-subtitle">User login</h4>
+          <h4 className="vertical-timeline-element-subtitle">About US Page</h4>
         </VerticalTimelineElement>
         <VerticalTimelineElement
+          contentStyle={{
+            background: "rgb(166,47,58)",
+            color: "#fff",
+            textAlign: "center",
+          }}
+          contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
           className="vertical-timeline-element--work"
           date="December 2020"
-          iconStyle={{ background: "rgb(130,46,43)", color: "#fff" }}
+          iconStyle={{ background: "rgb(166,47,58)", color: "#fff" }}
         >
           <h4 className="vertical-timeline-element-subtitle">
             All schools support
           </h4>
         </VerticalTimelineElement>
         <VerticalTimelineElement
+          contentStyle={{
+            background: "rgb(38, 38, 38)",
+            color: "#fff",
+            textAlign: "center",
+          }}
+          contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
           className="vertical-timeline-element--work"
           date="September 2020"
           iconStyle={{ background: "rgb(38,38,38)", color: "#fff" }}
@@ -184,31 +212,52 @@ const OurMission = () => {
           <h4 className="vertical-timeline-element-subtitle">
             Course reviews release
           </h4>
-          <p>User Experience, Visual Design</p>
         </VerticalTimelineElement>
 
         <VerticalTimelineElement
+          contentStyle={{
+            background: "rgb(166,47,58)",
+            color: "#fff",
+            textAlign: "center",
+          }}
+          contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
           className="vertical-timeline-element--work"
           date="May 2020"
-          iconStyle={{ background: "rgb(130,46,43)", color: "#fff" }}
+          iconStyle={{ background: "rgb(166,47,58)", color: "#fff" }}
         >
           <h4 className="vertical-timeline-element-subtitle">
             Development resumes
           </h4>
         </VerticalTimelineElement>
         <VerticalTimelineElement
+          contentStyle={{
+            background: "rgb(38, 38, 38)",
+            color: "#fff",
+            textAlign: "center",
+          }}
+          contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
           className="vertical-timeline-element--work"
           date="? 2020"
           iconStyle={{ background: "rgb(38,38,38)", color: "#fff" }}
         >
-          <h4 className="vertical-timeline-element-subtitle">
-            Timetable, Syllabus, Bus
-          </h4>
+          <h4 className="vertical-timeline-element-subtitle">Timetable</h4>
+          <h4 className="vertical-timeline-element-subtitle">Syllabus</h4>
+          <h4 className="vertical-timeline-element-subtitle">Bus</h4>
         </VerticalTimelineElement>
         <VerticalTimelineElement
+          contentStyle={{
+            background: "rgb(166,47,58)",
+            color: "#fff",
+            textAlign: "center",
+          }}
+          contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
           className="vertical-timeline-element--education"
           date="Late 2017"
-          iconStyle={{ background: "rgb(130,46,43)", color: "#fff" }}
+          iconStyle={{
+            background: "rgb(166,47,58)",
+            color: "#fff",
+            textAlign: "center",
+          }}
         >
           <h4 className="vertical-timeline-element-subtitle">
             Development starts

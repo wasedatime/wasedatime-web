@@ -45,7 +45,6 @@ const AddReviewButton = styled("button")`
   color: #fff;
   border: 0px;
   border-radius: 5px;
-  font-size: 0.8em;
   float: right;
   ${media.phone`float: none;`}
   ${media.phone`width: 100%;`}

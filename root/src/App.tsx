@@ -3,8 +3,8 @@ import { Helmet } from "react-helmet";
 import { Hub } from "@aws-amplify/core";
 import { Router, Redirect, navigate } from "@reach/router";
 
-const TermsOfService = lazy(() => import("./components/pages/TermsOfService"));
-const PrivacyPolicy = lazy(() => import("./components/pages/PrivacyPolicy"));
+import TermsOfService from "./components/pages/TermsOfService";
+import PrivacyPolicy from "./components/pages/PrivacyPolicy";
 const AboutUs = lazy(() => import("./components/pages/aboutUs/AboutUs"));
 const Home = lazy(() => import("./components/pages/Home"));
 import RedirectPage from "./components/user/RedirectPage";

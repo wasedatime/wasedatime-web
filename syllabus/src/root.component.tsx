@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
 import ReactGA from "react-ga";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 
 const config = {
   API: {
@@ -92,7 +93,7 @@ const Root = () => {
       </Provider>
     </Sentry.ErrorBoundary>
   ) : (
-    <div>Loading...</div>
+    <LoadingSpinner message="Loading..." />
   );
 };
 

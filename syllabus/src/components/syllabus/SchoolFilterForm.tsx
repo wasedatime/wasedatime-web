@@ -32,9 +32,12 @@ const Cards = styled(Card.Group)`
 `;
 
 const WiderPopup = styled(Popup)`
-  & > div {
-    ${media.tablet`width: 80vw !important;`}
-  }
+  ${media.tablet`
+    max-width: 100vw !important;
+    & > div {
+      width: 80vw !important;
+    }
+  `}
 `;
 
 const ChooseSchoolButton = styled("button")`

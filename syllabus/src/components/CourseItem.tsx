@@ -112,16 +112,7 @@ const SchoolIconImage = styled("img")`
   height: 24px;
 `;
 
-const DetailWrapper = styled("div")`
-  display: flex;
-  flex-direction: row;
-  font-size: 1.2em;
-  flex-wrap: wrap;
-  ${media.phone`font-size: 1.0em;`};
-`;
-
 const DescriptionWrapper = styled("div")`
-  flex: 3 0 70%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -130,6 +121,17 @@ const DescriptionWrapper = styled("div")`
 const Description = styled("div")`
   flex: 1 0 auto;
   text-align: left;
+`;
+
+const Instructor = styled.div`
+  ${(props) =>
+    !props.expanded &&
+    `
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    text-overflow: ellipsis;
+  `}
 `;
 
 const OccurrenceList = styled("ul")`
@@ -347,15 +349,13 @@ const CourseItem = ({
           </div>
         </CourseItemRow>
 
-        <DetailWrapper>
-          <DescriptionWrapper>
-            <Description>{yearTerm}</Description>
-            <Description>
-              <OccurrenceList>{occurrences}</OccurrenceList>
-            </Description>
-            <Description>{highlightedInstructor}</Description>
-          </DescriptionWrapper>
-        </DetailWrapper>
+        <DescriptionWrapper>
+          <Description>{yearTerm}</Description>
+          <Description>
+            <OccurrenceList>{occurrences}</OccurrenceList>
+          </Description>
+          <Instructor expanded={expanded}>{highlightedInstructor}</Instructor>
+        </DescriptionWrapper>
       </CourseItemIntroWrapper>
 
       {expandable && expanded && (

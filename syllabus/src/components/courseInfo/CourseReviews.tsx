@@ -5,7 +5,7 @@ import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import ReviewLangSwitches from "./ReviewLangSwitches";
-import ReviewScalesCountContainer from "./ReviewScalesCountContainer";
+import ReviewScalesCount from "./ReviewScalesCount";
 import ReviewsList from "./ReviewsList";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { getAvgScales } from "../../utils/get-avg-scales";
@@ -93,6 +93,8 @@ interface State {
   editReviewOriginalText: string;
   isFormSending: boolean;
   isSignInModalOpen: boolean;
+  userToken: string;
+  userId: string;
 }
 
 class CourseReviews extends React.Component<Props, State> {
@@ -112,6 +114,8 @@ class CourseReviews extends React.Component<Props, State> {
       editReviewOriginalText: "",
       isFormSending: false,
       isSignInModalOpen: false,
+      userToken: "",
+      userId: "",
     };
   }
 
@@ -142,16 +146,15 @@ class CourseReviews extends React.Component<Props, State> {
   };
 
   onNewReviewFormSubmit = async () => {
-    const idToken = await getIdToken();
     const {
       formScales,
       formText,
       formMode,
       editReviewPrimaryKey,
-      editReviewOriginalText,
+      userToken,
     } = this.state;
 
-    if (!idToken.length) {
+    if (!userToken.length) {
       this.setState({ isSignInModalOpen: true });
       return;
     }
@@ -189,7 +192,7 @@ class CourseReviews extends React.Component<Props, State> {
             },
             headers: {
               "Content-Type": "application/json",
-              Authorization: idToken,
+              Authorization: userToken,
             },
           }).then(async () => this.cleanFormAndUpdateReviews(newReview));
         } else if (formMode === "edit") {
@@ -206,7 +209,7 @@ class CourseReviews extends React.Component<Props, State> {
               },
               headers: {
                 "Content-Type": "application/json",
-                Authorization: idToken,
+                Authorization: userToken,
               },
             }
           ).then(async () => this.cleanFormAndUpdateReviews(newReview));
@@ -221,10 +224,8 @@ class CourseReviews extends React.Component<Props, State> {
   };
 
   cleanFormAndUpdateReviews = async (newReview) => {
-    const idToken = await getIdToken();
-    const userAttr = await getUserAttr();
-    const uid = userAttr.id;
     const { courseKey, t } = this.props;
+    const { userToken, userId } = this.state;
 
     Alert.success(t(`courseInfo.Review sent`), {
       position: "bottom",
@@ -233,7 +234,7 @@ class CourseReviews extends React.Component<Props, State> {
 
     const res = await API.get(
       "wasedatime-dev",
-      "/course-reviews/" + courseKey + "?uid=" + uid,
+      "/course-reviews/" + courseKey + "?uid=" + userId,
       {
         headers: {
           "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
@@ -261,20 +262,14 @@ class CourseReviews extends React.Component<Props, State> {
   };
 
   deleteReview = async (reviewPrimaryKey, reviewIndex) => {
-    const idToken = await getIdToken();
-    if (!idToken.length) {
-      this.setState({ isSignInModalOpen: true });
-      return;
-    }
-
-    const { reviews } = this.state;
+    const { reviews, userToken } = this.state;
     const { courseKey, t } = this.props;
     API.del(
       "wasedatime-dev",
       "/course-reviews/" + courseKey + "?ts=" + reviewPrimaryKey,
       {
         headers: {
-          Authorization: idToken,
+          Authorization: userToken,
         },
       }
     )
@@ -298,11 +293,20 @@ class CourseReviews extends React.Component<Props, State> {
       .catch((e) => console.log(e));
   };
 
-  openReviewForm = async () => {
+  openReviewForm = () =>
+    this.setState({
+      isFormOpen: this.state.userToken.length > 0,
+      isSignInModalOpen: this.state.userToken.length <= 0,
+    });
+
+  async componentDidMount() {
     const idToken = await getIdToken();
-    if (idToken) this.setState({ isFormOpen: true });
-    else this.setState({ isSignInModalOpen: true });
-  };
+    const userAttr = await getUserAttr();
+    this.setState({
+      userToken: idToken,
+      userId: userAttr ? userAttr.id : "",
+    });
+  }
 
   render() {
     const { searchLang, t } = this.props;
@@ -365,9 +369,7 @@ class CourseReviews extends React.Component<Props, State> {
         <MediaQuery minWidth={sizes.phone}>
           {(matches) =>
             !matches && (
-              <AddReviewButton
-                onClick={() => this.setState({ isFormOpen: true })}
-              >
+              <AddReviewButton onClick={this.openReviewForm}>
                 <FontAwesomeIcon icon={faPen} />{" "}
                 {this.props.t(`courseInfo.Write your Review`)}
               </AddReviewButton>
@@ -376,7 +378,7 @@ class CourseReviews extends React.Component<Props, State> {
         </MediaQuery>
         <Disclaimer>{t(`courseInfo.Disclaimer`)}</Disclaimer>
         <ReviewsListWrapper>
-          <ReviewScalesCountContainer
+          <ReviewScalesCount
             avgSatisfaction={scalesAvg.satisfaction}
             avgDifficulty={scalesAvg.difficulty}
             avgBenefit={scalesAvg.benefit}

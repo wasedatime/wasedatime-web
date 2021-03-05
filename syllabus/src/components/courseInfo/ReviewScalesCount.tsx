@@ -37,8 +37,7 @@ const ReviewScale = styled("div")`
 
 const ReviewsCount = styled("div")`
   flex: 1;
-  padding: 1rem 0px;
-  padding-top: 1.5rem;
+  padding: 0.5em 0px 1em 0px;
   text-align: center;
   justify-content: flex-start;
   color: #777;
@@ -51,7 +50,7 @@ interface Props extends WithTranslation {
   thisCourseReviewsLength: number;
 }
 
-const ReviewScalesCountContainer = ({
+const ReviewScalesCount = ({
   avgSatisfaction,
   avgDifficulty,
   avgBenefit,
@@ -89,7 +88,7 @@ const ReviewScalesCountContainer = ({
           matches ? (
             <span>{thisCourseReviewsLength}</span>
           ) : (
-            <h1 style={{ margin: "0px" }}>{thisCourseReviewsLength}</h1>
+            <h1 style={{ margin: "15px" }}>{thisCourseReviewsLength}</h1>
           )
         }
       </MediaQuery>{" "}
@@ -100,4 +99,4 @@ const ReviewScalesCountContainer = ({
   </ReviewScalesRow>
 );
 
-export default withTranslation("translation")(ReviewScalesCountContainer);
+export default withTranslation("translation")(ReviewScalesCount);

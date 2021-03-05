@@ -32,8 +32,8 @@ const Cards = styled(Card.Group)`
 `;
 
 const WiderPopup = styled(Popup)`
-  div {
-    ${media.tablet`width: 80vw !important;`}
+  & > div {
+    ${media.tablet`width: 80vw;`}
   }
 `;
 

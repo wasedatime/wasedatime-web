@@ -14,7 +14,8 @@ const FilterWrapper = styled.div`
   ${(props) => !props.isSideBar && "width: 100%;"}
   flex: none;
   position: fixed;
-  height: ${(props) => (props.isSideBar ? "calc(100vh - 70px)" : "100vh")};
+  height: ${(props) =>
+    props.isSideBar ? "calc(100vh - 70px)" : "calc(100vh - 50px)"};
   overflow-y: auto;
   padding: ${(props) =>
     props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em;"};

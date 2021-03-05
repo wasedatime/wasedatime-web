@@ -66,6 +66,7 @@ const SubmitFormButton = styled("button")`
   color: #fff;
   border: 0px;
   border-radius: 5px 0 0 5px;
+  ${media.tablet`flex: 0 0 30%;`};
 `;
 
 const CloseFormButton = styled("button")`
@@ -74,6 +75,7 @@ const CloseFormButton = styled("button")`
   color: #fff;
   border: 0px;
   border-radius: 0 5px 5px 0;
+  ${media.tablet`flex: 0 0 30%;`};
 `;
 
 const FieldLegend = styled(Divider)`

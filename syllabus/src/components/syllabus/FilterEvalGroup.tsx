@@ -6,6 +6,7 @@ import FilterGroup from "./FilterGroup";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styled from "styled-components";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const Range = Slider.createSliderWithTooltip(Slider.Range);
 
@@ -33,6 +34,10 @@ const StyledDropdown = styled(Dropdown)`
   i {
     padding: 0.5rem 0.2rem 0.5rem 0px !important;
   }
+`;
+
+const EvalRangeWrapper = styled.div`
+  ${media.tablet`width: 80%;`}
 `;
 
 interface Props {
@@ -67,34 +72,33 @@ const FilterEvalGroup = ({
       >
         {legend}
       </FormLabel>
-      <Grid style={{ margin: "0" }}>
-        <Grid.Column width={7} style={{ paddingLeft: "0px", paddingTop: "0" }}>
-          <StyledDropdown
-            placeholder={typeDefault}
-            selection
-            fluid
-            clearable
-            options={typeInputs}
-            value={selectedTypeInput}
-            onChange={(e, data) => {
-              handleToggleFilter(typeInputName, data.value);
-            }}
-            aria-label={typeInputName}
-          />
-        </Grid.Column>
-        <Grid.Column width={9} style={{ paddingTop: "0" }}>
-          <Range
-            min={0}
-            max={100}
-            step={5}
-            defaultValue={selectedPercentInputs}
-            tipFormatter={(value) => value + "%"}
-            tipProps={{ placement: "bottom", visible: true }}
-            onAfterChange={(v) => handleToggleFilter(percentInputName, v)}
-            ariaLabelGroupForHandles={[percentInputName + "Min", percentInputName + "Max"]}
-          />
-        </Grid.Column>
-      </Grid>
+      <EvalRangeWrapper>
+        <StyledDropdown
+          placeholder={typeDefault}
+          selection
+          fluid
+          clearable
+          options={typeInputs}
+          value={selectedTypeInput}
+          onChange={(e, data) => {
+            handleToggleFilter(typeInputName, data.value);
+          }}
+          aria-label={typeInputName}
+        />
+        <Range
+          min={0}
+          max={100}
+          step={5}
+          defaultValue={selectedPercentInputs}
+          tipFormatter={(value) => value + "%"}
+          tipProps={{ placement: "bottom", visible: true }}
+          onAfterChange={(v) => handleToggleFilter(percentInputName, v)}
+          ariaLabelGroupForHandles={[
+            percentInputName + "Min",
+            percentInputName + "Max",
+          ]}
+        />
+      </EvalRangeWrapper>
       <FilterGroup
         handleToggleFilter={handleToggleFilter}
         legend={""}

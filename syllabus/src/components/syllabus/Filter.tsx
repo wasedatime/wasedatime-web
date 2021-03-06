@@ -9,8 +9,9 @@ import FilterGroup from "./FilterGroup";
 import FilterEvalGroup from "./FilterEvalGroup";
 import FilterGroups from "../../types/filter";
 import FilterOption from "@bit/wasedatime.syllabus.ts.constants.syllabus-filter";
+import SimpleBar from "simplebar-react";
 
-const FilterWrapper = styled.div`
+const FilterWrapper = styled(SimpleBar)`
   ${(props) => !props.isSideBar && "width: 100%;"}
   flex: none;
   position: fixed;
@@ -18,7 +19,10 @@ const FilterWrapper = styled.div`
     props.isSideBar ? "calc(100vh - 70px)" : "calc(100vh - 50px)"};
   overflow-y: auto;
   padding: ${(props) =>
-    props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em;"};
+    props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em 80px 1.2em;"};
+  .simplebar-scrollbar::before {
+    background-color: #999;
+  }
 `;
 
 const FilterTitle = styled("span")`

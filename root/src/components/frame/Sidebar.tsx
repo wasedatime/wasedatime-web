@@ -72,6 +72,7 @@ type Props = {
 
 const Sidebar = ({ navItems, openSignInModal }: Props) => {
   const [expanded, setExpanded] = useState(false);
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
   const expandSidebar = () => {
     if (!expanded) setExpanded(true);
@@ -116,12 +117,12 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
             <Link
               to={item.path}
               key={item.name}
-              onClick={() => {}}
+              onClick={() => setCurrentPath(item.path)}
               expanded={expanded ? 1 : 0}
             >
               <NavItemBlock
                 expanded={expanded ? 1 : 0}
-                isCurrentPath={item.path === window.location.pathname}
+                isCurrentPath={item.path === currentPath}
               >
                 <FontAwesomeIcon
                   icon={item.icon}

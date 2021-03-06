@@ -45,32 +45,32 @@ const StyledDropdown = styled(Dropdown)`
 const styles = (theme) =>
   createStyles({
     formLabel: {
-      fontSize: "1.5em",
+      fontSize: "1.3em",
       color: "#000",
       fontWeight: "bold",
       fontFamily: "Lato, Yu Gothic Medium, Segoe UI",
       fontDisplay: "swap",
     },
     formGroup: {
-      fontSize: "1.5em",
+      fontSize: "1.3em",
       margin: "0 0 10px",
       fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
       fontDisplay: "swap",
     },
     formControlLabel: {
       minWidth: "70px",
-      paddingLeft: "4px",
       fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
       fontDisplay: "swap",
     },
     formControlLabel_label: {
-      fontSize: "1em",
+      fontSize: "0.9em",
       fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
       fontDisplay: "swap",
     },
     checkBox: {
-      width: "25px",
+      width: "40px",
       height: "30px",
+      transform: "scale(1.5)",
     },
     checkBoxChecked: {
       color: "#b51e36 !important",
@@ -112,6 +112,7 @@ const FilterGroup = ({
               root: classes.checkBox,
               checked: classes.checkBoxChecked,
             }}
+            size="medium"
           />
         }
         label={input.label}

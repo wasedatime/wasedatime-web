@@ -780,10 +780,6 @@ video {
   padding-top: 0.75rem;
 }
 
-.static {
-  position: static;
-}
-
 .fixed {
   position: fixed;
 }

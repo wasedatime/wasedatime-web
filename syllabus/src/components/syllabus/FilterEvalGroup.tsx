@@ -11,7 +11,6 @@ import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 const Range = Slider.createSliderWithTooltip(Slider.Range);
 
 const StyledDropdown = styled(Dropdown)`
-  font-size: 1em !important;
   min-height: 32px !important;
   padding: 0px !important;
   padding-top: 0.3rem !important;
@@ -23,7 +22,7 @@ const StyledDropdown = styled(Dropdown)`
 
   .divider.text {
     line-height: 1.3 !important;
-    font-size: 1.2em !important;
+    font-size: 1.3em !important;
     margin: 2px 1rem !important;
   }
 
@@ -34,6 +33,13 @@ const StyledDropdown = styled(Dropdown)`
   i {
     padding: 0.5rem 0.2rem 0.5rem 0px !important;
   }
+`;
+
+const StyledFormLabel = styled(FormLabel)`
+  font-size: 1.3em !important;
+  font-family: Lato, Yu Gothic Medium, Segoe UI;
+  font-weight: bold;
+  color: #000 !important;
 `;
 
 const EvalRangeWrapper = styled.div`
@@ -67,11 +73,7 @@ const FilterEvalGroup = ({
 }: Props) => {
   return (
     <div>
-      <FormLabel
-        style={{ fontSize: "1.2em", color: "#000", fontWeight: "bold" }}
-      >
-        {legend}
-      </FormLabel>
+      <StyledFormLabel>{legend}</StyledFormLabel>
       <EvalRangeWrapper>
         <StyledDropdown
           placeholder={typeDefault}

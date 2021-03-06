@@ -61,7 +61,7 @@ const SyllabusFlex = styled.div`
 `;
 
 const SideColumn = styled.div`
-  flex: 22em;
+  flex: 20em;
   flex-grow: 0;
   flex-shrink: 0;
 `;

@@ -6,6 +6,7 @@ import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getCourseTitleAndInstructor } from "@bit/wasedatime.syllabus.ts.utils.course-search";
 import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import { CourseWithOcc } from "../../types/course";
+import SimpleBar from "simplebar-react";
 
 const StyledCourseColumn = styled("div")`
   display: flex;
@@ -19,7 +20,7 @@ const StyledCourseColumn = styled("div")`
   flex-direction: row;
 `;
 
-const CourseItem = styled("div")`
+const CourseItem = styled(SimpleBar)`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -34,12 +35,16 @@ const CourseItem = styled("div")`
   border-left-width: 2px;
   border-left-style: solid;
   line-height: normal;
+  text-align: center;
+  .simplebar-scrollbar::before {
+    background-color: #999;
+  }
 `;
 
 const CourseTitle = styled("span")`
   flex: 1 1 auto;
-  font-weight: bold;
   font-size: 1em;
+  font-weight: bold;
   overflow-x: hidden;
   overflow-wrap: break-word;
   word-wrap: break-word;
@@ -51,13 +56,14 @@ const CourseTitle = styled("span")`
 const CourseLocation = styled("span")`
   display: inline-flex;
   flex: 0 0 auto;
+  font-weight: lighter;
   padding: 0.2em 0;
-  font-size: 1em;
+  font-size: 0.9em;
   word-break: break-all;
   align-items: center;
   justify-content: center;
   text-align: center;
-  ${media.phone`font-size: 0.7em;`}
+  ${media.phone`font-size: 0.6em;`}
 `;
 
 const CourseList = styled("div")`

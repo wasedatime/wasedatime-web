@@ -25,6 +25,12 @@ import {
   gaUserSignInFailure,
   gaUserSignOut,
 } from "./ga/eventActions";
+import { navigateToUrl } from "single-spa";
+
+const NotFound = ({ default: boolean }) => {
+  navigateToUrl("/");
+  return <LoadingSpinner message="Not found! Redirecting..." />;
+};
 
 const App = () => {
   Hub.listen("auth", ({ payload: { event, data } }) => {
@@ -110,9 +116,9 @@ const App = () => {
               <RedirectPage path="/verify" />
               <Home path="/home" isFirstAccess={false} />
               <Redirect from="/" to="/courses/timetable" noThrow />
-              <Redirect from="/" to="/courses/timetable" noThrow />
               <Redirect from="/timetable" to="/courses/timetable" noThrow />
               <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
+              <NotFound default />
             </Router>
           )}
         </Suspense>

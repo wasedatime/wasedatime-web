@@ -63,9 +63,16 @@ const LogoWrapper = styled("div")`
 interface Props extends WithTranslation {
   isModalOpen: boolean;
   closeModal: () => void;
+  isFirstAccess: boolean;
 }
 
-const WelcomeModal = ({ isModalOpen, closeModal, isFirstAccess, t, i18n }) => {
+const WelcomeModal = ({
+  isModalOpen,
+  closeModal,
+  isFirstAccess,
+  t,
+  i18n,
+}: Props) => {
   const [pageIndex, setPageIndex] = useState(0);
   const changeLanguage = (lng) => {
     ReactGA.event({
@@ -207,9 +214,14 @@ const WelcomeModal = ({ isModalOpen, closeModal, isFirstAccess, t, i18n }) => {
         </button>
         <button
           className="border-2 border-red-700 text-red-700 rounded-lg px-4 mx-4 hover:bg-red-700 hover:text-white focus:outline-none"
-          onClick={() =>
-            isFirstAccess ? navigateToUrl("/courses/timetable") : closeModal()
-          }
+          onClick={() => {
+            if (isFirstAccess) {
+              localStorage.setItem("isFirstAccess", "false");
+              navigateToUrl("/courses/timetable");
+            } else {
+              closeModal();
+            }
+          }}
         >
           {t("welcome.done").toUpperCase()}
         </button>

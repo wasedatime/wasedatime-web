@@ -15,8 +15,14 @@ const SignInModal = lazy(
 import { useTranslation } from "react-i18next";
 import { globalHistory } from "@reach/router";
 import ReactGA from "react-ga";
+import { navigateToUrl } from "single-spa";
 
 const Nav = () => {
+  if (
+    localStorage.getItem("isFirstAccess") === null ||
+    localStorage.getItem("isFirstAccess") === "true"
+  )
+    navigateToUrl("/");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const { t, i18n } = useTranslation();
 

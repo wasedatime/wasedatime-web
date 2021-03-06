@@ -66,7 +66,6 @@ interface Props extends WithTranslation {
 }
 
 const Home = ({ isFirstAccess, t, i18n }: Props) => {
-  if (isFirstAccess) localStorage.setItem("isFirstAccess", "false");
   const [modalOpen, setModalOpen] = useState(isFirstAccess);
   const closeModal = () => {
     setModalOpen(false);

@@ -31,6 +31,11 @@ interface ReduxDispatchProps {
   saveTimetable: (idsAndPrefs: IdAndPrefType) => void;
 }
 
+const NotFound = ({ default: boolean }) => {
+  navigate("/");
+  return <LoadingSpinner message="Not found! Redirecting..." />;
+};
+
 const App = ({
   addedCoursesPrefs,
   fetchCourses,
@@ -94,6 +99,7 @@ const App = ({
       <Router>
         <Syllabus path="courses/syllabus" />
         <Timetable path="courses/timetable" />
+        <NotFound default />
       </Router>
       <Alert stack={{ limit: 1 }} timeout={3000} />
     </Suspense>

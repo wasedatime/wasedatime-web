@@ -184,7 +184,6 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
 
   return (
     <div>
-      <StyledSubHeading>{t(`courseInfo.Details.title`)}</StyledSubHeading>
       {courseDetails}
       <StyledSubHeading>
         {t(`courseInfo.Details.Evaluation.title`)}

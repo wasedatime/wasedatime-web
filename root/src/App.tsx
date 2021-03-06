@@ -17,6 +17,7 @@ import { useTranslation } from "react-i18next";
 import CommonStyle from "./common-style";
 
 import { ErrorBoundary } from "@sentry/react";
+
 import ReactGA from "react-ga";
 import { gaUser } from "./ga/eventCategories";
 import {

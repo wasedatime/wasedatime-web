@@ -1,4 +1,4 @@
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../constants/syllabus-data";
 
 export interface Course {
   [SyllabusKey.ID]: string;

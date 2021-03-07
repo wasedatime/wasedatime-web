@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Step from "semantic-ui-react/dist/commonjs/elements/Step";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import { VerticalStep } from "@bit/wasedatime.syllabus.ts.styles.vertical-step";
+import { VerticalStep } from "../styles/VerticalStep";
 
 import {
   addedCourseListSwitchHeight,
@@ -44,6 +44,7 @@ const ExtendedArticle = styled(Article)`
 const StyledMessageHeader = styled(Message.Header)`
   font-family: Segoe UI, Yu Gothic Medium, Lato !important;
   font-display: swap;
+  font-size: 14px !important;
 `;
 
 const StyledStepGroup = styled(Step.Group)`

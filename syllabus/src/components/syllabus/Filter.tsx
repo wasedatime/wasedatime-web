@@ -8,7 +8,7 @@ import SchoolFilterContainer from "../../containers/SchoolFilterContainer";
 import FilterGroup from "./FilterGroup";
 import FilterEvalGroup from "./FilterEvalGroup";
 import FilterGroups from "../../types/filter";
-import FilterOption from "@bit/wasedatime.syllabus.ts.constants.syllabus-filter";
+import FilterOption from "../../constants/syllabus-filter";
 import SimpleBar from "simplebar-react";
 
 const FilterWrapper = styled(SimpleBar)`

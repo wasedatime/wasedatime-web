@@ -1,9 +1,6 @@
 import React from "react";
 import { WithTranslation, withTranslation } from "react-i18next";
-import {
-  Semester,
-  Quarter,
-} from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
+import { Semester, Quarter } from "../../constants/timetable-terms";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";

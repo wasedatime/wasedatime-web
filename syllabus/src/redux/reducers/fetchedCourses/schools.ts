@@ -1,4 +1,3 @@
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
 import {
   FETCH_COURSES_SUCCESS,
   ADD_SCHOOL_FETCH_COURSES_SUCCESS,

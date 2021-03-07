@@ -3,7 +3,7 @@ import byId from "./byId";
 import idsBySchool from "./idsBySchool";
 import orderedIds from "./orderedIds";
 import sortingOption from "./sorting-option";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../../../constants/syllabus-data";
 
 const addedCourses = combineReducers({
   byId,

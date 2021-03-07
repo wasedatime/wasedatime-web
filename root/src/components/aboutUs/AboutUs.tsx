@@ -10,11 +10,8 @@ import JoinUs from "./JoinUs";
 const MeetOurTeam = lazy(() => import("./MeetOurTeam"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import ReactGA from "react-ga";
-import { gaLanguage } from "../../../ga/eventCategories";
-import {
-  gaAppendActionWithLng,
-  gaChangeLanguage,
-} from "../../../ga/eventActions";
+import { gaLanguage } from "../../ga/eventCategories";
+import { gaAppendActionWithLng, gaChangeLanguage } from "../../ga/eventActions";
 
 const AboutUsWrapper = styled(Wrapper)`
   display: flex;

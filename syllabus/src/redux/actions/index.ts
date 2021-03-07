@@ -16,8 +16,8 @@ import {
   REMOVE_SCHOOL,
   SAVE_TIMETABLE,
 } from "./types";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import { schoolCodeMap } from "@bit/wasedatime.syllabus.ts.constants.school-code";
+import { SyllabusKey } from "../../constants/syllabus-data";
+import { schoolCodeMap } from "../../constants/school-code";
 import Course from "../../types/course";
 
 export const removeSchool = (school: string) => ({

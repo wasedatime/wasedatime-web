@@ -15,7 +15,7 @@ import AddReviewForm from "./AddReviewForm";
 import { getIdToken, getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
 import API from "@aws-amplify/api";
 import Alert from "react-s-alert";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../../constants/syllabus-data";
 import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
 import ReactGA from "react-ga";
 import { gaCourseReviews } from "../../ga/eventCategories";

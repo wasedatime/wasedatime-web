@@ -1,4 +1,4 @@
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../../../constants/syllabus-data";
 import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../../actions/types";
 import Course from "../../../types/course";
 

@@ -8,7 +8,7 @@ import {
   toggleCourseVisibility,
 } from "../redux/actions";
 import CourseAndPrefItem from "../components/timetable/CourseAndPrefItem";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../constants/syllabus-data";
 import Course from "../types/course";
 import ReactGA from "react-ga";
 import {

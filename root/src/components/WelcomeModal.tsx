@@ -12,8 +12,8 @@ import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { navigateToUrl } from "single-spa";
 import ReactGA from "react-ga";
-import { gaSetLanguage } from "../../ga/eventActions";
-import { gaLanguage } from "../../ga/eventCategories";
+import { gaSetLanguage } from "../ga/eventActions";
+import { gaLanguage } from "../ga/eventCategories";
 
 const modalStyle = {
   overlay: {

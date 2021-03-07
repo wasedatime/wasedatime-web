@@ -20,19 +20,19 @@ import {
   getSearchLang,
   searchCourses,
   sortCourses,
-} from "@bit/wasedatime.syllabus.ts.utils.course-search";
+} from "../utils/course-search";
 import { navigate } from "@reach/router";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import Header from "@bit/wasedatime.core.ts.ui.header";
-import filterCourses from "../utils/filterCourses";
+import filterCourses from "../utils/filter-courses";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../constants/syllabus-data";
 import Course from "../types/course";
 import queryString from "query-string";
 import API from "@aws-amplify/api";
-import { schoolCodeMap } from "@bit/wasedatime.syllabus.ts.constants.school-code";
+import { schoolCodeMap } from "../constants/school-code";
 import ReactGA from "react-ga";
 import { gaFilter } from "../ga/eventCategories";
 import {

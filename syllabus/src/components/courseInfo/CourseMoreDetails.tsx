@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import API from "@aws-amplify/api";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../../constants/syllabus-data";
 import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion";
 import Course from "../../types/course";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

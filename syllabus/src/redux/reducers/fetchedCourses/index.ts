@@ -1,10 +1,8 @@
 import { combineReducers } from "redux";
-// import fetchedList, * as fromList from "./fetchedList";
 import coursesBySchool from "./coursesBySchool";
 import schools from "./schools";
 import isFetching from "./isFetching";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import schoolCodeMap from "@bit/wasedatime.syllabus.ts.constants.school-code";
+import { SyllabusKey } from "../../../constants/syllabus-data";
 import Course from "../../../types/course";
 
 const fetchedCourses = combineReducers({

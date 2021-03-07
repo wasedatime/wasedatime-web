@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../../constants/syllabus-data";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";

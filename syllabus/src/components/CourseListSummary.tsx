@@ -9,8 +9,8 @@ import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
 
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
-import SortingOption from "@bit/wasedatime.syllabus.ts.constants.sorting-options";
+import { SyllabusKey } from "../constants/syllabus-data";
+import SortingOption from "../constants/sorting-options";
 import Course from "../types/course";
 
 const SortByButton = styled(InvisibleButton)`

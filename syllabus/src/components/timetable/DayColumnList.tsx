@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 
 import DayColumnItem from "./DayColumnItem";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../../constants/syllabus-data";
 import Course from "../../types/course";
 
 const StyledList = styled("ol")`

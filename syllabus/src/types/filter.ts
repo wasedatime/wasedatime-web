@@ -1,4 +1,4 @@
-import FilterOption from "@bit/wasedatime.syllabus.ts.constants.syllabus-filter";
+import FilterOption from "../constants/syllabus-filter";
 
 export interface FilterGroups {
   [FilterOption.SEMESTER]?: string[];

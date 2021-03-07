@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { sortAddedCourses } from "@bit/wasedatime.syllabus.ts.utils.added-courses";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { sortAddedCourses } from "../utils/added-courses";
+import { SyllabusKey } from "../constants/syllabus-data";
 import SemesterSwitcher from "../components/SemesterSwitcher";
 import AddedCourseList from "../components/syllabus/AddedCourseList";
-import { Semester } from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
-import { getCurrentSemester } from "@bit/wasedatime.syllabus.ts.utils.get-current-semesters";
+import { Semester } from "../constants/timetable-terms";
+import { getCurrentSemester } from "../utils/get-current-semesters";
 import Course from "../types/course";
 import { getAddedCoursesListWithLang } from "../redux/reducers/addedCourses";
 import { ReduxRootState } from "../redux/reducers";

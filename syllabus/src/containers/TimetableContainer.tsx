@@ -10,11 +10,11 @@ import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 const Timetable = lazy(() => import("../components/timetable/Timetable"));
 import SemesterSwitcher from "../components/SemesterSwitcher";
-import { Semester } from "@bit/wasedatime.syllabus.ts.constants.timetable-terms";
-import { getCurrentSemester } from "@bit/wasedatime.syllabus.ts.utils.get-current-semesters";
+import { Semester } from "../constants/timetable-terms";
+import { getCurrentSemester } from "../utils/get-current-semesters";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { getAddedCoursesAndPrefsByTerm } from "../redux/reducers/addedCourses";
-import { sortAddedCoursesAndPrefs } from "@bit/wasedatime.syllabus.ts.utils.added-courses-and-prefs";
+import { sortAddedCoursesAndPrefs } from "../utils/added-courses-and-prefs";
 import Course from "../types/course";
 
 const TimetableWrapper = styled(Wrapper)`

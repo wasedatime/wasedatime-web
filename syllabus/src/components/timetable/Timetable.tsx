@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { ThemeProvider } from "styled-components";
-import { timetableTheme } from "@bit/wasedatime.syllabus.ts.constants.syllabus-theme";
+import { timetableTheme } from "../../constants/syllabus-theme";
 import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { Article, Section } from "@bit/wasedatime.core.ts.styles.article";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
@@ -9,7 +9,7 @@ import DayColumnList from "./DayColumnList";
 import AddedCourseAndPrefList from "./AddedCourseAndPrefList";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../../constants/syllabus-data";
 import Course from "../../types/course";
 
 const ExtendedRowWrapper = styled(RowWrapper)`

@@ -10,8 +10,8 @@ import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
 import WelcomeModal from "./WelcomeModal";
 import { navigateToUrl } from "single-spa";
 import ReactGA from "react-ga";
-import { gaAppendActionWithLng, gaChangeLanguage } from "../../ga/eventActions";
-import { gaLanguage } from "../../ga/eventCategories";
+import { gaAppendActionWithLng, gaChangeLanguage } from "../ga/eventActions";
+import { gaLanguage } from "../ga/eventCategories";
 
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;

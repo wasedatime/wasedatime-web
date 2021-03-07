@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import ReviewStars from "./ReviewStars";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
-import ReviewLang from "@bit/wasedatime.syllabus.ts.constants.review-lang";
+import ReviewLang from "../../constants/review-lang";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";

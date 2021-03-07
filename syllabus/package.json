@@ -65,7 +65,7 @@
     "@bit/wasedatime.core.ts.styles.button": "0.0.1",
     "@bit/wasedatime.core.ts.styles.list": "0.0.1",
     "@bit/wasedatime.core.ts.styles.wrapper": "0.0.1",
-    "@bit/wasedatime.core.ts.ui.error-fallback": "0.0.1",
+    "@bit/wasedatime.core.ts.ui.error-fallback": "0.0.3",
     "@bit/wasedatime.core.ts.ui.header": "0.0.12",
     "@bit/wasedatime.core.ts.ui.loading-spinner": "0.0.7",
     "@bit/wasedatime.core.ts.ui.logo": "0.0.9",

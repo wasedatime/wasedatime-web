@@ -8,7 +8,6 @@ import CourseReviews from "./CourseReviews";
 import ShareButtons from "./ShareButtons";
 import CourseItemContainer from "../../containers/CourseItemContainer";
 import { SyllabusKey } from "../../constants/syllabus-data";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import levenshtein from "levenshtein-edit-distance";
 import { getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
 import API from "@aws-amplify/api";

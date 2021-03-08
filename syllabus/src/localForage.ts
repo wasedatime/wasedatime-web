@@ -1,4 +1,5 @@
 import localForage from "localforage";
+import { SyllabusKey } from "./constants/syllabus-data";
 
 interface oldAddedCoursesBySemType {
   prefs: {
@@ -78,7 +79,10 @@ const parseOldState = () => {
           const course = oldAddedCourses.byId[id];
           const pref = oldAddedCourses.prefs.find((p) => p.id === id);
           byId[id] = {
-            course: course,
+            course: {
+              ...course,
+              [SyllabusKey.SCHOOL]: course.r,
+            },
             pref: {
               color: pref.color,
               displayLang: pref.displayLang === "jp" ? "ja" : pref.displayLang,

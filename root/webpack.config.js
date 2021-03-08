@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { InjectManifest } = require("workbox-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = "wasedatime";
@@ -49,6 +50,11 @@ module.exports = (webpackConfigEnv, argv) => {
       ],
     },
     plugins: [
+      new webpack.EnvironmentPlugin(
+        webpackConfigEnv.isDev
+          ? ["PREFIX", "MF_SYLLABUS_DOMAIN", "MF_CAMPUS_DOMAIN"]
+          : []
+      ),
       new HtmlWebpackPlugin({
         inject: false,
         template: "src/index.ejs",

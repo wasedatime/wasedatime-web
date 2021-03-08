@@ -20,7 +20,7 @@ const StyledCourseColumn = styled("div")`
   flex-direction: row;
 `;
 
-const CourseItem = styled(SimpleBar)`
+const CourseItem = styled("div")`
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -47,8 +47,6 @@ const CourseTitle = styled("span")`
   font-weight: bold;
   overflow-x: hidden;
   overflow-wrap: break-word;
-  word-wrap: break-word;
-  text-overflow: ellipsis;
   text-align: center;
   ${media.phone`font-size: 0.7em;`}
 `;
@@ -185,7 +183,9 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
             top={startPeriod - 1}
             height={endPeriod - startPeriod + 1}
           >
-            <CourseTitle>{title}</CourseTitle>
+            <CourseTitle>
+              <SimpleBar>{title}</SimpleBar>
+            </CourseTitle>
             <CourseLocation>{location}</CourseLocation>
           </CourseItem>
         );

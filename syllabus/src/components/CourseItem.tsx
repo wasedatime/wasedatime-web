@@ -26,6 +26,7 @@ import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import { Badge } from "@bit/wasedatime.core.ts.styles.badge";
 import CourseInfo from "./courseInfo/CourseInfo";
 import Course from "../types/course";
+import CourseReviews from "./courseInfo/CourseReviews";
 
 const CourseItemWrapper = styled("li")`
   display: flex;
@@ -223,6 +224,8 @@ interface Props extends WithTranslation {
   isAddable: boolean;
   handleOnClick: (title: string, lng: string) => void;
   expandable: boolean;
+  isMilestone?: boolean;
+  reviews?: any;
 }
 
 const CourseItem = ({
@@ -232,6 +235,8 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   expandable,
+  isMilestone,
+  reviews,
   t,
   i18n,
 }: Props) => {
@@ -313,7 +318,7 @@ const CourseItem = ({
     <CourseItemWrapper expandable={expandable}>
       <CourseItemIntroWrapper
         onClick={async () => {
-          expandable ? setExpanded(true) : await navigateToCourse();
+          !isMilestone && (expandable ? setExpanded(true) : await navigateToCourse());
         }}
         expanded={expanded}
       >
@@ -327,7 +332,7 @@ const CourseItem = ({
             <Badge>{langTerm}</Badge>
             {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
-          <div
+          {!isMilestone && <div
             style={{
               display: "flex",
               flex: "1 0 auto",
@@ -346,7 +351,7 @@ const CourseItem = ({
             >
               {buttonIcon}
             </InvisibleButton>
-          </div>
+          </div>}
         </CourseItemRow>
 
         <DescriptionWrapper>
@@ -358,15 +363,24 @@ const CourseItem = ({
         </DescriptionWrapper>
       </CourseItemIntroWrapper>
 
-      {expandable && expanded && (
+      {!isMilestone && expandable && expanded && (
         <CloseCourseInfoButton onClick={() => setExpanded(false)}>
           <FontAwesomeIcon icon={faChevronUp} />
         </CloseCourseInfoButton>
       )}
 
-      {expandable && expanded && (
+      {!isMilestone && expandable && expanded && (
         <CourseInfo course={course} searchLang={searchLang} />
       )}
+
+      {
+        isMilestone && <CourseReviews
+          course={course}
+          reviews={reviews}
+          searchLang={"en"}
+          isMilestone={isMilestone}
+        />
+      }
     </CourseItemWrapper>
   );
 };

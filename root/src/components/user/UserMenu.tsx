@@ -6,12 +6,6 @@ import styled, { keyframes } from "styled-components";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getUserAttr, signOut } from "../../utils/user";
 
-export const expandLink = () =>
-  keyframes`
-    from { opacity: 0; }
-    to { opacity: 1; }
-  `;
-
 const UserMenuTrigger = styled("div")`
   color: #fff;
   text-align: center;
@@ -40,8 +34,6 @@ const UserMenuTrigger = styled("div")`
 `;
 
 const StyledSpan = styled("span")`
-  animation-name: ${expandLink};
-  animation-duration: 0.3s;
   text-align: left;
   font-weight: 100;
   margin-left: 1rem;

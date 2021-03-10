@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import API from "@aws-amplify/api";
 const Timetable = lazy(() => import("./containers/TimetableContainer"));
 const Syllabus = lazy(() => import("./containers/SyllabusContainer"));
+const Milestone = lazy(() => import("./components/milestone/Milestone"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import "semantic-ui-css/components/dropdown.min.css";
 import "react-s-alert/dist/s-alert-default.css";
@@ -15,7 +16,6 @@ import "./styles/styles.scss";
 import "react-s-alert/dist/s-alert-css-effects/jelly.css";
 import "simplebar/dist/simplebar.min.css";
 import Alert from "react-s-alert";
-
 interface IdAndPrefType {
   id: string;
   color: number;
@@ -99,6 +99,7 @@ const App = ({
       <Router>
         <Syllabus path="courses/syllabus" />
         <Timetable path="courses/timetable" />
+        <Milestone path="courses/milestone" />
         <NotFound default />
       </Router>
       <Alert stack={{ limit: 1 }} timeout={3000} />

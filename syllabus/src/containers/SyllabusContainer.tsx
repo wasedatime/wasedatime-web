@@ -21,7 +21,7 @@ import {
   searchCourses,
   sortCourses,
 } from "../utils/course-search";
-import { navigate } from "@reach/router";
+import { navigate, Link } from "@reach/router";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
@@ -343,6 +343,11 @@ class SyllabusContainer extends React.Component<
 
           <MiddleColumn>
             <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+              <Link to="/courses/milestone">
+                <button style={{ width: "95%", backgroundColor: "#b51e36", color: "#fff", borderRadius: "6px", margin: "1em 1em 0px 1em" }}>
+                  <h6>2021 Spring Milestone × WTSA</h6>
+                </button>
+              </Link>
               {allFetchedCourses.length > 0 ? (
                 <FetchedCourseList
                   searchTerm={searchTerm}

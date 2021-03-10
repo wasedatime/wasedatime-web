@@ -8,7 +8,8 @@
     "build": "webpack --mode=production",
     "build-dev": "webpack --mode=production --env isDev",
     "local": "concurrently --kill-others \"npm start\" \"cd ../syllabus && npm start\" \"cd ../campus && npm start\" \"cd ../career && npm start\"",
-    "tailwind:build": "npx tailwind build ./src/styles/styles.css -o ./src/styles/index.css"
+    "tailwind:build": "npx tailwind build ./src/styles/styles.css -o ./src/styles/index.css",
+    "ci-all": "npm ci && cd ../syllabus && npm ci && cd ../campus && npm ci && cd ../career && npm ci"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",

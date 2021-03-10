@@ -11,6 +11,8 @@ import cat5 from "./images/pse-cat-5.jpg";
 import cat6 from "./images/pse-cat-6.jpg";
 import MediaQuery from "react-responsive";
 import { sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
+import { connect } from "react-redux";
+import { fetchCoursesBySchool } from "../../redux/actions";
 
 
 const PSE_category_map = {
@@ -92,29 +94,30 @@ const Course = ({ course, reviews }) => (
   />
 )
 
-const PSE = ({courses, reviews}) => {
-  const groupedCourses = getGroupedCourses(courses)
+const PSE = ({courses, reviews, fetchCoursesBySchool}) => {
+  if (!courses.length) fetchCoursesBySchool("PSE");
+  const groupedCourses = getGroupedCourses(courses);
   return (
     <div>
       <MediaQuery maxWidth={sizes.tablet}>
         {
-          matches => matches ? <img src={mobileCover} /> : <img src={cover} />
+          matches => matches ? <img src={mobileCover} width="360" height="640" /> : <img src={cover} width="1280" height="720" />
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src={cat1} />
+        <img src={cat1} width="300" height="150" />
         {groupedCourses["Japanese and Global Political Economy"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat2} />
+        <img src={cat2} width="300" height="150" />
         {groupedCourses["Economics"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat3} />
+        <img src={cat3} width="300" height="150" />
         {groupedCourses["Political Science"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat4} />
+        <img src={cat4} width="300" height="150" />
         {groupedCourses["Quantitative Approaches to Political Economy"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat5} />
+        <img src={cat5} width="300" height="150" />
         {groupedCourses["General Studies"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat6} />
+        <img src={cat6} width="300" height="150" />
         {groupedCourses["Workshops & Seminars"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <h5>Others</h5>
+        <h4>Others</h4>
         {groupedCourses["Foreign Language"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
         {groupedCourses["Others"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
       </div>
@@ -122,4 +125,11 @@ const PSE = ({courses, reviews}) => {
   )
 }
 
-export default PSE;
+const mapDispatchToProps = {
+  fetchCoursesBySchool,
+};
+
+export default connect<{}, {fetchCoursesBySchool: (school: string) => void}>(
+  null,
+  mapDispatchToProps
+)(PSE);

@@ -1,22 +1,41 @@
 import React from 'react';
 import { connect } from "react-redux";
+import styled from "styled-components";
 import { SyllabusKey } from "../../constants/syllabus-data";
 import rawReviews from "../../constants/reviews.json"
 import schoolCodeMap from '../../constants/school-code';
 import { ReduxRootState } from "../../redux/reducers";
 import { Course } from '../../types/course';
-import ReviewStars from '../courseInfo/ReviewStars';
 import { getFetchedCoursesList } from '../../redux/reducers/fetchedCourses';
-import CourseItem from '../CourseItem';
 import PSE from './PSE';
 import CJL from './CJL';
 import SILS from './SILS';
 import SSS from './SSS';
 import Rikou from './Rikou';
 import MediaQuery from "react-responsive";
-import { sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
+import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
 import cover from "./images/cover.jpg";
 import mobileCover from "./images/cover-mobile.jpg";
+import { undergradSchoolNameIconMap, otherSchoolNameIconMap } from '@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en';
+
+const SchoolSwitch = styled.img`
+  cursor: pointer;
+  margin: 0px 1em;
+  ${media.tablet`width: 90px; margin: 0px; height: 90px;`}
+  ${media.phone`width: 60px; margin: 0px; height: 60px;`}
+`;
+
+const RikouSchoolSwitch = styled.img`
+  cursor: pointer;
+  ${media.tablet`width: 45px; height: 45px;`}
+  ${media.phone`width: 30px; height: 30px;`}
+`;
+
+const FSESchoolSwitch = styled(RikouSchoolSwitch)`
+  margin: 30px 0px;
+  ${media.tablet`margin: 22.5px 0px;`}
+  ${media.tablet`margin: 15px 0px;`}
+`;
 
 interface ReduxStateProps {
   fetchedCourses: Course[],
@@ -59,10 +78,6 @@ class Milestone extends React.Component<ReduxStateProps> {
       return result;
     }, {})
   }
-
-  componentDidMount () {
-    // console.log(this.state.reviews);
-  }
   
   render () {
     const { courseKeys, school } = this.state;
@@ -77,23 +92,32 @@ class Milestone extends React.Component<ReduxStateProps> {
       );
       return (
         <div className="theme-default">
+          <div style={{ position: "absolute", width: "100%" }}>
+            <div style={{ maxWidth: "1280px", display: "flex", justifyContent: "center" }}>
+              <SchoolSwitch src={undergradSchoolNameIconMap["PSE"]} width="120" height="120" onClick={() => this.setState({ school: "PSE" })} />
+              <SchoolSwitch src={undergradSchoolNameIconMap["SILS"]} width="120" height="120" onClick={() => this.setState({ school: "SILS" })} />
+              <SchoolSwitch src={undergradSchoolNameIconMap["SSS"]} width="120" height="120" onClick={() => this.setState({ school: "SSS" })} />
+              <SchoolSwitch src={otherSchoolNameIconMap["CJL"]} width="120" height="120" onClick={() => this.setState({ school: "CJL" })} />
+              <div style={{ display: "flex" }}>
+                <FSESchoolSwitch src={undergradSchoolNameIconMap["FSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
+                <div>
+                  <RikouSchoolSwitch src={undergradSchoolNameIconMap["CSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
+                  <RikouSchoolSwitch src={undergradSchoolNameIconMap["ASE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
+                </div>
+              </div>
+            </div>
+          </div>
+
           {!school && <MediaQuery maxWidth={sizes.tablet}>
             {(matches) =>
               matches ? (
                 <img src={mobileCover} />
               ) : (
-                <img src={cover} />
+                <img src={cover} width="1280" height="720" />
               )
             }
           </MediaQuery>}
           
-          <div style={{ textAlign: "center" }}>
-            <button style={{ padding: "0px 0.5em", margin: "0.2em 0.5em", border: "1px solid red", borderRadius: "5px" }} onClick={() => this.setState({ school: "PSE" })}>PSE</button>
-            <button style={{ padding: "0px 0.5em", margin: "0.2em 0.5em", border: "1px solid red", borderRadius: "5px" }} onClick={() => this.setState({ school: "CJL" })}>CJL</button>
-            <button style={{ padding: "0px 0.5em", margin: "0.2em 0.5em", border: "1px solid red", borderRadius: "5px" }} onClick={() => this.setState({ school: "SILS" })}>SILS</button>
-            <button style={{ padding: "0px 0.5em", margin: "0.2em 0.5em", border: "1px solid red", borderRadius: "5px" }} onClick={() => this.setState({ school: "SSS" })}>SSS</button>
-            <button style={{ padding: "0px 0.5em", margin: "0.2em 0.5em", border: "1px solid red", borderRadius: "5px" }} onClick={() => this.setState({ school: "Rikou" })}>Rikou</button>
-          </div>
           {school === "PSE" && <PSE courses={courses} reviews={this.state.reviews} />}
           {school === "CJL" && <CJL courses={courses} reviews={this.state.reviews} />}
           {school === "SILS" && <SILS courses={courses} reviews={this.state.reviews} />}

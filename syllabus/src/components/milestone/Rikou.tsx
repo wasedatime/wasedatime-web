@@ -8,6 +8,8 @@ import cat2 from "./images/rikou-cat-2.jpg";
 import cat3 from "./images/rikou-cat-3.jpg";
 import { sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
 import MediaQuery from "react-responsive";
+import { connect } from "react-redux";
+import { fetchCoursesBySchool } from "../../redux/actions";
 
 const GroupA_courses = [
   "History of Philosophy",
@@ -108,25 +110,37 @@ const Course = ({ course, reviews }) => (
   />
 )
 
-const Rikou = ({courses, reviews}) => {
-  const groupedCourses = getGroupedCourses(courses)
+const Rikou = ({courses, reviews, fetchCoursesBySchool}) => {
+  if (!courses.length) {
+    fetchCoursesBySchool("FSE");
+    fetchCoursesBySchool("CSE");
+    fetchCoursesBySchool("ASE");
+  }
+  const groupedCourses = getGroupedCourses(courses);
   return (
     <div>
       <MediaQuery maxWidth={sizes.tablet}>
         {
-          matches => matches ? <img src={mobileCover} /> : <img src={cover} />
+          matches => matches ? <img src={mobileCover} width="360" height="640" /> : <img src={cover} width="1280" height="720" />
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src={cat1} />
+        <img src={cat1} width="300" height="150" />
         {groupedCourses["Group A"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat2} />
+        <img src={cat2} width="300" height="150" />
         {groupedCourses["Group B"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat3} />
+        <img src={cat3} width="300" height="150" />
         {groupedCourses["Group C"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
       </div>
     </div>
   )
 }
 
-export default Rikou;
+const mapDispatchToProps = {
+  fetchCoursesBySchool,
+};
+
+export default connect<{}, {fetchCoursesBySchool: (school: string) => void}>(
+  null,
+  mapDispatchToProps
+)(Rikou);

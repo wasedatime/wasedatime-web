@@ -13,6 +13,8 @@ import cat7 from "./images/sils-cat-7.jpg";
 import cat8 from "./images/sils-cat-8.jpg";
 import MediaQuery from "react-responsive";
 import { sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
+import { connect } from "react-redux";
+import { fetchCoursesBySchool } from "../../redux/actions";
 
 const get_SILS_category = (course) => {
   if (course[SyllabusKey.CATEGORY].includes("First Year Seminar")) return "First Year Seminar";
@@ -53,35 +55,43 @@ const Course = ({ course, reviews }) => (
   />
 )
 
-const SILS = ({courses, reviews}) => {
+const SILS = ({courses, reviews, fetchCoursesBySchool}) => {
+  if (!courses.length) fetchCoursesBySchool("SILS");
   const groupedCourses = getGroupedCourses(courses)
   return (
     <div>
       <MediaQuery maxWidth={sizes.tablet}>
         {
-          matches => matches ? <img src={mobileCover} /> : <img src={cover} />
+          matches => matches ? <img src={mobileCover} width="360" height="640" /> : <img src={cover} width="1280" height="720" />
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src={cat1} />
+        <img src={cat1} width="300" height="150" />
         {groupedCourses["First Year Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat2} />
+        <img src={cat2} width="300" height="150" />
         {groupedCourses["Intermediate Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat3} />
+        <img src={cat3} width="300" height="150" />
         {groupedCourses["Advanced Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat4} />
+        <img src={cat4} width="300" height="150" />
         {groupedCourses["Introductory Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat5} />
+        <img src={cat5} width="300" height="150" />
         {groupedCourses["Intermediate Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat6} />
+        <img src={cat6} width="300" height="150" />
         {groupedCourses["Advanced Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat7} />
+        <img src={cat7} width="300" height="150" />
         {groupedCourses["Foreign Languages"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat8} />
+        <img src={cat8} width="300" height="150" />
         {groupedCourses["Elective Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
       </div>
     </div>
   )
 }
 
-export default SILS;
+const mapDispatchToProps = {
+  fetchCoursesBySchool,
+};
+
+export default connect<{}, {fetchCoursesBySchool: (school: string) => void}>(
+  null,
+  mapDispatchToProps
+)(SILS);

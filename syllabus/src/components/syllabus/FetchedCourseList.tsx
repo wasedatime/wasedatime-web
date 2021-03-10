@@ -7,6 +7,7 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import Course from "../../types/course";
 import SimpleBar from "simplebar-react";
+import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 
 const CourseListWrapper = styled(SimpleBar)`
   height: 100%;
@@ -116,12 +117,13 @@ class FetchedCourseList extends React.Component<Props, State> {
             </Waypoint>
           ))
         ) : (
-          <div style={{ marginTop: "1em", textAlign: "center" }}>
-            <h3>No results? Try importing a school or changing the filter!</h3>
-            <h3>
+          <Message warning size="tiny" style={{ margin: "1em" }}>
+            <h5>No results? Try importing a school or changing the filter!</h5>
+            <br />
+            <h5>
               結果が表示されていない？学部を選択するか、フィルタ条件を変更しましょう！
-            </h3>
-          </div>
+            </h5>
+          </Message>
         )}
       </CourseListWrapper>
     );

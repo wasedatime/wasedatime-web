@@ -52,7 +52,7 @@ const CJL = ({courses, reviews, fetchCoursesBySchool}) => {
   const groupedCourses = getGroupedCourses(courses);
   return (
     <div>
-      <MediaQuery maxWidth={sizes.tablet}>
+      <MediaQuery maxWidth={sizes.phone}>
         {
           matches => matches ? <img src={mobileCover} width="360" height="640" /> : <img src={cover} width="1280" height="720" />
         }

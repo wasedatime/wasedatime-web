@@ -57,7 +57,7 @@ const SSS = ({courses, reviews, fetchCoursesBySchool}) => {
   const groupedCourses = getGroupedCourses(courses);
   return (
     <div>
-      <MediaQuery maxWidth={sizes.tablet}>
+      <MediaQuery maxWidth={sizes.phone}>
         {(matches) =>
           matches ? (
             <img src={mobileCover} width="360" height="640" />

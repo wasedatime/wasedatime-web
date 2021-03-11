@@ -19,6 +19,8 @@ import mobileCover from "./images/cover-mobile.jpg";
 import { undergradSchoolNameIconMap, otherSchoolNameIconMap } from '@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en';
 
 const SchoolSwitch = styled.img`
+  width: 120px;
+  height: 120px;
   cursor: pointer;
   margin: 0px 1em;
   ${media.tablet`width: 90px; margin: 0px; height: 90px;`}
@@ -26,15 +28,35 @@ const SchoolSwitch = styled.img`
 `;
 
 const RikouSchoolSwitch = styled.img`
+  width: 60px;
+  height: 60px;
   cursor: pointer;
-  ${media.tablet`width: 45px; height: 45px;`}
-  ${media.phone`width: 30px; height: 30px;`}
+  transform: translateX(-30px);
+  ${media.tablet`width: 45px; height: 45px; transform: translateX(-22.5px);`}
+  ${media.phone`width: 30px; height: 30px; transform: translateX(-15px);`}
 `;
 
 const FSESchoolSwitch = styled(RikouSchoolSwitch)`
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
   margin: 30px 0px;
-  ${media.tablet`margin: 22.5px 0px;`}
-  ${media.tablet`margin: 15px 0px;`}
+  transform: translateX(0px);
+  ${media.tablet`width: 45px; height: 45px; margin: 22.5px 0px; transform: translateX(0px);`}
+  ${media.phone`width: 30px; height: 30px; margin: 15px 0px; transform: translateX(0px);`}
+`;
+
+const BlankRikouSchoolSwitch = styled.div`
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  cursor: pointer;
+  background: #b51e36;
+  margin: 30px 0px;
+  border: 0px;
+  transform: translateX(-60px) rotate(45deg) scale(0.7);
+  ${media.tablet`width: 45px; height: 45px; margin: 22.5px 0px; transform: translateX(-45px) rotate(45deg) scale(0.7);`}
+  ${media.phone`width: 30px; height: 30px; margin: 15px 0px; transform: translateX(-30px) rotate(45deg) scale(0.7);`}
 `;
 
 interface ReduxStateProps {
@@ -98,12 +120,13 @@ class Milestone extends React.Component<ReduxStateProps> {
               <SchoolSwitch src={undergradSchoolNameIconMap["SILS"]} width="120" height="120" onClick={() => this.setState({ school: "SILS" })} />
               <SchoolSwitch src={undergradSchoolNameIconMap["SSS"]} width="120" height="120" onClick={() => this.setState({ school: "SSS" })} />
               <SchoolSwitch src={otherSchoolNameIconMap["CJL"]} width="120" height="120" onClick={() => this.setState({ school: "CJL" })} />
-              <div style={{ display: "flex" }}>
+              <div style={{ flex: "1 1 auto", display: "flex" }}>
                 <FSESchoolSwitch src={undergradSchoolNameIconMap["FSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
                 <div>
                   <RikouSchoolSwitch src={undergradSchoolNameIconMap["CSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
                   <RikouSchoolSwitch src={undergradSchoolNameIconMap["ASE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
                 </div>
+                <BlankRikouSchoolSwitch onClick={() => this.setState({ school: "Rikou" })} />
               </div>
             </div>
           </div>

@@ -28,7 +28,7 @@ const AboutUsFlex = styled.div`
 `;
 
 const AboutUs = (props: { path: string }) => {
-  const [activePage, setActivePage] = useState("join us");
+  const [activePage, setActivePage] = useState("our mission");
   const { t, i18n } = useTranslation();
   const changeLanguage = (lng) => {
     ReactGA.event({

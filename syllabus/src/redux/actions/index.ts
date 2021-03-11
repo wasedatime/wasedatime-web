@@ -229,7 +229,7 @@ export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
     let coursesAndPrefs = [];
     idsAndPrefs.forEach((ip) => {
       const school = schoolCodeMap[ip.id.substring(0, 2)];
-      const course = coursesBySchool[school].find(
+      const course = coursesBySchool[school] && coursesBySchool[school].find(
         (c) => c[SyllabusKey.ID] === ip.id
       );
       if (course) {

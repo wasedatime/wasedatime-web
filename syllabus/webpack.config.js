@@ -10,7 +10,7 @@ const webpack = require("webpack");
 const dotenv = require("dotenv");
 
 module.exports = (webpackConfigEnv, argv) => {
-  if (webpackConfigEnv.standalone) __webpack_base_uri__ = "/";
+  if (webpackConfigEnv.isLocal || webpackConfigEnv.standalone) __webpack_base_uri__ = "/";
   const defaultConfig = singleSpaDefaults({
     orgName: "wasedatime",
     projectName: "syllabus",

@@ -3,6 +3,7 @@
   "scripts": {
     "start": "webpack serve --port 8080 --env isLocal",
     "start:standalone": "webpack serve --env standalone",
+    "local": "concurrently --kill-others \"npm start\" \"cd ../root && npm start\"",
     "build": "webpack --mode=production",
     "build-dev": "webpack --mode=production --env isDev",
     "build-local": "webpack --mode=production --env isLocal",

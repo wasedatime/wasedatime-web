@@ -7,6 +7,9 @@ import {
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBook, faCalendarAlt, faCommentAlt, faForward, faNewspaper, faPlayCircle, faUserAlt } from "@fortawesome/free-solid-svg-icons";
+import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 
 const Title = styled("h2")`
   width: 50%;
@@ -167,90 +170,114 @@ const OurMission = () => {
         <br></br>
       </MainParagraph>
 
-      <VerticalTimeline>
-        <VerticalTimelineElement
-          contentStyle={{
-            background: "rgb(38, 38, 38)",
-            color: "#fff",
-          }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
-          className="vertical-timeline-element--work"
-          date="February 2021"
-          iconStyle={{ background: "rgb(38, 38, 38)", color: "#fff" }}
-        >
-          <h6 className="vertical-timeline-element-subtitle">February 2021</h6>
-          <h4>New layout, User login, About US Page</h4>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          contentStyle={{
-            background: "rgb(166,47,58)",
-            color: "#fff",
-          }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
-          className="vertical-timeline-element--work"
-          date="December 2020"
-          iconStyle={{ background: "rgb(166,47,58)", color: "#fff" }}
-        >
-          <h6 className="vertical-timeline-element-subtitle">December 2020</h6>
-          <h4>All schools support</h4>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          contentStyle={{
-            background: "rgb(38, 38, 38)",
-            color: "#fff",
-          }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
-          className="vertical-timeline-element--work"
-          date="September 2020"
-          iconStyle={{ background: "rgb(38,38,38)", color: "#fff" }}
-        >
-          <h6 className="vertical-timeline-element-subtitle">September 2020</h6>
-          <h4> Course reviews release</h4>
-        </VerticalTimelineElement>
+      <div className="vertical-timeline-wrapper">
+        <VerticalTimeline>
+          <VerticalTimelineElement
+            contentStyle={{
+              background: "rgb(166,47,58)",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
+            className="vertical-timeline-element--work"
+            date="March 2021"
+            iconStyle={{ background: "rgb(166,47,58)", color: "#fff", fontSize: "24px" }}
+            icon={<FontAwesomeIcon icon={faNewspaper} />}
+          >
+            <h6 className="vertical-timeline-element-subtitle">March 2021</h6>
+            <h4>Articles (to be released)</h4>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            contentStyle={{
+              background: "rgb(38, 38, 38)",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
+            className="vertical-timeline-element--work"
+            date="February 2021"
+            iconStyle={{ background: "rgb(38, 38, 38)", color: "#fff", fontSize: "24px" }}
+            icon={<FontAwesomeIcon icon={faUserAlt} />}
+          >
+            <h6 className="vertical-timeline-element-subtitle">February 2021</h6>
+            <h4>New layout, User login, About US Page</h4>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            contentStyle={{
+              background: "rgb(166,47,58)",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
+            className="vertical-timeline-element--work"
+            date="December 2020"
+            iconStyle={{ background: "rgb(166,47,58)", color: "#fff", fontSize: "24px" }}
+            icon={<FontAwesomeIcon icon={faBook} />}
+          >
+            <h6 className="vertical-timeline-element-subtitle">December 2020</h6>
+            <h4>All schools support</h4>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            contentStyle={{
+              background: "rgb(38, 38, 38)",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
+            className="vertical-timeline-element--work"
+            date="September 2020"
+            iconStyle={{ background: "rgb(38,38,38)", color: "#fff", fontSize: "24px" }}
+            icon={<FontAwesomeIcon icon={faCommentAlt} />}
+          >
+            <h6 className="vertical-timeline-element-subtitle">September 2020</h6>
+            <h4> Course reviews release</h4>
+          </VerticalTimelineElement>
 
-        <VerticalTimelineElement
-          contentStyle={{
-            background: "rgb(166,47,58)",
-            color: "#fff",
-          }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
-          className="vertical-timeline-element--work"
-          date="May 2020"
-          iconStyle={{ background: "rgb(166,47,58)", color: "#fff" }}
-        >
-          <h6 className="vertical-timeline-element-subtitle">May 2020</h6>
-          <h4> Development resumes</h4>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          contentStyle={{
-            background: "rgb(38, 38, 38)",
-            color: "#fff",
-          }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
-          className="vertical-timeline-element--work"
-          date="2018"
-          iconStyle={{ background: "rgb(38,38,38)", color: "#fff" }}
-        >
-          <h6 className="vertical-timeline-element-subtitle">2018</h6>
-          <h4> Timetable, Syllabus, Bus</h4>
-        </VerticalTimelineElement>
-        <VerticalTimelineElement
-          contentStyle={{
-            background: "rgb(166,47,58)",
-            color: "#fff",
-          }}
-          contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
-          className="vertical-timeline-element--education"
-          date="Late 2017"
-          iconStyle={{
-            background: "rgb(166,47,58)",
-            color: "#fff",
-          }}
-        >
-          <h6 className="vertical-timeline-element-subtitle">Late 2017</h6>
-          <h4>Development starts</h4>
-        </VerticalTimelineElement>
-      </VerticalTimeline>
+          <VerticalTimelineElement
+            contentStyle={{
+              background: "rgb(166,47,58)",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
+            className="vertical-timeline-element--work"
+            date="May 2020"
+            iconStyle={{ background: "rgb(166,47,58)", color: "#fff", fontSize: "24px" }}
+            icon={<FontAwesomeIcon icon={faForward} />}
+          >
+            <h6 className="vertical-timeline-element-subtitle">May 2020</h6>
+            <h4> WasedaTime is back!</h4>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            contentStyle={{
+              background: "rgb(38, 38, 38)",
+              color: "#fff",
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
+            className="vertical-timeline-element--work"
+            date="2018"
+            iconStyle={{ background: "rgb(38,38,38)", color: "#fff", fontSize: "24px" }}
+            icon={<FontAwesomeIcon icon={faCalendarAlt} />}
+          >
+            <h6 className="vertical-timeline-element-subtitle">May 2018</h6>
+            <h4> Timetable, Syllabus, Bus</h4>
+          </VerticalTimelineElement>
+          <VerticalTimelineElement
+            contentStyle={{
+              background: "rgb(166,47,58)",
+              color: "#fff",
+              fontSize: "24px"
+            }}
+            contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
+            className="vertical-timeline-element--education"
+            date="Late 2017"
+            iconStyle={{
+              background: "rgb(166,47,58)",
+              color: "#fff",
+              fontSize: "24px"
+            }}
+            icon={<FontAwesomeIcon icon={faPlayCircle} />}
+          >
+            <h6 className="vertical-timeline-element-subtitle">Late 2017</h6>
+            <h4>Development starts</h4>
+          </VerticalTimelineElement>
+        </VerticalTimeline>
+      </div>
     </Wrapper>
   );
 };

@@ -31,14 +31,14 @@
     More information about shared dependencies can be found at https://single-spa.js.org/docs/recommended-setup#sharing-with-import-maps.
   -->
   
-  <% if (isLocal) { %>
+  <% if (isLocal || standalone) { %>
   <link rel="stylesheet" href="/src/styles/index.css">
   <% } else { %>
   <link rel="preload" href="/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/main.css"></noscript>
   <% } %>
 
-  <% if (isLocal) { %>
+  <% if (isLocal || standalone) { %>
   <link rel="shortcut icon" sizes="16x16" href="/src/assets/img/favicon.ico" />
   <link rel="icon" sizes="192x192" href="/src/assets/img/logo.png" />
   <link
@@ -137,7 +137,7 @@
 
   <!-- <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script> -->
   
-  <% if (isLocal) { %>
+  <% if (isLocal || standalone) { %>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js" async></script>
   <% } else { %>
@@ -212,7 +212,7 @@
         <div id="nav"></div>
         <main>
           <route path="courses">
-            <% if (!isLocal) { %>
+            <% if (!isLocal && !standalone) { %>
             <link rel="preload" href="/syllabus/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
             <noscript><link rel="stylesheet" href="/syllabus/main.css"></noscript>
             <% } %>

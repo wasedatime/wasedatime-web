@@ -10,6 +10,7 @@ const webpack = require("webpack");
 const dotenv = require("dotenv");
 
 module.exports = (webpackConfigEnv, argv) => {
+  if (webpackConfigEnv.standalone) __webpack_base_uri__ = "/";
   const defaultConfig = singleSpaDefaults({
     orgName: "wasedatime",
     projectName: "syllabus",
@@ -41,7 +42,7 @@ module.exports = (webpackConfigEnv, argv) => {
         {
           test: /\.css$/i,
           use: [
-            webpackConfigEnv.isLocal
+            webpackConfigEnv.isLocal || webpackConfigEnv.standalone
               ? "style-loader"
               : MiniCssExtractPlugin.loader,
             "css-loader",
@@ -50,7 +51,7 @@ module.exports = (webpackConfigEnv, argv) => {
         {
           test: /\.scss$/i,
           use: [
-            webpackConfigEnv.isLocal
+            webpackConfigEnv.isLocal || webpackConfigEnv.standalone
               ? "style-loader"
               : MiniCssExtractPlugin.loader,
             "css-loader",

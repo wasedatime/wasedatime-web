@@ -26,8 +26,9 @@ const StyledArticle = styled("article")`
   flex: 1 1 auto;
   text-align: center !important;
   align-item: center;
-  padding-top: 67px;
+  padding-top: 5em;
   height: 100vh;
+  ${media.tablet`height: calc(100vh - 50px)`}
 `;
 
 const LogoWrapper = styled("div")`

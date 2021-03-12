@@ -14,10 +14,8 @@ import SimpleBar from "simplebar-react";
 const FilterWrapper = styled(SimpleBar)`
   ${(props) => !props.isSideBar && "width: 100%;"}
   flex: none;
-  position: fixed;
   height: ${(props) =>
     props.isSideBar ? "calc(100vh - 70px)" : "calc(100vh - 50px)"};
-  overflow-y: auto;
   padding: ${(props) =>
     props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em 80px 1.2em;"};
   .simplebar-scrollbar::before {
@@ -461,6 +459,7 @@ const Filter = ({
         <SchoolFilterContainer
           checkedSchools={checkedSchools}
           handleToggleFilter={handleToggleFilter}
+          isPopup={true}
         />
         <FilterGroup
           handleToggleFilter={handleToggleFilter}

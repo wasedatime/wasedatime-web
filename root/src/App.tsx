@@ -9,10 +9,7 @@ const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
 const Home = lazy(() => import("./components/Home"));
 import RedirectPage from "./components/user/RedirectPage";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import Footer from "./components/frame/Footer";
 
-import MediaQuery from "react-responsive";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { useTranslation } from "react-i18next";
 import CommonStyle from "./common-style";
 
@@ -107,9 +104,6 @@ const App = () => {
           )}
         </Suspense>
       </ErrorBoundary>
-      <MediaQuery maxWidth={sizes.tablet}>
-        {(matches) => matches && <Footer />}
-      </MediaQuery>
     </React.Fragment>
   );
 };

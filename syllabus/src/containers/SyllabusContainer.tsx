@@ -55,10 +55,10 @@ const HeaderWrapper = styled.div`
 `;
 
 const SyllabusFlex = styled.div`
-  flex: calc(100% - 67px);
+  flex: calc(100% - 117px);
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 67px);
+  height: calc(100vh - 117px);
 `;
 
 const SideColumn = styled.div`
@@ -359,11 +359,9 @@ class SyllabusContainer extends React.Component<
                     </button>
                   </Link>
                   <Message info>
-                    Please choose your school to start using Syllabus
-                    <br />
-                    シラバスを使用する前に、まず学部を選択してください
+                    {t("message.choose school request")}
                   </Message>
-                  <SchoolFilterContainer handleToggleFilter={() => {}} />
+                  <SchoolFilterContainer handleToggleFilter={() => {}} isPopup={false} />
                 </div>
               )}
             </Suspense>

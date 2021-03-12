@@ -53,7 +53,7 @@
     "@aws-amplify/auth": "^3.4.20",
     "@bit/wasedatime.core.assets.img.logo": "0.0.1",
     "@bit/wasedatime.core.ts.constants.langs": "0.0.5",
-    "@bit/wasedatime.core.ts.ui.header": "0.0.12",
+    "@bit/wasedatime.core.ts.ui.header": "0.0.13",
     "@bit/wasedatime.core.ts.ui.loading-spinner": "0.0.7",
     "@bit/wasedatime.core.ts.utils.i18n": "0.0.3",
     "@bit/wasedatime.core.ts.utils.responsive-utils": "0.0.1",

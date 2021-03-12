@@ -76,7 +76,7 @@ class FetchedCourseList extends React.Component<Props, State> {
   };
 
   render() {
-    const { searchTerm, searchLang, results, i18n } = this.props;
+    const { searchTerm, searchLang, results, t, i18n } = this.props;
     const resultsInChunks = this.resultsToChunks();
 
     return (
@@ -124,11 +124,7 @@ class FetchedCourseList extends React.Component<Props, State> {
           ))
         ) : (
           <Message warning size="tiny" style={{ margin: "1em" }}>
-            <h5>No results? Try importing a school or changing the filter!</h5>
-            <br />
-            <h5>
-              結果が表示されていない？学部を選択するか、フィルタ条件を変更しましょう！
-            </h5>
+            <h5>{t("message.syllabus no result warning")}</h5>
           </Message>
         )}
       </CourseListWrapper>

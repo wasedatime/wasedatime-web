@@ -16,6 +16,7 @@ interface ReduxDispatchProps {
 interface OwnProps {
   checkedSchools: string[];
   handleToggleFilter: (name: string, value: string) => void;
+  isPopup: boolean;
 }
 
 const SchoolFilterContainer = ({
@@ -24,6 +25,7 @@ const SchoolFilterContainer = ({
   addSchool,
   removeSchool,
   handleToggleFilter,
+  isPopup
 }: ReduxStateProps & ReduxDispatchProps & OwnProps) => {
   const handleToggleSchoolFilter = (school: string) => {
     handleToggleFilter("school", school);
@@ -36,6 +38,7 @@ const SchoolFilterContainer = ({
       handleToggleFilter={handleToggleSchoolFilter}
       loadSyllabus={addSchool}
       removeSyllabus={removeSchool}
+      isPopup={isPopup}
     />
   );
 };

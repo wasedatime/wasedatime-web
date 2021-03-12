@@ -16,5 +16,9 @@
     "Note": "Note",
     "Reference": "Reference",
     "Textbook": "Textbook"
+  },
+  "message": {
+    "choose school request": "Please choose your school to start using Syllabus",
+    "syllabus no result warning": "No results? Try importing a school or changing the filter!"
   }
 }

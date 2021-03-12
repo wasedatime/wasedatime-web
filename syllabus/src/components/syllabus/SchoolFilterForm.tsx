@@ -72,6 +72,7 @@ interface Props extends WithTranslation {
   handleToggleFilter: (school: string) => void;
   loadSyllabus: (school: string) => void;
   removeSyllabus: (school: string) => void;
+  isPopup: boolean;
 }
 
 interface State {
@@ -195,8 +196,8 @@ class SchoolFilterForm extends React.Component<Props, State> {
   };
 
   render() {
-    const { t } = this.props;
-    return (
+    const { t, isPopup } = this.props;
+    return isPopup ? (
       <WiderPopup
         id="school_filter_form"
         trigger={
@@ -210,7 +211,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
         size="huge"
         wide="very"
       />
-    );
+    ) : <Tab panes={this.schoolImportPanes()} />;
   }
 }
 

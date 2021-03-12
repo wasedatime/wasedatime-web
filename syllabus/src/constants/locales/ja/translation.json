@@ -16,5 +16,9 @@
     "Note": "備考・関連URL",
     "Reference": "参考文献",
     "Textbook": "教科書"
+  },
+  "message": {
+    "choose school request": "シラバスを使用する前に、まず学部を選択してください",
+    "syllabus no result warning": "結果が表示されていない？学部を選択するか、フィルタ条件を変更しましょう！"
   }
 }

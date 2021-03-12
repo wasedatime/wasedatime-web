@@ -15,7 +15,6 @@ import CommonStyle from "./common-style";
 
 import { ErrorBoundary } from "@sentry/react";
 import ErrorFallback from "./components/ErrorFallback";
-
 import ReactGA from "react-ga";
 import { gaUser } from "./ga/eventCategories";
 import {

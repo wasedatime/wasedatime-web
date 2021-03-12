@@ -48,7 +48,7 @@ export const getRefreshToken = async () => {
 
 export const getUserAttr = async () => {
   const info = await Auth.currentUserInfo();
-  if (info)
+  if (info && info.attributes)
     return (
       {
         id: info.attributes.sub,

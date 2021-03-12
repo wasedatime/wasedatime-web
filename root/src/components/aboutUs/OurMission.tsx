@@ -9,7 +9,7 @@ import {
 import "react-vertical-timeline-component/style.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faCalendarAlt, faCommentAlt, faForward, faNewspaper, faPlayCircle, faUserAlt } from "@fortawesome/free-solid-svg-icons";
-import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const Title = styled("h2")`
   width: 50%;
@@ -24,6 +24,7 @@ const MainParagraph = styled("p")`
   align-items: center;
   background-color: #fff;
   padding: 0 20vw;
+  ${media.tablet`padding: 0 5vw;`};
   color: #666;
   width: 90%;
   margin: 0 auto;

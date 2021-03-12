@@ -136,19 +136,24 @@ const JoinUs = () => {
         <br></br>
 
         <br />
-        <h2>
-          <b>
-            <FontAwesomeIcon icon={faUserTie} />
-            <MediaQuery minWidth={sizes.desktop}>
-              {(matches) => (matches ? " " : <br />)}
-            </MediaQuery>
-            Performance Marketing
-            <MediaQuery minWidth={sizes.desktop}>
-              {(matches) => (matches ? " " : <br />)}
-            </MediaQuery>
-            & Business Operations
-          </b>
-        </h2>
+        <MediaQuery minWidth={sizes.desktop}>
+          {(matches) => matches ? (
+            <h2>
+              <b>
+                <FontAwesomeIcon icon={faUserTie} />{" "}
+                Performance Marketing & Business Operations
+              </b>
+            </h2>
+          ) : (
+            <h3>
+              <b>
+                <FontAwesomeIcon icon={faUserTie} />{" "}
+                Marketing
+                <br />& Business Operations
+              </b>
+            </h3>
+          )}
+        </MediaQuery>
         <hr />
         <br />
 

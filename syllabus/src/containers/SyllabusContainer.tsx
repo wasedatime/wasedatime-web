@@ -43,6 +43,7 @@ import {
   gaRemoveFilter,
   gaUpdateFilter,
 } from "../ga/eventActions";
+import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -344,8 +345,8 @@ class SyllabusContainer extends React.Component<
           <MiddleColumn>
             <Suspense fallback={<LoadingSpinner message="Loading..." />}>
               <Link to="/courses/milestone">
-                <button style={{ width: "95%", backgroundColor: "#b51e36", color: "#fff", borderRadius: "6px", margin: "1em 1em 0px 1em" }}>
-                  <h6>2021 Spring Milestone × WTSA</h6>
+                <button style={{ width: "95%", backgroundColor: "#ccc", color: "#fff", borderRadius: "6px", margin: "1em 2em 0px 2em" }}>
+                  Link to 2021 Spring Milestone × WTSA
                 </button>
               </Link>
               {allFetchedCourses.length > 0 ? (
@@ -356,7 +357,12 @@ class SyllabusContainer extends React.Component<
                   onSearchInputChange={this.handleInputChange}
                 />
               ) : (
-                <div style={{ padding: "2em" }}>
+                <div style={{ padding: "2em 0px 0px 2em" }}>
+                  <Message info>
+                    Please choose your school to start using Syllabus
+                    <br />
+                    シラバスを使用する前に、まず学部を選択してください
+                  </Message>
                   <SchoolFilterContainer handleToggleFilter={() => {}} />
                 </div>
               )}

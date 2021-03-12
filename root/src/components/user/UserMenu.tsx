@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { getUserAttr, signOut } from "../../utils/user";
+import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
 
 const UserMenuTrigger = styled("div")`
   color: #fff;

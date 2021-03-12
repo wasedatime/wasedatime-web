@@ -25,7 +25,7 @@ const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   padding: 5em 20em;
-  ${media.tablet`padding: 5em;`}
+  ${media.desktop`padding: 5em 2em;`}
 `;
 
 const StyledAnchor = styled("a")`

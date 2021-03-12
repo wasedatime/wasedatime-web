@@ -344,11 +344,6 @@ class SyllabusContainer extends React.Component<
 
           <MiddleColumn>
             <Suspense fallback={<LoadingSpinner message="Loading..." />}>
-              <Link to="/courses/milestone">
-                <button style={{ width: "95%", backgroundColor: "#ccc", color: "#fff", borderRadius: "6px", margin: "1em 2em 0px 2em" }}>
-                  Link to 2021 Spring Milestone × WTSA
-                </button>
-              </Link>
               {allFetchedCourses.length > 0 ? (
                 <FetchedCourseList
                   searchTerm={searchTerm}
@@ -357,7 +352,12 @@ class SyllabusContainer extends React.Component<
                   onSearchInputChange={this.handleInputChange}
                 />
               ) : (
-                <div style={{ padding: "2em 0px 0px 2em" }}>
+                <div style={{ padding: "2em" }}>
+                  <Link to="/courses/milestone">
+                    <button style={{ width: "100%", backgroundColor: "#ccc", color: "#fff", borderRadius: "6px" }}>
+                      Link to 2021 Spring Milestone × WTSA
+                    </button>
+                  </Link>
                   <Message info>
                     Please choose your school to start using Syllabus
                     <br />

@@ -8,6 +8,7 @@ import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import Course from "../../types/course";
 import SimpleBar from "simplebar-react";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
+import { Link } from "@reach/router";
 
 const CourseListWrapper = styled(SimpleBar)`
   height: 100%;
@@ -80,6 +81,11 @@ class FetchedCourseList extends React.Component<Props, State> {
 
     return (
       <CourseListWrapper autoHide={true}>
+        <Link to="/courses/milestone">
+          <button style={{ width: "94%", backgroundColor: "#ccc", color: "#fff", borderRadius: "6px", margin: "0px 5em 0px 1em" }}>
+            Link to 2021 Spring Milestone × WTSA
+          </button>
+        </Link>
         {resultsInChunks.length ? (
           resultsInChunks.map((chunk, index) => (
             <Waypoint

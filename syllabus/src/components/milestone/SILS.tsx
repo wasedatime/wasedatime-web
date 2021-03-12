@@ -1,20 +1,17 @@
 import React from 'react';
+import styled from "styled-components";
 import { SyllabusKey } from '../../constants/syllabus-data';
 import CourseItem from '../CourseItem';
-import cover from "./images/sils.jpg";
-import mobileCover from "./images/sils-mobile.jpg";
-import cat1 from "./images/sils-cat-1.jpg";
-import cat2 from "./images/sils-cat-2.jpg";
-import cat3 from "./images/sils-cat-3.jpg";
-import cat4 from "./images/sils-cat-4.jpg";
-import cat5 from "./images/sils-cat-5.jpg";
-import cat6 from "./images/sils-cat-6.jpg";
-import cat7 from "./images/sils-cat-7.jpg";
-import cat8 from "./images/sils-cat-8.jpg";
 import MediaQuery from "react-responsive";
-import { sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
+import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
 import { connect } from "react-redux";
 import { fetchCoursesBySchool } from "../../redux/actions";
+
+const Cover = styled.img`
+  height: 100vh;
+  ${media.tablet`height: calc(100vh - 50px);`}
+  margin: auto;
+`;
 
 const get_SILS_category = (course) => {
   if (course[SyllabusKey.CATEGORY].includes("First Year Seminar")) return "First Year Seminar";
@@ -62,25 +59,29 @@ const SILS = ({courses, reviews, fetchCoursesBySchool}) => {
     <div>
       <MediaQuery maxWidth={sizes.phone}>
         {
-          matches => matches ? <img src={mobileCover} width="360" height="640" /> : <img src={cover} width="1280" height="720" />
+          matches => matches ? (
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-mobile.jpg" />
+          ) : (
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils.jpg" />
+          )
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src={cat1} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-1.jpg" width="300" height="150" />
         {groupedCourses["First Year Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat2} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-2.jpg" width="300" height="150" />
         {groupedCourses["Intermediate Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat3} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-3.jpg" width="300" height="150" />
         {groupedCourses["Advanced Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat4} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-4.jpg" width="300" height="150" />
         {groupedCourses["Introductory Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat5} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-5.jpg" width="300" height="150" />
         {groupedCourses["Intermediate Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat6} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-6.jpg" width="300" height="150" />
         {groupedCourses["Advanced Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat7} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-7.jpg" width="300" height="150" />
         {groupedCourses["Foreign Languages"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat8} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-8.jpg" width="300" height="150" />
         {groupedCourses["Elective Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
       </div>
     </div>

@@ -1,15 +1,17 @@
 import React from 'react';
+import styled from "styled-components";
 import { SyllabusKey } from '../../constants/syllabus-data';
 import CourseItem from '../CourseItem';
-import cover from "./images/rikou.jpg";
-import mobileCover from "./images/rikou-mobile.jpg";
-import cat1 from "./images/rikou-cat-1.jpg";
-import cat2 from "./images/rikou-cat-2.jpg";
-import cat3 from "./images/rikou-cat-3.jpg";
-import { sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
+import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
 import MediaQuery from "react-responsive";
 import { connect } from "react-redux";
 import { fetchCoursesBySchool } from "../../redux/actions";
+
+const Cover = styled.img`
+  height: 100vh;
+  ${media.tablet`height: calc(100vh - 50px);`}
+  margin: auto;
+`;
 
 const GroupA_courses = [
   "History of Philosophy",
@@ -121,15 +123,19 @@ const Rikou = ({courses, reviews, fetchCoursesBySchool}) => {
     <div>
       <MediaQuery maxWidth={sizes.phone}>
         {
-          matches => matches ? <img src={mobileCover} width="360" height="640" /> : <img src={cover} width="1280" height="720" />
+          matches => matches ? (
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-mobile.jpg" />
+          ) : (
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou.jpg" />
+          )
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src={cat1} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-1.jpg" width="300" height="150" />
         {groupedCourses["Group A"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat2} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-2.jpg" width="300" height="150" />
         {groupedCourses["Group B"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat3} width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-3.jpg" width="300" height="150" />
         {groupedCourses["Group C"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
       </div>
     </div>

@@ -38,10 +38,12 @@ const ExtendedInvisibleButton = styled(InvisibleButton)`
       color: #000;
     }
   `};
+  ${(props) => props.small && "margin: 0px 25px;"}
 `;
 
 const SemesterTitle = styled("div")`
   width: 300px;
+  ${(props) => props.small && "width: 200px;"}
   text-align: center;
 `;
 
@@ -63,20 +65,22 @@ const SemesterSwitcher = ({
   toggleSemester,
   toggleQuarter,
   isSmallSize,
-}) => {
+}: Props) => {
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <ExtendedRowWrapper small={isSmallSize}>
         <ExtendedInvisibleButton
           onClick={toggleSemester}
           aria-label="Semester toggle"
+          small={isSmallSize}
         >
           <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
         </ExtendedInvisibleButton>
-        <SemesterTitle>{semesterTitle}</SemesterTitle>
+        <SemesterTitle small={isSmallSize}>{semesterTitle}</SemesterTitle>
         <ExtendedInvisibleButton
           onClick={toggleSemester}
           aria-label="Semester toggle"
+          small={isSmallSize}
         >
           <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
         </ExtendedInvisibleButton>

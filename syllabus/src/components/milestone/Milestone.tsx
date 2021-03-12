@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { connect } from "react-redux";
 import styled from "styled-components";
 import { SyllabusKey } from "../../constants/syllabus-data";
@@ -7,16 +7,27 @@ import schoolCodeMap from '../../constants/school-code';
 import { ReduxRootState } from "../../redux/reducers";
 import { Course } from '../../types/course';
 import { getFetchedCoursesList } from '../../redux/reducers/fetchedCourses';
-import PSE from './PSE';
-import CJL from './CJL';
-import SILS from './SILS';
-import SSS from './SSS';
-import Rikou from './Rikou';
+const PSE = lazy(() => import("./PSE"));
+const CJL = lazy(() => import("./CJL"));
+const SILS = lazy(() => import("./SILS"));
+const SSS = lazy(() => import("./SSS"));
+const Rikou = lazy(() => import("./Rikou"));
 import MediaQuery from "react-responsive";
 import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
-import cover from "./images/cover.jpg";
-import mobileCover from "./images/cover-mobile.jpg";
 import { undergradSchoolNameIconMap, otherSchoolNameIconMap } from '@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en';
+import LoadingSpinner from '@bit/wasedatime.core.ts.ui.loading-spinner';
+
+const Cover = styled.img`
+  height: 100vh;
+  ${media.tablet`height: calc(100vh - 50px);`}
+  margin: auto;
+`;
+
+const SchoolSwitchesWrapper = styled.div`
+  position: absolute;
+  width: calc(100vw - 65px);
+  ${media.tablet`width: 100vw;`}
+`;
 
 const SchoolSwitch = styled.img`
   width: 120px;
@@ -25,6 +36,11 @@ const SchoolSwitch = styled.img`
   margin: 0px 1em;
   ${media.tablet`width: 90px; margin: 0px; height: 90px;`}
   ${media.phone`width: 60px; margin: 0px; height: 60px;`}
+`;
+
+const RikouSchoolSwitchWrapper = styled.div`
+  margin: 0px 1em;
+  ${media.tablet`margin: 0px;`}
 `;
 
 const RikouSchoolSwitch = styled.img`
@@ -114,38 +130,42 @@ class Milestone extends React.Component<ReduxStateProps> {
       );
       return (
         <div className="theme-default">
-          <div style={{ position: "absolute", width: "100%" }}>
-            <div style={{ maxWidth: "1280px", display: "flex", justifyContent: "center" }}>
+          <SchoolSwitchesWrapper>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <SchoolSwitch src={undergradSchoolNameIconMap["PSE"]} width="120" height="120" onClick={() => this.setState({ school: "PSE" })} />
               <SchoolSwitch src={undergradSchoolNameIconMap["SILS"]} width="120" height="120" onClick={() => this.setState({ school: "SILS" })} />
               <SchoolSwitch src={undergradSchoolNameIconMap["SSS"]} width="120" height="120" onClick={() => this.setState({ school: "SSS" })} />
               <SchoolSwitch src={otherSchoolNameIconMap["CJL"]} width="120" height="120" onClick={() => this.setState({ school: "CJL" })} />
-              <div style={{ flex: "1 1 auto", display: "flex" }}>
-                <FSESchoolSwitch src={undergradSchoolNameIconMap["FSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
-                <div>
-                  <RikouSchoolSwitch src={undergradSchoolNameIconMap["CSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
-                  <RikouSchoolSwitch src={undergradSchoolNameIconMap["ASE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
+              <RikouSchoolSwitchWrapper>
+                <div style={{ flex: "1 1 auto", display: "flex" }}>
+                  <FSESchoolSwitch src={undergradSchoolNameIconMap["FSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
+                  <div>
+                    <RikouSchoolSwitch src={undergradSchoolNameIconMap["CSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
+                    <RikouSchoolSwitch src={undergradSchoolNameIconMap["ASE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
+                  </div>
+                  <BlankRikouSchoolSwitch onClick={() => this.setState({ school: "Rikou" })} />
                 </div>
-                <BlankRikouSchoolSwitch onClick={() => this.setState({ school: "Rikou" })} />
-              </div>
+              </RikouSchoolSwitchWrapper>
             </div>
-          </div>
+          </SchoolSwitchesWrapper>
 
           {!school && <MediaQuery maxWidth={sizes.tablet}>
             {(matches) =>
               matches ? (
-                <img src={mobileCover} />
+                <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover-mobile.jpg" />
               ) : (
-                <img src={cover} width="1280" height="720" />
+                <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover.jpg" />
               )
             }
           </MediaQuery>}
           
-          {school === "PSE" && <PSE courses={courses} reviews={this.state.reviews} />}
-          {school === "CJL" && <CJL courses={courses} reviews={this.state.reviews} />}
-          {school === "SILS" && <SILS courses={courses} reviews={this.state.reviews} />}
-          {school === "SSS" && <SSS courses={courses} reviews={this.state.reviews} />}
-          {school === "Rikou" && <Rikou courses={courses} reviews={this.state.reviews} />}
+          <Suspense fallback={<div style={{ paddingTop: "10em" }}><LoadingSpinner message="Loading..." /></div>}>
+            {school === "PSE" && <PSE courses={courses} reviews={this.state.reviews} />}
+            {school === "CJL" && <CJL courses={courses} reviews={this.state.reviews} />}
+            {school === "SILS" && <SILS courses={courses} reviews={this.state.reviews} />}
+            {school === "SSS" && <SSS courses={courses} reviews={this.state.reviews} />}
+            {school === "Rikou" && <Rikou courses={courses} reviews={this.state.reviews} />}
+          </Suspense>
         </div>
       )
   }

@@ -9,9 +9,11 @@ import Course from "../../types/course";
 import SimpleBar from "simplebar-react";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import { Link } from "@reach/router";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const CourseListWrapper = styled(SimpleBar)`
-  height: 100%;
+  height: calc(100vh - 67px);
+  ${media.tablet`height: calc(100vh - 117px);`}
   overflow-x: hidden;
   .simplebar-scrollbar::before {
     background-color: #999;

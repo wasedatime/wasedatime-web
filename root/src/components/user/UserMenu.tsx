@@ -114,7 +114,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
         >
           <a
             href="#"
-            className="block px-4 py-2 rounded text-white hover:text-gray-500 bg-gray-500 hover:bg-gray-300"
+            className="block px-4 py-2 text-white hover:text-gray-500 bg-gray-500 hover:bg-gray-300"
             role="menuitem"
             onClick={signOut}
           >

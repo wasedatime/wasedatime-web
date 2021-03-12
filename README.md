@@ -27,22 +27,38 @@ npm config set @bit:registry https://node.bit.dev
 # If the above command does not work, try this:
 npm config set '@bit:registry' https://node.bit.dev
 
-# move into 'root' folder and install packages (same execution for 'syllabus', 'campus', 'career' directory)
+# move into 'root' folder and install packages for all frontend
 cd root
-npm ci
+npm run ci-all
+# ↑ this will run `npm ci` in each frontend
 ```
 
 ### Running the app for developing
 
 You may meet errors when you run wasedatime-web locally and then access Syllabus page without having a .env file. Please contact us if you need the .env file, while it is not necessary to have it if the development you are engaging in is not related with Syllabus page.
 
+To develop only in one frontend (with 'root'):
 ```bash
-# move to 'root' directory and run all frontends together locally
+cd wasedatime-web/{folder name of the frontend you want to run}
+npm run local
+```
+
+To develop only in one frontend (without 'root'):
+```bash
+cd wasedatime-web/{folder name of the frontend you want to run}
+npm run start:standalone
+```
+
+To develop only inside 'root':
+```bash
+cd wasedatime-web/root
+npm start
+```
+
+To run the whole project:
+```bash
 cd wasedatime-web/root
 npm run local
-
-# * run any frontend alone
-npm run start:standalone
 ```
 
 ### Create a new project (frontend) in WasedaTime

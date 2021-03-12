@@ -61,6 +61,7 @@ module.exports = (webpackConfigEnv, argv) => {
         templateParameters: {
           isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,
           isDev: webpackConfigEnv && webpackConfigEnv.isDev,
+          standalone: webpackConfigEnv && webpackConfigEnv.standalone,
           orgName,
         },
       }),

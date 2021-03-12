@@ -1,4 +1,4 @@
-import coreTheme from "@bit/wasedatime.core.ts.constants.theme";
+import { normalTheme as coreTheme } from "@bit/wasedatime.core.ts.constants.theme";
 
 export const syllabusTheme = {
   ...coreTheme,

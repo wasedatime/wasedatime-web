@@ -56,6 +56,7 @@ interface Props extends WithTranslation {
 
 const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
   const [userAttr, setUserAttr] = useState(null);
+  const [isUserIconHovered, setIsUserIconHovered] = useState(false);
   const notSignedIn = !userAttr;
   if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr));
 
@@ -73,7 +74,12 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
       </UserMenuTrigger>
     </React.Fragment>
   ) : (
-    <div className="relative inline-block text-left">
+    <div
+      className="relative inline-block text-left"
+      onMouseEnter={() => setIsUserIconHovered(true)}
+      onTouchStart={() => setIsUserIconHovered(true)}
+      onMouseLeave={() => setIsUserIconHovered(false)}
+    >
       <button
         type="button"
         className="inline-flex w-full rounded-md shadow-sm p-4 bg-blank text-white focus:outline-none"
@@ -96,7 +102,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
 
       <div
         className={`transition-opacity ${
-          isHovered
+          isUserIconHovered
             ? "duration-500 delay-100 opacity-100"
             : "duration-300 opacity-0"
         } w-full origin-top-left absolute right-0 m-0 rounded-md shadow-lg text-white`}

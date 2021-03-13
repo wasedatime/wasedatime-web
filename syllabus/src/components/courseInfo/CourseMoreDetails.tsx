@@ -5,7 +5,7 @@ import { SyllabusKey } from "../../constants/syllabus-data";
 import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion";
 import Course from "../../types/course";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
 
 interface Props extends WithTranslation {
@@ -41,7 +41,9 @@ const Textbooks = ({ content }: TextbooksProps) => {
 
   return (
     <div>
-      <p>{content}</p>
+      {
+        content.split("\n").map(c => c && <p>{c}</p>)
+      }
       <div style={{ display: "flex", flexDirection: "row" }}>
         {isBookLoaded ? (
           books.map((book, i) => (
@@ -77,43 +79,31 @@ const CourseMoreDetails = ({ course, t }: Props) => {
   const details = [
     {
       title: t(`courseMoreDetails.Outline`),
-      content: course[SyllabusKey.OUTLINE] && (
-        <p>{course[SyllabusKey.OUTLINE]}</p>
-      ),
+      content: course[SyllabusKey.OUTLINE] && course[SyllabusKey.OUTLINE].split("\n").map(c => c && <p>{c}</p>)
     },
     {
       title: t(`courseMoreDetails.Objective`),
-      content: course[SyllabusKey.OBJECTIVE] && (
-        <p>{course[SyllabusKey.OBJECTIVE]}</p>
-      ),
+      content: course[SyllabusKey.OBJECTIVE] && course[SyllabusKey.OBJECTIVE].split("\n").map(c => c && <p>{c}</p>)
     },
     {
       title: t(`courseMoreDetails.Schedule`),
-      content: course[SyllabusKey.SCHEDULE] && (
-        <p>{course[SyllabusKey.SCHEDULE]}</p>
-      ),
+      content: course[SyllabusKey.SCHEDULE] && course[SyllabusKey.SCHEDULE].split("\n").map(c => c && <p>{c}</p>)
     },
     {
       title: t(`courseMoreDetails.Self Study`),
-      content: course[SyllabusKey.SELF_STUDY] && (
-        <p>{course[SyllabusKey.SELF_STUDY]}</p>
-      ),
+      content: course[SyllabusKey.SELF_STUDY] && course[SyllabusKey.SELF_STUDY].split("\n").map(c => c && <p>{c}</p>)
     },
     {
       title: t(`courseMoreDetails.Textbook`),
-      content: course[SyllabusKey.TEXT] && (
-        <Textbooks content={course[SyllabusKey.TEXT]} />
-      ),
+      content: course[SyllabusKey.TEXT] && course[SyllabusKey.TEXT].split("\n").map(c => c && <p>{c}</p>)
     },
     {
       title: t(`courseMoreDetails.Reference`),
-      content: course[SyllabusKey.REFERENCE] && (
-        <Textbooks content={course[SyllabusKey.REFERENCE]} />
-      ),
+      content: course[SyllabusKey.REFERENCE] && course[SyllabusKey.REFERENCE].split("\n").map(c => c && <p>{c}</p>)
     },
     {
       title: t(`courseMoreDetails.Note`),
-      content: course[SyllabusKey.NOTE] && <p>{course[SyllabusKey.NOTE]}</p>,
+      content: course[SyllabusKey.NOTE] && course[SyllabusKey.NOTE].split("\n").map(c => c && <p>{c}</p>)
     },
   ];
 
@@ -134,7 +124,7 @@ const CourseMoreDetails = ({ course, t }: Props) => {
                 }}
               >
                 <h6>
-                  <FontAwesomeIcon icon={faChevronDown} /> {detail.title}
+                  <FontAwesomeIcon icon={activeDetailsIndex === i ? faChevronDown : faChevronRight} /> {detail.title}
                 </h6>
               </Accordion.Title>
               <Accordion.Content active={activeDetailsIndex === i}>

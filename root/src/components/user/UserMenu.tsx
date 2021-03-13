@@ -12,8 +12,8 @@ const UserMenuTrigger = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0.5vh 0.5rem 1rem 1.2rem;
-  ${media.tablet`padding: 0.5rem;`}
+  padding: 0.5vh 0.5em 1em 1.2em;
+  ${media.tablet`padding: 0.5em;`}
 
   i {
     margin: 0 !important;
@@ -36,7 +36,7 @@ const UserMenuTrigger = styled("div")`
 const StyledSpan = styled("span")`
   text-align: left;
   font-weight: 100;
-  margin-left: 1rem;
+  margin-left: 1em;
   color: #fff;
   opacity: ${(props) => (props.ishovered ? "1" : "0")};
   width: ${(props) => (props.ishovered ? "145px" : "0px")};
@@ -82,7 +82,8 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
     >
       <button
         type="button"
-        className="inline-flex w-full rounded-md shadow-sm p-4 bg-blank text-white focus:outline-none"
+        className="inline-flex w-full rounded-md shadow-sm bg-blank text-white focus:outline-none"
+        style={{ padding: "10px" }}
         id="options-menu"
         aria-haspopup="true"
         aria-expanded="true"
@@ -95,7 +96,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
           alt="Image of User account"
           style={{ marginLeft: "2px" }}
         />
-        <StyledSpan className="pt-3" ishovered={isHovered}>
+        <StyledSpan style={{ paddingTop: "8px" }} ishovered={isHovered}>
           {userAttr.name}
         </StyledSpan>
       </button>

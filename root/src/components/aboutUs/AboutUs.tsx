@@ -12,6 +12,7 @@ import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import ReactGA from "react-ga";
 import { gaLanguage } from "../../ga/eventCategories";
 import { gaAppendActionWithLng, gaChangeLanguage } from "../../ga/eventActions";
+import Partners from "./Partners";
 
 const AboutUsWrapper = styled(Wrapper)`
   display: flex;
@@ -94,17 +95,29 @@ const AboutUs = (props: { path: string }) => {
         </button>
         <button
           className={`
-          border-2 border-red-800 border-l-0 ${
+          border-2 border-red-800 border-l-0 border-r-0 ${
             activePage === "meet our team"
+              ? "bg-red-800 text-white"
+              : "bg-white text-red-800"
+          } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+        `}
+          onClick={() => activePage !== "meet our team" && setActivePage("meet our team")}
+        >
+          {t("aboutus.meet our team")}
+        </button>
+        <button
+          className={`
+          border-2 border-red-800 border-l-0 ${
+            activePage === "partners"
               ? "bg-red-800 text-white"
               : "bg-white text-red-800"
           } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
         `}
           onClick={() =>
-            activePage !== "meet our team" && setActivePage("meet our team")
+            activePage !== "partners" && setActivePage("partners")
           }
         >
-          {t("aboutus.meet our team")}
+          {t("aboutus.partners")}
         </button>
 
         {activePage === "our mission" && <OurMission />}
@@ -116,6 +129,15 @@ const AboutUs = (props: { path: string }) => {
             }
           >
             <MeetOurTeam />
+          </Suspense>
+        )}
+        {activePage === "partners" && (
+          <Suspense
+            fallback={
+              <LoadingSpinner message={"Loading partners information..."} />
+            }
+          >
+            <Partners />
           </Suspense>
         )}
       </AboutUsFlex>

@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { SyllabusKey } from '../../constants/syllabus-data';
 import CourseItem from '../CourseItem';
 import MediaQuery from "react-responsive";
 import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
-import { connect } from "react-redux";
-import { fetchCoursesBySchool } from "../../redux/actions";
+import { parseCourse } from '../../utils/milestone';
 
 const Cover = styled.img`
-  height: 100vh;
-  ${media.tablet`height: calc(100vh - 50px);`}
+  max-height: 100vh;
+  ${media.tablet`max-height: calc(100vh - 50px);`}
   margin: auto;
 `;
 
@@ -39,7 +38,7 @@ const getGroupedCourses = (courses) => {
   return groupedCourses;
 }
 
-const Course = ({ course, reviews }) => (
+const Course = ({ course }) => (
   <CourseItem
     course={course}
     searchLang="en"
@@ -48,13 +47,28 @@ const Course = ({ course, reviews }) => (
     handleOnClick={() => {}}
     expandable={false}
     isMilestone={true}
-    reviews={reviews || []}
+    reviews={course.reviews || []}
   />
 )
 
-const SILS = ({courses, reviews, fetchCoursesBySchool}) => {
-  if (!courses.length) fetchCoursesBySchool("SILS");
-  const groupedCourses = getGroupedCourses(courses)
+const SILS = () => {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    try {
+      fetch("https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/reviews/sils_reviews.json")
+        .then(res => res.json())
+        .then(res => {
+          setCourses(res.filter(c => c.sem.match(/0|1|f/g)).map(c => parseCourse(c, "SILS")));
+        })
+        .catch(err => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const groupedCourses = getGroupedCourses(courses);
+
   return (
     <div>
       <MediaQuery maxWidth={sizes.phone}>
@@ -68,31 +82,24 @@ const SILS = ({courses, reviews, fetchCoursesBySchool}) => {
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-1.jpg" width="300" height="150" />
-        {groupedCourses["First Year Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["First Year Seminar"].map(c => <Course course={c} />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-2.jpg" width="300" height="150" />
-        {groupedCourses["Intermediate Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Intermediate Seminar"].map(c => <Course course={c} />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-3.jpg" width="300" height="150" />
-        {groupedCourses["Advanced Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Advanced Seminar"].map(c => <Course course={c} />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-4.jpg" width="300" height="150" />
-        {groupedCourses["Introductory Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Introductory Subjects"].map(c => <Course course={c} />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-5.jpg" width="300" height="150" />
-        {groupedCourses["Intermediate Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Intermediate Subjects"].map(c => <Course course={c} />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-6.jpg" width="300" height="150" />
-        {groupedCourses["Advanced Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Advanced Subjects"].map(c => <Course course={c} />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-7.jpg" width="300" height="150" />
-        {groupedCourses["Foreign Languages"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Foreign Languages"].map(c => <Course course={c} />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-8.jpg" width="300" height="150" />
-        {groupedCourses["Elective Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Elective Subjects"].map(c => <Course course={c} />)}
       </div>
     </div>
   )
 }
 
-const mapDispatchToProps = {
-  fetchCoursesBySchool,
-};
-
-export default connect<{}, {fetchCoursesBySchool: (school: string) => void}>(
-  null,
-  mapDispatchToProps
-)(SILS);
+export default SILS;

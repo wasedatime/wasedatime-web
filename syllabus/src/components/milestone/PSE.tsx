@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
 import { SyllabusKey } from '../../constants/syllabus-data';
 import CourseItem from '../CourseItem';
 import MediaQuery from "react-responsive";
 import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
-import { connect } from "react-redux";
-import { fetchCoursesBySchool } from "../../redux/actions";
+import { parseCourse } from '../../utils/milestone';
 
 const Cover = styled.img`
-  height: 100vh;
-  ${media.tablet`height: calc(100vh - 50px);`}
+  max-height: 100vh;
+  ${media.tablet`max-height: calc(100vh - 50px);`}
   margin: auto;
 `;
 
@@ -79,7 +78,7 @@ const getGroupedCourses = (courses) => {
   return groupedCourses;
 }
 
-const Course = ({ course, reviews }) => (
+const Course = ({ course }) => (
   <CourseItem
     course={course}
     searchLang="en"
@@ -88,13 +87,28 @@ const Course = ({ course, reviews }) => (
     handleOnClick={() => {}}
     expandable={false}
     isMilestone={true}
-    reviews={reviews || []}
+    reviews={course.reviews || []}
   />
 )
 
-const PSE = ({courses, reviews, fetchCoursesBySchool}) => {
-  if (!courses.length) fetchCoursesBySchool("PSE");
+const PSE = () => {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    try {
+      fetch("https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/reviews/pse_reviews.json")
+        .then(res => res.json())
+        .then(res => {
+          setCourses(res.filter(c => c.sem.match(/0|1|f/g)).map(c => parseCourse(c, "PSE")));
+        })
+        .catch(err => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const groupedCourses = getGroupedCourses(courses);
+  
   return (
     <div>
       <MediaQuery maxWidth={sizes.phone}>
@@ -108,30 +122,23 @@ const PSE = ({courses, reviews, fetchCoursesBySchool}) => {
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-1.jpg" width="300" height="150" />
-        {groupedCourses["Japanese and Global Political Economy"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Japanese and Global Political Economy"].map(c => <Course course={c}  />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-2.jpg" width="300" height="150" />
-        {groupedCourses["Economics"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Economics"].map(c => <Course course={c}  />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-3.jpg" width="300" height="150" />
-        {groupedCourses["Political Science"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Political Science"].map(c => <Course course={c}  />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-4.jpg" width="300" height="150" />
-        {groupedCourses["Quantitative Approaches to Political Economy"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Quantitative Approaches to Political Economy"].map(c => <Course course={c}  />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-5.jpg" width="300" height="150" />
-        {groupedCourses["General Studies"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["General Studies"].map(c => <Course course={c}  />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-6.jpg" width="300" height="150" />
-        {groupedCourses["Workshops & Seminars"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Workshops & Seminars"].map(c => <Course course={c}  />)}
         <h4>Others</h4>
-        {groupedCourses["Foreign Language"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        {groupedCourses["Others"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Foreign Language"].map(c => <Course course={c}  />)}
+        {groupedCourses["Others"].map(c => <Course course={c}  />)}
       </div>
     </div>
   )
 }
 
-const mapDispatchToProps = {
-  fetchCoursesBySchool,
-};
-
-export default connect<{}, {fetchCoursesBySchool: (school: string) => void}>(
-  null,
-  mapDispatchToProps
-)(PSE);
+export default PSE;

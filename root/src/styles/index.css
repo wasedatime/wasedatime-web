@@ -754,10 +754,6 @@ video {
   padding: 0.5rem;
 }
 
-.p-4 {
-  padding: 1rem;
-}
-
 .p-6 {
   padding: 1.5rem;
 }
@@ -782,10 +778,6 @@ video {
   padding-bottom: 1.5rem;
 }
 
-.pt-3 {
-  padding-top: 0.75rem;
-}
-
 .fixed {
   position: fixed;
 }
@@ -804,10 +796,6 @@ video {
 
 .bottom-0 {
   bottom: 0px;
-}
-
-.bottom-20 {
-  bottom: 5rem;
 }
 
 .resize {

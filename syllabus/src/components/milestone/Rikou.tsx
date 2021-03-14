@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components";
 import { SyllabusKey } from '../../constants/syllabus-data';
 import CourseItem from '../CourseItem';
 import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
 import MediaQuery from "react-responsive";
-import { connect } from "react-redux";
-import { fetchCoursesBySchool } from "../../redux/actions";
+import { parseCourse } from '../../utils/milestone';
 
 const Cover = styled.img`
-  height: 100vh;
-  ${media.tablet`height: calc(100vh - 50px);`}
+  max-height: 100vh;
+  ${media.tablet`max-height: calc(100vh - 50px);`}
   margin: auto;
 `;
 
@@ -99,7 +98,7 @@ const getGroupedCourses = (courses) => {
   return groupedCourses;
 }
 
-const Course = ({ course, reviews }) => (
+const Course = ({ course }) => (
   <CourseItem
     course={course}
     searchLang="en"
@@ -108,17 +107,32 @@ const Course = ({ course, reviews }) => (
     handleOnClick={() => {}}
     expandable={false}
     isMilestone={true}
-    reviews={reviews || []}
+    reviews={course.reviews || []}
   />
 )
 
-const Rikou = ({courses, reviews, fetchCoursesBySchool}) => {
-  if (!courses.length) {
-    fetchCoursesBySchool("FSE");
-    fetchCoursesBySchool("CSE");
-    fetchCoursesBySchool("ASE");
-  }
+const Rikou = () => {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    let rikouCourses = [];
+    try {
+      ["FSE", "CSE", "ASE"].forEach(school => {
+        fetch(`https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/reviews/${school.toLowerCase()}_reviews.json`)
+          .then(res => res.json())
+          .then(res => {
+            rikouCourses = rikouCourses.concat(res.filter(c => c.sem.match(/0|1|f/g)).map(c => parseCourse(c, school)));
+            setCourses(rikouCourses);
+          })
+          .catch(err => console.log(err));
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const groupedCourses = getGroupedCourses(courses);
+
   return (
     <div>
       <MediaQuery maxWidth={sizes.phone}>
@@ -132,21 +146,14 @@ const Rikou = ({courses, reviews, fetchCoursesBySchool}) => {
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-1.jpg" width="300" height="150" />
-        {groupedCourses["Group A"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Group A"].map(c => <Course course={c} />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-2.jpg" width="300" height="150" />
-        {groupedCourses["Group B"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Group B"].map(c => <Course course={c} />)}
         <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-3.jpg" width="300" height="150" />
-        {groupedCourses["Group C"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Group C"].map(c => <Course course={c} />)}
       </div>
     </div>
   )
 }
 
-const mapDispatchToProps = {
-  fetchCoursesBySchool,
-};
-
-export default connect<{}, {fetchCoursesBySchool: (school: string) => void}>(
-  null,
-  mapDispatchToProps
-)(Rikou);
+export default Rikou;

@@ -28,6 +28,7 @@ import {
   gaOpenCourseDetails,
 } from "../../ga/eventActions";
 import { courseSchemaFullToShort } from "../../utils/map-single-course-schema";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const CourseInfoWrapper = styled(Segment)`
   width: 100%;
@@ -48,6 +49,7 @@ const RelatedCourses = styled.div`
 
 const RelatedCourse = styled.div`
   flex: 0 0 33%;
+  ${media.tablet`flex: 0 0 50%;`}
 `;
 
 const StyledSubHeading = styled("h6")`
@@ -278,6 +280,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
                   searchLang={searchLang}
                   course={course}
                   expandable={false}
+                  isRelatedCourse={true}
                 />
               </RelatedCourse>
             ))

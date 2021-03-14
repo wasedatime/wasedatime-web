@@ -33,7 +33,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
           {(course[SyllabusKey.EVAL] as any[]).map((e, i) => (
             <Table.Row key={i}>
               <Table.Cell>
-                <p>
+                <h6><b>
                   <span
                     style={{
                       color: evalColorMap[e[SyllabusKey.EVAL_TYPE]],
@@ -47,7 +47,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
                       evalTypeMap[e[SyllabusKey.EVAL_TYPE]]
                     }`
                   )}
-                </p>
+                </b></h6>
               </Table.Cell>
               <Table.Cell>
                 <p>{e[SyllabusKey.EVAL_CRITERIA]}</p>
@@ -71,22 +71,22 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
           opacity: 0.75,
           pointerEvents: "none",
         }}
-        viewBoxSize={[150, 100]}
-        center={[75, 50]}
+        viewBoxSize={[120, 100]}
+        center={[60, 50]}
       />
     );
 
     return course[SyllabusKey.EVAL].length > 0 ? (
-      <MediaQuery maxWidth={sizes.tablet}>
+      <MediaQuery maxWidth={sizes.phone}>
         {(matches) =>
           matches ? (
-            <Grid columns={1}>
-              <Grid.Column>{evalsChart}</Grid.Column>
-              <Grid.Column>{evalsTable}</Grid.Column>
-            </Grid>
+            <div>
+              <div style={{ width: "150px", height: "150px", margin: "0px auto" }}>{evalsChart}</div>
+              {evalsTable}
+            </div>
           ) : (
             <Grid columns={2}>
-              <Grid.Column>{evalsChart}</Grid.Column>
+              <Grid.Column><div style={{ width: "150px", height: "150px", margin: "0px auto" }}>{evalsChart}</div></Grid.Column>
               <Grid.Column>{evalsTable}</Grid.Column>
             </Grid>
           )

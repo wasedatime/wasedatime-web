@@ -1,12 +1,5 @@
 import React, { lazy, Suspense } from 'react';
-import { connect } from "react-redux";
 import styled from "styled-components";
-import { SyllabusKey } from "../../constants/syllabus-data";
-import rawReviews from "../../constants/reviews.json"
-import schoolCodeMap from '../../constants/school-code';
-import { ReduxRootState } from "../../redux/reducers";
-import { Course } from '../../types/course';
-import { getFetchedCoursesList } from '../../redux/reducers/fetchedCourses';
 const PSE = lazy(() => import("./PSE"));
 const CJL = lazy(() => import("./CJL"));
 const SILS = lazy(() => import("./SILS"));
@@ -76,7 +69,7 @@ const BlankRikouSchoolSwitch = styled.div`
   ${media.phone`width: 30px; height: 30px; margin: 15px 0px; transform: translateX(-30px) rotate(45deg) scale(0.7);`}
 `;
 
-class Milestone extends React.Component<{}, { school: string }> {
+class Milestone extends React.Component<{ path: string }, { school: string }> {
   state = {
     school: "",
   }

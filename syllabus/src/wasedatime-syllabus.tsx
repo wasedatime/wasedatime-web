@@ -20,7 +20,7 @@ const cssLifecycles = singleSpaCss({
 
   // optional: defaults to 5000. The number of milliseconds to wait on the <link> to load
   // before failing the mount lifecycle.
-  timeout: 5000,
+  timeout: 10000,
 });
 
 const reactLifecycles = singleSpaReact({

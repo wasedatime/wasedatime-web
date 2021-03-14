@@ -5,6 +5,7 @@ importScripts(
 workbox.core.skipWaiting();
 workbox.core.clientsClaim();
 workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+
 workbox.core.setCacheNameDetails({
   prefix: "wasedatime-cache",
   precache: "precache",

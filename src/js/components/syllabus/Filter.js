@@ -18,6 +18,7 @@ const FilterWrapper = styled(Wrapper)`
   position: fixed !important
   height: ${(props) => (props.isSideBar ? "calc(100vh - 70px)" : "100vh")};
   overflow-y: auto;
+  padding-bottom: 70px;
 `;
 
 const FilterOverlay = styled(Overlay)`

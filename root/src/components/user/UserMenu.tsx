@@ -12,7 +12,7 @@ const UserMenuTrigger = styled("div")`
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 0.5vh 0.5em 1em 1.2em;
+  padding: 0.5vh 0.5em 1em 0.7em;
   ${media.tablet`padding: 0.5em;`}
 
   i {

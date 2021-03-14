@@ -396,20 +396,21 @@ class FetchedCourseSearch extends React.Component {
 
         <RowWrapper>
           <FetchedCourseListWrapper>
+            <a href="/milestone" style={{ margin: "0.5em 1em 0.5em 1em", background: "#ccc", color: "#fff", padding: "0px 1em", borderRadius: "10px" }}>Link to 2021 Spring Milestone × WTSA</a>
+            <div>
+              <MediaQuery maxWidth={sizes.tablet - 1}>
+                {(matches) =>
+                  matches && (
+                    <SearchBar
+                      onInputChange={this.handleInputChange}
+                      placeholder={t("syllabus.searchBarPlaceholder")}
+                      inputText={inputText}
+                    />
+                  )
+                }
+              </MediaQuery>
+            </div>
             <SimpleBar style={{ height: "100%" }}>
-              <div>
-                <MediaQuery maxWidth={sizes.tablet - 1}>
-                  {(matches) =>
-                    matches && (
-                      <SearchBar
-                        onInputChange={this.handleInputChange}
-                        placeholder={t("syllabus.searchBarPlaceholder")}
-                        inputText={inputText}
-                      />
-                    )
-                  }
-                </MediaQuery>
-              </div>
               <div>
                 <SchoolFilterForm
                   handleToggleFilter={this.handleToggleFilter}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +20,9 @@ import { media, sizes } from "../../styled-components/utils";
 import { InvisibleButton } from "../../styled-components/Button";
 import { allSchoolNameIconMap } from "../../utils/schoolNameIconMap";
 import FetchedShareButton from "../../containers/syllabus/FetchedShareButton";
+import ReviewsList from "../courseInfo/ReviewsList";
+import ReviewScalesCountContainer from "../courseInfo/ReviewScalesCountContainer";
+import ReviewLangSwitches from "../courseInfo/ReviewLangSwitches";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -42,7 +45,7 @@ const CourseItemWrapper = styled("div")`
   line-height: 150%;
   &:hover {
     ${(props) =>
-      !props.isDetailDisplayed &&
+      (!props.isDetailDisplayed && !props.isMilestone) &&
       "background-color: #eee; box-shadow: none; cursor: pointer;"}
   }
 `;
@@ -209,9 +212,12 @@ const CourseItem = ({
   needLineBreak,
   openNewTabOnClick,
   history,
+  isMilestone,
+  reviews,
   t,
   lng,
 }) => {
+  const [ reviewLang, setReviewLang ] = useState("en");
   const { title, instructor } = getCourseTitleAndInstructor(course, isDetailDisplayed ? lng : searchLang);
   const highlightedTitle = highlight(searchTerm, searchLang, title);
   const highlightedInstructor = highlight(searchTerm, searchLang, instructor);
@@ -262,8 +268,9 @@ const CourseItem = ({
     <RowWrapper>
       <CourseItemWrapper
         isDetailDisplayed={isDetailDisplayed}
+        isMilestone={isMilestone}
         onClick={() => {
-          if (!isDetailDisplayed) {
+          if (!isMilestone && !isDetailDisplayed) {
             if (openNewTabOnClick) {
               window.open(
                 `/courseInfo?courseID=${syllabusId}&searchLang=${searchLang}`,
@@ -315,15 +322,17 @@ const CourseItem = ({
                 />
               </a>
             )}
-            <InvisibleButton /* Add Button */
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleOnClick(title, lng);
-              }}
-            >
-              {buttonIcon}
-            </InvisibleButton>
+            {
+              !isMilestone && <InvisibleButton /* Add Button */
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleOnClick(title, lng);
+                }}
+              >
+                {buttonIcon}
+              </InvisibleButton>
+            }
 
             <FetchedShareButton
               shareLink={shareLink}
@@ -351,6 +360,29 @@ const CourseItem = ({
             needLineBreak={needLineBreak}
           />
         </DetailWrapper>
+        {isMilestone && (
+          <div>
+            <ReviewScalesCountContainer
+              avgSatisfaction={reviews.reduce((r, a) => r + a.satisfaction, 0) / reviews.length}
+              avgDifficulty={reviews.reduce((r, a) => r + a.difficulty, 0) / reviews.length}
+              avgBenefit={reviews.reduce((r, a) => r + a.benefit, 0) / reviews.length}
+              thisCourseReviewsLength={reviews.length}
+            />
+            <br />
+            <ReviewLangSwitches
+              reviewLang={reviewLang}
+              switchReviewLang={(lang) => setReviewLang(lang)}
+              isInHeading={false}
+            />
+            <ReviewsList
+              reviews={reviews}
+              searchLang={"en"}
+              reviewLang={reviewLang}
+              openReviewEditForm={() => {}}
+              deleteReview={() => {}}
+            />
+          </div>
+        )}
       </CourseItemWrapper>
     </RowWrapper>
   );

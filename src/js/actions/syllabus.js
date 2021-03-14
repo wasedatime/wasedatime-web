@@ -20,6 +20,7 @@ import {
 import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 import * as schema from "../data/schema";
 import { schoolCodeMap } from "../data/schoolCodeMap";
+import { courseSchemaFullToShort } from "../utils/mapCourseSchema.js";
 
 export const removeSchool = (school) => ({
   type: REMOVE_SCHOOL,
@@ -196,6 +197,7 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
   };
   let loadedSchools = [];
   let unloadedSchools = [];
+  let oldCourseIdPrefs = [];
   const expBySchool = getState().fetchedCourses.expBySchool;
   const courseIdsBySchool = getState().fetchedCourses.list.ids;
 
@@ -223,7 +225,7 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
 
       idsAndPrefs.forEach((idAndPref) => {
         const school = schoolCodeMap[idAndPref.id.substring(0, 2)];
-        const course = {
+        const course = updatedFetchedCoursesById[school][idAndPref.id] && {
           ...updatedFetchedCoursesById[school][idAndPref.id],
           [SYLLABUS_KEYS.SCHOOL]: school,
         };
@@ -253,17 +255,76 @@ export const saveTimetable = (idsAndPrefs, fetchedCoursesById) => async (
               course: course,
             });
           }
+        } else {
+          oldCourseIdPrefs.push(idAndPref);
         }
       });
 
-      // save addedCourses
-      dispatch({
-        type: SAVE_TIMETABLE,
-        payload: {
-          coursesAndPrefsByTerm: coursesAndPrefsByTerm,
-          ids: idsAndPrefs.map((ip) => ip.id),
-          idsBySchool: idsBySchool,
-        },
+      Promise.all(
+        oldCourseIdPrefs.map(async (idPref) => {
+          try {
+            const res = await API.get(
+              "wasedatime-dev",
+              "/syllabus?id=" + idPref.id,
+              {
+                headers: {
+                  "x-api-key": process.env.REACT_APP_X_API_KEY,
+                  "Content-Type": "application/json",
+                },
+              }
+            );
+            return res.data;
+          } catch (error) {
+            return null;
+          }
+        })
+      ).then(res => {
+        res.forEach(rawCourse => {
+          if (rawCourse) {
+            let course = courseSchemaFullToShort(rawCourse);
+            const school = schoolCodeMap[course[SYLLABUS_KEYS.ID].substring(0, 2)];
+            course = {
+              ...course,
+              [SYLLABUS_KEYS.SCHOOL]: school,
+            };
+
+            // push school to addedCourses
+            if (idsBySchool[school]) {
+              idsBySchool[school].ids.push(course[SYLLABUS_KEYS.ID]);
+            } else {
+              idsBySchool[school] = {
+                ids: [course[SYLLABUS_KEYS.ID]],
+                exp: updatedExpBySchool[school],
+              };
+            }
+
+            const idAndPref = oldCourseIdPrefs.filter(idPref => idPref.id === course[SYLLABUS_KEYS.ID])[0];
+  
+            // push course details to addedCourses
+            if (course[SYLLABUS_KEYS.TERM].match(/2|3|f/g)) {
+              coursesAndPrefsByTerm.fall.push({
+                ...idAndPref,
+                course: course,
+              });
+            }
+            if (course[SYLLABUS_KEYS.TERM].match(/0|1|f/g)) {
+              coursesAndPrefsByTerm.spring.push({
+                ...idAndPref,
+                course: course,
+              });
+            }
+          }
+        });
+
+        // save addedCourses
+        dispatch({
+          type: SAVE_TIMETABLE,
+          payload: {
+            coursesAndPrefsByTerm: coursesAndPrefsByTerm,
+            ids: idsAndPrefs.map((ip) => ip.id),
+            idsBySchool: idsBySchool,
+          },
+        });
       });
     })
     .catch((e) => console.error(e));

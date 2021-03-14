@@ -20,7 +20,6 @@ import { media, sizes } from "../../styled-components/utils";
 import { InvisibleButton } from "../../styled-components/Button";
 import { allSchoolNameIconMap } from "../../utils/schoolNameIconMap";
 import FetchedShareButton from "../../containers/syllabus/FetchedShareButton";
-import CourseReviews from "../courseInfo/CourseReviews";
 import ReviewsList from "../courseInfo/ReviewsList";
 import ReviewScalesCountContainer from "../courseInfo/ReviewScalesCountContainer";
 import ReviewLangSwitches from "../courseInfo/ReviewLangSwitches";

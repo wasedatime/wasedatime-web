@@ -76,28 +76,28 @@ const SILS = () => {
       <MediaQuery maxWidth={sizes.phone}>
         {
           matches => matches ? (
-            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-mobile.jpg" />
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-mobile.jpg" alt="cover-mobile" />
           ) : (
-            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils.jpg" />
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils.jpg" alt="cover" />
           )
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-1.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-1.jpg" alt="cat1" width="300" height="150" />
         {groupedCourses["First Year Seminar"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-2.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-2.jpg" alt="cat2" width="300" height="150" />
         {groupedCourses["Intermediate Seminar"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-3.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-3.jpg" alt="cat3" width="300" height="150" />
         {groupedCourses["Advanced Seminar"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-4.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-4.jpg" alt="cat4" width="300" height="150" />
         {groupedCourses["Introductory Subjects"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-5.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-5.jpg" alt="cat5" width="300" height="150" />
         {groupedCourses["Intermediate Subjects"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-6.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-6.jpg" alt="cat6" width="300" height="150" />
         {groupedCourses["Advanced Subjects"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-7.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-7.jpg" alt="cat7" width="300" height="150" />
         {groupedCourses["Foreign Languages"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-8.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-8.jpg" alt="cat8" width="300" height="150" />
         {groupedCourses["Elective Subjects"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
       </div>
     </div>

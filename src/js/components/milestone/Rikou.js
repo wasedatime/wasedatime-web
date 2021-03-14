@@ -140,18 +140,18 @@ const Rikou = () => {
       <MediaQuery maxWidth={sizes.phone}>
         {
           matches => matches ? (
-            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-mobile.jpg" />
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-mobile.jpg" alt="cover-mobile" />
           ) : (
-            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou.jpg" />
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou.jpg" alt="cover" />
           )
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-1.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-1.jpg" alt="cat1" width="300" height="150" />
         {groupedCourses["Group A"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-2.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-2.jpg" alt="cat2" width="300" height="150" />
         {groupedCourses["Group B"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-3.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-3.jpg" alt="cat3" width="300" height="150" />
         {groupedCourses["Group C"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
       </div>
     </div>

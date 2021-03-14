@@ -75,22 +75,22 @@ const SSS = () => {
       <MediaQuery maxWidth={sizes.phone}>
         {(matches) =>
           matches ? (
-            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-mobile.jpg" />
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-mobile.jpg" alt="cover-mobile" />
           ) : (
-            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss.jpg" />
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss.jpg" alt="cover" />
           )
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-1.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-1.jpg" alt="cat1" width="300" height="150" />
         {groupedCourses["Community and Social Development"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-2.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-2.jpg" alt="cat2" width="300" height="150" />
         {groupedCourses["Economic & Environmental Sustainability"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-3.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-3.jpg" alt="cat3" width="300" height="150" />
         {groupedCourses["Foundations in Social Sciences"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-4.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-4.jpg" alt="cat4" width="300" height="150" />
         {groupedCourses["Peace Building and International Cooperation"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-5.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sss-cat-5.jpg" alt="cat5" width="300" height="150" />
         {groupedCourses["Social Organization and Working"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}
         <h4>Others</h4>
         {groupedCourses["Others"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c} />)}

@@ -105,9 +105,9 @@ class Milestone extends React.Component {
         {!school && <MediaQuery maxWidth={sizes.tablet}>
           {(matches) =>
             matches ? (
-              <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover-mobile.jpg" />
+              <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover-mobile.jpg" alt="cover-mobile" />
             ) : (
-              <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover.jpg" />
+              <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover.jpg" alt="cover" />
             )
           }
         </MediaQuery>}

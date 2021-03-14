@@ -116,24 +116,24 @@ const PSE = () => {
       <MediaQuery maxWidth={sizes.phone}>
         {
           matches => matches ? (
-            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-mobile.jpg" />
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-mobile.jpg" alt="cover-mobile" />
           ) : (
-            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse.jpg" />
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse.jpg" alt="cover" />
           )
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-1.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-1.jpg" alt="cat1" width="300" height="150" />
         {groupedCourses["Japanese and Global Political Economy"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c}  />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-2.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-2.jpg" alt="cat2" width="300" height="150" />
         {groupedCourses["Economics"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c}  />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-3.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-3.jpg" alt="cat3" width="300" height="150" />
         {groupedCourses["Political Science"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c}  />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-4.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-4.jpg" alt="cat4" width="300" height="150" />
         {groupedCourses["Quantitative Approaches to Political Economy"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c}  />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-5.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-5.jpg" alt="cat5" width="300" height="150" />
         {groupedCourses["General Studies"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c}  />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-6.jpg" width="300" height="150" />
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-6.jpg" alt="cat6" width="300" height="150" />
         {groupedCourses["Workshops & Seminars"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c}  />)}
         <h4>Others</h4>
         {groupedCourses["Foreign Language"].map(c => <Course key={c[SYLLABUS_KEYS.ID]} course={c}  />)}

@@ -47,8 +47,8 @@ const AddReviewButton = styled("button")`
   border: 0px;
   border-radius: 5px;
   float: right;
-  ${media.phone`float: none;`}
-  ${media.phone`width: 100%;`}
+  ${media.desktop`float: none; width: 100%;`}
+  ${media.phone`font-size: 1.5em`}
   padding: 0.3rem 0.5em;
 `;
 
@@ -59,6 +59,7 @@ const Announcement = styled("div")`
   margin-bottom: 5px;
   padding: 5px 10px;
   font-size: 0.7em;
+  ${media.tablet`font-size: 1em`}
   border-radius: 3px;
   line-height: normal;
 `;

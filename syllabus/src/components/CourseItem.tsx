@@ -224,6 +224,7 @@ interface Props extends WithTranslation {
   isAddable: boolean;
   handleOnClick: (title: string, lng: string) => void;
   expandable: boolean;
+  isRelatedCourse?: boolean;
   isMilestone?: boolean;
   reviews?: any;
 }
@@ -235,6 +236,7 @@ const CourseItem = ({
   isAddable,
   handleOnClick,
   expandable,
+  isRelatedCourse,
   isMilestone,
   reviews,
   t,
@@ -332,7 +334,7 @@ const CourseItem = ({
             <Badge>{langTerm}</Badge>
             {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
-          {!isMilestone && <div
+          {!isRelatedCourse && !isMilestone && <div
             style={{
               display: "flex",
               flex: "1 0 auto",

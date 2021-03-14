@@ -22,7 +22,7 @@ export interface Course {
     [SyllabusKey.EVAL_TYPE]: number;
     [SyllabusKey.EVAL_PERCENT]: number;
     [SyllabusKey.EVAL_CRITERIA]: string;
-  }[];
+  }[] | string;
   [SyllabusKey.CODE]: string;
   [SyllabusKey.SUBTITLE]: string;
   [SyllabusKey.SCHOOL]: string;

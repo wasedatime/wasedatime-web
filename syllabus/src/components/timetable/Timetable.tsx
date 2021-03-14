@@ -99,11 +99,12 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
             {!addedCoursesAndPrefs.length && (
               <Wrapper>
                 <Article>
-                  <h3>{t("timetable.welcome")}</h3>
+                  <h5>{t("timetable.welcome")}{" "}🤗</h5>
+                  <br />
                   <Section>
                     <Message
                       warning
-                      header={t("timetable.You haven't added any courses")}
+                      header={<h5><b>{t("timetable.You haven't added any courses")}</b></h5>}
                       content={
                         <p>
                           {t("timetable.Go to")}{" "}
@@ -111,10 +112,11 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                           {t("timetable.and try adding one!")}
                         </p>
                       }
+                      size="mini"
                     />
                   </Section>
                   <Section>
-                    <Message success>{t("timetable.SaveSpace")}</Message>
+                    <Message success size="mini"><p>{t("timetable.SaveSpace")}</p></Message>
                   </Section>
                 </Article>
               </Wrapper>

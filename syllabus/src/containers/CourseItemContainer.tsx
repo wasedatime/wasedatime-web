@@ -29,6 +29,7 @@ interface OwnProps {
   searchLang: string | string[];
   course: Course;
   expandable: boolean;
+  isRelatedCourse?: boolean;
 }
 
 class CourseItemContainer extends React.Component<
@@ -94,6 +95,7 @@ class CourseItemContainer extends React.Component<
       course,
       addedCourseIds,
       expandable,
+      isRelatedCourse
     } = this.props;
     const isAddable = !addedCourseIds.includes(course[SyllabusKey.ID]);
     return (
@@ -106,6 +108,7 @@ class CourseItemContainer extends React.Component<
         searchLang={searchLang}
         course={course}
         expandable={expandable}
+        isRelatedCourse={isRelatedCourse}
       />
     );
   }

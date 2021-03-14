@@ -1,20 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import styled from "styled-components";
 import { SyllabusKey } from '../../constants/syllabus-data';
 import CourseItem from '../CourseItem';
-import cover from "./images/sils.jpg";
-import mobileCover from "./images/sils-mobile.jpg";
-import cat1 from "./images/sils-cat-1.jpg";
-import cat2 from "./images/sils-cat-2.jpg";
-import cat3 from "./images/sils-cat-3.jpg";
-import cat4 from "./images/sils-cat-4.jpg";
-import cat5 from "./images/sils-cat-5.jpg";
-import cat6 from "./images/sils-cat-6.jpg";
-import cat7 from "./images/sils-cat-7.jpg";
-import cat8 from "./images/sils-cat-8.jpg";
 import MediaQuery from "react-responsive";
-import { sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
-import { connect } from "react-redux";
-import { fetchCoursesBySchool } from "../../redux/actions";
+import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
+import { parseCourse } from '../../utils/milestone';
+
+const Cover = styled.img`
+  max-height: 100vh;
+  ${media.tablet`max-height: calc(100vh - 50px);`}
+  margin: auto;
+`;
 
 const get_SILS_category = (course) => {
   if (course[SyllabusKey.CATEGORY].includes("First Year Seminar")) return "First Year Seminar";
@@ -42,7 +38,7 @@ const getGroupedCourses = (courses) => {
   return groupedCourses;
 }
 
-const Course = ({ course, reviews }) => (
+const Course = ({ course }) => (
   <CourseItem
     course={course}
     searchLang="en"
@@ -51,47 +47,59 @@ const Course = ({ course, reviews }) => (
     handleOnClick={() => {}}
     expandable={false}
     isMilestone={true}
-    reviews={reviews || []}
+    reviews={course.reviews || []}
   />
 )
 
-const SILS = ({courses, reviews, fetchCoursesBySchool}) => {
-  if (!courses.length) fetchCoursesBySchool("SILS");
-  const groupedCourses = getGroupedCourses(courses)
+const SILS = () => {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    try {
+      fetch("https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/reviews/sils_reviews.json")
+        .then(res => res.json())
+        .then(res => {
+          setCourses(res.filter(c => c.sem.match(/0|1|f/g)).map(c => parseCourse(c, "SILS")));
+        })
+        .catch(err => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const groupedCourses = getGroupedCourses(courses);
+
   return (
     <div>
       <MediaQuery maxWidth={sizes.phone}>
         {
-          matches => matches ? <img src={mobileCover} width="360" height="640" /> : <img src={cover} width="1280" height="720" />
+          matches => matches ? (
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-mobile.jpg" />
+          ) : (
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils.jpg" />
+          )
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src={cat1} width="300" height="150" />
-        {groupedCourses["First Year Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat2} width="300" height="150" />
-        {groupedCourses["Intermediate Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat3} width="300" height="150" />
-        {groupedCourses["Advanced Seminar"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat4} width="300" height="150" />
-        {groupedCourses["Introductory Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat5} width="300" height="150" />
-        {groupedCourses["Intermediate Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat6} width="300" height="150" />
-        {groupedCourses["Advanced Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat7} width="300" height="150" />
-        {groupedCourses["Foreign Languages"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat8} width="300" height="150" />
-        {groupedCourses["Elective Subjects"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-1.jpg" width="300" height="150" />
+        {groupedCourses["First Year Seminar"].map(c => <Course course={c} />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-2.jpg" width="300" height="150" />
+        {groupedCourses["Intermediate Seminar"].map(c => <Course course={c} />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-3.jpg" width="300" height="150" />
+        {groupedCourses["Advanced Seminar"].map(c => <Course course={c} />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-4.jpg" width="300" height="150" />
+        {groupedCourses["Introductory Subjects"].map(c => <Course course={c} />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-5.jpg" width="300" height="150" />
+        {groupedCourses["Intermediate Subjects"].map(c => <Course course={c} />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-6.jpg" width="300" height="150" />
+        {groupedCourses["Advanced Subjects"].map(c => <Course course={c} />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-7.jpg" width="300" height="150" />
+        {groupedCourses["Foreign Languages"].map(c => <Course course={c} />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/sils-cat-8.jpg" width="300" height="150" />
+        {groupedCourses["Elective Subjects"].map(c => <Course course={c} />)}
       </div>
     </div>
   )
 }
 
-const mapDispatchToProps = {
-  fetchCoursesBySchool,
-};
-
-export default connect<{}, {fetchCoursesBySchool: (school: string) => void}>(
-  null,
-  mapDispatchToProps
-)(SILS);
+export default SILS;

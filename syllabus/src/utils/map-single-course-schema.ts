@@ -11,11 +11,12 @@ export const courseSchemaFullToShort = (course) => {
     [SyllabusKey.OCC_PERIOD]: occ[SyllabusKey.OCC_PERIOD],
     [SyllabusKey.OCC_LOCATION]: occ[SyllabusKey.OCC_LOCATION],
   }));
-  const evals = course[SyllabusAttr[SyllabusKey.EVAL]].map((e) => ({
+  const courseEvals = course[SyllabusAttr[SyllabusKey.EVAL]];
+  const evals = Array.isArray(courseEvals) ? courseEvals.map((e) => ({
     [SyllabusKey.EVAL_TYPE]: e[SyllabusEvalAttr[SyllabusKey.EVAL_TYPE]],
     [SyllabusKey.EVAL_PERCENT]: e[SyllabusEvalAttr[SyllabusKey.EVAL_PERCENT]],
     [SyllabusKey.EVAL_CRITERIA]: e[SyllabusEvalAttr[SyllabusKey.EVAL_CRITERIA]],
-  }));
+  })) : courseEvals;
   return {
     [SyllabusKey.ID]: course[SyllabusAttr[SyllabusKey.ID]],
     [SyllabusKey.TITLE]: course[SyllabusAttr[SyllabusKey.TITLE]],

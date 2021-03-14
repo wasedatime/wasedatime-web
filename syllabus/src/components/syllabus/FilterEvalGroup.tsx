@@ -43,6 +43,7 @@ const StyledFormLabel = styled(FormLabel)`
 `;
 
 const EvalRangeWrapper = styled.div`
+  margin-bottom: 30px;
   ${media.tablet`width: 80%;`}
 `;
 
@@ -73,7 +74,7 @@ const FilterEvalGroup = ({
 }: Props) => {
   return (
     <div>
-      <StyledFormLabel>{legend}</StyledFormLabel>
+      <StyledFormLabel><b>{legend}</b></StyledFormLabel>
       <EvalRangeWrapper>
         <StyledDropdown
           placeholder={typeDefault}
@@ -87,6 +88,7 @@ const FilterEvalGroup = ({
           }}
           aria-label={typeInputName}
         />
+        <br />
         <Range
           min={0}
           max={100}

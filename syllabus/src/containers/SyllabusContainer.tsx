@@ -44,6 +44,7 @@ import {
   gaUpdateFilter,
 } from "../ga/eventActions";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
+import { courseSchemaFullToShort } from "../utils/map-single-course-schema";
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -98,8 +99,9 @@ interface OwnState {
   fetchedCourses: Course[];
   searchTerm: string | string[];
   inputText: string | string[];
-  topCourse: Course | null;
   topCourseId: string;
+  topCourse: Course | null;
+  isFetchingTopCourse: boolean;
 }
 
 // let history = createHistory(window);
@@ -142,23 +144,26 @@ class SyllabusContainer extends React.Component<
       fetchedCourses: props.fetchedCourses,
       searchTerm: "",
       inputText: "",
-      topCourse: null,
       topCourseId: "",
+      topCourse: null,
+      isFetchingTopCourse: false
     };
   }
 
-  async componentDidMount() {
-    const courseId = queryString.parse(window.location.search).courseId;
-    if (courseId) await this.setTopCourse(courseId);
-  }
+  // async componentDidMount() {
+  //   const courseId = queryString.parse(window.location.search).courseId;
+  //   if (courseId) await this.setTopCourse(courseId);
+  // }
 
-  async componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps) {
     if (prevProps.isFetching && !this.props.isFetching) {
       this.setState({ fetchedCourses: this.props.fetchedCourses });
     }
     const courseId = queryString.parse(window.location.search).courseId;
     if (courseId && this.state.topCourseId !== courseId) {
-      await this.setTopCourse(courseId);
+      if (!this.state.isFetchingTopCourse) {
+        this.setState({ isFetchingTopCourse: true }, () => this.setTopCourse(courseId));
+      }
     }
     if (
       prevProps.fetchedCourses.length === 0 &&
@@ -170,29 +175,31 @@ class SyllabusContainer extends React.Component<
   }
 
   setTopCourse = async (courseId) => {
-    let course;
-    try {
-      const res = await API.get("wasedatime-dev", `/syllabus?id=${courseId}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        response: true,
-      });
-      course = res.data.data;
-    } catch (error) {
-      course = this.props.fetchedCourses.find(
-        (c) => c[SyllabusKey.ID] === courseId
-      );
-    }
-    if (course) {
-      const school = schoolCodeMap[courseId.substring(0, 2)];
-      course = { ...course, [SyllabusKey.SCHOOL]: school };
-
-      this.setState((prevState) => ({
-        topCourseId: courseId,
-        topCourse: course,
-        fetchedCourses: [course].concat(prevState.fetchedCourses),
-      }));
+    if (this.state.isFetchingTopCourse) {
+      let course;
+      try {
+        const res = await API.get("wasedatime-dev", `/syllabus?id=${courseId}`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          response: true,
+        });
+        course = res.data.data;
+      } catch (error) {
+        course = this.props.fetchedCourses.find(
+          (c) => c[SyllabusKey.ID] === courseId
+        );
+      }
+      if (course) {
+        const school = schoolCodeMap[courseId.substring(0, 2)];
+        course = courseSchemaFullToShort({ ...course, [SyllabusKey.SCHOOL]: school });
+        
+        this.setState({
+          topCourseId: courseId,
+          topCourse: !this.props.fetchedCourses.filter(c => c[SyllabusKey.ID] === courseId)[0] && course,
+          isFetchingTopCourse: false
+        });
+      }
     }
   };
 
@@ -279,7 +286,7 @@ class SyllabusContainer extends React.Component<
 
     let newI18n = { ...i18n };
 
-    const { fetchedCourses, searchTerm, inputText, topCourseId } = this.state;
+    const { fetchedCourses, searchTerm, inputText, topCourse, topCourseId } = this.state;
     const searchLang =
       searchTerm === "" ? newI18n.language : getSearchLang(searchTerm);
     let results =
@@ -290,11 +297,13 @@ class SyllabusContainer extends React.Component<
             searchLang
           )
         : fetchedCourses;
-    results = results.sort((a, b) => {
-      if (a.a === topCourseId) return -1;
-      else if (b.a === topCourseId) return 1;
-      else return 0;
-    });
+    results = topCourse && results[0] !== topCourse
+      ? [ topCourse, ...results ]
+      : results.sort((a, b) => {
+          if (a.a === topCourseId) return -1;
+          else if (b.a === topCourseId) return 1;
+          else return 0;
+        });
 
     return (
       <SyllabusWrapper className="theme-default">

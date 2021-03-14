@@ -202,7 +202,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
         id="school_filter_form"
         trigger={
           <ChooseSchoolButton>
-            {t("syllabus.School Filter.Choose Schools")}
+            {t("school filter.choose schools")}
           </ChooseSchoolButton>
         }
         content={<Tab panes={this.schoolImportPanes()} />}

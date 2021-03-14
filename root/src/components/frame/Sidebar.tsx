@@ -49,11 +49,10 @@ const NavItemBlock = styled.div`
 
 const NavItemText = styled.span`
   overflow: hidden;
-  margin-left: 1rem;
+  margin: 0px;
+  margin-left: 10px;
   text-align: left;
   color: #fff;
-  margin: 0px;
-  margin-left: 1rem;
   line-height: 2;
   height: 40px;
   opacity: ${(props) => (props.expanded ? "1" : "0")};
@@ -136,7 +135,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
             </Link>
           ))}
         </div>
-        <div className="absolute bottom-20">
+        <div className="absolute" style={{ bottom: "100px" }}>
           <OtherLinks expanded={expanded} />
           <UserMenu
             openSignInModal={openSignInModal}

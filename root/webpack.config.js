@@ -46,6 +46,7 @@ module.exports = (webpackConfigEnv, argv) => {
             { loader: "css-loader", options: { url: false } },
             "postcss-loader",
           ],
+          sideEffects: true
         },
       ],
     },

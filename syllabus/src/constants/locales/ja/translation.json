@@ -20,5 +20,8 @@
   "message": {
     "choose school request": "シラバスを使用する前に、まず学部を選択してください",
     "syllabus no result warning": "結果が表示されていない？学部を選択するか、フィルタ条件を変更しましょう！"
+  },
+  "school filter": {
+    "choose schools": "学部/研究科を選択"
   }
 }

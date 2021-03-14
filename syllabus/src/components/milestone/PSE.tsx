@@ -1,19 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from "styled-components";
 import { SyllabusKey } from '../../constants/syllabus-data';
 import CourseItem from '../CourseItem';
-import cover from "./images/pse.jpg";
-import mobileCover from "./images/pse-mobile.jpg";
-import cat1 from "./images/pse-cat-1.jpg";
-import cat2 from "./images/pse-cat-2.jpg";
-import cat3 from "./images/pse-cat-3.jpg";
-import cat4 from "./images/pse-cat-4.jpg";
-import cat5 from "./images/pse-cat-5.jpg";
-import cat6 from "./images/pse-cat-6.jpg";
 import MediaQuery from "react-responsive";
-import { sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
-import { connect } from "react-redux";
-import { fetchCoursesBySchool } from "../../redux/actions";
+import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
+import { parseCourse } from '../../utils/milestone';
 
+const Cover = styled.img`
+  max-height: 100vh;
+  ${media.tablet`max-height: calc(100vh - 50px);`}
+  margin: auto;
+`;
 
 const PSE_category_map = {
   "Political Science": [
@@ -81,7 +78,7 @@ const getGroupedCourses = (courses) => {
   return groupedCourses;
 }
 
-const Course = ({ course, reviews }) => (
+const Course = ({ course }) => (
   <CourseItem
     course={course}
     searchLang="en"
@@ -90,46 +87,58 @@ const Course = ({ course, reviews }) => (
     handleOnClick={() => {}}
     expandable={false}
     isMilestone={true}
-    reviews={reviews || []}
+    reviews={course.reviews || []}
   />
 )
 
-const PSE = ({courses, reviews, fetchCoursesBySchool}) => {
-  if (!courses.length) fetchCoursesBySchool("PSE");
+const PSE = () => {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    try {
+      fetch("https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/reviews/pse_reviews.json")
+        .then(res => res.json())
+        .then(res => {
+          setCourses(res.filter(c => c.sem.match(/0|1|f/g)).map(c => parseCourse(c, "PSE")));
+        })
+        .catch(err => console.log(err));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
   const groupedCourses = getGroupedCourses(courses);
+  
   return (
     <div>
       <MediaQuery maxWidth={sizes.phone}>
         {
-          matches => matches ? <img src={mobileCover} width="360" height="640" /> : <img src={cover} width="1280" height="720" />
+          matches => matches ? (
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-mobile.jpg" />
+          ) : (
+            <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse.jpg" />
+          )
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src={cat1} width="300" height="150" />
-        {groupedCourses["Japanese and Global Political Economy"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat2} width="300" height="150" />
-        {groupedCourses["Economics"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat3} width="300" height="150" />
-        {groupedCourses["Political Science"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat4} width="300" height="150" />
-        {groupedCourses["Quantitative Approaches to Political Economy"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat5} width="300" height="150" />
-        {groupedCourses["General Studies"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        <img src={cat6} width="300" height="150" />
-        {groupedCourses["Workshops & Seminars"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-1.jpg" width="300" height="150" />
+        {groupedCourses["Japanese and Global Political Economy"].map(c => <Course course={c}  />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-2.jpg" width="300" height="150" />
+        {groupedCourses["Economics"].map(c => <Course course={c}  />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-3.jpg" width="300" height="150" />
+        {groupedCourses["Political Science"].map(c => <Course course={c}  />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-4.jpg" width="300" height="150" />
+        {groupedCourses["Quantitative Approaches to Political Economy"].map(c => <Course course={c}  />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-5.jpg" width="300" height="150" />
+        {groupedCourses["General Studies"].map(c => <Course course={c}  />)}
+        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/pse-cat-6.jpg" width="300" height="150" />
+        {groupedCourses["Workshops & Seminars"].map(c => <Course course={c}  />)}
         <h4>Others</h4>
-        {groupedCourses["Foreign Language"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
-        {groupedCourses["Others"].map(c => <Course course={c} reviews={reviews[c[SyllabusKey.ID].substring(0, 12)]} />)}
+        {groupedCourses["Foreign Language"].map(c => <Course course={c}  />)}
+        {groupedCourses["Others"].map(c => <Course course={c}  />)}
       </div>
     </div>
   )
 }
 
-const mapDispatchToProps = {
-  fetchCoursesBySchool,
-};
-
-export default connect<{}, {fetchCoursesBySchool: (school: string) => void}>(
-  null,
-  mapDispatchToProps
-)(PSE);
+export default PSE;

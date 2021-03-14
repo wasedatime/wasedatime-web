@@ -33,7 +33,7 @@ const LinksWrapper = styled("div")`
 `;
 
 const SnsLink = styled("a")`
-  margin: 0px 0.3em;
+  margin: 0px 5px;
 `;
 
 interface Props {

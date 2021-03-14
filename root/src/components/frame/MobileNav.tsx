@@ -26,7 +26,7 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
       <FontAwesomeIcon
         icon={itemIcon}
         className={itemPath === currentPath ? "text-red-800" : "text-white"}
-        size="lg"
+        style={{ fontSize: "20px" }}
       />
     );
     return (
@@ -38,8 +38,7 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
       >
         <button className="focus:outline-none">
           {fontBase}
-          <br />
-          <span className="text-white">{itemName}</span>
+          <div className="text-white" style={{ fontSize: "12px" }}>{itemName}</div>
         </button>
       </Link>
     );
@@ -47,14 +46,14 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
 
   return (
     <nav
-      className="fixed bottom-0 flex flex-row px-1 py-2 bg-black w-full"
-      style={{ height: "50px", zIndex: 1000 }}
+      className="fixed bottom-0 flex flex-row bg-black w-full"
+      style={{ height: "50px", zIndex: 1000, padding: "7px" }}
     >
       {styledLinks}
 
       <a className="flex-1 text-center">
         <button
-          className="w-full focus:outline-none"
+          className="focus:outline-none"
           onClick={() =>
             userAttr ? setSignOutAvailable(true) : openSignInModal()
           }
@@ -67,19 +66,16 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
               height="35"
               className="rounded-full"
               alt="Image of User account"
-              style={{ margin: "2px auto" }}
+              style={{ margin: "0px auto" }}
             />
           ) : (
             <FontAwesomeIcon
               icon={faUserCircle}
               className="text-white"
-              size="lg"
+              style={{ fontSize: "20px" }}
             />
           )}
-
-          <br />
-
-          {!userAttr && <span className="text-white">{t("user.Sign in")}</span>}
+          {!userAttr && <div className="text-white" style={{ fontSize: "12px" }}>{t("user.Sign in")}</div>}
 
           {signOutAvailable && (
             <button

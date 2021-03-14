@@ -68,7 +68,8 @@ const styles = (theme) =>
       fontDisplay: "swap",
     },
     checkBox: {
-      width: "40px",
+      marginLeft: "5px",
+      width: "30px",
       height: "30px",
       transform: "scale(1.5)",
     },

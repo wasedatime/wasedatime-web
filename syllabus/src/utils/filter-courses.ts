@@ -141,9 +141,9 @@ class EvalPercentFilter extends CoursesFilter {
     this.type = type;
   }
   filterCallback = (course: Course) => {
-    if (course[SyllabusKey.EVAL].length === 0) return false;
+    if (!Array.isArray(course[SyllabusKey.EVAL]) || course[SyllabusKey.EVAL].length === 0) return false;
     // Check if the target evaluation item (e.g. 'exam') is included in the evaluation of this course
-    const targetEval = course[SyllabusKey.EVAL].filter(
+    const targetEval = (course[SyllabusKey.EVAL] as any[]).filter(
       (e) => e[SyllabusKey.EVAL_TYPE] === this.type
     )[0];
     // If the target evaluation item (e.g. 'exam') is included, check if its percentage is in the range of the filter
@@ -163,11 +163,11 @@ class EvalPercentFilter extends CoursesFilter {
 }
 class EvalSpecialFilter extends CoursesFilter {
   filterCallback = (course: Course) => {
-    if (course[SyllabusKey.EVAL].length === 0) return false;
+    if (!Array.isArray(course[SyllabusKey.EVAL]) || course[SyllabusKey.EVAL].length === 0) return false;
     var isFiltered = true;
     ["noExam", "noPaper", "noClassParticipation"].forEach((filter, i) => {
       if (this.filterValues.includes(filter)) {
-        var targetEval = course[SyllabusKey.EVAL].filter(
+        var targetEval = (course[SyllabusKey.EVAL] as any[]).filter(
           (e) => e[SyllabusKey.EVAL_TYPE] === i
         )[0];
         if (

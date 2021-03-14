@@ -47,7 +47,8 @@ const AddReviewButton = styled("button")`
   border: 0px;
   border-radius: 5px;
   float: right;
-  ${media.phone`float: none; width: 100%; font-size: 1.5em`}
+  ${media.desktop`float: none; width: 100%;`}
+  ${media.phone`font-size: 1.5em`}
   padding: 0.3rem 0.5em;
 `;
 

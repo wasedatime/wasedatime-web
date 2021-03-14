@@ -26,6 +26,7 @@ import AboutUs from "./aboutUs/AboutUs";
 import Bus from "./Bus";
 import Career from "./career/Career";
 import CoronaInfo from "./CoronaInfo";
+import Milestone from "./milestone/Milestone";
 import PrivacyPolicy from "./PrivacyPolicy";
 import TermsOfService from "./TermsOfService";
 import Footer from "./Footer";
@@ -236,6 +237,7 @@ class App extends React.Component {
                 <Route path="/career" component={Career} />
                 <Route exact path="/corona-info" component={CoronaInfo} />
                 <Route exact path="/courseInfo" component={CourseInfo} />
+                <Route exact path="/milestone" component={Milestone} />
                 <Route exact path="/privacy-policy" component={PrivacyPolicy} />
                 <Route
                   exact

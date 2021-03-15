@@ -19,6 +19,7 @@ import {
 import { SyllabusKey } from "../../constants/syllabus-data";
 import { schoolCodeMap } from "../../constants/school-code";
 import Course from "../../types/course";
+import { courseSchemaFullToShort } from "../../utils/map-single-course-schema";
 
 export const removeSchool = (school: string) => ({
   type: REMOVE_SCHOOL,
@@ -227,12 +228,14 @@ export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
   ).then(() => {
     const coursesBySchool = getState().fetchedCourses.coursesBySchool;
     let coursesAndPrefs = [];
+    let oldCourseIdPrefs = [];
+
     idsAndPrefs.forEach((ip) => {
       const school = schoolCodeMap[ip.id.substring(0, 2)];
       const course = coursesBySchool[school] && coursesBySchool[school].find(
         (c) => c[SyllabusKey.ID] === ip.id
       );
-      if (course) {
+      if (!course) {
         coursesAndPrefs.push({
           id: ip.id,
           color: ip.color,
@@ -242,13 +245,55 @@ export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
             [SyllabusKey.SCHOOL]: school,
           },
         });
+      } else {
+        const savedOldCourseIdPref = getState().addedCourses.byId[ip.id];
+        if (savedOldCourseIdPref) {
+          coursesAndPrefs.push({
+            ...savedOldCourseIdPref.pref,
+            id: ip.id,
+            course: savedOldCourseIdPref.course
+          });
+        } else {
+          oldCourseIdPrefs.push(ip);
+        }
       }
     });
-    dispatch({
-      type: SAVE_TIMETABLE,
-      payload: {
-        coursesAndPrefs: coursesAndPrefs,
-      },
+
+    Promise.all(
+      oldCourseIdPrefs.map(async (ip) => {
+        try {
+          const res = await API.get(
+            "wasedatime-dev",
+            `/syllabus?id=${ip.id}`,
+            {
+              headers: {
+                "Content-Type": "application/json",
+              },
+              response: true,
+            }
+          );
+          if (!res.data.data) return null;
+          return {
+            id: ip.id,
+            color: ip.color,
+            displayLang: ip.displayLang === "jp" ? "ja" : ip.displayLang,
+            course: {
+              ...courseSchemaFullToShort(res.data.data),
+              [SyllabusKey.SCHOOL]: schoolCodeMap[ip.id.substring(0, 2)],
+            },
+          };
+        } catch (error) {
+          return null;
+        }
+      })
+    ).then(oldCoursesAndPrefs => {
+      coursesAndPrefs = coursesAndPrefs.concat(oldCoursesAndPrefs);
+      dispatch({
+        type: SAVE_TIMETABLE,
+        payload: {
+          coursesAndPrefs: coursesAndPrefs,
+        },
+      });
     });
   });
 };

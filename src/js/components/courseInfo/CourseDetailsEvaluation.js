@@ -52,6 +52,7 @@ const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
 const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
 
 const CourseDetailsEvaluation = ({ course, t }) => {
+  if (!Array.isArray(course[SYLLABUS_KEYS.EVAL])) return <div>{course[SYLLABUS_KEYS.EVAL]}</div>
   return course[SYLLABUS_KEYS.EVAL].length > 0 ? (
     <Grid columns={2} stackable>
       <Grid.Column>

@@ -30,7 +30,7 @@ const getChunkKey = (chunk) => {
 };
 
 const COURSES_PER_CHUNK = 5;
-const INIT_CHUNKS_NUM = 2;
+const INIT_CHUNKS_NUM = 1;
 
 interface Props extends WithTranslation {
   searchTerm: string | string[];
@@ -67,7 +67,7 @@ class FetchedCourseList extends React.Component<Props, State> {
     );
 
   loadMoreChunks = (index) => {
-    if (index !== 0 && index + 1 === this.state.loadedChunksNum) {
+    if (index + 1 === this.state.loadedChunksNum) {
       this.setState((prevState, props) => {
         return {
           loadedChunksNum: prevState.loadedChunksNum + 1,
@@ -78,7 +78,6 @@ class FetchedCourseList extends React.Component<Props, State> {
 
   render() {
     const { searchTerm, searchLang, results, t, i18n } = this.props;
-    console.log(results);
     const resultsInChunks = this.resultsToChunks();
 
     return (
@@ -87,7 +86,7 @@ class FetchedCourseList extends React.Component<Props, State> {
           resultsInChunks.map((chunk, index) => (
             <Waypoint
               key={getChunkKey(chunk)}
-              onEnter={() => {
+              onEnter={({ currentPosition }) => {
                 this.loadMoreChunks(index);
               }}
             >

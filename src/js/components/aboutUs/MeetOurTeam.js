@@ -374,7 +374,7 @@ const MeetOurTeam = ({ t }) => {
         {/* ----------------------------------Hatori */}
         <Card>
           <MemberImage src={hatori}></MemberImage>
-          <MemberName>Zhen Chao</MemberName>
+          <MemberName>Zhen Cao</MemberName>
           <MemberPosition>Frontend Engineer</MemberPosition>
           <SocialMediaArea>
             <a

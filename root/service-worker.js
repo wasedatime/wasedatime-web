@@ -16,7 +16,7 @@ workbox.routing.registerRoute(
   ({ event }) => event.request.mode === "navigate",
   new workbox.strategies.NetworkFirst({
     fetchOptions: {
-      credentials: 'include',
+      credentials: 'same-origin',
     },
  })
 );
@@ -25,7 +25,7 @@ workbox.routing.registerRoute(
   /.*\.(?:js|css)/,
   new workbox.strategies.NetworkFirst({
     fetchOptions: {
-      credentials: 'include',
+      credentials: 'same-origin',
     },
  })
 );
@@ -34,7 +34,7 @@ workbox.routing.registerRoute(
   /.*\.(?:png|jpg|jpeg|svg|gif|woff|woff2|eot|ttf|otf)/,
   new workbox.strategies.StaleWhileRevalidate({
     fetchOptions: {
-      credentials: 'include',
+      credentials: 'same-origin',
     },
  })
 );

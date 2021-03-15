@@ -431,7 +431,9 @@ class CourseInfo extends React.Component {
                   : "",
               },
             }
-          ).then(async () => this.cleanFormAndUpdateReviews(newReview));
+          )
+            .then(async () => this.cleanFormAndUpdateReviews(newReview))
+            .catch(error => console.log(error));
         } else if (reviewFormMode === "edit") {
           API.patch(
             "wasedatime-dev",
@@ -450,7 +452,9 @@ class CourseInfo extends React.Component {
                   : "",
               },
             }
-          ).then(async () => this.cleanFormAndUpdateReviews(newReview));
+          )
+            .then(async () => this.cleanFormAndUpdateReviews(newReview))
+            .catch(error => console.log(error));
         }
       } catch (error) {
         Alert.error(this.props.t(`courseInfo.Review failed to send`), {

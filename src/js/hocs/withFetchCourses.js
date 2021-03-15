@@ -83,7 +83,7 @@ const withFetchCourses = (WrappedComponent) => {
         headers: {
           Authorization: userTokens ? userTokens.idToken : "",
         },
-      });
+      }).catch(error => console.log(error));
     }
 
     componentDidUpdate(prevProps) {

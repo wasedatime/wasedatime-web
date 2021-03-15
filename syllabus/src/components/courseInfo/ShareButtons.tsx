@@ -118,7 +118,8 @@ const ShareButtons = ({ courseId, t }) => {
           trigger={
             <FontAwesomeIcon
               icon={faLink}
-              size="2x"
+              size="3x"
+              transform="shrink-2"
               style={{ color: "#8B8" }}
             />
           }

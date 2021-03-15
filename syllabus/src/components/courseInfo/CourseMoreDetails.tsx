@@ -7,13 +7,34 @@ import Course from "../../types/course";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
+import Table from "semantic-ui-react/dist/commonjs/collections/Table";
+import Label from "semantic-ui-react/dist/commonjs/elements/Label";
 
 interface Props extends WithTranslation {
   course: Course;
 }
 
+interface ScheduleProps {
+  content: string;
+}
+
 interface TextbooksProps {
   content: string;
+}
+
+const Schedule = ({ content }: ScheduleProps) => {
+  const items = content.split("\n").filter(c => c).filter((c, i) => i%2 === 1);
+  
+  return (
+    <Table basic='very'>
+      {items.map((item, i) => (<Table.Body>
+        <Table.Row>
+          <Table.Cell><Label><p>{i+1}</p></Label></Table.Cell>
+          <Table.Cell><p>{item}</p></Table.Cell>
+        </Table.Row>
+      </Table.Body>))}
+    </Table>
+  )
 }
 
 const Textbooks = ({ content }: TextbooksProps) => {
@@ -87,7 +108,7 @@ const CourseMoreDetails = ({ course, t }: Props) => {
     },
     {
       title: t(`courseMoreDetails.Schedule`),
-      content: course[SyllabusKey.SCHEDULE] && course[SyllabusKey.SCHEDULE].split("\n").map(c => c && <p>{c}</p>)
+      content: course[SyllabusKey.SCHEDULE] && <Schedule content={course[SyllabusKey.SCHEDULE]} />
     },
     {
       title: t(`courseMoreDetails.Self Study`),
@@ -95,11 +116,11 @@ const CourseMoreDetails = ({ course, t }: Props) => {
     },
     {
       title: t(`courseMoreDetails.Textbook`),
-      content: course[SyllabusKey.TEXT] && course[SyllabusKey.TEXT].split("\n").map(c => c && <p>{c}</p>)
+      content: course[SyllabusKey.TEXT] && <Textbooks content={course[SyllabusKey.TEXT]} />
     },
     {
       title: t(`courseMoreDetails.Reference`),
-      content: course[SyllabusKey.REFERENCE] && course[SyllabusKey.REFERENCE].split("\n").map(c => c && <p>{c}</p>)
+      content: course[SyllabusKey.REFERENCE] && <Textbooks content={course[SyllabusKey.REFERENCE]} />
     },
     {
       title: t(`courseMoreDetails.Note`),

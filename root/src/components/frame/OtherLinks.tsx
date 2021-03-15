@@ -69,7 +69,7 @@ const OtherLinks = ({ expanded }: Props) => {
       </a>
       <br />
       <SnsLink
-        href="https://github.com/wasedatime/wasedatime-web"
+        href="https://github.com/wasedatime"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub link"

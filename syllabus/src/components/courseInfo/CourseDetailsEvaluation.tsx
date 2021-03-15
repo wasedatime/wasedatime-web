@@ -1,15 +1,23 @@
 import React from "react";
 import MediaQuery from "react-responsive";
+import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { SyllabusKey } from "../../constants/syllabus-data";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import Course from "../../types/course";
 import { PieChart } from "react-minimal-pie-chart";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
 const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
+
+const ChartWrapper = styled(Grid.Column)`
+  width: 150px;
+  height: 150px;
+  margin: 0px auto;
+  ${media.phone`width: 100px; height: 100px;`}
+`;
 
 interface Props extends WithTranslation {
   course: Course;
@@ -71,27 +79,16 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
           opacity: 0.75,
           pointerEvents: "none",
         }}
-        viewBoxSize={[120, 100]}
-        center={[60, 50]}
+        viewBoxSize={[50, 100]}
+        center={[30, 50]}
       />
     );
 
     return course[SyllabusKey.EVAL].length > 0 ? (
-      <MediaQuery maxWidth={sizes.phone}>
-        {(matches) =>
-          matches ? (
-            <div>
-              <div style={{ width: "150px", height: "150px", margin: "0px auto" }}>{evalsChart}</div>
-              {evalsTable}
-            </div>
-          ) : (
-            <Grid columns={2}>
-              <Grid.Column><div style={{ width: "150px", height: "150px", margin: "0px auto" }}>{evalsChart}</div></Grid.Column>
-              <Grid.Column>{evalsTable}</Grid.Column>
-            </Grid>
-          )
-        }
-      </MediaQuery>
+      <Grid>
+        <Grid.Column mobile={6} tablet={7} computer={6}><ChartWrapper>{evalsChart}</ChartWrapper></Grid.Column>
+        <Grid.Column mobile={10} tablet={9} computer={10}>{evalsTable}</Grid.Column>
+      </Grid>
     ) : (
       <p style={{ textAlign: "center" }}>
         Click the blue arrow button above to check the details

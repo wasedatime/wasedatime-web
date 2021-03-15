@@ -11,15 +11,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faCalendarAlt, faCommentAlt, faForward, faNewspaper, faPlayCircle, faUserAlt } from "@fortawesome/free-solid-svg-icons";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
-const Title = styled("h2")`
-  width: 50%;
-  font-weight: bold;
-  font-size: 1.5em;
-  margin: 0 auto;
-  text-align: center;
-  color: #444 !important;
-`;
-
 const MainParagraph = styled("p")`
   align-items: center;
   background-color: #fff;
@@ -29,40 +20,6 @@ const MainParagraph = styled("p")`
   width: 90%;
   margin: 0 auto;
   font-size: 0.9em;
-`;
-
-const ImageAndDescription = styled("div")`
-  width: 100%;
-`;
-const Description = styled("div")`
-  margin: 0 auto;
-  float: left;
-  border: solid;
-`;
-
-const Picture1 = styled("img")`
-  width: 300px;
-  height: auto;
-  float: left;
-  margin-right: 5px;
-`;
-
-const Picture2 = styled("img")`
-  width: 300px;
-  height: auto;
-  margin-left: 5px;
-`;
-
-const Picture3 = styled("img")`
-  width: 300px;
-  height: auto;
-  margin-left: 5px;
-`;
-
-const Picture4 = styled("img")`
-  width: 300px;
-  height: auto;
-  margin-left: 5px;
 `;
 
 const OurMission = () => {

@@ -74,7 +74,7 @@ const SocialMediaArea = styled("div")`
 const partners = [
   {
     org: "SPSE-EDP Student Council",
-    img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-logo.JPG",
+    img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-logo.png",
     links: [
       {
         url: "https://www.facebook.com/SPSEEDPSC",
@@ -88,7 +88,7 @@ const partners = [
     members: [
       {
         name: "Peter Chai",
-        img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-member1.jpg",
+        img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-member1.png",
         links: [
           {
             url: "https://www.linkedin.com/in/peter-chai-233577158/",
@@ -106,14 +106,14 @@ const partners = [
       },
       {
         name: "Ghafi Reyhan",
-        img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-member2.jpg",
+        img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-member2.png",
         links: []
       }
     ]
   },
   {
     org: "CSSA",
-    img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/cssa-logo.jpg",
+    img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/cssa-logo.png",
     links: [
       // {
       //   url: "",
@@ -123,7 +123,7 @@ const partners = [
   },
   {
     org: "WaLife",
-    img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/walife-logo.jpg",
+    img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/walife-logo.png",
     links: [
       // {
       //   url: "",
@@ -133,7 +133,7 @@ const partners = [
   },
   {
     org: "WTSA",
-    img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/wtsa-logo.jpg",
+    img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/wtsa-logo.png",
     links: [
       {
         url: "https://www.facebook.com/WasedaTaiwaneseStudentAssociation",

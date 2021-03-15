@@ -13,13 +13,14 @@ export const courseSchemaFullToShort = (course) => {
     [SYLLABUS_KEYS.OCC_LOCATION]:
       occ[SYLLABUS_KEYS.OCC_LOCATION],
   }));
-  const evals = course[SYLLABUS_ATTR[SYLLABUS_KEYS.EVAL]].map((e) => ({
+  const rawEvals = course[SYLLABUS_ATTR[SYLLABUS_KEYS.EVAL]];
+  const evals = Array.isArray(rawEvals) ? rawEvals.map((e) => ({
     [SYLLABUS_KEYS.EVAL_TYPE]: e[SYLLABUS_EVAL_ATTR[SYLLABUS_KEYS.EVAL_TYPE]],
     [SYLLABUS_KEYS.EVAL_PERCENT]:
       e[SYLLABUS_EVAL_ATTR[SYLLABUS_KEYS.EVAL_PERCENT]],
     [SYLLABUS_KEYS.EVAL_CRITERIA]:
       e[SYLLABUS_EVAL_ATTR[SYLLABUS_KEYS.EVAL_CRITERIA]],
-  }));
+  })) : rawEvals;
   return {
     [SYLLABUS_KEYS.ID]: course[SYLLABUS_ATTR[SYLLABUS_KEYS.ID]],
     [SYLLABUS_KEYS.TITLE]: course[SYLLABUS_ATTR[SYLLABUS_KEYS.TITLE]],
@@ -52,13 +53,14 @@ export const courseSchemaShortToFull = (course) => {
     [SYLLABUS_KEYS.OCC_LOCATION]:
       occ[SYLLABUS_KEYS.OCC_LOCATION],
   }));
-  const evals = course[SYLLABUS_KEYS.EVAL].map((e) => ({
+  const rawEvals = course[SYLLABUS_KEYS.EVAL]
+  const evals = Array.isArray(rawEvals) ? rawEvals.map((e) => ({
     [SYLLABUS_EVAL_ATTR[SYLLABUS_KEYS.EVAL_TYPE]]: e[SYLLABUS_KEYS.EVAL_TYPE],
     [SYLLABUS_EVAL_ATTR[SYLLABUS_KEYS.EVAL_PERCENT]]:
       e[SYLLABUS_KEYS.EVAL_PERCENT],
     [SYLLABUS_EVAL_ATTR[SYLLABUS_KEYS.EVAL_CRITERIA]]:
       e[SYLLABUS_KEYS.EVAL_CRITERIA],
-  }));
+  })) : rawEvals;
   return {
     [SYLLABUS_ATTR[SYLLABUS_KEYS.ID]]: course[SYLLABUS_KEYS.ID],
     [SYLLABUS_ATTR[SYLLABUS_KEYS.TITLE]]: course[SYLLABUS_KEYS.TITLE],

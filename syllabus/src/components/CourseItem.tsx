@@ -117,6 +117,7 @@ const DescriptionWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  ${props => props.isLarger && "font-size: 1.2em"}
 `;
 
 const Description = styled("div")`
@@ -356,7 +357,7 @@ const CourseItem = ({
           </div>}
         </CourseItemRow>
 
-        <DescriptionWrapper>
+        <DescriptionWrapper isLarger={isRelatedCourse}>
           <Description>{yearTerm}</Description>
           <Description>
             <OccurrenceList>{occurrences}</OccurrenceList>

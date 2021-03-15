@@ -17,7 +17,9 @@ const StyledFooter = styled("footer")`
   background-color: #222222;
   font-size: 1.4rem;
   font-weight: 300;
+  position: absolute;
   z-index: 300;
+  width: 100%;
   padding-top: 0.5rem;
 `;
 

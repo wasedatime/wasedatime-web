@@ -1,5 +1,6 @@
 import { normalize } from "normalizr";
 import API from "@aws-amplify/api";
+import { Auth } from "aws-amplify";
 
 import {
   ADD_COURSE,
@@ -21,6 +22,7 @@ import { SYLLABUS_KEYS } from "../config/syllabusKeys";
 import * as schema from "../data/schema";
 import { schoolCodeMap } from "../data/schoolCodeMap";
 import { courseSchemaFullToShort } from "../utils/mapCourseSchema.js";
+import { clearUserInfo, updateUserSession } from "./user";
 
 export const removeSchool = (school) => ({
   type: REMOVE_SCHOOL,
@@ -116,74 +118,122 @@ export const hydrateAddedCourses = (prefs, fetchedCoursesById) => ({
   },
 });
 
-export const addCourse = (course, displayLang) => (dispatch, getState) => {
-  try {
-    if (getState().user.tokens) {
-      const term = course[SYLLABUS_KEYS.TERM].match(/0|1|f/g)
-        ? "spring"
-        : "fall";
-      API.patch("wasedatime-dev", "/timetable", {
-        body: {
-          data: {
-            operation: "append",
-            course: {
-              id: course[SYLLABUS_KEYS.ID],
-              color: getState().addedCourses[term].prefs.length % 8,
-              displayLang: displayLang,
-            },
+export const addCourse = (course, displayLang) => async (dispatch, getState) => {
+  const callAddCourseAPI = async () => {
+    const term = course[SYLLABUS_KEYS.TERM].match(/0|1|f/g)
+      ? "spring"
+      : "fall";
+    await API.patch("wasedatime-dev", "/timetable", {
+      body: {
+        data: {
+          operation: "append",
+          course: {
+            id: course[SYLLABUS_KEYS.ID],
+            color: getState().addedCourses[term].prefs.length % 8,
+            displayLang: displayLang,
           },
         },
-        headers: {
-          Authorization: getState().user.tokens
-            ? getState().user.tokens.idToken
-            : "",
-        },
-      });
-    }
-  } catch (e) {
-    console.error(e);
-  } finally {
-    dispatch({
-      type: ADD_COURSE,
-      payload: {
-        id: course[SYLLABUS_KEYS.ID],
-        semester: course[SYLLABUS_KEYS.TERM],
-        course: course,
-        displayLang: displayLang,
-        schoolExp: getState().fetchedCourses.expBySchool[
-          course[SYLLABUS_KEYS.SCHOOL]
-        ],
+      },
+      headers: {
+        Authorization: getState().user.tokens
+          ? getState().user.tokens.idToken
+          : "",
       },
     });
+  };
+
+  const dispatchBody = {
+    type: ADD_COURSE,
+    payload: {
+      id: course[SYLLABUS_KEYS.ID],
+      semester: course[SYLLABUS_KEYS.TERM],
+      course: course,
+      displayLang: displayLang,
+      schoolExp: getState().fetchedCourses.expBySchool[
+        course[SYLLABUS_KEYS.SCHOOL]
+      ],
+    },
+  };
+
+  try {
+    if (getState().user.tokens) {
+      await callAddCourseAPI();
+    }
+    dispatch(dispatchBody);
+  } catch (e) {
+    try {
+      const cognitoUser = await Auth.currentAuthenticatedUser();
+      const currentSession = await Auth.currentSession();
+
+      cognitoUser.refreshSession(
+        currentSession.refreshToken,
+        (err, session) => {
+          if (err) {
+            dispatch(clearUserInfo());
+          } else {
+            dispatch(updateUserSession(session));
+          }
+          dispatch(dispatchBody);
+        }
+      );
+      await callAddCourseAPI();
+    } catch (err) {
+      dispatch(clearUserInfo());
+      dispatch(dispatchBody);
+    }
   }
 };
 
-export const removeCourse = (id) => (dispatch, getState) => {
-  try {
-    if (getState().user.tokens) {
-      API.patch("wasedatime-dev", "/timetable", {
-        body: {
-          data: {
-            operation: "remove",
-            index: getState().addedCourses.ids.indexOf(id),
-          },
+export const removeCourse = (id) => async (dispatch, getState) => {
+  const callRemoveCourseAPI = async () => {
+    await API.patch("wasedatime-dev", "/timetable", {
+      body: {
+        data: {
+          operation: "remove",
+          index: getState().addedCourses.ids.indexOf(id),
         },
-        headers: {
-          Authorization: getState().user.tokens
-            ? getState().user.tokens.idToken
-            : "",
-        },
-      });
-    }
-  } catch (e) {
-    console.error(e);
-  } finally {
-    dispatch({
-      type: REMOVE_COURSE,
-      payload: {
-        id,
+      },
+      headers: {
+        Authorization: getState().user.tokens
+          ? getState().user.tokens.idToken
+          : "",
       },
     });
+  };
+
+  const dispatchBody = {
+    type: REMOVE_COURSE,
+    payload: {
+      id,
+    },
+  };
+
+  try {
+    if (getState().user.tokens) {
+      await callRemoveCourseAPI();
+    }
+    dispatch(dispatchBody);
+  } catch (e) {
+    try {
+      const cognitoUser = await Auth.currentAuthenticatedUser();
+      const currentSession = await Auth.currentSession();
+
+      cognitoUser.refreshSession(
+        currentSession.refreshToken,
+        (err, session) => {
+          if (err) {
+            dispatch(clearUserInfo());
+          } else {
+            dispatch(updateUserSession(session));
+          }
+          dispatch(dispatchBody);
+        }
+      );
+      await callRemoveCourseAPI();
+    } catch (e) {
+      dispatch(clearUserInfo());
+      dispatch(dispatchBody);
+    }
   }
 };
 

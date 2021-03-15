@@ -141,7 +141,7 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
         <Table.Body>
           <Table.Row>
             <Table.Cell>
-              <p>{t("courseInfo.Details.Type.title")}</p>
+              <p style={{ paddingLeft: "1em" }}>{t("courseInfo.Details.Type.title")}</p>
             </Table.Cell>
             <Table.Cell>
               <p>
@@ -151,7 +151,7 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              <p>{t("courseInfo.Details.Category")}</p>
+              <p style={{ paddingLeft: "1em" }}>{t("courseInfo.Details.Category")}</p>
             </Table.Cell>
             <Table.Cell>
               <p>
@@ -169,7 +169,7 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              <p>{t("courseInfo.Details.Level.title")}</p>
+              <p style={{ paddingLeft: "1em" }}>{t("courseInfo.Details.Level.title")}</p>
             </Table.Cell>
             <Table.Cell>
               <p>

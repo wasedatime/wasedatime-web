@@ -14,17 +14,29 @@ workbox.core.setCacheNameDetails({
 
 workbox.routing.registerRoute(
   ({ event }) => event.request.mode === "navigate",
-  new workbox.strategies.NetworkFirst()
+  new workbox.strategies.NetworkFirst({
+    fetchOptions: {
+      credentials: 'include',
+    },
+ })
 );
 
 workbox.routing.registerRoute(
   /.*\.(?:js|css)/,
-  new workbox.strategies.NetworkFirst()
+  new workbox.strategies.NetworkFirst({
+    fetchOptions: {
+      credentials: 'include',
+    },
+ })
 );
 
 workbox.routing.registerRoute(
   /.*\.(?:png|jpg|jpeg|svg|gif|woff|woff2|eot|ttf|otf)/,
-  new workbox.strategies.StaleWhileRevalidate()
+  new workbox.strategies.StaleWhileRevalidate({
+    fetchOptions: {
+      credentials: 'include',
+    },
+ })
 );
 
 self.addEventListener("message", function (event) {

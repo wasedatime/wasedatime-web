@@ -2,6 +2,7 @@ import React, { useEffect, lazy, Suspense } from "react";
 import { Helmet } from "react-helmet";
 import { Hub } from "@aws-amplify/core";
 import { Router, Redirect, navigate } from "@reach/router";
+import { navigateToUrl } from "single-spa";
 
 import TermsOfService from "./components/TermsOfService";
 import PrivacyPolicy from "./components/PrivacyPolicy";
@@ -23,7 +24,6 @@ import {
   gaUserSignInFailure,
   gaUserSignOut,
 } from "./ga/eventActions";
-import { navigateToUrl } from "single-spa";
 
 const NotFound = ({ default: boolean }) => {
   navigateToUrl("/");

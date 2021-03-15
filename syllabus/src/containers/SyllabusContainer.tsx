@@ -350,6 +350,11 @@ class SyllabusContainer extends React.Component<
           </MediaQuery>
 
           <MiddleColumn>
+            <Link to="/courses/milestone">
+              <button style={{ width: "94%", backgroundColor: "#ccc", color: "#fff", borderRadius: "6px", margin: "0px 5em 0px 1em" }}>
+                Link to 2021 Spring Milestone × WTSA
+              </button>
+            </Link>
             <Suspense fallback={<LoadingSpinner message="Loading..." />}>
               {allFetchedCourses.length > 0 ? (
                 <FetchedCourseList

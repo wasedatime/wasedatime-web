@@ -236,7 +236,7 @@ export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
         (c) => c[SyllabusKey.ID] === ip.id
         );
       if (course) {
-        const existingPref = getState().addedCourses.byId[ip.id].pref;
+        const existingPref = getState().addedCourses.byId[ip.id] && getState().addedCourses.byId[ip.id].pref;
         coursesAndPrefs.push({
           id: ip.id,
           color: (existingPref && existingPref.color) || ip.color || i % 8,

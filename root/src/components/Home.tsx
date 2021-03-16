@@ -17,7 +17,6 @@ const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100vh;
-  ${media.tablet`height: calc(100vh - 50px)`}
   overflow-y: auto;
 `;
 
@@ -29,7 +28,6 @@ const StyledArticle = styled("article")`
   align-item: center;
   padding-top: 5em;
   height: 100vh;
-  ${media.tablet`height: calc(100vh - 50px)`}
 `;
 
 const LogoWrapper = styled("div")`

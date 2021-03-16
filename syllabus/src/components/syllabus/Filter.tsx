@@ -12,16 +12,18 @@ import FilterOption from "../../constants/syllabus-filter";
 import SimpleBar from "simplebar-react";
 
 const FilterWrapper = styled.div`
-  ${(props) => !props.isSideBar && "width: 100%;"}
+  ${(props) => !props.isSideBar && "width: 100vw;"}
   height: ${(props) =>
     props.isSideBar ? "calc(100vh - 67px)" : "calc(100vh - 50px)"};
 `;
 
 const FilterScrollArea = styled(SimpleBar)`
   flex: none;
-  height: 100%;
+  width: 100%;
+  height: ${(props) =>
+    props.isSideBar ? "100%" : "calc(100% - 50px)"};
   padding: ${(props) =>
-    props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em;"};
+    props.isSideBar ? "0.5em 1em 1em 1em" : "0.7em 1.2em"};
   .simplebar-scrollbar::before {
     background-color: #999;
   }

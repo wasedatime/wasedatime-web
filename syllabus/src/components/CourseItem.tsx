@@ -286,20 +286,20 @@ const CourseItem = ({
     });
 
   const courseModalityIcons = [
-    <span>
+    <span style={{ fontSize: "12px" }}>
       <FontAwesomeIcon icon={faChalkboardTeacher} />
     </span>,
-    <span>
+    <span style={{ fontSize: "12px" }}>
       <FontAwesomeIcon icon={faChalkboardTeacher} />{" "}
       <FontAwesomeIcon icon={faWifi} />
     </span>,
-    <span>
+    <span style={{ fontSize: "12px" }}>
       <FontAwesomeIcon icon={faVideo} />
     </span>,
-    <span>
+    <span style={{ fontSize: "12px" }}>
       <FontAwesomeIcon icon={faVideo} /> <FontAwesomeIcon icon={faClock} />
     </span>,
-    <span>
+    <span style={{ fontSize: "12px" }}>
       <FontAwesomeIcon icon={faBroadcastTower} />
     </span>,
   ];
@@ -332,7 +332,7 @@ const CourseItem = ({
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge>{langTerm}</Badge>
+            <Badge style={{ fontSize: "12px" }}>{langTerm}</Badge>
             {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
           {!isRelatedCourse && !isMilestone && <div

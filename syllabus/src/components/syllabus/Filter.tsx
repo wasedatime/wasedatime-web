@@ -23,7 +23,7 @@ const FilterScrollArea = styled(SimpleBar)`
   height: ${(props) =>
     props.isSideBar ? "100%" : "calc(100% - 50px)"};
   padding: ${(props) =>
-    props.isSideBar ? "0.5em 1em 1em 1em" : "0.7em 1.2em"};
+    props.isSideBar ? "0.5em 1em 1em 1em" : "0.7em 1.2em 1.2em"};
   .simplebar-scrollbar::before {
     background-color: #999;
   }

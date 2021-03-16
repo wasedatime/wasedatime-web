@@ -204,6 +204,7 @@ const Partners = () => {
           ))
         }
       </CardArea>
+      <br />
     </Wrapper>
   );
 };

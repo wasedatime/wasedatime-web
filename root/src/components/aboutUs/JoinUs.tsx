@@ -11,9 +11,9 @@ import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   background-color: #fff;
-  padding: 0 20vw;
+  padding: 0 20vw 50px;
   color: #666;
-  ${media.phone`padding: 0 10vw;`};
+  ${media.phone`padding: 0 10vw 50px;`};
   hr {
     width: 80%;
   }
@@ -112,7 +112,7 @@ const JoinUs = () => {
           <li>・Develop new features for WasedaTime</li>
           <li>・Backend automation & maintenance</li>
           <li>
-            ・ Direction: Make WasedaTime a <b>platform</b> for students
+            ・Direction: Make WasedaTime a <b>platform</b> for students
           </li>
           <small>* Using React on Frontend and AWS on Backend</small>
           <br></br>
@@ -125,7 +125,7 @@ const JoinUs = () => {
           <li>・Technical skills and Practical experience on development</li>
           <li>・Knowledges shared by each other</li>
           <li>
-            ・ Teammates who can fight together to make Waseda better
+            ・Teammates who can fight together to make Waseda better
             <b>platform</b> for students
           </li>
           <small>
@@ -177,11 +177,11 @@ const JoinUs = () => {
         <h3>Requirements</h3>
         <ul>
           <li>
-            ・ Have passion on learning, presenting new ideas, building
+            ・Have passion on learning, presenting new ideas, building
             connection
           </li>
           <li>
-            ・ Sense of responsibility, business sense (experience in product
+            ・Sense of responsibility, business sense (experience in product
             operation is better)
           </li>
         </ul>
@@ -190,12 +190,12 @@ const JoinUs = () => {
         <h3>Job description</h3>
         <ul>
           <li>
-            ・ Marketing & Advertising（Assist in the growth of new users of the
+            ・Marketing & Advertising（Assist in the growth of new users of the
             platform、increase awareness、Market research & user analysis）
           </li>
           <li>・Business development (Looking for business partners) </li>
           <li>
-            ・ Participate in the new function design and brain storm of
+            ・Participate in the new function design and brain storm of
             Wasedatime.
           </li>
         </ul>
@@ -204,12 +204,12 @@ const JoinUs = () => {
         <h3>What you will get</h3>
         <ul>
           <li>
-            ・ A unique project experience on marketing/advertising/business or
+            ・A unique project experience on marketing/advertising/business or
             opportunities to realize your unique ideas
           </li>
           <li>・Knowledges shared by each other</li>
           <li>
-            ・ You will meet creative people with different backgrounds,
+            ・You will meet creative people with different backgrounds,
             fighting together to make Waseda better!
           </li>
         </ul>

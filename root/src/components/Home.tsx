@@ -17,7 +17,7 @@ const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
   background-attachment: fixed;
   height: 100vh;
-  overflow-y: auto;
+  position: fixed;
 `;
 
 const StyledArticle = styled("article")`

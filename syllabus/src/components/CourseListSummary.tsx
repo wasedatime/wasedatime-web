@@ -61,24 +61,6 @@ const creditSum = (coursesAndPrefs) => {
     .reduce((a, b) => a + b, 0);
 };
 
-const sortingOptions = [
-  {
-    key: SortingOption.ADDED_ORDER,
-    text: "Added order",
-    value: SortingOption.ADDED_ORDER,
-  },
-  {
-    key: SortingOption.COURSE_TITLE,
-    text: "Course title",
-    value: SortingOption.COURSE_TITLE,
-  },
-  {
-    key: SortingOption.COURSE_TIME,
-    text: "Course time",
-    value: SortingOption.COURSE_TIME,
-  },
-];
-
 interface Props extends WithTranslation {
   courses: Course[];
   selectedSortingOption: string;
@@ -89,15 +71,35 @@ const CourseListSummary = ({
   courses,
   selectedSortingOption,
   changeSortingOption,
+  t
 }: Props) => {
+
+  const sortingOptions = [
+    {
+      key: SortingOption.ADDED_ORDER,
+      text: t("syllabus.Added order"),
+      value: SortingOption.ADDED_ORDER,
+    },
+    {
+      key: SortingOption.COURSE_TITLE,
+      text: t("syllabus.Course title"),
+      value: SortingOption.COURSE_TITLE,
+    },
+    {
+      key: SortingOption.COURSE_TIME,
+      text: t("syllabus.Course time"),
+      value: SortingOption.COURSE_TIME,
+    },
+  ];
+
   return (
     <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
         <StyledLabel size="big" color="grey" basic>
-          {`${courses.length}`} courses
+          {`${courses.length}`} {t("timetable.courses")}
         </StyledLabel>
         <StyledLabel size="big" color="grey" basic>
-          {creditSum(courses)} credits
+          {creditSum(courses)} {t("timetable.credits")}
         </StyledLabel>
         <SortingIcon icon={faSortAmountDown} />{" "}
         <StyledDropdown

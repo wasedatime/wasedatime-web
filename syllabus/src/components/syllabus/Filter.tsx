@@ -196,7 +196,7 @@ const Filter = ({
     },
     {
       key: t("syllabus.languageCodes.9"),
-      text: t("syllabus.languages.9"),
+      text: t("other"),
       value: "9",
     },
   ];

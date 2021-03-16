@@ -13,6 +13,7 @@ import ReactGA from "react-ga";
 import { gaLanguage } from "../../ga/eventCategories";
 import { gaAppendActionWithLng, gaChangeLanguage } from "../../ga/eventActions";
 import Partners from "./Partners";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const AboutUsWrapper = styled(Wrapper)`
   display: flex;
@@ -26,6 +27,10 @@ const HeaderWrapper = styled.div`
 const AboutUsFlex = styled.div`
   flex: calc(100% - 67px);
   padding: 10px;
+`;
+
+const AboutUsMenu = styled.div`
+  ${media.tablet`text-align: center;`}
 `;
 
 const AboutUs = (props: { path: string }) => {
@@ -67,58 +72,60 @@ const AboutUs = (props: { path: string }) => {
         />
       </HeaderWrapper>
       <AboutUsFlex>
-        <button
-          className={`
-          border-2 border-red-800 border-r-0 ${
-            activePage === "our mission"
-              ? "bg-red-800 text-white"
-              : "bg-white text-red-800"
-          } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
-        `}
-          onClick={() =>
-            activePage !== "our mission" && setActivePage("our mission")
-          }
-        >
-          {t("aboutus.our mission")}
-        </button>
-        <button
-          className={`
-          border-2 border-red-800 border-l-0 border-r-0 ${
-            activePage === "join us"
-              ? "bg-red-800 text-white"
-              : "bg-white text-red-800"
-          } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
-        `}
-          onClick={() => activePage !== "join us" && setActivePage("join us")}
-        >
-          {t("aboutus.join us")}
-        </button>
-        <button
-          className={`
-          border-2 border-red-800 border-l-0 border-r-0 ${
-            activePage === "meet our team"
-              ? "bg-red-800 text-white"
-              : "bg-white text-red-800"
-          } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
-        `}
-          onClick={() => activePage !== "meet our team" && setActivePage("meet our team")}
-        >
-          {t("aboutus.meet our team")}
-        </button>
-        <button
-          className={`
-          border-2 border-red-800 border-l-0 ${
-            activePage === "partners"
-              ? "bg-red-800 text-white"
-              : "bg-white text-red-800"
-          } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
-        `}
-          onClick={() =>
-            activePage !== "partners" && setActivePage("partners")
-          }
-        >
-          {t("aboutus.partners")}
-        </button>
+        <AboutUsMenu>
+          <button
+            className={`
+            border-2 border-red-800 border-r-0 ${
+              activePage === "our mission"
+                ? "bg-red-800 text-white"
+                : "bg-white text-red-800"
+            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
+          `}
+            onClick={() =>
+              activePage !== "our mission" && setActivePage("our mission")
+            }
+          >
+            {t("aboutus.our mission")}
+          </button>
+          <button
+            className={`
+            border-2 border-red-800 border-l-0 border-r-0 ${
+              activePage === "join us"
+                ? "bg-red-800 text-white"
+                : "bg-white text-red-800"
+            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+          `}
+            onClick={() => activePage !== "join us" && setActivePage("join us")}
+          >
+            {t("aboutus.join us")}
+          </button>
+          <button
+            className={`
+            border-2 border-red-800 border-l-0 border-r-0 ${
+              activePage === "meet our team"
+                ? "bg-red-800 text-white"
+                : "bg-white text-red-800"
+            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+          `}
+            onClick={() => activePage !== "meet our team" && setActivePage("meet our team")}
+          >
+            {t("aboutus.meet our team")}
+          </button>
+          <button
+            className={`
+            border-2 border-red-800 border-l-0 ${
+              activePage === "partners"
+                ? "bg-red-800 text-white"
+                : "bg-white text-red-800"
+            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
+          `}
+            onClick={() =>
+              activePage !== "partners" && setActivePage("partners")
+            }
+          >
+            {t("aboutus.partners")}
+          </button>
+        </AboutUsMenu>
 
         {activePage === "our mission" && <OurMission />}
         {activePage === "join us" && <JoinUs />}

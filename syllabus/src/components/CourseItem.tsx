@@ -286,20 +286,20 @@ const CourseItem = ({
     });
 
   const courseModalityIcons = [
-    <span style={{ fontSize: "12px" }}>
+    <span style={{ fontSize: "14px" }}>
       <FontAwesomeIcon icon={faChalkboardTeacher} />
     </span>,
-    <span style={{ fontSize: "12px" }}>
+    <span style={{ fontSize: "14px" }}>
       <FontAwesomeIcon icon={faChalkboardTeacher} />{" "}
       <FontAwesomeIcon icon={faWifi} />
     </span>,
-    <span style={{ fontSize: "12px" }}>
+    <span style={{ fontSize: "14px" }}>
       <FontAwesomeIcon icon={faVideo} />
     </span>,
-    <span style={{ fontSize: "12px" }}>
+    <span style={{ fontSize: "14px" }}>
       <FontAwesomeIcon icon={faVideo} /> <FontAwesomeIcon icon={faClock} />
     </span>,
-    <span style={{ fontSize: "12px" }}>
+    <span style={{ fontSize: "14px" }}>
       <FontAwesomeIcon icon={faBroadcastTower} />
     </span>,
   ];

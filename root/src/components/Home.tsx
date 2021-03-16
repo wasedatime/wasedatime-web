@@ -16,7 +16,7 @@ import { gaLanguage } from "../ga/eventCategories";
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100%;
+  height: 100vh;
   overflow-y: auto;
 `;
 

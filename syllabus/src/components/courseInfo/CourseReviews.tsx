@@ -26,8 +26,6 @@ import {
   gaSwitchReviewLanguage,
 } from "../../ga/eventActions";
 
-// todo: make alert works
-
 const StyledReviewsWrapper = styled("div")`
   ${props => props.isMilestone && "font-size: 0.7em;"}
   ${media.phone`padding: 0 1em;`}

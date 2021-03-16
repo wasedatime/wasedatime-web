@@ -56,10 +56,11 @@ const HeaderWrapper = styled.div`
 `;
 
 const SyllabusFlex = styled.div`
+  height: calc(100vh - 67px);
   flex: calc(100% - 67px);
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 67px);
+  ${media.tablet`height: calc(100vh - 117px); flex: calc(100vh - 117px);`}
 `;
 
 const SideColumn = styled.div`

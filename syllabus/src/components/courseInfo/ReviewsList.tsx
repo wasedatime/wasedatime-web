@@ -48,6 +48,7 @@ const ReviewTitle = styled("h6")`
   line-height: 1.5em;
   margin-top: 0;
   margin-bottom: 0.5em;
+  font-size: 12px;
 `;
 
 const ReviewYear = styled("span")`

@@ -15,9 +15,9 @@ const FilterWrapper = styled(SimpleBar)`
   ${(props) => !props.isSideBar && "width: 100%;"}
   flex: none;
   height: ${(props) =>
-    props.isSideBar ? "calc(100vh - 70px)" : "calc(100vh - 50px)"};
+    props.isSideBar ? "calc(100vh - 67px)" : "calc(100vh - 50px)"};
   padding: ${(props) =>
-    props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em 80px 1.2em;"};
+    props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em;"};
   .simplebar-scrollbar::before {
     background-color: #999;
   }

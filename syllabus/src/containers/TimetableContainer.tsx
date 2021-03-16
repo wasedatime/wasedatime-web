@@ -16,6 +16,7 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { getAddedCoursesAndPrefsByTerm } from "../redux/reducers/addedCourses";
 import { sortAddedCoursesAndPrefs } from "../utils/added-courses-and-prefs";
 import Course from "../types/course";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const TimetableWrapper = styled(Wrapper)`
   display: flex;
@@ -28,7 +29,8 @@ const HeaderWrapper = styled.div`
 
 const TimetableFlex = styled.div`
   flex: calc(100% - 67px);
-`;
+  ${media.tablet`flex: calc(100vh - 117px);`}
+  `;
 
 interface ReduxStateProps {
   addedCoursesAndPrefsByTerm: {

@@ -27,7 +27,7 @@ import MediaQuery from "react-responsive";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import filterCourses from "../utils/filter-courses";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { SyllabusKey } from "../constants/syllabus-data";
 import Course from "../types/course";
 import queryString from "query-string";
@@ -56,10 +56,10 @@ const HeaderWrapper = styled.div`
 `;
 
 const SyllabusFlex = styled.div`
-  flex: calc(100% - 117px);
+  flex: calc(100% - 67px);
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 117px);
+  height: calc(100vh - 67px);
 `;
 
 const SideColumn = styled.div`
@@ -76,6 +76,16 @@ const ShorterSideColumn = styled.div`
 
 const MiddleColumn = styled.div`
   flex: auto;
+`;
+
+const ButtonToMilestone = styled.button`
+  width: 94%;
+  height: 20px;
+  background-color: #ccc;
+  color: #fff;
+  border-radius: 6px;
+  margin: 0px 5em 0px 1em;
+  ${media.tablet`width: 92%; margin: 0px;`}
 `;
 
 interface ReduxStateProps {
@@ -350,10 +360,10 @@ class SyllabusContainer extends React.Component<
           </MediaQuery>
 
           <MiddleColumn>
-            <Link to="/courses/milestone">
-              <button style={{ width: "94%", backgroundColor: "#ccc", color: "#fff", borderRadius: "6px", margin: "0px 5em 0px 1em" }}>
+            <Link to="/courses/milestone" style={{ maxWidth: "100vw", padding: "0px 1em" }}>
+              <ButtonToMilestone>
                 Link to 2021 Spring Milestone × WTSA
-              </button>
+              </ButtonToMilestone>
             </Link>
             <Suspense fallback={<LoadingSpinner message="Loading..." />}>
               {allFetchedCourses.length > 0 ? (

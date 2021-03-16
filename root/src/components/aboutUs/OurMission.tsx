@@ -233,6 +233,7 @@ const OurMission = () => {
           </VerticalTimelineElement>
         </VerticalTimeline>
       </div>
+      <br />
     </Wrapper>
   );
 };

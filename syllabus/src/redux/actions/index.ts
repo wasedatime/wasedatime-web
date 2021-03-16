@@ -230,16 +230,17 @@ export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
     let coursesAndPrefs = [];
     let oldCourseIdPrefs = [];
 
-    idsAndPrefs.forEach((ip) => {
+    idsAndPrefs.forEach((ip, i) => {
       const school = schoolCodeMap[ip.id.substring(0, 2)];
       const course = coursesBySchool[school] && coursesBySchool[school].find(
         (c) => c[SyllabusKey.ID] === ip.id
-      );
-      if (!course) {
+        );
+      if (course) {
+        const existingPref = getState().addedCourses.byId[ip.id].pref;
         coursesAndPrefs.push({
           id: ip.id,
-          color: ip.color,
-          displayLang: ip.displayLang === "jp" ? "ja" : ip.displayLang,
+          color: (existingPref && existingPref.color) || ip.color || i % 8,
+          displayLang: ip.displayLang === "jp" ? "ja" : ip.displayLang || "en",
           course: {
             ...course,
             [SyllabusKey.SCHOOL]: school,
@@ -249,8 +250,9 @@ export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
         const savedOldCourseIdPref = getState().addedCourses.byId[ip.id];
         if (savedOldCourseIdPref) {
           coursesAndPrefs.push({
-            ...savedOldCourseIdPref.pref,
             id: ip.id,
+            color: savedOldCourseIdPref.pref.color || i % 8,
+            displayLang: savedOldCourseIdPref.pref.displayLang === "jp" ? "ja" : savedOldCourseIdPref.pref.displayLang || "en",
             course: savedOldCourseIdPref.course
           });
         } else {
@@ -260,7 +262,7 @@ export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
     });
 
     Promise.all(
-      oldCourseIdPrefs.map(async (ip) => {
+      oldCourseIdPrefs.map(async (ip, i) => {
         try {
           const res = await API.get(
             "wasedatime-dev",
@@ -275,8 +277,8 @@ export const saveTimetable = (idsAndPrefs) => async (dispatch, getState) => {
           if (!res.data.data) return null;
           return {
             id: ip.id,
-            color: ip.color,
-            displayLang: ip.displayLang === "jp" ? "ja" : ip.displayLang,
+            color: ip.color || (idsAndPrefs.length - oldCourseIdPrefs.length + i) % 8,
+            displayLang: ip.displayLang === "jp" ? "ja" : ip.displayLang || "en",
             course: {
               ...courseSchemaFullToShort(res.data.data),
               [SyllabusKey.SCHOOL]: schoolCodeMap[ip.id.substring(0, 2)],

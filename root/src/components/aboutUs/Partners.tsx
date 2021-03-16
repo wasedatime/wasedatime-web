@@ -151,6 +151,7 @@ const Partners = () => {
   const { t } = useTranslation();
   return (
     <Wrapper>
+      <br />
       <Title>Collaboration Partners</Title>
       
       <CardArea>

@@ -19,6 +19,7 @@ import zhaohuaibo from "../../assets/img/contributors/zhaohuaibo.jpg";
 import hatori from "../../assets/img/contributors/hatori.jpg";
 import yaoyuan from "../../assets/img/contributors/yaoyuan.jpg";
 import naomi from "../../assets/img/contributors/naomi.jpg";
+import alina from "../../assets/img/contributors/alina.jpg"
 
 import facebook from "../../assets/img/socialmediaicon/facebook.png";
 import homepage from "../../assets/img/socialmediaicon/homepage.png";
@@ -96,7 +97,6 @@ const MeetOurTeam = () => {
   const { t } = useTranslation();
   return (
     <Wrapper>
-      <br></br>
       <br></br>
       <Title>Meet Our Talented Team!</Title>
       <br></br>
@@ -249,19 +249,6 @@ const MeetOurTeam = () => {
             </a>
           </SocialMediaArea>
           <MemberVision>Think different</MemberVision>
-        </Card>
-
-        {/* ----------------------------------kong */}
-        <Card>
-          <MemberImage src={kong}></MemberImage>
-          <MemberName>Kong</MemberName>
-          <MemberPosition>Backend Engineer</MemberPosition>
-          <MemberVision></MemberVision>
-          {/* <SocialMediaArea>
-                        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-                            <MediaIcon src={facebook} href="www.google.com" target="_blank" rel="noopener noreferrer"></MediaIcon>
-                        </a>
-                    </SocialMediaArea> */}
         </Card>
 
         {/* ----------------------------------george */}
@@ -434,6 +421,32 @@ const MeetOurTeam = () => {
             </a>
           </SocialMediaArea>
           <MemberVision>Potato life is da best life</MemberVision>
+        </Card>
+
+        {/* ----------------------------------alina */}
+        <Card>
+          <MemberImage src={alina}></MemberImage>
+          <MemberName>Alina Kenny</MemberName>
+          <MemberPosition>Marketing</MemberPosition>
+          <MemberVision>Dream, believe, and achieve!</MemberVision>
+          <SocialMediaArea>
+            <a href="https://www.instagram.com/alina_kenny119/" target="_blank" rel="noopener noreferrer">
+              <MediaIcon src={instagram} href="www.google.com"></MediaIcon>
+            </a>
+          </SocialMediaArea>
+        </Card>
+
+        {/* ----------------------------------kong */}
+        <Card>
+          <MemberImage src={kong}></MemberImage>
+          <MemberName>Kong</MemberName>
+          <MemberPosition>Contributor</MemberPosition>
+          <MemberVision></MemberVision>
+          {/* <SocialMediaArea>
+              <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+                  <MediaIcon src={facebook} href="www.google.com" target="_blank" rel="noopener noreferrer"></MediaIcon>
+              </a>
+          </SocialMediaArea> */}
         </Card>
 
         {/* ----------------------------------Oscar */}

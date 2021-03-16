@@ -11,11 +11,15 @@ import FilterGroups from "../../types/filter";
 import FilterOption from "../../constants/syllabus-filter";
 import SimpleBar from "simplebar-react";
 
-const FilterWrapper = styled(SimpleBar)`
+const FilterWrapper = styled.div`
   ${(props) => !props.isSideBar && "width: 100%;"}
-  flex: none;
   height: ${(props) =>
     props.isSideBar ? "calc(100vh - 67px)" : "calc(100vh - 50px)"};
+`;
+
+const FilterScrollArea = styled(SimpleBar)`
+  flex: none;
+  height: 100%;
   padding: ${(props) =>
     props.isSideBar ? "0.5em 1em 1em 1em;" : "0.7em 1.2em;"};
   .simplebar-scrollbar::before {
@@ -446,6 +450,7 @@ const Filter = ({
 
   return (
     <FilterWrapper isSideBar={isSideBar}>
+    <FilterScrollArea isSideBar={isSideBar}>
       <FilterTitle isSideBar={isSideBar}>
         <FontAwesomeIcon icon={faFilter} size="1x" />
         &nbsp;
@@ -537,6 +542,7 @@ const Filter = ({
           filterType={"dropdown"}
         />
       </FilterGroupWrapper>
+    </FilterScrollArea>
     </FilterWrapper>
   );
 };

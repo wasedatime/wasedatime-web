@@ -365,11 +365,6 @@ class SyllabusContainer extends React.Component<
                 />
               ) : (
                 <div style={{ padding: "2em" }}>
-                  <Link to="/courses/milestone">
-                    <button style={{ width: "100%", backgroundColor: "#ccc", color: "#fff", borderRadius: "6px" }}>
-                      Link to 2021 Spring Milestone × WTSA
-                    </button>
-                  </Link>
                   <Message info>
                     {t("message.choose school request")}
                   </Message>

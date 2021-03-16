@@ -64,7 +64,7 @@ const AboutUs = (props: { path: string }) => {
         <Header
           title={t("navigation.aboutus")}
           onInputChange={() => {}}
-          placeholder={"Search course (in construction...)"}
+          placeholder={t("search placeholder")}
           inputText={""}
           disabled={true}
           isBlur={false}

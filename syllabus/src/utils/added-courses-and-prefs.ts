@@ -23,19 +23,21 @@ export const sortAddedCoursesAndPrefs = (
       });
     case SortingOption.COURSE_TIME:
       return addedCoursesAndPrefs.sort((a, b) => {
-        const firstOccurrenceDayA =
-          a.course[SyllabusKey.OCCURRENCES][0][SyllabusKey.OCC_DAY];
-        const firstOccurrenceDayB =
-          b.course[SyllabusKey.OCCURRENCES][0][SyllabusKey.OCC_DAY];
+        const firstOccA = a.course[SyllabusKey.OCCURRENCES][0];
+        const firstOccB = b.course[SyllabusKey.OCCURRENCES][0];
+        if (!firstOccA && !firstOccB) return 0;
+        if (firstOccA && !firstOccB) return -1;
+        if (!firstOccA && firstOccB) return 1;
 
-        const firstOccurrencePeriodA =
-          a.course[SyllabusKey.OCCURRENCES][0][SyllabusKey.OCC_PERIOD];
+        const firstOccurrenceDayA = firstOccA[SyllabusKey.OCC_DAY];
+        const firstOccurrenceDayB = firstOccB[SyllabusKey.OCC_DAY];
+
+        const firstOccurrencePeriodA = firstOccA[SyllabusKey.OCC_PERIOD];
         const firstOccurrenceStartPeriodA =
           firstOccurrencePeriodA > 9
             ? Math.floor(firstOccurrencePeriodA / 10)
             : firstOccurrencePeriodA % 10;
-        const firstOccurrencePeriodB =
-          b.course[SyllabusKey.OCCURRENCES][0][SyllabusKey.OCC_PERIOD];
+        const firstOccurrencePeriodB = firstOccB[SyllabusKey.OCC_PERIOD];
         const firstOccurrenceStartPeriodB =
           firstOccurrencePeriodB > 9
             ? Math.floor(firstOccurrencePeriodB / 10)

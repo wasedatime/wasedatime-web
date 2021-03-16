@@ -191,7 +191,7 @@ class AddReviewForm extends React.Component {
                   )}
                 </Stars>
                 <Statistic.Label>
-                  {t(`courseInfo.Satisfaction`)}
+                  <p>{t(`courseInfo.Satisfaction`)}</p>
                 </Statistic.Label>
               </Scale>
               <Scale size="tiny">
@@ -202,7 +202,7 @@ class AddReviewForm extends React.Component {
                     paintedDifficultyStars
                   )}
                 </Statistic.Value>
-                <Statistic.Label>{t(`courseInfo.Difficulty`)}</Statistic.Label>
+                <Statistic.Label><p>{t(`courseInfo.Difficulty`)}</p></Statistic.Label>
               </Scale>
               <Scale size="tiny">
                 <Statistic.Value>
@@ -212,7 +212,7 @@ class AddReviewForm extends React.Component {
                     paintedBenefitStars
                   )}
                 </Statistic.Value>
-                <Statistic.Label>{t(`courseInfo.Benefit`)}</Statistic.Label>
+                <Statistic.Label><p>{t(`courseInfo.Benefit`)}</p></Statistic.Label>
               </Scale>
             </ScalesList>
             <br />

@@ -86,7 +86,7 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
       <Header
         title={""}
         onInputChange={() => {}}
-        placeholder={"Search course (in construction...)"}
+        placeholder={t("search placeholder")}
         inputText={""}
         disabled={true}
         isBlur={true}

@@ -25,5 +25,6 @@
     "choose schools": "学部/研究科を選択"
   },
   "other": "その他",
-  "special": "その他"
+  "special": "その他",
+  "timetable search placeholder": "授業を検索（構築中...）"
 }

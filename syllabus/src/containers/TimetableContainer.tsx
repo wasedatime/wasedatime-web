@@ -129,7 +129,7 @@ class TimetableContainer extends React.Component<
           <Header
             title={t("navigation.timetable")}
             onInputChange={() => {}}
-            placeholder={"Search course (in construction...)"}
+            placeholder={t("timetable search placeholder")}
             inputText={""}
             disabled={true}
             isBlur={false}

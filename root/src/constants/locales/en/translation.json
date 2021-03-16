@@ -20,5 +20,19 @@
     "Yeping Tang": "Yeping Tang",
     "Impressive I'm beginning to understand everything now": "Impressive, I'm beginning to understand everything now.",
     "seize the day": "Seize the day!"
+  },
+  "search placeholder": "Search courses (in construction...)",
+  "verify": {
+    "failed": {
+      "title": "Login failed...",
+      "message1": "Please use your Waseda Gmail account to sign in.",
+      "message2": "We need to confirm that you are a student in Waseda university.",
+      "message3": "You will be redirected to our home page in 5 seconds..."
+    },
+    "success": {
+      "title": "Login successfully! Redirecting...",
+      "message1": "Now you can save your timetable and check it in any device!",
+      "message2": "You can also write and edit your course reviews now!"
+    }
   }
 }

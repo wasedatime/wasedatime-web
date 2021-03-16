@@ -153,6 +153,8 @@ const Partners = () => {
     <Wrapper>
       <br />
       <Title>Collaboration Partners</Title>
+      <br />
+      <h6 style={{ textAlign: "center" }}>We look forward to collaborating with more circles or organizations!</h6>
       
       <CardArea>
         {

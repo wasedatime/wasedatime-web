@@ -346,7 +346,7 @@ const Bus = (): JSX.Element => {
       <Header
         title={t("navigation.campus")}
         onInputChange={() => {}}
-        placeholder={"Search classroom (in construction...)"}
+        placeholder={t("search placeholder")}
         inputText={""}
         disabled={true}
         isBlur={false}

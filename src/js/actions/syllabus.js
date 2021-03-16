@@ -119,7 +119,7 @@ export const hydrateAddedCourses = (prefs, fetchedCoursesById) => ({
 });
 
 export const addCourse = (course, displayLang) => async (dispatch, getState) => {
-  const callAddCourseAPI = async () => {
+  const callAddCourseAPI = async (idToken = null) => {
     const term = course[SYLLABUS_KEYS.TERM].match(/0|1|f/g)
       ? "spring"
       : "fall";
@@ -135,7 +135,7 @@ export const addCourse = (course, displayLang) => async (dispatch, getState) => 
         },
       },
       headers: {
-        Authorization: getState().user.tokens
+        Authorization: idToken || getState().user.tokens
           ? getState().user.tokens.idToken
           : "",
       },
@@ -169,15 +169,22 @@ export const addCourse = (course, displayLang) => async (dispatch, getState) => 
         currentSession.refreshToken,
         (err, session) => {
           if (err) {
+            // fail to refresh session
+            // clear current session
             dispatch(clearUserInfo());
           } else {
+            // succeed to refresh session
+            // update session & call patch timetable API
             dispatch(updateUserSession(session));
+            callAddCourseAPI(session.idToken.jwtToken);
           }
+          // add course locally
           dispatch(dispatchBody);
         }
       );
-      await callAddCourseAPI();
     } catch (err) {
+      // fail to refresh session
+      // clear current session & add course locally
       dispatch(clearUserInfo());
       dispatch(dispatchBody);
     }
@@ -185,7 +192,7 @@ export const addCourse = (course, displayLang) => async (dispatch, getState) => 
 };
 
 export const removeCourse = (id) => async (dispatch, getState) => {
-  const callRemoveCourseAPI = async () => {
+  const callRemoveCourseAPI = async (idToken = null) => {
     await API.patch("wasedatime-dev", "/timetable", {
       body: {
         data: {
@@ -194,7 +201,7 @@ export const removeCourse = (id) => async (dispatch, getState) => {
         },
       },
       headers: {
-        Authorization: getState().user.tokens
+        Authorization: idToken || getState().user.tokens
           ? getState().user.tokens.idToken
           : "",
       },
@@ -222,15 +229,22 @@ export const removeCourse = (id) => async (dispatch, getState) => {
         currentSession.refreshToken,
         (err, session) => {
           if (err) {
+            // fail to refresh session
+            // clear current session
             dispatch(clearUserInfo());
           } else {
+            // succeed to refresh session
+            // update session & call patch timetable API
             dispatch(updateUserSession(session));
+            callRemoveCourseAPI(session.idToken.jwtToken);
           }
+          // remove course locally
           dispatch(dispatchBody);
         }
       );
-      await callRemoveCourseAPI();
     } catch (e) {
+      // fail to refresh session
+      // clear current session & remove course locally
       dispatch(clearUserInfo());
       dispatch(dispatchBody);
     }

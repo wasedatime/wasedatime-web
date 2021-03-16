@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { useTranslation } from "react-i18next";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
@@ -23,8 +22,6 @@ const MainParagraph = styled("p")`
 `;
 
 const OurMission = () => {
-  const { t } = useTranslation();
-
   return (
     <Wrapper>
       <MainParagraph>

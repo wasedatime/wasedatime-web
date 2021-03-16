@@ -97,7 +97,6 @@ const MeetOurTeam = () => {
   return (
     <Wrapper>
       <br></br>
-      <br></br>
       <Title>Meet Our Talented Team!</Title>
       <br></br>
       <CardArea>

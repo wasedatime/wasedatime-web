@@ -56,8 +56,6 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
                     }`
                   )}
                 </b></h6>
-              </Table.Cell>
-              <Table.Cell>
                 <p>{e[SyllabusKey.EVAL_CRITERIA]}</p>
               </Table.Cell>
             </Table.Row>

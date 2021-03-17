@@ -16,7 +16,8 @@ import { gaLanguage } from "../ga/eventCategories";
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
   background-attachment: fixed;
-  height: 100vh;
+  width: calc(100vw - 65px);
+  ${media.tablet`width: 100vw;`}
   position: fixed;
 `;
 

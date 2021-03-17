@@ -72,12 +72,7 @@ const App = ({
             }
           })
           .catch((e) => {
-            if (
-              e.response &&
-              !e.response.data.data &&
-              addedCoursesPrefs.length > 0
-            )
-              postTimetable(addedCoursesPrefs);
+            postTimetable(addedCoursesPrefs);
           });
       }
     };

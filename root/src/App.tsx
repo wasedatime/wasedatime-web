@@ -1,8 +1,8 @@
 import React, { useEffect, lazy, Suspense } from "react";
-import { navigateToUrl } from "single-spa";
 import { Helmet } from "react-helmet";
 import { Hub } from "@aws-amplify/core";
 import { Router, Redirect, navigate } from "@reach/router";
+import { navigateToUrl } from "single-spa";
 
 import TermsOfService from "./components/TermsOfService";
 import PrivacyPolicy from "./components/PrivacyPolicy";

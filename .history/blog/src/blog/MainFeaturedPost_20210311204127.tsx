@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import CareerArticles from "./CareerArticles";
 import { Post } from "../types/post";
-import moment from "moment";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 
@@ -15,8 +14,8 @@ import CardMedia from "@material-ui/core/CardMedia";
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
     position: "relative",
-    backgroundColor: theme.palette.common.white,
-    color: theme.palette.common.black,
+    backgroundColor: theme.palette.grey[800],
+    color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
     // backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundSize: "cover",
@@ -29,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     left: 0,
-    backgroundColor: "rgba(0,0,0,0)",
+    backgroundColor: "rgba(0,0,0,.3)",
   },
   mainFeaturedPostContent: {
     position: "relative",
@@ -40,11 +39,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardMedia: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: 500,
+    width: 160,
   },
 }));
 
@@ -74,21 +69,18 @@ function MainFeaturedPost(props: { post: Post }) {
             >
               {post.title}
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-              {moment(post.created_at).format("MMMM Do YYYY")}
-            </Typography>
             <Typography variant="h5" color="inherit" paragraph>
               {post.summary}
             </Typography>
             <Link to={`/blog/articles/${post.src}`} style={{ textDecoration: 'none' }}>Continue reading...</Link>
           </div>
         </Grid>
-        <CardMedia
+      </Grid>
+      <CardMedia
         className={classes.cardMedia}
         image={`https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${post.src}cover.jpg`}
         title="Article Cover"
-        />
-      </Grid>
+      />
       {/* <Route path={`/user/${post.src}`} component={CareerArticles} /> */}
     </Card>
   );

@@ -33,8 +33,8 @@ const StyledMarkdown = styled(ReactMarkdown)`
       display: block;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 50px;
+      margin-bottom: 50px;
     }
     }
    `;

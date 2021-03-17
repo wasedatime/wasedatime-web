@@ -4,47 +4,37 @@ import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 
 const StyledMarkdown = styled(ReactMarkdown)`
-    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
-    * {
-      font-family: 'ZCOOL XiaoWei', serif !important;
-      padding: 0px;
-    }
+    font-family: 'Open Sans', sans-serif;
+    padding: 30px;
+
     & p {
-      font-size: 1.8rem;
-      margin-top: 0;
-      margin-bottom: 0;
-      padding-bottom: 2px;
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-bottom: 2px;
     }
     & ul {
-      list-style: square;
-      margin-top: 10px;
-      font-size:  1rem;
+    list-style: square;
+    margin-top: 10px;
+    font-size:  1rem;
     }
     & li {
-      padding-bottom: 2px;
+    padding-bottom: 2px;
     }
     & h1 {
       font-size: 1.6rem;
-    }
-    & h2 {
-      display: none;
     }
     & img{
       display: block;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
     }
     }
    `;
 
-const StyledDiv = styled.div`
-    margin-left: 15%;
-    margin-right: 15%;
-`;
-
-interface Props {D
+interface Props {
   match: {
     params: {
       title: string;
@@ -81,13 +71,13 @@ class CareerArticles extends React.Component<Props, State> {
     const { urlFile, content } = this.state;
 
     return (
-      <StyledDiv>
-        {/* <h3> Fetched from: </h3> {urlFile}
-        <hr /> */}
+      <div>
+        <h3> Fetched from: </h3> {urlFile}
+        <hr />
         <div className="markdown-body">
           <StyledMarkdown source={content} />
         </div>
-      </StyledDiv>
+      </div>
     );
   }
 }

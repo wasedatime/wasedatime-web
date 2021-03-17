@@ -3,6 +3,9 @@ import { styled } from "@material-ui/core/styles";
 // import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import GitHubIcon from "@material-ui/icons/GitHub";
+import FacebookIcon from "@material-ui/icons/Facebook";
+import TwitterIcon from "@material-ui/icons/Twitter";
 import MainFeaturedPost from "./MainFeaturedPost";
 import FeaturedPost from "./FeaturedPost";
 import careerAPI from "./careerAPI";
@@ -26,6 +29,18 @@ class BlogIndex extends React.Component<{}, IMyComponentState> {
       // urlFile: "https://api.wasedatime.com/staging/feeds?offset=0&limit=5",
     };
   }
+  // componentDidMount() {
+  //   axios.get(this.state.urlFile)
+  //   .then(response => {
+  //      console.log("Success in fetching the file from " + this.state.urlFile);
+  //      this.setState({ mainFeaturedPost: response.data.data.articles[0] });
+  //      console.log(this.state.mainFeaturedPost);
+
+  //   })
+  //   .catch(error => {
+  //      console.error("Error in fetching the file from " + this.state.urlFile);
+  //   });
+  // }
   async componentDidMount() {
     let apiContents = await careerAPI.get<{ data: { articles: Post[] } }>("/");
     let MainApiContent = apiContents.data.data.articles[0];

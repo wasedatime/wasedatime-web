@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
     position: "relative",
     backgroundColor: theme.palette.common.white,
-    color: theme.palette.common.black,
+    color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
     // backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundSize: "cover",
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     left: 0,
-    backgroundColor: "rgba(0,0,0,0)",
+    backgroundColor: "rgba(0,0,0,.3)",
   },
   mainFeaturedPostContent: {
     position: "relative",
@@ -40,11 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardMedia: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: 500,
+    width: 300,
   },
 }));
 
@@ -53,7 +49,7 @@ function MainFeaturedPost(props: { post: Post }) {
   const { post } = props;
 
   return (
-    <Card
+    <Paper
       className={classes.mainFeaturedPost}
       // style={{ backgroundImage: `url(${post.image})` }}
       // style={{
@@ -90,7 +86,7 @@ function MainFeaturedPost(props: { post: Post }) {
         />
       </Grid>
       {/* <Route path={`/user/${post.src}`} component={CareerArticles} /> */}
-    </Card>
+    </Paper>
   );
 }
 

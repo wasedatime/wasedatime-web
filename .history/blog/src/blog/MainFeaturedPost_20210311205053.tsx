@@ -15,7 +15,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
     position: "relative",
-    backgroundColor: theme.palette.common.white,
+    // backgroundColor: theme.palette.common.white,
     color: theme.palette.common.black,
     marginBottom: theme.spacing(4),
     // backgroundImage: 'url(https://source.unsplash.com/random)',
@@ -29,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
     bottom: 0,
     right: 0,
     left: 0,
-    backgroundColor: "rgba(0,0,0,0)",
+    backgroundColor: theme.palette.common.white,
+    // backgroundColor: "rgba(0,0,0,.3)",
   },
   mainFeaturedPostContent: {
     position: "relative",
@@ -40,11 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardMedia: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: 500,
+    width: 300,
   },
 }));
 

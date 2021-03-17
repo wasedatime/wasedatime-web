@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
     position: "relative",
     backgroundColor: theme.palette.common.white,
-    color: theme.palette.common.black,
+    color: theme.palette.common.white,
     marginBottom: theme.spacing(4),
     // backgroundImage: 'url(https://source.unsplash.com/random)',
     backgroundSize: "cover",
@@ -40,11 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardMedia: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: 500,
+    width: 300,
   },
 }));
 

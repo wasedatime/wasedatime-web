@@ -33,15 +33,15 @@ const StyledMarkdown = styled(ReactMarkdown)`
       display: block;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 50px;
+      margin-bottom: 50px;
     }
     }
    `;
 
 const StyledDiv = styled.div`
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 10%;
+    margin-right: 10%;
 `;
 
 interface Props {D
@@ -82,8 +82,8 @@ class CareerArticles extends React.Component<Props, State> {
 
     return (
       <StyledDiv>
-        {/* <h3> Fetched from: </h3> {urlFile}
-        <hr /> */}
+        <h3> Fetched from: </h3> {urlFile}
+        <hr />
         <div className="markdown-body">
           <StyledMarkdown source={content} />
         </div>

@@ -33,8 +33,8 @@ const StyledMarkdown = styled(ReactMarkdown)`
       display: block;
       margin-left: auto;
       margin-right: auto;
-      margin-top: 20px;
-      margin-bottom: 20px;
+      margin-top: 50px;
+      margin-bottom: 50px;
     }
     }
    `;
@@ -55,6 +55,7 @@ interface Props {D
 interface State {
   content: any;
   urlFile: string;
+  env: string;
 }
 
 class CareerArticles extends React.Component<Props, State> {
@@ -64,13 +65,14 @@ class CareerArticles extends React.Component<Props, State> {
     this.state = {
       content: null,
       urlFile: `https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${params.title}/${params.title}.md`,
+      env: process.env.REACT_APP_API_BASE_URL}
     };
   }
   componentDidMount() {
     axios
       .get(this.state.urlFile)
       .then((response) => {
-        console.log("Success in fetching the file from " + this.state.urlFile);
+        console.log(this.state.env + "Success in fetching the file from " + this.state.urlFile);
         this.setState({ content: response.data });
       })
       .catch((error) => {

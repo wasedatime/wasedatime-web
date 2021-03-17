@@ -40,11 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardMedia: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: 500,
+    width: 300,
   },
 }));
 
@@ -83,13 +79,13 @@ function MainFeaturedPost(props: { post: Post }) {
             <Link to={`/blog/articles/${post.src}`} style={{ textDecoration: 'none' }}>Continue reading...</Link>
           </div>
         </Grid>
-        <CardMedia
+      </Grid>
+      {/* <Route path={`/user/${post.src}`} component={CareerArticles} /> */}
+      <CardMedia
         className={classes.cardMedia}
         image={`https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${post.src}cover.jpg`}
         title="Article Cover"
         />
-      </Grid>
-      {/* <Route path={`/user/${post.src}`} component={CareerArticles} /> */}
     </Card>
   );
 }

@@ -9,6 +9,7 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Hidden from "@material-ui/core/Hidden";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import CareerArticles from "./CareerArticles";
 import moment from "moment";
 import { Post } from "../types/post";
 
@@ -18,7 +19,7 @@ const useStyles = makeStyles({
   },
   cardDetails: {
     flex: 1,
-    padding: 10,
+    margin: 5,
   },
   cardMedia: {
     width: 160,

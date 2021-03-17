@@ -49,6 +49,7 @@ i18nConfig({
   [Lang.JA]: translationJP,
 });
 ReactGA.initialize("UA-112185819-1", { debug: false, titleCase: false });
+
 if (process.env.NODE_ENV === "production") {
   Sentry.init({
     dsn:

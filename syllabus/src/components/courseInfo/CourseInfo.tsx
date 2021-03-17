@@ -137,7 +137,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
 
     this.setState({
       relatedCourses: relatedCourses,
-      thisCourseReviews: thisCourseReviews,
+      thisCourseReviews: thisCourseReviews || [],
       areReviewsLoaded: true,
     });
   }

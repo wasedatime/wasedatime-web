@@ -161,10 +161,10 @@ class SyllabusContainer extends React.Component<
     };
   }
 
-  // async componentDidMount() {
-  //   const courseId = queryString.parse(window.location.search).courseId;
-  //   if (courseId) await this.setTopCourse(courseId);
-  // }
+  componentDidMount() {
+    const courseId = queryString.parse(window.location.search).courseId;
+    if (courseId) this.setState({ isFetchingTopCourse: true }, () => this.setTopCourse(courseId));
+  }
 
   componentDidUpdate(prevProps) {
     if (prevProps.isFetching && !this.props.isFetching) {
@@ -173,6 +173,7 @@ class SyllabusContainer extends React.Component<
     const courseId = queryString.parse(window.location.search).courseId;
     if (courseId && this.state.topCourseId !== courseId) {
       if (!this.state.isFetchingTopCourse) {
+        console.log("666")
         this.setState({ isFetchingTopCourse: true }, () => this.setTopCourse(courseId));
       }
     }

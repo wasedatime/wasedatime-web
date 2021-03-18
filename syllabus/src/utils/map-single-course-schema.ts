@@ -6,7 +6,7 @@ import {
 } from "../constants/syllabus-data";
 
 export const courseSchemaFullToShort = (course) => {
-  const occs = course[SyllabusAttr[SyllabusKey.OCCURRENCES]].map((occ) => ({
+  const occs = course[SyllabusAttr[SyllabusKey.OCCURRENCES]] && course[SyllabusAttr[SyllabusKey.OCCURRENCES]].map((occ) => ({
     [SyllabusKey.OCC_DAY]: occ[SyllabusKey.OCC_DAY],
     [SyllabusKey.OCC_PERIOD]: occ[SyllabusKey.OCC_PERIOD],
     [SyllabusKey.OCC_LOCATION]: occ[SyllabusKey.OCC_LOCATION],

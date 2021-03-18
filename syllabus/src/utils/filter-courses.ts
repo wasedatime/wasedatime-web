@@ -69,7 +69,7 @@ class DayFilter extends CoursesFilter {
     this.maxLength = 6;
   }
   filterCallback = (course: Course) => {
-    return course[SyllabusKey.OCCURRENCES].some((occ) =>
+    return course[SyllabusKey.OCCURRENCES] && course[SyllabusKey.OCCURRENCES].some((occ) =>
       this.filterValues.includes(occ[SyllabusKey.OCC_DAY].toString())
     );
   };

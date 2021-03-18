@@ -142,10 +142,18 @@ export const addCourse = (course: Course, displayLang: string) => async (
   dispatch: (x: any) => void,
   getState: any
 ) => {
+  dispatch({
+    type: ADD_COURSE,
+    payload: {
+      course: course,
+      displayLang: displayLang,
+    },
+  });
+
   try {
     const idToken = await getIdToken();
     if (idToken) {
-      API.patch("wasedatime-dev", "/timetable", {
+      await API.patch("wasedatime-dev", "/timetable", {
         body: {
           data: {
             operation: "append",
@@ -162,15 +170,27 @@ export const addCourse = (course: Course, displayLang: string) => async (
       });
     }
   } catch (e) {
-    console.error(e);
-  } finally {
-    dispatch({
-      type: ADD_COURSE,
-      payload: {
-        course: course,
-        displayLang: displayLang,
-      },
-    });
+    if (e.response && e.response.status === 500) {
+      try {
+        const idToken = await getIdToken();
+        const byId = getState().addedCourses.byId;
+        const idsAndPrefs = byId && Object.keys(byId).map((id) => ({
+          id: id,
+          color: byId[id].color,
+          displayLang: byId[id].displayLang,
+        }));
+        await API.post("wasedatime-dev", "/timetable", {
+          body: { data: { courses: idsAndPrefs || [] } },
+          headers: {
+            Authorization: idToken,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.error(e);
+    }
   }
 };
 
@@ -178,10 +198,17 @@ export const removeCourse = (id: string) => async (
   dispatch: (x: any) => void,
   getState: any
 ) => {
+  dispatch({
+    type: REMOVE_COURSE,
+    payload: {
+      id,
+    },
+  });
+  
   try {
     const idToken = await getIdToken();
     if (idToken) {
-      API.patch("wasedatime-dev", "/timetable", {
+      await API.patch("wasedatime-dev", "/timetable", {
         body: {
           data: {
             operation: "remove",
@@ -194,14 +221,27 @@ export const removeCourse = (id: string) => async (
       });
     }
   } catch (e) {
-    console.error(e);
-  } finally {
-    dispatch({
-      type: REMOVE_COURSE,
-      payload: {
-        id,
-      },
-    });
+    if (e.response && e.response.status === 500) {
+      try {
+        const idToken = await getIdToken();
+        const byId = getState().addedCourses.byId;
+        const idsAndPrefs = byId && Object.keys(byId).map((id) => ({
+          id: id,
+          color: byId[id].color,
+          displayLang: byId[id].displayLang,
+        }));
+        await API.post("wasedatime-dev", "/timetable", {
+          body: { data: { courses: idsAndPrefs || [] } },
+          headers: {
+            Authorization: idToken,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.error(e);
+    }
   }
 };
 

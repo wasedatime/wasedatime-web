@@ -1,4 +1,4 @@
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../constants/syllabus-data";
 import Course from "../types/course";
 import FilterGroups from "../types/filter";
 
@@ -126,7 +126,7 @@ class EvalPercentFilter extends CoursesFilter {
     this.type = type;
   }
   filterCallback = (course: Course) => {
-    if (course[SyllabusKey.EVAL].length === 0) return false;
+    if (!Array.isArray(course[SyllabusKey.EVAL]) || course[SyllabusKey.EVAL].length === 0) return false;
     // Check if the target evaluation item (e.g. 'exam') is included in the evaluation of this course
     const targetEval = course[SyllabusKey.EVAL].filter(
       (e) => e[SyllabusKey.EVAL_TYPE] === this.type
@@ -148,7 +148,7 @@ class EvalPercentFilter extends CoursesFilter {
 }
 class EvalSpecialFilter extends CoursesFilter {
   filterCallback = (course: Course) => {
-    if (course[SyllabusKey.EVAL].length === 0) return false;
+    if (!Array.isArray(course[SyllabusKey.EVAL]) || course[SyllabusKey.EVAL].length === 0) return false;
     var isFiltered = true;
     ["noExam", "noPaper", "noClassParticipation"].forEach((filter, i) => {
       if (this.filterValues.includes(filter)) {

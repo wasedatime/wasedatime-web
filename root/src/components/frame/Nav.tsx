@@ -6,6 +6,7 @@ import {
   faBook,
   faMapMarkedAlt,
   faUsers,
+  faNewspaper
 } from "@fortawesome/free-solid-svg-icons";
 const Sidebar = lazy(() => import("./Sidebar"));
 const MobileNav = lazy(() => import("./MobileNav"));

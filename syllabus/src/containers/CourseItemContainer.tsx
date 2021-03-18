@@ -55,7 +55,7 @@ class CourseItemContainer extends React.Component<
     }
     this.props.addCourse(course, searchLang);
     if (
-      occurrences.some(
+      !occurrences || occurrences.some(
         (o) => o[SyllabusKey.OCC_DAY] === -1 || o[SyllabusKey.OCC_PERIOD] === -1
       )
     ) {

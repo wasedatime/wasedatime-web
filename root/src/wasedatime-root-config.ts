@@ -55,7 +55,7 @@ if (process.env.NODE_ENV === "production") {
     dsn:
       "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
     environment: process.env.NODE_ENV,
-    ignoreErrors: ["Network Error", "Loading chunk"],
+    ignoreErrors: ["Network Error", "NetworkError", "Loading chunk", "Timed out"],
   });
 } else {
   ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });

@@ -13,8 +13,24 @@ i18nConfig({
 export default function Root(props) {
   return (
     <section>
+      {/* <div className="float-container">
+
+        <div className="float-child">
+        <RoomFinder />
+        <Bus />
+
+        </div>
+        
+        <div className="float-child">
+        <Map />
+        </div>
+      
+      </div> */}
       <RoomFinder />
       <Bus />
+    
+      
+      
     </section>
   );
 }

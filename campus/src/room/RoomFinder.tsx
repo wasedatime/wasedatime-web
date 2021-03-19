@@ -29,7 +29,7 @@ import Building from "./Building";
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  padding: 5em 20em;
+  padding: 5em 5em;
   ${media.tablet`padding: 5em;`}
 `;
 
@@ -94,6 +94,21 @@ const DatetimeSelection = styled("div")`
   cursor: pointer;
 `;
 
+const findQuar = (mon, dai) => {
+  if (mon === 4 || mon === 5 || (mon === 6 && dai < 21)){
+      return 0
+  }
+  if (mon === 7 || mon === 8 || (mon === 6 && dai >= 21) || (mon === 9 && dai < 21)){
+    return 1
+  }
+  if (mon === 10 || (mon === 11 && dai < 22) || (mon === 9 && dai >= 21)){
+    return 2
+  }
+  else{
+    return 3
+  }
+};
+
 const findPeriod = (totalMins) => {
     if (totalMins < 100){
         return 0
@@ -151,6 +166,10 @@ const RoomFinder = (): JSX.Element => {
     const day = date.getDay() > 0 ? date.getDay() - 1 : 6
     const totalMins = (date.getHours() - 9)  * 60 + date.getMinutes();
     const per = findPeriod(totalMins)
+    const mon = date.getMonth()
+    const dai = date.getDate()
+    const quarter = findQuar(mon, dai)
+
 
     return (
         <React.Fragment>
@@ -176,6 +195,9 @@ const RoomFinder = (): JSX.Element => {
                     <RoomType>occupied</RoomType>
                     <RoomEmpt>available</RoomEmpt>
                 </p>
+                <p>
+                    Note: Some rooms may not be listed. However, feel free to check whether your desired room is occupied.
+                </p>
                 <DatetimeSelection>
                     <DatePickerSpan>
                         <DatePicker
@@ -192,9 +214,25 @@ const RoomFinder = (): JSX.Element => {
                         onChange={(d: Date) => onDatetimeChange(d)}
                         showTimeSelect
                         showTimeSelectOnly
+                        injectTimes={[
+                          new Date().setHours(9, 0),
+                          new Date().setHours(10, 30),
+                          new Date().setHours(10, 40),
+                          new Date().setHours(12, 10),
+                          new Date().setHours(13, 0),
+                          new Date().setHours(14, 30),
+                          new Date().setHours(14, 45),
+                          new Date().setHours(16, 15),
+                          new Date().setHours(16, 30),
+                          new Date().setHours(18, 0),
+                          new Date().setHours(18, 15),
+                          new Date().setHours(19, 45),
+                          new Date().setHours(20, 0),
+                          new Date().setHours(21, 30),
+                        ]}
                         minTime={new Date().setHours(9, 0)}
                         maxTime={new Date().setHours(21, 30)}
-                        timeIntervals={5}
+                        timeIntervals={750}
                         timeCaption="Time"
                         dateFormat="hh:mm aa"
                         customInput={<TimeSelectorWrapper />}
@@ -208,16 +246,16 @@ const RoomFinder = (): JSX.Element => {
                 <div className="tabbable full-width-tabs">
                     <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
                         <Tab eventKey="Waseda" title="Waseda">
-                            <Building campusName="Waseda" weekday={day} period={per} />
+                            <Building campusName="Waseda" quar={quarter} weekday={day} period={per} />
                         </Tab>
                         <Tab eventKey="Nishi-Waseda" title="NishiWaseda">
-                            <Building campusName="NishiWaseda" weekday={day} period={per}/>
+                            <Building campusName="NishiWaseda" quar={quarter} weekday={day} period={per}/>
                         </Tab>
                         <Tab eventKey="Toyama" title="Toyama">
-                            <Building campusName="Toyama" weekday={day} period={per}/>
+                            <Building campusName="Toyama" quar={quarter} weekday={day} period={per}/>
                         </Tab>
                         <Tab eventKey="Tokorozawa" title="Tokorozawa">
-                            <Building campusName="Tokorozawa" weekday={day} period={per}/>
+                            <Building campusName="Tokorozawa" quar={quarter} weekday={day} period={per}/>
                         </Tab>
                     </Tabs>
                 </div>

@@ -8,7 +8,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a lo
 // import 'semantic-ui-css/semantic.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Form, FormControl, Button, Accordion, Card, Badge } from 'react-bootstrap';
-import {campuses} from './campus'
+import {campuses} from './campus_quart'
 
 const InfoWrapper = styled("div")`
   display: flex;
@@ -45,9 +45,11 @@ interface Props {
 
 const Building = ({
     campusName,
+    quar,
     weekday,
     period
   }) => {
+    console.log(quar)
     return (
         <React.Fragment>
             <InfoWrapper>
@@ -63,7 +65,7 @@ const Building = ({
                             <Accordion.Collapse eventKey="0">
                                 <Card.Body>
                                     {
-                                        Object.keys(campuses[campusName][buid]).map((roomdata, j) => <RoomType key={j} vacancy={campuses[campusName][buid][roomdata][period][weekday] ? 1 : 0} >Room {roomdata}</RoomType>)
+                                        Object.keys(campuses[campusName][buid]).map((roomdata, j) => <RoomType key={j} vacancy={campuses[campusName][buid][roomdata][quar][period][weekday] ? 1 : 0} >Room {roomdata}</RoomType>)
                                     }
                                 </Card.Body>
                             </Accordion.Collapse>

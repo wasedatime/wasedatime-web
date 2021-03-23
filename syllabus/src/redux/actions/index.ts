@@ -214,7 +214,7 @@ export const removeCourse = (id: string) => async (
         body: {
           data: {
             operation: "remove",
-            index: removeCourseIndex,
+            index: removedCourseIndex,
           },
         },
         headers: {

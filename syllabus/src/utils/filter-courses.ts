@@ -48,28 +48,13 @@ class LangFilter extends CoursesFilter {
   };
 }
 
-class ModalityFilter extends CoursesFilter {
-  constructor(filterValues) {
-    super(filterValues);
-    this.maxLength = 5;
-  }
-  filterCallback = (course: Course) => {
-    return (
-      course[SyllabusKey.MODALITY]
-        .toString()
-        .split(",")
-        .filter((l) => this.filterValues.includes(l)).length > 0
-    );
-  };
-}
-
 class DayFilter extends CoursesFilter {
   constructor(filterValues) {
     super(filterValues);
     this.maxLength = 6;
   }
   filterCallback = (course: Course) => {
-    return course[SyllabusKey.OCCURRENCES] && course[SyllabusKey.OCCURRENCES].some((occ) =>
+    return course[SyllabusKey.OCCURRENCES].some((occ) =>
       this.filterValues.includes(occ[SyllabusKey.OCC_DAY].toString())
     );
   };
@@ -189,7 +174,6 @@ const filterCourses = (
     new SemesterFilter(filterGroups.semester),
     new SchoolFilter(filterGroups.school),
     new LangFilter(filterGroups.lang),
-    new ModalityFilter(filterGroups.modality),
     new DayFilter(filterGroups.day),
     new PeriodFilter(filterGroups.period),
     new MinYearFilter(filterGroups.minYear),

@@ -1,4 +1,4 @@
-import { SyllabusKey } from "@bit/wasedatime.syllabus.ts.constants.syllabus-data";
+import { SyllabusKey } from "../constants/syllabus-data";
 import Course from "../types/course";
 import FilterGroups from "../types/filter";
 

@@ -198,6 +198,8 @@ export const removeCourse = (id: string) => async (
   dispatch: (x: any) => void,
   getState: any
 ) => {
+  const removedCourseIndex = getState().addedCourses.orderedIds.indexOf(id);
+
   dispatch({
     type: REMOVE_COURSE,
     payload: {
@@ -212,7 +214,7 @@ export const removeCourse = (id: string) => async (
         body: {
           data: {
             operation: "remove",
-            index: getState().addedCourses.orderedIds.indexOf(id),
+            index: removedCourseIndex,
           },
         },
         headers: {

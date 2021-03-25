@@ -133,7 +133,7 @@ Submit an issue or a pull request! :blush:
     <td align="center"><a href="https://github.com/nd-02110114"><img src="https://avatars3.githubusercontent.com/u/17228098?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daiki Nishikawa</b></sub></a><br /><a href="#ideas-nd-02110114" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://www.facebook.com/JawBoYue"><img src="https://graph.facebook.com/100000406482926/picture?type=large?s=100" width="100px;" alt=""/><br /><sub><b>Jaw Bo Yue</b></sub></a><br /><a href="#design" title="Design">🎨</a> <a href="#ideas" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/youenn98"><img src="https://avatars.githubusercontent.com/u/51810761?v=4?s=100" width="100px;" alt=""/><br /><sub><b>youenn98</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/commits?author=youenn98" title="Code, Ideas">💻🤔</a></td>
-    <td align="center"><a href="#"><sub><b>Hatori Cao</b></sub></a><br /><a href="#" title="Tutorials, Ideas">✅🤔</a></td>
+    <td align="center"><a href="https://github.com/hatoriMain"><img src="https://avatars.githubusercontent.com/u/51203739?s=460&u=0c77fed5e6c947cd424c601c4f365c17c45c6c4b&v=4" width="100px;" alt=""/><br /><sub><b>Zhen Cao</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/commits?author=hatoriMain" title="Code">💻</a> <a href="#design-hatoriMain" title="Design">🎨</a> <a href="#ideas-hatoriMain" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
   <tr>
     <td align="center"><a href="#"><sub><b>Zenda Chen</b></sub></a><br /><a href="#" title="Business, Design, Ideas">💼🎨🤔</a></td>

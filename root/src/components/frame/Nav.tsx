@@ -64,11 +64,6 @@ const Nav = () => {
       path: "/blog",
       icon: faNewspaper,
     },
-    {
-      name: t("navigation.aboutus"),
-      path: "/aboutus",
-      icon: faUsers,
-    },
   ];
 
   return (

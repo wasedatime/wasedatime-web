@@ -39,6 +39,12 @@ const useStyles = makeStyles((theme) => ({
       paddingRight: 0,
     },
   },
+  title: {
+    fontFamily: "Lato, Yu Gothic Medium, Segoe UI"
+  },
+  text: {
+    fontFamily: "Segoe UI, Yu Gothic Medium, Lato"
+  },
   cardMedia: {
     position: "absolute",
     top: 0,
@@ -71,13 +77,14 @@ function MainFeaturedPost(props: { post: Post }) {
               variant="h3"
               color="inherit"
               gutterBottom
+              className={classes.title}
             >
               {post.title}
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
+            <Typography variant="subtitle1" color="textSecondary" className={classes.text}>
               {moment(post.created_at).format("MMMM Do YYYY")}
             </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
+            <Typography variant="h5" color="inherit" paragraph className={classes.text}>
               {post.summary}
             </Typography>
             <Link to={`/blog/articles/${post.src}`} style={{ textDecoration: 'none' }}>Continue reading...</Link>

@@ -3,6 +3,7 @@
   "scripts": {
     "start": "webpack serve --port 8083",
     "start:standalone": "webpack serve --env standalone",
+    "local": "concurrently --kill-others \"npm start\" \"cd ../root && npm start\"",
     "build": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
     "lint": "eslint src --ext js,ts,tsx",
@@ -47,6 +48,16 @@
     "webpack-merge": "^5.4.0"
   },
   "dependencies": {
+    "@bit/wasedatime.core.assets.img.logo": "0.0.1",
+    "@bit/wasedatime.core.ts.constants.langs": "0.0.5",
+    "@bit/wasedatime.core.ts.styles.overlay": "0.0.1",
+    "@bit/wasedatime.core.ts.ui.header": "^0.1.0",
+    "@bit/wasedatime.core.ts.ui.loading-spinner": "0.0.7",
+    "@bit/wasedatime.core.ts.utils.i18n": "0.0.3",
+    "@bit/wasedatime.core.ts.utils.responsive-utils": "0.0.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
     "@types/jest": "^26.0.16",
@@ -55,6 +66,7 @@
     "@types/systemjs": "^6.1.0",
     "@types/webpack-env": "^1.16.0",
     "axios": "^0.21.1",
+    "file-loader": "^6.2.0",
     "i18next": "^19.9.1",
     "moment": "^2.29.1",
     "prop-types": "^15.7.2",
@@ -63,7 +75,9 @@
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.8.8",
     "react-markdown": "^5.0.3",
+    "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
-    "styled-components": "^5.2.1"
+    "styled-components": "^5.2.1",
+    "url-loader": "^4.1.1"
   }
 }

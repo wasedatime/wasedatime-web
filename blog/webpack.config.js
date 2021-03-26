@@ -15,9 +15,21 @@ module.exports = (webpackConfigEnv, argv) => {
      module: {
       rules: [
         {
-          test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)(\?[a-z0-9=.]+)?$/,
+          test: /\.(jpe?g|png|gif|svg)(\?[a-z0-9=.]+)?$/,
           loader: "url-loader",
         },
+        {
+          test: /\.(woff(2)?|ttf|eot|otf)(\?v=\d+\.\d+\.\d+)?$/,
+          use: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: '[name].[ext]',
+                outputPath: 'fonts/'
+              }
+            }
+          ]
+        }
       ],
     },
   });

@@ -11,8 +11,21 @@ import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNewspaper } from "@fortawesome/free-solid-svg-icons";
+import { withTranslation, WithTranslation } from "react-i18next";
+import Header from "@bit/wasedatime.core.ts.ui.header";
 
+const BlogIndexWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
+const HeaderWrapper = styled.div`
+  flex: 0 0 67px;
+  h2 {
+    font-size: 32px;
+    font-family: Lato, Yu Gothic Medium, Segoe UI;
+  }
+`;
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
@@ -33,7 +46,7 @@ interface IMyComponentState {
   mainFeaturedPost: Post | null;
 }
 
-class BlogIndex extends React.Component<{}, IMyComponentState> {
+class BlogIndex extends React.Component<WithTranslation, IMyComponentState> {
   constructor(props) {
     super(props);
     this.state = {
@@ -54,58 +67,69 @@ class BlogIndex extends React.Component<{}, IMyComponentState> {
       mainFeaturedPost: MainApiContent,
       featuredPosts: apiContent,
     });
-    console.log(this.state.featuredPosts);
   }
   render() {
     const { mainFeaturedPost, featuredPosts } = this.state;
-    return (
-      <React.Fragment>
-        <ExtendedOverlay>
-            <br />
-            <MediaQuery minWidth={sizes.desktop}>
-              {(matches) =>
-                matches ? (
-                  <h2 style={{ color: "#555", textAlign: "center" }}>
-                    <b><FontAwesomeIcon icon={faNewspaper} /> Welcome to the article block!</b>
-                  </h2>
-                ) : (
-                  <h3 style={{ color: "#555", textAlign: "center" }}>
-                    <b><FontAwesomeIcon icon={faNewspaper} /> Welcome to the article block</b>
-                  </h3>
-                )
-              }
-            </MediaQuery>
-            <hr />
-            <br />
-            <p>
-              WasedaTime has been working on supporting students' academic
-              activities since launching. Here we offer you some articles 
-              that may be helpful for your future career.
-            </p>
-        </ExtendedOverlay>
-        <MainContainer maxWidth="lg">
-          <main>
-            {mainFeaturedPost && <MainFeaturedPost post={mainFeaturedPost} />}
+    const { t, i18n } = this.props;
 
-            <Grid container spacing={4}>
-              {featuredPosts.map((post) => (
-                <FeaturedPost key={post.title} post={post} />
-              ))}
-            </Grid>
-            {/* <Grid container spacing={5}>
-              <Main title="From the firehose" posts={posts} />
-              <Sidebar
-                title={sidebar.title}
-                description={sidebar.description}
-                archives={sidebar.archives}
-                social={sidebar.social}
-              />
-            </Grid> */}
-          </main>
-        </MainContainer>
-      </React.Fragment>
+    return (
+      <BlogIndexWrapper>
+        <HeaderWrapper>
+          <Header
+            title={t("navigation.blog")}
+            onInputChange={() => {}}
+            placeholder={t("search placeholder")}
+            inputText={""}
+            disabled={true}
+            isBlur={false}
+            changeLang={(lng) => i18n.changeLanguage(lng)}
+          />
+        </HeaderWrapper>
+        <div>
+          <ExtendedOverlay>
+              <br />
+              <MediaQuery minWidth={sizes.desktop}>
+                {(matches) =>
+                  matches ? (
+                    <h2 style={{ color: "#555", textAlign: "center" }}>
+                      <b><FontAwesomeIcon icon={faNewspaper} /> {t("BlogIndex.welcome")}</b>
+                    </h2>
+                  ) : (
+                    <h3 style={{ color: "#555", textAlign: "center" }}>
+                      <b><FontAwesomeIcon icon={faNewspaper} /> {t("BlogIndex.welcome")}</b>
+                    </h3>
+                  )
+                }
+              </MediaQuery>
+              <hr />
+              <br />
+              <p style={{ textAlign: "center" }}>{t("BlogIndex.top message")}</p>
+              <p style={{ textAlign: "center" }}>{t("BlogIndex.looking for more blogs")} inquiry@wasedatime.com</p>
+          </ExtendedOverlay>
+          <MainContainer maxWidth="lg">
+            <main>
+              {mainFeaturedPost && <MainFeaturedPost post={mainFeaturedPost} />}
+
+              <Grid container spacing={4}>
+                {featuredPosts.map((post) => (
+                  <FeaturedPost key={post.title} post={post} />
+                ))}
+              </Grid>
+              {/* <Grid container spacing={5}>
+                <Main title="From the firehose" posts={posts} />
+                <Sidebar
+                  title={sidebar.title}
+                  description={sidebar.description}
+                  archives={sidebar.archives}
+                  social={sidebar.social}
+                />
+              </Grid> */}
+            </main>
+          </MainContainer>
+        </div>
+      </BlogIndexWrapper>
     );
   }
 }
 
-export default BlogIndex;
+export default withTranslation("translation")(BlogIndex);

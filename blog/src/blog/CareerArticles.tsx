@@ -2,11 +2,12 @@ import React from "react";
 import axios from "axios";
 import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
+import Header from "@bit/wasedatime.core.ts.ui.header";
+import { withTranslation, WithTranslation } from "react-i18next";
 
 const StyledMarkdown = styled(ReactMarkdown)`
-    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&display=swap');
     * {
-      font-family: 'ZCOOL XiaoWei', serif !important;
+      font-family: ZCOOL XiaoWei, Segoe UI, Yu Gothic Medium, Lato !important;
       padding: 0px;
     }
     & p {
@@ -39,12 +40,24 @@ const StyledMarkdown = styled(ReactMarkdown)`
     }
    `;
 
-const StyledDiv = styled.div`
-    margin-left: 15%;
-    margin-right: 15%;
+const ArticleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
-interface Props {D
+const HeaderWrapper = styled.div`
+  flex: 0 0 67px;
+  h2 {
+    font-size: 32px;
+    font-family: Lato, Yu Gothic Medium, Segoe UI;
+  }
+`;
+
+const StyledDiv = styled.div`
+    margin: 1em 15%;
+`;
+
+interface Props extends WithTranslation {
   match: {
     params: {
       title: string;
@@ -79,17 +92,31 @@ class CareerArticles extends React.Component<Props, State> {
   }
   render() {
     const { urlFile, content } = this.state;
+    const { t, i18n } = this.props;
 
     return (
-      <StyledDiv>
-        {/* <h3> Fetched from: </h3> {urlFile}
-        <hr /> */}
-        <div className="markdown-body">
-          <StyledMarkdown source={content} />
-        </div>
-      </StyledDiv>
+      <ArticleWrapper>
+        <HeaderWrapper>
+          <Header
+            title={t("navigation.blog")}
+            onInputChange={() => {}}
+            placeholder={t("search placeholder")}
+            inputText={""}
+            disabled={true}
+            isBlur={false}
+            changeLang={(lng) => i18n.changeLanguage(lng)}
+          />
+        </HeaderWrapper>
+        <StyledDiv>
+          {/* <h3> Fetched from: </h3> {urlFile}
+          <hr /> */}
+          <div className="markdown-body">
+            <StyledMarkdown source={content} />
+          </div>
+        </StyledDiv>
+      </ArticleWrapper>
     );
   }
 }
 
-export default CareerArticles;
+export default withTranslation("translation")(CareerArticles);

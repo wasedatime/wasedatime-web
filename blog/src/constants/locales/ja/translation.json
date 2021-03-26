@@ -1,0 +1,11 @@
+{
+  "navigation": {
+    "blog": "記事"
+  },
+  "search placeholder": "記事を検索（構築中...）",
+  "BlogIndex": {
+    "welcome": "早稲田タイム記事へようこそ！",
+    "top message": "ここでは、学生生活と将来のキャリアに役立てる記事を提供します。",
+    "looking for more blogs": "学生に役たてる記事を募集しています！興味のある方（学生・組織）はぜひご連絡ください："
+  }
+}

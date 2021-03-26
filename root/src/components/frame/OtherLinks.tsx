@@ -57,6 +57,8 @@ const OtherLinks = ({ expanded }: Props) => {
 
   return windowHeight >= 480 ? (
     <LinksWrapper expanded={expanded}>
+      <Link to="/aboutus">{t("navigation.aboutus")}</Link>
+      <br />
       <Link to="/terms-of-service">{t("user.Terms of Service")}</Link>・
       <Link to="/privacy-policy">{t("user.Privacy Policy")}</Link>
       <br />

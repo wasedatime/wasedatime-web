@@ -129,6 +129,7 @@
         "@wasedatime/root-config": "/wasedatime-root-config.js",
         "@wasedatime/syllabus": "/syllabus/wasedatime-syllabus.js",
         "@wasedatime/campus": "/campus/wasedatime-campus.js",
+        "@wasedatime/blog": "/campus/wasedatime-blog.js",
         "react": "https://cdn.jsdelivr.net/npm/react@16.12.0/umd/react.production.min.js",
         "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.12.0/umd/react-dom.production.min.js"
       }
@@ -145,7 +146,8 @@
     {
       "imports": {
         "@wasedatime/syllabus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
-        "@wasedatime/campus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
+        "@wasedatime/campus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js",
+        "@wasedatime/blog": "https://<%= process.env.PREFIX %>.<%= process.env.MF_BLOG_DOMAIN %>/wasedatime-blog.js"
       }
     }
   </script>

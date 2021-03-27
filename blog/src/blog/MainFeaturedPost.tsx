@@ -81,7 +81,7 @@ function MainFeaturedPost(props: { post: Post }) {
             >
               {post.title}
             </Typography>
-            <Typography variant="subtitle1" color="textSecondary" className={classes.text}>
+            <Typography variant="h5" color="textSecondary" className={classes.text}>
               {moment(post.created_at).format("MMMM Do YYYY")}
             </Typography>
             <Typography variant="h5" color="inherit" paragraph className={classes.text}>

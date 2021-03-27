@@ -41,16 +41,16 @@ function FeaturedPost(props: { post: Post }) {
           <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent>
-                <Typography component="h2" variant="h5" className={classes.title}>
+                <Typography component="h2" variant="h4" className={classes.title}>
                   {post.title}
                 </Typography>
-                <Typography variant="subtitle1" color="textSecondary" className={classes.text}>
+                <Typography variant="h6" color="textSecondary" className={classes.text}>
                   {moment(post.created_at).format("MMMM Do YYYY")}
                 </Typography>
-                <Typography variant="subtitle1" paragraph className={classes.text}>
+                <Typography variant="h6" paragraph className={classes.text}>
                   {post.summary}
                 </Typography>
-                <Typography variant="subtitle1" color="primary" className={classes.text}>
+                <Typography variant="h6" color="primary" className={classes.text}>
                   Continue reading...
                   {/* {post.src} */}
                 </Typography>

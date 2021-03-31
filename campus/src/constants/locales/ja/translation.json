@@ -29,5 +29,22 @@
     "Tap on the bottom-middle icon": "底部中央のアイコン",
     "Assign a date / time to check the next bus": "日時を指定し、次のバスを検索しましょう"
   },
+  "roomFinder": {
+    "title": "教室空き情報",
+    "subtitle": "日時を指定し、教室の空き状況を検索しましょう",
+    "Occupied": "利用不可",
+    "Available": "利用可能",
+    "note": "表示されていない教室がありますので、参考としてお使いください。",
+    "campus": {
+      "Waseda": "早稲田",
+      "NishiWaseda": "西早稲田",
+      "Toyama": "戸山",
+      "Tokorozawa": "所沢"
+    },
+    "building prefix": "",
+    "building suffix": "号館",
+    "room prefix": "",
+    "room suffix": "室"
+  },
   "search placeholder": "教室を検索（構築中...）"
 }

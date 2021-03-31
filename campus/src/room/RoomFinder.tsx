@@ -1,27 +1,17 @@
-import React, { forwardRef, useState, Component} from "react";
+import React, { forwardRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClock,
-  faAngleDoubleRight,
-  faAngleDoubleLeft,
-  faAngleDown,
   faSearch,
   faCalendarAlt,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
-import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
 import DatePicker from "react-datepicker";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-// import Header from "../../src/js/components/Header";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import ReactDOM from 'react-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// import 'semantic-ui-css/semantic.min.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tabs, Tab, Badge } from 'react-bootstrap';
 import Building from "./Building";
 
@@ -29,8 +19,8 @@ import Building from "./Building";
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  padding: 5em 5em;
-  ${media.tablet`padding: 5em;`}
+  padding: 2em 20em;
+  ${media.desktop`padding: 2em;`}
 `;
 
 const DatePickerButton = styled("button")`
@@ -138,6 +128,7 @@ const RoomType = styled(Badge)`
   font-weight: 500;
   margin: 1px 3px 1px 3px;
   background-color: #E53935;
+  color: #fff;
   border-radius: 6px;
 `;
 const RoomEmpt = styled(Badge)`
@@ -145,21 +136,17 @@ const RoomEmpt = styled(Badge)`
   font-weight: 500;
   margin: 1px 3px 1px 3px;
   background-color: #71CE74;
+  color: #fff;
   border-radius: 6px;
 `;
-
-
-
-
 
 interface PropsType {
     value: string;
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   }
 
-
-
 const RoomFinder = (): JSX.Element => {
+    const { t } = useTranslation();
     const [date, setDate] = useState<Date>(new Date());
     const onDatetimeChange = (date: Date): void => setDate(date || new Date());
     const clearDatetime = (): void => setDate(new Date());
@@ -189,15 +176,14 @@ const RoomFinder = (): JSX.Element => {
             
           
             <InfoWrapper>
+                <h1 style={{ borderLeft: "5px solid rgb(148, 27, 47)", paddingLeft: "10px", marginBottom: "20px" }}>{t("roomFinder.title")}</h1>
                 <p>
                     <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
-                    {("Assign a date/time to check room vacancy")}：
-                    <RoomType>occupied</RoomType>
-                    <RoomEmpt>available</RoomEmpt>
+                    {t("roomFinder.subtitle")}：
+                    <RoomType>{t("roomFinder.Occupied")}</RoomType>
+                    <RoomEmpt>{t("roomFinder.Available")}</RoomEmpt>
                 </p>
-                <p>
-                    Note: Some rooms may not be listed. However, feel free to check whether your desired room is occupied.
-                </p>
+                <p>{t("roomFinder.note")}</p>
                 <DatetimeSelection>
                     <DatePickerSpan>
                         <DatePicker
@@ -245,16 +231,16 @@ const RoomFinder = (): JSX.Element => {
                 </DatetimeSelection>
                 <div className="tabbable full-width-tabs">
                     <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-                        <Tab eventKey="Waseda" title="Waseda">
+                        <Tab eventKey="Waseda" title={t("roomFinder.campus.Waseda")}>
                             <Building campusName="Waseda" quar={quarter} weekday={day} period={per} />
                         </Tab>
-                        <Tab eventKey="Nishi-Waseda" title="NishiWaseda">
+                        <Tab eventKey="Nishi-Waseda" title={t("roomFinder.campus.NishiWaseda")}>
                             <Building campusName="NishiWaseda" quar={quarter} weekday={day} period={per}/>
                         </Tab>
-                        <Tab eventKey="Toyama" title="Toyama">
+                        <Tab eventKey="Toyama" title={t("roomFinder.campus.Toyama")}>
                             <Building campusName="Toyama" quar={quarter} weekday={day} period={per}/>
                         </Tab>
-                        <Tab eventKey="Tokorozawa" title="Tokorozawa">
+                        <Tab eventKey="Tokorozawa" title={t("roomFinder.campus.Tokorozawa")}>
                             <Building campusName="Tokorozawa" quar={quarter} weekday={day} period={per}/>
                         </Tab>
                     </Tabs>

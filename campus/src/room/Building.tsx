@@ -1,28 +1,25 @@
-import React, { forwardRef, useState, Component} from "react";
+import React from "react";
 import styled from "styled-components";
+import { useTranslation } from "react-i18next";
 
-// import Header from "../../src/js/components/Header";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import ReactDOM from 'react-dom';
-import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// import 'semantic-ui-css/semantic.min.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav, Form, FormControl, Button, Accordion, Card, Badge } from 'react-bootstrap';
-import {campuses} from './campus_quart'
+import { campuses } from '../constants/campus_quart';
 
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  padding: 1em 1em;
+  padding: 1em 0px;
   ${media.tablet`padding: 5em;`}
 `;
 
 const RoomType = styled(Badge)<RoomProps>`
   font-size: 1.2em;
   font-weight: 500;
-  margin: 1px 3px 1px 3px;
+  margin: 5px 10px;
   border-radius: 6px;
-  background-color: ${props => props.vacancy ? "#71CE74" : "#E53935"}
+  color: #fff;
+  background-color: ${props => props.vacancy ? "#71CE74" : "#E53935"};
 `;
 
 interface RoomProps {
@@ -33,9 +30,10 @@ const RoomAcc = styled(Accordion)`
   padding: 0px;
 `;
 const RoomCar = styled(Card.Header)`
-  padding: 0px;
+  padding: 0px !important;
   text-align: center;
   width: 100%;
+  cursor: pointer;
 `;
 
 interface Props {
@@ -49,7 +47,7 @@ const Building = ({
     weekday,
     period
   }) => {
-    console.log(quar)
+    const { t } = useTranslation();
     return (
         <React.Fragment>
             <InfoWrapper>
@@ -59,13 +57,13 @@ const Building = ({
                             <Card>
                             <RoomCar>
                                 <Accordion.Toggle as={Card.Header} variant="link" eventKey="0">
-                                Building {buid}
+                                {t("roomFinder.building prefix")}{buid}{t("roomFinder.building suffix")}
                                 </Accordion.Toggle>
                             </RoomCar>
                             <Accordion.Collapse eventKey="0">
                                 <Card.Body>
                                     {
-                                        Object.keys(campuses[campusName][buid]).map((roomdata, j) => <RoomType key={j} vacancy={campuses[campusName][buid][roomdata][quar][period][weekday] ? 1 : 0} >Room {roomdata}</RoomType>)
+                                        Object.keys(campuses[campusName][buid]).map((roomdata, j) => <RoomType key={j} vacancy={campuses[campusName][buid][roomdata][quar][period][weekday] ? 1 : 0} >{t("roomFinder.room prefix")}{roomdata}{t("roomFinder.room suffix")}</RoomType>)
                                     }
                                 </Card.Body>
                             </Accordion.Collapse>

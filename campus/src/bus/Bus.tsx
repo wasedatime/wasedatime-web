@@ -12,11 +12,8 @@ import DatePicker from "react-datepicker";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 
-import Header from "@bit/wasedatime.core.ts.ui.header";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { busSchedule } from "../constants/busSchedule";
-import "../styles/styles.css";
-import "react-datepicker/dist/react-datepicker.css";
 
 const wasedaNishiwasedaBusUri =
   "https://www.waseda.jp/fsci/assets/uploads/2020/09/20200925_waseda_nishiwaseda-1.pdf";
@@ -24,8 +21,8 @@ const wasedaNishiwasedaBusUri =
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  padding: 5em 20em;
-  ${media.desktop`padding: 5em 2em;`}
+  padding: 2em 20em;
+  ${media.desktop`padding: 2em;`}
 `;
 
 const StyledAnchor = styled("a")`
@@ -338,16 +335,9 @@ const Bus = (): JSX.Element => {
         />
         <meta property="og:site_name" content="WasedaTime - Bus" />
       </Helmet>
-      <Header
-        title={t("navigation.campus")}
-        onInputChange={() => {}}
-        placeholder={t("search placeholder")}
-        inputText={""}
-        disabled={true}
-        isBlur={false}
-        changeLang={(lng) => i18n.changeLanguage(lng)}
-      />
+      
       <InfoWrapper>
+        <h1 style={{ borderLeft: "5px solid rgb(148, 27, 47)", paddingLeft: "10px", marginBottom: "20px" }}>{t("bus.busStatus")}</h1>
         <p>
           <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
           {t("bus.Assign a date / time to check the next bus")}：

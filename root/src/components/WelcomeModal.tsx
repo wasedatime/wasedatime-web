@@ -46,7 +46,8 @@ const mobileModalStyle = {
   content: {
     ...modalStyle.content,
     top: "5vh",
-    height: "570px",
+    height: "auto",
+    maxHeight: "570px",
     left: "10vw",
     right: "10vw",
   },

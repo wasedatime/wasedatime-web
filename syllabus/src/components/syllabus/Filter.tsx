@@ -27,6 +27,9 @@ const FilterScrollArea = styled(SimpleBar)`
   .simplebar-scrollbar::before {
     background-color: #999;
   }
+  .simplebar-content {
+    padding-bottom: 65px !important;
+  }
 `;
 
 const FilterTitle = styled("span")`

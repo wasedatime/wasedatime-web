@@ -27,6 +27,14 @@ module.exports = (webpackConfigEnv, argv) => {
               }
             }
           ]
+        },
+        {
+          test: /\.scss$/i,
+          use: [
+            "style-loader",
+            "css-loader",
+            "sass-loader",
+          ],
         }
       ],
     }

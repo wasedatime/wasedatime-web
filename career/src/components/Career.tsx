@@ -1,31 +1,33 @@
 import React from "react";
+import styled from "styled-components";
 import { Switch, Route, Link, Redirect } from "react-router-dom";
-import { Helmet } from "react-helmet";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { withTranslation } from "react-i18next";
+import { WithTranslation, withTranslation } from "react-i18next";
+import Header from "@bit/wasedatime.core.ts.ui.header";
 
 import Intern from "./Intern";
-import CareerArticles from "./CareerArticles";
 import Arbeit from "./Arbeit";
 import Seminar from "./Seminar";
 
-const Career = ({ t }) => {
+const HeaderWrapper = styled.div`
+  flex: 0 0 67px;
+`;
+
+const Career = ({ t, i18n }: WithTranslation) => {
   return (
     <Wrapper>
-      <Helmet>
-        <title>WasedaTime - Career</title>
-        <meta
-          name="description"
-          content="Syllabus Searching at Waseda University."
+      <HeaderWrapper>
+        <Header
+          title={t("career.title")}
+          onInputChange={() => {}}
+          placeholder={t("career.search placeholder")}
+          inputText={""}
+          disabled={true}
+          isBlur={false}
+          changeLang={(lng) => i18n.changeLanguage(lng)}
         />
-        <meta property="og:title" content="WasedaTime - Career" />
-        <meta
-          property="og:description"
-          content="Career Finding at Waseda University."
-        />
-        <meta property="og:site_name" content="WasedaTime - Career" />
-      </Helmet>
-      <div>
+      </HeaderWrapper>
+      <div className="career-container">
         <Link to="/career/intern">
           <button className="ui button">{t("career.Intern")}</button>
         </Link>
@@ -34,9 +36,6 @@ const Career = ({ t }) => {
         </Link>
         <Link to="/career/recruit">
           <button className="ui button">{t("career.Arbeit")}</button>
-        </Link>
-        <Link to="/career/articles">
-          <button className="ui button">{t("career.Articles")}</button>
         </Link>
         <Switch>
           <Route
@@ -47,7 +46,6 @@ const Career = ({ t }) => {
           <Route exact path="/career/intern" component={Intern} />
           <Route exact path="/career/recruit" component={Arbeit} />
           <Route exact path="/career/seminar" component={Seminar} />
-          <Route exact path="/career/articles" component={CareerArticles} />
         </Switch>
       </div>
     </Wrapper>

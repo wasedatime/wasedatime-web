@@ -89,7 +89,7 @@ const InternList = () => {
 
   return (
     <RowWrapper>
-      <div>
+      <div className="intern-container">
         <div>{lists}</div>
       </div>
       {browserWidth > 1220 ? <InternFilter /> : <InternFilterModal />}

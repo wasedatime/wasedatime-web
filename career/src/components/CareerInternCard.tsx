@@ -8,8 +8,7 @@ import {
   faBriefcase,
   faSearchLocation,
 } from "@fortawesome/free-solid-svg-icons";
-import { withTranslation } from "react-i18next";
-import "./CareerInternCard.css";
+import { WithTranslation, withTranslation } from "react-i18next";
 
 /*
   {
@@ -22,7 +21,11 @@ import "./CareerInternCard.css";
 
 */
 
-const CareerCard = ({ careerInformation, t }) => {
+interface Props extends WithTranslation {
+  careerInformation: any;
+}
+
+const CareerCard = ({ careerInformation, t }: Props) => {
   const [browserWidth, setBrowserWidth] = useState(document.body.clientWidth);
   const [showElem, setShowElem] = useState(false);
 

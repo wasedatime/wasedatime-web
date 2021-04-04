@@ -1,5 +1,6 @@
 {
   "career": {
+    "title": "キャリア",
     "Intern": "インターン",
     "Articles": "記事",
     "viewMore": "内容をもっと見る",
@@ -13,6 +14,7 @@
     "Request": "要求",
     "Deadline": "締め切り",
     "Payment": "時給",
-    "Description": "詳細"
+    "Description": "詳細",
+    "search placeholder": "仕事を検索（構築中...）"
   }
 }

@@ -29,5 +29,22 @@
     "Tap on the bottom-middle icon": "Tap on the bottom-middle icon",
     "Assign a date / time to check the next bus": "Assign a date / time to check the next bus"
   },
+  "roomFinder": {
+    "title": "Room finder",
+    "subtitle": "Assign a date/time to check room vacancy",
+    "Occupied": "Occupied",
+    "Available": "Available",
+    "note": "Note: Some rooms may not be listed. However, feel free to check whether your desired room is occupied.",
+    "campus": {
+      "Waseda": "Waseda",
+      "NishiWaseda": "NishiWaseda",
+      "Toyama": "Toyama",
+      "Tokorozawa": "Tokorozawa"
+    },
+    "building prefix": "Building ",
+    "building suffix": "",
+    "room prefix": "Room ",
+    "room suffix": ""
+  },
   "search placeholder": "Search classroom (in construction...)"
 }

@@ -76,7 +76,7 @@ class CareerArticles extends React.Component<Props, State> {
     const { params } = this.props.match;
     this.state = {
       content: null,
-      urlFile: `https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${params.title}/${params.title}.md`,
+      urlFile: `${process.env.REACT_APP_BLOG_S3_BASE_URL}/${params.title}/${params.title}.md`,
     };
   }
   componentDidMount() {

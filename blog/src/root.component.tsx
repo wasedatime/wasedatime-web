@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
-const BlogIndex = lazy(() => import("./blog/BlogIndex"));
-const CareerArticles = lazy(() => import("./blog/CareerArticles"));
+const BlogIndex = lazy(() => import("./component/BlogIndex"));
+const CareerArticles = lazy(() => import("./component/CareerArticles"));
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import "./styles/styles.css";

@@ -10,7 +10,7 @@ html {
 }
 
 body {
-  font-family: Segoe UI, Yu Gothic Medium, Lato !important;
+  font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-size: 1.6rem;
   font-display: swap;
 }
@@ -20,7 +20,7 @@ a,
 button,
 .header,
 .button {
-  font-family: Segoe UI, Yu Gothic Medium, Lato !important;
+  font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-display: swap;
 }
 
@@ -31,7 +31,7 @@ h4,
 h5,
 h6,
 b {
-  font-family: Lato, Yu Gothic Medium, Segoe UI !important;
+  font-family: Lato, Yu Gothic Medium, Segoe UI;
   font-display: swap;
 }
 

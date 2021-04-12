@@ -37,8 +37,8 @@ const StyledMarkdown = styled(ReactMarkdown)`
       margin-top: 20px;
       margin-bottom: 20px;
     }
-    }
-   `;
+  }
+`;
 
 const ArticleWrapper = styled.div`
   display: flex;
@@ -49,12 +49,12 @@ const HeaderWrapper = styled.div`
   flex: 0 0 67px;
   h2 {
     font-size: 32px;
-    font-family: Lato, Yu Gothic Medium, Segoe UI;
+    padding-bottom: 90px;
   }
 `;
 
 const StyledDiv = styled.div`
-    margin: 1em 15%;
+  margin: 1em 15%;
 `;
 
 interface Props extends WithTranslation {

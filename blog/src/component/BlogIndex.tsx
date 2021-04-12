@@ -104,7 +104,7 @@ class BlogIndex extends React.Component<WithTranslation, IMyComponentState> {
               <hr />
               <br />
               <p style={{ textAlign: "center" }}>{t("BlogIndex.top message")}</p>
-              <p style={{ textAlign: "center" }}>{t("BlogIndex.looking for more blogs")} inquiry@wasedatime.com</p>
+              <p style={{ textAlign: "center" }}>{t("BlogIndex.looking for more blogs")} contact@wasedatime.com</p>
           </ExtendedOverlay>
           <MainContainer maxWidth="lg">
             <main>

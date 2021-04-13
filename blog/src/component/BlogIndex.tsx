@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import MainFeaturedPost from "./MainFeaturedPost";
 import FeaturedPost from "./FeaturedPost";
-import careerAPI from "./careerAPI";
+import careerAPI from "../utils/careerAPI";
 import { Post } from "../types/post";
 import { Overlay } from "@bit/wasedatime.core.ts.styles.overlay";
 import styled from "styled-components";

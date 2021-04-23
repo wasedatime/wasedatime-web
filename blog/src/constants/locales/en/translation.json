@@ -1,11 +1,11 @@
 {
   "navigation": {
-    "blog": "Blog"
+    "feeds": "Feeds"
   },
-  "search placeholder": "Search blog (in construction...)",
+  "search placeholder": "Search feed (in construction...)",
   "BlogIndex": {
-    "welcome": "Welcome to WasedaTime Blogs!",
+    "welcome": "Welcome to WasedaTime Feeds!",
     "top message": "Here we offer you articles that may be helpful for your student life & future career.",
-    "looking for more blogs": "We are looking for more blogs that support student life! Please contant us if you (as a student or organization) are interested:"
+    "looking for more blogs": "We are looking for more feeds that support student life! Please contant us if you (as a student or organization) are interested:"
   }
 }

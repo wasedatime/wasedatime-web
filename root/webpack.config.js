@@ -56,16 +56,16 @@ module.exports = (webpackConfigEnv, argv) => {
           ? ["PREFIX", "MF_SYLLABUS_DOMAIN", "MF_CAMPUS_DOMAIN", "MF_BLOG_DOMAIN"]
           : []
       ),
-      new webpack.DefinePlugin(webpackConfigEnv?.isDev ? {
+      new webpack.DefinePlugin(webpackConfigEnv.isDev ? {
         'process.env.NODE_ENV': JSON.stringify('staging'),
       } : {}),
       new HtmlWebpackPlugin({
         inject: false,
         template: "src/index.ejs",
         templateParameters: {
-          isLocal: webpackConfigEnv?.isLocal,
-          isDev: webpackConfigEnv?.isDev,
-          standalone: webpackConfigEnv?.standalone,
+          isLocal: webpackConfigEnv.isLocal,
+          isDev: webpackConfigEnv.isDev,
+          standalone: webpackConfigEnv.standalone,
           orgName,
         },
       }),

@@ -1,0 +1,7 @@
+@import "common.css";
+@import "datetime.css";
+.campus-container {
+  @import "~bootstrap/dist/css/bootstrap.min";
+  @import "~react-datepicker/dist/react-datepicker";
+  @import "~react-responsive-carousel/lib/styles/carousel.min";
+}

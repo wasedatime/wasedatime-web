@@ -409,7 +409,7 @@ const MeetOurTeam = () => {
         <Card>
           <MemberImage src={naomi}></MemberImage>
           <MemberName>Naomi Shen</MemberName>
-          <MemberPosition>Marketing</MemberPosition>
+          <MemberPosition>Backend Apprentice</MemberPosition>
 
           <SocialMediaArea>
             <a
@@ -427,13 +427,13 @@ const MeetOurTeam = () => {
         <Card>
           <MemberImage src={alina}></MemberImage>
           <MemberName>Alina Kenny</MemberName>
-          <MemberPosition>Marketing</MemberPosition>
-          <MemberVision>Dream, believe, and achieve!</MemberVision>
+          <MemberPosition>Business</MemberPosition>
           <SocialMediaArea>
             <a href="https://www.instagram.com/alina_kenny119/" target="_blank" rel="noopener noreferrer">
               <MediaIcon src={instagram} href="www.google.com"></MediaIcon>
             </a>
           </SocialMediaArea>
+          <MemberVision>Dream, believe, and achieve!</MemberVision>
         </Card>
 
         {/* ----------------------------------kong */}

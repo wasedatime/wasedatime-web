@@ -49,16 +49,20 @@ i18nConfig({
   [Lang.JA]: translationJP,
 });
 
-if (process.env.NODE_ENV === "production") {
-  ReactGA.initialize("UA-112185819-1", { debug: false, titleCase: false });
+// ===== GA id =====
+// production (wasedatime.com): UA-112185819-1
+// staging (dev.wasedatime.com): UA-112185819-3
+// development (localhost): UA-112185819-4
+if (process.env.NODE_ENV === "development") {
+  ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
+} else {
+  ReactGA.initialize(process.env.NODE_ENV === 'production' ? "UA-112185819-1" : "UA-112185819-3", { debug: false, titleCase: false });
   Sentry.init({
     dsn:
       "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
     environment: process.env.NODE_ENV,
     ignoreErrors: ["Network Error", "NetworkError", "Loading chunk", "Timed out"],
   });
-} else {
-  ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
 }
 
 ReactDOM.render(

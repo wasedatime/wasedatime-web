@@ -17,6 +17,14 @@ module.exports = (webpackConfigEnv, argv) => {
           test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)(\?[a-z0-9=.]+)?$/,
           loader: "url-loader",
         },
+        {
+          test: /\.scss$/i,
+          use: [
+            "style-loader",
+            "css-loader",
+            "sass-loader",
+          ],
+        },
       ],
     },
   });

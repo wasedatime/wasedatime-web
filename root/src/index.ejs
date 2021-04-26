@@ -134,6 +134,7 @@
       }
     }
   </script>
+  <!-- "@wasedatime/feeds": "/campus/wasedatime-blog.js", -->
   
   <!-- <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script"> -->
 
@@ -145,7 +146,8 @@
     {
       "imports": {
         "@wasedatime/syllabus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
-        "@wasedatime/campus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
+        "@wasedatime/campus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js",
+        "@wasedatime/feeds": "https://<%= process.env.PREFIX %>.<%= process.env.MF_BLOG_DOMAIN %>/wasedatime-blog.js"
       }
     }
   </script>
@@ -158,7 +160,8 @@
         "@wasedatime/root-config": "//localhost:9000/wasedatime-root-config.js",
         "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.js",
         "@wasedatime/campus": "//localhost:8081/wasedatime-campus.js",
-        "@wasedatime/career": "//localhost:8082/wasedatime-career.js"
+        "@wasedatime/career": "//localhost:8082/wasedatime-career.js",
+        "@wasedatime/feeds": "//localhost:8083/wasedatime-blog.js"
       }
     }
   </script>
@@ -260,6 +263,9 @@
           <route path="career">
             <application name="@wasedatime/career"></application>
           </route>
+          <!-- <route path="feeds">
+            <application name="@wasedatime/feeds"></application>
+          </route> -->
           <route default>
             <application name="@wasedatime/root-config"></application>
           </route>

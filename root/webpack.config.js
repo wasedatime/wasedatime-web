@@ -56,13 +56,17 @@ module.exports = (webpackConfigEnv, argv) => {
           ? ["PREFIX", "MF_SYLLABUS_DOMAIN", "MF_CAMPUS_DOMAIN", "MF_BLOG_DOMAIN"]
           : []
       ),
+      new webpack.DefinePlugin({
+        "isLocal": webpackConfigEnv?.isLocal || false,
+        "isDev": webpackConfigEnv?.isDev || false,
+      }),
       new HtmlWebpackPlugin({
         inject: false,
         template: "src/index.ejs",
         templateParameters: {
-          isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,
-          isDev: webpackConfigEnv && webpackConfigEnv.isDev,
-          standalone: webpackConfigEnv && webpackConfigEnv.standalone,
+          isLocal: webpackConfigEnv?.isLocal,
+          isDev: webpackConfigEnv?.isDev,
+          standalone: webpackConfigEnv?.standalone,
           orgName,
         },
       }),

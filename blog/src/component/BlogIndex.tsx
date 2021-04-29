@@ -76,7 +76,7 @@ class BlogIndex extends React.Component<WithTranslation, IMyComponentState> {
       <BlogIndexWrapper>
         <HeaderWrapper>
           <Header
-            title={t("navigation.blog")}
+            title={t("navigation.feeds")}
             onInputChange={() => {}}
             placeholder={t("search placeholder")}
             inputText={""}

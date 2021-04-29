@@ -98,7 +98,7 @@ class CareerArticles extends React.Component<Props, State> {
       <ArticleWrapper>
         <HeaderWrapper>
           <Header
-            title={t("navigation.blog")}
+            title={t("navigation.feeds")}
             onInputChange={() => {}}
             placeholder={t("search placeholder")}
             inputText={""}

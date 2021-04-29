@@ -15,6 +15,9 @@
     "Deadline": "締め切り",
     "Payment": "時給",
     "Description": "詳細",
-    "search placeholder": "仕事を検索（構築中...）"
+    "search placeholder": "仕事を検索（構築中...）",
+    "Category" : "雇用形態",
+    "Shift" : "シフト",
+    "Location": "勤務場所"
   }
 }

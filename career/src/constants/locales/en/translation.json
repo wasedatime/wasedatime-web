@@ -15,6 +15,9 @@
     "Deadline": "Deadline",
     "Payment": "Payment",
     "Description": "Description",
-    "search placeholder": "Search for jobs (in construction...)"
+    "search placeholder": "Search for jobs (in construction...)",
+    "Category": "Employment Type",
+    "Shift": "Shift",
+    "Location": "Location"
   }
 }

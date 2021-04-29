@@ -79,7 +79,17 @@ const CareerCard = ({ careerInformation, t }: Props) => {
                       </span>
                     </td>
                     <td className="company field">
-                      <span>{careerInformation.Field}</span>
+                      <span>{careerInformation.Industry}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span style={{ fontWeight: "bold" }}>
+                        {t("career.Category")}
+                      </span>
+                    </td>
+                    <td className="Category">
+                      <span>{careerInformation.Category}</span>
                     </td>
                   </tr>
                   <tr>
@@ -99,7 +109,7 @@ const CareerCard = ({ careerInformation, t }: Props) => {
                       </span>
                     </td>
                     <td className="request">
-                      <span>{careerInformation.Request}</span>
+                      <span>{careerInformation.Requirement}</span>
                     </td>
                   </tr>
                   <tr>
@@ -118,8 +128,28 @@ const CareerCard = ({ careerInformation, t }: Props) => {
                         {t("career.Payment")}
                       </span>
                     </td>
-                    <td className="deadline">
-                      <span>{careerInformation.Payment}</span>
+                    <td className="Payment">
+                      <span>{careerInformation.Salary}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span style={{ fontWeight: "bold" }}>
+                        {t("career.Shift")}
+                      </span>
+                    </td>
+                    <td className="Shift">
+                      <span>{careerInformation.Shift}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span style={{ fontWeight: "bold" }}>
+                        {t("career.Location")}
+                      </span>
+                    </td>
+                    <td className="Location">
+                      <span>{careerInformation.Location}</span>
                     </td>
                   </tr>
                 </tbody>

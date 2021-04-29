@@ -7,60 +7,86 @@ import InternFilterModal from "./InternFilterModal";
 
 const companyList = [
   {
-    Title: "【面向工程师的医疗行业实习】",
-    Request: "AWS/PHP技能",
-    Field: 1,
+    Title: "Title1",
+    Requirement: "Qwerty",
+    Industry: "maker",
     Language: 0,
-    URL: "https://bit.ly/2YzPmUS",
+    URL: "https://www.google.com/",
+    Shift: "Two days a week",
     DEADLINE: "NONE",
     Corporation: "株式会社Precal",
-    Payment: 0,
+    Salary: "￥2000/hr",
     Description:
-      "【面向工程师的医疗行业实习】 【时薪1,300~1,800日元】 【可远程工作】【面向工程师的医疗行业实习】 【时薪1,300~1,800日元】 【可远程工作】",
+      "Bababa",
+    Category: "Part-time",
+    Location: "Tokyo",
+    // Not displaying:
+    Target_major: "Science",
+    Duration: 8,
   },
   {
-    company: "株式会社ライジングコーポレーション",
-    area: "福岡県 天神2分",
-    pay: "時給1,200円～2,000円",
-    worktime: "平日1日～",
-    title:
-      "【未経験者歓迎】【就活支援あり】実績2万件を有する事業でトップセールスを目指せるインターン!",
-    description:
-      "自由な働き方と整った環境でセールス力が身につく実践型インターン",
-    type: ["不動産/建築", "商社"],
-    category: "営業",
-    image:
-      "https://static.careerbaito.com/picture/corporation/2796/708_472/ZpKQ0P4d.jpg",
+    Title: "Title1",
+    Requirement: "Qwerty",
+    Industry: "maker",
+    Language: 0,
+    URL: "https://www.google.com/",
+    Shift: "Two days a week",
+    DEADLINE: "NONE",
+    Corporation: "株式会社Precal",
+    Salary: 0,
+    Description:
+      "Bababa",
+    Category: "Part-time",
+    Target_major: "Science",
+    Duration: 8,
+    Location: "Tokyo"
   },
   {
-    company:
-      "株式会社ライジングコーポレーション1株式会社ライジングコーポレーション11111111111111111111111",
-    area: "福岡県 天神2分",
-    pay: "時給1,200円～2,000円",
-    worktime: "平日1日～",
-    title:
-      "【未経験者歓迎】【就活支援あり】実績2万件を有する事業でトップセールスを目指せるインターン!12312312312312312312",
-    description:
-      "自由な働き方と整った環境でセールス力が身につく実践型インターン",
-    type: ["不動産/建築", "商社"],
-    category: "営業",
-    image:
-      "https://static.careerbaito.com/picture/corporation/2796/708_472/ZpKQ0P4d.jpg",
+    Title: "Title1",
+    Requirement: "Qwerty",
+    Industry: "maker",
+    Language: 0,
+    URL: "https://www.google.com/",
+    Shift: "Two days a week",
+    DEADLINE: "NONE",
+    Corporation: "株式会社Precal",
+    Salary: 0,
+    Description:
+      "Bababa",
+    Category: "Part-time",
+    Target_major: "Science",
+    Duration: 8,
+    Location: "Tokyo"
   },
   {
-    company: "株式会社ライジングコーポレーション3",
-    area: "福岡県 天神2分",
-    pay: "時給1,200円～2,000円",
-    worktime: "平日1日～",
-    title:
-      "【未経験者歓迎】【就活支援あり】実績2万件を有する事業でトップセールスを目指せるインターン!",
-    description:
-      "自由な働き方と整った環境でセールス力が身につく実践型インターン",
-    type: ["不動産/建築", "商社"],
-    category: "営業",
-    image:
-      "https://static.careerbaito.com/picture/corporation/2796/708_472/ZpKQ0P4d.jpg",
+    Title: "Title1",
+    Requirement: "Qwerty",
+    Industry: "maker",
+    Language: 0,
+    URL: "https://www.google.com/",
+    Shift: "Two days a week",
+    DEADLINE: "NONE",
+    Corporation: "株式会社Precal",
+    Salary: 0,
+    Description:
+      "Bababa",
+    Category: "Part-time",
+    Target_major: "Science",
+    Duration: 8,
+    Location: "Tokyo"
   },
+  // {
+  //   Title: "Title4",
+  //   Request: "AWS/PHP技能",
+  //   Field: 1,
+  //   Language: 0,
+  //   URL: "https://bit.ly/2YzPmUS",
+  //   DEADLINE: "NONE",
+  //   Corporation: "株式会社Precal",
+  //   Payment: 0,
+  //   Description:
+  //     "【面向工程师的医疗行业实习】 【时薪1,300~1,800日元】 【可远程工作】【面向工程师的医疗行业实习】 【时薪1,300~1,800日元】 【可远程工作】",
+  // },
 ];
 
 //Field: 1. MAKER 2. SERVICE  3. FINANCE  4. OFFICE   5. IT    6. CONSULTING
@@ -83,8 +109,8 @@ const InternList = () => {
     setBrowserWidth(document.body.clientWidth);
   };
 
-  const lists = companyList.map((company) => {
-    return <CareerCard careerInformation={company} key={company.company} />;
+  const lists = companyList.map((Title) => {
+    return <CareerCard careerInformation={Title} key={Title.Title} />;
   });
 
   return (

@@ -11,6 +11,7 @@ import Hidden from "@material-ui/core/Hidden";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import moment from "moment";
 import { Post } from "../types/post";
+import { parseSrcS3ToHttps, getArticleTitle } from '../utils/parseS3Link';
 
 const useStyles = makeStyles({
   card: {
@@ -34,10 +35,11 @@ const useStyles = makeStyles({
 function FeaturedPost(props: { post: Post }) {
   const classes = useStyles();
   const { post } = props;
+
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
-        <Link to={`/blog/articles/${post.src}`} style={{ textDecoration: 'none' }}>
+        <Link to={`/feeds/articles/${getArticleTitle(post.src)}`} style={{ textDecoration: 'none' }}>
           <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent>
@@ -59,7 +61,7 @@ function FeaturedPost(props: { post: Post }) {
             <Hidden smDown>
               <CardMedia
                 className={classes.cardMedia}
-                image={`https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${post.src}cover.jpg`}
+                image={`${parseSrcS3ToHttps(post.src)}cover.jpg`}
                 title="Article Cover"
               />
             </Hidden>

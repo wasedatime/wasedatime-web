@@ -1,15 +1,14 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import CareerArticles from "./CareerArticles";
 import { Post } from "../types/post";
 import moment from "moment";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
+import { parseSrcS3ToHttps, getArticleTitle } from '../utils/parseS3Link';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -61,10 +60,6 @@ function MainFeaturedPost(props: { post: Post }) {
   return (
     <Card
       className={classes.mainFeaturedPost}
-      // style={{ backgroundImage: `url(${post.image})` }}
-      // style={{
-      //   backgroundImage: `url(https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${post.src}cover.jpg)`,
-      // }}
     >
       {/* Increase the priority of the hero background image */}
       {<img style={{ display: "none" }} alt="main text" />}
@@ -87,16 +82,15 @@ function MainFeaturedPost(props: { post: Post }) {
             <Typography variant="h5" color="inherit" paragraph className={classes.text}>
               {post.summary}
             </Typography>
-            <Link to={`/blog/articles/${post.src}`} style={{ textDecoration: 'none' }}>Continue reading...</Link>
+            <Link to={`/feeds/articles/${getArticleTitle(post.src)}`} style={{ textDecoration: 'none' }}>Continue reading...</Link>
           </div>
         </Grid>
         <CardMedia
-        className={classes.cardMedia}
-        image={`https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${post.src}cover.jpg`}
-        title="Article Cover"
+          className={classes.cardMedia}
+          image={`${parseSrcS3ToHttps(post.src)}cover.jpg`}
+          title="Article Cover"
         />
       </Grid>
-      {/* <Route path={`/user/${post.src}`} component={CareerArticles} /> */}
     </Card>
   );
 }

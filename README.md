@@ -8,7 +8,7 @@
 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md) [![Build Status](https://travis-ci.com/wasedatime/wasedatime-web.svg?branch=master)](https://travis-ci.com/wasedatime/wasedatime-web) [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
 
-[WasedaTime](https://wasedatime.com) (stands for Waseda Timetable) is an unofficial web app for syllabus searching, classroom finding, and bus schedule checking at Waseda University.
+[WasedaTime](https://wasedatime.com) (stands for Waseda Timetable) is a non-profit & student-run open source web app for syllabus searching, course reviews and bus schedule checking at Waseda University. We aim at supporting and improving campus lives of Waseda University students.
 
 ## Getting Started
 
@@ -21,21 +21,58 @@ Currently this section is yet to be completed/refined. We will update it as freq
 ```bash
 git clone https://github.com/wasedatime/wasedatime-web.git
 cd wasedatime-web
-# install server-side node_modules
-npm ci
-# install client-side node_modules
-cd client
-npm ci
+
+# configure @bit as a npm scoped registry since we are using some common components on bit.dev
+npm config set @bit:registry https://node.bit.dev
+# If the above command does not work, try this:
+npm config set '@bit:registry' https://node.bit.dev
+
+# move into 'root' folder and install packages for all frontend
+cd root
+npm run ci-all
+# ↑ this will run `npm ci` in each frontend
 ```
 
 ### Running the app for developing
 
+You may meet errors when you run wasedatime-web locally and then access Syllabus page without having a .env file. Please contact us if you need the .env file, while it is not necessary to have it if the development you are engaging in is not related with Syllabus page.
+
+To develop only in one frontend (with 'root'):
 ```bash
-cd wasedatime-web
-npm run dev
+cd wasedatime-web/{folder name of the frontend you want to run}
+npm run local
 ```
 
+To develop only in one frontend (without 'root'):
+```bash
+cd wasedatime-web/{folder name of the frontend you want to run}
+npm run start:standalone
+```
+
+To develop only inside 'root':
+```bash
+cd wasedatime-web/root
+npm start
+```
+
+To run the whole project:
+```bash
+cd wasedatime-web/root
+npm run local
+```
+
+### Create a new project (frontend) in WasedaTime
+
+Will be updated soon.
+
 ### App Architecture
+
+Frontend (client):
+
+- Micro-frontend (https://martinfowler.com/articles/micro-frontends.html?utm_source=arador.com)
+- Description of our frontend architecture (in Micro-frontends) will be updated soon.
+
+Serverless backend:
 
 ![App Architecture](/docs/images/AWSArch.png)
 
@@ -59,9 +96,16 @@ Imported in code, but NOT being used in production for now:
 
 Front-end (Client):
 
-- [Create React App](https://github.com/facebook/create-react-app) - Main tool used for building the front-end application. See the [client directory](client/) for more details.
-- [Redux](https://redux.js.org) - Library used to manage the state of front-end.
-- [Styled Components](https://www.styled-components.com) - Library used for adding CSS to React components.
+- Common
+  - [Single-spa](https://single-spa.js.org) - A framework to bring together multiple JavaScript microfrontends in a frontend application.
+  - [Styled Components](https://www.styled-components.com) - Library used for adding CSS to React components.
+- Root
+  - [Tailwind](https://tailwindcss.com) - A utility-first CSS framework packed with classes with humen-friendly name; highly customizable.
+- Syllabus
+  - [Redux](https://redux.js.org) - Library used to manage the state of front-end.
+  - [Semantic UI React](https://react.semantic-ui.com) - Official React integration for Semantic UI, a development framework that helps create layouts with prebuilt components easily.
+- Campus
+  - [React Bootstrap](https://react-bootstrap.github.io) - Official React integration for Bootstrap, a frequently updated development framework that helps create layouts with prebuilt components easily.
 
 ## Contributing
 
@@ -89,12 +133,12 @@ Submit an issue or a pull request! :blush:
     <td align="center"><a href="https://github.com/nd-02110114"><img src="https://avatars3.githubusercontent.com/u/17228098?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Daiki Nishikawa</b></sub></a><br /><a href="#ideas-nd-02110114" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://www.facebook.com/JawBoYue"><img src="https://graph.facebook.com/100000406482926/picture?type=large?s=100" width="100px;" alt=""/><br /><sub><b>Jaw Bo Yue</b></sub></a><br /><a href="#design" title="Design">🎨</a> <a href="#ideas" title="Ideas, Planning, & Feedback">🤔</a></td>
     <td align="center"><a href="https://github.com/youenn98"><img src="https://avatars.githubusercontent.com/u/51810761?v=4?s=100" width="100px;" alt=""/><br /><sub><b>youenn98</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/commits?author=youenn98" title="Code, Ideas">💻🤔</a></td>
-    <td align="center"><a href="#"><sub><b>Hatori Cao</b></sub></a><br /><a href="#" title="Tutorials, Ideas">✅🤔</a></td>
+    <td align="center"><a href="https://github.com/hatoriMain"><img src="https://avatars.githubusercontent.com/u/51203739?s=460&u=0c77fed5e6c947cd424c601c4f365c17c45c6c4b&v=4" width="100px;" alt=""/><br /><sub><b>Zhen Cao</b></sub></a><br /><a href="https://github.com/wasedatime/wasedatime-web/commits?author=hatoriMain" title="Code">💻</a> <a href="#design-hatoriMain" title="Design">🎨</a> <a href="#ideas-hatoriMain" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
   <tr>
     <td align="center"><a href="#"><sub><b>Zenda Chen</b></sub></a><br /><a href="#" title="Business, Design, Ideas">💼🎨🤔</a></td>
     <td align="center"><a href="#"><sub><b>Kaiqing Chang</b></sub></a><br /><a href="#" title="Business, Design, Ideas">💼🎨🤔</a></td>
-    <td align="center"><a href="https://github.com/kaedejima"><img src="https://avatars.githubusercontent.com/u/49092226?s=400&u=7f7d80600a0007aadc8a9e6d0df69e38088c5562&v=4" width="100px;" alt=""/><br /><sub><b>youenn98</b></sub></a><br /><a href="#code" title="Tutorials, Design">✅🎨</a></td>
+    <td align="center"><a href="https://github.com/kaedejima"><img src="https://avatars.githubusercontent.com/u/49092226?s=400&u=7f7d80600a0007aadc8a9e6d0df69e38088c5562&v=4" width="100px;" alt=""/><br /><sub><b>Kaede Iijima</b></sub></a><br /><a href="#code" title="Tutorials, Design">✅🎨</a></td>
   </tr>
 </table>
 

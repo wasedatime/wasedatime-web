@@ -1,0 +1,30 @@
+{
+  "classModalities": {
+    "label": "Class modality",
+    "In person": "In person",
+    "In person / Online": "In person / Online",
+    "Full On-demand": "Full On-demand",
+    "Scheduled On-demand": "Scheduled On-demand",
+    "Realtime streaming": "Realtime streaming"
+  },
+  "courseMoreDetails": {
+    "title": "More Details",
+    "Outline": "Outline",
+    "Objective": "Objective",
+    "Schedule": "Schedule",
+    "Self Study": "Self Study",
+    "Note": "Note",
+    "Reference": "Reference",
+    "Textbook": "Textbook"
+  },
+  "message": {
+    "choose school request": "Please choose your school to start using Syllabus",
+    "syllabus no result warning": "No results? Try importing a school or changing the filter!"
+  },
+  "school filter": {
+    "choose schools": "Choose your schools"
+  },
+  "other": "Other",
+  "special": "Special",
+  "timetable search placeholder": "Search courses (in construction...)"
+}

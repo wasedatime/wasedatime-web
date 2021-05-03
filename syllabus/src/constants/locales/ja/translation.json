@@ -1,0 +1,30 @@
+{
+  "classModalities": {
+    "label": "授業形態",
+    "In person": "対面",
+    "In person / Online": "対面／オンライン",
+    "Full On-demand": "オンデマンド（曜日時限なし）",
+    "Scheduled On-demand": "オンデマンド（曜日時限あり）",
+    "Realtime streaming": "リアルタイム配信"
+  },
+  "courseMoreDetails": {
+    "title": "詳細情報",
+    "Outline": "授業概要",
+    "Objective": "到達目標",
+    "Schedule": "授業計画",
+    "Self Study": "事前・事後学習",
+    "Note": "備考・関連URL",
+    "Reference": "参考文献",
+    "Textbook": "教科書"
+  },
+  "message": {
+    "choose school request": "シラバスを使用する前に、まず学部を選択してください",
+    "syllabus no result warning": "結果が表示されていない？学部を選択するか、フィルタ条件を変更しましょう！"
+  },
+  "school filter": {
+    "choose schools": "学部/研究科を選択"
+  },
+  "other": "その他",
+  "special": "その他",
+  "timetable search placeholder": "授業を検索（構築中...）"
+}

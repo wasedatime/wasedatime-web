@@ -1,0 +1,7 @@
+@font-face {
+  font-family: "ZCOOL XiaoWei";
+  src: local("ZCOOL XiaoWei"), url("./fonts/ZCOOLXiaoWei-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+@import "common.css";

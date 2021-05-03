@@ -47,6 +47,16 @@ const Building = ({
     weekday,
     period
   }) => {
+    var vacancy = 1;
+    function check_vacancy(campuses, campusName, buid, roomdata, quar, period, weekday) {
+      try {
+        vacancy= campuses[campusName][buid][roomdata][quar][period][weekday] ? 1 : 0
+        return vacancy
+      }
+      catch(err) {
+        alert(err)
+      }             
+    };
     const { t } = useTranslation();
     return (
         <React.Fragment>
@@ -63,7 +73,7 @@ const Building = ({
                             <Accordion.Collapse eventKey="0">
                                 <Card.Body>
                                     {
-                                        Object.keys(campuses[campusName][buid]).map((roomdata, j) => <RoomType key={j} vacancy={campuses[campusName][buid][roomdata][quar][period][weekday] ? 1 : 0} >{t("roomFinder.room prefix")}{roomdata}{t("roomFinder.room suffix")}</RoomType>)
+                                        Object.keys(campuses[campusName][buid]).map((roomdata, j) => <RoomType key={j} vacancy={check_vacancy(campuses, campusName, buid, roomdata, quar, period, weekday)} >{t("roomFinder.room prefix")}{roomdata}{t("roomFinder.room suffix")}</RoomType>)
                                     }
                                 </Card.Body>
                             </Accordion.Collapse>

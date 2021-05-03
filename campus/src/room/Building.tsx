@@ -40,6 +40,17 @@ interface Props {
     CampusName: String;
 }
 
+function checkVacancy(campuses, campusName, buid, roomdata, quar, period, weekday) {
+  var vacancy = 1;
+  try {
+    if (period === -1) return 0;
+    vacancy = campuses[campusName][buid][roomdata][quar][period][weekday] ? 1 : 0
+    return vacancy
+  }
+  catch(err) {
+    return 0
+  }             
+};
 
 const Building = ({
     campusName,
@@ -63,7 +74,7 @@ const Building = ({
                             <Accordion.Collapse eventKey="0">
                                 <Card.Body>
                                     {
-                                        Object.keys(campuses[campusName][buid]).map((roomdata, j) => <RoomType key={j} vacancy={campuses[campusName][buid][roomdata][quar][period][weekday] ? 1 : 0} >{t("roomFinder.room prefix")}{roomdata}{t("roomFinder.room suffix")}</RoomType>)
+                                        Object.keys(campuses[campusName][buid]).map((roomdata, j) => <RoomType key={j} vacancy={checkVacancy(campuses, campusName, buid, roomdata, quar, period, weekday)} >{t("roomFinder.room prefix")}{roomdata}{t("roomFinder.room suffix")}</RoomType>)
                                     }
                                 </Card.Body>
                             </Accordion.Collapse>

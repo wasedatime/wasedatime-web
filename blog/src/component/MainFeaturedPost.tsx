@@ -9,7 +9,6 @@ import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
 import { parseSrcS3ToHttps, getArticleTitle } from '../utils/parseS3Link';
 
-
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
     position: "relative",

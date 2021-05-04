@@ -121,6 +121,7 @@ const findPeriod = (totalMins) => {
     if (660 <= totalMins && totalMins <= 765){
         return 6
     }
+    if (totalMins > 765) return -1;
   };
 
 const RoomType = styled(Badge)`

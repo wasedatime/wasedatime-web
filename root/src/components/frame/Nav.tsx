@@ -64,6 +64,11 @@ const Nav = () => {
       path: "/feeds",
       icon: faNewspaper,
     },
+    // {
+    //   name: t("navigation.blog"),
+    //   path: "/feeds",
+    //   icon: faNewspaper,
+    // },
   ];
 
   return (

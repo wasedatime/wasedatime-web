@@ -1,16 +1,13 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import CareerArticles from "./CareerArticles";
 import { Post } from "../types/post";
-import moment from "moment";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
-
+import { parseSrcS3ToHttps, getArticleTitle } from '../utils/parseS3Link';
 
 const useStyles = makeStyles((theme) => ({
   mainFeaturedPost: {
@@ -59,45 +56,44 @@ function MainFeaturedPost(props: { post: Post }) {
   const { post } = props;
 
   return (
-    <Card
-      className={classes.mainFeaturedPost}
-      // style={{ backgroundImage: `url(${post.image})` }}
-      // style={{
-      //   backgroundImage: `url(https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${post.src}cover.jpg)`,
-      // }}
-    >
-      {/* Increase the priority of the hero background image */}
-      {<img style={{ display: "none" }} alt="main text" />}
-      <div className={classes.overlay} />
-      <Grid container>
-        <Grid item md={6}>
-          <div className={classes.mainFeaturedPostContent}>
-            <Typography
-              component="h1"
-              variant="h3"
-              color="inherit"
-              gutterBottom
-              className={classes.title}
-            >
-              {post.title}
-            </Typography>
-            <Typography variant="h5" color="textSecondary" className={classes.text}>
-              {moment(post.created_at).format("MMMM Do YYYY")}
-            </Typography>
-            <Typography variant="h5" color="inherit" paragraph className={classes.text}>
-              {post.summary}
-            </Typography>
-            <Link to={`/blog/articles/${post.src}`} style={{ textDecoration: 'none' }}>Continue reading...</Link>
-          </div>
+    <Link to={`/feeds/articles/${getArticleTitle(post.src)}`} style={{ textDecoration: 'none' }}>
+      <Card
+        className={classes.mainFeaturedPost}
+      >
+        {/* Increase the priority of the hero background image */}
+        {<img style={{ display: "none" }} alt="main text" />}
+        <div className={classes.overlay} />
+        <Grid container>
+          <Grid item md={6}>
+            <div className={classes.mainFeaturedPostContent}>
+              <Typography
+                component="h1"
+                variant="h3"
+                color="inherit"
+                gutterBottom
+                className={classes.title}
+              >
+                {post.title}
+              </Typography>
+              <Typography variant="h5" color="textSecondary" className={classes.text}>
+                {post.created_at.match(/\d{4}\-\d{2}\-\d{2}/g)}
+              </Typography>
+              <Typography variant="h5" color="inherit" paragraph className={classes.text}>
+                {post.summary}
+              </Typography>
+              <Typography variant="h5" color="primary" className={classes.text}>
+                Continue reading...
+              </Typography>
+            </div>
+          </Grid>
+          <CardMedia
+            className={classes.cardMedia}
+            image={`${parseSrcS3ToHttps(post.src)}cover.jpg`}
+            title="Article Cover"
+          />
         </Grid>
-        <CardMedia
-        className={classes.cardMedia}
-        image={`https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com/${post.src}cover.jpg`}
-        title="Article Cover"
-        />
-      </Grid>
-      {/* <Route path={`/user/${post.src}`} component={CareerArticles} /> */}
-    </Card>
+      </Card>
+    </Link>
   );
 }
 

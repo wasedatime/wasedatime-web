@@ -17,11 +17,11 @@ i18nConfig({
 
 export default function Root(props) {
   return (
-    <Suspense fallback={<LoadingSpinner message="Loading blogs..." />}>
+    <Suspense fallback={<LoadingSpinner message="Loading feeds..." />}>
       <Router>
         <Switch>
-          <Route path="/blog/articles/:title" component={CareerArticles} />
-          <Route exact path="/blog" component={BlogIndex} />
+          <Route path="/feeds/articles/:title" component={CareerArticles} />
+          <Route exact path="/feeds" component={BlogIndex} />
         </Switch>
       </Router>
     </Suspense>

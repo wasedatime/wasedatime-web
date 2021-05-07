@@ -15,6 +15,9 @@ const StyledMarkdown = styled(ReactMarkdown)`
       margin-top: 0;
       margin-bottom: 0;
       padding-bottom: 2px;
+      & strong {
+        font-size: 2.5rem;
+      }
     }
     & ul {
       list-style: square;

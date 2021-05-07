@@ -76,7 +76,7 @@ class CareerArticles extends React.Component<Props, State> {
     const { params } = this.props.match;
     this.state = {
       content: null,
-      urlFile: `${process.env.REACT_APP_BLOG_S3_BASE_URL}/${params.title}/${params.title}.md`,
+      urlFile: `${process.env.REACT_APP_BLOG_S3_BASE_URL}/blogs/${params.title}/${params.title}.md`,
     };
   }
   componentDidMount() {
@@ -98,7 +98,7 @@ class CareerArticles extends React.Component<Props, State> {
       <ArticleWrapper>
         <HeaderWrapper>
           <Header
-            title={t("navigation.blog")}
+            title={t("navigation.feeds")}
             onInputChange={() => {}}
             placeholder={t("search placeholder")}
             inputText={""}

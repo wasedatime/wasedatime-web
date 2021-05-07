@@ -57,7 +57,7 @@ function FeaturedPost(props: { post: Post }) {
                 </Typography>
               </CardContent>
             </div>
-            <Hidden smDown>
+            <Hidden xsDown>
               <CardMedia
                 className={classes.cardMedia}
                 image={`${parseSrcS3ToHttps(post.src)}cover.jpg`}

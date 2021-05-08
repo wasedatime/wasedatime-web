@@ -33,7 +33,6 @@ jobs:
         run: npm run build-dev --if-present
 
   build_master:
-    if: github.ref == 'refs/heads/master'
     env:
       REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL_M }}
       BIT_TOKEN: ${{ secrets.BIT_TOKEN }}

@@ -43,11 +43,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Segoe UI, Yu Gothic Medium, Lato"
   },
   cardMedia: {
-    position: "absolute",
-    top: 0,
-    bottom: 0,
-    right: 0,
-    width: 500,
+    height: '100%',
   },
 }));
 
@@ -63,8 +59,8 @@ function MainFeaturedPost(props: { post: Post }) {
         {/* Increase the priority of the hero background image */}
         {<img style={{ display: "none" }} alt="main text" />}
         <div className={classes.overlay} />
-        <Grid container>
-          <Grid item md={6}>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
+          <div style={{ flex: 2 }}>
             <div className={classes.mainFeaturedPostContent}>
               <Typography
                 component="h1"
@@ -85,13 +81,15 @@ function MainFeaturedPost(props: { post: Post }) {
                 Continue reading...
               </Typography>
             </div>
-          </Grid>
-          <CardMedia
-            className={classes.cardMedia}
-            image={`${parseSrcS3ToHttps(post.src)}cover.jpg`}
-            title="Article Cover"
-          />
-        </Grid>
+          </div>
+          <div style={{ flex: 1 }}>
+            <CardMedia
+              className={classes.cardMedia}
+              image={`${parseSrcS3ToHttps(post.src)}cover.jpg`}
+              title="Article Cover"
+            />
+          </div>
+        </div>
       </Card>
     </Link>
   );

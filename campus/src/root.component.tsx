@@ -31,7 +31,7 @@ export default function Root(props) {
           />
         </div>
         <div className="campus-container">
-          {/* <RoomFinder /> */}
+          <RoomFinder />
           <Bus />
         </div>
       </div>

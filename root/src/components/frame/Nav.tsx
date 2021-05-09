@@ -60,9 +60,9 @@ const Nav = () => {
       icon: faMapMarkedAlt,
     },
     {
-      name: t("navigation.aboutus"),
-      path: "/aboutus",
-      icon: faUsers,
+      name: t("navigation.feeds"),
+      path: "/feeds",
+      icon: faNewspaper,
     },
     // {
     //   name: t("navigation.blog"),

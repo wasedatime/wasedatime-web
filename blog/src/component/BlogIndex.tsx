@@ -8,7 +8,7 @@ import { Post } from "../types/post";
 import { Overlay } from "@bit/wasedatime.core.ts.styles.overlay";
 import styled from "styled-components";
 import MediaQuery from "react-responsive";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNewspaper } from "@fortawesome/free-solid-svg-icons";
 import { withTranslation, WithTranslation } from "react-i18next";
@@ -31,6 +31,7 @@ const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   background-color: #fff;
   padding: 0 20vw;
+  ${media.tablet`padding: 0 10vw;`}
   color: #666;
   hr {
     width: 80%;
@@ -76,7 +77,7 @@ class BlogIndex extends React.Component<WithTranslation, IMyComponentState> {
       <BlogIndexWrapper>
         <HeaderWrapper>
           <Header
-            title={t("navigation.blog")}
+            title={t("navigation.feeds")}
             onInputChange={() => {}}
             placeholder={t("search placeholder")}
             inputText={""}
@@ -108,22 +109,21 @@ class BlogIndex extends React.Component<WithTranslation, IMyComponentState> {
           </ExtendedOverlay>
           <MainContainer maxWidth="lg">
             <main>
-              {mainFeaturedPost && <MainFeaturedPost post={mainFeaturedPost} />}
+              {mainFeaturedPost && (
+                <MediaQuery minWidth={sizes.desktop}>
+                  {
+                    matches => matches
+                      ? <MainFeaturedPost post={mainFeaturedPost} />
+                      : <div style={{ marginBottom: '30px' }}><FeaturedPost post={mainFeaturedPost} /></div>
+                  }
+                </MediaQuery>
+              )}
 
               <Grid container spacing={4}>
                 {featuredPosts.map((post) => (
                   <FeaturedPost key={post.title} post={post} />
                 ))}
               </Grid>
-              {/* <Grid container spacing={5}>
-                <Main title="From the firehose" posts={posts} />
-                <Sidebar
-                  title={sidebar.title}
-                  description={sidebar.description}
-                  archives={sidebar.archives}
-                  social={sidebar.social}
-                />
-              </Grid> */}
             </main>
           </MainContainer>
         </div>

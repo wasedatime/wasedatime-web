@@ -31,7 +31,7 @@ jobs:
           echo "Completed adding bit.dev to npm registry"
 
       - name: Test
-        run: ｜
+        run: |
           cd root
           npm run test-all
 

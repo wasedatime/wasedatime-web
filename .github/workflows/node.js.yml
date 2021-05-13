@@ -37,7 +37,7 @@ jobs:
           cd root
           npm run test-all
 
-      - name: Build
-        run:｜
+      - name: build
+        run: |
           cd root
           npm run build-all

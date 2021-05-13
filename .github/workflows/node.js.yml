@@ -38,6 +38,6 @@ jobs:
           npm run test-all
 
       - name: Build
-          run: |
+          run:｜
             cd root
             npm run build-all

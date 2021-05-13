@@ -36,5 +36,7 @@ jobs:
           npm run ci-all
           
       - name: Test
-        run: npm run test-all
+        run: |
+          cd root
+          npm run test-all
 

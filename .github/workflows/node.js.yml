@@ -35,17 +35,6 @@ jobs:
 
       - name: Build
         run: |
-          cd blog
-          npm ci-all
-          cd ..
-          cd campus
-          npm ci-all
-          cd ..
-          cd career
-          npm ci-all
-          cd ..
           cd root
           npm ci-all
-          cd ..
-          cd syllabus
-          npm ci-all
+

@@ -14,7 +14,7 @@
     "tailwind:build": "npx tailwind build ./src/styles/styles.css -o ./src/styles/index.css",
     "ci-all": "npm ci && cd ../syllabus && npm ci && cd ../campus && npm ci && cd ../career && npm ci && cd ../blog && npm ci",
     "test-all": "npm test && cd ../syllabus && npm test && cd ../campus && npm test && cd ../career && npm test && cd ../blog && npm test",
-    "build-all": "npm build && cd ../syllabus && npm build && cd ../campus && npm build && cd ../career && npm build && cd ../blog && npm build"
+    "build-all": "npm run build && cd ../syllabus && npm run build && cd ../campus && npm run build && cd ../career && npm run build && cd ../blog && npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",

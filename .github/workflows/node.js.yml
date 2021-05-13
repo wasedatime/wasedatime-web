@@ -36,5 +36,5 @@ jobs:
       - name: Build
         run: |
           cd root
-          npm ci-all
+          npm run ci-all
 

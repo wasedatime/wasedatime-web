@@ -26,26 +26,27 @@ jobs:
       - name: Install
         run: |
           echo "Adding bit.dev to npm registry"
-          npm config set --global @bit:registry https://node.bit.dev
-          npm config set --global //node.bit.dev/:_authToken ${BIT_TOKEN}
+          npm config set @bit:registry https://node.bit.dev
+          npm config set //node.bit.dev/:_authToken ${BIT_TOKEN}
           echo "Completed adding bit.dev to npm registry"
+          npm ci-all
 
-      - name: Test
-        run: npm test
+#       - name: Test
+#         run: npm test
 
       - name: Build
         run: |
           cd blog
-          npm run build --if-present
+          npm ci-all
           cd ..
           cd campus
-          npm run build --if-present
+          npm ci-all
           cd ..
           cd career
-          npm run build --if-present
+          npm ci-all
           cd ..
           cd root
-          npm run build --if-present
+          npm ci-all
           cd ..
           cd syllabus
-          npm run build --if-present
+          npm ci-all

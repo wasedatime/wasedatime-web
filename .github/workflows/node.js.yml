@@ -35,4 +35,18 @@ jobs:
         run: npm test
 
       - name: Build
-        run: npm run build --if-present
+        run: |
+          cd blog
+          npm run build --if-present
+          cd ..
+          cd campus
+          npm run build --if-present
+          cd ..
+          cd career
+          npm run build --if-present
+          cd ..
+          cd root
+          npm run build --if-present
+          cd ..
+          cd syllabus
+          npm run build --if-present

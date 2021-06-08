@@ -1,124 +1,44 @@
 import React, { useState, useEffect } from "react";
 
 import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import CareerCard from "./CareerInternCard";
-import InternFilter from "./InternFilter";
-import InternFilterModal from "./InternFilterModal";
+import CareerCard from "./CareerCard";
 
-const companyList = [
+const internList = [
   {
-    Title: "Title1",
-    Requirement: "Qwerty",
-    Industry: "maker",
-    Language: 0,
-    URL: "https://www.google.com/",
-    Shift: "Two days a week",
-    DEADLINE: "NONE",
-    Corporation: "株式会社Precal",
-    Salary: "￥2000/hr",
-    Description:
-      "Bababa",
-    Category: "Part-time",
-    Location: "Tokyo",
-    // Not displaying:
-    Target_major: "Science",
-    Duration: 8,
+    category: "internship",
+    title: "Title1",
+    description: "Bababa",
+    url: "https://www.google.com/",
+    industry: "maker",
+    target_major: "science",
+    requirement: "Qwerty",
+    shift: "2day/week",
+    duration: 8,
+    corporation: "株式会社Precal",
+    location: "Tokyo",
+    salary: "over_2000",
+    language: "EN",
+    deadline: "2020-06-10T03:09:18Z",
   },
-  {
-    Title: "Title1",
-    Requirement: "Qwerty",
-    Industry: "maker",
-    Language: 0,
-    URL: "https://www.google.com/",
-    Shift: "Two days a week",
-    DEADLINE: "NONE",
-    Corporation: "株式会社Precal",
-    Salary: 0,
-    Description:
-      "Bababa",
-    Category: "Part-time",
-    Target_major: "Science",
-    Duration: 8,
-    Location: "Tokyo"
-  },
-  {
-    Title: "Title1",
-    Requirement: "Qwerty",
-    Industry: "maker",
-    Language: 0,
-    URL: "https://www.google.com/",
-    Shift: "Two days a week",
-    DEADLINE: "NONE",
-    Corporation: "株式会社Precal",
-    Salary: 0,
-    Description:
-      "Bababa",
-    Category: "Part-time",
-    Target_major: "Science",
-    Duration: 8,
-    Location: "Tokyo"
-  },
-  {
-    Title: "Title1",
-    Requirement: "Qwerty",
-    Industry: "maker",
-    Language: 0,
-    URL: "https://www.google.com/",
-    Shift: "Two days a week",
-    DEADLINE: "NONE",
-    Corporation: "株式会社Precal",
-    Salary: 0,
-    Description:
-      "Bababa",
-    Category: "Part-time",
-    Target_major: "Science",
-    Duration: 8,
-    Location: "Tokyo"
-  },
-  // {
-  //   Title: "Title4",
-  //   Request: "AWS/PHP技能",
-  //   Field: 1,
-  //   Language: 0,
-  //   URL: "https://bit.ly/2YzPmUS",
-  //   DEADLINE: "NONE",
-  //   Corporation: "株式会社Precal",
-  //   Payment: 0,
-  //   Description:
-  //     "【面向工程师的医疗行业实习】 【时薪1,300~1,800日元】 【可远程工作】【面向工程师的医疗行业实习】 【时薪1,300~1,800日元】 【可远程工作】",
-  // },
 ];
 
-//Field: 1. MAKER 2. SERVICE  3. FINANCE  4. OFFICE   5. IT    6. CONSULTING
-//Language: 1.JP  2.EN  3. Bilingual
-//DEADLINE: in the form of DD/MM/YY
-//Payment: 1. OVER 1000    2. OVER 2000    3. OVER 3000      4. OTHERS
+//Field: 1. maker（メーカ） 2. service（サービス）  3. finance（金融）  4. office（オフィス）   5. IT    6. consulting（コンサル）  7. other（その他）
+//language: 1.JA（日本語）  2.EN（英語）  3. bilingual（日・英）  4. other（その他）
+//deadline: in the form of 2020-06-10T03:09:18Z
+//payment: 1. over_1000    2. over_2000    3. over_3000      4. other
+//shift: 1. 1day/week   2. 2day/week   3. over_3day/week  4. temporary  5. other
+//target_major: 1. science（理系）  2. humanities（文系）   3. both（文・理）
 
 const InternList = () => {
-  const [browserWidth, setBrowserWidth] = useState(document.body.clientWidth);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    window.addEventListener("resize", handleBrowserWidth);
-    return () => {
-      window.removeEventListener("resize", handleBrowserWidth);
-    };
-  }, [browserWidth]);
-
-  const handleBrowserWidth = () => {
-    setBrowserWidth(document.body.clientWidth);
-  };
-
-  const lists = companyList.map((Title) => {
-    return <CareerCard careerInformation={Title} key={Title.Title} />;
+  const lists = internList.map((title) => {
+    return <CareerCard careerInformation={title} key={title.title} />;
   });
 
   return (
     <RowWrapper>
-      <div className="intern-container">
+      <div className="career-cards-container">
         <div>{lists}</div>
       </div>
-      {browserWidth > 1220 ? <InternFilter /> : <InternFilterModal />}
     </RowWrapper>
   );
 };

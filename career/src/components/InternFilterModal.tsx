@@ -53,7 +53,7 @@ const InternFilterModal = () => {
           label={<label>&nbsp;IT</label>}
         />
         <Checkbox label={<label>&nbsp;Consulting</label>} />
-        <Header as="h2">Language</Header>
+        <Header as="h2">language</Header>
         <Checkbox
           style={{
             marginRight: "3.5em",
@@ -67,7 +67,7 @@ const InternFilterModal = () => {
           label={<label>&nbsp;EN</label>}
         />
         <Checkbox label={<label>&nbsp;Bilingual</label>} />
-        <Header as="h2">Payment</Header>
+        <Header as="h2">payment</Header>
         <Radio
           style={{
             marginRight: "3.5em",

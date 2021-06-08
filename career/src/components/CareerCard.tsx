@@ -1,25 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBuilding,
-  faMapMarkerAlt,
-  faYenSign,
-  faCalendarWeek,
-  faBriefcase,
-  faSearchLocation,
-} from "@fortawesome/free-solid-svg-icons";
 import { WithTranslation, withTranslation } from "react-i18next";
-
-/*
-  {
-
-    URL: "https://bit.ly/2YzPmUS",
-    Payment: 0,
-    Description:
-      "【面向工程师的医疗行业实习】 【时薪1,300~1,800日元】 【可远程工作】",
-  },
-
-*/
 
 interface Props extends WithTranslation {
   careerInformation: any;
@@ -56,7 +36,7 @@ const CareerCard = ({ careerInformation, t }: Props) => {
       </div>
       <div className="company-detail">
         <div className="ui list">
-          <h3 style={{ fontSize: "17px" }}>{careerInformation.Title}</h3>
+          <h3 style={{ fontSize: "17px" }}>{careerInformation.title}</h3>
 
           <div>
             <div className="company detail">
@@ -65,91 +45,99 @@ const CareerCard = ({ careerInformation, t }: Props) => {
                   <tr>
                     <td>
                       <span style={{ fontWeight: "bold", marginRight: "50px" }}>
-                        {t("career.Corporation")}
+                        {t("career.corporation")}
                       </span>
                     </td>
                     <td className="company name">
-                      <span>{careerInformation.Corporation}</span>
+                      <span>{careerInformation.corporation}</span>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <span style={{ fontWeight: "bold" }}>
-                        {t("career.Field")}
+                        {t("career.industry.label")}
                       </span>
                     </td>
-                    <td className="company field">
-                      <span>{careerInformation.Industry}</span>
+                    <td className="company industry">
+                      <span>{t("career.industry." + careerInformation.industry)}</span>
                     </td>
                   </tr>
-                  <tr>
+                  {/* <tr>
                     <td>
                       <span style={{ fontWeight: "bold" }}>
-                        {t("career.Category")}
+                        {t("career.category.label")}
                       </span>
                     </td>
-                    <td className="Category">
-                      <span>{careerInformation.Category}</span>
+                    <td className="category">
+                      <span>{careerInformation.category}</span>
                     </td>
-                  </tr>
+                  </tr> */}
                   <tr>
                     <td>
                       <span style={{ fontWeight: "bold" }}>
-                        {t("career.Language")}
+                        {t("career.language.label")}
                       </span>
                     </td>
                     <td className="language">
-                      <span>{careerInformation.Language}</span>
+                      <span>{t("career.language." + careerInformation.language)}</span>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <span style={{ fontWeight: "bold" }}>
-                        {t("career.Request")}
+                        {t("career.requirement")}
                       </span>
                     </td>
-                    <td className="request">
-                      <span>{careerInformation.Requirement}</span>
+                    <td className="requirement">
+                      <span>{careerInformation.requirement}</span>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <span style={{ fontWeight: "bold" }}>
-                        {t("career.Deadline")}
+                        {t("career.deadline")}
                       </span>
                     </td>
                     <td className="deadline">
-                      <span>{careerInformation.DEADLINE}</span>
+                      <span>{(new Date(Date.parse(careerInformation.deadline))).toLocaleString('ja-JP')}</span>
                     </td>
                   </tr>
+                  {
+                    careerInformation.category !== "information_section" && (
+                      <tr>
+                        <td>
+                          <span style={{ fontWeight: "bold" }}>
+                            {t("career.salary.label")}
+                          </span>
+                        </td>
+                        <td className="salary">
+                          <span>{t("career.salary." + careerInformation.salary)}</span>
+                        </td>
+                      </tr>
+                    )
+                  }
+                  {
+                    careerInformation.category !== "information_section" && (
+                      <tr>
+                        <td>
+                          <span style={{ fontWeight: "bold" }}>
+                            {t("career.shift.label")}
+                          </span>
+                        </td>
+                        <td className="shift">
+                          <span>{t("career.shift." + careerInformation.shift)}</span>
+                        </td>
+                      </tr>
+                    )
+                  }
                   <tr>
                     <td>
                       <span style={{ fontWeight: "bold" }}>
-                        {t("career.Payment")}
+                        {t("career.location")}
                       </span>
                     </td>
-                    <td className="Payment">
-                      <span>{careerInformation.Salary}</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span style={{ fontWeight: "bold" }}>
-                        {t("career.Shift")}
-                      </span>
-                    </td>
-                    <td className="Shift">
-                      <span>{careerInformation.Shift}</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <span style={{ fontWeight: "bold" }}>
-                        {t("career.Location")}
-                      </span>
-                    </td>
-                    <td className="Location">
-                      <span>{careerInformation.Location}</span>
+                    <td className="location">
+                      <span>{careerInformation.location}</span>
                     </td>
                   </tr>
                 </tbody>
@@ -162,10 +150,10 @@ const CareerCard = ({ careerInformation, t }: Props) => {
                       marginRight: "50px",
                     }}
                   >
-                    {t("career.Description")}
+                    {t("career.description")}
                   </span>
                   <p style={{ display: "inline" }}>
-                    {careerInformation.Description}
+                    {careerInformation.description}
                   </p>
                 </div>
               ) : null}
@@ -185,7 +173,7 @@ const CareerCard = ({ careerInformation, t }: Props) => {
           {showElem ? t("career.Hide") : t("career.viewMore")}
         </button>
         <button
-          onClick={() => window.open(careerInformation.URL)}
+          onClick={() => window.open(careerInformation.url)}
           className="ui primary button"
           style={{ fontSize: "12px" }}
         >

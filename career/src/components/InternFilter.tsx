@@ -83,7 +83,7 @@ const InternFilter = () => {
           label={<label>&nbsp;Consulting</label>}
         />
         <Divider />
-        <Header as="h2">Language</Header>
+        <Header as="h2">language</Header>
         <Checkbox
           style={{
             marginLeft: "0.5em",
@@ -112,9 +112,9 @@ const InternFilter = () => {
           label={<label>&nbsp;Bilingual</label>}
         />
         <Divider />
-        <Header as="h2">Payment</Header>
+        <Header as="h2">payment</Header>
         <Dropdown
-          placeholder="Payment"
+          placeholder="payment"
           fluid
           selection
           options={PaymentOptions}

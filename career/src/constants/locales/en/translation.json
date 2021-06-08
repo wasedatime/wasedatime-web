@@ -2,22 +2,60 @@
   "career": {
     "title": "Career",
     "Intern": "Intern",
+    "Arbeit": "Arbeit",
+    "Seminar": "Seminar",
     "Articles": "Articles",
     "viewMore": "View More",
     "Hide": "Hide",
     "Entry": "Entry",
-    "Seminar": "Seminar",
-    "Arbeit": "Arbeit",
-    "Corporation": "Corporation",
-    "Field": "Field",
-    "Language": "Language",
-    "Request": "Request",
-    "Deadline": "Deadline",
-    "Payment": "Payment",
-    "Description": "Description",
+    "corporation": "Corporation",
+    "industry": {
+      "label": "Field",
+      "maker": "Maker",
+      "sevice": "Service",
+      "finance": "Finance",
+      "office": "Office",
+      "IT": "IT",
+      "consulting": "Consulting",
+      "other": "Other"
+    },
+    "language": {
+      "label": "Language",
+      "EN": "English",
+      "JA": "Japanese",
+      "bilingual": "Bilingual",
+      "other": "Other"
+    },
+    "requirement": "Request",
+    "deadline": "Deadline",
+    "salary": {
+      "label": "Payment",
+      "over_1000": "￥1000~",
+      "over_2000": "￥2000~",
+      "over_3000": "￥3000~",
+      "other": "Other"
+    },
+    "description": "Description",
     "search placeholder": "Search for jobs (in construction...)",
-    "Category": "Employment Type",
-    "Shift": "Shift",
-    "Location": "Location"
+    "category": {
+      "label": "Employment Type",
+      "internship": "Internship",
+      "part_time": "Part-time job",
+      "information_section": "Information Seminar"
+    },
+    "shift": {
+      "label": "Shift",
+      "1day/week": "1 day a week",
+      "2day/week": "2 days a week",
+      "over_3day/week": "Over 3 days a week",
+      "temporary": "Temporary",
+      "other": "Other"
+    },
+    "target_major": {
+      "science": "Science",
+      "humanities": "Humanities",
+      "both": "Both"
+    },
+    "location": "Location"
   }
 }

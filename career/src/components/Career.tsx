@@ -31,11 +31,11 @@ const Career = ({ t, i18n }: WithTranslation) => {
         <Link to="/career/intern">
           <button className="ui button">{t("career.Intern")}</button>
         </Link>
+        <Link to="/career/arbeit">
+          <button className="ui button">{t("career.Arbeit")}</button>
+        </Link>
         <Link to="/career/seminar">
           <button className="ui button">{t("career.Seminar")}</button>
-        </Link>
-        <Link to="/career/recruit">
-          <button className="ui button">{t("career.Arbeit")}</button>
         </Link>
         <Switch>
           <Route
@@ -44,7 +44,7 @@ const Career = ({ t, i18n }: WithTranslation) => {
             render={() => <Redirect to="/career/intern" />}
           />
           <Route exact path="/career/intern" component={Intern} />
-          <Route exact path="/career/recruit" component={Arbeit} />
+          <Route exact path="/career/arbeit" component={Arbeit} />
           <Route exact path="/career/seminar" component={Seminar} />
         </Switch>
       </div>

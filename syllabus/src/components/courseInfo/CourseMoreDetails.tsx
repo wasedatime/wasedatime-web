@@ -38,34 +38,34 @@ const Schedule = ({ content }: ScheduleProps) => {
 }
 
 const Textbooks = ({ content }: TextbooksProps) => {
-  const [isBookLoaded, setIsBookLoaded] = useState(false);
-  const [books, setBooks] = useState([]);
+  // const [isBookLoaded, setIsBookLoaded] = useState(false);
+  // const [books, setBooks] = useState([]);
 
-  useEffect(() => {
-    API.post("wasedatime-dev", "/syllabus/book-info", {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: {
-        data: content,
-      },
-    })
-      .then((res) => {
-        setBooks(res.data);
-        setIsBookLoaded(true);
-      })
-      .catch((error) => {
-        setBooks([]);
-        setIsBookLoaded(true);
-      });
-  }, []);
+  // useEffect(() => {
+  //   API.post("wasedatime-dev", "/syllabus/book-info", {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: {
+  //       data: content,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       setBooks(res.data);
+  //       setIsBookLoaded(true);
+  //     })
+  //     .catch((error) => {
+  //       setBooks([]);
+  //       setIsBookLoaded(true);
+  //     });
+  // }, []);
 
   return (
     <div>
       {
         content.split("\n").map(c => c && <p>{c}</p>)
       }
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      {/* <div style={{ display: "flex", flexDirection: "row" }}>
         {isBookLoaded ? (
           books.map((book, i) => (
             <a
@@ -90,7 +90,7 @@ const Textbooks = ({ content }: TextbooksProps) => {
             </Placeholder>
           </div>
         )}
-      </div>
+      </div> */}
     </div>
   );
 };

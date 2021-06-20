@@ -35,7 +35,7 @@ i18nConfig({
 });
 
 if (process.env.NODE_ENV === "production") {
-  ReactGA.initialize("UA-112185819-3", { debug: false, titleCase: false });
+  ReactGA.initialize("UA-112185819-1", { debug: false, titleCase: false });
   Sentry.init({
     dsn:
       "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",

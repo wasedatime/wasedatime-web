@@ -6,13 +6,15 @@
   "scripts": {
     "start": "npm run tailwind:build && webpack serve --port 9000 --env isLocal",
     "lint": "eslint src --ext js,ts,tsx",
-    "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
+    "test": "cross-env BABEL_ENV=test jest",
     "format": "prettier --write \"./**\"",
     "build": "webpack --mode=production",
     "build-dev": "webpack --mode=production --env isDev",
     "local": "concurrently --kill-others \"npm start\" \"cd ../syllabus && npm start\" \"cd ../campus && npm start\" \"cd ../career && npm start\" \"cd ../blog && npm start\"",
     "tailwind:build": "npx tailwind build ./src/styles/styles.css -o ./src/styles/index.css",
-    "ci-all": "npm ci && cd ../syllabus && npm ci && cd ../campus && npm ci && cd ../career && npm ci && cd ../blog && npm ci"
+    "ci-all": "npm ci && cd ../syllabus && npm ci && cd ../campus && npm ci && cd ../career && npm ci && cd ../blog && npm ci",
+    "test-all": "npm test && cd ../syllabus && npm test && cd ../campus && npm test && cd ../career && npm test && cd ../blog && npm test",
+    "build-all": "npm run build && cd ../syllabus && npm run build && cd ../campus && npm run build && cd ../career && npm run build && cd ../blog && npm run build"
   },
   "devDependencies": {
     "@babel/core": "^7.12.13",

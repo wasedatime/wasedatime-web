@@ -33,10 +33,10 @@ jobs:
           cd root
           npm run ci-all
           
-      - name: Test
-        run: |
-          cd root
-          npm run test-all
+#       - name: Test
+#         run: |
+#           cd root
+#           npm run test-all
 
       - name: build
         run: |

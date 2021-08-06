@@ -2,6 +2,7 @@
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md)
+
 [![Node.js CI - Root](https://github.com/wasedatime/wasedatime-web/actions/workflows/root.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/root.yml)
 [![Node.js CI - Syllabus](https://github.com/wasedatime/wasedatime-web/actions/workflows/syllabus.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/syllabus.yml)
 [![Node.js CI - Campus](https://github.com/wasedatime/wasedatime-web/actions/workflows/campus.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/campus.yml)

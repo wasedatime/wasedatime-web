@@ -5,9 +5,13 @@ name: Node.js CI
 
 on:
   pull_request:
-    branches: "**"
+    branches:
+      - 'master'
   push:
-    branches: "**"
+    paths:
+      - 'campus/**'
+    branches:
+      - '**'
 
 jobs:
   build:
@@ -30,8 +34,7 @@ jobs:
           npm config set --global @bit:registry https://node.bit.dev
           npm config set --global //node.bit.dev/:_authToken ${BIT_TOKEN}
           echo "Completed adding bit.dev to npm registry"
-          cd root
-          npm run ci-all
+          npm ci
           
 #       - name: Test
 #         run: |
@@ -40,5 +43,4 @@ jobs:
 
       - name: build
         run: |
-          cd root
-          npm run build-all
+          npm run build

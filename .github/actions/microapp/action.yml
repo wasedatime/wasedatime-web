@@ -19,9 +19,6 @@ runs:
 
     - name: Install
       shell: bash
-      env:
-        REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL_M }}
-        BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
       run: |
         echo "Adding bit.dev to npm registry"
         npm config set --global @bit:registry https://node.bit.dev
@@ -37,7 +34,5 @@ runs:
 
     - name: build
       shell: bash
-      env:
-        REACT_APP_BLOG_S3_BASE_URL: https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com
       run: |
         npm run build

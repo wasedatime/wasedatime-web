@@ -32,4 +32,4 @@ jobs:
           node-version: 15.x
       - uses: ./.github/actions/microapp
         with:
-          path: campus
+          path: "campus"

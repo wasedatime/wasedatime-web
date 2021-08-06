@@ -1,6 +1,8 @@
 # WasedaTime
 
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md)
 
 [![Node.js CI - Root](https://github.com/wasedatime/wasedatime-web/actions/workflows/root.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/root.yml)

@@ -1,7 +1,4 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
-
-name: Node.js CI
+name: Node.js CI - Career
 
 on:
   pull_request:
@@ -9,13 +6,9 @@ on:
       - 'master'
   push:
     paths:
-      - 'campus/**'
+      - 'career/**'
     branches:
       - '**'
-
-defaults:
-  run:
-    working-directory: ./your_working_dir
 
 jobs:
   build:
@@ -32,4 +25,4 @@ jobs:
           node-version: 15.x
       - uses: ./.github/actions/microapp
         with:
-          path: "campus"
+          path: 'career'

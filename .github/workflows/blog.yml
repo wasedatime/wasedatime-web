@@ -2,13 +2,15 @@ name: Node.js CI - Feeds
 
 on:
   pull_request:
+    paths:
+      - 'blog/**'
     branches:
-      - 'master'
+      - 'develop'
   push:
     paths:
       - 'blog/**'
     branches:
-      - '**'
+      - 'master'
 
 jobs:
   build:

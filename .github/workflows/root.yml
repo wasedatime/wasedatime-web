@@ -2,13 +2,15 @@ name: Node.js CI - Root
 
 on:
   pull_request:
+    paths:
+      - 'root/**'
     branches:
-      - 'master'
+      - 'develop'
   push:
     paths:
       - 'root/**'
     branches:
-      - '**'
+      - 'master'
 
 jobs:
   build:

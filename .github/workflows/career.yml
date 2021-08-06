@@ -2,13 +2,15 @@ name: Node.js CI - Career
 
 on:
   pull_request:
+    paths:
+      - 'career/**'
     branches:
-      - 'master'
+      - 'develop'
   push:
     paths:
       - 'career/**'
     branches:
-      - '**'
+      - 'master'
 
 jobs:
   build:

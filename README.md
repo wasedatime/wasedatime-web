@@ -5,8 +5,12 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md) [![Build Status](https://travis-ci.com/wasedatime/wasedatime-web.svg?branch=master)](https://travis-ci.com/wasedatime/wasedatime-web) [![All Contributors](https://img.shields.io/badge/all_contributors-8-orange.svg?style=flat-square)](#contributors)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md)
+[![Node.js CI - Root](https://github.com/wasedatime/wasedatime-web/actions/workflows/root.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/root.yml)
+[![Node.js CI - Syllabus](https://github.com/wasedatime/wasedatime-web/actions/workflows/syllabus.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/syllabus.yml)
+[![Node.js CI - Campus](https://github.com/wasedatime/wasedatime-web/actions/workflows/campus.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/campus.yml)
+[![Node.js CI - Feeds](https://github.com/wasedatime/wasedatime-web/actions/workflows/blog.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/blog.yml)
+[![Node.js CI - Career](https://github.com/wasedatime/wasedatime-web/actions/workflows/career.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/career.yml)
 
 [WasedaTime](https://wasedatime.com) (stands for Waseda Timetable) is a non-profit & student-run open source web app for syllabus searching, course reviews and bus schedule checking at Waseda University. We aim at supporting and improving campus lives of Waseda University students.
 

@@ -1,0 +1,31 @@
+name: 'Build Micro-app'
+description: 'Workflow for building an microapp'
+inputs:
+  path:
+    description: 'The path to the microapp'
+    required: true
+    default: '.'
+runs:
+  using: "composite"
+  steps:
+    - name: Install
+      shell: bash
+      working-directory: ${{ inputs.path }}
+      run: |
+        echo "Adding bit.dev to npm registry"
+        npm config set --global @bit:registry https://node.bit.dev
+        npm config set --global //node.bit.dev/:_authToken ${BIT_TOKEN}
+        echo "Completed adding bit.dev to npm registry"
+        npm ci
+
+#    - name: Test
+#      shell: bash
+#      working-directory: ${{ inputs.path }}
+#      run: |
+#        npm run test-all
+
+    - name: build
+      shell: bash
+      working-directory: ${{ inputs.path }}
+      run: |
+        npm run build

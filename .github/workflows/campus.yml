@@ -1,14 +1,8 @@
 name: Node.js CI - Campus
 
 on:
-  pull_request:
-    branches:
-      - develop
-    paths:
-      - 'campus/**'
   push:
-    branches:
-      - master
+    branches: [ '**' ]
     paths:
       - 'campus/**'
 

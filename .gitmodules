@@ -1,0 +1,3 @@
+[submodule "blog/src/feeds"]
+	path = blog/src/feeds
+	url = https://github.com/wasedatime/feeds

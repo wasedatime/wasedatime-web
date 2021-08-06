@@ -2,15 +2,15 @@ name: Node.js CI - Syllabus
 
 on:
   pull_request:
+    branches:
+      - develop
     paths:
       - 'syllabus/**'
-    branches:
-      - 'develop'
   push:
+    branches:
+      - master
     paths:
       - 'syllabus/**'
-    branches:
-      - 'master'
 
 jobs:
   build:

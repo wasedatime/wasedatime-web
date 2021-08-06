@@ -8,7 +8,9 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - run: cd ${{ inputs.name }}
+    - name: Check directory
+      run: cd ${{ inputs.path }}
+
     - name: Use Node.js 15.x
       uses: actions/setup-node@v1
       with:

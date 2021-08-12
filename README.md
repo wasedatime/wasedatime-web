@@ -2,7 +2,7 @@
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md)
@@ -67,18 +67,58 @@ npm run local
 
 ### Create a new project (frontend) in WasedaTime
 
-Will be updated soon.
+1. Install 'create-single-spa'
+```bash
+npm install --global create-single-spa
+```
+
+2. Inside wasedatime-web folder, run npx create-single-spa --moduleType app-parcel, then answer questions displayed on the console.
+
+3. A new app (let's say 'forum') is created. Move into the newly created folder 'forum' and run the following to install packages
+```bash
+npm config set '@bit:registry' https://node.bit.dev
+npm ci
+```
+
+4. Edit 'root/src/index.ejs'
+```bash
+<% if (isLocal) { %>
+<script type="systemjs-importmap" defer>
+  {
+    "imports": {
+      "@wasedatime/forum": "//localhost:8082/wasedatime-forum.js" // port number should not be the same as others
+} }
+</script>
+<% } %>
+```
+
+5. Try to run the app locally
+  - To run the app alone, run `npm run start:standalone`, then open http://localhost:8080
+  - To run the app alone but with root, edit `forum/package.json` like the following:
+  ```bash
+    "scripts": {
+    "start": "webpack serve --port 8082",
+    ...
+    "local": "concurrently --kill-others \"npm start\" \"cd ../root && npm start\"",
+    ...
+  },
+  ```
+    Then run `npm run local` inside career folder. This runs root and career at the same time.
+    Before this, make sure you have run `npm ci` inside root folder to install packages for root. Open http://localhost:9000 to see the result.
+  - To run the whole project, run npm run ci-all inside root folder to install packages for all apps, and then edit root/package.json like the following:
+  ```bash
+  "scripts": {
+    ...
+    "local": "{original script} \"cd ../career && npm start\"",
+    ...
+  },
+  ```
+  Then run `npm run local` inside root folder. This runs all app at the same time. Open http://localhost:9000 to see the result.
 
 ### App Architecture
 
-Frontend (client):
-
 - Micro-frontend (https://martinfowler.com/articles/micro-frontends.html?utm_source=arador.com)
 - Description of our frontend architecture (in Micro-frontends) will be updated soon.
-
-Serverless backend:
-
-![App Architecture](/docs/images/AWSArch.png)
 
 ### Continuous Integration and Deployment
 
@@ -92,11 +132,6 @@ created to ensure the code quality.
 Serverless backend:
 
 - [Amazon Web Service](https://aws.amazon.com/) - Fully powered by AWS.
-
-Imported in code, but NOT being used in production for now:
-
-- [MongoDB](https://www.mongodb.com/) - Database used for retrieving information.
-- [mongoose](http://mongoosejs.com/) - Object modeling tool used for MongoDB.
 
 Front-end (Client):
 

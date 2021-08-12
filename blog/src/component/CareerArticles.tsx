@@ -11,24 +11,25 @@ const StyledMarkdown = styled(ReactMarkdown)`
       padding: 0px;
     }
     & p {
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-top: 0;
       margin-bottom: 0;
       padding-bottom: 2px;
+      line-height: 3.5rem;
       & strong {
-        font-size: 2.5rem;
+        font-size: 3rem;
       }
     }
     & ul {
       list-style: square;
       margin-top: 10px;
-      font-size:  1rem;
+      font-size: 2rem;
     }
     & li {
       padding-bottom: 2px;
     }
     & h1 {
-      font-size: 1.6rem;
+      font-size: 3rem;
     }
     & h2 {
       display: none;

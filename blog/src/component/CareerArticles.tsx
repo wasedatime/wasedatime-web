@@ -7,7 +7,7 @@ import { withTranslation, WithTranslation } from "react-i18next";
 
 const StyledMarkdown = styled(ReactMarkdown)`
     * {
-      font-family: ZCOOL XiaoWei, Segoe UI, Yu Gothic Medium, Lato !important;
+      font-family: Segoe UI, Yu Gothic Medium, Lato !important;
       padding: 0px;
     }
     & p {

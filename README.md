@@ -67,20 +67,20 @@ npm run local
 
 ### Create a new project (frontend) in WasedaTime
 
-1. Install 'create-single-spa'
+1. Install `create-single-spa`
 ```bash
 npm install --global create-single-spa
 ```
 
-2. Inside wasedatime-web folder, run npx create-single-spa --moduleType app-parcel, then answer questions displayed on the console.
+2. Inside wasedatime-web folder, run `npx create-single-spa --moduleType app-parcel` , then answer questions displayed on the console.
 
-3. A new app (let's say 'forum') is created. Move into the newly created folder 'forum' and run the following to install packages
+3. A new app (let's say `forum`) is created. Move into the newly created folder `forum` and run the following to install packages
 ```bash
 npm config set '@bit:registry' https://node.bit.dev
 npm ci
 ```
 
-4. Edit 'root/src/index.ejs'
+4. Edit `root/src/index.ejs`
 ```bash
 <% if (isLocal) { %>
 <script type="systemjs-importmap" defer>
@@ -103,8 +103,8 @@ npm ci
     ...
   },
   ```
-    Then run `npm run local` inside career folder. This runs root and career at the same time.
-    Before this, make sure you have run `npm ci` inside root folder to install packages for root. Open http://localhost:9000 to see the result.
+  Then run `npm run local` inside career folder. This runs root and career at the same time.
+  Before this, make sure you have run `npm ci` inside root folder to install packages for root. Open http://localhost:9000 to see the result.
   - To run the whole project, run npm run ci-all inside root folder to install packages for all apps, and then edit root/package.json like the following:
   ```bash
   "scripts": {

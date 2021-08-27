@@ -7,8 +7,45 @@ import ReviewLang from "../../constants/review-lang";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
-import Modal from "semantic-ui-react/dist/commonjs/modules/Modal";
+import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import ReviewType from "../../types/review";
+import MediaQuery from "react-responsive";
+import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+
+const modalStyle = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: "1001",
+    background: "rgba(153, 153, 153, 0.5)",
+  },
+  content: {
+    position: "absolute",
+    top: "40vh",
+    maxHeight: "200px",
+    left: "30vw",
+    right: "30vw",
+    background: "#fff",
+    overflowY: "auto",
+    overflowScrolling: "touch",
+    WebkitOverflowScrolling: "touch",
+    outline: "none",
+    fontSize: "16px",
+    borderRadius: "20px",
+  },
+};
+
+const mobileModalStyle = {
+  overlay: modalStyle.overlay,
+  content: {
+    ...modalStyle.content,
+    left: "10vw",
+    right: "10vw",
+  },
+};
 
 const ReviewsWrapper = styled("div")`
   background: #fff;
@@ -73,16 +110,6 @@ const ReviewScale = styled("div")`
   text-align: end;
 `;
 
-const DeleteModal = styled(Modal)`
-  width: auto !important;
-  text-align: center !important;
-  font-size: 1.5em;
-  background-color: rgba(0, 0, 0, 0.2) !important;
-  .button {
-    font-size: 1.5rem;
-  }
-`;
-
 const Editbutton = styled(Button)`
   background: #fff !important;
   color: orange !important;
@@ -91,6 +118,22 @@ const Editbutton = styled(Button)`
 
 const Deletebutton = styled(Editbutton)`
   color: red !important;
+`;
+
+const DeleteModalYesButton = styled("button")`
+  background: red;
+  color: #fff;
+  padding: 5px;
+  margin: 0px 5px;
+  border-radius: 5px;
+`;
+
+const DeleteModalNoButton = styled("button")`
+  background: green;
+  color: #fff;
+  padding: 5px;
+  margin: 0px 5px;
+  border-radius: 5px;
 `;
 
 interface ReviewToEdit extends ReviewType {
@@ -111,6 +154,22 @@ interface State {
   reviewToDelete: ReviewType | object;
   reviewIndexToDelete: number;
 }
+
+const DeleteModalContent = ({ t, confirmDeleteReview, closeDeleteModal }) => <div>
+  <h2 style={{ textAlign: 'center' }}>{t(`courseInfo.delete review confirmation`)}</h2>
+  <div style={{ textAlign: 'center' }}>
+    <DeleteModalYesButton
+      onClick={() => confirmDeleteReview()}
+    >
+      {t(`courseInfo.delete review yes`)}
+    </DeleteModalYesButton>
+    <DeleteModalNoButton
+      onClick={closeDeleteModal}
+    >
+      {t(`courseInfo.delete review no`)}
+    </DeleteModalNoButton>
+  </div>
+  </div>
 
 class ReviewsList extends React.Component<Props, State> {
   state = {
@@ -214,30 +273,20 @@ class ReviewsList extends React.Component<Props, State> {
             </ReviewScale>
           </ReviewScalesList>
         </Review>
-        <DeleteModal
-          open={this.state.isDeleteModalOpen}
-          onClose={this.closeDeleteModal}
-        >
-          <Modal.Content>
-            <h2>{t(`courseInfo.delete review confirmation`)}</h2>
-            <Modal.Description>
-              <Button
-                icon
-                style={{ background: "red", color: "#fff" }}
-                onClick={() => this.confirmDeleteReview()}
-              >
-                {t(`courseInfo.delete review yes`)}
-              </Button>
-              <Button
-                icon
-                style={{ background: "green", color: "#fff" }}
-                onClick={this.closeDeleteModal}
-              >
-                {t(`courseInfo.delete review no`)}
-              </Button>
-            </Modal.Description>
-          </Modal.Content>
-        </DeleteModal>
+
+        <MediaQuery maxWidth={sizes.tablet}>
+          {(matches) =>
+            matches ? (
+              <Modal isOpen={this.state.isDeleteModalOpen} style={mobileModalStyle}>
+                <DeleteModalContent t={t} confirmDeleteReview={this.confirmDeleteReview} closeDeleteModal={this.closeDeleteModal} />
+              </Modal>
+            ) : (
+              <Modal isOpen={this.state.isDeleteModalOpen} style={modalStyle}>
+                <DeleteModalContent t={t} confirmDeleteReview={this.confirmDeleteReview} closeDeleteModal={this.closeDeleteModal} />
+              </Modal>
+            )
+          }
+        </MediaQuery>
       </ReviewsWrapper>
     ));
   }

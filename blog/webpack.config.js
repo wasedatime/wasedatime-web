@@ -37,7 +37,7 @@ module.exports = (webpackConfigEnv, argv) => {
     plugins: 
       argv.mode && argv.mode === 'production'
         ? [
-            new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL", "REACT_APP_BLOG_S3_BASE_URL"]),
+            new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
           ]
         : [
             new webpack.DefinePlugin({

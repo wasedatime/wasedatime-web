@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import styled from "styled-components";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { withTranslation, WithTranslation } from "react-i18next";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const StyledMarkdown = styled(ReactMarkdown)`
     * {
@@ -59,6 +60,7 @@ const HeaderWrapper = styled.div`
 
 const StyledDiv = styled.div`
   margin: 1em 15%;
+  ${media.tablet`margin: 1em;`}
 `;
 
 interface Props extends WithTranslation {

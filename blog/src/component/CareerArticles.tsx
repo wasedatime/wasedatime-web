@@ -17,9 +17,10 @@ const StyledMarkdown = styled(ReactMarkdown)`
       margin-bottom: 0;
       padding-bottom: 2px;
       line-height: 3.5rem;
-      & strong {
-        font-size: 3rem;
-      }
+    }
+    & a {
+      font-size: 2rem;
+      color: #3366ff;
     }
     & ul {
       list-style: square;
@@ -28,9 +29,6 @@ const StyledMarkdown = styled(ReactMarkdown)`
     }
     & li {
       padding-bottom: 2px;
-    }
-    & h1 {
-      font-size: 3rem;
     }
     & h2 {
       display: none;

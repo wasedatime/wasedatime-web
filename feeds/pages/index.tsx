@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import fs from "fs";
 import path from "path";
+import FeedLink from '../components/feedLink';
 
 interface HomeProps {
   feedNames: string[]
@@ -19,7 +20,7 @@ const Home: NextPage = ({ feedNames }: HomeProps) => {
 
       <main className={styles.main}>
         {
-          feedNames.map(name => <p key={name}>{name}</p>)
+          feedNames.map(name => <FeedLink name={name} />)
         }
       </main>
     </div>

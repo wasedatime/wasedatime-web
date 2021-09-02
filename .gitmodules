@@ -1,4 +1,4 @@
-[submodule "blog/src/feeds"]
-	path = blog/src/feeds
+[submodule "feeds/public/feeds"]
+	path = feeds/public/feeds
 	url = https://github.com/wasedatime/feeds
 	branch = main

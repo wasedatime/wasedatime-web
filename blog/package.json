@@ -67,7 +67,7 @@
     "@types/react-dom": "^16.9.6",
     "@types/systemjs": "^6.1.0",
     "@types/webpack-env": "^1.16.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "file-loader": "^6.2.0",
     "i18next": "^19.9.1",
     "prop-types": "^15.7.2",

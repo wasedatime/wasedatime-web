@@ -16,25 +16,25 @@
 
 ## Getting Started
 
-Currently this section is yet to be completed/refined. We will update it as frequent as possible.
-
 ### Prerequisites
+
+```bash
+# install pnpm package manager
+npm install -g pnpm
+#install bit cli
+npm install bit-bin -g
+# log into your bit.dev account
+bit login
+# clone the project
+git clone https://github.com/wasedatime/wasedatime-web.git
+cd wasedatime-web
+```
 
 ### Installing
 
 ```bash
-git clone https://github.com/wasedatime/wasedatime-web.git
-cd wasedatime-web
-
-# configure @bit as a npm scoped registry since we are using some common components on bit.dev
-npm config set @bit:registry https://node.bit.dev
-# If the above command does not work, try this:
-npm config set '@bit:registry' https://node.bit.dev
-
-# move into 'root' folder and install packages for all frontend
-cd root
-npm run ci-all
-# ↑ this will run `npm ci` in each frontend
+# install packages for all frontend
+pnpm install
 ```
 
 ### Running the app for developing
@@ -44,40 +44,39 @@ You may meet errors when you run wasedatime-web locally and then access Syllabus
 To develop only in one frontend (with 'root'):
 ```bash
 cd wasedatime-web/{folder name of the frontend you want to run}
-npm run local
+pnpm run local
 ```
 
 To develop only in one frontend (without 'root'):
 ```bash
 cd wasedatime-web/{folder name of the frontend you want to run}
-npm run start:standalone
+pnpm run start:standalone
 ```
 
 To develop only inside 'root':
 ```bash
 cd wasedatime-web/root
-npm start
+pnpm start
 ```
 
 To run the whole project:
 ```bash
-cd wasedatime-web/root
-npm run local
+cd wasedatime-web
+pnpm start
 ```
 
-### Create a new project (frontend) in WasedaTime
+### Create a new project (micro-app) in WasedaTime
 
 1. Install `create-single-spa`
 ```bash
-npm install --global create-single-spa
+pnpm install --global create-single-spa
 ```
 
-2. Inside wasedatime-web folder, run `npx create-single-spa --moduleType app-parcel` , then answer questions displayed on the console.
+2. Inside wasedatime-web folder, run `pnpx create-single-spa --moduleType app-parcel` , then answer questions displayed on the console.
 
 3. A new app (let's say `forum`) is created. Move into the newly created folder `forum` and run the following to install packages
 ```bash
-npm config set '@bit:registry' https://node.bit.dev
-npm ci
+pnpm i
 ```
 
 4. Edit `root/src/index.ejs`
@@ -93,27 +92,27 @@ npm ci
 ```
 
 5. Try to run the app locally
-  - To run the app alone, run `npm run start:standalone`, then open http://localhost:8080
+  - To run the app alone, run `pnpm run start:standalone`, then open http://localhost:8080
   - To run the app alone but with root, edit `forum/package.json` like the following:
   ```bash
     "scripts": {
     "start": "webpack serve --port 8082",
     ...
-    "local": "concurrently --kill-others \"npm start\" \"cd ../root && npm start\"",
+    "local": "concurrently --kill-others \"pnpm start\" \"cd ../root && pnpm start\"",
     ...
   },
   ```
-  Then run `npm run local` inside career folder. This runs root and career at the same time.
-  Before this, make sure you have run `npm ci` inside root folder to install packages for root. Open http://localhost:9000 to see the result.
+  Then run `pnpm run local` inside career folder. This runs root and career at the same time.
+  Before this, make sure you have run `pnpm i` inside root folder to install packages for root. Open http://localhost:9000 to see the result.
   - To run the whole project, run npm run ci-all inside root folder to install packages for all apps, and then edit root/package.json like the following:
   ```bash
   "scripts": {
     ...
-    "local": "{original script} \"cd ../career && npm start\"",
+    "local": "{original script} \"cd ../career && pnpm start\"",
     ...
   },
   ```
-  Then run `npm run local` inside root folder. This runs all app at the same time. Open http://localhost:9000 to see the result.
+  Then run `pnpm run local` inside root folder. This runs all app at the same time. Open http://localhost:9000 to see the result.
 
 ### App Architecture
 
@@ -122,18 +121,19 @@ npm ci
 
 ### Continuous Integration and Deployment
 
-This project is deployed on a remote server and uses Travis CI for continuous integration and deployment. You can learn more about the setup process at [ContinuousDeployment.md](docs/ContinuousDeployment.md)
+This project is deployed on AWS Amplify and uses GitHub Actions for continuous integration.
 
-Unfortunately, currently there are no unit tests
-created to ensure the code quality.
+Unfortunately, currently there are no unit tests created to ensure the code quality.
 
 ## Built With
 
-Serverless backend:
+Backend:
+
+You can view the repository [here](https://github.com/wasedatime/wasedatime-backend).
 
 - [Amazon Web Service](https://aws.amazon.com/) - Fully powered by AWS.
 
-Front-end (Client):
+Frontend (Client):
 
 - Common
   - [Single-spa](https://single-spa.js.org) - A framework to bring together multiple JavaScript microfrontends in a frontend application.

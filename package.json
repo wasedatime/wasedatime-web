@@ -1,0 +1,13 @@
+{
+  "name": "@wasedatime/web",
+  "scripts": {
+    "start": "pnpm recursive run start",
+    "build": "pnpm recursive run build",
+    "build-dev": "pnpm recursive run build-dev",
+    "lint": "pnpm recursive run lint",
+    "format": "pnpm recursive run format",
+    "test": "pnpm recursive run test"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}

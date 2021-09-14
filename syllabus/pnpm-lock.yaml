@@ -91,6 +91,7 @@ specifiers:
   single-spa-react: ^4.4.0
   stickybits: ^3.7.9
   style-loader: ^2.0.0
+  styled-components: ^5.3.1
   ts-config-single-spa: ^2.0.1
   typescript: ^4.4.3
   url-loader: ^4.1.1
@@ -104,25 +105,25 @@ specifiers:
 
 dependencies:
   '@aws-amplify/api': 3.3.3
-  '@bit/wasedatime.core.ts.constants.langs': 0.0.5_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.constants.size-variables': 0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.constants.theme': 0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.styles.article': 0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.styles.badge': 0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.styles.button': 0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.styles.list': 0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.styles.wrapper': 0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.ui.error-fallback': 0.0.3_react-dom@17.0.2
-  '@bit/wasedatime.core.ts.ui.header': 0.1.0_34e0e8fef476b23e4591e45a327bc6fc
-  '@bit/wasedatime.core.ts.ui.loading-spinner': 0.0.7_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.ui.logo': 0.0.9_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.ui.modal': 0.0.8_react-dom@17.0.2
-  '@bit/wasedatime.core.ts.ui.sign-in-modal': 0.0.9_f05303aa5242783c67020e4ed5e33fa0
-  '@bit/wasedatime.core.ts.utils.i18n': 0.0.2_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.utils.user': 0.0.3_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en': 0.0.5_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja': 0.0.4_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.constants.size-variables': node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.constants.theme': node.bit.dev/@bit/wasedatime.core.ts.constants.theme/0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.styles.article': node.bit.dev/@bit/wasedatime.core.ts.styles.article/0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.styles.badge': node.bit.dev/@bit/wasedatime.core.ts.styles.badge/0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.styles.button': node.bit.dev/@bit/wasedatime.core.ts.styles.button/0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.styles.list': node.bit.dev/@bit/wasedatime.core.ts.styles.list/0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.styles.wrapper': node.bit.dev/@bit/wasedatime.core.ts.styles.wrapper/0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.ui.error-fallback': node.bit.dev/@bit/wasedatime.core.ts.ui.error-fallback/0.0.3_react-dom@17.0.2
+  '@bit/wasedatime.core.ts.ui.header': node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0_34e0e8fef476b23e4591e45a327bc6fc
+  '@bit/wasedatime.core.ts.ui.loading-spinner': node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.0.7_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.ui.modal': node.bit.dev/@bit/wasedatime.core.ts.ui.modal/0.0.8_react-dom@17.0.2
+  '@bit/wasedatime.core.ts.ui.sign-in-modal': node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.0.9_f05303aa5242783c67020e4ed5e33fa0
+  '@bit/wasedatime.core.ts.utils.i18n': node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.2_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.utils.user': node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.3_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en': node.bit.dev/@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en/0.0.5_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja': node.bit.dev/@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja/0.0.4_react-dom@17.0.2+react@17.0.2
   '@fortawesome/fontawesome-svg-core': 1.2.36
   '@fortawesome/free-brands-svg-icons': 5.15.4
   '@fortawesome/free-solid-svg-icons': 5.15.4
@@ -162,6 +163,7 @@ dependencies:
   simplebar-react: 2.3.5_react-dom@17.0.2+react@17.0.2
   single-spa-css: 1.2.0
   stickybits: 3.7.9
+  styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
   url-loader: 4.1.1_file-loader@6.2.0+webpack@5.52.1
 
 devDependencies:
@@ -176,7 +178,7 @@ devDependencies:
   '@vue/preload-webpack-plugin': 2.0.0_webpack@5.52.1
   babel-eslint: 11.0.0-beta.2_@babel+core@7.15.5+eslint@7.32.0
   babel-jest: 26.6.3_@babel+core@7.15.5
-  babel-plugin-styled-components: 1.13.2
+  babel-plugin-styled-components: 1.13.2_styled-components@5.3.1
   concurrently: 5.3.0
   cross-env: 7.0.3
   css-loader: 5.2.7_webpack@5.52.1
@@ -2032,1172 +2034,6 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@bit/wasedatime.core.assets.img.logo-jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-ErN8Hkn1p/2XmutGVZXg1WZoJiE=, tarball: wasedatime.core.assets.img.logo-jp/-/wasedatime.core.assets.img.logo-jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.assets.img.logo/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-e0w8cLOvM8t9pildIQVoGODf1pA=, tarball: wasedatime.core.assets.img.logo/-/wasedatime.core.assets.img.logo-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.assets.locales.en/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-a2MtBzbhje+oHJ4Tz+L5B/2n2Qs=, tarball: wasedatime.core.assets.locales.en/-/wasedatime.core.assets.locales.en-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.assets.locales.ja/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-q3GVnjO0kmRflqwouUeS5dFCHHU=, tarball: wasedatime.core.assets.locales.ja/-/wasedatime.core.assets.locales.ja-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.constants.langs/0.0.3_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-1yhZaTyaJXewK64EwmNpUowVXkQ=, tarball: wasedatime.core.ts.constants.langs/-/wasedatime.core.ts.constants.langs-0.0.3.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-Bp87IFStXHsG1iyN/PONMyD5IyM=, tarball: wasedatime.core.ts.constants.langs/-/wasedatime.core.ts.constants.langs-0.0.5.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.constants.size-variables/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-YJSNst74QVd88GZ5QOHXoY9ScV4=, tarball: wasedatime.core.ts.constants.size-variables/-/wasedatime.core.ts.constants.size-variables-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.constants.theme/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-R3tJ1gqOjmPbqxjNQzpnO6qlyZw=, tarball: wasedatime.core.ts.constants.theme/-/wasedatime.core.ts.constants.theme-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.ts.constants.size-variables': 0.0.1_react-dom@17.0.2+react@17.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.styles.article/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-VdfdbMqZeATRwyht7+/Kx2t3zkM=, tarball: wasedatime.core.ts.styles.article/-/wasedatime.core.ts.styles.article-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      semantic-ui-react: 2.0.3_react-dom@17.0.2+react@17.0.2
-      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.styles.badge/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-N4tzrw4cUiLKiUCICDjqOswmq3U=, tarball: wasedatime.core.ts.styles.badge/-/wasedatime.core.ts.styles.badge-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.styles.button/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-o4UaOGE9BjehNU7R6RYtC0rlkKc=, tarball: wasedatime.core.ts.styles.button/-/wasedatime.core.ts.styles.button-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.styles.list/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-5MMoVLuPuJYQSdcnYPUxipVPxro=, tarball: wasedatime.core.ts.styles.list/-/wasedatime.core.ts.styles.list-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.styles.overlay/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-eXYMnbkdhymg3EBNS9RBSuz1Wbk=, tarball: wasedatime.core.ts.styles.overlay/-/wasedatime.core.ts.styles.overlay-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.styles.wrapper/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-cszBxS3eDqwoxe9Tl162+7hc9Og=, tarball: wasedatime.core.ts.styles.wrapper/-/wasedatime.core.ts.styles.wrapper-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.error-fallback/0.0.3_react-dom@17.0.2:
-    resolution: {integrity: sha1-PZhmqHx+q6l/ucbohtMK9aOBAVM=, tarball: wasedatime.core.ts.ui.error-fallback/-/wasedatime.core.ts.ui.error-fallback-0.0.3.tgz}
-    peerDependencies:
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.1
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.header/0.1.0_34e0e8fef476b23e4591e45a327bc6fc:
-    resolution: {integrity: sha1-nJd8i84nqrSkz8qd6PUfrrJT5DI=, tarball: wasedatime.core.ts.ui.header/-/wasedatime.core.ts.ui.header-0.1.0.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.ts.ui.language-menu': 0.1.2_34e0e8fef476b23e4591e45a327bc6fc
-      '@bit/wasedatime.core.ts.ui.logo': 0.0.9_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@reach/router': 1.3.4_react-dom@17.0.2+react@17.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-responsive: 8.2.0_react@17.0.2
-    transitivePeerDependencies:
-      - '@fortawesome/fontawesome-svg-core'
-      - '@types/react'
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.language-menu/0.1.2_34e0e8fef476b23e4591e45a327bc6fc:
-    resolution: {integrity: sha1-MUvE8RKQdx5JD3r7R/OPTdMgZes=, tarball: wasedatime.core.ts.ui.language-menu/-/wasedatime.core.ts.ui.language-menu-0.1.2.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@fortawesome/free-solid-svg-icons': 5.15.4
-      '@fortawesome/react-fontawesome': 0.1.15_f515edce028694561ceb456e3dba224c
-      '@material-ui/core': 4.12.3_6a88e7f1db8ec87ba2f5d7a905ae46ed
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-responsive: 8.2.0_react@17.0.2
-    transitivePeerDependencies:
-      - '@fortawesome/fontawesome-svg-core'
-      - '@types/react'
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.loading-spinner/0.0.7_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-+G7c5hkgHP3OJ3BXppQwCuMKkZw=, tarball: wasedatime.core.ts.ui.loading-spinner/-/wasedatime.core.ts.ui.loading-spinner-0.0.7.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.ts.styles.overlay': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.styles.wrapper': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.ui.logo': 0.0.9_react-dom@17.0.2+react@17.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-3KGefQPP8se1Blx051dpau3Cmp0=, tarball: wasedatime.core.ts.ui.logo/-/wasedatime.core.ts.ui.logo-0.0.9.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.assets.img.logo': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.assets.img.logo-jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.modal/0.0.8_react-dom@17.0.2:
-    resolution: {integrity: sha1-xkKmBXxGPJmAXzBQAeIqi71+V1E=, tarball: wasedatime.core.ts.ui.modal/-/wasedatime.core.ts.ui.modal-0.0.8.tgz}
-    peerDependencies:
-      react-dom: ^17.0.1
-    dependencies:
-      no-scroll: 2.1.1
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-modal: 3.14.3_react-dom@17.0.2+react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.sign-in-modal/0.0.9_f05303aa5242783c67020e4ed5e33fa0:
-    resolution: {integrity: sha1-QoqkK2gw+/sOC+F6UkcJZ2/iyyI=, tarball: wasedatime.core.ts.ui.sign-in-modal/-/wasedatime.core.ts.ui.sign-in-modal-0.0.9.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.ts.ui.modal': 0.0.8_react-dom@17.0.2
-      '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.utils.user': 0.0.3_react-dom@17.0.2+react@17.0.2
-      '@fortawesome/free-brands-svg-icons': 5.15.4
-      '@fortawesome/react-fontawesome': 0.1.15_f515edce028694561ceb456e3dba224c
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-i18next: 11.12.0_react@17.0.2
-      react-responsive: 8.2.0_react@17.0.2
-    transitivePeerDependencies:
-      - '@fortawesome/fontawesome-svg-core'
-      - i18next
-      - react-is
-      - react-native
-    dev: false
-
-  /@bit/wasedatime.core.ts.utils.i18n/0.0.2_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-ND57ZU+zcIvtKsgh2Qh/yG15zpo=, tarball: wasedatime.core.ts.utils.i18n/-/wasedatime.core.ts.utils.i18n-0.0.2.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.assets.locales.en': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.assets.locales.ja': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.constants.langs': 0.0.3_react-dom@17.0.2+react@17.0.2
-      i18next: 19.9.2
-      i18next-browser-languagedetector: 6.1.2
-      i18next-xhr-backend: 3.2.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-i18next: 11.12.0_i18next@19.9.2+react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-5/QLjuULwrwyclYP8m96BV+Mnq8=, tarball: wasedatime.core.ts.utils.responsive-utils/-/wasedatime.core.ts.utils.responsive-utils-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.utils.user/0.0.3_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-49NcYaMpH6Aq9E6NuEeeHdQn9gw=, tarball: wasedatime.core.ts.utils.user/-/wasedatime.core.ts.utils.user-0.0.3.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@aws-amplify/auth': 3.4.34
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    transitivePeerDependencies:
-      - react-native
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.art/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-Ge6exLRnGVzLynp7Aiu0mvv2cvY=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.art/-/wasedatime.syllabus.assets.img.syllabus-icons.art-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.art_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-kTlcfEJ+9DKXBUZkEu11g1d1lpc=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.art_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.art_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-5OSJ+8fItvckJKdeAw3ZiJuCNXQ=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.ase/-/wasedatime.syllabus.assets.img.syllabus-icons.ase-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-EV4rQk80Pdb+SSCDap2SgbGSKHw=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.ase_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.ase_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-TR72VWQuBH27BC1mKsr0g0j+TW8=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.cie/-/wasedatime.syllabus.assets.img.syllabus-icons.cie-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-KP0mwdxSVVpZYZHoLGoa4UDqHgA=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.cie_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.cie_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-7siaCNIbpETMKVG9bAYhwGBZN+o=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.cjl/-/wasedatime.syllabus.assets.img.syllabus-icons.cjl-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-HExRUrFqaIvyfqSU+K90MFDwqjI=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-zFDjt4R0NXoStJ01OEg7G58xbmM=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.cms/-/wasedatime.syllabus.assets.img.syllabus-icons.cms-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-LDGNDZ8V8ycLyNuCcJoBHkjZyBQ=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.cms_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.cms_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-D9UQfEnSiQhYQI0fjeSBexkiLIg=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.cse/-/wasedatime.syllabus.assets.img.syllabus-icons.cse-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-zeXa346eX+uP3UZK9Rrgct7vMl8=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.cse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.cse_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-eVE7E6JSeUPmFNzugRwXbDXaCRk=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.edu/-/wasedatime.syllabus.assets.img.syllabus-icons.edu-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-EQedzZLI7vP8DD6mChyvRftYlDY=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.edu_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.edu_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-wO9GFk+e+aX9zVLDVOiCPeDmjng=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.fse/-/wasedatime.syllabus.assets.img.syllabus-icons.fse-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-7txsN709VB4QlJlOOWglfrJflDo=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.fse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.fse_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-vH0H0FlMBZzejqLBFfL2fdO5aso=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_ase/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ase-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-N49fEl8u5F5AkecLeup3HIer4p0=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-XyzOZHCqntLKCkIChIoyVul6S4Q=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_cse/-/wasedatime.syllabus.assets.img.syllabus-icons.g_cse-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-scbhUGGSrkhYM3aIPX4GcwVm2fs=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-vYSxcoYYOZI2ynwsmKJaoIC4oAM=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_e/-/wasedatime.syllabus.assets.img.syllabus-icons.g_e-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-rKRYUg6KAsyb+D3zw2Bt6bZaNz8=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-ZLaeGvnH1tD4dEbpEepdsJYdwlE=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_edu/-/wasedatime.syllabus.assets.img.syllabus-icons.g_edu-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-sPnhiB5/iPilCutOFkcrrXi7BhI=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-TjBQ4Ewy3XMowrLUR9L5z4vPy8Y=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_fse/-/wasedatime.syllabus.assets.img.syllabus-icons.g_fse-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-vin47vB2D5g2DNQ/kZRkmZMai2k=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-4jmUutZ5zdTn5EkgCM8H1HI+kJc=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_hum/-/wasedatime.syllabus.assets.img.syllabus-icons.g_hum-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-ouvLk2eHpg825O4qHhFyV7KCJRA=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-iQgKsYQ+2hR7+eQrTCoxpOeFqJY=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_ips/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ips-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-4X5+wT5BzK4SYfSXQeTLzGhfHoQ=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-3y5pi+l1bx92dhw4ZOhqEjGOLAU=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_its/-/wasedatime.syllabus.assets.img.syllabus-icons.g_its-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-TENEqIXVvKuAhG6NF9E4v4+uOxM=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-xs7OF5gy+8MaZb344GLQPHeBC9M=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_las/-/wasedatime.syllabus.assets.img.syllabus-icons.g_las-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-H0y/U8E6XtED/KJ1QrDCB+H2G84=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-qMqUP6VGWTXhhNEqW4TLl72u19w=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_law/-/wasedatime.syllabus.assets.img.syllabus-icons.g_law-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-rAWCWt0RltjfrpsFCrLOxQ5lX2g=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-voJEvQKhDX5bsNxAkeeMvqHYbuM=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_ps/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ps-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-NkcmyCzcC0T1y4bawcW2pREqDo8=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-EtrCmFAgwIRcrDXfr0FC7srlvTY=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sa/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sa-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-l0PXLZPBbCCM573CgJeb1ZR9ngs=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-BWj+8rai2rayUJRDmZfsZUpyYqI=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_saps/-/wasedatime.syllabus.assets.img.syllabus-icons.g_saps-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-V3PMEHN1j8Icb/W7ntpWAmqGys4=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-R5j2NZpVWitjokcbbL/F/wFWrjc=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sc/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sc-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-Xk2QbreSXw9NuhdFhVZD7jkw0Mk=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-UCHWZ6IcsedmOJ9lICO/28HiVXg=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_seee/-/wasedatime.syllabus.assets.img.syllabus-icons.g_seee-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-pXszvhgcvgdHIbNqwoyN1ggKVJE=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-qWHkQgXqA7BvMtFASDK61zzFVmc=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_siccs/-/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-zVukDSlRB1SDEfS+6N3YTj9c/k0=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-/94538lBIPA7iTshRoTtjpGsrl8=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sjal/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-QnUDKIYDLqZeToR+xYD4dNU741w=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-xPDNCJIVBIP/1nqYFvwbhVx9DOk=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sps/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sps-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-rMjAlapURWiY/Dlp+S3JB2Y0ptk=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-rhAfg3yUexxxHcq4nIIZ3tdFI0Y=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sss/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sss-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-ahjKIsMvPuDyczAMmcEa+/ZnJ/k=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-3mLqP4DgY6SPVdG65gBiou8vs9U=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_wbs/-/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-Uuyt1naC4jIx9pfEzIJkPWx7ueQ=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-EzT9lQm9yDkHieq4ws+0HUPcw1g=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_wls/-/wasedatime.syllabus.assets.img.syllabus-icons.g_wls-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-1Q4rYIHad1XYGVux4WIAdv1OWOg=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-eFnPIRPCSCBiD1to1Y+1bKLENVk=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.gec/-/wasedatime.syllabus.assets.img.syllabus-icons.gec-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-x4LHtJXnZs9h+JfF9wnXPjVqin4=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.gec_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-oLrgPyFzVghp/xwXhP+aG/NO/0A=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.hss/-/wasedatime.syllabus.assets.img.syllabus-icons.hss-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-6ZyymqCpu3QvdbA0r/Wi5IVDo9s=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.hss_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.hss_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-crQgkpYdZ5ONd7dlgwNDET58v0g=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.hum/-/wasedatime.syllabus.assets.img.syllabus-icons.hum-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-kT0+MXJ0QELPtddRP4aNtZzG76g=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.hum_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.hum_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.law/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-iFfATPYgtChlGUSDJC+Wi+gn/1s=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.law/-/wasedatime.syllabus.assets.img.syllabus-icons.law-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.law_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-f720LdpR539BDxpjs8MhT1Sg3hg=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.law_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.law_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-WYSlkOoqo8kd3jxk6tlzsnlYna0=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.pse/-/wasedatime.syllabus.assets.img.syllabus-icons.pse-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-JTwfwb6W2pt3tbzJ33rgmd/q4nw=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.pse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.pse_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-wkR5ne9SOV3wrosOPxbiEm+c2Xk=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.sils/-/wasedatime.syllabus.assets.img.syllabus-icons.sils-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-h1wb9aKnZmM3TJ60cjI4Sn12U3c=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.sils_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.sils_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-msCvfsw81enfQwzcTLPMITw7Stw=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.soc/-/wasedatime.syllabus.assets.img.syllabus-icons.soc-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-QMMQyh5B2+EhhmNIs7YEcJqj9eA=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.soc_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.soc_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-cHvzrRO95LQfUvgiJzo+6OPUxkw=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.sps/-/wasedatime.syllabus.assets.img.syllabus-icons.sps-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-A7AOoH8tlpbEU4aY+DYPUeEGkMM=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.sps_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.sps_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-PDzd3F3bTeNEs6GsmTRZLVGZ3yY=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.sss/-/wasedatime.syllabus.assets.img.syllabus-icons.sss-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-ge1OBPJ7f3JaYsNTOWv3zhriHog=, tarball: wasedatime.syllabus.assets.img.syllabus-icons.sss_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.sss_jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en/0.0.5_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-8hXAh8w4Tl1nknmwYfYMA2gO7Js=, tarball: wasedatime.syllabus.ts.constants.school-name-icon-map-en/-/wasedatime.syllabus.ts.constants.school-name-icon-map-en-0.0.5.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.art': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.law': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss': 0.0.1_react-dom@17.0.2+react@17.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja/0.0.4_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-fSZPN1tkPDDSZ9MKk4gAlrn3Lxk=, tarball: wasedatime.syllabus.ts.constants.school-name-icon-map-ja/-/wasedatime.syllabus.ts.constants.school-name-icon-map-ja-0.0.4.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.art_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.law_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss_jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
   /@cnakazawa/watch/1.0.4:
     resolution: {integrity: sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ==}
     engines: {node: '>=0.1.95'}
@@ -4570,17 +3406,6 @@ packages:
       - supports-color
     dev: true
 
-  /babel-plugin-styled-components/1.13.2:
-    resolution: {integrity: sha512-Vb1R3d4g+MUfPQPVDMCGjm3cDocJEUTR7Xq7QS95JWWeksN1wdFRYpD2kulDgI3Huuaf1CZd+NK4KQmqUFh5dA==}
-    peerDependencies:
-      styled-components: '>= 2'
-    dependencies:
-      '@babel/helper-annotate-as-pure': 7.15.4
-      '@babel/helper-module-imports': 7.15.4
-      babel-plugin-syntax-jsx: 6.18.0
-      lodash: 4.17.21
-    dev: true
-
   /babel-plugin-styled-components/1.13.2_styled-components@5.3.1:
     resolution: {integrity: sha512-Vb1R3d4g+MUfPQPVDMCGjm3cDocJEUTR7Xq7QS95JWWeksN1wdFRYpD2kulDgI3Huuaf1CZd+NK4KQmqUFh5dA==}
     peerDependencies:
@@ -4591,7 +3416,6 @@ packages:
       babel-plugin-syntax-jsx: 6.18.0
       lodash: 4.17.21
       styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
-    dev: false
 
   /babel-plugin-syntax-jsx/6.18.0:
     resolution: {integrity: sha1-CvMqmm4Tyno/1QaeYtew9Y0NiUY=}
@@ -11261,4 +10085,1476 @@ packages:
 
   /zen-observable/0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.assets.img.logo-jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-ErN8Hkn1p/2XmutGVZXg1WZoJiE=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.assets.img.logo-jp/-/wasedatime.core.assets.img.logo-jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.assets.img.logo-jp/0.0.1
+    name: wasedatime.core.assets.img.logo-jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.assets.img.logo/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-e0w8cLOvM8t9pildIQVoGODf1pA=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.assets.img.logo/-/wasedatime.core.assets.img.logo-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.assets.img.logo/0.0.1
+    name: wasedatime.core.assets.img.logo
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.assets.locales.en/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-a2MtBzbhje+oHJ4Tz+L5B/2n2Qs=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.assets.locales.en/-/wasedatime.core.assets.locales.en-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.assets.locales.en/0.0.1
+    name: wasedatime.core.assets.locales.en
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.assets.locales.ja/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-q3GVnjO0kmRflqwouUeS5dFCHHU=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.assets.locales.ja/-/wasedatime.core.assets.locales.ja-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.assets.locales.ja/0.0.1
+    name: wasedatime.core.assets.locales.ja
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.3_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-1yhZaTyaJXewK64EwmNpUowVXkQ=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.constants.langs/-/wasedatime.core.ts.constants.langs-0.0.3.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.3
+    name: wasedatime.core.ts.constants.langs
+    version: 0.0.3
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-Bp87IFStXHsG1iyN/PONMyD5IyM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.constants.langs/-/wasedatime.core.ts.constants.langs-0.0.5.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5
+    name: wasedatime.core.ts.constants.langs
+    version: 0.0.5
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-YJSNst74QVd88GZ5QOHXoY9ScV4=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.constants.size-variables/-/wasedatime.core.ts.constants.size-variables-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.1
+    name: wasedatime.core.ts.constants.size-variables
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.constants.theme/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-R3tJ1gqOjmPbqxjNQzpnO6qlyZw=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.constants.theme/-/wasedatime.core.ts.constants.theme-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.constants.theme/0.0.1
+    name: wasedatime.core.ts.constants.theme
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.ts.constants.size-variables': node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.1_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.styles.article/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-VdfdbMqZeATRwyht7+/Kx2t3zkM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.styles.article/-/wasedatime.core.ts.styles.article-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.styles.article/0.0.1
+    name: wasedatime.core.ts.styles.article
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      semantic-ui-react: 2.0.3_react-dom@17.0.2+react@17.0.2
+      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.styles.badge/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-N4tzrw4cUiLKiUCICDjqOswmq3U=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.styles.badge/-/wasedatime.core.ts.styles.badge-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.styles.badge/0.0.1
+    name: wasedatime.core.ts.styles.badge
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.styles.button/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-o4UaOGE9BjehNU7R6RYtC0rlkKc=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.styles.button/-/wasedatime.core.ts.styles.button-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.styles.button/0.0.1
+    name: wasedatime.core.ts.styles.button
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.styles.list/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-5MMoVLuPuJYQSdcnYPUxipVPxro=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.styles.list/-/wasedatime.core.ts.styles.list-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.styles.list/0.0.1
+    name: wasedatime.core.ts.styles.list
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.styles.overlay/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-eXYMnbkdhymg3EBNS9RBSuz1Wbk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.styles.overlay/-/wasedatime.core.ts.styles.overlay-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.styles.overlay/0.0.1
+    name: wasedatime.core.ts.styles.overlay
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.styles.wrapper/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-cszBxS3eDqwoxe9Tl162+7hc9Og=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.styles.wrapper/-/wasedatime.core.ts.styles.wrapper-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.styles.wrapper/0.0.1
+    name: wasedatime.core.ts.styles.wrapper
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.error-fallback/0.0.3_react-dom@17.0.2:
+    resolution: {integrity: sha1-PZhmqHx+q6l/ucbohtMK9aOBAVM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.error-fallback/-/wasedatime.core.ts.ui.error-fallback-0.0.3.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.error-fallback/0.0.3
+    name: wasedatime.core.ts.ui.error-fallback
+    version: 0.0.3
+    peerDependencies:
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.1
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0_34e0e8fef476b23e4591e45a327bc6fc:
+    resolution: {integrity: sha1-nJd8i84nqrSkz8qd6PUfrrJT5DI=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.header/-/wasedatime.core.ts.ui.header-0.1.0.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0
+    name: wasedatime.core.ts.ui.header
+    version: 0.1.0
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.ts.ui.language-menu': node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2_34e0e8fef476b23e4591e45a327bc6fc
+      '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@reach/router': 1.3.4_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-responsive: 8.2.0_react@17.0.2
+    transitivePeerDependencies:
+      - '@fortawesome/fontawesome-svg-core'
+      - '@types/react'
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2_34e0e8fef476b23e4591e45a327bc6fc:
+    resolution: {integrity: sha1-MUvE8RKQdx5JD3r7R/OPTdMgZes=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.language-menu/-/wasedatime.core.ts.ui.language-menu-0.1.2.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2
+    name: wasedatime.core.ts.ui.language-menu
+    version: 0.1.2
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@fortawesome/free-solid-svg-icons': 5.15.4
+      '@fortawesome/react-fontawesome': 0.1.15_f515edce028694561ceb456e3dba224c
+      '@material-ui/core': 4.12.3_6a88e7f1db8ec87ba2f5d7a905ae46ed
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-responsive: 8.2.0_react@17.0.2
+    transitivePeerDependencies:
+      - '@fortawesome/fontawesome-svg-core'
+      - '@types/react'
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.0.7_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-+G7c5hkgHP3OJ3BXppQwCuMKkZw=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.loading-spinner/-/wasedatime.core.ts.ui.loading-spinner-0.0.7.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.0.7
+    name: wasedatime.core.ts.ui.loading-spinner
+    version: 0.0.7
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.ts.styles.overlay': node.bit.dev/@bit/wasedatime.core.ts.styles.overlay/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.styles.wrapper': node.bit.dev/@bit/wasedatime.core.ts.styles.wrapper/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-3KGefQPP8se1Blx051dpau3Cmp0=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.logo/-/wasedatime.core.ts.ui.logo-0.0.9.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9
+    name: wasedatime.core.ts.ui.logo
+    version: 0.0.9
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.assets.img.logo': node.bit.dev/@bit/wasedatime.core.assets.img.logo/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.assets.img.logo-jp': node.bit.dev/@bit/wasedatime.core.assets.img.logo-jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.modal/0.0.8_react-dom@17.0.2:
+    resolution: {integrity: sha1-xkKmBXxGPJmAXzBQAeIqi71+V1E=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.modal/-/wasedatime.core.ts.ui.modal-0.0.8.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.modal/0.0.8
+    name: wasedatime.core.ts.ui.modal
+    version: 0.0.8
+    peerDependencies:
+      react-dom: ^17.0.1
+    dependencies:
+      no-scroll: 2.1.1
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-modal: 3.14.3_react-dom@17.0.2+react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.0.9_f05303aa5242783c67020e4ed5e33fa0:
+    resolution: {integrity: sha1-QoqkK2gw+/sOC+F6UkcJZ2/iyyI=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.sign-in-modal/-/wasedatime.core.ts.ui.sign-in-modal-0.0.9.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.0.9
+    name: wasedatime.core.ts.ui.sign-in-modal
+    version: 0.0.9
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.ts.ui.modal': node.bit.dev/@bit/wasedatime.core.ts.ui.modal/0.0.8_react-dom@17.0.2
+      '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.utils.user': node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.3_react-dom@17.0.2+react@17.0.2
+      '@fortawesome/free-brands-svg-icons': 5.15.4
+      '@fortawesome/react-fontawesome': 0.1.15_f515edce028694561ceb456e3dba224c
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-i18next: 11.12.0_react@17.0.2
+      react-responsive: 8.2.0_react@17.0.2
+    transitivePeerDependencies:
+      - '@fortawesome/fontawesome-svg-core'
+      - i18next
+      - react-is
+      - react-native
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-ND57ZU+zcIvtKsgh2Qh/yG15zpo=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.utils.i18n/-/wasedatime.core.ts.utils.i18n-0.0.2.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.2
+    name: wasedatime.core.ts.utils.i18n
+    version: 0.0.2
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.assets.locales.en': node.bit.dev/@bit/wasedatime.core.assets.locales.en/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.assets.locales.ja': node.bit.dev/@bit/wasedatime.core.assets.locales.ja/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.3_react-dom@17.0.2+react@17.0.2
+      i18next: 19.9.2
+      i18next-browser-languagedetector: 6.1.2
+      i18next-xhr-backend: 3.2.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-i18next: 11.12.0_i18next@19.9.2+react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-5/QLjuULwrwyclYP8m96BV+Mnq8=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.utils.responsive-utils/-/wasedatime.core.ts.utils.responsive-utils-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1
+    name: wasedatime.core.ts.utils.responsive-utils
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      styled-components: 5.3.1_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.3_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-49NcYaMpH6Aq9E6NuEeeHdQn9gw=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.utils.user/-/wasedatime.core.ts.utils.user-0.0.3.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.3
+    name: wasedatime.core.ts.utils.user
+    version: 0.0.3
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@aws-amplify/auth': 3.4.34
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    transitivePeerDependencies:
+      - react-native
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.art/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-Ge6exLRnGVzLynp7Aiu0mvv2cvY=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.art/-/wasedatime.syllabus.assets.img.syllabus-icons.art-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.art/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.art
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.art_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-kTlcfEJ+9DKXBUZkEu11g1d1lpc=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.art_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.art_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.art_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.art_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-5OSJ+8fItvckJKdeAw3ZiJuCNXQ=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.ase/-/wasedatime.syllabus.assets.img.syllabus-icons.ase-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.ase
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-EV4rQk80Pdb+SSCDap2SgbGSKHw=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.ase_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.ase_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.ase_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-TR72VWQuBH27BC1mKsr0g0j+TW8=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.cie/-/wasedatime.syllabus.assets.img.syllabus-icons.cie-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.cie
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-KP0mwdxSVVpZYZHoLGoa4UDqHgA=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.cie_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.cie_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.cie_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-7siaCNIbpETMKVG9bAYhwGBZN+o=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.cjl/-/wasedatime.syllabus.assets.img.syllabus-icons.cjl-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.cjl
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-HExRUrFqaIvyfqSU+K90MFDwqjI=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-zFDjt4R0NXoStJ01OEg7G58xbmM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.cms/-/wasedatime.syllabus.assets.img.syllabus-icons.cms-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.cms
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-LDGNDZ8V8ycLyNuCcJoBHkjZyBQ=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.cms_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.cms_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.cms_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-D9UQfEnSiQhYQI0fjeSBexkiLIg=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.cse/-/wasedatime.syllabus.assets.img.syllabus-icons.cse-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.cse
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-zeXa346eX+uP3UZK9Rrgct7vMl8=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.cse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.cse_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.cse_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-eVE7E6JSeUPmFNzugRwXbDXaCRk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.edu/-/wasedatime.syllabus.assets.img.syllabus-icons.edu-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.edu
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-EQedzZLI7vP8DD6mChyvRftYlDY=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.edu_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.edu_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.edu_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-wO9GFk+e+aX9zVLDVOiCPeDmjng=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.fse/-/wasedatime.syllabus.assets.img.syllabus-icons.fse-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.fse
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-7txsN709VB4QlJlOOWglfrJflDo=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.fse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.fse_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.fse_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-vH0H0FlMBZzejqLBFfL2fdO5aso=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_ase/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ase-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_ase
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-N49fEl8u5F5AkecLeup3HIer4p0=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-XyzOZHCqntLKCkIChIoyVul6S4Q=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_cse/-/wasedatime.syllabus.assets.img.syllabus-icons.g_cse-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_cse
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-scbhUGGSrkhYM3aIPX4GcwVm2fs=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-vYSxcoYYOZI2ynwsmKJaoIC4oAM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_e/-/wasedatime.syllabus.assets.img.syllabus-icons.g_e-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_e
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-rKRYUg6KAsyb+D3zw2Bt6bZaNz8=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-ZLaeGvnH1tD4dEbpEepdsJYdwlE=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_edu/-/wasedatime.syllabus.assets.img.syllabus-icons.g_edu-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_edu
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-sPnhiB5/iPilCutOFkcrrXi7BhI=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-TjBQ4Ewy3XMowrLUR9L5z4vPy8Y=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_fse/-/wasedatime.syllabus.assets.img.syllabus-icons.g_fse-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_fse
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-vin47vB2D5g2DNQ/kZRkmZMai2k=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-4jmUutZ5zdTn5EkgCM8H1HI+kJc=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_hum/-/wasedatime.syllabus.assets.img.syllabus-icons.g_hum-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_hum
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-ouvLk2eHpg825O4qHhFyV7KCJRA=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-iQgKsYQ+2hR7+eQrTCoxpOeFqJY=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_ips/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ips-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_ips
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-4X5+wT5BzK4SYfSXQeTLzGhfHoQ=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-3y5pi+l1bx92dhw4ZOhqEjGOLAU=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_its/-/wasedatime.syllabus.assets.img.syllabus-icons.g_its-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_its
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-TENEqIXVvKuAhG6NF9E4v4+uOxM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-xs7OF5gy+8MaZb344GLQPHeBC9M=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_las/-/wasedatime.syllabus.assets.img.syllabus-icons.g_las-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_las
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-H0y/U8E6XtED/KJ1QrDCB+H2G84=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-qMqUP6VGWTXhhNEqW4TLl72u19w=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_law/-/wasedatime.syllabus.assets.img.syllabus-icons.g_law-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_law
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-rAWCWt0RltjfrpsFCrLOxQ5lX2g=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-voJEvQKhDX5bsNxAkeeMvqHYbuM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_ps/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ps-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_ps
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-NkcmyCzcC0T1y4bawcW2pREqDo8=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-EtrCmFAgwIRcrDXfr0FC7srlvTY=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sa/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sa-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sa
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-l0PXLZPBbCCM573CgJeb1ZR9ngs=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-BWj+8rai2rayUJRDmZfsZUpyYqI=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_saps/-/wasedatime.syllabus.assets.img.syllabus-icons.g_saps-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_saps
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-V3PMEHN1j8Icb/W7ntpWAmqGys4=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-R5j2NZpVWitjokcbbL/F/wFWrjc=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sc/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sc-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sc
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-Xk2QbreSXw9NuhdFhVZD7jkw0Mk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-UCHWZ6IcsedmOJ9lICO/28HiVXg=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_seee/-/wasedatime.syllabus.assets.img.syllabus-icons.g_seee-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_seee
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-pXszvhgcvgdHIbNqwoyN1ggKVJE=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-qWHkQgXqA7BvMtFASDK61zzFVmc=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs/-/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_siccs
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-zVukDSlRB1SDEfS+6N3YTj9c/k0=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-/94538lBIPA7iTshRoTtjpGsrl8=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sjal
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-QnUDKIYDLqZeToR+xYD4dNU741w=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-xPDNCJIVBIP/1nqYFvwbhVx9DOk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sps/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sps-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sps
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-rMjAlapURWiY/Dlp+S3JB2Y0ptk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-rhAfg3yUexxxHcq4nIIZ3tdFI0Y=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sss/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sss-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sss
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-ahjKIsMvPuDyczAMmcEa+/ZnJ/k=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-3mLqP4DgY6SPVdG65gBiou8vs9U=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs/-/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_wbs
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-Uuyt1naC4jIx9pfEzIJkPWx7ueQ=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-EzT9lQm9yDkHieq4ws+0HUPcw1g=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_wls/-/wasedatime.syllabus.assets.img.syllabus-icons.g_wls-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_wls
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-1Q4rYIHad1XYGVux4WIAdv1OWOg=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-eFnPIRPCSCBiD1to1Y+1bKLENVk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.gec/-/wasedatime.syllabus.assets.img.syllabus-icons.gec-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.gec
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-x4LHtJXnZs9h+JfF9wnXPjVqin4=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.gec_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-oLrgPyFzVghp/xwXhP+aG/NO/0A=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.hss/-/wasedatime.syllabus.assets.img.syllabus-icons.hss-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.hss
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-6ZyymqCpu3QvdbA0r/Wi5IVDo9s=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.hss_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.hss_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.hss_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-crQgkpYdZ5ONd7dlgwNDET58v0g=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.hum/-/wasedatime.syllabus.assets.img.syllabus-icons.hum-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.hum
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-kT0+MXJ0QELPtddRP4aNtZzG76g=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.hum_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.hum_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.hum_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.law/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-iFfATPYgtChlGUSDJC+Wi+gn/1s=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.law/-/wasedatime.syllabus.assets.img.syllabus-icons.law-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.law/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.law
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.law_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-f720LdpR539BDxpjs8MhT1Sg3hg=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.law_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.law_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.law_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.law_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-WYSlkOoqo8kd3jxk6tlzsnlYna0=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.pse/-/wasedatime.syllabus.assets.img.syllabus-icons.pse-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.pse
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-JTwfwb6W2pt3tbzJ33rgmd/q4nw=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.pse_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.pse_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.pse_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-wkR5ne9SOV3wrosOPxbiEm+c2Xk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.sils/-/wasedatime.syllabus.assets.img.syllabus-icons.sils-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.sils
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-h1wb9aKnZmM3TJ60cjI4Sn12U3c=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.sils_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.sils_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.sils_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-msCvfsw81enfQwzcTLPMITw7Stw=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.soc/-/wasedatime.syllabus.assets.img.syllabus-icons.soc-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.soc
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-QMMQyh5B2+EhhmNIs7YEcJqj9eA=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.soc_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.soc_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.soc_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-cHvzrRO95LQfUvgiJzo+6OPUxkw=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.sps/-/wasedatime.syllabus.assets.img.syllabus-icons.sps-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.sps
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-A7AOoH8tlpbEU4aY+DYPUeEGkMM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.sps_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.sps_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.sps_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-PDzd3F3bTeNEs6GsmTRZLVGZ3yY=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.sss/-/wasedatime.syllabus.assets.img.syllabus-icons.sss-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.sss
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss_jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-ge1OBPJ7f3JaYsNTOWv3zhriHog=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.assets.img.syllabus-icons.sss_jp/-/wasedatime.syllabus.assets.img.syllabus-icons.sss_jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss_jp/0.0.1
+    name: wasedatime.syllabus.assets.img.syllabus-icons.sss_jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en/0.0.5_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-8hXAh8w4Tl1nknmwYfYMA2gO7Js=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.ts.constants.school-name-icon-map-en/-/wasedatime.syllabus.ts.constants.school-name-icon-map-en-0.0.5.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en/0.0.5
+    name: wasedatime.syllabus.ts.constants.school-name-icon-map-en
+    version: 0.0.5
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.art': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.art/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.law': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.law/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss/0.0.1_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja/0.0.4_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-fSZPN1tkPDDSZ9MKk4gAlrn3Lxk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.syllabus.ts.constants.school-name-icon-map-ja/-/wasedatime.syllabus.ts.constants.school-name-icon-map-ja-0.0.4.tgz}
+    id: node.bit.dev/@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja/0.0.4
+    name: wasedatime.syllabus.ts.constants.school-name-icon-map-ja
+    version: 0.0.4
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.art_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.art_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.ase_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cie_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cjl_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cms_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.cse_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.edu_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.fse_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ase_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_cse_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_e_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_edu_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_fse_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_hum_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ips_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_its_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_las_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_law_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_ps_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sa_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_saps_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sc_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_seee_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_siccs_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sjal_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sps_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_sss_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wbs_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.g_wls_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.gec_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hss_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.hum_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.law_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.law_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.pse_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sils_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.soc_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sps_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss_jp': node.bit.dev/@bit/wasedatime.syllabus.assets.img.syllabus-icons.sss_jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
     dev: false

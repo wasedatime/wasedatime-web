@@ -19,6 +19,11 @@ jobs:
         uses: actions/setup-node@v2.4.0
         with:
           node-version: 16.x
+      - name: Cache .pnpm-store
+        uses: actions/cache@v1
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-node16-${{ hashFiles('**/pnpm-lock.yaml') }}
       - uses: ./.github/actions/microapp
         with:
           path: 'syllabus'

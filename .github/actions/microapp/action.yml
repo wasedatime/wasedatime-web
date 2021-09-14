@@ -13,7 +13,7 @@ runs:
       working-directory: ${{ inputs.path }}
       run: |
         npm install -g pnpm
-        pnpm install
+        pnpm install --filter .
 
 #    - name: Test
 #      shell: bash

@@ -46,6 +46,10 @@ interface ReduxStateProps {
   selectedSortingOption: string;
 }
 
+interface OwnProps extends WithTranslation {
+  path: string;
+}
+
 interface OwnState {
   selectedSemester: string;
   selectedQuarter: string;
@@ -56,7 +60,7 @@ interface SemesterTitlesType {
 }
 
 class TimetableContainer extends React.Component<
-  ReduxStateProps & WithTranslation,
+  ReduxStateProps & WithTranslation & OwnProps,
   OwnState
 > {
   semesterTitles: SemesterTitlesType;

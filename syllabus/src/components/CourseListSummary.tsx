@@ -51,13 +51,9 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
-const creditSum = (coursesAndPrefs) => {
-  return coursesAndPrefs
-    .map((courseAndPref) =>
-      courseAndPref.course
-        ? courseAndPref.course[SyllabusKey.CREDIT]
-        : courseAndPref[SyllabusKey.CREDIT]
-    )
+const creditSum = (courses) => {
+  return courses
+    .map((course) => course[SyllabusKey.CREDIT])
     .reduce((a, b) => a + b, 0);
 };
 

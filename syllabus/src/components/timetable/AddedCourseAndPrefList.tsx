@@ -34,7 +34,7 @@ interface Props {
 const AddedCourseAndPrefList = ({ addedCoursesAndPrefs }: Props) => {
   return (
     <ExtendedWrapper>
-      <CourseListSummaryContainer courses={addedCoursesAndPrefs} />
+      <CourseListSummaryContainer courses={addedCoursesAndPrefs.map(cp => cp.course)} />
       <Wrapper>
         <ExtendedUnstyledUList>
           {addedCoursesAndPrefs.map((courseAndPref, i) => (

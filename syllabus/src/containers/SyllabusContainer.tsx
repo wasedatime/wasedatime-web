@@ -100,9 +100,9 @@ interface ReduxDispatchProps {
 }
 
 interface OwnProps extends WithTranslation {
+  path: string;
   location: any;
   history: any;
-  path: string;
 }
 
 interface OwnState {

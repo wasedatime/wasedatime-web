@@ -143,7 +143,7 @@ interface ReviewToEdit extends ReviewType {
 
 interface Props extends WithTranslation {
   reviews: ReviewType[];
-  searchLang: string;
+  searchLang: string | string[];
   reviewLang: string;
   openEditForm: (review: ReviewToEdit) => void;
   deleteReview: (review: ReviewType, index: number) => void;

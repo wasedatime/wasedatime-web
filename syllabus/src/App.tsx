@@ -14,6 +14,7 @@ import "semantic-ui-css/components/dropdown.min.css";
 import "react-s-alert/dist/s-alert-default.css";
 import "./styles/styles.scss";
 import "react-s-alert/dist/s-alert-css-effects/jelly.css";
+// import "simplebar/dist/simplebar.min.css";
 
 import Alert from "react-s-alert";
 interface IdAndPrefType {

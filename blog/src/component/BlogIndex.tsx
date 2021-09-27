@@ -48,29 +48,7 @@ interface IMyComponentState {
 }
 
 class BlogIndex extends React.Component<WithTranslation, IMyComponentState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mainFeaturedPost: null,
-      featuredPosts: [],
-      // urlFile: "https://api.wasedatime.com/staging/feeds?offset=0&limit=5",
-    };
-  }
-  async componentDidMount() {
-    let apiContents = await careerAPI.get<{ data: { articles: Post[] } }>("/");
-    let MainApiContent = apiContents.data.data.articles[0];
-    // apiContent = apiContent.data.data.articles
-    let x = 0; //suppose you want to remove element at 0th index
-    let apiContent = apiContents.data.data.articles.filter(
-      (num, index) => index !== x
-    ); //editedArray = [1,2,3,4]
-    this.setState({
-      mainFeaturedPost: MainApiContent,
-      featuredPosts: apiContent,
-    });
-  }
   render() {
-    const { mainFeaturedPost, featuredPosts } = this.state;
     const { t, i18n } = this.props;
 
     return (
@@ -87,48 +65,11 @@ class BlogIndex extends React.Component<WithTranslation, IMyComponentState> {
           />
         </HeaderWrapper>
         <div>
-          <ExtendedOverlay>
-              <br />
-              <MediaQuery minWidth={sizes.desktop}>
-                {(matches) =>
-                  matches ? (
-                    <h2 style={{ color: "#555", textAlign: "center" }}>
-                      <b><FontAwesomeIcon icon={faNewspaper} /> {t("BlogIndex.welcome")}</b>
-                    </h2>
-                  ) : (
-                    <h3 style={{ color: "#555", textAlign: "center" }}>
-                      <b><FontAwesomeIcon icon={faNewspaper} /> {t("BlogIndex.welcome")}</b>
-                    </h3>
-                  )
-                }
-              </MediaQuery>
-              <hr />
-              <br />
-              <p style={{ textAlign: "center" }}>{t("BlogIndex.top message")}</p>
-              <p style={{ textAlign: "center" }}>
-                {t("BlogIndex.looking for more blogs")}
-                <a href="mailto:contact@wasedatime.com" style={{ color: '#3366ff' }}>contact@wasedatime.com</a>
-              </p>
-          </ExtendedOverlay>
-          <MainContainer maxWidth="lg">
-            <main>
-              {mainFeaturedPost && (
-                <MediaQuery minWidth={sizes.desktop}>
-                  {
-                    matches => matches
-                      ? <MainFeaturedPost post={mainFeaturedPost} />
-                      : <div style={{ marginBottom: '30px' }}><FeaturedPost post={mainFeaturedPost} /></div>
-                  }
-                </MediaQuery>
-              )}
-
-              <Grid container spacing={4}>
-                {featuredPosts.map((post) => (
-                  <FeaturedPost key={post.title} post={post} />
-                ))}
-              </Grid>
-            </main>
-          </MainContainer>
+          <iframe
+            src="http://localhost:3000"
+            style={{ width: '100%', height: 'calc(100vh - 70px)' }}
+          >
+          </iframe>
         </div>
       </BlogIndexWrapper>
     );

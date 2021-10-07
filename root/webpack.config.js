@@ -28,7 +28,7 @@ module.exports = (webpackConfigEnv, argv) => {
   })(defaultConfig, {
     module: {
       rules: [
-        { test: /\.tsx$/, use: "awesome-typescript-loader" },
+        { test: /\.tsx$/, use: "ts-loader" },
         {
           test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)$/,
           loader: "url-loader",
@@ -102,6 +102,7 @@ module.exports = (webpackConfigEnv, argv) => {
       }),
       new InjectManifest({
         swSrc: "./service-worker.js",
+        maximumFileSizeToCacheInBytes: 10*1024*1024
       }),
       new WebpackPwaManifest({
         filename: "/[name].json",

@@ -14,7 +14,7 @@ import * as Sentry from "@sentry/react";
 import ReactGA from "react-ga";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import ErrorFallback from "@bit/wasedatime.core.ts.ui.error-fallback";
+import ErrorFallback from "./components/ErrorFallback";
 
 const config = {
   API: {
@@ -29,10 +29,6 @@ const config = {
 API.configure(config);
 
 configAuth();
-i18nConfig({
-  [Lang.EN]: translationEN,
-  [Lang.JA]: translationJP,
-});
 
 if (process.env.NODE_ENV === "production") {
   ReactGA.initialize("UA-112185819-1", { debug: false, titleCase: false });
@@ -51,7 +47,11 @@ const Root = () => {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
+    i18nConfig({
+      [Lang.EN]: translationEN,
+      [Lang.JA]: translationJP,
+    });
+    // i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
     if (!reduxStore) {
       storeConfig();
     }

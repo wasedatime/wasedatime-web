@@ -7,14 +7,14 @@ import { saveState } from "./localForage";
 import throttle from "lodash/throttle";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import translationEN from "./constants/locales/en/translation.json";
-import translationJP from "./constants/locales/ja/translation.json";
+import translationJA from "./constants/locales/ja/translation.json";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
-import { useTranslation } from "react-i18next";
 import * as Sentry from "@sentry/react";
 import ReactGA from "react-ga";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import ErrorFallback from "./components/ErrorFallback";
+import i18next from 'i18next';
 
 const config = {
   API: {
@@ -44,12 +44,14 @@ if (process.env.NODE_ENV === "production") {
 
 const Root = () => {
   const [reduxStore, setReduxStore] = useState(null);
-  const { i18n } = useTranslation();
 
   useEffect(() => {
     i18nConfig({
-      [Lang.EN]: translationEN,
-      [Lang.JA]: translationJP,
+      i18n: i18next,
+      customTranslations: {
+        [Lang.EN]: translationEN,
+        [Lang.JA]: translationJA,
+      }
     });
     // i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
     if (!reduxStore) {

@@ -32,7 +32,7 @@
   -->
   
   <% if (isLocal || standalone) { %>
-  <link rel="stylesheet" href="/src/styles/index.css">
+  <link rel="stylesheet" href="./src/styles/index.css" type="css">
   <% } else { %>
   <link rel="preload" href="/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/main.css"></noscript>
@@ -221,7 +221,7 @@
     grid-row-end: 4;
   }
   #loading canvas {
-    background-image: url("/src/assets/img/home_background-lg.jpg");
+    background-image: url("/src/assets/img/home/home_background-lg.jpg");
     width: 100vw;
     height: 100vh;
   }
@@ -239,7 +239,7 @@
       grid-row-end: 4;
     }
     #loading canvas {
-      background-image: url("/src/assets/img/home_background-phone.jpg");
+      background-image: url("/src/assets/img/home/home_background-phone.jpg");
       background-repeat: no-repeat;
       background-size: 100vw 100vh;
     }

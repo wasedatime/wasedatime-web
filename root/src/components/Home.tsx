@@ -4,14 +4,16 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
-import titleLogo from "../assets/img/title-logo.svg";
-import homeBackground from "../assets/img/home_background-lg.jpg";
+import titleLogo from "./../assets/img/home/title-logo.svg";
+import homeBackground from "../assets/img/home/home_background-lg.jpg";
 import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
 import WelcomeModal from "./WelcomeModal";
 import { navigateToUrl } from "single-spa";
 import ReactGA from "react-ga";
 import { gaAppendActionWithLng, gaChangeLanguage } from "../ga/eventActions";
 import { gaLanguage } from "../ga/eventCategories";
+
+const logo = require("./../assets/img/home/title-logo.svg");
 
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;

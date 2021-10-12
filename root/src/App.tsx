@@ -1,4 +1,5 @@
 import React, { useEffect, lazy, Suspense } from "react";
+import i18next from 'i18next';
 import { Helmet } from "react-helmet";
 import { Hub } from "@aws-amplify/core";
 import { navigateToUrl } from "single-spa";

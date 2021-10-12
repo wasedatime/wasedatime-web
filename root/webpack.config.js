@@ -32,6 +32,7 @@ module.exports = (webpackConfigEnv, argv) => {
         {
           test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)$/,
           loader: "url-loader",
+          options: { name: "[name].[ext]" }
         },
         {
           test: /\.m?js/,
@@ -42,7 +43,9 @@ module.exports = (webpackConfigEnv, argv) => {
         {
           test: /\.css$/i,
           use: [
-            MiniCssExtractPlugin.loader,
+            webpackConfigEnv.isLocal || webpackConfigEnv.standalone
+              ? "style-loader"
+              : MiniCssExtractPlugin.loader,
             { loader: "css-loader", options: { url: false } },
             "postcss-loader",
           ],

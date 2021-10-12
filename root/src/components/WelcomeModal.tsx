@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
-import reviewsImg from "../assets/img/reviews-example.png";
-import timetableImg1 from "../assets/img/timetable-example-1.png";
-import timetableImg2 from "../assets/img/timetable-example-2.png";
+import reviewsImg from "../assets/img/home/reviews-example.png";
+import timetableImg1 from "../assets/img/home/timetable-example-1.png";
+import timetableImg2 from "../assets/img/home/timetable-example-2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 import { Logo } from "@bit/wasedatime.core.ts.ui.logo";

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { media } from '@bit/wasedatime.core.ts.utils.responsive-utils'
-import { WithTranslation, withTranslation } from 'react-i18next'
+import { TFunction, WithTranslation, withTranslation } from 'react-i18next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Scales } from '../../types/review'
 import { faStar, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -93,6 +93,7 @@ interface Props {
   handleTextChange: (text: any) => void
   handleScaleChange: (target: any, score: any) => void
   isSending: boolean
+  t: TFunction<string>
 }
 
 interface State {

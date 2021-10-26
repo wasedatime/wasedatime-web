@@ -1,7 +1,7 @@
 {
   "name": "@wasedatime/campus",
   "scripts": {
-    "start": "webpack serve --port 8081",
+    "start": "webpack serve --port 8081 --env isLocal",
     "start:standalone": "webpack serve --env standalone",
     "local": "concurrently --kill-others \"pnpm start\" \"cd ../root && pnpm start\"",
     "build": "webpack --mode=production",
@@ -47,9 +47,9 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0",
-    "webpack-config-single-spa-react": "^2.2.4",
-    "webpack-config-single-spa-react-ts": "^2.2.4",
-    "webpack-config-single-spa-ts": "^2.2.4",
+    "webpack-config-single-spa-react": "4.0.2",
+    "webpack-config-single-spa-react-ts": "4.0.2",
+    "webpack-config-single-spa-ts": "2.2.4",
     "webpack-dev-server": "^4.2.1",
     "webpack-merge": "^5.8.0"
   },

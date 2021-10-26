@@ -34,9 +34,9 @@ specifiers:
   typescript: ^4.1.2
   webpack: ^5.8.0
   webpack-cli: ^4.2.0
-  webpack-config-single-spa-react: ^2.0.0-beta.1
-  webpack-config-single-spa-react-ts: ^2.0.0-beta.1
-  webpack-config-single-spa-ts: ^2.0.0-beta.1
+  webpack-config-single-spa-react: 4.0.2
+  webpack-config-single-spa-react-ts: 4.0.2
+  webpack-config-single-spa-ts: 2.2.4
   webpack-dev-server: ^4.0.0-beta.0
   webpack-merge: ^5.4.0
 
@@ -76,8 +76,8 @@ devDependencies:
   typescript: 4.4.3
   webpack: 5.52.1_webpack-cli@4.8.0
   webpack-cli: 4.8.0_c9ab706cdaeb9f1f381984fdaecdbfee
-  webpack-config-single-spa-react: 2.2.4_16ff48a381fa3cd612ae60c01c46e0d7
-  webpack-config-single-spa-react-ts: 2.2.4_16ff48a381fa3cd612ae60c01c46e0d7
+  webpack-config-single-spa-react: 4.0.2_16ff48a381fa3cd612ae60c01c46e0d7
+  webpack-config-single-spa-react-ts: 4.0.2_16ff48a381fa3cd612ae60c01c46e0d7
   webpack-config-single-spa-ts: 2.2.4_16ff48a381fa3cd612ae60c01c46e0d7
   webpack-dev-server: 4.2.1_webpack-cli@4.8.0+webpack@5.52.1
   webpack-merge: 5.8.0
@@ -7008,6 +7008,17 @@ packages:
       webpack: 5.52.1_webpack-cli@4.8.0
     dev: true
 
+  /standalone-single-spa-webpack-plugin/3.0.0_cb4efba9913b752e9f1afd539bc9ca10:
+    resolution: {integrity: sha512-qj/iVNXMEWlwMnQbhZC7QqzifoWyps+zlIgbXS6/jvUMZVxD2U4psudPvWsjYw5Q9+HjM0WYdlgl69g9vEyw8w==}
+    engines: {node: '>= 8.3.0'}
+    peerDependencies:
+      html-webpack-plugin: '*'
+      webpack: '*'
+    dependencies:
+      html-webpack-plugin: 5.3.2_webpack@5.52.1
+      webpack: 5.52.1_webpack-cli@4.8.0
+    dev: true
+
   /static-extend/0.1.2:
     resolution: {integrity: sha1-YICcOcv/VTNyJv1eC1IPNB8ftcY=}
     engines: {node: '>=0.10.0'}
@@ -7686,11 +7697,11 @@ packages:
       webpack-merge: 5.8.0
     dev: true
 
-  /webpack-config-single-spa-react-ts/2.2.4_16ff48a381fa3cd612ae60c01c46e0d7:
-    resolution: {integrity: sha512-cfJqlS0P5eQzpwhg1ncFQ6ZQIVfYfzx4M/1JirejbFtp3k+qgp3X1ywqpAjh15RX8rYzP/23REbI8yiVPXxSdQ==}
+  /webpack-config-single-spa-react-ts/4.0.2_16ff48a381fa3cd612ae60c01c46e0d7:
+    resolution: {integrity: sha512-mRr4LsoH7vCpeEgaAHMjJYoEbrqgztv/8MBfIUVOeDB2unaQ49gtJSNW0w6Rw9WmmmkbLLQBvT4TEg0wX9O6JA==}
     dependencies:
-      webpack-config-single-spa-react: 2.2.4_16ff48a381fa3cd612ae60c01c46e0d7
-      webpack-config-single-spa-ts: 2.2.4_16ff48a381fa3cd612ae60c01c46e0d7
+      webpack-config-single-spa-react: 4.0.2_16ff48a381fa3cd612ae60c01c46e0d7
+      webpack-config-single-spa-ts: 4.1.1_16ff48a381fa3cd612ae60c01c46e0d7
     transitivePeerDependencies:
       - '@babel/core'
       - bufferutil
@@ -7698,10 +7709,10 @@ packages:
       - webpack
     dev: true
 
-  /webpack-config-single-spa-react/2.2.4_16ff48a381fa3cd612ae60c01c46e0d7:
-    resolution: {integrity: sha512-E+vrs7c4WmcXCLa6c/swwXQqyrs7jqQAy5sYG7oe7WMZye8qa7yvUTMJw+Tww2KDwHSCRVRLJp7WFYeccLA1gg==}
+  /webpack-config-single-spa-react/4.0.2_16ff48a381fa3cd612ae60c01c46e0d7:
+    resolution: {integrity: sha512-TSE/MZ5RhtG3qNJvCQnsFcHadL1fI2uw92sg2Ym7P9o/DgVuqJ931yrHVp5IMsTIoluioCrqlDx1OmLSEOGZhQ==}
     dependencies:
-      webpack-config-single-spa: 3.1.0_16ff48a381fa3cd612ae60c01c46e0d7
+      webpack-config-single-spa: 5.1.1_16ff48a381fa3cd612ae60c01c46e0d7
     transitivePeerDependencies:
       - '@babel/core'
       - bufferutil
@@ -7723,6 +7734,20 @@ packages:
       - webpack
     dev: true
 
+  /webpack-config-single-spa-ts/4.1.1_16ff48a381fa3cd612ae60c01c46e0d7:
+    resolution: {integrity: sha512-Njx9JE0rnw4TwLwCRFmxhTKEGViey/4vxFcTXOeEUut+vIGinRDNw6ea69YwDmUBI0jEEnUnd51bkuax2zszDQ==}
+    dependencies:
+      fork-ts-checker-webpack-plugin: 6.3.3
+      typescript: 4.4.3
+      webpack-config-single-spa: 5.1.1_16ff48a381fa3cd612ae60c01c46e0d7
+      webpack-merge: 5.8.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - bufferutil
+      - utf-8-validate
+      - webpack
+    dev: true
+
   /webpack-config-single-spa/3.1.0_16ff48a381fa3cd612ae60c01c46e0d7:
     resolution: {integrity: sha512-tONwO/w6ugTjuWkWa0pcoJnsUmpNZToWenaD+IIhXbjU3fnQGUPGRuYf6tkn1YSaqpe79dyR2nIWv4XxzA5jkA==}
     dependencies:
@@ -7733,6 +7758,23 @@ packages:
       style-loader: 3.2.1_webpack@5.52.1
       systemjs-webpack-interop: 2.3.7_webpack@5.52.1
       unused-files-webpack-plugin: 3.4.0
+      webpack-bundle-analyzer: 4.4.2
+    transitivePeerDependencies:
+      - '@babel/core'
+      - bufferutil
+      - utf-8-validate
+      - webpack
+    dev: true
+
+  /webpack-config-single-spa/5.1.1_16ff48a381fa3cd612ae60c01c46e0d7:
+    resolution: {integrity: sha512-i+j5PpxjcHbxnUXiR+VLjcRB6i4PfoiPERvGer27Q4BZcbICUiRJWORK+ur6KhcupZ5d0fnwge01cy8qA6DOJw==}
+    dependencies:
+      babel-loader: 8.2.2_16ff48a381fa3cd612ae60c01c46e0d7
+      css-loader: 5.2.7_webpack@5.52.1
+      html-webpack-plugin: 5.3.2_webpack@5.52.1
+      standalone-single-spa-webpack-plugin: 3.0.0_cb4efba9913b752e9f1afd539bc9ca10
+      style-loader: 3.2.1_webpack@5.52.1
+      systemjs-webpack-interop: 2.3.7_webpack@5.52.1
       webpack-bundle-analyzer: 4.4.2
     transitivePeerDependencies:
       - '@babel/core'

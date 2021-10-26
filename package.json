@@ -1,12 +1,12 @@
 {
   "name": "@wasedatime/web",
   "scripts": {
-    "start": "pnpm recursive run start",
-    "build": "pnpm recursive run build",
-    "build-dev": "pnpm recursive run build-dev",
-    "lint": "pnpm recursive run lint",
-    "format": "pnpm recursive run format",
-    "test": "pnpm recursive run test"
+    "start": "pnpm recursive run start --workspace-concurrency 6",
+    "build": "pnpm recursive run build --workspace-concurrency 6",
+    "build-dev": "pnpm recursive run build-dev --workspace-concurrency 6",
+    "lint": "pnpm recursive run lint --workspace-concurrency 6",
+    "format": "pnpm recursive run format --workspace-concurrency 6",
+    "test": "pnpm recursive run test --workspace-concurrency 6"
   },
   "devDependencies": {},
   "dependencies": {}

@@ -21,13 +21,28 @@
 ```bash
 # install pnpm package manager
 npm install -g pnpm
-#install bit cli
+# install bit cli
 npm install bit-bin -g
 # log into your bit.dev account
 bit login
 # clone the project
 git clone https://github.com/wasedatime/wasedatime-web.git
 cd wasedatime-web
+```
+
+Add bit token to your environment variables:
+```bash
+
+# macOS
+nano ~/.bash_profile
+
+# Linux
+nano ~/.bashrc
+
+# Then inside the file write:
+export BIT_TOKEN=???
+
+# Contact us for the value of '???'
 ```
 
 ### Installing

@@ -13,8 +13,6 @@ import ReactGA from "react-ga";
 import { gaAppendActionWithLng, gaChangeLanguage } from "../ga/eventActions";
 import { gaLanguage } from "../ga/eventCategories";
 
-const logo = require("./../assets/img/home/title-logo.svg");
-
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
   background-attachment: fixed;

@@ -44,7 +44,6 @@
     "style-loader": "^2.0.0",
     "ts-config-single-spa": "^2.0.1",
     "typescript": "^4.4.3",
-    "url-loader": "^4.1.1",
     "webpack": "^5.52.1",
     "webpack-cli": "^4.8.0",
     "webpack-config-single-spa-react": "4.0.2",
@@ -83,7 +82,6 @@
     "react-responsive-carousel": "^3.2.21",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
-    "styled-components": "^5.3.1",
-    "url-loader": "^4.1.1"
+    "styled-components": "^5.3.1"
   }
 }

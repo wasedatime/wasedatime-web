@@ -31,8 +31,7 @@ module.exports = (webpackConfigEnv, argv) => {
         { test: /\.tsx$/, use: "ts-loader" },
         {
           test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)$/,
-          loader: "url-loader",
-          options: { name: "[name].[ext]" }
+          type: 'asset/inline'
         },
         {
           test: /\.m?js/,

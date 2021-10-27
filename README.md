@@ -33,10 +33,6 @@ cd wasedatime-web
 Add bit token to your environment variables:
 ```bash
 
-# macOS
-nano ~/.bash_profile
-
-# Linux
 nano ~/.bashrc
 
 # Then inside the file write:

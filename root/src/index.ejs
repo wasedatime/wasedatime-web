@@ -129,7 +129,6 @@
         "@wasedatime/root-config": "/wasedatime-root-config.js",
         "@wasedatime/syllabus": "/syllabus/wasedatime-syllabus.js",
         "@wasedatime/campus": "/campus/wasedatime-campus.js",
-        "@wasedatime/feeds": "/blog/wasedatime-blog.js",
         "react": "https://cdn.jsdelivr.net/npm/react@16.12.0/umd/react.production.min.js",
         "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.12.0/umd/react-dom.production.min.js"
       }
@@ -148,7 +147,6 @@
       "imports": {
         "@wasedatime/syllabus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
         "@wasedatime/campus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js",
-        "@wasedatime/feeds": "https://<%= process.env.PREFIX %>.<%= process.env.MF_BLOG_DOMAIN %>/wasedatime-blog.js"
       }
     }
   </script>
@@ -162,7 +160,6 @@
         "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.js",
         "@wasedatime/campus": "//localhost:8081/wasedatime-campus.js",
         "@wasedatime/career": "//localhost:8082/wasedatime-career.js",
-        "@wasedatime/feeds": "//localhost:8083/wasedatime-blog.js"
       }
     }
   </script>
@@ -263,9 +260,6 @@
           </route>
           <route path="career">
             <application name="@wasedatime/career"></application>
-          </route>
-          <route path="feeds">
-            <application name="@wasedatime/feeds"></application>
           </route>
           <route default>
             <application name="@wasedatime/root-config"></application>

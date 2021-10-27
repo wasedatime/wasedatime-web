@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import fs from "fs";
 import path from "path";
 import FeedLink from '../components/feedLink';
+import Grid from "@material-ui/core/Grid";
 
 interface HomeProps {
   feedNames: string[]
@@ -19,9 +20,22 @@ const Home: NextPage = ({ feedNames }: HomeProps) => {
       </Head>
 
       <main className={styles.main}>
-        {
-          feedNames.map(name => <FeedLink name={name} />)
-        }
+        <h2 style={{ color: "#555" }}>Welcome to WasedaTime Feeds!</h2>
+        <hr style={{ width: "50%", color: "#555" }} />
+        <div style={{ lineHeight: 1, textAlign: 'center', padding: '0px 1em 1em 1em' }}>
+          <p>Here we offer you articles that may be helpful for your student life & future career.</p>
+          <p>
+            We are looking for more feeds that support student life!
+            Please contant us if you (as a student or organization) are interested:{' '}
+            <a href="mailto:contact@wasedatime.com" style={{ color: '#3366ff' }}>contact@wasedatime.com</a>
+          </p>
+        </div>
+
+        <Grid container spacing={4}>
+          {
+            feedNames.map(name => <FeedLink name={name} />)
+          }
+        </Grid>
       </main>
     </div>
   )

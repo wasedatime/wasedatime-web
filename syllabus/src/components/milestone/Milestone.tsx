@@ -7,7 +7,7 @@ const SSS = lazy(() => import("./SSS"));
 const Rikou = lazy(() => import("./Rikou"));
 import MediaQuery from "react-responsive";
 import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
-import { undergradSchoolNameIconMap, otherSchoolNameIconMap } from '@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en';
+import { undergradSchoolNameIconMap, otherSchoolNameIconMap } from '../../constants/school-name-icon-map-en';
 import LoadingSpinner from '@bit/wasedatime.core.ts.ui.loading-spinner';
 
 const Cover = styled.img`

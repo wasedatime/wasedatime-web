@@ -15,10 +15,15 @@ jobs:
       REACT_APP_BLOG_S3_BASE_URL: https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js 15.x
-        uses: actions/setup-node@v1
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v2.4.0
         with:
-          node-version: 15.x
+          node-version: 16.x
+      - name: Cache .pnpm-store
+        uses: actions/cache@v1
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-node16-${{ hashFiles('**/pnpm-lock.yaml') }}
       - uses: ./.github/actions/microapp
         with:
           path: 'syllabus'

@@ -5,7 +5,7 @@ import CourseListSummaryContainer from "../../containers/CourseListSummaryContai
 import AddedCourseAndPrefItem from "../../containers/AddedCourseAndPrefItem";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { UnstyledUList } from "@bit/wasedatime.core.ts.styles.list";
+import { UnstyledUList } from "../styles/List";
 import Course from "../../types/course";
 
 const ExtendedWrapper = styled(Wrapper)`
@@ -34,7 +34,7 @@ interface Props {
 const AddedCourseAndPrefList = ({ addedCoursesAndPrefs }: Props) => {
   return (
     <ExtendedWrapper>
-      <CourseListSummaryContainer courses={addedCoursesAndPrefs} />
+      <CourseListSummaryContainer courses={addedCoursesAndPrefs.map(cp => cp.course)} />
       <Wrapper>
         <ExtendedUnstyledUList>
           {addedCoursesAndPrefs.map((courseAndPref, i) => (

@@ -100,7 +100,7 @@ interface ReduxStateProps {
 
 interface OwnProps extends WithTranslation {
   course: Course;
-  searchLang: string;
+  searchLang: string | string[];
 }
 
 interface OwnState {

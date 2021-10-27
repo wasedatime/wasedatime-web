@@ -37,7 +37,7 @@ module.exports = (webpackConfigEnv, argv) => {
         },
         {
           test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)$/,
-          loader: "url-loader",
+          type: 'asset/inline'
         },
         {
           test: /\.css$/i,

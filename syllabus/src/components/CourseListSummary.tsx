@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
+import { InvisibleButton } from "./styles/Button";
 
 import Label from "semantic-ui-react/dist/commonjs/elements/Label";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
@@ -51,13 +51,9 @@ const StyledDropdown = styled(Dropdown)`
   }
 `;
 
-const creditSum = (coursesAndPrefs) => {
-  return coursesAndPrefs
-    .map((courseAndPref) =>
-      courseAndPref.course
-        ? courseAndPref.course[SyllabusKey.CREDIT]
-        : courseAndPref[SyllabusKey.CREDIT]
-    )
+const creditSum = (courses) => {
+  return courses
+    .map((course) => course[SyllabusKey.CREDIT])
     .reduce((a, b) => a + b, 0);
 };
 

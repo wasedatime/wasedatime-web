@@ -1,13 +1,14 @@
 import React, { useEffect, lazy, Suspense } from "react";
+import i18next from 'i18next';
 import { Helmet } from "react-helmet";
 import { Hub } from "@aws-amplify/core";
 import { navigateToUrl } from "single-spa";
 import { Router, Redirect, navigate } from "@reach/router";
 
-import TermsOfService from "./components/TermsOfService";
-import PrivacyPolicy from "./components/PrivacyPolicy";
 const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
 const Home = lazy(() => import("./components/Home"));
+import TermsOfService from "./components/TermsOfService";
+import PrivacyPolicy from "./components/PrivacyPolicy";
 import RedirectPage from "./components/user/RedirectPage";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 

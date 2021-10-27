@@ -18,7 +18,7 @@ import {
   Article,
   Section,
   Subheading,
-} from "@bit/wasedatime.core.ts.styles.article";
+} from "../styles/Article";
 import Course from "../../types/course";
 
 import SimpleBar from "simplebar-react";
@@ -158,7 +158,7 @@ class AddedCourseList extends React.Component<Props, State> {
               </StyledMessageHeader>
             </Message>
             <Section>
-              <Subheading as="h5">{t("syllabus.To add a course")}</Subheading>
+              <Subheading>{t("syllabus.To add a course")}</Subheading>
               <StyledStepGroup vertical fluid>
                 <VerticalStep>
                   <Step.Content>

@@ -28,10 +28,10 @@ module.exports = (webpackConfigEnv, argv) => {
   })(defaultConfig, {
     module: {
       rules: [
-        { test: /\.tsx$/, use: "awesome-typescript-loader" },
+        { test: /\.tsx$/, use: "ts-loader" },
         {
           test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)$/,
-          loader: "url-loader",
+          type: 'asset/inline'
         },
         {
           test: /\.m?js/,
@@ -42,7 +42,9 @@ module.exports = (webpackConfigEnv, argv) => {
         {
           test: /\.css$/i,
           use: [
-            MiniCssExtractPlugin.loader,
+            webpackConfigEnv.isLocal || webpackConfigEnv.standalone
+              ? "style-loader"
+              : MiniCssExtractPlugin.loader,
             { loader: "css-loader", options: { url: false } },
             "postcss-loader",
           ],
@@ -102,6 +104,7 @@ module.exports = (webpackConfigEnv, argv) => {
       }),
       new InjectManifest({
         swSrc: "./service-worker.js",
+        maximumFileSizeToCacheInBytes: 10*1024*1024
       }),
       new WebpackPwaManifest({
         filename: "/[name].json",

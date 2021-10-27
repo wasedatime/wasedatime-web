@@ -13,10 +13,12 @@ import "./styles/styles.css";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 import translationEN from "./constants/locales/en/translation.json";
-import translationJP from "./constants/locales/jp/translation.json";
+import translationJA from "./constants/locales/jp/translation.json";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import * as Sentry from "@sentry/react";
 import ReactGA from "react-ga";
+
+import i18next from "i18next";
 
 const lifecycles = singleSpaReact({
   React,
@@ -44,9 +46,13 @@ layoutEngine.activate();
 start();
 
 configAuth();
+
 i18nConfig({
-  [Lang.EN]: translationEN,
-  [Lang.JA]: translationJP,
+  i18n: i18next,
+  customTranslations: {
+    [Lang.EN]: translationEN,
+    [Lang.JA]: translationJA,
+  }
 });
 
 // ===== GA id =====

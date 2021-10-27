@@ -1,7 +1,7 @@
 import React from "react";
 
 import CourseItemContainer from "../../containers/CourseItemContainer";
-import { UnstyledUList } from "@bit/wasedatime.core.ts.styles.list";
+import { UnstyledUList } from "../styles/List";
 import { SyllabusKey } from "../../constants/syllabus-data";
 import Course from "../../types/course";
 

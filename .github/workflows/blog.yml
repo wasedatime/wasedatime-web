@@ -4,7 +4,7 @@ on:
   push:
     branches: [ '**' ]
     paths:
-      - 'blog/**'
+      - 'feeds/**'
 
 jobs:
   build:
@@ -26,4 +26,4 @@ jobs:
           key: ${{ runner.os }}-node16-${{ hashFiles('**/pnpm-lock.yaml') }}
       - uses: ./.github/actions/microapp
         with:
-          path: 'blog'
+          path: 'feeds'

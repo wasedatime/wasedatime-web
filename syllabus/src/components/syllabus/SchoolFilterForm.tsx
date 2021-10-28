@@ -11,8 +11,8 @@ import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
 import Menu from "semantic-ui-react/dist/commonjs/collections/Menu";
 
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import * as schoolIconEnMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-en";
-import * as schoolIconJaMap from "@bit/wasedatime.syllabus.ts.constants.school-name-icon-map-ja";
+import * as schoolIconEnMap from "../../constants/school-name-icon-map-en";
+import * as schoolIconJaMap from "../../constants/school-name-icon-map-ja";
 
 import "semantic-ui-css/components/popup.min.css";
 

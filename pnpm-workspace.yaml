@@ -1,0 +1,6 @@
+packages:
+  - 'root'
+  - 'syllabus'
+  - 'campus'
+  - 'blog'
+  - 'career'

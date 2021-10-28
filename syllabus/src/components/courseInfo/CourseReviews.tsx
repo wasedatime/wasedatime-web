@@ -75,7 +75,7 @@ const ReviewsListWrapper = styled("div")`
 interface Props extends WithTranslation {
   courseKey?: string;
   course: Course;
-  searchLang: string;
+  searchLang: string | string[];
   reviews: Review[];
   isMilestone?: boolean;
 }

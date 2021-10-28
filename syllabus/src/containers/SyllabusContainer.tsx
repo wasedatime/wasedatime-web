@@ -100,8 +100,7 @@ interface ReduxDispatchProps {
 }
 
 interface OwnProps extends WithTranslation {
-  location: any;
-  history: any;
+  path: string;
 }
 
 interface OwnState {
@@ -382,7 +381,7 @@ class SyllabusContainer extends React.Component<
                   <Message info>
                     {t("message.choose school request")}
                   </Message>
-                  <SchoolFilterContainer handleToggleFilter={() => {}} isPopup={false} />
+                  <SchoolFilterContainer checkedSchools={[]} handleToggleFilter={() => {}} isPopup={false} />
                 </div>
               )}
             </Suspense>

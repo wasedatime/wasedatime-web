@@ -2,7 +2,7 @@ import React from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { timetableTheme } from "../../constants/syllabus-theme";
 import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { Article, Section } from "@bit/wasedatime.core.ts.styles.article";
+import { Article, Section } from "../styles/Article";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import TimeRowList from "./TimeRowList";
 import DayColumnList from "./DayColumnList";

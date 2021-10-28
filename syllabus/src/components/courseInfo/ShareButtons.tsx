@@ -9,7 +9,7 @@ import {
   faLine,
   faWhatsappSquare,
 } from "@fortawesome/free-brands-svg-icons";
-import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
+import { InvisibleButton } from "../styles/Button";
 import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
 import { withTranslation } from "react-i18next";
 import ReactGA from "react-ga";

@@ -6,7 +6,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
-import { InvisibleButton } from "@bit/wasedatime.core.ts.styles.button";
+import { InvisibleButton } from "./styles/Button";
 import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import QuarterSwitch from "./timetable/QuarterSwitch";

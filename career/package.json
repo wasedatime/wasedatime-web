@@ -1,9 +1,9 @@
 {
   "name": "@wasedatime/career",
   "scripts": {
-    "start": "webpack serve --port 8082",
+    "start": "webpack serve --port 8082 --env isLocal",
     "start:standalone": "webpack serve --env standalone",
-    "local": "concurrently --kill-others \"npm start\" \"cd ../root && npm start\"",
+    "local": "concurrently --kill-others \"pnpm start\" \"cd ../root && pnpm start\"",
     "build": "webpack --mode=production",
     "analyze": "webpack --mode=production --env analyze",
     "lint": "eslint src --ext js,ts,tsx",
@@ -40,9 +40,9 @@
     "typescript": "^4.1.2",
     "webpack": "^5.8.0",
     "webpack-cli": "^4.2.0",
-    "webpack-config-single-spa-react": "^2.0.0-beta.1",
-    "webpack-config-single-spa-react-ts": "^2.0.0-beta.1",
-    "webpack-config-single-spa-ts": "^2.0.0-beta.1",
+    "webpack-config-single-spa-react": "4.0.2",
+    "webpack-config-single-spa-react-ts": "4.0.2",
+    "webpack-config-single-spa-ts": "2.2.4",
     "webpack-dev-server": "^4.0.0-beta.0",
     "webpack-merge": "^5.4.0"
   },

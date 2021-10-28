@@ -15,7 +15,7 @@ module.exports = (webpackConfigEnv, argv) => {
       rules: [
         {
           test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)(\?[a-z0-9=.]+)?$/,
-          loader: "url-loader",
+          type: 'asset/inline'
         },
         {
           test: /\.scss$/i,

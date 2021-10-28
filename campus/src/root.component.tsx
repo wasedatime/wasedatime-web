@@ -3,15 +3,19 @@ import Bus from "./bus/Bus";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import translationEN from "./constants/locales/en/translation.json";
-import translationJP from "./constants/locales/ja/translation.json";
+import translationJA from "./constants/locales/ja/translation.json";
 import RoomFinder from "./room/RoomFinder";
 import "./styles/styles.scss";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { useTranslation } from "react-i18next";
+import i18next from 'i18next';
 
 i18nConfig({
-  [Lang.EN]: translationEN,
-  [Lang.JA]: translationJP,
+  i18n: i18next,
+  customTranslations: {
+    [Lang.EN]: translationEN,
+    [Lang.JA]: translationJA,
+  }
 });
 
 export default function Root(props) {

@@ -1,7 +1,8 @@
 import * as React from "react";
 import styled from "styled-components";
-import { withTranslation, WithTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import Header from "@bit/wasedatime.core.ts.ui.header";
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 
 const FeedsWrapper = styled.div`
   display: flex;
@@ -16,37 +17,34 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-interface Props extends WithTranslation {
-  path: string;
+const Feeds = ({ path }: { path: string }) => {
+  const [ feedsLoaded, setFeedsLoaded ] = React.useState(false);
+  const { t, i18n } = useTranslation();
+
+  return (
+    <FeedsWrapper>
+      <HeaderWrapper>
+        <Header
+          title={t("navigation.feeds")}
+          onInputChange={() => {}}
+          placeholder={t("search placeholder")}
+          inputText={""}
+          disabled={true}
+          isBlur={false}
+          changeLang={(lng) => i18n.changeLanguage(lng)}
+        />
+      </HeaderWrapper>
+      <div>
+        {!feedsLoaded && <LoadingSpinner message="Loading..." />}
+        <iframe
+          src={"http://localhost:8083?locale=" + i18n.language}
+          style={{ width: '100%', height: 'calc(100vh - 70px)' }}
+          onLoad={() => setFeedsLoaded(true)}
+        >
+        </iframe>
+      </div>
+    </FeedsWrapper>
+  )
 }
 
-class Feeds extends React.Component<Props, {}> {
-  render() {
-    const { t, i18n } = this.props;
-
-    return (
-      <FeedsWrapper>
-        <HeaderWrapper>
-          <Header
-            title={t("navigation.feeds")}
-            onInputChange={() => {}}
-            placeholder={t("search placeholder")}
-            inputText={""}
-            disabled={true}
-            isBlur={false}
-            changeLang={(lng) => i18n.changeLanguage(lng)}
-          />
-        </HeaderWrapper>
-        <div>
-          <iframe
-            src={"http://localhost:8083?locale=" + i18n.language}
-            style={{ width: '100%', height: 'calc(100vh - 70px)' }}
-          >
-          </iframe>
-        </div>
-      </FeedsWrapper>
-    );
-  }
-}
-
-export default withTranslation("translation")(Feeds);
+export default Feeds;

@@ -22,7 +22,7 @@ const Feeds = ({ path }: { path: string }) => {
   const { t, i18n } = useTranslation();
 
   return (
-    <FeedsWrapper>
+    <FeedsWrapper style={{ overflow: 'hidden' }}>
       <HeaderWrapper>
         <Header
           title={t("navigation.feeds")}

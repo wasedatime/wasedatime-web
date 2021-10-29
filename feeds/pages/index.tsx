@@ -26,7 +26,7 @@ const Home: NextPage = ({ feedNames }: HomeProps) => {
       <main className={styles.main}>
         <h2 style={{ color: "#555" }}>{t.index.welcome}</h2>
         <hr style={{ width: "50%", color: "#555" }} />
-        <div style={{ lineHeight: 1, textAlign: 'center', padding: '0px 1em 1em 1em' }}>
+        <div className={styles.description}>
           <p>{t.index['top message']}</p>
           <p>
             {t.index['looking for more blogs']}

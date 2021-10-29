@@ -1,0 +1,11 @@
+{
+  "navigation": {
+    "feeds": "Feeds"
+  },
+  "search placeholder": "Search feed (in construction...)",
+  "index": {
+    "welcome": "Welcome to WasedaTime Feeds!",
+    "top message": "Here we offer you articles that may be helpful for your student life & future career.",
+    "looking for more blogs": "We are looking for more feeds that support student life!\nPlease contant us if you (as a student or organization) are interested: "
+  }
+}

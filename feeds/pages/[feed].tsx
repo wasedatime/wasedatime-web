@@ -68,10 +68,16 @@ const Feed = ({ feed, updatedAt }) => {
   )
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths({ locales }: { locales: string[] }) {
   const POSTS_DIRECTORY = path.join(process.cwd(), "public", "feeds");
   const feedNames = await fs.readdirSync(POSTS_DIRECTORY).filter(file => path.extname(file).toLowerCase() === '.md').map(name => name.replace('.md', ''));
-  const paths = feedNames.map(name => '/' + name)
+  var paths: { params: { feed: string }, locale: string }[] = []
+
+  locales.forEach(locale => {
+    feedNames.forEach(name => {
+      paths.push({ params: { feed: name }, locale })
+    });
+  });
   return { paths, fallback: false }
 }
 

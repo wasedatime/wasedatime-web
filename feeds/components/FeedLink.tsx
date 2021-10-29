@@ -28,7 +28,7 @@ const useStyles = makeStyles({
   },
 });
 
-const FeedLink = ({ name }: { name: string }) => {
+const FeedLink = ({ name, locale }: { name: string; locale: string; }) => {
   const classes = useStyles();
   const [cover, setCover] = useState(null);
 
@@ -51,7 +51,7 @@ const FeedLink = ({ name }: { name: string }) => {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
-        <Link href={name}>
+        <Link href={name} locale={locale}>
           <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent>

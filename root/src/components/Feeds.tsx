@@ -39,7 +39,7 @@ class Feeds extends React.Component<Props, {}> {
         </HeaderWrapper>
         <div>
           <iframe
-            src="http://localhost:8083"
+            src={"http://localhost:8083?locale=" + i18n.language}
             style={{ width: '100%', height: 'calc(100vh - 70px)' }}
           >
           </iframe>

@@ -48,6 +48,6 @@ export default Home;
 
 export async function getServerSideProps() {
   const POSTS_DIRECTORY = path.join(process.cwd(), "public", "feeds");
-  const feedNames = await fs.readdirSync(POSTS_DIRECTORY).filter(file => path.extname(file).toLowerCase() === '.md').map(name => name.replace('.md', ''));
+  const feedNames = await fs.readdirSync(POSTS_DIRECTORY).filter(file => path.extname(file).toLowerCase() === '.md').sort((a, b) => a > b ? -1 : 1).map(name => name.replace('.md', ''));
   return { props: { feedNames } };
 }

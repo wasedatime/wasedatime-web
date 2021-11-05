@@ -47,8 +47,7 @@ const LangMap = {
   zhCN: '简中',
   zhTW: '繁中'
 } as const;
- 
-// 以下は type Card = "clubs" | "diamonds" | "hearts" | "spades" と同じ
+
 type LangMap = typeof LangMap[keyof typeof LangMap];
 
 const FeedLink = ({ name, locale }: { name: string; locale: string; }) => {
@@ -66,11 +65,11 @@ const FeedLink = ({ name, locale }: { name: string; locale: string; }) => {
   useEffect(() => {
     var coverImg;
     try {
-      coverImg = require(`../public/feeds/${name}/media/image1.png`);
+      coverImg = require(`../public/feeds/${name}/media/image1.jpg`);
     } catch (e) {
       if (e.code === 'MODULE_NOT_FOUND') {
         try {
-          coverImg = require(`../public/feeds/${name}/media/image1.jpg`);
+          coverImg = require(`../public/feeds/${name}/media/image1.png`);
         } catch (err) {
           coverImg = null;
         }

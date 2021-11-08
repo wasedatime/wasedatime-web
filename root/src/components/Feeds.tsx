@@ -21,6 +21,12 @@ const Feeds = ({ path }: { path: string }) => {
   const [ feedsLoaded, setFeedsLoaded ] = React.useState(false);
   const { t, i18n } = useTranslation();
 
+  const feedsDomain = process.env.NODE_ENV === 'development'
+    ? "http://localhost:8083"
+    : process.env.NODE_ENV === 'staging'
+      ? `https://${process.env.PREFIX}.${process.env.MF_BLOG_DOMAIN}`
+      : `/feeds`;
+
   return (
     <FeedsWrapper style={{ overflow: 'hidden' }}>
       <HeaderWrapper>
@@ -37,7 +43,7 @@ const Feeds = ({ path }: { path: string }) => {
       <div>
         {!feedsLoaded && <LoadingSpinner message="Loading..." />}
         <iframe
-          src={"http://localhost:8083?locale=" + i18n.language}
+          src={feedsDomain + "?locale=" + i18n.language}
           style={{ width: '100%', height: 'calc(100vh - 70px)' }}
           onLoad={() => setFeedsLoaded(true)}
         >

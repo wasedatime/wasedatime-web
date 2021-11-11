@@ -8,7 +8,16 @@ import React from "react";
 
 export const config = { amp: true }
 
-const Feed = ({ feed, updatedAt }) => {
+interface Props {
+  feed: string;
+  updatedAt: string;
+}
+
+interface StaticProps {
+  params: { feed: string; }
+}
+
+const Feed = ({ feed, updatedAt }: Props) => {
   const isAmp = useAmp()
   const router = useRouter();
 
@@ -207,7 +216,7 @@ export async function getStaticPaths({ locales }: { locales: string[] }) {
   return { paths, fallback: false }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: StaticProps) {
   const path = process.cwd() + `/public/feeds/${params.feed}.md`;
   const stats = await fs.statSync(path)
   const feed = await fs.readFileSync(path, 'utf8')

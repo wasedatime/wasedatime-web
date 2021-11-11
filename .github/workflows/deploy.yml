@@ -1,20 +1,29 @@
 name: Node.js CI - Root
 
 on:
+  push:
+    branches:
+      - '**'
   release:
     types:
       - created
 
+env:
+  root: ${{ secrets.WEBHOOK_ROOT }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        microapps: ["root"]
     steps:
       - name: Deploy staging
-        if: github.event.release.prerelease == 'true'
+        if: github.event.release.prerelease == true
         run: |
-          echo "Deploying..."
+          curl -X POST -d {} "${ ${{ matrix.microapps }} }" -H "Content-Type:application/json"
 
       - name: Deploy production
-        if: github.event.release.prerelease == 'false'
+        if: github.event.release.prerelease == false
         run: |
           echo "Deploying..."

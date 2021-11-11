@@ -32,7 +32,9 @@
     "@types/react": "17.0.19",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-config-ts-react-important-stuff": "^3.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "next-transpile-modules": "^9.0.0",
     "raw-loader": "^4.0.2",
     "typescript": "4.4.2"

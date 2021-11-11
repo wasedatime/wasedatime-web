@@ -27,7 +27,7 @@ const Feed = ({ feed, updatedAt }: Props) => {
 
   function Img ({ alt, src = '', title }: { alt?: string | undefined; src?: string | undefined; title?: string | undefined }) {
     return isAmp ? (
-      <span className='ampImgContainer'><amp-img className="contain" src={require(`../public/feeds/${decodeURI(src)}`)} alt={alt} layout="fill" /></span>
+      <span className='ampImgContainer'><img className="contain" src={require(`../public/feeds/${decodeURI(src)}`)} alt={alt} /></span>
     ) : (
       <img src={require(`../public/feeds/${decodeURI(src)}`)} alt={alt} style={{ width: '100%', maxWidth: '800px', margin: '10px auto', display: 'block' }} />
     );

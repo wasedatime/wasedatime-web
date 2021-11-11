@@ -41,12 +41,14 @@ const useStyles = makeStyles({
   }
 });
 
-const LangMap = {
+const LangMap : {
+  [key: string]: string;
+} = {
   EN: 'English',
   JA: '日本語',
   zhCN: '简中',
   zhTW: '繁中'
-} as const;
+}
 
 type LangMap = typeof LangMap[keyof typeof LangMap];
 

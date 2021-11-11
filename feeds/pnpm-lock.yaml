@@ -8,6 +8,7 @@ specifiers:
   '@types/react': 17.0.19
   eslint: 7.32.0
   eslint-config-next: 11.1.2
+  eslint-config-ts-react-important-stuff: ^3.0.0
   fs: 0.0.1-security
   imagemin-mozjpeg: ^9.0.0
   imagemin-optipng: ^8.0.0
@@ -44,6 +45,7 @@ devDependencies:
   '@types/react': 17.0.19
   eslint: 7.32.0
   eslint-config-next: 11.1.2_1a4cc63bb962be0c1c6a016cd2486bf8
+  eslint-config-ts-react-important-stuff: 3.0.0_eslint@7.32.0
   next-transpile-modules: 9.0.0
   raw-loader: 4.0.2
   typescript: 4.4.2
@@ -1970,6 +1972,10 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /eslint-config-important-stuff/1.1.0:
+    resolution: {integrity: sha512-CsV6QFsjNDTZTDEgE1XxhTKph4YJUh5XFMdsWv3p+9DuMyvfy40fsnZiwqXZHBVEUNMHf+zfPGk6s6b4fS9Erw==}
+    dev: true
+
   /eslint-config-next/11.1.2_1a4cc63bb962be0c1c6a016cd2486bf8:
     resolution: {integrity: sha512-dFutecxX2Z5/QVlLwdtKt+gIfmNMP8Qx6/qZh3LM/DFVdGJEAnUKrr4VwGmACB2kx/PQ5bx3R+QxnEg4fDPiTg==}
     peerDependencies:
@@ -1994,6 +2000,24 @@ packages:
       typescript: 4.4.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /eslint-config-react-important-stuff/3.0.0_eslint@7.32.0:
+    resolution: {integrity: sha512-kOviu/MJMLSRrI625wYlHw0Os7YhlbXipIXYRUNKFIs/bgb4OdPziM0SpGZLYc4TvdY5mkpiEpqdLgm+1DuUaA==}
+    dependencies:
+      eslint-config-important-stuff: 1.1.0
+      eslint-plugin-jsx-a11y: 6.4.1_eslint@7.32.0
+      eslint-plugin-react-hooks: 4.2.0_eslint@7.32.0
+    transitivePeerDependencies:
+      - eslint
+    dev: true
+
+  /eslint-config-ts-react-important-stuff/3.0.0_eslint@7.32.0:
+    resolution: {integrity: sha512-MX5mgE+GGO/QL14GzA0IDPC9aDyMCMS3GllCwTl6FmtmC7jRXxXn33oJux6RwTlt3Z9mcxHlSnjqC6uDBrQKxA==}
+    dependencies:
+      eslint-config-react-important-stuff: 3.0.0_eslint@7.32.0
+    transitivePeerDependencies:
+      - eslint
     dev: true
 
   /eslint-import-resolver-node/0.3.6:

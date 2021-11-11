@@ -6,6 +6,7 @@ specifiers:
   '@fortawesome/fontawesome-svg-core': ^1.2.36
   '@material-ui/core': ^4.12.3
   '@types/react': 17.0.19
+  babel-eslint: ^11.0.0-beta.2
   eslint: 7.32.0
   eslint-config-next: 11.1.2
   eslint-config-prettier: ^8.3.0
@@ -45,6 +46,7 @@ dependencies:
 
 devDependencies:
   '@types/react': 17.0.19
+  babel-eslint: 11.0.0-beta.2_eslint@7.32.0
   eslint: 7.32.0
   eslint-config-next: 11.1.2_1a4cc63bb962be0c1c6a016cd2486bf8
   eslint-config-prettier: 8.3.0_eslint@7.32.0
@@ -988,6 +990,20 @@ packages:
 
   /axobject-query/2.2.0:
     resolution: {integrity: sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==}
+    dev: true
+
+  /babel-eslint/11.0.0-beta.2_eslint@7.32.0:
+    resolution: {integrity: sha512-D2tunrOu04XloEdU2XVUminUu25FILlGruZmffqH5OSnLDhCheKNvUoM1ihrexdUvhizlix8bjqRnsss4V/UIQ==}
+    engines: {node: '>=8'}
+    deprecated: babel-eslint is now @babel/eslint-parser. This package will no longer receive updates.
+    peerDependencies:
+      '@babel/core': '>=7.2.0'
+      eslint: '>= 6.0.0'
+    dependencies:
+      eslint: 7.32.0
+      eslint-scope: 5.0.0
+      eslint-visitor-keys: 1.3.0
+      semver: 6.3.0
     dev: true
 
   /babel-plugin-styled-components/1.13.3_styled-components@5.3.3:
@@ -2155,6 +2171,14 @@ packages:
       resolve: 2.0.0-next.3
       semver: 6.3.0
       string.prototype.matchall: 4.0.6
+    dev: true
+
+  /eslint-scope/5.0.0:
+    resolution: {integrity: sha512-oYrhJW7S0bxAFDvWqzvMPRm6pcgcnWc4QnofCAqRTRfQC0JcwenzGglTtsLyIuuWFfkqDG9vz67cnttSd53djw==}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      esrecurse: 4.3.0
+      estraverse: 4.3.0
     dev: true
 
   /eslint-scope/5.1.1:

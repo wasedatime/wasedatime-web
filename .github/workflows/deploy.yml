@@ -23,8 +23,7 @@ jobs:
     steps:
       - name: Deploy staging
         run: |
-          WEBHOOK_URL=${!${{ matrix.microapps }}}
-          curl -X POST -d {} $WEBHOOK_URL -H "Content-Type:application/json"
+          curl -X POST -d {} $${{ matrix.microapps }}} -H "Content-Type:application/json"
 
       - name: Deploy production
         if: github.event.release.prerelease == false

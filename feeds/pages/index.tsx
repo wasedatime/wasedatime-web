@@ -3,7 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import fs from "fs";
 import path from "path";
-import FeedLink from '../components/feedLink';
+import FeedLink from '../components/FeedLink';
 import Grid from "@material-ui/core/Grid";
 import { useLocale } from '../hooks/useLocale';
 
@@ -12,7 +12,7 @@ interface HomeProps {
   feedNames: string[]
 }
 
-const Home: NextPage = ({ feedNames }: HomeProps) => {
+const Home: NextPage<HomeProps> = ({ feedNames }) => {
   const { locale, t } = useLocale();
 
   return (

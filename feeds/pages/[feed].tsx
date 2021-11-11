@@ -17,11 +17,15 @@ interface StaticProps {
   params: { feed: string; }
 }
 
+interface ComponentProps {
+  img: any;
+}
+
 const Feed = ({ feed, updatedAt }: Props) => {
   const isAmp = useAmp()
   const router = useRouter();
 
-  const Img = ({ alt, src, title }: { alt: string; src: string; title: string }) => {
+  function Img ({ alt, src, title }: { alt: string; src: string; title: string }) {
     return isAmp ? (
       <span className='ampImgContainer'><amp-img className="contain" src={require(`../public/feeds/${decodeURI(src)}`)} alt={alt} layout="fill" /></span>
     ) : (

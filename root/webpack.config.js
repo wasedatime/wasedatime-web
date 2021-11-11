@@ -55,7 +55,7 @@ module.exports = (webpackConfigEnv, argv) => {
     plugins: [
       new webpack.EnvironmentPlugin(
         webpackConfigEnv.isDev
-          ? ["PREFIX", "MF_SYLLABUS_DOMAIN", "MF_CAMPUS_DOMAIN", "MF_BLOG_DOMAIN"]
+          ? ["PREFIX", "MF_SYLLABUS_DOMAIN", "MF_CAMPUS_DOMAIN", "MF_FEEDS_DOMAIN"]
           : []
       ),
       new webpack.DefinePlugin(webpackConfigEnv.isDev ? {

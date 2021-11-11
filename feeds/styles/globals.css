@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Segoe UI";
+  src: local("Segoe UI"), url("./fonts/segoe-ui.ttf") format("truetype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Yu Gothic Medium";
+  src: local("Yu Gothic Medium"),
+    url("./fonts/yugothic-medium.otf") format("opentype");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Lato";
+  src: local("Segoe UI"), url("./fonts/Lato-Regular.ttf") format("truetype");
+  font-display: swap;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}

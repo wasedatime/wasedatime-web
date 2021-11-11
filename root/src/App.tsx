@@ -7,6 +7,7 @@ import { Router, Redirect, navigate } from "@reach/router";
 
 const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
 const Home = lazy(() => import("./components/Home"));
+const Feeds = lazy(() => import("./components/Feeds"));
 import TermsOfService from "./components/TermsOfService";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import RedirectPage from "./components/user/RedirectPage";
@@ -96,6 +97,7 @@ const App = () => {
               <PrivacyPolicy path="/privacy-policy" />
               <AboutUs path="/aboutus" />
               <RedirectPage path="/verify" />
+              <Feeds path="/feeds" />
               <Home path="/home" isFirstAccess={false} />
               <Redirect from="/" to="/courses/timetable" noThrow />
               <Redirect from="/timetable" to="/courses/timetable" noThrow />

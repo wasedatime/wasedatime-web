@@ -1,0 +1,45 @@
+{
+  "name": "wasedatime-feeds",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "next dev --port 8083",
+    "build": "next build",
+    "build-dev": "next build --env isDev",
+    "start-built": "next start",
+    "lint": "next lint",
+    "test": "cross-env BABEL_ENV=test jest",
+    "format": "prettier --write \"./**\""
+  },
+  "dependencies": {
+    "@bit/wasedatime.core.ts.ui.loading-spinner": "npm:wasedatime.core.ts.ui.loading-spinner@0.0.7",
+    "@bit/wasedatime.core.ts.utils.responsive-utils": "npm:wasedatime.core.ts.utils.responsive-utils@0.0.1",
+    "@fortawesome/fontawesome-svg-core": "^1.2.36",
+    "@material-ui/core": "^4.12.3",
+    "fs": "0.0.1-security",
+    "imagemin-mozjpeg": "^9.0.0",
+    "imagemin-optipng": "^8.0.0",
+    "next": "11.1.2",
+    "next-compose-plugins": "^2.2.1",
+    "next-optimized-images": "^2.6.2",
+    "path": "^0.12.7",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-markdown": "^7.0.1",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "17.0.19",
+    "eslint": "7.32.0",
+    "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-ts-react-important-stuff": "^3.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "next-transpile-modules": "^9.0.0",
+    "raw-loader": "^4.0.2",
+    "typescript": "4.4.2"
+  },
+  "browser": {
+    "fs": false
+  }
+}

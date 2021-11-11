@@ -25,7 +25,7 @@ const Feed = ({ feed, updatedAt }: Props) => {
   const isAmp = useAmp()
   const router = useRouter();
 
-  function Img ({ alt, src, title }: { alt: string; src: string; title: string }) {
+  function Img ({ alt, src = '', title }: { alt?: string | undefined; src?: string | undefined; title?: string | undefined }) {
     return isAmp ? (
       <span className='ampImgContainer'><amp-img className="contain" src={require(`../public/feeds/${decodeURI(src)}`)} alt={alt} layout="fill" /></span>
     ) : (

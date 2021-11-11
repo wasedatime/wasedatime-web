@@ -5,6 +5,10 @@ on:
     branches: [ '**' ]
     paths:
       - 'campus/**'
+  pull_request:
+    branches: [ 'master', 'develop' ]
+    paths:
+      - 'campus/**'
 
 jobs:
   build:

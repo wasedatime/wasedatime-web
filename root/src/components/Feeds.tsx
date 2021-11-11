@@ -24,7 +24,7 @@ const Feeds = ({ path }: { path: string }) => {
   const feedsDomain = process.env.NODE_ENV === 'development'
     ? "http://localhost:8083"
     : process.env.NODE_ENV === 'staging'
-      ? `https://${process.env.PREFIX}.${process.env.MF_BLOG_DOMAIN}`
+      ? `https://${process.env.PREFIX}.${process.env.MF_FEEDS_DOMAIN}`
       : `/feeds`;
 
   return (

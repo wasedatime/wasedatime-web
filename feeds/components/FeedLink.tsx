@@ -66,7 +66,7 @@ const FeedLink = ({ name, locale }: { name: string; locale: string; }) => {
     var coverImg;
     try {
       coverImg = require(`../public/feeds/${name}/media/image1.jpg`);
-    } catch (e) {
+    } catch (e: any) {
       if (e.code === 'MODULE_NOT_FOUND') {
         try {
           coverImg = require(`../public/feeds/${name}/media/image1.png`);

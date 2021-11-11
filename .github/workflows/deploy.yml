@@ -19,7 +19,6 @@ jobs:
         microapps: ["root"]
     steps:
       - name: Deploy staging
-        if: github.event.release.prerelease == true
         run: |
           curl -X POST -d {} "${ ${{ matrix.microapps }} }" -H "Content-Type:application/json"
 

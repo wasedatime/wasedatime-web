@@ -1,0 +1,10 @@
+{
+  "extends": [
+    "ts-react-important-stuff",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "@next/next/no-img-element": "off"
+  }
+}

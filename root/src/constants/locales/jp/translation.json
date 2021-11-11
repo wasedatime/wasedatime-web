@@ -7,7 +7,7 @@
     "corona-info": "コロナ",
     "home": "ホーム",
     "aboutus": "組織概要",
-    "feeds": "フィード"
+    "feeds": "記事"
   },
   "aboutus": {
     "our mission": "理念",
@@ -22,6 +22,7 @@
     "seize the day": "いまが最高！"
   },
   "search placeholder": "授業を検索（構築中...）",
+  "search feeds placeholder": "記事を検索（構築中...）",
   "verify": {
     "failed": {
       "title": "ログイン失敗...",

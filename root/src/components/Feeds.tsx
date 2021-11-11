@@ -33,7 +33,7 @@ const Feeds = ({ path }: { path: string }) => {
         <Header
           title={t("navigation.feeds")}
           onInputChange={() => {}}
-          placeholder={t("search placeholder")}
+          placeholder={t("search feeds placeholder")}
           inputText={""}
           disabled={true}
           isBlur={false}

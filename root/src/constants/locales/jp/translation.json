@@ -22,6 +22,7 @@
     "seize the day": "いまが最高！"
   },
   "search placeholder": "授業を検索（構築中...）",
+  "search feeds placeholder": "記事を検索（構築中...）",
   "verify": {
     "failed": {
       "title": "ログイン失敗...",

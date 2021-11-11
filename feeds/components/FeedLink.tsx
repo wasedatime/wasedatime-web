@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -54,7 +53,7 @@ type LangMap = typeof LangMap[keyof typeof LangMap];
 
 const FeedLink = ({ name, locale }: { name: string; locale: string; }) => {
   const classes = useStyles();
-  const [cover, setCover] = useState(null);
+  const [cover, setCover] = useState('');
 
   const feedInfo = {
     date: name.split('-')[0].replace(/_/g, '-'),

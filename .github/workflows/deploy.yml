@@ -8,21 +8,18 @@ on:
     types:
       - created
 
-env:
-  root: ${{ secrets.WEBHOOK_ROOT }}
-  syllabus: ${{ secrets.WEBHOOK_SYLLABUS }}
-  campus: ${{ secrets.WEBHOOK_CAMPUS }}
-  feeds: ${{ secrets.WEBHOOK_FEEDS }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        microapps: ["root"]
+        microapps: ["WEBHOOK_ROOT", "WEBHOOK_SYLLABUS", "WEBHOOK_CAMPUS", "WEBHOOK_FEEDS"]
+    env:
+      url: ${{ secrets[matrix.microapps] }}
     steps:
       - name: Deploy staging
-        run: curl -X POST -d {} ${{ env.${{ matrix.microapps }} }} -H "Content-Type:application/json"
+        run:
+          curl -X POST -d {} "${{ env.url }}" -H "Content-Type:application/json"
 
       - name: Deploy production
         if: github.event.release.prerelease == false

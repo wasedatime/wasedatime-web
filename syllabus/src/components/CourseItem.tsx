@@ -130,8 +130,9 @@ const Instructor = styled.div`
     !props.expanded &&
     `
     overflow: hidden;
-    white-space: nowrap;
+    white-space: break-spaces;
     width: 100%;
+    height: 20px;
     text-overflow: ellipsis;
   `}
 `;

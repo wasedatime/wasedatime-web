@@ -6,15 +6,28 @@ on:
       - created
 
 jobs:
-  build:
+  build-dev:
     runs-on: ubuntu-latest
+    if: github.event.release.prerelease == true
+    strategy:
+      matrix:
+        microapps: ["WEBHOOK_ROOT_DEV", "WEBHOOK_SYLLABUS_DEV", "WEBHOOK_CAMPUS_DEV", "WEBHOOK_FEEDS_DEV"]
+    env:
+      url: ${{ secrets[matrix.microapps] }}
     steps:
       - name: Deploy staging
-        if: github.event.release.prerelease == 'true'
-        run: |
-          echo "Deploying..."
+        run:
+          curl -X POST -d {} "${{ env.url }}" -H "Content-Type:application/json"
 
+  build-prod:
+    runs-on: ubuntu-latest
+    if: github.event.release.prerelease != true
+    strategy:
+      matrix:
+        microapps: ["WEBHOOK_ROOT_PROD", "WEBHOOK_SYLLABUS_PROD", "WEBHOOK_CAMPUS_PROD", "WEBHOOK_FEEDS_PROD"]
+    env:
+      url: ${{ secrets[matrix.microapps] }}
+    steps:
       - name: Deploy production
-        if: github.event.release.prerelease == 'false'
-        run: |
-          echo "Deploying..."
+        run:
+          curl -X POST -d {} "${{ env.url }}" -H "Content-Type:application/json"

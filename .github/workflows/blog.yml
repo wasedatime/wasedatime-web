@@ -20,8 +20,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          - submodules: true
-          - token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
+          submodules: true
+          token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2.4.0
         with:

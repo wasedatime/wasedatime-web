@@ -189,6 +189,8 @@ Submit an issue or a pull request! :blush:
     <td align="center"><a href="#"><sub><b>Zenda Chen</b></sub></a><br /><a href="#" title="Business, Design, Ideas">💼🎨🤔</a></td>
     <td align="center"><a href="#"><sub><b>Kaiqing Chang</b></sub></a><br /><a href="#" title="Business, Design, Ideas">💼🎨🤔</a></td>
     <td align="center"><a href="https://github.com/kaedejima"><img src="https://avatars.githubusercontent.com/u/49092226?s=400&u=7f7d80600a0007aadc8a9e6d0df69e38088c5562&v=4" width="100px;" alt=""/><br /><sub><b>Kaede Iijima</b></sub></a><br /><a href="#code" title="Tutorials, Design">✅🎨</a></td>
+    <td align="center"><a href="https://github.com/nichnarmada"><img src="https://avatars.githubusercontent.com/u/36405403?v=4" width="100px;" alt=""/><br /><sub><b>Nicholas Narmada</b></sub></a><br /><a href="#" title="Code, Ideas, Planning, & Feedback">💻🤔</a></td>
+    <td align="center"><a href="https://github.com/ronin207"><img src="https://avatars.githubusercontent.com/u/59204227?v=4" width="100px;" alt=""/><br /><sub><b>Takumi Otsuka</b></sub></a><br /><a href="#" title="Code, Ideas, Planning, & Feedback">💻🤔</a></td>
   </tr>
 </table>
 

@@ -6,7 +6,7 @@ import fs from "fs";
 import path from "path";
 import React from "react";
 
-export const config = { amp: true }
+// export const config = { amp: true }
 
 interface Props {
   feed: string;
@@ -22,7 +22,7 @@ interface ComponentProps {
 }
 
 const Feed = ({ feed, updatedAt }: Props) => {
-  const isAmp = useAmp()
+  const isAmp = false; // useAmp()
   const router = useRouter();
 
   function Img ({ alt, src = '', title }: { alt?: string | undefined; src?: string | undefined; title?: string | undefined }) {

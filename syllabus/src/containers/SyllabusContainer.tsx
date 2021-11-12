@@ -76,7 +76,7 @@ const ShorterSideColumn = styled.div`
 `;
 
 const MiddleColumn = styled.div`
-  flex: auto;
+  flex: 0 1 auto;
 `;
 
 const ButtonToMilestone = styled.button`

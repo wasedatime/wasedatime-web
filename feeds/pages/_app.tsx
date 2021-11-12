@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const { pathname, asPath, query } = router;
-
+  
   useEffect(() => {
     var url = new URL(window.location.href);
     var params = url.searchParams;

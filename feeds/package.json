@@ -5,7 +5,7 @@
   "scripts": {
     "start": "next dev --port 8083",
     "build": "next build",
-    "build-dev": "next build --env isDev",
+    "build-dev": "next build",
     "start-built": "next start",
     "lint": "next lint",
     "test": "cross-env BABEL_ENV=test jest",

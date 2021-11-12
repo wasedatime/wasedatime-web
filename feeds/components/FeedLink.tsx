@@ -82,7 +82,7 @@ const FeedLink = ({ name, locale }: { name: string; locale: string; }) => {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
-        <Link href={name} locale={locale}>
+        <Link href={name} locale={locale} passHref>
           <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent className={classes.cardContent}>

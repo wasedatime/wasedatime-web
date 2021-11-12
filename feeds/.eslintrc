@@ -1,10 +1,11 @@
 {
   "extends": [
-    "ts-react-important-stuff",
-    "plugin:prettier/recommended"
+    "next",
+    "next/core-web-vitals",
+    "ts-react-important-stuff"
   ],
-  "parser": "babel-eslint",
   "rules": {
-    "@next/next/no-img-element": "off"
+    "@next/next/no-img-element": "off",
+    "react/no-children-prop": "off"
   }
 }

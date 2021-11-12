@@ -5,14 +5,14 @@ import { useEffect } from 'react';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
+  const { pathname, asPath, query } = router;
   
   useEffect(() => {
-    const { pathname, asPath, query } = router;
     var url = new URL(window.location.href);
     var params = url.searchParams;
     const locale = params.get('locale');
     locale && router.push({ pathname, query }, asPath, { locale: locale });
-  }, [router])
+  }, [])
 
   return <Component {...pageProps} />
 }

@@ -6,6 +6,7 @@
   ],
   "rules": {
     "@next/next/no-img-element": "off",
-    "react/no-children-prop": "off"
+    "react/no-children-prop": "off",
+    "react-hooks/exhaustive-deps": "off"
   }
 }

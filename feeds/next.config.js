@@ -19,4 +19,5 @@ module.exports = withPlugins([[optimizedImages, {}]], withTM({
     locales: ["en", "ja"],
     defaultLocale: "en",
   },
+  distDir: 'dist',
 }))

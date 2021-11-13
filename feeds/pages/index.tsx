@@ -1,6 +1,7 @@
 import type { NextPage } from 'next'
 import { useEffect } from 'react'
 import { useRouter } from 'next/router';
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 
 const Home: NextPage = () => {
   const router = useRouter();
@@ -8,7 +9,9 @@ const Home: NextPage = () => {
     router.push('/en')
   }, [])
   return (
-    <h1 style={{ textAlign: 'center', marginTop: '40vh' }}>Redirecting...</h1>
+    <div style={{ textAlign: 'center' }}>
+      <LoadingSpinner message={"Redirecting..."} />
+    </div>
   )
 }
 

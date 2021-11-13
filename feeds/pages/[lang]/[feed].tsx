@@ -5,31 +5,33 @@ import ReactMarkdown from "react-markdown";
 import fs from "fs";
 import path from "path";
 import React from "react";
+import { languages } from '../../i18n.config';
 
 // export const config = { amp: true }
 
 interface Props {
   feed: string;
+  lang: string;
   updatedAt: string;
 }
 
 interface StaticProps {
-  params: { feed: string; }
+  params: { feed: string; lang: string; }
 }
 
 interface ComponentProps {
   img: any;
 }
 
-const Feed = ({ feed, updatedAt }: Props) => {
+const Feed = ({ feed, lang, updatedAt }: Props) => {
   const isAmp = false; // useAmp()
   const router = useRouter();
 
   function Img ({ alt, src = '', title }: { alt?: string | undefined; src?: string | undefined; title?: string | undefined }) {
     return isAmp ? (
-      <span className='ampImgContainer'><img className="contain" src={require(`../public/feeds/${decodeURI(src)}`)} alt={alt} /></span>
+      <span className='ampImgContainer'><img className="contain" src={require(`../../public/feeds/${decodeURI(src)}`)} alt={alt} /></span>
     ) : (
-      <img src={require(`../public/feeds/${decodeURI(src)}`)} alt={alt} style={{ width: '100%', maxWidth: '800px', margin: '10px auto', display: 'block' }} />
+      <img src={require(`../../public/feeds/${decodeURI(src)}`)} alt={alt} style={{ width: '100%', maxWidth: '800px', margin: '10px auto', display: 'block' }} />
     );
   };
 
@@ -178,7 +180,7 @@ const Feed = ({ feed, updatedAt }: Props) => {
 
       {
         isAmp && <div className='header'>
-          <a href="https://wasedatime.com"><img src={require(`../public/logo.png`)} alt='WasedaTime logo' width='50' height='50' /></a>
+          <a href="https://wasedatime.com"><img src={require(`../../public/logo.png`)} alt='WasedaTime logo' width='50' height='50' /></a>
           <a href="https://wasedatime.com/feeds" className='headerLink'><h2>Feeds <span style={{ fontFamily: 'Yu Gothic Medium' }}>記事</span></h2></a>
           <span style={{ width: '50px', margin: '16px' }}></span>
         </div>
@@ -197,7 +199,7 @@ const Feed = ({ feed, updatedAt }: Props) => {
 
         {
           isAmp && <a href="https://wasedatime.com/feeds" className="linksToWasedaTime">
-            <img src={require(`../public/logo.png`)} alt='WasedaTime logo' width='100' height='100' />
+            <img src={require(`../../public/logo.png`)} alt='WasedaTime logo' width='100' height='100' />
             <p>Read more? Visit WasedaTime!</p>
             <p>もっと読みたい？早稲田タイムへどうぞ！</p>
           </a>
@@ -207,14 +209,14 @@ const Feed = ({ feed, updatedAt }: Props) => {
   )
 }
 
-export async function getStaticPaths({ locales }: { locales: string[] }) {
+export async function getStaticPaths() {
   const POSTS_DIRECTORY = path.join(process.cwd(), "public", "feeds");
   const feedNames = await fs.readdirSync(POSTS_DIRECTORY).filter(file => path.extname(file).toLowerCase() === '.md').map(name => name.replace('.md', ''));
-  var paths: { params: { feed: string }, locale: string }[] = []
+  var paths: { params: { lang: string; feed: string; } }[] = []
 
-  locales.forEach(locale => {
+  languages.forEach(lang => {
     feedNames.forEach(name => {
-      paths.push({ params: { feed: name }, locale })
+      paths.push({ params: { lang: lang, feed: name } })
     });
   });
   return { paths, fallback: false }
@@ -227,6 +229,7 @@ export async function getStaticProps({ params }: StaticProps) {
   return {
     props: {
       feed: feed,
+      lang: params.lang,
       updatedAt: stats.mtime.getFullYear() + '-' + stats.mtime.getMonth() + '-' + stats.mtime.getDate()
     }
   }

@@ -43,7 +43,7 @@ const Feeds = ({ path }: { path: string }) => {
       <div>
         {!feedsLoaded && <LoadingSpinner message="Loading..." />}
         <iframe
-          src={feedsDomain + "?locale=" + i18n.language}
+          src={feedsDomain + "/" + i18n.language}
           style={{ width: '100%', height: 'calc(100vh - 70px)' }}
           onLoad={() => setFeedsLoaded(true)}
         >

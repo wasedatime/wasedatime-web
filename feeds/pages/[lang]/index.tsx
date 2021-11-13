@@ -1,19 +1,24 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 import fs from "fs";
 import path from "path";
-import FeedLink from '../components/FeedLink';
+import FeedLink from '../../components/FeedLink';
 import Grid from "@material-ui/core/Grid";
-import { useLocale } from '../hooks/useLocale';
+import { useLocale } from '../../hooks/useLocale';
+import { languages } from '../../i18n.config';
 
-
-interface HomeProps {
-  feedNames: string[]
+interface StaticProps {
+  params: { lang: string; }
 }
 
-const Home: NextPage<HomeProps> = ({ feedNames }) => {
-  const { locale, t } = useLocale();
+interface HomeProps {
+  feedNames: string[];
+  lang: string;
+}
+
+const Home: NextPage<HomeProps> = ({ feedNames, lang }) => {
+  const { locale, t } = useLocale(lang);
 
   return (
     <div className={styles.container}>
@@ -46,8 +51,18 @@ const Home: NextPage<HomeProps> = ({ feedNames }) => {
 
 export default Home;
 
-export async function getServerSideProps() {
+export async function getStaticPaths() {
+  var paths: { params: { lang: string } }[] = []
+
+  languages.forEach(lang => {
+    paths.push({ params: { lang: lang } })
+  });
+
+  return { paths, fallback: false }
+}
+
+export async function getStaticProps({ params }: StaticProps) {
   const POSTS_DIRECTORY = path.join(process.cwd(), "public", "feeds");
   const feedNames = await fs.readdirSync(POSTS_DIRECTORY).filter(file => path.extname(file).toLowerCase() === '.md').sort((a, b) => a > b ? -1 : 1).map(name => name.replace('.md', ''));
-  return { props: { feedNames } };
+  return { props: { feedNames, lang: params.lang } };
 }

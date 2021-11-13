@@ -15,9 +15,4 @@ module.exports = withPlugins([[optimizedImages, {}]], withTM({
   images: {
     disableStaticImages: true
   },
-  i18n: {
-    locales: ["en", "ja"],
-    defaultLocale: "en",
-  },
-  distDir: 'dist',
 }))

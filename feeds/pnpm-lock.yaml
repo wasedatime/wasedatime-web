@@ -12,6 +12,8 @@ specifiers:
   eslint-config-ts-react-important-stuff: ^3.0.0
   eslint-plugin-prettier: ^4.0.0
   fs: 0.0.1-security
+  i18next: ^19.9.2
+  i18next-browser-languagedetector: ^6.1.2
   imagemin-mozjpeg: ^9.0.0
   imagemin-optipng: ^8.0.0
   next: 11.1.2
@@ -32,6 +34,8 @@ dependencies:
   '@fortawesome/fontawesome-svg-core': 1.2.36
   '@material-ui/core': 4.12.3_9c6a8df88c2691f81f37725d5b4de033
   fs: 0.0.1-security
+  i18next: 19.9.2
+  i18next-browser-languagedetector: 6.1.2
   imagemin-mozjpeg: 9.0.0
   imagemin-optipng: 8.0.0
   next: 11.1.2_01b6e46c81e6fda6a6d233df547d9171
@@ -2954,6 +2958,18 @@ packages:
 
   /hyphenate-style-name/1.0.4:
     resolution: {integrity: sha512-ygGZLjmXfPHj+ZWh6LwbC37l43MhfztxetbFCoYTM2VjkIUpeHgSNn7QIyVFj7YQ1Wl9Cbw5sholVJPzWvC2MQ==}
+    dev: false
+
+  /i18next-browser-languagedetector/6.1.2:
+    resolution: {integrity: sha512-YDzIGHhMRvr7M+c8B3EQUKyiMBhfqox4o1qkFvt4QXuu5V2cxf74+NCr+VEkUuU0y+RwcupA238eeolW1Yn80g==}
+    dependencies:
+      '@babel/runtime': 7.15.4
+    dev: false
+
+  /i18next/19.9.2:
+    resolution: {integrity: sha512-0i6cuo6ER6usEOtKajUUDj92zlG+KArFia0857xxiEHAQcUwh/RtOQocui1LPJwunSYT574Pk64aNva1kwtxZg==}
+    dependencies:
+      '@babel/runtime': 7.15.4
     dev: false
 
   /iconv-lite/0.4.24:

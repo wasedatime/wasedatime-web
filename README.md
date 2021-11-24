@@ -3,6 +3,7 @@
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-17-orange.svg?style=flat-square)](#contributors-)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwasedatime%2Fwasedatime-web.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwasedatime%2Fwasedatime-web?ref=badge_shield)
 
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md)
@@ -204,3 +205,6 @@ This project follows the [all-contributors](https://github.com/kentcdodds/all-co
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fwasedatime%2Fwasedatime-web.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fwasedatime%2Fwasedatime-web?ref=badge_large)

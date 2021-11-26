@@ -7,7 +7,7 @@ import path from "path";
 import React from "react";
 import { languages } from '../../i18n.config';
 
-// export const config = { amp: true }
+export const config = { amp: true }
 
 interface Props {
   feed: string;
@@ -24,14 +24,14 @@ interface ComponentProps {
 }
 
 const Feed = ({ feed, lang, updatedAt }: Props) => {
-  const isAmp = false; // useAmp()
+  const isAmp = useAmp();
   const router = useRouter();
 
   function Img ({ alt, src = '', title }: { alt?: string | undefined; src?: string | undefined; title?: string | undefined }) {
     return isAmp ? (
-      <span className='ampImgContainer'><img className="contain" src={require(`../../public/feeds/${decodeURI(src)}`)} alt={alt} /></span>
+      <span className='ampImgContainer'><amp-img layout="fill" width="300" height="200" className="contain" src={require(`../../public/feeds/${decodeURI(src)}`)} alt={alt} /></span>
     ) : (
-      <img src={require(`../../public/feeds/${decodeURI(src)}`)} alt={alt} style={{ width: '100%', maxWidth: '800px', margin: '10px auto', display: 'block' }} />
+      <i-amphtml-sizer-intrinsic><img src={require(`../../public/feeds/${decodeURI(src)}`)} alt={alt} style={{ width: '100%', maxWidth: '800px', margin: '10px auto', display: 'block' }} /></i-amphtml-sizer-intrinsic>
     );
   };
 
@@ -49,7 +49,7 @@ const Feed = ({ feed, lang, updatedAt }: Props) => {
         <title>{"WasedaTime Feeds: " + feedInfo.title}</title>
         <meta name="description" content={"WasedaTime Feeds: " + router.query.feed + "\n" + feed} />
         <link rel="icon" href="/favicon.ico" />
-        <style>
+        <style amp-custom>
           {`
             .header {
               position: fixed;
@@ -64,7 +64,7 @@ const Feed = ({ feed, lang, updatedAt }: Props) => {
               flex-direction: row;
             }
 
-            .header img {
+            .header .amp_logo {
               margin: 7.5px 16px;
             }
 
@@ -93,7 +93,7 @@ const Feed = ({ feed, lang, updatedAt }: Props) => {
             }
 
             .markdownWrapper {
-              font-family: ${feedInfo.lang === 'EN' ? "Segoe UI, Yu Gothic Medium, Lato" : 'Yu Gothic Medium, Lato, Segoe UI'} !important;
+              font-family: ${feedInfo.lang === 'EN' ? "Segoe UI, Yu Gothic Medium, Lato" : 'Yu Gothic Medium, Lato, Segoe UI'};
               padding: 0px;
               font-weight: lighter;
             }
@@ -180,7 +180,7 @@ const Feed = ({ feed, lang, updatedAt }: Props) => {
 
       {
         isAmp && <div className='header'>
-          <a href="https://wasedatime.com"><img src={require(`../../public/logo.png`)} alt='WasedaTime logo' width='50' height='50' /></a>
+          <a href="https://wasedatime.com"><amp-img className="amp_logo" src={require(`../../public/logo.png`)} alt='WasedaTime logo' width='50' height='50' /></a>
           <a href="https://wasedatime.com/feeds" className='headerLink'><h2>Feeds <span style={{ fontFamily: 'Yu Gothic Medium' }}>記事</span></h2></a>
           <span style={{ width: '50px', margin: '16px' }}></span>
         </div>
@@ -199,7 +199,7 @@ const Feed = ({ feed, lang, updatedAt }: Props) => {
 
         {
           isAmp && <a href="https://wasedatime.com/feeds" className="linksToWasedaTime">
-            <img src={require(`../../public/logo.png`)} alt='WasedaTime logo' width='100' height='100' />
+            <amp-img src={require(`../../public/logo.png`)} alt='WasedaTime logo' width='100' height='100' />
             <p>Read more? Visit WasedaTime!</p>
             <p>もっと読みたい？早稲田タイムへどうぞ！</p>
           </a>

@@ -108,7 +108,7 @@
     "react-router-dom": "^5.3.0",
     "react-vertical-timeline-component": "^3.5.2",
     "single-spa": "^5.9.3",
-    "single-spa-layout": "1.4.0",
+    "single-spa-layout": "1.6.0",
     "single-spa-react": "^4.6.0",
     "styled-components": "^5.3.3",
     "ts-loader": "^9.2.6",

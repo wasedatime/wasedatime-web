@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "next dev --port 8083",
-    "build": "NODE_ENV=production next build && next export -o dist/",
-    "build-dev": "NODE_ENV=staging next build && next export -o dist/",
+    "build": "APP_ENV=production next build && next export -o dist/",
+    "build-dev": "APP_ENV=staging next build && next export -o dist/",
     "start-built": "next start",
     "lint": "next lint",
     "test": "cross-env BABEL_ENV=test jest",

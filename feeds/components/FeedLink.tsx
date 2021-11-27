@@ -82,7 +82,7 @@ const FeedLink = ({ name, locale }: { name: string; locale: string; }) => {
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
-        <Link href={(process.env.NODE_ENV === 'production' ? "/feeds/" : "") + locale + '/' + name} passHref>
+        <Link href={(process.env.APP_ENV === 'production' ? "/feeds/" : "") + locale + '/' + name} passHref>
           <Card className={classes.card}>
             <div className={classes.cardDetails}>
               <CardContent className={classes.cardContent}>

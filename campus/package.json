@@ -71,7 +71,6 @@
     "@types/webpack-env": "^1.16.3",
     "bootstrap": "^4.6.0",
     "i18next": "^19.9.2",
-    "mapbox-gl": "^2.5.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.4",
     "react-datepicker": "^3.8.0",

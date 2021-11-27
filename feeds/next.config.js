@@ -15,5 +15,8 @@ module.exports = withPlugins([[optimizedImages, {}]], withTM({
   images: {
     disableStaticImages: true
   },
-  assetPrefix: process.env.NODE_ENV === 'production' ? "/feeds" : "",
+  assetPrefix: process.env.APP_ENV === 'production' ? "/feeds" : "",
+  env: {
+    APP_ENV: process.env.APP_ENV || 'development'
+  }
 }))

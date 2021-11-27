@@ -92,7 +92,7 @@
     "@types/react-router-dom": "^5.3.2",
     "@types/systemjs": "^6.1.1",
     "@types/webpack-env": "^1.16.3",
-    "css-loader": "^5.2.7",
+    "css-loader": "6.5.1",
     "graphql": "^15.7.2",
     "i18next": "^19.9.2",
     "localforage": "^1.10.0",

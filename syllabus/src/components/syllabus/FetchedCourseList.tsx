@@ -11,11 +11,14 @@ import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const CourseListWrapper = styled(SimpleBar)`
-  height: calc(100vh - 117px + 26px);
+  height: calc(100vh - 67px);
   ${media.tablet`height: calc(100vh - 137px);`}
   overflow-x: hidden;
   .simplebar-scrollbar::before {
     background-color: #999;
+  }
+  .simplebar-placeholder {
+    height: 5px !important;
   }
 `;
 
@@ -47,7 +50,7 @@ class FetchedCourseList extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      loadedChunksNum: INIT_CHUNKS_NUM,
+      loadedChunksNum: INIT_CHUNKS_NUM
     };
   }
 
@@ -55,7 +58,21 @@ class FetchedCourseList extends React.Component<Props, State> {
     if (this.props.searchTerm !== prevProps.searchTerm) {
       this.setState({
         loadedChunksNum: INIT_CHUNKS_NUM,
+      }, () => {
+        var isChunkChanged = false;
+
+        for (let index = 0; index < 5; index++) {
+          if (this.props.results[index] !== prevProps.results[index]) {
+            isChunkChanged = true;
+            break;
+          }
+        }
+        
+        if (!isChunkChanged) {
+          this.loadMoreChunks(0);
+        }
       });
+      
       window.scrollTo({ top: 0 });
     }
   }

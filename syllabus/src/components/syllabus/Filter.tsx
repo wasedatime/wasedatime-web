@@ -18,7 +18,7 @@ const FilterWrapper = styled.div`
 `;
 
 const FilterScrollArea = styled(SimpleBar)`
-  flex: none;
+  // flex: none;
   width: 100%;
   height: ${(props) =>
     props.isSideBar ? "100%" : "calc(100% - 50px)"};
@@ -27,9 +27,10 @@ const FilterScrollArea = styled(SimpleBar)`
   .simplebar-scrollbar::before {
     background-color: #999;
   }
-  .simplebar-content {
-    padding-bottom: 65px !important;
+  .simplebar-placeholder {
+    height: 0px !important;
   }
+  overflow-y: auto;
 `;
 
 const FilterTitle = styled("span")`

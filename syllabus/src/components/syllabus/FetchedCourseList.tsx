@@ -11,7 +11,7 @@ import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const CourseListWrapper = styled(SimpleBar)`
-  height: calc(100vh - 117px + 26px);
+  height: calc(100vh - 67px);
   ${media.tablet`height: calc(100vh - 137px);`}
   overflow-x: hidden;
   .simplebar-scrollbar::before {

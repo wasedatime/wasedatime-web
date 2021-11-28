@@ -34,6 +34,9 @@ const CourseListWrapper = styled("div")`
   .simplebar-scrollbar::before {
     background-color: #999;
   }
+  .simplebar-placeholder {
+    height: 0px !important;
+  }
 `;
 
 const ExtendedArticle = styled(Article)`

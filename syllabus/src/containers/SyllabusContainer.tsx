@@ -61,6 +61,7 @@ const SyllabusFlex = styled.div`
   display: flex;
   flex-direction: row;
   ${media.tablet`height: calc(100vh - 117px); flex: calc(100vh - 117px);`}
+  overflow-y: hidden;
 `;
 
 const SideColumn = styled.div`
@@ -76,7 +77,7 @@ const ShorterSideColumn = styled.div`
 `;
 
 const MiddleColumn = styled.div`
-  flex: 0 1 auto;
+  flex: 1 1 auto;
 `;
 
 const ButtonToMilestone = styled.button`

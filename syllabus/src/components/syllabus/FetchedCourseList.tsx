@@ -18,7 +18,7 @@ const CourseListWrapper = styled(SimpleBar)`
     background-color: #999;
   }
   .simplebar-placeholder {
-    height: 0px !important;
+    height: 5px !important;
   }
 `;
 
@@ -50,7 +50,7 @@ class FetchedCourseList extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      loadedChunksNum: INIT_CHUNKS_NUM,
+      loadedChunksNum: INIT_CHUNKS_NUM
     };
   }
 
@@ -58,7 +58,21 @@ class FetchedCourseList extends React.Component<Props, State> {
     if (this.props.searchTerm !== prevProps.searchTerm) {
       this.setState({
         loadedChunksNum: INIT_CHUNKS_NUM,
+      }, () => {
+        var isChunkChanged = false;
+
+        for (let index = 0; index < 5; index++) {
+          if (this.props.results[index] !== prevProps.results[index]) {
+            isChunkChanged = true;
+            break;
+          }
+        }
+        
+        if (!isChunkChanged) {
+          this.loadMoreChunks(0);
+        }
       });
+      
       window.scrollTo({ top: 0 });
     }
   }

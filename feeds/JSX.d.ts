@@ -7,7 +7,13 @@ declare namespace JSX {
 		layout?: string;
     className?: string;
 	}
+	export interface IAmphtmlSizerIntrinsic {
+		slot?: string;
+    className?: string;
+		children: Element;
+	}
 	export interface IntrinsicElements {
 		'amp-img': AmpImg;
+		'i-amphtml-sizer-intrinsic': IAmphtmlSizerIntrinsic;
 	}
 }

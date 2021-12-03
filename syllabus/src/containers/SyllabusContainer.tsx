@@ -45,6 +45,7 @@ import {
 } from "../ga/eventActions";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import { courseSchemaFullToShort } from "../utils/map-single-course-schema";
+import SyllabusTabs from "../components/SyllabusTabs";
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -347,6 +348,8 @@ class SyllabusContainer extends React.Component<
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>
+
+        <SyllabusTabs />
 
         <SyllabusFlex>
           <MediaQuery minWidth={sizes.tablet}>

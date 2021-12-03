@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { Router, LocationProvider, navigate } from "@reach/router";
 import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
 import { getAddedCoursePrefs } from "./redux/reducers/addedCourses";
@@ -9,6 +9,7 @@ import API from "@aws-amplify/api";
 const Timetable = lazy(() => import("./containers/TimetableContainer"));
 const Syllabus = lazy(() => import("./containers/SyllabusContainer"));
 const Milestone = lazy(() => import("./components/milestone/Milestone"));
+const Labs = lazy(() => import("./components/labs/Labs"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import "semantic-ui-css/components/dropdown.min.css";
 import "react-s-alert/dist/s-alert-default.css";
@@ -96,6 +97,7 @@ const App = ({
         <Syllabus path="courses/syllabus" />
         <Timetable path="courses/timetable" />
         <Milestone path="courses/milestone" />
+        <Labs path="courses/labs" />
         <NotFound default />
       </Router>
       <Alert stack={{ limit: 1 }} timeout={3000} />

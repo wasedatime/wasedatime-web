@@ -28,3 +28,38 @@
     @apply bg-white rounded p-4 bg-opacity-80;
   }
 }
+
+@layer utilities {
+  .text-shadow {
+    text-shadow: 2px 2px 4px black;
+  }
+  .text-shadow-sm {
+    text-shadow: 0px 0px 3px black;
+  }
+  .text-shadow-md {
+    text-shadow: 4px 4px 8px black;
+  }
+  .text-shadow-lg {
+    text-shadow: 15px 15px 30px black;
+  }
+  .text-shadow-none {
+    text-shadow: none;
+  }
+  @variants dark {
+    .text-shadow {
+      text-shadow: 2px 2px 4px black;
+    }
+    .text-shadow-sm {
+      text-shadow: 0px 0px 3px black;
+    }
+    .text-shadow-md {
+      text-shadow: 4px 4px 8px black;
+    }
+    .text-shadow-lg {
+      text-shadow: 15px 15px 30px black;
+    }
+    .text-shadow-none {
+      text-shadow: none;
+    }
+  }
+}

@@ -26,7 +26,7 @@ export const ThemeContext = createContext<ThemeContextInterface | undefined>(
 
 interface ThemeProviderType {
   initialTheme?: string
-  children: JSX.Element
+  children: React.ReactNode
 }
 
 export const ThemeProvider = ({

@@ -21,6 +21,7 @@ specifiers:
   '@bit/wasedatime.core.ts.ui.logo': 0.0.9
   '@bit/wasedatime.core.ts.ui.modal': 0.0.8
   '@bit/wasedatime.core.ts.ui.sign-in-modal': 0.0.9
+  '@bit/wasedatime.core.ts.ui.theme-toggle': ^0.0.2
   '@bit/wasedatime.core.ts.utils.i18n': ^0.0.4
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1
   '@bit/wasedatime.core.ts.utils.user': 0.0.3
@@ -2271,6 +2272,17 @@ packages:
       '@fortawesome/fontawesome-common-types': 0.2.36
     dev: false
 
+  /@fortawesome/react-fontawesome/0.1.16_df6308c1246d076484c93d4f6ec16a06:
+    resolution: {integrity: sha512-aLmzDwC9rEOAJv2UJdMns89VZR5Ry4IHu5dQQh24Z/lWKEm44lfQr1UNalZlkUaQN8d155tNh+CS7ntntj1VMA==}
+    peerDependencies:
+      '@fortawesome/fontawesome-svg-core': ~1 || >=1.3.0-beta1
+      react: '>=16.x'
+    dependencies:
+      '@fortawesome/fontawesome-svg-core': 1.2.36
+      prop-types: 15.7.2
+      react: 17.0.1
+    dev: false
+
   /@fortawesome/react-fontawesome/0.1.16_e6ddecce7e87e8c100be6749b6963e80:
     resolution: {integrity: sha512-aLmzDwC9rEOAJv2UJdMns89VZR5Ry4IHu5dQQh24Z/lWKEm44lfQr1UNalZlkUaQN8d155tNh+CS7ntntj1VMA==}
     peerDependencies:
@@ -4356,6 +4368,11 @@ packages:
 
   /bytes/3.0.0:
     resolution: {integrity: sha1-0ygVQE1olpn4Wk6k+odV3ROpYEg=}
+    engines: {node: '>= 0.8'}
+    dev: true
+
+  /bytes/3.1.1:
+    resolution: {integrity: sha512-dWe4nWO/ruEOY7HkUJ5gFt1DCFV9zPRoJr8pV0/ASQermOZjtq8jMjOprC0Kd10GLN+l7xaUPvxzJFWtxGu8Fg==}
     engines: {node: '>= 0.8'}
     dev: true
 
@@ -10659,6 +10676,14 @@ packages:
       react-intersection-observer: 8.33.1
     transitivePeerDependencies:
       - react
+    dev: false
+
+  /react/17.0.1:
+    resolution: {integrity: sha512-lG9c9UuMHdcAexXtigOZLX8exLWkW0Ku29qPRU8uhF2R9BN96dLCt0psvzPLlHc5OWkgymP3qwTRgbnw5BKx3w==}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      loose-envify: 1.4.0
+      object-assign: 4.1.1
     dev: false
 
   /react/17.0.2:

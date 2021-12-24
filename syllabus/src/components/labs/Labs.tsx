@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SchoolMajorSelector from "./SchoolMajorSelector";
 import Lab from "./Lab";
 import SyllabusTabs from "../SyllabusTabs";
+import reviews from "../../assets/lab_reviews_by_school_major.json";
 
 interface Props {
   path: string;
@@ -16,7 +17,7 @@ const Labs = ({ path }: Props) => {
       <SyllabusTabs />
       
       <SchoolMajorSelector school={school} major={major} setSchool={setSchool} setMajor={setMajor} />
-      {[].map(lab => <Lab />)}
+      {school && major && reviews[school][major]?.map(lab => <Lab name={lab.lab} reviews={lab.reviews} />)}
     </div>
   );
 }

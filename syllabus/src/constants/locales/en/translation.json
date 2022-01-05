@@ -26,5 +26,9 @@
   },
   "other": "Other",
   "special": "Special",
-  "timetable search placeholder": "Search courses (in construction...)"
+  "timetable search placeholder": "Search courses (in construction...)",
+  "labs": {
+    "title": "Labs",
+    "searchBarPlaceholder": "Search by professor's English name..."
+  }
 }

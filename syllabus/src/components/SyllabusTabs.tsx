@@ -3,17 +3,19 @@ import styled from "styled-components";
 import { useLocation, Link } from "@reach/router";
 
 const TabsWrapper = styled.div`
-  background-color: #eee;
+  background-color: #f3f3f3;
   padding-left: 1em;
   padding-top: 5px;
+  height: 29px;
 `;
 
 const Tab = styled.button`
   padding: 0px 1rem;
-  background-color: #eee;
+  background-color: #f3f3f3;
   border-width: 0px;
   border-radius: 5px 5px 0 0;
   font-size: 16px;
+  color: #666;
 `;
 
 const ActiveTab = styled(Tab)`

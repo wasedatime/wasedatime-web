@@ -14,7 +14,7 @@ import SimpleBar from "simplebar-react";
 const FilterWrapper = styled.div`
   ${(props) => !props.isSideBar && "width: 100vw;"}
   height: ${(props) =>
-    props.isSideBar ? "calc(100vh - 67px)" : "calc(100vh - 50px)"};
+    props.isSideBar ? "calc(100vh - 96px)" : "calc(100vh - 50px)"};
 `;
 
 const FilterScrollArea = styled(SimpleBar)`

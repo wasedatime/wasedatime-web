@@ -26,5 +26,9 @@
   },
   "other": "その他",
   "special": "その他",
-  "timetable search placeholder": "授業を検索（構築中...）"
+  "timetable search placeholder": "授業を検索（構築中...）",
+  "labs": {
+    "title": "研究室",
+    "searchBarPlaceholder": "教授の英語名で検索..."
+  }
 }

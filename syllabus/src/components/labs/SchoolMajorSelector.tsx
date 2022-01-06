@@ -1,14 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 import majorsBySchool from '../../constants/majors-by-school';
-import Tab from "semantic-ui-react/dist/commonjs/modules/Tab";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { Badge } from "../styles/Badge";
 import fseIcon from "../../assets/img/syllabus-icons/fse.png";
 import cseIcon from "../../assets/img/syllabus-icons/cse.png";
 import aseIcon from "../../assets/img/syllabus-icons/ase.png";
 
 const Menu = styled.div`
-  margin: 2em;
+  padding: 2em;
+  ${media.tablet`
+    padding: 2em 1em;
+  `}
 `;
 
 const SchoolMenu = styled.div`
@@ -34,20 +37,24 @@ const SchoolImg = styled.img`
 `;
 
 const MajorMenu = styled.div`
-  border: 2px solid ${props => {
+  background-color: ${props => {
     return props.school === "FSE"
-      ? "rgba(190,106,20,0.5)"
+      ? "rgba(190,106,20,0.2)"
       : props.school === "CSE"
-        ? "rgba(105,140,45,0.5)"
-        : "rgba(50,98,149,0.5)";
+        ? "rgba(105,140,45,0.2)"
+        : "rgba(50,98,149,0.2)";
   }};
   border-radius: 10px;
   margin: 1em;
   padding: 1em;
+  ${media.tablet`
+    margin: 0.5em;
+    padding: 0.5em 5px;
+  `}
 `;
 
 const Button = styled.button`
-  background-color: #fff;
+  background-color: transparent;
   color: ${props => {
     return props.school === "FSE"
       ? "rgb(190,106,20)"
@@ -58,7 +65,11 @@ const Button = styled.button`
   border-radius: 5px;
   padding: 0px 1em;
   margin: 0.5em;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
+  ${media.tablet`
+    width: 100%;
+    font-size: 1.4rem;
+  `}
 `;
 
 const ReviewsCount = styled(Badge)`
@@ -79,7 +90,7 @@ const SchoolMajorSelector = ({ reviews, selectedSchool, selectedMajor, setSchool
     <Menu>
       <SchoolMenu>
         {
-          [fseIcon, cseIcon, aseIcon].map((icon, i) => <SchoolItem key={"school_button_" + i}><SchoolButton onClick={() => setSchool(schools[i])} active={selectedSchool === schools[i]}><SchoolImg src={icon} width="100" height="100" /></SchoolButton></SchoolItem>)
+          [fseIcon, cseIcon, aseIcon].map((icon, i) => <SchoolItem key={"school_button_" + i}><SchoolButton onClick={() => setSchool(schools[i])} active={selectedSchool === schools[i]}><SchoolImg src={icon} width="70" height="70" /></SchoolButton></SchoolItem>)
         }
       </SchoolMenu>
 

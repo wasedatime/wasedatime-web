@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
 import Header from "@bit/wasedatime.core.ts.ui.header";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import SchoolMajorSelector from "./SchoolMajorSelector";
 import Lab from "./Lab";
 import SyllabusTabs from "../SyllabusTabs";
@@ -19,7 +20,20 @@ const HeaderWrapper = styled.div`
 `;
 
 const LabsWrapper = styled.div`
+  height: calc(100vh - 96px);
+  ${media.tablet`
+    height: calc(100vh - 156px);
+  `}
+  overflow-y: auto;
+`;
+
+const LabsList = styled.div`
   padding: 0px 3em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5%;
+  justify-content: center;
 `;
 
 interface Props extends WithTranslation {
@@ -100,10 +114,13 @@ class Labs extends React.Component<Props, State> {
 
         <SyllabusTabs />
 
-        <SchoolMajorSelector reviews={reviews} selectedSchool={school} selectedMajor={major} setSchool={s => this.setState({ school: s })} setMajor={m => this.setState({ major: m })} />
         <LabsWrapper>
-          {school && major && reviews[school][major]?.map(lab => (!searchTerm || lab.lab.includes(searchTerm)) && <Lab name={lab.lab} reviews={lab.reviews} school={school} />)}
+          <SchoolMajorSelector reviews={reviews} selectedSchool={school} selectedMajor={major} setSchool={s => this.setState({ school: s })} setMajor={m => this.setState({ major: m })} />
+          <LabsList>
+            {school && major && reviews[school][major]?.map(lab => (!searchTerm || lab.lab.includes(searchTerm)) && <Lab name={lab.lab} reviews={lab.reviews} school={school} />)}
+          </LabsList>
         </LabsWrapper>
+
       </LabsOuterWrapper>
     );
   }

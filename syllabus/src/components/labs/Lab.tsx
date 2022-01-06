@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Review from "./Review";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-
-// Data format: check Tomoya Shibayama's first review
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const LabWrapper = styled.div`
+  flex: 0 0 ${props => props.isOpen ? "95%" : "45%"};
+  ${media.tablet`
+    flex: 0 0 95%;
+  `}
   background-color: ${props => {
     return props.school === "FSE"
       ? "rgba(190,106,20, 0.8)"
@@ -19,6 +22,9 @@ const LabWrapper = styled.div`
 
 const LabTrigger = styled.div`
   padding: 1em;
+  ${media.tablet`
+    padding: 0.5em;
+  `}
   color: #fff;
   border-radius: 10px;
   cursor: pointer;
@@ -99,7 +105,7 @@ const Lab = ({ name, reviews, school }) => {
   );
   
   return (
-    <LabWrapper school={school}>
+    <LabWrapper isOpen={open} school={school}>
       <LabTrigger school={school} onClick={() => setOpen(!open)}>
         <LabName>{name}</LabName>
       </LabTrigger>

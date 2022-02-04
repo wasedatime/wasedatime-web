@@ -6,11 +6,15 @@ import { Badge } from "../styles/Badge";
 import fseIcon from "../../assets/img/syllabus-icons/fse.png";
 import cseIcon from "../../assets/img/syllabus-icons/cse.png";
 import aseIcon from "../../assets/img/syllabus-icons/ase.png";
+import majorBg from "../../assets/img/major_bg.jpg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
 const Menu = styled.div`
-  padding: 2em;
   ${media.tablet`
-    padding: 2em 1em;
+    padding: 2em;
+    height: calc(100vh - 60px);
+    overflow-y: auto;
   `}
 `;
 
@@ -27,7 +31,7 @@ const SchoolItem = styled.div`
 
 const SchoolButton = styled.button`
   margin: 0px auto;
-  ${props => props.active && "opacity: 0.5;"}
+  ${props => !props.active && "opacity: 0.4;"}
 `;
 
 const SchoolImg = styled.img`
@@ -36,43 +40,58 @@ const SchoolImg = styled.img`
   }
 `;
 
-const MajorMenu = styled.div`
-  background-color: ${props => {
-    return props.school === "FSE"
-      ? "rgba(190,106,20,0.2)"
-      : props.school === "CSE"
-        ? "rgba(105,140,45,0.2)"
-        : "rgba(50,98,149,0.2)";
-  }};
-  border-radius: 10px;
-  margin: 1em;
-  padding: 1em;
-  ${media.tablet`
-    margin: 0.5em;
-    padding: 0.5em 5px;
-  `}
+const MajorWrapper = styled.div`
+  width: 100%;
+  height: 75px;
+  position: relative;
+  margin: 20px auto;
+  padding: auto 0px;
+  cursor: pointer;
+
+  &:before {
+    content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    background-image: url(${majorBg});
+    background-size: 15em;
+  }
 `;
 
-const Button = styled.button`
-  background-color: transparent;
-  color: ${props => {
-    return props.school === "FSE"
-      ? "rgb(190,106,20)"
-      : props.school === "CSE"
-        ? "rgb(105,140,45)"
-        : "rgb(50,98,149)";
-  }};
-  border-radius: 5px;
-  padding: 0px 1em;
-  margin: 0.5em;
-  font-size: 1.6rem;
-  ${media.tablet`
-    width: 100%;
-    font-size: 1.4rem;
-  `}
+const MajorText = styled.div`
+  position: relative;
+  height: 100%;
+  color: #fff;
+  text-shadow: 1px 1px 5px #000;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 24px;
+
+  &:hover {
+    font-size: 22px;
+  }
 `;
 
 const ReviewsCount = styled(Badge)`
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   background-color: ${props => {
     return props.school === "FSE"
       ? "rgba(190,106,20,0.5)"
@@ -88,15 +107,19 @@ const SchoolMajorSelector = ({ reviews, selectedSchool, selectedMajor, setSchool
 
   return (
     <Menu>
+      <h5 style={{ marginBottom: "5px" }}>
+        <FontAwesomeIcon icon={faFilter} size="1x" />
+        &nbsp;
+        Filter
+        {/* <b>{t("syllabus.Filter by")}</b> */}
+      </h5>
       <SchoolMenu>
         {
           [fseIcon, cseIcon, aseIcon].map((icon, i) => <SchoolItem key={"school_button_" + i}><SchoolButton onClick={() => setSchool(schools[i])} active={selectedSchool === schools[i]}><SchoolImg src={icon} width="70" height="70" /></SchoolButton></SchoolItem>)
         }
       </SchoolMenu>
 
-      <MajorMenu school={selectedSchool}>
-        { majorsBySchool[selectedSchool]?.map(major => <Button school={selectedSchool} onClick={() => setMajor(major)}>{major} <ReviewsCount school={selectedSchool}>{reviews[selectedSchool][major]?.length}</ReviewsCount></Button>) }
-      </MajorMenu>
+      { majorsBySchool[selectedSchool]?.map(major => <MajorWrapper onClick={() => setMajor(major)}><MajorText>{major}</MajorText><ReviewsCount school={selectedSchool}>{reviews[selectedSchool][major].length}</ReviewsCount></MajorWrapper>) }
     </Menu>
   );
 }

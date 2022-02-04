@@ -3,11 +3,12 @@ import styled from "styled-components";
 import Review from "./Review";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import majorBg from "../../assets/img/major_bg.jpg";
 
 const LabWrapper = styled.div`
-  flex: 0 0 ${props => props.isOpen ? "95%" : "45%"};
-  ${media.tablet`
-    flex: 0 0 95%;
+  flex: 0 0 ${props => props.isOpen ? "100%" : "45%"};
+  ${media.desktop`
+    flex: 0 0 100%;
   `}
   background-color: ${props => {
     return props.school === "FSE"
@@ -16,27 +17,14 @@ const LabWrapper = styled.div`
         ? "rgba(105,140,45, 0.8)"
         : "rgba(50,98,149, 0.8)";
   }};
-  border-radius: 10px;
   margin-bottom: 1em;
 `;
 
 const LabTrigger = styled.div`
-  padding: 1em;
-  ${media.tablet`
-    padding: 0.5em;
-  `}
   color: #fff;
-  border-radius: 10px;
   cursor: pointer;
+
   &:hover {
-    border: 3px solid ${props => {
-      return props.school === "FSE"
-      ? "rgba(190,106,20, 0.8)"
-      : props.school === "CSE"
-        ? "rgba(105,140,45, 0.8)"
-        : "rgba(50,98,149, 0.8)";
-    }};
-    padding: calc(1em - 3px);
     color: ${props => {
       return props.school === "FSE"
         ? "rgba(190,106,20, 0.8)"
@@ -48,6 +36,12 @@ const LabTrigger = styled.div`
   }
 `;
 
+const LabImg = styled.img`
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+`;
+
 const LabName = styled.h4`
   text-align: center;
 `;
@@ -56,7 +50,6 @@ const ReviewsWrapper = styled.div`
   background-color: #fff;
   padding: 1em;
   margin: 1em;
-  margin-top: 0px;
   border-radius: 10px;
 `;
 
@@ -107,6 +100,7 @@ const Lab = ({ name, reviews, school }) => {
   return (
     <LabWrapper isOpen={open} school={school}>
       <LabTrigger school={school} onClick={() => setOpen(!open)}>
+        <LabImg src={majorBg} height="100" />
         <LabName>{name}</LabName>
       </LabTrigger>
 

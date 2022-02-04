@@ -1,19 +1,19 @@
 export const FSEmajor: string[] = [
-  "Mathematics",
-  "Applied Mathematics",
-  "Applied Mechanics and Aerospace Engineering",
-  "Electronic and Physical Systems",
   "Computer Science and Engineering",
   "Communications and Computer Engineering",
-  "Intermedia Art and Science"
+  "Electronic and Physical Systems",
+  "Intermedia Art and Science",
+  "Mathematics",
+  "Applied Mathematics",
+  "Applied Mechanics and Aerospace Engineering"
 ]
 
 export const CSEmajor: string[] = [
-  "Architecture",
   "Modern Mechanical Engineering",
-  "Industrial and Management Systems Engineering",
   "Civil and Environmental Engineering",
-  "Resources and Environmental Engineering"
+  "Industrial and Management Systems Engineering",
+  "Resources and Environmental Engineering",
+  "Architecture"
 ]
 
 export const ASEmajor: string[] = [

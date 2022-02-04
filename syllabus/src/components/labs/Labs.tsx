@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
 import { WithTranslation, withTranslation } from "react-i18next";
+import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import Header from "@bit/wasedatime.core.ts.ui.header";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import SchoolMajorSelector from "./SchoolMajorSelector";
 import Lab from "./Lab";
 import SyllabusTabs from "../SyllabusTabs";
 import reviews from "../../assets/lab_reviews_by_school_major.json";
 import debounce from "lodash/debounce";
+import FilterButton from "../syllabus/FilterButton";
+import Modal from "@bit/wasedatime.core.ts.ui.modal";
 
 const LabsOuterWrapper = styled.div`
   display: flex;
@@ -24,17 +27,69 @@ const LabsWrapper = styled.div`
   ${media.tablet`
     height: calc(100vh - 156px);
   `}
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: row;
+  padding: 1em 0px;
+`;
+
+const FilterWrapper = styled.div`
+  flex: 20em;
+  padding: 0px 2em 0px 1em;
+
+  height: calc(100vh - 96px);
+  ${media.tablet`
+    height: calc(100vh - 156px);
+  `}
   overflow-y: auto;
 `;
 
+const ShorterFilterWrapper = styled.div`
+  flex: 15em;
+  padding: 0px 2em 0px 1em;
+`;
+
 const LabsList = styled.div`
-  padding: 0px 3em;
+  flex: calc(100% - 20em);
+  padding-left: 2em;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 5%;
+  gap: 2%;
   justify-content: center;
+  align-items: flex-start;
+  align-content:flex-start;
+  ${media.tablet`padding: 0px 2em;`}
+
+  height: calc(100vh - 96px);
+  ${media.tablet`
+    height: calc(100vh - 156px);
+  `}
+  overflow-y: auto;
 `;
+
+const modalStyle = {
+  overlay: {
+    position: "fixed",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: "401",
+  },
+  content: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    background: "#fff",
+    overflowY: "hidden",
+    outline: "none",
+    fontSize: "16px",
+    padding: 0,
+  },
+};
 
 interface Props extends WithTranslation {
   path: string;
@@ -45,6 +100,7 @@ interface State {
   major: string;
   inputText: string;
   searchTerm: string;
+  isModalOpen: boolean;
 }
 
 class Labs extends React.Component<Props, State> {
@@ -53,9 +109,10 @@ class Labs extends React.Component<Props, State> {
 
     this.state = {
       school: "FSE",
-      major: "",
+      major: "Computer Science and Engineering",
       inputText: "",
-      searchTerm: ""
+      searchTerm: "",
+      isModalOpen: false
     };
   }
 
@@ -77,6 +134,14 @@ class Labs extends React.Component<Props, State> {
       })
     );
   };
+
+  handleToggleModal = () => {
+    this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));
+  }
+
+  handleMajorChange = (major) => {
+    this.setState({ major: major, isModalOpen: false });
+  }
 
   render () {
     const { t, i18n } = this.props;
@@ -115,10 +180,41 @@ class Labs extends React.Component<Props, State> {
         <SyllabusTabs />
 
         <LabsWrapper>
-          <SchoolMajorSelector reviews={reviews} selectedSchool={school} selectedMajor={major} setSchool={s => this.setState({ school: s })} setMajor={m => this.setState({ major: m })} />
           <LabsList>
             {school && major && reviews[school][major]?.map(lab => (!searchTerm || lab.lab.includes(searchTerm)) && <Lab name={lab.lab} reviews={lab.reviews} school={school} />)}
           </LabsList>
+          
+          <MediaQuery minWidth={sizes.desktop}>
+            {
+              matches => 
+                matches && <FilterWrapper>
+                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} selectedMajor={major} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
+                </FilterWrapper>
+            }
+          </MediaQuery>
+          
+          <MediaQuery minWidth={sizes.tablet + 1} maxWidth={sizes.desktop - 1}>
+            {
+              matches => 
+                matches && <ShorterFilterWrapper>
+                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} selectedMajor={major} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
+                </ShorterFilterWrapper>
+            }
+          </MediaQuery>
+
+          <MediaQuery maxWidth={sizes.tablet}>
+            {(matches) =>
+              matches && <div>
+                <FilterButton
+                  isModalOpen={this.state.isModalOpen}
+                  handleToggleModal={this.handleToggleModal}
+                />
+                <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} selectedMajor={major} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
+                </Modal>
+              </div>
+            }
+          </MediaQuery>
         </LabsWrapper>
 
       </LabsOuterWrapper>

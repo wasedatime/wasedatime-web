@@ -1,59 +1,49 @@
 module.exports = {
-  purge: {
-    enabled: true, // process.env.NODE_ENV === "production"
-    content: [
-      "./src/**/*.ejs",
-      "./src/**/*.js",
-      "./src/**/*.ts",
-      "./src/**/*.tsx",
-      "./src/**/*.html",
-    ],
-  },
-  darkMode: "media", // or 'class' or 'false'
+  content: ['./src/**/*.ejs', './src/**/*.js', './src/**/*.ts', './src/**/*.tsx', './src/**/*.html'],
+  darkMode: 'class', // or 'media' or 'false'
   theme: {
     extend: {
       textColors: (theme) => ({
-        primary: "#b51e36",
-        primaryDarker: "#8E1728",
         light: {
-          text1: "#000000",
-          fadetext: "#9E9E9E",
+          text1: '#333333',
+          text2: '#606060',
+          text3: '#B4B4B4',
         },
         dark: {
-          text1: "#9E9E9E",
-          text2: "#757575",
-          fadetext: "#9E9E9E",
+          text1: '#E1E1E1',
+          text2: '#9E9E9E',
+          text3: '#606060',
+        },
+        icon: {
+          sun: '#FFC000',
+          moon: '#F7E7CE',
         },
       }),
       colors: (theme) => ({
-        primary: "#b51e36",
-        primaryDarker: "#8E1728",
         light: {
-          sidebar: "#212121",
-          text1: "#000000",
-          fadetext: "#9E9E9E",
-          button: "#8E1728",
-          cell: "#ECF0F1",
-          border: "#BDBDBD",
-          bg: "#FFFFFF",
-          linetop: "#F4F6F7",
+          primary: '#8E1728',
+          light: '#E4E4E4',
+          natural: '#CFCFCF',
+          dark: '#696969',
+          darker: '#424242',
+          bgMain: '#FFFFFF',
+          bgSide: '#FAFAFA',
         },
         dark: {
-          sidebar: "#212121",
-          text1: "#9E9E9E",
-          text2: "#757575",
-          fadetext: "#9E9E9E",
-          button: "#8E1728",
-          cell: "#424242",
-          border: "#757575",
-          bg: "#212121",
-          linetop: "#424242",
+          primary: '#B51E36',
+          light: '#323842',
+          natural: '#38393B',
+          dark: '#C8C8C8',
+          darker: '#A1A1A1',
+          bgMain: '#1F2022',
+          bgSide: '#242527',
+        },
+        icon: {
+          sun: '#FFC000',
+          moon: '#F7E7CE',
         },
       }),
     },
   },
-  variants: {
-    extend: {},
-  },
   plugins: [],
-}
+};

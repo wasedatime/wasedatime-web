@@ -344,6 +344,8 @@ class SyllabusContainer extends React.Component<
             inputText={inputText}
             disabled={false}
             isBlur={false}
+            theme={"light"}
+            setTheme={() => {}}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>

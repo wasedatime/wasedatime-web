@@ -31,6 +31,8 @@ export default function Root(props) {
             inputText={""}
             disabled={true}
             isBlur={false}
+            theme={"light"}
+            setTheme={() => {}}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </div>

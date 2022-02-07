@@ -100,6 +100,7 @@ const App = () => {
                 <PrivacyPolicy path="/privacy-policy" />
                 <AboutUs path="/aboutus" />
                 <RedirectPage path="/verify" />
+                <Feeds path="/feeds" />
                 <Home path="/home" isFirstAccess={false} />
                 <Redirect from="/" to="/courses/timetable" noThrow />
                 <Redirect from="/timetable" to="/courses/timetable" noThrow />

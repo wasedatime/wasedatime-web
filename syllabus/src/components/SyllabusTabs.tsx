@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useLocation, Link } from "@reach/router";
+import { WithTranslation, withTranslation } from "react-i18next";
 
 const TabsWrapper = styled.div`
   background-color: #f3f3f3;
@@ -22,13 +23,7 @@ const ActiveTab = styled(Tab)`
   background-color: #fff;
 `;
 
-const TabLink = styled(Link)`
-`;
-
-const ActiveTabLink = styled(TabLink)`
-`;
-
-const SyllabusTabs = () => {
+const SyllabusTabs = ({ t }: WithTranslation) => {
   const location = useLocation();
 
   return (
@@ -36,20 +31,20 @@ const SyllabusTabs = () => {
       <Link to="/courses/syllabus">
       {
         location.pathname === "/courses/syllabus"
-          ? <ActiveTab>Courses</ActiveTab>
-          : <Tab>Courses</Tab>
+          ? <ActiveTab>{t("syllabusTabs.courses")}</ActiveTab>
+          : <Tab>{t("syllabusTabs.courses")}</Tab>
       }
       </Link>
       
       <Link to="/courses/labs">
       {
         location.pathname === "/courses/labs"
-          ? <ActiveTab>Labs</ActiveTab>
-          : <Tab>Labs</Tab>
+          ? <ActiveTab>{t("syllabusTabs.labs")}</ActiveTab>
+          : <Tab>{t("syllabusTabs.labs")}</Tab>
       }
       </Link>
     </TabsWrapper>
   )
 }
 
-export default SyllabusTabs;
+export default withTranslation("translation")(SyllabusTabs);

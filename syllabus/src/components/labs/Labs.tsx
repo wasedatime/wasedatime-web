@@ -12,6 +12,7 @@ import reviews from "../../assets/lab_reviews_by_school_major.json";
 import debounce from "lodash/debounce";
 import FilterButton from "../syllabus/FilterButton";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
+import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 
 const LabsOuterWrapper = styled.div`
   display: flex;
@@ -35,13 +36,17 @@ const LabsWrapper = styled.div`
 
 const FilterWrapper = styled.div`
   flex: 20em;
-  padding: 0px 2em 0px 1em;
+  padding: 0px 2em 1em 1em;
 
   height: calc(100vh - 96px);
   ${media.tablet`
     height: calc(100vh - 156px);
   `}
   overflow-y: auto;
+  ::-webkit-scrollbar {
+    width: 0;
+    // background: transparent;
+  }
 `;
 
 const ShorterFilterWrapper = styled.div`
@@ -55,7 +60,7 @@ const LabsList = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 2%;
+  gap: 4%;
   justify-content: center;
   align-items: flex-start;
   align-content:flex-start;
@@ -65,6 +70,7 @@ const LabsList = styled.div`
   ${media.tablet`
     height: calc(100vh - 156px);
   `}
+
   overflow-y: auto;
 `;
 
@@ -181,7 +187,19 @@ class Labs extends React.Component<Props, State> {
 
         <LabsWrapper>
           <LabsList>
-            {school && major && reviews[school][major]?.map(lab => (!searchTerm || lab.lab.includes(searchTerm)) && <Lab name={lab.lab} reviews={lab.reviews} school={school} />)}
+            {
+              school && major && reviews[school][major]
+                ? (
+                  reviews[school][major].length > 0
+                    ? reviews[school][major].map(lab => (!searchTerm || lab.lab.includes(searchTerm)) && <Lab name={lab.lab} reviews={lab.reviews} school={school} />)
+                    : (<Message warning size="tiny" style={{ margin: "1em" }}>
+                    <h5>There is no review for this major now... Please check reviews of other majors</h5>
+                  </Message>)
+                  )
+                : (<Message warning size="tiny" style={{ margin: "1em" }}>
+                <h5>Please choose a school and a major in the filter</h5>
+              </Message>)
+            }
           </LabsList>
           
           <MediaQuery minWidth={sizes.desktop}>

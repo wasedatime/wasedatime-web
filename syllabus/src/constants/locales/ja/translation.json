@@ -30,5 +30,9 @@
   "labs": {
     "title": "研究室",
     "searchBarPlaceholder": "教授の英語名で検索..."
+  },
+  "syllabusTabs": {
+    "courses": "授業",
+    "labs": "研究室"
   }
 }

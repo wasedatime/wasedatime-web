@@ -312,7 +312,11 @@ const Bus = (): JSX.Element => {
 
   const { t, i18n } = useTranslation();
   useEffect(() => {
-    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
+    console.log('====================================');
+    console.log(i18n);
+    console.log(t);
+    console.log('====================================');
+    // i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
   }, []);
 
   const lng = i18n.language;

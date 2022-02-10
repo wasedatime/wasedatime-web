@@ -28,8 +28,8 @@ const TextLogo = styled.img`
 const NavItemBlock = styled.div`
   display: flex;
   flex-direction: row;
-  color: ${(props) =>
-    props.isCurrentPath ? props.theme.colorPrimary : "#fff"};
+  /* color: ${(props) =>
+    props.isCurrentPath ? props.theme.colorPrimary : "#fff"}; */
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;
@@ -52,7 +52,7 @@ const NavItemText = styled.span`
   margin: 0px;
   margin-left: 10px;
   text-align: left;
-  color: #fff;
+  /* color: #fff; */
   line-height: 2;
   height: 40px;
   opacity: ${(props) => (props.expanded ? "1" : "0")};
@@ -120,15 +120,20 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
               expanded={expanded ? 1 : 0}
             >
               <NavItemBlock
+                className='group text-white dark:text-dark-text1'
                 expanded={expanded ? 1 : 0}
                 isCurrentPath={item.path === currentPath}
               >
                 <FontAwesomeIcon
+                  className='group-hover:text-primaryDarker dark:group-hover:text-primaryDarker'
                   icon={item.icon}
                   size="2x"
                   transform="shrink-2"
                 />
-                <NavItemText expanded={expanded ? 1 : 0}>
+                <NavItemText
+                  className='group-hover:text-primaryDarker dark:group-hover:text-primaryDarker'
+                  expanded={expanded ? 1 : 0}
+                >
                   {item.name}
                 </NavItemText>
               </NavItemBlock>

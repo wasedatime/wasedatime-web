@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import { ThemeContext } from "../utils/themeContext";
 
 const FeedsWrapper = styled.div`
   display: flex;
@@ -20,6 +21,7 @@ const HeaderWrapper = styled.div`
 const Feeds = ({ path }: { path: string }) => {
   const [ feedsLoaded, setFeedsLoaded ] = React.useState(false);
   const { t, i18n } = useTranslation();
+  const { theme, setTheme } = React.useContext(ThemeContext);
 
   const feedsDomain = process.env.NODE_ENV === 'development'
     ? "http://localhost:8083"
@@ -38,6 +40,8 @@ const Feeds = ({ path }: { path: string }) => {
           disabled={true}
           isBlur={false}
           changeLang={(lng) => i18n.changeLanguage(lng)}
+          theme={theme}
+          setTheme={setTheme}
         />
       </HeaderWrapper>
       <div>

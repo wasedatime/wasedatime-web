@@ -1,9 +1,10 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, { useState, useContext, lazy, Suspense } from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { Helmet } from "react-helmet";
+import { ThemeContext } from "../../utils/themeContext";
 
 import OurMission from "./OurMission";
 import JoinUs from "./JoinUs";
@@ -38,6 +39,7 @@ const AboutUsMenu = styled.div`
 `;
 
 const AboutUs = (props: { path: string }) => {
+  const { theme, setTheme } = useContext(ThemeContext);
   const [activePage, setActivePage] = useState("our mission");
   const { t, i18n } = useTranslation();
   const changeLanguage = (lng) => {
@@ -52,7 +54,7 @@ const AboutUs = (props: { path: string }) => {
   return (
     <AboutUsWrapper id="aboutus_wrapper">
       <Helmet>
-        <title>WasedaTime -　About Us</title>
+        <title>WasedaTime - About Us</title>
         <meta
           name="description"
           content="Introduce Wasedatime's mission and meet the team."
@@ -72,6 +74,8 @@ const AboutUs = (props: { path: string }) => {
           inputText={""}
           disabled={true}
           isBlur={false}
+          theme={theme}
+          setTheme={setTheme}
           changeLang={changeLanguage}
         />
       </HeaderWrapper>

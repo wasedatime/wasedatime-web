@@ -26,6 +26,7 @@ import {
   gaUserSignInFailure,
   gaUserSignOut,
 } from "./ga/eventActions";
+import { ThemeProvider } from "./utils/themeContext"
 
 const NotFound = ({ default: boolean }) => {
   navigateToUrl("/");
@@ -82,31 +83,34 @@ const App = () => {
         <meta property="og:site_name" content="WasedaTime - Home" />
       </Helmet>
       <CommonStyle />
-      <ErrorBoundary
-        fallback={({ error, componentStack, resetError }) => (
-          <ErrorFallback error={error} resetError={resetError} />
-        )}
-      >
-        <Suspense fallback={<LoadingSpinner message={"Loading..."} />}>
-          {localStorage.getItem("isFirstAccess") === null ||
-          localStorage.getItem("isFirstAccess") === "true" ? (
-            <Home path="/" isFirstAccess={true} />
-          ) : (
-            <Router>
-              <TermsOfService path="/terms-of-service" />
-              <PrivacyPolicy path="/privacy-policy" />
-              <AboutUs path="/aboutus" />
-              <RedirectPage path="/verify" />
-              <Feeds path="/feeds" />
-              <Home path="/home" isFirstAccess={false} />
-              <Redirect from="/" to="/courses/timetable" noThrow />
-              <Redirect from="/timetable" to="/courses/timetable" noThrow />
-              <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
-              <NotFound default />
-            </Router>
+      
+      <ThemeProvider>
+        <ErrorBoundary
+          fallback={({ error, componentStack, resetError }) => (
+            <ErrorFallback error={error} resetError={resetError} />
           )}
-        </Suspense>
-      </ErrorBoundary>
+        >
+          <Suspense fallback={<LoadingSpinner message={"Loading..."} />}>
+            {localStorage.getItem("isFirstAccess") === null ||
+            localStorage.getItem("isFirstAccess") === "true" ? (
+              <Home path="/" isFirstAccess={true} />
+            ) : (
+              <Router>
+                <TermsOfService path="/terms-of-service" />
+                <PrivacyPolicy path="/privacy-policy" />
+                <AboutUs path="/aboutus" />
+                <RedirectPage path="/verify" />
+                <Feeds path="/feeds" />
+                <Home path="/home" isFirstAccess={false} />
+                <Redirect from="/" to="/courses/timetable" noThrow />
+                <Redirect from="/timetable" to="/courses/timetable" noThrow />
+                <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
+                <NotFound default />
+              </Router>
+            )}
+          </Suspense>
+        </ErrorBoundary>
+      </ThemeProvider>
     </React.Fragment>
   );
 };

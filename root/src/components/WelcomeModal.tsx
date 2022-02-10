@@ -27,10 +27,11 @@ const modalStyle = {
   },
   content: {
     position: "absolute",
-    top: "20vh",
-    height: "450px",
-    left: "30vw",
-    right: "30vw",
+    top: "calc((100vh - 495px) / 2)",
+    width: "450px",
+    height: "auto",
+    maxHeight: "495px",
+    left: "calc((100vw - 450px) / 2)",
     background: "#fff",
     overflowY: "auto",
     overflowScrolling: "touch",
@@ -45,11 +46,11 @@ const mobileModalStyle = {
   overlay: modalStyle.overlay,
   content: {
     ...modalStyle.content,
-    top: "5vh",
-    height: "auto",
-    maxHeight: "570px",
-    left: "10vw",
-    right: "10vw",
+    top: "calc((100vh - 540px) / 2)",
+    width: "300px",
+    maxHeight: "540px",
+    left: "calc((100vw - 300px) / 2)",
+    fontSize: "14px",
   },
 };
 

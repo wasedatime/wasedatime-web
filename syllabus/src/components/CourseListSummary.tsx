@@ -12,6 +12,7 @@ import { InvisibleButton } from "@app/components/styles/Button";
 import SortingOption from "@app/constants/sorting-options";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type SortByButtonProps = {
   isSortingOptionOpen: boolean;
@@ -73,6 +74,8 @@ const CourseListSummary = ({
   changeSortingOption,
   t,
 }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   const sortingOptions = [
     {
       key: SortingOption.ADDED_ORDER,

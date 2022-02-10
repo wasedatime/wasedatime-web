@@ -1,6 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
+import { ThemeContext } from "../../utils/theme-context";
 
 const colorIds: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
 
@@ -30,6 +31,7 @@ interface Props {
 }
 
 const ColorSelector = ({ handleChangeColor }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
   return (
     <div>
       {colorIds.map((id: number) => (

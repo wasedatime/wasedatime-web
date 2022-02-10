@@ -15,6 +15,7 @@ import Lab from "@app/components/labs/Lab";
 import SchoolMajorSelector from "@app/components/labs/SchoolMajorSelector";
 import FilterButton from "@app/components/syllabus/FilterButton";
 import SyllabusTabs from "@app/components/SyllabusTabs";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type ThankMessageProps = {
   isDisplayed: boolean;
@@ -211,6 +212,8 @@ class Labs extends React.Component<Props, State> {
     };
   }
 
+  static contextType = ThemeContext;
+
   updateSearchTerm = () => {
     this.setState((prevState, props) => {
       return {
@@ -238,6 +241,7 @@ class Labs extends React.Component<Props, State> {
     const { t, i18n } = this.props;
     const { school, major, inputText, searchTerm, isThankMessageDisplayed } =
       this.state;
+    const { theme, setTheme } = this.context;
 
     return (
       <LabsOuterWrapper className="theme-default">

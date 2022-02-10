@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import { CourseWithOcc } from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type StyledCourseColumnProps = {
   displayPeriods: number;
@@ -96,6 +97,8 @@ interface Props extends WithTranslation {
 }
 
 const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+  
   const displayPeriods = Math.max(largestPeriod, 5);
   // a distinct course list has no occurrence overlaps between its course items.
   const distinctCourseLists = [[]];

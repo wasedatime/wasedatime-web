@@ -21,6 +21,7 @@ import { Article, Section, Subheading } from "@app/components/styles/Article";
 import AddedCourseItemContainer from "@app/containers/AddedCourseItemContainer";
 import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer";
 import Course from "@app/types/course";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type CourseListWrapperProps = {
   innerRef: any;
@@ -115,6 +116,8 @@ class AddedCourseList extends React.Component<Props, State> {
     };
   }
 
+  static contextType = ThemeContext;
+
   componentDidMount() {
     this.createStickyWrapper();
   }
@@ -137,6 +140,7 @@ class AddedCourseList extends React.Component<Props, State> {
 
   render() {
     const { addedCourses, t } = this.props;
+    const { theme, setTheme } = this.context;
 
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>

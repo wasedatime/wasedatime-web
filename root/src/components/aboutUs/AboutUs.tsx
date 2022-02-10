@@ -14,7 +14,7 @@ import OurMission from "@app/components/aboutUs/OurMission";
 import Partners from "@app/components/aboutUs/Partners";
 import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
 import { gaLanguage } from "@app/ga/eventCategories";
-import { ThemeContext } from "@app/utils/themeContext";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const MeetOurTeam = lazy(
   () => import("@app/components/aboutUs/MeetOurTeam/MeetOurTeam")

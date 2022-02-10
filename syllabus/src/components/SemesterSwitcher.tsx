@@ -12,6 +12,7 @@ import styled from "styled-components";
 
 import { InvisibleButton } from "@app/components/styles/Button";
 import QuarterSwitch from "@app/components/timetable/QuarterSwitch";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type ExtendedInvisibleButtonProps = {
   small: boolean;
@@ -81,6 +82,8 @@ const SemesterSwitcher = ({
   toggleQuarter,
   isSmallSize,
 }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+  
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
       <ExtendedRowWrapper small={isSmallSize}>

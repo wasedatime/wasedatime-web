@@ -14,7 +14,7 @@ import titleLogo from "@app/assets/img/home/title-logo.svg";
 import WelcomeModal from "@app/components/WelcomeModal";
 import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
 import { gaLanguage } from "@app/ga/eventCategories";
-import { ThemeContext } from "@app/utils/themeContext";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;

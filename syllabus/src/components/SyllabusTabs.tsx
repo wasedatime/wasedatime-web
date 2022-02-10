@@ -3,6 +3,7 @@ import React from "react";
 import { useLocation, Link } from "@reach/router";
 import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const TabsWrapper = styled.div`
   background-color: #f3f3f3;
@@ -26,6 +27,7 @@ const ActiveTab = styled(Tab)`
 
 const SyllabusTabs = ({ t }: WithTranslation) => {
   const location = useLocation();
+  const { theme, setTheme } = React.useContext(ThemeContext);
 
   return (
     <TabsWrapper>

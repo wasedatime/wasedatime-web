@@ -16,6 +16,7 @@ import ColorSelector from "@app/components/timetable/ColorSelector";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -80,6 +81,7 @@ const CourseAndPrefItem = ({
   handleRemoveCourse,
   handleChangeColor,
 }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
   const { title, instructor } = getCourseTitleAndInstructor(
     course,
     displayLang

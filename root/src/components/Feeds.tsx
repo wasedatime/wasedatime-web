@@ -5,7 +5,7 @@ import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { ThemeContext } from "@app/utils/themeContext";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const FeedsWrapper = styled.div`
   display: flex;

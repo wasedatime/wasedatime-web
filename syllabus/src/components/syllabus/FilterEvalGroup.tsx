@@ -9,6 +9,7 @@ import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
 
 import FilterGroup from "@app/components/syllabus/FilterGroup";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const Range = Slider.createSliderWithTooltip(Slider.Range);
 
@@ -74,6 +75,8 @@ const FilterEvalGroup = ({
   specialInputName,
   checkedSpecialInputs,
 }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+  
   return (
     <div>
       <StyledFormLabel>

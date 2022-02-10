@@ -320,6 +320,9 @@ const Bus = (): JSX.Element => {
   const clearDatetime = (): void => setDate(new Date());
 
   const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
+  }, []);
 
   const lng = i18n.language;
   const { wasedaStatus, nishiStatus } = getBusStatuses(date, lng, t);

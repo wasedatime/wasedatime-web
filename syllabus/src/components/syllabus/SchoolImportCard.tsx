@@ -6,6 +6,7 @@ import Image from "semantic-ui-react/dist/commonjs/elements/Image";
 import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer";
 import Card from "semantic-ui-react/dist/commonjs/views/Card";
 import styled from "styled-components";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const SchoolCardWrapper = styled(Dimmer.Dimmable)`
   color: rgba(0, 0, 0, 0.05);
@@ -43,6 +44,8 @@ const SchoolImportCard = ({
   checked,
   onCheck,
 }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+  
   const handleOnClick = () => {
     !isBannedToLoad && (loaded ? onCheck() : onDownload());
   };

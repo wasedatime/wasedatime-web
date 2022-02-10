@@ -12,6 +12,7 @@ import FilterGroup from "@app/components/syllabus/FilterGroup";
 import FilterOption from "@app/constants/syllabus-filter";
 import SchoolFilterContainer from "@app/containers/SchoolFilterContainer";
 import FilterGroups from "@app/types/filter";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type FilterWrapperProps = {
   isSideBar: boolean;
@@ -78,6 +79,8 @@ const Filter = ({
   isSideBar,
   t,
 }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+  
   const checkedSchools = filterGroups[FilterOption.SCHOOL];
 
   const semesterLegend = t("syllabus.Semesters");

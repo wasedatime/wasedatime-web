@@ -7,6 +7,7 @@ import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 import Divider from "semantic-ui-react/dist/commonjs/elements/Divider";
 import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import { ThemeContext } from "../../utils/theme-context";
 
 interface Props extends WithTranslation {
   closeModal: () => void;
@@ -111,6 +112,8 @@ class AddReviewForm extends React.Component<Props, State> {
     paintedBenefitStars: 0,
   };
 
+  static contextType = ThemeContext;
+
   displayStars = (label, selectedStar, paintedStar) => {
     let stars = [];
     for (let n = 1; n <= 5; n++) {
@@ -133,23 +136,16 @@ class AddReviewForm extends React.Component<Props, State> {
           ? "orange"
           : "#ddd";
 
+      const newStateOnMouseOver = { [paintedStarsLabel]: n } as Pick<State, keyof State>;
+      const newStateOnMouseOut = { [paintedStarsLabel]: selectedStar } as Pick<State, keyof State>;
+
       stars.push(
         <FontAwesomeIcon
           key={n}
           icon={faStar}
           style={{ color: color, cursor: "pointer" }}
-          onMouseOver={() =>
-            this.setState({ [paintedStarsLabel]: n } as Pick<
-              State,
-              keyof State
-            >)
-          }
-          onMouseOut={() =>
-            this.setState({ [paintedStarsLabel]: selectedStar } as Pick<
-              State,
-              keyof State
-            >)
-          }
+          onMouseOver={() => this.setState(newStateOnMouseOver)}
+          onMouseOut={() => this.setState(newStateOnMouseOut)}
           onClick={() => this.props.handleScaleChange(label, n)}
         />
       );
@@ -187,6 +183,7 @@ class AddReviewForm extends React.Component<Props, State> {
       paintedDifficultyStars,
       paintedBenefitStars,
     } = this.state;
+    const { theme, setTheme } = this.context;
 
     return (
       <div>

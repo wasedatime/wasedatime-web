@@ -29,6 +29,7 @@ import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 import { termKeysDecoder } from "@app/utils/term-keys-decoder";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type ExpandableProps = {
   expanded: boolean;
@@ -254,6 +255,7 @@ const CourseItem = ({
   t,
   i18n,
 }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
   const [expanded, setExpanded] = useState(
     window.location.search.includes(course[SyllabusKey.ID])
   );

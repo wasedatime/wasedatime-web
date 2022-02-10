@@ -15,6 +15,7 @@ import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
 import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
 
 import "semantic-ui-css/components/popup.min.css";
+import { ThemeContext } from "../../utils/theme-context";
 
 const Cards = styled(Card.Group)`
   .ui.card > .ui.image {
@@ -93,6 +94,8 @@ class SchoolFilterForm extends React.Component<Props, State> {
       removingSchool: null,
     };
   }
+  
+  static contextType = ThemeContext;
 
   componentDidMount() {
     const { loadedSchools, selectedSchools, handleToggleFilter } = this.props;
@@ -199,6 +202,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
   };
 
   render() {
+    const { theme, setTheme } = this.context;
     const { t, isPopup } = this.props;
 
     return isPopup ? (

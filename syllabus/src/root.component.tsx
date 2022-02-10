@@ -18,6 +18,8 @@ import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/ja/translation.json";
 import { saveState } from "@app/utils/localforage-global-state";
 
+import { ThemeProvider } from "@app/utils/theme-context";
+
 const config = {
   API: {
     endpoints: [
@@ -84,7 +86,9 @@ const Root = () => {
       )}
     >
       <Provider store={reduxStore}>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </Provider>
     </Sentry.ErrorBoundary>
   ) : (

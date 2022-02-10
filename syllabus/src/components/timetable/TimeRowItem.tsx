@@ -1,6 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
+import { ThemeContext } from "../../utils/theme-context";
 
 const StyledListItem = styled("li")`
   display: flex;
@@ -26,6 +27,8 @@ interface Props {
 }
 
 const TimeRowItem = ({ period }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+  
   return (
     <StyledListItem>
       <StyledTime>{period.s}</StyledTime>

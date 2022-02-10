@@ -21,7 +21,7 @@ import {
   gaUserSignOut,
 } from "@app/ga/eventActions";
 import { gaUser } from "@app/ga/eventCategories";
-import { ThemeProvider } from "@app/utils/themeContext";
+import { ThemeProvider } from "@app/utils/theme-context";
 
 const AboutUs = lazy(() => import("@app/components/aboutUs/AboutUs"));
 const Home = lazy(() => import("@app/components/Home"));

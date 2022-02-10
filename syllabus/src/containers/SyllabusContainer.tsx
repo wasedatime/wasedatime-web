@@ -50,6 +50,8 @@ const FetchedCourseList = lazy(
   () => import("@app/components/syllabus/FetchedCourseList")
 );
 
+import { ThemeContext } from "../utils/theme-context";
+
 const SyllabusWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -158,6 +160,8 @@ class SyllabusContainer extends React.Component<
       isFetchingTopCourse: false,
     };
   }
+
+  static contextType = ThemeContext;
 
   componentDidMount() {
     const { courseId } = queryString.parse(window.location.search);
@@ -309,6 +313,7 @@ class SyllabusContainer extends React.Component<
 
   render() {
     const { fetchedCourses: allFetchedCourses, t, i18n } = this.props;
+    const { theme, setTheme } = this.context;
 
     const newI18n = { ...i18n };
 
@@ -361,8 +366,8 @@ class SyllabusContainer extends React.Component<
             inputText={inputText}
             disabled={false}
             isBlur={false}
-            // theme={"light"}
-            // setTheme={() => {}}
+            theme={theme}
+            setTheme={setTheme}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>

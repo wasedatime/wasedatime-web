@@ -20,6 +20,8 @@ import { getCurrentSemester } from "@app/utils/get-current-semesters";
 
 const Timetable = lazy(() => import("@app/components/timetable/Timetable"));
 
+import { ThemeContext } from "../utils/theme-context";
+
 const TimetableWrapper = styled(Wrapper)`
   display: flex;
   flex-direction: column;
@@ -83,6 +85,8 @@ class TimetableContainer extends React.Component<
     };
   }
 
+  static contextType = ThemeContext;
+
   handleToggleSemester = () => {
     this.setState({
       selectedSemester:
@@ -103,6 +107,7 @@ class TimetableContainer extends React.Component<
     const { t, i18n, addedCoursesAndPrefsByTerm, selectedSortingOption } =
       this.props;
     const { selectedSemester, selectedQuarter } = this.state;
+    const { theme, setTheme } = this.context;
 
     const addedCoursesAndPrefs =
       selectedQuarter.length > 0
@@ -137,8 +142,8 @@ class TimetableContainer extends React.Component<
             inputText=""
             disabled
             isBlur={false}
-            // theme={"light"}
-            // setTheme={() => {}}
+            theme={theme}
+            setTheme={setTheme}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>

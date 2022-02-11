@@ -1,9 +1,9 @@
 enum ReviewLang {
-  EN = "English",
-  JA = "Japanese",
-  ZH_TW = "Traditional Chinese",
-  ZH_CN = "Simplified Chinese",
-  KO = "Korean",
+  en = "English",
+  ja = "Japanese",
+  "zh-TW" = "Traditional Chinese",
+  "zh-CN" = "Simplified Chinese",
+  ko = "Korean",
 }
 
 export default ReviewLang;

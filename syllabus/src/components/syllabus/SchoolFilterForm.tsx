@@ -176,15 +176,18 @@ class SchoolFilterForm extends React.Component<Props, State> {
   };
 
   handleSchoolloading = async (school) => {
-    const { loadingSchool, loadedSchools } = this.state;
-    const oldestLoadedSchool = loadedSchools[0];
+    const { selectedSchools, loadSyllabus } = this.props;
+    const { loadedSchools } = this.state;
     let newLoadedSchools = [...loadedSchools];
-
-    if (loadedSchools.length >= 10) newLoadedSchools.splice(0, 1);
+    
+    if (loadedSchools.length >= 10) {
+      if (selectedSchools.includes(loadedSchools[0])) this.props.handleToggleFilter(loadedSchools[0]);
+      newLoadedSchools.splice(0, 1);
+    }
 
     this.setState({ loadingSchool: school });
     newLoadedSchools.push(school);
-    await this.props.loadSyllabus(school);
+    await loadSyllabus(school);
 
     this.setState(
       {

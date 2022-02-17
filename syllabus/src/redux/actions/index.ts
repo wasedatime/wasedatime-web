@@ -83,7 +83,7 @@ export const fetchCourses = () => async (
   var updatedSchools = {};
   const schoolKeys = Object.keys(schools).filter((schoolKey) => {
     const exp = schools[schoolKey].exp;
-    return !exp || Date.parse(exp) <= Date.now();
+    return schools[schoolKey].active && (!exp || Date.parse(exp) <= Date.now());
   });
 
   if (schoolKeys.length === 0) return;

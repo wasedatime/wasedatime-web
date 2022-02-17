@@ -95,8 +95,8 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
         disabled={true}
         isBlur={true}
         changeLang={changeLanguage}
-        theme={theme}
-        setTheme={setTheme}
+        // theme={theme}
+        // setTheme={setTheme}
       />
       <StyledArticle>
         <LogoWrapper>

@@ -74,8 +74,8 @@ const AboutUs = (props: { path: string }) => {
           inputText={""}
           disabled={true}
           isBlur={false}
-          theme={theme}
-          setTheme={setTheme}
+          // theme={theme}
+          // setTheme={setTheme}
           changeLang={changeLanguage}
         />
       </HeaderWrapper>

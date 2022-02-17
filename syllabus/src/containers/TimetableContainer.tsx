@@ -137,8 +137,8 @@ class TimetableContainer extends React.Component<
             inputText={""}
             disabled={true}
             isBlur={false}
-            theme={"light"}
-            setTheme={() => {}}
+            // theme={"light"}
+            // setTheme={() => {}}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>

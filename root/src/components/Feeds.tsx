@@ -40,8 +40,8 @@ const Feeds = ({ path }: { path: string }) => {
           disabled={true}
           isBlur={false}
           changeLang={(lng) => i18n.changeLanguage(lng)}
-          theme={theme}
-          setTheme={setTheme}
+          // theme={theme}
+          // setTheme={setTheme}
         />
       </HeaderWrapper>
       <div>

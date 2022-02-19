@@ -1,29 +1,45 @@
 {
   "env": {
     "browser": true,
-    "es2021": true
+    "es2021": true,
+    "es6": true
   },
   "extends": [
+    "prettier",
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:prettier/recommended",
-    "prettier",
+    // "plugin:prettier/recommended",
     "airbnb"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 12,
+    "ecmaVersion": "latest",
     "sourceType": "module",
     "project": ["./tsconfig.json"],
     "ecmaFeatures": {
+      "arrowFunctions": true,
       "jsx": true
     }
   },
-  "plugins": ["react", "@typescript-eslint"],
+  "plugins": ["prettier", "react", "@typescript-eslint"],
   "ignorePatterns": [".eslintrc.js"],
   "rules": {
-    "@typescript-eslint/rule-name": "error"
+    "react/function-component-definition": [
+      2,
+      { "namedComponents": "arrow-function" }
+    ],
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "@typescript-eslint/rule-name": "error",
+    "operator-linebreak": [
+      "error",
+      "after",
+      { "overrides": { "?": "ignore", ":": "ignore" } }
+    ],
+    // "prefer-arrow-callback": "error",
+    "quotes": ["error", "double"],
+    "indent": ["error", 2]
   }
 }

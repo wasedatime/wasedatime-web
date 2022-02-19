@@ -24,8 +24,7 @@ const LinksWrapper = styled("div")`
     font-size: 12px;
   }
   opacity: ${(props) => (props.expanded ? "1" : "0")};
-  transition: ${(props) =>
-    props.expanded ? "opacity 0.4s ease 0.2s" : "opacity 0.2s, width 0.2s"};
+  transition: ${(props) => (props.expanded ? "opacity 0.4s ease 0.2s" : "opacity 0.2s, width 0.2s")};
 
   // Solve 'OtherInfo covering Nav' problem in iphone X wide mode
   ${(window.innerWidth < 400 || window.innerHeight < 450) &&
@@ -59,7 +58,8 @@ const OtherLinks = ({ expanded }: Props) => {
     <LinksWrapper expanded={expanded}>
       <Link to="/aboutus">{t("navigation.aboutus")}</Link>
       <br />
-      <Link to="/terms-of-service">{t("user.Terms of Service")}</Link>・
+      <Link to="/terms-of-service">{t("user.Terms of Service")}</Link>
+      ・
       <Link to="/privacy-policy">{t("user.Privacy Policy")}</Link>
       <br />
       <a
@@ -106,7 +106,7 @@ const OtherLinks = ({ expanded }: Props) => {
       Copyright © 2018-2021 WasedaTime
     </LinksWrapper>
   ) : (
-    <div></div>
+    <div />
   );
 };
 

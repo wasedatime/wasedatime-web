@@ -42,10 +42,9 @@ const StyledSpan = styled("span")`
   width: ${(props) => (props.ishovered ? "145px" : "0px")};
   white-space: nowrap;
   overflow-x: hidden;
-  transition: ${(props) =>
-    props.ishovered
-      ? "width 0.5s ease, opacity 0.5s ease 0.1s"
-      : "width 0.5s, opacity 0.2s"};
+  transition: ${(props) => (props.ishovered
+    ? "width 0.5s ease, opacity 0.5s ease 0.1s"
+    : "width 0.5s, opacity 0.2s")};
 `;
 
 interface Props extends WithTranslation {
@@ -54,25 +53,25 @@ interface Props extends WithTranslation {
   isMobileMode: boolean;
 }
 
-const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
+const UserMenu = ({
+  openSignInModal, isHovered, isMobileMode, t,
+}: Props) => {
   const [userAttr, setUserAttr] = useState(null);
   const [isUserIconHovered, setIsUserIconHovered] = useState(false);
   const notSignedIn = !userAttr;
   if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr));
 
   return notSignedIn ? (
-    <React.Fragment>
-      <UserMenuTrigger onClick={openSignInModal}>
-        <FontAwesomeIcon
-          icon={faUserCircle}
-          size="2x"
-          style={{ marginLeft: "4px" }}
-        />
-        {!isMobileMode && (
-          <StyledSpan ishovered={isHovered}>{t("user.Sign in")}</StyledSpan>
-        )}
-      </UserMenuTrigger>
-    </React.Fragment>
+    <UserMenuTrigger onClick={openSignInModal}>
+      <FontAwesomeIcon
+        icon={faUserCircle}
+        size="2x"
+        style={{ marginLeft: "4px" }}
+      />
+      {!isMobileMode && (
+        <StyledSpan ishovered={isHovered}>{t("user.Sign in")}</StyledSpan>
+      )}
+    </UserMenuTrigger>
   ) : (
     <div
       className="relative inline-block text-left"

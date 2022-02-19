@@ -23,7 +23,7 @@ interface ThemeContextInterface {
 }
 
 export const ThemeContext = createContext<ThemeContextInterface | undefined>(
-  undefined
+  undefined,
 );
 
 interface ThemeProviderType {
@@ -58,8 +58,8 @@ export const ThemeProvider = ({
   }, [theme]);
 
   const value: ThemeContextInterface = {
-    setTheme: setTheme,
-    theme: theme,
+    setTheme,
+    theme,
   };
 
   return (

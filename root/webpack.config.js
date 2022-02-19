@@ -31,7 +31,7 @@ module.exports = (webpackConfigEnv, argv) => {
         { test: /\.tsx$/, use: "ts-loader" },
         {
           test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)$/,
-          type: 'asset/inline'
+          type: "asset/inline",
         },
         {
           test: /\.m?js/,
@@ -48,19 +48,28 @@ module.exports = (webpackConfigEnv, argv) => {
             { loader: "css-loader", options: { url: false } },
             "postcss-loader",
           ],
-          sideEffects: true
+          sideEffects: true,
         },
       ],
     },
     plugins: [
       new webpack.EnvironmentPlugin(
         webpackConfigEnv.isDev
-          ? ["PREFIX", "MF_SYLLABUS_DOMAIN", "MF_CAMPUS_DOMAIN", "MF_FEEDS_DOMAIN"]
+          ? [
+              "PREFIX",
+              "MF_SYLLABUS_DOMAIN",
+              "MF_CAMPUS_DOMAIN",
+              "MF_FEEDS_DOMAIN",
+            ]
           : []
       ),
-      new webpack.DefinePlugin(webpackConfigEnv.isDev ? {
-        'process.env.NODE_ENV': JSON.stringify('staging'),
-      } : {}),
+      new webpack.DefinePlugin(
+        webpackConfigEnv.isDev
+          ? {
+              "process.env.NODE_ENV": JSON.stringify("staging"),
+            }
+          : {}
+      ),
       new HtmlWebpackPlugin({
         inject: false,
         template: "src/index.ejs",
@@ -104,7 +113,7 @@ module.exports = (webpackConfigEnv, argv) => {
       }),
       new InjectManifest({
         swSrc: "./service-worker.js",
-        maximumFileSizeToCacheInBytes: 10*1024*1024
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
       }),
       new WebpackPwaManifest({
         filename: "/[name].json",
@@ -114,7 +123,7 @@ module.exports = (webpackConfigEnv, argv) => {
         display: "standalone",
         theme_color: "#000000",
         background_color: "#ffffff",
-        crossorigin: webpackConfigEnv.isDev ? 'use-credentials' : null,
+        crossorigin: webpackConfigEnv.isDev ? "use-credentials" : null,
         icons: [
           {
             src: "./src/assets/img/favicon.ico",

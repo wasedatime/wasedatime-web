@@ -66,7 +66,8 @@ const TermsOfService = (props: Props) => (
       restrictions. Upon termination, your viewing right will also be terminated
       and you should destroy any downloaded materials in your possession whether
       it is printed or electronic format. These Terms of Service has been
-      created with the help of the{" "}
+      created with the help of the
+      {" "}
       <a href="https://www.termsofservicegenerator.net">
         Terms Of Service Generator
       </a>
@@ -127,7 +128,10 @@ const TermsOfService = (props: Props) => (
     <h4 className="text-center my-4">8. Your Privacy</h4>
 
     <p>
-      Please read our <a href="/privacy-policy">Privacy Policy</a>.
+      Please read our
+      {" "}
+      <a href="/privacy-policy">Privacy Policy</a>
+      .
     </p>
 
     <h4 className="text-center my-4">9. Governing Law</h4>

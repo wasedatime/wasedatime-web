@@ -17,11 +17,11 @@ const qrcode = styled("img")`
 const WeChatQRcode = ({ qrcode }) => (
   <Popup
     on="click"
-    trigger={
+    trigger={(
       <button>
-        <MediaIcon src={facebook}></MediaIcon>
+        <MediaIcon src={facebook} />
       </button>
-    }
+    )}
   >
     <Popup.Content>
       <img src={qrcode} />

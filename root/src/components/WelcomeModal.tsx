@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
-import reviewsImg from "../assets/img/home/reviews-example.png";
-import timetableImg1 from "../assets/img/home/timetable-example-1.png";
-import timetableImg2 from "../assets/img/home/timetable-example-2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
@@ -12,6 +9,9 @@ import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { navigateToUrl } from "single-spa";
 import ReactGA from "react-ga";
+import timetableImg2 from "../assets/img/home/timetable-example-2.png";
+import timetableImg1 from "../assets/img/home/timetable-example-1.png";
+import reviewsImg from "../assets/img/home/reviews-example.png";
 import { gaSetLanguage } from "../ga/eventActions";
 import { gaLanguage } from "../ga/eventCategories";
 
@@ -137,7 +137,8 @@ const WelcomeModal = ({
           {t("welcome.useWasedaGmail1")}
           <b style={{ color: "#b51e36" }}>{t("welcome.Waseda Gmail")}</b>
           {t("welcome.useWasedaGmail2")}
-          <br />( ***@***.waseda.jp )
+          <br />
+          ( ***@***.waseda.jp )
         </div>
       </div>
 
@@ -232,25 +233,23 @@ const WelcomeModal = ({
   ];
   return (
     <MediaQuery maxWidth={sizes.tablet}>
-      {(matches) =>
-        matches ? (
-          <Modal
-            isOpen={isModalOpen}
-            style={mobileModalStyle}
-            onRequestClose={closeModal}
-          >
-            {pages[pageIndex]}
-          </Modal>
-        ) : (
-          <Modal
-            isOpen={isModalOpen}
-            style={modalStyle}
-            onRequestClose={closeModal}
-          >
-            {pages[pageIndex]}
-          </Modal>
-        )
-      }
+      {(matches) => (matches ? (
+        <Modal
+          isOpen={isModalOpen}
+          style={mobileModalStyle}
+          onRequestClose={closeModal}
+        >
+          {pages[pageIndex]}
+        </Modal>
+      ) : (
+        <Modal
+          isOpen={isModalOpen}
+          style={modalStyle}
+          onRequestClose={closeModal}
+        >
+          {pages[pageIndex]}
+        </Modal>
+      ))}
     </MediaQuery>
   );
 };

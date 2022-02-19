@@ -4,12 +4,12 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
-import titleLogo from "./../assets/img/home/title-logo.svg";
-import homeBackground from "../assets/img/home/home_background-lg.jpg";
 import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
-import WelcomeModal from "./WelcomeModal";
 import { navigateToUrl } from "single-spa";
 import ReactGA from "react-ga";
+import titleLogo from "../assets/img/home/title-logo.svg";
+import homeBackground from "../assets/img/home/home_background-lg.jpg";
+import WelcomeModal from "./WelcomeModal";
 import { gaAppendActionWithLng, gaChangeLanguage } from "../ga/eventActions";
 import { gaLanguage } from "../ga/eventCategories";
 import { ThemeContext } from "../utils/themeContext";
@@ -88,12 +88,12 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
   return (
     <StyledWrapper background={homeBackground}>
       <Header
-        title={""}
+        title=""
         onInputChange={() => {}}
         placeholder={t("search placeholder")}
-        inputText={""}
-        disabled={true}
-        isBlur={true}
+        inputText=""
+        disabled
+        isBlur
         changeLang={changeLanguage}
         // theme={theme}
         // setTheme={setTheme}
@@ -111,12 +111,12 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
               alt="WasedaTime Text Logo"
             />
           </MainHeading>
-          <Description className='text-white dark:text-dark-text1 text-shadow-sm dark:text-shadow-none'>
+          <Description className="text-white dark:text-dark-text1 text-shadow-sm dark:text-shadow-none">
             {t("about.description")}
           </Description>
           <br />
           <button
-            className='bg-red-800 dark:bg-dark-button rounded-lg text-white px-4 py-2 mx-2'
+            className="bg-light-button dark:bg-dark-button rounded-lg text-white px-4 py-2 mx-2"
             onClick={() => setModalOpen(true)}
           >
             {t("welcome.newFeature")}

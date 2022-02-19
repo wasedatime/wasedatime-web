@@ -3,7 +3,9 @@ import styled from "styled-components";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { useTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFacebook, faInstagram, faLinkedin, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import {
+  faFacebook, faInstagram, faLinkedin, faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Title = styled("h2")`
   width: 50%;
@@ -78,12 +80,12 @@ const partners = [
     links: [
       {
         url: "https://www.facebook.com/SPSEEDPSC",
-        icon: <FontAwesomeIcon icon={faFacebook} />
+        icon: <FontAwesomeIcon icon={faFacebook} />,
       },
       {
         url: "https://www.instagram.com/spse_edp_student_council",
-        icon: <FontAwesomeIcon icon={faInstagram} />
-      }
+        icon: <FontAwesomeIcon icon={faInstagram} />,
+      },
     ],
     members: [
       {
@@ -92,24 +94,24 @@ const partners = [
         links: [
           {
             url: "https://www.linkedin.com/in/peter-chai-233577158/",
-            icon: <FontAwesomeIcon icon={faLinkedin} />
+            icon: <FontAwesomeIcon icon={faLinkedin} />,
           },
           {
             url: "https://www.facebook.com/siyuan.chai.77",
-            icon: <FontAwesomeIcon icon={faFacebook} />
+            icon: <FontAwesomeIcon icon={faFacebook} />,
           },
           {
             url: "https://twitter.com/PeterChai1013",
-            icon: <FontAwesomeIcon icon={faTwitter} />
-          }
-        ]
+            icon: <FontAwesomeIcon icon={faTwitter} />,
+          },
+        ],
       },
       {
         name: "Ghafi Reyhan",
         img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-member2.png",
-        links: []
-      }
-    ]
+        links: [],
+      },
+    ],
   },
   {
     org: "CSSA",
@@ -119,7 +121,7 @@ const partners = [
       //   url: "",
       //   icon: <FontAwesomeIcon icon={faFacebook} />
       // }
-    ]
+    ],
   },
   {
     org: "WaLife",
@@ -129,7 +131,7 @@ const partners = [
       //   url: "",
       //   icon: <FontAwesomeIcon icon={faFacebook} />
       // }
-    ]
+    ],
   },
   {
     org: "WTSA",
@@ -137,15 +139,15 @@ const partners = [
     links: [
       {
         url: "https://www.facebook.com/WasedaTaiwaneseStudentAssociation",
-        icon: <FontAwesomeIcon icon={faFacebook} />
+        icon: <FontAwesomeIcon icon={faFacebook} />,
       },
       {
         url: "https://www.instagram.com/wtsa.jp",
-        icon: <FontAwesomeIcon icon={faInstagram} />
-      }
-    ]
-  }
-]
+        icon: <FontAwesomeIcon icon={faInstagram} />,
+      },
+    ],
+  },
+];
 
 const Partners = () => {
   const { t } = useTranslation();
@@ -155,16 +157,16 @@ const Partners = () => {
       <Title>Collaboration Partners</Title>
       <br />
       <h6 style={{ textAlign: "center" }}>We look forward to collaborating with more circles or organizations!</h6>
-      
+
       <CardArea>
         {
-          partners.map(partner => (
+          partners.map((partner) => (
             <Card key={partner.org}>
-              <OrgImage src={partner.img}></OrgImage>
+              <OrgImage src={partner.img} />
               <OrgName>{partner.org}</OrgName>
               <SocialMediaArea>
                 {
-                  partner.links.map(link => (
+                  partner.links.map((link) => (
                     <a
                       key={link.url}
                       href={link.url}
@@ -179,13 +181,13 @@ const Partners = () => {
               </SocialMediaArea>
               <MembersWrapper>
                 {
-                  partner.members && partner.members.map(member => (
+                  partner.members && partner.members.map((member) => (
                     <MemberWrapper key={member.name}>
                       <MemberImage src={member.img} />
                       <span>{member.name}</span>
                       <SocialMediaArea>
                         {
-                          member.links.map(link => (
+                          member.links.map((link) => (
                             <a
                               key={link.url}
                               href={link.url}

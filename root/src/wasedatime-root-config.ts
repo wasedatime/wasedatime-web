@@ -7,18 +7,18 @@ import {
 import React from "react";
 import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";
-import Nav from "./components/frame/Nav";
-import App from "./App";
 import "./styles/styles.css";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
-import translationEN from "./constants/locales/en/translation.json";
-import translationJA from "./constants/locales/jp/translation.json";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import * as Sentry from "@sentry/react";
 import ReactGA from "react-ga";
 
 import i18next from "i18next";
+import translationJA from "./constants/locales/jp/translation.json";
+import translationEN from "./constants/locales/en/translation.json";
+import App from "./App";
+import Nav from "./components/frame/Nav";
 
 const lifecycles = singleSpaReact({
   React,
@@ -31,7 +31,7 @@ const lifecycles = singleSpaReact({
 });
 
 const routes = constructRoutes(
-  document.querySelector("#single-spa-layout") as HTMLTemplateElement
+  document.querySelector("#single-spa-layout"),
 );
 const applications = constructApplications({
   routes,
@@ -52,7 +52,7 @@ i18nConfig({
   customTranslations: {
     [Lang.EN]: translationEN,
     [Lang.JA]: translationJA,
-  }
+  },
 });
 
 // ===== GA id =====
@@ -62,7 +62,7 @@ i18nConfig({
 if (process.env.NODE_ENV === "development") {
   ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
 } else {
-  ReactGA.initialize(process.env.NODE_ENV === 'production' ? "UA-112185819-1" : "UA-112185819-3", { debug: false, titleCase: false });
+  ReactGA.initialize(process.env.NODE_ENV === "production" ? "UA-112185819-1" : "UA-112185819-3", { debug: false, titleCase: false });
   Sentry.init({
     dsn:
       "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
@@ -73,7 +73,7 @@ if (process.env.NODE_ENV === "development") {
 
 ReactDOM.render(
   React.createElement("span"),
-  document.getElementById("loading")
+  document.getElementById("loading"),
 );
 ReactDOM.render(React.createElement(Nav), document.getElementById("nav"));
 

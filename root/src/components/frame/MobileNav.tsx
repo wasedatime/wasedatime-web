@@ -19,9 +19,9 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
   if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr));
 
   const styledLinks = navItems.map((item) => {
-    const itemName = item["name"];
-    const itemPath = item["path"];
-    const itemIcon = item["icon"];
+    const itemName = item.name;
+    const itemPath = item.path;
+    const itemIcon = item.icon;
     const fontBase = (
       <FontAwesomeIcon
         icon={itemIcon}
@@ -47,16 +47,16 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
   return (
     <nav
       className="fixed bottom-0 flex flex-row bg-black w-full"
-      style={{ height: "60px", zIndex: 1000, padding: "8px", width: "100vw" }}
+      style={{
+        height: "60px", zIndex: 1000, padding: "8px", width: "100vw",
+      }}
     >
       {styledLinks}
 
       <a className="flex-1 text-center">
         <button
           className="focus:outline-none"
-          onClick={() =>
-            userAttr ? setSignOutAvailable(true) : openSignInModal()
-          }
+          onClick={() => (userAttr ? setSignOutAvailable(true) : openSignInModal())}
           onMouseLeave={() => setSignOutAvailable(false)}
         >
           {userAttr ? (

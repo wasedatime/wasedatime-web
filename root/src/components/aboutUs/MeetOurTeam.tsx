@@ -19,7 +19,7 @@ import zhaohuaibo from "../../assets/img/contributors/zhaohuaibo.jpg";
 import hatori from "../../assets/img/contributors/hatori.jpg";
 import yaoyuan from "../../assets/img/contributors/yaoyuan.jpg";
 import naomi from "../../assets/img/contributors/naomi.jpg";
-import alina from "../../assets/img/contributors/alina.jpg"
+import alina from "../../assets/img/contributors/alina.jpg";
 
 import facebook from "../../assets/img/socialmediaicon/facebook.png";
 import homepage from "../../assets/img/socialmediaicon/homepage.png";
@@ -97,13 +97,13 @@ const MeetOurTeam = () => {
   const { t } = useTranslation();
   return (
     <Wrapper>
-      <br></br>
+      <br />
       <Title>Meet Our Talented Team!</Title>
-      <br></br>
+      <br />
       <CardArea>
         {/* ----------------------------------Hao */}
         <Card>
-          <MemberImage src={hao}></MemberImage>
+          <MemberImage src={hao} />
           <MemberName>Hao</MemberName>
           <MemberPosition>Project Leader</MemberPosition>
 
@@ -113,21 +113,21 @@ const MeetOurTeam = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={github}></MediaIcon>
+              <MediaIcon src={github} />
             </a>
             <a
               href="https://www.facebook.com/hao8711/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={facebook}></MediaIcon>
+              <MediaIcon src={facebook} />
             </a>
             <a
               href="https://www.instagram.com/yh_hao_are_you/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={instagram}></MediaIcon>
+              <MediaIcon src={instagram} />
             </a>
           </SocialMediaArea>
           <MemberVision>WasedaTime, a better Waseda life</MemberVision>
@@ -135,7 +135,7 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------Austin */}
         <Card>
-          <MemberImage src={austin}></MemberImage>
+          <MemberImage src={austin} />
           <MemberName>Austin Zhu</MemberName>
           <MemberPosition>Project Co-leader</MemberPosition>
           <SocialMediaArea>
@@ -144,21 +144,21 @@ const MeetOurTeam = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={instagram}></MediaIcon>
+              <MediaIcon src={instagram} />
             </a>
             <a
               href="https://austinzhu.dev/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={homepage}></MediaIcon>
+              <MediaIcon src={homepage} />
             </a>
             <a
               href="https://www.linkedin.com/in/yiming-zhu-622a98152"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={linkedin}></MediaIcon>
+              <MediaIcon src={linkedin} />
             </a>
             {/* <a href="" target="_blank" rel="noopener noreferrer">
                             <MediaIcon src={wechat}></MediaIcon>
@@ -169,39 +169,39 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------Mei */}
         <Card>
-          <MemberImage src={mei}></MemberImage>
+          <MemberImage src={mei} />
           <MemberName>Mei</MemberName>
           <MemberPosition>Frontend Engineer</MemberPosition>
           {/* <MemberPosition>{t("aboutus.Frontend Engineer")}</MemberPosition> */}
-          <MemberVision></MemberVision>
+          <MemberVision />
           <SocialMediaArea>
             <a
               href="https://twitter.com/Rimei9623"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={twitter}></MediaIcon>
+              <MediaIcon src={twitter} />
             </a>
             <a
               href="https://www.instagram.com/limengmmmm/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={instagram}></MediaIcon>
+              <MediaIcon src={instagram} />
             </a>
             <a
               href="https://www.weibo.com/u/5000065316/home"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={weibo}></MediaIcon>
+              <MediaIcon src={weibo} />
             </a>
           </SocialMediaArea>
         </Card>
 
         {/* ----------------------------------Tang */}
         <Card>
-          <MemberImage src={tang}></MemberImage>
+          <MemberImage src={tang} />
           <MemberName>Yeping Tang</MemberName>
           {/* <MemberName>{t("aboutus.Yeping Tang")}</MemberName> */}
           <MemberPosition>Frontend Engineer</MemberPosition>
@@ -211,7 +211,7 @@ const MeetOurTeam = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={facebook}></MediaIcon>
+              <MediaIcon src={facebook} />
             </a>
           </SocialMediaArea>
           <MemberVision>
@@ -221,7 +221,7 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------Gu */}
         <Card>
-          <MemberImage src={gu}></MemberImage>
+          <MemberImage src={gu} />
           <MemberName>Jiaxian Gu</MemberName>
           <MemberPosition>Frontend Engineer</MemberPosition>
 
@@ -231,21 +231,21 @@ const MeetOurTeam = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={instagram}></MediaIcon>
+              <MediaIcon src={instagram} />
             </a>
             <a
               href="mailto:gujiaxian1997@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={email}></MediaIcon>
+              <MediaIcon src={email} />
             </a>
             <a
               href="https://www.faeook.com/GuJiaxian"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={facebook}></MediaIcon>
+              <MediaIcon src={facebook} />
             </a>
           </SocialMediaArea>
           <MemberVision>Think different</MemberVision>
@@ -253,10 +253,10 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------george */}
         <Card>
-          <MemberImage src={george}></MemberImage>
+          <MemberImage src={george} />
           <MemberName>George Xia</MemberName>
           <MemberPosition>Product Manager</MemberPosition>
-          <MemberVision></MemberVision>
+          <MemberVision />
           {/* <SocialMediaArea>
                         <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
                             <MediaIcon src={facebook} href="www.google.com" target="_blank" rel="noopener noreferrer"></MediaIcon>
@@ -266,86 +266,86 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------zenda */}
         <Card>
-          <MemberImage src={zenda}></MemberImage>
+          <MemberImage src={zenda} />
           <MemberName>Zenda Chen</MemberName>
           <MemberPosition>Marketing</MemberPosition>
-          <MemberVision></MemberVision>
+          <MemberVision />
           <SocialMediaArea>
             <a
               href="mailto:zenda0211@fuji.waseda.jp"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={email}></MediaIcon>
+              <MediaIcon src={email} />
             </a>
             <a
               href="https://www.instagram.com/zenda_chen/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={instagram}></MediaIcon>
+              <MediaIcon src={instagram} />
             </a>
           </SocialMediaArea>
         </Card>
 
         {/* ----------------------------------kaede */}
         <Card>
-          <MemberImage src={kaede}></MemberImage>
+          <MemberImage src={kaede} />
           <MemberName>Kaede Iijima</MemberName>
           <MemberPosition>Software Engineer</MemberPosition>
-          <MemberVision></MemberVision>
+          <MemberVision />
           <SocialMediaArea>
             <a
               href="https://github.com/kaedejima"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={github}></MediaIcon>
+              <MediaIcon src={github} />
             </a>
             <a
               href="https://www.linkedin.com/in/kaede-i-619a141aa/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={linkedin}></MediaIcon>
+              <MediaIcon src={linkedin} />
             </a>
           </SocialMediaArea>
         </Card>
 
         {/* ----------------------------------kaiqing */}
         <Card>
-          <MemberImage src={kaiqing}></MemberImage>
+          <MemberImage src={kaiqing} />
           <MemberName>Kaiqing</MemberName>
           <MemberPosition>Marketing</MemberPosition>
-          <MemberVision></MemberVision>
+          <MemberVision />
           <SocialMediaArea>
             <a
               href=" https://instagram.com/kaiqing_chang?r=nametag"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={instagram}></MediaIcon>
+              <MediaIcon src={instagram} />
             </a>
             <a
               href="https://www.linkedin.com/in/kaiqing-chang-03158b1ba/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={linkedin}></MediaIcon>
+              <MediaIcon src={linkedin} />
             </a>
             <a
               href="mailto:kaiqing05@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={email}></MediaIcon>
+              <MediaIcon src={email} />
             </a>
           </SocialMediaArea>
         </Card>
 
         {/* ----------------------------------Hatori */}
         <Card>
-          <MemberImage src={hatori}></MemberImage>
+          <MemberImage src={hatori} />
           <MemberName>Zhen Cao</MemberName>
           <MemberPosition>Frontend Engineer</MemberPosition>
           <SocialMediaArea>
@@ -354,14 +354,14 @@ const MeetOurTeam = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={linkedin}></MediaIcon>
+              <MediaIcon src={linkedin} />
             </a>
             <a
               href="https://www.facebook.com/profile.php?id=100023624678107"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={facebook}></MediaIcon>
+              <MediaIcon src={facebook} />
             </a>
           </SocialMediaArea>
           <MemberVision>{t("aboutus.seize the day")}</MemberVision>
@@ -369,24 +369,24 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------yaoyuan */}
         <Card>
-          <MemberImage src={yaoyuan}></MemberImage>
+          <MemberImage src={yaoyuan} />
           <MemberName>Yuan Yao</MemberName>
           <MemberPosition>Backend Engineer</MemberPosition>
-          <MemberVision></MemberVision>
+          <MemberVision />
           <SocialMediaArea>
             <a
               href="https://github.com/youenn98/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={github}></MediaIcon>
+              <MediaIcon src={github} />
             </a>
           </SocialMediaArea>
         </Card>
 
         {/* ----------------------------------zhaohuaibo */}
         <Card>
-          <MemberImage src={zhaohuaibo}></MemberImage>
+          <MemberImage src={zhaohuaibo} />
           <MemberName>Huaibo Zhao</MemberName>
           <MemberPosition>Frontend Engineer</MemberPosition>
 
@@ -396,7 +396,7 @@ const MeetOurTeam = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={email}></MediaIcon>
+              <MediaIcon src={email} />
             </a>
           </SocialMediaArea>
           <MemberVision>
@@ -407,7 +407,7 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------naomi */}
         <Card>
-          <MemberImage src={naomi}></MemberImage>
+          <MemberImage src={naomi} />
           <MemberName>Naomi Shen</MemberName>
           <MemberPosition>Backend Apprentice</MemberPosition>
 
@@ -417,7 +417,7 @@ const MeetOurTeam = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={instagram}></MediaIcon>
+              <MediaIcon src={instagram} />
             </a>
           </SocialMediaArea>
           <MemberVision>Potato life is da best life</MemberVision>
@@ -425,12 +425,12 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------alina */}
         <Card>
-          <MemberImage src={alina}></MemberImage>
+          <MemberImage src={alina} />
           <MemberName>Alina Kenny</MemberName>
           <MemberPosition>Business</MemberPosition>
           <SocialMediaArea>
             <a href="https://www.instagram.com/alina_kenny119/" target="_blank" rel="noopener noreferrer">
-              <MediaIcon src={instagram} href="www.google.com"></MediaIcon>
+              <MediaIcon src={instagram} href="www.google.com" />
             </a>
           </SocialMediaArea>
           <MemberVision>Dream, believe, and achieve!</MemberVision>
@@ -438,10 +438,10 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------kong */}
         <Card>
-          <MemberImage src={kong}></MemberImage>
+          <MemberImage src={kong} />
           <MemberName>Kong</MemberName>
           <MemberPosition>Contributor</MemberPosition>
-          <MemberVision></MemberVision>
+          <MemberVision />
           {/* <SocialMediaArea>
               <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
                   <MediaIcon src={facebook} href="www.google.com" target="_blank" rel="noopener noreferrer"></MediaIcon>
@@ -451,41 +451,41 @@ const MeetOurTeam = () => {
 
         {/* ----------------------------------Oscar */}
         <Card>
-          <MemberImage src={oscar}></MemberImage>
+          <MemberImage src={oscar} />
           <MemberName>Oscar Wang</MemberName>
           <MemberPosition>Founder (Alumni) </MemberPosition>
-          <MemberVision></MemberVision>
+          <MemberVision />
           <SocialMediaArea>
             <a
               href="https://github.com/oscarwang114"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={github}></MediaIcon>
+              <MediaIcon src={github} />
             </a>
             <a
               href="https://twitter.com/OscarWang114"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={twitter}></MediaIcon>
+              <MediaIcon src={twitter} />
             </a>
             <a
               href="https://www.facebook.com/haohaowang.oscar"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <MediaIcon src={facebook}></MediaIcon>
+              <MediaIcon src={facebook} />
             </a>
           </SocialMediaArea>
         </Card>
 
         {/* ----------------------------------isabella */}
         <Card>
-          <MemberImage src={isabella}></MemberImage>
+          <MemberImage src={isabella} />
           <MemberName>Isabella Hu</MemberName>
           <MemberPosition>Strategy (Alumni)</MemberPosition>
-          <MemberVision></MemberVision>
+          <MemberVision />
           {/* <SocialMediaArea>
                         <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
                             <MediaIcon src={facebook} href="www.google.com" target="_blank" rel="noopener noreferrer"></MediaIcon>
@@ -493,22 +493,22 @@ const MeetOurTeam = () => {
                     </SocialMediaArea> */}
         </Card>
 
-        <Card></Card>
+        <Card />
 
-        <Card></Card>
+        <Card />
 
-        <Card></Card>
+        <Card />
 
-        <Card></Card>
+        <Card />
 
-        <Card></Card>
+        <Card />
 
-        <Card></Card>
+        <Card />
       </CardArea>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
 
-      <br></br>
+      <br />
     </Wrapper>
   );
 };

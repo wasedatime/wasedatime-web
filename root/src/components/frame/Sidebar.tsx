@@ -19,8 +19,7 @@ const TextLogo = styled.img`
   overflow-x: hidden;
   width: ${(props) => (props.expanded ? "130px" : "0px")};
   opacity: ${(props) => (props.expanded ? "1" : "0")};
-  transition: ${(props) =>
-      props.expanded ? "opacity 0.5s ease-out 0.1s" : "opacity 0.3s"},
+  transition: ${(props) => (props.expanded ? "opacity 0.5s ease-out 0.1s" : "opacity 0.3s")},
     width 0.3s ${(props) => !props.expanded && "0.2s"};
   display: inline-block;
 `;
@@ -28,8 +27,7 @@ const TextLogo = styled.img`
 const NavItemBlock = styled.div`
   display: flex;
   flex-direction: row;
-  /* color: ${(props) =>
-    props.isCurrentPath ? props.theme.colorPrimary : "#fff"}; */
+  /* color: ${(props) => (props.isCurrentPath ? props.theme.colorPrimary : "#fff")}; */
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;
@@ -90,7 +88,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
         onMouseLeave={foldSidebar}
       >
         <Link
-          to={"/home"}
+          to="/home"
           className="flex flex-row items-center"
           style={{
             height: "67px",
@@ -120,18 +118,18 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
               expanded={expanded ? 1 : 0}
             >
               <NavItemBlock
-                className='group text-white dark:text-dark-text1'
+                className="group text-white dark:text-dark-text1"
                 expanded={expanded ? 1 : 0}
                 isCurrentPath={item.path === currentPath}
               >
                 <FontAwesomeIcon
-                  className='group-hover:text-primaryDarker dark:group-hover:text-primaryDarker'
+                  className="group-hover:text-primaryDarker dark:group-hover:text-primaryDarker"
                   icon={item.icon}
                   size="2x"
                   transform="shrink-2"
                 />
                 <NavItemText
-                  className='group-hover:text-primaryDarker dark:group-hover:text-primaryDarker'
+                  className="group-hover:text-primaryDarker dark:group-hover:text-primaryDarker"
                   expanded={expanded ? 1 : 0}
                 >
                   {item.name}

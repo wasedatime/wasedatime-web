@@ -7,11 +7,12 @@ import path from "path";
 import React from "react";
 import { languages } from '../../i18n.config';
 
-export const config = { amp: true }
+export const config = { amp: "hybrid" }
 
 interface Props {
   feed: string;
   lang: string;
+  filename: string;
   updatedAt: string;
 }
 
@@ -23,7 +24,7 @@ interface ComponentProps {
   img: any;
 }
 
-const Feed = ({ feed, lang, updatedAt }: Props) => {
+const Feed = ({ feed, lang, filename, updatedAt }: Props) => {
   const isAmp = useAmp();
   const router = useRouter();
 
@@ -49,6 +50,13 @@ const Feed = ({ feed, lang, updatedAt }: Props) => {
         <title>{"WasedaTime Feeds: " + feedInfo.title}</title>
         <meta name="description" content={"WasedaTime Feeds: " + router.query.feed + "\n" + feed} />
         <link rel="icon" href="/favicon.ico" />
+        {
+          process.env.NODE_ENV !== 'development' && (
+            isAmp
+              ? <link rel="canonical" href={`https://${process.env.APP_ENV === 'staging' && 'dev.'}wasedatime.com/feeds`}></link>
+              : <link rel="amphtml" href={`https://${process.env.PREFIX}.${process.env.MF_FEEDS_DOMAIN}/${lang}/${filename}?amp=1`}></link>
+          )
+        }
       </Head>
 
       {
@@ -103,6 +111,7 @@ export async function getStaticProps({ params }: StaticProps) {
     props: {
       feed: feed,
       lang: params.lang,
+      filename: params.feed,
       updatedAt: stats.mtime.getFullYear() + '-' + stats.mtime.getMonth() + '-' + stats.mtime.getDate()
     }
   }

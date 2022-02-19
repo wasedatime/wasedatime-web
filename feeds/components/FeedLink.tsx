@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     lineHeight: 1.5
   },
   cardMedia: {
-    width: 240,
+    width: 200,
   },
   title: {
     fontFamily: "Lato, Yu Gothic Medium, Segoe UI"
@@ -70,9 +70,15 @@ const FeedLink = ({ name, locale }: { name: string; locale: string; }) => {
     } catch (e: any) {
       if (e.code === 'MODULE_NOT_FOUND') {
         try {
-          coverImg = require(`../public/feeds/${name}/media/image1.png`);
-        } catch (err) {
-          coverImg = null;
+          coverImg = require(`../public/feeds/${name}/media/image1.jpeg`);
+        } catch (err: any) {
+          if (err.code === 'MODULE_NOT_FOUND') {
+            try {
+              coverImg = require(`../public/feeds/${name}/media/image1.png`);
+            } catch (error: any) {
+              coverImg = null;
+            }
+          }
         }
       }
     }

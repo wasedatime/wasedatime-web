@@ -34,6 +34,22 @@ const LabsWrapper = styled.div`
   padding: 1em 0px;
 `;
 
+const MajorHeader = styled.h3`
+  width: 80%;
+  ${media.tablet`
+    width: 95%;
+  `}
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: 2px solid ${props => {
+    return props.school === "FSE"
+      ? "rgba(190,106,20,0.5)"
+      : props.school === "CSE"
+        ? "rgba(105,140,45,0.5)"
+        : "rgba(50,98,149,0.5)";
+  }};
+`;
+
 const FilterWrapper = styled.div`
   flex: 20em;
   padding: 0px 2em 1em 1em;
@@ -155,19 +171,19 @@ class Labs extends React.Component<Props, State> {
     return (
       <LabsOuterWrapper className="theme-default">
         <Helmet>
-          <title>WasedaTime - Syllabus Search</title>
+          <title>WasedaTime - Lab Reviews</title>
           <meta
             name="description"
-            content="Syllabus Searching at Waseda University."
+            content="Lab Reviews at Waseda University."
           />
-          <meta property="og:title" content="WasedaTime - Syllabus Search" />
+          <meta property="og:title" content="WasedaTime - Lab Reviews" />
           <meta
             property="og:description"
-            content="Syllabus Searching at Waseda University."
+            content="Lab Reviews at Waseda University."
           />
           <meta
             property="og:site_name"
-            content="WasedaTime - Syllabus Search"
+            content="WasedaTime - Lab Reviews"
           />
         </Helmet>
 
@@ -187,17 +203,18 @@ class Labs extends React.Component<Props, State> {
 
         <LabsWrapper>
           <LabsList>
+            {major && <MajorHeader school={school}>{t("labs.major." + major)}</MajorHeader>}
             {
               school && major && reviews[school][major]
                 ? (
                   reviews[school][major].length > 0
                     ? reviews[school][major].map(lab => (!searchTerm || lab.lab.includes(searchTerm)) && <Lab name={lab.lab} reviews={lab.reviews} school={school} />)
                     : (<Message warning size="tiny" style={{ margin: "1em" }}>
-                    <h5>There is no review for this major now... Please check reviews of other majors</h5>
+                    <h5>{t("labs.noReviewWarning")}</h5>
                   </Message>)
                   )
                 : (<Message warning size="tiny" style={{ margin: "1em" }}>
-                <h5>Please choose a school and a major in the filter</h5>
+                <h5>{t("labs.filterHint")}</h5>
               </Message>)
             }
           </LabsList>
@@ -206,7 +223,7 @@ class Labs extends React.Component<Props, State> {
             {
               matches => 
                 matches && <FilterWrapper>
-                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} selectedMajor={major} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
+                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
                 </FilterWrapper>
             }
           </MediaQuery>
@@ -215,7 +232,7 @@ class Labs extends React.Component<Props, State> {
             {
               matches => 
                 matches && <ShorterFilterWrapper>
-                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} selectedMajor={major} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
+                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
                 </ShorterFilterWrapper>
             }
           </MediaQuery>
@@ -228,7 +245,7 @@ class Labs extends React.Component<Props, State> {
                   handleToggleModal={this.handleToggleModal}
                 />
                 <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
-                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} selectedMajor={major} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
+                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
                 </Modal>
               </div>
             }

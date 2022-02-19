@@ -9,6 +9,7 @@ import aseIcon from "../../assets/img/syllabus-icons/ase.png";
 import majorBg from "../../assets/img/major_bg.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const Menu = styled.div`
   ${media.tablet`
@@ -103,23 +104,27 @@ const ReviewsCount = styled(Badge)`
 
 const schools = ["FSE", "CSE", "ASE"];
 
-const SchoolMajorSelector = ({ reviews, selectedSchool, selectedMajor, setSchool, setMajor }) => {
+const SchoolMajorSelector = ({ reviews, selectedSchool, setSchool, setMajor }) => {
+  const { t } = useTranslation();
+  const switchSchool = (schoolIndex: number) => {
+    setSchool(schools[schoolIndex]);
+    setMajor('');
+  }
 
   return (
     <Menu>
       <h5 style={{ marginBottom: "5px" }}>
         <FontAwesomeIcon icon={faFilter} size="1x" />
         &nbsp;
-        Filter
-        {/* <b>{t("syllabus.Filter by")}</b> */}
+        <b>{t("syllabus.Filter by")}</b>
       </h5>
       <SchoolMenu>
         {
-          [fseIcon, cseIcon, aseIcon].map((icon, i) => <SchoolItem key={"school_button_" + i}><SchoolButton onClick={() => setSchool(schools[i])} active={selectedSchool === schools[i]}><SchoolImg src={icon} width="70" height="70" /></SchoolButton></SchoolItem>)
+          [fseIcon, cseIcon, aseIcon].map((icon, i) => <SchoolItem key={"school_button_" + i}><SchoolButton onClick={() => switchSchool(i)} active={selectedSchool === schools[i]}><SchoolImg src={icon} width="70" height="70" /></SchoolButton></SchoolItem>)
         }
       </SchoolMenu>
 
-      { majorsBySchool[selectedSchool]?.map(major => <MajorWrapper onClick={() => setMajor(major)}><MajorText>{major}</MajorText><ReviewsCount school={selectedSchool}>{reviews[selectedSchool][major].length}</ReviewsCount></MajorWrapper>) }
+      { majorsBySchool[selectedSchool]?.map(major => <MajorWrapper onClick={() => setMajor(major)}><MajorText>{t("labs.major." + major)}</MajorText><ReviewsCount school={selectedSchool}>{reviews[selectedSchool][major].length}</ReviewsCount></MajorWrapper>) }
     </Menu>
   );
 }

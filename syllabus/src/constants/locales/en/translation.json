@@ -29,7 +29,59 @@
   "timetable search placeholder": "Search courses (in construction...)",
   "labs": {
     "title": "Labs",
-    "searchBarPlaceholder": "Search by professor's English name..."
+    "searchBarPlaceholder": "Search by professor's English name...",
+    "noReviewWarning": "There is no review for this major now... Please check reviews of other majors",
+    "filterHint": "Please choose a school and a major in the filter",
+    "major": {
+      "Computer Science and Engineering": "Computer Science and Engineering",
+      "Communications and Computer Engineering": "Communications and Computer Engineering",
+      "Electronic and Physical Systems": "Electronic and Physical Systems",
+      "Intermedia Art and Science": "Intermedia Art and Science",
+      "Mathematics": "Mathematics",
+      "Applied Mathematics": "Applied Mathematics",
+      "Applied Mechanics and Aerospace Engineering": "Applied Mechanics and Aerospace Engineering",
+
+      "Modern Mechanical Engineering": "Modern Mechanical Engineering",
+      "Civil and Environmental Engineering": "Civil and Environmental Engineering",
+      "Industrial and Management Systems Engineering": "Industrial and Management Systems Engineering",
+      "Resources and Environmental Engineering": "Resources and Environmental Engineering",
+      "Architecture": "Architecture",
+
+      "Physics": "Physics",
+      "Applied Physics": "Applied Physics",
+      "Chemistry and Biochemistry": "Chemistry and Biochemistry",
+      "Applied Chemistry": "Applied Chemistry",
+      "Life Science and Medical Bioscience": "Life Science and Medical Bioscience",
+      "Electrical Engineering and Bioscience": "Electrical Engineering and Bioscience"
+    },
+    "review": {
+      "Basics": "Basics",
+      "theme": "Theme",
+      "coreTime": "Core Time",
+      "obligations": "Obligations",
+
+      "Research Topic": "Research Topic",
+      "topicSatisfication": "Satisfaction with your research topic",
+      "topicDecision": "How did you decide your research topic?",
+      "yourResearch": "Your research topic",
+
+      "Experience / Observation": "Experience / Observation",
+      "Independence": "Independence",
+      "Guidance": "Guidance",
+      "guidance": "More independence (1) or more guidance (5)?",
+      "happiness": "How happy you are in the lab?",
+      "atmosphere": "Atmosphere in the lab",
+      "profCharacter": "Professor/mentor's character",
+      "knowBeforeEnter": "Anything you wish you had known before entering",
+      
+      "Members": "Members",
+      "totalStudents": "Number of all students",
+      "internationalStudents": "Number of international students",
+      
+      "Language": "Language",
+      "jaRequired": "Japanese required?",
+      "enRequired": "English required?"
+    }
   },
   "syllabusTabs": {
     "courses": "Courses",

@@ -13,6 +13,7 @@ import ASEcover from "../../assets/img/school-covers/ase.png";
 
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { useTranslation } from "react-i18next";
 
 const schoolCoverMap = {
   "FSE": FSEcover,
@@ -131,14 +132,13 @@ const itemLabelNameMap = {
   "happiness": "How happy you are in the lab?",
   "atmosphere": "Atmosphere in the lab",
   "profCharacter": "Professor/mentor's character",
+  "knowBeforeEnter": "Anything you wish you had known before entering",
   
   "totalStudents": "Number of all students",
   "internationalStudents": "Number of international students",
   
   "jaRequired": "Japanese required?",
   "enRequired": "English required?",
-
-  "knowBeforeEnter": "Anything you wish you had known before entering"
 }
 
 const getRoundedAverage = (reviews, itemLabel) => {
@@ -148,11 +148,12 @@ const getRoundedAverage = (reviews, itemLabel) => {
 }
 
 const Lab = ({ name, reviews, school }) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   const itemTable = (itemLabel) => (
     <Table unstackable>
-      <Table.Header><Table.Row><Table.HeaderCell>{itemLabelNameMap[itemLabel]}</Table.HeaderCell></Table.Row></Table.Header>
+      <Table.Header><Table.Row><Table.HeaderCell>{t("labs.review." + itemLabel)}</Table.HeaderCell></Table.Row></Table.Header>
       <Table.Body>{Array.from(new Set(reviews.map(r => r[itemLabel]))).map(item => item && <Table.Row><Table.Cell>{item}</Table.Cell></Table.Row>)}</Table.Body>
     </Table>
   );
@@ -177,23 +178,23 @@ const Lab = ({ name, reviews, school }) => {
 
               <h2 style={{ textAlign: "center" }}>{name}</h2>
 
-              <SectionHeader>Basics</SectionHeader>
+              <SectionHeader>{t("labs.review.Basics")}</SectionHeader>
               {itemTable("theme")}
               {itemTable("coreTime")}
               {itemTable("obligations")}
 
-              <SectionHeader>Research Topic</SectionHeader>
-              {topicSatisficationAverage > 0 && <Table unstackable><Table.Header><Table.Row><Table.HeaderCell>{itemLabelNameMap["topicSatisfication"]} <span style={{ float: "right" }}>{<ReviewStars scale={topicSatisficationAverage} />}</span></Table.HeaderCell></Table.Row></Table.Header></Table>}
+              <SectionHeader>{t("labs.review.Research Topic")}</SectionHeader>
+              {topicSatisficationAverage > 0 && <Table unstackable><Table.Header><Table.Row><Table.HeaderCell>{t("labs.review.topicSatisfication")} <span style={{ float: "right" }}>{<ReviewStars scale={topicSatisficationAverage} />}</span></Table.HeaderCell></Table.Row></Table.Header></Table>}
               {itemTable("topicDecision")}
               {itemTable("yourResearch")}
 
-              <SectionHeader>Experience / Observation</SectionHeader>
+              <SectionHeader>{t("labs.review.Experience / Observation")}</SectionHeader>
 
               {guidanceAverage > 0 && <Table unstackable>
                 <Table.Header><Table.Row><Table.HeaderCell>
                   <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px" }}>
-                    <div style={{ flex: "50%" }}>← Independence</div>
-                    <div style={{ flex: "50%", textAlign: "right" }}>Guidance →</div>
+                    <div style={{ flex: "50%" }}>← {t("labs.review.Independence")}</div>
+                    <div style={{ flex: "50%", textAlign: "right" }}>{t("labs.review.Guidance")} →</div>
                   </div>
                   <Slider
                     min={1}
@@ -205,17 +206,17 @@ const Lab = ({ name, reviews, school }) => {
                 </Table.HeaderCell></Table.Row></Table.Header>
               </Table>}
 
-              {happinessAverage > 0 && <Table unstackable><Table.Header><Table.Row><Table.HeaderCell>{itemLabelNameMap["happiness"]} <span style={{ float: "right" }}>{<ReviewStars scale={happinessAverage} />}</span></Table.HeaderCell></Table.Row></Table.Header></Table>}
+              {happinessAverage > 0 && <Table unstackable><Table.Header><Table.Row><Table.HeaderCell>{t("labs.review.happiness")} <span style={{ float: "right" }}>{<ReviewStars scale={happinessAverage} />}</span></Table.HeaderCell></Table.Row></Table.Header></Table>}
               
               {itemTable("atmosphere")}
               {itemTable("profCharacter")}
               {itemTable("knowBeforeEnter")}
 
-              <SectionHeader>Others</SectionHeader>
+              <SectionHeader>{t("labs.review.Members")}</SectionHeader>
               {itemTable("totalStudents")}
               {itemTable("internationalStudents")}
 
-              <SectionHeader>Language</SectionHeader>
+              <SectionHeader>{t("labs.review.Language")}</SectionHeader>
               {itemTable("jaRequired")}
               {itemTable("enRequired")}
             </ReviewsWrapper>

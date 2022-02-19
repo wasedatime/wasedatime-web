@@ -34,7 +34,6 @@ dependencies:
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
   '@fortawesome/fontawesome-svg-core': 1.2.36
   '@material-ui/core': 4.12.3_5539cae010396b202b015f3568914e95
-  '@types/node': 17.0.18
   fs: 0.0.1-security
   i18next: 19.9.2
   i18next-browser-languagedetector: 6.1.2
@@ -50,6 +49,7 @@ dependencies:
   styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
 
 devDependencies:
+  '@types/node': 17.0.18
   '@types/react': 17.0.37
   eslint: 7.32.0
   eslint-config-next: 11.1.2_f0c08676fa56135fe187b03854743cb5
@@ -649,7 +649,7 @@ packages:
 
   /@types/node/17.0.18:
     resolution: {integrity: sha512-eKj4f/BsN/qcculZiRSujogjvp5O/k4lOW5m35NopjZM/QwLOR075a8pJW5hD+Rtdm2DaCVPENS6KtSQnUD6BA==}
-    dev: false
+    dev: true
 
   /@types/prop-types/15.7.4:
     resolution: {integrity: sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==}

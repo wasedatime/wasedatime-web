@@ -14,6 +14,7 @@ import { useTranslation } from "react-i18next";
 const Menu = styled.div`
   ${media.tablet`
     padding: 2em;
+    padding-bottom: 60px;
     height: calc(100vh - 60px);
     overflow-y: auto;
   `}
@@ -104,11 +105,15 @@ const ReviewsCount = styled(Badge)`
 
 const schools = ["FSE", "CSE", "ASE"];
 
-const SchoolMajorSelector = ({ reviews, selectedSchool, setSchool, setMajor }) => {
+const SchoolMajorSelector = ({ reviews, selectedSchool, setSchool, setMajor, closeModal }) => {
   const { t } = useTranslation();
   const switchSchool = (schoolIndex: number) => {
     setSchool(schools[schoolIndex]);
     setMajor('');
+  }
+  const switchMajorAndCloseModal = (major: string) => {
+    setMajor(major);
+    closeModal();
   }
 
   return (
@@ -124,7 +129,7 @@ const SchoolMajorSelector = ({ reviews, selectedSchool, setSchool, setMajor }) =
         }
       </SchoolMenu>
 
-      { majorsBySchool[selectedSchool]?.map(major => <MajorWrapper onClick={() => setMajor(major)}><MajorText>{t("labs.major." + major)}</MajorText><ReviewsCount school={selectedSchool}>{reviews[selectedSchool][major].length}</ReviewsCount></MajorWrapper>) }
+      { majorsBySchool[selectedSchool]?.map(major => <MajorWrapper onClick={() => switchMajorAndCloseModal(major)}><MajorText>{t("labs.major." + major)}</MajorText><ReviewsCount school={selectedSchool}>{reviews[selectedSchool][major].length}</ReviewsCount></MajorWrapper>) }
     </Menu>
   );
 }

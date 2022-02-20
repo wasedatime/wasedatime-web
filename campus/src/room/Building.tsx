@@ -44,7 +44,7 @@ function checkVacancy(campuses, campusName, buid, roomdata, quar, period, weekda
   var vacancy = 1;
   try {
     if (period === -1) return 0;
-    console.log(campuses[campusName][buid][roomdata][quar])
+    // console.log(campuses[campusName][buid][roomdata][quar])
     vacancy = campuses[campusName][buid][roomdata][quar][period][weekday] ? 1 : 0
     return vacancy
   }

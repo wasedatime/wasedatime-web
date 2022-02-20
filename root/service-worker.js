@@ -16,27 +16,27 @@ workbox.routing.registerRoute(
   ({ event }) => event.request.mode === "navigate",
   new workbox.strategies.NetworkFirst({
     fetchOptions: {
-      credentials: 'same-origin',
+      credentials: "same-origin",
     },
- })
+  })
 );
 
 workbox.routing.registerRoute(
   /.*\.(?:js|css)/,
   new workbox.strategies.NetworkFirst({
     fetchOptions: {
-      credentials: 'same-origin',
+      credentials: "same-origin",
     },
- })
+  })
 );
 
 workbox.routing.registerRoute(
   /.*\.(?:png|jpg|jpeg|svg|gif|woff|woff2|eot|ttf|otf)/,
   new workbox.strategies.StaleWhileRevalidate({
     fetchOptions: {
-      credentials: 'same-origin',
+      credentials: "same-origin",
     },
- })
+  })
 );
 
 self.addEventListener("message", function (event) {

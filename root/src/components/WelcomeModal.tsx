@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { WithTranslation, withTranslation } from "react-i18next";
-import reviewsImg from "../assets/img/home/reviews-example.png";
-import timetableImg1 from "../assets/img/home/timetable-example-1.png";
-import timetableImg2 from "../assets/img/home/timetable-example-2.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle, faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
 import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
@@ -12,6 +9,9 @@ import MediaQuery from "react-responsive";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { navigateToUrl } from "single-spa";
 import ReactGA from "react-ga";
+import timetableImg2 from "../assets/img/home/timetable-example-2.png";
+import timetableImg1 from "../assets/img/home/timetable-example-1.png";
+import reviewsImg from "../assets/img/home/reviews-example.png";
 import { gaSetLanguage } from "../ga/eventActions";
 import { gaLanguage } from "../ga/eventCategories";
 
@@ -27,10 +27,11 @@ const modalStyle = {
   },
   content: {
     position: "absolute",
-    top: "20vh",
-    height: "450px",
-    left: "30vw",
-    right: "30vw",
+    top: "calc((100vh - 495px) / 2)",
+    width: "450px",
+    height: "auto",
+    maxHeight: "495px",
+    left: "calc((100vw - 450px) / 2)",
     background: "#fff",
     overflowY: "auto",
     overflowScrolling: "touch",
@@ -45,11 +46,11 @@ const mobileModalStyle = {
   overlay: modalStyle.overlay,
   content: {
     ...modalStyle.content,
-    top: "5vh",
-    height: "auto",
-    maxHeight: "570px",
-    left: "10vw",
-    right: "10vw",
+    top: "calc((100vh - 540px) / 2)",
+    width: "300px",
+    maxHeight: "540px",
+    left: "calc((100vw - 300px) / 2)",
+    fontSize: "14px",
   },
 };
 
@@ -136,7 +137,8 @@ const WelcomeModal = ({
           {t("welcome.useWasedaGmail1")}
           <b style={{ color: "#b51e36" }}>{t("welcome.Waseda Gmail")}</b>
           {t("welcome.useWasedaGmail2")}
-          <br />( ***@***.waseda.jp )
+          <br />
+          ( ***@***.waseda.jp )
         </div>
       </div>
 
@@ -231,25 +233,23 @@ const WelcomeModal = ({
   ];
   return (
     <MediaQuery maxWidth={sizes.tablet}>
-      {(matches) =>
-        matches ? (
-          <Modal
-            isOpen={isModalOpen}
-            style={mobileModalStyle}
-            onRequestClose={closeModal}
-          >
-            {pages[pageIndex]}
-          </Modal>
-        ) : (
-          <Modal
-            isOpen={isModalOpen}
-            style={modalStyle}
-            onRequestClose={closeModal}
-          >
-            {pages[pageIndex]}
-          </Modal>
-        )
-      }
+      {(matches) => (matches ? (
+        <Modal
+          isOpen={isModalOpen}
+          style={mobileModalStyle}
+          onRequestClose={closeModal}
+        >
+          {pages[pageIndex]}
+        </Modal>
+      ) : (
+        <Modal
+          isOpen={isModalOpen}
+          style={modalStyle}
+          onRequestClose={closeModal}
+        >
+          {pages[pageIndex]}
+        </Modal>
+      ))}
     </MediaQuery>
   );
 };

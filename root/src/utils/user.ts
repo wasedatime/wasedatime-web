@@ -3,9 +3,9 @@ import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
 
 export const configAuth = () => {
   const authRedirectPath =
-    window.location.protocol + "//" + window.location.host + "/verify";
+    `${window.location.protocol}//${window.location.host}/verify`;
   const authSignOutPath =
-    window.location.protocol + "//" + window.location.host + "/";
+    `${window.location.protocol}//${window.location.host}/`;
 
   const config = {
     Auth: {
@@ -48,7 +48,7 @@ export const getRefreshToken = async () => {
 
 export const getUserAttr = async () => {
   const info = await Auth.currentUserInfo();
-  if (info && info.attributes)
+  if (info && info.attributes) {
     return (
       {
         id: info.attributes.sub,
@@ -56,6 +56,7 @@ export const getUserAttr = async () => {
         picture: info.attributes.picture,
       } || null
     );
+  }
 };
 
 export const signIn = () => {

@@ -17,6 +17,7 @@ module.exports = withPlugins([[optimizedImages, {}]], withTM({
   },
   assetPrefix: process.env.APP_ENV === 'production' ? "/feeds" : "",
   env: {
-    APP_ENV: process.env.APP_ENV || 'development'
+    APP_ENV: process.env.APP_ENV || 'development',
+    MF_FEEDS_DOMAIN: process.env.MF_FEEDS_DOMAIN || ''
   }
 }))

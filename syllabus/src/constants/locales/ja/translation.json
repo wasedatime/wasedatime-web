@@ -26,5 +26,65 @@
   },
   "other": "その他",
   "special": "その他",
-  "timetable search placeholder": "授業を検索（構築中...）"
+  "timetable search placeholder": "授業を検索（構築中...）",
+  "labs": {
+    "title": "研究室",
+    "searchBarPlaceholder": "教授の英語名で検索...",
+    "noReviewWarning": "現在、この学科にまだレビューがありません... 他の学科のレビューを参考してください",
+    "filterHint": "フィルターで学部と学科を選択してください",
+    "major": {
+      "Computer Science and Engineering": "情報理工学科",
+      "Communications and Computer Engineering": "情報通信学科",
+      "Electronic and Physical Systems": "電子物理システム学科",
+      "Intermedia Art and Science": "表現工学科",
+      "Mathematics": "数学科",
+      "Applied Mathematics": "応用数理学科",
+      "Applied Mechanics and Aerospace Engineering": "機械科学・航空宇宙学科",
+
+      "Modern Mechanical Engineering": "総合機械工学科",
+      "Civil and Environmental Engineering": "社会環境工学科",
+      "Industrial and Management Systems Engineering": "経営システム工学科",
+      "Resources and Environmental Engineering": "環境資源工学科",
+      "Architecture": "建築学科",
+
+      "Physics": "物理学科",
+      "Applied Physics": "応用物理学科",
+      "Chemistry and Biochemistry": "化学・生命化学科",
+      "Applied Chemistry": "応用化学科",
+      "Life Science and Medical Bioscience": "生命医科学科",
+      "Electrical Engineering and Bioscience": "電気・情報生命工学科"
+    },
+    "review": {
+      "Basics": "基本情報",
+      "theme": "専門分野",
+      "coreTime": "コアタイム",
+      "obligations": "ルール",
+
+      "Research Topic": "研究テーマ",
+      "topicSatisfication": "自分の研究テーマに対する満足度",
+      "topicDecision": "研究テーマの選び方",
+      "yourResearch": "あなたの研究テーマ",
+
+      "Experience / Observation": "経験 / 観察",
+      "Independence": "放任型",
+      "Guidance": "指導型",
+      "guidance": "放任型 (1) に近いか、指導型 (5)に近いか?",
+      "happiness": "この研究室にいて楽しい？",
+      "atmosphere": "研究室の雰囲気",
+      "profCharacter": "先生・指導者の個性",
+      "knowBeforeEnter": "入る前に知っておきたかったこと",
+      
+      "Members": "メンバー",
+      "totalStudents": "全学生の人数",
+      "internationalStudents": "外国籍学生の人数",
+      
+      "Language": "言語",
+      "jaRequired": "日本語いる？",
+      "enRequired": "英語いる？"
+    }
+  },
+  "syllabusTabs": {
+    "courses": "授業",
+    "labs": "研究室"
+  }
 }

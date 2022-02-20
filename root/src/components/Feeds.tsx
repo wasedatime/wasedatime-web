@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import { ThemeContext } from "../utils/themeContext";
 
 const FeedsWrapper = styled.div`
   display: flex;
@@ -18,39 +19,41 @@ const HeaderWrapper = styled.div`
 `;
 
 const Feeds = ({ path }: { path: string }) => {
-  const [ feedsLoaded, setFeedsLoaded ] = React.useState(false);
+  const [feedsLoaded, setFeedsLoaded] = React.useState(false);
   const { t, i18n } = useTranslation();
+  const { theme, setTheme } = React.useContext(ThemeContext);
 
-  const feedsDomain = process.env.NODE_ENV === 'development'
+  const feedsDomain = process.env.NODE_ENV === "development"
     ? "http://localhost:8083"
-    : process.env.NODE_ENV === 'staging'
+    : process.env.NODE_ENV === "staging"
       ? `https://${process.env.PREFIX}.${process.env.MF_FEEDS_DOMAIN}`
-      : `/feeds`;
+      : "/feeds";
 
   return (
-    <FeedsWrapper style={{ overflow: 'hidden' }}>
+    <FeedsWrapper style={{ overflow: "hidden" }}>
       <HeaderWrapper>
         <Header
           title={t("navigation.feeds")}
           onInputChange={() => {}}
           placeholder={t("search feeds placeholder")}
-          inputText={""}
-          disabled={true}
+          inputText=""
+          disabled
           isBlur={false}
           changeLang={(lng) => i18n.changeLanguage(lng)}
+          // theme={theme}
+          // setTheme={setTheme}
         />
       </HeaderWrapper>
       <div>
         {!feedsLoaded && <LoadingSpinner message="Loading..." />}
         <iframe
-          src={feedsDomain + "/" + i18n.language}
-          style={{ width: '100%', height: 'calc(100vh - 70px)' }}
+          src={`${feedsDomain}/${i18n.language}`}
+          style={{ width: "100%", height: "calc(100vh - 70px)" }}
           onLoad={() => setFeedsLoaded(true)}
-        >
-        </iframe>
+        />
       </div>
     </FeedsWrapper>
-  )
-}
+  );
+};
 
 export default Feeds;

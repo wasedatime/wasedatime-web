@@ -1,19 +1,23 @@
-import React, { useState, lazy, Suspense } from "react";
+import React, {
+  useState, useContext, lazy, Suspense,
+} from "react";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { Helmet } from "react-helmet";
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import ReactGA from "react-ga";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { ThemeContext } from "../../utils/themeContext";
 
 import OurMission from "./OurMission";
 import JoinUs from "./JoinUs";
-const MeetOurTeam = lazy(() => import("./MeetOurTeam"));
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import ReactGA from "react-ga";
 import { gaLanguage } from "../../ga/eventCategories";
 import { gaAppendActionWithLng, gaChangeLanguage } from "../../ga/eventActions";
 import Partners from "./Partners";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+
+const MeetOurTeam = lazy(() => import("./MeetOurTeam"));
 
 const AboutUsWrapper = styled(Wrapper)`
   display: flex;
@@ -38,6 +42,7 @@ const AboutUsMenu = styled.div`
 `;
 
 const AboutUs = (props: { path: string }) => {
+  const { theme, setTheme } = useContext(ThemeContext);
   const [activePage, setActivePage] = useState("our mission");
   const { t, i18n } = useTranslation();
   const changeLanguage = (lng) => {
@@ -52,7 +57,7 @@ const AboutUs = (props: { path: string }) => {
   return (
     <AboutUsWrapper id="aboutus_wrapper">
       <Helmet>
-        <title>WasedaTime -　About Us</title>
+        <title>WasedaTime - About Us</title>
         <meta
           name="description"
           content="Introduce Wasedatime's mission and meet the team."
@@ -69,9 +74,11 @@ const AboutUs = (props: { path: string }) => {
           title={t("navigation.aboutus")}
           onInputChange={() => {}}
           placeholder={t("search placeholder")}
-          inputText={""}
-          disabled={true}
+          inputText=""
+          disabled
           isBlur={false}
+          // theme={theme}
+          // setTheme={setTheme}
           changeLang={changeLanguage}
         />
       </HeaderWrapper>
@@ -80,24 +87,22 @@ const AboutUs = (props: { path: string }) => {
           <button
             className={`
             border-2 border-red-800 border-r-0 ${
-              activePage === "our mission"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
+    activePage === "our mission"
+      ? "bg-red-800 text-white"
+      : "bg-white text-red-800"
+    } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
           `}
-            onClick={() =>
-              activePage !== "our mission" && setActivePage("our mission")
-            }
+            onClick={() => activePage !== "our mission" && setActivePage("our mission")}
           >
             {t("aboutus.our mission")}
           </button>
           <button
             className={`
             border-2 border-red-800 border-l-0 border-r-0 ${
-              activePage === "join us"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+    activePage === "join us"
+      ? "bg-red-800 text-white"
+      : "bg-white text-red-800"
+    } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
           `}
             onClick={() => activePage !== "join us" && setActivePage("join us")}
           >
@@ -106,10 +111,10 @@ const AboutUs = (props: { path: string }) => {
           <button
             className={`
             border-2 border-red-800 border-l-0 border-r-0 ${
-              activePage === "meet our team"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+    activePage === "meet our team"
+      ? "bg-red-800 text-white"
+      : "bg-white text-red-800"
+    } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
           `}
             onClick={() => activePage !== "meet our team" && setActivePage("meet our team")}
           >
@@ -118,14 +123,12 @@ const AboutUs = (props: { path: string }) => {
           <button
             className={`
             border-2 border-red-800 border-l-0 ${
-              activePage === "partners"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
+    activePage === "partners"
+      ? "bg-red-800 text-white"
+      : "bg-white text-red-800"
+    } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
           `}
-            onClick={() =>
-              activePage !== "partners" && setActivePage("partners")
-            }
+            onClick={() => activePage !== "partners" && setActivePage("partners")}
           >
             {t("aboutus.partners")}
           </button>
@@ -136,7 +139,7 @@ const AboutUs = (props: { path: string }) => {
         {activePage === "meet our team" && (
           <Suspense
             fallback={
-              <LoadingSpinner message={"Loading members information..."} />
+              <LoadingSpinner message="Loading members information..." />
             }
           >
             <MeetOurTeam />
@@ -145,7 +148,7 @@ const AboutUs = (props: { path: string }) => {
         {activePage === "partners" && (
           <Suspense
             fallback={
-              <LoadingSpinner message={"Loading partners information..."} />
+              <LoadingSpinner message="Loading partners information..." />
             }
           >
             <Partners />

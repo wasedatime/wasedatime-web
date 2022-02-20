@@ -45,6 +45,7 @@ import {
 } from "../ga/eventActions";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import { courseSchemaFullToShort } from "../utils/map-single-course-schema";
+import SyllabusTabs from "../components/SyllabusTabs";
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -55,12 +56,16 @@ const HeaderWrapper = styled.div`
   flex: 67px;
 `;
 
+const SyllabusTabsWrapper = styled.div`
+  flex: 29px;
+`;
+
 const SyllabusFlex = styled.div`
-  height: calc(100vh - 67px);
-  flex: calc(100% - 67px);
+  height: calc(100vh - 96px);
+  flex: calc(100% - 96px);
   display: flex;
   flex-direction: row;
-  ${media.tablet`height: calc(100vh - 117px); flex: calc(100vh - 117px);`}
+  ${media.tablet`height: calc(100vh - 146px); flex: calc(100vh - 146px);`}
   overflow-y: hidden;
 `;
 
@@ -344,9 +349,13 @@ class SyllabusContainer extends React.Component<
             inputText={inputText}
             disabled={false}
             isBlur={false}
+            // theme={"light"}
+            // setTheme={() => {}}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>
+
+        <SyllabusTabsWrapper><SyllabusTabs /></SyllabusTabsWrapper>
 
         <SyllabusFlex>
           <MediaQuery minWidth={sizes.tablet}>

@@ -10,13 +10,13 @@ import Header from "@bit/wasedatime.core.ts.ui.header";
 import { useTranslation } from "react-i18next";
 import i18next from 'i18next';
 
-i18nConfig({
-  i18n: i18next,
-  customTranslations: {
-    [Lang.EN]: translationEN,
-    [Lang.JA]: translationJA,
-  }
-});
+// i18nConfig({
+//   i18n: i18next,
+//   customTranslations: {
+//     [Lang.EN]: translationEN,
+//     [Lang.JA]: translationJA,
+//   }
+// });
 
 export default function Root(props) {
   const { t, i18n } = useTranslation();
@@ -31,6 +31,8 @@ export default function Root(props) {
             inputText={""}
             disabled={true}
             isBlur={false}
+            // theme={"light"}
+            // setTheme={() => {}}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </div>

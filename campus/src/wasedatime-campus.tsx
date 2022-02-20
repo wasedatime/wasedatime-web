@@ -8,8 +8,6 @@ import translationEN from "./constants/locales/en/translation.json";
 import translationJA from "./constants/locales/ja/translation.json";
 import i18next from 'i18next';
 
-console.log("start");
-
 i18nConfig({
   i18n: i18next,
   customTranslations: {
@@ -17,7 +15,6 @@ i18nConfig({
     [Lang.JA]: translationJA,
   }
 });
-console.log("end");
 
 const lifecycles = singleSpaReact({
   React,

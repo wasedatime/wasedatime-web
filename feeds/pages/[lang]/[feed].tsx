@@ -54,7 +54,7 @@ const Feed = ({ feed, lang, filename, updatedAt }: Props) => {
           process.env.NODE_ENV !== 'development' && (
             isAmp
               ? <link rel="canonical" href={`https://${process.env.APP_ENV === 'staging' && 'dev.'}wasedatime.com/feeds`}></link>
-              : <link rel="amphtml" href={`https://${window.location.hostname}/${lang}/${filename}?amp=1`}></link>
+              : <link rel="amphtml" href={`https://${process.env.APP_ENV === 'staging' ? 'develop' : 'master'}.${process.env.MF_FEEDS_DOMAIN}/${lang}/${filename}?amp=1`}></link>
           )
         }
       </Head>

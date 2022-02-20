@@ -116,7 +116,7 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
           </Description>
           <br />
           <button
-            className="bg-light-button dark:bg-dark-button rounded-lg text-white px-4 py-2 mx-2"
+            className="bg-red-800 dark:bg-dark-button rounded-lg text-white px-4 py-2 mx-2"
             onClick={() => setModalOpen(true)}
           >
             {t("welcome.newFeature")}

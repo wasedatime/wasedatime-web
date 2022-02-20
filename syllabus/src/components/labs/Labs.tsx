@@ -17,6 +17,10 @@ import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 const LabsOuterWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  ${media.tablet`
+    height: calc(100vh - 60px);
+    overflow-y: hidden;
+  `}
 `;
 
 const HeaderWrapper = styled.div`
@@ -25,19 +29,21 @@ const HeaderWrapper = styled.div`
 
 const LabsWrapper = styled.div`
   height: calc(100vh - 96px);
+  padding: 1em 0px;
   ${media.tablet`
     height: calc(100vh - 156px);
   `}
   overflow-y: hidden;
   display: flex;
   flex-direction: row;
-  padding: 1em 0px;
 `;
 
 const MajorHeader = styled.h3`
   width: 80%;
+  font-size: 3rem;
   ${media.tablet`
     width: 95%;
+    font-size: 2rem;
   `}
   padding-bottom: 10px;
   text-align: center;
@@ -85,6 +91,7 @@ const LabsList = styled.div`
   height: calc(100vh - 96px);
   ${media.tablet`
     height: calc(100vh - 156px);
+    padding-bottom: 60px;
   `}
 
   overflow-y: auto;
@@ -161,10 +168,6 @@ class Labs extends React.Component<Props, State> {
     this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));
   }
 
-  handleMajorChange = (major) => {
-    this.setState({ major: major, isModalOpen: false });
-  }
-
   render () {
     const { t, i18n } = this.props;
     const { school, major, inputText, searchTerm } = this.state;
@@ -223,7 +226,7 @@ class Labs extends React.Component<Props, State> {
             {
               matches => 
                 matches && <FilterWrapper>
-                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
+                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.setState({ major: m })} closeModal={() => this.setState({ isModalOpen: false })} />
                 </FilterWrapper>
             }
           </MediaQuery>
@@ -232,7 +235,7 @@ class Labs extends React.Component<Props, State> {
             {
               matches => 
                 matches && <ShorterFilterWrapper>
-                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
+                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.setState({ major: m })} closeModal={() => this.setState({ isModalOpen: false })} />
                 </ShorterFilterWrapper>
             }
           </MediaQuery>
@@ -245,7 +248,7 @@ class Labs extends React.Component<Props, State> {
                   handleToggleModal={this.handleToggleModal}
                 />
                 <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
-                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.handleMajorChange(m)} />
+                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.setState({ major: m })} closeModal={() => this.setState({ isModalOpen: false })} />
                 </Modal>
               </div>
             }

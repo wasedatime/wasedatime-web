@@ -27,8 +27,13 @@ const HeaderWrapper = styled.div`
   flex: 67px;
 `;
 
+const SyllabusTabsWrapper = styled.div`
+  flex: 29px;
+`;
+
 const LabsWrapper = styled.div`
-  height: calc(100vh - 96px);
+  flex-grow: 1;
+  height: calc(100vh - 97px);
   padding: 1em 0px;
   ${media.tablet`
     height: calc(100vh - 156px);
@@ -91,7 +96,7 @@ const LabsList = styled.div`
   height: calc(100vh - 96px);
   ${media.tablet`
     height: calc(100vh - 156px);
-    padding-bottom: 60px;
+    padding-bottom: 90px;
   `}
 
   overflow-y: auto;
@@ -202,7 +207,9 @@ class Labs extends React.Component<Props, State> {
           />
         </HeaderWrapper>
 
-        <SyllabusTabs />
+        <SyllabusTabsWrapper>
+          <SyllabusTabs />
+        </SyllabusTabsWrapper>
 
         <LabsWrapper>
           <LabsList>

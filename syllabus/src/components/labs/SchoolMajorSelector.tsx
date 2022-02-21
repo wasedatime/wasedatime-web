@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 const Menu = styled.div`
   ${media.tablet`
     padding: 2em;
-    padding-bottom: 60px;
+    padding-bottom: 90px;
     height: calc(100vh - 60px);
     overflow-y: auto;
   `}

@@ -32,6 +32,7 @@
     "searchBarPlaceholder": "教授の英語名で検索...",
     "noReviewWarning": "現在、この学科にまだレビューがありません... 他の学科のレビューを参考してください",
     "filterHint": "フィルターで学部と学科を選択してください",
+    "thankMessage": "スペシャルサンクス：シラネー先輩（レビューの収集）",
     "major": {
       "Computer Science and Engineering": "情報理工学科",
       "Communications and Computer Engineering": "情報通信学科",

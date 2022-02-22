@@ -32,6 +32,7 @@
     "searchBarPlaceholder": "Search by professor's English name...",
     "noReviewWarning": "There is no review for this major now... Please check reviews of other majors",
     "filterHint": "Please choose a school and a major in the filter",
+    "thankMessage": "Special thanks: Shranay Senpai for collecting the reviews",
     "major": {
       "Computer Science and Engineering": "Computer Science and Engineering",
       "Communications and Computer Engineering": "Communications and Computer Engineering",

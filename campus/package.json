@@ -47,7 +47,7 @@
     "webpack": "^5.69.1",
     "webpack-cli": "^4.9.2",
     "webpack-config-single-spa-react": "4.0.2",
-    "webpack-config-single-spa-react-ts": "4.0.2",
+    "webpack-config-single-spa-react-ts": "4.0.3",
     "webpack-config-single-spa-ts": "2.2.4",
     "webpack-dev-server": "^4.7.4",
     "webpack-merge": "^5.8.0"

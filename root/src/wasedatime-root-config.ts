@@ -70,7 +70,7 @@ if (process.env.NODE_ENV === "development") {
 } else {
   ReactGA.initialize(
     process.env.NODE_ENV === "production" ? "UA-112185819-1" : "UA-112185819-3",
-    { debug: false, titleCase: false }
+    { debug: false, titleCase: false },
   );
   Sentry.init({
     dsn: "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",

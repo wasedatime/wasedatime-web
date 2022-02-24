@@ -6,7 +6,8 @@ import styled from "styled-components";
 
 import {
   Members,
-  MembersList,
+  CurrentList,
+  AlumniList,
 } from "@app/components/aboutUs/MeetOurTeam/memberList";
 
 const Title = styled("h2")`
@@ -18,9 +19,19 @@ const Title = styled("h2")`
   color: #444 !important;
 `;
 
+const SubTitle = styled("h2")`
+  width: 50%;
+  font-weight: bold;
+  font-size: 1.3em;
+  margin: 5px auto;
+  text-align: center;
+  color: #666 !important;
+`;
+
 const CardArea = styled("div")`
   width: 90%;
-  margin: 0 auto;
+  margin: 0px auto;
+  padding: 10px 100px;
   font-size: 0.9em;
   display: flex;
   flex-wrap: wrap;
@@ -31,7 +42,7 @@ const Card = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 20px 20px 0px;
+  margin: 40px 30px 30px;
   width: 230px;
   text-align: center;
 `;
@@ -105,8 +116,24 @@ const MeetOurTeam = () => {
       <br />
       <Title>Meet Our Talented Team!</Title>
       <br />
+      <SubTitle>Current Members</SubTitle>
       <CardArea>
-        {MembersList.map((member) => (
+        {CurrentList.map((member) => (
+          <MemberCard
+            image={member.image}
+            name={member.name}
+            position={member.position}
+            socials={member.socials}
+            profileText={member.profileText}
+          />
+        ))}
+      </CardArea>
+      <br/>  
+      
+      <br/>
+      <SubTitle>Our Alumni</SubTitle>
+      <CardArea>
+        {AlumniList.map((member) => (
           <MemberCard
             image={member.image}
             name={member.name}

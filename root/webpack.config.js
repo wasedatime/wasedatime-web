@@ -37,6 +37,9 @@ module.exports = (webpackConfigEnv, argv) => {
           test: /\.m?js/,
           resolve: {
             fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
           },
         },
         {

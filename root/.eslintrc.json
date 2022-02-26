@@ -150,6 +150,12 @@
     "import/parsers": {
       "@typescript-eslint/parser": [".ts", ".d.ts", ".tsx"]
     },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".d.ts", ".tsx"],
+        "paths": ["src", "node_modules"]
+      }
+    },
     "react": {
       "version": "detect"
     }

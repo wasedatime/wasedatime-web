@@ -89,6 +89,7 @@ module.exports = (webpackConfigEnv, argv) => {
           if (/\.(s?css)$/.test(entry)) return "style";
           if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
           if (/\.(jpe?g|png|gif|bmp|tiff|svg)$/.test(entry)) return "image";
+
           return "script";
         },
       }),
@@ -121,11 +122,11 @@ module.exports = (webpackConfigEnv, argv) => {
       new WebpackPwaManifest({
         filename: "/[name].json",
         name: "WasedaTime",
-        short_name: "WasedaTime",
-        start_url: "/index.html",
+        shortName: "WasedaTime",
+        startUrl: "/index.html",
         display: "standalone",
-        theme_color: "#000000",
-        background_color: "#ffffff",
+        themeColor: "#000000",
+        backgroundColor: "#ffffff",
         crossorigin: webpackConfigEnv.isDev ? "use-credentials" : null,
         icons: [
           {

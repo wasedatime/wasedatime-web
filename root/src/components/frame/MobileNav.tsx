@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "@reach/router";
 import { useTranslation } from "react-i18next";
 
 type Props = {
@@ -29,6 +30,7 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
         style={{ fontSize: "20px" }}
       />
     );
+
     return (
       <Link
         to={itemPath}
@@ -38,7 +40,9 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
       >
         <button className="focus:outline-none">
           {fontBase}
-          <div className="text-white" style={{ fontSize: "12px" }}>{itemName}</div>
+          <div className="text-white" style={{ fontSize: "12px" }}>
+            {itemName}
+          </div>
         </button>
       </Link>
     );
@@ -48,7 +52,10 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
     <nav
       className="fixed bottom-0 flex flex-row bg-black w-full"
       style={{
-        height: "60px", zIndex: 1000, padding: "8px", width: "100vw",
+        height: "60px",
+        zIndex: 1000,
+        padding: "8px",
+        width: "100vw",
       }}
     >
       {styledLinks}
@@ -56,7 +63,9 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
       <a className="flex-1 text-center">
         <button
           className="focus:outline-none"
-          onClick={() => (userAttr ? setSignOutAvailable(true) : openSignInModal())}
+          onClick={() =>
+            userAttr ? setSignOutAvailable(true) : openSignInModal()
+          }
           onMouseLeave={() => setSignOutAvailable(false)}
         >
           {userAttr ? (
@@ -75,7 +84,11 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
               style={{ fontSize: "20px" }}
             />
           )}
-          {!userAttr && <div className="text-white" style={{ fontSize: "12px" }}>{t("user.Sign in")}</div>}
+          {!userAttr && (
+            <div className="text-white" style={{ fontSize: "12px" }}>
+              {t("user.Sign in")}
+            </div>
+          )}
 
           {signOutAvailable && (
             <button

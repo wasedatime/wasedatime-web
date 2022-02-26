@@ -1,64 +1,64 @@
 import React, { useEffect, lazy, Suspense } from "react";
-import i18next from "i18next";
-import { Helmet } from "react-helmet";
+
 import { Hub } from "@aws-amplify/core";
-import { navigateToUrl } from "single-spa";
-import { Router, Redirect, navigate } from "@reach/router";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { useTranslation } from "react-i18next";
+import { Router, Redirect, navigate } from "@reach/router";
 import { ErrorBoundary } from "@sentry/react";
+import i18next from "i18next";
 import ReactGA from "react-ga";
-import TermsOfService from "./components/TermsOfService";
-import PrivacyPolicy from "./components/PrivacyPolicy";
-import RedirectPage from "./components/user/RedirectPage";
+import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
+import { navigateToUrl } from "single-spa";
 
-import CommonStyle from "./common-style";
-
-import ErrorFallback from "./components/ErrorFallback";
-
-import { gaUser } from "./ga/eventCategories";
+import CommonStyle from "@app/common-style";
+import ErrorFallback from "@app/components/ErrorFallback";
+import PrivacyPolicy from "@app/components/PrivacyPolicy";
+import TermsOfService from "@app/components/TermsOfService";
+import RedirectPage from "@app/components/user/RedirectPage";
 import {
   gaUserSignIn,
   gaUserSignInFailure,
   gaUserSignOut,
-} from "./ga/eventActions";
-import { ThemeProvider } from "./utils/themeContext";
+} from "@app/ga/eventActions";
+import { gaUser } from "@app/ga/eventCategories";
+import { ThemeProvider } from "@app/utils/themeContext";
 
-const AboutUs = lazy(() => import("./components/aboutUs/AboutUs"));
-const Home = lazy(() => import("./components/Home"));
-const Feeds = lazy(() => import("./components/Feeds"));
+const AboutUs = lazy(() => import("@app/components/aboutUs/AboutUs"));
+const Home = lazy(() => import("@app/components/Home"));
+const Feeds = lazy(() => import("@app/components/Feeds"));
 
 const NotFound = ({ default: boolean }) => {
   navigateToUrl("/");
+
   return <LoadingSpinner message="Not found! Redirecting..." />;
 };
 
 const App = () => {
   Hub.listen("auth", ({ payload: { event, data } }) => {
     switch (event) {
-    case "signIn":
-      ReactGA.event({
-        category: gaUser,
-        action: gaUserSignIn,
-      });
-      break;
-    case "signOut":
-      ReactGA.event({
-        category: gaUser,
-        action: gaUserSignOut,
-      });
-      break;
-    case "signIn_failure":
-      ReactGA.event({
-        category: gaUser,
-        action: gaUserSignInFailure,
-      });
-      break;
-    case "customOAuthState":
-      navigate(data);
-      break;
-    default:
-      break;
+      case "signIn":
+        ReactGA.event({
+          category: gaUser,
+          action: gaUserSignIn,
+        });
+        break;
+      case "signOut":
+        ReactGA.event({
+          category: gaUser,
+          action: gaUserSignOut,
+        });
+        break;
+      case "signIn_failure":
+        ReactGA.event({
+          category: gaUser,
+          action: gaUserSignInFailure,
+        });
+        break;
+      case "customOAuthState":
+        navigate(data);
+        break;
+      default:
+        break;
     }
   });
 
@@ -94,20 +94,20 @@ const App = () => {
             {localStorage.getItem("isFirstAccess") === null ||
             localStorage.getItem("isFirstAccess") === "true" ? (
               <Home path="/" isFirstAccess />
-              ) : (
-                <Router>
-                  <TermsOfService path="/terms-of-service" />
-                  <PrivacyPolicy path="/privacy-policy" />
-                  <AboutUs path="/aboutus" />
-                  <RedirectPage path="/verify" />
-                  <Feeds path="/feeds" />
-                  <Home path="/home" isFirstAccess={false} />
-                  <Redirect from="/" to="/courses/timetable" noThrow />
-                  <Redirect from="/timetable" to="/courses/timetable" noThrow />
-                  <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
-                  <NotFound default />
-                </Router>
-              )}
+            ) : (
+              <Router>
+                <TermsOfService path="/terms-of-service" />
+                <PrivacyPolicy path="/privacy-policy" />
+                <AboutUs path="/aboutus" />
+                <RedirectPage path="/verify" />
+                <Feeds path="/feeds" />
+                <Home path="/home" isFirstAccess={false} />
+                <Redirect from="/" to="/courses/timetable" noThrow />
+                <Redirect from="/timetable" to="/courses/timetable" noThrow />
+                <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
+                <NotFound default />
+              </Router>
+            )}
           </Suspense>
         </ErrorBoundary>
       </ThemeProvider>

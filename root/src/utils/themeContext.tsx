@@ -14,6 +14,7 @@ const getInitialTheme = (): ThemeTypes => {
     }
   }
   // If you want to use dark theme as the default, return 'dark' instead
+
   return "light";
 };
 
@@ -23,7 +24,7 @@ interface ThemeContextInterface {
 }
 
 export const ThemeContext = createContext<ThemeContextInterface | undefined>(
-  undefined,
+  undefined
 );
 
 interface ThemeProviderType {

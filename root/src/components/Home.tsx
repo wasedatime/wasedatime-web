@@ -1,18 +1,20 @@
 import React, { useContext, useState } from "react";
-import styled from "styled-components";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+
+import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
-import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { navigateToUrl } from "single-spa";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import ReactGA from "react-ga";
-import titleLogo from "../assets/img/home/title-logo.svg";
-import homeBackground from "../assets/img/home/home_background-lg.jpg";
-import WelcomeModal from "./WelcomeModal";
-import { gaAppendActionWithLng, gaChangeLanguage } from "../ga/eventActions";
-import { gaLanguage } from "../ga/eventCategories";
-import { ThemeContext } from "../utils/themeContext";
+import { WithTranslation, withTranslation } from "react-i18next";
+import { navigateToUrl } from "single-spa";
+import styled from "styled-components";
+
+import homeBackground from "@app/assets/img/home/home_background-lg.jpg";
+import titleLogo from "@app/assets/img/home/title-logo.svg";
+import WelcomeModal from "@app/components/WelcomeModal";
+import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
+import { gaLanguage } from "@app/ga/eventCategories";
+import { ThemeContext } from "@app/utils/themeContext";
 
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
@@ -89,6 +91,7 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
     <StyledWrapper background={homeBackground}>
       <Header
         title=""
+        // eslint-disable-next-line @typescript-eslint/no-empty-function
         onInputChange={() => {}}
         placeholder={t("search placeholder")}
         inputText=""
@@ -116,6 +119,7 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
           </Description>
           <br />
           <button
+            type="button"
             className="bg-red-800 dark:bg-dark-button rounded-lg text-white px-4 py-2 mx-2"
             onClick={() => setModalOpen(true)}
           >

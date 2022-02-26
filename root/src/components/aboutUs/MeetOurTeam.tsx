@@ -1,34 +1,34 @@
 import React from "react";
-import styled from "styled-components";
+
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
-import oscar from "../../assets/img/contributors/oscar.jpg";
-import mei from "../../assets/img/contributors/mei.jpg";
-import hao from "../../assets/img/contributors/hao.jpg";
+import alina from "../../assets/img/contributors/alina.jpg";
 import austin from "../../assets/img/contributors/austin.jpg";
-import tang from "../../assets/img/contributors/tang.jpg";
-import kong from "../../assets/img/contributors/kong.jpg";
 import george from "../../assets/img/contributors/george.jpg";
-import isabella from "../../assets/img/contributors/isabella.jpg";
 import gu from "../../assets/img/contributors/gu.jpg";
-import zenda from "../../assets/img/contributors/zenda.jpg";
+import hao from "../../assets/img/contributors/hao.jpg";
+import hatori from "../../assets/img/contributors/hatori.jpg";
+import isabella from "../../assets/img/contributors/isabella.jpg";
 import kaede from "../../assets/img/contributors/kaede.jpg";
 import kaiqing from "../../assets/img/contributors/kaiqing.jpg";
-import zhaohuaibo from "../../assets/img/contributors/zhaohuaibo.jpg";
-import hatori from "../../assets/img/contributors/hatori.jpg";
-import yaoyuan from "../../assets/img/contributors/yaoyuan.jpg";
+import kong from "../../assets/img/contributors/kong.jpg";
+import mei from "../../assets/img/contributors/mei.jpg";
 import naomi from "../../assets/img/contributors/naomi.jpg";
-import alina from "../../assets/img/contributors/alina.jpg";
-
+import oscar from "../../assets/img/contributors/oscar.jpg";
+import tang from "../../assets/img/contributors/tang.jpg";
+import yaoyuan from "../../assets/img/contributors/yaoyuan.jpg";
+import zenda from "../../assets/img/contributors/zenda.jpg";
+import zhaohuaibo from "../../assets/img/contributors/zhaohuaibo.jpg";
+import email from "../../assets/img/socialmediaicon/email.png";
 import facebook from "../../assets/img/socialmediaicon/facebook.png";
+import github from "../../assets/img/socialmediaicon/github.png";
 import homepage from "../../assets/img/socialmediaicon/homepage.png";
 import instagram from "../../assets/img/socialmediaicon/instagram.png";
 import linkedin from "../../assets/img/socialmediaicon/linkedin.png";
 import weibo from "../../assets/img/socialmediaicon/sina-weibo.png";
 import twitter from "../../assets/img/socialmediaicon/twitter.png";
-import github from "../../assets/img/socialmediaicon/github.png";
-import email from "../../assets/img/socialmediaicon/email.png";
 
 const Title = styled("h2")`
   width: 50%;
@@ -95,6 +95,7 @@ const MediaIcon = styled("img")`
 
 const MeetOurTeam = () => {
   const { t } = useTranslation();
+
   return (
     <Wrapper>
       <br />
@@ -429,7 +430,11 @@ const MeetOurTeam = () => {
           <MemberName>Alina Kenny</MemberName>
           <MemberPosition>Business</MemberPosition>
           <SocialMediaArea>
-            <a href="https://www.instagram.com/alina_kenny119/" target="_blank" rel="noopener noreferrer">
+            <a
+              href="https://www.instagram.com/alina_kenny119/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <MediaIcon src={instagram} href="www.google.com" />
             </a>
           </SocialMediaArea>

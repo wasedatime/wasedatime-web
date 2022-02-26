@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
+
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WithTranslation, withTranslation } from "react-i18next";
+import styled from "styled-components";
 
 const UserMenuTrigger = styled("div")`
   color: #fff;
@@ -42,9 +43,10 @@ const StyledSpan = styled("span")`
   width: ${(props) => (props.ishovered ? "145px" : "0px")};
   white-space: nowrap;
   overflow-x: hidden;
-  transition: ${(props) => (props.ishovered
-    ? "width 0.5s ease, opacity 0.5s ease 0.1s"
-    : "width 0.5s, opacity 0.2s")};
+  transition: ${(props) =>
+    props.ishovered
+      ? "width 0.5s ease, opacity 0.5s ease 0.1s"
+      : "width 0.5s, opacity 0.2s"};
 `;
 
 interface Props extends WithTranslation {
@@ -53,9 +55,7 @@ interface Props extends WithTranslation {
   isMobileMode: boolean;
 }
 
-const UserMenu = ({
-  openSignInModal, isHovered, isMobileMode, t,
-}: Props) => {
+const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
   const [userAttr, setUserAttr] = useState(null);
   const [isUserIconHovered, setIsUserIconHovered] = useState(false);
   const notSignedIn = !userAttr;

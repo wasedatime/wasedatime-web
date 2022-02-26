@@ -1,4 +1,5 @@
 import React from "react";
+
 import { navigate } from "@reach/router";
 import { withTranslation, WithTranslation } from "react-i18next";
 import styled from "styled-components";
@@ -21,6 +22,7 @@ class RedirectPage extends React.Component<Props> {
 
   render() {
     const { t } = this.props;
+
     return window.location.search.includes("error_description") ? (
       <div className="mt-20">
         <h1>{t("verify.failed.title")}</h1>

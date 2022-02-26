@@ -1,23 +1,22 @@
-import React, {
-  useState, useContext, lazy, Suspense,
-} from "react";
-import styled from "styled-components";
-import { useTranslation } from "react-i18next";
-import Header from "@bit/wasedatime.core.ts.ui.header";
+import React, { useState, useContext, lazy, Suspense } from "react";
+
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { Helmet } from "react-helmet";
+import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import ReactGA from "react-ga";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { ThemeContext } from "../../utils/themeContext";
+import ReactGA from "react-ga";
+import { Helmet } from "react-helmet";
+import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
-import OurMission from "./OurMission";
-import JoinUs from "./JoinUs";
-import { gaLanguage } from "../../ga/eventCategories";
-import { gaAppendActionWithLng, gaChangeLanguage } from "../../ga/eventActions";
-import Partners from "./Partners";
+import JoinUs from "@app/components/aboutUs/JoinUs";
+import OurMission from "@app/components/aboutUs/OurMission";
+import Partners from "@app/components/aboutUs/Partners";
+import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
+import { gaLanguage } from "@app/ga/eventCategories";
+import { ThemeContext } from "@app/utils/themeContext";
 
-const MeetOurTeam = lazy(() => import("./MeetOurTeam"));
+const MeetOurTeam = lazy(() => import("@app/components/aboutUs/MeetOurTeam"));
 
 const AboutUsWrapper = styled(Wrapper)`
   display: flex;
@@ -87,22 +86,24 @@ const AboutUs = (props: { path: string }) => {
           <button
             className={`
             border-2 border-red-800 border-r-0 ${
-    activePage === "our mission"
-      ? "bg-red-800 text-white"
-      : "bg-white text-red-800"
-    } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
+              activePage === "our mission"
+                ? "bg-red-800 text-white"
+                : "bg-white text-red-800"
+            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
           `}
-            onClick={() => activePage !== "our mission" && setActivePage("our mission")}
+            onClick={() =>
+              activePage !== "our mission" && setActivePage("our mission")
+            }
           >
             {t("aboutus.our mission")}
           </button>
           <button
             className={`
             border-2 border-red-800 border-l-0 border-r-0 ${
-    activePage === "join us"
-      ? "bg-red-800 text-white"
-      : "bg-white text-red-800"
-    } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+              activePage === "join us"
+                ? "bg-red-800 text-white"
+                : "bg-white text-red-800"
+            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
           `}
             onClick={() => activePage !== "join us" && setActivePage("join us")}
           >
@@ -111,24 +112,28 @@ const AboutUs = (props: { path: string }) => {
           <button
             className={`
             border-2 border-red-800 border-l-0 border-r-0 ${
-    activePage === "meet our team"
-      ? "bg-red-800 text-white"
-      : "bg-white text-red-800"
-    } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+              activePage === "meet our team"
+                ? "bg-red-800 text-white"
+                : "bg-white text-red-800"
+            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
           `}
-            onClick={() => activePage !== "meet our team" && setActivePage("meet our team")}
+            onClick={() =>
+              activePage !== "meet our team" && setActivePage("meet our team")
+            }
           >
             {t("aboutus.meet our team")}
           </button>
           <button
             className={`
             border-2 border-red-800 border-l-0 ${
-    activePage === "partners"
-      ? "bg-red-800 text-white"
-      : "bg-white text-red-800"
-    } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
+              activePage === "partners"
+                ? "bg-red-800 text-white"
+                : "bg-white text-red-800"
+            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
           `}
-            onClick={() => activePage !== "partners" && setActivePage("partners")}
+            onClick={() =>
+              activePage !== "partners" && setActivePage("partners")
+            }
           >
             {t("aboutus.partners")}
           </button>

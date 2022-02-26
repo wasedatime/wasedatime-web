@@ -1,12 +1,13 @@
 import React from "react";
-import MediaQuery from "react-responsive";
-import { Helmet } from "react-helmet";
+
 import { Overlay } from "@bit/wasedatime.core.ts.styles.overlay";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserTie, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { faUserTie, faUserCog } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Helmet } from "react-helmet";
+import MediaQuery from "react-responsive";
+import styled from "styled-components";
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
@@ -23,10 +24,7 @@ const JoinUs = () => (
   <Wrapper>
     <Helmet>
       <title>WasedaTime - Join Us!</title>
-      <meta
-        name="description"
-        content="Recruitment document for WasedaTime."
-      />
+      <meta name="description" content="Recruitment document for WasedaTime." />
       <meta property="og:title" content="WasedaTime - Join Us!" />
       <meta
         property="og:description"
@@ -38,37 +36,37 @@ const JoinUs = () => (
     <ExtendedOverlay>
       <br />
       <MediaQuery minWidth={sizes.desktop}>
-        {(matches) => (matches ? (
-          <h2 style={{ color: "#555", textAlign: "center" }}>
-            <b>WasedaTime is back, AND WE WANT YOU!</b>
-          </h2>
-        ) : (
-          <h3 style={{ color: "#555", textAlign: "center" }}>
-            <b>WasedaTime is back, AND WE WANT YOU!</b>
-          </h3>
-        ))}
+        {(matches) =>
+          matches ? (
+            <h2 style={{ color: "#555", textAlign: "center" }}>
+              <b>WasedaTime is back, AND WE WANT YOU!</b>
+            </h2>
+          ) : (
+            <h3 style={{ color: "#555", textAlign: "center" }}>
+              <b>WasedaTime is back, AND WE WANT YOU!</b>
+            </h3>
+          )
+        }
       </MediaQuery>
       <br />
       <p>
-        WasedaTime has been working on supporting students' academic
-        activities since launching. Its well-tested Syllabus Search feature is
-        favored by thousands of students. More than 50% of international
-        students are using this website. We never expect this could happen and
-        are always grateful for all our users.
+        WasedaTime has been working on supporting students' academic activities
+        since launching. Its well-tested Syllabus Search feature is favored by
+        thousands of students. More than 50% of international students are using
+        this website. We never expect this could happen and are always grateful
+        for all our users.
       </p>
       <p>
-        With the quick iterations of the product, WasedaTime is running short
-        of talented minds! We want to extend a sincere invitation to you, and
-        let's build this fantastic product together! WasedaTime is a 100%
-        student-run, open-source project.
+        With the quick iterations of the product, WasedaTime is running short of
+        talented minds! We want to extend a sincere invitation to you, and let's
+        build this fantastic product together! WasedaTime is a 100% student-run,
+        open-source project.
       </p>
 
       <br />
       <h2>
         <b>
-          <FontAwesomeIcon icon={faUserCog} />
-          {" "}
-          Technology
+          <FontAwesomeIcon icon={faUserCog} /> Technology
         </b>
       </h2>
       <hr />
@@ -76,14 +74,13 @@ const JoinUs = () => (
       <p>
         We are looking for experienced developers, but we also love to provide
         mentorship to passionate beginners with little background! You will be
-        working with a talented team whose members entered the world's top 4
-        CS schools and interned at recognized employers in the industry:
-        Google, Tencent, Yahoo, Bilibili, etc. They are happy to provide
-        guidance in your career development&nbsp;
+        working with a talented team whose members entered the world's top 4 CS
+        schools and interned at recognized employers in the industry: Google,
+        Tencent, Yahoo, Bilibili, etc. They are happy to provide guidance in
+        your career development&nbsp;
         <span role="img" aria-label="smile">
           😄
-        </span>
-        {" "}
+        </span>{" "}
       </p>
 
       <h3>Roles</h3>
@@ -101,13 +98,11 @@ const JoinUs = () => (
         <li>・Self-motivation</li>
         <li>・Have learned any programming language</li>
         <small>
-          * Not necessary but better to know about Git,
-          {" "}
-          <br />
-          {" "}
-          &nbsp; React
-          or HTML/CSS (for frontend), AWS (for backend)
-        </small>
+          * Not necessary but better to know about Git, <br />
+{' '}
+&nbsp; React or
+          HTML/CSS (for frontend), AWS (for backend)
+</small>
       </ul>
       <br />
 
@@ -116,12 +111,10 @@ const JoinUs = () => (
         <li>・Develop new features for WasedaTime</li>
         <li>・Backend automation & maintenance</li>
         <li>
-          ・Direction: Make WasedaTime a
-          {" "}
-          <b>platform</b>
-          {" "}
-          for students
-        </li>
+          ・Direction: Make WasedaTime a <b>platform</b>
+{' '}
+for students
+</li>
         <small>* Using React on Frontend and AWS on Backend</small>
         <br />
         <small>* Preparing for adoption of other frontend frameworks</small>
@@ -134,9 +127,7 @@ const JoinUs = () => (
         <li>・Knowledges shared by each other</li>
         <li>
           ・Teammates who can fight together to make Waseda better
-          <b>platform</b>
-          {" "}
-          for students
+          <b>platform</b> for students
         </li>
         <small>
           * All students are welcome, especially 1st & 2nd grade students
@@ -147,25 +138,24 @@ const JoinUs = () => (
 
       <br />
       <MediaQuery minWidth={sizes.desktop}>
-        {(matches) => (matches ? (
-          <h2>
-            <b>
-              <FontAwesomeIcon icon={faUserTie} />
-              {" "}
-              Performance Marketing & Business Operations
-            </b>
-          </h2>
-        ) : (
-          <h3>
-            <b>
-              <FontAwesomeIcon icon={faUserTie} />
-              {" "}
-              Marketing
-              <br />
-              & Business Operations
-            </b>
-          </h3>
-        ))}
+        {(matches) =>
+          matches ? (
+            <h2>
+              <b>
+                <FontAwesomeIcon icon={faUserTie} /> Performance Marketing &
+                Business Operations
+              </b>
+            </h2>
+          ) : (
+            <h3>
+              <b>
+                <FontAwesomeIcon icon={faUserTie} /> Marketing
+                <br />
+& Business Operations
+</b>
+            </h3>
+          )
+        }
       </MediaQuery>
       <hr />
       <br />
@@ -173,10 +163,10 @@ const JoinUs = () => (
       <p>
         The “Non-Tech” team builds bridges across technology to users. They
         transform WasedaTime from code to a vivid product. We are looking for
-        innovative minds who possess outstanding analytical skills. You will
-        be working with our excellent members who entered the world's top 10
-        business schools and interned at prestigious companies: Morgan
-        Stanley, Accenture, etc.
+        innovative minds who possess outstanding analytical skills. You will be
+        working with our excellent members who entered the world's top 10
+        business schools and interned at prestigious companies: Morgan Stanley,
+        Accenture, etc.
       </p>
 
       <h3>Roles</h3>
@@ -190,8 +180,7 @@ const JoinUs = () => (
       <h3>Requirements</h3>
       <ul>
         <li>
-          ・Have passion on learning, presenting new ideas, building
-          connection
+          ・Have passion on learning, presenting new ideas, building connection
         </li>
         <li>
           ・Sense of responsibility, business sense (experience in product
@@ -222,8 +211,8 @@ const JoinUs = () => (
         </li>
         <li>・Knowledges shared by each other</li>
         <li>
-          ・You will meet creative people with different backgrounds,
-          fighting together to make Waseda better!
+          ・You will meet creative people with different backgrounds, fighting
+          together to make Waseda better!
         </li>
       </ul>
       <br />
@@ -233,8 +222,7 @@ const JoinUs = () => (
         <b>
           <span role="img" aria-label="smile">
             🤗
-          </span>
-          {" "}
+          </span>{" "}
           How to get started
         </b>
       </h2>
@@ -242,8 +230,7 @@ const JoinUs = () => (
       <br />
       <p>
         We welcome students who are interested to send an email with a brief
-        self-introduction or a CV/resume to the following address:
-        {" "}
+        self-introduction or a CV/resume to the following address:{" "}
         <b>
           <a
             href="mailto:joinus@wasedatime.com"
@@ -257,13 +244,11 @@ const JoinUs = () => (
       <p>
         The self-introduction should contain your name, department, year,
         interests, and highlight projects (if possible). You're welcome to add
-        more information, especially your
-        {" "}
-        <b>experience</b>
-        {" "}
-        related to our
+        more information, especially your <b>experience</b>
+{' '}
+related to our
         requirements!
-      </p>
+</p>
 
       <br />
       <h4 style={{ color: "#555", textAlign: "center" }}>

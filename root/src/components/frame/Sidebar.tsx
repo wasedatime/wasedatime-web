@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
-import styled, { ThemeProvider } from "styled-components";
+
+import textLogo from "@bit/wasedatime.core.assets.text-logo";
 import { normalTheme } from "@bit/wasedatime.core.ts.constants.theme";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarWrapper from "@bit/wasedatime.core.ts.styles.sidebar-wrapper";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
-import textLogo from "@bit/wasedatime.core.assets.text-logo";
-import UserMenu from "../user/UserMenu";
-import OtherLinks from "./OtherLinks";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "@reach/router";
+import styled, { ThemeProvider } from "styled-components";
+
+import OtherLinks from "@app/components/frame/OtherLinks";
+import UserMenu from "@app/components/user/UserMenu";
 
 const TextLogoWrapper = styled.div`
   ${(props) => props.expanded && "flex: 0 0 130px;"}
@@ -19,7 +21,8 @@ const TextLogo = styled.img`
   overflow-x: hidden;
   width: ${(props) => (props.expanded ? "130px" : "0px")};
   opacity: ${(props) => (props.expanded ? "1" : "0")};
-  transition: ${(props) => (props.expanded ? "opacity 0.5s ease-out 0.1s" : "opacity 0.3s")},
+  transition: ${(props) =>
+      props.expanded ? "opacity 0.5s ease-out 0.1s" : "opacity 0.3s"},
     width 0.3s ${(props) => !props.expanded && "0.2s"};
   display: inline-block;
 `;
@@ -27,7 +30,8 @@ const TextLogo = styled.img`
 const NavItemBlock = styled.div`
   display: flex;
   flex-direction: row;
-  /* color: ${(props) => (props.isCurrentPath ? props.theme.colorPrimary : "#fff")}; */
+  /* color: ${(props) =>
+    props.isCurrentPath ? props.theme.colorPrimary : "#fff"}; */
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;

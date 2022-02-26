@@ -1,6 +1,7 @@
 import React from "react";
-import styled from "styled-components";
+
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import styled from "styled-components";
 
 interface Props {
   path: string;
@@ -43,9 +44,7 @@ const PrivacyPolicy = (props: Props) => (
       Personal information you disclose to us
     </h4>
     <p>
-      <b>In Short:</b>
-      {" "}
-      We collect personal information that you provide to us.
+      <b>In Short:</b> We collect personal information that you provide to us.
     </p>
     <p>
       We collect personal information that you voluntarily provide to us when
@@ -60,23 +59,18 @@ const PrivacyPolicy = (props: Props) => (
       include the following:
     </p>
     <p>
-      <b>Personal Information Provided by You.</b>
-      {" "}
-      We collect email addresses;
+      <b>Personal Information Provided by You.</b> We collect email addresses;
       and other similar information.
     </p>
     <p>
-      <b>Social Media Login Data.</b>
-      {" "}
-      We provide you with the option to register
+      <b>Social Media Login Data.</b> We provide you with the option to register
       with us using your existing Google student account details. If you
       register in this way, we will collect the Information described in the
       section called
-      {" "}
+{" "}
       <a href="#how_to_handle_social_logins">
         "HOW DO WE HANDLE YOUR SOCIAL LOGINS"
-      </a>
-      {" "}
+      </a>{" "}
       below.
     </p>
     <p>
@@ -86,9 +80,7 @@ const PrivacyPolicy = (props: Props) => (
     </p>
     <h4 className="text-center my-4">Information automatically collected</h4>
     <p>
-      <b>In Short:</b>
-      {" "}
-      Some information — such as your Internet Protocol (IP)
+      <b>In Short:</b> Some information — such as your Internet Protocol (IP)
       address and/or browser and device characteristics — is collected
       automatically when you visit our Website.
     </p>
@@ -106,9 +98,7 @@ const PrivacyPolicy = (props: Props) => (
     <p>The information we collect includes:</p>
     <ul>
       <li>
-        <i>Log and Usage Data.</i>
-        {" "}
-        Log and usage data is service-related,
+        <i>Log and Usage Data.</i> Log and usage data is service-related,
         diagnostic, usage and performance information our servers automatically
         collect when you access or use our Website and which we record in log
         files. Depending on how you interact with us, this log data may include
@@ -120,9 +110,7 @@ const PrivacyPolicy = (props: Props) => (
         'crash dumps') and hardware settings).
       </li>
       <li>
-        <i>Device Data.</i>
-        {" "}
-        We collect device data such as information about
+        <i>Device Data.</i> We collect device data such as information about
         your computer, phone, tablet or other device you use to access the
         Website. Depending on the device used, this device data may include
         information such as your IP address (or proxy server), device and
@@ -131,9 +119,7 @@ const PrivacyPolicy = (props: Props) => (
         and system configuration information.
       </li>
       <li>
-        <i>Location Data.</i>
-        {" "}
-        We collect location data such as information about
+        <i>Location Data.</i> We collect location data such as information about
         your device's location, which can be either precise or imprecise. How
         much information we collect depends on the type and settings of the
         device you use to access the Website. For example, we may use GPS and
@@ -147,9 +133,7 @@ const PrivacyPolicy = (props: Props) => (
     </ul>
     <h3 className="text-center my-4">2. HOW DO WE USE YOUR INFORMATION?</h3>
     <p>
-      <b>In Short:</b>
-      {" "}
-      We process your information for purposes based on
+      <b>In Short:</b> We process your information for purposes based on
       compliance with our legal obligations and/or your consent.
     </p>
     <p>
@@ -162,24 +146,19 @@ const PrivacyPolicy = (props: Props) => (
     <p>We use the information we collect or receive:</p>
     <ul>
       <li>
-        <b>To facilitate account creation and logon process.</b>
-        {" "}
-        If you choose
+        <b>To facilitate account creation and logon process.</b> If you choose
         to link your account with us to a third-party account (such as your
         Google account), we use the information you allowed us to collect from
         those third parties to facilitate account creation and logon process.
         See the section below headed
-        {" "}
+{" "}
         <a href="#how_to_handle_social_logins">
           "HOW DO WE HANDLE YOUR SOCIAL LOGINS"
-        </a>
-        {" "}
+        </a>{" "}
         for further information.
       </li>
       <li>
-        <b>To post testimonials.</b>
-        {" "}
-        We post testimonials on our Website that
+        <b>To post testimonials.</b> We post testimonials on our Website that
         may contain personal information. Prior to posting a testimonial, we
         will obtain your consent to use your name and the content of the
         testimonial. If you wish to update, or delete your testimonial, please
@@ -187,36 +166,26 @@ const PrivacyPolicy = (props: Props) => (
         testimonial location, and contact information.
       </li>
       <li>
-        <b>Request feedback.</b>
-        {" "}
-        We may use your information to request feedback
+        <b>Request feedback.</b> We may use your information to request feedback
         and to contact you about your use of our Website.
       </li>
       <li>
-        <b>To enable user-to-user communications.</b>
-        {" "}
-        We may use your
+        <b>To enable user-to-user communications.</b> We may use your
         information in order to enable user-to-user communications with each
         user's consent.
       </li>
       <li>
-        <b>To manage user accounts.</b>
-        {" "}
-        We may use your information for the
+        <b>To manage user accounts.</b> We may use your information for the
         purposes of managing our account and keeping it in working order.
       </li>
       <li>
-        <b>To send administrative information to you.</b>
-        {" "}
-        We may use your
+        <b>To send administrative information to you.</b> We may use your
         personal information to send you product, service and new feature
         information and/or information about changes to our terms, conditions,
         and policies.
       </li>
       <li>
-        <b>To protect our Services.</b>
-        {" "}
-        We may use your information as part of
+        <b>To protect our Services.</b> We may use your information as part of
         our efforts to keep our Website safe and secure (for example, for fraud
         monitoring and prevention).
       </li>
@@ -227,9 +196,7 @@ const PrivacyPolicy = (props: Props) => (
         </b>
       </li>
       <li>
-        <b>To respond to legal requests and prevent harm.</b>
-        {" "}
-        If we receive a
+        <b>To respond to legal requests and prevent harm.</b> If we receive a
         subpoena or other legal request, we may need to inspect the data we hold
         to determine how to respond.
       </li>
@@ -238,9 +205,7 @@ const PrivacyPolicy = (props: Props) => (
       3. WILL YOUR INFORMATION BE SHARED WITH ANYONE?
     </h3>
     <p>
-      <b>In Short:</b>
-      {" "}
-      We only share information with your consent, to comply
+      <b>In Short:</b> We only share information with your consent, to comply
       with laws, to provide you with services, to protect your rights, or to
       fulfill obligations.
     </p>
@@ -250,15 +215,11 @@ const PrivacyPolicy = (props: Props) => (
     </p>
     <ul>
       <li>
-        <b>Consent:</b>
-        {" "}
-        We may process your data if you have given us specific
+        <b>Consent:</b> We may process your data if you have given us specific
         consent to use your personal information for a specific purpose.
       </li>
       <li>
-        <b>Legal Obligations:</b>
-        {" "}
-        We may disclose your information where we are
+        <b>Legal Obligations:</b> We may disclose your information where we are
         legally required to do so in order to comply with applicable law,
         governmental requests, a judicial proceeding, court order, or legal
         process, such as in response to a court order or a subpoena (including
@@ -266,9 +227,7 @@ const PrivacyPolicy = (props: Props) => (
         enforcement requirements).
       </li>
       <li>
-        <b>Vital Interests:</b>
-        {" "}
-        We may disclose your information where we
+        <b>Vital Interests:</b> We may disclose your information where we
         believe it is necessary to investigate, prevent, or take action
         regarding potential violations of our policies, suspected fraud,
         situations involving potential threats to the safety of any person and
@@ -280,9 +239,7 @@ const PrivacyPolicy = (props: Props) => (
       4. HOW DO WE HANDLE YOUR SOCIAL LOGINS?
     </h3>
     <p>
-      <b>In Short:</b>
-      {" "}
-      If you choose to register or log in to our services using
+      <b>In Short:</b> If you choose to register or log in to our services using
       a social media account, we may have access to certain information about
       you.
     </p>
@@ -309,9 +266,7 @@ const PrivacyPolicy = (props: Props) => (
       5. IS YOUR INFORMATION TRANSFERRED INTERNATIONALLY?
     </h3>
     <p>
-      <b>In Short:</b>
-      {" "}
-      We may transfer, store, and process your information in
+      <b>In Short:</b> We may transfer, store, and process your information in
       countries other than your own.
     </p>
     <p>
@@ -332,9 +287,7 @@ const PrivacyPolicy = (props: Props) => (
       6. HOW LONG DO WE KEEP YOUR INFORMATION?
     </h3>
     <p>
-      <b>In Short:</b>
-      {" "}
-      We keep your information for as long as necessary to
+      <b>In Short:</b> We keep your information for as long as necessary to
       fulfill the purposes outlined in this privacy notice unless otherwise
       required by law.
     </p>
@@ -358,9 +311,7 @@ const PrivacyPolicy = (props: Props) => (
       7. HOW DO WE KEEP YOUR INFORMATION SAFE?
     </h3>
     <p>
-      <b>In Short:</b>
-      {" "}
-      We aim to protect your personal information through a
+      <b>In Short:</b> We aim to protect your personal information through a
       system of organizational and technical security measures.
     </p>
     <p>
@@ -380,9 +331,7 @@ const PrivacyPolicy = (props: Props) => (
       8. DO WE COLLECT INFORMATION FROM MINORS?
     </h3>
     <p>
-      <b>In Short:</b>
-      {" "}
-      We do not knowingly collect data from or market to
+      <b>In Short:</b> We do not knowingly collect data from or market to
       children under 18 years of age.
     </p>
     <p>
@@ -398,9 +347,7 @@ const PrivacyPolicy = (props: Props) => (
     </p>
     <h3 className="text-center my-4">9. WHAT ARE YOUR PRIVACY RIGHTS?</h3>
     <p>
-      <b>In Short:</b>
-      {" "}
-      You may review, change, or terminate your account at any
+      <b>In Short:</b> You may review, change, or terminate your account at any
       time.
     </p>
     <p>
@@ -430,14 +377,11 @@ const PrivacyPolicy = (props: Props) => (
       signals or any other mechanism that automatically communicates your choice
       not to be tracked online. If a standard for online tracking is adopted
       that we must follow in the future, we will inform you about that practice
-      in a revised version of this privacy notice.
-      {" "}
+      in a revised version of this privacy notice.{" "}
     </p>
     <h3 className="text-center my-4">11. DO WE MAKE UPDATES TO THIS NOTICE?</h3>
     <p>
-      <b>In Short:</b>
-      {" "}
-      Yes, we will update this notice as necessary to stay
+      <b>In Short:</b> Yes, we will update this notice as necessary to stay
       compliant with relevant laws.
     </p>
     <p>
@@ -468,8 +412,7 @@ const PrivacyPolicy = (props: Props) => (
       30 days.
     </p>
     <p>
-      This privacy policy was created using
-      {" "}
+      This privacy policy was created using{" "}
       <a
         href="https://termly.io/products/privacy-policy-generator/"
         target="_blank"

@@ -66,8 +66,7 @@ const PrivacyPolicy = (props: Props) => (
       <b>Social Media Login Data.</b> We provide you with the option to register
       with us using your existing Google student account details. If you
       register in this way, we will collect the Information described in the
-      section called
-{" "}
+      section called{" "}
       <a href="#how_to_handle_social_logins">
         "HOW DO WE HANDLE YOUR SOCIAL LOGINS"
       </a>{" "}
@@ -150,8 +149,7 @@ const PrivacyPolicy = (props: Props) => (
         to link your account with us to a third-party account (such as your
         Google account), we use the information you allowed us to collect from
         those third parties to facilitate account creation and logon process.
-        See the section below headed
-{" "}
+        See the section below headed{" "}
         <a href="#how_to_handle_social_logins">
           "HOW DO WE HANDLE YOUR SOCIAL LOGINS"
         </a>{" "}

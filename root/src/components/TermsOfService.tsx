@@ -128,9 +128,8 @@ const TermsOfService = (props: Props) => (
     <h4 className="text-center my-4">8. Your Privacy</h4>
 
     <p>
-      Please read our <a href="/privacy-policy">Privacy Policy</a>
-.
-</p>
+      Please read our <a href="/privacy-policy">Privacy Policy</a>.
+    </p>
 
     <h4 className="text-center my-4">9. Governing Law</h4>
 

@@ -12,7 +12,9 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier",
+    "prettier/react"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",

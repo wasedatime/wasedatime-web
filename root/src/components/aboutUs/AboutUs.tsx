@@ -16,7 +16,9 @@ import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
 import { gaLanguage } from "@app/ga/eventCategories";
 import { ThemeContext } from "@app/utils/themeContext";
 
-const MeetOurTeam = lazy(() => import("@app/components/aboutUs/MeetOurTeam"));
+const MeetOurTeam = lazy(
+  () => import("@app/components/aboutUs/MeetOurTeam/MeetOurTeam")
+);
 
 const AboutUsWrapper = styled(Wrapper)`
   display: flex;
@@ -84,6 +86,7 @@ const AboutUs = (props: { path: string }) => {
       <AboutUsFlex>
         <AboutUsMenu>
           <button
+            type="button"
             className={`
             border-2 border-red-800 border-r-0 ${
               activePage === "our mission"
@@ -98,6 +101,7 @@ const AboutUs = (props: { path: string }) => {
             {t("aboutus.our mission")}
           </button>
           <button
+            type="button"
             className={`
             border-2 border-red-800 border-l-0 border-r-0 ${
               activePage === "join us"
@@ -110,6 +114,7 @@ const AboutUs = (props: { path: string }) => {
             {t("aboutus.join us")}
           </button>
           <button
+            type="button"
             className={`
             border-2 border-red-800 border-l-0 border-r-0 ${
               activePage === "meet our team"
@@ -124,6 +129,7 @@ const AboutUs = (props: { path: string }) => {
             {t("aboutus.meet our team")}
           </button>
           <button
+            type="button"
             className={`
             border-2 border-red-800 border-l-0 ${
               activePage === "partners"

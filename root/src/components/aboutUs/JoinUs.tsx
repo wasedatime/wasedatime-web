@@ -98,11 +98,9 @@ const JoinUs = () => (
         <li>・Self-motivation</li>
         <li>・Have learned any programming language</li>
         <small>
-          * Not necessary but better to know about Git, <br />
-{' '}
-&nbsp; React or
+          * Not necessary but better to know about Git, <br /> &nbsp; React or
           HTML/CSS (for frontend), AWS (for backend)
-</small>
+        </small>
       </ul>
       <br />
 
@@ -111,10 +109,8 @@ const JoinUs = () => (
         <li>・Develop new features for WasedaTime</li>
         <li>・Backend automation & maintenance</li>
         <li>
-          ・Direction: Make WasedaTime a <b>platform</b>
-{' '}
-for students
-</li>
+          ・Direction: Make WasedaTime a <b>platform</b> for students
+        </li>
         <small>* Using React on Frontend and AWS on Backend</small>
         <br />
         <small>* Preparing for adoption of other frontend frameworks</small>
@@ -150,9 +146,8 @@ for students
             <h3>
               <b>
                 <FontAwesomeIcon icon={faUserTie} /> Marketing
-                <br />
-& Business Operations
-</b>
+                <br />& Business Operations
+              </b>
             </h3>
           )
         }
@@ -244,11 +239,9 @@ for students
       <p>
         The self-introduction should contain your name, department, year,
         interests, and highlight projects (if possible). You're welcome to add
-        more information, especially your <b>experience</b>
-{' '}
-related to our
+        more information, especially your <b>experience</b> related to our
         requirements!
-</p>
+      </p>
 
       <br />
       <h4 style={{ color: "#555", textAlign: "center" }}>

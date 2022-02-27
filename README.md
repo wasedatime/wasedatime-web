@@ -161,11 +161,31 @@ For any developers who want to make contribution, including our members, please 
 1. Make a new branch from `develop` branch called “feature/(name)”
 	```
 	git checkout develop
-	git checkout -b feature/name-of-your-new-feature
+	git checkout -b feature/{name-of-your-new-feature}
 	```
 2. Then you can run `git status` or `git branch` again to confirm that you are on a new branch.
 
 3. Begin your development!
+
+<br>
+
+### During development
+
+1. Use **Absolute Imports** within each project where the `src` folder of a project is called `@app`
+  
+    e.g.
+    ```
+    import Home from "@app/components/Home"
+    import { useLocale } from "@app/hooks/useLocale"
+    ```
+
+2. Whenever you finish writing code, run linter check and formatter in the terminal with the following command to make sure styling is consistent throughout all files
+    ```
+    npm run fix
+    ```
+    Whenever there are errors shown in the files you have changed, please fix them accordingly to the eslint/prettier error message as shown in the terminal
+
+<br>
 
 ### Commit during development
 
@@ -188,7 +208,7 @@ Whenever there is some progress in your work, commit it.
 
 4. Push your changes to Github
 	```
-	git push origin feature/name-of-your-new-feature
+	git push origin feature/{name-of-your-new-feature}
 	```
 
 *Code editor like VScode has functionality for you to do the above steps without typing them one by one. What you need to do will not change; it just make the process more convenient.*

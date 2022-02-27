@@ -149,8 +149,10 @@ pnpm i
 - **feature/name-of-your-feature**: Should be created from `develop`. You should always develop your feature on this branch. If you are working on multiple new features, create different feature branches for each of them
 - **hotfix**: Created from `master` and directly pushed backed to `master` after development. This is only for debugging in emergency.
 
+# Contributing
 
-# Development
+We welcome any developers to submit an issue or a pull request! :blush:
+For any developers who want to make contribution, including our members, please refer to the following steps!
 
 ## Steps
 
@@ -251,10 +253,6 @@ pnpm i
   },
   ```
   Then run `pnpm run local` inside root folder. This runs all app at the same time. Open http://localhost:9000 to see the result.
-
-# Contributing
-
-Submit an issue or a pull request! :blush:
 
 # Contributors
 

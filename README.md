@@ -13,7 +13,9 @@
 [![Node.js CI - Feeds](https://github.com/wasedatime/wasedatime-web/actions/workflows/blog.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/blog.yml)
 [![Node.js CI - Career](https://github.com/wasedatime/wasedatime-web/actions/workflows/career.yml/badge.svg)](https://github.com/wasedatime/wasedatime-web/actions/workflows/career.yml)
 
-[WasedaTime](https://wasedatime.com) (stands for Waseda Timetable) is a non-profit & student-run open source web app for syllabus searching, course reviews and bus schedule checking at Waseda University. We aim at supporting and improving campus lives of Waseda University students.
+[WasedaTime](https://wasedatime.com) (stands for Waseda Timetable) is a non-profit & student-run open source web app for syllabus searching, course reviews and bus schedule checking at Waseda University.
+
+We aim at supporting and improving campus lives of Waseda University students.
 
 ## App Architecture
 
@@ -28,13 +30,13 @@ Unfortunately, currently there are no unit tests created to ensure the code qual
 
 ## Built With
 
-Backend:
+**Backend**
 
 You can view the repository [here](https://github.com/wasedatime/wasedatime-backend).
 
 - [Amazon Web Service](https://aws.amazon.com/) - Fully powered by AWS.
 
-Frontend (Client):
+**Frontend (Client)**
 
 - Common
   - [Single-spa](https://single-spa.js.org) - A framework to bring together multiple JavaScript microfrontends in a frontend application.
@@ -123,7 +125,7 @@ pnpm install
 // ↓ works the same
 pnpm i
 ```
-### Run the app
+## Run the app on your local
 - Run the whole app
 	```
 	// At the top level of the project folder

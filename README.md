@@ -15,69 +15,193 @@
 
 [WasedaTime](https://wasedatime.com) (stands for Waseda Timetable) is a non-profit & student-run open source web app for syllabus searching, course reviews and bus schedule checking at Waseda University. We aim at supporting and improving campus lives of Waseda University students.
 
-## Getting Started
+## App Architecture
 
-### Prerequisites
+- Micro-frontend (https://martinfowler.com/articles/micro-frontends.html?utm_source=arador.com)
+- Description of our frontend architecture (in Micro-frontends) will be updated soon.
 
-```bash
-# install pnpm package manager
+## Continuous Integration and Deployment
+
+This project is deployed on AWS Amplify and uses GitHub Actions for continuous integration.
+
+Unfortunately, currently there are no unit tests created to ensure the code quality.
+
+## Built With
+
+Backend:
+
+You can view the repository [here](https://github.com/wasedatime/wasedatime-backend).
+
+- [Amazon Web Service](https://aws.amazon.com/) - Fully powered by AWS.
+
+Frontend (Client):
+
+- Common
+  - [Single-spa](https://single-spa.js.org) - A framework to bring together multiple JavaScript microfrontends in a frontend application.
+  - [Styled Components](https://www.styled-components.com) - Library used for adding CSS to React components.
+- Root
+  - [Tailwind](https://tailwindcss.com) - A utility-first CSS framework packed with classes with humen-friendly name; highly customizable.
+- Syllabus
+  - [Redux](https://redux.js.org) - Library used to manage the state of front-end.
+  - [Semantic UI React](https://react.semantic-ui.com) - Official React integration for Semantic UI, a development framework that helps create layouts with prebuilt components easily.
+- Campus
+  - [React Bootstrap](https://react-bootstrap.github.io) - Official React integration for Bootstrap, a frequently updated development framework that helps create layouts with prebuilt components easily.
+
+# Getting Started
+
+## Prepare your environment
+
+### Git/GitHub
+
+1.  Create a GitHub account if you haven't
+2.  If you are a member of our development team, tell me your username or email so that I can add you to our GitHub team.
+3.  Install Git on your computer (local): https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
+
+### Node.js & NPM
+Download: https://nodejs.org/en/
+Please download the LTS one and install it.
+Both `Node.js` and `npm` should be installed.
+
+### PNPM
+Install with `npm`
+```
 npm install -g pnpm
-# install bit cli
-npm install bit-bin -g
-# log into your bit.dev account
-bit login
-# clone the project
+// if ↑ does not work, run ↓
+sudo npm install -g pnpm
+```
+Installation with other ways: https://pnpm.io/installation
+
+### Bit
+
+1. Create a [Bit.dev](https://bit.dev) account if you haven't.
+2. If you are a member of our development team, tell me your username or email so that I can add you to our Bit team.
+
+3. Then install Bit on your computer (local): https://docs.bit.dev/docs/installation
+
+4. Check your Bit authentication token with the following command:
+	```
+	bit config
+	```
+	and add the token to your environment variable with the following steps:
+
+	**Mac/Linux**
+	1. Add the following to file `~/.bash_profile`
+	```
+	export BIT_TOKEN=XXXXXXXXXXXXX
+	// replace XXXXXXXXXXXXX to your token
+	```
+	2. If you are using Z shell (check if there is a text `zsh` on top of your terminal), add the following in file `~/.zshrc`
+	```
+	if [ -f ~/.bash_profile ]; then 
+	    . ~/.bash_profile;
+	fi
+	```
+	3. Either restart your terminal or run the following:
+	```
+	source ~/.bash_profile
+	```
+	**Windows**
+	https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html
+
+### Clone WasedaTime
+```
+// By HTTP
 git clone https://github.com/wasedatime/wasedatime-web.git
+// By SSH
+git clone git@github.com:wasedatime/wasedatime-web.git
+```
+Then move into the cloned repository:
+```
 cd wasedatime-web
 ```
+Run  `git status`  or  `git branch`  to confirm that you are on  `master`  branch
 
-Add bit token to your environment variables:
-```bash
-
-nano ~/.bashrc
-
-# Then inside the file write:
-export BIT_TOKEN=???
-
-# Contact us for the value of '???'
+### Install dependencies 
 ```
-
-### Installing
-
-```bash
-# install packages for all frontend
+// At the top level of the project folder
 pnpm install
+// ↓ works the same
+pnpm i
 ```
+### Run the app
+- Run the whole app
+	```
+	// At the top level of the project folder
+	pnpm start
+	```
+- Run only the `root` app (with Home page, sidebar, AboutUs page)
+	```
+	cd root
+	pnpm start
+	```
+- Run another app only (e.g. syllabus)
+	```
+	cd syllabus
+	pnpm run local
+	```
 
-### Running the app for developing
+## Branches
 
-You may meet errors when you run wasedatime-web locally and then access Syllabus page without having a .env file. Please contact us if you need the .env file, while it is not necessary to have it if the development you are engaging in is not related with Syllabus page.
+- **master**: The released version. The website actually viewed and used by users is run according to the code in `master`.
+- **develop**: Having the latest changes ready to be released. Sometimes different features may conflict with each other, which you would not find during the development on your branch, and that's why this `develop` branch is needed: Merge different new changes and test them with `develop` before officially release
+- **feature/name-of-your-feature**: Should be created from `develop`. You should always develop your feature on this branch. If you are working on multiple new features, create different feature branches for each of them
+- **hotfix**: Created from `master` and directly pushed backed to `master` after development. This is only for debugging in emergency.
 
-To develop only in one frontend (with 'root'):
-```bash
-cd wasedatime-web/{folder name of the frontend you want to run}
-pnpm run local
-```
 
-To develop only in one frontend (without 'root'):
-```bash
-cd wasedatime-web/{folder name of the frontend you want to run}
-pnpm run start:standalone
-```
+# Development
 
-To develop only inside 'root':
-```bash
-cd wasedatime-web/root
-pnpm start
-```
+## Steps
 
-To run the whole project:
-```bash
-cd wasedatime-web
-pnpm start
-```
+### Before development
 
-### Create a new project (micro-app) in WasedaTime
+1. Make a new branch from `develop` branch called “feature/(name)”
+	```
+	git checkout develop
+	git checkout -b feature/name-of-your-new-feature
+	```
+2. Then you can run `git status` or `git branch` again to confirm that you are on a new branch.
+
+3. Begin your development!
+
+### Commit during development
+
+Whenever there is some progress in your work, commit it.
+
+1. Run `git status` to check what files are changed during your development.
+
+2. Let Git know what files are ready to be committed
+	```
+	git add path/to/the/file
+	// or you can add all changed files by:
+	git add .
+	```
+
+3. Commit your changes with a message precisely but specifically describing your changes
+	```
+	git commit -m "feat: styling of the clean button"
+	```
+	Please refer to this link about how to write a commit message: https://www.conventionalcommits.org/en/v1.0.0/
+
+4. Push your changes to Github
+	```
+	git push origin feature/name-of-your-new-feature
+	```
+
+*Code editor like VScode has functionality for you to do the above steps without typing them one by one. What you need to do will not change; it just make the process more convenient.*
+
+### Finish development
+
+1. On the [repository page](https://github.com/wasedatime/wasedatime-web), click on the `Pull Request` tab, and then click the `New pull request` button.
+2. Set the **base** branch to `develop`, **compare** branch to your branch.
+3. Click `Create pull request` button.
+4. Inform us that you have created a Pull Request (PR) and we will review it.
+5. Continue developing if we found anything to be improved
+6. If everything is OK, GREAT JOB! We will merge it into `develop`.
+7. **Delete your feature branch on local**
+
+## Create a new app (micro-app) in WasedaTime
+
+*For new big features which is obviously less related to other existing apps (syllabus, campus, feeds)*
 
 1. Install `create-single-spa`
 ```bash
@@ -126,43 +250,11 @@ pnpm i
   ```
   Then run `pnpm run local` inside root folder. This runs all app at the same time. Open http://localhost:9000 to see the result.
 
-### App Architecture
-
-- Micro-frontend (https://martinfowler.com/articles/micro-frontends.html?utm_source=arador.com)
-- Description of our frontend architecture (in Micro-frontends) will be updated soon.
-
-### Continuous Integration and Deployment
-
-This project is deployed on AWS Amplify and uses GitHub Actions for continuous integration.
-
-Unfortunately, currently there are no unit tests created to ensure the code quality.
-
-## Built With
-
-Backend:
-
-You can view the repository [here](https://github.com/wasedatime/wasedatime-backend).
-
-- [Amazon Web Service](https://aws.amazon.com/) - Fully powered by AWS.
-
-Frontend (Client):
-
-- Common
-  - [Single-spa](https://single-spa.js.org) - A framework to bring together multiple JavaScript microfrontends in a frontend application.
-  - [Styled Components](https://www.styled-components.com) - Library used for adding CSS to React components.
-- Root
-  - [Tailwind](https://tailwindcss.com) - A utility-first CSS framework packed with classes with humen-friendly name; highly customizable.
-- Syllabus
-  - [Redux](https://redux.js.org) - Library used to manage the state of front-end.
-  - [Semantic UI React](https://react.semantic-ui.com) - Official React integration for Semantic UI, a development framework that helps create layouts with prebuilt components easily.
-- Campus
-  - [React Bootstrap](https://react-bootstrap.github.io) - Official React integration for Bootstrap, a frequently updated development framework that helps create layouts with prebuilt components easily.
-
-## Contributing
+# Contributing
 
 Submit an issue or a pull request! :blush:
 
-## Contributors
+# Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -190,8 +282,9 @@ Submit an issue or a pull request! :blush:
     <td align="center"><a href="#"><sub><b>Zenda Chen</b></sub></a><br /><a href="#" title="Business, Design, Ideas">💼🎨🤔</a></td>
     <td align="center"><a href="#"><sub><b>Kaiqing Chang</b></sub></a><br /><a href="#" title="Business, Design, Ideas">💼🎨🤔</a></td>
     <td align="center"><a href="https://github.com/kaedejima"><img src="https://avatars.githubusercontent.com/u/49092226?s=400&u=7f7d80600a0007aadc8a9e6d0df69e38088c5562&v=4" width="100px;" alt=""/><br /><sub><b>Kaede Iijima</b></sub></a><br /><a href="#code" title="Tutorials, Design">✅🎨</a></td>
-    <td align="center"><a href="https://github.com/nichnarmada"><img src="https://avatars.githubusercontent.com/u/36405403?v=4" width="100px;" alt=""/><br /><sub><b>Nicholas Narmada</b></sub></a><br /><a href="#" title="Code, Ideas, Planning, & Feedback">💻🤔</a></td>
-    <td align="center"><a href="https://github.com/ronin207"><img src="https://avatars.githubusercontent.com/u/59204227?v=4" width="100px;" alt=""/><br /><sub><b>Takumi Otsuka</b></sub></a><br /><a href="#" title="Code, Ideas, Planning, & Feedback">💻🤔</a></td>
+    <td align="center"><a href="https://github.com/nichnarmada"><img src="https://avatars.githubusercontent.com/u/36405403?v=4" width="100px;" alt=""/><br /><sub><b>Nicholas Narmada</b></sub></a><br /><a href="#" title="Code, Ideas, Design, Planning, & Feedback">💻🎨🤔</a></td>
+    <td align="center"><a href="https://github.com/ronin207"><img src="https://avatars.githubusercontent.com/u/59204227?v=4" width="100px;" alt=""/><br /><sub><b>Takumi Otsuka</b></sub></a><br /><a href="#" title="Code, Ideas, Design, Planning, & Feedback">💻🎨🤔</a></td>
+    <td align="center"><a href="https://github.com/Autogod"><img src="https://avatars.githubusercontent.com/u/93040528?v=4" width="100px;" alt=""/><br /><sub><b>Jason Park</b></sub></a><br /><a href="#" title="Code, Business & Feedback">💻💼🤔</a></td>
   </tr>
 </table>
 
@@ -202,7 +295,7 @@ Submit an issue or a pull request! :blush:
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification.
 
-## License
+# License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 

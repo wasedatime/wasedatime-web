@@ -11,7 +11,14 @@ import { Link } from "@reach/router";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-const LinksWrapper = styled("div")`
+type LinksWrapperProps = {
+  expanded: boolean;
+  theme: {
+    [colorLabel: string]: string;
+  };
+}
+
+const LinksWrapper = styled("div")<LinksWrapperProps>`
   ${(props) => (props.expanded ? "width: 210px;" : "width: 100%;")}
   height: 120px;
   overflow-x: hidden;

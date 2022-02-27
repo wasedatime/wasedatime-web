@@ -11,11 +11,31 @@ import styled, { ThemeProvider } from "styled-components";
 import OtherLinks from "@app/components/frame/OtherLinks";
 import UserMenu from "@app/components/user/UserMenu";
 
-const TextLogoWrapper = styled.div`
+type TextLogoWrapperProps = {
+  expanded: boolean;
+}
+
+type TextLogoProps = {
+  expanded: boolean;
+}
+
+type NavItemBlockProps = {
+  expanded: boolean;
+  isCurrentPath: boolean;
+  theme: {
+    [colorLabel: string]: string;
+  };
+}
+
+type NavItemTextProps = {
+  expanded: boolean;
+}
+
+const TextLogoWrapper = styled.div<TextLogoWrapperProps>`
   ${(props) => props.expanded && "flex: 0 0 130px;"}
 `;
 
-const TextLogo = styled.img`
+const TextLogo = styled.img<TextLogoProps>`
   height: 25px;
   margin: 0 0 0 10px !important;
   overflow-x: hidden;
@@ -27,7 +47,7 @@ const TextLogo = styled.img`
   display: inline-block;
 `;
 
-const NavItemBlock = styled.div`
+const NavItemBlock = styled.div<NavItemBlockProps>`
   display: flex;
   flex-direction: row;
   /* color: ${(props) =>
@@ -49,7 +69,7 @@ const NavItemBlock = styled.div`
   }
 `;
 
-const NavItemText = styled.span`
+const NavItemText = styled.span<NavItemTextProps>`
   overflow: hidden;
   margin: 0px;
   margin-left: 10px;

@@ -7,6 +7,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
 
+type SignInSpanProps = {
+  ishovered: boolean;
+}
+
 const UserMenuTrigger = styled("div")`
   color: #fff;
   text-align: center;
@@ -34,7 +38,7 @@ const UserMenuTrigger = styled("div")`
   }
 `;
 
-const StyledSpan = styled("span")`
+const StyledSpan = styled("span")<SignInSpanProps>`
   text-align: left;
   font-weight: 100;
   margin-left: 1em;

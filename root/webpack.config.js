@@ -41,6 +41,17 @@ module.exports = (webpackConfigEnv, argv) => {
           },
         },
         {
+          test: /\.ts$/,
+          use: "ts-loader",
+          resolve: {
+            fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
+          },
+        },
+        {
           test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)$/,
           type: "asset/inline",
         },

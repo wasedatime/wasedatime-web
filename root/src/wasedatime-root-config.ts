@@ -14,8 +14,8 @@ import {
   constructLayoutEngine,
 } from "single-spa-layout";
 import singleSpaReact from "single-spa-react";
-import "@app/styles/styles.css";
 
+import "@app/styles/styles.css";
 import App from "@app/App";
 import Nav from "@app/components/frame/Nav";
 import translationEN from "@app/constants/locales/en/translation.json";

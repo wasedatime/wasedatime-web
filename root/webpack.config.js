@@ -41,6 +41,7 @@ module.exports = (webpackConfigEnv, argv) => {
             alias: {
               "@app": path.resolve(__dirname, "src/"),
             },
+            modules: ["node_modules"],
           },
         },
         {

@@ -13,11 +13,11 @@ import UserMenu from "@app/components/user/UserMenu";
 
 type TextLogoWrapperProps = {
   expanded: boolean;
-}
+};
 
 type TextLogoProps = {
   expanded: boolean;
-}
+};
 
 type NavItemBlockProps = {
   expanded: boolean;
@@ -25,11 +25,11 @@ type NavItemBlockProps = {
   theme: {
     [colorLabel: string]: string;
   };
-}
+};
 
 type NavItemTextProps = {
   expanded: boolean;
-}
+};
 
 const TextLogoWrapper = styled.div<TextLogoWrapperProps>`
   ${(props) => props.expanded && "flex: 0 0 130px;"}

@@ -16,7 +16,7 @@ type LinksWrapperProps = {
   theme: {
     [colorLabel: string]: string;
   };
-}
+};
 
 const LinksWrapper = styled("div")<LinksWrapperProps>`
   ${(props) => (props.expanded ? "width: 210px;" : "width: 100%;")}

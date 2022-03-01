@@ -9,7 +9,7 @@ import styled from "styled-components";
 
 type SignInSpanProps = {
   ishovered: boolean;
-}
+};
 
 const UserMenuTrigger = styled("div")`
   color: #fff;
@@ -96,7 +96,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
           width="40"
           height="40"
           className="rounded-full"
-          alt="Image of User account"
+          alt="User account"
           style={{ marginLeft: "2px" }}
         />
         <StyledSpan style={{ paddingTop: "8px" }} ishovered={isHovered}>

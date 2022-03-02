@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import Review from "./Review";
-import FilterButton from "../syllabus/FilterButton";
 import ReviewStars from "../courseInfo/ReviewStars";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import SimpleBar from "simplebar-react";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import majorBg from "../../assets/img/major_bg.jpg";
 import FSEcover from "../../assets/img/school-covers/fse.png";
 import CSEcover from "../../assets/img/school-covers/cse.png";
 import ASEcover from "../../assets/img/school-covers/ase.png";
@@ -27,6 +25,9 @@ const LabWrapper = styled.div`
     flex: 0 0 100%;
   `}
   margin-bottom: 1em;
+  ${media.tablet`
+    margin-bottom: 1rem;
+  `}
 `;
 
 const LabTrigger = styled.div`
@@ -49,6 +50,10 @@ const LabTrigger = styled.div`
     background-size: 100%;
     border-radius: 10px;
   }
+
+  ${media.tablet`
+    height: 70px;
+  `}
 `;
 
 const LabName = styled.div`
@@ -68,6 +73,13 @@ const LabName = styled.div`
   &:hover {
     font-size: 40px;
   }
+
+  ${media.tablet`
+    font-size: 28px;
+    &:hover {
+      font-size: 32px;
+    }
+  `}
 `;
 
 const ReviewsModalOverlay = styled.div`
@@ -91,6 +103,11 @@ const ReviewsModal = styled.div`
   background-color: #fff;
   border-radius: 10px;
   padding: 1em;
+  ${media.tablet`
+    left: 5vw;
+    right: 5vw;
+    padding: 1rem;
+  `}
 `;
 
 const ReviewsWrapper = styled(SimpleBar)`
@@ -106,6 +123,15 @@ const ReviewsWrapper = styled(SimpleBar)`
   position: relative;
 `;
 
+const ReviewProfName = styled.h2`
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 2em;
+  ${media.tablet`
+    font-size: 1.5em;
+  `}
+`;
+
 const CloseButton = styled.button`
   position: absolute;
   top: 0;
@@ -118,28 +144,6 @@ const SectionHeader = styled.h5`
   border-left: 5px solid #b51e36;
   padding-left: 10px;
 `;
-
-const itemLabelNameMap = {
-  "theme": "Theme",
-  "coreTime": "Core Time",
-  "obligations": "Obligations",
-
-  "topicSatisfication": "Satisfaction with your research topic",
-  "topicDecision": "How did you decide your research topic?",
-  "yourResearch": "Your research topic",
-
-  "guidance": "More independence (1) or more guidance (5)?",
-  "happiness": "How happy you are in the lab?",
-  "atmosphere": "Atmosphere in the lab",
-  "profCharacter": "Professor/mentor's character",
-  "knowBeforeEnter": "Anything you wish you had known before entering",
-  
-  "totalStudents": "Number of all students",
-  "internationalStudents": "Number of international students",
-  
-  "jaRequired": "Japanese required?",
-  "enRequired": "English required?",
-}
 
 const getRoundedAverage = (reviews, itemLabel) => {
   const filteredReviews = reviews.filter(review => review[itemLabel] && Number.isInteger(review[itemLabel]));
@@ -176,7 +180,7 @@ const Lab = ({ name, reviews, school }) => {
             <ReviewsWrapper>
               <CloseButton onClick={() => setOpen(false)}>×</CloseButton>
 
-              <h2 style={{ textAlign: "center" }}>{name}</h2>
+              <ReviewProfName>{name}</ReviewProfName>
 
               <SectionHeader>{t("labs.review.Basics")}</SectionHeader>
               {itemTable("theme")}

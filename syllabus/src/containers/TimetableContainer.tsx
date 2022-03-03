@@ -82,11 +82,10 @@ class TimetableContainer extends React.Component<
   }
 
   handleToggleSemester = () => {
-    if (this.state.selectedSemester === Semester.SPRING) {
-      this.setState({ selectedSemester: Semester.FALL });
-    } else {
-      this.setState({ selectedSemester: Semester.SPRING });
-    }
+    this.setState({
+      selectedSemester: this.state.selectedSemester === Semester.SPRING ? Semester.FALL : Semester.SPRING,
+      selectedQuarter: ""
+    });
   };
 
   handleToggleQuarter = (quarter) => {

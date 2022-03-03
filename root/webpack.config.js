@@ -1,3 +1,4 @@
+const path = require("path");
 const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-ts");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -28,7 +29,28 @@ module.exports = (webpackConfigEnv, argv) => {
   })(defaultConfig, {
     module: {
       rules: [
-        { test: /\.tsx$/, use: "ts-loader" },
+        {
+          test: /\.tsx$/,
+          use: "ts-loader",
+          resolve: {
+            fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
+          },
+        },
+        {
+          test: /\.ts$/,
+          use: "ts-loader",
+          resolve: {
+            fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
+          },
+        },
         {
           test: /\.(svg|jpe?g|png|gif|bmp|tiff|woff|woff2|eot|ttf|otf)$/,
           type: "asset/inline",
@@ -37,6 +59,10 @@ module.exports = (webpackConfigEnv, argv) => {
           test: /\.m?js/,
           resolve: {
             fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
           },
         },
         {
@@ -86,6 +112,7 @@ module.exports = (webpackConfigEnv, argv) => {
           if (/\.(s?css)$/.test(entry)) return "style";
           if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
           if (/\.(jpe?g|png|gif|bmp|tiff|svg)$/.test(entry)) return "image";
+
           return "script";
         },
       }),
@@ -118,11 +145,11 @@ module.exports = (webpackConfigEnv, argv) => {
       new WebpackPwaManifest({
         filename: "/[name].json",
         name: "WasedaTime",
-        short_name: "WasedaTime",
-        start_url: "/index.html",
+        shortName: "WasedaTime",
+        startUrl: "/index.html",
         display: "standalone",
-        theme_color: "#000000",
-        background_color: "#ffffff",
+        themeColor: "#000000",
+        backgroundColor: "#ffffff",
         crossorigin: webpackConfigEnv.isDev ? "use-credentials" : null,
         icons: [
           {

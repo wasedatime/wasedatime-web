@@ -1,9 +1,11 @@
 import * as React from "react";
-import styled from "styled-components";
-import { useTranslation } from "react-i18next";
+
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { ThemeContext } from "../utils/themeContext";
+import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+
+import { ThemeContext } from "@app/utils/themeContext";
 
 const FeedsWrapper = styled.div`
   display: flex;
@@ -23,9 +25,10 @@ const Feeds = ({ path }: { path: string }) => {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = React.useContext(ThemeContext);
 
-  const feedsDomain = process.env.NODE_ENV === "development"
-    ? "http://localhost:8083"
-    : process.env.NODE_ENV === "staging"
+  const feedsDomain =
+    process.env.NODE_ENV === "development"
+      ? "http://localhost:8083"
+      : process.env.NODE_ENV === "staging"
       ? `https://${process.env.PREFIX}.${process.env.MF_FEEDS_DOMAIN}`
       : "/feeds";
 

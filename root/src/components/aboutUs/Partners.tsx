@@ -1,11 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faFacebook, faInstagram, faLinkedin, faTwitter,
+  faFacebook,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
 const Title = styled("h2")`
   width: 50%;
@@ -151,62 +155,58 @@ const partners = [
 
 const Partners = () => {
   const { t } = useTranslation();
+
   return (
     <Wrapper>
       <br />
       <Title>Collaboration Partners</Title>
       <br />
-      <h6 style={{ textAlign: "center" }}>We look forward to collaborating with more circles or organizations!</h6>
+      <h6 style={{ textAlign: "center" }}>
+        We look forward to collaborating with more circles or organizations!
+      </h6>
 
       <CardArea>
-        {
-          partners.map((partner) => (
-            <Card key={partner.org}>
-              <OrgImage src={partner.img} />
-              <OrgName>{partner.org}</OrgName>
-              <SocialMediaArea>
-                {
-                  partner.links.map((link) => (
-                    <a
-                      key={link.url}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ fontSize: "1.5em", margin: "0px 0.5em" }}
-                    >
-                      {link.icon}
-                    </a>
-                  ))
-                }
-              </SocialMediaArea>
-              <MembersWrapper>
-                {
-                  partner.members && partner.members.map((member) => (
-                    <MemberWrapper key={member.name}>
-                      <MemberImage src={member.img} />
-                      <span>{member.name}</span>
-                      <SocialMediaArea>
-                        {
-                          member.links.map((link) => (
-                            <a
-                              key={link.url}
-                              href={link.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              style={{ fontSize: "1.5em", margin: "0px 0.5em" }}
-                            >
-                              {link.icon}
-                            </a>
-                          ))
-                        }
-                      </SocialMediaArea>
-                    </MemberWrapper>
-                  ))
-                }
-              </MembersWrapper>
-            </Card>
-          ))
-        }
+        {partners.map((partner) => (
+          <Card key={partner.org}>
+            <OrgImage src={partner.img} />
+            <OrgName>{partner.org}</OrgName>
+            <SocialMediaArea>
+              {partner.links.map((link) => (
+                <a
+                  key={link.url}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontSize: "1.5em", margin: "0px 0.5em" }}
+                >
+                  {link.icon}
+                </a>
+              ))}
+            </SocialMediaArea>
+            <MembersWrapper>
+              {partner.members &&
+                partner.members.map((member) => (
+                  <MemberWrapper key={member.name}>
+                    <MemberImage src={member.img} />
+                    <span>{member.name}</span>
+                    <SocialMediaArea>
+                      {member.links.map((link) => (
+                        <a
+                          key={link.url}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ fontSize: "1.5em", margin: "0px 0.5em" }}
+                        >
+                          {link.icon}
+                        </a>
+                      ))}
+                    </SocialMediaArea>
+                  </MemberWrapper>
+                ))}
+            </MembersWrapper>
+          </Card>
+        ))}
       </CardArea>
       <br />
     </Wrapper>

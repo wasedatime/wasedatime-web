@@ -10,7 +10,7 @@ specifiers:
   '@testing-library/jest-dom': ^5.11.6
   '@testing-library/react': 12.1.2
   '@types/jest': ^26.0.16
-  '@types/react': 17.0.37
+  '@types/react': 17.0.39
   '@types/react-dom': ^16.9.6
   '@types/systemjs': ^6.1.0
   '@types/webpack-env': ^1.16.0
@@ -42,7 +42,7 @@ specifiers:
 
 dependencies:
   '@types/jest': 26.0.24
-  '@types/react': 17.0.37
+  '@types/react': 17.0.39
   '@types/react-dom': 16.9.14
   '@types/systemjs': 6.1.1
   '@types/webpack-env': 1.16.3
@@ -1839,8 +1839,8 @@ packages:
       csstype: 3.0.10
     dev: false
 
-  /@types/react/17.0.37:
-    resolution: {integrity: sha512-2FS1oTqBGcH/s0E+CjrCCR9+JMpsu9b69RTFO+40ua43ZqP5MmQ4iUde/dMjWR909KxZwmOQIFq6AV6NjEG5xg==}
+  /@types/react/17.0.39:
+    resolution: {integrity: sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==}
     dependencies:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2

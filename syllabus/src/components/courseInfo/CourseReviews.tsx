@@ -12,10 +12,10 @@ import MediaQuery from "react-responsive";
 import Alert from "react-s-alert";
 import styled from "styled-components";
 
-import AddReviewForm from "@app/components/courseInfoAddReviewForm";
-import ReviewLangSwitches from "@app/components/courseInfoReviewLangSwitches";
-import ReviewScalesCount from "@app/components/courseInfoReviewScalesCount";
-import ReviewsList from "@app/components/courseInfoReviewsList";
+import AddReviewForm from "@app/components/courseInfo/AddReviewForm";
+import ReviewLangSwitches from "@app/components/courseInfo/ReviewLangSwitches";
+import ReviewScalesCount from "@app/components/courseInfo/ReviewScalesCount";
+import ReviewsList from "@app/components/courseInfo/ReviewsList";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import {
   gaCreateCourseReview,

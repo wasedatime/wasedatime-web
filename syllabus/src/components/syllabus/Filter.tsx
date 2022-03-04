@@ -7,8 +7,8 @@ import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import SimpleBar from "simplebar-react";
 import styled from "styled-components";
 
-import FilterEvalGroup from "@app/components/syllabusFilterEvalGroup";
-import FilterGroup from "@app/components/syllabusFilterGroup";
+import FilterEvalGroup from "@app/components/syllabus/FilterEvalGroup";
+import FilterGroup from "@app/components/syllabus/FilterGroup";
 import FilterOption from "@app/constants/syllabus-filter";
 import SchoolFilterContainer from "@app/containers/SchoolFilterContainer";
 import FilterGroups from "@app/types/filter";

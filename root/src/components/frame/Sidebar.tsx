@@ -5,11 +5,11 @@ import { normalTheme } from "@bit/wasedatime.core.ts.constants.theme";
 import SidebarWrapper from "@bit/wasedatime.core.ts.styles.sidebar-wrapper";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "@reach/router";
 import styled, { ThemeProvider } from "styled-components";
 
 import OtherLinks from "@app/components/frame/OtherLinks";
 import UserMenu from "@app/components/user/UserMenu";
+import LinkOutsideRouter from "@app/utils/link-outside-router";
 
 type TextLogoWrapperProps = {
   expanded: boolean;
@@ -50,8 +50,8 @@ const TextLogo = styled.img<TextLogoProps>`
 const NavItemBlock = styled.div<NavItemBlockProps>`
   display: flex;
   flex-direction: row;
-  /* color: ${(props) =>
-    props.isCurrentPath ? props.theme.colorPrimary : "#fff"}; */
+  color: ${(props) =>
+    props.isCurrentPath ? props.theme.colorPrimary : "#fff"};
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;
@@ -111,7 +111,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
         onTouchStart={expandSidebar}
         onMouseLeave={foldSidebar}
       >
-        <Link
+        <LinkOutsideRouter
           to="/home"
           className="flex flex-row items-center"
           style={{
@@ -132,14 +132,13 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
               expanded={expanded}
             />
           </TextLogoWrapper>
-        </Link>
+        </LinkOutsideRouter>
         <div style={{ width: "100%", margin: "0px" }}>
           {navItems.map((item) => (
-            <Link
+            <LinkOutsideRouter
               to={item.path}
+              customOnClick={() => setCurrentPath(item.path)}
               key={item.name}
-              onClick={() => setCurrentPath(item.path)}
-              expanded={expanded ? 1 : 0}
             >
               <NavItemBlock
                 className="group text-white dark:text-dark-text1"
@@ -159,11 +158,11 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
                   {item.name}
                 </NavItemText>
               </NavItemBlock>
-            </Link>
+            </LinkOutsideRouter>
           ))}
         </div>
         <div className="absolute" style={{ bottom: "100px" }}>
-          <OtherLinks expanded={expanded} />
+          <OtherLinks expanded={expanded} setCurrentPath={setCurrentPath} />
           <UserMenu
             openSignInModal={openSignInModal}
             isHovered={expanded}

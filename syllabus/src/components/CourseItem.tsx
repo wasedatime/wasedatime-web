@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { useNavigate } from "react-router-dom";
 import {
   faClock,
   faMapMarkerAlt,
@@ -14,12 +14,10 @@ import {
   faWifi,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { navigate } from "@reach/router";
 import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import CourseInfo from "@app/components/courseInfo/CourseInfo";
-import CourseReviews from "@app/components/courseInfo/CourseReviews";
 import { Badge } from "@app/components/styles/Badge";
 import { InvisibleButton } from "@app/components/styles/Button";
 import { Highlight } from "@app/components/syllabus/Highlight";
@@ -255,6 +253,7 @@ const CourseItem = ({
   t,
   i18n,
 }: Props) => {
+  let navigate = useNavigate();
   const { theme, setTheme } = React.useContext(ThemeContext);
   const [expanded, setExpanded] = useState(
     window.location.search.includes(course[SyllabusKey.ID])

@@ -1,13 +1,6 @@
 import React from "react";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import styled from "styled-components";
-
-interface Props {
-  path: string;
-}
-
-const PrivacyPolicy = (props: Props) => (
+const PrivacyPolicy = () => (
   <div className="p-6 md:py-24 md:px-60">
     <h1 className="text-center my-4">PRIVACY NOTICE</h1>
     <p className="text-center my-4">Last updated January 13, 2021</p>

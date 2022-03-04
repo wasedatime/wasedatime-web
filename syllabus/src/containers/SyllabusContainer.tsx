@@ -3,9 +3,9 @@ import React, { lazy, Suspense } from "react";
 import API from "@aws-amplify/api";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import withRouter, { WithRouter } from "../utils/with-router";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { navigate, Link } from "@reach/router";
 import debounce from "lodash/debounce";
 import queryString from "query-string";
 import ReactGA from "react-ga";
@@ -100,9 +100,7 @@ interface ReduxDispatchProps {
   fetchCoursesBySchool: (school: string) => void;
 }
 
-interface OwnProps extends WithTranslation {
-  path: string;
-}
+interface OwnProps extends WithTranslation, WithRouter {}
 
 interface OwnState {
   isModalOpen: boolean;
@@ -147,7 +145,7 @@ class SyllabusContainer extends React.Component<
   constructor(props) {
     super(props);
     if (window.location.pathname.includes("timetable"))
-      navigate("/courses/timetable");
+      props.router.navigate("/courses/timetable");
 
     this.state = {
       isModalOpen: false,
@@ -479,4 +477,4 @@ const mapDispatchToProps = {
 export default connect<ReduxStateProps, ReduxDispatchProps>(
   mapStateToProps,
   mapDispatchToProps
-)(withTranslation("translation")(SyllabusContainer));
+)(withTranslation("translation")(withRouter(SyllabusContainer)));

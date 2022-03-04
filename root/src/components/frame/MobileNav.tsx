@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "@reach/router";
+import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 type Props = {

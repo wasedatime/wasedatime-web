@@ -7,9 +7,9 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "@reach/router";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+import LinkOutsideRouter from "@app/utils/link-outside-router";
 
 type LinksWrapperProps = {
   expanded: boolean;
@@ -46,11 +46,12 @@ const SnsLink = styled("a")`
 
 interface Props {
   expanded: boolean;
+  setCurrentPath: (path: string) => void;
 }
 
 const getWindowHeight = () => window.innerHeight;
 
-const OtherLinks = ({ expanded }: Props) => {
+const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
   const { t } = useTranslation();
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
@@ -66,10 +67,10 @@ const OtherLinks = ({ expanded }: Props) => {
 
   return windowHeight >= 480 ? (
     <LinksWrapper expanded={expanded}>
-      <Link to="/aboutus">{t("navigation.aboutus")}</Link>
+      <LinkOutsideRouter to="/aboutus" customOnClick={() => setCurrentPath("/aboutus")}>{t("navigation.aboutus")}</LinkOutsideRouter>
       <br />
-      <Link to="/terms-of-service">{t("user.Terms of Service")}</Link>・
-      <Link to="/privacy-policy">{t("user.Privacy Policy")}</Link>
+      <LinkOutsideRouter to="/terms-of-service" customOnClick={() => setCurrentPath("/terms-of-service")}>{t("user.Terms of Service")}</LinkOutsideRouter>・
+      <LinkOutsideRouter to="/privacy-policy" customOnClick={() => setCurrentPath("/privacy-policy")}>{t("user.Privacy Policy")}</LinkOutsideRouter>
       <br />
       <a
         href="https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md"

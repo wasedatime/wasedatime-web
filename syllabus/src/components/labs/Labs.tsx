@@ -185,9 +185,7 @@ const modalStyle = {
   },
 };
 
-interface Props extends WithTranslation {
-  path: string;
-}
+interface Props extends WithTranslation {}
 
 interface State {
   school: string;
@@ -268,6 +266,8 @@ class Labs extends React.Component<Props, State> {
             disabled={false}
             isBlur={false}
             changeLang={(lng) => i18n.changeLanguage(lng)}
+            theme={theme}
+            setTheme={setTheme}
           />
         </HeaderWrapper>
 

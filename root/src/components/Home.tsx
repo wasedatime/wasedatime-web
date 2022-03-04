@@ -65,7 +65,6 @@ const Description = styled("p")`
 `;
 
 interface Props extends WithTranslation {
-  path: string;
   isFirstAccess: boolean;
 }
 

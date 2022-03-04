@@ -20,7 +20,7 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const Feeds = ({ path }: { path: string }) => {
+const Feeds = () => {
   const [feedsLoaded, setFeedsLoaded] = React.useState(false);
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = React.useContext(ThemeContext);

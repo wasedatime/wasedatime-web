@@ -1,8 +1,7 @@
 import React from "react";
-
-import { useLocation, Link } from "@reach/router";
-import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
+import { useLocation, Link } from "react-router-dom";
+import { WithTranslation, withTranslation } from "react-i18next";
 import { ThemeContext } from "@app/utils/theme-context";
 
 const TabsWrapper = styled.div`

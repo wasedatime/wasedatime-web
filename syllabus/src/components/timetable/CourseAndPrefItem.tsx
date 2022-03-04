@@ -1,6 +1,7 @@
 import React from "react";
 
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { useNavigate } from "react-router-dom";
 import {
   faExternalLinkSquareAlt,
   faMinusCircle,
@@ -8,7 +9,6 @@ import {
   faToggleOn,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { navigate } from "@reach/router";
 import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
 import styled from "styled-components";
 
@@ -81,6 +81,7 @@ const CourseAndPrefItem = ({
   handleRemoveCourse,
   handleChangeColor,
 }: Props) => {
+  let navigate = useNavigate();
   const { theme, setTheme } = React.useContext(ThemeContext);
   const { title, instructor } = getCourseTitleAndInstructor(
     course,

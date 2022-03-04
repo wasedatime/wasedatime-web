@@ -42,7 +42,7 @@ const AboutUsMenu = styled.div`
     `}
 `;
 
-const AboutUs = (props: { path: string }) => {
+const AboutUs = () => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [activePage, setActivePage] = useState("our mission");
   const { t, i18n } = useTranslation();

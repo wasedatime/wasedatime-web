@@ -20,7 +20,8 @@ import { getCurrentSemester } from "@app/utils/get-current-semesters";
 
 const Timetable = lazy(() => import("@app/components/timetable/Timetable"));
 
-import { ThemeContext } from "../utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context";
+import withRouter, { WithRouter } from "@app/utils/with-router";
 
 const TimetableWrapper = styled(Wrapper)`
   display: flex;
@@ -50,9 +51,7 @@ interface ReduxStateProps {
   selectedSortingOption: string;
 }
 
-interface OwnProps extends WithTranslation {
-  path: string;
-}
+interface OwnProps extends WithTranslation, WithRouter {}
 
 interface OwnState {
   selectedSemester: string;
@@ -72,7 +71,7 @@ class TimetableContainer extends React.Component<
   constructor(props) {
     super(props);
     if (window.location.pathname.includes("syllabus"))
-      navigate("/courses/syllabus");
+      props.router.navigate("/courses/syllabus");
 
     this.semesterTitles = {
       [Semester.SPRING]: "Spring Semester",
@@ -178,4 +177,4 @@ const mapStateToProps = (state: ReduxRootState) => ({
 export default connect<ReduxStateProps, {}>(
   mapStateToProps,
   null
-)(withTranslation("translation")(TimetableContainer));
+)(withTranslation("translation")(withRouter(TimetableContainer)));

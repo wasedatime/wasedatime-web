@@ -1,13 +1,6 @@
 import React from "react";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import styled from "styled-components";
-
-interface Props {
-  path: string;
-}
-
-const TermsOfService = (props: Props) => (
+const TermsOfService = () => (
   <div className="p-6 md:py-24 md:px-60">
     <h2 className="text-center my-4">TERMS OF SERVICE</h2>
     <p className="text-center my-4">Last updated January 18, 2021</p>

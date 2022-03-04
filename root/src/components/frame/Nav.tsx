@@ -5,20 +5,21 @@ import {
   faCalendarAlt,
   faBook,
   faMapMarkedAlt,
-  faUsers,
   faNewspaper,
 } from "@fortawesome/free-solid-svg-icons";
-import { globalHistory } from "@reach/router";
 import ReactGA from "react-ga";
 import { useTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
 import { navigateToUrl } from "single-spa";
+import { createBrowserHistory } from "history";
 
 const Sidebar = lazy(() => import("@app/components/frame/Sidebar"));
 const MobileNav = lazy(() => import("@app/components/frame/MobileNav"));
 const SignInModal = lazy(
   () => import("@bit/wasedatime.core.ts.ui.sign-in-modal")
 );
+
+const history = createBrowserHistory();
 
 const Nav = () => {
   if (
@@ -39,10 +40,10 @@ const Nav = () => {
     ReactGA.set({ page });
     ReactGA.pageview(page);
 
-    return globalHistory.listen(({ action }) => {
-      if (action === "PUSH") {
-        ReactGA.set({ page });
-        ReactGA.pageview(page);
+    return history.listen(({ location, action }) => {
+      if (action === "POP") {
+        ReactGA.set({ page: location.pathname });
+        ReactGA.pageview(location.pathname);
       }
     });
   }, []);
@@ -68,11 +69,6 @@ const Nav = () => {
       path: "/feeds",
       icon: faNewspaper,
     },
-    // {
-    //   name: t("navigation.blog"),
-    //   path: "/feeds",
-    //   icon: faNewspaper,
-    // },
   ];
 
   return (

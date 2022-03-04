@@ -1,45 +1,43 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
-import { navigate } from "@reach/router";
-import { withTranslation, WithTranslation } from "react-i18next";
-import styled from "styled-components";
+const RedirectPage = () => {
+  const { t } = useTranslation();
+  let navigate = useNavigate();
 
-interface Props extends WithTranslation {
-  path: string;
-}
+  useEffect(() => {
+    const redirectToHomeAfter5Sec = async () => {
+      if (window.location.search.includes("error_description")) {
+        await timeout(5000);
+        navigate("/");
+      }
+    };
 
-class RedirectPage extends React.Component<Props> {
-  async componentDidMount() {
-    if (window.location.search.includes("error_description")) {
-      await this.timeout(5000);
-      navigate("/");
-    }
-  }
+    redirectToHomeAfter5Sec()
+      .catch(err => console.error(err));
+  }, []);
 
-  timeout(ms) {
+  const timeout = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  render() {
-    const { t } = this.props;
-
-    return window.location.search.includes("error_description") ? (
-      <div className="mt-20">
-        <h1>{t("verify.failed.title")}</h1>
-        <br />
-        <p>{t("verify.failed.message1")}</p>
-        <p>{t("verify.failed.message2")}</p>
-        <p>{t("verify.failed.message3")}</p>
-      </div>
-    ) : (
-      <div className="mt-20">
-        <h1>{t("verify.success.title")}</h1>
-        <br />
-        <p>{t("verify.success.message1")}</p>
-        <p>{t("verify.success.message2")}</p>
-      </div>
-    );
-  }
+  return window.location.search.includes("error_description") ? (
+    <div className="mt-20">
+      <h1>{t("verify.failed.title")}</h1>
+      <br />
+      <p>{t("verify.failed.message1")}</p>
+      <p>{t("verify.failed.message2")}</p>
+      <p>{t("verify.failed.message3")}</p>
+    </div>
+  ) : (
+    <div className="mt-20">
+      <h1>{t("verify.success.title")}</h1>
+      <br />
+      <p>{t("verify.success.message1")}</p>
+      <p>{t("verify.success.message2")}</p>
+    </div>
+  );
 }
 
-export default withTranslation("translation")(RedirectPage);
+export default RedirectPage;

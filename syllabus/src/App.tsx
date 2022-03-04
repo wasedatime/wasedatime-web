@@ -1,9 +1,8 @@
 import React, { useEffect, lazy, Suspense } from "react";
-
+import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 import API from "@aws-amplify/api";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
-import { Router, LocationProvider, navigate } from "@reach/router";
 import "semantic-ui-css/components/dropdown.min.css";
 import { connect } from "react-redux";
 import "react-s-alert/dist/s-alert-default.css";
@@ -34,12 +33,6 @@ interface ReduxDispatchProps {
   fetchCourses: () => void;
   saveTimetable: (idsAndPrefs: IdAndPrefType) => void;
 }
-
-const NotFound = ({ default: boolean }) => {
-  navigate("/");
-
-  return <LoadingSpinner message="Not found! Redirecting..." />;
-};
 
 const App = ({
   addedCoursesPrefs,
@@ -86,26 +79,40 @@ const App = ({
 
   return (
     <Suspense fallback={<LoadingSpinner message="Loading..." />}>
-      <LocationProvider>
-        {(context) => {
-          if (
-            !context.location.pathname.includes("courses") &&
-            window.location.pathname.includes("courses")
-          ) {
-            navigate(window.location.pathname);
-          }
-        }}
-      </LocationProvider>
-      <Router>
-        <Syllabus path="courses/syllabus" />
-        <Timetable path="courses/timetable" />
-        <Labs path="courses/labs" />
-        <NotFound default />
-      </Router>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
       <Alert stack={{ limit: 1 }} timeout={3000} />
     </Suspense>
   );
 };
+
+const NotFound = () => {
+  let navigate = useNavigate();
+  useEffect(() => navigate("/"));
+  return <LoadingSpinner message="Not found! Redirecting..." />;
+};
+
+const AppRoutes = () => {
+  let navigate = useNavigate();
+
+  return (
+    <Routes>
+      {(context) => {
+        if (
+          !context.location.pathname.includes("courses") &&
+          window.location.pathname.includes("courses")
+        ) {
+          navigate(window.location.pathname);
+        }
+      }}
+      <Route element={<Syllabus />} path="courses/syllabus" />
+      <Route element={<Timetable />} path="courses/timetable" />
+      <Route element={<Labs />} path="courses/labs" />
+      <Route element={<NotFound />} path="*" />
+    </Routes>
+  );
+}
 
 const mapStateToProps = (state: ReduxRootState) => ({
   addedCoursesPrefs: getAddedCoursePrefs(state.addedCourses.byId),

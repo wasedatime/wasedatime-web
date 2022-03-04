@@ -1,4 +1,4 @@
-const getTotalMins = (hours, mins) => {
+const getTotalMins = (hours: number, mins: number) => {
   return 60 * hours + mins;
 };
 
@@ -36,39 +36,25 @@ export const busSchedule = {
       ],
       // Remarks written in the pdf file.
       remarks_jp: {
-        [getTotalMins(
-          12,
-          5
-        ).toString()]: "西早稲田キャンパス経由先端生命医科学センター行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
-        [getTotalMins(
-          12,
-          15
-        ).toString()]: "先端生命医科学センター経由西早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+        [getTotalMins(12, 5).toString()]:
+          "西早稲田キャンパス経由先端生命医科学センター行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+        [getTotalMins(12, 15).toString()]:
+          "先端生命医科学センター経由西早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
         [getTotalMins(14, 50).toString()]: "中型バスとマイクロバスの運行",
         [getTotalMins(16, 40).toString()]: "中型バスとマイクロバスの運行",
         [getTotalMins(18, 5).toString()]: "中型バスとマイクロバスの運行",
       },
       remarks_en: {
-        [getTotalMins(
-          12,
-          5
-        ).toString()]: "To TWIns via Nishiwaseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        [getTotalMins(
-          12,
-          15
-        ).toString()]: "To Nishiwaseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        [getTotalMins(
-          14,
-          50
-        ).toString()]: "Operation of middle-size bus and minibus.",
-        [getTotalMins(
-          16,
-          40
-        ).toString()]: "Operation of middle-size bus and minibus.",
-        [getTotalMins(
-          18,
-          5
-        ).toString()]: "Operation of middle-size bus and minibus.",
+        [getTotalMins(12, 5).toString()]:
+          "To TWIns via Nishiwaseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        [getTotalMins(12, 15).toString()]:
+          "To Nishiwaseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        [getTotalMins(14, 50).toString()]:
+          "Operation of middle-size bus and minibus.",
+        [getTotalMins(16, 40).toString()]:
+          "Operation of middle-size bus and minibus.",
+        [getTotalMins(18, 5).toString()]:
+          "Operation of middle-size bus and minibus.",
       },
     },
     fromNishiWasedaToWaseda: {
@@ -101,42 +87,26 @@ export const busSchedule = {
         getTotalMins(18, 20),
       ],
       remarks_en: {
-        [getTotalMins(
-          12,
-          5
-        ).toString()]: "To TWIns via Waseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        [getTotalMins(
-          12,
-          20
-        ).toString()]: "To Waseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
-        [getTotalMins(
-          14,
-          35
-        ).toString()]: "Operation of middle-size bus and minibus.",
-        [getTotalMins(
-          16,
-          20
-        ).toString()]: "Operation of middle-size bus and minibus.",
-        [getTotalMins(
-          18,
-          20
-        ).toString()]: "Operation of middle-size bus and minibus. Possibility of early/late departure.",
+        [getTotalMins(12, 5).toString()]:
+          "To TWIns via Waseda campus. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        [getTotalMins(12, 20).toString()]:
+          "To Waseda campus via TWIns. Get-offs ONLY at TWIns. The stop is located at 'Tokyo Joshiidaimae'.",
+        [getTotalMins(14, 35).toString()]:
+          "Operation of middle-size bus and minibus.",
+        [getTotalMins(16, 20).toString()]:
+          "Operation of middle-size bus and minibus.",
+        [getTotalMins(18, 20).toString()]:
+          "Operation of middle-size bus and minibus. Possibility of early/late departure.",
       },
       remarks_jp: {
-        [getTotalMins(
-          12,
-          5
-        ).toString()]: "早稲田キャンパス経由行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
-        [getTotalMins(
-          12,
-          20
-        ).toString()]: "先端生命医科学センター経由早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+        [getTotalMins(12, 5).toString()]:
+          "早稲田キャンパス経由行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
+        [getTotalMins(12, 20).toString()]:
+          "先端生命医科学センター経由早稲田キャンパス行き。先端先端生命医科学センターは降車のみ。乗車はできません。",
         [getTotalMins(14, 35).toString()]: "中型バスとマイクロバスの運行",
         [getTotalMins(16, 20).toString()]: "中型バスとマイクロバスの運行",
-        [getTotalMins(
-          18,
-          20
-        ).toString()]: "中型バスとマイクロバスの運行。出発時間は目安になります。",
+        [getTotalMins(18, 20).toString()]:
+          "中型バスとマイクロバスの運行。出発時間は目安になります。",
       },
     },
   },
@@ -144,7 +114,7 @@ export const busSchedule = {
   saturday: {
     fromWasedaToNishiWaseda: {
       occurrences: [
-        //560, 620, 650, 690, 720, 750, 825, 855, 890, 950, 995
+        // 560, 620, 650, 690, 720, 750, 825, 855, 890, 950, 995
         getTotalMins(9, 20),
         getTotalMins(10, 20),
         getTotalMins(10, 50),
@@ -187,57 +157,14 @@ export const busSchedule = {
       // E.g., "0": [1,2,3,4,5] means January 01 to Janurary 05.
       0: [1, 2, 3, 4],
       1: [
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        29,
+        5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 29,
       ],
       2: [7, 14, 21, 25, 28],
       3: [1],
       4: [1, 2],
       7: [
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30,
-        31,
+        5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,
+        24, 25, 26, 27, 28, 29, 30, 31,
       ],
       8: [7],
       10: [1],
@@ -255,30 +182,8 @@ export const busSchedule = {
     saturdaySchedule: {
       1: [25, 26, 27, 28, 29],
       2: [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+        21, 22, 23, 24,
       ],
       8: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       11: [24, 25, 26, 27],

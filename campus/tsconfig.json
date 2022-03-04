@@ -5,7 +5,8 @@
     "paths": {
       "@app/*": ["*"]
     },
-    "jsx": "react"
+    "jsx": "react",
+    "noEmit": false
   },
   "include": ["src"]
 }

@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "@app/styles/styles.scss";
 
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import Header from "@bit/wasedatime.core.ts.ui.header";
+import App from "@app/App";
+import { ThemeProvider } from "@app/utils/theme-context";
+
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import i18next from "i18next";
+import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { useTranslation } from "react-i18next";
-
-import Bus from "@app/bus/Bus";
 import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/ja/translation.json";
-import RoomFinder from "@app/room/RoomFinder";
 import "@app/styles/styles.scss";
 
 i18nConfig({
@@ -21,7 +22,7 @@ i18nConfig({
 });
 
 const Root = (props) => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
@@ -29,25 +30,13 @@ const Root = (props) => {
 
   return (
     <section>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ flex: "0 0 67px" }}>
-          <Header
-            title={t("navigation.campus")}
-            onInputChange={() => {}}
-            placeholder={t("search placeholder")}
-            inputText=""
-            disabled
-            isBlur={false}
-            // theme={"light"}
-            // setTheme={() => {}}
-            changeLang={(lng) => i18n.changeLanguage(lng)}
-          />
-        </div>
-        <div className="campus-container">
-          <RoomFinder />
-          <Bus />
-        </div>
-      </div>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route element={<App />} path="campus" />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </section>
   );
 };

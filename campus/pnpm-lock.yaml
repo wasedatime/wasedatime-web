@@ -11,7 +11,7 @@ specifiers:
   '@babel/runtime': 7.17.2
   '@bit/wasedatime.core.assets.img.logo': 0.0.1
   '@bit/wasedatime.core.ts.constants.langs': 0.0.5
-  '@bit/wasedatime.core.ts.ui.header': 0.1.0
+  '@bit/wasedatime.core.ts.ui.header': npm:wasedatime.core.ts.ui.header@0.2.0
   '@bit/wasedatime.core.ts.ui.loading-spinner': 0.0.7
   '@bit/wasedatime.core.ts.utils.i18n': 0.0.4
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1
@@ -61,6 +61,7 @@ specifiers:
   react-helmet: 6.1.0
   react-i18next: 11.15.6
   react-responsive-carousel: 3.2.23
+  react-router-dom: '6'
   sass: 1.49.9
   sass-loader: 12.6.0
   semantic-ui-css: 2.4.1
@@ -83,7 +84,7 @@ dependencies:
   '@aws-amplify/auth': 3.4.34
   '@bit/wasedatime.core.assets.img.logo': 0.0.1_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.constants.langs': 0.0.5_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.ui.header': 0.1.0_7a357bb42541b427aee3d1047c25447b
+  '@bit/wasedatime.core.ts.ui.header': 0.2.0_7a357bb42541b427aee3d1047c25447b
   '@bit/wasedatime.core.ts.ui.loading-spinner': 0.0.7_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.utils.i18n': 0.0.4_8f2a12f93b34591c18c344cd829419b1
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
@@ -107,6 +108,7 @@ dependencies:
   react-helmet: 6.1.0_react@17.0.2
   react-i18next: 11.15.6_8f2a12f93b34591c18c344cd829419b1
   react-responsive-carousel: 3.2.23
+  react-router-dom: 6.2.2_react-dom@17.0.2+react@17.0.2
   semantic-ui-css: 2.4.1
   semantic-ui-react: 2.1.2_react-dom@17.0.2+react@17.0.2
   single-spa-react: 3.2.0_react@17.0.2
@@ -2112,19 +2114,20 @@ packages:
       - react-is
     dev: false
 
-  /@bit/wasedatime.core.ts.ui.header/0.1.0_7a357bb42541b427aee3d1047c25447b:
-    resolution: {integrity: sha1-nJd8i84nqrSkz8qd6PUfrrJT5DI=, tarball: wasedatime.core.ts.ui.header/-/wasedatime.core.ts.ui.header-0.1.0.tgz}
+  /@bit/wasedatime.core.ts.ui.header/0.2.0_7a357bb42541b427aee3d1047c25447b:
+    resolution: {integrity: sha1-ekhzWXgAC7Os9zqoQGLq72egRjQ=, tarball: wasedatime.core.ts.ui.header/-/wasedatime.core.ts.ui.header-0.2.0.tgz}
     peerDependencies:
       react: ^17.0.1
       react-dom: ^17.0.1
     dependencies:
       '@bit/wasedatime.core.ts.ui.language-menu': 0.1.2_7a357bb42541b427aee3d1047c25447b
       '@bit/wasedatime.core.ts.ui.logo': 0.0.9_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.ui.theme-toggle': 0.0.9_e772c680e5225e7694da1542f10ccf72
       '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@reach/router': 1.3.4_react-dom@17.0.2+react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-responsive: 8.2.0_react@17.0.2
+      react-router-dom: 6.2.2_react-dom@17.0.2+react@17.0.2
     transitivePeerDependencies:
       - '@fortawesome/fontawesome-svg-core'
       - '@types/react'
@@ -2177,6 +2180,20 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
+  /@bit/wasedatime.core.ts.ui.theme-toggle/0.0.9_e772c680e5225e7694da1542f10ccf72:
+    resolution: {integrity: sha1-F4zSvFYx4M8GtRaqo5yZYoFyhWg=, tarball: wasedatime.core.ts.ui.theme-toggle/-/wasedatime.core.ts.ui.theme-toggle-0.0.9.tgz}
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@fortawesome/free-solid-svg-icons': 6.0.0
+      '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    transitivePeerDependencies:
+      - '@fortawesome/fontawesome-svg-core'
+    dev: false
+
   /@bit/wasedatime.core.ts.utils.i18n/0.0.4_8f2a12f93b34591c18c344cd829419b1:
     resolution: {integrity: sha1-Mi/S9B83NRoFmQTS6EgSF8Ymqlo=, tarball: wasedatime.core.ts.utils.i18n/-/wasedatime.core.ts.utils.i18n-0.0.4.tgz}
     peerDependencies:
@@ -2190,7 +2207,7 @@ packages:
       i18next-http-backend: 1.3.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-i18next: 11.15.6_8f2a12f93b34591c18c344cd829419b1
+      react-i18next: 11.15.5_8f2a12f93b34591c18c344cd829419b1
     transitivePeerDependencies:
       - encoding
       - i18next
@@ -2747,20 +2764,6 @@ packages:
 
   /@popperjs/core/2.11.2:
     resolution: {integrity: sha512-92FRmppjjqz29VMJ2dn+xdyXZBrMlE42AV6Kq6BwjWV7CNUW1hs2FtxSNLQE+gJhaZ6AAmYuO9y8dshhcBl7vA==}
-    dev: false
-
-  /@reach/router/1.3.4_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-+mtn9wjlB9NN2CNnnC/BRYtwdKBfSyyasPYraNAyvaV1occr/5NnB4CVzjEZipNHwYebQwcndGUmpFzxAUoqSA==}
-    peerDependencies:
-      react: 15.x || 16.x || 16.4.0-alpha.0911da3
-      react-dom: 15.x || 16.x || 16.4.0-alpha.0911da3
-    dependencies:
-      create-react-context: 0.3.0_prop-types@15.8.1+react@17.0.2
-      invariant: 2.2.4
-      prop-types: 15.8.1
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-lifecycles-compat: 3.0.4
     dev: false
 
   /@restart/context/2.1.4_react@17.0.2:
@@ -4551,18 +4554,6 @@ packages:
       yaml: 1.10.2
     dev: true
 
-  /create-react-context/0.3.0_prop-types@15.8.1+react@17.0.2:
-    resolution: {integrity: sha512-dNldIoSuNSvlTJ7slIKC/ZFGKexBMBrrcc+TTe1NdmROnaASuLPvqpwj9v4XS4uXZ8+YPu0sNmShX2rXI5LNsw==}
-    peerDependencies:
-      prop-types: ^15.0.0
-      react: ^0.14.0 || ^15.0.0 || ^16.0.0
-    dependencies:
-      gud: 1.0.0
-      prop-types: 15.8.1
-      react: 17.0.2
-      warning: 4.0.3
-    dev: false
-
   /cross-env/7.0.3:
     resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
     engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
@@ -6201,6 +6192,12 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
     dev: true
+
+  /history/5.3.0:
+    resolution: {integrity: sha512-ZqaKwjjrAYUYfLG+htGaIIZ4nioX2L70ZUMIFysS3xvBsSG4x/n1V6TXV3N8ZYNuFGlDirFg32T7B6WOUPDYcQ==}
+    dependencies:
+      '@babel/runtime': 7.17.2
+    dev: false
 
   /hoist-non-react-statics/3.3.2:
     resolution: {integrity: sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==}
@@ -8758,6 +8755,27 @@ packages:
       prop-types: 15.8.1
       react: 17.0.2
       shallow-equal: 1.2.1
+    dev: false
+
+  /react-router-dom/6.2.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-AtYEsAST7bDD4dLSQHDnk/qxWLJdad5t1HFa1qJyUrCeGgEuCSw0VB/27ARbF9Fi/W5598ujvJOm3ujUCVzuYQ==}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      history: 5.3.0
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-router: 6.2.2_react@17.0.2
+    dev: false
+
+  /react-router/6.2.2_react@17.0.2:
+    resolution: {integrity: sha512-/MbxyLzd7Q7amp4gDOGaYvXwhEojkJD5BtExkuKmj39VEE0m3l/zipf6h2WIB2jyAO0lI6NGETh4RDcktRm4AQ==}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      history: 5.3.0
+      react: 17.0.2
     dev: false
 
   /react-side-effect/2.1.1_react@17.0.2:

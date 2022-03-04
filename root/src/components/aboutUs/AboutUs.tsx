@@ -78,8 +78,8 @@ const AboutUs = () => {
           inputText=""
           disabled
           isBlur={false}
-          // theme={theme}
-          // setTheme={setTheme}
+          theme={theme}
+          setTheme={setTheme}
           changeLang={changeLanguage}
         />
       </HeaderWrapper>

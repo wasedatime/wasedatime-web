@@ -1,23 +1,26 @@
 import React, { useEffect, lazy, Suspense } from "react";
-import { Router, LocationProvider, navigate } from "@reach/router";
-import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
-import { getAddedCoursePrefs } from "./redux/reducers/addedCourses";
-import { ReduxRootState } from "./redux/reducers";
-import { fetchCourses, saveTimetable } from "./redux/actions";
-import { connect } from "react-redux";
+
 import API from "@aws-amplify/api";
-const Timetable = lazy(() => import("./containers/TimetableContainer"));
-const Syllabus = lazy(() => import("./containers/SyllabusContainer"));
-const Milestone = lazy(() => import("./components/milestone/Milestone"));
-const Labs = lazy(() => import("./components/labs/Labs"));
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
+import { Router, LocationProvider, navigate } from "@reach/router";
 import "semantic-ui-css/components/dropdown.min.css";
+import { connect } from "react-redux";
 import "react-s-alert/dist/s-alert-default.css";
-import "./styles/styles.scss";
 import "react-s-alert/dist/s-alert-css-effects/jelly.css";
 // import "simplebar/dist/simplebar.min.css";
 
 import Alert from "react-s-alert";
+
+import { fetchCourses, saveTimetable } from "@app/redux/actions";
+import { ReduxRootState } from "@app/redux/reducers";
+import { getAddedCoursePrefs } from "@app/redux/reducers/addedCourses";
+import "@app/styles/styles.scss";
+
+const Timetable = lazy(() => import("@app/containers/TimetableContainer"));
+const Syllabus = lazy(() => import("@app/containers/SyllabusContainer"));
+const Milestone = lazy(() => import("@app/components/milestone/Milestone"));
+const Labs = lazy(() => import("@app/components/labs/Labs"));
 interface IdAndPrefType {
   id: string;
   color: number;
@@ -35,6 +38,7 @@ interface ReduxDispatchProps {
 
 const NotFound = ({ default: boolean }) => {
   navigate("/");
+
   return <LoadingSpinner message="Not found! Redirecting..." />;
 };
 

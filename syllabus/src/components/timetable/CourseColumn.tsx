@@ -1,12 +1,13 @@
 import React from "react";
-import styled from "styled-components";
-import { WithTranslation, withTranslation } from "react-i18next";
 
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { getCourseTitleAndInstructor } from "../../utils/course-search";
-import { SyllabusKey } from "../../constants/syllabus-data";
-import { CourseWithOcc } from "../../types/course";
+import { WithTranslation, withTranslation } from "react-i18next";
 import SimpleBar from "simplebar-react";
+import styled from "styled-components";
+
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import { CourseWithOcc } from "@app/types/course";
+import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 
 const StyledCourseColumn = styled("div")`
   display: flex;
@@ -87,14 +88,14 @@ interface Props extends WithTranslation {
 const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
   const displayPeriods = Math.max(largestPeriod, 5);
   // a distinct course list has no occurrence overlaps between its course items.
-  let distinctCourseLists = [[]];
+  const distinctCourseLists = [[]];
   // index 0 is not used since class period starts from 1.
   // value 0 means available, 1 means occupied.
   const initSlotList = [0, 0, 0, 0, 0, 0, 0, 0];
-  let slotLists = [initSlotList.slice()];
+  const slotLists = [initSlotList.slice()];
 
   coursesAndProperties.forEach((courseAndProperty) => {
-    let period = courseAndProperty.course.occurrence[SyllabusKey.OCC_PERIOD];
+    const period = courseAndProperty.course.occurrence[SyllabusKey.OCC_PERIOD];
     let startPeriod = 0;
     let endPeriod = 0;
     if (period === -1) {
@@ -116,7 +117,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
       let j = startPeriod;
       for (; j <= endPeriod; j++) {
         if (slotLists[i][j]) {
-          //slot not available
+          // slot not available
           existsAvailableSlot = false;
           break;
         }
@@ -131,7 +132,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
       }
     }
     if (!existsAvailableSlot) {
-      //append a new slotList and mark period i as occupied
+      // append a new slotList and mark period i as occupied
       slotLists.push(initSlotList.slice());
       distinctCourseLists.push([]);
       let j = startPeriod;
@@ -147,10 +148,10 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
   const distinctCourseListsComponent = distinctCourseLists.map(
     (distinctCourseList, index) => {
       const listComponent = distinctCourseList.map((courseAndProperty) => {
-        const course = courseAndProperty.course;
+        const { course } = courseAndProperty;
         const { color, displayLang } = courseAndProperty.pref;
         const { title } = getCourseTitleAndInstructor(course, displayLang);
-        let period = course.occurrence[SyllabusKey.OCC_PERIOD];
+        const period = course.occurrence[SyllabusKey.OCC_PERIOD];
         let startPeriod = 0;
         let endPeriod = 0;
         if (period === -1) {
@@ -164,7 +165,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
         }
         // const startPeriod = Number(course.occurrence.s);
         // const endPeriod = Number(course.occurrence.e);
-        let location = course.occurrence[SyllabusKey.OCC_LOCATION];
+        const location = course.occurrence[SyllabusKey.OCC_LOCATION];
         // let location = t("timetable.undecided");
         // if (course.occurrence.c !== "undecided") {
         //   if (course.occurrence.b !== "-1") {
@@ -190,6 +191,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
           </CourseItem>
         );
       });
+
       return <CourseList key={index}>{listComponent}</CourseList>;
     }
   );

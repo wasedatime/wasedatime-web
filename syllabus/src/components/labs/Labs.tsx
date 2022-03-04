@@ -1,18 +1,20 @@
 import React, { useState } from "react";
+
+import Header from "@bit/wasedatime.core.ts.ui.header";
+import Modal from "@bit/wasedatime.core.ts.ui.modal";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import debounce from "lodash/debounce";
 import { Helmet } from "react-helmet";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
-import styled from "styled-components";
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import SchoolMajorSelector from "./SchoolMajorSelector";
-import Lab from "./Lab";
-import SyllabusTabs from "../SyllabusTabs";
-import reviews from "../../assets/lab_reviews_by_school_major.json";
-import debounce from "lodash/debounce";
-import FilterButton from "../syllabus/FilterButton";
-import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
+import styled from "styled-components";
+
+import reviews from "@app/assets/lab_reviews_by_school_major.json";
+import Lab from "@app/components/labs/Lab";
+import SchoolMajorSelector from "@app/components/labs/SchoolMajorSelector";
+import FilterButton from "@app/components/syllabus/FilterButton";
+import SyllabusTabs from "@app/components/SyllabusTabs";
 
 const LabsOuterWrapper = styled.div`
   display: flex;
@@ -38,7 +40,7 @@ const ThankMessage = styled.div`
   background-color: #b51e36;
   text-align: center;
   position: relative;
-  ${props => !props.isDisplayed && 'display: none;'}
+  ${(props) => !props.isDisplayed && "display: none;"}
 `;
 
 const CloseThankMessageButton = styled.span`
@@ -51,17 +53,16 @@ const CloseThankMessageButton = styled.span`
 
 const LabsWrapper = styled.div`
   flex-grow: 1;
-  height: calc(100vh - ${props => props.isLower ? '117px' : '96px'});
+  height: calc(100vh - ${(props) => (props.isLower ? "117px" : "96px")});
   padding: 0px;
-  ${
-    props => props.isLower
+  ${(props) =>
+    props.isLower
       ? media.tablet`
         height: calc(100vh - 177px);
       `
       : media.tablet`
         height: calc(100vh - 156px);
-      `
-  }
+      `}
   overflow-y: hidden;
   display: flex;
   flex-direction: row;
@@ -77,29 +78,29 @@ const MajorHeader = styled.h3`
   margin-top: 1em;
   padding-bottom: 10px;
   text-align: center;
-  border-bottom: 2px solid ${props => {
-    return props.school === "FSE"
-      ? "rgba(190,106,20,0.5)"
-      : props.school === "CSE"
+  border-bottom: 2px solid
+    ${(props) => {
+      return props.school === "FSE"
+        ? "rgba(190,106,20,0.5)"
+        : props.school === "CSE"
         ? "rgba(105,140,45,0.5)"
         : "rgba(50,98,149,0.5)";
-  }};
+    }};
 `;
 
 const FilterWrapper = styled.div`
   flex: 20em;
   padding: 1em 2em 1em 1em;
 
-  height: calc(100vh - ${props => props.isLower ? '117px' : '96px'});
-  ${
-    props => props.isLower
+  height: calc(100vh - ${(props) => (props.isLower ? "117px" : "96px")});
+  ${(props) =>
+    props.isLower
       ? media.tablet`
         height: calc(100vh - 177px);
       `
       : media.tablet`
         height: calc(100vh - 156px);
-      `
-  }
+      `}
   overflow-y: auto;
   ::-webkit-scrollbar {
     width: 0;
@@ -121,19 +122,18 @@ const LabsList = styled.div`
   gap: 4%;
   justify-content: center;
   align-items: flex-start;
-  align-content:flex-start;
+  align-content: flex-start;
   ${media.tablet`padding: 0px 2em;`}
 
-  height: calc(100vh - ${props => props.isLower ? '117px' : '96px'});
-  ${
-    props => props.isLower
+  height: calc(100vh - ${(props) => (props.isLower ? "117px" : "96px")});
+  ${(props) =>
+    props.isLower
       ? media.tablet`
         height: calc(100vh - 177px);
       `
       : media.tablet`
         height: calc(100vh - 156px);
-      `
-  }
+      `}
   ${media.tablet`
     padding-bottom: 90px;
   `}
@@ -187,7 +187,7 @@ class Labs extends React.Component<Props, State> {
       inputText: "",
       searchTerm: "",
       isModalOpen: false,
-      isThankMessageDisplayed: true
+      isThankMessageDisplayed: true,
     };
   }
 
@@ -212,11 +212,12 @@ class Labs extends React.Component<Props, State> {
 
   handleToggleModal = () => {
     this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));
-  }
+  };
 
-  render () {
+  render() {
     const { t, i18n } = this.props;
-    const { school, major, inputText, searchTerm, isThankMessageDisplayed } = this.state;
+    const { school, major, inputText, searchTerm, isThankMessageDisplayed } =
+      this.state;
 
     return (
       <LabsOuterWrapper className="theme-default">
@@ -231,10 +232,7 @@ class Labs extends React.Component<Props, State> {
             property="og:description"
             content="Lab Reviews at Waseda University."
           />
-          <meta
-            property="og:site_name"
-            content="WasedaTime - Lab Reviews"
-          />
+          <meta property="og:site_name" content="WasedaTime - Lab Reviews" />
         </Helmet>
 
         <HeaderWrapper>
@@ -253,59 +251,100 @@ class Labs extends React.Component<Props, State> {
           <SyllabusTabs />
         </SyllabusTabsWrapper>
 
-        <ThankMessage isDisplayed={isThankMessageDisplayed}>{t("labs.thankMessage")}<CloseThankMessageButton onClick={() => this.setState({ isThankMessageDisplayed: false })}>×</CloseThankMessageButton></ThankMessage>
+        <ThankMessage isDisplayed={isThankMessageDisplayed}>
+          {t("labs.thankMessage")}
+          <CloseThankMessageButton
+            onClick={() => this.setState({ isThankMessageDisplayed: false })}
+          >
+            ×
+          </CloseThankMessageButton>
+        </ThankMessage>
 
         <LabsWrapper isLower={isThankMessageDisplayed}>
           <LabsList isLower={isThankMessageDisplayed}>
-            {major && <MajorHeader school={school}>{t("labs.major." + major)}</MajorHeader>}
-            {
-              school && major && reviews[school][major]
-                ? (
-                  reviews[school][major].length > 0
-                    ? reviews[school][major].map(lab => (!searchTerm || lab.lab.includes(searchTerm)) && <Lab name={lab.lab} reviews={lab.reviews} school={school} />)
-                    : (<Message warning size="tiny" style={{ margin: "1em" }}>
-                    <h5>{t("labs.noReviewWarning")}</h5>
-                  </Message>)
-                  )
-                : (<Message warning size="tiny" style={{ margin: "1em" }}>
+            {major && (
+              <MajorHeader school={school}>
+                {t(`labs.major.${major}`)}
+              </MajorHeader>
+            )}
+            {school && major && reviews[school][major] ? (
+              reviews[school][major].length > 0 ? (
+                reviews[school][major].map(
+                  (lab) =>
+                    (!searchTerm || lab.lab.includes(searchTerm)) && (
+                      <Lab
+                        name={lab.lab}
+                        reviews={lab.reviews}
+                        school={school}
+                      />
+                    )
+                )
+              ) : (
+                <Message warning size="tiny" style={{ margin: "1em" }}>
+                  <h5>{t("labs.noReviewWarning")}</h5>
+                </Message>
+              )
+            ) : (
+              <Message warning size="tiny" style={{ margin: "1em" }}>
                 <h5>{t("labs.filterHint")}</h5>
-              </Message>)
-            }
+              </Message>
+            )}
           </LabsList>
-          
+
           <MediaQuery minWidth={sizes.desktop}>
-            {
-              matches => 
-                matches && <FilterWrapper isLower={isThankMessageDisplayed}>
-                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.setState({ major: m })} closeModal={() => this.setState({ isModalOpen: false })} />
+            {(matches) =>
+              matches && (
+                <FilterWrapper isLower={isThankMessageDisplayed}>
+                  <SchoolMajorSelector
+                    reviews={reviews}
+                    selectedSchool={school}
+                    setSchool={(s) => this.setState({ school: s })}
+                    setMajor={(m) => this.setState({ major: m })}
+                    closeModal={() => this.setState({ isModalOpen: false })}
+                  />
                 </FilterWrapper>
+              )
             }
           </MediaQuery>
-          
+
           <MediaQuery minWidth={sizes.tablet + 1} maxWidth={sizes.desktop - 1}>
-            {
-              matches => 
-                matches && <ShorterFilterWrapper isLower={isThankMessageDisplayed}>
-                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.setState({ major: m })} closeModal={() => this.setState({ isModalOpen: false })} />
+            {(matches) =>
+              matches && (
+                <ShorterFilterWrapper isLower={isThankMessageDisplayed}>
+                  <SchoolMajorSelector
+                    reviews={reviews}
+                    selectedSchool={school}
+                    setSchool={(s) => this.setState({ school: s })}
+                    setMajor={(m) => this.setState({ major: m })}
+                    closeModal={() => this.setState({ isModalOpen: false })}
+                  />
                 </ShorterFilterWrapper>
+              )
             }
           </MediaQuery>
 
           <MediaQuery maxWidth={sizes.tablet}>
             {(matches) =>
-              matches && <div>
-                <FilterButton
-                  isModalOpen={this.state.isModalOpen}
-                  handleToggleModal={this.handleToggleModal}
-                />
-                <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
-                  <SchoolMajorSelector reviews={reviews} selectedSchool={school} setSchool={s => this.setState({ school: s })} setMajor={m => this.setState({ major: m })} closeModal={() => this.setState({ isModalOpen: false })} />
-                </Modal>
-              </div>
+              matches && (
+                <div>
+                  <FilterButton
+                    isModalOpen={this.state.isModalOpen}
+                    handleToggleModal={this.handleToggleModal}
+                  />
+                  <Modal isOpen={this.state.isModalOpen} style={modalStyle}>
+                    <SchoolMajorSelector
+                      reviews={reviews}
+                      selectedSchool={school}
+                      setSchool={(s) => this.setState({ school: s })}
+                      setMajor={(m) => this.setState({ major: m })}
+                      closeModal={() => this.setState({ isModalOpen: false })}
+                    />
+                  </Modal>
+                </div>
+              )
             }
           </MediaQuery>
         </LabsWrapper>
-
       </LabsOuterWrapper>
     );
   }

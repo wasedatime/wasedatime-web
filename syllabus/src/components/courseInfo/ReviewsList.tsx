@@ -1,16 +1,17 @@
 import React from "react";
-import styled from "styled-components";
-import ReviewStars from "./ReviewStars";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { WithTranslation, withTranslation } from "react-i18next";
-import ReviewLang from "../../constants/review-lang";
-import Button from "semantic-ui-react/dist/commonjs/elements/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
-import ReviewType from "../../types/review";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import Button from "semantic-ui-react/dist/commonjs/elements/Button";
+import styled from "styled-components";
+
+import ReviewStars from "@app/components/courseInfo/ReviewStars";
+import ReviewLang from "@app/constants/review-lang";
+import ReviewType from "@app/types/review";
 
 const modalStyle = {
   overlay: {
@@ -155,21 +156,21 @@ interface State {
   reviewIndexToDelete: number;
 }
 
-const DeleteModalContent = ({ t, confirmDeleteReview, closeDeleteModal }) => <div>
-  <h2 style={{ textAlign: 'center' }}>{t(`courseInfo.delete review confirmation`)}</h2>
-  <div style={{ textAlign: 'center' }}>
-    <DeleteModalYesButton
-      onClick={() => confirmDeleteReview()}
-    >
-      {t(`courseInfo.delete review yes`)}
-    </DeleteModalYesButton>
-    <DeleteModalNoButton
-      onClick={closeDeleteModal}
-    >
-      {t(`courseInfo.delete review no`)}
-    </DeleteModalNoButton>
+const DeleteModalContent = ({ t, confirmDeleteReview, closeDeleteModal }) => (
+  <div>
+    <h2 style={{ textAlign: "center" }}>
+      {t("courseInfo.delete review confirmation")}
+    </h2>
+    <div style={{ textAlign: "center" }}>
+      <DeleteModalYesButton onClick={() => confirmDeleteReview()}>
+        {t("courseInfo.delete review yes")}
+      </DeleteModalYesButton>
+      <DeleteModalNoButton onClick={closeDeleteModal}>
+        {t("courseInfo.delete review no")}
+      </DeleteModalNoButton>
+    </div>
   </div>
-  </div>
+);
 
 class ReviewsList extends React.Component<Props, State> {
   state = {
@@ -185,15 +186,17 @@ class ReviewsList extends React.Component<Props, State> {
       reviewIndexToDelete: i,
     });
   };
+
   closeDeleteModal = () =>
     this.setState({
       isDeleteModalOpen: false,
       reviewToDelete: {},
       reviewIndexToDelete: -1,
     });
+
   confirmDeleteReview = () => {
     this.props.deleteReview(
-      this.state.reviewToDelete["created_at"],
+      this.state.reviewToDelete.created_at,
       this.state.reviewIndexToDelete
     );
     this.closeDeleteModal();
@@ -208,34 +211,34 @@ class ReviewsList extends React.Component<Props, State> {
         <Review>
           <ReviewText>
             <ReviewTitle>
-              <ReviewYear>{review["year"]}</ReviewYear>{" "}
+              <ReviewYear>{review.year}</ReviewYear>{" "}
               {review[searchLang === "en" ? "title" : "title_jp"]} ({" "}
               {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
             </ReviewTitle>
             <span>
-              {review["comment_" + reviewLang] !== undefined &&
-                review["comment_" + reviewLang].split("\n").map((str, j) => (
+              {review[`comment_${reviewLang}`] !== undefined &&
+                review[`comment_${reviewLang}`].split("\n").map((str, j) => (
                   <span key={j}>
                     {str}
                     <br />
                   </span>
                 ))}
             </span>
-            {review["src_lang"] ? (
-              review["src_lang"] !== reviewLang && (
+            {review.src_lang ? (
+              review.src_lang !== reviewLang && (
                 <GoogleTranslationHint>
-                  Translated from {ReviewLang[review["src_lang"]]} by Google
+                  Translated from {ReviewLang[review.src_lang]} by Google
                 </GoogleTranslationHint>
               )
             ) : (
               <GoogleTranslationHint>Not translated yet</GoogleTranslationHint>
             )}
             <ReviewCreatedTime>
-              {new Date(review["created_at"]).toLocaleString()}
+              {new Date(review.created_at).toLocaleString()}
             </ReviewCreatedTime>
           </ReviewText>
           <ReviewScalesList>
-            {review["mod"] && (
+            {review.mod && (
               <span>
                 <Editbutton
                   icon
@@ -243,7 +246,7 @@ class ReviewsList extends React.Component<Props, State> {
                   onClick={() =>
                     openEditForm({
                       ...review,
-                      src_comment: review["comment_" + review["src_lang"]],
+                      src_comment: review[`comment_${review.src_lang}`],
                       index: i,
                     })
                   }
@@ -260,16 +263,16 @@ class ReviewsList extends React.Component<Props, State> {
               </span>
             )}
             <ReviewScale>
-              <span>{t(`courseInfo.Satisfaction`)}&nbsp;</span>
-              <ReviewStars scale={review["satisfaction"]} />
+              <span>{t("courseInfo.Satisfaction")}&nbsp;</span>
+              <ReviewStars scale={review.satisfaction} />
             </ReviewScale>
             <ReviewScale>
-              <span>{t(`courseInfo.Difficulty`)}&nbsp;</span>
-              <ReviewStars scale={review["difficulty"]} />
+              <span>{t("courseInfo.Difficulty")}&nbsp;</span>
+              <ReviewStars scale={review.difficulty} />
             </ReviewScale>
             <ReviewScale>
-              <span>{t(`courseInfo.Benefit`)}&nbsp;</span>
-              <ReviewStars scale={review["benefit"]} />
+              <span>{t("courseInfo.Benefit")}&nbsp;</span>
+              <ReviewStars scale={review.benefit} />
             </ReviewScale>
           </ReviewScalesList>
         </Review>
@@ -277,12 +280,23 @@ class ReviewsList extends React.Component<Props, State> {
         <MediaQuery maxWidth={sizes.tablet}>
           {(matches) =>
             matches ? (
-              <Modal isOpen={this.state.isDeleteModalOpen} style={mobileModalStyle}>
-                <DeleteModalContent t={t} confirmDeleteReview={this.confirmDeleteReview} closeDeleteModal={this.closeDeleteModal} />
+              <Modal
+                isOpen={this.state.isDeleteModalOpen}
+                style={mobileModalStyle}
+              >
+                <DeleteModalContent
+                  t={t}
+                  confirmDeleteReview={this.confirmDeleteReview}
+                  closeDeleteModal={this.closeDeleteModal}
+                />
               </Modal>
             ) : (
               <Modal isOpen={this.state.isDeleteModalOpen} style={modalStyle}>
-                <DeleteModalContent t={t} confirmDeleteReview={this.confirmDeleteReview} closeDeleteModal={this.closeDeleteModal} />
+                <DeleteModalContent
+                  t={t}
+                  confirmDeleteReview={this.confirmDeleteReview}
+                  closeDeleteModal={this.closeDeleteModal}
+                />
               </Modal>
             )
           }

@@ -1,22 +1,29 @@
-import schoolCodeMap from "../constants/school-code";
+import schoolCodeMap from "@app/constants/school-code";
 import {
   SyllabusKey,
   SyllabusAttr,
   SyllabusEvalAttr,
-} from "../constants/syllabus-data";
+} from "@app/constants/syllabus-data";
 
 export const courseSchemaFullToShort = (course) => {
-  const occs = course[SyllabusAttr[SyllabusKey.OCCURRENCES]] && course[SyllabusAttr[SyllabusKey.OCCURRENCES]].map((occ) => ({
-    [SyllabusKey.OCC_DAY]: occ[SyllabusKey.OCC_DAY],
-    [SyllabusKey.OCC_PERIOD]: occ[SyllabusKey.OCC_PERIOD],
-    [SyllabusKey.OCC_LOCATION]: occ[SyllabusKey.OCC_LOCATION],
-  }));
+  const occs =
+    course[SyllabusAttr[SyllabusKey.OCCURRENCES]] &&
+    course[SyllabusAttr[SyllabusKey.OCCURRENCES]].map((occ) => ({
+      [SyllabusKey.OCC_DAY]: occ[SyllabusKey.OCC_DAY],
+      [SyllabusKey.OCC_PERIOD]: occ[SyllabusKey.OCC_PERIOD],
+      [SyllabusKey.OCC_LOCATION]: occ[SyllabusKey.OCC_LOCATION],
+    }));
   const courseEvals = course[SyllabusAttr[SyllabusKey.EVAL]];
-  const evals = Array.isArray(courseEvals) ? courseEvals.map((e) => ({
-    [SyllabusKey.EVAL_TYPE]: e[SyllabusEvalAttr[SyllabusKey.EVAL_TYPE]],
-    [SyllabusKey.EVAL_PERCENT]: e[SyllabusEvalAttr[SyllabusKey.EVAL_PERCENT]],
-    [SyllabusKey.EVAL_CRITERIA]: e[SyllabusEvalAttr[SyllabusKey.EVAL_CRITERIA]],
-  })) : courseEvals;
+  const evals = Array.isArray(courseEvals)
+    ? courseEvals.map((e) => ({
+        [SyllabusKey.EVAL_TYPE]: e[SyllabusEvalAttr[SyllabusKey.EVAL_TYPE]],
+        [SyllabusKey.EVAL_PERCENT]:
+          e[SyllabusEvalAttr[SyllabusKey.EVAL_PERCENT]],
+        [SyllabusKey.EVAL_CRITERIA]:
+          e[SyllabusEvalAttr[SyllabusKey.EVAL_CRITERIA]],
+      }))
+    : courseEvals;
+
   return {
     [SyllabusKey.ID]: course[SyllabusAttr[SyllabusKey.ID]],
     [SyllabusKey.TITLE]: course[SyllabusAttr[SyllabusKey.TITLE]],

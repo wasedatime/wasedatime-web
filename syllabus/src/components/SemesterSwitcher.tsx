@@ -1,16 +1,17 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import MediaQuery from "react-responsive";
 import styled from "styled-components";
 
-import { InvisibleButton } from "./styles/Button";
-import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import QuarterSwitch from "./timetable/QuarterSwitch";
-import MediaQuery from "react-responsive";
+import { InvisibleButton } from "@app/components/styles/Button";
+import QuarterSwitch from "@app/components/timetable/QuarterSwitch";
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex: none;

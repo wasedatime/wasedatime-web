@@ -1,14 +1,20 @@
-import React, { lazy, Suspense } from 'react';
-import styled from "styled-components";
-const PSE = lazy(() => import("./PSE"));
-const CJL = lazy(() => import("./CJL"));
-const SILS = lazy(() => import("./SILS"));
-const SSS = lazy(() => import("./SSS"));
-const Rikou = lazy(() => import("./Rikou"));
+import React, { lazy, Suspense } from "react";
+
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import MediaQuery from "react-responsive";
-import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
-import { undergradSchoolNameIconMap, otherSchoolNameIconMap } from '../../constants/school-name-icon-map-en';
-import LoadingSpinner from '@bit/wasedatime.core.ts.ui.loading-spinner';
+import styled from "styled-components";
+
+import {
+  undergradSchoolNameIconMap,
+  otherSchoolNameIconMap,
+} from "@app/constants/school-name-icon-map-en";
+
+const PSE = lazy(() => import("@app/components/milestone/PSE"));
+const CJL = lazy(() => import("@app/components/milestone/CJL"));
+const SILS = lazy(() => import("@app/components/milestone/SILS"));
+const SSS = lazy(() => import("@app/components/milestone/SSS"));
+const Rikou = lazy(() => import("@app/components/milestone/Rikou"));
 
 const Cover = styled.img`
   max-height: 100vh;
@@ -72,43 +78,88 @@ const BlankRikouSchoolSwitch = styled.div`
 class Milestone extends React.Component<{ path: string }, { school: string }> {
   state = {
     school: "",
-  }
-  
-  render () {
+  };
+
+  render() {
     const { school } = this.state;
-    
+
     return (
       <div className="theme-default">
         <SchoolSwitchesWrapper>
           <div style={{ display: "flex", justifyContent: "center" }}>
-            <SchoolSwitch src={undergradSchoolNameIconMap["PSE"]} width="120" height="120" onClick={() => this.setState({ school: "PSE" })} />
-            <SchoolSwitch src={undergradSchoolNameIconMap["SILS"]} width="120" height="120" onClick={() => this.setState({ school: "SILS" })} />
-            <SchoolSwitch src={undergradSchoolNameIconMap["SSS"]} width="120" height="120" onClick={() => this.setState({ school: "SSS" })} />
-            <SchoolSwitch src={otherSchoolNameIconMap["CJL"]} width="120" height="120" onClick={() => this.setState({ school: "CJL" })} />
+            <SchoolSwitch
+              src={undergradSchoolNameIconMap.PSE}
+              width="120"
+              height="120"
+              onClick={() => this.setState({ school: "PSE" })}
+            />
+            <SchoolSwitch
+              src={undergradSchoolNameIconMap.SILS}
+              width="120"
+              height="120"
+              onClick={() => this.setState({ school: "SILS" })}
+            />
+            <SchoolSwitch
+              src={undergradSchoolNameIconMap.SSS}
+              width="120"
+              height="120"
+              onClick={() => this.setState({ school: "SSS" })}
+            />
+            <SchoolSwitch
+              src={otherSchoolNameIconMap.CJL}
+              width="120"
+              height="120"
+              onClick={() => this.setState({ school: "CJL" })}
+            />
             <RikouSchoolSwitchWrapper>
               <div style={{ flex: "1 1 auto", display: "flex" }}>
-                <FSESchoolSwitch src={undergradSchoolNameIconMap["FSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
+                <FSESchoolSwitch
+                  src={undergradSchoolNameIconMap.FSE}
+                  width="60"
+                  height="60"
+                  onClick={() => this.setState({ school: "Rikou" })}
+                />
                 <div>
-                  <RikouSchoolSwitch src={undergradSchoolNameIconMap["CSE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
-                  <RikouSchoolSwitch src={undergradSchoolNameIconMap["ASE"]} width="60" height="60" onClick={() => this.setState({ school: "Rikou" })} />
+                  <RikouSchoolSwitch
+                    src={undergradSchoolNameIconMap.CSE}
+                    width="60"
+                    height="60"
+                    onClick={() => this.setState({ school: "Rikou" })}
+                  />
+                  <RikouSchoolSwitch
+                    src={undergradSchoolNameIconMap.ASE}
+                    width="60"
+                    height="60"
+                    onClick={() => this.setState({ school: "Rikou" })}
+                  />
                 </div>
-                <BlankRikouSchoolSwitch onClick={() => this.setState({ school: "Rikou" })} />
+                <BlankRikouSchoolSwitch
+                  onClick={() => this.setState({ school: "Rikou" })}
+                />
               </div>
             </RikouSchoolSwitchWrapper>
           </div>
         </SchoolSwitchesWrapper>
 
-        {!school && <MediaQuery maxWidth={sizes.tablet}>
-          {(matches) =>
-            matches ? (
-              <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover-mobile.jpg" />
-            ) : (
-              <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover.jpg" />
-            )
+        {!school && (
+          <MediaQuery maxWidth={sizes.tablet}>
+            {(matches) =>
+              matches ? (
+                <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover-mobile.jpg" />
+              ) : (
+                <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/cover.jpg" />
+              )
+            }
+          </MediaQuery>
+        )}
+
+        <Suspense
+          fallback={
+            <div style={{ paddingTop: "10em" }}>
+              <LoadingSpinner message="Loading..." />
+            </div>
           }
-        </MediaQuery>}
-        
-        <Suspense fallback={<div style={{ paddingTop: "10em" }}><LoadingSpinner message="Loading..." /></div>}>
+        >
           {school === "PSE" && <PSE />}
           {school === "CJL" && <CJL />}
           {school === "SILS" && <SILS />}
@@ -116,7 +167,7 @@ class Milestone extends React.Component<{ path: string }, { school: string }> {
           {school === "Rikou" && <Rikou />}
         </Suspense>
       </div>
-    )
+    );
   }
 }
 

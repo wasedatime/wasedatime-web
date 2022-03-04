@@ -1,40 +1,27 @@
 import React, { lazy, Suspense } from "react";
-import { Helmet } from "react-helmet";
-import styled from "styled-components";
-import debounce from "lodash/debounce";
-import { connect } from "react-redux";
-import { fetchCourses, fetchCoursesBySchool } from "../redux/actions";
-import { ReduxRootState } from "../redux/reducers";
-import { getFetchedCoursesList } from "../redux/reducers/fetchedCourses";
-const AddedCourseListContainer = lazy(
-  () => import("./AddedCourseListContainer")
-);
-const FetchedCourseList = lazy(
-  () => import("../components/syllabus/FetchedCourseList")
-);
-import Filter from "../components/syllabus/Filter";
-import FilterButton from "../components/syllabus/FilterButton";
-import SchoolFilterContainer from "./SchoolFilterContainer";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import {
-  getSearchLang,
-  searchCourses,
-  sortCourses,
-} from "../utils/course-search";
-import { navigate, Link } from "@reach/router";
-import { WithTranslation, withTranslation } from "react-i18next";
-import MediaQuery from "react-responsive";
-import Modal from "@bit/wasedatime.core.ts.ui.modal";
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import filterCourses from "../utils/filter-courses";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { SyllabusKey } from "../constants/syllabus-data";
-import Course from "../types/course";
-import queryString from "query-string";
+
 import API from "@aws-amplify/api";
-import { schoolCodeMap } from "../constants/school-code";
+import Header from "@bit/wasedatime.core.ts.ui.header";
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import Modal from "@bit/wasedatime.core.ts.ui.modal";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { navigate, Link } from "@reach/router";
+import debounce from "lodash/debounce";
+import queryString from "query-string";
 import ReactGA from "react-ga";
-import { gaFilter } from "../ga/eventCategories";
+import { Helmet } from "react-helmet";
+import { WithTranslation, withTranslation } from "react-i18next";
+import { connect } from "react-redux";
+import MediaQuery from "react-responsive";
+import Message from "semantic-ui-react/dist/commonjs/collections/Message";
+import styled from "styled-components";
+
+import Filter from "@app/components/syllabus/Filter";
+import FilterButton from "@app/components/syllabus/FilterButton";
+import SyllabusTabs from "@app/components/SyllabusTabs";
+import { schoolCodeMap } from "@app/constants/school-code";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import SchoolFilterContainer from "@app/containers/SchoolFilterContainer";
 import {
   gaAppendActionWithLng,
   gaApplyFilter,
@@ -42,10 +29,26 @@ import {
   gaOpenModal,
   gaRemoveFilter,
   gaUpdateFilter,
-} from "../ga/eventActions";
-import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import { courseSchemaFullToShort } from "../utils/map-single-course-schema";
-import SyllabusTabs from "../components/SyllabusTabs";
+} from "@app/ga/eventActions";
+import { gaFilter } from "@app/ga/eventCategories";
+import { fetchCourses, fetchCoursesBySchool } from "@app/redux/actions";
+import { ReduxRootState } from "@app/redux/reducers";
+import { getFetchedCoursesList } from "@app/redux/reducers/fetchedCourses";
+import Course from "@app/types/course";
+import {
+  getSearchLang,
+  searchCourses,
+  sortCourses,
+} from "@app/utils/course-search";
+import filterCourses from "@app/utils/filter-courses";
+import { courseSchemaFullToShort } from "@app/utils/map-single-course-schema";
+
+const AddedCourseListContainer = lazy(
+  () => import("@app/containers/AddedCourseListContainer")
+);
+const FetchedCourseList = lazy(
+  () => import("@app/components/syllabus/FetchedCourseList")
+);
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -162,24 +165,29 @@ class SyllabusContainer extends React.Component<
       inputText: "",
       topCourseId: "",
       topCourse: null,
-      isFetchingTopCourse: false
+      isFetchingTopCourse: false,
     };
   }
 
   componentDidMount() {
-    const courseId = queryString.parse(window.location.search).courseId;
-    if (courseId) this.setState({ isFetchingTopCourse: true }, () => this.setTopCourse(courseId));
+    const { courseId } = queryString.parse(window.location.search);
+    if (courseId)
+      this.setState({ isFetchingTopCourse: true }, () =>
+        this.setTopCourse(courseId)
+      );
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.isFetching && !this.props.isFetching) {
       this.setState({ fetchedCourses: this.props.fetchedCourses });
     }
-    const courseId = queryString.parse(window.location.search).courseId;
+    const { courseId } = queryString.parse(window.location.search);
     if (courseId && this.state.topCourseId !== courseId) {
       if (!this.state.isFetchingTopCourse) {
-        console.log("666")
-        this.setState({ isFetchingTopCourse: true }, () => this.setTopCourse(courseId));
+        console.log("666");
+        this.setState({ isFetchingTopCourse: true }, () =>
+          this.setTopCourse(courseId)
+        );
       }
     }
     if (
@@ -195,12 +203,16 @@ class SyllabusContainer extends React.Component<
     if (this.state.isFetchingTopCourse) {
       let course;
       try {
-        const res = await API.get("wasedatime-dev", `/syllabus?id=${courseId}`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          response: true,
-        });
+        const res = await API.get(
+          "wasedatime-dev",
+          `/syllabus?id=${courseId}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+            response: true,
+          }
+        );
         course = res.data.data;
       } catch (error) {
         course = this.props.fetchedCourses.find(
@@ -209,12 +221,18 @@ class SyllabusContainer extends React.Component<
       }
       if (course) {
         const school = schoolCodeMap[courseId.substring(0, 2)];
-        course = courseSchemaFullToShort({ ...course, [SyllabusKey.SCHOOL]: school });
-        
+        course = courseSchemaFullToShort({
+          ...course,
+          [SyllabusKey.SCHOOL]: school,
+        });
+
         this.setState({
           topCourseId: courseId,
-          topCourse: !this.props.fetchedCourses.filter(c => c[SyllabusKey.ID] === courseId)[0] && course,
-          isFetchingTopCourse: false
+          topCourse:
+            !this.props.fetchedCourses.filter(
+              (c) => c[SyllabusKey.ID] === courseId
+            )[0] && course,
+          isFetchingTopCourse: false,
         });
       }
     }
@@ -251,7 +269,8 @@ class SyllabusContainer extends React.Component<
   handleToggleFilter = (name: string, value: any) => {
     this.setState((prevState, props) => {
       const { [name]: filters, ...rest } = prevState.filterGroups;
-      let newFilters, gaAction;
+      let newFilters;
+      let gaAction;
       if (["evalType", "evalPercent"].includes(name) || Array.isArray(value)) {
         newFilters = value; // change the whole value of the filter group
         gaAction = gaUpdateFilter;
@@ -301,9 +320,10 @@ class SyllabusContainer extends React.Component<
   render() {
     const { fetchedCourses: allFetchedCourses, t, i18n } = this.props;
 
-    let newI18n = { ...i18n };
+    const newI18n = { ...i18n };
 
-    const { fetchedCourses, searchTerm, inputText, topCourse, topCourseId } = this.state;
+    const { fetchedCourses, searchTerm, inputText, topCourse, topCourseId } =
+      this.state;
     const searchLang =
       searchTerm === "" ? newI18n.language : getSearchLang(searchTerm);
     let results =
@@ -314,13 +334,15 @@ class SyllabusContainer extends React.Component<
             searchLang
           )
         : fetchedCourses;
-    results = topCourse && results[0] !== topCourse
-      ? [ topCourse, ...results ]
-      : results.sort((a, b) => {
-          if (a.a === topCourseId) return -1;
-          else if (b.a === topCourseId) return 1;
-          else return 0;
-        });
+    results =
+      topCourse && results[0] !== topCourse
+        ? [topCourse, ...results]
+        : results.sort((a, b) => {
+            if (a.a === topCourseId) return -1;
+            if (b.a === topCourseId) return 1;
+
+            return 0;
+          });
 
     return (
       <SyllabusWrapper className="theme-default">
@@ -355,14 +377,16 @@ class SyllabusContainer extends React.Component<
           />
         </HeaderWrapper>
 
-        <SyllabusTabsWrapper><SyllabusTabs /></SyllabusTabsWrapper>
+        <SyllabusTabsWrapper>
+          <SyllabusTabs />
+        </SyllabusTabsWrapper>
 
         <SyllabusFlex>
           <MediaQuery minWidth={sizes.tablet}>
             {(matches) =>
               matches && (
                 <SideColumn>
-                  <Suspense fallback={""}>
+                  <Suspense fallback="">
                     <AddedCourseListContainer />
                   </Suspense>
                 </SideColumn>
@@ -371,13 +395,18 @@ class SyllabusContainer extends React.Component<
           </MediaQuery>
 
           <MiddleColumn>
-            {
-              [2, 3, 8, 9].includes(new Date().getMonth()) && <Link to="/courses/milestone" style={{ maxWidth: "100vw", padding: "0px 1em" }}>
+            {[2, 3, 8, 9].includes(new Date().getMonth()) && (
+              <Link
+                to="/courses/milestone"
+                style={{ maxWidth: "100vw", padding: "0px 1em" }}
+              >
                 <ButtonToMilestone>
-                  Link to 2021 {[2, 3].includes(new Date().getMonth()) ? "Spring" : "Fall"} Milestone × WTSA
+                  Link to 2021{" "}
+                  {[2, 3].includes(new Date().getMonth()) ? "Spring" : "Fall"}{" "}
+                  Milestone × WTSA
                 </ButtonToMilestone>
               </Link>
-            }
+            )}
             <Suspense fallback={<LoadingSpinner message="Loading..." />}>
               {allFetchedCourses.length > 0 ? (
                 <FetchedCourseList
@@ -388,10 +417,12 @@ class SyllabusContainer extends React.Component<
                 />
               ) : (
                 <div style={{ padding: "2em" }}>
-                  <Message info>
-                    {t("message.choose school request")}
-                  </Message>
-                  <SchoolFilterContainer checkedSchools={[]} handleToggleFilter={() => {}} isPopup={false} />
+                  <Message info>{t("message.choose school request")}</Message>
+                  <SchoolFilterContainer
+                    checkedSchools={[]}
+                    handleToggleFilter={() => {}}
+                    isPopup={false}
+                  />
                 </div>
               )}
             </Suspense>
@@ -400,12 +431,12 @@ class SyllabusContainer extends React.Component<
             {(matches) =>
               matches && (
                 <SideColumn>
-                  <Suspense fallback={""}>
+                  <Suspense fallback="">
                     <Filter
                       filterGroups={this.state.filterGroups}
                       handleToggleFilter={this.handleToggleFilter}
                       clearFilter={this.clearFilter}
-                      isSideBar={true}
+                      isSideBar
                     />
                   </Suspense>
                 </SideColumn>
@@ -420,7 +451,7 @@ class SyllabusContainer extends React.Component<
                     filterGroups={this.state.filterGroups}
                     handleToggleFilter={this.handleToggleFilter}
                     clearFilter={this.clearFilter}
-                    isSideBar={true}
+                    isSideBar
                   />
                 </ShorterSideColumn>
               )

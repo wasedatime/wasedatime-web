@@ -152,14 +152,8 @@ class AddReviewForm extends React.Component {
   };
 
   render() {
-    const {
-      closeModal,
-      scales,
-      text,
-      handleFormSubmit,
-      isSending,
-      t,
-    } = this.props;
+    const { closeModal, scales, text, handleFormSubmit, isSending, t } =
+      this.props;
     const {
       paintedSatisfactionStars,
       paintedDifficultyStars,
@@ -202,7 +196,9 @@ class AddReviewForm extends React.Component {
                     paintedDifficultyStars
                   )}
                 </Statistic.Value>
-                <Statistic.Label><p>{t(`courseInfo.Difficulty`)}</p></Statistic.Label>
+                <Statistic.Label>
+                  <p>{t(`courseInfo.Difficulty`)}</p>
+                </Statistic.Label>
               </Scale>
               <Scale size="tiny">
                 <Statistic.Value>
@@ -212,7 +208,9 @@ class AddReviewForm extends React.Component {
                     paintedBenefitStars
                   )}
                 </Statistic.Value>
-                <Statistic.Label><p>{t(`courseInfo.Benefit`)}</p></Statistic.Label>
+                <Statistic.Label>
+                  <p>{t(`courseInfo.Benefit`)}</p>
+                </Statistic.Label>
               </Scale>
             </ScalesList>
             <br />

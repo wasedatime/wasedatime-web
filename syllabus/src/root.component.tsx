@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Provider } from "react-redux";
-import App from "./App";
+
 import API from "@aws-amplify/api";
-import configureStore from "./configureStore";
-import { saveState } from "./localForage";
-import throttle from "lodash/throttle";
-import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
-import translationEN from "./constants/locales/en/translation.json";
-import translationJA from "./constants/locales/ja/translation.json";
-import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
-import * as Sentry from "@sentry/react";
-import ReactGA from "react-ga";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import ErrorFallback from "./components/ErrorFallback";
-import i18next from 'i18next';
+import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
+import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
+import * as Sentry from "@sentry/react";
+import i18next from "i18next";
+import throttle from "lodash/throttle";
+import ReactGA from "react-ga";
+import { Provider } from "react-redux";
+
+import App from "@app/App";
+import ErrorFallback from "@app/components/ErrorFallback";
+import configureStore from "@app/configureStore";
+import translationEN from "@app/constants/locales/en/translation.json";
+import translationJA from "@app/constants/locales/ja/translation.json";
+import { saveState } from "@app/localForage";
 
 const config = {
   API: {
@@ -33,10 +35,14 @@ configAuth();
 if (process.env.NODE_ENV === "production") {
   ReactGA.initialize("UA-112185819-1", { debug: false, titleCase: false });
   Sentry.init({
-    dsn:
-      "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
+    dsn: "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
     environment: process.env.NODE_ENV,
-    ignoreErrors: ["Network Error", "NetworkError", "Loading chunk", "Timed out"],
+    ignoreErrors: [
+      "Network Error",
+      "NetworkError",
+      "Loading chunk",
+      "Timed out",
+    ],
   });
 } else {
   ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
@@ -51,7 +57,7 @@ const Root = () => {
       customTranslations: {
         [Lang.EN]: translationEN,
         [Lang.JA]: translationJA,
-      }
+      },
     });
     // i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
     if (!reduxStore) {

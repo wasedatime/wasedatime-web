@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import styled from "styled-components";
-import { SyllabusKey } from '../../constants/syllabus-data';
-import CourseItem from '../CourseItem';
-import { media, sizes } from '@bit/wasedatime.core.ts.utils.responsive-utils';
+import React, { useEffect, useState } from "react";
+
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import MediaQuery from "react-responsive";
-import { parseCourse } from '../../utils/milestone';
+import styled from "styled-components";
+
+import CourseItem from "@app/components/CourseItem";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import { parseCourse } from "@app/utils/milestone";
 
 const Cover = styled.img`
   max-height: 100vh;
@@ -56,8 +58,8 @@ const GroupA_courses = [
   "Science and Religion",
   "Topics in Philosophy and Religion",
   "Japanese 1",
-  "Japanese 2"
-]
+  "Japanese 2",
+];
 const GroupB_courses = [
   "Calculus",
   "Linear Algebra",
@@ -76,27 +78,35 @@ const GroupB_courses = [
   "Introduction to Fortran Programming",
   "C Programming",
   "Java Programming",
-  "Fortran Programming"
-]
+  "Fortran Programming",
+];
 
 const get_Rikou_category = (course) => {
-  if (GroupA_courses.some(title => (course[SyllabusKey.TITLE]).startsWith(title))) return "Group A";
-  else if (GroupB_courses.some(title => course[SyllabusKey.TITLE].startsWith(title))) return "Group B";
-  else return "Group C";
-}
+  if (
+    GroupA_courses.some((title) => course[SyllabusKey.TITLE].startsWith(title))
+  )
+    return "Group A";
+  if (
+    GroupB_courses.some((title) => course[SyllabusKey.TITLE].startsWith(title))
+  )
+    return "Group B";
+
+  return "Group C";
+};
 
 const getGroupedCourses = (courses) => {
-  let groupedCourses = {
+  const groupedCourses = {
     "Group A": [],
     "Group B": [],
-    "Group C": []
+    "Group C": [],
   };
-  courses.forEach(c => {
+  courses.forEach((c) => {
     const category = get_Rikou_category(c);
     groupedCourses[category].push(c);
   });
+
   return groupedCourses;
-}
+};
 
 const Course = ({ course }) => (
   <CourseItem
@@ -106,10 +116,10 @@ const Course = ({ course }) => (
     isAddable={false}
     handleOnClick={() => {}}
     expandable={false}
-    isMilestone={true}
+    isMilestone
     reviews={course.reviews || []}
   />
-)
+);
 
 const Rikou = () => {
   const [courses, setCourses] = useState([]);
@@ -117,15 +127,23 @@ const Rikou = () => {
   useEffect(() => {
     let rikouCourses = [];
     try {
-      ["FSE", "CSE", "ASE"].forEach(school => {
-        fetch(`https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/reviews/${school.toLowerCase()}_reviews.json`)
-          .then(res => res.json())
-          .then(res => {
-            rikouCourses = rikouCourses.concat(res.filter(c => c.sem.match(new Date().getMonth() < 6 ? /0|1|f/g : /2|3|f/g)).map(c => parseCourse(c, school)));
+      ["FSE", "CSE", "ASE"].forEach((school) => {
+        fetch(
+          `https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/reviews/${school.toLowerCase()}_reviews.json`
+        )
+          .then((res) => res.json())
+          .then((res) => {
+            rikouCourses = rikouCourses.concat(
+              res
+                .filter((c) =>
+                  c.sem.match(new Date().getMonth() < 6 ? /0|1|f/g : /2|3|f/g)
+                )
+                .map((c) => parseCourse(c, school))
+            );
             setCourses(rikouCourses);
           })
-          .catch(err => console.log(err));
-      })
+          .catch((err) => console.log(err));
+      });
     } catch (error) {
       console.log(error);
     }
@@ -136,8 +154,8 @@ const Rikou = () => {
   return (
     <div>
       <MediaQuery maxWidth={sizes.phone}>
-        {
-          matches => matches ? (
+        {(matches) =>
+          matches ? (
             <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-mobile.jpg" />
           ) : (
             <Cover src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou.jpg" />
@@ -145,15 +163,33 @@ const Rikou = () => {
         }
       </MediaQuery>
       <div style={{ padding: "0px 10vw" }}>
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-1.jpg" width="300" height="150" />
-        {groupedCourses["Group A"].map(c => <Course course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-2.jpg" width="300" height="150" />
-        {groupedCourses["Group B"].map(c => <Course course={c} />)}
-        <img src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-3.jpg" width="300" height="150" />
-        {groupedCourses["Group C"].map(c => <Course course={c} />)}
+        <img
+          src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-1.jpg"
+          width="300"
+          height="150"
+        />
+        {groupedCourses["Group A"].map((c) => (
+          <Course course={c} />
+        ))}
+        <img
+          src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-2.jpg"
+          width="300"
+          height="150"
+        />
+        {groupedCourses["Group B"].map((c) => (
+          <Course course={c} />
+        ))}
+        <img
+          src="https://wasedatime-milestone.s3-ap-northeast-1.amazonaws.com/images/rikou-cat-3.jpg"
+          width="300"
+          height="150"
+        />
+        {groupedCourses["Group C"].map((c) => (
+          <Course course={c} />
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Rikou;

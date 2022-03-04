@@ -1,33 +1,35 @@
 import React from "react";
-import styled from "styled-components";
-import MediaQuery from "react-responsive";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
-import ReviewLangSwitches from "./ReviewLangSwitches";
-import ReviewScalesCount from "./ReviewScalesCount";
-import ReviewsList from "./ReviewsList";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { getAvgScales } from "../../utils/get-avg-scales";
-import { Review, Scales } from "../../types/review";
-import { Course } from "../../types/course";
-import AddReviewForm from "./AddReviewForm";
-import { getIdToken, getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
+
 import API from "@aws-amplify/api";
-import Alert from "react-s-alert";
-import { SyllabusKey } from "../../constants/syllabus-data";
 import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { getIdToken, getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactGA from "react-ga";
-import { gaCourseReviews } from "../../ga/eventCategories";
+import { WithTranslation, withTranslation } from "react-i18next";
+import MediaQuery from "react-responsive";
+import Alert from "react-s-alert";
+import styled from "styled-components";
+
+import AddReviewForm from "@app/components/courseInfoAddReviewForm";
+import ReviewLangSwitches from "@app/components/courseInfoReviewLangSwitches";
+import ReviewScalesCount from "@app/components/courseInfoReviewScalesCount";
+import ReviewsList from "@app/components/courseInfoReviewsList";
+import { SyllabusKey } from "@app/constants/syllabus-data";
 import {
   gaCreateCourseReview,
   gaDeleteCourseReview,
   gaEditCourseReview,
   gaSwitchReviewLanguage,
-} from "../../ga/eventActions";
+} from "@app/ga/eventActions";
+import { gaCourseReviews } from "@app/ga/eventCategories";
+import { Course } from "@app/types/course";
+import { Review, Scales } from "@app/types/review";
+import { getAvgScales } from "@app/utils/get-avg-scales";
 
 const StyledReviewsWrapper = styled("div")`
-  ${props => props.isMilestone && "font-size: 0.7em;"}
+  ${(props) => props.isMilestone && "font-size: 0.7em;"}
   ${media.phone`padding: 0 1em;`}
 `;
 
@@ -132,36 +134,32 @@ class CourseReviews extends React.Component<Props, State> {
       {
         formMode: "edit",
         formScales: {
-          satisfaction: review["satisfaction"],
-          difficulty: review["difficulty"],
-          benefit: review["benefit"],
+          satisfaction: review.satisfaction,
+          difficulty: review.difficulty,
+          benefit: review.benefit,
         },
-        formText: review["src_comment"],
-        editReviewIndex: review["index"],
-        editReviewPrimaryKey: review["created_at"],
-        editReviewOriginalText: review["src_comment"],
+        formText: review.src_comment,
+        editReviewIndex: review.index,
+        editReviewPrimaryKey: review.created_at,
+        editReviewOriginalText: review.src_comment,
       },
       () => this.setState({ isFormOpen: true })
     );
   };
 
   onNewReviewFormSubmit = async () => {
-    const {
-      formScales,
-      formText,
-      formMode,
-      editReviewPrimaryKey,
-      userToken,
-    } = this.state;
+    const { formScales, formText, formMode, editReviewPrimaryKey, userToken } =
+      this.state;
 
     if (!userToken.length) {
       this.setState({ isSignInModalOpen: true });
+
       return;
     }
     const { course, courseKey, t } = this.props;
 
     if (Object.values(formScales).indexOf(0) > -1 || formText.length === 0) {
-      Alert.warning(t(`courseInfo.Fill in all fields before sending`), {
+      Alert.warning(t("courseInfo.Fill in all fields before sending"), {
         position: "bottom",
         effect: "jelly",
       });
@@ -186,7 +184,7 @@ class CourseReviews extends React.Component<Props, State> {
             category: gaCourseReviews,
             action: gaCreateCourseReview,
           });
-          API.post("wasedatime-dev", "/course-reviews/" + courseKey, {
+          API.post("wasedatime-dev", `/course-reviews/${courseKey}`, {
             body: {
               data: newReview,
             },
@@ -202,7 +200,7 @@ class CourseReviews extends React.Component<Props, State> {
           });
           API.patch(
             "wasedatime-dev",
-            "/course-reviews/" + courseKey + "?ts=" + editReviewPrimaryKey,
+            `/course-reviews/${courseKey}?ts=${editReviewPrimaryKey}`,
             {
               body: {
                 data: editReview,
@@ -215,7 +213,7 @@ class CourseReviews extends React.Component<Props, State> {
           ).then(async () => this.cleanFormAndUpdateReviews(newReview));
         }
       } catch (error) {
-        Alert.error(this.props.t(`courseInfo.Review failed to send`), {
+        Alert.error(this.props.t("courseInfo.Review failed to send"), {
           position: "bottom",
           effect: "jelly",
         });
@@ -227,14 +225,14 @@ class CourseReviews extends React.Component<Props, State> {
     const { courseKey, t } = this.props;
     const { userToken, userId } = this.state;
 
-    Alert.success(t(`courseInfo.Review sent`), {
+    Alert.success(t("courseInfo.Review sent"), {
       position: "bottom",
       effect: "jelly",
     });
 
     const res = await API.get(
       "wasedatime-dev",
-      "/course-reviews/" + courseKey + "?uid=" + userId,
+      `/course-reviews/${courseKey}?uid=${userId}`,
       {
         headers: {
           "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
@@ -266,7 +264,7 @@ class CourseReviews extends React.Component<Props, State> {
     const { courseKey, t } = this.props;
     API.del(
       "wasedatime-dev",
-      "/course-reviews/" + courseKey + "?ts=" + reviewPrimaryKey,
+      `/course-reviews/${courseKey}?ts=${reviewPrimaryKey}`,
       {
         headers: {
           Authorization: userToken,
@@ -274,7 +272,7 @@ class CourseReviews extends React.Component<Props, State> {
       }
     )
       .then(() => {
-        Alert.success(t(`courseInfo.Review deleted`), {
+        Alert.success(t("courseInfo.Review deleted"), {
           position: "bottom",
           effect: "jelly",
         });
@@ -337,7 +335,7 @@ class CourseReviews extends React.Component<Props, State> {
     ) : (
       <StyledReviewsWrapper isMilestone={isMilestone}>
         <StyledSubHeading>
-          {t(`courseInfo.Reviews`)}{" "}
+          {t("courseInfo.Reviews")}{" "}
           <MediaQuery minWidth={sizes.phone}>
             {(matches) => (matches ? " " : <br />)}
           </MediaQuery>
@@ -352,15 +350,16 @@ class CourseReviews extends React.Component<Props, State> {
                 });
                 this.setState({ reviewLang: lng });
               }}
-              isInHeading={true}
+              isInHeading
             />
           </span>
           <MediaQuery minWidth={sizes.phone}>
             {(matches) =>
-              matches && !isMilestone && (
+              matches &&
+              !isMilestone && (
                 <AddReviewButton onClick={this.openReviewForm}>
                   <FontAwesomeIcon icon={faPen} />{" "}
-                  {this.props.t(`courseInfo.Write your Review`)}
+                  {this.props.t("courseInfo.Write your Review")}
                 </AddReviewButton>
               )
             }
@@ -368,15 +367,16 @@ class CourseReviews extends React.Component<Props, State> {
         </StyledSubHeading>
         <MediaQuery minWidth={sizes.phone}>
           {(matches) =>
-            !matches && !isMilestone && (
+            !matches &&
+            !isMilestone && (
               <AddReviewButton onClick={this.openReviewForm}>
                 <FontAwesomeIcon icon={faPen} />{" "}
-                {this.props.t(`courseInfo.Write your Review`)}
+                {this.props.t("courseInfo.Write your Review")}
               </AddReviewButton>
             )
           }
         </MediaQuery>
-        <Disclaimer>{t(`courseInfo.Disclaimer`)}</Disclaimer>
+        <Disclaimer>{t("courseInfo.Disclaimer")}</Disclaimer>
         <ReviewsListWrapper>
           <ReviewScalesCount
             avgSatisfaction={scalesAvg.satisfaction}

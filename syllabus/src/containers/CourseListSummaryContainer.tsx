@@ -1,15 +1,17 @@
 import React from "react";
-import { connect } from "react-redux";
-import { changeSortingOption } from "../redux/actions";
-import { ReduxRootState } from "../redux/reducers";
-import CourseListSummary from "../components/CourseListSummary";
-import Course from "../types/course";
+
 import ReactGA from "react-ga";
+import { connect } from "react-redux";
+
+import CourseListSummary from "@app/components/CourseListSummary";
+import { gaChangeSortingOption } from "@app/ga/eventActions";
 import {
   gaAddedCourseAndPrefItem,
   gaAddedCourseItem,
-} from "../ga/eventCategories";
-import { gaChangeSortingOption } from "../ga/eventActions";
+} from "@app/ga/eventCategories";
+import { changeSortingOption } from "@app/redux/actions";
+import { ReduxRootState } from "@app/redux/reducers";
+import Course from "@app/types/course";
 
 interface ReduxStateProps {
   selectedSortingOption: string;
@@ -38,6 +40,7 @@ const CourseListSummaryContainer = ({
     });
     changeSortingOption(sortingOption);
   };
+
   return (
     <CourseListSummary
       courses={courses}

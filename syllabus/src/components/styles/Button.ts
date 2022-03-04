@@ -75,10 +75,7 @@ export const CustomButton = styled("button")`
   text-decoration: none;
   cursor: pointer;
   float: ___CSS_2___;
-  ___CSS_3___
-  ___CSS_4___
-
-  &:focus {
+  ___CSS_3___ ___CSS_4___ &:focus {
     outline: none;
   }
 `;

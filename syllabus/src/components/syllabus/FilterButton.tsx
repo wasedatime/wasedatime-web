@@ -1,8 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faFilter, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { FloatingActionButton } from "../styles/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import styled from "styled-components";
+
+import { FloatingActionButton } from "@app/components/styles/Button";
 
 const StyledFloatingActionButton = styled(FloatingActionButton)`
   bottom: 70px;

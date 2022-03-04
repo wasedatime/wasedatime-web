@@ -2,9 +2,8 @@ import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
-import { loadState } from "./localForage";
-
-import rootReducer from "./redux/reducers";
+import { loadState } from "@app/localForage";
+import rootReducer from "@app/redux/reducers";
 
 const configureStore = async () => {
   const middlewares = [thunk];
@@ -13,6 +12,7 @@ const configureStore = async () => {
   }
   try {
     const preloadedState = await loadState();
+
     return createStore(
       rootReducer,
       preloadedState,
@@ -20,6 +20,7 @@ const configureStore = async () => {
     );
   } catch (error) {
     console.error(error);
+
     return createStore(rootReducer, undefined, applyMiddleware(...middlewares));
   }
 };

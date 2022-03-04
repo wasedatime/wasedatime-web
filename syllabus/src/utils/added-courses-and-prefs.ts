@@ -1,5 +1,5 @@
-import SortingOption from "../constants/sorting-options";
-import { SyllabusKey } from "../constants/syllabus-data";
+import SortingOption from "@app/constants/sorting-options";
+import { SyllabusKey } from "@app/constants/syllabus-data";
 
 export const sortAddedCoursesAndPrefs = (
   addedCoursesAndPrefs,
@@ -15,11 +15,12 @@ export const sortAddedCoursesAndPrefs = (
         const courseTitleB = b.course[SyllabusKey.TITLE].toUpperCase();
         if (courseTitleA < courseTitleB) {
           return -1;
-        } else if (courseTitleA > courseTitleB) {
-          return 1;
-        } else {
-          return 0;
         }
+        if (courseTitleA > courseTitleB) {
+          return 1;
+        }
+
+        return 0;
       });
     case SortingOption.COURSE_TIME:
       return addedCoursesAndPrefs.sort((a, b) => {
@@ -46,27 +47,28 @@ export const sortAddedCoursesAndPrefs = (
         // one of the courses has OCC_DAY === -1
         if (firstOccurrenceDayA >= 0 && firstOccurrenceDayB < 0) {
           return -1;
-        } else if (firstOccurrenceDayA < 0 && firstOccurrenceDayB >= 0) {
+        }
+        if (firstOccurrenceDayA < 0 && firstOccurrenceDayB >= 0) {
           return 1;
         }
 
         // compare days (if both courses have OCC_DAY >= 0)
         if (firstOccurrenceDayA < firstOccurrenceDayB) {
           return -1;
-        } else if (firstOccurrenceDayA > firstOccurrenceDayB) {
+        }
+        if (firstOccurrenceDayA > firstOccurrenceDayB) {
           return 1;
         }
-        
+
         // compare periods (if days are the same)
         if (firstOccurrenceStartPeriodA < firstOccurrenceStartPeriodB) {
           return -1;
-        } else if (
-          firstOccurrenceStartPeriodA > firstOccurrenceStartPeriodB
-        ) {
-          return 1;
-        } else {
-          return 0;
         }
+        if (firstOccurrenceStartPeriodA > firstOccurrenceStartPeriodB) {
+          return 1;
+        }
+
+        return 0;
       });
     default:
       return addedCoursesAndPrefs;

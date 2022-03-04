@@ -1,4 +1,5 @@
 import React from "react";
+
 import styled from "styled-components";
 
 const colorIds = [0, 1, 2, 3, 4, 5, 6, 7];
@@ -14,10 +15,10 @@ const InvisibleButton = styled("button")`
 const ColorButton = styled(InvisibleButton)`
   width: 1.5em;
   height: 1.5em;
-  border: 1px solid ${props => props.theme["color" + props.color]};
+  border: 1px solid ${(props) => props.theme[`color${props.color}`]};
   border-radius: 0.3em;
   margin: 0 0.1em;
-  background-color: ${props => props.theme["bgColor" + props.color]};
+  background-color: ${(props) => props.theme[`bgColor${props.color}`]};
 `;
 
 interface Props {

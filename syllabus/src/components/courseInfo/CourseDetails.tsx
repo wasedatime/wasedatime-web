@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { SyllabusKey } from "../../constants/syllabus-data";
-import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
-import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
-import CourseDetailsEvaluation from "./CourseDetailsEvaluation";
-import Course from "../../types/course";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faBroadcastTower,
   faChalkboardTeacher,
@@ -15,7 +7,17 @@ import {
   faVideo,
   faWifi,
 } from "@fortawesome/free-solid-svg-icons";
-import CourseMoreDetails from "./CourseMoreDetails";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WithTranslation, withTranslation } from "react-i18next";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
+import Table from "semantic-ui-react/dist/commonjs/collections/Table";
+import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
+import styled from "styled-components";
+
+import CourseDetailsEvaluation from "@app/components/courseInfo/CourseDetailsEvaluation";
+import CourseMoreDetails from "@app/components/courseInfo/CourseMoreDetails";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import Course from "@app/types/course";
 
 const StyledSubHeading = styled("h6")`
   align-self: flex-start;
@@ -141,7 +143,9 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
         <Table.Body>
           <Table.Row>
             <Table.Cell>
-              <p style={{ paddingLeft: "1em" }}>{t("courseInfo.Details.Type.title")}</p>
+              <p style={{ paddingLeft: "1em" }}>
+                {t("courseInfo.Details.Type.title")}
+              </p>
             </Table.Cell>
             <Table.Cell>
               <p>
@@ -151,7 +155,9 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              <p style={{ paddingLeft: "1em" }}>{t("courseInfo.Details.Category")}</p>
+              <p style={{ paddingLeft: "1em" }}>
+                {t("courseInfo.Details.Category")}
+              </p>
             </Table.Cell>
             <Table.Cell>
               <p>
@@ -169,7 +175,9 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
           </Table.Row>
           <Table.Row>
             <Table.Cell>
-              <p style={{ paddingLeft: "1em" }}>{t("courseInfo.Details.Level.title")}</p>
+              <p style={{ paddingLeft: "1em" }}>
+                {t("courseInfo.Details.Level.title")}
+              </p>
             </Table.Cell>
             <Table.Cell>
               <p>
@@ -186,10 +194,10 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
     <div>
       {courseDetails}
       <StyledSubHeading>
-        {t(`courseInfo.Details.Evaluation.title`)}
+        {t("courseInfo.Details.Evaluation.title")}
       </StyledSubHeading>
       <CourseDetailsEvaluation course={course} />
-      <StyledSubHeading>{t(`courseMoreDetails.title`)}</StyledSubHeading>
+      <StyledSubHeading>{t("courseMoreDetails.title")}</StyledSubHeading>
       <CourseMoreDetails course={course} />
     </div>
   );

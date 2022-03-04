@@ -1,15 +1,17 @@
 import React from "react";
-import styled from "styled-components";
-import majorsBySchool from '../../constants/majors-by-school';
+
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { Badge } from "../styles/Badge";
-import fseIcon from "../../assets/img/syllabus-icons/fse.png";
-import cseIcon from "../../assets/img/syllabus-icons/cse.png";
-import aseIcon from "../../assets/img/syllabus-icons/ase.png";
-import majorBg from "../../assets/img/major_bg.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+
+import majorBg from "@app/assets/img/major_bg.jpg";
+import aseIcon from "@app/assets/img/syllabus-icons/ase.png";
+import cseIcon from "@app/assets/img/syllabus-icons/cse.png";
+import fseIcon from "@app/assets/img/syllabus-icons/fse.png";
+import { Badge } from "@app/components/styles/Badge";
+import majorsBySchool from "@app/constants/majors-by-school";
 
 const Menu = styled.div`
   ${media.tablet`
@@ -33,7 +35,7 @@ const SchoolItem = styled.div`
 
 const SchoolButton = styled.button`
   margin: 0px auto;
-  ${props => !props.active && "opacity: 0.4;"}
+  ${(props) => !props.active && "opacity: 0.4;"}
 `;
 
 const SchoolImg = styled.img`
@@ -51,7 +53,7 @@ const MajorWrapper = styled.div`
   cursor: pointer;
 
   &:before {
-    content: ' ';
+    content: " ";
     display: block;
     position: absolute;
     left: 0;
@@ -94,27 +96,33 @@ const ReviewsCount = styled(Badge)`
   justify-content: center;
   align-items: center;
 
-  background-color: ${props => {
+  background-color: ${(props) => {
     return props.school === "FSE"
       ? "rgba(190,106,20,0.5)"
       : props.school === "CSE"
-        ? "rgba(105,140,45,0.5)"
-        : "rgba(50,98,149,0.5)";
+      ? "rgba(105,140,45,0.5)"
+      : "rgba(50,98,149,0.5)";
   }};
 `;
 
 const schools = ["FSE", "CSE", "ASE"];
 
-const SchoolMajorSelector = ({ reviews, selectedSchool, setSchool, setMajor, closeModal }) => {
+const SchoolMajorSelector = ({
+  reviews,
+  selectedSchool,
+  setSchool,
+  setMajor,
+  closeModal,
+}) => {
   const { t } = useTranslation();
   const switchSchool = (schoolIndex: number) => {
     setSchool(schools[schoolIndex]);
-    setMajor('');
-  }
+    setMajor("");
+  };
   const switchMajorAndCloseModal = (major: string) => {
     setMajor(major);
     closeModal();
-  }
+  };
 
   return (
     <Menu>
@@ -124,14 +132,28 @@ const SchoolMajorSelector = ({ reviews, selectedSchool, setSchool, setMajor, clo
         <b>{t("syllabus.Filter by")}</b>
       </h5>
       <SchoolMenu>
-        {
-          [fseIcon, cseIcon, aseIcon].map((icon, i) => <SchoolItem key={"school_button_" + i}><SchoolButton onClick={() => switchSchool(i)} active={selectedSchool === schools[i]}><SchoolImg src={icon} width="70" height="70" /></SchoolButton></SchoolItem>)
-        }
+        {[fseIcon, cseIcon, aseIcon].map((icon, i) => (
+          <SchoolItem key={`school_button_${i}`}>
+            <SchoolButton
+              onClick={() => switchSchool(i)}
+              active={selectedSchool === schools[i]}
+            >
+              <SchoolImg src={icon} width="70" height="70" />
+            </SchoolButton>
+          </SchoolItem>
+        ))}
       </SchoolMenu>
 
-      { majorsBySchool[selectedSchool]?.map(major => <MajorWrapper onClick={() => switchMajorAndCloseModal(major)}><MajorText>{t("labs.major." + major)}</MajorText><ReviewsCount school={selectedSchool}>{reviews[selectedSchool][major].length}</ReviewsCount></MajorWrapper>) }
+      {majorsBySchool[selectedSchool]?.map((major) => (
+        <MajorWrapper onClick={() => switchMajorAndCloseModal(major)}>
+          <MajorText>{t(`labs.major.${major}`)}</MajorText>
+          <ReviewsCount school={selectedSchool}>
+            {reviews[selectedSchool][major].length}
+          </ReviewsCount>
+        </MajorWrapper>
+      ))}
     </Menu>
   );
-}
+};
 
 export default SchoolMajorSelector;

@@ -1,22 +1,24 @@
 import React, { lazy, Suspense } from "react";
-import styled from "styled-components";
-import { navigate } from "@reach/router";
-import { ReduxRootState } from "../redux/reducers";
-import { connect } from "react-redux";
-import { Helmet } from "react-helmet";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-const Timetable = lazy(() => import("../components/timetable/Timetable"));
-import SemesterSwitcher from "../components/SemesterSwitcher";
-import { Semester } from "../constants/timetable-terms";
-import { getCurrentSemester } from "../utils/get-current-semesters";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { getAddedCoursesAndPrefsByTerm } from "../redux/reducers/addedCourses";
-import { sortAddedCoursesAndPrefs } from "../utils/added-courses-and-prefs";
-import Course from "../types/course";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { navigate } from "@reach/router";
+import { Helmet } from "react-helmet";
+import { WithTranslation, withTranslation } from "react-i18next";
+import { connect } from "react-redux";
+import styled from "styled-components";
+
+import SemesterSwitcher from "@app/components/SemesterSwitcher";
+import { Semester } from "@app/constants/timetable-terms";
+import { ReduxRootState } from "@app/redux/reducers";
+import { getAddedCoursesAndPrefsByTerm } from "@app/redux/reducers/addedCourses";
+import Course from "@app/types/course";
+import { sortAddedCoursesAndPrefs } from "@app/utils/added-courses-and-prefs";
+import { getCurrentSemester } from "@app/utils/get-current-semesters";
+
+const Timetable = lazy(() => import("@app/components/timetable/Timetable"));
 
 const TimetableWrapper = styled(Wrapper)`
   display: flex;
@@ -30,7 +32,7 @@ const HeaderWrapper = styled.div`
 const TimetableFlex = styled.div`
   flex: calc(100% - 67px);
   ${media.tablet`flex: calc(100vh - 117px);`}
-  `;
+`;
 
 interface ReduxStateProps {
   addedCoursesAndPrefsByTerm: {
@@ -83,8 +85,11 @@ class TimetableContainer extends React.Component<
 
   handleToggleSemester = () => {
     this.setState({
-      selectedSemester: this.state.selectedSemester === Semester.SPRING ? Semester.FALL : Semester.SPRING,
-      selectedQuarter: ""
+      selectedSemester:
+        this.state.selectedSemester === Semester.SPRING
+          ? Semester.FALL
+          : Semester.SPRING,
+      selectedQuarter: "",
     });
   };
 
@@ -95,12 +100,8 @@ class TimetableContainer extends React.Component<
   };
 
   render() {
-    const {
-      t,
-      i18n,
-      addedCoursesAndPrefsByTerm,
-      selectedSortingOption,
-    } = this.props;
+    const { t, i18n, addedCoursesAndPrefsByTerm, selectedSortingOption } =
+      this.props;
     const { selectedSemester, selectedQuarter } = this.state;
 
     const addedCoursesAndPrefs =
@@ -133,8 +134,8 @@ class TimetableContainer extends React.Component<
             title={t("navigation.timetable")}
             onInputChange={() => {}}
             placeholder={t("timetable search placeholder")}
-            inputText={""}
-            disabled={true}
+            inputText=""
+            disabled
             isBlur={false}
             // theme={"light"}
             // setTheme={() => {}}
@@ -148,7 +149,7 @@ class TimetableContainer extends React.Component<
             )}
             selectedSemester={selectedSemester}
             selectedQuarter={selectedQuarter}
-            isQuarterDisplayed={true}
+            isQuarterDisplayed
             toggleSemester={this.handleToggleSemester}
             toggleQuarter={this.handleToggleQuarter}
             isSmallSize={false}

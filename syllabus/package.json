@@ -36,7 +36,7 @@
     "concurrently": "^5.3.0",
     "cross-env": "^7.0.3",
     "css-loader": "^5.2.7",
-    "dotenv-webpack": "7.0.3",
+    "dotenv-webpack": "7.1.0",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^7.2.0",

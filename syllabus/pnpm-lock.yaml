@@ -86,7 +86,7 @@ specifiers:
   redux: ^4.1.2
   redux-logger: ^3.0.6
   redux-thunk: ^2.4.1
-  sass: 1.32.8
+  sass: 1.49.9
   sass-loader: 11.0.1
   semantic-ui-css: ^2.4.1
   semantic-ui-react: ^2.1.2
@@ -205,8 +205,8 @@ devDependencies:
   prettier: 2.5.1
   prettier-eslint: 13.0.0
   pretty-quick: 3.1.3_prettier@2.5.1
-  sass: 1.32.8
-  sass-loader: 11.0.1_sass@1.32.8+webpack@5.70.0
+  sass: 1.49.9
+  sass-loader: 11.0.1_sass@1.49.9+webpack@5.70.0
   style-loader: 2.0.0_webpack@5.70.0
   ts-config-single-spa: 2.0.1
   ts-loader: 9.2.7_typescript@4.6.2+webpack@5.70.0
@@ -6358,6 +6358,10 @@ packages:
     resolution: {integrity: sha1-nbHb0Pr43m++D13V5Wu2BigN5ps=}
     dev: false
 
+  /immutable/4.0.0:
+    resolution: {integrity: sha512-zIE9hX70qew5qTUjSS7wi1iwj/l7+m54KWU247nhM3v806UdGj1yDndXj+IOYxxtW9zyLI+xqFNZjTuDaLUqFw==}
+    dev: true
+
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
     engines: {node: '>=6'}
@@ -9208,7 +9212,7 @@ packages:
       walker: 1.0.8
     dev: true
 
-  /sass-loader/11.0.1_sass@1.32.8+webpack@5.70.0:
+  /sass-loader/11.0.1_sass@1.49.9+webpack@5.70.0:
     resolution: {integrity: sha512-Vp1LcP4slTsTNLEiDkTcm8zGN/XYYrZz2BZybQbliWA8eXveqA/AxsEjllQTpJbg2MzCsx/qNO48sHdZtOaxTw==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -9226,16 +9230,18 @@ packages:
     dependencies:
       klona: 2.0.5
       neo-async: 2.6.2
-      sass: 1.32.8
+      sass: 1.49.9
       webpack: 5.70.0_webpack-cli@4.9.2
     dev: true
 
-  /sass/1.32.8:
-    resolution: {integrity: sha512-Sl6mIeGpzjIUZqvKnKETfMf0iDAswD9TNlv13A7aAF3XZlRPMq4VvJWBC2N2DXbp94MQVdNSFG6LfF/iOXrPHQ==}
-    engines: {node: '>=8.9.0'}
+  /sass/1.49.9:
+    resolution: {integrity: sha512-YlYWkkHP9fbwaFRZQRXgDi3mXZShslVmmo+FVK3kHLUELHHEYrCmL1x6IUjC7wLS6VuJSAFXRQS/DxdsC4xL1A==}
+    engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
+      immutable: 4.0.0
+      source-map-js: 1.0.2
     dev: true
 
   /saxes/5.0.1:

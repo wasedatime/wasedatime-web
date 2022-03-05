@@ -13,13 +13,21 @@ import FilterOption from "@app/constants/syllabus-filter";
 import SchoolFilterContainer from "@app/containers/SchoolFilterContainer";
 import FilterGroups from "@app/types/filter";
 
-const FilterWrapper = styled.div`
+type FilterWrapperProps = {
+  isSideBar: boolean;
+}
+
+type FilterScrollAreaProps = {
+  isSideBar: boolean;
+}
+
+const FilterWrapper = styled.div<FilterWrapperProps>`
   ${(props) => !props.isSideBar && "width: 100vw;"}
   height: ${(props) =>
     props.isSideBar ? "calc(100vh - 96px)" : "calc(100vh - 50px)"};
 `;
 
-const FilterScrollArea = styled(SimpleBar)`
+const FilterScrollArea = styled(SimpleBar)<FilterScrollAreaProps>`
   // flex: none;
   width: 100%;
   height: ${(props) => (props.isSideBar ? "100%" : "calc(100% - 50px)")};
@@ -457,7 +465,7 @@ const Filter = ({
   return (
     <FilterWrapper isSideBar={isSideBar}>
       <FilterScrollArea isSideBar={isSideBar}>
-        <FilterTitle isSideBar={isSideBar}>
+        <FilterTitle>
           <FontAwesomeIcon icon={faFilter} size="1x" />
           &nbsp;
           <b>{t("syllabus.Filter by")}</b>

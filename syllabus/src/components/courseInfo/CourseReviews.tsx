@@ -29,7 +29,6 @@ import { Review, Scales } from "@app/types/review";
 import { getAvgScales } from "@app/utils/get-avg-scales";
 
 const StyledReviewsWrapper = styled("div")`
-  ${(props) => props.isMilestone && "font-size: 0.7em;"}
   ${media.phone`padding: 0 1em;`}
 `;
 
@@ -79,7 +78,6 @@ interface Props extends WithTranslation {
   course: Course;
   searchLang: string | string[];
   reviews: Review[];
-  isMilestone?: boolean;
 }
 
 interface State {
@@ -307,7 +305,7 @@ class CourseReviews extends React.Component<Props, State> {
   }
 
   render() {
-    const { searchLang, isMilestone, t } = this.props;
+    const { searchLang, t } = this.props;
 
     const {
       reviews,
@@ -333,7 +331,7 @@ class CourseReviews extends React.Component<Props, State> {
         />
       </StyledReviewsWrapper>
     ) : (
-      <StyledReviewsWrapper isMilestone={isMilestone}>
+      <StyledReviewsWrapper>
         <StyledSubHeading>
           {t("courseInfo.Reviews")}{" "}
           <MediaQuery minWidth={sizes.phone}>
@@ -355,8 +353,7 @@ class CourseReviews extends React.Component<Props, State> {
           </span>
           <MediaQuery minWidth={sizes.phone}>
             {(matches) =>
-              matches &&
-              !isMilestone && (
+              matches && (
                 <AddReviewButton onClick={this.openReviewForm}>
                   <FontAwesomeIcon icon={faPen} />{" "}
                   {this.props.t("courseInfo.Write your Review")}
@@ -367,8 +364,7 @@ class CourseReviews extends React.Component<Props, State> {
         </StyledSubHeading>
         <MediaQuery minWidth={sizes.phone}>
           {(matches) =>
-            !matches &&
-            !isMilestone && (
+            !matches && (
               <AddReviewButton onClick={this.openReviewForm}>
                 <FontAwesomeIcon icon={faPen} />{" "}
                 {this.props.t("courseInfo.Write your Review")}

@@ -19,7 +19,11 @@ import AddedCourseItemContainer from "@app/containers/AddedCourseItemContainer";
 import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer";
 import Course from "@app/types/course";
 
-const CourseListWrapper = styled("div")`
+type CourseListWrapperProps = {
+  innerRef: any;
+}
+
+const CourseListWrapper = styled.div<CourseListWrapperProps>`
   position: fixed !important;
   padding: 0.5em 1em 1em 1em;
   width: 22em;

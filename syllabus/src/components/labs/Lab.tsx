@@ -12,7 +12,16 @@ import CSEcover from "@app/assets/img/school-covers/cse.png";
 import FSEcover from "@app/assets/img/school-covers/fse.png";
 import ReviewStars from "@app/components/courseInfo/ReviewStars";
 import Review from "@app/components/labs/Review";
-import FilterButton from "@app/components/syllabus/FilterButton";
+import { useTranslation } from "react-i18next";
+import Slider from "rc-slider/lib/Slider";
+
+type LabWrapperProps = {
+  isOpen: boolean;
+}
+
+type LabTrigger = {
+  school: string;
+}
 
 const schoolCoverMap = {
   FSE: FSEcover,
@@ -20,7 +29,7 @@ const schoolCoverMap = {
   ASE: ASEcover,
 };
 
-const LabWrapper = styled.div`
+const LabWrapper = styled.div<LabWrapperProps>`
   flex: 0 0 ${(props) => (props.isOpen ? "100%" : "45%")};
   ${media.desktop`
     flex: 0 0 100%;
@@ -31,7 +40,7 @@ const LabWrapper = styled.div`
   `}
 `;
 
-const LabTrigger = styled.div`
+const LabTrigger = styled.div<LabTrigger>`
   width: 100%;
   height: 100px;
   position: relative;

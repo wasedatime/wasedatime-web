@@ -9,7 +9,17 @@ import { SyllabusKey } from "@app/constants/syllabus-data";
 import { CourseWithOcc } from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 
-const StyledCourseColumn = styled("div")`
+type StyledCourseColumnProps = {
+  displayPeriods: number;
+}
+
+type CourseItemProps = {
+  displayPeriods: number;
+  top: number;
+  height: number;
+}
+
+const StyledCourseColumn = styled.div<StyledCourseColumnProps>`
   display: flex;
   flex: 1 0 calc(30rem / 7 * ${(props) => props.displayPeriods});
   border-right: 1px solid #f7f7f7;
@@ -21,7 +31,7 @@ const StyledCourseColumn = styled("div")`
   flex-direction: row;
 `;
 
-const CourseItem = styled("div")`
+const CourseItem = styled.div<CourseItemProps>`
   display: flex;
   flex-direction: column;
   position: absolute;

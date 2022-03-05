@@ -13,6 +13,14 @@ import fseIcon from "@app/assets/img/syllabus-icons/fse.png";
 import { Badge } from "@app/components/styles/Badge";
 import majorsBySchool from "@app/constants/majors-by-school";
 
+type SchoolButtonProps = {
+  active: boolean;
+}
+
+type ReviewsCountProps = {
+  school: string;
+}
+
 const Menu = styled.div`
   ${media.tablet`
     padding: 2em;
@@ -33,7 +41,7 @@ const SchoolItem = styled.div`
   text-align: center;
 `;
 
-const SchoolButton = styled.button`
+const SchoolButton = styled.button<SchoolButtonProps>`
   margin: 0px auto;
   ${(props) => !props.active && "opacity: 0.4;"}
 `;
@@ -85,7 +93,7 @@ const MajorText = styled.div`
   }
 `;
 
-const ReviewsCount = styled(Badge)`
+const ReviewsCount = styled(Badge)<ReviewsCountProps>`
   position: absolute;
   top: -10px;
   left: -10px;

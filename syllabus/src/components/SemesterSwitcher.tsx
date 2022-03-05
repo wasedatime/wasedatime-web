@@ -13,7 +13,19 @@ import styled from "styled-components";
 import { InvisibleButton } from "@app/components/styles/Button";
 import QuarterSwitch from "@app/components/timetable/QuarterSwitch";
 
-const ExtendedRowWrapper = styled(RowWrapper)`
+type ExtendedInvisibleButtonProps = {
+  small: boolean;
+}
+
+type SemesterTitleProps = {
+  small: boolean;
+}
+
+type ExtendedRowWrapperProps = {
+  small: boolean;
+}
+
+const ExtendedRowWrapper = styled(RowWrapper)<ExtendedRowWrapperProps>`
   flex: none;
   justify-content: center;
   font-size: 1.3em;
@@ -21,7 +33,7 @@ const ExtendedRowWrapper = styled(RowWrapper)`
   padding: 0.3em;
 `;
 
-const ExtendedInvisibleButton = styled(InvisibleButton)`
+const ExtendedInvisibleButton = styled(InvisibleButton)<ExtendedInvisibleButtonProps>`
   max-width: 50px;
   color: #000;
   &:hover {
@@ -42,7 +54,7 @@ const ExtendedInvisibleButton = styled(InvisibleButton)`
   ${(props) => props.small && "margin: 0px 25px;"}
 `;
 
-const SemesterTitle = styled("div")`
+const SemesterTitle = styled.div<SemesterTitleProps>`
   width: 300px;
   ${(props) => props.small && "width: 200px;"}
   text-align: center;
@@ -53,7 +65,7 @@ interface Props {
   selectedSemester: string;
   selectedQuarter: string | null;
   isQuarterDisplayed: boolean;
-  toggleSemester: (semester: string) => void;
+  toggleSemester: () => void;
   toggleQuarter: (quarter: string) => void;
   isSmallSize: boolean;
 }
@@ -71,7 +83,7 @@ const SemesterSwitcher = ({
     <div style={{ display: "flex", flexDirection: "column" }}>
       <ExtendedRowWrapper small={isSmallSize}>
         <ExtendedInvisibleButton
-          onClick={toggleSemester}
+          onClick={() => toggleSemester()}
           aria-label="Semester toggle"
           small={isSmallSize}
         >

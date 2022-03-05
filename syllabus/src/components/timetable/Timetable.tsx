@@ -14,6 +14,10 @@ import { SyllabusKey } from "@app/constants/syllabus-data";
 import { timetableTheme } from "@app/constants/syllabus-theme";
 import Course from "@app/types/course";
 
+type ColumnProps = {
+  flexBasis: string;
+}
+
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
   padding: 0.2em;
@@ -23,7 +27,7 @@ const ExtendedRowWrapper = styled(RowWrapper)`
   `};
 `;
 
-const Column = styled("div")`
+const Column = styled.div<ColumnProps>`
   flex: ${(props) => `0 0 ${props.flexBasis};`}
   max-width: ${(props) => `${props.flexBasis};`}
   ${media.tablet`

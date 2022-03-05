@@ -8,6 +8,8 @@ import { FloatingActionButton } from "@app/components/styles/Button";
 
 const StyledFloatingActionButton = styled(FloatingActionButton)`
   bottom: 70px;
+  width: 56px;
+  border-radius: 30px;
 `;
 interface Props {
   isModalOpen: boolean;
@@ -18,8 +20,6 @@ const FilterButton = ({ isModalOpen, handleToggleModal }) => {
   return (
     <StyledFloatingActionButton
       onClick={handleToggleModal}
-      width="56px"
-      borderRadius="30px"
     >
       <FontAwesomeIcon
         icon={isModalOpen ? faTimes : faFilter}

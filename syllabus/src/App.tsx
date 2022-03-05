@@ -19,7 +19,6 @@ import "@app/styles/styles.scss";
 
 const Timetable = lazy(() => import("@app/containers/TimetableContainer"));
 const Syllabus = lazy(() => import("@app/containers/SyllabusContainer"));
-const Milestone = lazy(() => import("@app/components/milestone/Milestone"));
 const Labs = lazy(() => import("@app/components/labs/Labs"));
 interface IdAndPrefType {
   id: string;
@@ -100,7 +99,6 @@ const App = ({
       <Router>
         <Syllabus path="courses/syllabus" />
         <Timetable path="courses/timetable" />
-        <Milestone path="courses/milestone" />
         <Labs path="courses/labs" />
         <NotFound default />
       </Router>

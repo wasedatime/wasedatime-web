@@ -16,6 +16,26 @@ import SchoolMajorSelector from "@app/components/labs/SchoolMajorSelector";
 import FilterButton from "@app/components/syllabus/FilterButton";
 import SyllabusTabs from "@app/components/SyllabusTabs";
 
+type ThankMessageProps = {
+  isDisplayed: boolean;
+}
+
+type LabsWrapperProps = {
+  isLower: boolean;
+}
+
+type MajorHeaderProps = {
+  school: string;
+}
+
+type FilterWrapper = {
+  isLower: boolean;
+}
+
+type LabsListProps = {
+  isLower: boolean;
+}
+
 const LabsOuterWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -33,7 +53,7 @@ const SyllabusTabsWrapper = styled.div`
   flex: 29px;
 `;
 
-const ThankMessage = styled.div`
+const ThankMessage = styled.div<ThankMessageProps>`
   flex: 21px;
   font-size: 12px;
   color: #fff;
@@ -51,7 +71,7 @@ const CloseThankMessageButton = styled.span`
   cursor: pointer;
 `;
 
-const LabsWrapper = styled.div`
+const LabsWrapper = styled.div<LabsWrapperProps>`
   flex-grow: 1;
   height: calc(100vh - ${(props) => (props.isLower ? "117px" : "96px")});
   padding: 0px;
@@ -68,7 +88,7 @@ const LabsWrapper = styled.div`
   flex-direction: row;
 `;
 
-const MajorHeader = styled.h3`
+const MajorHeader = styled.h3<MajorHeaderProps>`
   width: 80%;
   font-size: 3rem;
   ${media.tablet`
@@ -88,7 +108,7 @@ const MajorHeader = styled.h3`
     }};
 `;
 
-const FilterWrapper = styled.div`
+const FilterWrapper = styled.div<FilterWrapper>`
   flex: 20em;
   padding: 1em 2em 1em 1em;
 
@@ -113,7 +133,7 @@ const ShorterFilterWrapper = styled(FilterWrapper)`
   padding: 1em 2em 0px 1em;
 `;
 
-const LabsList = styled.div`
+const LabsList = styled.div<LabsListProps>`
   flex: calc(100% - 20em);
   padding-left: 2em;
   display: flex;

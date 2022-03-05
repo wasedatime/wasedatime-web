@@ -2,7 +2,12 @@ import React from "react";
 
 import styled from "styled-components";
 
-const ReviewLangSwitch = styled("button")`
+type ReviewLangSwitchProps = {
+  active: boolean;
+  isInHeading: boolean;
+}
+
+const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
   font-size: 0.6em;
   border: none;
   padding: 2px 10px;

@@ -152,7 +152,7 @@ interface Props extends WithTranslation {
 
 interface State {
   isDeleteModalOpen: boolean;
-  reviewToDelete: ReviewType | object;
+  reviewToDelete: ReviewType | null;
   reviewIndexToDelete: number;
 }
 
@@ -175,7 +175,7 @@ const DeleteModalContent = ({ t, confirmDeleteReview, closeDeleteModal }) => (
 class ReviewsList extends React.Component<Props, State> {
   state = {
     isDeleteModalOpen: false,
-    reviewToDelete: {},
+    reviewToDelete: null,
     reviewIndexToDelete: -1,
   };
 
@@ -190,15 +190,17 @@ class ReviewsList extends React.Component<Props, State> {
   closeDeleteModal = () =>
     this.setState({
       isDeleteModalOpen: false,
-      reviewToDelete: {},
+      reviewToDelete: null,
       reviewIndexToDelete: -1,
     });
 
   confirmDeleteReview = () => {
-    this.props.deleteReview(
-      this.state.reviewToDelete.created_at,
-      this.state.reviewIndexToDelete
-    );
+    if (this.state.reviewToDelete) {
+      this.props.deleteReview(
+        this.state.reviewToDelete.created_at,
+        this.state.reviewIndexToDelete
+      );
+    }
     this.closeDeleteModal();
   };
 

@@ -16,7 +16,7 @@ import ErrorFallback from "@app/components/ErrorFallback";
 import configureStore from "@app/configureStore";
 import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/ja/translation.json";
-import { saveState } from "@app/localForage";
+import { saveState } from "@app/utils/localforage-global-state";
 
 const config = {
   API: {

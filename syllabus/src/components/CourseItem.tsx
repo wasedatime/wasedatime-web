@@ -30,6 +30,14 @@ import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 import { termKeysDecoder } from "@app/utils/term-keys-decoder";
 
+type ExpandableProps = {
+  expanded: boolean;
+};
+
+type DescriptionWrapperProps = {
+  isLarger: boolean;
+}
+
 const CourseItemWrapper = styled("li")`
   display: flex;
   flex-direction: column;
@@ -43,7 +51,7 @@ const CourseItemWrapper = styled("li")`
   line-height: 150%;
 `;
 
-const CourseItemIntroWrapper = styled.div`
+const CourseItemIntroWrapper = styled.div<ExpandableProps>`
   padding: 0.5em 0.8em;
   &:hover {
     background: #eee;
@@ -115,7 +123,7 @@ const SchoolIconImage = styled("img")`
   height: 24px;
 `;
 
-const DescriptionWrapper = styled("div")`
+const DescriptionWrapper = styled.div<DescriptionWrapperProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -127,7 +135,7 @@ const Description = styled("div")`
   text-align: left;
 `;
 
-const Instructor = styled.div`
+const Instructor = styled.div<ExpandableProps>`
   ${(props) =>
     !props.expanded &&
     `
@@ -233,8 +241,6 @@ interface Props extends WithTranslation {
   handleOnClick: (title: string, lng: string) => void;
   expandable: boolean;
   isRelatedCourse?: boolean;
-  isMilestone?: boolean;
-  reviews?: any;
 }
 
 const CourseItem = ({
@@ -245,8 +251,6 @@ const CourseItem = ({
   handleOnClick,
   expandable,
   isRelatedCourse,
-  isMilestone,
-  reviews,
   t,
   i18n,
 }: Props) => {
@@ -326,11 +330,10 @@ const CourseItem = ({
   };
 
   return (
-    <CourseItemWrapper expandable={expandable}>
+    <CourseItemWrapper>
       <CourseItemIntroWrapper
         onClick={async () => {
-          !isMilestone &&
-            (expandable ? setExpanded(true) : await navigateToCourse());
+          expandable ? setExpanded(true) : await navigateToCourse();
         }}
         expanded={expanded}
       >
@@ -344,7 +347,7 @@ const CourseItem = ({
             <Badge style={{ fontSize: "12px" }}>{langTerm}</Badge>
             {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
-          {!isRelatedCourse && !isMilestone && (
+          {!isRelatedCourse && (
             <div
               style={{
                 display: "flex",
@@ -377,23 +380,14 @@ const CourseItem = ({
         </DescriptionWrapper>
       </CourseItemIntroWrapper>
 
-      {!isMilestone && expandable && expanded && (
+      {expandable && expanded && (
         <CloseCourseInfoButton onClick={() => setExpanded(false)}>
           <FontAwesomeIcon icon={faChevronUp} />
         </CloseCourseInfoButton>
       )}
 
-      {!isMilestone && expandable && expanded && (
+      {expandable && expanded && (
         <CourseInfo course={course} searchLang={searchLang} />
-      )}
-
-      {isMilestone && (
-        <CourseReviews
-          course={course}
-          reviews={reviews}
-          searchLang="en"
-          isMilestone={isMilestone}
-        />
       )}
     </CourseItemWrapper>
   );

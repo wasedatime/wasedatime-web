@@ -13,7 +13,11 @@ import SortingOption from "@app/constants/sorting-options";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 
-const SortByButton = styled(InvisibleButton)`
+type SortByButtonProps = {
+  isSortingOptionOpen: boolean;
+}
+
+const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
   margin-left: auto;
   display: flex;
   &:hover {

@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
 
-import { loadState } from "@app/localForage";
+import { loadState } from "@app/utils/localforage-global-state";
 import rootReducer from "@app/redux/reducers";
 
 const configureStore = async () => {

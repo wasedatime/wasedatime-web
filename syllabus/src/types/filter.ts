@@ -1,4 +1,4 @@
-import FilterOption from "../constants/syllabus-filter";
+import FilterOption from "@app/constants/syllabus-filter";
 
 export interface FilterGroups {
   [FilterOption.SEMESTER]?: string[];

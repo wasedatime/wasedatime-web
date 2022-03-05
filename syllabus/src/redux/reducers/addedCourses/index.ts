@@ -1,9 +1,10 @@
 import { combineReducers } from "redux";
-import byId from "./byId";
-import idsBySchool from "./idsBySchool";
-import orderedIds from "./orderedIds";
-import sortingOption from "./sorting-option";
-import { SyllabusKey } from "../../../constants/syllabus-data";
+
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import byId from "@app/redux/reducers/addedCourses/byId";
+import idsBySchool from "@app/redux/reducers/addedCourses/idsBySchool";
+import orderedIds from "@app/redux/reducers/addedCourses/orderedIds";
+import sortingOption from "@app/redux/reducers/addedCourses/sorting-option";
 
 const addedCourses = combineReducers({
   byId,
@@ -21,7 +22,7 @@ export const getAddedCoursesListWithLang = (addedCoursesAndPrefs) =>
   }));
 
 export const getAddedCoursesAndPrefsByTerm = (byId) => {
-  let byTerm = {
+  const byTerm = {
     springSem: [],
     fallSem: [],
     springQuart: [],
@@ -39,20 +40,22 @@ export const getAddedCoursesAndPrefsByTerm = (byId) => {
     if (term.match(/0|1|f/g)) byTerm.springSem.push(courseAndPref);
     if (term.match(/2|3|f/g)) byTerm.fallSem.push(courseAndPref);
   }
+
   return byTerm;
 };
 
 export const getAddedCoursesById = (byId) => {
-  let coursesById = {};
+  const coursesById = {};
   for (const courseId in byId) {
     coursesById[courseId] = byId[courseId].course;
   }
+
   return coursesById;
 };
 
 export const getAddedCoursePrefs = (byId) => {
   return Object.keys(byId).map((id) => ({
-    id: id,
+    id,
     color: byId[id].color,
     displayLang: byId[id].displayLang,
   }));

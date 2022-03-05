@@ -1,7 +1,8 @@
 import React from "react";
+
 import styled from "styled-components";
 
-import TimeRowItem from "./TimeRowItem";
+import TimeRowItem from "@app/components/timetable/TimeRowItem";
 
 const StyledList = styled("ol")`
   display: flex;
@@ -62,8 +63,9 @@ const TimeRowList = ({ largestPeriod }: Props) => {
   const timeRows = periods
     .slice(0, Math.max(largestPeriod, 5))
     .map((period) => {
-      return <TimeRowItem key={period.p} period={period}></TimeRowItem>;
+      return <TimeRowItem key={period.p} period={period} />;
     });
+
   return <StyledList>{timeRows}</StyledList>;
 };
 

@@ -8,6 +8,26 @@ import Divider from "semantic-ui-react/dist/commonjs/elements/Divider";
 import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 
+interface Props extends WithTranslation {
+  closeModal: () => void;
+  scales: {
+    satisfaction: number;
+    difficulty: number;
+    benefit: number;
+  };
+  text: string;
+  handleFormSubmit: () => void;
+  handleScaleChange: (target: string, score: number) => void;
+  handleTextChange: (text: string) => void;
+  isSending: boolean;
+}
+
+interface State {
+  paintedSatisfactionStars: number;
+  paintedDifficultyStars: number;
+  paintedBenefitStars: number;
+}
+
 const StyledSubHeading = styled("h5")`
   align-self: flex-start;
   margin: 1rem 0px !important;
@@ -84,7 +104,7 @@ const FieldLegend = styled(Divider)`
   margin: 1em 20% !important;
 `;
 
-class AddReviewForm extends React.Component {
+class AddReviewForm extends React.Component<Props, State> {
   state = {
     paintedSatisfactionStars: 0,
     paintedDifficultyStars: 0,
@@ -118,9 +138,9 @@ class AddReviewForm extends React.Component {
           key={n}
           icon={faStar}
           style={{ color: color, cursor: "pointer" }}
-          onMouseOver={() => this.setState({ [paintedStarsLabel]: n })}
+          onMouseOver={() => this.setState({ [paintedStarsLabel]: n } as Pick<State, keyof State>)}
           onMouseOut={() =>
-            this.setState({ [paintedStarsLabel]: selectedStar })
+            this.setState({ [paintedStarsLabel]: selectedStar } as Pick<State, keyof State>)
           }
           onClick={() => this.props.handleScaleChange(label, n)}
         />

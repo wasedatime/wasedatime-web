@@ -1,8 +1,10 @@
 import React from "react";
+
 import { connect } from "react-redux";
-import { getSchools } from "../redux/reducers/fetchedCourses/schools";
-import { fetchCoursesBySchool, removeSchool } from "../redux/actions";
-import SchoolFilterForm from "../components/syllabus/SchoolFilterForm";
+
+import SchoolFilterForm from "@app/components/syllabus/SchoolFilterForm";
+import { fetchCoursesBySchool, removeSchool } from "@app/redux/actions";
+import { getSchools } from "@app/redux/reducers/fetchedCourses/schools";
 
 interface ReduxStateProps {
   loadedSchools: string[];
@@ -25,7 +27,7 @@ const SchoolFilterContainer = ({
   addSchool,
   removeSchool,
   handleToggleFilter,
-  isPopup
+  isPopup,
 }: ReduxStateProps & ReduxDispatchProps & OwnProps) => {
   const handleToggleSchoolFilter = (school: string) => {
     handleToggleFilter("school", school);
@@ -51,7 +53,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   addSchool: fetchCoursesBySchool,
-  removeSchool: removeSchool,
+  removeSchool,
 };
 
 export default connect(

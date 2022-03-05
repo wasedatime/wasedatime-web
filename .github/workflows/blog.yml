@@ -23,7 +23,7 @@ jobs:
           submodules: true
           token: ${{ secrets.ACCESS_TOKEN_GITHUB }}
       - name: Use Node.js 16.x
-        uses: actions/setup-node@v2.5.0
+        uses: actions/setup-node@v2.5.1
         with:
           node-version: 16.x
       - name: Cache .pnpm-store

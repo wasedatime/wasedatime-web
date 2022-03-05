@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { navigate } from "@reach/router";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import {
   faClock,
   faMapMarkerAlt,
@@ -13,20 +13,30 @@ import {
   faBroadcastTower,
   faWifi,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { navigate } from "@reach/router";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { termKeysDecoder } from "../utils/term-keys-decoder";
-import { getCourseTitleAndInstructor } from "../utils/course-search";
-import { Highlight } from "./syllabus/Highlight";
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import * as schoolIconEnMap from "../constants/school-name-icon-map-en";
-import * as schoolIconJaMap from "../constants/school-name-icon-map-ja";
-import { SyllabusKey } from "../constants/syllabus-data";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { InvisibleButton } from "./styles/Button";
-import { Badge } from "./styles/Badge";
-import CourseInfo from "./courseInfo/CourseInfo";
-import Course from "../types/course";
-import CourseReviews from "./courseInfo/CourseReviews";
+import styled from "styled-components";
+
+import CourseInfo from "@app/components/courseInfo/CourseInfo";
+import CourseReviews from "@app/components/courseInfo/CourseReviews";
+import { Badge } from "@app/components/styles/Badge";
+import { InvisibleButton } from "@app/components/styles/Button";
+import { Highlight } from "@app/components/syllabus/Highlight";
+import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
+import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import Course from "@app/types/course";
+import { getCourseTitleAndInstructor } from "@app/utils/course-search";
+import { termKeysDecoder } from "@app/utils/term-keys-decoder";
+
+type ExpandableProps = {
+  expanded: boolean;
+};
+
+type DescriptionWrapperProps = {
+  isLarger: boolean;
+}
 
 const CourseItemWrapper = styled("li")`
   display: flex;
@@ -41,7 +51,7 @@ const CourseItemWrapper = styled("li")`
   line-height: 150%;
 `;
 
-const CourseItemIntroWrapper = styled.div`
+const CourseItemIntroWrapper = styled.div<ExpandableProps>`
   padding: 0.5em 0.8em;
   &:hover {
     background: #eee;
@@ -113,11 +123,11 @@ const SchoolIconImage = styled("img")`
   height: 24px;
 `;
 
-const DescriptionWrapper = styled("div")`
+const DescriptionWrapper = styled.div<DescriptionWrapperProps>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  ${props => props.isLarger && "font-size: 1.2em"}
+  ${(props) => props.isLarger && "font-size: 1.2em"}
 `;
 
 const Description = styled("div")`
@@ -125,7 +135,7 @@ const Description = styled("div")`
   text-align: left;
 `;
 
-const Instructor = styled.div`
+const Instructor = styled.div<ExpandableProps>`
   ${(props) =>
     !props.expanded &&
     `
@@ -160,18 +170,20 @@ const mapSchoolToIcon = (school, lng) => (
 );
 
 const combineYearTerm = (year, term, t) => {
-  var str = `${year} `;
+  let str = `${year} `;
   if (term.length > 0) {
     term.split(" ").forEach((substr) => {
-      str = str + t(`syllabus.semesterMap.${substr}`);
+      str += t(`syllabus.semesterMap.${substr}`);
     });
   }
+
   return str;
 };
 
 const getLang = (course, t) => {
   if (!course[SyllabusKey.LANG] || course[SyllabusKey.LANG].includes(-1))
     return "N/A";
+
   return course[SyllabusKey.LANG]
     .toString()
     .split(",")
@@ -202,21 +214,23 @@ const getDay = (day, t) => {
 const getLocation = (location, t) => {
   if (location === "undecided") {
     return t("syllabus.location.undecided");
-  } else {
-    return location;
   }
+
+  return location;
 };
 
 const getPeriod = (period, t) => {
   if (period === -1) {
     return t("syllabus.location.undecided");
-  } else if (period > 9) {
-    return `${(period / 10) | 0}-${period % 10}`;
-  } else if (period === 0) {
-    return t("courseInfo.Details.Type.On-demand");
-  } else {
-    return `${period}`;
   }
+  if (period > 9) {
+    return `${(period / 10) | 0}-${period % 10}`;
+  }
+  if (period === 0) {
+    return t("courseInfo.Details.Type.On-demand");
+  }
+
+  return `${period}`;
 };
 
 interface Props extends WithTranslation {
@@ -227,8 +241,6 @@ interface Props extends WithTranslation {
   handleOnClick: (title: string, lng: string) => void;
   expandable: boolean;
   isRelatedCourse?: boolean;
-  isMilestone?: boolean;
-  reviews?: any;
 }
 
 const CourseItem = ({
@@ -239,8 +251,6 @@ const CourseItem = ({
   handleOnClick,
   expandable,
   isRelatedCourse,
-  isMilestone,
-  reviews,
   t,
   i18n,
 }: Props) => {
@@ -264,13 +274,14 @@ const CourseItem = ({
     course[SyllabusKey.SCHOOL],
     i18n.language
   );
-  //Need to use index as keys due to Waseda's data.
+  // Need to use index as keys due to Waseda's data.
   const occurrences =
     course[SyllabusKey.OCCURRENCES] &&
     course[SyllabusKey.OCCURRENCES].map((occurrence, index) => {
       const day = getDay(occurrence[SyllabusKey.OCC_DAY], t);
       const period = getPeriod(occurrence[SyllabusKey.OCC_PERIOD], t);
       const location = getLocation(occurrence[SyllabusKey.OCC_LOCATION], t);
+
       return (
         <li key={index}>
           <span>
@@ -319,10 +330,10 @@ const CourseItem = ({
   };
 
   return (
-    <CourseItemWrapper expandable={expandable}>
+    <CourseItemWrapper>
       <CourseItemIntroWrapper
         onClick={async () => {
-          !isMilestone && (expandable ? setExpanded(true) : await navigateToCourse());
+          expandable ? setExpanded(true) : await navigateToCourse();
         }}
         expanded={expanded}
       >
@@ -336,26 +347,28 @@ const CourseItem = ({
             <Badge style={{ fontSize: "12px" }}>{langTerm}</Badge>
             {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
-          {!isRelatedCourse && !isMilestone && <div
-            style={{
-              display: "flex",
-              flex: "1 0 auto",
-              justifyContent: "flex-end",
-              borderRadius: "5px",
-            }}
-          >
-            <InvisibleButton
-              onClick={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleOnClick(title, i18n.language);
+          {!isRelatedCourse && (
+            <div
+              style={{
+                display: "flex",
+                flex: "1 0 auto",
+                justifyContent: "flex-end",
+                borderRadius: "5px",
               }}
-              style={{ cursor: "pointer" }}
-              aria-label="Add course button"
             >
-              {buttonIcon}
-            </InvisibleButton>
-          </div>}
+              <InvisibleButton
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  handleOnClick(title, i18n.language);
+                }}
+                style={{ cursor: "pointer" }}
+                aria-label="Add course button"
+              >
+                {buttonIcon}
+              </InvisibleButton>
+            </div>
+          )}
         </CourseItemRow>
 
         <DescriptionWrapper isLarger={isRelatedCourse}>
@@ -367,24 +380,15 @@ const CourseItem = ({
         </DescriptionWrapper>
       </CourseItemIntroWrapper>
 
-      {!isMilestone && expandable && expanded && (
+      {expandable && expanded && (
         <CloseCourseInfoButton onClick={() => setExpanded(false)}>
           <FontAwesomeIcon icon={faChevronUp} />
         </CloseCourseInfoButton>
       )}
 
-      {!isMilestone && expandable && expanded && (
+      {expandable && expanded && (
         <CourseInfo course={course} searchLang={searchLang} />
       )}
-
-      {
-        isMilestone && <CourseReviews
-          course={course}
-          reviews={reviews}
-          searchLang={"en"}
-          isMilestone={isMilestone}
-        />
-      }
     </CourseItemWrapper>
   );
 };

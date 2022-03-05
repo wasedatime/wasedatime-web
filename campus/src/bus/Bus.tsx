@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useEffect } from "react";
-import { Helmet } from "react-helmet";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import {
   faClock,
   faAngleDoubleRight,
@@ -8,12 +8,13 @@ import {
   faCalendarAlt,
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DatePicker from "react-datepicker";
-import styled from "styled-components";
+import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { busSchedule } from "../constants/busSchedule";
+import { busSchedule } from "@app/constants/busSchedule";
 
 const wasedaNishiwasedaBusUri =
   "https://www.waseda.jp/fsci/assets/uploads/2020/09/20200925_waseda_nishiwaseda-1.pdf";
@@ -106,66 +107,67 @@ interface PropsType {
 }
 
 const binarySearch = (value, arr) => {
-  let start = 0,
-    end = arr.length - 1;
+  let start = 0;
+  let end = arr.length - 1;
   while (start <= end) {
     const mid = Math.floor((start + end) / 2);
     if (arr[mid] === value) {
       return true;
-    } else if (arr[mid] > value) {
+    }
+    if (arr[mid] > value) {
       end = mid - 1;
     } else {
       start = mid + 1;
     }
   }
+
   return false;
 };
 
 const getSchduleType = (month, date, day) => {
   const monthString = month.toString();
-  const {
-    outOfService,
-    weekdaySchedule,
-    saturdaySchedule,
-    specialSchedule,
-  } = busSchedule["exceptions"];
+  const { outOfService, weekdaySchedule, saturdaySchedule, specialSchedule } =
+    busSchedule.exceptions;
 
   if (
     monthString in outOfService &&
     binarySearch(date, outOfService[monthString])
   ) {
     return "noSchedule";
-  } else if (
+  }
+  if (
     monthString in weekdaySchedule &&
     binarySearch(date, weekdaySchedule[monthString])
   ) {
     return "weekday";
-  } else if (
+  }
+  if (
     monthString in saturdaySchedule &&
     binarySearch(date, saturdaySchedule[monthString])
   ) {
     return "saturday";
-  } else if (
+  }
+  if (
     monthString in specialSchedule &&
     binarySearch(date, specialSchedule[monthString])
   ) {
     return "special";
-  } else {
-    if (day === 0) {
-      return "noSchedule";
-    } else if (day === 6) {
-      return "saturday";
-    } else {
-      return "weekday";
-    }
   }
+  if (day === 0) {
+    return "noSchedule";
+  }
+  if (day === 6) {
+    return "saturday";
+  }
+
+  return "weekday";
 };
 
 const binarySearchSchedule = (totalMins, schedule) => {
-  let start = 0,
-    end = schedule.length - 1;
-  let ans = 0,
-    index = 0;
+  let start = 0;
+  let end = schedule.length - 1;
+  let ans = 0;
+  let index = 0;
   while (start <= end) {
     const mid = Math.floor((start + end) / 2);
     if (schedule[mid] === totalMins) {
@@ -182,11 +184,10 @@ const binarySearchSchedule = (totalMins, schedule) => {
   }
   if (ans !== 0) {
     return ans;
-  } else {
-    // Return value -1 if totalMins is larger than all bus schedule values,
-    // meaning no service.
-    return index >= schedule.length ? -1 : schedule[index];
   }
+  // Return value -1 if totalMins is larger than all bus schedule values,
+  // meaning no service.
+  return index >= schedule.length ? -1 : schedule[index];
 };
 
 const totalMinsToTimeStr = (totalMins) => {
@@ -194,10 +195,11 @@ const totalMinsToTimeStr = (totalMins) => {
   const minutes = totalMins - hours * 60;
   const hoursString = hours < 10 ? `0${hours}` : `${hours}`;
   const minsString = minutes < 10 ? `0${minutes}` : `${minutes}`;
+
   return `${hoursString}:${minsString}`;
 };
 
-//TODO Fix mixing different return types
+// TODO Fix mixing different return types
 const getBusStatus = (totalMins, occurrences, remarks, t) => {
   const nextTotalMins = binarySearchSchedule(totalMins, occurrences);
   // If there is there exists a subsequent bus schedule on the same day
@@ -205,12 +207,14 @@ const getBusStatus = (totalMins, occurrences, remarks, t) => {
     const remark =
       nextTotalMins in remarks ? remarks[nextTotalMins.toString()] : "";
     const nextTimeString = totalMinsToTimeStr(nextTotalMins);
+
     return {
       departIn: nextTotalMins - totalMins,
       timeString: nextTimeString,
       remark,
     };
   }
+
   return t("bus.Out of service");
 };
 
@@ -218,17 +222,20 @@ const getBusStatuses = (targetDate, lng, t) => {
   const month = targetDate.getMonth();
   const date = targetDate.getDate();
   const day = targetDate.getDay();
-  //assertion language at first
-  let wasedaStatus, nishiStatus;
+  // assertion language at first
+  let wasedaStatus;
+  let nishiStatus;
   wasedaStatus = t("bus.Out of service");
   nishiStatus = t("bus.Out of service");
   const scheduleType = getSchduleType(month, date, day);
   // No buses or special schedule
   if (scheduleType === "noSchedule") {
     return { wasedaStatus, nishiStatus };
-  } else if (scheduleType === "special") {
+  }
+  if (scheduleType === "special") {
     wasedaStatus = t("bus.Special Schedule");
     nishiStatus = t("bus.Special Schedule");
+
     return { wasedaStatus, nishiStatus };
   }
 
@@ -263,6 +270,7 @@ const getBusStatuses = (targetDate, lng, t) => {
       t
     );
   }
+
   return { wasedaStatus, nishiStatus };
 };
 
@@ -279,6 +287,7 @@ const createStatusComponent = (status, t) => {
       remark: status.remark,
     };
   }
+
   return {
     status: <span>{status}</span>,
     remark: "",
@@ -332,9 +341,17 @@ const Bus = (): JSX.Element => {
         />
         <meta property="og:site_name" content="WasedaTime - Bus" />
       </Helmet>
-      
+
       <InfoWrapper>
-        <h1 style={{ borderLeft: "5px solid rgb(148, 27, 47)", paddingLeft: "10px", marginBottom: "20px" }}>{t("bus.busStatus")}</h1>
+        <h1
+          style={{
+            borderLeft: "5px solid rgb(148, 27, 47)",
+            paddingLeft: "10px",
+            marginBottom: "20px",
+          }}
+        >
+          {t("bus.busStatus")}
+        </h1>
         <p>
           <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
           {t("bus.Assign a date / time to check the next bus")}：

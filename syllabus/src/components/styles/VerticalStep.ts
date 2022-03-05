@@ -1,5 +1,5 @@
-import styled from "styled-components";
 import Step from "semantic-ui-react/dist/commonjs/elements/Step";
+import styled from "styled-components";
 
 export const VerticalStep = styled(Step)`
   &:after {

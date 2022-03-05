@@ -32,11 +32,6 @@ export const InvisibleButton = styled("button")`
   -webkit-tap-highlight-color: transparent;
 `;
 
-interface FloatingActionButtonProps {
-  width: string;
-  borderRadius: string;
-}
-
 export const FloatingActionButton = styled(InvisibleButton)`
   position: fixed;
   z-index: 405;
@@ -55,13 +50,13 @@ export const FloatingActionButton = styled(InvisibleButton)`
   -webkit-tap-highlight-color: transparent;
 `;
 
-interface CustomButtonProps {
-  bgColor: string;
-  fontColor: string;
-  float: string;
-  fluid: boolean;
-  hoverable: boolean;
-}
+// interface CustomButtonProps {
+//   bgColor: string;
+//   fontColor: string;
+//   float: string;
+//   fluid: boolean;
+//   hoverable: boolean;
+// }
 // props: { bgColor, fontColor, float, fluid, hoverable }
 export const CustomButton = styled("button")`
   display: block;
@@ -75,10 +70,7 @@ export const CustomButton = styled("button")`
   text-decoration: none;
   cursor: pointer;
   float: ___CSS_2___;
-  ___CSS_3___
-  ___CSS_4___
-
-  &:focus {
+  ___CSS_3___ ___CSS_4___ &:focus {
     outline: none;
   }
 `;

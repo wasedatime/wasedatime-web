@@ -1,12 +1,12 @@
-import { SyllabusKey } from "../../../constants/syllabus-data";
+import { SyllabusKey } from "@app/constants/syllabus-data";
 import {
   ADD_COURSE,
   REMOVE_COURSE,
   SAVE_TIMETABLE,
   TOGGLE_COURSE_VISIBILITY,
   CHANGE_COURSE_COLOR,
-} from "../../actions/types";
-import Course from "../../../types/course";
+} from "@app/redux/actions/types";
+import Course from "@app/types/course";
 
 interface courseAndPrefTypes {
   id: string;
@@ -46,6 +46,7 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
   switch (action.type) {
     case ADD_COURSE:
       const id: string = action.payload.course[SyllabusKey.ID];
+
       return {
         ...state,
         [id]: {
@@ -58,8 +59,9 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
         },
       };
     case REMOVE_COURSE:
-      let restCourses = { ...state };
+      const restCourses = { ...state };
       delete restCourses[action.payload.id];
+
       return restCourses;
     case TOGGLE_COURSE_VISIBILITY:
       return {
@@ -84,7 +86,7 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
         },
       };
     case SAVE_TIMETABLE:
-      let newCoursesAndPrefs = {};
+      const newCoursesAndPrefs = {};
       action.payload.coursesAndPrefs.forEach((cp) => {
         newCoursesAndPrefs[cp.id] = {
           pref: {
@@ -95,6 +97,7 @@ const byId = (state = initialState, action: ActionProps): byIdProps => {
           course: cp.course,
         };
       });
+
       return newCoursesAndPrefs;
     default:
       return state;

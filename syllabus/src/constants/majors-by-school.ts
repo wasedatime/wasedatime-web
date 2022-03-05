@@ -5,16 +5,16 @@ export const FSEmajor: string[] = [
   "Intermedia Art and Science",
   "Mathematics",
   "Applied Mathematics",
-  "Applied Mechanics and Aerospace Engineering"
-]
+  "Applied Mechanics and Aerospace Engineering",
+];
 
 export const CSEmajor: string[] = [
   "Modern Mechanical Engineering",
   "Civil and Environmental Engineering",
   "Industrial and Management Systems Engineering",
   "Resources and Environmental Engineering",
-  "Architecture"
-]
+  "Architecture",
+];
 
 export const ASEmajor: string[] = [
   "Physics",
@@ -22,13 +22,13 @@ export const ASEmajor: string[] = [
   "Chemistry and Biochemistry",
   "Applied Chemistry",
   "Life Science and Medical Bioscience",
-  "Electrical Engineering and Bioscience"
-]
+  "Electrical Engineering and Bioscience",
+];
 
 const majorsBySchool = {
-  "FSE": FSEmajor,
-  "CSE": CSEmajor,
-  "ASE": ASEmajor,
-}
+  FSE: FSEmajor,
+  CSE: CSEmajor,
+  ASE: ASEmajor,
+};
 
 export default majorsBySchool;

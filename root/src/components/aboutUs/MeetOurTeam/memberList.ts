@@ -124,10 +124,10 @@ export const CurrentList: Array<Members> = [
   {
     image: akylai,
     name: "Akylai",
-    position: "Frontend Apprentice"
+    position: "Frontend Apprentice",
     socials: [
       {platform: instagram, link:"https://www.instagram.com/akylaimanalieva/"},
-    ]
+    ],
   },
   
 ]

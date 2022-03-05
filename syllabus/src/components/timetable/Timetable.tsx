@@ -120,7 +120,7 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                       content={
                         <p>
                           {t("timetable.Go to")}{" "}
-                          <a href="./syllabus">{t("timetable.Syllabus")} </a>{" "}
+                          <a href="/syllabus">{t("timetable.Syllabus")} </a>{" "}
                           {t("timetable.and try adding one!")}
                         </p>
                       }

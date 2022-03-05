@@ -49,7 +49,7 @@ specifiers:
   copy-webpack-plugin: ^7.0.0
   cross-env: ^7.0.3
   css-loader: ^5.2.7
-  css-minimizer-webpack-plugin: 3.1.3
+  css-minimizer-webpack-plugin: 3.4.1
   cssnano: 5.0.10
   dotenv-webpack: 7.0.3
   eslint: ^7.32.0
@@ -193,7 +193,7 @@ devDependencies:
   concurrently: 5.3.0
   copy-webpack-plugin: 7.0.0_webpack@5.70.0
   cross-env: 7.0.3
-  css-minimizer-webpack-plugin: 3.1.3_webpack@5.70.0
+  css-minimizer-webpack-plugin: 3.4.1_webpack@5.70.0
   cssnano: 5.0.10_postcss@8.4.7
   dotenv-webpack: 7.0.3_webpack@5.70.0
   eslint: 7.32.0
@@ -5313,15 +5313,18 @@ packages:
     resolution: {integrity: sha1-aiw3NEkoYYYxxUvTPO3TAdoYvqA=}
     dev: false
 
-  /css-minimizer-webpack-plugin/3.1.3_webpack@5.70.0:
-    resolution: {integrity: sha512-x+6kzXprepysouo513zKibWCbWTGIvH9OrEsMRRV8EcJ7vYY/zRg0lR8tCzMHMap+lhNPOrYCdDagjRmfnGGxw==}
+  /css-minimizer-webpack-plugin/3.4.1_webpack@5.70.0:
+    resolution: {integrity: sha512-1u6D71zeIfgngN2XNRJefc/hY7Ybsxd74Jm4qngIXyUEk7fss3VUzuHxLAq/R8NAba4QU9OUSaMZlbpRc7bM4Q==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
+      '@parcel/css': '*'
       clean-css: '*'
       csso: '*'
       esbuild: '*'
       webpack: ^5.0.0
     peerDependenciesMeta:
+      '@parcel/css':
+        optional: true
       clean-css:
         optional: true
       csso:
@@ -5332,7 +5335,7 @@ packages:
       cssnano: 5.0.10_postcss@8.4.7
       jest-worker: 27.5.1
       postcss: 8.4.7
-      schema-utils: 3.1.1
+      schema-utils: 4.0.0
       serialize-javascript: 6.0.0
       source-map: 0.6.1
       webpack: 5.70.0_webpack-cli@4.9.2

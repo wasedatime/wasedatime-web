@@ -1,4 +1,4 @@
-import { CHANGE_COURSES_SORTING_OPTION } from "../../actions/types";
+import { CHANGE_COURSES_SORTING_OPTION } from "@app/redux/actions/types";
 
 interface PayloadProps {
   sortingOption: string;

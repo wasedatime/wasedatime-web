@@ -13,14 +13,16 @@ const termKeysMap = {
 };
 
 export const termKeysDecoder = (key) => {
-  var str = "";
+  let str = "";
   if (typeof key === "string") {
     key.split("").forEach((k, i) => {
       if (i !== 0) str += " ";
       str += termKeysMap[k];
     });
+
     return str;
   }
+
   return "";
 };
 

@@ -1,9 +1,11 @@
 import React from "react";
-import MediaQuery from "react-responsive";
-import styled from "styled-components";
-import ReviewStars from "./ReviewStars";
+
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
+import MediaQuery from "react-responsive";
+import styled from "styled-components";
+
+import ReviewStars from "@app/components/courseInfo/ReviewStars";
 
 const ReviewScalesRow = styled("div")`
   display: flex;
@@ -64,21 +66,21 @@ const ReviewScalesCount = ({
         <MediaQuery maxWidth={sizes.tablet}>
           {(matches) => !matches && <br />}
         </MediaQuery>
-        <span>&nbsp;{t(`courseInfo.Satisfaction`)}</span>
+        <span>&nbsp;{t("courseInfo.Satisfaction")}</span>
       </ReviewScale>
       <ReviewScale>
         <ReviewStars scale={avgDifficulty} />
         <MediaQuery maxWidth={sizes.tablet}>
           {(matches) => !matches && <br />}
         </MediaQuery>
-        <span>&nbsp;{t(`courseInfo.Difficulty`)}</span>
+        <span>&nbsp;{t("courseInfo.Difficulty")}</span>
       </ReviewScale>
       <ReviewScale>
         <ReviewStars scale={avgBenefit} />
         <MediaQuery maxWidth={sizes.tablet}>
           {(matches) => !matches && <br />}
         </MediaQuery>
-        <span>&nbsp;{t(`courseInfo.Benefit`)}</span>
+        <span>&nbsp;{t("courseInfo.Benefit")}</span>
       </ReviewScale>
     </ReviewScalesList>
 
@@ -93,8 +95,8 @@ const ReviewScalesCount = ({
         }
       </MediaQuery>{" "}
       {thisCourseReviewsLength > 1
-        ? t(`courseInfo.Reviews`)
-        : t(`courseInfo.Review`)}
+        ? t("courseInfo.Reviews")
+        : t("courseInfo.Review")}
     </ReviewsCount>
   </ReviewScalesRow>
 );

@@ -1,17 +1,19 @@
 import React from "react";
+
+import ReactGA from "react-ga";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
-import { addCourse, removeCourse } from "../redux/actions";
-import CourseItem from "../components/CourseItem";
-import { SyllabusKey } from "../constants/syllabus-data";
-import Course from "../types/course";
-import ReactGA from "react-ga";
-import { gaFetchedCourseItem } from "../ga/eventCategories";
+
+import CourseItem from "@app/components/CourseItem";
+import { SyllabusKey } from "@app/constants/syllabus-data";
 import {
   gaAddCourse,
   gaAppendActionWithLng,
   gaRemoveCourse,
-} from "../ga/eventActions";
+} from "@app/ga/eventActions";
+import { gaFetchedCourseItem } from "@app/ga/eventCategories";
+import { addCourse, removeCourse } from "@app/redux/actions";
+import Course from "@app/types/course";
 
 const ADDED_COURSES_NUMBER_LIMIT = 100;
 
@@ -51,11 +53,13 @@ class CourseItemContainer extends React.Component<
           effect: "jelly",
         }
       );
+
       return;
     }
     this.props.addCourse(course, searchLang);
     if (
-      !occurrences || occurrences.some(
+      !occurrences ||
+      occurrences.some(
         (o) => o[SyllabusKey.OCC_DAY] === -1 || o[SyllabusKey.OCC_PERIOD] === -1
       )
     ) {
@@ -95,9 +99,10 @@ class CourseItemContainer extends React.Component<
       course,
       addedCourseIds,
       expandable,
-      isRelatedCourse
+      isRelatedCourse,
     } = this.props;
     const isAddable = !addedCourseIds.includes(course[SyllabusKey.ID]);
+
     return (
       <CourseItem
         handleOnClick={

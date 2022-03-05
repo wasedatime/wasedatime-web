@@ -1,8 +1,10 @@
 import React from "react";
+
 import ReactDOM from "react-dom";
-import singleSpaReact from "single-spa-react";
 import singleSpaCss from "single-spa-css";
-import Root from "./root.component";
+import singleSpaReact from "single-spa-react";
+
+import Root from "@app/root.component";
 
 const cssLifecycles = singleSpaCss({
   // required: a list of CSS URLs to load
@@ -27,10 +29,11 @@ const reactLifecycles = singleSpaReact({
   React,
   ReactDOM,
   rootComponent: Root,
-  errorBoundary(err, info, props) {
-    // Customize the root error boundary for your microfrontend here.
-    return null;
-  },
+  errorBoundary: (
+    err,
+    info,
+    props // Customize the root error boundary for your microfrontend here.
+  ) => null,
 });
 
 // export const { bootstrap, mount, unmount } = reactLifecycles;

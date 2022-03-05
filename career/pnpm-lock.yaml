@@ -46,7 +46,7 @@ specifiers:
   webpack: ^5.8.0
   webpack-cli: ^4.2.0
   webpack-config-single-spa-react: 4.0.3
-  webpack-config-single-spa-react-ts: 4.0.2
+  webpack-config-single-spa-react-ts: 4.0.3
   webpack-config-single-spa-ts: 2.2.4
   webpack-dev-server: ^4.0.0-beta.0
   webpack-merge: ^5.8.0
@@ -99,7 +99,7 @@ devDependencies:
   webpack: 5.65.0_webpack-cli@4.9.1
   webpack-cli: 4.9.1_311ee83d262c84b540260d22b1747cb3
   webpack-config-single-spa-react: 4.0.3_26251eab09162b25a254715ee98d7c5c
-  webpack-config-single-spa-react-ts: 4.0.2_fa5634b73b724039f54ea572139c5504
+  webpack-config-single-spa-react-ts: 4.0.3_fa5634b73b724039f54ea572139c5504
   webpack-config-single-spa-ts: 2.2.4_fa5634b73b724039f54ea572139c5504
   webpack-dev-server: 4.6.0_webpack-cli@4.9.1+webpack@5.65.0
   webpack-merge: 5.8.0
@@ -8580,11 +8580,11 @@ packages:
       webpack-merge: 5.8.0
     dev: true
 
-  /webpack-config-single-spa-react-ts/4.0.2_fa5634b73b724039f54ea572139c5504:
-    resolution: {integrity: sha512-mRr4LsoH7vCpeEgaAHMjJYoEbrqgztv/8MBfIUVOeDB2unaQ49gtJSNW0w6Rw9WmmmkbLLQBvT4TEg0wX9O6JA==}
+  /webpack-config-single-spa-react-ts/4.0.3_fa5634b73b724039f54ea572139c5504:
+    resolution: {integrity: sha512-IgqrVIUKE4kVSVsrFGAa01VaqkycnP0yGy12fRHsgSE07DJBk7It5L+LrfApNC6DDWzNOvUJPZ/ogPMWQ+PaCA==}
     dependencies:
-      webpack-config-single-spa-react: 4.0.2_26251eab09162b25a254715ee98d7c5c
-      webpack-config-single-spa-ts: 4.1.1_fa5634b73b724039f54ea572139c5504
+      webpack-config-single-spa-react: 4.0.3_26251eab09162b25a254715ee98d7c5c
+      webpack-config-single-spa-ts: 4.1.2_fa5634b73b724039f54ea572139c5504
     transitivePeerDependencies:
       - '@babel/core'
       - acorn
@@ -8636,12 +8636,12 @@ packages:
       - webpack
     dev: true
 
-  /webpack-config-single-spa-ts/4.1.1_fa5634b73b724039f54ea572139c5504:
-    resolution: {integrity: sha512-Njx9JE0rnw4TwLwCRFmxhTKEGViey/4vxFcTXOeEUut+vIGinRDNw6ea69YwDmUBI0jEEnUnd51bkuax2zszDQ==}
+  /webpack-config-single-spa-ts/4.1.2_fa5634b73b724039f54ea572139c5504:
+    resolution: {integrity: sha512-H7INbFQgu9+H0IAOqsQNw/GljxWDdzwyEoyDJ4818V5RATm7IvcNKBuxEKilKK/LvgVeXB+29ZOOrqowSxBiFQ==}
     dependencies:
       fork-ts-checker-webpack-plugin: 6.5.0_cec916e57feec1ac8a47d339e52ab905
       typescript: 4.5.4
-      webpack-config-single-spa: 5.1.1_26251eab09162b25a254715ee98d7c5c
+      webpack-config-single-spa: 5.2.0_26251eab09162b25a254715ee98d7c5c
       webpack-merge: 5.8.0
     transitivePeerDependencies:
       - '@babel/core'

@@ -1,5 +1,6 @@
 import localForage from "localforage";
-import { SyllabusKey } from "./constants/syllabus-data";
+
+import { SyllabusKey } from "@app/constants/syllabus-data";
 
 interface oldAddedCoursesBySemType {
   prefs: {
@@ -63,7 +64,7 @@ const parseOldState = () => {
         const oldFallAddedCourses = oldStates[0].addedCourses.fall;
         const oldSpringAddedCourses = oldStates[0].addedCourses.spring;
 
-        let newIdsBySchool = {};
+        const newIdsBySchool = {};
         for (const school in oldAddedCourseIdsBySchool) {
           newIdsBySchool[school] = {
             ids: [],
@@ -71,7 +72,7 @@ const parseOldState = () => {
           newIdsBySchool[school].ids = oldAddedCourseIdsBySchool[school].ids;
         }
 
-        let byId = {};
+        const byId = {};
         for (const id of oldAddedCourseIds) {
           const oldAddedCourses = oldFallAddedCourses.byId[id]
             ? oldFallAddedCourses
@@ -95,10 +96,10 @@ const parseOldState = () => {
           orderedIds: oldAddedCourseIds,
           sortingOption: "ADDED_ORDER",
           idsBySchool: newIdsBySchool,
-          byId: byId,
+          byId,
         };
 
-        let parsedSchools = {};
+        const parsedSchools = {};
         oldStates[1].schools.map((school) => {
           parsedSchools[school] = {
             name: school,
@@ -125,17 +126,16 @@ const parseOldState = () => {
           addedCourses,
           fetchedCourses,
         };
-      } else {
-        saveState({
-          addedCourses: {},
-          fetchedCourses: {},
-        });
-
-        return {
-          addedCourses: {},
-          fetchedCourses: {},
-        };
       }
+      saveState({
+        addedCourses: {},
+        fetchedCourses: {},
+      });
+
+      return {
+        addedCourses: {},
+        fetchedCourses: {},
+      };
     })
     .catch((error) => {
       console.error(error);

@@ -1,7 +1,5 @@
 import React from "react";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
+
 import {
   faFacebookSquare,
   faTwitterSquare,
@@ -9,12 +7,16 @@ import {
   faLine,
   faWhatsappSquare,
 } from "@fortawesome/free-brands-svg-icons";
-import { InvisibleButton } from "../styles/Button";
-import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
-import { withTranslation } from "react-i18next";
+import { faLink } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 import ReactGA from "react-ga";
-import { gaCourseDetails } from "../../ga/eventCategories";
-import { gaShareCourse } from "../../ga/eventActions";
+import { withTranslation } from "react-i18next";
+import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
+
+import { InvisibleButton } from "@app/components/styles/Button";
+import { gaShareCourse } from "@app/ga/eventActions";
+import { gaCourseDetails } from "@app/ga/eventCategories";
 
 const ShareButtons = ({ courseId, t }) => {
   const shareLink = `https://${window.location.hostname}${window.location.pathname}?courseId=${courseId}`;

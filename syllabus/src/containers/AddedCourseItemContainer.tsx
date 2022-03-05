@@ -1,13 +1,15 @@
 import React from "react";
+
+import ReactGA from "react-ga";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
-import { removeCourse } from "../redux/actions";
-import CourseItem from "../components/CourseItem";
-import { SyllabusKey } from "../constants/syllabus-data";
-import Course from "../types/course";
-import ReactGA from "react-ga";
-import { gaAddedCourseItem } from "../ga/eventCategories";
-import { gaAppendActionWithLng, gaRemoveCourse } from "../ga/eventActions";
+
+import CourseItem from "@app/components/CourseItem";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import { gaAppendActionWithLng, gaRemoveCourse } from "@app/ga/eventActions";
+import { gaAddedCourseItem } from "@app/ga/eventCategories";
+import { removeCourse } from "@app/redux/actions";
+import Course from "@app/types/course";
 
 interface ReduxDispatchProps {
   removeCourse: (id: string) => void;
@@ -38,11 +40,12 @@ class AddedCourseItemContainer extends React.Component<
 
   render() {
     const { course } = this.props;
+
     return (
       <CourseItem
         handleOnClick={this.handleRemoveCourse}
         isAddable={false}
-        searchTerm={""}
+        searchTerm=""
         searchLang={course.displayLang}
         course={course}
         expandable={false}

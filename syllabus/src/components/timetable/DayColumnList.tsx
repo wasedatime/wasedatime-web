@@ -1,10 +1,11 @@
 import React from "react";
-import styled from "styled-components";
-import { WithTranslation, withTranslation } from "react-i18next";
 
-import DayColumnItem from "./DayColumnItem";
-import { SyllabusKey } from "../../constants/syllabus-data";
-import Course from "../../types/course";
+import { WithTranslation, withTranslation } from "react-i18next";
+import styled from "styled-components";
+
+import DayColumnItem from "@app/components/timetable/DayColumnItem";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import Course from "@app/types/course";
 
 const StyledList = styled("ol")`
   display: flex;
@@ -61,10 +62,11 @@ const DayColumnList = ({
         },
       ];
     });
+
     return acc;
   }, initCoursesByDay);
 
-  //We define Sunday as index 0.
+  // We define Sunday as index 0.
   const days = [
     t("common.mon"),
     t("common.tue"),
@@ -86,6 +88,7 @@ const DayColumnList = ({
         />
       );
     });
+
   return <StyledList>{dayColumns}</StyledList>;
 };
 

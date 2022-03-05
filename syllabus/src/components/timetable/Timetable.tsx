@@ -1,16 +1,22 @@
 import React from "react";
-import styled, { ThemeProvider } from "styled-components";
-import { timetableTheme } from "../../constants/syllabus-theme";
+
 import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { Article, Section } from "../styles/Article";
-import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import TimeRowList from "./TimeRowList";
-import DayColumnList from "./DayColumnList";
-import AddedCourseAndPrefList from "./AddedCourseAndPrefList";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
-import { SyllabusKey } from "../../constants/syllabus-data";
-import Course from "../../types/course";
+import Message from "semantic-ui-react/dist/commonjs/collections/Message";
+import styled, { ThemeProvider } from "styled-components";
+
+import { Article, Section } from "@app/components/styles/Article";
+import AddedCourseAndPrefList from "@app/components/timetable/AddedCourseAndPrefList";
+import DayColumnList from "@app/components/timetable/DayColumnList";
+import TimeRowList from "@app/components/timetable/TimeRowList";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import { timetableTheme } from "@app/constants/syllabus-theme";
+import Course from "@app/types/course";
+
+type ColumnProps = {
+  flexBasis: string;
+}
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
@@ -21,7 +27,7 @@ const ExtendedRowWrapper = styled(RowWrapper)`
   `};
 `;
 
-const Column = styled("div")`
+const Column = styled.div<ColumnProps>`
   flex: ${(props) => `0 0 ${props.flexBasis};`}
   max-width: ${(props) => `${props.flexBasis};`}
   ${media.tablet`
@@ -61,6 +67,7 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
   const largestDayAndPeriod = visibleAddedCoursesAndPrefs.reduce(
     (acc, elem) => {
       const occurrences = elem.course[SyllabusKey.OCCURRENCES];
+
       return occurrences.reduce((acc, occurrence) => {
         const unformattedPeriod = occurrence[SyllabusKey.OCC_PERIOD];
         const maxPeriod =
@@ -69,6 +76,7 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
             : unformattedPeriod > 9
             ? unformattedPeriod % 10
             : unformattedPeriod;
+
         return {
           ...acc,
           day: Math.max(acc.day, occurrence[SyllabusKey.OCC_DAY]),
@@ -99,16 +107,20 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
             {!addedCoursesAndPrefs.length && (
               <Wrapper>
                 <Article>
-                  <h5>{t("timetable.welcome")}{" "}🤗</h5>
+                  <h5>{t("timetable.welcome")} 🤗</h5>
                   <br />
                   <Section>
                     <Message
                       warning
-                      header={<h5><b>{t("timetable.You haven't added any courses")}</b></h5>}
+                      header={
+                        <h5>
+                          <b>{t("timetable.You haven't added any courses")}</b>
+                        </h5>
+                      }
                       content={
                         <p>
                           {t("timetable.Go to")}{" "}
-                          <a href="./syllabus">{t("timetable.Syllabus")} </a>{" "}
+                          <a href="/syllabus">{t("timetable.Syllabus")} </a>{" "}
                           {t("timetable.and try adding one!")}
                         </p>
                       }
@@ -116,7 +128,9 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                     />
                   </Section>
                   <Section>
-                    <Message success size="mini"><p>{t("timetable.SaveSpace")}</p></Message>
+                    <Message success size="mini">
+                      <p>{t("timetable.SaveSpace")}</p>
+                    </Message>
                   </Section>
                 </Article>
               </Wrapper>

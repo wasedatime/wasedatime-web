@@ -1,10 +1,11 @@
 import React from "react";
-import styled from "styled-components";
-import Card from "semantic-ui-react/dist/commonjs/views/Card";
-import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer";
-import Image from "semantic-ui-react/dist/commonjs/elements/Image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Image from "semantic-ui-react/dist/commonjs/elements/Image";
+import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer";
+import Card from "semantic-ui-react/dist/commonjs/views/Card";
+import styled from "styled-components";
 
 const SchoolCardWrapper = styled(Dimmer.Dimmable)`
   color: rgba(0, 0, 0, 0.05);
@@ -69,7 +70,7 @@ const SchoolImportCard = ({
           checked && {
             as: "a",
             corner: "left",
-            content: <span>{"✔"}</span>,
+            content: <span>✔</span>,
             color: "red",
           }
         }

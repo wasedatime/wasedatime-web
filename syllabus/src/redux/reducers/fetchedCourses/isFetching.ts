@@ -3,7 +3,7 @@ import {
   FETCH_COURSES_SUCCESS,
   FETCH_COURSES_FAILURE,
   SAVE_TIMETABLE,
-} from "../../actions/types";
+} from "@app/redux/actions/types";
 
 interface ActionProps {
   type: string;

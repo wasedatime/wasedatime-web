@@ -1,15 +1,17 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+
 import { WithTranslation, withTranslation } from "react-i18next";
-import { sortAddedCourses } from "../utils/added-courses";
-import { SyllabusKey } from "../constants/syllabus-data";
-import SemesterSwitcher from "../components/SemesterSwitcher";
-import AddedCourseList from "../components/syllabus/AddedCourseList";
-import { Semester } from "../constants/timetable-terms";
-import { getCurrentSemester } from "../utils/get-current-semesters";
-import Course from "../types/course";
-import { getAddedCoursesListWithLang } from "../redux/reducers/addedCourses";
-import { ReduxRootState } from "../redux/reducers";
+import { connect } from "react-redux";
+
+import SemesterSwitcher from "@app/components/SemesterSwitcher";
+import AddedCourseList from "@app/components/syllabus/AddedCourseList";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import { Semester } from "@app/constants/timetable-terms";
+import { ReduxRootState } from "@app/redux/reducers";
+import { getAddedCoursesListWithLang } from "@app/redux/reducers/addedCourses";
+import Course from "@app/types/course";
+import { sortAddedCourses } from "@app/utils/added-courses";
+import { getCurrentSemester } from "@app/utils/get-current-semesters";
 
 const semesterTitles = {
   [Semester.SPRING]: "Spring Semester",
@@ -36,8 +38,7 @@ const AddedCourseListContainer = ({
   const addedCoursesOfTerm = addedCourses.filter((c) => {
     if (semester === Semester.SPRING)
       return c[SyllabusKey.TERM].match(/0|1|f/g);
-    else if (semester === Semester.FALL)
-      return c[SyllabusKey.TERM].match(/2|3|f/g);
+    if (semester === Semester.FALL) return c[SyllabusKey.TERM].match(/2|3|f/g);
   });
 
   const sortedAddedCourses = sortAddedCourses(
@@ -54,7 +55,7 @@ const AddedCourseListContainer = ({
         isQuarterDisplayed={false}
         toggleSemester={handleToggleSemester}
         toggleQuarter={() => {}}
-        isSmallSize={true}
+        isSmallSize
       />
       <AddedCourseList addedCourses={sortedAddedCourses} />
     </div>

@@ -1,6 +1,10 @@
-import { SyllabusKey } from "../../../constants/syllabus-data";
-import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../../actions/types";
-import Course from "../../../types/course";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import {
+  ADD_COURSE,
+  REMOVE_COURSE,
+  SAVE_TIMETABLE,
+} from "@app/redux/actions/types";
+import Course from "@app/types/course";
 
 interface courseAndPrefTypes {
   id: string;
@@ -35,6 +39,7 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
       school = action.payload.course[SyllabusKey.SCHOOL];
       const id = action.payload.course[SyllabusKey.ID];
       const newIds = state[school] ? [...state[school].ids, id] : [id];
+
       return {
         ...state,
         [school]: {
@@ -52,9 +57,10 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
           };
         }
       }
+
       return state;
     case SAVE_TIMETABLE:
-      let newCoursesAndPrefs = {};
+      const newCoursesAndPrefs = {};
       action.payload.coursesAndPrefs.forEach((cp) => {
         const school = cp.course[SyllabusKey.SCHOOL];
         const id = cp.course[SyllabusKey.ID];
@@ -64,6 +70,7 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
             : [id],
         };
       });
+
       return newCoursesAndPrefs;
     default:
       return state;

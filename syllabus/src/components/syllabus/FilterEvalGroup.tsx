@@ -1,12 +1,14 @@
 import React from "react";
+
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import FormLabel from "@material-ui/core/FormLabel";
-import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
-import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
-import FilterGroup from "./FilterGroup";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+
+import FilterGroup from "@app/components/syllabus/FilterGroup";
 
 const Range = Slider.createSliderWithTooltip(Slider.Range);
 
@@ -74,7 +76,9 @@ const FilterEvalGroup = ({
 }: Props) => {
   return (
     <div>
-      <StyledFormLabel><b>{legend}</b></StyledFormLabel>
+      <StyledFormLabel>
+        <b>{legend}</b>
+      </StyledFormLabel>
       <EvalRangeWrapper>
         <StyledDropdown
           placeholder={typeDefault}
@@ -94,21 +98,21 @@ const FilterEvalGroup = ({
           max={100}
           step={5}
           defaultValue={selectedPercentInputs}
-          tipFormatter={(value) => value + "%"}
+          tipFormatter={(value) => `${value}%`}
           tipProps={{ placement: "bottom", visible: true }}
           onAfterChange={(v) => handleToggleFilter(percentInputName, v)}
           ariaLabelGroupForHandles={[
-            percentInputName + "Min",
-            percentInputName + "Max",
+            `${percentInputName}Min`,
+            `${percentInputName}Max`,
           ]}
         />
       </EvalRangeWrapper>
       <FilterGroup
         handleToggleFilter={handleToggleFilter}
-        legend={""}
+        legend=""
         inputName={specialInputName}
         inputs={checkedSpecialInputs}
-        filterType={"checkbox"}
+        filterType="checkbox"
       />
     </div>
   );

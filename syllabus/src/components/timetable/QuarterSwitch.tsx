@@ -1,10 +1,12 @@
 import React from "react";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { Semester, Quarter } from "../../constants/timetable-terms";
-import Button from "semantic-ui-react/dist/commonjs/elements/Button";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WithTranslation, withTranslation } from "react-i18next";
+import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import styled from "styled-components";
+
+import { Semester, Quarter } from "@app/constants/timetable-terms";
 
 const OrButton = styled(Button.Or)`
   height: 24px;

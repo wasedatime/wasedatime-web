@@ -1,14 +1,16 @@
 import React from "react";
-import chunk from "lodash/chunk";
-import { Waypoint } from "react-waypoint";
-import styled from "styled-components";
-import CourseChunk from "./CourseChunk";
-import { WithTranslation, withTranslation } from "react-i18next";
+
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import Course from "../../types/course";
-import SimpleBar from "simplebar-react";
-import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import chunk from "lodash/chunk";
+import { WithTranslation, withTranslation } from "react-i18next";
+import { Waypoint } from "react-waypoint";
+import Message from "semantic-ui-react/dist/commonjs/collections/Message";
+import SimpleBar from "simplebar-react";
+import styled from "styled-components";
+
+import CourseChunk from "@app/components/syllabus/CourseChunk";
+import Course from "@app/types/course";
 
 const CourseListWrapper = styled(SimpleBar)`
   height: calc(100vh - 96px);
@@ -29,6 +31,7 @@ const CourseChunkWrapper = styled("div")`
 const getChunkKey = (chunk) => {
   const head = chunk[0];
   const tail = chunk[chunk.length - 1];
+
   return `${head.a}-${tail.a}`;
 };
 
@@ -50,29 +53,32 @@ class FetchedCourseList extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
-      loadedChunksNum: INIT_CHUNKS_NUM
+      loadedChunksNum: INIT_CHUNKS_NUM,
     };
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.searchTerm !== prevProps.searchTerm) {
-      this.setState({
-        loadedChunksNum: INIT_CHUNKS_NUM,
-      }, () => {
-        var isChunkChanged = false;
+      this.setState(
+        {
+          loadedChunksNum: INIT_CHUNKS_NUM,
+        },
+        () => {
+          let isChunkChanged = false;
 
-        for (let index = 0; index < 5; index++) {
-          if (this.props.results[index] !== prevProps.results[index]) {
-            isChunkChanged = true;
-            break;
+          for (let index = 0; index < 5; index++) {
+            if (this.props.results[index] !== prevProps.results[index]) {
+              isChunkChanged = true;
+              break;
+            }
+          }
+
+          if (!isChunkChanged) {
+            this.loadMoreChunks(0);
           }
         }
-        
-        if (!isChunkChanged) {
-          this.loadMoreChunks(0);
-        }
-      });
-      
+      );
+
       window.scrollTo({ top: 0 });
     }
   }
@@ -98,7 +104,7 @@ class FetchedCourseList extends React.Component<Props, State> {
     const resultsInChunks = this.resultsToChunks();
 
     return (
-      <CourseListWrapper autoHide={true}>
+      <CourseListWrapper autoHide>
         {resultsInChunks.length ? (
           resultsInChunks.map((chunk, index) => (
             <Waypoint
@@ -111,20 +117,12 @@ class FetchedCourseList extends React.Component<Props, State> {
                 <div>
                   <span>
                     {i18n.language === Lang.JA
-                      ? "全 " +
-                        results.length +
-                        " 件中 " +
-                        (index * 5 + 1) +
-                        " - " +
-                        (index * 5 + chunk.length) +
-                        " 件を表示"
-                      : index * 5 +
-                        1 +
-                        " - " +
-                        (index * 5 + chunk.length) +
-                        " of " +
-                        results.length +
-                        " courses"}
+                      ? `全 ${results.length} 件中 ${index * 5 + 1} - ${
+                          index * 5 + chunk.length
+                        } 件を表示`
+                      : `${index * 5 + 1} - ${index * 5 + chunk.length} of ${
+                          results.length
+                        } courses`}
                   </span>
                 </div>
                 <CourseChunk

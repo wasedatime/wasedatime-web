@@ -1,3 +1,4 @@
+const path = require("path");
 const { mergeWithRules } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -10,7 +11,8 @@ const webpack = require("webpack");
 const dotenv = require("dotenv");
 
 module.exports = (webpackConfigEnv, argv) => {
-  if (webpackConfigEnv.isLocal || webpackConfigEnv.standalone) __webpack_base_uri__ = "/";
+  if (webpackConfigEnv.isLocal || webpackConfigEnv.standalone)
+    __webpack_base_uri__ = "/";
   const defaultConfig = singleSpaDefaults({
     orgName: "wasedatime",
     projectName: "syllabus",
@@ -30,14 +32,40 @@ module.exports = (webpackConfigEnv, argv) => {
     module: {
       rules: [
         {
+          test: /\.tsx$/,
+          use: "ts-loader",
+          resolve: {
+            fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
+          },
+        },
+        {
+          test: /\.ts$/,
+          use: "ts-loader",
+          resolve: {
+            fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
+          },
+        },
+        {
           test: /\.m?js/,
           resolve: {
             fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
           },
         },
         {
           test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)$/,
-          type: 'asset/inline'
+          type: "asset/inline",
         },
         {
           test: /\.css$/i,

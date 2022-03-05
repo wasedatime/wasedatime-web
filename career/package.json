@@ -60,8 +60,8 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@types/jest": "26.0.24",
-    "@types/react": "17.0.37",
+    "@types/jest": "^26.0.24",
+    "@types/react": "17.0.39",
     "@types/react-dom": "^16.9.6",
     "@types/systemjs": "^6.1.0",
     "@types/webpack-env": "^1.16.0",

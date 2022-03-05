@@ -50,7 +50,7 @@ specifiers:
   cross-env: ^7.0.3
   css-loader: ^5.2.7
   css-minimizer-webpack-plugin: 3.1.3
-  cssnano: 5.0.10
+  cssnano: 5.1.0
   dotenv-webpack: 7.0.3
   eslint: ^7.32.0
   eslint-config-airbnb: ^19.0.4
@@ -194,7 +194,7 @@ devDependencies:
   copy-webpack-plugin: 7.0.0_webpack@5.70.0
   cross-env: 7.0.3
   css-minimizer-webpack-plugin: 3.1.3_webpack@5.70.0
-  cssnano: 5.0.10_postcss@8.4.7
+  cssnano: 5.1.0_postcss@8.4.7
   dotenv-webpack: 7.0.3_webpack@5.70.0
   eslint: 7.32.0
   eslint-config-airbnb: 19.0.4_d76b7d1e8ae88f7afe34115739da35d9
@@ -5329,7 +5329,7 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      cssnano: 5.0.10_postcss@8.4.7
+      cssnano: 5.1.0_postcss@8.4.7
       jest-worker: 27.5.1
       postcss: 8.4.7
       schema-utils: 3.1.1
@@ -5524,14 +5524,13 @@ packages:
       postcss: 7.0.39
     dev: true
 
-  /cssnano/5.0.10_postcss@8.4.7:
-    resolution: {integrity: sha512-YfNhVJJ04imffOpbPbXP2zjIoByf0m8E2c/s/HnvSvjXgzXMfgopVjAEGvxYOjkOpWuRQDg/OZFjO7WW94Ri8w==}
+  /cssnano/5.1.0_postcss@8.4.7:
+    resolution: {integrity: sha512-wWxave1wMlThGg4ueK98jFKaNqXnQd1nVZpSkQ9XvR+YymlzP1ofWqES1JkHtI250LksP9z5JH+oDcrKDJezAg==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
     dependencies:
       cssnano-preset-default: 5.2.0_postcss@8.4.7
-      is-resolvable: 1.1.0
       lilconfig: 2.0.4
       postcss: 8.4.7
       yaml: 1.10.2

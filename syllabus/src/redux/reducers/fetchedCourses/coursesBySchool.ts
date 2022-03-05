@@ -1,10 +1,10 @@
-import { SyllabusKey } from "../../../constants/syllabus-data";
+import { SyllabusKey } from "@app/constants/syllabus-data";
 import {
   FETCH_COURSES_SUCCESS,
   ADD_SCHOOL_FETCH_COURSES_SUCCESS,
   REMOVE_SCHOOL,
-} from "../../actions/types";
-import Course from "../../../types/course";
+} from "@app/redux/actions/types";
+import Course from "@app/types/course";
 
 interface PayloadProps {
   coursesBySchool?: {

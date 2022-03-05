@@ -1,4 +1,4 @@
-import Review from "../types/review";
+import Review from "@app/types/review";
 
 export interface Scales {
   satisfaction: number;
@@ -7,9 +7,9 @@ export interface Scales {
 }
 
 export const getAvgScales = (reviews: Review[]): Scales => {
-  let satisfactionSum = 0,
-    difficultySum = 0,
-    benefitSum = 0;
+  let satisfactionSum = 0;
+  let difficultySum = 0;
+  let benefitSum = 0;
   if (reviews) {
     reviews.forEach((review) => {
       satisfactionSum += review.satisfaction;

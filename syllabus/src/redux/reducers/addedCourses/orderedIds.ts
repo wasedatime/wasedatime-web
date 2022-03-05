@@ -1,6 +1,10 @@
-import { SyllabusKey } from "../../../constants/syllabus-data";
-import { ADD_COURSE, REMOVE_COURSE, SAVE_TIMETABLE } from "../../actions/types";
-import Course from "../../../types/course";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import {
+  ADD_COURSE,
+  REMOVE_COURSE,
+  SAVE_TIMETABLE,
+} from "@app/redux/actions/types";
+import Course from "@app/types/course";
 
 interface courseAndPrefTypes {
   id: string;
@@ -27,11 +31,12 @@ const orderedIds = (state = initialState, action: ActionProps): string[] => {
     case ADD_COURSE:
       return [...state, action.payload.course[SyllabusKey.ID]];
     case REMOVE_COURSE:
-      let newIds = [...state];
+      const newIds = [...state];
       const index = newIds.indexOf(action.payload.id);
       if (index > -1) {
         newIds.splice(index, 1);
       }
+
       return newIds;
     case SAVE_TIMETABLE:
       return action.payload.coursesAndPrefs.map(

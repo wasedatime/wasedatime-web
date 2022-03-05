@@ -1,11 +1,12 @@
 import React from "react";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
-import { withStyles } from "@material-ui/core/styles";
+
 import { WithStyles, createStyles } from "@material-ui/core";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormLabel from "@material-ui/core/FormLabel";
+import { withStyles } from "@material-ui/core/styles";
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
 
 const StyledDropdown = styled(Dropdown)`
@@ -95,14 +96,14 @@ const FilterGroup = ({
   classes,
   filterType,
 }: Props) => {
-  var filterItems;
+  let filterItems;
   if (filterType === "checkbox") {
     filterItems = inputs.map((input) => (
       <FormControlLabel
         key={input.value}
         control={
           <Checkbox
-            id={inputName + "_" + input.value}
+            id={`${inputName}_${input.value}`}
             name={inputName}
             value={input.value}
             checked={input.ischecked}

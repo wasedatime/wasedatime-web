@@ -1,19 +1,23 @@
 import React from "react";
-import styled from "styled-components";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { InvisibleButton } from "./styles/Button";
 
+import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
+import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WithTranslation, withTranslation } from "react-i18next";
 import Label from "semantic-ui-react/dist/commonjs/elements/Label";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
 
-import { SyllabusKey } from "../constants/syllabus-data";
-import SortingOption from "../constants/sorting-options";
-import Course from "../types/course";
+import { InvisibleButton } from "@app/components/styles/Button";
+import SortingOption from "@app/constants/sorting-options";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import Course from "@app/types/course";
 
-const SortByButton = styled(InvisibleButton)`
+type SortByButtonProps = {
+  isSortingOptionOpen: boolean;
+}
+
+const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
   margin-left: auto;
   display: flex;
   &:hover {
@@ -67,9 +71,8 @@ const CourseListSummary = ({
   courses,
   selectedSortingOption,
   changeSortingOption,
-  t
+  t,
 }: Props) => {
-
   const sortingOptions = [
     {
       key: SortingOption.ADDED_ORDER,
@@ -99,7 +102,7 @@ const CourseListSummary = ({
         </StyledLabel>
         <SortingIcon icon={faSortAmountDown} />{" "}
         <StyledDropdown
-          placeholder={"Sort by"}
+          placeholder="Sort by"
           selection
           options={sortingOptions}
           value={selectedSortingOption}

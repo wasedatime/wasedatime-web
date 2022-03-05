@@ -1,5 +1,11 @@
 import React from "react";
 
-export default function Root(props) {
-  return <section>{props.name} is mounted!</section>;
+interface RootProps {
+  name?: string;
 }
+
+const Root = ({ name }: RootProps) => {
+  return <section>{name} is mounted!</section>;
+};
+
+export default Root;

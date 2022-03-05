@@ -1,19 +1,21 @@
 import React from "react";
-import { navigate } from "@reach/router";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import {
   faExternalLinkSquareAlt,
   faMinusCircle,
   faToggleOff,
   faToggleOn,
 } from "@fortawesome/free-solid-svg-icons";
-import ColorSelector from "./ColorSelector";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { getCourseTitleAndInstructor } from "../../utils/course-search";
-import { SyllabusKey } from "../../constants/syllabus-data";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { navigate } from "@reach/router";
 import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
-import Course from "../../types/course";
+import styled from "styled-components";
+
+import ColorSelector from "@app/components/timetable/ColorSelector";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import Course from "@app/types/course";
+import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -99,6 +101,7 @@ const CourseAndPrefItem = ({
       transform="shrink-2"
     />
   );
+
   return (
     <RowWrapper>
       <Popup

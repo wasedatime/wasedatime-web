@@ -1,4 +1,4 @@
-import { School } from "./syllabus-data";
+import { School } from "@app/constants/syllabus-data";
 
 export const schoolCodeMap: Readonly<{ [k: string]: string }> = {
   "11": School.PSE,

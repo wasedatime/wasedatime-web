@@ -1,7 +1,12 @@
 import React from "react";
+
 import styled from "styled-components";
 
-const colorIds = [0, 1, 2, 3, 4, 5, 6, 7];
+const colorIds: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
+
+type ColorButtonProps = {
+  colorCode: number;
+}
 
 const InvisibleButton = styled("button")`
   align-self: flex-start;
@@ -11,26 +16,26 @@ const InvisibleButton = styled("button")`
   outline: 0;
 `;
 
-const ColorButton = styled(InvisibleButton)`
+const ColorButton = styled(InvisibleButton)<ColorButtonProps>`
   width: 1.5em;
   height: 1.5em;
-  border: 1px solid ${props => props.theme["color" + props.color]};
+  border: 1px solid ${(props) => props.theme[`color${props.colorCode}`]};
   border-radius: 0.3em;
   margin: 0 0.1em;
-  background-color: ${props => props.theme["bgColor" + props.color]};
+  background-color: ${(props) => props.theme[`bgColor${props.colorCode}`]};
 `;
 
 interface Props {
-  handleChangeColor: (id: string) => void;
+  handleChangeColor: (id: number) => void;
 }
 
-const ColorSelector = ({ handleChangeColor }) => {
+const ColorSelector = ({ handleChangeColor }: Props) => {
   return (
     <div>
-      {colorIds.map((id) => (
+      {colorIds.map((id: number) => (
         <ColorButton
           key={id}
-          color={id}
+          colorCode={id}
           onClick={(event) => {
             event.preventDefault();
             handleChangeColor(id);

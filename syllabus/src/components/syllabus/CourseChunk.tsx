@@ -1,9 +1,9 @@
 import React from "react";
 
-import CourseItemContainer from "../../containers/CourseItemContainer";
-import { UnstyledUList } from "../styles/List";
-import { SyllabusKey } from "../../constants/syllabus-data";
-import Course from "../../types/course";
+import { UnstyledUList } from "@app/components/styles/List";
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import CourseItemContainer from "@app/containers/CourseItemContainer";
+import Course from "@app/types/course";
 
 interface Props {
   chunk: Course[];
@@ -20,7 +20,7 @@ const CourseChunk = ({ chunk, searchTerm, searchLang }: Props) => {
           searchTerm={searchTerm}
           searchLang={searchLang}
           course={course}
-          expandable={true}
+          expandable
         />
       ))}
     </UnstyledUList>

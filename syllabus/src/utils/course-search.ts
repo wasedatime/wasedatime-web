@@ -1,7 +1,7 @@
+import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import sortBy from "lodash/sortBy";
 
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import { SyllabusKey } from "../constants/syllabus-data";
+import { SyllabusKey } from "@app/constants/syllabus-data";
 
 // Unicode for Japanese: http://www.rikai.com/library/kanjitables/kanji_codes.unicode.shtml
 export const jpRegex = "\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf";
@@ -9,6 +9,7 @@ export const jpRegex = "\u3040-\u309f\u30a0-\u30ff\u4e00-\u9faf";
 export const tokenize = (string) => {
   // TODO benchmark contructor (new RegExp) vs factory (RegExp)
   const regex = new RegExp(`[^A-Za-z0-9${jpRegex}]+`);
+
   return string.trim().split(regex);
 };
 
@@ -23,7 +24,7 @@ export const regexify = (token, searchLang) => {
     case Lang.EN:
       return new RegExp(`\\b${token}`, "i");
     default:
-      alert("Unsupported language: " + searchLang);
+      alert(`Unsupported language: ${searchLang}`);
   }
 };
 
@@ -40,7 +41,7 @@ export const getCourseTitleAndInstructor = (course, searchLang) => {
         instructor: course[SyllabusKey.INSTRUCTOR],
       };
     default:
-      alert("Unsupported language: " + searchLang);
+      alert(`Unsupported language: ${searchLang}`);
   }
 };
 
@@ -54,6 +55,7 @@ export const searchCourses = (searchTerm, courses, searchLang) => {
       course,
       searchLang
     );
+
     return searchRegexes.every((regex) => {
       return regex.test(title) || regex.test(instructor);
     });
@@ -79,6 +81,7 @@ export const sortCourses = (searchTerm, courses, searchLang) => {
       } else {
         sum += 3;
       }
+
       return sum;
     }
   });

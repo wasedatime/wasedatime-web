@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
-import fetchedCourses from "./fetchedCourses";
-import addedCourses from "./addedCourses";
+
+import addedCourses from "@app/redux/reducers/addedCourses";
+import fetchedCourses from "@app/redux/reducers/fetchedCourses";
 
 export const root = combineReducers({
   addedCourses,

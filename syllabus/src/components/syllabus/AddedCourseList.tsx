@@ -1,29 +1,29 @@
 import React from "react";
-import stickybits from "stickybits";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
-import { WithTranslation, withTranslation } from "react-i18next";
-import Step from "semantic-ui-react/dist/commonjs/elements/Step";
-import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import { VerticalStep } from "../styles/VerticalStep";
 
 import {
   addedCourseListSwitchHeight,
   headerHeight,
 } from "@bit/wasedatime.core.ts.constants.size-variables";
-import CourseListSummaryContainer from "../../containers/CourseListSummaryContainer";
-import AddedCourseItemContainer from "../../containers/AddedCourseItemContainer";
-import {
-  Article,
-  Section,
-  Subheading,
-} from "../styles/Article";
-import Course from "../../types/course";
-
+import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WithTranslation, withTranslation } from "react-i18next";
+import Message from "semantic-ui-react/dist/commonjs/collections/Message";
+import Step from "semantic-ui-react/dist/commonjs/elements/Step";
 import SimpleBar from "simplebar-react";
+import stickybits from "stickybits";
+import styled from "styled-components";
 
-const CourseListWrapper = styled("div")`
+import { Article, Section, Subheading } from "@app/components/styles/Article";
+import { VerticalStep } from "@app/components/styles/VerticalStep";
+import AddedCourseItemContainer from "@app/containers/AddedCourseItemContainer";
+import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer";
+import Course from "@app/types/course";
+
+type CourseListWrapperProps = {
+  innerRef: any;
+}
+
+const CourseListWrapper = styled.div<CourseListWrapperProps>`
   position: fixed !important;
   padding: 0.5em 1em 1em 1em;
   width: 22em;
@@ -72,9 +72,13 @@ interface State {
 
 class AddedCourseList extends React.Component<Props, State> {
   wrapper: any;
+
   stickyWrapper: any;
+
   setWrapperRef: any;
+
   createStickyWrapper: () => void;
+
   cleanupStickyWrapper: () => void;
 
   constructor(props) {
@@ -135,7 +139,7 @@ class AddedCourseList extends React.Component<Props, State> {
 
         {addedCourses.length ? (
           <SimpleBar
-            autoHide={true}
+            autoHide
             style={{
               height: "calc(100vh - 150px)",
               fontSize: "14px",

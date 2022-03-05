@@ -1,7 +1,12 @@
 {
   "extends": "ts-config-single-spa",
   "compilerOptions": {
-    "jsx": "react"
+    "baseUrl": "./src",
+    "paths": {
+      "@app/*": ["*"]
+    },
+    "jsx": "react",
+    "noEmit": false
   },
   "include": ["src/**/*"]
 }

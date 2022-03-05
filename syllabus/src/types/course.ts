@@ -1,4 +1,4 @@
-import { SyllabusKey } from "../constants/syllabus-data";
+import { SyllabusKey } from "@app/constants/syllabus-data";
 
 export interface Course {
   [SyllabusKey.ID]: string;
@@ -18,11 +18,13 @@ export interface Course {
   [SyllabusKey.CATEGORY]: string;
   [SyllabusKey.CREDIT]: number;
   [SyllabusKey.LEVEL]: number;
-  [SyllabusKey.EVAL]: {
-    [SyllabusKey.EVAL_TYPE]: number;
-    [SyllabusKey.EVAL_PERCENT]: number;
-    [SyllabusKey.EVAL_CRITERIA]: string;
-  }[] | string;
+  [SyllabusKey.EVAL]:
+    | {
+        [SyllabusKey.EVAL_TYPE]: number;
+        [SyllabusKey.EVAL_PERCENT]: number;
+        [SyllabusKey.EVAL_CRITERIA]: string;
+      }[]
+    | string;
   [SyllabusKey.CODE]: string;
   [SyllabusKey.SUBTITLE]: string;
   [SyllabusKey.SCHOOL]: string;

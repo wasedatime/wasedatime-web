@@ -1,18 +1,18 @@
 import React from "react";
-import MediaQuery from "react-responsive";
-import styled from "styled-components";
-import { WithTranslation, withTranslation } from "react-i18next";
-import SchoolImportCard from "./SchoolImportCard";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-
-import Tab from "semantic-ui-react/dist/commonjs/modules/Tab";
-import Card from "semantic-ui-react/dist/commonjs/views/Card";
-import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
-import Menu from "semantic-ui-react/dist/commonjs/collections/Menu";
 
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import * as schoolIconEnMap from "../../constants/school-name-icon-map-en";
-import * as schoolIconJaMap from "../../constants/school-name-icon-map-ja";
+import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { WithTranslation, withTranslation } from "react-i18next";
+import MediaQuery from "react-responsive";
+import Menu from "semantic-ui-react/dist/commonjs/collections/Menu";
+import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
+import Tab from "semantic-ui-react/dist/commonjs/modules/Tab";
+import Card from "semantic-ui-react/dist/commonjs/views/Card";
+import styled from "styled-components";
+
+import SchoolImportCard from "@app/components/syllabus/SchoolImportCard";
+import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
+import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
 
 import "semantic-ui-css/components/popup.min.css";
 
@@ -145,32 +145,31 @@ class SchoolFilterForm extends React.Component<Props, State> {
             schoolIconJaMap.gradSchoolNameIconMap,
             schoolIconJaMap.otherSchoolNameIconMap,
           ];
+
     return schoolIconMap.map((schoolNameIconMap, i) => ({
       menuItem: (
         <Menu.Item key={schoolGroupNames[i]} style={{ fontSize: "1.2em" }}>
-          {t("syllabus.School Filter." + schoolGroupNames[i])}
+          {t(`syllabus.School Filter.${schoolGroupNames[i]}`)}
         </Menu.Item>
       ),
       render: () => (
-        <React.Fragment>
-          <MediaQuery minWidth={sizes.tablet}>
-            {(matches) => {
-              return matches ? (
-                <ImportCardGroup
-                  key={i}
-                  schoolNameIconMap={schoolNameIconMap}
-                  itemsPerRow={6}
-                />
-              ) : (
-                <ImportCardGroup
-                  key={i}
-                  schoolNameIconMap={schoolNameIconMap}
-                  itemsPerRow={4}
-                />
-              );
-            }}
-          </MediaQuery>
-        </React.Fragment>
+        <MediaQuery minWidth={sizes.tablet}>
+          {(matches) => {
+            return matches ? (
+              <ImportCardGroup
+                key={i}
+                schoolNameIconMap={schoolNameIconMap}
+                itemsPerRow={6}
+              />
+            ) : (
+              <ImportCardGroup
+                key={i}
+                schoolNameIconMap={schoolNameIconMap}
+                itemsPerRow={4}
+              />
+            );
+          }}
+        </MediaQuery>
       ),
     }));
   };
@@ -178,10 +177,11 @@ class SchoolFilterForm extends React.Component<Props, State> {
   handleSchoolloading = async (school) => {
     const { selectedSchools, loadSyllabus } = this.props;
     const { loadedSchools } = this.state;
-    let newLoadedSchools = [...loadedSchools];
-    
+    const newLoadedSchools = [...loadedSchools];
+
     if (loadedSchools.length >= 10) {
-      if (selectedSchools.includes(loadedSchools[0])) this.props.handleToggleFilter(loadedSchools[0]);
+      if (selectedSchools.includes(loadedSchools[0]))
+        this.props.handleToggleFilter(loadedSchools[0]);
       newLoadedSchools.splice(0, 1);
     }
 
@@ -200,6 +200,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
 
   render() {
     const { t, isPopup } = this.props;
+
     return isPopup ? (
       <WiderPopup
         id="school_filter_form"
@@ -214,7 +215,9 @@ class SchoolFilterForm extends React.Component<Props, State> {
         size="huge"
         wide="very"
       />
-    ) : <Tab panes={this.schoolImportPanes()} />;
+    ) : (
+      <Tab panes={this.schoolImportPanes()} />
+    );
   }
 }
 

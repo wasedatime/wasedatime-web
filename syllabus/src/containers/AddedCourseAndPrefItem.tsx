@@ -1,23 +1,25 @@
 import React from "react";
+
+import ReactGA from "react-ga";
+import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import Alert from "react-s-alert";
-import { WithTranslation, withTranslation } from "react-i18next";
-import {
-  removeCourse,
-  changeCourseColor,
-  toggleCourseVisibility,
-} from "../redux/actions";
-import CourseAndPrefItem from "../components/timetable/CourseAndPrefItem";
-import { SyllabusKey } from "../constants/syllabus-data";
-import Course from "../types/course";
-import ReactGA from "react-ga";
+
+import CourseAndPrefItem from "@app/components/timetable/CourseAndPrefItem";
+import { SyllabusKey } from "@app/constants/syllabus-data";
 import {
   gaAppendActionWithLng,
   gaChangeCourseColor,
   gaMakeCourseInVisible,
   gaRemoveCourse,
-} from "../ga/eventActions";
-import { gaAddedCourseAndPrefItem } from "../ga/eventCategories";
+} from "@app/ga/eventActions";
+import { gaAddedCourseAndPrefItem } from "@app/ga/eventCategories";
+import {
+  removeCourse,
+  changeCourseColor,
+  toggleCourseVisibility,
+} from "@app/redux/actions";
+import Course from "@app/types/course";
 
 interface ReduxDispatchProps {
   removeCourse: (id: string) => void;
@@ -61,7 +63,7 @@ class AddedCourseAndPrefItem extends React.Component<
     ReactGA.event({
       category: gaAddedCourseAndPrefItem,
       action: gaAppendActionWithLng(gaChangeCourseColor, i18n.language),
-      label: "color" + colorId,
+      label: `color${colorId}`,
     });
   };
 
@@ -83,6 +85,7 @@ class AddedCourseAndPrefItem extends React.Component<
     const { addedCourseAndPref } = this.props;
     const { pref, course } = addedCourseAndPref;
     const { color, visibility, displayLang } = pref;
+
     return (
       <CourseAndPrefItem
         color={color}

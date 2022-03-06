@@ -4,7 +4,7 @@ import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
-import Label from "semantic-ui-react/dist/commonjs/elements/Label";
+import Label from "@app/components/styles/Label";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
 
@@ -32,14 +32,14 @@ const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
   color: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
 `;
 
-const StyledLabel = styled(Label)`
-  height: 30px;
-  padding: 0.5em !important;
-`;
-
 const SortingIcon = styled(FontAwesomeIcon)`
   margin: auto;
   margin-right: 0.5em;
+`;
+
+const StyledLabel = styled(Label)`
+  height: 30px;
+  margin: 0px 2px;
 `;
 
 const StyledDropdown = styled(Dropdown)`
@@ -94,10 +94,10 @@ const CourseListSummary = ({
   return (
     <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
-        <StyledLabel size="big" color="grey" basic>
+        <StyledLabel>
           {`${courses.length}`} {t("timetable.courses")}
         </StyledLabel>
-        <StyledLabel size="big" color="grey" basic>
+        <StyledLabel>
           {creditSum(courses)} {t("timetable.credits")}
         </StyledLabel>
         <SortingIcon icon={faSortAmountDown} />{" "}

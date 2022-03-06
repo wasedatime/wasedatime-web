@@ -120,8 +120,8 @@ dependencies:
   '@aws-amplify/core': 3.8.24
   '@bit/wasedatime.core.assets.text-logo': node.bit.dev/@bit/wasedatime.core.assets.text-logo/0.0.1_react@17.0.2
   '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react@17.0.2
-  '@bit/wasedatime.core.ts.constants.size-variables': 0.0.2_react@17.0.2
-  '@bit/wasedatime.core.ts.constants.theme': 0.0.3_react@17.0.2
+  '@bit/wasedatime.core.ts.constants.size-variables': node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.2_react@17.0.2
+  '@bit/wasedatime.core.ts.constants.theme': node.bit.dev/@bit/wasedatime.core.ts.constants.theme/0.0.3_react@17.0.2
   '@bit/wasedatime.core.ts.styles.mobile-header-wrapper': node.bit.dev/@bit/wasedatime.core.ts.styles.mobile-header-wrapper/0.0.1_react@17.0.2
   '@bit/wasedatime.core.ts.styles.overlay': node.bit.dev/@bit/wasedatime.core.ts.styles.overlay/0.0.1_react@17.0.2
   '@bit/wasedatime.core.ts.styles.sidebar-wrapper': node.bit.dev/@bit/wasedatime.core.ts.styles.sidebar-wrapper/0.0.3_react@17.0.2
@@ -2173,24 +2173,6 @@ packages:
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
-
-  /@bit/wasedatime.core.ts.constants.size-variables/0.0.2_react@17.0.2:
-    resolution: {integrity: sha1-AUtybTSUh0kqP3yzdXZLB2eyWBk=, tarball: wasedatime.core.ts.constants.size-variables/-/wasedatime.core.ts.constants.size-variables-0.0.2.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.constants.theme/0.0.3_react@17.0.2:
-    resolution: {integrity: sha1-7TsHOkFSE2HHw4ZKMPHL+D2YaAc=, tarball: wasedatime.core.ts.constants.theme/-/wasedatime.core.ts.constants.theme-0.0.3.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-    dev: false
 
   /@cnakazawa/watch/1.0.4:
     resolution: {integrity: sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ==}
@@ -13341,6 +13323,30 @@ packages:
     id: node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5
     name: wasedatime.core.ts.constants.langs
     version: 0.0.5
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.2_react@17.0.2:
+    resolution: {integrity: sha1-AUtybTSUh0kqP3yzdXZLB2eyWBk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.constants.size-variables/-/wasedatime.core.ts.constants.size-variables-0.0.2.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.2
+    name: wasedatime.core.ts.constants.size-variables
+    version: 0.0.2
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.constants.theme/0.0.3_react@17.0.2:
+    resolution: {integrity: sha1-7TsHOkFSE2HHw4ZKMPHL+D2YaAc=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.constants.theme/-/wasedatime.core.ts.constants.theme-0.0.3.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.constants.theme/0.0.3
+    name: wasedatime.core.ts.constants.theme
+    version: 0.0.3
     peerDependencies:
       react: ^17.0.1
       react-dom: ^17.0.1

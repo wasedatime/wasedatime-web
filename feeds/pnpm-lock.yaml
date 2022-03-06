@@ -1,8 +1,6 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@bit/wasedatime.core.ts.constants.size-variables': 0.0.2
-  '@bit/wasedatime.core.ts.constants.theme': 0.0.3
   '@bit/wasedatime.core.ts.ui.loading-spinner': npm:wasedatime.core.ts.ui.loading-spinner@0.0.7
   '@bit/wasedatime.core.ts.utils.responsive-utils': npm:wasedatime.core.ts.utils.responsive-utils@0.0.1
   '@fortawesome/fontawesome-svg-core': 1.3.0
@@ -32,8 +30,6 @@ specifiers:
   typescript: 4.6.2
 
 dependencies:
-  '@bit/wasedatime.core.ts.constants.size-variables': 0.0.2_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.constants.theme': 0.0.3_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.ui.loading-spinner': 0.0.7_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
   '@fortawesome/fontawesome-svg-core': 1.3.0
@@ -214,26 +210,6 @@ packages:
 
   /@bit/wasedatime.core.assets.img.logo/0.0.1_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha1-e0w8cLOvM8t9pildIQVoGODf1pA=, tarball: wasedatime.core.assets.img.logo/-/wasedatime.core.assets.img.logo-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.constants.size-variables/0.0.2_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-AUtybTSUh0kqP3yzdXZLB2eyWBk=, tarball: wasedatime.core.ts.constants.size-variables/-/wasedatime.core.ts.constants.size-variables-0.0.2.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.constants.theme/0.0.3_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-7TsHOkFSE2HHw4ZKMPHL+D2YaAc=, tarball: wasedatime.core.ts.constants.theme/-/wasedatime.core.ts.constants.theme-0.0.3.tgz}
     peerDependencies:
       react: ^17.0.1
       react-dom: ^17.0.1

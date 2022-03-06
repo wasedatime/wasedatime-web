@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import Header from "@bit/wasedatime.core.ts.ui.header";
@@ -12,16 +12,20 @@ import translationJA from "@app/constants/locales/ja/translation.json";
 import RoomFinder from "@app/room/RoomFinder";
 import "@app/styles/styles.scss";
 
-// i18nConfig({
-//   i18n: i18next,
-//   customTranslations: {
-//     [Lang.EN]: translationEN,
-//     [Lang.JA]: translationJA,
-//   }
-// });
+i18nConfig({
+  i18n: i18next,
+  customTranslations: {
+    [Lang.EN]: translationEN,
+    [Lang.JA]: translationJA,
+  }
+});
 
 const Root = (props) => {
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
+  }, [])
 
   return (
     <section>

@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
-
-import API from "@aws-amplify/api";
+import React, { useState } from "react";
+import styled from "styled-components";
 import {
   faChevronDown,
   faChevronRight,
@@ -8,8 +7,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import Label from "semantic-ui-react/dist/commonjs/elements/Label";
-import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
+import Label from "@app/components/styles/Label";
 import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion";
 
 import { SyllabusKey } from "@app/constants/syllabus-data";
@@ -39,9 +37,11 @@ const Schedule = ({ content }: ScheduleProps) => {
         <Table.Body>
           <Table.Row>
             <Table.Cell>
-              <Label>
-                <p>{i + 1}</p>
-              </Label>
+              <div>
+                <Label filled={true} color="#b51e36">
+                  {i + 1}
+                </Label>
+              </div>
             </Table.Cell>
             <Table.Cell>
               <p>{item}</p>

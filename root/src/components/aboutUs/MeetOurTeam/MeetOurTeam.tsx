@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import {
-  Members,
-  CurrentList,
   AlumniList,
+  CurrentList,
+  Members,
 } from "@app/components/aboutUs/MeetOurTeam/memberList";
 
 const Title = styled("h2")`

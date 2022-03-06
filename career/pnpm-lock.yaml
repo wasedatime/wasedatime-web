@@ -8595,18 +8595,6 @@ packages:
       - webpack
     dev: true
 
-  /webpack-config-single-spa-react/4.0.2_26251eab09162b25a254715ee98d7c5c:
-    resolution: {integrity: sha512-TSE/MZ5RhtG3qNJvCQnsFcHadL1fI2uw92sg2Ym7P9o/DgVuqJ931yrHVp5IMsTIoluioCrqlDx1OmLSEOGZhQ==}
-    dependencies:
-      webpack-config-single-spa: 5.1.1_26251eab09162b25a254715ee98d7c5c
-    transitivePeerDependencies:
-      - '@babel/core'
-      - acorn
-      - bufferutil
-      - utf-8-validate
-      - webpack
-    dev: true
-
   /webpack-config-single-spa-react/4.0.3_26251eab09162b25a254715ee98d7c5c:
     resolution: {integrity: sha512-rKMKWDW74rhlzZASRc0A9Y3KFJoWQEhA9MDcrssjxXgiq6r6BUkj1fXFagXBFCpGUoKyrYDKUSs0uc+8SJJPTA==}
     dependencies:
@@ -8663,24 +8651,6 @@ packages:
       style-loader: 3.3.1_webpack@5.65.0
       systemjs-webpack-interop: 2.3.7_webpack@5.65.0
       unused-files-webpack-plugin: 3.4.0
-      webpack-bundle-analyzer: 4.5.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - acorn
-      - bufferutil
-      - utf-8-validate
-      - webpack
-    dev: true
-
-  /webpack-config-single-spa/5.1.1_26251eab09162b25a254715ee98d7c5c:
-    resolution: {integrity: sha512-i+j5PpxjcHbxnUXiR+VLjcRB6i4PfoiPERvGer27Q4BZcbICUiRJWORK+ur6KhcupZ5d0fnwge01cy8qA6DOJw==}
-    dependencies:
-      babel-loader: 8.2.3_26251eab09162b25a254715ee98d7c5c
-      css-loader: 5.2.7_webpack@5.65.0
-      html-webpack-plugin: 5.5.0_webpack@5.65.0
-      standalone-single-spa-webpack-plugin: 3.0.0_dd09c500f71ac647920023076393bc8f
-      style-loader: 3.3.1_webpack@5.65.0
-      systemjs-webpack-interop: 2.3.7_webpack@5.65.0
       webpack-bundle-analyzer: 4.5.0
     transitivePeerDependencies:
       - '@babel/core'

@@ -2,6 +2,7 @@
   "name": "@wasedatime/syllabus",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "postinstall": "semantic-ui-css-patch",
     "start": "webpack serve --port 8080 --env isLocal",
     "start:standalone": "webpack serve --env standalone",
     "local": "concurrently --kill-others \"pnpm start\" \"cd ../root && pnpm start\"",
@@ -25,6 +26,7 @@
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime": "^7.17.2",
+    "@semantic-ui-react/css-patch": "^1.0.0",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "12.1.3",
     "@types/systemjs": "^6.1.0",

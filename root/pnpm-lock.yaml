@@ -5399,14 +5399,17 @@ packages:
       postcss: 8.4.7
     dev: true
 
-  /cssnano/4.1.11:
-    resolution: {integrity: sha512-6gZm2htn7xIPJOHY824ERgj8cNPgPxyCSnkXc4v7YvNW+TdVfzgngHcEhy/8D11kUWRUMbke+tC+AUcUsnMz2g==}
-    engines: {node: '>=6.9.0'}
+  /cssnano/5.0.10_postcss@8.4.7:
+    resolution: {integrity: sha512-YfNhVJJ04imffOpbPbXP2zjIoByf0m8E2c/s/HnvSvjXgzXMfgopVjAEGvxYOjkOpWuRQDg/OZFjO7WW94Ri8w==}
+    engines: {node: ^10 || ^12 || >=14.0}
+    peerDependencies:
+      postcss: ^8.2.15
     dependencies:
-      cosmiconfig: 5.2.1
-      cssnano-preset-default: 4.0.8
+      cssnano-preset-default: 5.2.0_postcss@8.4.7
       is-resolvable: 1.1.0
-      postcss: 7.0.39
+      lilconfig: 2.0.4
+      postcss: 8.4.7
+      yaml: 1.10.2
     dev: true
 
   /cssnano/5.1.0_postcss@8.4.7:

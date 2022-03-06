@@ -20,9 +20,9 @@ specifiers:
   '@fortawesome/free-solid-svg-icons': ^6.0.0
   '@fortawesome/react-fontawesome': ^0.1.17
   '@testing-library/jest-dom': ^5.16.2
-  '@testing-library/react': 12.1.2
+  '@testing-library/react': 12.1.3
   '@types/jest': ^26.0.24
-  '@types/react': 17.0.37
+  '@types/react': 17.0.39
   '@types/react-dom': ^16.9.14
   '@types/styled-components': ^5.1.24
   '@types/systemjs': ^6.1.1
@@ -34,16 +34,16 @@ specifiers:
   bootstrap: ^4.6.1
   concurrently: ^5.3.0
   cross-env: ^7.0.3
-  css-loader: ^5.2.7
+  css-loader: 6.7.0
   eslint: ^7.32.0
   eslint-config-airbnb: ^19.0.4
-  eslint-config-prettier: ^7.2.0
+  eslint-config-prettier: 8.5.0
   eslint-config-ts-important-stuff: ^1.1.0
   eslint-config-ts-react-important-stuff: ^3.0.0
   eslint-plugin-import: ^2.25.4
   eslint-plugin-jsx-a11y: ^6.5.1
   eslint-plugin-prefer-arrow: ^1.2.3
-  eslint-plugin-prettier: ^3.4.1
+  eslint-plugin-prettier: 4.0.0
   eslint-plugin-react: ^7.29.3
   eslint-plugin-react-app: ^6.2.2
   i18next: ^19.9.2
@@ -73,8 +73,8 @@ specifiers:
   typescript: ^4.6.2
   webpack: ^5.70.0
   webpack-cli: ^4.9.2
-  webpack-config-single-spa-react: 4.0.2
-  webpack-config-single-spa-react-ts: 4.0.2
+  webpack-config-single-spa-react: 4.0.3
+  webpack-config-single-spa-react-ts: 4.0.3
   webpack-config-single-spa-ts: 2.2.4
   webpack-dev-server: ^4.7.4
   webpack-merge: ^5.8.0
@@ -83,7 +83,7 @@ dependencies:
   '@aws-amplify/auth': 3.4.34
   '@bit/wasedatime.core.assets.img.logo': node.bit.dev/@bit/wasedatime.core.assets.img.logo/0.0.1_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.ui.header': node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0_98f15f4a9c44408b9cde427fbca7b66c
+  '@bit/wasedatime.core.ts.ui.header': node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0_7a357bb42541b427aee3d1047c25447b
   '@bit/wasedatime.core.ts.ui.loading-spinner': node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.0.7_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.utils.i18n': node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.4_8f2a12f93b34591c18c344cd829419b1
   '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
@@ -92,7 +92,7 @@ dependencies:
   '@fortawesome/free-solid-svg-icons': 6.0.0
   '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
   '@types/jest': 26.0.24
-  '@types/react': 17.0.37
+  '@types/react': 17.0.39
   '@types/react-dom': 16.9.14
   '@types/styled-components': 5.1.24
   '@types/systemjs': 6.1.1
@@ -121,23 +121,23 @@ devDependencies:
   '@babel/preset-typescript': 7.16.7_@babel+core@7.17.5
   '@babel/runtime': 7.17.2
   '@testing-library/jest-dom': 5.16.2
-  '@testing-library/react': 12.1.2_react-dom@17.0.2+react@17.0.2
+  '@testing-library/react': 12.1.3_react-dom@17.0.2+react@17.0.2
   '@typescript-eslint/eslint-plugin': 5.13.0_3a0304e4216f58c7e1135459c8d18e32
   '@typescript-eslint/parser': 5.13.0_eslint@7.32.0+typescript@4.6.2
   babel-jest: 26.6.3_@babel+core@7.17.5
   babel-plugin-styled-components: 1.13.3_styled-components@5.3.3
   concurrently: 5.3.0
   cross-env: 7.0.3
-  css-loader: 5.2.7_webpack@5.70.0
+  css-loader: 6.7.0_webpack@5.70.0
   eslint: 7.32.0
   eslint-config-airbnb: 19.0.4_d76b7d1e8ae88f7afe34115739da35d9
-  eslint-config-prettier: 7.2.0_eslint@7.32.0
+  eslint-config-prettier: 8.5.0_eslint@7.32.0
   eslint-config-ts-important-stuff: 1.1.0
   eslint-config-ts-react-important-stuff: 3.0.0_eslint@7.32.0
   eslint-plugin-import: 2.25.4_eslint@7.32.0
   eslint-plugin-jsx-a11y: 6.5.1_eslint@7.32.0
   eslint-plugin-prefer-arrow: 1.2.3_eslint@7.32.0
-  eslint-plugin-prettier: 3.4.1_f00f7e54b4b3cd43dd9e25d0d062b490
+  eslint-plugin-prettier: 4.0.0_f00f7e54b4b3cd43dd9e25d0d062b490
   eslint-plugin-react: 7.29.3_eslint@7.32.0
   eslint-plugin-react-app: 6.2.2_eslint@7.32.0+typescript@4.6.2
   identity-obj-proxy: 3.0.0
@@ -154,8 +154,8 @@ devDependencies:
   typescript: 4.6.2
   webpack: 5.70.0_webpack-cli@4.9.2
   webpack-cli: 4.9.2_6d3cb84eb7e855ae6fc0a3ee585c0c26
-  webpack-config-single-spa-react: 4.0.2_ed870ac3ba52c4ec230ba2bc3dbb311c
-  webpack-config-single-spa-react-ts: 4.0.2_ef5a0286687b5f8c2055b2f939b83632
+  webpack-config-single-spa-react: 4.0.3_ed870ac3ba52c4ec230ba2bc3dbb311c
+  webpack-config-single-spa-react-ts: 4.0.3_ef5a0286687b5f8c2055b2f939b83632
   webpack-config-single-spa-ts: 2.2.4_ef5a0286687b5f8c2055b2f939b83632
   webpack-dev-server: 4.7.4_webpack-cli@4.9.2+webpack@5.70.0
   webpack-merge: 5.8.0
@@ -2363,7 +2363,7 @@ packages:
       '@jridgewell/sourcemap-codec': 1.4.11
     dev: true
 
-  /@material-ui/core/4.12.3_5539cae010396b202b015f3568914e95:
+  /@material-ui/core/4.12.3_b8fdba992ce7d797017dc07106486496:
     resolution: {integrity: sha512-sdpgI/PL56QVsEJldwEe4FFaFTLUqN+rd7sSZiRCdx2E/C7z5yK0y/khAWVBH24tXwto7I1hCzNWfJGZIYJKnw==}
     engines: {node: '>=8.0.0'}
     deprecated: 'You can now upgrade to @mui/material. See the guide: https://mui.com/guides/migration-v4/'
@@ -2376,11 +2376,11 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.17.2
-      '@material-ui/styles': 4.11.4_5539cae010396b202b015f3568914e95
-      '@material-ui/system': 4.12.1_5539cae010396b202b015f3568914e95
-      '@material-ui/types': 5.1.0_@types+react@17.0.37
+      '@material-ui/styles': 4.11.4_b8fdba992ce7d797017dc07106486496
+      '@material-ui/system': 4.12.1_b8fdba992ce7d797017dc07106486496
+      '@material-ui/types': 5.1.0_@types+react@17.0.39
       '@material-ui/utils': 4.11.2_react-dom@17.0.2+react@17.0.2
-      '@types/react': 17.0.37
+      '@types/react': 17.0.39
       '@types/react-transition-group': 4.4.4
       clsx: 1.1.1
       hoist-non-react-statics: 3.3.2
@@ -2392,7 +2392,7 @@ packages:
       react-transition-group: 4.4.2_react-dom@17.0.2+react@17.0.2
     dev: false
 
-  /@material-ui/styles/4.11.4_5539cae010396b202b015f3568914e95:
+  /@material-ui/styles/4.11.4_b8fdba992ce7d797017dc07106486496:
     resolution: {integrity: sha512-KNTIZcnj/zprG5LW0Sao7zw+yG3O35pviHzejMdcSGCdWbiO8qzRgOYL8JAxAsWBKOKYwVZxXtHWaB5T2Kvxew==}
     engines: {node: '>=8.0.0'}
     deprecated: 'You can now upgrade to @mui/styles. See the guide: https://mui.com/guides/migration-v4/'
@@ -2406,9 +2406,9 @@ packages:
     dependencies:
       '@babel/runtime': 7.17.2
       '@emotion/hash': 0.8.0
-      '@material-ui/types': 5.1.0_@types+react@17.0.37
+      '@material-ui/types': 5.1.0_@types+react@17.0.39
       '@material-ui/utils': 4.11.2_react-dom@17.0.2+react@17.0.2
-      '@types/react': 17.0.37
+      '@types/react': 17.0.39
       clsx: 1.1.1
       csstype: 2.6.20
       hoist-non-react-statics: 3.3.2
@@ -2425,7 +2425,7 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /@material-ui/system/4.12.1_5539cae010396b202b015f3568914e95:
+  /@material-ui/system/4.12.1_b8fdba992ce7d797017dc07106486496:
     resolution: {integrity: sha512-lUdzs4q9kEXZGhbN7BptyiS1rLNHe6kG9o8Y307HCvF4sQxbCgpL2qi+gUk+yI8a2DNk48gISEQxoxpgph0xIw==}
     engines: {node: '>=8.0.0'}
     deprecated: 'You can now upgrade to @mui/system. See the guide: https://mui.com/guides/migration-v4/'
@@ -2439,14 +2439,14 @@ packages:
     dependencies:
       '@babel/runtime': 7.17.2
       '@material-ui/utils': 4.11.2_react-dom@17.0.2+react@17.0.2
-      '@types/react': 17.0.37
+      '@types/react': 17.0.39
       csstype: 2.6.20
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
-  /@material-ui/types/5.1.0_@types+react@17.0.37:
+  /@material-ui/types/5.1.0_@types+react@17.0.39:
     resolution: {integrity: sha512-7cqRjrY50b8QzRSYyhSpx4WRw2YuO0KKIGQEVk5J8uoz2BanawykgZGoWEqKm7pVIbzFDN0SpPcVV4IhOFkl8A==}
     peerDependencies:
       '@types/react': '*'
@@ -2454,7 +2454,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@types/react': 17.0.37
+      '@types/react': 17.0.39
     dev: false
 
   /@material-ui/utils/4.11.2_react-dom@17.0.2+react@17.0.2:
@@ -2584,8 +2584,8 @@ packages:
       redent: 3.0.0
     dev: true
 
-  /@testing-library/react/12.1.2_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-ihQiEOklNyHIpo2Y8FREkyD1QAea054U0MVbwH1m8N9TxeFz+KoJ9LkqoKqJlzx2JDm56DVwaJ1r36JYxZM05g==}
+  /@testing-library/react/12.1.3_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-oCULRXWRrBtC9m6G/WohPo1GLcLesH7T4fuKzRAKn1CWVu9BzXtqLXDDTA6KhFNNtRwLtfSMr20HFl+Qrdrvmg==}
     engines: {node: '>=12'}
     peerDependencies:
       react: '*'
@@ -2593,6 +2593,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.17.2
       '@testing-library/dom': 8.11.3
+      '@types/react-dom': 16.9.14
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     dev: true
@@ -2783,7 +2784,6 @@ packages:
 
   /@types/prop-types/15.7.4:
     resolution: {integrity: sha512-rZ5drC/jWjrArrS8BR6SIr4cWpW09RNTYt9AMZo3Jwwif+iacXAqgVjm0B0Bv/S1jhDXKHqRVNCbACkJ89RAnQ==}
-    dev: false
 
   /@types/qs/6.9.7:
     resolution: {integrity: sha512-FGa1F62FT09qcrueBA6qYTrJPVDzah9a+493+o2PCXsesWHIn27G98TsSMs3WPNbZIEj4+VJf6saSFpvD+3Zsw==}
@@ -2797,7 +2797,6 @@ packages:
     resolution: {integrity: sha512-FIX2AVmPTGP30OUJ+0vadeIFJJ07Mh1m+U0rxfgyW34p3rTlXI+nlenvAxNn4BP36YyI9IJ/+UJ7Wu22N1pI7A==}
     dependencies:
       '@types/react': 16.14.23
-    dev: false
 
   /@types/react-transition-group/4.4.4:
     resolution: {integrity: sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug==}
@@ -2811,10 +2810,17 @@ packages:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
       csstype: 3.0.11
-    dev: false
 
   /@types/react/17.0.37:
     resolution: {integrity: sha512-2FS1oTqBGcH/s0E+CjrCCR9+JMpsu9b69RTFO+40ua43ZqP5MmQ4iUde/dMjWR909KxZwmOQIFq6AV6NjEG5xg==}
+    dependencies:
+      '@types/prop-types': 15.7.4
+      '@types/scheduler': 0.16.2
+      csstype: 3.0.11
+    dev: false
+
+  /@types/react/17.0.39:
+    resolution: {integrity: sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==}
     dependencies:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
@@ -2827,7 +2833,6 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: false
 
   /@types/serve-index/1.9.1:
     resolution: {integrity: sha512-d/Hs3nWDxNL2xAczmOVZNj92YZCS6RGxfBPjKzuu/XirCgXdpKEb88dYNbrYGint6IVWLNP+yonwVAuRC0T2Dg==}
@@ -4424,6 +4429,23 @@ packages:
       webpack: 5.70.0_webpack-cli@4.9.2
     dev: true
 
+  /css-loader/6.7.0_webpack@5.70.0:
+    resolution: {integrity: sha512-S7HCfCiDHLA+VXKqdZwyRZgoO0R9BnKDnVIoHMq5grl3N86zAu7MB+FBWHr5xOJC8SmvpTLha/2NpfFkFEN/ig==}
+    engines: {node: '>= 12.13.0'}
+    peerDependencies:
+      webpack: ^5.0.0
+    dependencies:
+      icss-utils: 5.1.0_postcss@8.4.7
+      postcss: 8.4.7
+      postcss-modules-extract-imports: 3.0.0_postcss@8.4.7
+      postcss-modules-local-by-default: 4.0.0_postcss@8.4.7
+      postcss-modules-scope: 3.0.0_postcss@8.4.7
+      postcss-modules-values: 4.0.0_postcss@8.4.7
+      postcss-value-parser: 4.2.0
+      semver: 7.3.5
+      webpack: 5.70.0_webpack-cli@4.9.2
+    dev: true
+
   /css-mediaquery/0.1.2:
     resolution: {integrity: sha1-aiw3NEkoYYYxxUvTPO3TAdoYvqA=}
     dev: false
@@ -4497,7 +4519,6 @@ packages:
 
   /csstype/3.0.11:
     resolution: {integrity: sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==}
-    dev: false
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -4961,8 +4982,8 @@ packages:
     resolution: {integrity: sha512-CsV6QFsjNDTZTDEgE1XxhTKph4YJUh5XFMdsWv3p+9DuMyvfy40fsnZiwqXZHBVEUNMHf+zfPGk6s6b4fS9Erw==}
     dev: true
 
-  /eslint-config-prettier/7.2.0_eslint@7.32.0:
-    resolution: {integrity: sha512-rV4Qu0C3nfJKPOAhFujFxB7RMP+URFyQqqOZW9DMRD7ZDTFyjaIlETU3xzHELt++4ugC0+Jm084HQYkkJe+Ivg==}
+  /eslint-config-prettier/8.5.0_eslint@7.32.0:
+    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -5095,19 +5116,19 @@ packages:
       eslint: 7.32.0
     dev: true
 
-  /eslint-plugin-prettier/3.4.1_f00f7e54b4b3cd43dd9e25d0d062b490:
-    resolution: {integrity: sha512-htg25EUYUeIhKHXjOinK4BgCcDwtLHjqaxCDsMy5nbnUMkKFvIhMVCp+5GFUXQ4Nr8lBsPqtGAqBenbpFqAA2g==}
+  /eslint-plugin-prettier/4.0.0_f00f7e54b4b3cd43dd9e25d0d062b490:
+    resolution: {integrity: sha512-98MqmCJ7vJodoQK359bqQWaxOE0CS8paAz/GgjaZLyex4TTk3g9HugoO89EqWCrFiOqn9EVvcoo7gZzONCWVwQ==}
     engines: {node: '>=6.0.0'}
     peerDependencies:
-      eslint: '>=5.0.0'
+      eslint: '>=7.28.0'
       eslint-config-prettier: '*'
-      prettier: '>=1.13.0'
+      prettier: '>=2.0.0'
     peerDependenciesMeta:
       eslint-config-prettier:
         optional: true
     dependencies:
       eslint: 7.32.0
-      eslint-config-prettier: 7.2.0_eslint@7.32.0
+      eslint-config-prettier: 8.5.0_eslint@7.32.0
       prettier: 2.5.1
       prettier-linter-helpers: 1.0.0
     dev: true
@@ -10179,11 +10200,11 @@ packages:
       webpack-merge: 5.8.0
     dev: true
 
-  /webpack-config-single-spa-react-ts/4.0.2_ef5a0286687b5f8c2055b2f939b83632:
-    resolution: {integrity: sha512-mRr4LsoH7vCpeEgaAHMjJYoEbrqgztv/8MBfIUVOeDB2unaQ49gtJSNW0w6Rw9WmmmkbLLQBvT4TEg0wX9O6JA==}
+  /webpack-config-single-spa-react-ts/4.0.3_ef5a0286687b5f8c2055b2f939b83632:
+    resolution: {integrity: sha512-IgqrVIUKE4kVSVsrFGAa01VaqkycnP0yGy12fRHsgSE07DJBk7It5L+LrfApNC6DDWzNOvUJPZ/ogPMWQ+PaCA==}
     dependencies:
-      webpack-config-single-spa-react: 4.0.2_ed870ac3ba52c4ec230ba2bc3dbb311c
-      webpack-config-single-spa-ts: 4.1.1_ef5a0286687b5f8c2055b2f939b83632
+      webpack-config-single-spa-react: 4.0.3_ed870ac3ba52c4ec230ba2bc3dbb311c
+      webpack-config-single-spa-ts: 4.1.2_ef5a0286687b5f8c2055b2f939b83632
     transitivePeerDependencies:
       - '@babel/core'
       - bufferutil
@@ -10193,10 +10214,10 @@ packages:
       - webpack
     dev: true
 
-  /webpack-config-single-spa-react/4.0.2_ed870ac3ba52c4ec230ba2bc3dbb311c:
-    resolution: {integrity: sha512-TSE/MZ5RhtG3qNJvCQnsFcHadL1fI2uw92sg2Ym7P9o/DgVuqJ931yrHVp5IMsTIoluioCrqlDx1OmLSEOGZhQ==}
+  /webpack-config-single-spa-react/4.0.3_ed870ac3ba52c4ec230ba2bc3dbb311c:
+    resolution: {integrity: sha512-rKMKWDW74rhlzZASRc0A9Y3KFJoWQEhA9MDcrssjxXgiq6r6BUkj1fXFagXBFCpGUoKyrYDKUSs0uc+8SJJPTA==}
     dependencies:
-      webpack-config-single-spa: 5.1.1_ed870ac3ba52c4ec230ba2bc3dbb311c
+      webpack-config-single-spa: 5.2.0_ed870ac3ba52c4ec230ba2bc3dbb311c
     transitivePeerDependencies:
       - '@babel/core'
       - bufferutil
@@ -10220,12 +10241,12 @@ packages:
       - webpack
     dev: true
 
-  /webpack-config-single-spa-ts/4.1.1_ef5a0286687b5f8c2055b2f939b83632:
-    resolution: {integrity: sha512-Njx9JE0rnw4TwLwCRFmxhTKEGViey/4vxFcTXOeEUut+vIGinRDNw6ea69YwDmUBI0jEEnUnd51bkuax2zszDQ==}
+  /webpack-config-single-spa-ts/4.1.2_ef5a0286687b5f8c2055b2f939b83632:
+    resolution: {integrity: sha512-H7INbFQgu9+H0IAOqsQNw/GljxWDdzwyEoyDJ4818V5RATm7IvcNKBuxEKilKK/LvgVeXB+29ZOOrqowSxBiFQ==}
     dependencies:
       fork-ts-checker-webpack-plugin: 6.5.0_5ce62039252b65ea20ff46b227d13cd9
       typescript: 4.6.2
-      webpack-config-single-spa: 5.1.1_ed870ac3ba52c4ec230ba2bc3dbb311c
+      webpack-config-single-spa: 5.2.0_ed870ac3ba52c4ec230ba2bc3dbb311c
       webpack-merge: 5.8.0
     transitivePeerDependencies:
       - '@babel/core'
@@ -10254,8 +10275,8 @@ packages:
       - webpack
     dev: true
 
-  /webpack-config-single-spa/5.1.1_ed870ac3ba52c4ec230ba2bc3dbb311c:
-    resolution: {integrity: sha512-i+j5PpxjcHbxnUXiR+VLjcRB6i4PfoiPERvGer27Q4BZcbICUiRJWORK+ur6KhcupZ5d0fnwge01cy8qA6DOJw==}
+  /webpack-config-single-spa/5.2.0_ed870ac3ba52c4ec230ba2bc3dbb311c:
+    resolution: {integrity: sha512-7GrheBYo5txmOKuRDt5V+8gJzS4y5WR2dqPi/lvQl6uh3xA7vlJSmaBFsYdbA28OC0UfG6fLF6+df+BAk5o25A==}
     dependencies:
       babel-loader: 8.2.3_ed870ac3ba52c4ec230ba2bc3dbb311c
       css-loader: 5.2.7_webpack@5.70.0
@@ -10700,7 +10721,7 @@ packages:
       - react-is
     dev: false
 
-  node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0_98f15f4a9c44408b9cde427fbca7b66c:
+  node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0_7a357bb42541b427aee3d1047c25447b:
     resolution: {integrity: sha1-nJd8i84nqrSkz8qd6PUfrrJT5DI=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.header/-/wasedatime.core.ts.ui.header-0.1.0.tgz}
     id: node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0
     name: wasedatime.core.ts.ui.header
@@ -10709,7 +10730,7 @@ packages:
       react: ^17.0.1
       react-dom: ^17.0.1
     dependencies:
-      '@bit/wasedatime.core.ts.ui.language-menu': node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2_98f15f4a9c44408b9cde427fbca7b66c
+      '@bit/wasedatime.core.ts.ui.language-menu': node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2_7a357bb42541b427aee3d1047c25447b
       '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2
       '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
       '@reach/router': 1.3.4_react-dom@17.0.2+react@17.0.2
@@ -10722,7 +10743,7 @@ packages:
       - react-is
     dev: false
 
-  node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2_98f15f4a9c44408b9cde427fbca7b66c:
+  node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2_7a357bb42541b427aee3d1047c25447b:
     resolution: {integrity: sha1-MUvE8RKQdx5JD3r7R/OPTdMgZes=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.language-menu/-/wasedatime.core.ts.ui.language-menu-0.1.2.tgz}
     id: node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2
     name: wasedatime.core.ts.ui.language-menu
@@ -10734,7 +10755,7 @@ packages:
       '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
       '@fortawesome/free-solid-svg-icons': 5.15.4
       '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
-      '@material-ui/core': 4.12.3_5539cae010396b202b015f3568914e95
+      '@material-ui/core': 4.12.3_b8fdba992ce7d797017dc07106486496
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
       react-responsive: 8.2.0_react@17.0.2

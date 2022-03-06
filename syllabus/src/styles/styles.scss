@@ -7,17 +7,15 @@ https://www.materialpalette.com/colors
 */
 
 .theme-default {
-  @import "~semantic-ui-css/components/label.min";
+  // @import "~semantic-ui-css/components/label.min";
   @import "~semantic-ui-css/components/divider.min";
   @import "~semantic-ui-css/components/statistic.min";
   @import "~semantic-ui-css/components/grid.min";
   @import "~semantic-ui-css/components/table.min";
   @import "~semantic-ui-css/components/segment.min";
-  @import "~semantic-ui-css/components/label.min";
   @import "~semantic-ui-css/components/button.min";
   @import "~semantic-ui-css/components/modal.min";
   @import "~semantic-ui-css/components/popup.min";
-  @import "~semantic-ui-css/components/step.min";
   @import "~semantic-ui-css/components/message.min";
   @import "~semantic-ui-css/components/menu.min";
   @import "~semantic-ui-css/components/tab.min";
@@ -33,7 +31,6 @@ https://www.materialpalette.com/colors
   @import "~semantic-ui-css/components/tab.min";
   @import "~semantic-ui-css/components/card.min";
   @import "~semantic-ui-css/components/dimmer.min";
-  @import "~semantic-ui-css/components/label.min";
 }
 
 .theme-default .primary {

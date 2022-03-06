@@ -15,15 +15,15 @@ import QuarterSwitch from "@app/components/timetable/QuarterSwitch";
 
 type ExtendedInvisibleButtonProps = {
   small: boolean;
-}
+};
 
 type SemesterTitleProps = {
   small: boolean;
-}
+};
 
 type ExtendedRowWrapperProps = {
   small: boolean;
-}
+};
 
 const ExtendedRowWrapper = styled(RowWrapper)<ExtendedRowWrapperProps>`
   flex: none;
@@ -33,7 +33,9 @@ const ExtendedRowWrapper = styled(RowWrapper)<ExtendedRowWrapperProps>`
   padding: 0.3em;
 `;
 
-const ExtendedInvisibleButton = styled(InvisibleButton)<ExtendedInvisibleButtonProps>`
+const ExtendedInvisibleButton = styled(
+  InvisibleButton
+)<ExtendedInvisibleButtonProps>`
   max-width: 50px;
   color: #000;
   &:hover {

@@ -18,23 +18,23 @@ import SyllabusTabs from "@app/components/SyllabusTabs";
 
 type ThankMessageProps = {
   isDisplayed: boolean;
-}
+};
 
 type LabsWrapperProps = {
   isLower: boolean;
-}
+};
 
 type MajorHeaderProps = {
   school: string;
-}
+};
 
 type FilterWrapper = {
   isLower: boolean;
-}
+};
 
 type LabsListProps = {
   isLower: boolean;
-}
+};
 
 const LabsOuterWrapper = styled.div`
   display: flex;

@@ -13,8 +13,7 @@
     "plugin:import/warnings",
     "plugin:import/typescript",
     "plugin:prettier/recommended",
-    "prettier",
-    "prettier/react"
+    "prettier"
   ],
   "parserOptions": {
     "ecmaVersion": "latest",
@@ -30,7 +29,6 @@
     "jsx-a11y",
     "prefer-arrow",
     "react",
-    "react-app",
     "react-hooks"
   ],
   // "ignorePatterns": [".eslintrc.js"],

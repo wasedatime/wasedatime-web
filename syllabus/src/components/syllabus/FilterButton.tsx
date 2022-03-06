@@ -18,9 +18,7 @@ interface Props {
 
 const FilterButton = ({ isModalOpen, handleToggleModal }) => {
   return (
-    <StyledFloatingActionButton
-      onClick={handleToggleModal}
-    >
+    <StyledFloatingActionButton onClick={handleToggleModal}>
       <FontAwesomeIcon
         icon={isModalOpen ? faTimes : faFilter}
         size="2x"

@@ -4,24 +4,27 @@ import {
   addedCourseListSwitchHeight,
   headerHeight,
 } from "@bit/wasedatime.core.ts.constants.size-variables";
-import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faMinusCircle,
+  faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import Step from "semantic-ui-react/dist/commonjs/elements/Step";
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
 import SimpleBar from "simplebar-react";
 import stickybits from "stickybits";
 import styled from "styled-components";
 
 import { Article, Section, Subheading } from "@app/components/styles/Article";
-import { VerticalStep } from "@app/components/styles/VerticalStep";
 import AddedCourseItemContainer from "@app/containers/AddedCourseItemContainer";
 import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer";
 import Course from "@app/types/course";
 
 type CourseListWrapperProps = {
   innerRef: any;
-}
+};
 
 const CourseListWrapper = styled.div<CourseListWrapperProps>`
   position: fixed !important;
@@ -50,16 +53,18 @@ const StyledMessageHeader = styled(Message.Header)`
   font-size: 14px !important;
 `;
 
-const StyledStepGroup = styled(Step.Group)`
-  margin-top: 0px !important;
-  .title {
-    font-family: Segoe UI, Yu Gothic Medium, Lato !important;
-    font-display: swap;
-    font-size: 1.5em !important;
+const StepGroup = styled.div`
+  margin-top: 1rem;
+
+  div.ui.segment {
+    padding: 1em 2em;
+    margin: 0px;
   }
-  .description {
-    font-size: 1.5em !important;
-  }
+`;
+
+const Step = styled(Segment)`
+  padding: 1em 2em;
+  margin: 0px;
 `;
 
 interface Props extends WithTranslation {
@@ -164,26 +169,27 @@ class AddedCourseList extends React.Component<Props, State> {
                 {t("syllabus.Added courses are displayed here")}
               </StyledMessageHeader>
             </Message>
+
+            <hr style={{ margin: "1em 0px" }} />
+
             <Section>
               <Subheading>{t("syllabus.To add a course")}</Subheading>
-              <StyledStepGroup vertical fluid>
-                <VerticalStep>
-                  <Step.Content>
-                    <Step.Title>
-                      {t("syllabus.Search with keywords")}
-                    </Step.Title>
-                    <Step.Description>
-                      {t("syllabus.With course or instructor's name")}
-                    </Step.Description>
-                    <Step.Description>
-                      {t("syllabus.English & Japanese supported")}
-                    </Step.Description>
-                  </Step.Content>
-                </VerticalStep>
+              <StepGroup>
+                <Step>
+                  <p>
+                    <b>{t("syllabus.Search with keywords")}</b>
+                  </p>
+                  <p>{t("syllabus.With course or instructor's name")}</p>
+                  <p>{t("syllabus.English & Japanese supported")}</p>
+                </Step>
+
+                <div style={{ textAlign: "center" }}>
+                  <FontAwesomeIcon icon={faArrowDown} size="1x" />
+                </div>
 
                 <Step>
-                  <Step.Content>
-                    <Step.Title>
+                  <p>
+                    <b>
                       {t("syllabus.Click on")}{" "}
                       <FontAwesomeIcon
                         style={{ color: "#48af37" }}
@@ -191,20 +197,20 @@ class AddedCourseList extends React.Component<Props, State> {
                         size="1x"
                       />{" "}
                       {t("syllabus.to add")}
-                    </Step.Title>
-                    <Step.Description>
-                      {t("syllabus.To remove")}
-                      {t("syllabus.Click on")}{" "}
-                      <FontAwesomeIcon
-                        style={{ color: "#ce0115" }}
-                        icon={faMinusCircle}
-                        size="1x"
-                      />{" "}
-                      {t("syllabus.to remove suffix")}
-                    </Step.Description>
-                  </Step.Content>
+                    </b>
+                  </p>
+                  <p>
+                    {t("syllabus.To remove")}
+                    {t("syllabus.Click on")}{" "}
+                    <FontAwesomeIcon
+                      style={{ color: "#ce0115" }}
+                      icon={faMinusCircle}
+                      size="1x"
+                    />{" "}
+                    {t("syllabus.to remove suffix")}
+                  </p>
                 </Step>
-              </StyledStepGroup>
+              </StepGroup>
             </Section>
             <Section>
               <Message info size="mini">

@@ -3,12 +3,12 @@ import styled from "styled-components";
 type Props = {
   filled?: boolean | false;
   color?: string;
-}
+};
 
 export const Label = styled.span<Props>`
-  border: 1px solid ${props => props.color || "grey"};
+  border: 1px solid ${(props) => props.color || "grey"};
   border-radius: 5px;
-  color: ${props => props.color || "grey"};
+  color: ${(props) => props.color || "grey"};
   padding: 0.5rem;
   font-size: 12px;
   font-weight: bold;

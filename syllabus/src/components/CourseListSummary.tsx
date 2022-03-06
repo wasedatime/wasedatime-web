@@ -15,7 +15,7 @@ import Course from "@app/types/course";
 
 type SortByButtonProps = {
   isSortingOptionOpen: boolean;
-}
+};
 
 const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
   margin-left: auto;

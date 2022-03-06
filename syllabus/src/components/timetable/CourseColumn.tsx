@@ -11,13 +11,13 @@ import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 
 type StyledCourseColumnProps = {
   displayPeriods: number;
-}
+};
 
 type CourseItemProps = {
   displayPeriods: number;
   top: number;
   height: number;
-}
+};
 
 const StyledCourseColumn = styled.div<StyledCourseColumnProps>`
   display: flex;

@@ -138,9 +138,17 @@ class AddReviewForm extends React.Component<Props, State> {
           key={n}
           icon={faStar}
           style={{ color: color, cursor: "pointer" }}
-          onMouseOver={() => this.setState({ [paintedStarsLabel]: n } as Pick<State, keyof State>)}
+          onMouseOver={() =>
+            this.setState({ [paintedStarsLabel]: n } as Pick<
+              State,
+              keyof State
+            >)
+          }
           onMouseOut={() =>
-            this.setState({ [paintedStarsLabel]: selectedStar } as Pick<State, keyof State>)
+            this.setState({ [paintedStarsLabel]: selectedStar } as Pick<
+              State,
+              keyof State
+            >)
           }
           onClick={() => this.props.handleScaleChange(label, n)}
         />

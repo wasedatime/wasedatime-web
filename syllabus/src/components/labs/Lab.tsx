@@ -17,11 +17,11 @@ import Slider from "rc-slider/lib/Slider";
 
 type LabWrapperProps = {
   isOpen: boolean;
-}
+};
 
 type LabTrigger = {
   school: string;
-}
+};
 
 const schoolCoverMap = {
   FSE: FSEcover,

@@ -15,11 +15,11 @@ import FilterGroups from "@app/types/filter";
 
 type FilterWrapperProps = {
   isSideBar: boolean;
-}
+};
 
 type FilterScrollAreaProps = {
   isSideBar: boolean;
-}
+};
 
 const FilterWrapper = styled.div<FilterWrapperProps>`
   ${(props) => !props.isSideBar && "width: 100vw;"}

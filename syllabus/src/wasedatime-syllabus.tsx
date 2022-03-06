@@ -34,11 +34,12 @@ const reactLifecycles = singleSpaReact({
     info,
     props // Customize the root error boundary for your microfrontend here.
   ) => {
-    console.log('====================================');
+    console.log("====================================");
     console.error(err);
     console.log(info);
     console.log(props);
-    console.log('====================================');
+    console.log("====================================");
+
     return null;
   },
 });

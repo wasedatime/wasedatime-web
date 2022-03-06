@@ -36,7 +36,7 @@ type ExpandableProps = {
 
 type DescriptionWrapperProps = {
   isLarger: boolean;
-}
+};
 
 const CourseItemWrapper = styled("li")`
   display: flex;

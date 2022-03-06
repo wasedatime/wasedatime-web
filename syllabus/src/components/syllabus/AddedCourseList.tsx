@@ -4,7 +4,11 @@ import {
   addedCourseListSwitchHeight,
   headerHeight,
 } from "@bit/wasedatime.core.ts.constants.size-variables";
-import { faArrowDown, faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faMinusCircle,
+  faPlusCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
@@ -20,7 +24,7 @@ import Course from "@app/types/course";
 
 type CourseListWrapperProps = {
   innerRef: any;
-}
+};
 
 const CourseListWrapper = styled.div<CourseListWrapperProps>`
   position: fixed !important;
@@ -172,16 +176,15 @@ class AddedCourseList extends React.Component<Props, State> {
               <Subheading>{t("syllabus.To add a course")}</Subheading>
               <StepGroup>
                 <Step>
-                  <p><b>{t("syllabus.Search with keywords")}</b></p>
+                  <p>
+                    <b>{t("syllabus.Search with keywords")}</b>
+                  </p>
                   <p>{t("syllabus.With course or instructor's name")}</p>
                   <p>{t("syllabus.English & Japanese supported")}</p>
                 </Step>
 
                 <div style={{ textAlign: "center" }}>
-                  <FontAwesomeIcon
-                    icon={faArrowDown}
-                    size="1x"
-                  />
+                  <FontAwesomeIcon icon={faArrowDown} size="1x" />
                 </div>
 
                 <Step>
@@ -197,14 +200,14 @@ class AddedCourseList extends React.Component<Props, State> {
                     </b>
                   </p>
                   <p>
-                      {t("syllabus.To remove")}
-                      {t("syllabus.Click on")}{" "}
-                      <FontAwesomeIcon
-                        style={{ color: "#ce0115" }}
-                        icon={faMinusCircle}
-                        size="1x"
-                      />{" "}
-                      {t("syllabus.to remove suffix")}
+                    {t("syllabus.To remove")}
+                    {t("syllabus.Click on")}{" "}
+                    <FontAwesomeIcon
+                      style={{ color: "#ce0115" }}
+                      icon={faMinusCircle}
+                      size="1x"
+                    />{" "}
+                    {t("syllabus.to remove suffix")}
                   </p>
                 </Step>
               </StepGroup>

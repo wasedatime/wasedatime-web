@@ -16,7 +16,7 @@ import Course from "@app/types/course";
 
 type ColumnProps = {
   flexBasis: string;
-}
+};
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;

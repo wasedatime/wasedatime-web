@@ -59,7 +59,7 @@ const App = ({
   useEffect(() => {
     const f = async () => {
       await fetchCourses();
-      
+
       const idToken = await getIdToken();
       if (idToken) {
         API.get("wasedatime-dev", "/timetable", {

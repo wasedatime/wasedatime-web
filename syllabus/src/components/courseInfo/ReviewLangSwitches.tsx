@@ -5,7 +5,7 @@ import styled from "styled-components";
 type ReviewLangSwitchProps = {
   active: boolean;
   isInHeading: boolean;
-}
+};
 
 const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
   font-size: 0.6em;

@@ -15,11 +15,11 @@ import majorsBySchool from "@app/constants/majors-by-school";
 
 type SchoolButtonProps = {
   active: boolean;
-}
+};
 
 type ReviewsCountProps = {
   school: string;
-}
+};
 
 const Menu = styled.div`
   ${media.tablet`

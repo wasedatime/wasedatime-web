@@ -26,9 +26,17 @@ const lifecycles = singleSpaReact({
   ReactDOM,
   rootComponent: App,
   errorBoundary: (
+    err,
     info,
     props // Customize the root error boundary for your microfrontend here.
-  ) => null,
+  ) => {
+    console.log('====================================');
+    console.error(err);
+    console.log(info);
+    console.log(props);
+    console.log('====================================');
+    return null;
+  },
 });
 
 const routes = constructRoutes(document.querySelector("#single-spa-layout"));

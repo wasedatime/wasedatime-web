@@ -1,7 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-import { ThemeContext } from "../../utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const StyledListItem = styled("li")`
   display: flex;

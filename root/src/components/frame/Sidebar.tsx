@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import textLogo from "@bit/wasedatime.core.assets.text-logo";
-import { normalTheme } from "@bit/wasedatime.core.ts.constants.theme";
+import { light } from "@bit/wasedatime.core.ts.constants.theme";
 import SidebarWrapper from "@bit/wasedatime.core.ts.styles.sidebar-wrapper";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -51,7 +51,7 @@ const NavItemBlock = styled.div<NavItemBlockProps>`
   display: flex;
   flex-direction: row;
   color: ${(props) =>
-    props.isCurrentPath ? props.theme.colorPrimary : "#fff"};
+    props.isCurrentPath ? props.theme.primary.main : "#fff"};
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;
@@ -65,7 +65,7 @@ const NavItemBlock = styled.div<NavItemBlockProps>`
   }
   transition: padding-left 0.5s;
   &:hover {
-    color: ${(props) => props.theme.colorPrimary};
+    color: ${(props) => props.theme.primary.main};
   }
 `;
 
@@ -104,7 +104,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
   };
 
   return (
-    <ThemeProvider theme={normalTheme}>
+    <ThemeProvider theme={light}>
       <SidebarWrapper
         expanded={expanded}
         onMouseEnter={expandSidebar}

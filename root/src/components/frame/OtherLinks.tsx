@@ -26,9 +26,9 @@ const LinksWrapper = styled("div")<LinksWrapperProps>`
   margin-bottom: 0.1vh;
   font-size: 12px;
   text-align: center;
-  color: ${(props) => props.theme.grey7};
+  color: ${(props) => props.theme.text.text3};
   a {
-    color: ${(props) => props.theme.grey7};
+    color: ${(props) => props.theme.text.text3};
     font-size: 12px;
   }
   opacity: ${(props) => (props.expanded ? "1" : "0")};

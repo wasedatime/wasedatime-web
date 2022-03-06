@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import styled from "styled-components";
-import { ThemeContext } from "../../utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context";
 
 import { Semester, Quarter } from "@app/constants/timetable-terms";
 

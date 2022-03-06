@@ -14,6 +14,7 @@ import Alert from "react-s-alert";
 import { fetchCourses, saveTimetable } from "@app/redux/actions";
 import { ReduxRootState } from "@app/redux/reducers";
 import { getAddedCoursePrefs } from "@app/redux/reducers/addedCourses";
+import { ThemeProvider } from "@app/utils/theme-context";
 import "@app/styles/styles.scss";
 
 const Timetable = lazy(() => import("@app/containers/TimetableContainer"));
@@ -79,10 +80,12 @@ const App = ({
 
   return (
     <Suspense fallback={<LoadingSpinner message="Loading..." />}>
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-      <Alert stack={{ limit: 1 }} timeout={3000} />
+      <ThemeProvider>
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+        <Alert stack={{ limit: 1 }} timeout={3000} />
+      </ThemeProvider>
     </Suspense>
   );
 };

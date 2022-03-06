@@ -7,7 +7,7 @@ import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 import Divider from "semantic-ui-react/dist/commonjs/elements/Divider";
 import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { ThemeContext } from "../../utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context";
 
 interface Props extends WithTranslation {
   closeModal: () => void;
@@ -66,7 +66,7 @@ const Stars = styled(Statistic.Value)``;
 const StyledTextarea = styled("textarea")`
   border: 1px solid #eee;
   border-radius: 10px;
-  background-color: ${(props) => props.theme.white};
+  background-color: #fff;
   outline: none;
   padding: 10px;
   margin: 5px 0 0;

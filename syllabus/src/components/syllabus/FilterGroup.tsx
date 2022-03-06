@@ -8,7 +8,7 @@ import FormLabel from "@material-ui/core/FormLabel";
 import { withStyles } from "@material-ui/core/styles";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
-import { ThemeContext } from "../../utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const StyledDropdown = styled(Dropdown)`
   font-size: 0.9em !important;

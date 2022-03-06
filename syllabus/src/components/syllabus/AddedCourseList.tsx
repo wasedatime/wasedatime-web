@@ -1,9 +1,6 @@
 import React from "react";
 
-import {
-  addedCourseListSwitchHeight,
-  headerHeight,
-} from "@bit/wasedatime.core.ts.constants.size-variables";
+import { height } from "@bit/wasedatime.core.ts.constants.size-variables";
 import {
   faArrowDown,
   faMinusCircle,
@@ -32,8 +29,8 @@ const CourseListWrapper = styled.div<CourseListWrapperProps>`
   padding: 0.5em 1em 1em 1em;
   width: 22em;
   height: calc(
-    100vh - ${(props) => props.theme.headerHeight} -
-      ${(props) => props.theme.addedCourseListSwitchHeight}
+    100vh - ${height.headerHeight} -
+      ${height.switchHeight}
   );
   .simplebar-scrollbar::before {
     background-color: #999;
@@ -99,8 +96,8 @@ class AddedCourseList extends React.Component<Props, State> {
       if (this.wrapper) {
         this.stickyWrapper = stickybits(this.wrapper, {
           stickyBitStickyOffset:
-            parseInt(headerHeight, 10) +
-            parseInt(addedCourseListSwitchHeight, 10),
+            parseInt(height.headerHeight, 10) +
+            parseInt(height.switchHeight, 10),
         });
       }
     };

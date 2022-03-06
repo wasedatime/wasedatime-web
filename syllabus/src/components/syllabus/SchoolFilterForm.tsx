@@ -15,7 +15,7 @@ import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
 import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
 
 import "semantic-ui-css/components/popup.min.css";
-import { ThemeContext } from "../../utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const Cards = styled(Card.Group)`
   .ui.card > .ui.image {

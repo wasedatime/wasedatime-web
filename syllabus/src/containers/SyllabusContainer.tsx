@@ -3,7 +3,7 @@ import React, { lazy, Suspense } from "react";
 import API from "@aws-amplify/api";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import withRouter, { WithRouter } from "../utils/with-router";
+import withRouter, { WithRouter } from "@app/utils/with-router";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import debounce from "lodash/debounce";
@@ -50,7 +50,7 @@ const FetchedCourseList = lazy(
   () => import("@app/components/syllabus/FetchedCourseList")
 );
 
-import { ThemeContext } from "../utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const SyllabusWrapper = styled.div`
   display: flex;

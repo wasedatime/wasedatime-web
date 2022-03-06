@@ -1,7 +1,8 @@
 import React from "react";
 
 import styled from "styled-components";
-import { ThemeContext } from "../../utils/theme-context";
+import timetableColors from "@app/constants/timetable-colors";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const colorIds: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
 
@@ -20,10 +21,10 @@ const InvisibleButton = styled("button")`
 const ColorButton = styled(InvisibleButton)<ColorButtonProps>`
   width: 1.5em;
   height: 1.5em;
-  border: 1px solid ${(props) => props.theme[`color${props.colorCode}`]};
+  border: 1px solid ${props => timetableColors[`color${props.colorCode}`]};
   border-radius: 0.3em;
   margin: 0 0.1em;
-  background-color: ${(props) => props.theme[`bgColor${props.colorCode}`]};
+  background-color: ${props => timetableColors[`bgColor${props.colorCode}`]};
 `;
 
 interface Props {

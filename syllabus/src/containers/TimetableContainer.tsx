@@ -4,7 +4,6 @@ import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { navigate } from "@reach/router";
 import { Helmet } from "react-helmet";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";

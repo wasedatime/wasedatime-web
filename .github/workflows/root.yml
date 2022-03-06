@@ -18,7 +18,7 @@ jobs:
       BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
       REACT_APP_BLOG_S3_BASE_URL: https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Use Node.js 16.x
         uses: actions/setup-node@v2.5.1
         with:

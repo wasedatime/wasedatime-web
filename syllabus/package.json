@@ -73,7 +73,7 @@
     "webpack-merge": "5.8.0"
   },
   "dependencies": {
-    "@aws-amplify/api": "3.3.3",
+    "@aws-amplify/api": "4.0.33",
     "@bit/wasedatime.core.ts.constants.langs": "0.0.5",
     "@bit/wasedatime.core.ts.constants.size-variables": "0.0.1",
     "@bit/wasedatime.core.ts.constants.theme": "0.0.1",

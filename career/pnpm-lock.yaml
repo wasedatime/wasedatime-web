@@ -22,7 +22,7 @@ specifiers:
   cross-env: ^7.0.3
   eslint: ^7.32.0
   eslint-config-airbnb: ^19.0.4
-  eslint-config-prettier: ^7.2.0
+  eslint-config-prettier: 8.5.0
   eslint-config-ts-important-stuff: ^1.1.0
   eslint-config-ts-react-important-stuff: ^3.0.0
   eslint-plugin-import: ^2.25.4
@@ -78,7 +78,7 @@ devDependencies:
   cross-env: 7.0.3
   eslint: 7.32.0
   eslint-config-airbnb: 19.0.4_91b1c94532ea9777d010f6ae0e52c9d1
-  eslint-config-prettier: 7.2.0_eslint@7.32.0
+  eslint-config-prettier: 8.5.0_eslint@7.32.0
   eslint-config-ts-important-stuff: 1.1.0
   eslint-config-ts-react-important-stuff: 3.0.0_eslint@7.32.0
   eslint-plugin-import: 2.25.4_eslint@7.32.0
@@ -3867,8 +3867,8 @@ packages:
     resolution: {integrity: sha512-CsV6QFsjNDTZTDEgE1XxhTKph4YJUh5XFMdsWv3p+9DuMyvfy40fsnZiwqXZHBVEUNMHf+zfPGk6s6b4fS9Erw==}
     dev: true
 
-  /eslint-config-prettier/7.2.0_eslint@7.32.0:
-    resolution: {integrity: sha512-rV4Qu0C3nfJKPOAhFujFxB7RMP+URFyQqqOZW9DMRD7ZDTFyjaIlETU3xzHELt++4ugC0+Jm084HQYkkJe+Ivg==}
+  /eslint-config-prettier/8.5.0_eslint@7.32.0:
+    resolution: {integrity: sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -4013,7 +4013,7 @@ packages:
         optional: true
     dependencies:
       eslint: 7.32.0
-      eslint-config-prettier: 7.2.0_eslint@7.32.0
+      eslint-config-prettier: 8.5.0_eslint@7.32.0
       prettier: 2.5.1
       prettier-linter-helpers: 1.0.0
     dev: true

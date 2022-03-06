@@ -51,7 +51,7 @@ specifiers:
   css-loader: 6.7.0
   css-minimizer-webpack-plugin: 3.4.1
   cssnano: 5.1.0
-  dotenv-webpack: 7.0.3
+  dotenv-webpack: 7.1.0
   eslint: ^7.32.0
   eslint-config-airbnb: ^19.0.4
   eslint-config-prettier: ^7.2.0
@@ -195,7 +195,7 @@ devDependencies:
   cross-env: 7.0.3
   css-minimizer-webpack-plugin: 3.4.1_webpack@5.70.0
   cssnano: 5.1.0_postcss@8.4.7
-  dotenv-webpack: 7.0.3_webpack@5.70.0
+  dotenv-webpack: 7.1.0_webpack@5.70.0
   eslint: 7.32.0
   eslint-config-airbnb: 19.0.4_d76b7d1e8ae88f7afe34115739da35d9
   eslint-config-prettier: 7.2.0_eslint@7.32.0
@@ -5794,8 +5794,8 @@ packages:
       dotenv: 8.6.0
     dev: true
 
-  /dotenv-webpack/7.0.3_webpack@5.70.0:
-    resolution: {integrity: sha512-O0O9pOEwrk+n1zzR3T2uuXRlw64QxHSPeNN1GaiNBloQFNaCUL9V8jxSVz4jlXXFP/CIqK8YecWf8BAvsSgMjw==}
+  /dotenv-webpack/7.1.0_webpack@5.70.0:
+    resolution: {integrity: sha512-+aUOe+nqgLerA/n611oyC15fY79BIkGm2fOxJAcHDonMZ7AtDpnzv/Oe591eHAenIE0t6w03UyxDnLs/YUxx5Q==}
     engines: {node: '>=10'}
     peerDependencies:
       webpack: ^4 || ^5

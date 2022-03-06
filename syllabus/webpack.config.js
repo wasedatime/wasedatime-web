@@ -8,10 +8,11 @@ const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
 
 // use .env
 const webpack = require("webpack");
-const dotenv = require("dotenv");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = (webpackConfigEnv, argv) => {
   if (webpackConfigEnv.isLocal || webpackConfigEnv.standalone)
+    // eslint-disable-next-line no-undef, camelcase
     __webpack_base_uri__ = "/";
   const defaultConfig = singleSpaDefaults({
     orgName: "wasedatime",
@@ -90,11 +91,7 @@ module.exports = (webpackConfigEnv, argv) => {
     },
     plugins:
       webpackConfigEnv.isLocal || webpackConfigEnv.standalone
-        ? [
-            new webpack.DefinePlugin({
-              "process.env": JSON.stringify(dotenv.config().parsed),
-            }),
-          ]
+        ? [new Dotenv()]
         : [
             new webpack.EnvironmentPlugin(["REACT_APP_API_BASE_URL"]),
             new PreloadWebpackPlugin({
@@ -104,6 +101,7 @@ module.exports = (webpackConfigEnv, argv) => {
                 if (/\.(woff|woff2|eot|ttf|otf)$/.test(entry)) return "font";
                 if (/\.(jpe?g|png|gif|bmp|tiff|svg)$/.test(entry))
                   return "image";
+
                 return "script";
               },
             }),

@@ -10,7 +10,7 @@ specifiers:
   '@babel/runtime': 7.17.2
   '@testing-library/jest-dom': 5.16.2
   '@testing-library/react': 12.1.3
-  '@types/jest': ^26.0.24
+  '@types/jest': 26.0.24
   '@types/react': 17.0.39
   '@types/react-dom': 16.9.14
   '@types/systemjs': 6.1.1

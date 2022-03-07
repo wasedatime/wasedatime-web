@@ -78,7 +78,7 @@ specifiers:
   react-dom: 17.0.2
   react-ga: 3.3.0
   react-helmet: 6.1.0
-  react-i18next: 11.15.5
+  react-i18next: 11.15.6
   react-minimal-pie-chart: 8.2.0
   react-popper: 2.2.5
   react-redux: 7.2.6
@@ -150,7 +150,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-ga: 3.3.0_react@17.0.2
   react-helmet: 6.1.0_react@17.0.2
-  react-i18next: 11.15.5_8f2a12f93b34591c18c344cd829419b1
+  react-i18next: 11.15.6_8f2a12f93b34591c18c344cd829419b1
   react-minimal-pie-chart: 8.2.0_react-dom@17.0.2+react@17.0.2
   react-popper: 2.2.5_react@17.0.2
   react-redux: 7.2.6_react-dom@17.0.2+react@17.0.2
@@ -11385,8 +11385,8 @@ packages:
       react-side-effect: 2.1.1_react@17.0.2
     dev: false
 
-  /react-i18next/11.15.5_8f2a12f93b34591c18c344cd829419b1:
-    resolution: {integrity: sha512-vBWuVEQgrhZrGKpyv8FmJ7Zs5jRQWl794Tte7yzJ0okZqqi3jd6j2pLYNg441WcREsbIOvWdiDXbY7W6E93p1A==}
+  /react-i18next/11.15.6_8f2a12f93b34591c18c344cd829419b1:
+    resolution: {integrity: sha512-OUWcFdNgIA9swVx3JGIreuquglAinpRwB/HYrCprTN+s9BQDt9LSiY7x5DGc2JzVpwqtpoTV7oRUTOxEPNyUPw==}
     peerDependencies:
       i18next: '>= 19.0.0'
       react: '>= 16.8.0'
@@ -14450,7 +14450,7 @@ packages:
       '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-i18next: 11.15.5_8f2a12f93b34591c18c344cd829419b1
+      react-i18next: 11.15.6_8f2a12f93b34591c18c344cd829419b1
       react-responsive: 8.2.0_react@17.0.2
     transitivePeerDependencies:
       - '@fortawesome/fontawesome-svg-core'
@@ -14476,7 +14476,7 @@ packages:
       i18next-http-backend: 1.3.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-i18next: 11.15.5_8f2a12f93b34591c18c344cd829419b1
+      react-i18next: 11.15.6_8f2a12f93b34591c18c344cd829419b1
     transitivePeerDependencies:
       - encoding
       - i18next

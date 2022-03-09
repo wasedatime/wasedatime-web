@@ -59,7 +59,7 @@ specifiers:
   react-dom: 17.0.2
   react-ga: 3.3.0
   react-helmet: 6.1.0
-  react-i18next: 11.15.5
+  react-i18next: 11.15.6
   react-responsive-carousel: 3.2.23
   sass: 1.49.9
   sass-loader: 11.1.1
@@ -105,7 +105,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-ga: 3.3.0_react@17.0.2
   react-helmet: 6.1.0_react@17.0.2
-  react-i18next: 11.15.5_8f2a12f93b34591c18c344cd829419b1
+  react-i18next: 11.15.6_8f2a12f93b34591c18c344cd829419b1
   react-responsive-carousel: 3.2.23
   semantic-ui-css: 2.4.1
   semantic-ui-react: 2.1.2_react-dom@17.0.2+react@17.0.2
@@ -8480,8 +8480,8 @@ packages:
       react-side-effect: 2.1.1_react@17.0.2
     dev: false
 
-  /react-i18next/11.15.5_8f2a12f93b34591c18c344cd829419b1:
-    resolution: {integrity: sha512-vBWuVEQgrhZrGKpyv8FmJ7Zs5jRQWl794Tte7yzJ0okZqqi3jd6j2pLYNg441WcREsbIOvWdiDXbY7W6E93p1A==}
+  /react-i18next/11.15.6_8f2a12f93b34591c18c344cd829419b1:
+    resolution: {integrity: sha512-OUWcFdNgIA9swVx3JGIreuquglAinpRwB/HYrCprTN+s9BQDt9LSiY7x5DGc2JzVpwqtpoTV7oRUTOxEPNyUPw==}
     peerDependencies:
       i18next: '>= 19.0.0'
       react: '>= 16.8.0'
@@ -10765,7 +10765,7 @@ packages:
       i18next-http-backend: 1.3.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-      react-i18next: 11.15.5_8f2a12f93b34591c18c344cd829419b1
+      react-i18next: 11.15.6_8f2a12f93b34591c18c344cd829419b1
     transitivePeerDependencies:
       - encoding
       - i18next

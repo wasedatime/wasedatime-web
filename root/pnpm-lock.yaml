@@ -84,7 +84,7 @@ specifiers:
   react: 17.0.2
   react-ga: 3.3.0
   react-helmet: 6.1.0
-  react-i18next: 11.15.5
+  react-i18next: 11.15.6
   react-responsive: 8.2.0
   react-router-dom: 5.3.0
   react-vertical-timeline-component: 3.5.2
@@ -160,7 +160,7 @@ dependencies:
   react: 17.0.2
   react-ga: 3.3.0_react@17.0.2
   react-helmet: 6.1.0_react@17.0.2
-  react-i18next: 11.15.5_i18next@19.9.2+react@17.0.2
+  react-i18next: 11.15.6_i18next@19.9.2+react@17.0.2
   react-responsive: 8.2.0_react@17.0.2
   react-router-dom: 5.3.0_react@17.0.2
   react-vertical-timeline-component: 3.5.2_react@17.0.2
@@ -10646,8 +10646,8 @@ packages:
       react-side-effect: 2.1.1_react@17.0.2
     dev: false
 
-  /react-i18next/11.15.5_i18next@19.9.2+react@17.0.2:
-    resolution: {integrity: sha512-vBWuVEQgrhZrGKpyv8FmJ7Zs5jRQWl794Tte7yzJ0okZqqi3jd6j2pLYNg441WcREsbIOvWdiDXbY7W6E93p1A==}
+  /react-i18next/11.15.6_i18next@19.9.2+react@17.0.2:
+    resolution: {integrity: sha512-OUWcFdNgIA9swVx3JGIreuquglAinpRwB/HYrCprTN+s9BQDt9LSiY7x5DGc2JzVpwqtpoTV7oRUTOxEPNyUPw==}
     peerDependencies:
       i18next: '>= 19.0.0'
       react: '>= 16.8.0'
@@ -13568,7 +13568,7 @@ packages:
       '@fortawesome/free-brands-svg-icons': 5.15.4
       '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
       react: 17.0.2
-      react-i18next: 11.15.5_i18next@19.9.2+react@17.0.2
+      react-i18next: 11.15.6_i18next@19.9.2+react@17.0.2
       react-responsive: 8.2.0_react@17.0.2
     transitivePeerDependencies:
       - '@fortawesome/fontawesome-svg-core'
@@ -13609,7 +13609,7 @@ packages:
       i18next-browser-languagedetector: 6.1.3
       i18next-http-backend: 1.3.2
       react: 17.0.2
-      react-i18next: 11.15.5_i18next@19.9.2+react@17.0.2
+      react-i18next: 11.15.6_i18next@19.9.2+react@17.0.2
     transitivePeerDependencies:
       - encoding
       - i18next

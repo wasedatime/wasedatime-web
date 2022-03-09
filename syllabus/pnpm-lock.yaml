@@ -44,7 +44,7 @@ specifiers:
   babel-plugin-styled-components: 2.0.6
   concurrently: 7.0.0
   cross-env: 7.0.3
-  css-loader: 6.7.0
+  css-loader: 6.7.1
   dotenv-webpack: 7.1.0
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4
@@ -190,7 +190,7 @@ devDependencies:
   babel-plugin-styled-components: 2.0.6_styled-components@5.3.3
   concurrently: 7.0.0
   cross-env: 7.0.3
-  css-loader: 6.7.0_webpack@5.70.0
+  css-loader: 6.7.1_webpack@5.70.0
   dotenv-webpack: 7.1.0_webpack@5.70.0
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4_c7d04ecf5eaa64250a4220a14895c52e
@@ -5559,8 +5559,8 @@ packages:
       webpack: 5.70.0_webpack-cli@4.9.2
     dev: false
 
-  /css-loader/6.7.0_webpack@5.70.0:
-    resolution: {integrity: sha512-S7HCfCiDHLA+VXKqdZwyRZgoO0R9BnKDnVIoHMq5grl3N86zAu7MB+FBWHr5xOJC8SmvpTLha/2NpfFkFEN/ig==}
+  /css-loader/6.7.1_webpack@5.70.0:
+    resolution: {integrity: sha512-yB5CNFa14MbPJcomwNh3wLThtkZgcNyI2bNMRt8iE5Z8Vwl7f8vQXFAzn2HDOJvtDq2NTZBUGMSUNNyrv3/+cw==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
       webpack: ^5.0.0
@@ -11640,7 +11640,7 @@ packages:
       browserslist: 4.19.3
       camelcase: 6.3.0
       case-sensitive-paths-webpack-plugin: 2.4.0
-      css-loader: 6.7.0_webpack@5.70.0
+      css-loader: 6.7.1_webpack@5.70.0
       css-minimizer-webpack-plugin: 3.4.1_webpack@5.70.0
       dotenv: 10.0.0
       dotenv-expand: 5.1.0

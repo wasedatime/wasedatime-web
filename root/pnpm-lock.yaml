@@ -48,7 +48,7 @@ specifiers:
   concurrently: 7.0.0
   copy-webpack-plugin: 10.2.4
   cross-env: 7.0.3
-  css-loader: 6.7.0
+  css-loader: 6.7.1
   css-minimizer-webpack-plugin: 3.4.1
   cssnano: 5.1.1
   dotenv-webpack: 7.1.0
@@ -148,7 +148,7 @@ dependencies:
   '@types/styled-components': 5.1.24
   '@types/systemjs': 6.1.1
   '@types/webpack-env': 1.16.3
-  css-loader: 6.7.0_webpack@5.70.0
+  css-loader: 6.7.1_webpack@5.70.0
   graphql: 15.8.0
   i18next: 19.9.2
   localforage: 1.10.0
@@ -5358,8 +5358,8 @@ packages:
       webpack: 5.70.0_webpack-cli@4.9.2
     dev: true
 
-  /css-loader/6.7.0_webpack@5.70.0:
-    resolution: {integrity: sha512-S7HCfCiDHLA+VXKqdZwyRZgoO0R9BnKDnVIoHMq5grl3N86zAu7MB+FBWHr5xOJC8SmvpTLha/2NpfFkFEN/ig==}
+  /css-loader/6.7.1_webpack@5.70.0:
+    resolution: {integrity: sha512-yB5CNFa14MbPJcomwNh3wLThtkZgcNyI2bNMRt8iE5Z8Vwl7f8vQXFAzn2HDOJvtDq2NTZBUGMSUNNyrv3/+cw==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
       webpack: ^5.0.0

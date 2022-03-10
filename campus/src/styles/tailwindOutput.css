@@ -476,16 +476,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-width: 1px;
 }
 
-.text-light-text2 {
-  --tw-text-opacity: 1;
-  color: rgb(96 96 96 / var(--tw-text-opacity));
-}
-
 .outline {
   outline-style: solid;
-}
-
-.dark .dark\:text-dark-text2 {
-  --tw-text-opacity: 1;
-  color: rgb(161 161 161 / var(--tw-text-opacity));
 }

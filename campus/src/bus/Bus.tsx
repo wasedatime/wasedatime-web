@@ -350,7 +350,7 @@ const Bus = (): JSX.Element => {
         <meta property="og:site_name" content="WasedaTime - Bus" />
       </Helmet>
 
-      <InfoWrapper className={theme}>
+      <InfoWrapper>
         <h1
           style={{
             borderLeft: "5px solid rgb(148, 27, 47)",
@@ -360,7 +360,7 @@ const Bus = (): JSX.Element => {
         >
           {t("bus.busStatus")}
         </h1>
-        <p>
+        <p className="text-light-text1 dark:text-dark-text1">
           <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
           {t("bus.Assign a date / time to check the next bus")}：
         </p>

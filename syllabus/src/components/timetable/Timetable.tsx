@@ -105,7 +105,7 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
           {!addedCoursesAndPrefs.length && (
             <Wrapper>
               <Article>
-                <h5>{t("timetable.welcome")} 🤗</h5>
+                <h5 className="text-light-text1 dark:text-dark-text1">{t("timetable.welcome")} 🤗</h5>
                 <br />
                 <Section>
                   <Message

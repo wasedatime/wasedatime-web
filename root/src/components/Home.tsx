@@ -113,13 +113,13 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
               alt="WasedaTime Text Logo"
             />
           </MainHeading>
-          <Description className="text-light-text1 dark:text-dark-text1 text-shadow-sm dark:text-shadow-none">
+          <Description className="text-white dark:text-dark-text1 text-shadow-sm dark:text-shadow-none">
             {t("about.description")}
           </Description>
           <br />
           <button
             type="button"
-            className="bg-red-800 dark:bg-dark-button rounded-lg text-white px-4 py-2 mx-2"
+            className="bg-red-800 dark:bg-dark-darker rounded-lg text-white px-4 py-2 mx-2"
             onClick={() => setModalOpen(true)}
           >
             {t("welcome.newFeature")}

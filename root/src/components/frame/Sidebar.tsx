@@ -146,13 +146,13 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
                 isCurrentPath={item.path === currentPath}
               >
                 <FontAwesomeIcon
-                  className="group-hover:text-primaryDarker dark:group-hover:text-primaryDarker"
+                  className="group-hover:text-light-main dark:group-hover:text-dark-main"
                   icon={item.icon}
                   size="2x"
                   transform="shrink-2"
                 />
                 <NavItemText
-                  className="group-hover:text-primaryDarker dark:group-hover:text-primaryDarker"
+                  className="group-hover:text-light-main dark:group-hover:text-dark-main"
                   expanded={expanded}
                 >
                   {item.name}

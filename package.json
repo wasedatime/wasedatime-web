@@ -10,5 +10,10 @@
     "test": "pnpm recursive run test --workspace-concurrency 6"
   },
   "devDependencies": {},
-  "dependencies": {}
+  "dependencies": {},
+  "bit": {
+    "env": {},
+    "componentsDefaultDirectory": "components/{name}",
+    "packageManager": "npm"
+  }
 }

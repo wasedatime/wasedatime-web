@@ -13,6 +13,7 @@ import DatePicker from "react-datepicker";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+import { ThemeContext } from "@app/utils/theme-context";
 
 import { busSchedule } from "@app/constants/busSchedule";
 
@@ -315,6 +316,8 @@ const TimeSelector = forwardRef<any, PropsType>(({ value, onClick }, ref) => (
 ));
 
 const Bus = (): JSX.Element => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   const [date, setDate] = useState<Date>(new Date());
   const onDatetimeChange = (date: Date): void => setDate(date || new Date());
   const clearDatetime = (): void => setDate(new Date());
@@ -323,6 +326,8 @@ const Bus = (): JSX.Element => {
   useEffect(() => {
     i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
   }, []);
+
+  useEffect(() => console.log(theme), [theme])
 
   const lng = i18n.language;
   const { wasedaStatus, nishiStatus } = getBusStatuses(date, lng, t);
@@ -345,7 +350,7 @@ const Bus = (): JSX.Element => {
         <meta property="og:site_name" content="WasedaTime - Bus" />
       </Helmet>
 
-      <InfoWrapper>
+      <InfoWrapper className={theme}>
         <h1
           style={{
             borderLeft: "5px solid rgb(148, 27, 47)",

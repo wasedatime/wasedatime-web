@@ -4,10 +4,10 @@ const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ExposeRuntimeCssAssetsPlugin = require("single-spa-css/ExposeRuntimeCssAssetsPlugin.cjs");
 const PreloadWebpackPlugin = require("@vue/preload-webpack-plugin");
+const webpack = require("webpack");
 // const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 // use .env
-const webpack = require("webpack");
 const Dotenv = require("dotenv-webpack");
 
 module.exports = (webpackConfigEnv, argv) => {
@@ -75,6 +75,7 @@ module.exports = (webpackConfigEnv, argv) => {
               ? "style-loader"
               : MiniCssExtractPlugin.loader,
             "css-loader",
+            "postcss-loader"
           ],
         },
         {
@@ -84,7 +85,8 @@ module.exports = (webpackConfigEnv, argv) => {
               ? "style-loader"
               : MiniCssExtractPlugin.loader,
             "css-loader",
-            "sass-loader",
+            "postcss-loader",
+            "sass-loader"
           ],
         },
       ],
@@ -111,6 +113,9 @@ module.exports = (webpackConfigEnv, argv) => {
             new ExposeRuntimeCssAssetsPlugin({
               // The filename here must match the filename for the MiniCssExtractPlugin
               filename: "[name].css",
+            }),
+            new FilterWarningsPlugin({
+              exclude: /Critical dependency: the request of a dependency is an expression/,
             }),
           ],
   });

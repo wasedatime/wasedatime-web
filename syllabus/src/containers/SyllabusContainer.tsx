@@ -176,7 +176,6 @@ class SyllabusContainer extends React.Component<
     const { courseId } = queryString.parse(window.location.search);
     if (courseId && this.state.topCourseId !== courseId) {
       if (!this.state.isFetchingTopCourse) {
-        console.log("666");
         this.setState({ isFetchingTopCourse: true }, () =>
           this.setTopCourse(courseId)
         );

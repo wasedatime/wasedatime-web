@@ -14,7 +14,7 @@
     "build": "webpack --mode=production",
     "build-dev": "webpack --mode=production --env isDev",
     "local": "concurrently --kill-others \"pnpm start\" \"cd ../syllabus && pnpm start\" \"cd ../campus && pnpm start\" \"cd ../career && pnpm start\" \"cd ../blog && pnpm start\"",
-    "tailwind:build": "pnpx tailwind build -i ./src/styles/styles.css -o ./src/styles/index.css"
+    "tailwind:build": "pnpx tailwind build -i ./src/styles/styles.css -o ./src/styles/tailwind-build-output.css"
   },
   "devDependencies": {
     "@babel/core": "7.17.5",

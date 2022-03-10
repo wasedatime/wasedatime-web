@@ -1,6 +1,10 @@
 @import "common.css";
 @import "datetime.css";
-@import "tailwindOutput.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .campus-container {
   @import "~bootstrap/dist/css/bootstrap.min";
   @import "~react-datepicker/dist/react-datepicker";

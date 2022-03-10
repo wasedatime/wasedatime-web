@@ -4,6 +4,7 @@ import Bus from "@app/bus/Bus";
 import RoomFinder from "@app/room/RoomFinder";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { ThemeContext } from "@app/utils/theme-context";
+import "@app/styles/styles.scss";
 
 const App = () => {
   const { t, i18n } = useTranslation();

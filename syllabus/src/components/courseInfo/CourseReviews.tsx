@@ -286,7 +286,7 @@ class CourseReviews extends React.Component<Props, State> {
           scalesAvg: getAvgScales(updatedReviews),
         });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
   };
 
   openReviewForm = () =>

@@ -327,8 +327,6 @@ const Bus = (): JSX.Element => {
     i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
   }, []);
 
-  useEffect(() => console.log(theme), [theme])
-
   const lng = i18n.language;
   const { wasedaStatus, nishiStatus } = getBusStatuses(date, lng, t);
   const wasedaStatusComponent = createStatusComponent(wasedaStatus, t);

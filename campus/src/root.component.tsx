@@ -10,7 +10,6 @@ import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { useTranslation } from "react-i18next";
 import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/ja/translation.json";
-import "@app/styles/styles.scss";
 
 i18nConfig({
   i18n: i18next,

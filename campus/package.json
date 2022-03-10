@@ -2,8 +2,8 @@
   "name": "@wasedatime/campus",
   "scripts": {
     "preinstall": "npx -y only-allow pnpm",
-    "start": "pnpm run tailwind:build && webpack serve --port 8081 --env isLocal",
-    "start:standalone": "pnpm run tailwind:build && webpack serve --env standalone",
+    "start": "webpack serve --port 8081 --env isLocal",
+    "start:standalone": "webpack serve --env standalone",
     "local": "concurrently --kill-others \"pnpm start\" \"cd ../root && pnpm start\"",
     "build": "webpack --mode=production",
     "build-dev": "webpack --mode=production --env isDev",
@@ -14,8 +14,7 @@
     "format": "prettier --write \"**/*.{js,ts,tsx}\"",
     "test": "cross-env BABEL_ENV=test jest",
     "watch-tests": "cross-env BABEL_ENV=test jest --watch",
-    "coverage": "cross-env BABEL_ENV=test jest --coverage",
-    "tailwind:build": "pnpx tailwind build -i ./src/styles/tailwind.css -o ./src/styles/tailwindOutput.css"
+    "coverage": "cross-env BABEL_ENV=test jest --coverage"
   },
   "devDependencies": {
     "@babel/core": "7.17.5",
@@ -37,6 +36,7 @@
     "cross-env": "7.0.3",
     "css-loader": "6.7.1",
     "cssnano": "5.1.0",
+    "dotenv-webpack": "7.1.0",
     "eslint": "8.10.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
@@ -52,6 +52,7 @@
     "jest": "26.6.3",
     "jest-cli": "26.6.3",
     "postcss": "8.4.8",
+    "postcss-loader": "5.3.0",
     "prettier": "2.5.1",
     "prettier-eslint": "13.0.0",
     "pretty-quick": "3.1.3",

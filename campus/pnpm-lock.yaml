@@ -21,20 +21,20 @@ specifiers:
   '@fortawesome/react-fontawesome': 0.1.17
   '@testing-library/jest-dom': 5.16.2
   '@testing-library/react': 12.1.3
-  '@types/jest': ^26.0.24
+  '@types/jest': 26.0.24
   '@types/react': 17.0.39
-  '@types/react-dom': 16.9.14
+  '@types/react-dom': 17.0.13
   '@types/styled-components': 5.1.24
   '@types/systemjs': 6.1.1
   '@types/webpack-env': 1.16.3
-  '@typescript-eslint/eslint-plugin': 5.13.0
-  '@typescript-eslint/parser': 5.13.0
+  '@typescript-eslint/eslint-plugin': 5.14.0
+  '@typescript-eslint/parser': 5.14.0
   babel-jest: 26.6.3
   babel-plugin-styled-components: 2.0.6
   bootstrap: 4.6.1
   concurrently: 7.0.0
   cross-env: 7.0.3
-  css-loader: 6.7.0
+  css-loader: 6.7.1
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4
   eslint-config-prettier: 8.5.0
@@ -59,14 +59,14 @@ specifiers:
   react-dom: 17.0.2
   react-ga: 3.3.0
   react-helmet: 6.1.0
-  react-i18next: 11.15.5
+  react-i18next: 11.15.6
   react-responsive-carousel: 3.2.23
   sass: 1.49.9
-  sass-loader: 11.1.1
+  sass-loader: 12.6.0
   semantic-ui-css: 2.4.1
   semantic-ui-react: 2.1.2
   single-spa-react: 3.2.0
-  style-loader: 2.0.0
+  style-loader: 3.3.1
   styled-components: 5.3.3
   ts-config-single-spa: 2.0.1
   ts-loader: 9.2.7
@@ -75,25 +75,25 @@ specifiers:
   webpack-cli: 4.9.2
   webpack-config-single-spa-react: 4.0.3
   webpack-config-single-spa-react-ts: 4.0.3
-  webpack-config-single-spa-ts: 2.2.4
+  webpack-config-single-spa-ts: 4.1.2
   webpack-dev-server: 4.7.4
   webpack-merge: 5.8.0
 
 dependencies:
   '@aws-amplify/auth': 3.4.34
-  '@bit/wasedatime.core.assets.img.logo': 0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.constants.langs': 0.0.5_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.ui.header': 0.1.0_7a357bb42541b427aee3d1047c25447b
-  '@bit/wasedatime.core.ts.ui.loading-spinner': 0.0.7_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.utils.i18n': 0.0.4_8f2a12f93b34591c18c344cd829419b1
-  '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.assets.img.logo': node.bit.dev/@bit/wasedatime.core.assets.img.logo/0.0.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.ui.header': node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0_7a357bb42541b427aee3d1047c25447b
+  '@bit/wasedatime.core.ts.ui.loading-spinner': node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.0.7_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.utils.i18n': node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.4_8f2a12f93b34591c18c344cd829419b1
+  '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
   '@fortawesome/fontawesome-free': 6.0.0
   '@fortawesome/fontawesome-svg-core': 1.3.0
   '@fortawesome/free-solid-svg-icons': 6.0.0
   '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
   '@types/jest': 26.0.24
   '@types/react': 17.0.39
-  '@types/react-dom': 16.9.14
+  '@types/react-dom': 17.0.13
   '@types/styled-components': 5.1.24
   '@types/systemjs': 6.1.1
   '@types/webpack-env': 1.16.3
@@ -105,7 +105,7 @@ dependencies:
   react-dom: 17.0.2_react@17.0.2
   react-ga: 3.3.0_react@17.0.2
   react-helmet: 6.1.0_react@17.0.2
-  react-i18next: 11.15.5_8f2a12f93b34591c18c344cd829419b1
+  react-i18next: 11.15.6_8f2a12f93b34591c18c344cd829419b1
   react-responsive-carousel: 3.2.23
   semantic-ui-css: 2.4.1
   semantic-ui-react: 2.1.2_react-dom@17.0.2+react@17.0.2
@@ -122,13 +122,13 @@ devDependencies:
   '@babel/runtime': 7.17.2
   '@testing-library/jest-dom': 5.16.2
   '@testing-library/react': 12.1.3_react-dom@17.0.2+react@17.0.2
-  '@typescript-eslint/eslint-plugin': 5.13.0_33fffc354ccfa91fbe7d1677b9395a0a
-  '@typescript-eslint/parser': 5.13.0_eslint@8.10.0+typescript@4.6.2
+  '@typescript-eslint/eslint-plugin': 5.14.0_f4054b8c3cd621db16ae1b9d571bccc0
+  '@typescript-eslint/parser': 5.14.0_eslint@8.10.0+typescript@4.6.2
   babel-jest: 26.6.3_@babel+core@7.17.5
   babel-plugin-styled-components: 2.0.6_styled-components@5.3.3
   concurrently: 7.0.0
   cross-env: 7.0.3
-  css-loader: 6.7.0_webpack@5.70.0
+  css-loader: 6.7.1_webpack@5.70.0
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4_02055cb2ac87aa4e32a2bafaced0e2fb
   eslint-config-prettier: 8.5.0_eslint@8.10.0
@@ -147,8 +147,8 @@ devDependencies:
   prettier-eslint: 13.0.0
   pretty-quick: 3.1.3_prettier@2.5.1
   sass: 1.49.9
-  sass-loader: 11.1.1_sass@1.49.9+webpack@5.70.0
-  style-loader: 2.0.0_webpack@5.70.0
+  sass-loader: 12.6.0_sass@1.49.9+webpack@5.70.0
+  style-loader: 3.3.1_webpack@5.70.0
   ts-config-single-spa: 2.0.1
   ts-loader: 9.2.7_typescript@4.6.2+webpack@5.70.0
   typescript: 4.6.2
@@ -156,7 +156,7 @@ devDependencies:
   webpack-cli: 4.9.2_6d3cb84eb7e855ae6fc0a3ee585c0c26
   webpack-config-single-spa-react: 4.0.3_ed870ac3ba52c4ec230ba2bc3dbb311c
   webpack-config-single-spa-react-ts: 4.0.3_6ed29217d3dea9188d7e08e233aa8cd3
-  webpack-config-single-spa-ts: 2.2.4_6ed29217d3dea9188d7e08e233aa8cd3
+  webpack-config-single-spa-ts: 4.1.2_6ed29217d3dea9188d7e08e233aa8cd3
   webpack-dev-server: 4.7.4_webpack-cli@4.9.2+webpack@5.70.0
   webpack-merge: 5.8.0
 
@@ -2036,180 +2036,6 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
-  /@bit/wasedatime.core.assets.img.logo-jp/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-ErN8Hkn1p/2XmutGVZXg1WZoJiE=, tarball: wasedatime.core.assets.img.logo-jp/-/wasedatime.core.assets.img.logo-jp-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.assets.img.logo/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-e0w8cLOvM8t9pildIQVoGODf1pA=, tarball: wasedatime.core.assets.img.logo/-/wasedatime.core.assets.img.logo-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.assets.locales.en/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-a2MtBzbhje+oHJ4Tz+L5B/2n2Qs=, tarball: wasedatime.core.assets.locales.en/-/wasedatime.core.assets.locales.en-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.assets.locales.ja/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-q3GVnjO0kmRflqwouUeS5dFCHHU=, tarball: wasedatime.core.assets.locales.ja/-/wasedatime.core.assets.locales.ja-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-Bp87IFStXHsG1iyN/PONMyD5IyM=, tarball: wasedatime.core.ts.constants.langs/-/wasedatime.core.ts.constants.langs-0.0.5.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.styles.overlay/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-eXYMnbkdhymg3EBNS9RBSuz1Wbk=, tarball: wasedatime.core.ts.styles.overlay/-/wasedatime.core.ts.styles.overlay-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.styles.wrapper/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-cszBxS3eDqwoxe9Tl162+7hc9Og=, tarball: wasedatime.core.ts.styles.wrapper/-/wasedatime.core.ts.styles.wrapper-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.header/0.1.0_7a357bb42541b427aee3d1047c25447b:
-    resolution: {integrity: sha1-nJd8i84nqrSkz8qd6PUfrrJT5DI=, tarball: wasedatime.core.ts.ui.header/-/wasedatime.core.ts.ui.header-0.1.0.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.ts.ui.language-menu': 0.1.2_7a357bb42541b427aee3d1047c25447b
-      '@bit/wasedatime.core.ts.ui.logo': 0.0.9_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@reach/router': 1.3.4_react-dom@17.0.2+react@17.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-responsive: 8.2.0_react@17.0.2
-    transitivePeerDependencies:
-      - '@fortawesome/fontawesome-svg-core'
-      - '@types/react'
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.language-menu/0.1.2_7a357bb42541b427aee3d1047c25447b:
-    resolution: {integrity: sha1-MUvE8RKQdx5JD3r7R/OPTdMgZes=, tarball: wasedatime.core.ts.ui.language-menu/-/wasedatime.core.ts.ui.language-menu-0.1.2.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@fortawesome/free-solid-svg-icons': 5.15.4
-      '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
-      '@material-ui/core': 4.12.3_b8fdba992ce7d797017dc07106486496
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-responsive: 8.2.0_react@17.0.2
-    transitivePeerDependencies:
-      - '@fortawesome/fontawesome-svg-core'
-      - '@types/react'
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.loading-spinner/0.0.7_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-+G7c5hkgHP3OJ3BXppQwCuMKkZw=, tarball: wasedatime.core.ts.ui.loading-spinner/-/wasedatime.core.ts.ui.loading-spinner-0.0.7.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.ts.styles.overlay': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.styles.wrapper': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.ui.logo': 0.0.9_react-dom@17.0.2+react@17.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
-  /@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-3KGefQPP8se1Blx051dpau3Cmp0=, tarball: wasedatime.core.ts.ui.logo/-/wasedatime.core.ts.ui.logo-0.0.9.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.assets.img.logo': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.assets.img.logo-jp': 0.0.1_react-dom@17.0.2+react@17.0.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.utils.i18n/0.0.4_8f2a12f93b34591c18c344cd829419b1:
-    resolution: {integrity: sha1-Mi/S9B83NRoFmQTS6EgSF8Ymqlo=, tarball: wasedatime.core.ts.utils.i18n/-/wasedatime.core.ts.utils.i18n-0.0.4.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.assets.locales.en': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.assets.locales.ja': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.constants.langs': 0.0.5_react-dom@17.0.2+react@17.0.2
-      i18next-browser-languagedetector: 6.1.3
-      i18next-http-backend: 1.3.2
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-i18next: 11.15.5_8f2a12f93b34591c18c344cd829419b1
-    transitivePeerDependencies:
-      - encoding
-      - i18next
-      - react-native
-    dev: false
-
-  /@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-5/QLjuULwrwyclYP8m96BV+Mnq8=, tarball: wasedatime.core.ts.utils.responsive-utils/-/wasedatime.core.ts.utils.responsive-utils-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
-    transitivePeerDependencies:
-      - react-is
-    dev: false
-
   /@cnakazawa/watch/1.0.4:
     resolution: {integrity: sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ==}
     engines: {node: '>=0.1.95'}
@@ -3050,6 +2876,13 @@ packages:
     resolution: {integrity: sha512-FIX2AVmPTGP30OUJ+0vadeIFJJ07Mh1m+U0rxfgyW34p3rTlXI+nlenvAxNn4BP36YyI9IJ/+UJ7Wu22N1pI7A==}
     dependencies:
       '@types/react': 16.14.24
+    dev: true
+
+  /@types/react-dom/17.0.13:
+    resolution: {integrity: sha512-wEP+B8hzvy6ORDv1QBhcQia4j6ea4SFIBttHYpXKPFZRviBvknq0FRh3VrIxeXUmsPkwuXVZrVGG7KUVONmXCQ==}
+    dependencies:
+      '@types/react': 17.0.39
+    dev: false
 
   /@types/react-transition-group/4.4.4:
     resolution: {integrity: sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug==}
@@ -3063,6 +2896,7 @@ packages:
       '@types/prop-types': 15.7.4
       '@types/scheduler': 0.16.2
       csstype: 3.0.11
+    dev: true
 
   /@types/react/17.0.39:
     resolution: {integrity: sha512-UVavlfAxDd/AgAacMa60Azl7ygyQNRwC/DsHZmKgNvPmRR5p70AJ5Q9EAmL2NWOJmeV+vVUI4IAP7GZrN8h8Ug==}
@@ -3169,6 +3003,33 @@ packages:
       - supports-color
     dev: true
 
+  /@typescript-eslint/eslint-plugin/5.14.0_f4054b8c3cd621db16ae1b9d571bccc0:
+    resolution: {integrity: sha512-ir0wYI4FfFUDfLcuwKzIH7sMVA+db7WYen47iRSaCGl+HMAZI9fpBwfDo45ZALD3A45ZGyHWDNLhbg8tZrMX4w==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      '@typescript-eslint/parser': ^5.0.0
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/parser': 5.14.0_eslint@8.10.0+typescript@4.6.2
+      '@typescript-eslint/scope-manager': 5.14.0
+      '@typescript-eslint/type-utils': 5.14.0_eslint@8.10.0+typescript@4.6.2
+      '@typescript-eslint/utils': 5.14.0_eslint@8.10.0+typescript@4.6.2
+      debug: 4.3.3
+      eslint: 8.10.0
+      functional-red-black-tree: 1.0.1
+      ignore: 5.2.0
+      regexpp: 3.2.0
+      semver: 7.3.5
+      tsutils: 3.21.0_typescript@4.6.2
+      typescript: 4.6.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@typescript-eslint/experimental-utils/3.10.1_eslint@7.32.0+typescript@3.9.10:
     resolution: {integrity: sha512-DewqIgscDzmAfd5nOGe4zm6Bl7PKtMG2Ad0KG8CUZAHlXfAKTF9Ol5PXhiMh39yRL2ChRH1cuuUGOcVyyrhQIw==}
     engines: {node: ^10.12.0 || >=12.0.0}
@@ -3240,6 +3101,26 @@ packages:
       - supports-color
     dev: true
 
+  /@typescript-eslint/parser/5.14.0_eslint@8.10.0+typescript@4.6.2:
+    resolution: {integrity: sha512-aHJN8/FuIy1Zvqk4U/gcO/fxeMKyoSv/rS46UXMXOJKVsLQ+iYPuXNbpbH7cBLcpSbmyyFbwrniLx5+kutu1pw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/scope-manager': 5.14.0
+      '@typescript-eslint/types': 5.14.0
+      '@typescript-eslint/typescript-estree': 5.14.0_typescript@4.6.2
+      debug: 4.3.3
+      eslint: 8.10.0
+      typescript: 4.6.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@typescript-eslint/scope-manager/5.13.0:
     resolution: {integrity: sha512-T4N8UvKYDSfVYdmJq7g2IPJYCRzwtp74KyDZytkR4OL3NRupvswvmJQJ4CX5tDSurW2cvCc1Ia1qM7d0jpa7IA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -3267,6 +3148,25 @@ packages:
         optional: true
     dependencies:
       '@typescript-eslint/utils': 5.13.0_eslint@8.10.0+typescript@4.6.2
+      debug: 4.3.3
+      eslint: 8.10.0
+      tsutils: 3.21.0_typescript@4.6.2
+      typescript: 4.6.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
+  /@typescript-eslint/type-utils/5.14.0_eslint@8.10.0+typescript@4.6.2:
+    resolution: {integrity: sha512-d4PTJxsqaUpv8iERTDSQBKUCV7Q5yyXjqXUl3XF7Sd9ogNLuKLkxz82qxokqQ4jXdTPZudWpmNtr/JjbbvUixw==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      eslint: '*'
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/utils': 5.14.0_eslint@8.10.0+typescript@4.6.2
       debug: 4.3.3
       eslint: 8.10.0
       tsutils: 3.21.0_typescript@4.6.2
@@ -4091,13 +3991,6 @@ packages:
       - supports-color
     dev: true
 
-  /babel-runtime/7.0.0-beta.3:
-    resolution: {integrity: sha512-jlzZ8RACjt0QGxq+wqsw5bCQE9RcUyWpw987mDY3GYxTpOQT2xoyNoG++oVCHzr/nACLBIprfVBNvv/If1ZYcg==}
-    dependencies:
-      core-js: 2.6.12
-      regenerator-runtime: 0.11.1
-    dev: true
-
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
     dev: true
@@ -4601,12 +4494,6 @@ packages:
     requiresBuild: true
     dev: true
 
-  /core-js/2.6.12:
-    resolution: {integrity: sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==}
-    deprecated: core-js@<3.4 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Please, upgrade your dependencies to the actual version of core-js.
-    requiresBuild: true
-    dev: true
-
   /core-util-is/1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
     dev: true
@@ -4709,8 +4596,8 @@ packages:
       webpack: 5.70.0_webpack-cli@4.9.2
     dev: true
 
-  /css-loader/6.7.0_webpack@5.70.0:
-    resolution: {integrity: sha512-S7HCfCiDHLA+VXKqdZwyRZgoO0R9BnKDnVIoHMq5grl3N86zAu7MB+FBWHr5xOJC8SmvpTLha/2NpfFkFEN/ig==}
+  /css-loader/6.7.1_webpack@5.70.0:
+    resolution: {integrity: sha512-yB5CNFa14MbPJcomwNh3wLThtkZgcNyI2bNMRt8iE5Z8Vwl7f8vQXFAzn2HDOJvtDq2NTZBUGMSUNNyrv3/+cw==}
     engines: {node: '>= 12.13.0'}
     peerDependencies:
       webpack: ^5.0.0
@@ -5983,12 +5870,6 @@ packages:
         optional: true
     dev: true
 
-  /for-each/0.3.3:
-    resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
-    dependencies:
-      is-callable: 1.2.4
-    dev: true
-
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -6137,14 +6018,6 @@ packages:
   /get-value/2.0.6:
     resolution: {integrity: sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=}
     engines: {node: '>=0.10.0'}
-    dev: true
-
-  /glob-all/3.2.1:
-    resolution: {integrity: sha512-x877rVkzB3ipid577QOp+eQCR6M5ZyiwrtaYgrX/z3EThaSPFtLDwBXFHc3sH1cG0R0vFYI5SRYeWMMSEyXkUw==}
-    hasBin: true
-    dependencies:
-      glob: 7.2.0
-      yargs: 15.4.1
     dev: true
 
   /glob-parent/5.1.2:
@@ -8127,15 +8000,6 @@ packages:
       es-abstract: 1.19.1
     dev: true
 
-  /object.getownpropertydescriptors/2.1.3:
-    resolution: {integrity: sha512-VdDoCwvJI4QdC6ndjpqFmoL3/+HxffFBbcJzKi5hwLLqqx3mdbedRpfZDdK0SrOSauj8X4GzBvnDZl4vTN7dOw==}
-    engines: {node: '>= 0.8'}
-    dependencies:
-      call-bind: 1.0.2
-      define-properties: 1.1.3
-      es-abstract: 1.19.1
-    dev: true
-
   /object.hasown/1.1.0:
     resolution: {integrity: sha512-MhjYRfj3GBlhSkDHo6QmvgjRLXQ2zndabdf3nX0yTyZK9rPfxb6uRpAac8HXNLy1GpqWtZ81Qh4v3uOls2sRAg==}
     dependencies:
@@ -8771,6 +8635,27 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
+  /react-i18next/11.15.6_8f2a12f93b34591c18c344cd829419b1:
+    resolution: {integrity: sha512-OUWcFdNgIA9swVx3JGIreuquglAinpRwB/HYrCprTN+s9BQDt9LSiY7x5DGc2JzVpwqtpoTV7oRUTOxEPNyUPw==}
+    peerDependencies:
+      i18next: '>= 19.0.0'
+      react: '>= 16.8.0'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.17.2
+      html-escaper: 2.0.2
+      html-parse-stringify: 3.0.1
+      i18next: 19.9.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -8966,10 +8851,6 @@ packages:
 
   /regenerate/1.4.2:
     resolution: {integrity: sha512-zrceR/XhGYU/d/opr2EKO7aRHUeiBI8qjtfHqADTwZd6Szfy16la6kqD0MIUs5z5hx6AaKa+PixpPrR289+I0A==}
-    dev: true
-
-  /regenerator-runtime/0.11.1:
-    resolution: {integrity: sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==}
     dev: true
 
   /regenerator-runtime/0.13.9:
@@ -9188,13 +9069,14 @@ packages:
       walker: 1.0.8
     dev: true
 
-  /sass-loader/11.1.1_sass@1.49.9+webpack@5.70.0:
-    resolution: {integrity: sha512-fOCp/zLmj1V1WHDZbUbPgrZhA7HKXHEqkslzB+05U5K9SbSbcmH91C7QLW31AsXikxUMaxXRhhcqWZAxUMLDyA==}
-    engines: {node: '>= 10.13.0'}
+  /sass-loader/12.6.0_sass@1.49.9+webpack@5.70.0:
+    resolution: {integrity: sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==}
+    engines: {node: '>= 12.13.0'}
     peerDependencies:
       fibers: '>= 3.1.0'
-      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0
+      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
       sass: ^1.3.0
+      sass-embedded: '*'
       webpack: ^5.0.0
     peerDependenciesMeta:
       fibers:
@@ -9202,6 +9084,8 @@ packages:
       node-sass:
         optional: true
       sass:
+        optional: true
+      sass-embedded:
         optional: true
     dependencies:
       klona: 2.0.5
@@ -9653,17 +9537,6 @@ packages:
       escape-string-regexp: 2.0.0
     dev: true
 
-  /standalone-single-spa-webpack-plugin/2.1.0_b6f6061bfe56c4f5f9f5f814f10f8be7:
-    resolution: {integrity: sha512-NV4CcyX8pDnAFdtr2gcHYbQCcb8ur+mgWVPjQmI9zCKfL70tdlka2AEKoOdtE27cDDgInD70PI87hdUU48hcdg==}
-    engines: {node: '>= 8.3.0'}
-    peerDependencies:
-      html-webpack-plugin: '*'
-      webpack: '*'
-    dependencies:
-      html-webpack-plugin: 5.5.0_webpack@5.70.0
-      webpack: 5.70.0_webpack-cli@4.9.2
-    dev: true
-
   /standalone-single-spa-webpack-plugin/3.0.0_b6f6061bfe56c4f5f9f5f814f10f8be7:
     resolution: {integrity: sha512-qj/iVNXMEWlwMnQbhZC7QqzifoWyps+zlIgbXS6/jvUMZVxD2U4psudPvWsjYw5Q9+HjM0WYdlgl69g9vEyw8w==}
     engines: {node: '>= 8.3.0'}
@@ -9799,17 +9672,6 @@ packages:
   /strip-json-comments/3.1.1:
     resolution: {integrity: sha512-6fPc+R4ihwqP6N/aIv2f1gMH8lOVtWQHoqC4yK6oSDVVocumAsfCqjkXnqiYMhmMwS/mEHLp7Vehlt3ql6lEig==}
     engines: {node: '>=8'}
-    dev: true
-
-  /style-loader/2.0.0_webpack@5.70.0:
-    resolution: {integrity: sha512-Z0gYUJmzZ6ZdRUqpg1r8GsaFKypE+3xAzuFeMuoHgjc9KZv3wMyCRjQIWEbhoFSq7+7yoHXySDJyyWQaPajeiQ==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      webpack: ^4.0.0 || ^5.0.0
-    dependencies:
-      loader-utils: 2.0.2
-      schema-utils: 3.1.1
-      webpack: 5.70.0_webpack-cli@4.9.2
     dev: true
 
   /style-loader/3.3.1_webpack@5.70.0:
@@ -10267,16 +10129,6 @@ packages:
       isobject: 3.0.1
     dev: true
 
-  /unused-files-webpack-plugin/3.4.0:
-    resolution: {integrity: sha512-cmukKOBdIqaM1pqThY0+jp+mYgCVyzrD8uRbKEucQwIGZcLIRn+gSRiQ7uLjcDd3Zba9NUxVGyYa7lWM4UCGeg==}
-    dependencies:
-      babel-runtime: 7.0.0-beta.3
-      glob-all: 3.2.1
-      semver: 5.7.1
-      util.promisify: 1.1.1
-      warning: 3.0.0
-    dev: true
-
   /uri-js/4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
@@ -10302,16 +10154,6 @@ packages:
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=}
-    dev: true
-
-  /util.promisify/1.1.1:
-    resolution: {integrity: sha512-/s3UsZUrIfa6xDhr7zZhnE9SLQ5RIXyYfiVnMMyMDzOc8WhWN4Nbh36H842OyurKbCDAesZOJaVyvmSl6fhGQw==}
-    dependencies:
-      call-bind: 1.0.2
-      define-properties: 1.1.3
-      for-each: 0.3.3
-      has-symbols: 1.0.3
-      object.getownpropertydescriptors: 2.1.3
     dev: true
 
   /utila/0.4.0:
@@ -10398,12 +10240,6 @@ packages:
     resolution: {integrity: sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==}
     dependencies:
       makeerror: 1.0.12
-    dev: true
-
-  /warning/3.0.0:
-    resolution: {integrity: sha1-MuU3fLVy3kqwR1O9+IIcAe1gW3w=}
-    dependencies:
-      loose-envify: 1.4.0
     dev: true
 
   /warning/4.0.3:
@@ -10520,22 +10356,6 @@ packages:
       - webpack
     dev: true
 
-  /webpack-config-single-spa-ts/2.2.4_6ed29217d3dea9188d7e08e233aa8cd3:
-    resolution: {integrity: sha512-VKAQdrPZ6KTarzPsNmv9Z+GRGwHKWZ3A/QhZUbbxBh0RIsdfxk233A7FUP8aAP8n8WxNlcV583J1ytGsHTxFbQ==}
-    dependencies:
-      fork-ts-checker-webpack-plugin: 6.5.0_2847fb73abdc24f6b671e90820eac890
-      typescript: 4.6.2
-      webpack-config-single-spa: 3.1.0_ed870ac3ba52c4ec230ba2bc3dbb311c
-      webpack-merge: 5.8.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - bufferutil
-      - eslint
-      - utf-8-validate
-      - vue-template-compiler
-      - webpack
-    dev: true
-
   /webpack-config-single-spa-ts/4.1.2_6ed29217d3dea9188d7e08e233aa8cd3:
     resolution: {integrity: sha512-H7INbFQgu9+H0IAOqsQNw/GljxWDdzwyEoyDJ4818V5RATm7IvcNKBuxEKilKK/LvgVeXB+29ZOOrqowSxBiFQ==}
     dependencies:
@@ -10549,24 +10369,6 @@ packages:
       - eslint
       - utf-8-validate
       - vue-template-compiler
-      - webpack
-    dev: true
-
-  /webpack-config-single-spa/3.1.0_ed870ac3ba52c4ec230ba2bc3dbb311c:
-    resolution: {integrity: sha512-tONwO/w6ugTjuWkWa0pcoJnsUmpNZToWenaD+IIhXbjU3fnQGUPGRuYf6tkn1YSaqpe79dyR2nIWv4XxzA5jkA==}
-    dependencies:
-      babel-loader: 8.2.3_ed870ac3ba52c4ec230ba2bc3dbb311c
-      css-loader: 5.2.7_webpack@5.70.0
-      html-webpack-plugin: 5.5.0_webpack@5.70.0
-      standalone-single-spa-webpack-plugin: 2.1.0_b6f6061bfe56c4f5f9f5f814f10f8be7
-      style-loader: 3.3.1_webpack@5.70.0
-      systemjs-webpack-interop: 2.3.7_webpack@5.70.0
-      unused-files-webpack-plugin: 3.4.0
-      webpack-bundle-analyzer: 4.5.0
-    transitivePeerDependencies:
-      - '@babel/core'
-      - bufferutil
-      - utf-8-validate
       - webpack
     dev: true
 
@@ -10918,4 +10720,217 @@ packages:
 
   /zen-observable/0.8.15:
     resolution: {integrity: sha512-PQ2PC7R9rslx84ndNBZB/Dkv8V8fZEpk83RLgXtYd0fwUgEjseMn1Dgajh2x6S8QbZAFa9p2qVCEuYZNgve0dQ==}
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.assets.img.logo-jp/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-ErN8Hkn1p/2XmutGVZXg1WZoJiE=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.assets.img.logo-jp/-/wasedatime.core.assets.img.logo-jp-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.assets.img.logo-jp/0.0.1
+    name: wasedatime.core.assets.img.logo-jp
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.assets.img.logo/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-e0w8cLOvM8t9pildIQVoGODf1pA=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.assets.img.logo/-/wasedatime.core.assets.img.logo-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.assets.img.logo/0.0.1
+    name: wasedatime.core.assets.img.logo
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.assets.locales.en/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-a2MtBzbhje+oHJ4Tz+L5B/2n2Qs=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.assets.locales.en/-/wasedatime.core.assets.locales.en-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.assets.locales.en/0.0.1
+    name: wasedatime.core.assets.locales.en
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.assets.locales.ja/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-q3GVnjO0kmRflqwouUeS5dFCHHU=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.assets.locales.ja/-/wasedatime.core.assets.locales.ja-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.assets.locales.ja/0.0.1
+    name: wasedatime.core.assets.locales.ja
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-Bp87IFStXHsG1iyN/PONMyD5IyM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.constants.langs/-/wasedatime.core.ts.constants.langs-0.0.5.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5
+    name: wasedatime.core.ts.constants.langs
+    version: 0.0.5
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.styles.overlay/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-eXYMnbkdhymg3EBNS9RBSuz1Wbk=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.styles.overlay/-/wasedatime.core.ts.styles.overlay-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.styles.overlay/0.0.1
+    name: wasedatime.core.ts.styles.overlay
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.styles.wrapper/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-cszBxS3eDqwoxe9Tl162+7hc9Og=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.styles.wrapper/-/wasedatime.core.ts.styles.wrapper-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.styles.wrapper/0.0.1
+    name: wasedatime.core.ts.styles.wrapper
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0_7a357bb42541b427aee3d1047c25447b:
+    resolution: {integrity: sha1-nJd8i84nqrSkz8qd6PUfrrJT5DI=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.header/-/wasedatime.core.ts.ui.header-0.1.0.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.1.0
+    name: wasedatime.core.ts.ui.header
+    version: 0.1.0
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.ts.ui.language-menu': node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2_7a357bb42541b427aee3d1047c25447b
+      '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@reach/router': 1.3.4_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-responsive: 8.2.0_react@17.0.2
+    transitivePeerDependencies:
+      - '@fortawesome/fontawesome-svg-core'
+      - '@types/react'
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2_7a357bb42541b427aee3d1047c25447b:
+    resolution: {integrity: sha1-MUvE8RKQdx5JD3r7R/OPTdMgZes=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.language-menu/-/wasedatime.core.ts.ui.language-menu-0.1.2.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.language-menu/0.1.2
+    name: wasedatime.core.ts.ui.language-menu
+    version: 0.1.2
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@fortawesome/free-solid-svg-icons': 5.15.4
+      '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
+      '@material-ui/core': 4.12.3_b8fdba992ce7d797017dc07106486496
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-responsive: 8.2.0_react@17.0.2
+    transitivePeerDependencies:
+      - '@fortawesome/fontawesome-svg-core'
+      - '@types/react'
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.0.7_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-+G7c5hkgHP3OJ3BXppQwCuMKkZw=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.loading-spinner/-/wasedatime.core.ts.ui.loading-spinner-0.0.7.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.0.7
+    name: wasedatime.core.ts.ui.loading-spinner
+    version: 0.0.7
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.ts.styles.overlay': node.bit.dev/@bit/wasedatime.core.ts.styles.overlay/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.styles.wrapper': node.bit.dev/@bit/wasedatime.core.ts.styles.wrapper/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    transitivePeerDependencies:
+      - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-3KGefQPP8se1Blx051dpau3Cmp0=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.logo/-/wasedatime.core.ts.ui.logo-0.0.9.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9
+    name: wasedatime.core.ts.ui.logo
+    version: 0.0.9
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.assets.img.logo': node.bit.dev/@bit/wasedatime.core.assets.img.logo/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.assets.img.logo-jp': node.bit.dev/@bit/wasedatime.core.assets.img.logo-jp/0.0.1_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.4_8f2a12f93b34591c18c344cd829419b1:
+    resolution: {integrity: sha1-Mi/S9B83NRoFmQTS6EgSF8Ymqlo=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.utils.i18n/-/wasedatime.core.ts.utils.i18n-0.0.4.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.4
+    name: wasedatime.core.ts.utils.i18n
+    version: 0.0.4
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.assets.locales.en': node.bit.dev/@bit/wasedatime.core.assets.locales.en/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.assets.locales.ja': node.bit.dev/@bit/wasedatime.core.assets.locales.ja/0.0.1_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2
+      i18next-browser-languagedetector: 6.1.3
+      i18next-http-backend: 1.3.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-i18next: 11.15.5_8f2a12f93b34591c18c344cd829419b1
+    transitivePeerDependencies:
+      - encoding
+      - i18next
+      - react-native
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-5/QLjuULwrwyclYP8m96BV+Mnq8=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.utils.responsive-utils/-/wasedatime.core.ts.utils.responsive-utils-0.0.1.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1
+    name: wasedatime.core.ts.utils.responsive-utils
+    version: 0.0.1
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      styled-components: 5.3.3_react-dom@17.0.2+react@17.0.2
+    transitivePeerDependencies:
+      - react-is
     dev: false

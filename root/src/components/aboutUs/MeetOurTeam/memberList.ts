@@ -15,6 +15,12 @@ import tang from "@app/assets/img/contributors/tang.jpg";
 import yaoyuan from "@app/assets/img/contributors/yaoyuan.jpg";
 import zenda from "@app/assets/img/contributors/zenda.jpg";
 import zhaohuaibo from "@app/assets/img/contributors/zhaohuaibo.jpg";
+import jason from "@app/assets/img/contributors/jason.jpg";
+import nicholas from "@app/assets/img/contributors/nicholas.jpg";
+import takumi from "@app/assets/img/contributors/takumi.jpg";
+import xinmei from "@app/assets/img/contributors/xinmei.jpg";
+import xinyue from "@app/assets/img/contributors/xinyue.jpg";
+import akylai from "@app/assets/img/contributors/akylai.jpg";
 import email from "@app/assets/img/socialmediaicon/email.png";
 import facebook from "@app/assets/img/socialmediaicon/facebook.png";
 import github from "@app/assets/img/socialmediaicon/github.png";
@@ -32,7 +38,8 @@ export interface Members {
   profileText?: string;
 }
 
-export const MembersList: Array<Members> = [
+export const CurrentList: Array<Members> = [
+  // hao
   {
     image: hao,
     name: "Hao",
@@ -47,6 +54,7 @@ export const MembersList: Array<Members> = [
     ],
     profileText: "WasedaTime, a better Waseda life",
   },
+  // austin
   {
     image: austin,
     name: "Austin Zhu",
@@ -60,6 +68,88 @@ export const MembersList: Array<Members> = [
       },
     ],
     profileText: "WasedaTime is gonna be legendary.",
+  },
+  // jason
+  {
+    image: jason,
+    name: "Jason Park",
+    position: "Backend Engineer & Marketing",
+    socials: [
+      { platform: linkedin, link: "https://www.linkedin.com/in/%E6%B5%9A%E5%BD%AC-%E6%9C%B4-a9a503200" },
+    ],
+    profileText: "Imagine Sisyphus happy.",
+  },
+  // nicholas
+  {
+    image: nicholas,
+    name: "Nicholas Narmada",
+    position: "Frontend Engineer",
+    socials: [
+      { platform: instagram, link: "https://www.instagram.com/nichnarmada/" },
+      { platform: github, link: "https://github.com/nichnarmada" },
+      { platform: linkedin, link: "https://www.linkedin.com/in/nichnarmada/" },
+    ],
+    profileText: "People call me the Pro Pro, aka the Professional Procrastinator 🙂",
+  },
+  // takumi
+  {
+    image: takumi,
+    name: "Takumi",
+    position: "IOS Engineer",
+    socials: [
+      { platform: instagram, link: "https://www.instagram.com/ronin2_7/" },
+    ],
+  },
+  // xinmei
+  {
+    image: xinmei,
+    name: "Xinmei(Evelyn) Liu",
+    position: "Marketing",
+    socials: [
+      { platform: instagram, link: "https://www.instagram.com/evelyn_liuxinm/" },
+    ],
+    profileText: "I’m so happy to work with you guys together 🥰",
+  },
+  // xinyue
+  {
+    image: xinyue,
+    name: "Xinyue Tao",
+    position: "Frontend & Product Manager",
+    socials: [
+      { platform: instagram, link: "https://www.instagram.com/xinyue_xxtao/" },
+    ],
+    profileText: "Smile, my friend, smile!",
+  },
+  // akylai
+  {
+    image: akylai,
+    name: "Akylai",
+    position: "Frontend Apprentice",
+    socials: [
+      {platform: instagram, link:"https://www.instagram.com/akylaimanalieva/"},
+    ],
+  },
+  
+]
+
+export const AlumniList: Array<Members> = [
+  {
+    image: oscar,
+    name: "Oscar Wang",
+    position: "Founder",
+    socials: [
+      { platform: github, link: "https://github.com/oscarwang114" },
+      { platform: twitter, link: "https://twitter.com/OscarWang114" },
+      {
+        platform: facebook,
+        link: "https://www.facebook.com/haohaowang.oscar",
+      },
+    ],
+  },
+  {
+    image: isabella,
+    name: "Isabella Hu",
+    position: "Strategy",
   },
   {
     image: mei,
@@ -208,23 +298,5 @@ export const MembersList: Array<Members> = [
     image: kong,
     name: "Kong",
     position: "Contributor",
-  },
-  {
-    image: oscar,
-    name: "Oscar Wang",
-    position: "Founder (Alumni)",
-    socials: [
-      { platform: github, link: "https://github.com/oscarwang114" },
-      { platform: twitter, link: "https://twitter.com/OscarWang114" },
-      {
-        platform: facebook,
-        link: "https://www.facebook.com/haohaowang.oscar",
-      },
-    ],
-  },
-  {
-    image: isabella,
-    name: "Isabella Hu",
-    position: "Strategy (Alumni)",
   },
 ];

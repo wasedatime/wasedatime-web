@@ -98,7 +98,11 @@ const JoinUs = () => (
         <li>・Self-motivation</li>
         <li>・Have learned any programming language</li>
         <small>
-          * Not necessary but better to know about Git, <br /> &nbsp; React or
+          * Not necessary but better to know about Git,
+          {" "}
+          <br />
+          {" "}
+&nbsp; React or
           HTML/CSS (for frontend), AWS (for backend)
         </small>
       </ul>
@@ -134,23 +138,26 @@ const JoinUs = () => (
 
       <br />
       <MediaQuery minWidth={sizes.desktop}>
-        {(matches) =>
-          matches ? (
-            <h2>
-              <b>
-                <FontAwesomeIcon icon={faUserTie} /> Performance Marketing &
-                Business Operations
-              </b>
-            </h2>
-          ) : (
-            <h3>
-              <b>
-                <FontAwesomeIcon icon={faUserTie} /> Marketing
-                <br />& Business Operations
-              </b>
-            </h3>
-          )
-        }
+        {(matches) => (matches ? (
+          <h2>
+            <b>
+              <FontAwesomeIcon icon={faUserTie} />
+              {" "}
+              Performance Marketing &
+              Business Operations
+            </b>
+          </h2>
+        ) : (
+          <h3>
+            <b>
+              <FontAwesomeIcon icon={faUserTie} />
+              {" "}
+              Marketing
+              <br />
+              & Business Operations
+            </b>
+          </h3>
+        ))}
       </MediaQuery>
       <hr />
       <br />

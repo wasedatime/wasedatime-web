@@ -9,6 +9,12 @@ import { ThemeContext } from "@app/utils/theme-context";
 
 import { Semester, Quarter } from "@app/constants/timetable-terms";
 
+interface Props extends WithTranslation {
+  semesterKey: string;
+  selectedQuarter: string;
+  toggleQuarter: (quarter: string) => void;
+}
+
 const OrButton = styled(Button.Or)`
   height: 24px;
   &:before {
@@ -16,11 +22,9 @@ const OrButton = styled(Button.Or)`
   }
 `;
 
-interface Props extends WithTranslation {
-  semesterKey: string;
-  selectedQuarter: string;
-  toggleQuarter: (quarter: string) => void;
-}
+const StyledButton = styled(Button)`
+  ${props => props.theme === "dark" && "opacity: 0.7;"}
+`;
 
 const buttonStyle = {
   marginBottom: "1em",
@@ -40,53 +44,57 @@ const QuarterSwitch = ({
   
   return semesterKey === Semester.SPRING ? (
     <Button.Group>
-      <Button
+      <StyledButton
         inverted
         color="pink"
         onClick={() => toggleQuarter(Quarter.SPRING)}
         style={buttonStyle}
+        theme={theme}
       >
         {selectedQuarter === Quarter.SPRING && (
           <FontAwesomeIcon icon={faCheck} />
         )}{" "}
         {t("syllabus.semesterMap.Spring")}
-      </Button>
+      </StyledButton>
       <OrButton />
-      <Button
+      <StyledButton
         inverted
         color="orange"
         onClick={() => toggleQuarter(Quarter.SUMMER)}
         style={buttonStyle}
+        theme={theme}
       >
         {selectedQuarter === Quarter.SUMMER && (
           <FontAwesomeIcon icon={faCheck} />
         )}{" "}
         {t("syllabus.semesterMap.Summer")}
-      </Button>
+      </StyledButton>
     </Button.Group>
   ) : (
     <Button.Group>
-      <Button
+      <StyledButton
         inverted
         color="brown"
         onClick={() => toggleQuarter(Quarter.FALL)}
         style={buttonStyle}
+        theme={theme}
       >
         {selectedQuarter === Quarter.FALL && <FontAwesomeIcon icon={faCheck} />}{" "}
         {t("syllabus.semesterMap.Fall")}
-      </Button>
+      </StyledButton>
       <OrButton />
-      <Button
+      <StyledButton
         inverted
         color="blue"
         onClick={() => toggleQuarter(Quarter.WINTER)}
         style={buttonStyle}
+        theme={theme}
       >
         {selectedQuarter === Quarter.WINTER && (
           <FontAwesomeIcon icon={faCheck} />
         )}{" "}
         {t("syllabus.semesterMap.Winter")}
-      </Button>
+      </StyledButton>
     </Button.Group>
   );
 };

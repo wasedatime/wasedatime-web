@@ -6,6 +6,7 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import styled from "styled-components";
 
+import { ThemeContext } from "@app/utils/theme-context";
 import { Article, Section } from "@app/components/styles/Article";
 import AddedCourseAndPrefList from "@app/components/timetable/AddedCourseAndPrefList";
 import DayColumnList from "@app/components/timetable/DayColumnList";
@@ -16,6 +17,10 @@ import Course from "@app/types/course";
 type ColumnProps = {
   flexBasis: string;
 };
+
+type StyledMessageProps = {
+  theme: string;
+}
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
@@ -47,6 +52,10 @@ const ScrollableTimetable = styled("div")`
   -webkit-overflow-scrolling: touch;
 `;
 
+const StyledMessage = styled(Message)<StyledMessageProps>`
+  ${props => props.theme === "dark" && "opacity: 0.7;"}
+`;
+
 interface Props extends WithTranslation {
   addedCoursesAndPrefs: {
     pref: {
@@ -59,6 +68,8 @@ interface Props extends WithTranslation {
 }
 
 const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(
     (elem) => elem.pref.visibility === true
   );
@@ -89,7 +100,7 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
   const { day: largestDay, period: largestPeriod } = largestDayAndPeriod;
 
   return (
-    <ExtendedRowWrapper className="theme-default">
+    <ExtendedRowWrapper className="theme-default bg-light-bgMain dark:bg-dark-bgMain">
       <Column flexBasis="70%">
         <ScrollableTimetable>
           <TimeRowList largestPeriod={largestPeriod} />
@@ -104,11 +115,11 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
         <Wrapper>
           {!addedCoursesAndPrefs.length && (
             <Wrapper>
-              <Article>
+              <Article className="bg-light-bgMain dark:bg-dark-bgMain">
                 <h5 className="text-light-text1 dark:text-dark-text1">{t("timetable.welcome")} 🤗</h5>
                 <br />
                 <Section>
-                  <Message
+                  <StyledMessage
                     warning
                     header={
                       <h5>
@@ -123,12 +134,13 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                       </p>
                     }
                     size="mini"
+                    theme={theme}
                   />
                 </Section>
                 <Section>
-                  <Message success size="mini">
+                  <StyledMessage success size="mini" theme={theme}>
                     <p>{t("timetable.SaveSpace")}</p>
-                  </Message>
+                  </StyledMessage>
                 </Section>
               </Article>
             </Wrapper>

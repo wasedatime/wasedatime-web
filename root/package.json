@@ -120,7 +120,7 @@
     "react-helmet": "6.1.0",
     "react-i18next": "11.15.6",
     "react-responsive": "8.2.0",
-    "react-router-dom": "6",
+    "react-router-dom": "^6.2.2",
     "react-vertical-timeline-component": "3.5.2",
     "single-spa": "5.9.3",
     "single-spa-layout": "1.6.0",

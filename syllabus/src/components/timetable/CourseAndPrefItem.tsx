@@ -116,7 +116,7 @@ const CourseAndPrefItem = ({
         <ColorSelector handleChangeColor={handleChangeColor} />
       </Popup>
 
-      <CourseItemWrapper>
+      <CourseItemWrapper className="text-light-text1 dark:text-dark-text2">
         <StyledHeading>{title}</StyledHeading>
         <CourseItemRow>
           <div
@@ -142,6 +142,7 @@ const CourseAndPrefItem = ({
                 e.preventDefault();
                 handleToggleVisibility(courseId);
               }}
+              className="bg-light-bgMain dark:bg-dark-bgMain"
             >
               {visibilityIcon}
             </InvisibleButton>
@@ -164,6 +165,7 @@ const CourseAndPrefItem = ({
                 e.preventDefault();
                 handleRemoveCourse(courseId);
               }}
+              className="bg-light-bgMain dark:bg-dark-bgMain"
             >
               {removeCourseIcon}
             </InvisibleButton>

@@ -4,6 +4,11 @@ import styled from "styled-components";
 
 import CourseColumn from "@app/components/timetable/CourseColumn";
 import { CourseWithOcc } from "@app/types/course";
+import { ThemeContext } from "@app/utils/theme-context";
+
+type DayItemProps = {
+  theme: string;
+}
 
 const StyledDayColumnItem = styled("li")`
   display: flex;
@@ -12,14 +17,14 @@ const StyledDayColumnItem = styled("li")`
   min-height: calc(100vh - 150px);
 `;
 
-const DayItem = styled("div")`
+const DayItem = styled("div")<DayItemProps>`
   display: flex;
   flex: 0 0 3rem;
   justify-content: center;
   align-items: center;
   font-size: 1em;
   font-weight: 600;
-  border-bottom: solid 1px #ccc;
+  border-bottom: solid 1px ${props => props.theme === "light" ? "#ccc" : "#585858"};
   max-height: 20px !important;
 `;
 
@@ -37,9 +42,11 @@ interface Props {
 }
 
 const DayColumnItem = ({ day, largestPeriod, coursesAndProperties }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   return (
     <StyledDayColumnItem>
-      <DayItem>
+      <DayItem theme={theme}>
         <span>{day}</span>
       </DayItem>
       <CourseColumn

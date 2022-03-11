@@ -85,20 +85,22 @@ const SemesterSwitcher = ({
   const { theme, setTheme } = React.useContext(ThemeContext);
   
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: "flex", flexDirection: "column" }} className="bg-light-bgMain dark:bg-dark-bgMain">
       <ExtendedRowWrapper small={isSmallSize}>
         <ExtendedInvisibleButton
           onClick={() => toggleSemester()}
           aria-label="Semester toggle"
           small={isSmallSize}
+          className="text-light-darker dark:text-dark-lighter"
         >
           <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
         </ExtendedInvisibleButton>
-        <SemesterTitle small={isSmallSize}>{semesterTitle}</SemesterTitle>
+        <SemesterTitle small={isSmallSize} className="text-light-text1 dark:text-dark-text1">{semesterTitle}</SemesterTitle>
         <ExtendedInvisibleButton
           onClick={toggleSemester}
           aria-label="Semester toggle"
           small={isSmallSize}
+          className="text-light-darker dark:text-dark-lighter"
         >
           <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
         </ExtendedInvisibleButton>

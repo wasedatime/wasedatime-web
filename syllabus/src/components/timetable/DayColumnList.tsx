@@ -89,7 +89,7 @@ const DayColumnList = ({
       );
     });
 
-  return <StyledList>{dayColumns}</StyledList>;
+  return <StyledList className="text-light-text1 dark:text-dark-text2">{dayColumns}</StyledList>;
 };
 
 export default withTranslation("translation")(DayColumnList);

@@ -12,6 +12,7 @@ import { ThemeContext } from "@app/utils/theme-context";
 
 type StyledCourseColumnProps = {
   displayPeriods: number;
+  theme: string;
 };
 
 type CourseItemProps = {
@@ -23,9 +24,9 @@ type CourseItemProps = {
 const StyledCourseColumn = styled.div<StyledCourseColumnProps>`
   display: flex;
   flex: 1 0 calc(30rem / 7 * ${(props) => props.displayPeriods});
-  border-right: 1px solid #f7f7f7;
-  border-bottom: solid 1px #ccc;
-  background: linear-gradient(180deg, #fff 50%, #eee 50%);
+  border-right: 1px solid ${props => props.theme === "light" ? "#f7f7f7" : "#585858"};
+  border-bottom: solid 1px ${props => props.theme === "light" ? "#ccc" : "#585858"};
+  background: linear-gradient(180deg, ${props => props.theme === "light" ? "#fff" : "#242325"} 50%, ${props => props.theme === "light" ? "#eee" : "#757575"} 50%);
   background-size: 100% calc(100% / ${(props) => props.displayPeriods} * 2);
   position: relative;
   min-width: 4rem;
@@ -210,7 +211,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
   );
 
   return (
-    <StyledCourseColumn displayPeriods={displayPeriods}>
+    <StyledCourseColumn displayPeriods={displayPeriods} theme={theme}>
       {distinctCourseListsComponent}
     </StyledCourseColumn>
   );

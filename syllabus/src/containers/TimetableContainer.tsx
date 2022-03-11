@@ -23,6 +23,7 @@ import { ThemeContext } from "@app/utils/theme-context";
 import withRouter, { WithRouter } from "@app/utils/with-router";
 
 const TimetableWrapper = styled(Wrapper)`
+  height: 100vh;
   display: flex;
   flex-direction: column;
 `;
@@ -145,7 +146,7 @@ class TimetableContainer extends React.Component<
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>
-        <TimetableFlex>
+        <TimetableFlex className="bg-light-bgMain dark:bg-dark-bgMain">
           <SemesterSwitcher
             semesterTitle={t(
               `timetable.${this.semesterTitles[selectedSemester]}`

@@ -18,6 +18,10 @@ type SortByButtonProps = {
   isSortingOptionOpen: boolean;
 };
 
+type StyledDropdownProps = {
+  theme: string;
+};
+
 const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
   margin-left: auto;
   display: flex;
@@ -43,17 +47,24 @@ const StyledLabel = styled(Label)`
   margin: 0px 2px;
 `;
 
-const StyledDropdown = styled(Dropdown)`
+const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-display: swap;
   height: 30px;
   padding: 0.5em !important;
   min-height: 2em !important;
   min-width: 40% !important;
+  background-color: ${props => props.theme === "light" ? "#fff" : "#585858"} !important;
+  
+  .divider.text {
+    color: ${props => props.theme === "light" ? "#000" : "#A1A1A1"};
+  }
 
   .divider.text + i.dropdown.icon {
     padding: 0.6rem;
+    color: ${props => props.theme === "light" ? "#000" : "#A1A1A1"};
   }
+
 `;
 
 const creditSum = (courses) => {
@@ -97,13 +108,13 @@ const CourseListSummary = ({
   return (
     <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
-        <StyledLabel>
+        <StyledLabel className="text-light-text2 dark:text-dark-text2">
           {`${courses.length}`} {t("timetable.courses")}
         </StyledLabel>
-        <StyledLabel>
+        <StyledLabel className="text-light-text2 dark:text-dark-text2">
           {creditSum(courses)} {t("timetable.credits")}
         </StyledLabel>
-        <SortingIcon icon={faSortAmountDown} />{" "}
+        <SortingIcon icon={faSortAmountDown} className="text-light-text2 dark:text-dark-text2" />{" "}
         <StyledDropdown
           placeholder="Sort by"
           selection
@@ -113,6 +124,7 @@ const CourseListSummary = ({
             changeSortingOption(data.value);
           }}
           aria-label="Sort added courses"
+          theme={theme}
         />
       </RowWrapper>
     </div>

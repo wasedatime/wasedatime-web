@@ -13,13 +13,14 @@ import SortingOption from "@app/constants/sorting-options";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { ThemeContext } from "@app/utils/theme-context";
+import colors from "@bit/wasedatime.core.theme.colors";
 
 type SortByButtonProps = {
   isSortingOptionOpen: boolean;
 };
 
 type StyledDropdownProps = {
-  theme: string;
+  isDark: boolean;
 };
 
 const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
@@ -54,15 +55,15 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   padding: 0.5em !important;
   min-height: 2em !important;
   min-width: 40% !important;
-  background-color: ${props => props.theme === "light" ? "#fff" : "#585858"} !important;
+  background-color: ${props => props.isDark ? colors.dark.text3 : "white"} !important;
   
   .divider.text {
-    color: ${props => props.theme === "light" ? "#000" : "#A1A1A1"};
+    color: ${props => props.isDark ? colors.dark.text2 : "black"};
   }
 
   .divider.text + i.dropdown.icon {
     padding: 0.6rem;
-    color: ${props => props.theme === "light" ? "#000" : "#A1A1A1"};
+    color: ${props => props.isDark ? colors.dark.text2 : "black"};
   }
 
 `;
@@ -124,7 +125,7 @@ const CourseListSummary = ({
             changeSortingOption(data.value);
           }}
           aria-label="Sort added courses"
-          theme={theme}
+          isDark={theme === "dark"}
         />
       </RowWrapper>
     </div>

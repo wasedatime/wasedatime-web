@@ -6,8 +6,8 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import styled from "styled-components";
 import { ThemeContext } from "@app/utils/theme-context";
-
 import { Semester, Quarter } from "@app/constants/timetable-terms";
+import colors from "@bit/wasedatime.core.theme.colors";
 
 interface Props extends WithTranslation {
   semesterKey: string;
@@ -15,21 +15,26 @@ interface Props extends WithTranslation {
   toggleQuarter: (quarter: string) => void;
 }
 
-const OrButton = styled(Button.Or)`
+type ButtonProps = {
+  isDark: boolean;
+}
+
+const OrButton = styled(Button.Or)<ButtonProps>`
   height: 24px;
   &:before {
-    color: #777 !important;
+    background-color: ${props => props.isDark ? colors.dark.bgSide : colors.light.bgSide} !important;
+    color: ${props => props.isDark ? colors.dark.text2 : colors.light.text2} !important;
   }
 `;
 
-const StyledButton = styled(Button)`
-  ${props => props.theme === "dark" && "opacity: 0.7;"}
+const StyledButton = styled(Button)<ButtonProps>`
+  ${props => props.isDark && "opacity: 0.7;"}
 `;
 
 const buttonStyle = {
   marginBottom: "1em",
   padding: "0px 1em",
-  width: "85px",
+  width: "90px",
   height: "24px",
   fontSize: "12px",
 };
@@ -40,7 +45,7 @@ const QuarterSwitch = ({
   toggleQuarter,
   t,
 }: Props) => {
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
   
   return semesterKey === Semester.SPRING ? (
     <Button.Group>
@@ -49,20 +54,20 @@ const QuarterSwitch = ({
         color="pink"
         onClick={() => toggleQuarter(Quarter.SPRING)}
         style={buttonStyle}
-        theme={theme}
+        isDark={theme === "dark"}
       >
         {selectedQuarter === Quarter.SPRING && (
           <FontAwesomeIcon icon={faCheck} />
         )}{" "}
         {t("syllabus.semesterMap.Spring")}
       </StyledButton>
-      <OrButton />
+      <OrButton isDark={theme === "dark"} />
       <StyledButton
         inverted
         color="orange"
         onClick={() => toggleQuarter(Quarter.SUMMER)}
         style={buttonStyle}
-        theme={theme}
+        isDark={theme === "dark"}
       >
         {selectedQuarter === Quarter.SUMMER && (
           <FontAwesomeIcon icon={faCheck} />
@@ -77,7 +82,7 @@ const QuarterSwitch = ({
         color="brown"
         onClick={() => toggleQuarter(Quarter.FALL)}
         style={buttonStyle}
-        theme={theme}
+        isDark={theme === "dark"}
       >
         {selectedQuarter === Quarter.FALL && <FontAwesomeIcon icon={faCheck} />}{" "}
         {t("syllabus.semesterMap.Fall")}
@@ -88,7 +93,7 @@ const QuarterSwitch = ({
         color="blue"
         onClick={() => toggleQuarter(Quarter.WINTER)}
         style={buttonStyle}
-        theme={theme}
+        isDark={theme === "dark"}
       >
         {selectedQuarter === Quarter.WINTER && (
           <FontAwesomeIcon icon={faCheck} />

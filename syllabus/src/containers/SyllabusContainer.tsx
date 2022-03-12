@@ -373,7 +373,7 @@ class SyllabusContainer extends React.Component<
           <SyllabusTabs />
         </SyllabusTabsWrapper>
 
-        <SyllabusFlex>
+        <SyllabusFlex className="bg-light-bgMain dark:bg-dark-bgMain">
           <MediaQuery minWidth={sizes.tablet}>
             {(matches) =>
               matches && (

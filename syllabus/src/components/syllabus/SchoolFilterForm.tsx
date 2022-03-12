@@ -13,6 +13,7 @@ import styled from "styled-components";
 import SchoolImportCard from "@app/components/syllabus/SchoolImportCard";
 import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
 import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
+import colors from "@bit/wasedatime.core.theme.colors";
 
 import "semantic-ui-css/components/popup.min.css";
 import { ThemeContext } from "@app/utils/theme-context";
@@ -33,11 +34,43 @@ const Cards = styled(Card.Group)`
 `;
 
 const WiderPopup = styled(Popup)`
+  ${props => props.isDark && `
+    background-color: ${colors.dark.bgSide} !important;
+    box-shadow: 0 2px 4px 0 ${colors.dark.text3} !important;
+    border-color: ${colors.dark.text3} !important;
+    &:before {
+      background-color: ${colors.dark.bgSide} !important;
+      border-color: ${colors.dark.text3} !important;
+      box-shadow: -1px -1px 0 0 ${colors.dark.text3} !important;
+    }
+    .tabular.menu {
+      border-bottom-color: ${colors.dark.text3} !important;
+      .item {
+        background-color: ${colors.dark.bgMain} !important;
+        border-width: 0px !important;
+        color: ${colors.dark.text2} !important;
+      }
+      .item.active {
+        border-width: 1px !important;
+        border-color: ${colors.dark.text3} !important;
+      }
+    }
+  `}
+
   ${media.tablet`
     max-width: 100vw !important;
     & > div {
       width: 80vw;
     }
+  `}
+`;
+
+const StyledMenuItem = styled(Menu.Item)`
+  font-size: 1.2em;
+  ${props => props.isDark && `
+    background-color: ${colors.dark.bgMain} !important;
+    border-color: ${colors.dark.text3} !important;
+    color: ${colors.dark.text2} !important;
   `}
 `;
 
@@ -109,7 +142,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
     }
   }
 
-  schoolImportPanes = () => {
+  schoolImportPanes = (theme) => {
     const { loadedSchools, loadingSchool } = this.state;
     const { t, i18n, selectedSchools, handleToggleFilter } = this.props;
     const schoolGroupNames = ["Undergraduate", "Graduate", "Special"];
@@ -151,9 +184,9 @@ class SchoolFilterForm extends React.Component<Props, State> {
 
     return schoolIconMap.map((schoolNameIconMap, i) => ({
       menuItem: (
-        <Menu.Item key={schoolGroupNames[i]} style={{ fontSize: "1.2em" }}>
+        <StyledMenuItem key={schoolGroupNames[i]} isDark={theme === "dark"}>
           {t(`syllabus.School Filter.${schoolGroupNames[i]}`)}
-        </Menu.Item>
+        </StyledMenuItem>
       ),
       render: () => (
         <MediaQuery minWidth={sizes.tablet}>
@@ -209,18 +242,19 @@ class SchoolFilterForm extends React.Component<Props, State> {
       <WiderPopup
         id="school_filter_form"
         trigger={
-          <ChooseSchoolButton>
+          <ChooseSchoolButton className="bg-light-main dark:bg-dark-main">
             {t("school filter.choose schools")}
           </ChooseSchoolButton>
         }
-        content={<Tab panes={this.schoolImportPanes()} />}
+        content={<Tab panes={this.schoolImportPanes(theme)} />}
         on="click"
         position="bottom left"
         size="huge"
         wide="very"
+        isDark={theme === "dark"}
       />
     ) : (
-      <Tab panes={this.schoolImportPanes()} />
+      <Tab panes={this.schoolImportPanes(theme)} />
     );
   }
 }

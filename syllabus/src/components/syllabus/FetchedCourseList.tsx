@@ -16,6 +16,15 @@ const CourseListWrapper = styled(SimpleBar)`
   height: calc(100vh - 96px);
   ${media.tablet`height: calc(100vh - 166px);`}
   overflow-x: hidden;
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #999;
+  }
   .simplebar-scrollbar::before {
     background-color: #999;
   }

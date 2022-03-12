@@ -18,7 +18,6 @@ import { Article, Section, Subheading } from "@app/components/styles/Article";
 import AddedCourseItemContainer from "@app/containers/AddedCourseItemContainer";
 import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer";
 import Course from "@app/types/course";
-import { ThemeContext } from "@app/utils/theme-context";
 
 type CourseListWrapperProps = {
   innerRef: any;
@@ -37,6 +36,14 @@ const CourseListWrapper = styled.div<CourseListWrapperProps>`
   }
   .simplebar-placeholder {
     height: 0px !important;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #999;
   }
 `;
 
@@ -113,8 +120,6 @@ class AddedCourseList extends React.Component<Props, State> {
     };
   }
 
-  static contextType = ThemeContext;
-
   componentDidMount() {
     this.createStickyWrapper();
   }
@@ -137,7 +142,6 @@ class AddedCourseList extends React.Component<Props, State> {
 
   render() {
     const { addedCourses, t } = this.props;
-    const { theme, setTheme } = this.context;
 
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>
@@ -164,8 +168,8 @@ class AddedCourseList extends React.Component<Props, State> {
             </ul>
           </SimpleBar>
         ) : (
-          <ExtendedArticle>
-            <Message info size="tiny">
+          <ExtendedArticle className="bg-light-bgMain dark:bg-dark-bgMain">
+            <Message info size="tiny" className="dark:opacity-70">
               <StyledMessageHeader>
                 {t("syllabus.Added courses are displayed here")}
               </StyledMessageHeader>
@@ -174,9 +178,9 @@ class AddedCourseList extends React.Component<Props, State> {
             <hr style={{ margin: "1em 0px" }} />
 
             <Section>
-              <Subheading>{t("syllabus.To add a course")}</Subheading>
+              <Subheading className="dark:text-dark-text2">{t("syllabus.To add a course")}</Subheading>
               <StepGroup>
-                <Step>
+                <Step className="dark:opacity-70">
                   <p>
                     <b>{t("syllabus.Search with keywords")}</b>
                   </p>
@@ -188,7 +192,7 @@ class AddedCourseList extends React.Component<Props, State> {
                   <FontAwesomeIcon icon={faArrowDown} size="1x" />
                 </div>
 
-                <Step>
+                <Step className="dark:opacity-70">
                   <p>
                     <b>
                       {t("syllabus.Click on")}{" "}
@@ -214,7 +218,7 @@ class AddedCourseList extends React.Component<Props, State> {
               </StepGroup>
             </Section>
             <Section>
-              <Message info size="mini">
+              <Message info size="mini" className="dark:opacity-70">
                 <StyledMessageHeader>
                   {t("syllabus.Pro Tip!")}
                 </StyledMessageHeader>

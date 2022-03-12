@@ -34,12 +34,19 @@ const FilterScrollArea = styled(SimpleBar)<FilterScrollAreaProps>`
   height: ${(props) => (props.isSideBar ? "100%" : "calc(100% - 50px)")};
   padding: ${(props) =>
     props.isSideBar ? "0.5em 1em 1em 1em" : "0.7em 1.2em 1.2em"};
+  
   .simplebar-scrollbar::before {
     background-color: #999;
   }
   .simplebar-placeholder {
     height: 0px !important;
   }
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+  }
+
   overflow-y: auto;
 `;
 
@@ -52,7 +59,6 @@ const FilterTitle = styled("span")`
 
 const FilterClearButton = styled(Button)`
   color: #b51e36 !important;
-  background: #fff !important;
   font-weight: 500 !important;
   font-size: 0.8em !important;
 `;
@@ -468,16 +474,16 @@ const Filter = ({
   return (
     <FilterWrapper isSideBar={isSideBar}>
       <FilterScrollArea isSideBar={isSideBar}>
-        <FilterTitle>
+        <FilterTitle className="dark:text-dark-text2">
           <FontAwesomeIcon icon={faFilter} size="1x" />
           &nbsp;
           <b>{t("syllabus.Filter by")}</b>
           &nbsp;
-          <FilterClearButton onClick={clearFilter}>
+          <button onClick={clearFilter} className="mx-2 text-lg bg-light-bgMain text-light-main dark:bg-dark-bgMain dark:text-dark-main">
             {t("syllabus.Clear filter")}
-          </FilterClearButton>
+          </button>
         </FilterTitle>
-        <FilterGroupWrapper>
+        <FilterGroupWrapper className="dark:bg-dark-bgMain dark:text-dark-text2">
           <SchoolFilterContainer
             checkedSchools={checkedSchools}
             handleToggleFilter={handleToggleFilter}

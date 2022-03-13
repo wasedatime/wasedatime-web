@@ -40,12 +40,12 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
       }));
 
     const evalsTable = (
-      <Table>
-        <Table.Body>
+      <Table className="dark:border-dark-text3">
+        <Table.Body className="dark:bg-dark-text3 dark:text-dark-text2">
           {(course[SyllabusKey.EVAL] as any[]).map((e, i) => (
             <Table.Row key={i}>
               <Table.Cell>
-                <h6>
+                <h4 className="text-2xl">
                   <b>
                     <span
                       style={{
@@ -61,7 +61,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
                       }`
                     )}
                   </b>
-                </h6>
+                </h4>
                 <p>{e[SyllabusKey.EVAL_CRITERIA]}</p>
               </Table.Cell>
             </Table.Row>

@@ -50,13 +50,14 @@ const CourseItemWrapper = styled("li")`
   line-height: 150%;
 `;
 
-const CourseItemIntroWrapper = styled.div<ExpandableProps>`
+const CourseItemIntroWrapper = styled.div`
   padding: 0.5em 0.8em;
   &:hover {
     background: #eee;
     cursor: pointer;
   }
-  ${(props) => !props.expanded && "border-radius: 10px;"}
+  border-radius: 10px;
+  
   ${media.tablet`
     &:hover {
       background: #fff;
@@ -331,21 +332,21 @@ const CourseItem = ({
   };
 
   return (
-    <CourseItemWrapper>
+    <CourseItemWrapper className="bg-white dark:bg-dark-text3 dark:shadow-none">
       <CourseItemIntroWrapper
         onClick={async () => {
           expandable ? setExpanded(true) : await navigateToCourse();
         }}
-        expanded={expanded}
+        className="bg-white dark:bg-dark-text3 dark:shadow-none"
       >
-        <StyledHeading>{highlightedTitle}</StyledHeading>
+        <StyledHeading className="dark:text-dark-text2">{highlightedTitle}</StyledHeading>
         {expandable && (
-          <StyledSubHeading>{course[SyllabusKey.SUBTITLE]}</StyledSubHeading>
+          <StyledSubHeading className="dark:text-light-text1">{course[SyllabusKey.SUBTITLE]}</StyledSubHeading>
         )}
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge style={{ fontSize: "12px" }}>{langTerm}</Badge>
+            <Badge style={{ fontSize: "12px" }} className="dark:bg-light-text1 dark:text-dark-text2">{langTerm}</Badge>
             {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
           {!isRelatedCourse && (
@@ -372,7 +373,7 @@ const CourseItem = ({
           )}
         </CourseItemRow>
 
-        <DescriptionWrapper isLarger={isRelatedCourse}>
+        <DescriptionWrapper isLarger={isRelatedCourse} className="dark:text-dark-text2">
           <Description>{yearTerm}</Description>
           <Description>
             <OccurrenceList>{occurrences}</OccurrenceList>

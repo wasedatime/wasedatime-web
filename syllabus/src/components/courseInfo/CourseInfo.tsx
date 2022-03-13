@@ -59,12 +59,13 @@ const RelatedCourse = styled.div`
   ${media.tablet`flex: 0 0 50%;`}
 `;
 
-const StyledSubHeading = styled("h6")`
+const StyledSubHeading = styled("h4")`
   align-self: flex-start;
   margin: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-weight: 300;
+  font-size: 16px;
 `;
 
 const getCourseKey = (course) => course[SyllabusKey.ID].substring(0, 12);
@@ -217,9 +218,9 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
     const course = courseWithMoreDetails || courseFromProps;
 
     return areDetailsLoaded ? (
-      <CourseInfoWrapper>
-        <CourseDetails course={course} />
-        <Grid style={{ textAlign: "center", margin: "1em 0px" }}>
+      <CourseInfoWrapper className="dark:bg-dark-text3 dark:text-dark-text2">
+        <CourseDetails course={course} className="dark:bg-dark-text3" />
+        <Grid className="mx-4 my-0 text-center dark:bg-dark-text3">
           <Grid.Column width={6}>
             <p style={{ marginBottom: "0px" }}>Official Syllabus:</p>
             <a
@@ -259,7 +260,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
             searchLang={searchLang}
           />
         ) : (
-          <Placeholder style={{ margin: "1em" }}>
+          <Placeholder className="m-4 dark:bg-dark-text3 dark:text-dark-text2">
             <Placeholder.Paragraph>
               <Placeholder.Line />
               <Placeholder.Line />
@@ -268,7 +269,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
             </Placeholder.Paragraph>
           </Placeholder>
         )}
-        <StyledSubHeading>{t("courseInfo.Related courses")}</StyledSubHeading>
+        <StyledSubHeading className="dark:bg-dark-text3 dark:text-dark-text2">{t("courseInfo.Related courses")}</StyledSubHeading>
         <RelatedCourses>
           {areReviewsLoaded ? (
             relatedCourses.map((course, i) => (
@@ -281,6 +282,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
                     label: course[SyllabusKey.TITLE],
                   })
                 }
+                className="dark:bg-dark-text3"
               >
                 <CourseItemContainer
                   searchTerm=""
@@ -292,7 +294,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
               </RelatedCourse>
             ))
           ) : (
-            <Placeholder style={{ margin: "1em" }}>
+            <Placeholder className="m-4 dark:bg-dark-text3">
               <Placeholder.Paragraph>
                 <Placeholder.Line />
                 <Placeholder.Line />
@@ -304,7 +306,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
         </RelatedCourses>
       </CourseInfoWrapper>
     ) : (
-      <Placeholder style={{ margin: "1em" }}>
+      <Placeholder className="m-4 dark:bg-dark-text3">
         <Placeholder.Paragraph>
           <Placeholder.Line />
           <Placeholder.Line />

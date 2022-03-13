@@ -157,7 +157,7 @@ const CourseMoreDetails = ({ course, t }: Props) => {
   ];
 
   return (
-    <Accordion style={{ padding: "0px 2em" }}>
+    <Accordion style={{ padding: "0px 2em" }} className="dark:bg-dark-text3">
       {details.map(
         (detail, i) =>
           detail.content && (
@@ -172,14 +172,14 @@ const CourseMoreDetails = ({ course, t }: Props) => {
                     : setActiveDetailsIndex(i);
                 }}
               >
-                <h6>
+                <h4 className="text-2xl dark:text-dark-text2">
                   <FontAwesomeIcon
                     icon={
                       activeDetailsIndex === i ? faChevronDown : faChevronRight
                     }
                   />{" "}
                   {detail.title}
-                </h6>
+                </h4>
               </Accordion.Title>
               <Accordion.Content active={activeDetailsIndex === i}>
                 {detail.content}

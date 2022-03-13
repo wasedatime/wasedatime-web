@@ -32,12 +32,13 @@ const StyledReviewsWrapper = styled("div")`
   ${media.phone`padding: 0 1em;`}
 `;
 
-const StyledSubHeading = styled("h6")`
+const StyledSubHeading = styled("h4")`
   align-self: flex-start;
   margin: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-weight: 300;
+  font-size: 16px;
 `;
 
 const AddReviewButton = styled("button")`
@@ -319,7 +320,7 @@ class CourseReviews extends React.Component<Props, State> {
     } = this.state;
 
     return isFormOpen ? (
-      <StyledReviewsWrapper>
+      <StyledReviewsWrapper className="dark:bg-dark-text3">
         <AddReviewForm
           closeModal={() => this.setState({ isFormOpen: false })}
           scales={formScales}
@@ -331,7 +332,7 @@ class CourseReviews extends React.Component<Props, State> {
         />
       </StyledReviewsWrapper>
     ) : (
-      <StyledReviewsWrapper>
+      <StyledReviewsWrapper className="dark:bg-dark-text3">
         <StyledSubHeading>
           {t("courseInfo.Reviews")}{" "}
           <MediaQuery minWidth={sizes.phone}>

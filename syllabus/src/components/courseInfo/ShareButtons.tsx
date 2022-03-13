@@ -131,7 +131,7 @@ const ShareButtons = ({ courseId, t }) => {
   );
 
   return (
-    <span>
+    <span className="dark:bg-dark-text3">
       <p style={{ marginBottom: "0px" }}>Share this course:</p>
       {facebookButton}
       {linkedinButton}

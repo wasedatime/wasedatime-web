@@ -124,7 +124,7 @@ class FetchedCourseList extends React.Component<Props, State> {
             >
               <CourseChunkWrapper>
                 <div>
-                  <span>
+                  <span className="text-light-text2 dark:text-dark-text2">
                     {i18n.language === Lang.JA
                       ? `全 ${results.length} 件中 ${index * 5 + 1} - ${
                           index * 5 + chunk.length

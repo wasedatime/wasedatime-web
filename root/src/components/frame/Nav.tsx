@@ -20,6 +20,7 @@ import {
   TimetableIcon,
   TimetableIconHovered,
 } from "@app/components/icons/TimetableIcon";
+import { ThemeProvider } from "@app/utils/theme-context";
 
 const Sidebar = lazy(() => import("@app/components/frame/Sidebar"));
 const MobileNav = lazy(() => import("@app/components/frame/MobileNav"));
@@ -92,25 +93,27 @@ const Nav = () => {
 
   return (
     <Suspense fallback="">
-      <MediaQuery maxWidth={sizes.tablet}>
-        {(matches) =>
-          matches ? (
-            <MobileNav
-              navItems={navItems}
-              openSignInModal={() => setSignInModalOpen(true)}
-            />
-          ) : (
-            <Sidebar
-              navItems={navItems}
-              openSignInModal={() => setSignInModalOpen(true)}
-            />
-          )
-        }
-      </MediaQuery>
-      <SignInModal
-        isModalOpen={isSignInModalOpen}
-        closeModal={() => setSignInModalOpen(false)}
-      />
+      <ThemeProvider>
+        <MediaQuery maxWidth={sizes.tablet}>
+          {(matches) =>
+            matches ? (
+              <MobileNav
+                navItems={navItems}
+                openSignInModal={() => setSignInModalOpen(true)}
+              />
+            ) : (
+              <Sidebar
+                navItems={navItems}
+                openSignInModal={() => setSignInModalOpen(true)}
+              />
+            )
+          }
+        </MediaQuery>
+        <SignInModal
+          isModalOpen={isSignInModalOpen}
+          closeModal={() => setSignInModalOpen(false)}
+        />
+      </ThemeProvider>
     </Suspense>
   );
 };

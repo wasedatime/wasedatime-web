@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import {
   faGithub,
@@ -10,15 +10,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import LinkOutsideRouter from "@app/utils/link-outside-router";
+import { ThemeContext } from "@app/utils/theme-context";
+import colors from "@bit/wasedatime.core.theme.colors";
 
 type LinksWrapperProps = {
   expanded: boolean;
-  theme: {
-    [colorLabel: string]: string;
-  };
+  isDark: boolean;
 };
 
-const LinksWrapper = styled("div")<LinksWrapperProps>`
+const LinksWrapper = styled.div<LinksWrapperProps>`
   ${(props) => (props.expanded ? "width: 210px;" : "width: 100%;")}
   height: 120px;
   overflow-x: hidden;
@@ -26,9 +26,9 @@ const LinksWrapper = styled("div")<LinksWrapperProps>`
   margin-bottom: 0.1vh;
   font-size: 12px;
   text-align: center;
-  color: ${(props) => props.theme.text.text3};
+  color: ${(props) => props.isDark ? colors.light.text3 : colors.dark.text3};
   a {
-    color: ${(props) => props.theme.text.text3};
+    color: ${(props) => props.isDark ? colors.light.text3 : colors.dark.text3};
     font-size: 12px;
   }
   opacity: ${(props) => (props.expanded ? "1" : "0")};
@@ -49,11 +49,10 @@ interface Props {
   setCurrentPath: (path: string) => void;
 }
 
-const getWindowHeight = () => window.innerHeight;
-
 const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
   const { t } = useTranslation();
-  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
+  const { theme } = useContext(ThemeContext);
+  const [ windowHeight, setWindowHeight ] = useState(window.innerHeight);
 
   useEffect(() => {
     function handleResize() {
@@ -66,7 +65,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
   }, []);
 
   return windowHeight >= 480 ? (
-    <LinksWrapper expanded={expanded}>
+    <LinksWrapper expanded={expanded} isDark={theme === "dark"}>
       <LinkOutsideRouter to="/aboutus" customOnClick={() => setCurrentPath("/aboutus")}>{t("navigation.aboutus")}</LinkOutsideRouter>
       <br />
       <LinkOutsideRouter to="/terms-of-service" customOnClick={() => setCurrentPath("/terms-of-service")}>{t("user.Terms of Service")}</LinkOutsideRouter>・

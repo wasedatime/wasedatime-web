@@ -1,4 +1,4 @@
-const colors = require("./colors.json");
+const colors = require("@bit/wasedatime.core.theme.colors");
 
 module.exports = {
   darkMode: "class",

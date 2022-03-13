@@ -1,6 +1,6 @@
-import React, { ReactNode, useState } from "react";
-
+import React, { ReactNode } from "react";
 import styled from "styled-components";
+import colors from "@bit/wasedatime.core.theme.colors";
 
 interface NavItemBlockProps {
   expanded: boolean;
@@ -24,7 +24,7 @@ const NavItemBlock = styled.div<NavItemBlockProps>`
   display: flex;
   flex-direction: row;
   color: ${(props) =>
-    props.isCurrentPath ? props.theme.primary.main : "#fff"};
+    props.isCurrentPath ? colors.light.main : "#fff"};
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;
@@ -37,9 +37,6 @@ const NavItemBlock = styled.div<NavItemBlockProps>`
     text-align: center;
   }
   transition: padding-left 0.5s;
-  /*  &:hover {
-    color: ${(props) => props.theme.primary.main};
-  } */
 `;
 
 const NavItemText = styled.span<NavItemTextProps>`

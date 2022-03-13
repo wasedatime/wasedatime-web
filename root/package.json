@@ -77,6 +77,7 @@
     "@aws-amplify/auth": "3.4.34",
     "@aws-amplify/core": "4.4.0",
     "@bit/wasedatime.core.assets.text-logo": "0.0.1",
+    "@bit/wasedatime.core.theme.colors": "npm:wasedatime.core.theme.colors@^0.0.1",
     "@bit/wasedatime.core.ts.constants.langs": "0.0.5",
     "@bit/wasedatime.core.ts.constants.size-variables": "0.0.2",
     "@bit/wasedatime.core.ts.constants.theme": "0.0.3",

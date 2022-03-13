@@ -82,7 +82,7 @@
     "@bit/wasedatime.core.ts.constants.theme": "0.0.3",
     "@bit/wasedatime.core.ts.styles.mobile-header-wrapper": "0.0.1",
     "@bit/wasedatime.core.ts.styles.overlay": "0.0.1",
-    "@bit/wasedatime.core.ts.styles.sidebar-wrapper": "0.0.3",
+    "@bit/wasedatime.core.ts.styles.sidebar-wrapper": "0.0.4",
     "@bit/wasedatime.core.ts.styles.wrapper": "0.0.1",
     "@bit/wasedatime.core.ts.ui.header": "0.2.3",
     "@bit/wasedatime.core.ts.ui.language-menu": "0.1.2",

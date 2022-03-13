@@ -10,12 +10,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 import LinkOutsideRouter from "@app/utils/link-outside-router";
-import { ThemeContext } from "@app/utils/theme-context";
-import colors from "@bit/wasedatime.core.theme.colors";
 
 type LinksWrapperProps = {
   expanded: boolean;
-  isDark: boolean;
 };
 
 const LinksWrapper = styled.div<LinksWrapperProps>`
@@ -26,9 +23,7 @@ const LinksWrapper = styled.div<LinksWrapperProps>`
   margin-bottom: 0.1vh;
   font-size: 12px;
   text-align: center;
-  color: ${(props) => props.isDark ? colors.light.text3 : colors.dark.text3};
   a {
-    color: ${(props) => props.isDark ? colors.light.text3 : colors.dark.text3};
     font-size: 12px;
   }
   opacity: ${(props) => (props.expanded ? "1" : "0")};
@@ -51,7 +46,6 @@ interface Props {
 
 const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
   const { t } = useTranslation();
-  const { theme } = useContext(ThemeContext);
   const [ windowHeight, setWindowHeight ] = useState(window.innerHeight);
 
   useEffect(() => {
@@ -65,7 +59,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
   }, []);
 
   return windowHeight >= 480 ? (
-    <LinksWrapper expanded={expanded} isDark={theme === "dark"}>
+    <LinksWrapper expanded={expanded} className="text-light-text3 dark:text-dark-text3">
       <LinkOutsideRouter to="/aboutus" customOnClick={() => setCurrentPath("/aboutus")}>{t("navigation.aboutus")}</LinkOutsideRouter>
       <br />
       <LinkOutsideRouter to="/terms-of-service" customOnClick={() => setCurrentPath("/terms-of-service")}>{t("user.Terms of Service")}</LinkOutsideRouter>・
@@ -75,6 +69,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         href="https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md"
         target="_blank"
         rel="noopener noreferrer"
+        className="text-light-text3 dark:text-dark-text3"
       >
         Code Licensed MIT
       </a>
@@ -84,6 +79,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub link"
+        className="text-light-text3 dark:text-dark-text3"
       >
         <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
       </SnsLink>
@@ -92,6 +88,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Twitter link"
+        className="text-light-text3 dark:text-dark-text3"
       >
         <FontAwesomeIcon icon={faTwitter} size="2x" transform="shrink-2" />
       </SnsLink>
@@ -100,6 +97,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Facebook link"
+        className="text-light-text3 dark:text-dark-text3"
       >
         <FontAwesomeIcon icon={faFacebook} size="2x" transform="shrink-2" />
       </SnsLink>
@@ -108,6 +106,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram link"
+        className="text-light-text3 dark:text-dark-text3"
       >
         <FontAwesomeIcon icon={faInstagram} size="2x" transform="shrink-2" />
       </SnsLink>

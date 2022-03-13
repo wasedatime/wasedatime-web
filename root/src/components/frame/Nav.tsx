@@ -1,17 +1,25 @@
-import React, { useState, useEffect, lazy, Suspense } from "react";
+import React, { useState, useEffect, lazy, Suspense, ReactNode } from "react";
 
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import {
-  faCalendarAlt,
-  faBook,
-  faMapMarkedAlt,
-  faNewspaper,
-} from "@fortawesome/free-solid-svg-icons";
+import { createBrowserHistory } from "history";
 import ReactGA from "react-ga";
 import { useTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
 import { navigateToUrl } from "single-spa";
-import { createBrowserHistory } from "history";
+
+import {
+  CampusIcon,
+  CampusIconHovered,
+} from "@app/components/icons/CampusIcon";
+import { FeedsIcon, FeedsIconHovered } from "@app/components/icons/FeedsIcon";
+import {
+  SyllabusIcon,
+  SyllabusIconHovered,
+} from "@app/components/icons/SyllabusIcon";
+import {
+  TimetableIcon,
+  TimetableIconHovered,
+} from "@app/components/icons/TimetableIcon";
 
 const Sidebar = lazy(() => import("@app/components/frame/Sidebar"));
 const MobileNav = lazy(() => import("@app/components/frame/MobileNav"));
@@ -20,6 +28,13 @@ const SignInModal = lazy(
 );
 
 const history = createBrowserHistory();
+
+export interface NavItemsProps {
+  name: string;
+  path: string;
+  icon: ReactNode;
+  iconHovered?: ReactNode;
+}
 
 const Nav = () => {
   if (
@@ -48,26 +63,30 @@ const Nav = () => {
     });
   }, []);
 
-  const navItems = [
+  const navItems: NavItemsProps[] = [
     {
       name: t("navigation.timetable"),
       path: "/courses/timetable",
-      icon: faCalendarAlt,
+      icon: <TimetableIcon />,
+      iconHovered: <TimetableIconHovered />,
     },
     {
       name: t("navigation.syllabus"),
       path: "/courses/syllabus",
-      icon: faBook,
+      icon: <SyllabusIcon />,
+      iconHovered: <SyllabusIconHovered />,
     },
     {
       name: t("navigation.campus"),
       path: "/campus",
-      icon: faMapMarkedAlt,
+      icon: <CampusIcon />,
+      iconHovered: <CampusIconHovered />,
     },
     {
       name: t("navigation.feeds"),
       path: "/feeds",
-      icon: faNewspaper,
+      icon: <FeedsIcon />,
+      iconHovered: <FeedsIconHovered />,
     },
   ];
 

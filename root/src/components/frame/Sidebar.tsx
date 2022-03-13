@@ -1,33 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import textLogo from "@bit/wasedatime.core.assets.text-logo";
-import { light } from "@bit/wasedatime.core.ts.constants.theme";
 import SidebarWrapper from "@bit/wasedatime.core.ts.styles.sidebar-wrapper";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 
+import { IconTextGroup } from "@app/components/block/IconTextGroup";
+import { NavItemsProps } from "@app/components/frame/Nav";
 import OtherLinks from "@app/components/frame/OtherLinks";
 import UserMenu from "@app/components/user/UserMenu";
 import LinkOutsideRouter from "@app/utils/link-outside-router";
+// import { ThemeContext } from "@app/utils/theme-context";
 
 type TextLogoWrapperProps = {
   expanded: boolean;
 };
 
 type TextLogoProps = {
-  expanded: boolean;
-};
-
-type NavItemBlockProps = {
-  expanded: boolean;
-  isCurrentPath: boolean;
-  theme: {
-    [colorLabel: string]: string;
-  };
-};
-
-type NavItemTextProps = {
   expanded: boolean;
 };
 
@@ -47,53 +36,18 @@ const TextLogo = styled.img<TextLogoProps>`
   display: inline-block;
 `;
 
-const NavItemBlock = styled.div<NavItemBlockProps>`
-  display: flex;
-  flex-direction: row;
-  color: ${(props) =>
-    props.isCurrentPath ? props.theme.primary.main : "#fff"};
-  font-size: 18px;
-  font-weight: 100;
-  padding: 1vh 0px;
-  width: 100%;
-  text-align: center;
-  padding-left: ${(props) => (props.expanded ? "40px" : "12px")};
-  svg {
-    width: 40px !important;
-    height: 40px;
-    text-align: center;
-  }
-  transition: padding-left 0.5s;
-  &:hover {
-    color: ${(props) => props.theme.primary.main};
-  }
-`;
-
-const NavItemText = styled.span<NavItemTextProps>`
-  overflow: hidden;
-  margin: 0px;
-  margin-left: 10px;
-  text-align: left;
-  /* color: #fff; */
-  line-height: 2;
-  height: 40px;
-  opacity: ${(props) => (props.expanded ? "1" : "0")};
-  width: ${(props) => (props.expanded ? "120px" : "0px")};
-  transition: opacity 0.3s ease-out, width 0.5s;
-`;
-
-type Props = {
-  navItems: {
-    name: string;
-    path: string;
-    icon: any;
-  }[];
+export type SidebarProps = {
+  navItems: NavItemsProps[];
   openSignInModal: () => void;
 };
 
-const Sidebar = ({ navItems, openSignInModal }: Props) => {
-  const [expanded, setExpanded] = useState(false);
-  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+const Sidebar = ({ navItems, openSignInModal }: SidebarProps) => {
+  // const { theme } = useContext(ThemeContext);
+
+  const [expanded, setExpanded] = useState<boolean>(false);
+  const [currentPath, setCurrentPath] = useState<string>(
+    window.location.pathname
+  );
 
   const expandSidebar = () => {
     if (!expanded) setExpanded(true);
@@ -104,73 +58,62 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
   };
 
   return (
-    <ThemeProvider theme={light}>
-      <SidebarWrapper
-        expanded={expanded}
-        onMouseEnter={expandSidebar}
-        onTouchStart={expandSidebar}
-        onMouseLeave={foldSidebar}
+    <SidebarWrapper
+      className="bg-light-bgSide dark:bg-dark-bgSide"
+      // theme={theme}
+      expanded={expanded}
+      onMouseEnter={expandSidebar}
+      onTouchStart={expandSidebar}
+      onMouseLeave={foldSidebar}
+    >
+      <LinkOutsideRouter
+        to="/home"
+        className="flex flex-row items-center"
+        style={{
+          height: "67px",
+          borderBottom: "2px solid #b51e36",
+          padding: "8px",
+        }}
       >
-        <LinkOutsideRouter
-          to="/home"
-          className="flex flex-row items-center"
-          style={{
-            height: "67px",
-            borderBottom: "2px solid #b51e36",
-            padding: "8px",
-          }}
-        >
-          <div style={{ flex: "0 0 50px", textAlign: "center" }}>
-            <SmallLogo />
-          </div>
-          <TextLogoWrapper expanded={expanded}>
-            <TextLogo
-              src={textLogo}
-              alt="WasedaTime text logo"
-              width="130"
-              height="50"
-              expanded={expanded}
-            />
-          </TextLogoWrapper>
-        </LinkOutsideRouter>
-        <div style={{ width: "100%", margin: "0px" }}>
-          {navItems.map((item) => (
-            <LinkOutsideRouter
-              to={item.path}
-              customOnClick={() => setCurrentPath(item.path)}
-              key={item.name}
-            >
-              <NavItemBlock
-                className="group text-white dark:text-dark-text1"
-                expanded={expanded}
-                isCurrentPath={item.path === currentPath}
-              >
-                <FontAwesomeIcon
-                  className="group-hover:text-light-main dark:group-hover:text-dark-main"
-                  icon={item.icon}
-                  size="2x"
-                  transform="shrink-2"
-                />
-                <NavItemText
-                  className="group-hover:text-light-main dark:group-hover:text-dark-main"
-                  expanded={expanded}
-                >
-                  {item.name}
-                </NavItemText>
-              </NavItemBlock>
-            </LinkOutsideRouter>
-          ))}
+        <div style={{ flex: "0 0 50px", textAlign: "center" }}>
+          <SmallLogo />
         </div>
-        <div className="absolute" style={{ bottom: "100px" }}>
-          <OtherLinks expanded={expanded} setCurrentPath={setCurrentPath} />
-          <UserMenu
-            openSignInModal={openSignInModal}
-            isHovered={expanded}
-            isMobileMode={false}
+        <TextLogoWrapper expanded={expanded}>
+          <TextLogo
+            src={textLogo}
+            alt="WasedaTime text logo"
+            width="130"
+            height="50"
+            expanded={expanded}
           />
-        </div>
-      </SidebarWrapper>
-    </ThemeProvider>
+        </TextLogoWrapper>
+      </LinkOutsideRouter>
+      <div style={{ width: "100%", margin: "0px" }}>
+        {navItems.map((item) => (
+          <LinkOutsideRouter
+            to={item.path}
+            customOnClick={() => setCurrentPath(item.path)}
+            key={item.name}
+          >
+            <IconTextGroup
+              icon={item.icon}
+              text={item.name}
+              iconPath={item.path}
+              expanded={expanded}
+              currentPath={currentPath}
+            />
+          </LinkOutsideRouter>
+        ))}
+      </div>
+      <div className="absolute" style={{ bottom: "100px" }}>
+        <OtherLinks expanded={expanded} setCurrentPath={setCurrentPath} />
+        <UserMenu
+          openSignInModal={openSignInModal}
+          isHovered={expanded}
+          isMobileMode={false}
+        />
+      </div>
+    </SidebarWrapper>
   );
 };
 

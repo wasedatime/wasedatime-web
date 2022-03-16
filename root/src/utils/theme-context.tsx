@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from "react";
 
-type ThemeTypes = "light" | "dark";
+export type ThemeTypes = "light" | "dark";
 
 const getInitialTheme = (): ThemeTypes => {
   if (typeof window !== "undefined" && window.localStorage) {

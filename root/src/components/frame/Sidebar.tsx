@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import textLogo from "@bit/wasedatime.core.assets.text-logo";
-import SidebarWrapper from "@bit/wasedatime.core.ts.styles.sidebar-wrapper";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import styled from "styled-components";
 
@@ -10,7 +9,6 @@ import { NavItemsProps } from "@app/components/frame/Nav";
 import OtherLinks from "@app/components/frame/OtherLinks";
 import UserMenu from "@app/components/user/UserMenu";
 import LinkOutsideRouter from "@app/utils/link-outside-router";
-// import { ThemeContext } from "@app/utils/theme-context";
 
 type TextLogoWrapperProps = {
   expanded: boolean;
@@ -19,6 +17,21 @@ type TextLogoWrapperProps = {
 type TextLogoProps = {
   expanded: boolean;
 };
+
+interface SideWrapperProps {
+  expanded: boolean;
+}
+
+const SidebarWrapper = styled.aside<SideWrapperProps>`
+  position: relative;
+  width: 65px;
+  height: 100%;
+  position: fixed;
+  z-index: 400;
+  box-shadow: rgba(0, 0, 0, 0.45) 4px 0px 12px;
+  transition: width 0.5s;
+  ${(props) => props.expanded && "width: 210px; transition: width 0.5s;"};
+`;
 
 const TextLogoWrapper = styled.div<TextLogoWrapperProps>`
   ${(props) => props.expanded && "flex: 0 0 130px;"}
@@ -42,8 +55,6 @@ export type SidebarProps = {
 };
 
 const Sidebar = ({ navItems, openSignInModal }: SidebarProps) => {
-  // const { theme } = useContext(ThemeContext);
-
   const [expanded, setExpanded] = useState<boolean>(false);
   const [currentPath, setCurrentPath] = useState<string>(
     window.location.pathname
@@ -60,7 +71,6 @@ const Sidebar = ({ navItems, openSignInModal }: SidebarProps) => {
   return (
     <SidebarWrapper
       className="bg-light-bgSide dark:bg-dark-bgSide"
-      // theme={theme}
       expanded={expanded}
       onMouseEnter={expandSidebar}
       onTouchStart={expandSidebar}

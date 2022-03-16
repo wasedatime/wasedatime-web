@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
-import styled from "styled-components";
+
 import colors from "@bit/wasedatime.core.theme.colors";
+import styled from "styled-components";
 
 interface NavItemBlockProps {
   expanded: boolean;
@@ -13,18 +14,16 @@ interface NavItemTextProps {
 
 interface IconTextGroupProps {
   icon: ReactNode;
-  text: string;
-  iconPath: string;
-  expanded: boolean;
-  currentPath: string;
-  iconHovered?: ReactNode;
+  text?: string;
+  iconPath?: string;
+  expanded?: boolean;
+  currentPath?: string;
 }
 
 const NavItemBlock = styled.div<NavItemBlockProps>`
   display: flex;
   flex-direction: row;
-  color: ${(props) =>
-    props.isCurrentPath ? colors.light.main : "#fff"};
+  color: ${(props) => (props.isCurrentPath ? colors.light.main : "#fff")};
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;
@@ -37,6 +36,9 @@ const NavItemBlock = styled.div<NavItemBlockProps>`
     text-align: center;
   }
   transition: padding-left 0.5s;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const NavItemText = styled.span<NavItemTextProps>`
@@ -54,7 +56,6 @@ const NavItemText = styled.span<NavItemTextProps>`
 
 export const IconTextGroup = ({
   icon,
-  iconHovered,
   text,
   iconPath,
   expanded,
@@ -62,19 +63,21 @@ export const IconTextGroup = ({
 }: IconTextGroupProps) => {
   return (
     <NavItemBlock
-      className="group text-light-text1 dark:text-dark-text2"
+      className="group text-light-text2 dark:text-dark-text2"
       expanded={expanded}
       isCurrentPath={iconPath === currentPath}
     >
-      <div className="text-light-text1 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
+      <div className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
         {icon}
       </div>
-      <NavItemText
-        className="text-light-text1 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1"
-        expanded={expanded}
-      >
-        {text}
-      </NavItemText>
+      {text && (
+        <NavItemText
+          className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1"
+          expanded={expanded}
+        >
+          {text}
+        </NavItemText>
+      )}
     </NavItemBlock>
   );
 };

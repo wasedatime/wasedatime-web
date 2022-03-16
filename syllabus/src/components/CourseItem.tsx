@@ -254,7 +254,7 @@ const CourseItem = ({
   t,
   i18n,
 }: Props) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { theme, setTheme } = React.useContext(ThemeContext);
   const [expanded, setExpanded] = useState(
     window.location.search.includes(course[SyllabusKey.ID])

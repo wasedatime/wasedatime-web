@@ -91,13 +91,13 @@ const App = ({
 };
 
 const NotFound = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   useEffect(() => navigate("/"));
   return <LoadingSpinner message="Not found! Redirecting..." />;
 };
 
 const AppRoutes = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   return (
     <Routes>
@@ -115,7 +115,7 @@ const AppRoutes = () => {
       <Route element={<NotFound />} path="*" />
     </Routes>
   );
-}
+};
 
 const mapStateToProps = (state: ReduxRootState) => ({
   addedCoursesPrefs: getAddedCoursePrefs(state.addedCourses.byId),

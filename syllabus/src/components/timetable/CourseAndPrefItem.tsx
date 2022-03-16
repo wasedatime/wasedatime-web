@@ -81,7 +81,7 @@ const CourseAndPrefItem = ({
   handleRemoveCourse,
   handleChangeColor,
 }: Props) => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { theme, setTheme } = React.useContext(ThemeContext);
   const { title, instructor } = getCourseTitleAndInstructor(
     course,

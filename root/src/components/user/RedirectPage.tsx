@@ -1,10 +1,14 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 const RedirectPage = () => {
   const { t } = useTranslation();
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const timeout = (ms: number) => {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  };
 
   useEffect(() => {
     const redirectToHomeAfter5Sec = async () => {
@@ -14,13 +18,8 @@ const RedirectPage = () => {
       }
     };
 
-    redirectToHomeAfter5Sec()
-      .catch(err => console.error(err));
+    redirectToHomeAfter5Sec().catch((err) => console.error(err));
   }, []);
-
-  const timeout = (ms: number) => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
 
   return window.location.search.includes("error_description") ? (
     <div className="mt-20">
@@ -38,6 +37,6 @@ const RedirectPage = () => {
       <p>{t("verify.success.message2")}</p>
     </div>
   );
-}
+};
 
 export default RedirectPage;

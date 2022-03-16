@@ -2,11 +2,11 @@ import React, { useEffect, lazy, Suspense } from "react";
 
 import { Hub } from "@aws-amplify/core";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { ErrorBoundary } from "@sentry/react";
 import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { navigateToUrl } from "single-spa";
 
 import CommonStyle from "@app/common-style";
@@ -32,60 +32,16 @@ const NotFound = () => {
   return <LoadingSpinner message="Not found! Redirecting..." />;
 };
 
-const App = () => {
-  const { i18n } = useTranslation();
-  useEffect(() => {
-    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
-  }, []);
-
-  return (
-    <>
-      <Helmet>
-        <title>WasedaTime - Home</title>
-        <meta
-          name="description"
-          content="An unofficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University."
-        />
-        <meta property="og:title" content="WasedaTime - Home" />
-        <meta
-          property="og:description"
-          content="Non-profit, student-run, open-source app aiming to support and improve the campus lives of Waseda University students."
-        />
-        <meta property="og:site_name" content="WasedaTime - Home" />
-      </Helmet>
-      <CommonStyle />
-
-      <ThemeProvider>
-        <ErrorBoundary
-          fallback={({ error, componentStack, resetError }) => (
-            <ErrorFallback error={error} resetError={resetError} />
-          )}
-        >
-          <Suspense fallback={<LoadingSpinner message="Loading..." />}>
-            {localStorage.getItem("isFirstAccess") === null ||
-            localStorage.getItem("isFirstAccess") === "true" ? (
-              <Home isFirstAccess />
-            ) : (
-              <BrowserRouter>
-                <AppRoutes />
-              </BrowserRouter>
-            )}
-          </Suspense>
-        </ErrorBoundary>
-      </ThemeProvider>
-    </>
-  );
-};
-
-const Redirect = ({ to }) => {
-  let navigate = useNavigate();
+const Redirect = ({ to }: { to: string }) => {
+  const navigate = useNavigate();
 
   useEffect(() => navigate(to), []);
+
   return null;
-}
+};
 
 const AppRoutes = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   Hub.listen("auth", ({ payload: { event, data } }) => {
     switch (event) {
@@ -129,6 +85,51 @@ const AppRoutes = () => {
       <Route element={<NotFound />} path="*" />
     </Routes>
   );
-}
+};
+
+const App = () => {
+  const { i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
+  }, []);
+
+  return (
+    <>
+      <Helmet>
+        <title>WasedaTime - Home</title>
+        <meta
+          name="description"
+          content="An unofficial app for Syllabus Searching, Classroom Usage Checking, and Shuttle Bus Arrival Time Checking at Waseda University."
+        />
+        <meta property="og:title" content="WasedaTime - Home" />
+        <meta
+          property="og:description"
+          content="Non-profit, student-run, open-source app aiming to support and improve the campus lives of Waseda University students."
+        />
+        <meta property="og:site_name" content="WasedaTime - Home" />
+      </Helmet>
+      <CommonStyle />
+
+      <ThemeProvider>
+        <ErrorBoundary
+          fallback={({ error, componentStack, resetError }) => (
+            <ErrorFallback error={error} resetError={resetError} />
+          )}
+        >
+          <BrowserRouter>
+            <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+              {localStorage.getItem("isFirstAccess") === null ||
+              localStorage.getItem("isFirstAccess") === "true" ? (
+                <Home isFirstAccess />
+              ) : (
+                <AppRoutes />
+              )}
+            </Suspense>
+          </BrowserRouter>
+        </ErrorBoundary>
+      </ThemeProvider>
+    </>
+  );
+};
 
 export default App;

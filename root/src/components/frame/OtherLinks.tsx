@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
   faGithub,
@@ -9,6 +9,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+
 import LinkOutsideRouter from "@app/utils/link-outside-router";
 
 type LinksWrapperProps = {
@@ -46,7 +47,7 @@ interface Props {
 
 const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
   const { t } = useTranslation();
-  const [ windowHeight, setWindowHeight ] = useState(window.innerHeight);
+  const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
   useEffect(() => {
     function handleResize() {
@@ -59,17 +60,36 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
   }, []);
 
   return windowHeight >= 480 ? (
-    <LinksWrapper expanded={expanded} className="text-light-text3 dark:text-dark-text3">
-      <LinkOutsideRouter to="/aboutus" customOnClick={() => setCurrentPath("/aboutus")}>{t("navigation.aboutus")}</LinkOutsideRouter>
+    <LinksWrapper
+      expanded={expanded}
+      className="text-light-text2 dark:text-dark-text2"
+    >
+      <LinkOutsideRouter
+        to="/aboutus"
+        customOnClick={() => setCurrentPath("/aboutus")}
+      >
+        {t("navigation.aboutus")}
+      </LinkOutsideRouter>
       <br />
-      <LinkOutsideRouter to="/terms-of-service" customOnClick={() => setCurrentPath("/terms-of-service")}>{t("user.Terms of Service")}</LinkOutsideRouter>・
-      <LinkOutsideRouter to="/privacy-policy" customOnClick={() => setCurrentPath("/privacy-policy")}>{t("user.Privacy Policy")}</LinkOutsideRouter>
+      <LinkOutsideRouter
+        to="/terms-of-service"
+        customOnClick={() => setCurrentPath("/terms-of-service")}
+      >
+        {t("user.Terms of Service")}
+      </LinkOutsideRouter>
+      ・
+      <LinkOutsideRouter
+        to="/privacy-policy"
+        customOnClick={() => setCurrentPath("/privacy-policy")}
+      >
+        {t("user.Privacy Policy")}
+      </LinkOutsideRouter>
       <br />
       <a
         href="https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md"
         target="_blank"
         rel="noopener noreferrer"
-        className="text-light-text3 dark:text-dark-text3"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         Code Licensed MIT
       </a>
@@ -79,7 +99,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub link"
-        className="text-light-text3 dark:text-dark-text3"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
       </SnsLink>
@@ -88,7 +108,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Twitter link"
-        className="text-light-text3 dark:text-dark-text3"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         <FontAwesomeIcon icon={faTwitter} size="2x" transform="shrink-2" />
       </SnsLink>
@@ -97,7 +117,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Facebook link"
-        className="text-light-text3 dark:text-dark-text3"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         <FontAwesomeIcon icon={faFacebook} size="2x" transform="shrink-2" />
       </SnsLink>
@@ -106,7 +126,7 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram link"
-        className="text-light-text3 dark:text-dark-text3"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         <FontAwesomeIcon icon={faInstagram} size="2x" transform="shrink-2" />
       </SnsLink>

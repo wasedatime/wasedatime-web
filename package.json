@@ -1,7 +1,7 @@
 {
   "name": "@wasedatime/web",
   "scripts": {
-    "preinstall": "npx -y only-allow pnpm",
+    "preinstall": "npx only-allow pnpm",
     "start": "pnpm recursive run start --workspace-concurrency 6",
     "build": "pnpm recursive run build --workspace-concurrency 6",
     "build-dev": "pnpm recursive run build-dev --workspace-concurrency 6",

@@ -1,7 +1,7 @@
 {
   "name": "@wasedatime/campus",
   "scripts": {
-    "preinstall": "npx -y only-allow pnpm",
+    "preinstall": "npx only-allow pnpm",
     "start": "webpack serve --port 8081 --env isLocal",
     "start:standalone": "webpack serve --env standalone",
     "local": "concurrently --kill-others \"pnpm start\" \"cd ../root && pnpm start\"",

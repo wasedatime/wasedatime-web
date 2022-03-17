@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "preinstall": "npx -y only-allow pnpm",
+    "preinstall": "npx only-allow pnpm",
     "start": "next dev --port 8083",
     "build": "APP_ENV=production next build && next export -o dist/",
     "build-dev": "APP_ENV=staging next build && next export -o dist/",

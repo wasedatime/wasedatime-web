@@ -1,26 +1,36 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import Review from "./Review";
-import ReviewStars from "../courseInfo/ReviewStars";
+
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import SimpleBar from "simplebar-react";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import FSEcover from "../../assets/img/school-covers/fse.png";
-import CSEcover from "../../assets/img/school-covers/cse.png";
-import ASEcover from "../../assets/img/school-covers/ase.png";
+import styled from "styled-components";
 
-import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { useTranslation } from "react-i18next";
 
-const schoolCoverMap = {
-  "FSE": FSEcover,
-  "CSE": CSEcover,
-  "ASE": ASEcover,
+import ASEcover from "@app/assets/img/school-covers/ase.png";
+import CSEcover from "@app/assets/img/school-covers/cse.png";
+import FSEcover from "@app/assets/img/school-covers/fse.png";
+import ReviewStars from "@app/components/courseInfo/ReviewStars";
+import Review from "@app/components/labs/Review";
+import { useTranslation } from "react-i18next";
+import Slider from "rc-slider/lib/Slider";
+
+type LabWrapperProps = {
+  isOpen: boolean;
 };
 
-const LabWrapper = styled.div`
-  flex: 0 0 ${props => props.isOpen ? "100%" : "45%"};
+type LabTrigger = {
+  school: string;
+};
+
+const schoolCoverMap = {
+  FSE: FSEcover,
+  CSE: CSEcover,
+  ASE: ASEcover,
+};
+
+const LabWrapper = styled.div<LabWrapperProps>`
+  flex: 0 0 ${(props) => (props.isOpen ? "100%" : "45%")};
   ${media.desktop`
     flex: 0 0 100%;
   `}
@@ -30,7 +40,7 @@ const LabWrapper = styled.div`
   `}
 `;
 
-const LabTrigger = styled.div`
+const LabTrigger = styled.div<LabTrigger>`
   width: 100%;
   height: 100px;
   position: relative;
@@ -38,15 +48,15 @@ const LabTrigger = styled.div`
   cursor: pointer;
 
   &:before {
-    content: ' ';
+    content: " ";
     display: block;
     position: absolute;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    opacity: ${props => props.school === "CSE" ? 0.2 : 0.3};
-    background-image: url(${props => schoolCoverMap[props.school]});
+    opacity: ${(props) => (props.school === "CSE" ? 0.2 : 0.3)};
+    background-image: url(${(props) => schoolCoverMap[props.school]});
     background-size: 100%;
     border-radius: 10px;
   }
@@ -146,10 +156,15 @@ const SectionHeader = styled.h5`
 `;
 
 const getRoundedAverage = (reviews, itemLabel) => {
-  const filteredReviews = reviews.filter(review => review[itemLabel] && Number.isInteger(review[itemLabel]));
-  const average = filteredReviews.reduce(function (sum, review) { return sum + review[itemLabel] }, 0) / filteredReviews.length;
+  const filteredReviews = reviews.filter(
+    (review) => review[itemLabel] && Number.isInteger(review[itemLabel])
+  );
+  const average =
+    filteredReviews.reduce((sum, review) => sum + review[itemLabel], 0) /
+    filteredReviews.length;
+
   return Math.round(average * 2) / 2 || 0;
-}
+};
 
 const Lab = ({ name, reviews, school }) => {
   const { t } = useTranslation();
@@ -157,12 +172,28 @@ const Lab = ({ name, reviews, school }) => {
 
   const itemTable = (itemLabel) => (
     <Table unstackable>
-      <Table.Header><Table.Row><Table.HeaderCell>{t("labs.review." + itemLabel)}</Table.HeaderCell></Table.Row></Table.Header>
-      <Table.Body>{Array.from(new Set(reviews.map(r => r[itemLabel]))).map(item => item && <Table.Row><Table.Cell>{item}</Table.Cell></Table.Row>)}</Table.Body>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>{t(`labs.review.${itemLabel}`)}</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
+      <Table.Body>
+        {Array.from(new Set(reviews.map((r) => r[itemLabel]))).map(
+          (item) =>
+            item && (
+              <Table.Row>
+                <Table.Cell>{item}</Table.Cell>
+              </Table.Row>
+            )
+        )}
+      </Table.Body>
     </Table>
   );
-  
-  const topicSatisficationAverage = getRoundedAverage(reviews, "topicSatisfication");
+
+  const topicSatisficationAverage = getRoundedAverage(
+    reviews,
+    "topicSatisfication"
+  );
   const guidanceAverage = getRoundedAverage(reviews, "guidance");
   const happinessAverage = getRoundedAverage(reviews, "happiness");
 
@@ -174,62 +205,104 @@ const Lab = ({ name, reviews, school }) => {
 
       {open && <ReviewsModalOverlay onClick={() => setOpen(false)} />}
 
-      {
-        open && (
-          <ReviewsModal>
-            <ReviewsWrapper>
-              <CloseButton onClick={() => setOpen(false)}>×</CloseButton>
+      {open && (
+        <ReviewsModal>
+          <ReviewsWrapper>
+            <CloseButton onClick={() => setOpen(false)}>×</CloseButton>
 
-              <ReviewProfName>{name}</ReviewProfName>
+            <ReviewProfName>{name}</ReviewProfName>
 
-              <SectionHeader>{t("labs.review.Basics")}</SectionHeader>
-              {itemTable("theme")}
-              {itemTable("coreTime")}
-              {itemTable("obligations")}
+            <SectionHeader>{t("labs.review.Basics")}</SectionHeader>
+            {itemTable("theme")}
+            {itemTable("coreTime")}
+            {itemTable("obligations")}
 
-              <SectionHeader>{t("labs.review.Research Topic")}</SectionHeader>
-              {topicSatisficationAverage > 0 && <Table unstackable><Table.Header><Table.Row><Table.HeaderCell>{t("labs.review.topicSatisfication")} <span style={{ float: "right" }}>{<ReviewStars scale={topicSatisficationAverage} />}</span></Table.HeaderCell></Table.Row></Table.Header></Table>}
-              {itemTable("topicDecision")}
-              {itemTable("yourResearch")}
+            <SectionHeader>{t("labs.review.Research Topic")}</SectionHeader>
+            {topicSatisficationAverage > 0 && (
+              <Table unstackable>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell>
+                      {t("labs.review.topicSatisfication")}{" "}
+                      <span style={{ float: "right" }}>
+                        <ReviewStars scale={topicSatisficationAverage} />
+                      </span>
+                    </Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+              </Table>
+            )}
+            {itemTable("topicDecision")}
+            {itemTable("yourResearch")}
 
-              <SectionHeader>{t("labs.review.Experience / Observation")}</SectionHeader>
+            <SectionHeader>
+              {t("labs.review.Experience / Observation")}
+            </SectionHeader>
 
-              {guidanceAverage > 0 && <Table unstackable>
-                <Table.Header><Table.Row><Table.HeaderCell>
-                  <div style={{ display: "flex", flexDirection: "row", marginBottom: "5px" }}>
-                    <div style={{ flex: "50%" }}>← {t("labs.review.Independence")}</div>
-                    <div style={{ flex: "50%", textAlign: "right" }}>{t("labs.review.Guidance")} →</div>
-                  </div>
-                  <Slider
-                    min={1}
-                    max={10}
-                    step={1}
-                    defaultValue={guidanceAverage * 2}
-                    value={guidanceAverage * 2}
-                  />
-                </Table.HeaderCell></Table.Row></Table.Header>
-              </Table>}
+            {guidanceAverage > 0 && (
+              <Table unstackable>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell>
+                      <div
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          marginBottom: "5px",
+                        }}
+                      >
+                        <div style={{ flex: "50%" }}>
+                          ← {t("labs.review.Independence")}
+                        </div>
+                        <div style={{ flex: "50%", textAlign: "right" }}>
+                          {t("labs.review.Guidance")} →
+                        </div>
+                      </div>
+                      <Slider
+                        min={1}
+                        max={10}
+                        step={1}
+                        defaultValue={guidanceAverage * 2}
+                        value={guidanceAverage * 2}
+                      />
+                    </Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+              </Table>
+            )}
 
-              {happinessAverage > 0 && <Table unstackable><Table.Header><Table.Row><Table.HeaderCell>{t("labs.review.happiness")} <span style={{ float: "right" }}>{<ReviewStars scale={happinessAverage} />}</span></Table.HeaderCell></Table.Row></Table.Header></Table>}
-              
-              {itemTable("atmosphere")}
-              {itemTable("profCharacter")}
-              {itemTable("knowBeforeEnter")}
+            {happinessAverage > 0 && (
+              <Table unstackable>
+                <Table.Header>
+                  <Table.Row>
+                    <Table.HeaderCell>
+                      {t("labs.review.happiness")}{" "}
+                      <span style={{ float: "right" }}>
+                        <ReviewStars scale={happinessAverage} />
+                      </span>
+                    </Table.HeaderCell>
+                  </Table.Row>
+                </Table.Header>
+              </Table>
+            )}
 
-              <SectionHeader>{t("labs.review.Members")}</SectionHeader>
-              {itemTable("totalStudents")}
-              {itemTable("internationalStudents")}
+            {itemTable("atmosphere")}
+            {itemTable("profCharacter")}
+            {itemTable("knowBeforeEnter")}
 
-              <SectionHeader>{t("labs.review.Language")}</SectionHeader>
-              {itemTable("jaRequired")}
-              {itemTable("enRequired")}
-            </ReviewsWrapper>
-          </ReviewsModal>
-        )
-      }
+            <SectionHeader>{t("labs.review.Members")}</SectionHeader>
+            {itemTable("totalStudents")}
+            {itemTable("internationalStudents")}
+
+            <SectionHeader>{t("labs.review.Language")}</SectionHeader>
+            {itemTable("jaRequired")}
+            {itemTable("enRequired")}
+          </ReviewsWrapper>
+        </ReviewsModal>
+      )}
       <Review />
     </LabWrapper>
   );
-}
+};
 
 export default Lab;

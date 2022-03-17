@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "@reach/router";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faGithub,
   faFacebook,
   faTwitter,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "@reach/router";
 import { useTranslation } from "react-i18next";
+import styled from "styled-components";
 
-const LinksWrapper = styled("div")`
+type LinksWrapperProps = {
+  expanded: boolean;
+  theme: {
+    [colorLabel: string]: string;
+  };
+};
+
+const LinksWrapper = styled("div")<LinksWrapperProps>`
   ${(props) => (props.expanded ? "width: 210px;" : "width: 100%;")}
   height: 120px;
   overflow-x: hidden;
@@ -24,7 +32,8 @@ const LinksWrapper = styled("div")`
     font-size: 12px;
   }
   opacity: ${(props) => (props.expanded ? "1" : "0")};
-  transition: ${(props) => (props.expanded ? "opacity 0.4s ease 0.2s" : "opacity 0.2s, width 0.2s")};
+  transition: ${(props) =>
+    props.expanded ? "opacity 0.4s ease 0.2s" : "opacity 0.2s, width 0.2s"};
 
   // Solve 'OtherInfo covering Nav' problem in iphone X wide mode
   ${(window.innerWidth < 400 || window.innerHeight < 450) &&
@@ -51,6 +60,7 @@ const OtherLinks = ({ expanded }: Props) => {
     }
 
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -58,8 +68,7 @@ const OtherLinks = ({ expanded }: Props) => {
     <LinksWrapper expanded={expanded}>
       <Link to="/aboutus">{t("navigation.aboutus")}</Link>
       <br />
-      <Link to="/terms-of-service">{t("user.Terms of Service")}</Link>
-      ・
+      <Link to="/terms-of-service">{t("user.Terms of Service")}</Link>・
       <Link to="/privacy-policy">{t("user.Privacy Policy")}</Link>
       <br />
       <a

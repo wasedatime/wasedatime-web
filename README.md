@@ -181,6 +181,7 @@ For any developers who want to make contribution, including our members, please 
 
 2. Whenever you finish writing code, run linter check and formatter in the terminal with the following command to make sure styling is consistent throughout all files
     ```
+    cd syllabus // or another app's folder where you were working on
     pnpm fix
     ```
     Whenever there are errors shown in the files you have changed, please fix them accordingly to the eslint/prettier error message as shown in the terminal

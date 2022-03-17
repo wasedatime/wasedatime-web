@@ -1,14 +1,15 @@
 import React from "react";
-import { navigate } from "@reach/router";
-import { WithTranslation, withTranslation } from "react-i18next";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faGithub,
   faFacebook,
   faTwitter,
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { navigate } from "@reach/router";
+import { WithTranslation, withTranslation } from "react-i18next";
+import styled from "styled-components";
 
 // to be imported from Bit
 const FooterWrapper = styled("footer")`
@@ -66,13 +67,11 @@ const Footer = ({ t }: WithTranslation) => (
     >
       MIT
     </StyledLink>
-    .
-    {" "}
+    .{" "}
     <StyledLink href="#" onClick={() => navigate("/terms-of-service")}>
       Terms of Service
     </StyledLink>
-    .
-    {" "}
+    .{" "}
     <StyledLink href="#" onClick={() => navigate("/privacy-policy")}>
       Privacy Policy
     </StyledLink>

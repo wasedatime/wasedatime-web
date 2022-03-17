@@ -1,3 +1,4 @@
+const path = require("path");
 const { merge } = require("webpack-merge");
 const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
 
@@ -14,16 +15,44 @@ module.exports = (webpackConfigEnv, argv) => {
     module: {
       rules: [
         {
+          test: /\.tsx$/,
+          use: "ts-loader",
+          resolve: {
+            fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
+          },
+        },
+        {
+          test: /\.ts$/,
+          use: "ts-loader",
+          resolve: {
+            fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
+          },
+        },
+        {
+          test: /\.m?js/,
+          resolve: {
+            fullySpecified: false,
+            alias: {
+              "@app": path.resolve(__dirname, "src/"),
+            },
+            modules: ["node_modules"],
+          },
+        },
+        {
           test: /\.(jpe?g|png|gif|woff|woff2|eot|ttf|otf|svg)(\?[a-z0-9=.]+)?$/,
-          type: 'asset/inline'
+          type: "asset/inline",
         },
         {
           test: /\.scss$/i,
-          use: [
-            "style-loader",
-            "css-loader",
-            "sass-loader",
-          ],
+          use: ["style-loader", "css-loader", "sass-loader"],
         },
       ],
     },

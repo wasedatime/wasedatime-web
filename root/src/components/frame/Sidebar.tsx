@@ -1,33 +1,57 @@
 import React, { useState } from "react";
-import { Link } from "@reach/router";
-import styled, { ThemeProvider } from "styled-components";
+
+import textLogo from "@bit/wasedatime.core.assets.text-logo";
 import { normalTheme } from "@bit/wasedatime.core.ts.constants.theme";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SidebarWrapper from "@bit/wasedatime.core.ts.styles.sidebar-wrapper";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
-import textLogo from "@bit/wasedatime.core.assets.text-logo";
-import UserMenu from "../user/UserMenu";
-import OtherLinks from "./OtherLinks";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "@reach/router";
+import styled, { ThemeProvider } from "styled-components";
 
-const TextLogoWrapper = styled.div`
+import OtherLinks from "@app/components/frame/OtherLinks";
+import UserMenu from "@app/components/user/UserMenu";
+
+type TextLogoWrapperProps = {
+  expanded: boolean;
+};
+
+type TextLogoProps = {
+  expanded: boolean;
+};
+
+type NavItemBlockProps = {
+  expanded: boolean;
+  isCurrentPath: boolean;
+  theme: {
+    [colorLabel: string]: string;
+  };
+};
+
+type NavItemTextProps = {
+  expanded: boolean;
+};
+
+const TextLogoWrapper = styled.div<TextLogoWrapperProps>`
   ${(props) => props.expanded && "flex: 0 0 130px;"}
 `;
 
-const TextLogo = styled.img`
+const TextLogo = styled.img<TextLogoProps>`
   height: 25px;
   margin: 0 0 0 10px !important;
   overflow-x: hidden;
   width: ${(props) => (props.expanded ? "130px" : "0px")};
   opacity: ${(props) => (props.expanded ? "1" : "0")};
-  transition: ${(props) => (props.expanded ? "opacity 0.5s ease-out 0.1s" : "opacity 0.3s")},
+  transition: ${(props) =>
+      props.expanded ? "opacity 0.5s ease-out 0.1s" : "opacity 0.3s"},
     width 0.3s ${(props) => !props.expanded && "0.2s"};
   display: inline-block;
 `;
 
-const NavItemBlock = styled.div`
+const NavItemBlock = styled.div<NavItemBlockProps>`
   display: flex;
   flex-direction: row;
-  /* color: ${(props) => (props.isCurrentPath ? props.theme.colorPrimary : "#fff")}; */
+  /* color: ${(props) =>
+    props.isCurrentPath ? props.theme.colorPrimary : "#fff"}; */
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;
@@ -45,7 +69,7 @@ const NavItemBlock = styled.div`
   }
 `;
 
-const NavItemText = styled.span`
+const NavItemText = styled.span<NavItemTextProps>`
   overflow: hidden;
   margin: 0px;
   margin-left: 10px;
@@ -119,7 +143,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
             >
               <NavItemBlock
                 className="group text-white dark:text-dark-text1"
-                expanded={expanded ? 1 : 0}
+                expanded={expanded}
                 isCurrentPath={item.path === currentPath}
               >
                 <FontAwesomeIcon
@@ -130,7 +154,7 @@ const Sidebar = ({ navItems, openSignInModal }: Props) => {
                 />
                 <NavItemText
                   className="group-hover:text-primaryDarker dark:group-hover:text-primaryDarker"
-                  expanded={expanded ? 1 : 0}
+                  expanded={expanded}
                 >
                   {item.name}
                 </NavItemText>

@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
+
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WithTranslation, withTranslation } from "react-i18next";
+import styled from "styled-components";
+
+type SignInSpanProps = {
+  ishovered: boolean;
+};
 
 const UserMenuTrigger = styled("div")`
   color: #fff;
@@ -33,7 +38,7 @@ const UserMenuTrigger = styled("div")`
   }
 `;
 
-const StyledSpan = styled("span")`
+const StyledSpan = styled("span")<SignInSpanProps>`
   text-align: left;
   font-weight: 100;
   margin-left: 1em;
@@ -42,9 +47,10 @@ const StyledSpan = styled("span")`
   width: ${(props) => (props.ishovered ? "145px" : "0px")};
   white-space: nowrap;
   overflow-x: hidden;
-  transition: ${(props) => (props.ishovered
-    ? "width 0.5s ease, opacity 0.5s ease 0.1s"
-    : "width 0.5s, opacity 0.2s")};
+  transition: ${(props) =>
+    props.ishovered
+      ? "width 0.5s ease, opacity 0.5s ease 0.1s"
+      : "width 0.5s, opacity 0.2s"};
 `;
 
 interface Props extends WithTranslation {
@@ -53,9 +59,7 @@ interface Props extends WithTranslation {
   isMobileMode: boolean;
 }
 
-const UserMenu = ({
-  openSignInModal, isHovered, isMobileMode, t,
-}: Props) => {
+const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
   const [userAttr, setUserAttr] = useState(null);
   const [isUserIconHovered, setIsUserIconHovered] = useState(false);
   const notSignedIn = !userAttr;
@@ -92,7 +96,7 @@ const UserMenu = ({
           width="40"
           height="40"
           className="rounded-full"
-          alt="Image of User account"
+          alt="User account"
           style={{ marginLeft: "2px" }}
         />
         <StyledSpan style={{ paddingTop: "8px" }} ishovered={isHovered}>

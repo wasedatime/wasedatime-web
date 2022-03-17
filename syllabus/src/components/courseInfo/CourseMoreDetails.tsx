@@ -1,14 +1,17 @@
-import React, { useEffect, useState } from "react";
-import API from "@aws-amplify/api";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { SyllabusKey } from "../../constants/syllabus-data";
-import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion";
-import Course from "../../types/course";
+import React, { useState } from "react";
+import styled from "styled-components";
+import {
+  faChevronDown,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
+import { WithTranslation, withTranslation } from "react-i18next";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import Label from "semantic-ui-react/dist/commonjs/elements/Label";
+import Label from "@app/components/styles/Label";
+import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion";
+
+import { SyllabusKey } from "@app/constants/syllabus-data";
+import Course from "@app/types/course";
 
 interface Props extends WithTranslation {
   course: Course;
@@ -23,19 +26,32 @@ interface TextbooksProps {
 }
 
 const Schedule = ({ content }: ScheduleProps) => {
-  const items = content.split("\n").filter(c => c).filter((c, i) => i%2 === 1);
-  
+  const items = content
+    .split("\n")
+    .filter((c) => c)
+    .filter((c, i) => i % 2 === 1);
+
   return (
-    <Table basic='very'>
-      {items.map((item, i) => (<Table.Body>
-        <Table.Row>
-          <Table.Cell><Label><p>{i+1}</p></Label></Table.Cell>
-          <Table.Cell><p>{item}</p></Table.Cell>
-        </Table.Row>
-      </Table.Body>))}
+    <Table basic="very">
+      {items.map((item, i) => (
+        <Table.Body>
+          <Table.Row>
+            <Table.Cell>
+              <div>
+                <Label filled={true} color="#b51e36">
+                  {i + 1}
+                </Label>
+              </div>
+            </Table.Cell>
+            <Table.Cell>
+              <p>{item}</p>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>
+      ))}
     </Table>
-  )
-}
+  );
+};
 
 const Textbooks = ({ content }: TextbooksProps) => {
   // const [isBookLoaded, setIsBookLoaded] = useState(false);
@@ -62,9 +78,7 @@ const Textbooks = ({ content }: TextbooksProps) => {
 
   return (
     <div>
-      {
-        content.split("\n").map(c => c && <p>{c}</p>)
-      }
+      {content.split("\n").map((c) => c && <p>{c}</p>)}
       {/* <div style={{ display: "flex", flexDirection: "row" }}>
         {isBookLoaded ? (
           books.map((book, i) => (
@@ -99,32 +113,46 @@ const CourseMoreDetails = ({ course, t }: Props) => {
   const [activeDetailsIndex, setActiveDetailsIndex] = useState(-1);
   const details = [
     {
-      title: t(`courseMoreDetails.Outline`),
-      content: course[SyllabusKey.OUTLINE] && course[SyllabusKey.OUTLINE].split("\n").map(c => c && <p>{c}</p>)
+      title: t("courseMoreDetails.Outline"),
+      content:
+        course[SyllabusKey.OUTLINE] &&
+        course[SyllabusKey.OUTLINE].split("\n").map((c) => c && <p>{c}</p>),
     },
     {
-      title: t(`courseMoreDetails.Objective`),
-      content: course[SyllabusKey.OBJECTIVE] && course[SyllabusKey.OBJECTIVE].split("\n").map(c => c && <p>{c}</p>)
+      title: t("courseMoreDetails.Objective"),
+      content:
+        course[SyllabusKey.OBJECTIVE] &&
+        course[SyllabusKey.OBJECTIVE].split("\n").map((c) => c && <p>{c}</p>),
     },
     {
-      title: t(`courseMoreDetails.Schedule`),
-      content: course[SyllabusKey.SCHEDULE] && <Schedule content={course[SyllabusKey.SCHEDULE]} />
+      title: t("courseMoreDetails.Schedule"),
+      content: course[SyllabusKey.SCHEDULE] && (
+        <Schedule content={course[SyllabusKey.SCHEDULE]} />
+      ),
     },
     {
-      title: t(`courseMoreDetails.Self Study`),
-      content: course[SyllabusKey.SELF_STUDY] && course[SyllabusKey.SELF_STUDY].split("\n").map(c => c && <p>{c}</p>)
+      title: t("courseMoreDetails.Self Study"),
+      content:
+        course[SyllabusKey.SELF_STUDY] &&
+        course[SyllabusKey.SELF_STUDY].split("\n").map((c) => c && <p>{c}</p>),
     },
     {
-      title: t(`courseMoreDetails.Textbook`),
-      content: course[SyllabusKey.TEXT] && <Textbooks content={course[SyllabusKey.TEXT]} />
+      title: t("courseMoreDetails.Textbook"),
+      content: course[SyllabusKey.TEXT] && (
+        <Textbooks content={course[SyllabusKey.TEXT]} />
+      ),
     },
     {
-      title: t(`courseMoreDetails.Reference`),
-      content: course[SyllabusKey.REFERENCE] && <Textbooks content={course[SyllabusKey.REFERENCE]} />
+      title: t("courseMoreDetails.Reference"),
+      content: course[SyllabusKey.REFERENCE] && (
+        <Textbooks content={course[SyllabusKey.REFERENCE]} />
+      ),
     },
     {
-      title: t(`courseMoreDetails.Note`),
-      content: course[SyllabusKey.NOTE] && course[SyllabusKey.NOTE].split("\n").map(c => c && <p>{c}</p>)
+      title: t("courseMoreDetails.Note"),
+      content:
+        course[SyllabusKey.NOTE] &&
+        course[SyllabusKey.NOTE].split("\n").map((c) => c && <p>{c}</p>),
     },
   ];
 
@@ -145,7 +173,12 @@ const CourseMoreDetails = ({ course, t }: Props) => {
                 }}
               >
                 <h6>
-                  <FontAwesomeIcon icon={activeDetailsIndex === i ? faChevronDown : faChevronRight} /> {detail.title}
+                  <FontAwesomeIcon
+                    icon={
+                      activeDetailsIndex === i ? faChevronDown : faChevronRight
+                    }
+                  />{" "}
+                  {detail.title}
                 </h6>
               </Accordion.Title>
               <Accordion.Content active={activeDetailsIndex === i}>

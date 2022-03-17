@@ -1,8 +1,9 @@
 import React from "react";
+
 import styled from "styled-components";
 
-import CourseColumn from "./CourseColumn";
-import { CourseWithOcc } from "../../types/course";
+import CourseColumn from "@app/components/timetable/CourseColumn";
+import { CourseWithOcc } from "@app/types/course";
 
 const StyledDayColumnItem = styled("li")`
   display: flex;

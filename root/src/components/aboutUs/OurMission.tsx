@@ -1,16 +1,23 @@
 import React from "react";
-import styled from "styled-components";
+
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import {
+  faBook,
+  faCalendarAlt,
+  faCommentAlt,
+  faForward,
+  faNewspaper,
+  faPlayCircle,
+  faUserAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   VerticalTimeline,
   VerticalTimelineElement,
 } from "react-vertical-timeline-component";
+import styled from "styled-components";
 import "react-vertical-timeline-component/style.min.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBook, faCalendarAlt, faCommentAlt, faForward, faNewspaper, faPlayCircle, faUserAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const MainParagraph = styled("p")`
   align-items: center;
@@ -31,29 +38,26 @@ const OurMission = () => (
         <b>
           <span role="img" aria-label="smile">
             🔎
-          </span>
-          {" "}
+          </span>{" "}
           Who we are
         </b>
       </h2>
       <hr />
       <br />
       <p>
-        A team formed by Waseda students and graduates, committed to
-        developing and improving WasedaTime. Feeling that Waseda's official
-        syllabus was not convenient and comfortable enough to use, our
-        founder, Oscar, inspired by a timetable website for National
-        University of Singapore as well as an information design course in
-        Waseda Faculty of Science and Engineering, creates the first version
-        of WasedaTime.
+        A team formed by Waseda students and graduates, committed to developing
+        and improving WasedaTime. Feeling that Waseda's official syllabus was
+        not convenient and comfortable enough to use, our founder, Oscar,
+        inspired by a timetable website for National University of Singapore as
+        well as an information design course in Waseda Faculty of Science and
+        Engineering, creates the first version of WasedaTime.
       </p>
       <br />
       <h2 style={{ color: "#555", textAlign: "center" }}>
         <b>
           <span role="img" aria-label="smile">
             🚀
-          </span>
-          {" "}
+          </span>{" "}
           Future goals
         </b>
       </h2>
@@ -73,8 +77,7 @@ const OurMission = () => (
         <b>
           <span role="img" aria-label="smile">
             😎
-          </span>
-          {" "}
+          </span>{" "}
           Member description
         </b>
       </h2>
@@ -83,8 +86,7 @@ const OurMission = () => (
       <h3 style={{ color: "#555", textAlign: "center" }}>
         <span role="img" aria-label="smile">
           💻
-        </span>
-        {" "}
+        </span>{" "}
         Tech
       </h3>
       <p>
@@ -93,38 +95,36 @@ const OurMission = () => (
         of hands-on experience, some of our team members have internship
         experience at start-ups and can apply their experience to overcome
         technical challenges, enrich page functionality and improve the user
-        experience. Our tech team will continue to learn and experiment with
-        new technologies as they develop, honing their skills as well as
+        experience. Our tech team will continue to learn and experiment with new
+        technologies as they develop, honing their skills as well as
         contributing to the students.
       </p>
       <br />
       <h3 style={{ color: "#555", textAlign: "center" }}>
         <span role="img" aria-label="smile">
           💼
-        </span>
-        {" "}
+        </span>{" "}
         Non-Tech
       </h3>
 
       <p>
-        Our marketers come from various academic and cultural backgrounds.
-        Each has an extensive internship experience (investment bank/internet
+        Our marketers come from various academic and cultural backgrounds. Each
+        has an extensive internship experience (investment bank/internet
         maker/consulting firm).Our functions included but not limited to brand
         promotion, team consulting(start up new programs ), finding
-        collaboration opportunities and market investigations . All members
-        are full of creativity and passion for product operations as well as
+        collaboration opportunities and market investigations . All members are
+        full of creativity and passion for product operations as well as
         brainstorming. Although the non-tech team has not been established for
         long, the role could not be ignored. With the efforts that we made and
-        the smooth cooperation with the tech team, We believe that the
-        fantastic results won’t be far.
+        the smooth cooperation with the tech team, We believe that the fantastic
+        results won’t be far.
       </p>
       <br />
       <h2 style={{ color: "#555", textAlign: "center" }}>
         <b>
           <span role="img" aria-label="smile">
             📆
-          </span>
-          {" "}
+          </span>{" "}
           Timeline
         </b>
       </h2>
@@ -142,7 +142,11 @@ const OurMission = () => (
           contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
           className="vertical-timeline-element--work"
           date="March 2021"
-          iconStyle={{ background: "rgb(166,47,58)", color: "#fff", fontSize: "24px" }}
+          iconStyle={{
+            background: "rgb(166,47,58)",
+            color: "#fff",
+            fontSize: "24px",
+          }}
           icon={<FontAwesomeIcon icon={faNewspaper} />}
         >
           <h6 className="vertical-timeline-element-subtitle">March 2021</h6>
@@ -156,7 +160,11 @@ const OurMission = () => (
           contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
           className="vertical-timeline-element--work"
           date="February 2021"
-          iconStyle={{ background: "rgb(38, 38, 38)", color: "#fff", fontSize: "24px" }}
+          iconStyle={{
+            background: "rgb(38, 38, 38)",
+            color: "#fff",
+            fontSize: "24px",
+          }}
           icon={<FontAwesomeIcon icon={faUserAlt} />}
         >
           <h6 className="vertical-timeline-element-subtitle">February 2021</h6>
@@ -170,7 +178,11 @@ const OurMission = () => (
           contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
           className="vertical-timeline-element--work"
           date="December 2020"
-          iconStyle={{ background: "rgb(166,47,58)", color: "#fff", fontSize: "24px" }}
+          iconStyle={{
+            background: "rgb(166,47,58)",
+            color: "#fff",
+            fontSize: "24px",
+          }}
           icon={<FontAwesomeIcon icon={faBook} />}
         >
           <h6 className="vertical-timeline-element-subtitle">December 2020</h6>
@@ -184,7 +196,11 @@ const OurMission = () => (
           contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
           className="vertical-timeline-element--work"
           date="September 2020"
-          iconStyle={{ background: "rgb(38,38,38)", color: "#fff", fontSize: "24px" }}
+          iconStyle={{
+            background: "rgb(38,38,38)",
+            color: "#fff",
+            fontSize: "24px",
+          }}
           icon={<FontAwesomeIcon icon={faCommentAlt} />}
         >
           <h6 className="vertical-timeline-element-subtitle">September 2020</h6>
@@ -199,7 +215,11 @@ const OurMission = () => (
           contentArrowStyle={{ borderRight: "7px solid  rgb(166,47,58)" }}
           className="vertical-timeline-element--work"
           date="May 2020"
-          iconStyle={{ background: "rgb(166,47,58)", color: "#fff", fontSize: "24px" }}
+          iconStyle={{
+            background: "rgb(166,47,58)",
+            color: "#fff",
+            fontSize: "24px",
+          }}
           icon={<FontAwesomeIcon icon={faForward} />}
         >
           <h6 className="vertical-timeline-element-subtitle">May 2020</h6>
@@ -213,7 +233,11 @@ const OurMission = () => (
           contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
           className="vertical-timeline-element--work"
           date="2018"
-          iconStyle={{ background: "rgb(38,38,38)", color: "#fff", fontSize: "24px" }}
+          iconStyle={{
+            background: "rgb(38,38,38)",
+            color: "#fff",
+            fontSize: "24px",
+          }}
           icon={<FontAwesomeIcon icon={faCalendarAlt} />}
         >
           <h6 className="vertical-timeline-element-subtitle">May 2018</h6>

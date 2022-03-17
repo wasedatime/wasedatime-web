@@ -1,27 +1,36 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
-import Button from "semantic-ui-react/dist/commonjs/elements/Button";
-import styled from "styled-components";
-import { WithTranslation, withTranslation } from "react-i18next";
-import SchoolFilterContainer from "../../containers/SchoolFilterContainer";
-import FilterGroup from "./FilterGroup";
-import FilterEvalGroup from "./FilterEvalGroup";
-import FilterGroups from "../../types/filter";
-import FilterOption from "../../constants/syllabus-filter";
-import SimpleBar from "simplebar-react";
 
-const FilterWrapper = styled.div`
+import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WithTranslation, withTranslation } from "react-i18next";
+import Button from "semantic-ui-react/dist/commonjs/elements/Button";
+import SimpleBar from "simplebar-react";
+import styled from "styled-components";
+
+import FilterEvalGroup from "@app/components/syllabus/FilterEvalGroup";
+import FilterGroup from "@app/components/syllabus/FilterGroup";
+import FilterOption from "@app/constants/syllabus-filter";
+import SchoolFilterContainer from "@app/containers/SchoolFilterContainer";
+import FilterGroups from "@app/types/filter";
+
+type FilterWrapperProps = {
+  isSideBar: boolean;
+};
+
+type FilterScrollAreaProps = {
+  isSideBar: boolean;
+};
+
+const FilterWrapper = styled.div<FilterWrapperProps>`
   ${(props) => !props.isSideBar && "width: 100vw;"}
   height: ${(props) =>
     props.isSideBar ? "calc(100vh - 96px)" : "calc(100vh - 50px)"};
 `;
 
-const FilterScrollArea = styled(SimpleBar)`
+const FilterScrollArea = styled(SimpleBar)<FilterScrollAreaProps>`
   // flex: none;
   width: 100%;
-  height: ${(props) =>
-    props.isSideBar ? "100%" : "calc(100% - 50px)"};
+  height: ${(props) => (props.isSideBar ? "100%" : "calc(100% - 50px)")};
   padding: ${(props) =>
     props.isSideBar ? "0.5em 1em 1em 1em" : "0.7em 1.2em 1.2em"};
   .simplebar-scrollbar::before {
@@ -334,8 +343,7 @@ const Filter = ({
   const selectedEvalTypeInput =
     filterGroups[evalTypeInputName] >= 0 ? filterGroups[evalTypeInputName] : -1;
   const selectedEvalPercentInputs = filterGroups[evalPercentInputName] || [
-    0,
-    100,
+    0, 100,
   ];
 
   const evalSpecialInputName = FilterOption.EVAL_SPECIAL;
@@ -456,99 +464,99 @@ const Filter = ({
 
   return (
     <FilterWrapper isSideBar={isSideBar}>
-    <FilterScrollArea isSideBar={isSideBar}>
-      <FilterTitle isSideBar={isSideBar}>
-        <FontAwesomeIcon icon={faFilter} size="1x" />
-        &nbsp;
-        <b>{t("syllabus.Filter by")}</b>
-        &nbsp;
-        <FilterClearButton onClick={clearFilter}>
-          {t("syllabus.Clear filter")}
-        </FilterClearButton>
-      </FilterTitle>
-      <FilterGroupWrapper>
-        <SchoolFilterContainer
-          checkedSchools={checkedSchools}
-          handleToggleFilter={handleToggleFilter}
-          isPopup={true}
-        />
-        <FilterGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={semesterLegend}
-          inputName={semesterInputName}
-          inputs={checkedSemesterInputs}
-          filterType={"dropdown"}
-        />
-        <FilterGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={langLegend}
-          inputName={langInputName}
-          inputs={checkedLangInputs}
-          filterType={"dropdown"}
-        />
-        <FilterGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={modalityLegend}
-          inputName={modalityInputName}
-          inputs={checkedModalityInputs}
-          filterType={"dropdown"}
-        />
-        <FilterGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={dayLegend}
-          inputName={dayInputName}
-          inputs={checkedDayInputs}
-          filterType={"checkbox"}
-        />
-        <FilterGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={periodLegend}
-          inputName={periodInputName}
-          inputs={checkedPeriodInputs}
-          filterType={"checkbox"}
-        />
-        <FilterGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={minYearLegend}
-          inputName={minYearInputName}
-          inputs={checkedMinYearInputs}
-          filterType={"checkbox"}
-        />
-        <FilterGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={creditLegend}
-          inputName={creditInputName}
-          inputs={checkedCreditInputs}
-          filterType={"checkbox"}
-        />
-        <FilterEvalGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={evalLegend}
-          typeDefault={evalTypeDefault}
-          typeInputs={evalTypeInputs}
-          typeInputName={evalTypeInputName}
-          selectedTypeInput={selectedEvalTypeInput}
-          percentInputName={evalPercentInputName}
-          selectedPercentInputs={selectedEvalPercentInputs}
-          specialInputName={evalSpecialInputName}
-          checkedSpecialInputs={checkedEvalSpecialInputs}
-        />
-        <FilterGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={typeLegend}
-          inputName={typeInputName}
-          inputs={checkedTypeInputs}
-          filterType={"dropdown"}
-        />
-        <FilterGroup
-          handleToggleFilter={handleToggleFilter}
-          legend={levelLegend}
-          inputName={levelInputName}
-          inputs={checkedLevelInputs}
-          filterType={"dropdown"}
-        />
-      </FilterGroupWrapper>
-    </FilterScrollArea>
+      <FilterScrollArea isSideBar={isSideBar}>
+        <FilterTitle>
+          <FontAwesomeIcon icon={faFilter} size="1x" />
+          &nbsp;
+          <b>{t("syllabus.Filter by")}</b>
+          &nbsp;
+          <FilterClearButton onClick={clearFilter}>
+            {t("syllabus.Clear filter")}
+          </FilterClearButton>
+        </FilterTitle>
+        <FilterGroupWrapper>
+          <SchoolFilterContainer
+            checkedSchools={checkedSchools}
+            handleToggleFilter={handleToggleFilter}
+            isPopup
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={semesterLegend}
+            inputName={semesterInputName}
+            inputs={checkedSemesterInputs}
+            filterType="dropdown"
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={langLegend}
+            inputName={langInputName}
+            inputs={checkedLangInputs}
+            filterType="dropdown"
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={modalityLegend}
+            inputName={modalityInputName}
+            inputs={checkedModalityInputs}
+            filterType="dropdown"
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={dayLegend}
+            inputName={dayInputName}
+            inputs={checkedDayInputs}
+            filterType="checkbox"
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={periodLegend}
+            inputName={periodInputName}
+            inputs={checkedPeriodInputs}
+            filterType="checkbox"
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={minYearLegend}
+            inputName={minYearInputName}
+            inputs={checkedMinYearInputs}
+            filterType="checkbox"
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={creditLegend}
+            inputName={creditInputName}
+            inputs={checkedCreditInputs}
+            filterType="checkbox"
+          />
+          <FilterEvalGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={evalLegend}
+            typeDefault={evalTypeDefault}
+            typeInputs={evalTypeInputs}
+            typeInputName={evalTypeInputName}
+            selectedTypeInput={selectedEvalTypeInput}
+            percentInputName={evalPercentInputName}
+            selectedPercentInputs={selectedEvalPercentInputs}
+            specialInputName={evalSpecialInputName}
+            checkedSpecialInputs={checkedEvalSpecialInputs}
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={typeLegend}
+            inputName={typeInputName}
+            inputs={checkedTypeInputs}
+            filterType="dropdown"
+          />
+          <FilterGroup
+            handleToggleFilter={handleToggleFilter}
+            legend={levelLegend}
+            inputName={levelInputName}
+            inputs={checkedLevelInputs}
+            filterType="dropdown"
+          />
+        </FilterGroupWrapper>
+      </FilterScrollArea>
     </FilterWrapper>
   );
 };

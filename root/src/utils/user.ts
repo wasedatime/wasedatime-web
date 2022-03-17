@@ -2,10 +2,8 @@ import Auth from "@aws-amplify/auth";
 import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
 
 export const configAuth = () => {
-  const authRedirectPath =
-    `${window.location.protocol}//${window.location.host}/verify`;
-  const authSignOutPath =
-    `${window.location.protocol}//${window.location.host}/`;
+  const authRedirectPath = `${window.location.protocol}//${window.location.host}/verify`;
+  const authSignOutPath = `${window.location.protocol}//${window.location.host}/`;
 
   const config = {
     Auth: {

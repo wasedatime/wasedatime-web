@@ -41,7 +41,7 @@ specifiers:
   react-dom: 17.0.2
   single-spa-react: 3.2.0
   ts-config-single-spa: 2.0.1
-  ts-loader: 9.2.7
+  ts-loader: 9.2.8
   typescript: 4.6.2
   webpack: 5.70.0
   webpack-cli: 4.9.2
@@ -94,7 +94,7 @@ devDependencies:
   prettier-eslint: 13.0.0
   pretty-quick: 3.1.3_prettier@2.5.1
   ts-config-single-spa: 2.0.1
-  ts-loader: 9.2.7_typescript@4.6.2+webpack@5.70.0
+  ts-loader: 9.2.8_typescript@4.6.2+webpack@5.70.0
   typescript: 4.6.2
   webpack: 5.70.0_webpack-cli@4.9.2
   webpack-cli: 4.9.2_6d3cb84eb7e855ae6fc0a3ee585c0c26
@@ -3930,14 +3930,6 @@ packages:
     resolution: {integrity: sha512-+uw1inIHVPQoaVuHzRyXd21icM+cnt4CzD5rW+NC1wjOUSTOs+Te7FOv7AhN7vS9x/oIyhLP5PR1H+phQAHu5Q==}
     dependencies:
       once: 1.4.0
-    dev: true
-
-  /enhanced-resolve/5.8.3:
-    resolution: {integrity: sha512-EGAbGvH7j7Xt2nc0E7D99La1OiEs8LnyimkRgwExpUMScN6O+3x9tIWs7PLQZVNx4YD+00skHXPXi1yQHpAmZA==}
-    engines: {node: '>=10.13.0'}
-    dependencies:
-      graceful-fs: 4.2.9
-      tapable: 2.2.1
     dev: true
 
   /enhanced-resolve/5.9.2:
@@ -8383,15 +8375,15 @@ packages:
     resolution: {integrity: sha512-zGTozFbnMqdoNCsOJ+gqYSJNIm7QUJtN/3o8uyOCuFxwfrBETQ+lyHnvvgVO29IEVhhrnOp6NQAyOIVE8lmqxA==}
     dev: true
 
-  /ts-loader/9.2.7_typescript@4.6.2+webpack@5.70.0:
-    resolution: {integrity: sha512-Fxh44mKli9QezgbdCXkEJWxnedQ0ead7DXTH+lfXEPedu+Y9EtMJ2aQ9G3Dj1j7Q612E8931rww8NDZha4Tibg==}
+  /ts-loader/9.2.8_typescript@4.6.2+webpack@5.70.0:
+    resolution: {integrity: sha512-gxSak7IHUuRtwKf3FIPSW1VpZcqF9+MBrHOvBp9cjHh+525SjtCIJKVGjRKIAfxBwDGDGCFF00rTfzB1quxdSw==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       typescript: '*'
       webpack: ^5.0.0
     dependencies:
       chalk: 4.1.2
-      enhanced-resolve: 5.8.3
+      enhanced-resolve: 5.9.2
       micromatch: 4.0.4
       semver: 7.3.5
       typescript: 4.6.2

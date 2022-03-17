@@ -69,7 +69,7 @@ specifiers:
   style-loader: 3.3.1
   styled-components: 5.3.3
   ts-config-single-spa: 2.0.1
-  ts-loader: 9.2.7
+  ts-loader: 9.2.8
   typescript: 4.6.2
   webpack: 5.70.0
   webpack-cli: 4.9.2
@@ -150,7 +150,7 @@ devDependencies:
   sass-loader: 12.6.0_sass@1.49.9+webpack@5.70.0
   style-loader: 3.3.1_webpack@5.70.0
   ts-config-single-spa: 2.0.1
-  ts-loader: 9.2.7_typescript@4.6.2+webpack@5.70.0
+  ts-loader: 9.2.8_typescript@4.6.2+webpack@5.70.0
   typescript: 4.6.2
   webpack: 5.70.0_webpack-cli@4.9.2
   webpack-cli: 4.9.2_6d3cb84eb7e855ae6fc0a3ee585c0c26
@@ -9905,8 +9905,8 @@ packages:
     resolution: {integrity: sha512-zGTozFbnMqdoNCsOJ+gqYSJNIm7QUJtN/3o8uyOCuFxwfrBETQ+lyHnvvgVO29IEVhhrnOp6NQAyOIVE8lmqxA==}
     dev: true
 
-  /ts-loader/9.2.7_typescript@4.6.2+webpack@5.70.0:
-    resolution: {integrity: sha512-Fxh44mKli9QezgbdCXkEJWxnedQ0ead7DXTH+lfXEPedu+Y9EtMJ2aQ9G3Dj1j7Q612E8931rww8NDZha4Tibg==}
+  /ts-loader/9.2.8_typescript@4.6.2+webpack@5.70.0:
+    resolution: {integrity: sha512-gxSak7IHUuRtwKf3FIPSW1VpZcqF9+MBrHOvBp9cjHh+525SjtCIJKVGjRKIAfxBwDGDGCFF00rTfzB1quxdSw==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       typescript: '*'

@@ -126,7 +126,7 @@
     "single-spa-layout": "1.6.0",
     "single-spa-react": "4.6.1",
     "styled-components": "5.3.3",
-    "ts-loader": "9.2.7",
+    "ts-loader": "9.2.8",
     "webpack-pwa-manifest": "4.3.0",
     "workbox-cacheable-response": "6.5.1",
     "workbox-core": "6.5.1",

@@ -10,9 +10,10 @@ import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
-import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
+import LoadingTextPlaceHolder from "@app/components/styles/LoadingTextPlaceHolder";
 import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
 import styled from "styled-components";
+import colors from "@bit/wasedatime.core.theme.colors";
 
 import CourseDetails from "@app/components/courseInfo/CourseDetails";
 import CourseReviews from "@app/components/courseInfo/CourseReviews";
@@ -31,32 +32,53 @@ import { getFetchedCoursesList } from "@app/redux/reducers/fetchedCourses";
 import Course from "@app/types/course";
 import Review from "@app/types/review";
 import { courseSchemaFullToShort } from "@app/utils/map-single-course-schema";
+import { ThemeContext } from "@app/utils/theme-context";
 
-const CourseInfoWrapper = styled(Segment)`
+type CourseInfoWrapperProps = {
+  isDark: boolean;
+}
+
+const CourseInfoWrapper = styled(Segment)<CourseInfoWrapperProps>`
   width: 100%;
   display: block;
   cursor: auto;
   margin-top: 0px !important;
   border: none !important;
+  ${props => props.isDark && `background: ${colors.dark.bgMain} !important;`}
 `;
 
 const RelatedCourses = styled.div`
   display: flex;
   flex-direction: row;
-  width: calc(96vw - 60em - 120px);
+  width: 100%;
   @media (max-width: 1280px) {
     width: calc(96vw - 55em - 120px);
   }
-  ${media.desktop`width: calc(96vw - 30em - 120px);`}
-  ${media.tablet`width: calc(96vw - 36px);`}
+  ${media.desktop`width: calc(96vw - 30em - 130px);`}
+  ${media.tablet`width: calc(96vw - 40px);`}
   overflow-x: auto;
   padding: none;
   margin: none;
+
+  ::-webkit-scrollbar {
+    height: 5px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    height: 5px;
+    border-radius: 10px;
+    background: #999;
+  }
 `;
 
 const RelatedCourse = styled.div`
-  flex: 0 0 33%;
-  ${media.tablet`flex: 0 0 50%;`}
+  flex: 0 0 33.3%;
+  @media (max-width: 1280px) {
+    flex: 0 0 49.5%;
+  }
+  ${media.desktop`flex: 0 0 49.5%;`}
+  ${media.tablet`flex: 0 0 33%;`}
+  ${media.phone`flex: 0 0 49.5%;`}
 `;
 
 const StyledSubHeading = styled("h4")`
@@ -129,6 +151,8 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
     areDetailsLoaded: false,
     areReviewsLoaded: false,
   };
+
+  static contextType = ThemeContext;
 
   async loadReviewsAndRelatedCourses() {
     const thisCourse = this.props.course;
@@ -216,11 +240,12 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
       relatedCourses,
     } = this.state;
     const course = courseWithMoreDetails || courseFromProps;
+    const { theme } = this.context;
 
     return areDetailsLoaded ? (
-      <CourseInfoWrapper className="dark:bg-dark-text3 dark:text-dark-text2">
-        <CourseDetails course={course} className="dark:bg-dark-text3" />
-        <Grid className="mx-4 my-0 text-center dark:bg-dark-text3">
+      <CourseInfoWrapper className="dark:bg-dark-bgMain dark:text-dark-text1" isDark={theme === "dark"}>
+        <CourseDetails course={course} />
+        <Grid className="mx-4 my-0 text-center dark:bg-dark-bgMain">
           <Grid.Column width={6}>
             <p style={{ marginBottom: "0px" }}>Official Syllabus:</p>
             <a
@@ -252,69 +277,50 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
             <ShareButtons courseId={course.a} />
           </Grid.Column>
         </Grid>
-        {areReviewsLoaded ? (
-          <CourseReviews
-            courseKey={getCourseKey(course)}
-            course={course}
-            reviews={thisCourseReviews}
-            searchLang={searchLang}
-          />
-        ) : (
-          <Placeholder className="m-4 dark:bg-dark-text3 dark:text-dark-text2">
-            <Placeholder.Paragraph>
-              <Placeholder.Line />
-              <Placeholder.Line />
-              <Placeholder.Line />
-              <Placeholder.Line />
-            </Placeholder.Paragraph>
-          </Placeholder>
-        )}
-        <StyledSubHeading className="dark:bg-dark-text3 dark:text-dark-text2">{t("courseInfo.Related courses")}</StyledSubHeading>
-        <RelatedCourses>
-          {areReviewsLoaded ? (
-            relatedCourses.map((course, i) => (
-              <RelatedCourse
-                key={i}
-                onClick={() =>
-                  ReactGA.event({
-                    category: gaCourseDetails,
-                    action: gaClickRelatedCourse,
-                    label: course[SyllabusKey.TITLE],
-                  })
-                }
-                className="dark:bg-dark-text3"
-              >
-                <CourseItemContainer
-                  searchTerm=""
-                  searchLang={searchLang}
+        {
+          areReviewsLoaded
+            ? (
+                <CourseReviews
+                  courseKey={getCourseKey(course)}
                   course={course}
-                  expandable={false}
-                  isRelatedCourse
+                  reviews={thisCourseReviews}
+                  searchLang={searchLang}
                 />
-              </RelatedCourse>
-            ))
-          ) : (
-            <Placeholder className="m-4 dark:bg-dark-text3">
-              <Placeholder.Paragraph>
-                <Placeholder.Line />
-                <Placeholder.Line />
-                <Placeholder.Line />
-                <Placeholder.Line />
-              </Placeholder.Paragraph>
-            </Placeholder>
-          )}
+              )
+            : <LoadingTextPlaceHolder isDark={theme === "dark"} />
+        }
+        <StyledSubHeading className="dark:bg-dark-bgMain dark:text-dark-text1">{t("courseInfo.Related courses")}</StyledSubHeading>
+        <RelatedCourses>
+          {
+            areReviewsLoaded
+              ? (
+                  relatedCourses.map((course, i) => (
+                    <RelatedCourse
+                      key={i}
+                      onClick={() =>
+                        ReactGA.event({
+                          category: gaCourseDetails,
+                          action: gaClickRelatedCourse,
+                          label: course[SyllabusKey.TITLE],
+                        })
+                      }
+                      className="dark:bg-dark-bgMain"
+                    >
+                      <CourseItemContainer
+                        searchTerm=""
+                        searchLang={searchLang}
+                        course={course}
+                        expandable={false}
+                        isRelatedCourse
+                      />
+                    </RelatedCourse>
+                  ))
+                )
+              : <LoadingTextPlaceHolder isDark={theme === "dark"} />
+          }
         </RelatedCourses>
       </CourseInfoWrapper>
-    ) : (
-      <Placeholder className="m-4 dark:bg-dark-text3">
-        <Placeholder.Paragraph>
-          <Placeholder.Line />
-          <Placeholder.Line />
-          <Placeholder.Line />
-          <Placeholder.Line />
-        </Placeholder.Paragraph>
-      </Placeholder>
-    );
+    ) : <LoadingTextPlaceHolder isDark={theme === "dark"} />
   }
 }
 

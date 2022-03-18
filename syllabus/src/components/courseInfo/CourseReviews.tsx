@@ -42,14 +42,21 @@ const StyledSubHeading = styled("h4")`
 `;
 
 const AddReviewButton = styled("button")`
-  background-color: #b51e36;
   color: #fff;
   border: 0px;
   border-radius: 5px;
   float: right;
-  ${media.desktop`float: none; width: 100%;`}
+  font-size: 14px;
+  padding: 0px 0.5em;
+  margin-top: 0.3rem;
+
+  @media (max-width: 1180px) {
+    float: none;
+    width: 100%;
+    margin-top: 0.5em;
+  }
+  ${media.desktop`float: none; width: 100%; margin-top: 0.5em;`}
   ${media.phone`font-size: 1.5em`}
-  padding: 0.3rem 0.5em;
 `;
 
 const Announcement = styled("div")`
@@ -72,6 +79,16 @@ const Disclaimer = styled(Announcement)`
 const ReviewsListWrapper = styled("div")`
   max-height: 60vh;
   overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 10px;
+    background: #999;
+  }
 `;
 
 interface Props extends WithTranslation {
@@ -320,7 +337,7 @@ class CourseReviews extends React.Component<Props, State> {
     } = this.state;
 
     return isFormOpen ? (
-      <StyledReviewsWrapper className="dark:bg-dark-text3">
+      <StyledReviewsWrapper className="dark:bg-dark-bgMain">
         <AddReviewForm
           closeModal={() => this.setState({ isFormOpen: false })}
           scales={formScales}
@@ -332,7 +349,7 @@ class CourseReviews extends React.Component<Props, State> {
         />
       </StyledReviewsWrapper>
     ) : (
-      <StyledReviewsWrapper className="dark:bg-dark-text3">
+      <StyledReviewsWrapper className="dark:bg-dark-bgMain">
         <StyledSubHeading>
           {t("courseInfo.Reviews")}{" "}
           <MediaQuery minWidth={sizes.phone}>
@@ -355,7 +372,7 @@ class CourseReviews extends React.Component<Props, State> {
           <MediaQuery minWidth={sizes.phone}>
             {(matches) =>
               matches && (
-                <AddReviewButton onClick={this.openReviewForm}>
+                <AddReviewButton onClick={this.openReviewForm} className="bg-light-main dark:bg-dark-lighter">
                   <FontAwesomeIcon icon={faPen} />{" "}
                   {this.props.t("courseInfo.Write your Review")}
                 </AddReviewButton>
@@ -366,14 +383,14 @@ class CourseReviews extends React.Component<Props, State> {
         <MediaQuery minWidth={sizes.phone}>
           {(matches) =>
             !matches && (
-              <AddReviewButton onClick={this.openReviewForm}>
+              <AddReviewButton onClick={this.openReviewForm} className="bg-light-main dark:bg-dark-lighter">
                 <FontAwesomeIcon icon={faPen} />{" "}
                 {this.props.t("courseInfo.Write your Review")}
               </AddReviewButton>
             )
           }
         </MediaQuery>
-        <Disclaimer>{t("courseInfo.Disclaimer")}</Disclaimer>
+        <Disclaimer className="dark:bg-dark-text3 dark:text-dark-text2">{t("courseInfo.Disclaimer")}</Disclaimer>
         <ReviewsListWrapper>
           <ReviewScalesCount
             avgSatisfaction={scalesAvg.satisfaction}

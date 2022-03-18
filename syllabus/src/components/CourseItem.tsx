@@ -27,7 +27,6 @@ import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 import { termKeysDecoder } from "@app/utils/term-keys-decoder";
-import { ThemeContext } from "@app/utils/theme-context";
 
 type ExpandableProps = {
   expanded: boolean;
@@ -255,7 +254,6 @@ const CourseItem = ({
   i18n,
 }: Props) => {
   const navigate = useNavigate();
-  const { theme, setTheme } = React.useContext(ThemeContext);
   const [expanded, setExpanded] = useState(
     window.location.search.includes(course[SyllabusKey.ID])
   );
@@ -332,21 +330,21 @@ const CourseItem = ({
   };
 
   return (
-    <CourseItemWrapper className="bg-white dark:bg-dark-text3 dark:shadow-none">
+    <CourseItemWrapper className="bg-white dark:bg-dark-bgMain dark:border-dark-text3 dark:border-2 dark:shadow-none">
       <CourseItemIntroWrapper
         onClick={async () => {
           expandable ? setExpanded(true) : await navigateToCourse();
         }}
-        className="bg-white dark:bg-dark-text3 dark:shadow-none"
+        className="bg-white dark:bg-dark-bgMain dark:border-dark-text3 dark:shadow-none"
       >
-        <StyledHeading className="dark:text-dark-text2">{highlightedTitle}</StyledHeading>
+        <StyledHeading className="dark:text-dark-main">{highlightedTitle}</StyledHeading>
         {expandable && (
-          <StyledSubHeading className="dark:text-light-text1">{course[SyllabusKey.SUBTITLE]}</StyledSubHeading>
+          <StyledSubHeading className="dark:text-dark-text2">{course[SyllabusKey.SUBTITLE]}</StyledSubHeading>
         )}
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge style={{ fontSize: "12px" }} className="dark:bg-light-text1 dark:text-dark-text2">{langTerm}</Badge>
+            <Badge style={{ fontSize: "12px" }} className="dark:bg-dark-text3 dark:text-dark-text1">{langTerm}</Badge>
             {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
           {!isRelatedCourse && (
@@ -373,7 +371,7 @@ const CourseItem = ({
           )}
         </CourseItemRow>
 
-        <DescriptionWrapper isLarger={isRelatedCourse} className="dark:text-dark-text2">
+        <DescriptionWrapper isLarger={isRelatedCourse} className="dark:text-dark-text1">
           <Description>{yearTerm}</Description>
           <Description>
             <OccurrenceList>{occurrences}</OccurrenceList>
@@ -383,7 +381,7 @@ const CourseItem = ({
       </CourseItemIntroWrapper>
 
       {expandable && expanded && (
-        <CloseCourseInfoButton onClick={() => setExpanded(false)}>
+        <CloseCourseInfoButton onClick={() => setExpanded(false)} className="dark:bg-dark-bgSide dark:text-dark-text2">
           <FontAwesomeIcon icon={faChevronUp} />
         </CloseCourseInfoButton>
       )}

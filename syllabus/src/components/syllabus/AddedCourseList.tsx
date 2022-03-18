@@ -38,11 +38,22 @@ const CourseListWrapper = styled.div<CourseListWrapperProps>`
     height: 0px !important;
   }
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    border-radius: 5px;
+    background: #999;
+  }
+`;
+
+const StyledSimpleBar = styled(SimpleBar)`
+  ::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 5px;
     background: #999;
   }
 `;
@@ -148,7 +159,7 @@ class AddedCourseList extends React.Component<Props, State> {
         <CourseListSummaryContainer courses={addedCourses} />
 
         {addedCourses.length ? (
-          <SimpleBar
+          <StyledSimpleBar
             autoHide
             style={{
               height: "calc(100vh - 150px)",
@@ -166,7 +177,7 @@ class AddedCourseList extends React.Component<Props, State> {
                 />
               ))}
             </ul>
-          </SimpleBar>
+          </StyledSimpleBar>
         ) : (
           <ExtendedArticle className="bg-light-bgMain dark:bg-dark-bgMain">
             <Message info size="tiny" className="dark:opacity-70">

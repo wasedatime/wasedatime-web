@@ -10,7 +10,7 @@ const FilledStar = styled(FontAwesomeIcon)`
 `;
 
 const BlankStar = styled(FontAwesomeIcon)`
-  color: #ccc;
+  // color: #ccc;
   vertical-align: 0.1em;
 `;
 
@@ -41,7 +41,7 @@ const displayHalfStar = (scale: number): JSX.Element | string => {
 const displayBlankStars = (scale: number): JSX.Element[] => {
   const stars = [];
   for (let n = 5 - Math.ceil(scale); n > 0; n--) {
-    stars.push(<BlankStar key={n} icon={faStar} />);
+    stars.push(<BlankStar key={n} icon={faStar} className="text-light-text3 dark:text-dark-text2" />);
   }
 
   return stars;

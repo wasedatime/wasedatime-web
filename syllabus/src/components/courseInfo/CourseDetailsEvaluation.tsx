@@ -1,6 +1,6 @@
 import React from "react";
 
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { PieChart } from "react-minimal-pie-chart";
 import MediaQuery from "react-responsive";
@@ -10,9 +10,18 @@ import styled from "styled-components";
 
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
 const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
+
+type StyledTableProps = {
+  isDark: boolean;
+}
+
+const StyledTable = styled(Table)<StyledTableProps>`
+  ${props => props.isDark && `border: none !important;`}
+`;
 
 const ChartWrapper = styled(Grid.Column)`
   width: 150px;
@@ -26,6 +35,8 @@ interface Props extends WithTranslation {
 }
 
 const CourseDetailsEvaluation = ({ course, t }: Props) => {
+  const { theme } = React.useContext(ThemeContext);
+  
   if (Array.isArray(course[SyllabusKey.EVAL])) {
     const evalChartData = (course[SyllabusKey.EVAL] as any[])
       .filter((e) => e[SyllabusKey.EVAL_PERCENT] > 0)
@@ -40,8 +51,8 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
       }));
 
     const evalsTable = (
-      <Table className="dark:border-dark-text3">
-        <Table.Body className="dark:bg-dark-text3 dark:text-dark-text2">
+      <StyledTable isDark={theme === "dark"}>
+        <Table.Body className="dark:bg-dark-bgMain dark:text-dark-text1">
           {(course[SyllabusKey.EVAL] as any[]).map((e, i) => (
             <Table.Row key={i}>
               <Table.Cell>
@@ -67,7 +78,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
             </Table.Row>
           ))}
         </Table.Body>
-      </Table>
+      </StyledTable>
     );
     const evalsChart = (
       <PieChart

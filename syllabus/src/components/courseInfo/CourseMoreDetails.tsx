@@ -7,11 +7,13 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import Label from "@app/components/styles/Label";
 import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion";
+import colors from "@bit/wasedatime.core.theme.colors";
 
 import { SyllabusKey } from "@app/constants/syllabus-data";
+import Label from "@app/components/styles/Label";
 import Course from "@app/types/course";
+import { ThemeContext } from "@app/utils/theme-context";
 
 interface Props extends WithTranslation {
   course: Course;
@@ -26,6 +28,8 @@ interface TextbooksProps {
 }
 
 const Schedule = ({ content }: ScheduleProps) => {
+  const { theme } = React.useContext(ThemeContext);
+
   const items = content
     .split("\n")
     .filter((c) => c)
@@ -38,12 +42,12 @@ const Schedule = ({ content }: ScheduleProps) => {
           <Table.Row>
             <Table.Cell>
               <div>
-                <Label filled={true} color="#b51e36">
+                <Label filled={true} color={colors[theme].lighter}>
                   {i + 1}
                 </Label>
               </div>
             </Table.Cell>
-            <Table.Cell>
+            <Table.Cell className="dark:text-dark-text1">
               <p>{item}</p>
             </Table.Cell>
           </Table.Row>
@@ -157,7 +161,7 @@ const CourseMoreDetails = ({ course, t }: Props) => {
   ];
 
   return (
-    <Accordion style={{ padding: "0px 2em" }} className="dark:bg-dark-text3">
+    <Accordion style={{ padding: "0px 2em" }} className="dark:bg-dark-bgMain mb-4">
       {details.map(
         (detail, i) =>
           detail.content && (
@@ -172,7 +176,7 @@ const CourseMoreDetails = ({ course, t }: Props) => {
                     : setActiveDetailsIndex(i);
                 }}
               >
-                <h4 className="text-2xl dark:text-dark-text2">
+                <h4 className="text-2xl dark:text-dark-text1">
                   <FontAwesomeIcon
                     icon={
                       activeDetailsIndex === i ? faChevronDown : faChevronRight
@@ -181,7 +185,7 @@ const CourseMoreDetails = ({ course, t }: Props) => {
                   {detail.title}
                 </h4>
               </Accordion.Title>
-              <Accordion.Content active={activeDetailsIndex === i}>
+              <Accordion.Content active={activeDetailsIndex === i} className="dark:text-dark-text1">
                 {detail.content}
               </Accordion.Content>
             </React.Fragment>

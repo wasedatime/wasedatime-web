@@ -26,35 +26,35 @@ const StyledRange = styled(Range)<ThemedComponentProps>`
       }
 
       .rc-slider-track {
-        background-color: ${colors.dark.main};
+        background-color: ${colors.dark.lighter};
       }
     
       .rc-slider-handle {
         background-color: ${colors.dark.text3};
-        border-color: ${colors.dark.main};
+        border-color: ${colors.dark.lighter};
         &:hover {
-          border-color: ${colors.dark.main};
+          border-color: ${colors.dark.lighter};
         }
         &:focus {
-          border-color: ${colors.dark.main};
+          border-color: ${colors.dark.lighter};
         }
       }
 
       .rc-slider-handle-clicked-focus {
-        border-color: ${colors.dark.main};
+        border-color: ${colors.dark.lighter};
         &:focus {
-          border-color: ${colors.dark.main};
+          border-color: ${colors.dark.lighter};
         }
       }
     
       .rc-slider-handle-dragging {
         background-color: ${colors.dark.text3};
-        border-color: ${colors.dark.main};
+        border-color: ${colors.dark.lighter};
         &:hover {
-          border-color: ${colors.dark.main};
+          border-color: ${colors.dark.lighter};
         }
         &:focus {
-          border-color: ${colors.dark.main};
+          border-color: ${colors.dark.lighter};
         }
       }
     `

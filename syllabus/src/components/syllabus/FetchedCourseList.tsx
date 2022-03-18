@@ -18,11 +18,11 @@ const CourseListWrapper = styled(SimpleBar)`
   overflow-x: hidden;
 
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    border-radius: 8px;
     background: #999;
   }
   .simplebar-scrollbar::before {

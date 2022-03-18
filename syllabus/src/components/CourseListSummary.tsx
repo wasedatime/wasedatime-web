@@ -115,8 +115,8 @@ const CourseListSummary = ({
         <StyledLabel className="text-light-text2 dark:text-dark-text2">
           {creditSum(courses)} {t("timetable.credits")}
         </StyledLabel>
-        <SortingIcon icon={faSortAmountDown} className="text-light-text2 dark:text-dark-text2" />{" "}
-        <StyledDropdown
+        {/* <SortingIcon icon={faSortAmountDown} className="text-light-text2 dark:text-dark-text2" />{" "} */}
+        {/* <StyledDropdown
           placeholder="Sort by"
           selection
           options={sortingOptions}
@@ -126,7 +126,7 @@ const CourseListSummary = ({
           }}
           aria-label="Sort added courses"
           isDark={theme === "dark"}
-        />
+        /> */}
       </RowWrapper>
     </div>
   );

@@ -94,7 +94,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
     </UserMenuTrigger>
   ) : (
     <div
-      className="relative inline-block text-left"
+      className="relative inline-block text-left group"
       onMouseEnter={() => setIsUserIconHovered(true)}
       onTouchStart={() => setIsUserIconHovered(true)}
       onMouseLeave={() => setIsUserIconHovered(false)}
@@ -115,7 +115,11 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
           alt="User account"
           style={{ marginLeft: "2px" }}
         />
-        <StyledSpan style={{ paddingTop: "8px" }} ishovered={isHovered}>
+        <StyledSpan
+          className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1"
+          style={{ paddingTop: "8px" }}
+          ishovered={isHovered}
+        >
           {userAttr.name}
         </StyledSpan>
       </button>
@@ -138,7 +142,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
             role="menuitem"
             onClick={signOut}
           >
-            {t("user.Sign Out")}
+            <p>{t("user.Sign Out")}</p>
           </a>
         </div>
       </div>

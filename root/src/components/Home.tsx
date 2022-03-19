@@ -113,7 +113,7 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
               alt="WasedaTime Text Logo"
             />
           </MainHeading>
-          <Description className="text-white dark:text-dark-text1 text-shadow-sm dark:text-shadow-none my-2">
+          <Description className="text-white dark:text-dark-text1 text-shadow-sm dark:text-shadow-sm my-2">
             {t("about.description")}
           </Description>
           <br />

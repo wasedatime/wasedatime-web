@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
-import textLogo from "@bit/wasedatime.core.assets.text-logo";
+// import textLogo from "@bit/wasedatime.core.assets.text-logo";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import styled from "styled-components";
 
+import { TitleLogo } from "@app/assets/img/home/TitleLogo";
 import { IconTextGroup } from "@app/components/block/IconTextGroup";
 import { NavItemsProps } from "@app/components/frame/Nav";
 import OtherLinks from "@app/components/frame/OtherLinks";
@@ -37,14 +38,13 @@ const TextLogoWrapper = styled.div<TextLogoWrapperProps>`
   ${(props) => props.expanded && "flex: 0 0 130px;"}
 `;
 
-const TextLogo = styled.img<TextLogoProps>`
-  height: 25px;
-  margin: 0 0 0 10px !important;
+const TextLogoStyles = styled.div<TextLogoProps>`
+  margin: 5px 0 0 10px !important;
   overflow-x: hidden;
   width: ${(props) => (props.expanded ? "130px" : "0px")};
   opacity: ${(props) => (props.expanded ? "1" : "0")};
   transition: ${(props) =>
-      props.expanded ? "opacity 0.5s ease-out 0.1s" : "opacity 0.3s"},
+      props.expanded ? "opacity 0.5s ease-out 0.2s" : "opacity 0.3s"},
     width 0.3s ${(props) => !props.expanded && "0.2s"};
   display: inline-block;
 `;
@@ -89,13 +89,13 @@ const Sidebar = ({ navItems, openSignInModal }: SidebarProps) => {
           <SmallLogo />
         </div>
         <TextLogoWrapper expanded={expanded}>
-          <TextLogo
-            src={textLogo}
-            alt="WasedaTime text logo"
-            width="130"
-            height="50"
-            expanded={expanded}
-          />
+          <TextLogoStyles expanded={expanded}>
+            <TitleLogo
+              className="fill-light-text1 dark:fill-dark-text1"
+              width="130"
+              height="50"
+            />
+          </TextLogoStyles>
         </TextLogoWrapper>
       </LinkOutsideRouter>
       <div style={{ width: "100%", margin: "0px" }}>

@@ -28,15 +28,11 @@ const Feeds = lazy(() => import("@app/components/Feeds"));
 
 const NotFound = () => {
   useEffect(() => navigateToUrl("/"), []);
-
   return <LoadingSpinner message="Not found! Redirecting..." />;
 };
 
 const Redirect = ({ to }: { to: string }) => {
-  const navigate = useNavigate();
-
-  useEffect(() => navigate(to), []);
-
+  useEffect(() => navigateToUrl(to), []);
   return null;
 };
 
@@ -117,7 +113,13 @@ const App = () => {
           )}
         >
           <BrowserRouter>
-            <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+            <Suspense
+              fallback={
+                <div style={{ height: "100vh" }} className="dark:bg-dark-bgMain">
+                  <LoadingSpinner message="Loading..." />
+                </div>
+              }
+            >
               {localStorage.getItem("isFirstAccess") === null ||
               localStorage.getItem("isFirstAccess") === "true" ? (
                 <Home isFirstAccess />

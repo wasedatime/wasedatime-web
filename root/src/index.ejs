@@ -192,6 +192,12 @@
   <link rel="preload" as="stylesheet" href='http://fonts.googleapis.com/css?family=Lato:400,700' type='text/css'>
   <% } %>
 
+  <script>
+    window.onload = function() {
+      if (localStorage.getItem("color-theme") === "dark") document.getElementsByTagName("body")[0].style.backgroundColor = "#242325";
+    };
+  </script>
+
   <style>
   body {
     margin: 0px;

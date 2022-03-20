@@ -17,6 +17,7 @@ import configureStore from "@app/configureStore";
 import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/ja/translation.json";
 import { saveState } from "@app/utils/localforage-global-state";
+import { ThemeProvider } from "@app/utils/theme-context";
 
 const config = {
   API: {
@@ -77,19 +78,29 @@ const Root = () => {
     setReduxStore(store);
   };
 
-  return reduxStore ? (
-    <Sentry.ErrorBoundary
-      fallback={({ error, componentStack, resetError }) => (
-        <ErrorFallback error={error} resetError={resetError} />
-      )}
-    >
-      <Provider store={reduxStore}>
-        <App />
-      </Provider>
-    </Sentry.ErrorBoundary>
-  ) : (
-    <LoadingSpinner message="Loading..." />
-  );
+  return (
+    <ThemeProvider>
+      {
+        reduxStore ? (
+          <Sentry.ErrorBoundary
+            fallback={({ error, componentStack, resetError }) => (
+              <ErrorFallback error={error} resetError={resetError} />
+            )}
+          >
+            <Provider store={reduxStore}>
+              <App />
+            </Provider>
+          </Sentry.ErrorBoundary>
+        ) : (
+          <div style={{ height: "100vh" }} className="dark:bg-dark-bgMain">
+            <LoadingSpinner message="Loading..." />
+          </div>
+        )
+      }
+    </ThemeProvider>
+  )
+
+  return 
 };
 
 export default Root;

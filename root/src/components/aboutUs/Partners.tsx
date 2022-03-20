@@ -17,7 +17,6 @@ const Title = styled("h2")`
   font-size: 1.5em;
   margin: 0 auto;
   text-align: center;
-  color: #444 !important;
 `;
 
 const CardArea = styled("div")`
@@ -40,8 +39,6 @@ const Card = styled("div")`
 
 const OrgImage = styled("img")`
   width: 80%;
-  border: white 7px solid;
-  border-radius: 50%;
   box-shadow: 0px 0px 8px;
 `;
 const OrgName = styled("div")`
@@ -168,11 +165,17 @@ const Partners = () => {
       <CardArea>
         {partners.map((partner) => (
           <Card key={partner.org}>
-            <OrgImage src={partner.img} />
-            <OrgName>{partner.org}</OrgName>
+            <OrgImage
+              className="border-light-bgSide dark:border-dark-bgSide border-8 border-solid rounded-full"
+              src={partner.img}
+            />
+            <OrgName className="text-light-text1 dark:text-dark-text1">
+              {partner.org}
+            </OrgName>
             <SocialMediaArea>
               {partner.links.map((link) => (
                 <a
+                  className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
                   key={link.url}
                   href={link.url}
                   target="_blank"
@@ -187,11 +190,17 @@ const Partners = () => {
               {partner.members &&
                 partner.members.map((member) => (
                   <MemberWrapper key={member.name}>
-                    <MemberImage src={member.img} />
-                    <span>{member.name}</span>
+                    <MemberImage
+                      className="border-light-bgSide dark:border-dark-bgSide border-8 border-solid rounded-full"
+                      src={member.img}
+                    />
+                    <span className="text-light-text1 dark:text-dark-text1">
+                      {member.name}
+                    </span>
                     <SocialMediaArea>
                       {member.links.map((link) => (
                         <a
+                          className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
                           key={link.url}
                           href={link.url}
                           target="_blank"

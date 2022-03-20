@@ -56,7 +56,10 @@ const AboutUs = () => {
   };
 
   return (
-    <AboutUsWrapper id="aboutus_wrapper">
+    <AboutUsWrapper
+      id="aboutus_wrapper"
+      className="bg-light-bgMain dark:bg-dark-bgMain"
+    >
       <Helmet>
         <title>WasedaTime - About Us</title>
         <meta
@@ -88,11 +91,11 @@ const AboutUs = () => {
           <button
             type="button"
             className={`
-            border-2 border-red-800 border-r-0 ${
+            border-2 border-light-main dark:border-dark-lighter border-r-0 ${
               activePage === "our mission"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
+                ? "bg-light-main dark:bg-dark-lighter text-white"
+                : "bg-light-bgSide dark:bg-dark-bgSide text-light-main dark:text-dark-lighter"
+            } hover:bg-light-main hover:text-white dark:hover:bg-dark-lighter dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
           `}
             onClick={() =>
               activePage !== "our mission" && setActivePage("our mission")
@@ -103,11 +106,11 @@ const AboutUs = () => {
           <button
             type="button"
             className={`
-            border-2 border-red-800 border-l-0 border-r-0 ${
+            border-2 border-light-main dark:border-dark-lighter border-l-0 border-r-0 ${
               activePage === "join us"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+                ? "bg-light-main dark:bg-dark-lighter text-white"
+                : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-lighter"
+            } hover:bg-light-main hover:text-white dark:hover:bg-dark-lighter dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
           `}
             onClick={() => activePage !== "join us" && setActivePage("join us")}
           >
@@ -116,11 +119,11 @@ const AboutUs = () => {
           <button
             type="button"
             className={`
-            border-2 border-red-800 border-l-0 border-r-0 ${
+            border-2 border-light-main dark:border-dark-lighter border-l-0 border-r-0 ${
               activePage === "meet our team"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+                ? "bg-light-main dark:bg-dark-lighter text-white"
+                : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-lighter"
+            } hover:bg-light-main hover:text-white dark:hover:bg-dark-lighter dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
           `}
             onClick={() =>
               activePage !== "meet our team" && setActivePage("meet our team")
@@ -131,11 +134,11 @@ const AboutUs = () => {
           <button
             type="button"
             className={`
-            border-2 border-red-800 border-l-0 ${
+            border-2 border-light-main dark:border-dark-lighter border-l-0 ${
               activePage === "partners"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
+                ? "bg-light-main dark:bg-dark-lighter text-white"
+                : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-lighter"
+            } hover:bg-light-main hover:text-white dark:hover:bg-dark-lighter dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
           `}
             onClick={() =>
               activePage !== "partners" && setActivePage("partners")

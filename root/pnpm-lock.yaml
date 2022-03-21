@@ -22,7 +22,7 @@ specifiers:
   '@bit/wasedatime.core.ts.ui.logo': 0.0.9
   '@bit/wasedatime.core.ts.ui.modal': 0.0.8
   '@bit/wasedatime.core.ts.ui.sign-in-modal': 0.0.9
-  '@bit/wasedatime.core.ts.ui.theme-toggle': 0.0.8
+  '@bit/wasedatime.core.ts.ui.theme-toggle': 0.1.4
   '@bit/wasedatime.core.ts.utils.i18n': 0.0.4
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1
   '@bit/wasedatime.core.ts.utils.user': 0.0.3
@@ -131,7 +131,7 @@ dependencies:
   '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react@17.0.2
   '@bit/wasedatime.core.ts.ui.modal': node.bit.dev/@bit/wasedatime.core.ts.ui.modal/0.0.8
   '@bit/wasedatime.core.ts.ui.sign-in-modal': node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.0.9_e46095638471543ba34100765238dc47
-  '@bit/wasedatime.core.ts.ui.theme-toggle': node.bit.dev/@bit/wasedatime.core.ts.ui.theme-toggle/0.0.8_4bd8f766d7cd56ce339ee1b51a510026
+  '@bit/wasedatime.core.ts.ui.theme-toggle': 0.1.4_4bd8f766d7cd56ce339ee1b51a510026
   '@bit/wasedatime.core.ts.utils.i18n': node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.4_i18next@19.9.2+react@17.0.2
   '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react@17.0.2
   '@bit/wasedatime.core.ts.utils.user': node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.3_react@17.0.2
@@ -2174,6 +2174,24 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
 
+  /@bit/wasedatime.core.theme.colors/0.0.3:
+    resolution: {integrity: sha1-6Fj0r3lf0e0ogkF168OnyzlWmj0=, tarball: wasedatime.core.theme.colors/-/wasedatime.core.theme.colors-0.0.3.tgz}
+    dev: false
+
+  /@bit/wasedatime.core.ts.ui.theme-toggle/0.1.4_4bd8f766d7cd56ce339ee1b51a510026:
+    resolution: {integrity: sha1-jn5+1DhHNW6m4vR4PVlEHdOb4n4=, tarball: wasedatime.core.ts.ui.theme-toggle/-/wasedatime.core.ts.ui.theme-toggle-0.1.4.tgz}
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@bit/wasedatime.core.theme.colors': 0.0.3
+      '@fortawesome/free-solid-svg-icons': 6.0.0
+      '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
+      react: 17.0.2
+    transitivePeerDependencies:
+      - '@fortawesome/fontawesome-svg-core'
+    dev: false
+
   /@cnakazawa/watch/1.0.4:
     resolution: {integrity: sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ==}
     engines: {node: '>=0.1.95'}
@@ -2295,17 +2313,6 @@ packages:
     requiresBuild: true
     dependencies:
       '@fortawesome/fontawesome-common-types': 0.3.0
-    dev: false
-
-  /@fortawesome/react-fontawesome/0.1.16_4bd8f766d7cd56ce339ee1b51a510026:
-    resolution: {integrity: sha512-aLmzDwC9rEOAJv2UJdMns89VZR5Ry4IHu5dQQh24Z/lWKEm44lfQr1UNalZlkUaQN8d155tNh+CS7ntntj1VMA==}
-    peerDependencies:
-      '@fortawesome/fontawesome-svg-core': ~1 || >=1.3.0-beta1
-      react: '>=16.x'
-    dependencies:
-      '@fortawesome/fontawesome-svg-core': 1.3.0
-      prop-types: 15.8.1
-      react: 17.0.2
     dev: false
 
   /@fortawesome/react-fontawesome/0.1.17_4bd8f766d7cd56ce339ee1b51a510026:
@@ -13660,22 +13667,6 @@ packages:
       - i18next
       - react-is
       - react-native
-    dev: false
-
-  node.bit.dev/@bit/wasedatime.core.ts.ui.theme-toggle/0.0.8_4bd8f766d7cd56ce339ee1b51a510026:
-    resolution: {integrity: sha1-96g4RyO7uZ28X1s0c6tk7lQwYDM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.theme-toggle/-/wasedatime.core.ts.ui.theme-toggle-0.0.8.tgz}
-    id: node.bit.dev/@bit/wasedatime.core.ts.ui.theme-toggle/0.0.8
-    name: wasedatime.core.ts.ui.theme-toggle
-    version: 0.0.8
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@fortawesome/free-solid-svg-icons': 5.15.4
-      '@fortawesome/react-fontawesome': 0.1.16_4bd8f766d7cd56ce339ee1b51a510026
-      react: 17.0.2
-    transitivePeerDependencies:
-      - '@fortawesome/fontawesome-svg-core'
     dev: false
 
   node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.4_i18next@19.9.2+react@17.0.2:

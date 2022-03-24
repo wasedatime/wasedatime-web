@@ -153,7 +153,7 @@ const AboutUs = () => {
         {activePage === "meet our team" && (
           <Suspense
             fallback={
-              <LoadingSpinner message="Loading members information..." />
+              <LoadingSpinner theme="dark" message="Loading members information..." />
             }
           >
             <MeetOurTeam />
@@ -162,7 +162,7 @@ const AboutUs = () => {
         {activePage === "partners" && (
           <Suspense
             fallback={
-              <LoadingSpinner message="Loading partners information..." />
+              <LoadingSpinner theme="dark" message="Loading partners information..." />
             }
           >
             <Partners />

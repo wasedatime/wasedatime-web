@@ -156,9 +156,14 @@ const Partners = () => {
   return (
     <Wrapper>
       <br />
-      <Title>Collaboration Partners</Title>
+      <Title className="text-light-text1 dark:text-dark-text1">
+        Collaboration Partners
+      </Title>
       <br />
-      <h6 style={{ textAlign: "center" }}>
+      <h6
+        className="text-light-text1 dark:text-dark-text1"
+        style={{ textAlign: "center" }}
+      >
         We look forward to collaborating with more circles or organizations!
       </h6>
 

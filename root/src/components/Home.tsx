@@ -9,8 +9,9 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { navigateToUrl } from "single-spa";
 import styled from "styled-components";
 
-import homeBackground from "@app/assets/img/home/home_background-lg.jpg";
 import titleLogo from "@app/assets/img/home/title-logo.svg";
+import homeBackgroundDark from "@app/assets/img/home/home_background-dark.png";
+import homeBackgroundLight from "@app/assets/img/home/home_background-light.jpg";
 import WelcomeModal from "@app/components/WelcomeModal";
 import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
 import { gaLanguage } from "@app/ga/eventCategories";
@@ -87,7 +88,9 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
   };
 
   return (
-    <StyledWrapper background={homeBackground}>
+    <StyledWrapper
+      background={theme === "dark" ? homeBackgroundDark : homeBackgroundLight}
+    >
       <Header
         title=""
         // eslint-disable-next-line @typescript-eslint/no-empty-function

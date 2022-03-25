@@ -158,7 +158,7 @@ class TimetableContainer extends React.Component<
             toggleQuarter={this.handleToggleQuarter}
             isSmallSize={false}
           />
-          <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+          <Suspense fallback={<LoadingSpinner theme={theme} message="Loading..." />}>
             <Timetable addedCoursesAndPrefs={sortedAddedCoursesAndPrefs} />
           </Suspense>
         </TimetableFlex>

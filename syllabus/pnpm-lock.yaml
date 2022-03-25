@@ -15,7 +15,7 @@ specifiers:
   '@bit/wasedatime.core.ts.constants.theme': 0.0.3
   '@bit/wasedatime.core.ts.styles.wrapper': 0.0.1
   '@bit/wasedatime.core.ts.ui.header': 0.2.7
-  '@bit/wasedatime.core.ts.ui.loading-spinner': 0.1.1
+  '@bit/wasedatime.core.ts.ui.loading-spinner': 0.1.2
   '@bit/wasedatime.core.ts.ui.logo': 0.0.9
   '@bit/wasedatime.core.ts.ui.modal': 0.0.8
   '@bit/wasedatime.core.ts.ui.sign-in-modal': 0.0.9
@@ -124,7 +124,7 @@ dependencies:
   '@bit/wasedatime.core.ts.constants.theme': node.bit.dev/@bit/wasedatime.core.ts.constants.theme/0.0.3_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.styles.wrapper': node.bit.dev/@bit/wasedatime.core.ts.styles.wrapper/0.0.1_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.ui.header': node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.2.7_7a357bb42541b427aee3d1047c25447b
-  '@bit/wasedatime.core.ts.ui.loading-spinner': 0.1.1_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.ui.loading-spinner': 0.1.2_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.ui.modal': node.bit.dev/@bit/wasedatime.core.ts.ui.modal/0.0.8_react-dom@17.0.2
   '@bit/wasedatime.core.ts.ui.sign-in-modal': node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.0.9_eebde15b23afe714751ab2a728f9056a
@@ -2279,6 +2279,10 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
+  /@bit/wasedatime.core.theme.colors/0.0.3:
+    resolution: {integrity: sha1-6Fj0r3lf0e0ogkF168OnyzlWmj0=, tarball: wasedatime.core.theme.colors/-/wasedatime.core.theme.colors-0.0.3.tgz}
+    dev: false
+
   /@bit/wasedatime.core.ts.styles.overlay/0.0.1_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha1-eXYMnbkdhymg3EBNS9RBSuz1Wbk=, tarball: wasedatime.core.ts.styles.overlay/-/wasedatime.core.ts.styles.overlay-0.0.1.tgz}
     peerDependencies:
@@ -2305,12 +2309,13 @@ packages:
       - react-is
     dev: false
 
-  /@bit/wasedatime.core.ts.ui.loading-spinner/0.1.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-V5FVWHK7nLlQQfX5wrd+986F7eI=, tarball: wasedatime.core.ts.ui.loading-spinner/-/wasedatime.core.ts.ui.loading-spinner-0.1.1.tgz}
+  /@bit/wasedatime.core.ts.ui.loading-spinner/0.1.2_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-WqxofSQAwEMlFy7NVlh0RXm+0N0=, tarball: wasedatime.core.ts.ui.loading-spinner/-/wasedatime.core.ts.ui.loading-spinner-0.1.2.tgz}
     peerDependencies:
       react: ^17.0.1
       react-dom: ^17.0.1
     dependencies:
+      '@bit/wasedatime.core.theme.colors': 0.0.3
       '@bit/wasedatime.core.ts.styles.overlay': 0.0.1_react-dom@17.0.2+react@17.0.2
       '@bit/wasedatime.core.ts.styles.wrapper': 0.0.1_react-dom@17.0.2+react@17.0.2
       '@bit/wasedatime.core.ts.ui.logo': 0.0.9_react-dom@17.0.2+react@17.0.2

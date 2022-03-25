@@ -387,7 +387,7 @@ class SyllabusContainer extends React.Component<
           </MediaQuery>
 
           <MiddleColumn>
-            <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+            <Suspense fallback={<LoadingSpinner theme={theme} message="Loading..." />}>
               {allFetchedCourses.length > 0 ? (
                 <FetchedCourseList
                   searchTerm={searchTerm}

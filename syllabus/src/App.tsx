@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense, useContext } from "react";
 import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 import API from "@aws-amplify/api";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
@@ -15,6 +15,7 @@ import { fetchCourses, saveTimetable } from "@app/redux/actions";
 import { ReduxRootState } from "@app/redux/reducers";
 import { getAddedCoursePrefs } from "@app/redux/reducers/addedCourses";
 import "@app/styles/styles.scss";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const Timetable = lazy(() => import("@app/containers/TimetableContainer"));
 const Syllabus = lazy(() => import("@app/containers/SyllabusContainer"));
@@ -39,6 +40,8 @@ const App = ({
   fetchCourses,
   saveTimetable,
 }: ReduxStateProps & ReduxDispatchProps) => {
+  const { theme } = useContext(ThemeContext);
+
   const postTimetable = async (idsAndPrefs) => {
     const idToken = await getIdToken();
     API.post("wasedatime-dev", "/timetable", {
@@ -78,7 +81,7 @@ const App = ({
   }, []);
 
   return (
-    <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+    <Suspense fallback={<LoadingSpinner theme={theme} message="Loading..." />}>
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
@@ -88,9 +91,10 @@ const App = ({
 };
 
 const NotFound = () => {
+  const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
   useEffect(() => navigate("/"));
-  return <LoadingSpinner message="Not found! Redirecting..." />;
+  return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />;
 };
 
 const AppRoutes = () => {

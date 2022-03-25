@@ -185,16 +185,17 @@ const RoomFinder = (): JSX.Element => {
             paddingLeft: "10px",
             marginBottom: "20px",
           }}
+          className="text-light-text1 dark:text-dark-text1"
         >
           {t("roomFinder.title")}
         </h1>
-        <p>
+        <p className="text-light-text2 dark:text-dark-text2">
           <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
           {t("roomFinder.subtitle")}：
           <RoomType>{t("roomFinder.Occupied")}</RoomType>
           <RoomEmpt>{t("roomFinder.Available")}</RoomEmpt>
         </p>
-        <p>{t("roomFinder.note")}</p>
+        <p className="text-light-text2 dark:text-dark-text2">{t("roomFinder.note")}</p>
         <DatetimeSelection>
           <DatePickerSpan>
             <DatePicker

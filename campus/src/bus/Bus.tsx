@@ -355,10 +355,11 @@ const Bus = (): JSX.Element => {
             paddingLeft: "10px",
             marginBottom: "20px",
           }}
+          className="text-light-text1 dark:text-dark-text1"
         >
           {t("bus.busStatus")}
         </h1>
-        <p className="text-light-text1 dark:text-dark-text1">
+        <p className="text-light-text2 dark:text-dark-text2">
           <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
           {t("bus.Assign a date / time to check the next bus")}：
         </p>
@@ -399,8 +400,8 @@ const Bus = (): JSX.Element => {
             <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
             {t("bus.NishiWaseda")}
           </StyledSubHeading>
-          <Status>{wasedaStatusComponent.status}</Status>
-          <Remark>{wasedaStatusComponent.remark}</Remark>
+          <Status className="text-light-text1 dark:text-dark-text1">{wasedaStatusComponent.status}</Status>
+          <Remark className="text-light-text1 dark:text-dark-text1">{wasedaStatusComponent.remark}</Remark>
         </BusStatus>
         <BusStatus>
           <StyledSubHeading>
@@ -408,8 +409,8 @@ const Bus = (): JSX.Element => {
             <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
             {t("bus.Waseda")}
           </StyledSubHeading>
-          <Status>{nishiStatusComponent.status}</Status>
-          <Remark>{nishiStatusComponent.remark}</Remark>
+          <Status className="text-light-text1 dark:text-dark-text1">{nishiStatusComponent.status}</Status>
+          <Remark className="text-light-text1 dark:text-dark-text1">{nishiStatusComponent.remark}</Remark>
         </BusStatus>
         <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
           {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}

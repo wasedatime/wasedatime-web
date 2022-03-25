@@ -183,7 +183,7 @@ class AddReviewForm extends React.Component<Props, State> {
       paintedDifficultyStars,
       paintedBenefitStars,
     } = this.state;
-    const { theme, setTheme } = this.context;
+    const { theme } = this.context;
 
     return (
       <div>
@@ -192,7 +192,7 @@ class AddReviewForm extends React.Component<Props, State> {
         </StyledSubHeading>
 
         {isSending ? (
-          <LoadingSpinner message={"Posting your review..."} />
+          <LoadingSpinner theme={theme} message={"Posting your review..."} />
         ) : (
           <StyledForm
             onSubmit={(e) => {

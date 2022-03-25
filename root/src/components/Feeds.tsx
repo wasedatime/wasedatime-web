@@ -48,7 +48,7 @@ const Feeds = () => {
         />
       </HeaderWrapper>
       <div>
-        {!feedsLoaded && <LoadingSpinner message="Loading..." />}
+        {!feedsLoaded && <LoadingSpinner theme="light" message="Loading..." />}
         <iframe
           src={`${feedsDomain}/${i18n.language}`}
           style={{ width: "100%", height: "calc(100vh - 70px)" }}

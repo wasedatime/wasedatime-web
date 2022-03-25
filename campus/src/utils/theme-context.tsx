@@ -45,9 +45,11 @@ export const ThemeProvider = ({
   const rawSetTheme = (rawTheme: ThemeTypes) => {
     const root = window.document.documentElement;
     const isDark = rawTheme === "dark";
+    const themeChangedEvent = new Event("themeChanged");
     root.classList.remove(isDark ? "light" : "dark");
     root.classList.add(rawTheme);
     localStorage.setItem("color-theme", rawTheme);
+    window.dispatchEvent(themeChangedEvent);
   };
 
   if (initialTheme) {

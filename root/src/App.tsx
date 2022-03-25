@@ -28,7 +28,7 @@ const Feeds = lazy(() => import("@app/components/Feeds"));
 
 const NotFound = () => {
   useEffect(() => navigateToUrl("/"), []);
-  return <LoadingSpinner message="Not found! Redirecting..." />;
+  return <LoadingSpinner theme="light" message="Not found! Redirecting..." />;
 };
 
 const Redirect = ({ to }: { to: string }) => {
@@ -116,7 +116,7 @@ const App = () => {
             <Suspense
               fallback={
                 <div style={{ height: "100vh" }} className="dark:bg-dark-bgMain">
-                  <LoadingSpinner message="Loading..." />
+                  <LoadingSpinner theme="light" message="Loading..." />
                 </div>
               }
             >

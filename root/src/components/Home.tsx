@@ -9,9 +9,9 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import { navigateToUrl } from "single-spa";
 import styled from "styled-components";
 
-import titleLogo from "@app/assets/img/home/title-logo.svg";
 import homeBackgroundDark from "@app/assets/img/home/home_background-dark.png";
 import homeBackgroundLight from "@app/assets/img/home/home_background-light.jpg";
+import { TitleLogo } from "@app/assets/img/home/TitleLogo";
 import WelcomeModal from "@app/components/WelcomeModal";
 import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
 import { gaLanguage } from "@app/ga/eventCategories";
@@ -54,6 +54,7 @@ const MainHeading = styled("h1")`
   img {
     margin: 1em auto 0px auto;
   }
+  align-items: "center";
 `;
 
 // to be imported from Bit
@@ -109,11 +110,10 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
         </LogoWrapper>
         <Introduction>
           <MainHeading>
-            <img
+            <TitleLogo
+              className="fill-light-text1 dark:fill-white block m-auto"
               width="200"
               height="50"
-              src={titleLogo}
-              alt="WasedaTime Text Logo"
             />
           </MainHeading>
           <Description className="text-white dark:text-dark-text1 text-shadow-sm dark:text-shadow-sm my-2">
@@ -122,7 +122,7 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
           <br />
           <button
             type="button"
-            className="bg-red-800 dark:bg-dark-darker rounded-lg text-white px-4 py-2 mx-2"
+            className="bg-light-main hover:bg-light-lighter rounded-lg text-white px-4 py-2 mx-2"
             onClick={() => setModalOpen(true)}
           >
             {t("welcome.newFeature")}

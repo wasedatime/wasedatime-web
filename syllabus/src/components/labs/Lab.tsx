@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import colors from "@bit/wasedatime.core.theme.colors";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import SimpleBar from "simplebar-react";
 import styled from "styled-components";
@@ -14,6 +15,7 @@ import ReviewStars from "@app/components/courseInfo/ReviewStars";
 import Review from "@app/components/labs/Review";
 import { useTranslation } from "react-i18next";
 import Slider from "rc-slider/lib/Slider";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type LabWrapperProps = {
   isOpen: boolean;
@@ -21,6 +23,10 @@ type LabWrapperProps = {
 
 type LabTrigger = {
   school: string;
+};
+
+type ThemedComponentProps = {
+  isDark: boolean;
 };
 
 const schoolCoverMap = {
@@ -69,7 +75,6 @@ const LabTrigger = styled.div<LabTrigger>`
 const LabName = styled.div`
   position: relative;
   height: 100%;
-  color: #fff;
   text-shadow: 1px 1px 5px #000;
   font-size: 36px;
   padding: 10px;
@@ -100,7 +105,7 @@ const ReviewsModalOverlay = styled.div`
   right: 0;
   z-index: 409;
   background-color: #000;
-  opacity: 0.2;
+  opacity: 0.3;
 `;
 
 const ReviewsModal = styled.div`
@@ -110,9 +115,9 @@ const ReviewsModal = styled.div`
   left: 10vw;
   right: 10vw;
   z-index: 410;
-  background-color: #fff;
   border-radius: 10px;
   padding: 1em;
+
   ${media.tablet`
     left: 5vw;
     right: 5vw;
@@ -131,6 +136,16 @@ const ReviewsWrapper = styled(SimpleBar)`
   }
   overflow-y: auto;
   position: relative;
+  
+  ::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 10px;
+    background: #999;
+  }
 `;
 
 const ReviewProfName = styled.h2`
@@ -155,6 +170,26 @@ const SectionHeader = styled.h5`
   padding-left: 10px;
 `;
 
+const StyledTable = styled(Table)<ThemedComponentProps>`
+  ${props => props.isDark && `
+    border-color: ${colors.dark.text3} !important;
+  `}
+`;
+
+const StyledTableHeaderCell = styled(Table.HeaderCell)<ThemedComponentProps>`
+  ${props => props.isDark && `
+    background-color: ${colors.dark.bgSide} !important;
+    color: ${colors.dark.text2} !important;
+  `}
+`;
+
+const StyledTableCell = styled(Table.Cell)<ThemedComponentProps>`
+  ${props => props.isDark && `
+    background-color: ${colors.dark.bgMain} !important;
+    color: ${colors.dark.text2} !important;
+  `}
+`;
+
 const getRoundedAverage = (reviews, itemLabel) => {
   const filteredReviews = reviews.filter(
     (review) => review[itemLabel] && Number.isInteger(review[itemLabel])
@@ -167,14 +202,15 @@ const getRoundedAverage = (reviews, itemLabel) => {
 };
 
 const Lab = ({ name, reviews, school }) => {
+  const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
   const [open, setOpen] = useState(false);
 
   const itemTable = (itemLabel) => (
-    <Table unstackable>
+    <StyledTable unstackable isDark={theme === "dark"}>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>{t(`labs.review.${itemLabel}`)}</Table.HeaderCell>
+          <StyledTableHeaderCell isDark={theme === "dark"}>{t(`labs.review.${itemLabel}`)}</StyledTableHeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -182,12 +218,12 @@ const Lab = ({ name, reviews, school }) => {
           (item) =>
             item && (
               <Table.Row>
-                <Table.Cell>{item}</Table.Cell>
+                <StyledTableCell isDark={theme === "dark"}>{item}</StyledTableCell>
               </Table.Row>
             )
         )}
       </Table.Body>
-    </Table>
+    </StyledTable>
   );
 
   const topicSatisficationAverage = getRoundedAverage(
@@ -200,13 +236,13 @@ const Lab = ({ name, reviews, school }) => {
   return (
     <LabWrapper isOpen={open}>
       <LabTrigger onClick={() => setOpen(!open)} school={school}>
-        <LabName>{name}</LabName>
+        <LabName className="text-white dark:text-dark-text1">{name}</LabName>
       </LabTrigger>
 
       {open && <ReviewsModalOverlay onClick={() => setOpen(false)} />}
 
       {open && (
-        <ReviewsModal>
+        <ReviewsModal className="bg-light-bgMain text-light-text2 dark:bg-dark-bgMain dark:text-dark-text2">
           <ReviewsWrapper>
             <CloseButton onClick={() => setOpen(false)}>×</CloseButton>
 
@@ -219,18 +255,18 @@ const Lab = ({ name, reviews, school }) => {
 
             <SectionHeader>{t("labs.review.Research Topic")}</SectionHeader>
             {topicSatisficationAverage > 0 && (
-              <Table unstackable>
+              <StyledTable unstackable isDark={theme === "dark"}>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>
+                    <StyledTableHeaderCell isDark={theme === "dark"}>
                       {t("labs.review.topicSatisfication")}{" "}
                       <span style={{ float: "right" }}>
                         <ReviewStars scale={topicSatisficationAverage} />
                       </span>
-                    </Table.HeaderCell>
+                    </StyledTableHeaderCell>
                   </Table.Row>
                 </Table.Header>
-              </Table>
+              </StyledTable>
             )}
             {itemTable("topicDecision")}
             {itemTable("yourResearch")}
@@ -240,10 +276,10 @@ const Lab = ({ name, reviews, school }) => {
             </SectionHeader>
 
             {guidanceAverage > 0 && (
-              <Table unstackable>
+              <StyledTable unstackable isDark={theme === "dark"}>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>
+                    <StyledTableHeaderCell isDark={theme === "dark"}>
                       <div
                         style={{
                           display: "flex",
@@ -265,25 +301,25 @@ const Lab = ({ name, reviews, school }) => {
                         defaultValue={guidanceAverage * 2}
                         value={guidanceAverage * 2}
                       />
-                    </Table.HeaderCell>
+                    </StyledTableHeaderCell>
                   </Table.Row>
                 </Table.Header>
-              </Table>
+              </StyledTable>
             )}
 
             {happinessAverage > 0 && (
-              <Table unstackable>
+              <StyledTable unstackable isDark={theme === "dark"}>
                 <Table.Header>
                   <Table.Row>
-                    <Table.HeaderCell>
+                    <StyledTableHeaderCell isDark={theme === "dark"}>
                       {t("labs.review.happiness")}{" "}
                       <span style={{ float: "right" }}>
                         <ReviewStars scale={happinessAverage} />
                       </span>
-                    </Table.HeaderCell>
+                    </StyledTableHeaderCell>
                   </Table.Row>
                 </Table.Header>
-              </Table>
+              </StyledTable>
             )}
 
             {itemTable("atmosphere")}

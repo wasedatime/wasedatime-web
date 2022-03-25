@@ -160,6 +160,16 @@ const LabsList = styled.div<LabsListProps>`
   `}
 
   overflow-y: auto;
+  
+  ::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 10px;
+    background: #999;
+  }
 `;
 
 const modalStyle = {
@@ -275,7 +285,7 @@ class Labs extends React.Component<Props, State> {
           <SyllabusTabs />
         </SyllabusTabsWrapper>
 
-        <ThankMessage isDisplayed={isThankMessageDisplayed}>
+        <ThankMessage isDisplayed={isThankMessageDisplayed} className="dark:opacity-70">
           {t("labs.thankMessage")}
           <CloseThankMessageButton
             onClick={() => this.setState({ isThankMessageDisplayed: false })}
@@ -287,7 +297,7 @@ class Labs extends React.Component<Props, State> {
         <LabsWrapper isLower={isThankMessageDisplayed}>
           <LabsList isLower={isThankMessageDisplayed}>
             {major && (
-              <MajorHeader school={school}>
+              <MajorHeader school={school} className="text-light-text1 dark:text-dark-text1">
                 {t(`labs.major.${major}`)}
               </MajorHeader>
             )}
@@ -304,12 +314,12 @@ class Labs extends React.Component<Props, State> {
                     )
                 )
               ) : (
-                <Message warning size="tiny" style={{ margin: "1em" }}>
+                <Message warning size="tiny" className="m-4 dark:opacity-70">
                   <h5>{t("labs.noReviewWarning")}</h5>
                 </Message>
               )
             ) : (
-              <Message warning size="tiny" style={{ margin: "1em" }}>
+              <Message warning size="tiny" style={{ margin: "1em" }} className="dark:opacity-70">
                 <h5>{t("labs.filterHint")}</h5>
               </Message>
             )}

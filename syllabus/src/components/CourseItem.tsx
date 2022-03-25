@@ -40,7 +40,7 @@ const CourseItemWrapper = styled("li")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  align-items: stretch;
+  // align-items: stretch;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;
@@ -52,19 +52,9 @@ const CourseItemWrapper = styled("li")`
 const CourseItemIntroWrapper = styled.div`
   padding: 0.5em 0.8em;
   &:hover {
-    background: #eee;
     cursor: pointer;
   }
   border-radius: 10px;
-  
-  ${media.tablet`
-    &:hover {
-      background: #fff;
-    }
-    &:active {
-      background: #eee;
-    }
-  `}
 `;
 
 const CloseCourseInfoButton = styled.p`
@@ -335,7 +325,7 @@ const CourseItem = ({
         onClick={async () => {
           expandable ? setExpanded(true) : await navigateToCourse();
         }}
-        className="bg-white dark:bg-dark-bgMain dark:border-dark-text3 dark:shadow-none"
+        className="bg-white hover:bg-light-bgSide dark:bg-dark-bgMain dark:border-dark-text3 dark:shadow-none dark:hover:bg-dark-bgSide"
       >
         <StyledHeading className="dark:text-dark-main">{highlightedTitle}</StyledHeading>
         {expandable && (

@@ -50,12 +50,18 @@ const CourseInfoWrapper = styled(Segment)<CourseInfoWrapperProps>`
 const RelatedCourses = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+
+  width: calc(96vw - 60em - 135px);
   @media (max-width: 1280px) {
     width: calc(96vw - 55em - 120px);
   }
-  ${media.desktop`width: calc(96vw - 30em - 130px);`}
-  ${media.tablet`width: calc(96vw - 40px);`}
+  ${media.desktop`
+    width: calc(96vw - 30em - 130px);
+  `}
+  ${media.tablet`
+    width: calc(96vw - 40px);
+  `}
+  
   overflow-x: auto;
   padding: none;
   margin: none;

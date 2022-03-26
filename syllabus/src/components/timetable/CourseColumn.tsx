@@ -197,7 +197,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
         // }
         return (
           <CourseItem
-            className={`color-${color}`}
+            className={`color-${color} dark:opacity-70`}
             key={`${course[SyllabusKey.TERM]}-${
               course[SyllabusKey.TITLE]
             }-${startPeriod}-${endPeriod}`}

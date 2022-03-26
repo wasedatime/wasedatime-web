@@ -1,9 +1,12 @@
-import React, { useEffect } from "react";
+import { ThemeContext } from "@app/utils/theme-context";
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import React, { useContext, useEffect } from "react";
 
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
 const RedirectPage = () => {
+  const { theme } = useContext(ThemeContext);
   const { t } = useTranslation();
   const navigate = useNavigate();
   const timeout = (ms: number) => {
@@ -22,19 +25,19 @@ const RedirectPage = () => {
   }, []);
 
   return window.location.search.includes("error_description") ? (
-    <div className="mt-20">
-      <h1>{t("verify.failed.title")}</h1>
+    <div className="mt-20 text-center">
+      <LoadingSpinner theme={theme} message={t("verify.failed.title")} />
       <br />
-      <p>{t("verify.failed.message1")}</p>
-      <p>{t("verify.failed.message2")}</p>
-      <p>{t("verify.failed.message3")}</p>
+      <p className="dark:text-dark-text2">{t("verify.failed.message1")}</p>
+      <p className="dark:text-dark-text2">{t("verify.failed.message2")}</p>
+      <p className="dark:text-dark-text2">{t("verify.failed.message3")}</p>
     </div>
   ) : (
-    <div className="mt-20">
-      <h1>{t("verify.success.title")}</h1>
-      <br />
-      <p>{t("verify.success.message1")}</p>
-      <p>{t("verify.success.message2")}</p>
+    <div className="mt-20 text-center">
+      <LoadingSpinner theme={theme} message={t("verify.success.title")} />
+      <a href="/" className="mb-8 block"><span className="text-3xl p-4 border-2 border-light-main rounded text-light-main dark:text-dark-main dark:border-dark-main">{t("verify.success.navigateHint")}</span></a>
+      <p className="dark:text-dark-text2">{t("verify.success.message1")}</p>
+      <p className="dark:text-dark-text2">{t("verify.success.message2")}</p>
     </div>
   );
 };

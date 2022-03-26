@@ -1,4 +1,4 @@
-import React, { useState, useEffect, lazy, Suspense, ReactNode } from "react";
+import React, { useState, useEffect, lazy, Suspense, ReactNode, useContext } from "react";
 
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { createBrowserHistory } from "history";
@@ -20,7 +20,7 @@ import {
   TimetableIcon,
   TimetableIconHovered,
 } from "@app/components/icons/TimetableIcon";
-import { ThemeProvider } from "@app/utils/theme-context";
+import { ThemeContext, ThemeProvider } from "@app/utils/theme-context";
 
 const Sidebar = lazy(() => import("@app/components/frame/Sidebar"));
 const MobileNav = lazy(() => import("@app/components/frame/MobileNav"));
@@ -35,6 +35,17 @@ export interface NavItemsProps {
   path: string;
   icon: ReactNode;
   iconHovered?: ReactNode;
+}
+
+const SignInModalContainer = ({ isModalOpen, closeModal }) => {
+  const { theme } = useContext(ThemeContext);
+  return (
+    <SignInModal
+      isModalOpen={isModalOpen}
+      closeModal={closeModal}
+      theme={theme}
+    />
+  )
 }
 
 const Nav = () => {
@@ -109,7 +120,7 @@ const Nav = () => {
             )
           }
         </MediaQuery>
-        <SignInModal
+        <SignInModalContainer
           isModalOpen={isSignInModalOpen}
           closeModal={() => setSignInModalOpen(false)}
         />

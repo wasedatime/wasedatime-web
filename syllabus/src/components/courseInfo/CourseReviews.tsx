@@ -27,6 +27,7 @@ import { gaCourseReviews } from "@app/ga/eventCategories";
 import { Course } from "@app/types/course";
 import { Review, Scales } from "@app/types/review";
 import { getAvgScales } from "@app/utils/get-avg-scales";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const StyledReviewsWrapper = styled("div")`
   ${media.phone`padding: 0 1em;`}
@@ -136,6 +137,8 @@ class CourseReviews extends React.Component<Props, State> {
       userId: "",
     };
   }
+
+  static contextType = ThemeContext;
 
   onFormScaleChange = (target, score) => {
     this.setState((prevState) => ({
@@ -324,6 +327,7 @@ class CourseReviews extends React.Component<Props, State> {
 
   render() {
     const { searchLang, t } = this.props;
+    const { theme } = this.context;
 
     const {
       reviews,
@@ -409,6 +413,7 @@ class CourseReviews extends React.Component<Props, State> {
         <SignInModal
           isModalOpen={isSignInModalOpen}
           closeModal={() => this.setState({ isSignInModalOpen: false })}
+          theme={theme}
         />
       </StyledReviewsWrapper>
     );

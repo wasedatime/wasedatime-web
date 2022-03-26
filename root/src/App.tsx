@@ -1,4 +1,4 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense, useContext } from "react";
 
 import { Hub } from "@aws-amplify/core";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
@@ -20,7 +20,7 @@ import {
   gaUserSignOut,
 } from "@app/ga/eventActions";
 import { gaUser } from "@app/ga/eventCategories";
-import { ThemeProvider } from "@app/utils/theme-context";
+import { ThemeContext, ThemeProvider } from "@app/utils/theme-context";
 
 const AboutUs = lazy(() => import("@app/components/aboutUs/AboutUs"));
 const Home = lazy(() => import("@app/components/Home"));
@@ -83,6 +83,16 @@ const AppRoutes = () => {
   );
 };
 
+const LoadingSpinnerContainer = () => {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <div style={{ height: "100vh" }} className="dark:bg-dark-bgMain">
+      <LoadingSpinner theme={theme} message="Loading..." />
+    </div>
+  );
+}
+
 const App = () => {
   const { i18n } = useTranslation();
   useEffect(() => {
@@ -113,13 +123,7 @@ const App = () => {
           )}
         >
           <BrowserRouter>
-            <Suspense
-              fallback={
-                <div style={{ height: "100vh" }} className="dark:bg-dark-bgMain">
-                  <LoadingSpinner theme="light" message="Loading..." />
-                </div>
-              }
-            >
+            <Suspense fallback={<LoadingSpinnerContainer />}>
               {localStorage.getItem("isFirstAccess") === null ||
               localStorage.getItem("isFirstAccess") === "true" ? (
                 <Home isFirstAccess />

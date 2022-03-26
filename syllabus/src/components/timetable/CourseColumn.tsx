@@ -86,6 +86,12 @@ const CourseList = styled("div")`
   position: relative;
 `;
 
+const StyledSimpleBar = styled(SimpleBar)`
+  .simplebar-placeholder {
+    height: 0px !important;
+  }
+`;
+
 interface Props extends WithTranslation {
   largestPeriod: number;
   coursesAndProperties: {
@@ -200,7 +206,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
             height={endPeriod - startPeriod + 1}
           >
             <CourseTitle>
-              <SimpleBar>{title}</SimpleBar>
+              <StyledSimpleBar>{title}</StyledSimpleBar>
             </CourseTitle>
             <CourseLocation>{location}</CourseLocation>
           </CourseItem>

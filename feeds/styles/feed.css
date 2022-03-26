@@ -103,6 +103,14 @@
   margin: 10px 0px;
 }
 
+.dark .feedWrapper .markdownWrapper p {
+  color: #D7D7D7;
+}
+
+.dark .feedWrapper .markdownWrapper p em {
+  color: #585858;
+}
+
 @media (max-width: 768px) {
   .feedWrapper {
     padding: 0px 5vw;

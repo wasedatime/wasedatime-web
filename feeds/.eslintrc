@@ -2,7 +2,8 @@
   "extends": [
     "next",
     "next/core-web-vitals",
-    "ts-react-important-stuff"
+    "ts-react-important-stuff",
+    "next/babel"
   ],
   "rules": {
     "@next/next/no-img-element": "off",

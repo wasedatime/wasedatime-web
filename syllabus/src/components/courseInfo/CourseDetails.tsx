@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import {
   faBroadcastTower,
   faChalkboardTeacher,
@@ -18,20 +19,40 @@ import CourseDetailsEvaluation from "@app/components/courseInfo/CourseDetailsEva
 import CourseMoreDetails from "@app/components/courseInfo/CourseMoreDetails";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
-
-const StyledSubHeading = styled("h6")`
-  align-self: flex-start;
-  margin: 1rem 0px;
-  padding-left: 1rem;
-  border-left: 5px solid rgb(148, 27, 47);
-  font-weight: 300;
-`;
+import { ThemeContext } from "@app/utils/theme-context";
 
 interface Props extends WithTranslation {
   course: Course;
 }
 
+type StyledTableProps = {
+  isDark: boolean;
+};
+
+const StyledSubHeading = styled.h4`
+  align-self: flex-start;
+  margin: 1rem 0px;
+  padding-left: 1rem;
+  border-left: 5px solid rgb(148, 27, 47);
+  font-weight: 300;
+  font-size: 16px;
+`;
+
+const StyledTable = styled(Table)<StyledTableProps>`
+  ${(props) =>
+    props.isDark &&
+    `
+    border: 1px solid ${colors.dark.text3} !important;
+    border-radius: 5px;
+    border-bottom-width: 0px !important;
+    tbody tr td {
+      border-bottom: 1px solid ${colors.dark.text3};
+    }
+  `}
+`;
+
 const CourseDetails = ({ course, t, i18n }: Props) => {
+  const { theme } = React.useContext(ThemeContext);
   const [activeDetailsIndex, setActiveDetailsIndex] = useState(-1);
 
   const courseTypes = [
@@ -111,36 +132,60 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
 
   const courseDetails = (
     <React.Fragment>
-      <Grid columns={courseModality ? 4 : 2} style={{ padding: "1em" }}>
-        <Grid.Column style={{ textAlign: "center" }}>
+      <Grid
+        columns={courseModality ? 4 : 2}
+        style={{ padding: "1em" }}
+        className="dark:bg-dark-bgMain dark:text-dark-text1"
+      >
+        <Grid.Column className="text-center dark:bg-dark-bgMain">
           <Statistic size="small">
-            <Statistic.Value>{course[SyllabusKey.MIN_YEAR]}+</Statistic.Value>
-            <Statistic.Label>
-              <p>{t("courseInfo.Details.Min Year")}</p>
+            <Statistic.Value>
+              <span className="dark:text-dark-text1">
+                {course[SyllabusKey.MIN_YEAR]}+
+              </span>
+            </Statistic.Value>
+            <Statistic.Label className="dark:text-dark-text2">
+              <p className="dark:text-dark-text2">
+                {t("courseInfo.Details.Min Year")}
+              </p>
             </Statistic.Label>
           </Statistic>
         </Grid.Column>
-        <Grid.Column style={{ textAlign: "center" }}>
+        <Grid.Column className="text-center dark:bg-dark-bgMain">
           <Statistic size="small">
-            <Statistic.Value>{course[SyllabusKey.CREDIT]}</Statistic.Value>
+            <Statistic.Value>
+              <span className="dark:text-dark-text1">
+                {course[SyllabusKey.CREDIT]}
+              </span>
+            </Statistic.Value>
             <Statistic.Label>
-              <p>{t("courseInfo.Details.Credit")}</p>
+              <p className="dark:text-dark-text2">
+                {t("courseInfo.Details.Credit")}
+              </p>
             </Statistic.Label>
           </Statistic>
         </Grid.Column>
         {courseModality && (
-          <Grid.Column width={8} style={{ textAlign: "center" }}>
+          <Grid.Column width={8} className="text-center dark:bg-dark-bgMain">
             <Statistic size="small">
-              <Statistic.Value>{courseModality.icons}</Statistic.Value>
+              <Statistic.Value>
+                <span className="dark:text-dark-text1">
+                  {courseModality.icons}
+                </span>
+              </Statistic.Value>
               <Statistic.Label>
-                <p>{courseModality.label}</p>
+                <p className="dark:text-dark-text2">{courseModality.label}</p>
               </Statistic.Label>
             </Statistic>
           </Grid.Column>
         )}
       </Grid>
-      <Table unstackable>
-        <Table.Body>
+      <StyledTable
+        unstackable
+        className="border-2 dark:border-dark-text3 dark:bg-dark-bgMain"
+        isDark={theme === "dark"}
+      >
+        <Table.Body className="dark:bg-dark-bgMain dark:text-dark-text1">
           <Table.Row>
             <Table.Cell>
               <p style={{ paddingLeft: "1em" }}>
@@ -186,12 +231,12 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
             </Table.Cell>
           </Table.Row>
         </Table.Body>
-      </Table>
+      </StyledTable>
     </React.Fragment>
   );
 
   return (
-    <div>
+    <div className="dark:bg-dark-bgMain">
       {courseDetails}
       <StyledSubHeading>
         {t("courseInfo.Details.Evaluation.title")}

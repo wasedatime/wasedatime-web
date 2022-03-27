@@ -15,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { busSchedule } from "@app/constants/busSchedule";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const wasedaNishiwasedaBusUri =
   "https://www.waseda.jp/fsci/assets/uploads/2020/09/20200925_waseda_nishiwaseda-1.pdf";
@@ -41,10 +42,7 @@ const StyledSubHeading = styled("h2")`
   align-self: flex-start;
   margin-top: 0px;
   margin-bottom: 1rem;
-  border: 3px solid rgb(148, 27, 47);
   border-width: 3px 6px;
-  border-radius: 5px;
-  background: rgb(148, 27, 47);
   font-size: 2.5rem;
   font-weight: 300;
   color: #ffffff;
@@ -315,11 +313,16 @@ const TimeSelector = forwardRef<any, PropsType>(({ value, onClick }, ref) => (
 ));
 
 const Bus = (): JSX.Element => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   const [date, setDate] = useState<Date>(new Date());
   const onDatetimeChange = (date: Date): void => setDate(date || new Date());
   const clearDatetime = (): void => setDate(new Date());
 
   const { t, i18n } = useTranslation();
+  useEffect(() => {
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
+  }, []);
 
   const lng = i18n.language;
   const { wasedaStatus, nishiStatus } = getBusStatuses(date, lng, t);
@@ -345,14 +348,14 @@ const Bus = (): JSX.Element => {
       <InfoWrapper>
         <h1
           style={{
-            borderLeft: "5px solid rgb(148, 27, 47)",
             paddingLeft: "10px",
             marginBottom: "20px",
           }}
+          className="text-light-text1 dark:text-dark-text1 border-l-4 border-solid border-light-main dark:border-dark-main"
         >
           {t("bus.busStatus")}
         </h1>
-        <p>
+        <p className="text-light-text2 dark:text-dark-text2">
           <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
           {t("bus.Assign a date / time to check the next bus")}：
         </p>
@@ -388,22 +391,30 @@ const Bus = (): JSX.Element => {
         </DatetimeSelection>
 
         <BusStatus>
-          <StyledSubHeading>
+          <StyledSubHeading className="bg-light-main dark:bg-dark-main rounded-md border-solid border-light-main dark:border-dark-main">
             {t("bus.Waseda")}{" "}
             <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
             {t("bus.NishiWaseda")}
           </StyledSubHeading>
-          <Status>{wasedaStatusComponent.status}</Status>
-          <Remark>{wasedaStatusComponent.remark}</Remark>
+          <Status className="text-light-text1 dark:text-dark-text1">
+            {wasedaStatusComponent.status}
+          </Status>
+          <Remark className="text-light-text1 dark:text-dark-text1">
+            {wasedaStatusComponent.remark}
+          </Remark>
         </BusStatus>
         <BusStatus>
-          <StyledSubHeading>
+          <StyledSubHeading className="bg-light-main dark:bg-dark-main rounded-md border-solid border-light-main dark:border-dark-main">
             {t("bus.NishiWaseda")}{" "}
             <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
             {t("bus.Waseda")}
           </StyledSubHeading>
-          <Status>{nishiStatusComponent.status}</Status>
-          <Remark>{nishiStatusComponent.remark}</Remark>
+          <Status className="text-light-text1 dark:text-dark-text1">
+            {nishiStatusComponent.status}
+          </Status>
+          <Remark className="text-light-text1 dark:text-dark-text1">
+            {nishiStatusComponent.remark}
+          </Remark>
         </BusStatus>
         <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
           {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}

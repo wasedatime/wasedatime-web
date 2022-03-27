@@ -7,18 +7,16 @@ import {
   faInstagram,
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "@reach/router";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
+import LinkOutsideRouter from "@app/utils/link-outside-router";
+
 type LinksWrapperProps = {
   expanded: boolean;
-  theme: {
-    [colorLabel: string]: string;
-  };
 };
 
-const LinksWrapper = styled("div")<LinksWrapperProps>`
+const LinksWrapper = styled.div<LinksWrapperProps>`
   ${(props) => (props.expanded ? "width: 210px;" : "width: 100%;")}
   height: 120px;
   overflow-x: hidden;
@@ -26,9 +24,7 @@ const LinksWrapper = styled("div")<LinksWrapperProps>`
   margin-bottom: 0.1vh;
   font-size: 12px;
   text-align: center;
-  color: ${(props) => props.theme.grey7};
   a {
-    color: ${(props) => props.theme.grey7};
     font-size: 12px;
   }
   opacity: ${(props) => (props.expanded ? "1" : "0")};
@@ -46,11 +42,10 @@ const SnsLink = styled("a")`
 
 interface Props {
   expanded: boolean;
+  setCurrentPath: (path: string) => void;
 }
 
-const getWindowHeight = () => window.innerHeight;
-
-const OtherLinks = ({ expanded }: Props) => {
+const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
   const { t } = useTranslation();
   const [windowHeight, setWindowHeight] = useState(window.innerHeight);
 
@@ -65,16 +60,36 @@ const OtherLinks = ({ expanded }: Props) => {
   }, []);
 
   return windowHeight >= 480 ? (
-    <LinksWrapper expanded={expanded}>
-      <Link to="/aboutus">{t("navigation.aboutus")}</Link>
+    <LinksWrapper
+      expanded={expanded}
+      className="text-light-text2 dark:text-dark-text2"
+    >
+      <LinkOutsideRouter
+        to="/aboutus"
+        customOnClick={() => setCurrentPath("/aboutus")}
+      >
+        {t("navigation.aboutus")}
+      </LinkOutsideRouter>
       <br />
-      <Link to="/terms-of-service">{t("user.Terms of Service")}</Link>・
-      <Link to="/privacy-policy">{t("user.Privacy Policy")}</Link>
+      <LinkOutsideRouter
+        to="/terms-of-service"
+        customOnClick={() => setCurrentPath("/terms-of-service")}
+      >
+        {t("user.Terms of Service")}
+      </LinkOutsideRouter>
+      ・
+      <LinkOutsideRouter
+        to="/privacy-policy"
+        customOnClick={() => setCurrentPath("/privacy-policy")}
+      >
+        {t("user.Privacy Policy")}
+      </LinkOutsideRouter>
       <br />
       <a
         href="https://github.com/wasedatime/wasedatime-web/blob/master/LICENSE.md"
         target="_blank"
         rel="noopener noreferrer"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         Code Licensed MIT
       </a>
@@ -84,6 +99,7 @@ const OtherLinks = ({ expanded }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="GitHub link"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         <FontAwesomeIcon icon={faGithub} size="2x" transform="shrink-2" />
       </SnsLink>
@@ -92,6 +108,7 @@ const OtherLinks = ({ expanded }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Twitter link"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         <FontAwesomeIcon icon={faTwitter} size="2x" transform="shrink-2" />
       </SnsLink>
@@ -100,6 +117,7 @@ const OtherLinks = ({ expanded }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Facebook link"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         <FontAwesomeIcon icon={faFacebook} size="2x" transform="shrink-2" />
       </SnsLink>
@@ -108,6 +126,7 @@ const OtherLinks = ({ expanded }: Props) => {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Instagram link"
+        className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
       >
         <FontAwesomeIcon icon={faInstagram} size="2x" transform="shrink-2" />
       </SnsLink>

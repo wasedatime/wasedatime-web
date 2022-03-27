@@ -79,7 +79,6 @@ const DatePickerSpan = styled("span")`
 `;
 
 const DatetimeSelection = styled("div")`
-  background: #fff;
   border-radius: 5px;
   cursor: pointer;
 `;
@@ -133,7 +132,6 @@ const RoomType = styled(Badge)`
   font-weight: 500;
   margin: 1px 3px 1px 3px;
   background-color: #e53935;
-  color: #fff;
   border-radius: 6px;
 `;
 const RoomEmpt = styled(Badge)`
@@ -141,7 +139,6 @@ const RoomEmpt = styled(Badge)`
   font-weight: 500;
   margin: 1px 3px 1px 3px;
   background-color: #71ce74;
-  color: #fff;
   border-radius: 6px;
 `;
 
@@ -165,7 +162,7 @@ const RoomFinder = (): JSX.Element => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>WasedaTime -　RoomFinder</title>
+        <title>WasedaTime - RoomFinder</title>
         <meta
           name="description"
           content="Empty Room Checking in the campuses of Waseda University."
@@ -181,22 +178,28 @@ const RoomFinder = (): JSX.Element => {
       <InfoWrapper>
         <h1
           style={{
-            borderLeft: "5px solid rgb(148, 27, 47)",
             paddingLeft: "10px",
             marginBottom: "20px",
           }}
+          className="text-light-text1 dark:text-dark-text1 border-l-4 border-solid border-light-main dark:border-dark-main"
         >
           {t("roomFinder.title")}
         </h1>
-        <p>
+        <p className="text-light-text2 dark:text-dark-text2">
           <FontAwesomeIcon icon={faSearch} size="1x" />{" "}
           {t("roomFinder.subtitle")}：
-          <RoomType>{t("roomFinder.Occupied")}</RoomType>
-          <RoomEmpt>{t("roomFinder.Available")}</RoomEmpt>
+          <RoomType className="text-light-bgMain dark:text-dark-bgSide">
+            {t("roomFinder.Occupied")}
+          </RoomType>
+          <RoomEmpt className="text-light-bgMain dark:text-dark-bgSide">
+            {t("roomFinder.Available")}
+          </RoomEmpt>
         </p>
-        <p>{t("roomFinder.note")}</p>
-        <DatetimeSelection>
-          <DatePickerSpan>
+        <p className="text-light-text2 dark:text-dark-text2">
+          {t("roomFinder.note")}
+        </p>
+        <DatetimeSelection className="bg-light-bgSide dark:bg-dark-bgSide">
+          <DatePickerSpan className="bg-light-bgSide dark:bg-dark-bgSide">
             <DatePicker
               selected={date}
               onChange={(d: Date) => onDatetimeChange(d)}
@@ -205,7 +208,7 @@ const RoomFinder = (): JSX.Element => {
               popperPlacement="bottom-start"
             />
           </DatePickerSpan>
-          <DatePickerSpan>
+          <DatePickerSpan className="bg-light-bgSide dark:bg-dark-bgSide">
             <DatePicker
               selected={date}
               onChange={(d: Date) => onDatetimeChange(d)}

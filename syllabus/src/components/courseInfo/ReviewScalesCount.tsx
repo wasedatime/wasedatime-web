@@ -11,7 +11,6 @@ const ReviewScalesRow = styled("div")`
   display: flex;
   flex-direction: row;
   font-size: 1.5em;
-  background: #eee;
   padding: 0.5rem;
   line-height: 100%;
   ${media.tablet`font-size: 1.2em;`};
@@ -29,7 +28,6 @@ const ReviewScale = styled("div")`
   flex: 1;
   padding: 1rem 0px;
   text-align: center;
-  color: #333;
   ${media.tablet`
     flex: 1;
     padding: 0.2rem 0px;
@@ -42,7 +40,6 @@ const ReviewsCount = styled("div")`
   padding: 0.5em 0px 1em 0px;
   text-align: center;
   justify-content: flex-start;
-  color: #777;
 `;
 
 interface Props extends WithTranslation {
@@ -59,7 +56,7 @@ const ReviewScalesCount = ({
   thisCourseReviewsLength,
   t,
 }: Props) => (
-  <ReviewScalesRow>
+  <ReviewScalesRow className="text-light-text2 dark:text-dark-text1">
     <ReviewScalesList>
       <ReviewScale>
         <ReviewStars scale={avgSatisfaction} />

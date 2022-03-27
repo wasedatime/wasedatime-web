@@ -11,7 +11,6 @@ import styled from "styled-components";
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
-  background-color: #fff;
   padding: 0 20vw 50px;
   color: #666;
   ${media.phone`padding: 0 10vw 50px;`};
@@ -21,7 +20,7 @@ const ExtendedOverlay = styled(Overlay)`
 `;
 
 const JoinUs = () => (
-  <Wrapper>
+  <Wrapper className="bg-light-bgMain dark:bg-dark-bgMain">
     <Helmet>
       <title>WasedaTime - Join Us!</title>
       <meta name="description" content="Recruitment document for WasedaTime." />
@@ -33,30 +32,36 @@ const JoinUs = () => (
       <meta property="og:site_name" content="WasedaTime - Join Us!" />
     </Helmet>
 
-    <ExtendedOverlay>
+    <ExtendedOverlay className="bg-light-bgMain dark:bg-dark-bgMain">
       <br />
       <MediaQuery minWidth={sizes.desktop}>
         {(matches) =>
           matches ? (
-            <h2 style={{ color: "#555", textAlign: "center" }}>
+            <h2
+              className="text-light-text1 dark:text-dark-text1"
+              style={{ textAlign: "center" }}
+            >
               <b>WasedaTime is back, AND WE WANT YOU!</b>
             </h2>
           ) : (
-            <h3 style={{ color: "#555", textAlign: "center" }}>
+            <h3
+              className="text-light-text1 dark:text-dark-text1"
+              style={{ textAlign: "center" }}
+            >
               <b>WasedaTime is back, AND WE WANT YOU!</b>
             </h3>
           )
         }
       </MediaQuery>
       <br />
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         WasedaTime has been working on supporting students' academic activities
         since launching. Its well-tested Syllabus Search feature is favored by
         thousands of students. More than 50% of international students are using
         this website. We never expect this could happen and are always grateful
         for all our users.
       </p>
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         With the quick iterations of the product, WasedaTime is running short of
         talented minds! We want to extend a sincere invitation to you, and let's
         build this fantastic product together! WasedaTime is a 100% student-run,
@@ -64,14 +69,14 @@ const JoinUs = () => (
       </p>
 
       <br />
-      <h2>
+      <h2 className="text-light-text1 dark:text-dark-text1">
         <b>
           <FontAwesomeIcon icon={faUserCog} /> Technology
         </b>
       </h2>
       <hr />
       <br />
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         We are looking for experienced developers, but we also love to provide
         mentorship to passionate beginners with little background! You will be
         working with a talented team whose members entered the world's top 4 CS
@@ -83,8 +88,8 @@ const JoinUs = () => (
         </span>{" "}
       </p>
 
-      <h3>Roles</h3>
-      <ul>
+      <h3 className="text-light-text1 dark:text-dark-text1">Roles</h3>
+      <ul className="text-light-text2 dark:text-dark-text2">
         <li>・General Software Developer / Apprentice</li>
         <li>・Frontend Developer / Apprentice</li>
         <li>・Backend Developer / Apprentice</li>
@@ -92,24 +97,20 @@ const JoinUs = () => (
       </ul>
       <br />
 
-      <h3>Requirements</h3>
-      <ul>
+      <h3 className="text-light-text1 dark:text-dark-text1">Requirements</h3>
+      <ul className="text-light-text2 dark:text-dark-text2">
         <li>・Have passion on learning & creating</li>
         <li>・Self-motivation</li>
         <li>・Have learned any programming language</li>
         <small>
-          * Not necessary but better to know about Git,
-          {" "}
-          <br />
-          {" "}
-&nbsp; React or
+          * Not necessary but better to know about Git, <br /> &nbsp; React or
           HTML/CSS (for frontend), AWS (for backend)
         </small>
       </ul>
       <br />
 
-      <h3>Job description</h3>
-      <ul>
+      <h3 className="text-light-text1 dark:text-dark-text1">Job description</h3>
+      <ul className="text-light-text2 dark:text-dark-text2">
         <li>・Develop new features for WasedaTime</li>
         <li>・Backend automation & maintenance</li>
         <li>
@@ -121,12 +122,14 @@ const JoinUs = () => (
       </ul>
       <br />
 
-      <h3>What you will get</h3>
-      <ul>
+      <h3 className="text-light-text1 dark:text-dark-text1">
+        What you will get
+      </h3>
+      <ul className="text-light-text2 dark:text-dark-text2">
         <li>・Technical skills and Practical experience on development</li>
         <li>・Knowledges shared by each other</li>
         <li>
-          ・Teammates who can fight together to make Waseda better
+          ・Teammates who can fight together to make Waseda better{" "}
           <b>platform</b> for students
         </li>
         <small>
@@ -138,31 +141,28 @@ const JoinUs = () => (
 
       <br />
       <MediaQuery minWidth={sizes.desktop}>
-        {(matches) => (matches ? (
-          <h2>
-            <b>
-              <FontAwesomeIcon icon={faUserTie} />
-              {" "}
-              Performance Marketing &
-              Business Operations
-            </b>
-          </h2>
-        ) : (
-          <h3>
-            <b>
-              <FontAwesomeIcon icon={faUserTie} />
-              {" "}
-              Marketing
-              <br />
-              & Business Operations
-            </b>
-          </h3>
-        ))}
+        {(matches) =>
+          matches ? (
+            <h2 className="text-light-text1 dark:text-dark-text1">
+              <b>
+                <FontAwesomeIcon icon={faUserTie} /> Performance Marketing &
+                Business Operations
+              </b>
+            </h2>
+          ) : (
+            <h3 className="text-light-text1 dark:text-dark-text1">
+              <b>
+                <FontAwesomeIcon icon={faUserTie} /> Marketing
+                <br />& Business Operations
+              </b>
+            </h3>
+          )
+        }
       </MediaQuery>
       <hr />
       <br />
 
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         The “Non-Tech” team builds bridges across technology to users. They
         transform WasedaTime from code to a vivid product. We are looking for
         innovative minds who possess outstanding analytical skills. You will be
@@ -171,16 +171,16 @@ const JoinUs = () => (
         Accenture, etc.
       </p>
 
-      <h3>Roles</h3>
-      <ul>
+      <h3 className="text-light-text1 dark:text-dark-text1">Roles</h3>
+      <ul className="text-light-text2 dark:text-dark-text2">
         <li>・Product management</li>
         <li>・Marketing & Advertising</li>
         <li>・Business expansion/liaison</li>
       </ul>
       <br />
 
-      <h3>Requirements</h3>
-      <ul>
+      <h3 className="text-light-text1 dark:text-dark-text1">Requirements</h3>
+      <ul className="text-light-text2 dark:text-dark-text2">
         <li>
           ・Have passion on learning, presenting new ideas, building connection
         </li>
@@ -191,8 +191,8 @@ const JoinUs = () => (
       </ul>
       <br />
 
-      <h3>Job description</h3>
-      <ul>
+      <h3 className="text-light-text1 dark:text-dark-text1">Job description</h3>
+      <ul className="text-light-text2 dark:text-dark-text2">
         <li>
           ・Marketing & Advertising（Assist in the growth of new users of the
           platform、increase awareness、Market research & user analysis）
@@ -205,8 +205,10 @@ const JoinUs = () => (
       </ul>
       <br />
 
-      <h3>What you will get</h3>
-      <ul>
+      <h3 className="text-light-text1 dark:text-dark-text1">
+        What you will get
+      </h3>
+      <ul className="text-light-text2 dark:text-dark-text2">
         <li>
           ・A unique project experience on marketing/advertising/business or
           opportunities to realize your unique ideas
@@ -220,7 +222,7 @@ const JoinUs = () => (
       <br />
 
       <br />
-      <h2>
+      <h2 className="text-light-text1 dark:text-dark-text1">
         <b>
           <span role="img" aria-label="smile">
             🤗
@@ -230,7 +232,7 @@ const JoinUs = () => (
       </h2>
       <hr />
       <br />
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         We welcome students who are interested to send an email with a brief
         self-introduction or a CV/resume to the following address:{" "}
         <b>
@@ -243,7 +245,7 @@ const JoinUs = () => (
           </a>
         </b>
       </p>
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         The self-introduction should contain your name, department, year,
         interests, and highlight projects (if possible). You're welcome to add
         more information, especially your <b>experience</b> related to our
@@ -251,7 +253,10 @@ const JoinUs = () => (
       </p>
 
       <br />
-      <h4 style={{ color: "#555", textAlign: "center" }}>
+      <h4
+        className="text-light-text1 dark:text-dark-text1"
+        style={{ textAlign: "center" }}
+      >
         We look forward to hearing from you!
       </h4>
       <br />

@@ -1,13 +1,16 @@
 @import "common.css";
 @import "s-alert-custom.css";
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /*
 Incredibly useful site:
 https://www.materialpalette.com/colors
 */
 
 .theme-default {
-  // @import "~semantic-ui-css/components/label.min";
   @import "~semantic-ui-css/components/divider.min";
   @import "~semantic-ui-css/components/statistic.min";
   @import "~semantic-ui-css/components/grid.min";

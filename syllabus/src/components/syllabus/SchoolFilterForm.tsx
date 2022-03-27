@@ -1,5 +1,6 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
@@ -15,6 +16,11 @@ import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
 import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
 
 import "semantic-ui-css/components/popup.min.css";
+import { ThemeContext } from "@app/utils/theme-context";
+
+type ThemeComponentProps = {
+  isDark: boolean;
+};
 
 const Cards = styled(Card.Group)`
   .ui.card > .ui.image {
@@ -31,12 +37,56 @@ const Cards = styled(Card.Group)`
   }
 `;
 
-const WiderPopup = styled(Popup)`
+const WiderPopup = styled(Popup)<ThemeComponentProps>`
+  ${(props) =>
+    props.isDark &&
+    `
+    background-color: ${colors.dark.bgMain} !important;
+    box-shadow: 0 2px 4px 0 ${colors.dark.text3} !important;
+    border-color: ${colors.dark.text3} !important;
+    &:before {
+      background-color: ${colors.dark.bgMain} !important;
+      border-color: ${colors.dark.text3} !important;
+      box-shadow: -1px -1px 0 0 ${colors.dark.text3} !important;
+    }
+  `}
+
   ${media.tablet`
     max-width: 100vw !important;
     & > div {
       width: 80vw;
     }
+  `}
+`;
+
+const StyledTab = styled(Tab)<ThemeComponentProps>`
+  ${(props) =>
+    props.isDark &&
+    `
+      .tabular.menu {
+        border-bottom-color: ${colors.dark.text3} !important;
+        .item {
+          background-color: ${colors.dark.bgMain} !important;
+          border-width: 0px !important;
+          color: ${colors.dark.text2} !important;
+        }
+        .item.active {
+          border-width: 1px !important;
+          border-color: ${colors.dark.text3} !important;
+        }
+      }
+    `
+  }
+`;
+
+const StyledMenuItem = styled(Menu.Item)<ThemeComponentProps>`
+  font-size: 1.2em;
+  ${(props) =>
+    props.isDark &&
+    `
+    background-color: ${colors.dark.bgMain} !important;
+    border-color: ${colors.dark.text3} !important;
+    color: ${colors.dark.text2} !important;
   `}
 `;
 
@@ -94,6 +144,8 @@ class SchoolFilterForm extends React.Component<Props, State> {
     };
   }
 
+  static contextType = ThemeContext;
+
   componentDidMount() {
     const { loadedSchools, selectedSchools, handleToggleFilter } = this.props;
     if (loadedSchools.length === 1 && selectedSchools.length === 0)
@@ -106,7 +158,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
     }
   }
 
-  schoolImportPanes = () => {
+  schoolImportPanes = (theme) => {
     const { loadedSchools, loadingSchool } = this.state;
     const { t, i18n, selectedSchools, handleToggleFilter } = this.props;
     const schoolGroupNames = ["Undergraduate", "Graduate", "Special"];
@@ -148,9 +200,9 @@ class SchoolFilterForm extends React.Component<Props, State> {
 
     return schoolIconMap.map((schoolNameIconMap, i) => ({
       menuItem: (
-        <Menu.Item key={schoolGroupNames[i]} style={{ fontSize: "1.2em" }}>
+        <StyledMenuItem key={schoolGroupNames[i]} isDark={theme === "dark"}>
           {t(`syllabus.School Filter.${schoolGroupNames[i]}`)}
-        </Menu.Item>
+        </StyledMenuItem>
       ),
       render: () => (
         <MediaQuery minWidth={sizes.tablet}>
@@ -199,24 +251,26 @@ class SchoolFilterForm extends React.Component<Props, State> {
   };
 
   render() {
+    const { theme } = this.context;
     const { t, isPopup } = this.props;
 
     return isPopup ? (
       <WiderPopup
         id="school_filter_form"
         trigger={
-          <ChooseSchoolButton>
+          <ChooseSchoolButton className="bg-light-main dark:bg-dark-main">
             {t("school filter.choose schools")}
           </ChooseSchoolButton>
         }
-        content={<Tab panes={this.schoolImportPanes()} />}
+        content={<StyledTab panes={this.schoolImportPanes(theme)} isDark={theme === "dark"} />}
         on="click"
         position="bottom left"
         size="huge"
         wide="very"
+        isDark={theme === "dark"}
       />
     ) : (
-      <Tab panes={this.schoolImportPanes()} />
+      <StyledTab panes={this.schoolImportPanes(theme)} isDark={theme === "dark"} />
     );
   }
 }

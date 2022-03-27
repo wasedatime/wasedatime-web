@@ -1,20 +1,26 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
-import Label from "@app/components/styles/Label";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
 
 import { InvisibleButton } from "@app/components/styles/Button";
+import Label from "@app/components/styles/Label";
 import SortingOption from "@app/constants/sorting-options";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type SortByButtonProps = {
   isSortingOptionOpen: boolean;
+};
+
+type StyledDropdownProps = {
+  isDark: boolean;
 };
 
 const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
@@ -42,16 +48,23 @@ const StyledLabel = styled(Label)`
   margin: 0px 2px;
 `;
 
-const StyledDropdown = styled(Dropdown)`
+const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-display: swap;
   height: 30px;
   padding: 0.5em !important;
   min-height: 2em !important;
   min-width: 40% !important;
+  background-color: ${(props) =>
+    props.isDark ? colors.dark.text3 : "white"} !important;
+
+  .divider.text {
+    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
+  }
 
   .divider.text + i.dropdown.icon {
     padding: 0.6rem;
+    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
   }
 `;
 
@@ -73,6 +86,8 @@ const CourseListSummary = ({
   changeSortingOption,
   t,
 }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   const sortingOptions = [
     {
       key: SortingOption.ADDED_ORDER,
@@ -94,14 +109,14 @@ const CourseListSummary = ({
   return (
     <div style={{ marginBottom: "1rem" }}>
       <RowWrapper>
-        <StyledLabel>
+        <StyledLabel className="text-light-text2 dark:text-dark-text2">
           {`${courses.length}`} {t("timetable.courses")}
         </StyledLabel>
-        <StyledLabel>
+        <StyledLabel className="text-light-text2 dark:text-dark-text2">
           {creditSum(courses)} {t("timetable.credits")}
         </StyledLabel>
-        <SortingIcon icon={faSortAmountDown} />{" "}
-        <StyledDropdown
+        {/* <SortingIcon icon={faSortAmountDown} className="text-light-text2 dark:text-dark-text2" />{" "} */}
+        {/* <StyledDropdown
           placeholder="Sort by"
           selection
           options={sortingOptions}
@@ -110,7 +125,8 @@ const CourseListSummary = ({
             changeSortingOption(data.value);
           }}
           aria-label="Sort added courses"
-        />
+          isDark={theme === "dark"}
+        /> */}
       </RowWrapper>
     </div>
   );

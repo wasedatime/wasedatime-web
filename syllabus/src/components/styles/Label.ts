@@ -17,11 +17,12 @@ export const Label = styled.span<Props>`
 
   ${(props) => {
     if (!props.filled) return;
-    const bgColorStyle = "background-color: " + (props.color || "grey") + ";";
+    const bgColorStyle = `background-color: ${props.color || "grey"};`;
     const restStyle = `
       border: 0px;
       color: white;
     `;
+
     return bgColorStyle + restStyle;
   }}
 `;

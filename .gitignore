@@ -79,3 +79,6 @@ typings/
 .bitmap
 bit.json
 .history
+
+# built tailwind css files in local
+**/tailwind-build-output.css

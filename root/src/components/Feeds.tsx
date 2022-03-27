@@ -5,7 +5,7 @@ import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { ThemeContext } from "@app/utils/themeContext";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const FeedsWrapper = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ const HeaderWrapper = styled.div`
   }
 `;
 
-const Feeds = ({ path }: { path: string }) => {
+const Feeds = () => {
   const [feedsLoaded, setFeedsLoaded] = React.useState(false);
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = React.useContext(ThemeContext);
@@ -43,12 +43,12 @@ const Feeds = ({ path }: { path: string }) => {
           disabled
           isBlur={false}
           changeLang={(lng) => i18n.changeLanguage(lng)}
-          // theme={theme}
-          // setTheme={setTheme}
+          theme={theme}
+          setTheme={setTheme}
         />
       </HeaderWrapper>
       <div>
-        {!feedsLoaded && <LoadingSpinner message="Loading..." />}
+        {!feedsLoaded && <LoadingSpinner theme="light" message="Loading..." />}
         <iframe
           src={`${feedsDomain}/${i18n.language}`}
           style={{ width: "100%", height: "calc(100vh - 70px)" }}

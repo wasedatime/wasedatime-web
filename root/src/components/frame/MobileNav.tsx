@@ -3,11 +3,12 @@ import React, { useState } from "react";
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "@reach/router";
 import { useTranslation } from "react-i18next";
+import LinkOutsideRouter from "@app/utils/link-outside-router";
+import { NavItemsProps } from "@app/components/frame/Nav";
 
 type Props = {
-  navItems: any;
+  navItems: NavItemsProps[];
   openSignInModal: () => void;
 };
 
@@ -19,34 +20,21 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
   const notSignedIn = !userAttr;
   if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr));
 
-  const styledLinks = navItems.map((item) => {
-    const itemName = item.name;
-    const itemPath = item.path;
-    const itemIcon = item.icon;
-    const fontBase = (
-      <FontAwesomeIcon
-        icon={itemIcon}
-        className={itemPath === currentPath ? "text-red-800" : "text-white"}
-        style={{ fontSize: "20px" }}
-      />
-    );
-
-    return (
-      <Link
-        to={itemPath}
-        key={itemPath}
-        className="flex-1 text-center"
-        onClick={() => setCurrentPath(itemPath)}
-      >
-        <button className="focus:outline-none">
-          {fontBase}
-          <div className="text-white" style={{ fontSize: "12px" }}>
-            {itemName}
-          </div>
-        </button>
-      </Link>
-    );
-  });
+  const styledLinks = navItems.map((item) => (
+    <LinkOutsideRouter
+      to={item.path}
+      key={item.path}
+      className="flex-1 text-center"
+      customOnClick={() => setCurrentPath(item.path)}
+    >
+      <div className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
+        {item.icon}
+      </div>
+      <div className="text-lg text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
+        {item.name}
+      </div>
+    </LinkOutsideRouter>
+  ));
 
   return (
     <nav

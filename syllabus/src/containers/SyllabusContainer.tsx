@@ -5,7 +5,6 @@ import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { navigate, Link } from "@reach/router";
 import debounce from "lodash/debounce";
 import queryString from "query-string";
 import ReactGA from "react-ga";
@@ -42,6 +41,8 @@ import {
 } from "@app/utils/course-search";
 import filterCourses from "@app/utils/filter-courses";
 import { courseSchemaFullToShort } from "@app/utils/map-single-course-schema";
+import { ThemeContext } from "@app/utils/theme-context";
+import withRouter, { WithRouter } from "@app/utils/with-router";
 
 const AddedCourseListContainer = lazy(
   () => import("@app/containers/AddedCourseListContainer")
@@ -98,9 +99,7 @@ interface ReduxDispatchProps {
   fetchCoursesBySchool: (school: string) => void;
 }
 
-interface OwnProps extends WithTranslation {
-  path: string;
-}
+interface OwnProps extends WithTranslation, WithRouter {}
 
 interface OwnState {
   isModalOpen: boolean;
@@ -145,7 +144,7 @@ class SyllabusContainer extends React.Component<
   constructor(props) {
     super(props);
     if (window.location.pathname.includes("timetable"))
-      navigate("/courses/timetable");
+      props.router.navigate("/courses/timetable");
 
     this.state = {
       isModalOpen: false,
@@ -158,6 +157,8 @@ class SyllabusContainer extends React.Component<
       isFetchingTopCourse: false,
     };
   }
+
+  static contextType = ThemeContext;
 
   componentDidMount() {
     const { courseId } = queryString.parse(window.location.search);
@@ -174,7 +175,6 @@ class SyllabusContainer extends React.Component<
     const { courseId } = queryString.parse(window.location.search);
     if (courseId && this.state.topCourseId !== courseId) {
       if (!this.state.isFetchingTopCourse) {
-        console.log("666");
         this.setState({ isFetchingTopCourse: true }, () =>
           this.setTopCourse(courseId)
         );
@@ -309,6 +309,7 @@ class SyllabusContainer extends React.Component<
 
   render() {
     const { fetchedCourses: allFetchedCourses, t, i18n } = this.props;
+    const { theme, setTheme } = this.context;
 
     const newI18n = { ...i18n };
 
@@ -361,8 +362,8 @@ class SyllabusContainer extends React.Component<
             inputText={inputText}
             disabled={false}
             isBlur={false}
-            // theme={"light"}
-            // setTheme={() => {}}
+            theme={theme}
+            setTheme={setTheme}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>
@@ -371,7 +372,7 @@ class SyllabusContainer extends React.Component<
           <SyllabusTabs />
         </SyllabusTabsWrapper>
 
-        <SyllabusFlex>
+        <SyllabusFlex className="bg-light-bgMain dark:bg-dark-bgMain">
           <MediaQuery minWidth={sizes.tablet}>
             {(matches) =>
               matches && (
@@ -385,7 +386,9 @@ class SyllabusContainer extends React.Component<
           </MediaQuery>
 
           <MiddleColumn>
-            <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+            <Suspense
+              fallback={<LoadingSpinner theme={theme} message="Loading..." />}
+            >
               {allFetchedCourses.length > 0 ? (
                 <FetchedCourseList
                   searchTerm={searchTerm}
@@ -474,4 +477,4 @@ const mapDispatchToProps = {
 export default connect<ReduxStateProps, ReduxDispatchProps>(
   mapStateToProps,
   mapDispatchToProps
-)(withTranslation("translation")(SyllabusContainer));
+)(withTranslation("translation")(withRouter(SyllabusContainer)));

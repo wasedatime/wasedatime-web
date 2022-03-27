@@ -32,7 +32,7 @@
   -->
   
   <% if (isLocal || standalone) { %>
-  <link rel="stylesheet" href="./src/styles/index.css" type="css">
+  <link rel="stylesheet" href="./src/styles/tailwind-build-output.css" type="css">
   <% } else { %>
   <link rel="preload" href="/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/main.css"></noscript>
@@ -191,6 +191,16 @@
   <link rel="preload" as="font" href="./src/styles/fonts/Lato-Regular.otf" type="font/ttf" crossorigin="anonymous" />
   <link rel="preload" as="stylesheet" href='http://fonts.googleapis.com/css?family=Lato:400,700' type='text/css'>
   <% } %>
+
+  <script>
+    function setBodyBgColor() {
+      if (localStorage.getItem("color-theme") === "light") document.getElementsByTagName("body")[0].style.backgroundColor = "#fff";
+      else if (localStorage.getItem("color-theme") === "dark") document.getElementsByTagName("body")[0].style.backgroundColor = "#1F2022";
+    };
+    window.addEventListener("themeChanged", function(e) {
+      setBodyBgColor();
+    }, false);
+  </script>
 
   <style>
   body {

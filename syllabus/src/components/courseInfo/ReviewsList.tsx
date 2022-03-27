@@ -1,5 +1,6 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -12,8 +13,9 @@ import styled from "styled-components";
 import ReviewStars from "@app/components/courseInfo/ReviewStars";
 import ReviewLang from "@app/constants/review-lang";
 import ReviewType from "@app/types/review";
+import { ThemeContext } from "@app/utils/theme-context";
 
-const modalStyle = {
+const modalStyle = (theme: string) => ({
   overlay: {
     position: "fixed",
     top: 0,
@@ -26,43 +28,38 @@ const modalStyle = {
   content: {
     position: "absolute",
     top: "40vh",
-    maxHeight: "200px",
+    maxHeight: "120px",
     left: "30vw",
     right: "30vw",
-    background: "#fff",
     overflowY: "auto",
     overflowScrolling: "touch",
     WebkitOverflowScrolling: "touch",
     outline: "none",
     fontSize: "16px",
     borderRadius: "20px",
+    backgroundColor: colors[theme].bgMain,
   },
-};
+});
 
-const mobileModalStyle = {
-  overlay: modalStyle.overlay,
+const mobileModalStyle = (theme: string) => ({
+  overlay: modalStyle(theme).overlay,
   content: {
-    ...modalStyle.content,
+    ...modalStyle(theme).content,
     left: "10vw",
     right: "10vw",
   },
-};
-
-const ReviewsWrapper = styled("div")`
-  background: #fff;
-  line-height: 120%;
-`;
+});
 
 const Review = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   padding: 1em;
+  line-height: 120%;
 `;
 
 const ReviewDivider = styled("hr")`
   margin: 0px 2em;
-  border: 1px solid #ddd;
 `;
 
 const ReviewText = styled("div")`
@@ -82,11 +79,11 @@ const ReviewCreatedTime = styled(GoogleTranslationHint)`
   margin-top: 0px;
 `;
 
-const ReviewTitle = styled("h6")`
+const ReviewTitle = styled("h4")`
   line-height: 1.5em;
   margin-top: 0;
   margin-bottom: 0.5em;
-  font-size: 12px;
+  font-size: 16px;
 `;
 
 const ReviewYear = styled("span")`
@@ -112,9 +109,10 @@ const ReviewScale = styled("div")`
 `;
 
 const Editbutton = styled(Button)`
-  background: #fff !important;
   color: orange !important;
   padding: 0px !important;
+  background-color: ${(props) =>
+    props.isDark ? colors.dark.bgMain : colors.light.bgMain} !important;
 `;
 
 const Deletebutton = styled(Editbutton)`
@@ -122,16 +120,12 @@ const Deletebutton = styled(Editbutton)`
 `;
 
 const DeleteModalYesButton = styled("button")`
-  background: red;
-  color: #fff;
   padding: 5px;
   margin: 0px 5px;
   border-radius: 5px;
 `;
 
 const DeleteModalNoButton = styled("button")`
-  background: green;
-  color: #fff;
   padding: 5px;
   margin: 0px 5px;
   border-radius: 5px;
@@ -157,15 +151,21 @@ interface State {
 }
 
 const DeleteModalContent = ({ t, confirmDeleteReview, closeDeleteModal }) => (
-  <div>
-    <h2 style={{ textAlign: "center" }}>
+  <div className="bg-light-bgMain text-light-text1 dark:bg-dark-bgMain dark:text-dark-text1">
+    <h2 className="text-center mb-2">
       {t("courseInfo.delete review confirmation")}
     </h2>
-    <div style={{ textAlign: "center" }}>
-      <DeleteModalYesButton onClick={() => confirmDeleteReview()}>
+    <div className="text-center">
+      <DeleteModalYesButton
+        onClick={() => confirmDeleteReview()}
+        className="mx-6 bg-light-lighter text-white dark:bg-dark-lighter"
+      >
         {t("courseInfo.delete review yes")}
       </DeleteModalYesButton>
-      <DeleteModalNoButton onClick={closeDeleteModal}>
+      <DeleteModalNoButton
+        onClick={closeDeleteModal}
+        className="mx-6 bg-light-text3 text-white dark:bg-dark-text3 dark:text-dark-text1"
+      >
         {t("courseInfo.delete review no")}
       </DeleteModalNoButton>
     </div>
@@ -178,6 +178,8 @@ class ReviewsList extends React.Component<Props, State> {
     reviewToDelete: null,
     reviewIndexToDelete: -1,
   };
+
+  static contextType = ThemeContext;
 
   openDeleteModal = (review, i) => {
     this.setState({
@@ -206,85 +208,99 @@ class ReviewsList extends React.Component<Props, State> {
 
   render() {
     const { reviews, searchLang, reviewLang, openEditForm, t } = this.props;
+    const { theme } = this.context;
 
-    return reviews.map((review, i) => (
-      <ReviewsWrapper key={i}>
-        {i !== 0 && <ReviewDivider />}
-        <Review>
-          <ReviewText>
-            <ReviewTitle>
-              <ReviewYear>{review.year}</ReviewYear>{" "}
-              {review[searchLang === "en" ? "title" : "title_jp"]} ({" "}
-              {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
-            </ReviewTitle>
+    const ReviewItem = ({ review, index }) => (
+      <Review className="bg-white dark:bg-dark-bgMain">
+        <ReviewText>
+          <ReviewTitle>
+            <ReviewYear>{review.year}</ReviewYear>{" "}
+            {review[searchLang === "en" ? "title" : "title_jp"]} ({" "}
+            {review[searchLang === "en" ? "instructor" : "instructor_jp"]} )
+          </ReviewTitle>
+          <span>
+            {review[`comment_${reviewLang}`] !== undefined &&
+              review[`comment_${reviewLang}`].split("\n").map((str, j) => (
+                <span key={j}>
+                  {str}
+                  <br />
+                </span>
+              ))}
+          </span>
+          {review.src_lang ? (
+            review.src_lang !== reviewLang && (
+              <GoogleTranslationHint>
+                Translated from {ReviewLang[review.src_lang]} by Google
+              </GoogleTranslationHint>
+            )
+          ) : (
+            <GoogleTranslationHint>Not translated yet</GoogleTranslationHint>
+          )}
+          <ReviewCreatedTime>
+            {new Date(review.created_at).toLocaleString()}
+          </ReviewCreatedTime>
+        </ReviewText>
+        <ReviewScalesList>
+          {review.mod && (
             <span>
-              {review[`comment_${reviewLang}`] !== undefined &&
-                review[`comment_${reviewLang}`].split("\n").map((str, j) => (
-                  <span key={j}>
-                    {str}
-                    <br />
-                  </span>
-                ))}
+              <Editbutton
+                icon
+                size="massive"
+                onClick={() =>
+                  openEditForm({
+                    ...review,
+                    src_comment: review[`comment_${review.src_lang}`],
+                    index,
+                  })
+                }
+                isDark={theme === "dark"}
+              >
+                <FontAwesomeIcon icon={faPen} />
+              </Editbutton>
+              <Deletebutton
+                icon
+                size="massive"
+                onClick={() => this.openDeleteModal(review, index)}
+                isDark={theme === "dark"}
+              >
+                <FontAwesomeIcon icon={faTrash} />
+              </Deletebutton>
             </span>
-            {review.src_lang ? (
-              review.src_lang !== reviewLang && (
-                <GoogleTranslationHint>
-                  Translated from {ReviewLang[review.src_lang]} by Google
-                </GoogleTranslationHint>
-              )
-            ) : (
-              <GoogleTranslationHint>Not translated yet</GoogleTranslationHint>
-            )}
-            <ReviewCreatedTime>
-              {new Date(review.created_at).toLocaleString()}
-            </ReviewCreatedTime>
-          </ReviewText>
-          <ReviewScalesList>
-            {review.mod && (
-              <span>
-                <Editbutton
-                  icon
-                  size="massive"
-                  onClick={() =>
-                    openEditForm({
-                      ...review,
-                      src_comment: review[`comment_${review.src_lang}`],
-                      index: i,
-                    })
-                  }
-                >
-                  <FontAwesomeIcon icon={faPen} />
-                </Editbutton>
-                <Deletebutton
-                  icon
-                  size="massive"
-                  onClick={() => this.openDeleteModal(review, i)}
-                >
-                  <FontAwesomeIcon icon={faTrash} />
-                </Deletebutton>
-              </span>
-            )}
-            <ReviewScale>
-              <span>{t("courseInfo.Satisfaction")}&nbsp;</span>
-              <ReviewStars scale={review.satisfaction} />
-            </ReviewScale>
-            <ReviewScale>
-              <span>{t("courseInfo.Difficulty")}&nbsp;</span>
-              <ReviewStars scale={review.difficulty} />
-            </ReviewScale>
-            <ReviewScale>
-              <span>{t("courseInfo.Benefit")}&nbsp;</span>
-              <ReviewStars scale={review.benefit} />
-            </ReviewScale>
-          </ReviewScalesList>
-        </Review>
+          )}
+          <ReviewScale>
+            <span>{t("courseInfo.Satisfaction")}&nbsp;</span>
+            <ReviewStars scale={review.satisfaction} />
+          </ReviewScale>
+          <ReviewScale>
+            <span>{t("courseInfo.Difficulty")}&nbsp;</span>
+            <ReviewStars scale={review.difficulty} />
+          </ReviewScale>
+          <ReviewScale>
+            <span>{t("courseInfo.Benefit")}&nbsp;</span>
+            <ReviewStars scale={review.benefit} />
+          </ReviewScale>
+        </ReviewScalesList>
+      </Review>
+    );
+
+    return (
+      <div>
+        {reviews.length > 0 && (
+          <ReviewDivider className="border-t-2 border-light-text3 dark:border-dark-text3" />
+        )}
+        {reviews.map((review, i) => (
+          <React.Fragment key={i}>
+            <ReviewItem review={review} index={i} />
+            <ReviewDivider className="border-t-2 border-light-text3 dark:border-dark-text3" />
+          </React.Fragment>
+        ))}
 
         <MediaQuery maxWidth={sizes.tablet}>
           {(matches) =>
             matches ? (
               <Modal
                 isOpen={this.state.isDeleteModalOpen}
-                style={mobileModalStyle}
+                style={mobileModalStyle(theme)}
               >
                 <DeleteModalContent
                   t={t}
@@ -293,7 +309,10 @@ class ReviewsList extends React.Component<Props, State> {
                 />
               </Modal>
             ) : (
-              <Modal isOpen={this.state.isDeleteModalOpen} style={modalStyle}>
+              <Modal
+                isOpen={this.state.isDeleteModalOpen}
+                style={modalStyle(theme)}
+              >
                 <DeleteModalContent
                   t={t}
                   confirmDeleteReview={this.confirmDeleteReview}
@@ -303,8 +322,8 @@ class ReviewsList extends React.Component<Props, State> {
             )
           }
         </MediaQuery>
-      </ReviewsWrapper>
-    ));
+      </div>
+    );
   }
 }
 

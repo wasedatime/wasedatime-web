@@ -1,12 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+
+import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { WithTranslation, withTranslation } from "react-i18next";
 import Divider from "semantic-ui-react/dist/commonjs/elements/Divider";
 import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import styled from "styled-components";
+
+import { ThemeContext } from "@app/utils/theme-context";
 
 interface Props extends WithTranslation {
   closeModal: () => void;
@@ -28,13 +31,14 @@ interface State {
   paintedBenefitStars: number;
 }
 
-const StyledSubHeading = styled("h5")`
+const StyledSubHeading = styled("h4")`
   align-self: flex-start;
   margin: 1rem 0px !important;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-weight: 300;
-  ${media.tablet`font-size: 2rem;`};
+  ${media.tablet`// font-size: 2rem;`};
+  font-size: 16px;
 `;
 
 const StyledForm = styled("form")`
@@ -63,9 +67,7 @@ const Scale = styled(Statistic)`
 const Stars = styled(Statistic.Value)``;
 
 const StyledTextarea = styled("textarea")`
-  border: 1px solid #eee;
   border-radius: 10px;
-  background-color: ${(props) => props.theme.white};
   outline: none;
   padding: 10px;
   margin: 5px 0 0;
@@ -102,6 +104,7 @@ const FieldLegend = styled(Divider)`
   font-size: 1.5em !important;
   width: 60% !important;
   margin: 1em 20% !important;
+  ${(props) => props.isDark && "color: #fff !important;"}
 `;
 
 class AddReviewForm extends React.Component<Props, State> {
@@ -111,8 +114,10 @@ class AddReviewForm extends React.Component<Props, State> {
     paintedBenefitStars: 0,
   };
 
+  static contextType = ThemeContext;
+
   displayStars = (label, selectedStar, paintedStar) => {
-    let stars = [];
+    const stars = [];
     for (let n = 1; n <= 5; n++) {
       let paintedStarsLabel = "";
       switch (label) {
@@ -133,27 +138,27 @@ class AddReviewForm extends React.Component<Props, State> {
           ? "orange"
           : "#ddd";
 
+      const newStateOnMouseOver = { [paintedStarsLabel]: n } as Pick<
+        State,
+        keyof State
+      >;
+      const newStateOnMouseOut = { [paintedStarsLabel]: selectedStar } as Pick<
+        State,
+        keyof State
+      >;
+
       stars.push(
         <FontAwesomeIcon
           key={n}
           icon={faStar}
-          style={{ color: color, cursor: "pointer" }}
-          onMouseOver={() =>
-            this.setState({ [paintedStarsLabel]: n } as Pick<
-              State,
-              keyof State
-            >)
-          }
-          onMouseOut={() =>
-            this.setState({ [paintedStarsLabel]: selectedStar } as Pick<
-              State,
-              keyof State
-            >)
-          }
+          style={{ color, cursor: "pointer" }}
+          onMouseOver={() => this.setState(newStateOnMouseOver)}
+          onMouseOut={() => this.setState(newStateOnMouseOut)}
           onClick={() => this.props.handleScaleChange(label, n)}
         />
       );
     }
+
     return stars;
   };
 
@@ -187,22 +192,25 @@ class AddReviewForm extends React.Component<Props, State> {
       paintedDifficultyStars,
       paintedBenefitStars,
     } = this.state;
+    const { theme } = this.context;
 
     return (
       <div>
         <StyledSubHeading>
-          {t(`courseInfo.Add review to this course`)}
+          {t("courseInfo.Add review to this course")}
         </StyledSubHeading>
 
         {isSending ? (
-          <LoadingSpinner message={"Posting your review..."} />
+          <LoadingSpinner theme={theme} message="Posting your review..." />
         ) : (
           <StyledForm
             onSubmit={(e) => {
               e.preventDefault();
             }}
           >
-            <FieldLegend horizontal>{t(`courseInfo.Scales`)}</FieldLegend>
+            <FieldLegend horizontal isDark={theme === "dark"}>
+              {t("courseInfo.Scales")}
+            </FieldLegend>
             <ScalesList>
               <Scale size="tiny">
                 <Stars>
@@ -213,7 +221,9 @@ class AddReviewForm extends React.Component<Props, State> {
                   )}
                 </Stars>
                 <Statistic.Label>
-                  <p>{t(`courseInfo.Satisfaction`)}</p>
+                  <p className="dark:text-dark-text1">
+                    {t("courseInfo.Satisfaction")}
+                  </p>
                 </Statistic.Label>
               </Scale>
               <Scale size="tiny">
@@ -225,7 +235,9 @@ class AddReviewForm extends React.Component<Props, State> {
                   )}
                 </Statistic.Value>
                 <Statistic.Label>
-                  <p>{t(`courseInfo.Difficulty`)}</p>
+                  <p className="dark:text-dark-text1">
+                    {t("courseInfo.Difficulty")}
+                  </p>
                 </Statistic.Label>
               </Scale>
               <Scale size="tiny">
@@ -237,25 +249,30 @@ class AddReviewForm extends React.Component<Props, State> {
                   )}
                 </Statistic.Value>
                 <Statistic.Label>
-                  <p>{t(`courseInfo.Benefit`)}</p>
+                  <p className="dark:text-dark-text1">
+                    {t("courseInfo.Benefit")}
+                  </p>
                 </Statistic.Label>
               </Scale>
             </ScalesList>
             <br />
 
-            <FieldLegend horizontal>{t(`courseInfo.Review`)}</FieldLegend>
+            <FieldLegend horizontal isDark={theme === "dark"}>
+              {t("courseInfo.Review")}
+            </FieldLegend>
             <StyledTextarea
-              placeholder={t(`courseInfo.Review placeholder`)}
+              placeholder={t("courseInfo.Review placeholder")}
               onChange={this.handleTextareaChange}
               value={text}
+              className="bg-light-bgSide dark:bg-dark-text3"
             />
 
             <FormActions>
               <SubmitFormButton onClick={handleFormSubmit}>
-                <FontAwesomeIcon icon={faCheck} /> {t(`courseInfo.Submit`)}
+                <FontAwesomeIcon icon={faCheck} /> {t("courseInfo.Submit")}
               </SubmitFormButton>
               <CloseFormButton onClick={closeModal}>
-                <FontAwesomeIcon icon={faTimes} /> {t(`courseInfo.Close`)}
+                <FontAwesomeIcon icon={faTimes} /> {t("courseInfo.Close")}
               </CloseFormButton>
             </FormActions>
           </StyledForm>

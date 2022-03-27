@@ -35,7 +35,7 @@ specifiers:
   typescript: 4.6.2
 
 dependencies:
-  '@bit/wasedatime.core.theme.colors': 0.0.3
+  '@bit/wasedatime.core.theme.colors': node.bit.dev/@bit/wasedatime.core.theme.colors/0.0.3
   '@bit/wasedatime.core.ts.ui.loading-spinner': 0.0.7_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1_react-dom@17.0.2+react@17.0.2
   '@fortawesome/fontawesome-svg-core': 1.3.0
@@ -223,10 +223,6 @@ packages:
     dependencies:
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.theme.colors/0.0.3:
-    resolution: {integrity: sha1-6Fj0r3lf0e0ogkF168OnyzlWmj0=, tarball: wasedatime.core.theme.colors/-/wasedatime.core.theme.colors-0.0.3.tgz}
     dev: false
 
   /@bit/wasedatime.core.ts.styles.overlay/0.0.1_react-dom@17.0.2+react@17.0.2:
@@ -5739,4 +5735,10 @@ packages:
     dependencies:
       buffer-crc32: 0.2.13
       fd-slicer: 1.1.0
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.theme.colors/0.0.3:
+    resolution: {integrity: sha1-6Fj0r3lf0e0ogkF168OnyzlWmj0=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.theme.colors/-/wasedatime.core.theme.colors-0.0.3.tgz}
+    name: wasedatime.core.theme.colors
+    version: 0.0.3
     dev: false

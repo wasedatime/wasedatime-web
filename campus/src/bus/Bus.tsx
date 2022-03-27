@@ -42,10 +42,7 @@ const StyledSubHeading = styled("h2")`
   align-self: flex-start;
   margin-top: 0px;
   margin-bottom: 1rem;
-  border: 3px solid rgb(148, 27, 47);
   border-width: 3px 6px;
-  border-radius: 5px;
-  background: rgb(148, 27, 47);
   font-size: 2.5rem;
   font-weight: 300;
   color: #ffffff;
@@ -351,11 +348,10 @@ const Bus = (): JSX.Element => {
       <InfoWrapper>
         <h1
           style={{
-            borderLeft: "5px solid rgb(148, 27, 47)",
             paddingLeft: "10px",
             marginBottom: "20px",
           }}
-          className="text-light-text1 dark:text-dark-text1"
+          className="text-light-text1 dark:text-dark-text1 border-l-4 border-solid border-light-main dark:border-dark-main"
         >
           {t("bus.busStatus")}
         </h1>
@@ -395,7 +391,7 @@ const Bus = (): JSX.Element => {
         </DatetimeSelection>
 
         <BusStatus>
-          <StyledSubHeading>
+          <StyledSubHeading className="bg-light-main dark:bg-dark-main rounded-md border-solid border-light-main dark:border-dark-main">
             {t("bus.Waseda")}{" "}
             <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
             {t("bus.NishiWaseda")}
@@ -408,7 +404,7 @@ const Bus = (): JSX.Element => {
           </Remark>
         </BusStatus>
         <BusStatus>
-          <StyledSubHeading>
+          <StyledSubHeading className="bg-light-main dark:bg-dark-main rounded-md border-solid border-light-main dark:border-dark-main">
             {t("bus.NishiWaseda")}{" "}
             <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
             {t("bus.Waseda")}

@@ -1,16 +1,7 @@
 import React from "react";
 
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import {
-  Navbar,
-  Nav,
-  Form,
-  FormControl,
-  Button,
-  Accordion,
-  Card,
-  Badge,
-} from "react-bootstrap";
+import { Accordion, Card, Badge } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
@@ -28,7 +19,6 @@ const RoomType = styled(Badge)<RoomProps>`
   font-weight: 500;
   margin: 5px 10px;
   border-radius: 6px;
-  color: #fff;
   background-color: ${(props) => (props.vacancy ? "#71CE74" : "#E53935")};
 `;
 
@@ -79,8 +69,8 @@ const Building = ({ campusName, quar, weekday, period }) => {
     <InfoWrapper>
       {Object.keys(campuses[campusName]).map((buid, i) => (
         <RoomAcc key={i}>
-          <Card>
-            <RoomCar>
+          <Card className="bg-light-card1 hover:bg-light-card2 dark:bg-dark-card1 dark:hover:bg-dark-card2">
+            <RoomCar className="text-light-text1 dark:text-dark-text1">
               <Accordion.Toggle as={Card.Header} variant="link" eventKey="0">
                 {t("roomFinder.building prefix")}
                 {buid}
@@ -91,6 +81,7 @@ const Building = ({ campusName, quar, weekday, period }) => {
               <Card.Body>
                 {Object.keys(campuses[campusName][buid]).map((roomdata, j) => (
                   <RoomType
+                    className="text-light-bgMain dark:text-dark-bgSide"
                     key={j}
                     vacancy={checkVacancy(
                       campuses,

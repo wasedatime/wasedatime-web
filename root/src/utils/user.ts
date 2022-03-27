@@ -64,7 +64,7 @@ export const signIn = () => {
       customState: window.location.pathname + window.location.search,
     });
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 };
 

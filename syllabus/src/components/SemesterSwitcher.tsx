@@ -12,6 +12,7 @@ import styled from "styled-components";
 
 import { InvisibleButton } from "@app/components/styles/Button";
 import QuarterSwitch from "@app/components/timetable/QuarterSwitch";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type ExtendedInvisibleButtonProps = {
   small: boolean;
@@ -81,21 +82,33 @@ const SemesterSwitcher = ({
   toggleQuarter,
   isSmallSize,
 }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div
+      style={{ display: "flex", flexDirection: "column" }}
+      className="bg-light-bgMain dark:bg-dark-bgMain"
+    >
       <ExtendedRowWrapper small={isSmallSize}>
         <ExtendedInvisibleButton
           onClick={() => toggleSemester()}
           aria-label="Semester toggle"
           small={isSmallSize}
+          className="text-light-darker dark:text-dark-main"
         >
           <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
         </ExtendedInvisibleButton>
-        <SemesterTitle small={isSmallSize}>{semesterTitle}</SemesterTitle>
+        <SemesterTitle
+          small={isSmallSize}
+          className="text-light-text1 dark:text-dark-text1"
+        >
+          {semesterTitle}
+        </SemesterTitle>
         <ExtendedInvisibleButton
           onClick={toggleSemester}
           aria-label="Semester toggle"
           small={isSmallSize}
+          className="text-light-darker dark:text-dark-main"
         >
           <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
         </ExtendedInvisibleButton>

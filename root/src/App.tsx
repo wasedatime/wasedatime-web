@@ -1,13 +1,12 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense, useContext } from "react";
 
 import { Hub } from "@aws-amplify/core";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { Router, Redirect, navigate } from "@reach/router";
 import { ErrorBoundary } from "@sentry/react";
-import i18next from "i18next";
 import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import { navigateToUrl } from "single-spa";
 
 import CommonStyle from "@app/common-style";
@@ -21,19 +20,25 @@ import {
   gaUserSignOut,
 } from "@app/ga/eventActions";
 import { gaUser } from "@app/ga/eventCategories";
-import { ThemeProvider } from "@app/utils/themeContext";
+import { ThemeContext, ThemeProvider } from "@app/utils/theme-context";
 
 const AboutUs = lazy(() => import("@app/components/aboutUs/AboutUs"));
 const Home = lazy(() => import("@app/components/Home"));
 const Feeds = lazy(() => import("@app/components/Feeds"));
 
-const NotFound = ({ default: boolean }) => {
-  navigateToUrl("/");
-
-  return <LoadingSpinner message="Not found! Redirecting..." />;
+const NotFound = () => {
+  useEffect(() => navigateToUrl("/"), []);
+  return <LoadingSpinner theme="light" message="Not found! Redirecting..." />;
 };
 
-const App = () => {
+const Redirect = ({ to }: { to: string }) => {
+  useEffect(() => navigateToUrl(to), []);
+  return null;
+};
+
+const AppRoutes = () => {
+  const navigate = useNavigate();
+
   Hub.listen("auth", ({ payload: { event, data } }) => {
     switch (event) {
       case "signIn":
@@ -62,6 +67,33 @@ const App = () => {
     }
   });
 
+  return (
+    <Routes>
+      <Route element={<TermsOfService />} path="/terms-of-service" />
+      <Route element={<PrivacyPolicy />} path="/privacy-policy" />
+      <Route element={<AboutUs />} path="/aboutus" />
+      <Route element={<RedirectPage />} path="/verify" />
+      <Route element={<Feeds />} path="/feeds" />
+      <Route element={<Home isFirstAccess={false} />} path="/home" />
+      <Route element={<Redirect to="/courses/timetable" />} path="/" />
+      <Route element={<Redirect to="/courses/timetable" />} path="/timetable" />
+      <Route element={<Redirect to="/courses/syllabus" />} path="/syllabus" />
+      <Route element={<NotFound />} path="*" />
+    </Routes>
+  );
+};
+
+const LoadingSpinnerContainer = () => {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <div style={{ height: "100vh" }} className="dark:bg-dark-bgMain">
+      <LoadingSpinner theme={theme} message="Loading..." />
+    </div>
+  );
+}
+
+const App = () => {
   const { i18n } = useTranslation();
   useEffect(() => {
     i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
@@ -90,25 +122,16 @@ const App = () => {
             <ErrorFallback error={error} resetError={resetError} />
           )}
         >
-          <Suspense fallback={<LoadingSpinner message="Loading..." />}>
-            {localStorage.getItem("isFirstAccess") === null ||
-            localStorage.getItem("isFirstAccess") === "true" ? (
-              <Home path="/" isFirstAccess />
-            ) : (
-              <Router>
-                <TermsOfService path="/terms-of-service" />
-                <PrivacyPolicy path="/privacy-policy" />
-                <AboutUs path="/aboutus" />
-                <RedirectPage path="/verify" />
-                <Feeds path="/feeds" />
-                <Home path="/home" isFirstAccess={false} />
-                <Redirect from="/" to="/courses/timetable" noThrow />
-                <Redirect from="/timetable" to="/courses/timetable" noThrow />
-                <Redirect from="/syllabus" to="/courses/syllabus" noThrow />
-                <NotFound default />
-              </Router>
-            )}
-          </Suspense>
+          <BrowserRouter>
+            <Suspense fallback={<LoadingSpinnerContainer />}>
+              {localStorage.getItem("isFirstAccess") === null ||
+              localStorage.getItem("isFirstAccess") === "true" ? (
+                <Home isFirstAccess />
+              ) : (
+                <AppRoutes />
+              )}
+            </Suspense>
+          </BrowserRouter>
         </ErrorBoundary>
       </ThemeProvider>
     </>

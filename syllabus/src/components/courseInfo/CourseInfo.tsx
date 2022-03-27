@@ -1,6 +1,7 @@
 import React from "react";
 
 import API from "@aws-amplify/api";
+import colors from "@bit/wasedatime.core.theme.colors";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
@@ -10,13 +11,13 @@ import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
-import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
 import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
 import styled from "styled-components";
 
 import CourseDetails from "@app/components/courseInfo/CourseDetails";
 import CourseReviews from "@app/components/courseInfo/CourseReviews";
 import ShareButtons from "@app/components/courseInfo/ShareButtons";
+import LoadingTextPlaceHolder from "@app/components/styles/LoadingTextPlaceHolder";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import CourseItemContainer from "@app/containers/CourseItemContainer";
 import {
@@ -31,40 +32,68 @@ import { getFetchedCoursesList } from "@app/redux/reducers/fetchedCourses";
 import Course from "@app/types/course";
 import Review from "@app/types/review";
 import { courseSchemaFullToShort } from "@app/utils/map-single-course-schema";
+import { ThemeContext } from "@app/utils/theme-context";
 
-const CourseInfoWrapper = styled(Segment)`
+type CourseInfoWrapperProps = {
+  isDark: boolean;
+};
+
+const CourseInfoWrapper = styled(Segment)<CourseInfoWrapperProps>`
   width: 100%;
   display: block;
   cursor: auto;
   margin-top: 0px !important;
   border: none !important;
+  ${(props) => props.isDark && `background: ${colors.dark.bgMain} !important;`}
 `;
 
 const RelatedCourses = styled.div`
   display: flex;
   flex-direction: row;
-  width: calc(96vw - 60em - 120px);
+
+  width: calc(96vw - 60em - 135px);
   @media (max-width: 1280px) {
     width: calc(96vw - 55em - 120px);
   }
-  ${media.desktop`width: calc(96vw - 30em - 120px);`}
-  ${media.tablet`width: calc(96vw - 36px);`}
+  ${media.desktop`
+    width: calc(96vw - 30em - 130px);
+  `}
+  ${media.tablet`
+    width: calc(96vw - 40px);
+  `}
+  
   overflow-x: auto;
   padding: none;
   margin: none;
+
+  ::-webkit-scrollbar {
+    height: 5px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    height: 5px;
+    border-radius: 10px;
+    background: #999;
+  }
 `;
 
 const RelatedCourse = styled.div`
-  flex: 0 0 33%;
-  ${media.tablet`flex: 0 0 50%;`}
+  flex: 0 0 33.3%;
+  @media (max-width: 1280px) {
+    flex: 0 0 49.5%;
+  }
+  ${media.desktop`flex: 0 0 49.5%;`}
+  ${media.tablet`flex: 0 0 33%;`}
+  ${media.phone`flex: 0 0 49.5%;`}
 `;
 
-const StyledSubHeading = styled("h6")`
+const StyledSubHeading = styled("h4")`
   align-self: flex-start;
   margin: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-weight: 300;
+  font-size: 16px;
 `;
 
 const getCourseKey = (course) => course[SyllabusKey.ID].substring(0, 12);
@@ -110,6 +139,7 @@ interface ReduxStateProps {
 interface OwnProps extends WithTranslation {
   course: Course;
   searchLang: string | string[];
+  clearSearchBar: () => void;
 }
 
 interface OwnState {
@@ -128,6 +158,8 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
     areDetailsLoaded: false,
     areReviewsLoaded: false,
   };
+
+  static contextType = ThemeContext;
 
   async loadReviewsAndRelatedCourses() {
     const thisCourse = this.props.course;
@@ -206,7 +238,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
   }
 
   render() {
-    const { course: courseFromProps, searchLang, t, i18n } = this.props;
+    const { course: courseFromProps, searchLang, clearSearchBar, t, i18n } = this.props;
     const {
       courseWithMoreDetails,
       areDetailsLoaded,
@@ -215,11 +247,15 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
       relatedCourses,
     } = this.state;
     const course = courseWithMoreDetails || courseFromProps;
+    const { theme } = this.context;
 
     return areDetailsLoaded ? (
-      <CourseInfoWrapper>
+      <CourseInfoWrapper
+        className="dark:bg-dark-bgMain dark:text-dark-text1"
+        isDark={theme === "dark"}
+      >
         <CourseDetails course={course} />
-        <Grid style={{ textAlign: "center", margin: "1em 0px" }}>
+        <Grid className="mx-4 my-0 text-center dark:bg-dark-bgMain">
           <Grid.Column width={6}>
             <p style={{ marginBottom: "0px" }}>Official Syllabus:</p>
             <a
@@ -259,28 +295,25 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
             searchLang={searchLang}
           />
         ) : (
-          <Placeholder style={{ margin: "1em" }}>
-            <Placeholder.Paragraph>
-              <Placeholder.Line />
-              <Placeholder.Line />
-              <Placeholder.Line />
-              <Placeholder.Line />
-            </Placeholder.Paragraph>
-          </Placeholder>
+          <LoadingTextPlaceHolder isDark={theme === "dark"} />
         )}
-        <StyledSubHeading>{t("courseInfo.Related courses")}</StyledSubHeading>
+        <StyledSubHeading className="dark:bg-dark-bgMain dark:text-dark-text1">
+          {t("courseInfo.Related courses")}
+        </StyledSubHeading>
         <RelatedCourses>
           {areReviewsLoaded ? (
             relatedCourses.map((course, i) => (
               <RelatedCourse
                 key={i}
-                onClick={() =>
+                onClick={() => {
                   ReactGA.event({
                     category: gaCourseDetails,
                     action: gaClickRelatedCourse,
                     label: course[SyllabusKey.TITLE],
-                  })
-                }
+                  });
+                  clearSearchBar();
+                }}
+                className="dark:bg-dark-bgMain"
               >
                 <CourseItemContainer
                   searchTerm=""
@@ -292,26 +325,12 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
               </RelatedCourse>
             ))
           ) : (
-            <Placeholder style={{ margin: "1em" }}>
-              <Placeholder.Paragraph>
-                <Placeholder.Line />
-                <Placeholder.Line />
-                <Placeholder.Line />
-                <Placeholder.Line />
-              </Placeholder.Paragraph>
-            </Placeholder>
+            <LoadingTextPlaceHolder isDark={theme === "dark"} />
           )}
         </RelatedCourses>
       </CourseInfoWrapper>
     ) : (
-      <Placeholder style={{ margin: "1em" }}>
-        <Placeholder.Paragraph>
-          <Placeholder.Line />
-          <Placeholder.Line />
-          <Placeholder.Line />
-          <Placeholder.Line />
-        </Placeholder.Paragraph>
-      </Placeholder>
+      <LoadingTextPlaceHolder isDark={theme === "dark"} />
     );
   }
 }

@@ -1,5 +1,6 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
 import SimpleBar from "simplebar-react";
@@ -8,9 +9,11 @@ import styled from "styled-components";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import { CourseWithOcc } from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type StyledCourseColumnProps = {
   displayPeriods: number;
+  isDark: boolean;
 };
 
 type CourseItemProps = {
@@ -22,9 +25,15 @@ type CourseItemProps = {
 const StyledCourseColumn = styled.div<StyledCourseColumnProps>`
   display: flex;
   flex: 1 0 calc(30rem / 7 * ${(props) => props.displayPeriods});
-  border-right: 1px solid #f7f7f7;
-  border-bottom: solid 1px #ccc;
-  background: linear-gradient(180deg, #fff 50%, #eee 50%);
+  border-right: 1px solid
+    ${(props) => (props.isDark ? colors.dark.text3 : "#f7f7f7")};
+  border-bottom: solid 1px
+    ${(props) => (props.isDark ? colors.dark.text3 : "#f7f7f7")};
+  background: linear-gradient(
+    180deg,
+    ${(props) => (props.isDark ? colors.dark.bgMain : "white")} 50%,
+    ${(props) => (props.isDark ? "#333" : "#eee")} 50%
+  );
   background-size: 100% calc(100% / ${(props) => props.displayPeriods} * 2);
   position: relative;
   min-width: 4rem;
@@ -83,6 +92,12 @@ const CourseList = styled("div")`
   position: relative;
 `;
 
+const StyledSimpleBar = styled(SimpleBar)`
+  .simplebar-placeholder {
+    height: 0px !important;
+  }
+`;
+
 interface Props extends WithTranslation {
   largestPeriod: number;
   coursesAndProperties: {
@@ -96,6 +111,8 @@ interface Props extends WithTranslation {
 }
 
 const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   const displayPeriods = Math.max(largestPeriod, 5);
   // a distinct course list has no occurrence overlaps between its course items.
   const distinctCourseLists = [[]];
@@ -186,7 +203,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
         // }
         return (
           <CourseItem
-            className={`color-${color}`}
+            className={`color-${color} dark:opacity-70`}
             key={`${course[SyllabusKey.TERM]}-${
               course[SyllabusKey.TITLE]
             }-${startPeriod}-${endPeriod}`}
@@ -195,7 +212,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
             height={endPeriod - startPeriod + 1}
           >
             <CourseTitle>
-              <SimpleBar>{title}</SimpleBar>
+              <StyledSimpleBar>{title}</StyledSimpleBar>
             </CourseTitle>
             <CourseLocation>{location}</CourseLocation>
           </CourseItem>
@@ -207,7 +224,10 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
   );
 
   return (
-    <StyledCourseColumn displayPeriods={displayPeriods}>
+    <StyledCourseColumn
+      displayPeriods={displayPeriods}
+      isDark={theme === "dark"}
+    >
       {distinctCourseListsComponent}
     </StyledCourseColumn>
   );

@@ -10,7 +10,7 @@ const Home: NextPage = () => {
   }, [])
   return (
     <div style={{ textAlign: 'center' }}>
-      <LoadingSpinner message={"Redirecting..."} />
+      <LoadingSpinner message={"Redirecting..."} theme="light" />
     </div>
   )
 }

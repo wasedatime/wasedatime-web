@@ -16,6 +16,15 @@ const CourseListWrapper = styled(SimpleBar)`
   height: calc(100vh - 96px);
   ${media.tablet`height: calc(100vh - 166px);`}
   overflow-x: hidden;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background: #999;
+  }
   .simplebar-scrollbar::before {
     background-color: #999;
   }
@@ -43,6 +52,7 @@ interface Props extends WithTranslation {
   searchLang: string | string[];
   results: Course[];
   onSearchInputChange: (inputText: string) => void;
+  clearSearchBar: () => void;
 }
 
 interface State {
@@ -100,7 +110,7 @@ class FetchedCourseList extends React.Component<Props, State> {
   };
 
   render() {
-    const { searchTerm, searchLang, results, t, i18n } = this.props;
+    const { searchTerm, searchLang, results, clearSearchBar, t, i18n } = this.props;
     const resultsInChunks = this.resultsToChunks();
 
     return (
@@ -115,7 +125,7 @@ class FetchedCourseList extends React.Component<Props, State> {
             >
               <CourseChunkWrapper>
                 <div>
-                  <span>
+                  <span className="text-light-text2 dark:text-dark-text2">
                     {i18n.language === Lang.JA
                       ? `全 ${results.length} 件中 ${index * 5 + 1} - ${
                           index * 5 + chunk.length
@@ -129,6 +139,7 @@ class FetchedCourseList extends React.Component<Props, State> {
                   chunk={chunk}
                   searchTerm={searchTerm}
                   searchLang={searchLang}
+                  clearSearchBar={clearSearchBar}
                 />
               </CourseChunkWrapper>
             </Waypoint>

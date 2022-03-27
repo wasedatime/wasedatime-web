@@ -9,8 +9,10 @@ const StyledListItem = styled("li")`
   justify-content: space-between;
   text-align: center;
   width: 2em;
-  border-right: solid 1px #ccc;
+  border-right-width: 1px;
+  border-right-style: solid;
 `;
+
 const StyledSpan = styled("span")`
   font-size: 1.5em;
   font-weight: 600;
@@ -18,16 +20,19 @@ const StyledSpan = styled("span")`
 
 const StyledTime = styled("time")`
   font-size: 0.8em;
-  color: #333;
 `;
 
-interface Props {
-  period: { s: string | number; p: string | number; e: string | number };
-}
+type Props = {
+  period: {
+    s: string | number;
+    p: string | number;
+    e: string | number;
+  };
+};
 
 const TimeRowItem = ({ period }: Props) => {
   return (
-    <StyledListItem>
+    <StyledListItem className="text-light-text2 border-r-gray-100 dark:text-dark-text2 dark:border-r-dark-text3">
       <StyledTime>{period.s}</StyledTime>
       <StyledSpan>{period.p}</StyledSpan>
       <StyledTime>{period.e}</StyledTime>

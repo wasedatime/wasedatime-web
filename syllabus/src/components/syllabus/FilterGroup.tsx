@@ -1,5 +1,6 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import { WithStyles, createStyles } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -9,31 +10,64 @@ import { withStyles } from "@material-ui/core/styles";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
 
-const StyledDropdown = styled(Dropdown)`
+import { ThemeContext } from "@app/utils/theme-context";
+
+type StyledDropdownProps = {
+  isDark: boolean;
+};
+
+const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   font-size: 0.9em !important;
   font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-display: swap;
   min-height: 32px !important;
   padding: 0.2rem 0.5rem 0.1rem 0.5rem !important;
+  background-color: ${(props) =>
+    props.isDark ? colors.dark.card1 : "white"} !important;
 
   a.ui.label {
+    border-width: 0px;
+    border-radius: 5px;
+    background-color: ${(props) =>
+      props.isDark ? colors.dark.text2 : colors.dark.text2} !important;
+    color: ${(props) => (props.isDark ? "#333" : "white")};
     .delete.icon {
       padding: 0px !important;
       &:before {
         content: "×";
+        margin-left: 5px;
+        font-size: 16px;
+        color: ${(props) => (props.isDark ? "#333" : "white")};
       }
     }
   }
-  .menu .text {
-    line-height: 1.2 !important;
+
+  .menu {
+    background-color: ${(props) =>
+      props.isDark ? colors.dark.card1 : "white"} !important;
+    ::-webkit-scrollbar {
+      width: 0;
+      background: transparent;
+    }
+
+    .item {
+      border-width: 0px !important;
+      .text {
+        font-size: 16px !important;
+        line-height: 1.2 !important;
+      }
+    }
   }
 
   .text {
     margin: 0.4rem 1em !important;
+    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
   }
 
   i {
     padding: 0.5rem 1em !important;
+    font-size: 14px !important;
+    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
   }
 `;
 
@@ -75,7 +109,7 @@ const styles = (theme) =>
       transform: "scale(1.5)",
     },
     checkBoxChecked: {
-      color: "#b51e36 !important",
+      color: `${colors.dark.lighter} !important`,
     },
   });
 
@@ -96,6 +130,8 @@ const FilterGroup = ({
   classes,
   filterType,
 }: Props) => {
+  const { theme } = React.useContext(ThemeContext);
+
   let filterItems;
   if (filterType === "checkbox") {
     filterItems = inputs.map((input) => (
@@ -115,6 +151,7 @@ const FilterGroup = ({
               checked: classes.checkBoxChecked,
             }}
             size="medium"
+            className="text-light-text2 dark:text-dark-text2"
           />
         }
         label={input.label}
@@ -140,13 +177,18 @@ const FilterGroup = ({
           handleToggleFilter(inputName, data.value);
         }}
         aria-label={inputName}
+        isDark={theme === "dark"}
       />
     );
   }
 
   return (
     <div>
-      <FormLabel className={classes.formLabel}>{legend}</FormLabel>
+      <FormLabel
+        className={`${classes.formLabel} text-light-text2 dark:text-dark-text1`}
+      >
+        {legend}
+      </FormLabel>
       <FormGroup row className={classes.formGroup}>
         {filterItems}
       </FormGroup>

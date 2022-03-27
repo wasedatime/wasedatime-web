@@ -8,7 +8,7 @@ import {
   faToggleOn,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { navigate } from "@reach/router";
+import { useNavigate } from "react-router-dom";
 import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
 import styled from "styled-components";
 
@@ -16,6 +16,7 @@ import ColorSelector from "@app/components/timetable/ColorSelector";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -80,6 +81,8 @@ const CourseAndPrefItem = ({
   handleRemoveCourse,
   handleChangeColor,
 }: Props) => {
+  const navigate = useNavigate();
+  const { theme, setTheme } = React.useContext(ThemeContext);
   const { title, instructor } = getCourseTitleAndInstructor(
     course,
     displayLang
@@ -113,7 +116,7 @@ const CourseAndPrefItem = ({
         <ColorSelector handleChangeColor={handleChangeColor} />
       </Popup>
 
-      <CourseItemWrapper>
+      <CourseItemWrapper className="text-light-text1 dark:text-dark-text2">
         <StyledHeading>{title}</StyledHeading>
         <CourseItemRow>
           <div
@@ -139,6 +142,7 @@ const CourseAndPrefItem = ({
                 e.preventDefault();
                 handleToggleVisibility(courseId);
               }}
+              className="bg-light-bgMain dark:bg-dark-bgMain"
             >
               {visibilityIcon}
             </InvisibleButton>
@@ -161,6 +165,7 @@ const CourseAndPrefItem = ({
                 e.preventDefault();
                 handleRemoveCourse(courseId);
               }}
+              className="bg-light-bgMain dark:bg-dark-bgMain"
             >
               {removeCourseIcon}
             </InvisibleButton>

@@ -14,12 +14,11 @@ import {
   faWifi,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { navigate } from "@reach/router";
 import { WithTranslation, withTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import CourseInfo from "@app/components/courseInfo/CourseInfo";
-import CourseReviews from "@app/components/courseInfo/CourseReviews";
 import { Badge } from "@app/components/styles/Badge";
 import { InvisibleButton } from "@app/components/styles/Button";
 import { Highlight } from "@app/components/syllabus/Highlight";
@@ -42,7 +41,7 @@ const CourseItemWrapper = styled("li")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
-  align-items: stretch;
+  // align-items: stretch;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 0px 8px 0px;
@@ -51,21 +50,12 @@ const CourseItemWrapper = styled("li")`
   line-height: 150%;
 `;
 
-const CourseItemIntroWrapper = styled.div<ExpandableProps>`
+const CourseItemIntroWrapper = styled.div`
   padding: 0.5em 0.8em;
   &:hover {
-    background: #eee;
     cursor: pointer;
   }
-  ${(props) => !props.expanded && "border-radius: 10px;"}
-  ${media.tablet`
-    &:hover {
-      background: #fff;
-    }
-    &:active {
-      background: #eee;
-    }
-  `}
+  border-radius: 10px;
 `;
 
 const CloseCourseInfoButton = styled.p`
@@ -241,6 +231,7 @@ interface Props extends WithTranslation {
   handleOnClick: (title: string, lng: string) => void;
   expandable: boolean;
   isRelatedCourse?: boolean;
+  clearSearchBar?: () => void;
 }
 
 const CourseItem = ({
@@ -251,9 +242,11 @@ const CourseItem = ({
   handleOnClick,
   expandable,
   isRelatedCourse,
+  clearSearchBar,
   t,
   i18n,
 }: Props) => {
+  const navigate = useNavigate();
   const [expanded, setExpanded] = useState(
     window.location.search.includes(course[SyllabusKey.ID])
   );
@@ -298,20 +291,20 @@ const CourseItem = ({
     });
 
   const courseModalityIcons = [
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faChalkboardTeacher} />
     </span>,
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faChalkboardTeacher} />{" "}
       <FontAwesomeIcon icon={faWifi} />
     </span>,
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faVideo} />
     </span>,
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faVideo} /> <FontAwesomeIcon icon={faClock} />
     </span>,
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faBroadcastTower} />
     </span>,
   ];
@@ -330,21 +323,30 @@ const CourseItem = ({
   };
 
   return (
-    <CourseItemWrapper>
+    <CourseItemWrapper className="bg-white dark:bg-dark-bgMain dark:border-dark-text3 dark:border-2 dark:shadow-none">
       <CourseItemIntroWrapper
         onClick={async () => {
           expandable ? setExpanded(true) : await navigateToCourse();
         }}
-        expanded={expanded}
+        className="bg-white hover:bg-light-bgSide dark:bg-dark-bgMain dark:border-dark-text3 dark:shadow-none dark:hover:bg-dark-bgSide"
       >
-        <StyledHeading>{highlightedTitle}</StyledHeading>
+        <StyledHeading className="dark:text-dark-main">
+          {highlightedTitle}
+        </StyledHeading>
         {expandable && (
-          <StyledSubHeading>{course[SyllabusKey.SUBTITLE]}</StyledSubHeading>
+          <StyledSubHeading className="dark:text-dark-text2">
+            {course[SyllabusKey.SUBTITLE]}
+          </StyledSubHeading>
         )}
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge style={{ fontSize: "12px" }}>{langTerm}</Badge>
+            <Badge
+              style={{ fontSize: "12px" }}
+              className="dark:bg-dark-text3 dark:text-dark-text1"
+            >
+              {langTerm}
+            </Badge>
             {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
           {!isRelatedCourse && (
@@ -371,7 +373,10 @@ const CourseItem = ({
           )}
         </CourseItemRow>
 
-        <DescriptionWrapper isLarger={isRelatedCourse}>
+        <DescriptionWrapper
+          isLarger={isRelatedCourse}
+          className="dark:text-dark-text1"
+        >
           <Description>{yearTerm}</Description>
           <Description>
             <OccurrenceList>{occurrences}</OccurrenceList>
@@ -381,13 +386,16 @@ const CourseItem = ({
       </CourseItemIntroWrapper>
 
       {expandable && expanded && (
-        <CloseCourseInfoButton onClick={() => setExpanded(false)}>
+        <CloseCourseInfoButton
+          onClick={() => setExpanded(false)}
+          className="dark:bg-dark-bgSide dark:text-dark-text2"
+        >
           <FontAwesomeIcon icon={faChevronUp} />
         </CloseCourseInfoButton>
       )}
 
       {expandable && expanded && (
-        <CourseInfo course={course} searchLang={searchLang} />
+        <CourseInfo course={course} searchLang={searchLang} clearSearchBar={clearSearchBar} />
       )}
     </CourseItemWrapper>
   );

@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
+
+import {
+  ProfileIcon,
+  ProfileIconHovered,
+} from "@app/components/icons/ProfileIcon";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type SignInSpanProps = {
   ishovered: boolean;
@@ -19,6 +23,12 @@ const UserMenuTrigger = styled("div")`
   align-items: center;
   padding: 0.5vh 0.5em 1em 0.7em;
   ${media.tablet`padding: 0.5em;`}
+
+  svg {
+    width: 40px !important;
+    height: 40px;
+    text-align: center;
+  }
 
   i {
     margin: 0 !important;
@@ -42,7 +52,6 @@ const StyledSpan = styled("span")<SignInSpanProps>`
   text-align: left;
   font-weight: 100;
   margin-left: 1em;
-  color: #fff;
   opacity: ${(props) => (props.ishovered ? "1" : "0")};
   width: ${(props) => (props.ishovered ? "145px" : "0px")};
   white-space: nowrap;
@@ -60,25 +69,32 @@ interface Props extends WithTranslation {
 }
 
 const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
+  const { theme } = useContext(ThemeContext);
   const [userAttr, setUserAttr] = useState(null);
   const [isUserIconHovered, setIsUserIconHovered] = useState(false);
   const notSignedIn = !userAttr;
   if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr));
 
   return notSignedIn ? (
-    <UserMenuTrigger onClick={openSignInModal}>
-      <FontAwesomeIcon
-        icon={faUserCircle}
-        size="2x"
-        style={{ marginLeft: "4px" }}
-      />
+    <UserMenuTrigger
+      className="group text-light-text2 dark:text-dark-text2"
+      onClick={openSignInModal}
+    >
+      <div className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
+        {theme === "dark" ? <ProfileIconHovered /> : <ProfileIcon />}
+      </div>
       {!isMobileMode && (
-        <StyledSpan ishovered={isHovered}>{t("user.Sign in")}</StyledSpan>
+        <StyledSpan
+          className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1"
+          ishovered={isHovered}
+        >
+          {t("user.Sign in")}
+        </StyledSpan>
       )}
     </UserMenuTrigger>
   ) : (
     <div
-      className="relative inline-block text-left"
+      className="relative inline-block text-left group"
       onMouseEnter={() => setIsUserIconHovered(true)}
       onTouchStart={() => setIsUserIconHovered(true)}
       onMouseLeave={() => setIsUserIconHovered(false)}
@@ -99,7 +115,11 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
           alt="User account"
           style={{ marginLeft: "2px" }}
         />
-        <StyledSpan style={{ paddingTop: "8px" }} ishovered={isHovered}>
+        <StyledSpan
+          className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1"
+          style={{ paddingTop: "8px" }}
+          ishovered={isHovered}
+        >
           {userAttr.name}
         </StyledSpan>
       </button>
@@ -122,7 +142,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
             role="menuitem"
             onClick={signOut}
           >
-            {t("user.Sign Out")}
+            <p>{t("user.Sign Out")}</p>
           </a>
         </div>
       </div>

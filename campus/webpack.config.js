@@ -15,18 +15,7 @@ module.exports = (webpackConfigEnv, argv) => {
     module: {
       rules: [
         {
-          test: /\.tsx$/,
-          use: "ts-loader",
-          resolve: {
-            fullySpecified: false,
-            alias: {
-              "@app": path.resolve(__dirname, "src/"),
-            },
-            modules: ["node_modules"],
-          },
-        },
-        {
-          test: /\.ts$/,
+          test: /\.(ts|tsx)$/,
           use: "ts-loader",
           resolve: {
             fullySpecified: false,
@@ -51,8 +40,8 @@ module.exports = (webpackConfigEnv, argv) => {
           type: "asset/inline",
         },
         {
-          test: /\.scss$/i,
-          use: ["style-loader", "css-loader", "sass-loader"],
+          test: /\.(css|scss)$/i,
+          use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
         },
       ],
     },

@@ -4,18 +4,22 @@ import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 
 import { Article, Section } from "@app/components/styles/Article";
 import AddedCourseAndPrefList from "@app/components/timetable/AddedCourseAndPrefList";
 import DayColumnList from "@app/components/timetable/DayColumnList";
 import TimeRowList from "@app/components/timetable/TimeRowList";
 import { SyllabusKey } from "@app/constants/syllabus-data";
-import { timetableTheme } from "@app/constants/syllabus-theme";
 import Course from "@app/types/course";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type ColumnProps = {
   flexBasis: string;
+};
+
+type StyledMessageProps = {
+  isDark: boolean;
 };
 
 const ExtendedRowWrapper = styled(RowWrapper)`
@@ -48,6 +52,10 @@ const ScrollableTimetable = styled("div")`
   -webkit-overflow-scrolling: touch;
 `;
 
+const StyledMessage = styled(Message)<StyledMessageProps>`
+  ${(props) => props.isDark && "opacity: 0.6;"}
+`;
+
 interface Props extends WithTranslation {
   addedCoursesAndPrefs: {
     pref: {
@@ -60,6 +68,8 @@ interface Props extends WithTranslation {
 }
 
 const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(
     (elem) => elem.pref.visibility === true
   );
@@ -90,57 +100,56 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
   const { day: largestDay, period: largestPeriod } = largestDayAndPeriod;
 
   return (
-    <ExtendedRowWrapper className="theme-default">
-      <ThemeProvider theme={timetableTheme}>
-        <Column flexBasis="70%">
-          <ScrollableTimetable>
-            <TimeRowList largestPeriod={largestPeriod} />
-            <DayColumnList
-              largestDay={largestDay}
-              largestPeriod={largestPeriod}
-              addedCoursesAndPrefs={visibleAddedCoursesAndPrefs}
-            />
-          </ScrollableTimetable>
-        </Column>
-        <Column flexBasis="30%">
-          <Wrapper>
-            {!addedCoursesAndPrefs.length && (
-              <Wrapper>
-                <Article>
-                  <h5>{t("timetable.welcome")} 🤗</h5>
-                  <br />
-                  <Section>
-                    <Message
-                      warning
-                      header={
-                        <h5>
-                          <b>{t("timetable.You haven't added any courses")}</b>
-                        </h5>
-                      }
-                      content={
-                        <p>
-                          {t("timetable.Go to")}{" "}
-                          <a href="/syllabus">{t("timetable.Syllabus")} </a>{" "}
-                          {t("timetable.and try adding one!")}
-                        </p>
-                      }
-                      size="mini"
-                    />
-                  </Section>
-                  <Section>
-                    <Message success size="mini">
-                      <p>{t("timetable.SaveSpace")}</p>
-                    </Message>
-                  </Section>
-                </Article>
-              </Wrapper>
-            )}
-            <AddedCourseAndPrefList
-              addedCoursesAndPrefs={addedCoursesAndPrefs}
-            />
-          </Wrapper>
-        </Column>
-      </ThemeProvider>
+    <ExtendedRowWrapper className="theme-default bg-light-bgMain dark:bg-dark-bgMain">
+      <Column flexBasis="70%">
+        <ScrollableTimetable>
+          <TimeRowList largestPeriod={largestPeriod} />
+          <DayColumnList
+            largestDay={largestDay}
+            largestPeriod={largestPeriod}
+            addedCoursesAndPrefs={visibleAddedCoursesAndPrefs}
+          />
+        </ScrollableTimetable>
+      </Column>
+      <Column flexBasis="30%">
+        <Wrapper>
+          {!addedCoursesAndPrefs.length && (
+            <Wrapper>
+              <Article className="bg-light-bgMain dark:bg-dark-bgMain">
+                <h5 className="text-light-text1 dark:text-dark-text1">
+                  {t("timetable.welcome")} 🤗
+                </h5>
+                <br />
+                <Section>
+                  <StyledMessage
+                    warning
+                    header={
+                      <h5>
+                        <b>{t("timetable.You haven't added any courses")}</b>
+                      </h5>
+                    }
+                    content={
+                      <p>
+                        {t("timetable.Go to")}{" "}
+                        <a href="/syllabus">{t("timetable.Syllabus")} </a>{" "}
+                        {t("timetable.and try adding one!")}
+                      </p>
+                    }
+                    size="mini"
+                    isDark={theme === "dark"}
+                  />
+                </Section>
+                <Section>
+                  <StyledMessage success size="mini" isDark={theme === "dark"}>
+                    <p>{t("timetable.SaveSpace")}</p>
+                  </StyledMessage>
+                </Section>
+              </Article>
+            </Wrapper>
+          )}
+          <AddedCourseAndPrefList addedCoursesAndPrefs={addedCoursesAndPrefs} />
+        </Wrapper>
+      </Column>
     </ExtendedRowWrapper>
   );
 };

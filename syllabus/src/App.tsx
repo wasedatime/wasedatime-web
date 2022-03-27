@@ -1,9 +1,9 @@
-import React, { useEffect, lazy, Suspense } from "react";
+import React, { useEffect, lazy, Suspense, useContext } from "react";
 
+import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 import API from "@aws-amplify/api";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
-import { Router, LocationProvider, navigate } from "@reach/router";
 import "semantic-ui-css/components/dropdown.min.css";
 import { connect } from "react-redux";
 import "react-s-alert/dist/s-alert-default.css";
@@ -16,6 +16,7 @@ import { fetchCourses, saveTimetable } from "@app/redux/actions";
 import { ReduxRootState } from "@app/redux/reducers";
 import { getAddedCoursePrefs } from "@app/redux/reducers/addedCourses";
 import "@app/styles/styles.scss";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const Timetable = lazy(() => import("@app/containers/TimetableContainer"));
 const Syllabus = lazy(() => import("@app/containers/SyllabusContainer"));
@@ -35,17 +36,13 @@ interface ReduxDispatchProps {
   saveTimetable: (idsAndPrefs: IdAndPrefType) => void;
 }
 
-const NotFound = ({ default: boolean }) => {
-  navigate("/");
-
-  return <LoadingSpinner message="Not found! Redirecting..." />;
-};
-
 const App = ({
   addedCoursesPrefs,
   fetchCourses,
   saveTimetable,
 }: ReduxStateProps & ReduxDispatchProps) => {
+  const { theme } = useContext(ThemeContext);
+
   const postTimetable = async (idsAndPrefs) => {
     const idToken = await getIdToken();
     API.post("wasedatime-dev", "/timetable", {
@@ -85,25 +82,41 @@ const App = ({
   }, []);
 
   return (
-    <Suspense fallback={<LoadingSpinner message="Loading..." />}>
-      <LocationProvider>
-        {(context) => {
-          if (
-            !context.location.pathname.includes("courses") &&
-            window.location.pathname.includes("courses")
-          ) {
-            navigate(window.location.pathname);
-          }
-        }}
-      </LocationProvider>
-      <Router>
-        <Syllabus path="courses/syllabus" />
-        <Timetable path="courses/timetable" />
-        <Labs path="courses/labs" />
-        <NotFound default />
-      </Router>
+    <Suspense fallback={<LoadingSpinner theme={theme} message="Loading..." />}>
+      <BrowserRouter>
+        <AppRoutes />
+      </BrowserRouter>
       <Alert stack={{ limit: 1 }} timeout={3000} />
     </Suspense>
+  );
+};
+
+const NotFound = () => {
+  const { theme } = useContext(ThemeContext);
+  const navigate = useNavigate();
+  useEffect(() => navigate("/"));
+
+  return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />;
+};
+
+const AppRoutes = () => {
+  const navigate = useNavigate();
+
+  return (
+    <Routes>
+      {(context) => {
+        if (
+          !context.location.pathname.includes("courses") &&
+          window.location.pathname.includes("courses")
+        ) {
+          navigate(window.location.pathname);
+        }
+      }}
+      <Route element={<Syllabus />} path="courses/syllabus" />
+      <Route element={<Timetable />} path="courses/timetable" />
+      <Route element={<Labs />} path="courses/labs" />
+      <Route element={<NotFound />} path="*" />
+    </Routes>
   );
 };
 

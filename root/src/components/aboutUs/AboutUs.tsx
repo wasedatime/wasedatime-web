@@ -14,7 +14,7 @@ import OurMission from "@app/components/aboutUs/OurMission";
 import Partners from "@app/components/aboutUs/Partners";
 import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
 import { gaLanguage } from "@app/ga/eventCategories";
-import { ThemeContext } from "@app/utils/themeContext";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const MeetOurTeam = lazy(
   () => import("@app/components/aboutUs/MeetOurTeam/MeetOurTeam")
@@ -42,7 +42,7 @@ const AboutUsMenu = styled.div`
     `}
 `;
 
-const AboutUs = (props: { path: string }) => {
+const AboutUs = () => {
   const { theme, setTheme } = useContext(ThemeContext);
   const [activePage, setActivePage] = useState("our mission");
   const { t, i18n } = useTranslation();
@@ -56,7 +56,10 @@ const AboutUs = (props: { path: string }) => {
   };
 
   return (
-    <AboutUsWrapper id="aboutus_wrapper">
+    <AboutUsWrapper
+      id="aboutus_wrapper"
+      className="bg-light-bgMain dark:bg-dark-bgMain"
+    >
       <Helmet>
         <title>WasedaTime - About Us</title>
         <meta
@@ -78,21 +81,21 @@ const AboutUs = (props: { path: string }) => {
           inputText=""
           disabled
           isBlur={false}
-          // theme={theme}
-          // setTheme={setTheme}
+          theme={theme}
+          setTheme={setTheme}
           changeLang={changeLanguage}
         />
       </HeaderWrapper>
-      <AboutUsFlex>
+      <AboutUsFlex className="bg-light-bgMain dark:bg-dark-bgMain">
         <AboutUsMenu>
           <button
             type="button"
             className={`
-            border-2 border-red-800 border-r-0 ${
+            border-y-2 border-l-2 border-light-main dark:border-dark-main ${
               activePage === "our mission"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
+                ? "bg-light-main dark:bg-dark-main text-white"
+                : "bg-light-bgSide dark:bg-dark-bgSide text-light-main dark:text-dark-main"
+            } hover:bg-light-main hover:text-white dark:hover:bg-dark-main dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
           `}
             onClick={() =>
               activePage !== "our mission" && setActivePage("our mission")
@@ -103,11 +106,11 @@ const AboutUs = (props: { path: string }) => {
           <button
             type="button"
             className={`
-            border-2 border-red-800 border-l-0 border-r-0 ${
+            border-y-2 border-light-main dark:border-dark-main ${
               activePage === "join us"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+                ? "bg-light-main dark:bg-dark-main text-white"
+                : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-main"
+            } hover:bg-light-main hover:text-white dark:hover:bg-dark-main dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
           `}
             onClick={() => activePage !== "join us" && setActivePage("join us")}
           >
@@ -116,11 +119,11 @@ const AboutUs = (props: { path: string }) => {
           <button
             type="button"
             className={`
-            border-2 border-red-800 border-l-0 border-r-0 ${
+            border-y-2 border-light-main dark:border-dark-main ${
               activePage === "meet our team"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+                ? "bg-light-main dark:bg-dark-main text-white"
+                : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-main"
+            } hover:bg-light-main hover:text-white dark:hover:bg-dark-main dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
           `}
             onClick={() =>
               activePage !== "meet our team" && setActivePage("meet our team")
@@ -131,11 +134,11 @@ const AboutUs = (props: { path: string }) => {
           <button
             type="button"
             className={`
-            border-2 border-red-800 border-l-0 ${
+            border-y-2 border-r-2 border-light-main dark:border-dark-main  ${
               activePage === "partners"
-                ? "bg-red-800 text-white"
-                : "bg-white text-red-800"
-            } hover:bg-red-800 hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
+                ? "bg-light-main dark:bg-dark-main text-white"
+                : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-main"
+            } hover:bg-light-main hover:text-white dark:hover:bg-dark-main dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
           `}
             onClick={() =>
               activePage !== "partners" && setActivePage("partners")
@@ -150,7 +153,10 @@ const AboutUs = (props: { path: string }) => {
         {activePage === "meet our team" && (
           <Suspense
             fallback={
-              <LoadingSpinner message="Loading members information..." />
+              <LoadingSpinner
+                theme="dark"
+                message="Loading members information..."
+              />
             }
           >
             <MeetOurTeam />
@@ -159,7 +165,10 @@ const AboutUs = (props: { path: string }) => {
         {activePage === "partners" && (
           <Suspense
             fallback={
-              <LoadingSpinner message="Loading partners information..." />
+              <LoadingSpinner
+                theme="dark"
+                message="Loading partners information..."
+              />
             }
           >
             <Partners />

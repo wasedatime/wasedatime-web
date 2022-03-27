@@ -77,7 +77,6 @@ const MajorWrapper = styled.div`
 const MajorText = styled.div`
   position: relative;
   height: 100%;
-  color: #fff;
   text-shadow: 1px 1px 5px #000;
   font-size: 20px;
   padding: 10px;
@@ -134,7 +133,7 @@ const SchoolMajorSelector = ({
 
   return (
     <Menu>
-      <h5 style={{ marginBottom: "5px" }}>
+      <h5 className="mb-4 text-light-text2 dark:text-dark-text2">
         <FontAwesomeIcon icon={faFilter} size="1x" />
         &nbsp;
         <b>{t("syllabus.Filter by")}</b>
@@ -154,7 +153,9 @@ const SchoolMajorSelector = ({
 
       {majorsBySchool[selectedSchool]?.map((major) => (
         <MajorWrapper onClick={() => switchMajorAndCloseModal(major)}>
-          <MajorText>{t(`labs.major.${major}`)}</MajorText>
+          <MajorText className="text-white dark:text-dark-text2">
+            {t(`labs.major.${major}`)}
+          </MajorText>
           <ReviewsCount school={selectedSchool}>
             {reviews[selectedSchool][major].length}
           </ReviewsCount>

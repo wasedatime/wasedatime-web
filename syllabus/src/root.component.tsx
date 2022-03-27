@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import API from "@aws-amplify/api";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
@@ -17,6 +17,7 @@ import configureStore from "@app/configureStore";
 import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/ja/translation.json";
 import { saveState } from "@app/utils/localforage-global-state";
+import { ThemeContext, ThemeProvider } from "@app/utils/theme-context";
 
 const config = {
   API: {
@@ -48,6 +49,16 @@ if (process.env.NODE_ENV === "production") {
   ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
 }
 
+const LoadingSpinnerContainer = () => {
+  const { theme } = useContext(ThemeContext);
+
+  return (
+    <div style={{ height: "100vh" }} className="dark:bg-dark-bgMain">
+      <LoadingSpinner theme={theme} message="Loading..." />
+    </div>
+  );
+};
+
 const Root = () => {
   const [reduxStore, setReduxStore] = useState(null);
 
@@ -77,18 +88,22 @@ const Root = () => {
     setReduxStore(store);
   };
 
-  return reduxStore ? (
-    <Sentry.ErrorBoundary
-      fallback={({ error, componentStack, resetError }) => (
-        <ErrorFallback error={error} resetError={resetError} />
+  return (
+    <ThemeProvider>
+      {reduxStore ? (
+        <Sentry.ErrorBoundary
+          fallback={({ error, componentStack, resetError }) => (
+            <ErrorFallback error={error} resetError={resetError} />
+          )}
+        >
+          <Provider store={reduxStore}>
+            <App />
+          </Provider>
+        </Sentry.ErrorBoundary>
+      ) : (
+        <LoadingSpinnerContainer />
       )}
-    >
-      <Provider store={reduxStore}>
-        <App />
-      </Provider>
-    </Sentry.ErrorBoundary>
-  ) : (
-    <LoadingSpinner message="Loading..." />
+    </ThemeProvider>
   );
 };
 

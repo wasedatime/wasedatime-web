@@ -1,21 +1,9 @@
-import { normalTheme as coreTheme } from "@bit/wasedatime.core.ts.constants.theme";
-
-export const syllabusTheme = {
-  ...coreTheme,
-
-  red: "#ce0115",
-  green: "#48af37",
-  blue: "#6495ed",
-  orange: "ffa500",
-};
-
-export const timetableTheme = {
-  ...syllabusTheme,
-
-  /*
+/*
   Incredibly useful site:
   https://www.materialpalette.com/colors
-  */
+*/
+
+const timetableColors = {
   color0: "#580505",
   bgColor0: "#ef9a9a",
   color1: "#862505",
@@ -50,3 +38,5 @@ export const timetableTheme = {
   deepGrey: "#222",
   lightGrey: "#aaa",
 };
+
+export default timetableColors;

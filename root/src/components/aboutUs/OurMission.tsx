@@ -21,7 +21,6 @@ import "react-vertical-timeline-component/style.min.css";
 
 const MainParagraph = styled("p")`
   align-items: center;
-  background-color: #fff;
   padding: 0 20vw;
   ${media.tablet`padding: 0 5vw;`};
   color: #666;
@@ -31,10 +30,13 @@ const MainParagraph = styled("p")`
 `;
 
 const OurMission = () => (
-  <Wrapper>
+  <Wrapper className="bg-light-bgMain dark:bg-dark-bgMain">
     <MainParagraph>
       <br />
-      <h2 style={{ color: "#555", textAlign: "center" }}>
+      <h2
+        className="text-light-text1 dark:text-dark-text1"
+        style={{ textAlign: "center" }}
+      >
         <b>
           <span role="img" aria-label="smile">
             🔎
@@ -44,7 +46,7 @@ const OurMission = () => (
       </h2>
       <hr />
       <br />
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         A team formed by Waseda students and graduates, committed to developing
         and improving WasedaTime. Feeling that Waseda's official syllabus was
         not convenient and comfortable enough to use, our founder, Oscar,
@@ -53,7 +55,10 @@ const OurMission = () => (
         Engineering, creates the first version of WasedaTime.
       </p>
       <br />
-      <h2 style={{ color: "#555", textAlign: "center" }}>
+      <h2
+        className="text-light-text1 dark:text-dark-text1"
+        style={{ textAlign: "center" }}
+      >
         <b>
           <span role="img" aria-label="smile">
             🚀
@@ -63,7 +68,7 @@ const OurMission = () => (
       </h2>
       <hr />
       <br />
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         In the future, it will become not merely a tool, but a 'platform' for
         Waseda students, with different cultural backgrounds, different majors
         and different career development plans, to interact and communicate on
@@ -73,7 +78,10 @@ const OurMission = () => (
         life for Waseda students, and may radiate to other schools.
       </p>
       <br />
-      <h2 style={{ color: "#555", textAlign: "center" }}>
+      <h2
+        className="text-light-text1 dark:text-dark-text1"
+        style={{ textAlign: "center" }}
+      >
         <b>
           <span role="img" aria-label="smile">
             😎
@@ -83,13 +91,16 @@ const OurMission = () => (
       </h2>
       <hr />
       <br />
-      <h3 style={{ color: "#555", textAlign: "center" }}>
+      <h3
+        className="text-light-text1 dark:text-dark-text1"
+        style={{ textAlign: "center" }}
+      >
         <span role="img" aria-label="smile">
           💻
         </span>{" "}
         Tech
       </h3>
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         From the driven newcomer to the experienced veteran, wasedatime's tech
         team will be responsible for turning ideas into reality. With a wealth
         of hands-on experience, some of our team members have internship
@@ -100,14 +111,17 @@ const OurMission = () => (
         contributing to the students.
       </p>
       <br />
-      <h3 style={{ color: "#555", textAlign: "center" }}>
+      <h3
+        className="text-light-text1 dark:text-dark-text1"
+        style={{ textAlign: "center" }}
+      >
         <span role="img" aria-label="smile">
           💼
         </span>{" "}
         Non-Tech
       </h3>
 
-      <p>
+      <p className="text-light-text2 dark:text-dark-text2">
         Our marketers come from various academic and cultural backgrounds. Each
         has an extensive internship experience (investment bank/internet
         maker/consulting firm).Our functions included but not limited to brand
@@ -120,7 +134,10 @@ const OurMission = () => (
         results won’t be far.
       </p>
       <br />
-      <h2 style={{ color: "#555", textAlign: "center" }}>
+      <h2
+        className="text-light-text1 dark:text-dark-text1"
+        style={{ textAlign: "center" }}
+      >
         <b>
           <span role="img" aria-label="smile">
             📆

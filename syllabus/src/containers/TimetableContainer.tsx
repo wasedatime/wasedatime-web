@@ -4,7 +4,6 @@ import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { navigate } from "@reach/router";
 import { Helmet } from "react-helmet";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
@@ -17,10 +16,13 @@ import { getAddedCoursesAndPrefsByTerm } from "@app/redux/reducers/addedCourses"
 import Course from "@app/types/course";
 import { sortAddedCoursesAndPrefs } from "@app/utils/added-courses-and-prefs";
 import { getCurrentSemester } from "@app/utils/get-current-semesters";
+import { ThemeContext } from "@app/utils/theme-context";
+import withRouter, { WithRouter } from "@app/utils/with-router";
 
 const Timetable = lazy(() => import("@app/components/timetable/Timetable"));
 
 const TimetableWrapper = styled(Wrapper)`
+  height: 100vh;
   display: flex;
   flex-direction: column;
 `;
@@ -48,9 +50,7 @@ interface ReduxStateProps {
   selectedSortingOption: string;
 }
 
-interface OwnProps extends WithTranslation {
-  path: string;
-}
+interface OwnProps extends WithTranslation, WithRouter {}
 
 interface OwnState {
   selectedSemester: string;
@@ -70,7 +70,7 @@ class TimetableContainer extends React.Component<
   constructor(props) {
     super(props);
     if (window.location.pathname.includes("syllabus"))
-      navigate("/courses/syllabus");
+      props.router.navigate("/courses/syllabus");
 
     this.semesterTitles = {
       [Semester.SPRING]: "Spring Semester",
@@ -82,6 +82,8 @@ class TimetableContainer extends React.Component<
       selectedQuarter: "",
     };
   }
+
+  static contextType = ThemeContext;
 
   handleToggleSemester = () => {
     this.setState({
@@ -103,6 +105,7 @@ class TimetableContainer extends React.Component<
     const { t, i18n, addedCoursesAndPrefsByTerm, selectedSortingOption } =
       this.props;
     const { selectedSemester, selectedQuarter } = this.state;
+    const { theme, setTheme } = this.context;
 
     const addedCoursesAndPrefs =
       selectedQuarter.length > 0
@@ -137,12 +140,12 @@ class TimetableContainer extends React.Component<
             inputText=""
             disabled
             isBlur={false}
-            // theme={"light"}
-            // setTheme={() => {}}
+            theme={theme}
+            setTheme={setTheme}
             changeLang={(lng) => i18n.changeLanguage(lng)}
           />
         </HeaderWrapper>
-        <TimetableFlex>
+        <TimetableFlex className="bg-light-bgMain dark:bg-dark-bgMain">
           <SemesterSwitcher
             semesterTitle={t(
               `timetable.${this.semesterTitles[selectedSemester]}`
@@ -154,7 +157,9 @@ class TimetableContainer extends React.Component<
             toggleQuarter={this.handleToggleQuarter}
             isSmallSize={false}
           />
-          <Suspense fallback={<LoadingSpinner message="Loading..." />}>
+          <Suspense
+            fallback={<LoadingSpinner theme={theme} message="Loading..." />}
+          >
             <Timetable addedCoursesAndPrefs={sortedAddedCoursesAndPrefs} />
           </Suspense>
         </TimetableFlex>
@@ -173,4 +178,4 @@ const mapStateToProps = (state: ReduxRootState) => ({
 export default connect<ReduxStateProps, {}>(
   mapStateToProps,
   null
-)(withTranslation("translation")(TimetableContainer));
+)(withTranslation("translation")(withRouter(TimetableContainer)));

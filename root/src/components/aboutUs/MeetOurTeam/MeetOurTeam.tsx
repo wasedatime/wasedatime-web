@@ -16,7 +16,6 @@ const Title = styled("h2")`
   font-size: 1.5em;
   margin: 0 auto;
   text-align: center;
-  color: #444 !important;
 `;
 
 const SubTitle = styled("h2")`
@@ -25,7 +24,6 @@ const SubTitle = styled("h2")`
   font-size: 1.3em;
   margin: 5px auto;
   text-align: center;
-  color: #666 !important;
 `;
 
 const CardArea = styled("div")`
@@ -49,8 +47,7 @@ const Card = styled("div")`
 
 const MemberImage = styled("img")`
   width: 80%;
-  border: white 7px solid;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   box-shadow: 0px 0px 8px;
 `;
 const MemberName = styled("div")`
@@ -91,9 +88,16 @@ const MemberCard = ({
   profileText,
 }: Members) => (
   <Card>
-    <MemberImage src={image} />
-    <MemberName>{name}</MemberName>
-    <MemberPosition>{position}</MemberPosition>
+    <MemberImage
+      className="border-light-bgSide dark:border-dark-bgSide border-8 border-solid rounded-full"
+      src={image}
+    />
+    <MemberName className="text-light-text1 dark:text-dark-text1">
+      {name}
+    </MemberName>
+    <MemberPosition className="text-light-text1 dark:text-dark-text1">
+      {position}
+    </MemberPosition>
 
     {socials && (
       <SocialMediaArea>
@@ -104,7 +108,11 @@ const MemberCard = ({
         ))}
       </SocialMediaArea>
     )}
-    {profileText && <MemberVision>{profileText}</MemberVision>}
+    {profileText && (
+      <MemberVision className="text-light-text2 dark:text-dark-text2">
+        {profileText}
+      </MemberVision>
+    )}
   </Card>
 );
 
@@ -114,9 +122,13 @@ const MeetOurTeam = () => {
   return (
     <Wrapper>
       <br />
-      <Title>Meet Our Talented Team!</Title>
+      <Title className="text-light-text1 dark:text-dark-text1">
+        Meet Our Talented Team!
+      </Title>
       <br />
-      <SubTitle>Current Members</SubTitle>
+      <SubTitle className="text-light-text1 dark:text-dark-text1">
+        Current Members
+      </SubTitle>
       <CardArea>
         {CurrentList.map((member) => (
           <MemberCard
@@ -128,10 +140,12 @@ const MeetOurTeam = () => {
           />
         ))}
       </CardArea>
-      <br/>  
-      
-      <br/>
-      <SubTitle>Our Alumni</SubTitle>
+      <br />
+
+      <br />
+      <SubTitle className="text-light-text1 dark:text-dark-text1">
+        Our Alumni
+      </SubTitle>
       <CardArea>
         {AlumniList.map((member) => (
           <MemberCard

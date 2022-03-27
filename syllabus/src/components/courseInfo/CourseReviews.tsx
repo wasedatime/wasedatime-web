@@ -27,28 +27,37 @@ import { gaCourseReviews } from "@app/ga/eventCategories";
 import { Course } from "@app/types/course";
 import { Review, Scales } from "@app/types/review";
 import { getAvgScales } from "@app/utils/get-avg-scales";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const StyledReviewsWrapper = styled("div")`
   ${media.phone`padding: 0 1em;`}
 `;
 
-const StyledSubHeading = styled("h6")`
+const StyledSubHeading = styled("h4")`
   align-self: flex-start;
   margin: 1rem 0px;
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-weight: 300;
+  font-size: 16px;
 `;
 
 const AddReviewButton = styled("button")`
-  background-color: #b51e36;
   color: #fff;
   border: 0px;
   border-radius: 5px;
   float: right;
-  ${media.desktop`float: none; width: 100%;`}
+  font-size: 14px;
+  padding: 0px 0.5em;
+  margin-top: 0.3rem;
+
+  @media (max-width: 1180px) {
+    float: none;
+    width: 100%;
+    margin-top: 0.5em;
+  }
+  ${media.desktop`float: none; width: 100%; margin-top: 0.5em;`}
   ${media.phone`font-size: 1.5em`}
-  padding: 0.3rem 0.5em;
 `;
 
 const Announcement = styled("div")`
@@ -71,6 +80,16 @@ const Disclaimer = styled(Announcement)`
 const ReviewsListWrapper = styled("div")`
   max-height: 60vh;
   overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 10px;
+    background: #999;
+  }
 `;
 
 interface Props extends WithTranslation {
@@ -118,6 +137,8 @@ class CourseReviews extends React.Component<Props, State> {
       userId: "",
     };
   }
+
+  static contextType = ThemeContext;
 
   onFormScaleChange = (target, score) => {
     this.setState((prevState) => ({
@@ -286,7 +307,7 @@ class CourseReviews extends React.Component<Props, State> {
           scalesAvg: getAvgScales(updatedReviews),
         });
       })
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
   };
 
   openReviewForm = () =>
@@ -306,6 +327,7 @@ class CourseReviews extends React.Component<Props, State> {
 
   render() {
     const { searchLang, t } = this.props;
+    const { theme } = this.context;
 
     const {
       reviews,
@@ -319,7 +341,7 @@ class CourseReviews extends React.Component<Props, State> {
     } = this.state;
 
     return isFormOpen ? (
-      <StyledReviewsWrapper>
+      <StyledReviewsWrapper className="dark:bg-dark-bgMain">
         <AddReviewForm
           closeModal={() => this.setState({ isFormOpen: false })}
           scales={formScales}
@@ -331,7 +353,7 @@ class CourseReviews extends React.Component<Props, State> {
         />
       </StyledReviewsWrapper>
     ) : (
-      <StyledReviewsWrapper>
+      <StyledReviewsWrapper className="dark:bg-dark-bgMain">
         <StyledSubHeading>
           {t("courseInfo.Reviews")}{" "}
           <MediaQuery minWidth={sizes.phone}>
@@ -354,7 +376,10 @@ class CourseReviews extends React.Component<Props, State> {
           <MediaQuery minWidth={sizes.phone}>
             {(matches) =>
               matches && (
-                <AddReviewButton onClick={this.openReviewForm}>
+                <AddReviewButton
+                  onClick={this.openReviewForm}
+                  className="bg-light-main dark:bg-dark-main"
+                >
                   <FontAwesomeIcon icon={faPen} />{" "}
                   {this.props.t("courseInfo.Write your Review")}
                 </AddReviewButton>
@@ -365,14 +390,19 @@ class CourseReviews extends React.Component<Props, State> {
         <MediaQuery minWidth={sizes.phone}>
           {(matches) =>
             !matches && (
-              <AddReviewButton onClick={this.openReviewForm}>
+              <AddReviewButton
+                onClick={this.openReviewForm}
+                className="bg-light-main dark:bg-dark-main"
+              >
                 <FontAwesomeIcon icon={faPen} />{" "}
                 {this.props.t("courseInfo.Write your Review")}
               </AddReviewButton>
             )
           }
         </MediaQuery>
-        <Disclaimer>{t("courseInfo.Disclaimer")}</Disclaimer>
+        <Disclaimer className="dark:bg-dark-text3 dark:text-dark-text2">
+          {t("courseInfo.Disclaimer")}
+        </Disclaimer>
         <ReviewsListWrapper>
           <ReviewScalesCount
             avgSatisfaction={scalesAvg.satisfaction}
@@ -391,6 +421,7 @@ class CourseReviews extends React.Component<Props, State> {
         <SignInModal
           isModalOpen={isSignInModalOpen}
           closeModal={() => this.setState({ isSignInModalOpen: false })}
+          theme={theme}
         />
       </StyledReviewsWrapper>
     );

@@ -32,6 +32,7 @@ interface OwnProps {
   course: Course;
   expandable: boolean;
   isRelatedCourse?: boolean;
+  clearSearchBar?: () => void;
 }
 
 class CourseItemContainer extends React.Component<
@@ -100,6 +101,7 @@ class CourseItemContainer extends React.Component<
       addedCourseIds,
       expandable,
       isRelatedCourse,
+      clearSearchBar,
     } = this.props;
     const isAddable = !addedCourseIds.includes(course[SyllabusKey.ID]);
 
@@ -114,6 +116,7 @@ class CourseItemContainer extends React.Component<
         course={course}
         expandable={expandable}
         isRelatedCourse={isRelatedCourse}
+        clearSearchBar={clearSearchBar}
       />
     );
   }

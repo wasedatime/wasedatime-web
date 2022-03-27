@@ -15,6 +15,7 @@ import Lab from "@app/components/labs/Lab";
 import SchoolMajorSelector from "@app/components/labs/SchoolMajorSelector";
 import FilterButton from "@app/components/syllabus/FilterButton";
 import SyllabusTabs from "@app/components/SyllabusTabs";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type ThankMessageProps = {
   isDisplayed: boolean;
@@ -56,8 +57,6 @@ const SyllabusTabsWrapper = styled.div`
 const ThankMessage = styled.div<ThankMessageProps>`
   flex: 21px;
   font-size: 12px;
-  color: #fff;
-  background-color: #b51e36;
   text-align: center;
   position: relative;
   ${(props) => !props.isDisplayed && "display: none;"}
@@ -159,6 +158,16 @@ const LabsList = styled.div<LabsListProps>`
   `}
 
   overflow-y: auto;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    width: 5px;
+    border-radius: 10px;
+    background: #999;
+  }
 `;
 
 const modalStyle = {
@@ -184,9 +193,7 @@ const modalStyle = {
   },
 };
 
-interface Props extends WithTranslation {
-  path: string;
-}
+type Props = WithTranslation;
 
 interface State {
   school: string;
@@ -210,6 +217,8 @@ class Labs extends React.Component<Props, State> {
       isThankMessageDisplayed: true,
     };
   }
+
+  static contextType = ThemeContext;
 
   updateSearchTerm = () => {
     this.setState((prevState, props) => {
@@ -238,6 +247,7 @@ class Labs extends React.Component<Props, State> {
     const { t, i18n } = this.props;
     const { school, major, inputText, searchTerm, isThankMessageDisplayed } =
       this.state;
+    const { theme, setTheme } = this.context;
 
     return (
       <LabsOuterWrapper className="theme-default">
@@ -264,6 +274,8 @@ class Labs extends React.Component<Props, State> {
             disabled={false}
             isBlur={false}
             changeLang={(lng) => i18n.changeLanguage(lng)}
+            theme={theme}
+            setTheme={setTheme}
           />
         </HeaderWrapper>
 
@@ -271,10 +283,14 @@ class Labs extends React.Component<Props, State> {
           <SyllabusTabs />
         </SyllabusTabsWrapper>
 
-        <ThankMessage isDisplayed={isThankMessageDisplayed}>
+        <ThankMessage
+          isDisplayed={isThankMessageDisplayed}
+          className="bg-light-main text-white dark:bg-dark-main dark:text-white"
+        >
           {t("labs.thankMessage")}
           <CloseThankMessageButton
             onClick={() => this.setState({ isThankMessageDisplayed: false })}
+            className="text-white dark:text-white"
           >
             ×
           </CloseThankMessageButton>
@@ -283,7 +299,10 @@ class Labs extends React.Component<Props, State> {
         <LabsWrapper isLower={isThankMessageDisplayed}>
           <LabsList isLower={isThankMessageDisplayed}>
             {major && (
-              <MajorHeader school={school}>
+              <MajorHeader
+                school={school}
+                className="text-light-text1 dark:text-dark-text1"
+              >
                 {t(`labs.major.${major}`)}
               </MajorHeader>
             )}
@@ -300,12 +319,17 @@ class Labs extends React.Component<Props, State> {
                     )
                 )
               ) : (
-                <Message warning size="tiny" style={{ margin: "1em" }}>
+                <Message warning size="tiny" className="m-4 dark:opacity-70">
                   <h5>{t("labs.noReviewWarning")}</h5>
                 </Message>
               )
             ) : (
-              <Message warning size="tiny" style={{ margin: "1em" }}>
+              <Message
+                warning
+                size="tiny"
+                style={{ margin: "1em" }}
+                className="dark:opacity-70"
+              >
                 <h5>{t("labs.filterHint")}</h5>
               </Message>
             )}

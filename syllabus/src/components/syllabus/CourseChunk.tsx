@@ -9,9 +9,10 @@ interface Props {
   chunk: Course[];
   searchTerm: string | string[];
   searchLang: string | string[];
+  clearSearchBar: () => void;
 }
 
-const CourseChunk = ({ chunk, searchTerm, searchLang }: Props) => {
+const CourseChunk = ({ chunk, searchTerm, searchLang, clearSearchBar }: Props) => {
   return (
     <UnstyledUList>
       {chunk.map((course) => (
@@ -20,6 +21,7 @@ const CourseChunk = ({ chunk, searchTerm, searchLang }: Props) => {
           searchTerm={searchTerm}
           searchLang={searchLang}
           course={course}
+          clearSearchBar={clearSearchBar}
           expandable
         />
       ))}

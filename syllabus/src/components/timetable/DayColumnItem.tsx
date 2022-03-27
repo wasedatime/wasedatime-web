@@ -19,7 +19,6 @@ const DayItem = styled("div")`
   align-items: center;
   font-size: 1em;
   font-weight: 600;
-  border-bottom: solid 1px #ccc;
   max-height: 20px !important;
 `;
 
@@ -39,7 +38,7 @@ interface Props {
 const DayColumnItem = ({ day, largestPeriod, coursesAndProperties }: Props) => {
   return (
     <StyledDayColumnItem>
-      <DayItem>
+      <DayItem className="border-b border-b-gray-100 dark:border-b-dark-text3">
         <span>{day}</span>
       </DayItem>
       <CourseColumn

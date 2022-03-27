@@ -94,7 +94,7 @@ const SemesterSwitcher = ({
           onClick={() => toggleSemester()}
           aria-label="Semester toggle"
           small={isSmallSize}
-          className="text-light-darker dark:text-dark-lighter"
+          className="text-light-darker dark:text-dark-main"
         >
           <FontAwesomeIcon icon={faAngleDoubleLeft} size="1x" />
         </ExtendedInvisibleButton>
@@ -108,7 +108,7 @@ const SemesterSwitcher = ({
           onClick={toggleSemester}
           aria-label="Semester toggle"
           small={isSmallSize}
-          className="text-light-darker dark:text-dark-lighter"
+          className="text-light-darker dark:text-dark-main"
         >
           <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />
         </ExtendedInvisibleButton>

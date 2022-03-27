@@ -114,10 +114,6 @@ module.exports = (webpackConfigEnv, argv) => {
               // The filename here must match the filename for the MiniCssExtractPlugin
               filename: "[name].css",
             }),
-            new FilterWarningsPlugin({
-              exclude:
-                /Critical dependency: the request of a dependency is an expression/,
-            }),
           ],
   });
 };

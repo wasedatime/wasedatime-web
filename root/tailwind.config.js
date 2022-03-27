@@ -4,7 +4,7 @@ module.exports = {
   darkMode: "class",
   content: ["./src/**/*.{ejs,js,jsx,ts,tsx,html}"],
   safelist:
-    process.env.PURGE_TAILWIND_CSS === "true" ? [{ pattern: /.*/ }] : [],
+    process.env.DONT_PURGE_TAILWIND_CSS === "true" ? [{ pattern: /.*/ }] : [],
   theme: {
     extend: {
       textColors: colors,

@@ -4,8 +4,8 @@
     "*.css"
   ],
   "scripts": {
-    "preinstall": "npx -y only-allow pnpm",
-    "start": "PURGE_TAILWIND_CSS=true pnpm run tailwind:build && webpack serve --port 9000 --env isLocal",
+    "preinstall": "npx only-allow pnpm",
+    "start": "DONT_PURGE_TAILWIND_CSS=true pnpm run tailwind:build && webpack serve --port 9000 --env isLocal",
     "fix": "pnpm run format && pnpm run lint:fix",
     "lint": "eslint src --ext \"**/*.{js,ts,tsx}\"",
     "lint:fix": "eslint --fix \"**/*.{js,ts,tsx}\"",

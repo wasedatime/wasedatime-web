@@ -231,6 +231,7 @@ interface Props extends WithTranslation {
   handleOnClick: (title: string, lng: string) => void;
   expandable: boolean;
   isRelatedCourse?: boolean;
+  clearSearchBar?: () => void;
 }
 
 const CourseItem = ({
@@ -241,6 +242,7 @@ const CourseItem = ({
   handleOnClick,
   expandable,
   isRelatedCourse,
+  clearSearchBar,
   t,
   i18n,
 }: Props) => {
@@ -289,20 +291,20 @@ const CourseItem = ({
     });
 
   const courseModalityIcons = [
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faChalkboardTeacher} />
     </span>,
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faChalkboardTeacher} />{" "}
       <FontAwesomeIcon icon={faWifi} />
     </span>,
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faVideo} />
     </span>,
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faVideo} /> <FontAwesomeIcon icon={faClock} />
     </span>,
-    <span style={{ fontSize: "14px" }}>
+    <span style={{ fontSize: "14px" }} className="dark:text-dark-text1">
       <FontAwesomeIcon icon={faBroadcastTower} />
     </span>,
   ];
@@ -393,7 +395,7 @@ const CourseItem = ({
       )}
 
       {expandable && expanded && (
-        <CourseInfo course={course} searchLang={searchLang} />
+        <CourseInfo course={course} searchLang={searchLang} clearSearchBar={clearSearchBar} />
       )}
     </CourseItemWrapper>
   );

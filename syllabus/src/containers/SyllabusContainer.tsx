@@ -395,6 +395,7 @@ class SyllabusContainer extends React.Component<
                   searchLang={searchLang}
                   results={results}
                   onSearchInputChange={this.handleInputChange}
+                  clearSearchBar={() => this.setState({ searchTerm: "", inputText: "" })}
                 />
               ) : (
                 <div style={{ padding: "2em" }}>

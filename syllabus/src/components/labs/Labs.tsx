@@ -57,8 +57,6 @@ const SyllabusTabsWrapper = styled.div`
 const ThankMessage = styled.div<ThankMessageProps>`
   flex: 21px;
   font-size: 12px;
-  color: #fff;
-  background-color: #b51e36;
   text-align: center;
   position: relative;
   ${(props) => !props.isDisplayed && "display: none;"}
@@ -287,11 +285,12 @@ class Labs extends React.Component<Props, State> {
 
         <ThankMessage
           isDisplayed={isThankMessageDisplayed}
-          className="dark:opacity-70"
+          className="bg-light-main text-white dark:bg-dark-main dark:text-white"
         >
           {t("labs.thankMessage")}
           <CloseThankMessageButton
             onClick={() => this.setState({ isThankMessageDisplayed: false })}
+            className="text-white dark:text-white"
           >
             ×
           </CloseThankMessageButton>

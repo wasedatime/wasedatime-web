@@ -52,6 +52,7 @@ interface Props extends WithTranslation {
   searchLang: string | string[];
   results: Course[];
   onSearchInputChange: (inputText: string) => void;
+  clearSearchBar: () => void;
 }
 
 interface State {
@@ -109,7 +110,7 @@ class FetchedCourseList extends React.Component<Props, State> {
   };
 
   render() {
-    const { searchTerm, searchLang, results, t, i18n } = this.props;
+    const { searchTerm, searchLang, results, clearSearchBar, t, i18n } = this.props;
     const resultsInChunks = this.resultsToChunks();
 
     return (
@@ -138,6 +139,7 @@ class FetchedCourseList extends React.Component<Props, State> {
                   chunk={chunk}
                   searchTerm={searchTerm}
                   searchLang={searchLang}
+                  clearSearchBar={clearSearchBar}
                 />
               </CourseChunkWrapper>
             </Waypoint>

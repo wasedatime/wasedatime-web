@@ -33,7 +33,7 @@ const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
     props.active &&
     `
     background-color: ${
-      props.isDark ? colors.dark.lighter : colors.light.lighter
+      props.isDark ? colors.dark.main : colors.light.main
     };
     color: ${props.isDark ? colors.dark.text1 : "#fff"};
   `};
@@ -42,7 +42,7 @@ const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
   &:hover {
     outline: none;
     background-color: ${(props) =>
-      props.isDark ? colors.dark.lighter : colors.light.lighter};
+      props.isDark ? colors.dark.main : colors.light.main};
     color: ${(props) => (props.isDark ? colors.dark.text1 : "#fff")};
   }
 

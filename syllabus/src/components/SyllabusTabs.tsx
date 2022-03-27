@@ -20,7 +20,7 @@ const Tab = styled.button`
 const SyllabusTabs = ({ t }: WithTranslation) => {
   const location = useLocation();
   const tabClassName =
-    "text-light-text3 bg-light-bgSide dark:text-dark-text2 dark:bg-dark-text3";
+    "text-light-text3 bg-light-bgSide dark:text-dark-text2 dark:bg-dark-bgSide";
   const activeTabClassName =
     "text-light-text1 bg-light-bgMain dark:text-dark-text1 dark:bg-dark-bgMain";
 
@@ -30,7 +30,7 @@ const SyllabusTabs = ({ t }: WithTranslation) => {
   ];
 
   return (
-    <TabsWrapper className="bg-light-bgSide dark:bg-dark-text3">
+    <TabsWrapper className="bg-light-bgSide dark:bg-dark-bgSide">
       {tabItems.map((item) => (
         <Link to={`/courses/${item.path}`}>
           <Tab

@@ -139,6 +139,7 @@ interface ReduxStateProps {
 interface OwnProps extends WithTranslation {
   course: Course;
   searchLang: string | string[];
+  clearSearchBar: () => void;
 }
 
 interface OwnState {
@@ -237,7 +238,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
   }
 
   render() {
-    const { course: courseFromProps, searchLang, t, i18n } = this.props;
+    const { course: courseFromProps, searchLang, clearSearchBar, t, i18n } = this.props;
     const {
       courseWithMoreDetails,
       areDetailsLoaded,
@@ -304,13 +305,14 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
             relatedCourses.map((course, i) => (
               <RelatedCourse
                 key={i}
-                onClick={() =>
+                onClick={() => {
                   ReactGA.event({
                     category: gaCourseDetails,
                     action: gaClickRelatedCourse,
                     label: course[SyllabusKey.TITLE],
-                  })
-                }
+                  });
+                  clearSearchBar();
+                }}
                 className="dark:bg-dark-bgMain"
               >
                 <CourseItemContainer

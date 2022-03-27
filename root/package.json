@@ -34,7 +34,7 @@
     "copy-webpack-plugin": "10.2.4",
     "cross-env": "7.0.3",
     "css-minimizer-webpack-plugin": "3.4.1",
-    "cssnano": "5.1.2",
+    "cssnano": "5.1.4",
     "dotenv-webpack": "7.1.0",
     "eslint": "8.10.0",
     "eslint-config-airbnb": "19.0.4",
@@ -74,7 +74,7 @@
     "workbox-webpack-plugin": "6.5.1"
   },
   "dependencies": {
-    "@aws-amplify/auth": "3.4.34",
+    "@aws-amplify/auth": "4.4.4",
     "@aws-amplify/core": "4.4.0",
     "@bit/wasedatime.core.assets.text-logo": "0.0.1",
     "@bit/wasedatime.core.theme.colors": "0.0.4",

@@ -1,7 +1,7 @@
 lockfileVersion: 5.3
 
 specifiers:
-  '@aws-amplify/auth': 3.4.34
+  '@aws-amplify/auth': 4.4.4
   '@aws-amplify/core': 4.4.0
   '@babel/core': 7.17.5
   '@babel/eslint-parser': 7.17.0
@@ -52,7 +52,7 @@ specifiers:
   cross-env: 7.0.3
   css-loader: 6.7.1
   css-minimizer-webpack-plugin: 3.4.1
-  cssnano: 5.1.2
+  cssnano: 5.1.4
   dotenv-webpack: 7.1.0
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4
@@ -119,7 +119,7 @@ specifiers:
   workbox-webpack-plugin: 6.5.1
 
 dependencies:
-  '@aws-amplify/auth': 3.4.34
+  '@aws-amplify/auth': 4.4.4
   '@aws-amplify/core': 4.4.0
   '@bit/wasedatime.core.assets.text-logo': 0.0.1_react@17.0.2
   '@bit/wasedatime.core.theme.colors': 0.0.4
@@ -200,7 +200,7 @@ devDependencies:
   copy-webpack-plugin: 10.2.4_webpack@5.70.0
   cross-env: 7.0.3
   css-minimizer-webpack-plugin: 3.4.1_webpack@5.70.0
-  cssnano: 5.1.2_postcss@8.4.8
+  cssnano: 5.1.4_postcss@8.4.8
   dotenv-webpack: 7.1.0_webpack@5.70.0
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4_02055cb2ac87aa4e32a2bafaced0e2fb
@@ -271,10 +271,30 @@ packages:
       - react-native
     dev: false
 
+  /@aws-amplify/auth/4.4.4:
+    resolution: {integrity: sha512-/iQB8teOXxb6XkOK2nPBxldU5YZjMLy6vTpihWMOPP96TWqldgnKSZykYtsrTb6uYK8iF1VWr7DI9OE7UpKONQ==}
+    dependencies:
+      '@aws-amplify/cache': 4.0.37
+      '@aws-amplify/core': 4.4.2
+      amazon-cognito-identity-js: 5.2.8
+      crypto-js: 4.1.1
+    transitivePeerDependencies:
+      - encoding
+      - react-native
+    dev: false
+
   /@aws-amplify/cache/3.1.57:
     resolution: {integrity: sha512-BSizxpLeOwZ3rDSznP+PUTxSvdmlSctyBEp5UFa5/m9KKTr/+RKjP0W2xk2thAS9faFiVaXvocf2B/RDs4GqDg==}
     dependencies:
       '@aws-amplify/core': 3.8.24
+    transitivePeerDependencies:
+      - react-native
+    dev: false
+
+  /@aws-amplify/cache/4.0.37:
+    resolution: {integrity: sha512-SlUYGVTCv848TAOVW+8PhMQKUaC6fAiflEqvW6LkXN0Etj1tetsUhXoSDFVevxkKQEXXouFrj9dSWnYE6SOIhA==}
+    dependencies:
+      '@aws-amplify/core': 4.4.2
     transitivePeerDependencies:
       - react-native
     dev: false
@@ -295,6 +315,21 @@ packages:
 
   /@aws-amplify/core/4.4.0:
     resolution: {integrity: sha512-vbd9mc3o74MX655YnO3K4YPceSl+r4RX3piCkGnuWE7DhgwoEbF6o/65Wo3P4EBqpOfrl5BeULO67WYXtVXrqQ==}
+    dependencies:
+      '@aws-crypto/sha256-js': 1.0.0-alpha.0
+      '@aws-sdk/client-cloudwatch-logs': 3.6.1
+      '@aws-sdk/client-cognito-identity': 3.6.1
+      '@aws-sdk/credential-provider-cognito-identity': 3.6.1
+      '@aws-sdk/types': 3.6.1
+      '@aws-sdk/util-hex-encoding': 3.6.1
+      universal-cookie: 4.0.4
+      zen-observable-ts: 0.8.19
+    transitivePeerDependencies:
+      - react-native
+    dev: false
+
+  /@aws-amplify/core/4.4.2:
+    resolution: {integrity: sha512-5Q6Te5WcLaUcJpXPVVCb/i/HLBr7dS2KyODqiadb2G4ocqmr6DQaMGo7f77LjQ6WqMDETSijqsLjU8nK+2xOpg==}
     dependencies:
       '@aws-crypto/sha256-js': 1.0.0-alpha.0
       '@aws-sdk/client-cloudwatch-logs': 3.6.1
@@ -4327,6 +4362,27 @@ packages:
       - supports-color
     dev: true
 
+  /@typescript-eslint/typescript-estree/5.15.0_typescript@4.6.2:
+    resolution: {integrity: sha512-Hb0e3dGc35b75xLzixM3cSbG1sSbrTBQDfIScqdyvrfJZVEi4XWAT+UL/HMxEdrJNB8Yk28SKxPLtAhfCbBInA==}
+    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    peerDependencies:
+      typescript: '*'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@typescript-eslint/types': 5.15.0
+      '@typescript-eslint/visitor-keys': 5.15.0
+      debug: 4.3.3
+      globby: 11.1.0
+      is-glob: 4.0.3
+      semver: 7.3.5
+      tsutils: 3.21.0_typescript@4.6.2
+      typescript: 4.6.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: true
+
   /@typescript-eslint/utils/5.14.0_eslint@8.10.0+typescript@4.6.2:
     resolution: {integrity: sha512-EHwlII5mvUA0UsKYnVzySb/5EE/t03duUTweVy8Zqt3UQXBrpEVY144OTceFKaOe4xQXZJrkptCf7PjEBeGK4w==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
@@ -4683,6 +4739,18 @@ packages:
 
   /amazon-cognito-identity-js/4.6.3:
     resolution: {integrity: sha512-MPVJfirbdmSGo7l4h7Kbn3ms1eJXT5Xq8ly+mCPPi8yAxaxdg7ouMUUNTqtDykoZxIdDLF/P6F3Zbg3dlGKOWg==}
+    dependencies:
+      buffer: 4.9.2
+      crypto-js: 4.1.1
+      fast-base64-decode: 1.0.0
+      isomorphic-unfetch: 3.1.0
+      js-cookie: 2.2.1
+    transitivePeerDependencies:
+      - encoding
+    dev: false
+
+  /amazon-cognito-identity-js/5.2.8:
+    resolution: {integrity: sha512-ikHbIBtdJeXUeHIKFDF+qptRbTX81ZIe+ItvsgjcNXEKuW0ZgjnHw6tgPmOFOweQfUyzW+RpA+T3fG+YqOklbw==}
     dependencies:
       buffer: 4.9.2
       crypto-js: 4.1.1
@@ -6006,7 +6074,7 @@ packages:
       esbuild:
         optional: true
     dependencies:
-      cssnano: 5.1.2_postcss@8.4.8
+      cssnano: 5.1.4_postcss@8.4.8
       jest-worker: 27.5.1
       postcss: 8.4.8
       schema-utils: 4.0.0
@@ -6108,8 +6176,8 @@ packages:
       postcss: 8.4.8
     dev: true
 
-  /cssnano/5.1.2_postcss@8.4.8:
-    resolution: {integrity: sha512-zzQSTSLl5FGHhFSNHpUwDrIFYuwzL5d5f0quow5j97rR4GeJ4atuQ7e6qX7+UkrzU6xAzvqztKQYCdVngDTVGw==}
+  /cssnano/5.1.4_postcss@8.4.8:
+    resolution: {integrity: sha512-hbfhVZreEPyzl+NbvRsjNo54JOX80b+j6nqG2biLVLaZHJEiqGyMh4xDGHtwhUKd5p59mj2GlDqlUBwJUuIu5A==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
@@ -10133,7 +10201,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0
     dependencies:
-      cssnano: 5.1.2_postcss@8.4.8
+      cssnano: 5.1.4_postcss@8.4.8
       last-call-webpack-plugin: 3.0.0
       postcss: 8.4.8
       webpack: 5.70.0_webpack-cli@4.9.2

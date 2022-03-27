@@ -91,7 +91,7 @@ const AboutUs = () => {
           <button
             type="button"
             className={`
-            border-2 border-light-main dark:border-dark-main border-r-0 ${
+            border-y-2 border-l-2 border-light-main dark:border-dark-main ${
               activePage === "our mission"
                 ? "bg-light-main dark:bg-dark-main text-white"
                 : "bg-light-bgSide dark:bg-dark-bgSide text-light-main dark:text-dark-main"
@@ -106,7 +106,7 @@ const AboutUs = () => {
           <button
             type="button"
             className={`
-            border-2 border-light-main dark:border-dark-main border-l-0 border-r-0 ${
+            border-y-2 border-light-main dark:border-dark-main ${
               activePage === "join us"
                 ? "bg-light-main dark:bg-dark-main text-white"
                 : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-main"
@@ -119,7 +119,7 @@ const AboutUs = () => {
           <button
             type="button"
             className={`
-            border-2 border-light-main dark:border-dark-main border-l-0 border-r-0 ${
+            border-y-2 border-light-main dark:border-dark-main ${
               activePage === "meet our team"
                 ? "bg-light-main dark:bg-dark-main text-white"
                 : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-main"
@@ -134,7 +134,7 @@ const AboutUs = () => {
           <button
             type="button"
             className={`
-            border-2 border-light-main dark:border-dark-main border-l-0 ${
+            border-y-2 border-r-2 border-light-main dark:border-dark-main  ${
               activePage === "partners"
                 ? "bg-light-main dark:bg-dark-main text-white"
                 : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-main"
@@ -153,7 +153,10 @@ const AboutUs = () => {
         {activePage === "meet our team" && (
           <Suspense
             fallback={
-              <LoadingSpinner theme="dark" message="Loading members information..." />
+              <LoadingSpinner
+                theme="dark"
+                message="Loading members information..."
+              />
             }
           >
             <MeetOurTeam />
@@ -162,7 +165,10 @@ const AboutUs = () => {
         {activePage === "partners" && (
           <Suspense
             fallback={
-              <LoadingSpinner theme="dark" message="Loading partners information..." />
+              <LoadingSpinner
+                theme="dark"
+                message="Loading partners information..."
+              />
             }
           >
             <Partners />

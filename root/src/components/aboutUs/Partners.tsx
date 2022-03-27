@@ -1,15 +1,13 @@
 import React from "react";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import {
-  faFacebook,
-  faInstagram,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
+
+import facebook from "@app/assets/img/socialmediaicon/facebook.png";
+import instagram from "@app/assets/img/socialmediaicon/instagram.png";
+import linkedin from "@app/assets/img/socialmediaicon/linkedin.png";
+import twitter from "@app/assets/img/socialmediaicon/twitter.png";
 
 const Title = styled("h2")`
   width: 50%;
@@ -74,50 +72,57 @@ const SocialMediaArea = styled("div")`
   align-items: center;
 `;
 
+const MediaIcon = styled("img")`
+  width: 100%;
+  width: 1.3em;
+  margin: 4px;
+  text-align: center;
+`;
+
 const partners = [
   {
     org: "SPSE-EDP Student Council",
     img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-logo.png",
-    links: [
+    social: [
       {
-        url: "https://www.facebook.com/SPSEEDPSC",
-        icon: <FontAwesomeIcon icon={faFacebook} />,
+        link: "https://www.facebook.com/SPSEEDPSC",
+        platform: facebook,
       },
       {
-        url: "https://www.instagram.com/spse_edp_student_council",
-        icon: <FontAwesomeIcon icon={faInstagram} />,
+        link: "https://www.instagram.com/spse_edp_student_council",
+        platform: instagram,
       },
     ],
     members: [
       {
         name: "Peter Chai",
         img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-member1.png",
-        links: [
+        social: [
           {
-            url: "https://www.linkedin.com/in/peter-chai-233577158/",
-            icon: <FontAwesomeIcon icon={faLinkedin} />,
+            link: "https://www.linkedin.com/in/peter-chai-233577158/",
+            platform: linkedin,
           },
           {
-            url: "https://www.facebook.com/siyuan.chai.77",
-            icon: <FontAwesomeIcon icon={faFacebook} />,
+            link: "https://www.facebook.com/siyuan.chai.77",
+            platform: facebook,
           },
           {
-            url: "https://twitter.com/PeterChai1013",
-            icon: <FontAwesomeIcon icon={faTwitter} />,
+            link: "https://twitter.com/PeterChai1013",
+            platform: twitter,
           },
         ],
       },
       {
         name: "Ghafi Reyhan",
         img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/spse-edp-member2.png",
-        links: [],
+        social: [],
       },
     ],
   },
   {
     org: "CSSA",
     img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/cssa-logo.png",
-    links: [
+    social: [
       // {
       //   url: "",
       //   icon: <FontAwesomeIcon icon={faFacebook} />
@@ -127,7 +132,7 @@ const partners = [
   {
     org: "WaLife",
     img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/walife-logo.png",
-    links: [
+    social: [
       // {
       //   url: "",
       //   icon: <FontAwesomeIcon icon={faFacebook} />
@@ -137,14 +142,14 @@ const partners = [
   {
     org: "WTSA",
     img: "https://wasedatime-partners.s3-ap-northeast-1.amazonaws.com/wtsa-logo.png",
-    links: [
+    social: [
       {
-        url: "https://www.facebook.com/WasedaTaiwaneseStudentAssociation",
-        icon: <FontAwesomeIcon icon={faFacebook} />,
+        link: "https://www.facebook.com/WasedaTaiwaneseStudentAssociation",
+        platform: facebook,
       },
       {
-        url: "https://www.instagram.com/wtsa.jp",
-        icon: <FontAwesomeIcon icon={faInstagram} />,
+        link: "https://www.instagram.com/wtsa.jp",
+        platform: instagram,
       },
     ],
   },
@@ -178,16 +183,15 @@ const Partners = () => {
               {partner.org}
             </OrgName>
             <SocialMediaArea>
-              {partner.links.map((link) => (
+              {partner.social.map((social) => (
                 <a
-                  className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
-                  key={link.url}
-                  href={link.url}
+                  key={social.link}
+                  href={social.link}
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{ fontSize: "1.5em", margin: "0px 0.5em" }}
                 >
-                  {link.icon}
+                  <MediaIcon src={social.platform} />
                 </a>
               ))}
             </SocialMediaArea>
@@ -203,16 +207,15 @@ const Partners = () => {
                       {member.name}
                     </span>
                     <SocialMediaArea>
-                      {member.links.map((link) => (
+                      {member.social.map((social) => (
                         <a
-                          className="text-light-text2 dark:text-dark-text2 hover:text-light-main dark:hover:text-dark-text1"
-                          key={link.url}
-                          href={link.url}
+                          key={social.link}
+                          href={social.link}
                           target="_blank"
                           rel="noopener noreferrer"
                           style={{ fontSize: "1.5em", margin: "0px 0.5em" }}
                         >
-                          {link.icon}
+                          <MediaIcon src={social.platform} />
                         </a>
                       ))}
                     </SocialMediaArea>

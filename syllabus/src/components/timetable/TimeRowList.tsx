@@ -1,9 +1,9 @@
 import React from "react";
 
 import styled from "styled-components";
-import { ThemeContext } from "@app/utils/theme-context";
 
 import TimeRowItem from "@app/components/timetable/TimeRowItem";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const StyledList = styled("ol")`
   display: flex;
@@ -24,7 +24,7 @@ interface Props {
 
 const TimeRowList = ({ largestPeriod }: Props) => {
   const { theme, setTheme } = React.useContext(ThemeContext);
-  
+
   const periods = [
     {
       s: "0900",

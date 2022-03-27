@@ -60,8 +60,8 @@ export const ThemeProvider = ({
   }, [theme]);
 
   const value: ThemeContextInterface = {
-    setTheme: setTheme,
-    theme: theme,
+    setTheme,
+    theme,
   };
 
   return (

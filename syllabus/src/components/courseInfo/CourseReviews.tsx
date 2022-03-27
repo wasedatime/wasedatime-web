@@ -394,7 +394,9 @@ class CourseReviews extends React.Component<Props, State> {
             )
           }
         </MediaQuery>
-        <Disclaimer className="dark:bg-dark-text3 dark:text-dark-text2">{t("courseInfo.Disclaimer")}</Disclaimer>
+        <Disclaimer className="dark:bg-dark-text3 dark:text-dark-text2">
+          {t("courseInfo.Disclaimer")}
+        </Disclaimer>
         <ReviewsListWrapper>
           <ReviewScalesCount
             avgSatisfaction={scalesAvg.satisfaction}

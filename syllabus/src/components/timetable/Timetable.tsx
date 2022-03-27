@@ -6,13 +6,13 @@ import { WithTranslation, withTranslation } from "react-i18next";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import styled from "styled-components";
 
-import { ThemeContext } from "@app/utils/theme-context";
 import { Article, Section } from "@app/components/styles/Article";
 import AddedCourseAndPrefList from "@app/components/timetable/AddedCourseAndPrefList";
 import DayColumnList from "@app/components/timetable/DayColumnList";
 import TimeRowList from "@app/components/timetable/TimeRowList";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type ColumnProps = {
   flexBasis: string;
@@ -20,7 +20,7 @@ type ColumnProps = {
 
 type StyledMessageProps = {
   isDark: boolean;
-}
+};
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
@@ -53,7 +53,7 @@ const ScrollableTimetable = styled("div")`
 `;
 
 const StyledMessage = styled(Message)<StyledMessageProps>`
-  ${props => props.isDark && "opacity: 0.6;"}
+  ${(props) => props.isDark && "opacity: 0.6;"}
 `;
 
 interface Props extends WithTranslation {
@@ -116,7 +116,9 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
           {!addedCoursesAndPrefs.length && (
             <Wrapper>
               <Article className="bg-light-bgMain dark:bg-dark-bgMain">
-                <h5 className="text-light-text1 dark:text-dark-text1">{t("timetable.welcome")} 🤗</h5>
+                <h5 className="text-light-text1 dark:text-dark-text1">
+                  {t("timetable.welcome")} 🤗
+                </h5>
                 <br />
                 <Section>
                   <StyledMessage
@@ -145,9 +147,7 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
               </Article>
             </Wrapper>
           )}
-          <AddedCourseAndPrefList
-            addedCoursesAndPrefs={addedCoursesAndPrefs}
-          />
+          <AddedCourseAndPrefList addedCoursesAndPrefs={addedCoursesAndPrefs} />
         </Wrapper>
       </Column>
     </ExtendedRowWrapper>

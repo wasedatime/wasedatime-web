@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import colors from "@bit/wasedatime.core.theme.colors";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import Slider from "rc-slider/lib/Slider";
+import { useTranslation } from "react-i18next";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import SimpleBar from "simplebar-react";
 import styled from "styled-components";
@@ -13,8 +15,6 @@ import CSEcover from "@app/assets/img/school-covers/cse.png";
 import FSEcover from "@app/assets/img/school-covers/fse.png";
 import ReviewStars from "@app/components/courseInfo/ReviewStars";
 import Review from "@app/components/labs/Review";
-import { useTranslation } from "react-i18next";
-import Slider from "rc-slider/lib/Slider";
 import { ThemeContext } from "@app/utils/theme-context";
 
 type LabWrapperProps = {
@@ -136,7 +136,7 @@ const ReviewsWrapper = styled(SimpleBar)`
   }
   overflow-y: auto;
   position: relative;
-  
+
   ::-webkit-scrollbar {
     width: 5px;
     background: transparent;
@@ -171,20 +171,26 @@ const SectionHeader = styled.h5`
 `;
 
 const StyledTable = styled(Table)<ThemedComponentProps>`
-  ${props => props.isDark && `
+  ${(props) =>
+    props.isDark &&
+    `
     border-color: ${colors.dark.text3} !important;
   `}
 `;
 
 const StyledTableHeaderCell = styled(Table.HeaderCell)<ThemedComponentProps>`
-  ${props => props.isDark && `
+  ${(props) =>
+    props.isDark &&
+    `
     background-color: ${colors.dark.bgSide} !important;
     color: ${colors.dark.text2} !important;
   `}
 `;
 
 const StyledTableCell = styled(Table.Cell)<ThemedComponentProps>`
-  ${props => props.isDark && `
+  ${(props) =>
+    props.isDark &&
+    `
     background-color: ${colors.dark.bgMain} !important;
     color: ${colors.dark.text2} !important;
   `}
@@ -210,7 +216,9 @@ const Lab = ({ name, reviews, school }) => {
     <StyledTable unstackable isDark={theme === "dark"}>
       <Table.Header>
         <Table.Row>
-          <StyledTableHeaderCell isDark={theme === "dark"}>{t(`labs.review.${itemLabel}`)}</StyledTableHeaderCell>
+          <StyledTableHeaderCell isDark={theme === "dark"}>
+            {t(`labs.review.${itemLabel}`)}
+          </StyledTableHeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
@@ -218,7 +226,9 @@ const Lab = ({ name, reviews, school }) => {
           (item) =>
             item && (
               <Table.Row>
-                <StyledTableCell isDark={theme === "dark"}>{item}</StyledTableCell>
+                <StyledTableCell isDark={theme === "dark"}>
+                  {item}
+                </StyledTableCell>
               </Table.Row>
             )
         )}

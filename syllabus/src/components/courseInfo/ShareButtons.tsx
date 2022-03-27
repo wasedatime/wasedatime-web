@@ -1,5 +1,6 @@
 import React from "react";
 
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import {
   faFacebookSquare,
   faTwitterSquare,
@@ -9,7 +10,6 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 import { faLink } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import ReactGA from "react-ga";
 import { withTranslation } from "react-i18next";
@@ -25,16 +25,16 @@ type SnsItem = {
   url: string;
   icon: IconDefinition;
   color: string;
-}
+};
 
 type SnsButtonProps = {
   snsItem: SnsItem;
   handleClick: (snsName: string) => void;
-}
+};
 
 const SnsButton = ({ snsItem, handleClick }: SnsButtonProps) => (
   <a
-    className={snsItem.label + "-share-button dark:bg-dark-bgMain"}
+    className={`${snsItem.label}-share-button dark:bg-dark-bgMain`}
     href={snsItem.url}
     target="_blank"
     rel="noopener noreferrer"
@@ -67,35 +67,35 @@ const ShareButtons = ({ courseId, t }) => {
       name: "Twitter",
       url: `https://twitter.com/intent/tweet?url=${shareLink}&text=${shareText}&hashtags=wasedatime,waseda`,
       icon: faTwitterSquare,
-      color: "#00ACEE"
+      color: "#00ACEE",
     },
     {
       label: "facebook",
       name: "Facebook",
       url: `https://www.facebook.com/sharer/sharer.php?title=&u=${shareLink}&quote=${shareText}`,
       icon: faFacebookSquare,
-      color: "#3B5998"
+      color: "#3B5998",
     },
     {
       label: "linkedin",
       name: "LinkedIn",
       url: `http://www.linkedin.com/shareArticle?mini=true&url=${shareLink}&title=${shareText}&summary=${shareText}`,
       icon: faLinkedin,
-      color: "#0E76A8"
+      color: "#0E76A8",
     },
     {
       label: "line",
       name: "Line",
       url: `http://line.me/R/msg/text/?${shareText} ${shareLink}`,
       icon: faLine,
-      color: "#00B400"
+      color: "#00B400",
     },
     {
       label: "whatapp",
       name: "Whatapp",
       url: `https://wa.me/?text=${shareText} ${shareLink}`,
       icon: faWhatsappSquare,
-      color: "#4FCE5D"
+      color: "#4FCE5D",
     },
   ];
 
@@ -103,7 +103,7 @@ const ShareButtons = ({ courseId, t }) => {
     <CopyToClipboard
       text={shareLink}
       onClick={() => handleSnsButtonClicked("Copied link")}
-      className={"dark:bg-dark-bgMain"}
+      className="dark:bg-dark-bgMain"
     >
       <InvisibleButton>
         <Popup
@@ -126,7 +126,13 @@ const ShareButtons = ({ courseId, t }) => {
   return (
     <span className="dark:bg-dark-text3">
       <p style={{ marginBottom: "0px" }}>Share this course:</p>
-      {snsItems.map(item => <SnsButton key={item.label} snsItem={item} handleClick={handleSnsButtonClicked} />)}
+      {snsItems.map((item) => (
+        <SnsButton
+          key={item.label}
+          snsItem={item}
+          handleClick={handleSnsButtonClicked}
+        />
+      ))}
       {copyClipboardButton}
     </span>
   );

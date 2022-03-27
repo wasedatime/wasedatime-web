@@ -1,4 +1,5 @@
 import React, { useEffect, lazy, Suspense, useContext } from "react";
+
 import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 import API from "@aws-amplify/api";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
@@ -94,6 +95,7 @@ const NotFound = () => {
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
   useEffect(() => navigate("/"));
+
   return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />;
 };
 

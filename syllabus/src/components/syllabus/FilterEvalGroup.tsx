@@ -14,13 +14,14 @@ import { ThemeContext } from "@app/utils/theme-context";
 
 type ThemedComponentProps = {
   isDark: boolean;
-}
+};
 
 const Range = Slider.createSliderWithTooltip(Slider.Range);
 
 const StyledRange = styled(Range)<ThemedComponentProps>`
-  ${
-    props => props.isDark && `
+  ${(props) =>
+    props.isDark &&
+    `
       .rc-slider-rail {
         background-color: ${colors.dark.text3};
       }
@@ -76,7 +77,8 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
     line-height: 1.3 !important;
     font-size: 1.3em !important;
     margin: 2px 1rem !important;
-    color: ${props => props.isDark ? colors.dark.text2 : "black"} !important;
+    color: ${(props) =>
+      props.isDark ? colors.dark.text2 : "black"} !important;
   }
 
   .menu {
@@ -91,7 +93,7 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
       .text {
         font-size: 16px !important;
         line-height: 1.2 !important;
-        color: ${props => props.isDark ? colors.dark.text2 : "black"};
+        color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
       }
     }
   }
@@ -100,7 +102,7 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
     padding: 0.5rem 0.2rem 0.5rem 0px !important;
     font-size: 14px !important;
     font-weight: 100;
-    color: ${props => props.isDark ? colors.dark.text2 : "black"};
+    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
   }
 `;
 
@@ -141,7 +143,7 @@ const FilterEvalGroup = ({
   checkedSpecialInputs,
 }: Props) => {
   const { theme } = React.useContext(ThemeContext);
-  
+
   return (
     <div>
       <StyledFormLabel>

@@ -1,6 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+
 import colors from "@bit/wasedatime.core.theme.colors";
+import styled from "styled-components";
+
 import { ThemeContext } from "@app/utils/theme-context";
 
 interface Props {
@@ -12,7 +14,7 @@ interface Props {
 type ReviewLangSwitchItem = {
   label: string;
   name: string;
-}
+};
 
 type ReviewLangSwitchProps = {
   active: boolean;
@@ -24,19 +26,24 @@ const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
   font-size: 0.6em;
   border: none;
   padding: 2px 10px;
-  background-color: ${props => props.isDark ? colors.dark.text3 : colors.light.text3};
-  color: ${props => props.isDark ? colors.dark.text1 : "#fff"};
+  background-color: ${(props) =>
+    props.isDark ? colors.dark.text3 : colors.light.text3};
+  color: ${(props) => (props.isDark ? colors.dark.text1 : "#fff")};
   ${(props) =>
-    props.active && `
-    background-color: ${props.isDark ? colors.dark.lighter : colors.light.lighter};
+    props.active &&
+    `
+    background-color: ${
+      props.isDark ? colors.dark.lighter : colors.light.lighter
+    };
     color: ${props.isDark ? colors.dark.text1 : "#fff"};
   `};
   ${(props) => props.isInHeading && "line-height: 20px;"};
 
   &:hover {
     outline: none;
-    background-color: ${props => props.isDark ? colors.dark.lighter : colors.light.lighter};
-    color: ${props => props.isDark ? colors.dark.text1 : "#fff"};
+    background-color: ${(props) =>
+      props.isDark ? colors.dark.lighter : colors.light.lighter};
+    color: ${(props) => (props.isDark ? colors.dark.text1 : "#fff")};
   }
 
   &:focus {
@@ -64,8 +71,8 @@ const reviewLangSwitchItems: ReviewLangSwitchItem[] = [
   {
     label: "ko",
     name: "한국",
-  }
-]
+  },
+];
 
 const ReviewLangSwitches = ({
   reviewLang,
@@ -76,20 +83,18 @@ const ReviewLangSwitches = ({
 
   return (
     <span>
-      {
-        reviewLangSwitchItems.map(item => (
-          <ReviewLangSwitch
-            active={reviewLang === item.label}
-            onClick={() => switchReviewLang(item.label)}
-            isInHeading={isInHeading}
-            isDark={theme === "dark"}
-          >
-            {item.name}
-          </ReviewLangSwitch>
-        ))
-      }
+      {reviewLangSwitchItems.map((item) => (
+        <ReviewLangSwitch
+          active={reviewLang === item.label}
+          onClick={() => switchReviewLang(item.label)}
+          isInHeading={isInHeading}
+          isDark={theme === "dark"}
+        >
+          {item.name}
+        </ReviewLangSwitch>
+      ))}
     </span>
   );
-}
+};
 
 export default ReviewLangSwitches;

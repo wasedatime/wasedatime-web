@@ -1,4 +1,5 @@
 import React from "react";
+
 import styled from "styled-components";
 
 const StyledListItem = styled("li")`
@@ -27,10 +28,9 @@ type Props = {
     p: string | number;
     e: string | number;
   };
-}
+};
 
 const TimeRowItem = ({ period }: Props) => {
-  
   return (
     <StyledListItem className="text-light-text2 border-r-gray-100 dark:text-dark-text2 dark:border-r-dark-text3">
       <StyledTime>{period.s}</StyledTime>

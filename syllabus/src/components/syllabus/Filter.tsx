@@ -34,7 +34,7 @@ const FilterScrollArea = styled(SimpleBar)<FilterScrollAreaProps>`
   height: ${(props) => (props.isSideBar ? "100%" : "calc(100% - 50px)")};
   padding: ${(props) =>
     props.isSideBar ? "0.5em 1em 1em 1em" : "0.7em 1.2em 1.2em"};
-  
+
   .simplebar-scrollbar::before {
     background-color: #999;
   }
@@ -86,7 +86,7 @@ const Filter = ({
   t,
 }: Props) => {
   const { theme, setTheme } = React.useContext(ThemeContext);
-  
+
   const checkedSchools = filterGroups[FilterOption.SCHOOL];
 
   const semesterLegend = t("syllabus.Semesters");
@@ -479,7 +479,10 @@ const Filter = ({
           &nbsp;
           <b>{t("syllabus.Filter by")}</b>
           &nbsp;
-          <button onClick={clearFilter} className="mx-2 text-lg bg-light-bgMain text-light-main dark:bg-dark-bgMain dark:text-dark-main">
+          <button
+            onClick={clearFilter}
+            className="mx-2 text-lg bg-light-bgMain text-light-main dark:bg-dark-bgMain dark:text-dark-main"
+          >
             {t("syllabus.Clear filter")}
           </button>
         </FilterTitle>

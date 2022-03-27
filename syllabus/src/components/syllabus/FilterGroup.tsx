@@ -1,5 +1,6 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import { WithStyles, createStyles } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
@@ -8,12 +9,12 @@ import FormLabel from "@material-ui/core/FormLabel";
 import { withStyles } from "@material-ui/core/styles";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
+
 import { ThemeContext } from "@app/utils/theme-context";
-import colors from "@bit/wasedatime.core.theme.colors";
 
 type StyledDropdownProps = {
   isDark: boolean;
-}
+};
 
 const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   font-size: 0.9em !important;
@@ -26,15 +27,16 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   a.ui.label {
     border-width: 0px;
     border-radius: 5px;
-    background-color: ${props => props.isDark ? colors.dark.text2 : colors.dark.text2} !important;
-    color: ${props => props.isDark ? "#333" : "white"};
+    background-color: ${(props) =>
+      props.isDark ? colors.dark.text2 : colors.dark.text2} !important;
+    color: ${(props) => (props.isDark ? "#333" : "white")};
     .delete.icon {
       padding: 0px !important;
       &:before {
         content: "×";
         margin-left: 5px;
         font-size: 16px;
-        color: ${props => props.isDark ? "#333" : "white"};
+        color: ${(props) => (props.isDark ? "#333" : "white")};
       }
     }
   }
@@ -45,7 +47,7 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
       width: 0;
       background: transparent;
     }
-    
+
     .item {
       border-width: 0px !important;
       .text {
@@ -54,16 +56,16 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
       }
     }
   }
-  
+
   .text {
     margin: 0.4rem 1em !important;
-    color: ${props => props.isDark ? colors.dark.text2 : "black"};
+    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
   }
 
   i {
     padding: 0.5rem 1em !important;
     font-size: 14px !important;
-    color: ${props => props.isDark ? colors.dark.text2 : "black"};
+    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
   }
 `;
 
@@ -105,7 +107,7 @@ const styles = (theme) =>
       transform: "scale(1.5)",
     },
     checkBoxChecked: {
-      color: colors.dark.lighter + " !important",
+      color: `${colors.dark.lighter} !important`,
     },
   });
 
@@ -127,8 +129,8 @@ const FilterGroup = ({
   filterType,
 }: Props) => {
   const { theme } = React.useContext(ThemeContext);
-  
-  var filterItems;
+
+  let filterItems;
   if (filterType === "checkbox") {
     filterItems = inputs.map((input) => (
       <FormControlLabel

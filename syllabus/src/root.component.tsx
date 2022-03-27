@@ -57,7 +57,7 @@ const LoadingSpinnerContainer = () => {
       <LoadingSpinner theme={theme} message="Loading..." />
     </div>
   );
-}
+};
 
 const Root = () => {
   const [reduxStore, setReduxStore] = useState(null);
@@ -90,19 +90,19 @@ const Root = () => {
 
   return (
     <ThemeProvider>
-      {
-        reduxStore ? (
-          <Sentry.ErrorBoundary
-            fallback={({ error, componentStack, resetError }) => (
-              <ErrorFallback error={error} resetError={resetError} />
-            )}
-          >
-            <Provider store={reduxStore}>
-              <App />
-            </Provider>
-          </Sentry.ErrorBoundary>
-        ) : <LoadingSpinnerContainer />
-      }
+      {reduxStore ? (
+        <Sentry.ErrorBoundary
+          fallback={({ error, componentStack, resetError }) => (
+            <ErrorFallback error={error} resetError={resetError} />
+          )}
+        >
+          <Provider store={reduxStore}>
+            <App />
+          </Provider>
+        </Sentry.ErrorBoundary>
+      ) : (
+        <LoadingSpinnerContainer />
+      )}
     </ThemeProvider>
   );
 };

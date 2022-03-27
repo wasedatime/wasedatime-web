@@ -16,11 +16,10 @@ import { getAddedCoursesAndPrefsByTerm } from "@app/redux/reducers/addedCourses"
 import Course from "@app/types/course";
 import { sortAddedCoursesAndPrefs } from "@app/utils/added-courses-and-prefs";
 import { getCurrentSemester } from "@app/utils/get-current-semesters";
-
-const Timetable = lazy(() => import("@app/components/timetable/Timetable"));
-
 import { ThemeContext } from "@app/utils/theme-context";
 import withRouter, { WithRouter } from "@app/utils/with-router";
+
+const Timetable = lazy(() => import("@app/components/timetable/Timetable"));
 
 const TimetableWrapper = styled(Wrapper)`
   height: 100vh;
@@ -158,7 +157,9 @@ class TimetableContainer extends React.Component<
             toggleQuarter={this.handleToggleQuarter}
             isSmallSize={false}
           />
-          <Suspense fallback={<LoadingSpinner theme={theme} message="Loading..." />}>
+          <Suspense
+            fallback={<LoadingSpinner theme={theme} message="Loading..." />}
+          >
             <Timetable addedCoursesAndPrefs={sortedAddedCoursesAndPrefs} />
           </Suspense>
         </TimetableFlex>

@@ -17,10 +17,10 @@ const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
 
 type StyledTableProps = {
   isDark: boolean;
-}
+};
 
 const StyledTable = styled(Table)<StyledTableProps>`
-  ${props => props.isDark && `border: none !important;`}
+  ${(props) => props.isDark && "border: none !important;"}
 `;
 
 const ChartWrapper = styled(Grid.Column)`
@@ -36,7 +36,7 @@ interface Props extends WithTranslation {
 
 const CourseDetailsEvaluation = ({ course, t }: Props) => {
   const { theme } = React.useContext(ThemeContext);
-  
+
   if (Array.isArray(course[SyllabusKey.EVAL])) {
     const evalChartData = (course[SyllabusKey.EVAL] as any[])
       .filter((e) => e[SyllabusKey.EVAL_PERCENT] > 0)

@@ -75,7 +75,7 @@ module.exports = (webpackConfigEnv, argv) => {
               ? "style-loader"
               : MiniCssExtractPlugin.loader,
             "css-loader",
-            "postcss-loader"
+            "postcss-loader",
           ],
         },
         {
@@ -86,7 +86,7 @@ module.exports = (webpackConfigEnv, argv) => {
               : MiniCssExtractPlugin.loader,
             "css-loader",
             "postcss-loader",
-            "sass-loader"
+            "sass-loader",
           ],
         },
       ],
@@ -115,7 +115,8 @@ module.exports = (webpackConfigEnv, argv) => {
               filename: "[name].css",
             }),
             new FilterWarningsPlugin({
-              exclude: /Critical dependency: the request of a dependency is an expression/,
+              exclude:
+                /Critical dependency: the request of a dependency is an expression/,
             }),
           ],
   });

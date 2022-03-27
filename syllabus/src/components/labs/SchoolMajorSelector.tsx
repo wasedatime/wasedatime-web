@@ -153,7 +153,9 @@ const SchoolMajorSelector = ({
 
       {majorsBySchool[selectedSchool]?.map((major) => (
         <MajorWrapper onClick={() => switchMajorAndCloseModal(major)}>
-          <MajorText className="text-white dark:text-dark-text2">{t(`labs.major.${major}`)}</MajorText>
+          <MajorText className="text-white dark:text-dark-text2">
+            {t(`labs.major.${major}`)}
+          </MajorText>
           <ReviewsCount school={selectedSchool}>
             {reviews[selectedSchool][major].length}
           </ReviewsCount>

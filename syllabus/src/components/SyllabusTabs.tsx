@@ -1,7 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import { useLocation, Link } from "react-router-dom";
+
 import { WithTranslation, withTranslation } from "react-i18next";
+import { useLocation, Link } from "react-router-dom";
+import styled from "styled-components";
 
 const TabsWrapper = styled.div`
   padding-left: 1em;
@@ -18,31 +19,31 @@ const Tab = styled.button`
 
 const SyllabusTabs = ({ t }: WithTranslation) => {
   const location = useLocation();
-  const tabClassName = "text-light-text3 bg-light-bgSide dark:text-dark-text2 dark:bg-dark-text3";
-  const activeTabClassName = "text-light-text1 bg-light-bgMain dark:text-dark-text1 dark:bg-dark-bgMain";
+  const tabClassName =
+    "text-light-text3 bg-light-bgSide dark:text-dark-text2 dark:bg-dark-text3";
+  const activeTabClassName =
+    "text-light-text1 bg-light-bgMain dark:text-dark-text1 dark:bg-dark-bgMain";
 
   const tabItems = [
-    {path: "syllabus", name: "courses"},
-    {path: "labs", name: "labs"}
+    { path: "syllabus", name: "courses" },
+    { path: "labs", name: "labs" },
   ];
 
   return (
     <TabsWrapper className="bg-light-bgSide dark:bg-dark-text3">
-      {
-        tabItems.map(item => (
-          <Link to={"/courses/" + item.path}>
-            <Tab
-              className={
-                location.pathname === ("/courses/" + item.path)
-                  ? activeTabClassName
-                  : tabClassName
-              }
-            >
-              {t("syllabusTabs." + item.name)}
-            </Tab>
-          </Link>
-        ))
-      }
+      {tabItems.map((item) => (
+        <Link to={`/courses/${item.path}`}>
+          <Tab
+            className={
+              location.pathname === `/courses/${item.path}`
+                ? activeTabClassName
+                : tabClassName
+            }
+          >
+            {t(`syllabusTabs.${item.name}`)}
+          </Tab>
+        </Link>
+      ))}
     </TabsWrapper>
   );
 };

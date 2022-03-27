@@ -3,7 +3,6 @@ import React, { lazy, Suspense } from "react";
 import API from "@aws-amplify/api";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import withRouter, { WithRouter } from "@app/utils/with-router";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import debounce from "lodash/debounce";
@@ -42,6 +41,8 @@ import {
 } from "@app/utils/course-search";
 import filterCourses from "@app/utils/filter-courses";
 import { courseSchemaFullToShort } from "@app/utils/map-single-course-schema";
+import { ThemeContext } from "@app/utils/theme-context";
+import withRouter, { WithRouter } from "@app/utils/with-router";
 
 const AddedCourseListContainer = lazy(
   () => import("@app/containers/AddedCourseListContainer")
@@ -49,8 +50,6 @@ const AddedCourseListContainer = lazy(
 const FetchedCourseList = lazy(
   () => import("@app/components/syllabus/FetchedCourseList")
 );
-
-import { ThemeContext } from "@app/utils/theme-context";
 
 const SyllabusWrapper = styled.div`
   display: flex;
@@ -387,7 +386,9 @@ class SyllabusContainer extends React.Component<
           </MediaQuery>
 
           <MiddleColumn>
-            <Suspense fallback={<LoadingSpinner theme={theme} message="Loading..." />}>
+            <Suspense
+              fallback={<LoadingSpinner theme={theme} message="Loading..." />}
+            >
               {allFetchedCourses.length > 0 ? (
                 <FetchedCourseList
                   searchTerm={searchTerm}

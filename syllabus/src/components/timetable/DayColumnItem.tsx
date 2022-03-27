@@ -1,5 +1,7 @@
 import React from "react";
+
 import styled from "styled-components";
+
 import CourseColumn from "@app/components/timetable/CourseColumn";
 import { CourseWithOcc } from "@app/types/course";
 

@@ -1,8 +1,8 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import colors from "@bit/wasedatime.core.theme.colors";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
@@ -111,7 +111,8 @@ const ReviewScale = styled("div")`
 const Editbutton = styled(Button)`
   color: orange !important;
   padding: 0px !important;
-  background-color: ${props => props.isDark ? colors.dark.bgMain : colors.light.bgMain} !important;
+  background-color: ${(props) =>
+    props.isDark ? colors.dark.bgMain : colors.light.bgMain} !important;
 `;
 
 const Deletebutton = styled(Editbutton)`
@@ -155,10 +156,16 @@ const DeleteModalContent = ({ t, confirmDeleteReview, closeDeleteModal }) => (
       {t("courseInfo.delete review confirmation")}
     </h2>
     <div className="text-center">
-      <DeleteModalYesButton onClick={() => confirmDeleteReview()} className="mx-6 bg-light-lighter text-white dark:bg-dark-lighter">
+      <DeleteModalYesButton
+        onClick={() => confirmDeleteReview()}
+        className="mx-6 bg-light-lighter text-white dark:bg-dark-lighter"
+      >
         {t("courseInfo.delete review yes")}
       </DeleteModalYesButton>
-      <DeleteModalNoButton onClick={closeDeleteModal} className="mx-6 bg-light-text3 text-white dark:bg-dark-text3 dark:text-dark-text1">
+      <DeleteModalNoButton
+        onClick={closeDeleteModal}
+        className="mx-6 bg-light-text3 text-white dark:bg-dark-text3 dark:text-dark-text1"
+      >
         {t("courseInfo.delete review no")}
       </DeleteModalNoButton>
     </div>
@@ -199,11 +206,10 @@ class ReviewsList extends React.Component<Props, State> {
     this.closeDeleteModal();
   };
 
-  
   render() {
     const { reviews, searchLang, reviewLang, openEditForm, t } = this.props;
     const { theme } = this.context;
-    
+
     const ReviewItem = ({ review, index }) => (
       <Review className="bg-white dark:bg-dark-bgMain">
         <ReviewText>
@@ -274,21 +280,20 @@ class ReviewsList extends React.Component<Props, State> {
             <ReviewStars scale={review.benefit} />
           </ReviewScale>
         </ReviewScalesList>
-
       </Review>
-    )
+    );
 
     return (
       <div>
-        {reviews.length > 0 && <ReviewDivider className="border-t-2 border-light-text3 dark:border-dark-text3" />}
-        {
-          reviews.map((review, i) => (
-            <React.Fragment key={i}>
-              <ReviewItem review={review} index={i} />
-              <ReviewDivider className="border-t-2 border-light-text3 dark:border-dark-text3" />
-            </React.Fragment>
-          ))
-        }
+        {reviews.length > 0 && (
+          <ReviewDivider className="border-t-2 border-light-text3 dark:border-dark-text3" />
+        )}
+        {reviews.map((review, i) => (
+          <React.Fragment key={i}>
+            <ReviewItem review={review} index={i} />
+            <ReviewDivider className="border-t-2 border-light-text3 dark:border-dark-text3" />
+          </React.Fragment>
+        ))}
 
         <MediaQuery maxWidth={sizes.tablet}>
           {(matches) =>
@@ -304,7 +309,10 @@ class ReviewsList extends React.Component<Props, State> {
                 />
               </Modal>
             ) : (
-              <Modal isOpen={this.state.isDeleteModalOpen} style={modalStyle(theme)}>
+              <Modal
+                isOpen={this.state.isDeleteModalOpen}
+                style={modalStyle(theme)}
+              >
                 <DeleteModalContent
                   t={t}
                   confirmDeleteReview={this.confirmDeleteReview}
@@ -315,7 +323,7 @@ class ReviewsList extends React.Component<Props, State> {
           }
         </MediaQuery>
       </div>
-    )
+    );
   }
 }
 

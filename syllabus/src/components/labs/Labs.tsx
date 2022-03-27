@@ -160,7 +160,7 @@ const LabsList = styled.div<LabsListProps>`
   `}
 
   overflow-y: auto;
-  
+
   ::-webkit-scrollbar {
     width: 5px;
     background: transparent;
@@ -195,7 +195,7 @@ const modalStyle = {
   },
 };
 
-interface Props extends WithTranslation {}
+type Props = WithTranslation;
 
 interface State {
   school: string;
@@ -285,7 +285,10 @@ class Labs extends React.Component<Props, State> {
           <SyllabusTabs />
         </SyllabusTabsWrapper>
 
-        <ThankMessage isDisplayed={isThankMessageDisplayed} className="dark:opacity-70">
+        <ThankMessage
+          isDisplayed={isThankMessageDisplayed}
+          className="dark:opacity-70"
+        >
           {t("labs.thankMessage")}
           <CloseThankMessageButton
             onClick={() => this.setState({ isThankMessageDisplayed: false })}
@@ -297,7 +300,10 @@ class Labs extends React.Component<Props, State> {
         <LabsWrapper isLower={isThankMessageDisplayed}>
           <LabsList isLower={isThankMessageDisplayed}>
             {major && (
-              <MajorHeader school={school} className="text-light-text1 dark:text-dark-text1">
+              <MajorHeader
+                school={school}
+                className="text-light-text1 dark:text-dark-text1"
+              >
                 {t(`labs.major.${major}`)}
               </MajorHeader>
             )}
@@ -319,7 +325,12 @@ class Labs extends React.Component<Props, State> {
                 </Message>
               )
             ) : (
-              <Message warning size="tiny" style={{ margin: "1em" }} className="dark:opacity-70">
+              <Message
+                warning
+                size="tiny"
+                style={{ margin: "1em" }}
+                className="dark:opacity-70"
+              >
                 <h5>{t("labs.filterHint")}</h5>
               </Message>
             )}

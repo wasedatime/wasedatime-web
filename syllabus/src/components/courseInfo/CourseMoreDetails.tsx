@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+
+import colors from "@bit/wasedatime.core.theme.colors";
 import {
   faChevronDown,
   faChevronRight,
@@ -8,10 +9,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";
 import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion";
-import colors from "@bit/wasedatime.core.theme.colors";
+import styled from "styled-components";
 
-import { SyllabusKey } from "@app/constants/syllabus-data";
 import Label from "@app/components/styles/Label";
+import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { ThemeContext } from "@app/utils/theme-context";
 
@@ -42,7 +43,7 @@ const Schedule = ({ content }: ScheduleProps) => {
           <Table.Row>
             <Table.Cell>
               <div>
-                <Label filled={true} color={colors[theme].lighter}>
+                <Label filled color={colors[theme].lighter}>
                   {i + 1}
                 </Label>
               </div>
@@ -161,7 +162,10 @@ const CourseMoreDetails = ({ course, t }: Props) => {
   ];
 
   return (
-    <Accordion style={{ padding: "0px 2em" }} className="dark:bg-dark-bgMain mb-4">
+    <Accordion
+      style={{ padding: "0px 2em" }}
+      className="dark:bg-dark-bgMain mb-4"
+    >
       {details.map(
         (detail, i) =>
           detail.content && (
@@ -185,7 +189,10 @@ const CourseMoreDetails = ({ course, t }: Props) => {
                   {detail.title}
                 </h4>
               </Accordion.Title>
-              <Accordion.Content active={activeDetailsIndex === i} className="dark:text-dark-text1">
+              <Accordion.Content
+                active={activeDetailsIndex === i}
+                className="dark:text-dark-text1"
+              >
                 {detail.content}
               </Accordion.Content>
             </React.Fragment>

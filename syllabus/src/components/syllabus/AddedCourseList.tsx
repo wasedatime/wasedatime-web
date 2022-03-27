@@ -27,10 +27,7 @@ const CourseListWrapper = styled.div<CourseListWrapperProps>`
   position: fixed !important;
   padding: 0.5em 1em 1em 1em;
   width: 22em;
-  height: calc(
-    100vh - ${height.headerHeight} -
-      ${height.switchHeight}
-  );
+  height: calc(100vh - ${height.headerHeight} - ${height.switchHeight});
   .simplebar-scrollbar::before {
     background-color: #999;
   }
@@ -189,7 +186,9 @@ class AddedCourseList extends React.Component<Props, State> {
             <hr style={{ margin: "1em 0px" }} />
 
             <Section>
-              <Subheading className="dark:text-dark-text2">{t("syllabus.To add a course")}</Subheading>
+              <Subheading className="dark:text-dark-text2">
+                {t("syllabus.To add a course")}
+              </Subheading>
               <StepGroup>
                 <Step className="dark:opacity-70">
                   <p>

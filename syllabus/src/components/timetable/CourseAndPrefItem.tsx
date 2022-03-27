@@ -1,7 +1,6 @@
 import React from "react";
 
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { useNavigate } from "react-router-dom";
 import {
   faExternalLinkSquareAlt,
   faMinusCircle,
@@ -9,6 +8,7 @@ import {
   faToggleOn,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useNavigate } from "react-router-dom";
 import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
 import styled from "styled-components";
 

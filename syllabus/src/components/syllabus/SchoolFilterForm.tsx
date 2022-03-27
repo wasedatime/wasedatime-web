@@ -1,5 +1,6 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
@@ -13,7 +14,6 @@ import styled from "styled-components";
 import SchoolImportCard from "@app/components/syllabus/SchoolImportCard";
 import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
 import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
-import colors from "@bit/wasedatime.core.theme.colors";
 
 import "semantic-ui-css/components/popup.min.css";
 import { ThemeContext } from "@app/utils/theme-context";
@@ -34,7 +34,9 @@ const Cards = styled(Card.Group)`
 `;
 
 const WiderPopup = styled(Popup)`
-  ${props => props.isDark && `
+  ${(props) =>
+    props.isDark &&
+    `
     background-color: ${colors.dark.bgSide} !important;
     box-shadow: 0 2px 4px 0 ${colors.dark.text3} !important;
     border-color: ${colors.dark.text3} !important;
@@ -67,7 +69,9 @@ const WiderPopup = styled(Popup)`
 
 const StyledMenuItem = styled(Menu.Item)`
   font-size: 1.2em;
-  ${props => props.isDark && `
+  ${(props) =>
+    props.isDark &&
+    `
     background-color: ${colors.dark.bgMain} !important;
     border-color: ${colors.dark.text3} !important;
     color: ${colors.dark.text2} !important;
@@ -127,7 +131,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
       removingSchool: null,
     };
   }
-  
+
   static contextType = ThemeContext;
 
   componentDidMount() {

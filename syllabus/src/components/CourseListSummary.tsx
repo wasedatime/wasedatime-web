@@ -1,19 +1,19 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
-import Label from "@app/components/styles/Label";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
 
 import { InvisibleButton } from "@app/components/styles/Button";
+import Label from "@app/components/styles/Label";
 import SortingOption from "@app/constants/sorting-options";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { ThemeContext } from "@app/utils/theme-context";
-import colors from "@bit/wasedatime.core.theme.colors";
 
 type SortByButtonProps = {
   isSortingOptionOpen: boolean;
@@ -55,17 +55,17 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   padding: 0.5em !important;
   min-height: 2em !important;
   min-width: 40% !important;
-  background-color: ${props => props.isDark ? colors.dark.text3 : "white"} !important;
-  
+  background-color: ${(props) =>
+    props.isDark ? colors.dark.text3 : "white"} !important;
+
   .divider.text {
-    color: ${props => props.isDark ? colors.dark.text2 : "black"};
+    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
   }
 
   .divider.text + i.dropdown.icon {
     padding: 0.6rem;
-    color: ${props => props.isDark ? colors.dark.text2 : "black"};
+    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
   }
-
 `;
 
 const creditSum = (courses) => {

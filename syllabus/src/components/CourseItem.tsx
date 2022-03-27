@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { useNavigate } from "react-router-dom";
 import {
   faClock,
   faMapMarkerAlt,
@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import CourseInfo from "@app/components/courseInfo/CourseInfo";
@@ -327,14 +328,23 @@ const CourseItem = ({
         }}
         className="bg-white hover:bg-light-bgSide dark:bg-dark-bgMain dark:border-dark-text3 dark:shadow-none dark:hover:bg-dark-bgSide"
       >
-        <StyledHeading className="dark:text-dark-main">{highlightedTitle}</StyledHeading>
+        <StyledHeading className="dark:text-dark-main">
+          {highlightedTitle}
+        </StyledHeading>
         {expandable && (
-          <StyledSubHeading className="dark:text-dark-text2">{course[SyllabusKey.SUBTITLE]}</StyledSubHeading>
+          <StyledSubHeading className="dark:text-dark-text2">
+            {course[SyllabusKey.SUBTITLE]}
+          </StyledSubHeading>
         )}
         <CourseItemRow>
           <IconBadgeWrapper>
             <SchoolIconList>{schoolIcons}</SchoolIconList>
-            <Badge style={{ fontSize: "12px" }} className="dark:bg-dark-text3 dark:text-dark-text1">{langTerm}</Badge>
+            <Badge
+              style={{ fontSize: "12px" }}
+              className="dark:bg-dark-text3 dark:text-dark-text1"
+            >
+              {langTerm}
+            </Badge>
             {courseModalityIcons[course[SyllabusKey.MODALITY]]}
           </IconBadgeWrapper>
           {!isRelatedCourse && (
@@ -361,7 +371,10 @@ const CourseItem = ({
           )}
         </CourseItemRow>
 
-        <DescriptionWrapper isLarger={isRelatedCourse} className="dark:text-dark-text1">
+        <DescriptionWrapper
+          isLarger={isRelatedCourse}
+          className="dark:text-dark-text1"
+        >
           <Description>{yearTerm}</Description>
           <Description>
             <OccurrenceList>{occurrences}</OccurrenceList>
@@ -371,7 +384,10 @@ const CourseItem = ({
       </CourseItemIntroWrapper>
 
       {expandable && expanded && (
-        <CloseCourseInfoButton onClick={() => setExpanded(false)} className="dark:bg-dark-bgSide dark:text-dark-text2">
+        <CloseCourseInfoButton
+          onClick={() => setExpanded(false)}
+          className="dark:bg-dark-bgSide dark:text-dark-text2"
+        >
           <FontAwesomeIcon icon={faChevronUp} />
         </CloseCourseInfoButton>
       )}

@@ -90,7 +90,7 @@ const QuarterSwitch = ({
         {selectedQuarter === Quarter.FALL && <FontAwesomeIcon icon={faCheck} />}{" "}
         {t("syllabus.semesterMap.Fall")}
       </StyledButton>
-      <OrButton />
+      <OrButton isDark={theme === "dark"} />
       <StyledButton
         inverted
         color="blue"

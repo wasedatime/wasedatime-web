@@ -165,7 +165,7 @@ const RoomFinder = (): JSX.Element => {
   return (
     <React.Fragment>
       <Helmet>
-        <title>WasedaTime -　RoomFinder</title>
+        <title>WasedaTime - RoomFinder</title>
         <meta
           name="description"
           content="Empty Room Checking in the campuses of Waseda University."

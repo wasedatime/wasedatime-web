@@ -13,9 +13,9 @@ import DatePicker from "react-datepicker";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
-import { ThemeContext } from "@app/utils/theme-context";
 
 import { busSchedule } from "@app/constants/busSchedule";
+import { ThemeContext } from "@app/utils/theme-context";
 
 const wasedaNishiwasedaBusUri =
   "https://www.waseda.jp/fsci/assets/uploads/2020/09/20200925_waseda_nishiwaseda-1.pdf";
@@ -400,8 +400,12 @@ const Bus = (): JSX.Element => {
             <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
             {t("bus.NishiWaseda")}
           </StyledSubHeading>
-          <Status className="text-light-text1 dark:text-dark-text1">{wasedaStatusComponent.status}</Status>
-          <Remark className="text-light-text1 dark:text-dark-text1">{wasedaStatusComponent.remark}</Remark>
+          <Status className="text-light-text1 dark:text-dark-text1">
+            {wasedaStatusComponent.status}
+          </Status>
+          <Remark className="text-light-text1 dark:text-dark-text1">
+            {wasedaStatusComponent.remark}
+          </Remark>
         </BusStatus>
         <BusStatus>
           <StyledSubHeading>
@@ -409,8 +413,12 @@ const Bus = (): JSX.Element => {
             <FontAwesomeIcon icon={faAngleDoubleRight} size="1x" />{" "}
             {t("bus.Waseda")}
           </StyledSubHeading>
-          <Status className="text-light-text1 dark:text-dark-text1">{nishiStatusComponent.status}</Status>
-          <Remark className="text-light-text1 dark:text-dark-text1">{nishiStatusComponent.remark}</Remark>
+          <Status className="text-light-text1 dark:text-dark-text1">
+            {nishiStatusComponent.status}
+          </Status>
+          <Remark className="text-light-text1 dark:text-dark-text1">
+            {nishiStatusComponent.remark}
+          </Remark>
         </BusStatus>
         <StyledAnchor href={wasedaNishiwasedaBusUri} target="_blank">
           {t("bus.The Latest Waseda-NishiWaseda Bus Schedule")}

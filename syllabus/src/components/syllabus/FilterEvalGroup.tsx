@@ -27,46 +27,46 @@ const StyledRange = styled(Range)<ThemedComponentProps>`
       }
 
       .rc-slider-track {
-        background-color: ${colors.dark.lighter};
+        background-color: ${colors.dark.main};
       }
     
       .rc-slider-handle {
         background-color: ${colors.dark.text3};
-        border-color: ${colors.dark.lighter};
+        border-color: ${colors.dark.main};
         &:hover {
-          border-color: ${colors.dark.lighter};
+          border-color: ${colors.dark.main};
         }
         &:focus {
-          border-color: ${colors.dark.lighter};
+          border-color: ${colors.dark.main};
         }
       }
 
       .rc-slider-handle-clicked-focus {
-        border-color: ${colors.dark.lighter};
+        border-color: ${colors.dark.main};
         &:focus {
-          border-color: ${colors.dark.lighter};
+          border-color: ${colors.dark.main};
         }
       }
     
       .rc-slider-handle-dragging {
         background-color: ${colors.dark.text3};
-        border-color: ${colors.dark.lighter};
+        border-color: ${colors.dark.main};
         &:hover {
-          border-color: ${colors.dark.lighter};
+          border-color: ${colors.dark.main};
         }
         &:focus {
-          border-color: ${colors.dark.lighter};
+          border-color: ${colors.dark.main};
         }
       }
-    `
-  }
+    `}
 `;
 
 const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
   min-height: 32px !important;
   padding: 0px !important;
   padding-top: 0.3rem !important;
-  background-color: ${props => props.isDark ? colors.dark.text3 : "white"} !important;
+  background-color: ${(props) =>
+    props.isDark ? colors.dark.card1 : "white"} !important;
 
   label {
     font-family: Lato, Yu Gothic Medium, Segoe UI !important;
@@ -82,7 +82,8 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
   }
 
   .menu {
-    background-color: ${props => props.isDark ? colors.dark.text3 : "white"} !important;
+    background-color: ${(props) =>
+      props.isDark ? colors.dark.card1 : "white"} !important;
     ::-webkit-scrollbar {
       width: 0;
       background: transparent;
@@ -147,7 +148,7 @@ const FilterEvalGroup = ({
   return (
     <div>
       <StyledFormLabel>
-        <b className="text-light-text1 dark:text-dark-text2">{legend}</b>
+        <b className="text-light-text1 dark:text-dark-text1">{legend}</b>
       </StyledFormLabel>
       <EvalRangeWrapper>
         <StyledDropdown

@@ -22,7 +22,8 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   font-display: swap;
   min-height: 32px !important;
   padding: 0.2rem 0.5rem 0.1rem 0.5rem !important;
-  background-color: ${props => props.isDark ? colors.dark.text3 : "white"} !important;
+  background-color: ${(props) =>
+    props.isDark ? colors.dark.card1 : "white"} !important;
 
   a.ui.label {
     border-width: 0px;
@@ -42,7 +43,8 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   }
 
   .menu {
-    background-color: ${props => props.isDark ? colors.dark.text3 : "white"} !important;
+    background-color: ${(props) =>
+      props.isDark ? colors.dark.card1 : "white"} !important;
     ::-webkit-scrollbar {
       width: 0;
       background: transparent;
@@ -182,7 +184,11 @@ const FilterGroup = ({
 
   return (
     <div>
-      <FormLabel className={classes.formLabel + " text-light-text2 dark:text-dark-text2"}>{legend}</FormLabel>
+      <FormLabel
+        className={`${classes.formLabel} text-light-text2 dark:text-dark-text1`}
+      >
+        {legend}
+      </FormLabel>
       <FormGroup row className={classes.formGroup}>
         {filterItems}
       </FormGroup>

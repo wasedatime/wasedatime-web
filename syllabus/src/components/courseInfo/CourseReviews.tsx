@@ -376,7 +376,10 @@ class CourseReviews extends React.Component<Props, State> {
           <MediaQuery minWidth={sizes.phone}>
             {(matches) =>
               matches && (
-                <AddReviewButton onClick={this.openReviewForm} className="bg-light-main dark:bg-dark-lighter">
+                <AddReviewButton
+                  onClick={this.openReviewForm}
+                  className="bg-light-main dark:bg-dark-main"
+                >
                   <FontAwesomeIcon icon={faPen} />{" "}
                   {this.props.t("courseInfo.Write your Review")}
                 </AddReviewButton>
@@ -387,7 +390,10 @@ class CourseReviews extends React.Component<Props, State> {
         <MediaQuery minWidth={sizes.phone}>
           {(matches) =>
             !matches && (
-              <AddReviewButton onClick={this.openReviewForm} className="bg-light-main dark:bg-dark-lighter">
+              <AddReviewButton
+                onClick={this.openReviewForm}
+                className="bg-light-main dark:bg-dark-main"
+              >
                 <FontAwesomeIcon icon={faPen} />{" "}
                 {this.props.t("courseInfo.Write your Review")}
               </AddReviewButton>

@@ -246,7 +246,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
       <WiderPopup
         id="school_filter_form"
         trigger={
-          <ChooseSchoolButton className="bg-light-main dark:bg-dark-lighter">
+          <ChooseSchoolButton className="bg-light-main dark:bg-dark-main">
             {t("school filter.choose schools")}
           </ChooseSchoolButton>
         }

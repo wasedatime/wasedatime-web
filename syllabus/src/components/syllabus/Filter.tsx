@@ -474,7 +474,7 @@ const Filter = ({
   return (
     <FilterWrapper isSideBar={isSideBar}>
       <FilterScrollArea isSideBar={isSideBar}>
-        <FilterTitle className="dark:text-dark-text2">
+        <FilterTitle className="dark:text-dark-text1">
           <FontAwesomeIcon icon={faFilter} size="1x" />
           &nbsp;
           <b>{t("syllabus.Filter by")}</b>
@@ -486,7 +486,7 @@ const Filter = ({
             {t("syllabus.Clear filter")}
           </button>
         </FilterTitle>
-        <FilterGroupWrapper className="dark:bg-dark-bgMain dark:text-dark-text2">
+        <FilterGroupWrapper className="dark:bg-dark-bgMain dark:text-dark-text1">
           <SchoolFilterContainer
             checkedSchools={checkedSchools}
             handleToggleFilter={handleToggleFilter}

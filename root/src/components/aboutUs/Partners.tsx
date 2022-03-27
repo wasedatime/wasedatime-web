@@ -1,23 +1,12 @@
 import React from "react";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import {
-  faFacebook,
-  faInstagram,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import email from "@app/assets/img/socialmediaicon/email.png";
 import facebook from "@app/assets/img/socialmediaicon/facebook.png";
-import github from "@app/assets/img/socialmediaicon/github.png";
-import homepage from "@app/assets/img/socialmediaicon/homepage.png";
 import instagram from "@app/assets/img/socialmediaicon/instagram.png";
 import linkedin from "@app/assets/img/socialmediaicon/linkedin.png";
-import weibo from "@app/assets/img/socialmediaicon/sina-weibo.png";
 import twitter from "@app/assets/img/socialmediaicon/twitter.png";
 
 const Title = styled("h2")`

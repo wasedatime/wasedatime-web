@@ -18,6 +18,10 @@ import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
 import "semantic-ui-css/components/popup.min.css";
 import { ThemeContext } from "@app/utils/theme-context";
 
+type ThemeComponentProps = {
+  isDark: boolean;
+};
+
 const Cards = styled(Card.Group)`
   .ui.card > .ui.image {
     width: 60px !important;
@@ -33,29 +37,17 @@ const Cards = styled(Card.Group)`
   }
 `;
 
-const WiderPopup = styled(Popup)`
+const WiderPopup = styled(Popup)<ThemeComponentProps>`
   ${(props) =>
     props.isDark &&
     `
-    background-color: ${colors.dark.bgSide} !important;
+    background-color: ${colors.dark.bgMain} !important;
     box-shadow: 0 2px 4px 0 ${colors.dark.text3} !important;
     border-color: ${colors.dark.text3} !important;
     &:before {
-      background-color: ${colors.dark.bgSide} !important;
+      background-color: ${colors.dark.bgMain} !important;
       border-color: ${colors.dark.text3} !important;
       box-shadow: -1px -1px 0 0 ${colors.dark.text3} !important;
-    }
-    .tabular.menu {
-      border-bottom-color: ${colors.dark.text3} !important;
-      .item {
-        background-color: ${colors.dark.bgMain} !important;
-        border-width: 0px !important;
-        color: ${colors.dark.text2} !important;
-      }
-      .item.active {
-        border-width: 1px !important;
-        border-color: ${colors.dark.text3} !important;
-      }
     }
   `}
 
@@ -67,7 +59,27 @@ const WiderPopup = styled(Popup)`
   `}
 `;
 
-const StyledMenuItem = styled(Menu.Item)`
+const StyledTab = styled(Tab)<ThemeComponentProps>`
+  ${(props) =>
+    props.isDark &&
+    `
+      .tabular.menu {
+        border-bottom-color: ${colors.dark.text3} !important;
+        .item {
+          background-color: ${colors.dark.bgMain} !important;
+          border-width: 0px !important;
+          color: ${colors.dark.text2} !important;
+        }
+        .item.active {
+          border-width: 1px !important;
+          border-color: ${colors.dark.text3} !important;
+        }
+      }
+    `
+  }
+`;
+
+const StyledMenuItem = styled(Menu.Item)<ThemeComponentProps>`
   font-size: 1.2em;
   ${(props) =>
     props.isDark &&
@@ -239,7 +251,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
   };
 
   render() {
-    const { theme, setTheme } = this.context;
+    const { theme } = this.context;
     const { t, isPopup } = this.props;
 
     return isPopup ? (
@@ -250,7 +262,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
             {t("school filter.choose schools")}
           </ChooseSchoolButton>
         }
-        content={<Tab panes={this.schoolImportPanes(theme)} />}
+        content={<StyledTab panes={this.schoolImportPanes(theme)} isDark={theme === "dark"} />}
         on="click"
         position="bottom left"
         size="huge"
@@ -258,7 +270,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
         isDark={theme === "dark"}
       />
     ) : (
-      <Tab panes={this.schoolImportPanes(theme)} />
+      <StyledTab panes={this.schoolImportPanes(theme)} isDark={theme === "dark"} />
     );
   }
 }

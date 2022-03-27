@@ -78,6 +78,7 @@
     "webpack-merge": "5.8.0"
   },
   "dependencies": {
+    "@aws-amplify/auth": "4.4.4",
     "@aws-amplify/api": "4.0.33",
     "@bit/wasedatime.core.theme.colors": "npm:wasedatime.core.theme.colors@0.0.4",
     "@bit/wasedatime.core.ts.constants.langs": "0.0.5",

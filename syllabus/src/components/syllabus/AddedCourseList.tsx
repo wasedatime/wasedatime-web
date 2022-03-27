@@ -1,5 +1,6 @@
 import React from "react";
 
+import colors from "@bit/wasedatime.core.theme.colors";
 import { height } from "@bit/wasedatime.core.ts.constants.size-variables";
 import {
   faArrowDown,
@@ -18,6 +19,7 @@ import { Article, Section, Subheading } from "@app/components/styles/Article";
 import AddedCourseItemContainer from "@app/containers/AddedCourseItemContainer";
 import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer";
 import Course from "@app/types/course";
+import { ThemeContext } from "@app/utils/theme-context";
 
 type CourseListWrapperProps = {
   innerRef: any;
@@ -128,6 +130,8 @@ class AddedCourseList extends React.Component<Props, State> {
     };
   }
 
+  static contextType = ThemeContext;
+
   componentDidMount() {
     this.createStickyWrapper();
   }
@@ -150,6 +154,7 @@ class AddedCourseList extends React.Component<Props, State> {
 
   render() {
     const { addedCourses, t } = this.props;
+    const { theme } = this.context;
 
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>
@@ -183,7 +188,7 @@ class AddedCourseList extends React.Component<Props, State> {
               </StyledMessageHeader>
             </Message>
 
-            <hr style={{ margin: "1em 0px" }} />
+            <hr style={{ margin: "1em 0px" }} className="dark:border-dark-text3" />
 
             <Section>
               <Subheading className="dark:text-dark-text2">
@@ -199,7 +204,7 @@ class AddedCourseList extends React.Component<Props, State> {
                 </Step>
 
                 <div style={{ textAlign: "center" }}>
-                  <FontAwesomeIcon icon={faArrowDown} size="1x" />
+                  <FontAwesomeIcon icon={faArrowDown} color={theme === "light" ? colors.light.text2 : colors.dark.text2} size="1x" />
                 </div>
 
                 <Step className="dark:opacity-70">

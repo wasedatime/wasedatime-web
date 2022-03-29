@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@aws-amplify/api': 4.0.33
-  '@aws-amplify/auth': 4.4.4
+  '@aws-amplify/auth': 4.5.0
   '@babel/core': 7.17.5
   '@babel/eslint-parser': 7.17.0
   '@babel/plugin-transform-runtime': 7.17.0
@@ -18,10 +18,10 @@ specifiers:
   '@bit/wasedatime.core.ts.ui.loading-spinner': 0.1.2
   '@bit/wasedatime.core.ts.ui.logo': 0.0.9
   '@bit/wasedatime.core.ts.ui.modal': 0.0.8
-  '@bit/wasedatime.core.ts.ui.sign-in-modal': 0.1.3
+  '@bit/wasedatime.core.ts.ui.sign-in-modal': npm:wasedatime.core.ts.ui.sign-in-modal@0.1.4
   '@bit/wasedatime.core.ts.utils.i18n': 0.0.4
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1
-  '@bit/wasedatime.core.ts.utils.user': 0.0.3
+  '@bit/wasedatime.core.ts.utils.user': npm:wasedatime.core.ts.utils.user@0.0.4
   '@fortawesome/fontawesome-svg-core': 1.3.0
   '@fortawesome/free-brands-svg-icons': 6.0.0
   '@fortawesome/free-solid-svg-icons': 6.0.0
@@ -118,7 +118,7 @@ specifiers:
 
 dependencies:
   '@aws-amplify/api': 4.0.33
-  '@aws-amplify/auth': 4.4.4
+  '@aws-amplify/auth': 4.5.0
   '@bit/wasedatime.core.theme.colors': node.bit.dev/@bit/wasedatime.core.theme.colors/0.0.4
   '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.constants.size-variables': node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.2_react-dom@17.0.2+react@17.0.2
@@ -127,10 +127,10 @@ dependencies:
   '@bit/wasedatime.core.ts.ui.loading-spinner': node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.1.2_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.ui.modal': node.bit.dev/@bit/wasedatime.core.ts.ui.modal/0.0.8_react-dom@17.0.2
-  '@bit/wasedatime.core.ts.ui.sign-in-modal': node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.1.3_eebde15b23afe714751ab2a728f9056a
+  '@bit/wasedatime.core.ts.ui.sign-in-modal': node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.1.4_eebde15b23afe714751ab2a728f9056a
   '@bit/wasedatime.core.ts.utils.i18n': node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.4_8f2a12f93b34591c18c344cd829419b1
   '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.utils.user': node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.3_react-dom@17.0.2+react@17.0.2
+  '@bit/wasedatime.core.ts.utils.user': node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.4_react-dom@17.0.2+react@17.0.2
   '@fortawesome/fontawesome-svg-core': 1.3.0
   '@fortawesome/free-brands-svg-icons': 6.0.0
   '@fortawesome/free-solid-svg-icons': 6.0.0
@@ -293,18 +293,6 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/auth/3.4.34:
-    resolution: {integrity: sha512-6Q+QDjb3ljAh3PptLFpdZn1kXOsv1yAwyvBZdaKP8ZRmgj8yT7yeR3a2nczY7HTj9Vhr4DXqI3rB3YYToJemLQ==}
-    dependencies:
-      '@aws-amplify/cache': 3.1.57
-      '@aws-amplify/core': 3.8.24
-      amazon-cognito-identity-js: 4.6.3
-      crypto-js: 4.1.1
-    transitivePeerDependencies:
-      - encoding
-      - react-native
-    dev: false
-
   /@aws-amplify/auth/4.4.2:
     resolution: {integrity: sha512-p8KvxysRNmb4HXAVNxxXoZGQ7hnFh6kLt16+Q5ujSxFtXG0re+jk2NjlK8U96JsuU/GC9M3X39cQnM29E02S7Q==}
     dependencies:
@@ -317,23 +305,15 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/auth/4.4.4:
-    resolution: {integrity: sha512-/iQB8teOXxb6XkOK2nPBxldU5YZjMLy6vTpihWMOPP96TWqldgnKSZykYtsrTb6uYK8iF1VWr7DI9OE7UpKONQ==}
+  /@aws-amplify/auth/4.5.0:
+    resolution: {integrity: sha512-L8AgQPzseev7IdxwHG/qD1GCCCEGNvu4iSEnn1HZSsAHAr3G2Li/l+8/QzXGvavYyCx/ruJj5Whs9YPpZ/PEng==}
     dependencies:
-      '@aws-amplify/cache': 4.0.37
-      '@aws-amplify/core': 4.4.2
+      '@aws-amplify/cache': 4.0.38
+      '@aws-amplify/core': 4.5.0
       amazon-cognito-identity-js: 5.2.8
       crypto-js: 4.1.1
     transitivePeerDependencies:
       - encoding
-      - react-native
-    dev: false
-
-  /@aws-amplify/cache/3.1.57:
-    resolution: {integrity: sha512-BSizxpLeOwZ3rDSznP+PUTxSvdmlSctyBEp5UFa5/m9KKTr/+RKjP0W2xk2thAS9faFiVaXvocf2B/RDs4GqDg==}
-    dependencies:
-      '@aws-amplify/core': 3.8.24
-    transitivePeerDependencies:
       - react-native
     dev: false
 
@@ -345,24 +325,10 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/cache/4.0.37:
-    resolution: {integrity: sha512-SlUYGVTCv848TAOVW+8PhMQKUaC6fAiflEqvW6LkXN0Etj1tetsUhXoSDFVevxkKQEXXouFrj9dSWnYE6SOIhA==}
+  /@aws-amplify/cache/4.0.38:
+    resolution: {integrity: sha512-ZM9Z+D4HvCaL86DdlV7Iz2FwaYSXviDk6Bd1f/IU3KYWksqScGhz7/Lbxmi+O3qOayRDy6VToHaa3QEM/4F/bg==}
     dependencies:
-      '@aws-amplify/core': 4.4.2
-    transitivePeerDependencies:
-      - react-native
-    dev: false
-
-  /@aws-amplify/core/3.8.24:
-    resolution: {integrity: sha512-py/M/UKKYSltTikNDEju3kmwDhmMv+qZ5bouSxRwprLTuwDmLzUcIFerPN2g4cmoF9JictlC/+9D3q5Wz7ha5w==}
-    dependencies:
-      '@aws-crypto/sha256-js': 1.0.0-alpha.0
-      '@aws-sdk/client-cognito-identity': 3.6.1
-      '@aws-sdk/credential-provider-cognito-identity': 3.6.1
-      '@aws-sdk/types': 3.6.1
-      '@aws-sdk/util-hex-encoding': 3.6.1
-      universal-cookie: 4.0.4
-      zen-observable-ts: 0.8.19
+      '@aws-amplify/core': 4.5.0
     transitivePeerDependencies:
       - react-native
     dev: false
@@ -382,8 +348,8 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/core/4.4.2:
-    resolution: {integrity: sha512-5Q6Te5WcLaUcJpXPVVCb/i/HLBr7dS2KyODqiadb2G4ocqmr6DQaMGo7f77LjQ6WqMDETSijqsLjU8nK+2xOpg==}
+  /@aws-amplify/core/4.5.0:
+    resolution: {integrity: sha512-V6x7n26flxPNpQI9nrXUotfuIlxw2ctFaLAXXnfsKaR9GnwZjGn7ML4czjhzNypq5qUMSofr/cDno8fp43/elw==}
     dependencies:
       '@aws-crypto/sha256-js': 1.0.0-alpha.0
       '@aws-sdk/client-cloudwatch-logs': 3.6.1
@@ -2293,56 +2259,6 @@ packages:
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: true
-
-  /@bit/wasedatime.core.assets.locales.en/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-a2MtBzbhje+oHJ4Tz+L5B/2n2Qs=, tarball: wasedatime.core.assets.locales.en/-/wasedatime.core.assets.locales.en-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.assets.locales.ja/0.0.1_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-q3GVnjO0kmRflqwouUeS5dFCHHU=, tarball: wasedatime.core.assets.locales.ja/-/wasedatime.core.assets.locales.ja-0.0.1.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-Bp87IFStXHsG1iyN/PONMyD5IyM=, tarball: wasedatime.core.ts.constants.langs/-/wasedatime.core.ts.constants.langs-0.0.5.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-    dev: false
-
-  /@bit/wasedatime.core.ts.utils.i18n/0.0.4_8f2a12f93b34591c18c344cd829419b1:
-    resolution: {integrity: sha1-Mi/S9B83NRoFmQTS6EgSF8Ymqlo=, tarball: wasedatime.core.ts.utils.i18n/-/wasedatime.core.ts.utils.i18n-0.0.4.tgz}
-    peerDependencies:
-      react: ^17.0.1
-      react-dom: ^17.0.1
-    dependencies:
-      '@bit/wasedatime.core.assets.locales.en': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.assets.locales.ja': 0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.constants.langs': 0.0.5_react-dom@17.0.2+react@17.0.2
-      i18next-browser-languagedetector: 6.1.3
-      i18next-http-backend: 1.4.0
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-i18next: 11.15.6_8f2a12f93b34591c18c344cd829419b1
-    transitivePeerDependencies:
-      - encoding
-      - i18next
-      - react-native
-    dev: false
 
   /@cnakazawa/watch/1.0.4:
     resolution: {integrity: sha512-v9kIhKwjeZThiWrLmj0y17CWoyddASLj9O2yvbZkbvw/N3rWOYy9zkV66ursAoVr0mV15bL8g0c4QZUE6cdDoQ==}
@@ -4423,18 +4339,6 @@ packages:
       require-from-string: 2.0.2
       uri-js: 4.4.1
     dev: true
-
-  /amazon-cognito-identity-js/4.6.3:
-    resolution: {integrity: sha512-MPVJfirbdmSGo7l4h7Kbn3ms1eJXT5Xq8ly+mCPPi8yAxaxdg7ouMUUNTqtDykoZxIdDLF/P6F3Zbg3dlGKOWg==}
-    dependencies:
-      buffer: 4.9.2
-      crypto-js: 4.1.1
-      fast-base64-decode: 1.0.0
-      isomorphic-unfetch: 3.1.0
-      js-cookie: 2.2.1
-    transitivePeerDependencies:
-      - encoding
-    dev: false
 
   /amazon-cognito-identity-js/5.2.7:
     resolution: {integrity: sha512-4JGhmD/iSIIgg0DUZWE6j1al1rOa6lTL/antId37Ao3Uhy3mZqZC6TGQ6DMcX4d+QgAr/DeevJDupRoAOnbOyQ==}
@@ -14506,18 +14410,18 @@ packages:
       react-modal: 3.14.4_react-dom@17.0.2+react@17.0.2
     dev: false
 
-  node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.1.3_eebde15b23afe714751ab2a728f9056a:
-    resolution: {integrity: sha1-jzj8stSsI/Kz+YULTwFTD7CMQKQ=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.sign-in-modal/-/wasedatime.core.ts.ui.sign-in-modal-0.1.3.tgz}
-    id: node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.1.3
+  node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.1.4_eebde15b23afe714751ab2a728f9056a:
+    resolution: {integrity: sha1-JdcnprMcQ0tI0/2kUSvTJsL/BIc=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.ui.sign-in-modal/-/wasedatime.core.ts.ui.sign-in-modal-0.1.4.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.1.4
     name: wasedatime.core.ts.ui.sign-in-modal
-    version: 0.1.3
+    version: 0.1.4
     peerDependencies:
       react: ^17.0.1
       react-dom: ^17.0.1
     dependencies:
       '@bit/wasedatime.core.ts.ui.modal': node.bit.dev/@bit/wasedatime.core.ts.ui.modal/0.0.8_react-dom@17.0.2
       '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react-dom@17.0.2+react@17.0.2
-      '@bit/wasedatime.core.ts.utils.user': node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.3_react-dom@17.0.2+react@17.0.2
+      '@bit/wasedatime.core.ts.utils.user': node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.4_react-dom@17.0.2+react@17.0.2
       '@fortawesome/free-brands-svg-icons': 6.1.1
       '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
       react: 17.0.2
@@ -14589,16 +14493,16 @@ packages:
       - react-is
     dev: false
 
-  node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.3_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha1-49NcYaMpH6Aq9E6NuEeeHdQn9gw=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.utils.user/-/wasedatime.core.ts.utils.user-0.0.3.tgz}
-    id: node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.3
+  node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.4_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha1-oXb9G56lFH2zi1fg1GCWAJpy1xU=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.utils.user/-/wasedatime.core.ts.utils.user-0.0.4.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.4
     name: wasedatime.core.ts.utils.user
-    version: 0.0.3
+    version: 0.0.4
     peerDependencies:
       react: ^17.0.1
       react-dom: ^17.0.1
     dependencies:
-      '@aws-amplify/auth': 3.4.34
+      '@aws-amplify/auth': 4.5.0
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
     transitivePeerDependencies:

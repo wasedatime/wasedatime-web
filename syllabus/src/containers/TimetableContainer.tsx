@@ -23,17 +23,17 @@ const Timetable = lazy(() => import("@app/components/timetable/Timetable"));
 
 const TimetableWrapper = styled(Wrapper)`
   height: 100vh;
+  ${media.tablet`height: calc(100vh - 60px);`}
   display: flex;
   flex-direction: column;
 `;
 
 const HeaderWrapper = styled.div`
-  flex: 67px;
+  flex: 0 0 67px;
 `;
 
 const TimetableFlex = styled.div`
-  flex: calc(100% - 67px);
-  ${media.tablet`flex: calc(100vh - 117px);`}
+  overflow-y: auto;
 `;
 
 interface ReduxStateProps {

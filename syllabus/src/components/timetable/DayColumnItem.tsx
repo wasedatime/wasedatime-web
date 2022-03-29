@@ -4,12 +4,14 @@ import styled from "styled-components";
 
 import CourseColumn from "@app/components/timetable/CourseColumn";
 import { CourseWithOcc } from "@app/types/course";
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const StyledDayColumnItem = styled("li")`
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
   min-height: calc(100vh - 150px);
+  ${media.tablet`min-height: calc(100vh - 250px);`}
 `;
 
 const DayItem = styled("div")`

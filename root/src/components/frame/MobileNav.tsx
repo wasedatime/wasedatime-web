@@ -38,12 +38,13 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
 
   return (
     <nav
-      className="fixed bottom-0 flex flex-row bg-black w-full"
+      className="fixed bottom-0 flex flex-row bg-black w-full bg-light-bgSide dark:bg-dark-bgSide"
       style={{
         height: "60px",
         zIndex: 1000,
         padding: "8px",
         width: "100vw",
+        boxShadow: "rgba(0, 0, 0, 0.3) 0px -4px 12px"
       }}
     >
       {styledLinks}

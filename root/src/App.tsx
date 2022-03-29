@@ -6,7 +6,7 @@ import { ErrorBoundary } from "@sentry/react";
 import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navigateToUrl } from "single-spa";
 
 import CommonStyle from "@app/common-style";
@@ -37,36 +37,37 @@ const Redirect = ({ to }: { to: string }) => {
 };
 
 const AppRoutes = () => {
-  const navigate = useNavigate();
-
-  Hub.listen("auth", ({ payload: { event, data } }) => {
-    switch (event) {
-      case "signIn":
-        ReactGA.event({
-          category: gaUser,
-          action: gaUserSignIn,
-        });
-        break;
-      case "signOut":
-        ReactGA.event({
-          category: gaUser,
-          action: gaUserSignOut,
-        });
-        break;
-      case "signIn_failure":
-        ReactGA.event({
-          category: gaUser,
-          action: gaUserSignInFailure,
-        });
-        break;
-      case "customOAuthState":
-        navigate(data);
-        break;
-      default:
-        break;
-    }
-  });
-
+  useEffect(() => {
+    const unsubscribe = Hub.listen("auth", ({ payload: { event, data } }) => {
+      switch (event) {
+        case "signIn":
+          ReactGA.event({
+            category: gaUser,
+            action: gaUserSignIn,
+          });
+          break;
+        case "signOut":
+          ReactGA.event({
+            category: gaUser,
+            action: gaUserSignOut,
+          });
+          break;
+        case "signIn_failure":
+          ReactGA.event({
+            category: gaUser,
+            action: gaUserSignInFailure,
+          });
+          break;
+        case "customOAuthState":
+          window.location.pathname = data;
+          break;
+        default:
+          break;
+      }
+    });
+    return unsubscribe;
+  }, []);
+  
   return (
     <Routes>
       <Route element={<TermsOfService />} path="/terms-of-service" />

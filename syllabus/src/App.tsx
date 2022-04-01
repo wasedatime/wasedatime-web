@@ -115,6 +115,7 @@ const AppRoutes = () => {
       <Route element={<Syllabus />} path="courses/syllabus" />
       <Route element={<Timetable />} path="courses/timetable" />
       <Route element={<Labs />} path="courses/labs" />
+      <Route element={<></>} path="home" />
       <Route element={<NotFound />} path="*" />
     </Routes>
   );

@@ -69,12 +69,12 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
           ) : (
             <FontAwesomeIcon
               icon={faUserCircle}
-              className="text-white"
+              className="text-light-text2 dark:text-dark-text2"
               style={{ fontSize: "20px" }}
             />
           )}
           {!userAttr && (
-            <div className="text-white" style={{ fontSize: "12px" }}>
+            <div className="text-light-text2 dark:text-dark-text2" style={{ fontSize: "12px" }}>
               {t("user.Sign in")}
             </div>
           )}

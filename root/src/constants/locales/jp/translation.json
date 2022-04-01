@@ -36,5 +36,21 @@
       "message2": "授業レビューの作成、編集もできます！",
       "navigateHint": "ページが遷移されない場合、こちらをクリックしてください。"
     }
+  },
+  "welcome": {
+    "welcome": "ようこそ早稲田タイムへ！",
+    "slogan": "早稲田タイムで、スマートな早稲田ライフを",
+    "next": "次へ",
+    "back": "戻る",
+    "done": "了解",
+    "newFeature": "新機能",
+    "themeToggle": {
+      "title": "ダークモード",
+      "themeToggleExplain1": "ヘッダーの右端にテーマのスイッチが追加されました。",
+      "themeToggleExplain2": "クリックするとライトモード/ダークモードの切り替えができます。",
+      "themeToggleExplain3": "ぜひお好みのテーマで利用してください！",
+      "lightMode": "ライトモード",
+      "darkMode": "ダークモード"
+    }
   }
 }

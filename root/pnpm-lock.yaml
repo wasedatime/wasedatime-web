@@ -21,7 +21,7 @@ specifiers:
   '@bit/wasedatime.core.ts.ui.loading-spinner': 0.1.2
   '@bit/wasedatime.core.ts.ui.logo': 0.0.9
   '@bit/wasedatime.core.ts.ui.modal': 0.0.8
-  '@bit/wasedatime.core.ts.ui.sign-in-modal': 0.1.4
+  '@bit/wasedatime.core.ts.ui.sign-in-modal': 0.1.6
   '@bit/wasedatime.core.ts.utils.i18n': 0.0.4
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1
   '@bit/wasedatime.core.ts.utils.user': 0.0.4
@@ -133,10 +133,10 @@ dependencies:
   '@bit/wasedatime.core.ts.ui.loading-spinner': node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.1.2_react@17.0.2
   '@bit/wasedatime.core.ts.ui.logo': node.bit.dev/@bit/wasedatime.core.ts.ui.logo/0.0.9_react@17.0.2
   '@bit/wasedatime.core.ts.ui.modal': node.bit.dev/@bit/wasedatime.core.ts.ui.modal/0.0.8
-  '@bit/wasedatime.core.ts.ui.sign-in-modal': 0.1.4_e46095638471543ba34100765238dc47
+  '@bit/wasedatime.core.ts.ui.sign-in-modal': 0.1.6_e46095638471543ba34100765238dc47
   '@bit/wasedatime.core.ts.utils.i18n': node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.4_i18next@19.9.2+react@17.0.2
   '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_react@17.0.2
-  '@bit/wasedatime.core.ts.utils.user': 0.0.4_react@17.0.2
+  '@bit/wasedatime.core.ts.utils.user': node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.4_react@17.0.2
   '@emotion/react': 11.8.2_7c3ecd89bd75b61b41f2029715ea2305
   '@emotion/styled': 11.8.1_86298085d838b819be51470c095f525d
   '@fortawesome/fontawesome-svg-core': 1.3.0
@@ -2174,8 +2174,8 @@ packages:
       react-modal: 3.14.4_react@17.0.2
     dev: false
 
-  /@bit/wasedatime.core.ts.ui.sign-in-modal/0.1.4_e46095638471543ba34100765238dc47:
-    resolution: {integrity: sha1-JdcnprMcQ0tI0/2kUSvTJsL/BIc=, tarball: wasedatime.core.ts.ui.sign-in-modal/-/wasedatime.core.ts.ui.sign-in-modal-0.1.4.tgz}
+  /@bit/wasedatime.core.ts.ui.sign-in-modal/0.1.6_e46095638471543ba34100765238dc47:
+    resolution: {integrity: sha1-2AsM/+8z11HHHjRVHuMy8YjmyVk=, tarball: wasedatime.core.ts.ui.sign-in-modal/-/wasedatime.core.ts.ui.sign-in-modal-0.1.6.tgz}
     peerDependencies:
       react: ^17.0.1
       react-dom: ^17.0.1
@@ -13958,4 +13958,20 @@ packages:
       styled-components: 5.3.3_react@17.0.2
     transitivePeerDependencies:
       - react-is
+    dev: false
+
+  node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.4_react@17.0.2:
+    resolution: {integrity: sha1-oXb9G56lFH2zi1fg1GCWAJpy1xU=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.utils.user/-/wasedatime.core.ts.utils.user-0.0.4.tgz}
+    id: node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.4
+    name: wasedatime.core.ts.utils.user
+    version: 0.0.4
+    peerDependencies:
+      react: ^17.0.1
+      react-dom: ^17.0.1
+    dependencies:
+      '@aws-amplify/auth': 4.5.0
+      react: 17.0.2
+    transitivePeerDependencies:
+      - encoding
+      - react-native
     dev: false

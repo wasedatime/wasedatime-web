@@ -37,17 +37,6 @@ export interface NavItemsProps {
   iconHovered?: ReactNode;
 }
 
-const SignInModalContainer = ({ isModalOpen, closeModal }) => {
-  const { theme } = useContext(ThemeContext);
-  return (
-    <SignInModal
-      isModalOpen={isModalOpen}
-      closeModal={closeModal}
-      theme={theme}
-    />
-  )
-}
-
 const Nav = () => {
   if (
     localStorage.getItem("isFirstAccess") === null ||
@@ -120,7 +109,7 @@ const Nav = () => {
             )
           }
         </MediaQuery>
-        <SignInModalContainer
+        <SignInModal
           isModalOpen={isSignInModalOpen}
           closeModal={() => setSignInModalOpen(false)}
         />

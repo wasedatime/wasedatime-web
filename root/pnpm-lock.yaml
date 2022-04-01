@@ -99,7 +99,7 @@ specifiers:
   styled-components: 5.3.3
   tailwindcss: 3.0.23
   ts-config-single-spa: 2.0.1
-  ts-loader: 9.2.7
+  ts-loader: 9.2.8
   typescript: 4.6.2
   webpack: 5.70.0
   webpack-bundle-analyzer: 4.5.0
@@ -174,7 +174,7 @@ dependencies:
   single-spa-layout: 1.6.0
   single-spa-react: 4.6.1_41ec47b032f4824cf690f95377e02aa6
   styled-components: 5.3.3_react@17.0.2
-  ts-loader: 9.2.7_typescript@4.6.2+webpack@5.70.0
+  ts-loader: 9.2.8_typescript@4.6.2+webpack@5.70.0
   webpack-pwa-manifest: 4.3.0
   workbox-cacheable-response: 6.5.1
   workbox-core: 6.5.1
@@ -12536,8 +12536,8 @@ packages:
     resolution: {integrity: sha512-zGTozFbnMqdoNCsOJ+gqYSJNIm7QUJtN/3o8uyOCuFxwfrBETQ+lyHnvvgVO29IEVhhrnOp6NQAyOIVE8lmqxA==}
     dev: true
 
-  /ts-loader/9.2.7_typescript@4.6.2+webpack@5.70.0:
-    resolution: {integrity: sha512-Fxh44mKli9QezgbdCXkEJWxnedQ0ead7DXTH+lfXEPedu+Y9EtMJ2aQ9G3Dj1j7Q612E8931rww8NDZha4Tibg==}
+  /ts-loader/9.2.8_typescript@4.6.2+webpack@5.70.0:
+    resolution: {integrity: sha512-gxSak7IHUuRtwKf3FIPSW1VpZcqF9+MBrHOvBp9cjHh+525SjtCIJKVGjRKIAfxBwDGDGCFF00rTfzB1quxdSw==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       typescript: '*'

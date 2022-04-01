@@ -12,7 +12,7 @@ import styled from "styled-components";
 import homeBackgroundDark from "@app/assets/img/home/home_background-dark.png";
 import homeBackgroundLight from "@app/assets/img/home/home_background-light.jpg";
 import { TitleLogo } from "@app/assets/img/home/TitleLogo";
-import WelcomeModal from "@app/components/WelcomeModal";
+import HomeModal from "@app/components/home/HomeModal";
 import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
 import { gaLanguage } from "@app/ga/eventCategories";
 import { ThemeContext } from "@app/utils/theme-context";
@@ -129,7 +129,7 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
           </button>
         </Introduction>
 
-        <WelcomeModal
+        <HomeModal
           isModalOpen={modalOpen}
           closeModal={closeModal}
           isFirstAccess={isFirstAccess}

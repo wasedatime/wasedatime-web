@@ -37,5 +37,21 @@
       "message2": "You can also write and edit your course reviews now!",
       "navigateHint": "Click here if the page is not redirected."
     }
+  },
+  "welcome": {
+    "welcome": "Welcome to WasedaTime!",
+    "slogan": "WasedaTime, a smarter Waseda life",
+    "next": "Next",
+    "back": "Back",
+    "done": "Done",
+    "newFeature": "New features",
+    "themeToggle": {
+      "title": "Dark mode",
+      "themeToggleExplain1": "Theme toggle is added on the right of the header.",
+      "themeToggleExplain2": "You can switch between light and dark mode by clicking it.",
+      "themeToggleExplain3": "Enjoy WasedaTime with your favorite mode!",
+      "lightMode": "Light mode",
+      "darkMode": "Dark mode"
+    }
   }
 }

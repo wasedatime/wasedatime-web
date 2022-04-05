@@ -4,6 +4,7 @@
 */
 
 const timetableColors = {
+  // To Hao: Please remove the colors outside of the light and dark objects once you finish editing
   color0: "#580505",
   bgColor0: "#ef9a9a",
   color1: "#862505",

@@ -5,11 +5,8 @@ import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
 import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import {
-  ProfileIcon,
-  ProfileIconHovered,
-} from "@app/components/icons/ProfileIcon";
 import { ThemeContext } from "@app/utils/theme-context";
+import { ProfileIconHovered } from "@app/components/icons/ProfileIcon";
 
 type SignInSpanProps = {
   ishovered: boolean;
@@ -81,7 +78,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
       onClick={openSignInModal}
     >
       <div className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
-        {theme === "dark" ? <ProfileIconHovered /> : <ProfileIcon />}
+        <ProfileIconHovered />
       </div>
       {!isMobileMode && (
         <StyledSpan

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import LinkOutsideRouter from "@app/utils/link-outside-router";
 import { NavItemsProps } from "@app/components/frame/Nav";
+import { ProfileIconHovered } from "@app/components/icons/ProfileIcon";
 
 type Props = {
   navItems: NavItemsProps[];
@@ -38,7 +37,7 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
 
   return (
     <nav
-      className="fixed bottom-0 flex flex-row bg-black w-full bg-light-bgSide dark:bg-dark-bgSide"
+      className="fixed bottom-0 flex flex-row w-full bg-light-bgSide dark:bg-dark-bgSide"
       style={{
         height: "60px",
         zIndex: 1000,
@@ -67,11 +66,9 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
               style={{ margin: "0px auto" }}
             />
           ) : (
-            <FontAwesomeIcon
-              icon={faUserCircle}
-              className="text-light-text2 dark:text-dark-text2"
-              style={{ fontSize: "20px" }}
-            />
+            <div className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
+              <ProfileIconHovered />
+            </div>
           )}
           {!userAttr && (
             <div className="text-light-text2 dark:text-dark-text2" style={{ fontSize: "12px" }}>

@@ -1,10 +1,10 @@
 import React from "react";
 
+import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import styled from "styled-components";
 
 import CourseColumn from "@app/components/timetable/CourseColumn";
 import { CourseWithOcc } from "@app/types/course";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 
 const StyledDayColumnItem = styled("li")`
   display: flex;

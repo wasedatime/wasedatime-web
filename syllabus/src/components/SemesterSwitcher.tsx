@@ -82,8 +82,6 @@ const SemesterSwitcher = ({
   toggleQuarter,
   isSmallSize,
 }: Props) => {
-  const { theme, setTheme } = React.useContext(ThemeContext);
-
   return (
     <div
       style={{ display: "flex", flexDirection: "column" }}

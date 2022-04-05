@@ -1,4 +1,11 @@
-import React, { useState, useEffect, lazy, Suspense, ReactNode, useContext } from "react";
+import React, {
+  useState,
+  useEffect,
+  lazy,
+  Suspense,
+  ReactNode,
+  useContext,
+} from "react";
 
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { createBrowserHistory } from "history";

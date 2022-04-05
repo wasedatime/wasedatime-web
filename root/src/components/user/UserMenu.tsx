@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
 import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import { ThemeContext } from "@app/utils/theme-context";
 import { ProfileIconHovered } from "@app/components/icons/ProfileIcon";
 
 type SignInSpanProps = {
@@ -66,7 +65,6 @@ interface Props extends WithTranslation {
 }
 
 const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
-  const { theme } = useContext(ThemeContext);
   const [userAttr, setUserAttr] = useState(null);
   const [isUserIconHovered, setIsUserIconHovered] = useState(false);
   const notSignedIn = !userAttr;

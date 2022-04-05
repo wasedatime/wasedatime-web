@@ -2,9 +2,10 @@ import React, { useState } from "react";
 
 import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
 import { useTranslation } from "react-i18next";
-import LinkOutsideRouter from "@app/utils/link-outside-router";
+
 import { NavItemsProps } from "@app/components/frame/Nav";
 import { ProfileIconHovered } from "@app/components/icons/ProfileIcon";
+import LinkOutsideRouter from "@app/utils/link-outside-router";
 
 type Props = {
   navItems: NavItemsProps[];
@@ -43,7 +44,7 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
         zIndex: 1000,
         padding: "8px",
         width: "100vw",
-        boxShadow: "rgba(0, 0, 0, 0.3) 0px -4px 12px"
+        boxShadow: "rgba(0, 0, 0, 0.3) 0px -4px 12px",
       }}
     >
       {styledLinks}
@@ -71,7 +72,10 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
             </div>
           )}
           {!userAttr && (
-            <div className="text-light-text2 dark:text-dark-text2" style={{ fontSize: "12px" }}>
+            <div
+              className="text-light-text2 dark:text-dark-text2"
+              style={{ fontSize: "12px" }}
+            >
               {t("user.Sign in")}
             </div>
           )}

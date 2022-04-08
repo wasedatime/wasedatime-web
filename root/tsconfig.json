@@ -6,7 +6,15 @@
       "@app/*": ["*"]
     },
     "jsx": "react",
-    "noEmit": false
+    "noEmit": false,
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2016.array.include",
+      "es2018",
+      "esnext"
+    ],
   },
   "include": ["src"]
 }

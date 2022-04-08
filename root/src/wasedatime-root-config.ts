@@ -48,6 +48,12 @@ const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);
 layoutEngine.activate();
+registerApplication({
+  name: "@wasedatime/career",
+  //@ts-ignore
+  app: () => import("http://localhost:8082/wasedatime-career.ts"),
+  activeWhen: ["/career"],
+});
 start();
 
 configAuth();

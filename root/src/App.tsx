@@ -2,12 +2,12 @@ import React, { useEffect, lazy, Suspense, useContext } from "react";
 
 import { Hub } from "@aws-amplify/core";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { ErrorBoundary } from "@sentry/react";
 import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navigateToUrl } from "single-spa";
+import { ErrorBoundary } from 'react-error-boundary'
 
 import CommonStyle from "@app/common-style";
 import ErrorFallback from "@app/components/ErrorFallback";
@@ -119,8 +119,8 @@ const App = () => {
 
       <ThemeProvider>
         <ErrorBoundary
-          fallback={({ error, componentStack, resetError }) => (
-            <ErrorFallback error={error} resetError={resetError} />
+          FallbackComponent={({ error, resetErrorBoundary }) => (
+            <ErrorFallback error={error} resetError={resetErrorBoundary} />
           )}
         >
           <BrowserRouter>

@@ -1,4 +1,5 @@
 const colors = require("@bit/wasedatime.core.theme.colors");
+const daisyui = require("daisyui");
 
 module.exports = {
   darkMode: "class",
@@ -12,5 +13,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [daisyui],
 };

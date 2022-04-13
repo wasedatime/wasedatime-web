@@ -17,6 +17,7 @@ import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 import { ThemeContext } from "@app/utils/theme-context";
+import timetableColors from "@app/constants/timetable-colors";
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -108,7 +109,13 @@ const CourseAndPrefItem = ({
   return (
     <RowWrapper>
       <Popup
-        trigger={<ColorButton className={`color-${color}`} />}
+        trigger={
+          <ColorButton style={{
+            color: timetableColors[theme][`color${color}`],
+            backgroundColor: timetableColors[theme][`bgColor${color}`],
+            borderColor: timetableColors[theme][`color${color}`],
+          }} />
+        }
         on="click"
         pinned
         size="huge"

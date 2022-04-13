@@ -395,7 +395,11 @@ const CourseItem = ({
       )}
 
       {expandable && expanded && (
-        <CourseInfo course={course} searchLang={searchLang} clearSearchBar={clearSearchBar} />
+        <CourseInfo
+          course={course}
+          searchLang={searchLang}
+          clearSearchBar={clearSearchBar}
+        />
       )}
     </CourseItemWrapper>
   );

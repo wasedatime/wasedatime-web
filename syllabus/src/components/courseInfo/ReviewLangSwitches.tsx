@@ -32,9 +32,7 @@ const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
   ${(props) =>
     props.active &&
     `
-    background-color: ${
-      props.isDark ? colors.dark.main : colors.light.main
-    };
+    background-color: ${props.isDark ? colors.dark.main : colors.light.main};
     color: ${props.isDark ? colors.dark.text1 : "#fff"};
   `};
   ${(props) => props.isInHeading && "line-height: 20px;"};

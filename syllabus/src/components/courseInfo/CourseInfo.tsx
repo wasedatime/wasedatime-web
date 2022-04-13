@@ -238,7 +238,13 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
   }
 
   render() {
-    const { course: courseFromProps, searchLang, clearSearchBar, t, i18n } = this.props;
+    const {
+      course: courseFromProps,
+      searchLang,
+      clearSearchBar,
+      t,
+      i18n,
+    } = this.props;
     const {
       courseWithMoreDetails,
       areDetailsLoaded,

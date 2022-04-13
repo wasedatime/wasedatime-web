@@ -1,8 +1,15 @@
 import React from "react";
 
 import colors from "@bit/wasedatime.core.theme.colors";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import {
+  faCheck,
+  faSpa,
+  faSun,
+  faSnowflake,
+} from "@fortawesome/free-solid-svg-icons";
+import { faCanadianMapleLeaf } from "@fortawesome/free-brands-svg-icons";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import styled from "styled-components";
@@ -30,14 +37,10 @@ const OrButton = styled(Button.Or)<ButtonProps>`
   }
 `;
 
-const StyledButton = styled(Button)<ButtonProps>`
-  ${(props) => props.isDark && "opacity: 0.7;"}
-`;
-
 const buttonStyle = {
   marginBottom: "1em",
   padding: "0px 1em",
-  width: "90px",
+  width: "60px",
   height: "24px",
   fontSize: "12px",
 };
@@ -50,59 +53,40 @@ const QuarterSwitch = ({
 }: Props) => {
   const { theme } = React.useContext(ThemeContext);
 
+  const QuarterButton = ({
+    quarter,
+    icon,
+  }: {
+    quarter: string;
+    icon: IconProp;
+  }) => {
+    const className = `border-2 rounded border-quarter-light-${quarter} text-quarter-light-${quarter} hover:bg-quarter-light-${quarter} hover:text-light-bgMain dark:border-quarter-dark-${quarter} dark:text-quarter-dark-${quarter} dark:hover:bg-quarter-dark-${quarter} dark:hover:text-dark-bgMain`;
+
+    return (
+      <button
+        onClick={() => toggleQuarter(Quarter[quarter.toUpperCase()])}
+        style={buttonStyle}
+        className={className}
+      >
+        {selectedQuarter === Quarter[quarter.toUpperCase()] && (
+          <FontAwesomeIcon icon={faCheck} />
+        )}{" "}
+        <FontAwesomeIcon icon={icon} />
+      </button>
+    );
+  };
+
   return semesterKey === Semester.SPRING ? (
     <Button.Group>
-      <StyledButton
-        inverted
-        color="pink"
-        onClick={() => toggleQuarter(Quarter.SPRING)}
-        style={buttonStyle}
-        isDark={theme === "dark"}
-      >
-        {selectedQuarter === Quarter.SPRING && (
-          <FontAwesomeIcon icon={faCheck} />
-        )}{" "}
-        {t("syllabus.semesterMap.Spring")}
-      </StyledButton>
+      <QuarterButton quarter="spring" icon={faSpa} />
       <OrButton isDark={theme === "dark"} />
-      <StyledButton
-        inverted
-        color="orange"
-        onClick={() => toggleQuarter(Quarter.SUMMER)}
-        style={buttonStyle}
-        isDark={theme === "dark"}
-      >
-        {selectedQuarter === Quarter.SUMMER && (
-          <FontAwesomeIcon icon={faCheck} />
-        )}{" "}
-        {t("syllabus.semesterMap.Summer")}
-      </StyledButton>
+      <QuarterButton quarter="summer" icon={faSun} />
     </Button.Group>
   ) : (
     <Button.Group>
-      <StyledButton
-        inverted
-        color="brown"
-        onClick={() => toggleQuarter(Quarter.FALL)}
-        style={buttonStyle}
-        isDark={theme === "dark"}
-      >
-        {selectedQuarter === Quarter.FALL && <FontAwesomeIcon icon={faCheck} />}{" "}
-        {t("syllabus.semesterMap.Fall")}
-      </StyledButton>
+      <QuarterButton quarter="fall" icon={faCanadianMapleLeaf} />
       <OrButton isDark={theme === "dark"} />
-      <StyledButton
-        inverted
-        color="blue"
-        onClick={() => toggleQuarter(Quarter.WINTER)}
-        style={buttonStyle}
-        isDark={theme === "dark"}
-      >
-        {selectedQuarter === Quarter.WINTER && (
-          <FontAwesomeIcon icon={faCheck} />
-        )}{" "}
-        {t("syllabus.semesterMap.Winter")}
-      </StyledButton>
+      <QuarterButton quarter="winter" icon={faSnowflake} />
     </Button.Group>
   );
 };

@@ -75,8 +75,7 @@ const StyledTab = styled(Tab)<ThemeComponentProps>`
           border-color: ${colors.dark.text3} !important;
         }
       }
-    `
-  }
+    `}
 `;
 
 const StyledMenuItem = styled(Menu.Item)<ThemeComponentProps>`
@@ -262,7 +261,12 @@ class SchoolFilterForm extends React.Component<Props, State> {
             {t("school filter.choose schools")}
           </ChooseSchoolButton>
         }
-        content={<StyledTab panes={this.schoolImportPanes(theme)} isDark={theme === "dark"} />}
+        content={
+          <StyledTab
+            panes={this.schoolImportPanes(theme)}
+            isDark={theme === "dark"}
+          />
+        }
         on="click"
         position="bottom left"
         size="huge"
@@ -270,7 +274,10 @@ class SchoolFilterForm extends React.Component<Props, State> {
         isDark={theme === "dark"}
       />
     ) : (
-      <StyledTab panes={this.schoolImportPanes(theme)} isDark={theme === "dark"} />
+      <StyledTab
+        panes={this.schoolImportPanes(theme)}
+        isDark={theme === "dark"}
+      />
     );
   }
 }

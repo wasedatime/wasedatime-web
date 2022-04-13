@@ -66,7 +66,7 @@
   "dependencies": {
     "@aws-amplify/api": "4.0.33",
     "@aws-amplify/auth": "4.5.0",
-    "@bit/wasedatime.core.theme.colors": "npm:wasedatime.core.theme.colors@0.0.4",
+    "@bit/wasedatime.core.theme.colors": "0.0.5",
     "@bit/wasedatime.core.ts.constants.langs": "0.0.5",
     "@bit/wasedatime.core.ts.constants.size-variables": "0.0.2",
     "@bit/wasedatime.core.ts.styles.wrapper": "0.0.1",

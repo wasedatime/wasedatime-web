@@ -188,7 +188,10 @@ class AddedCourseList extends React.Component<Props, State> {
               </StyledMessageHeader>
             </Message>
 
-            <hr style={{ margin: "1em 0px" }} className="dark:border-dark-text3" />
+            <hr
+              style={{ margin: "1em 0px" }}
+              className="dark:border-dark-text3"
+            />
 
             <Section>
               <Subheading className="dark:text-dark-text2">
@@ -204,7 +207,13 @@ class AddedCourseList extends React.Component<Props, State> {
                 </Step>
 
                 <div style={{ textAlign: "center" }}>
-                  <FontAwesomeIcon icon={faArrowDown} color={theme === "light" ? colors.light.text2 : colors.dark.text2} size="1x" />
+                  <FontAwesomeIcon
+                    icon={faArrowDown}
+                    color={
+                      theme === "light" ? colors.light.text2 : colors.dark.text2
+                    }
+                    size="1x"
+                  />
                 </div>
 
                 <Step className="dark:opacity-70">

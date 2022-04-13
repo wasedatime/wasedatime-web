@@ -1,5 +1,10 @@
 import React, { useState, useEffect, createContext } from "react";
 
+import ReactGA from "react-ga";
+
+import { gaAppendActionWithTheme, gaChangeTheme } from "@app/ga/eventActions";
+import { gaTheme } from "@app/ga/eventCategories";
+
 export type ThemeTypes = "light" | "dark";
 
 const getInitialTheme = (): ThemeTypes => {
@@ -42,6 +47,14 @@ export const ThemeProvider = ({
 
   const [theme, setTheme] = useState<ThemeTypes>(getInitialTheme);
 
+  const themeGA = (themeType: ThemeTypes) => {
+    ReactGA.event({
+      category: gaTheme,
+      action: gaAppendActionWithTheme(gaChangeTheme, themeType),
+      label: themeType,
+    });
+  };
+
   const rawSetTheme = (rawTheme: ThemeTypes) => {
     const root = window.document.documentElement;
     const isDark = rawTheme === "dark";
@@ -49,6 +62,7 @@ export const ThemeProvider = ({
     root.classList.remove(isDark ? "light" : "dark");
     root.classList.add(rawTheme);
     localStorage.setItem("color-theme", rawTheme);
+    themeGA(rawTheme);
     window.dispatchEvent(themeChangedEvent);
   };
 

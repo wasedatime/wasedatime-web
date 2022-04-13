@@ -26,7 +26,7 @@ import {
   gaClickSyllabusLink,
   gaOpenCourseDetails,
 } from "@app/ga/eventActions";
-import { gaCourseDetails, gaFetchedCourseItem } from "@app/ga/eventCategories";
+import { gaCourseDetails } from "@app/ga/eventCategories";
 import { ReduxRootState } from "@app/redux/reducers";
 import { getFetchedCoursesList } from "@app/redux/reducers/fetchedCourses";
 import Course from "@app/types/course";
@@ -238,7 +238,13 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
   }
 
   render() {
-    const { course: courseFromProps, searchLang, clearSearchBar, t, i18n } = this.props;
+    const {
+      course: courseFromProps,
+      searchLang,
+      clearSearchBar,
+      t,
+      i18n,
+    } = this.props;
     const {
       courseWithMoreDetails,
       areDetailsLoaded,

@@ -1,14 +1,16 @@
 import React, { useContext } from "react";
-import styled from "styled-components";
-import { useTranslation } from "react-i18next";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+
 import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useTranslation } from "react-i18next";
+import styled from "styled-components";
+
 import { ThemeContext } from "@app/utils/theme-context";
 
 type Props = {
   goToNextPage: () => void;
-}
+};
 
 const LogoWrapper = styled("div")`
   transform: translate(0, 5vh);
@@ -52,7 +54,10 @@ const Welcome = ({ goToNextPage }: Props) => {
           className="ml-4 text-icon-sun dark:text-icon-moon"
           onClick={() => setTheme(theme === "light" ? "dark" : "light")}
         >
-          <FontAwesomeIcon icon={theme === "light" ? faSun : faMoon} size="lg" />
+          <FontAwesomeIcon
+            icon={theme === "light" ? faSun : faMoon}
+            size="lg"
+          />
         </button>
       </div>
 
@@ -67,7 +72,7 @@ const Welcome = ({ goToNextPage }: Props) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Welcome;

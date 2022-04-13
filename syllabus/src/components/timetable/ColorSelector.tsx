@@ -9,6 +9,7 @@ const colorIds: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
 
 type ColorButtonProps = {
   colorCode: number;
+  theme: string;
 };
 
 const InvisibleButton = styled("button")`
@@ -22,10 +23,10 @@ const InvisibleButton = styled("button")`
 const ColorButton = styled(InvisibleButton)<ColorButtonProps>`
   width: 1.5em;
   height: 1.5em;
-  border: 1px solid ${(props) => timetableColors[`color${props.colorCode}`]};
+  border: 1px solid ${(props) => timetableColors[props.theme][`color${props.colorCode}`]};
   border-radius: 0.3em;
   margin: 0 0.1em;
-  background-color: ${(props) => timetableColors[`bgColor${props.colorCode}`]};
+  background-color: ${(props) => timetableColors[props.theme][`bgColor${props.colorCode}`]};
 `;
 
 interface Props {
@@ -45,6 +46,7 @@ const ColorSelector = ({ handleChangeColor }: Props) => {
             event.preventDefault();
             handleChangeColor(id);
           }}
+          theme={theme}
         />
       ))}
     </div>

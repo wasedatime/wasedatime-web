@@ -28,11 +28,13 @@ const Feeds = lazy(() => import("@app/components/Feeds"));
 
 const NotFound = () => {
   useEffect(() => navigateToUrl("/"), []);
+
   return <LoadingSpinner theme="light" message="Not found! Redirecting..." />;
 };
 
 const Redirect = ({ to }: { to: string }) => {
   useEffect(() => navigateToUrl(to), []);
+
   return null;
 };
 
@@ -65,9 +67,10 @@ const AppRoutes = () => {
           break;
       }
     });
+
     return unsubscribe;
   }, []);
-  
+
   return (
     <Routes>
       <Route element={<TermsOfService />} path="/terms-of-service" />
@@ -92,7 +95,7 @@ const LoadingSpinnerContainer = () => {
       <LoadingSpinner theme={theme} message="Loading..." />
     </div>
   );
-}
+};
 
 const App = () => {
   const { i18n } = useTranslation();

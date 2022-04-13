@@ -10,7 +10,7 @@ specifiers:
   '@babel/preset-react': 7.16.7
   '@babel/preset-typescript': 7.16.7
   '@babel/runtime': 7.17.2
-  '@bit/wasedatime.core.theme.colors': npm:wasedatime.core.theme.colors@0.0.4
+  '@bit/wasedatime.core.theme.colors': 0.0.5
   '@bit/wasedatime.core.ts.constants.langs': 0.0.5
   '@bit/wasedatime.core.ts.constants.size-variables': 0.0.2
   '@bit/wasedatime.core.ts.styles.wrapper': 0.0.1
@@ -103,7 +103,7 @@ specifiers:
 dependencies:
   '@aws-amplify/api': 4.0.33
   '@aws-amplify/auth': 4.5.0
-  '@bit/wasedatime.core.theme.colors': node.bit.dev/@bit/wasedatime.core.theme.colors/0.0.4
+  '@bit/wasedatime.core.theme.colors': node.bit.dev/@bit/wasedatime.core.theme.colors/0.0.5
   '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.constants.size-variables': node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.2_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.styles.wrapper': node.bit.dev/@bit/wasedatime.core.ts.styles.wrapper/0.0.1_react-dom@17.0.2+react@17.0.2
@@ -2471,6 +2471,14 @@ packages:
     requiresBuild: true
     dependencies:
       '@fortawesome/fontawesome-common-types': 0.3.0
+    dev: false
+
+  /@fortawesome/free-solid-svg-icons/6.1.1:
+    resolution: {integrity: sha512-0/5exxavOhI/D4Ovm2r3vxNojGZioPwmFrKg0ZUH69Q68uFhFPs6+dhAToh6VEQBntxPRYPuT5Cg1tpNa9JUPg==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.1.1
     dev: false
 
   /@fortawesome/react-fontawesome/0.1.17_4bd8f766d7cd56ce339ee1b51a510026:
@@ -12403,6 +12411,12 @@ packages:
     version: 0.0.4
     dev: false
 
+  node.bit.dev/@bit/wasedatime.core.theme.colors/0.0.5:
+    resolution: {integrity: sha1-K7sD8kjDztzqeg0jgeHErLF4mYE=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.theme.colors/-/wasedatime.core.theme.colors-0.0.5.tgz}
+    name: wasedatime.core.theme.colors
+    version: 0.0.5
+    dev: false
+
   node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2:
     resolution: {integrity: sha1-Bp87IFStXHsG1iyN/PONMyD5IyM=, registry: https://node.bit.dev/, tarball: https://node.bit.dev/wasedatime.core.ts.constants.langs/-/wasedatime.core.ts.constants.langs-0.0.5.tgz}
     id: node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5
@@ -12592,7 +12606,7 @@ packages:
       react-dom: ^17.0.1
     dependencies:
       '@bit/wasedatime.core.theme.colors': node.bit.dev/@bit/wasedatime.core.theme.colors/0.0.2
-      '@fortawesome/free-solid-svg-icons': 6.0.0
+      '@fortawesome/free-solid-svg-icons': 6.1.1
       '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2

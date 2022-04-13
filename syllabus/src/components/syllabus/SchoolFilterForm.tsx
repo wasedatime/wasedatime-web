@@ -14,7 +14,6 @@ import styled from "styled-components";
 import SchoolImportCard from "@app/components/syllabus/SchoolImportCard";
 import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
 import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
-
 import "semantic-ui-css/components/popup.min.css";
 import { ThemeContext } from "@app/utils/theme-context";
 
@@ -75,8 +74,7 @@ const StyledTab = styled(Tab)<ThemeComponentProps>`
           border-color: ${colors.dark.text3} !important;
         }
       }
-    `
-  }
+    `}
 `;
 
 const StyledMenuItem = styled(Menu.Item)<ThemeComponentProps>`
@@ -262,7 +260,12 @@ class SchoolFilterForm extends React.Component<Props, State> {
             {t("school filter.choose schools")}
           </ChooseSchoolButton>
         }
-        content={<StyledTab panes={this.schoolImportPanes(theme)} isDark={theme === "dark"} />}
+        content={
+          <StyledTab
+            panes={this.schoolImportPanes(theme)}
+            isDark={theme === "dark"}
+          />
+        }
         on="click"
         position="bottom left"
         size="huge"
@@ -270,7 +273,10 @@ class SchoolFilterForm extends React.Component<Props, State> {
         isDark={theme === "dark"}
       />
     ) : (
-      <StyledTab panes={this.schoolImportPanes(theme)} isDark={theme === "dark"} />
+      <StyledTab
+        panes={this.schoolImportPanes(theme)}
+        isDark={theme === "dark"}
+      />
     );
   }
 }

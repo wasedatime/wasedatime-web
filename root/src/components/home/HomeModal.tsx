@@ -1,14 +1,15 @@
 import React, { useState } from "react";
+
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
+
+import NewFeatures from "@app/components/home/NewFeatures";
+import Welcome from "@app/components/home/Welcome";
 import { gaSetLanguage } from "@app/ga/eventActions";
 import { gaLanguage } from "@app/ga/eventCategories";
-
-import Welcome from "@app/components/home/Welcome";
-import NewFeatures from "@app/components/home/NewFeatures";
 
 const modalStyle = {
   overlay: {
@@ -35,7 +36,7 @@ const modalStyle = {
     border: "none",
     borderRadius: "20px",
     backgroundColor: "transparent",
-    padding: 0
+    padding: 0,
   },
 };
 
@@ -76,7 +77,11 @@ const HomeModal = ({
 
   const pages = [
     <Welcome goToNextPage={() => setPageIndex(pageIndex + 1)} />,
-    <NewFeatures goToPrevPage={() => setPageIndex(pageIndex - 1)} closeModal={closeModal} isFirstAccess={isFirstAccess} />
+    <NewFeatures
+      goToPrevPage={() => setPageIndex(pageIndex - 1)}
+      closeModal={closeModal}
+      isFirstAccess={isFirstAccess}
+    />,
   ];
 
   return (

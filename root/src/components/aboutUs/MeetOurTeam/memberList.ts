@@ -1,3 +1,4 @@
+import akylai from "@app/assets/img/contributors/akylai.jpg";
 import alina from "@app/assets/img/contributors/alina.jpg";
 import austin from "@app/assets/img/contributors/austin.jpg";
 import george from "@app/assets/img/contributors/george.jpg";
@@ -5,22 +6,21 @@ import gu from "@app/assets/img/contributors/gu.jpg";
 import hao from "@app/assets/img/contributors/hao.jpg";
 import hatori from "@app/assets/img/contributors/hatori.jpg";
 import isabella from "@app/assets/img/contributors/isabella.jpg";
+import jason from "@app/assets/img/contributors/jason.jpg";
 import kaede from "@app/assets/img/contributors/kaede.jpg";
 import kaiqing from "@app/assets/img/contributors/kaiqing.jpg";
 import kong from "@app/assets/img/contributors/kong.jpg";
 import mei from "@app/assets/img/contributors/mei.jpg";
 import naomi from "@app/assets/img/contributors/naomi.jpg";
+import nicholas from "@app/assets/img/contributors/nicholas.jpg";
 import oscar from "@app/assets/img/contributors/oscar.jpg";
+import takumi from "@app/assets/img/contributors/takumi.jpg";
 import tang from "@app/assets/img/contributors/tang.jpg";
+import xinmei from "@app/assets/img/contributors/xinmei.jpg";
+import xinyue from "@app/assets/img/contributors/xinyue.jpg";
 import yaoyuan from "@app/assets/img/contributors/yaoyuan.jpg";
 import zenda from "@app/assets/img/contributors/zenda.jpg";
 import zhaohuaibo from "@app/assets/img/contributors/zhaohuaibo.jpg";
-import jason from "@app/assets/img/contributors/jason.jpg";
-import nicholas from "@app/assets/img/contributors/nicholas.jpg";
-import takumi from "@app/assets/img/contributors/takumi.jpg";
-import xinmei from "@app/assets/img/contributors/xinmei.jpg";
-import xinyue from "@app/assets/img/contributors/xinyue.jpg";
-import akylai from "@app/assets/img/contributors/akylai.jpg";
 import email from "@app/assets/img/socialmediaicon/email.png";
 import facebook from "@app/assets/img/socialmediaicon/facebook.png";
 import github from "@app/assets/img/socialmediaicon/github.png";
@@ -75,7 +75,10 @@ export const CurrentList: Array<Members> = [
     name: "Jason Park",
     position: "Backend Engineer & Marketing",
     socials: [
-      { platform: linkedin, link: "https://www.linkedin.com/in/%E6%B5%9A%E5%BD%AC-%E6%9C%B4-a9a503200" },
+      {
+        platform: linkedin,
+        link: "https://www.linkedin.com/in/%E6%B5%9A%E5%BD%AC-%E6%9C%B4-a9a503200",
+      },
     ],
     profileText: "Imagine Sisyphus happy.",
   },
@@ -89,7 +92,8 @@ export const CurrentList: Array<Members> = [
       { platform: github, link: "https://github.com/nichnarmada" },
       { platform: linkedin, link: "https://www.linkedin.com/in/nichnarmada/" },
     ],
-    profileText: "People call me the Pro Pro, aka the Professional Procrastinator 🙂",
+    profileText:
+      "People call me the Pro Pro, aka the Professional Procrastinator 🙂",
   },
   // takumi
   {
@@ -106,7 +110,10 @@ export const CurrentList: Array<Members> = [
     name: "Xinmei(Evelyn) Liu",
     position: "Marketing",
     socials: [
-      { platform: instagram, link: "https://www.instagram.com/evelyn_liuxinm/" },
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/evelyn_liuxinm/",
+      },
     ],
     profileText: "I’m so happy to work with you guys together 🥰",
   },
@@ -126,11 +133,13 @@ export const CurrentList: Array<Members> = [
     name: "Akylai",
     position: "Frontend Apprentice",
     socials: [
-      {platform: instagram, link:"https://www.instagram.com/akylaimanalieva/"},
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/akylaimanalieva/",
+      },
     ],
   },
-  
-]
+];
 
 export const AlumniList: Array<Members> = [
   {

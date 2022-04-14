@@ -82,6 +82,7 @@ const AppRoutes = () => {
       <Route element={<Redirect to="/courses/timetable" />} path="/" />
       <Route element={<Redirect to="/courses/timetable" />} path="/timetable" />
       <Route element={<Redirect to="/courses/syllabus" />} path="/syllabus" />
+      <Route element={<></>} path="/career" />
       <Route element={<NotFound />} path="*" />
     </Routes>
   );

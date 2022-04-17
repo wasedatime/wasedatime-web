@@ -1,4 +1,4 @@
-import React, { Children, ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { useMediaQuery } from "react-responsive";
@@ -10,15 +10,28 @@ interface FrameProps {
 }
 
 export const Frame = ({ primary, secondary, tertiary }: FrameProps) => {
+  // conditions based on media
+  const isDesktop = useMediaQuery({ minWidth: sizes.desktop });
+  const isTablet = useMediaQuery({
+    minWidth: sizes.tablet,
+    maxWidth: sizes.desktop,
+  });
+  const isMobile = useMediaQuery({ maxWidth: sizes.tablet });
+
+  // condition on whether extra content exists
   const hasSecondary = !!secondary;
   const hasTertiary = !!tertiary;
 
+  // div components
   const mainFrame = (children: ReactNode) => (
-    <div id="frame" className="flex flex-row justify-center">
+    <div
+      id="frame"
+      className="flex flex-row justify-center"
+      style={{ marginTop: "67px" }}
+    >
       {children}
     </div>
   );
-
   const mainContent = (width: string) => (
     <div id="main-content" style={{ width }}>
       {primary}
@@ -34,13 +47,6 @@ export const Frame = ({ primary, secondary, tertiary }: FrameProps) => {
       {tertiary}
     </div>
   );
-
-  const isDesktop = useMediaQuery({ minWidth: sizes.desktop });
-  const isTablet = useMediaQuery({
-    minWidth: sizes.tablet,
-    maxWidth: sizes.desktop,
-  });
-  const isMobile = useMediaQuery({ maxWidth: sizes.tablet });
 
   if (isMobile) {
     return mainFrame(mainContent("100%"));

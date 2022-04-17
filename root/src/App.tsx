@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navigateToUrl } from "single-spa";
-import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorBoundary } from "react-error-boundary";
 
 import CommonStyle from "@app/common-style";
 import ErrorFallback from "@app/components/ErrorFallback";
@@ -82,6 +82,7 @@ const AppRoutes = () => {
       <Route element={<Redirect to="/courses/timetable" />} path="/" />
       <Route element={<Redirect to="/courses/timetable" />} path="/timetable" />
       <Route element={<Redirect to="/courses/syllabus" />} path="/syllabus" />
+      <Route element={<></>} path="/campus" />
       <Route element={<></>} path="/career" />
       <Route element={<NotFound />} path="*" />
     </Routes>

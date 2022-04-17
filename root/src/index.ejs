@@ -128,12 +128,12 @@
         "@single-spa/welcome": "https://unpkg.com/single-spa-welcome/dist/single-spa-welcome.js",
         "@wasedatime/root-config": "/wasedatime-root-config.js",
         "@wasedatime/syllabus": "/syllabus/wasedatime-syllabus.js",
-        "@wasedatime/campus": "/campus/wasedatime-campus.js",
         "react": "https://cdn.jsdelivr.net/npm/react@16.12.0/umd/react.production.min.js",
         "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.12.0/umd/react-dom.production.min.js"
       }
     }
   </script>
+  <!-- "@wasedatime/campus": "/campus/wasedatime-campus.js", -->
   <!-- "@wasedatime/feeds": "/campus/wasedatime-blog.js", -->
   
   <!-- <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script"> -->
@@ -145,24 +145,24 @@
   <script type="systemjs-importmap" defer>
     {
       "imports": {
-        "@wasedatime/syllabus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
-        "@wasedatime/campus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
+        "@wasedatime/syllabus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js"
       }
     }
   </script>
   <% } %>
+  <!-- "@wasedatime/campus": "https://<%= process.env.PREFIX %>.<%= process.env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js" -->
 
   <% if (isLocal) { %>
   <script type="systemjs-importmap" defer>
     {
       "imports": {
         "@wasedatime/root-config": "//localhost:9000/wasedatime-root-config.js",
-        "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.js",
-        "@wasedatime/campus": "//localhost:8081/wasedatime-campus.js"
+        "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.js"
       }
     }
   </script>
   <% } %>
+  <!-- "@wasedatime/campus": "//localhost:8081/wasedatime-campus.js" -->
   
   <!--
     If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
@@ -264,9 +264,9 @@
             <% } %>
             <application name="@wasedatime/syllabus"></application>
           </route>
-          <route path="campus">
+          <!-- <route path="campus">
             <application name="@wasedatime/campus"></application>
-          </route>
+          </route> -->
           <!-- <route path="career">
             <application name="@wasedatime/career"></application>
           </route> -->

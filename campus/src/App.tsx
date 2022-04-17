@@ -7,6 +7,7 @@ import Bus from "@app/bus/Bus";
 import RoomFinder from "@app/room/RoomFinder";
 import { ThemeContext } from "@app/utils/theme-context";
 import "@app/styles/styles.scss";
+import "react-datepicker/dist/react-datepicker.css";
 
 const App = () => {
   const { t, i18n } = useTranslation();

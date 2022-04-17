@@ -49,12 +49,23 @@ const layoutEngine = constructLayoutEngine({ routes, applications });
 applications.forEach(registerApplication);
 layoutEngine.activate();
 registerApplication({
+  name: "@wasedatime/campus",
+  app: () =>
+    import(
+      /* webpackIgnore: true */
+      // @ts-ignore
+      "http://localhost:8081/wasedatime-campus.ts"
+    ),
+  activeWhen: ["/campus"],
+});
+registerApplication({
   name: "@wasedatime/career",
-  app: () => import(
-    /* webpackIgnore: true */
-    //@ts-ignore
-    "http://localhost:8082/wasedatime-career.ts"
-  ),
+  app: () =>
+    import(
+      /* webpackIgnore: true */
+      // @ts-ignore
+      "http://localhost:8082/wasedatime-career.ts"
+    ),
   activeWhen: ["/career"],
 });
 start();

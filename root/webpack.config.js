@@ -45,6 +45,7 @@ module.exports = (webpackConfigEnv, argv) => {
         isDev: webpackConfigEnv.isDev,
         standalone: webpackConfigEnv.standalone,
         orgName,
+        process,
       },
     }),
     new PreloadWebpackPlugin({

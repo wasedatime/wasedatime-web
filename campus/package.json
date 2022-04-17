@@ -112,6 +112,7 @@
     "react-ga": "3.3.0",
     "react-helmet": "6.1.0",
     "react-i18next": "11.15.6",
+    "react-responsive": "8.2.0",
     "react-responsive-carousel": "3.2.23",
     "react-router-dom": "^6.3.0",
     "semantic-ui-css": "2.4.1",

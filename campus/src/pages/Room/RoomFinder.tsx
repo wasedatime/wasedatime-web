@@ -272,11 +272,7 @@ const RoomFinder = (): JSX.Element => {
           </DatetimeClearButton>
         </DatetimeSelection>
         <div className="py-8">
-          <TabSelectContainer
-            contentList={buildingRoomData}
-            tabType="bordered"
-            tabSize="lg"
-          />
+          <TabSelectContainer contentList={buildingRoomData} />
         </div>
         <div className="tabbable full-width-tabs">
           <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">

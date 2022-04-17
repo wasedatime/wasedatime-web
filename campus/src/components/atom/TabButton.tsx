@@ -1,8 +1,5 @@
 import React from "react";
 
-export type TabTypeDaisy = "bordered" | "lifted" | "boxed" | "";
-export type TabSizeDaisy = "xs" | "sm" | "lg" | "";
-
 export interface TabProps
   extends React.DetailedHTMLProps<
     React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -10,22 +7,14 @@ export interface TabProps
   > {
   selectedValue: string;
   title: string;
-  tabType?: TabTypeDaisy;
-  tabSize?: TabSizeDaisy;
 }
 
-export const TabButton = ({
-  selectedValue,
-  title,
-  tabType = "",
-  tabSize = "",
-  ...props
-}: TabProps) => {
+export const TabButton = ({ selectedValue, title, ...props }: TabProps) => {
   return (
     <button
       {...props}
       type="button"
-      className={`tab tab-${tabSize} tab-${tabType} ${
+      className={`tab tab-lg tab-bordered ${
         selectedValue === title && "tab-active"
       }`}
     >

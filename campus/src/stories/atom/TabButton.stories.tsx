@@ -15,6 +15,4 @@ export const Selected: Story<TabProps> = Template.bind({});
 Selected.args = {
   title: "Waseda",
   selectedValue: "Waseda",
-  tabType: "bordered",
-  tabSize: "lg",
 };

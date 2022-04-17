@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import Modal from "@bit/wasedatime.core.ts.ui.modal";
 import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import ReactGA from "react-ga";

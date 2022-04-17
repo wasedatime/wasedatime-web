@@ -37,6 +37,7 @@
     "@storybook/testing-library": "0.0.9",
     "@testing-library/jest-dom": "5.16.2",
     "@testing-library/react": "12.1.4",
+    "@types/react-responsive": "^8.0.5",
     "@types/systemjs": "6.1.1",
     "@typescript-eslint/eslint-plugin": "5.14.0",
     "@typescript-eslint/parser": "5.14.0",

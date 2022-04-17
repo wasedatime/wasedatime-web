@@ -10,11 +10,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DatePicker from "react-datepicker";
-import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import { busSchedule } from "@app/constants/busSchedule";
+import { HelmetContainer } from "@app/pages/Bus/HelmetContainer";
 import { ThemeContext } from "@app/utils/theme-context";
 
 const wasedaNishiwasedaBusUri =
@@ -23,7 +23,8 @@ const wasedaNishiwasedaBusUri =
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  padding: 2em 20em;
+  width: 100%;
+  padding: 2em 0;
   ${media.desktop`padding: 2em;`}
 `;
 
@@ -331,20 +332,7 @@ const Bus = (): JSX.Element => {
 
   return (
     <React.Fragment>
-      <Helmet>
-        <title>WasedaTime -　Bus</title>
-        <meta
-          name="description"
-          content="Shuttle Bus Arrival Time Checking at Waseda University."
-        />
-        <meta property="og:title" content="WasedaTime - Bus" />
-        <meta
-          property="og:description"
-          content="Shuttle Bus Arrival Time Checking at Waseda University."
-        />
-        <meta property="og:site_name" content="WasedaTime - Bus" />
-      </Helmet>
-
+      <HelmetContainer />
       <InfoWrapper>
         <h1
           style={{

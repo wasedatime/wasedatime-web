@@ -10,16 +10,18 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tabs, Tab, Badge } from "react-bootstrap";
 import DatePicker from "react-datepicker";
-import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import Building from "@app/room/Building";
+import { TabSelectContainer } from "@app/components/module/TabSelectContainer";
+import Building from "@app/pages/Room/Building";
+import { HelmetContainer } from "@app/pages/Room/HelmetContainer";
 
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
-  padding: 2em 20em;
+  width: 100%;
+  padding: 2em 0;
   ${media.desktop`padding: 2em;`}
 `;
 
@@ -150,6 +152,17 @@ interface PropsType {
 const RoomFinder = (): JSX.Element => {
   const { t } = useTranslation();
   const [date, setDate] = useState<Date>(new Date());
+  // const [selectedTab, setSelectedTab] = useState<number>();
+  const [buildingTab, setBuildingTab] = useState<string>("");
+
+  /* const handleClickTab = (tabIndex: number) => {
+    setSelectedTab(tabIndex);
+  }; */
+
+  const handleClickBuildingTab = (buildingName: string) => {
+    setBuildingTab(buildingName);
+  };
+
   const onDatetimeChange = (date: Date): void => setDate(date || new Date());
   const clearDatetime = (): void => setDate(new Date());
   const day = date.getDay() > 0 ? date.getDay() - 1 : 6;
@@ -159,22 +172,37 @@ const RoomFinder = (): JSX.Element => {
   const dai = date.getDate();
   const quarter = findQuar(mon, dai);
 
+  /* const createTabListOptions = () => {
+    const TabOptionsCommon: Partial<TabProps> = {
+      selectedValue: selectedTab,
+      onClick: (selectedIndex: number) => {
+        handleClickTab(selectedIndex);
+      },
+    };
+  }; */
+
+  const buildingRoomData = [
+    {
+      title: "Waseda",
+      body: <div>Waseda Campus here!!</div>,
+    },
+    {
+      title: "NishiWaseda",
+      body: <div>NishiWaseda Campus here!!</div>,
+    },
+    {
+      title: "Toyama",
+      body: <div>Toyama Campus here!!</div>,
+    },
+    {
+      title: "Tokorozawa",
+      body: <div>Tokorozawa Campus here!!</div>,
+    },
+  ];
+
   return (
     <React.Fragment>
-      <Helmet>
-        <title>WasedaTime - RoomFinder</title>
-        <meta
-          name="description"
-          content="Empty Room Checking in the campuses of Waseda University."
-        />
-        <meta property="og:title" content="WasedaTime - RoomFinder" />
-        <meta
-          property="og:description"
-          content="Empty Room Checking in the campuses of Waseda University."
-        />
-        <meta property="og:site_name" content="WasedaTime - RoomFinder" />
-      </Helmet>
-
+      <HelmetContainer />
       <InfoWrapper>
         <h1
           style={{
@@ -243,6 +271,13 @@ const RoomFinder = (): JSX.Element => {
             <FontAwesomeIcon icon={faTimes} size="1x" /> Clear
           </DatetimeClearButton>
         </DatetimeSelection>
+        <div className="py-8">
+          <TabSelectContainer
+            contentList={buildingRoomData}
+            tabType="bordered"
+            tabSize="lg"
+          />
+        </div>
         <div className="tabbable full-width-tabs">
           <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
             <Tab eventKey="Waseda" title={t("roomFinder.campus.Waseda")}>

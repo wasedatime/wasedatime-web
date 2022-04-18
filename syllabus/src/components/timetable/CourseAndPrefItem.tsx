@@ -17,7 +17,21 @@ import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 import { ThemeContext } from "@app/utils/theme-context";
+import colors from "@bit/wasedatime.core.theme.colors";
 import timetableColors from "@app/constants/timetable-colors";
+
+type StyledPopupProps = {
+  isDark: boolean;
+}
+
+const StyledPopup = styled(Popup)<StyledPopupProps>`
+  padding: 5px;
+  padding-bottom: 0px;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: ${props => props.isDark ? colors.dark.text2 : colors.light.text3};
+  background-color: ${props => props.isDark ? colors.dark.bgSide : colors.light.bgSide};
+`;
 
 const RowWrapper = styled("li")`
   display: flex;
@@ -108,20 +122,20 @@ const CourseAndPrefItem = ({
 
   return (
     <RowWrapper>
-      <Popup
+      <StyledPopup
         trigger={
           <ColorButton style={{
             color: timetableColors[theme][`color${color}`],
             backgroundColor: timetableColors[theme][`bgColor${color}`],
-            borderColor: timetableColors[theme][`color${color}`],
           }} />
         }
         on="click"
         pinned
         size="huge"
+        isDark={theme === "dark"}
       >
         <ColorSelector handleChangeColor={handleChangeColor} />
-      </Popup>
+      </StyledPopup>
 
       <CourseItemWrapper className="text-light-text1 dark:text-dark-text2">
         <StyledHeading>{title}</StyledHeading>

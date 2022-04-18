@@ -30,6 +30,7 @@ specifiers:
   '@sentry/react': 6.18.1
   '@types/react': 17.0.39
   '@types/react-dom': 17.0.13
+  '@types/react-s-alert': ^1.3.3
   '@types/styled-components': 5.1.24
   '@types/systemjs': 6.1.1
   '@types/webpack-env': 1.16.3
@@ -93,7 +94,7 @@ specifiers:
   tailwindcss: ^3.0.23
   ts-config-single-spa: 2.0.1
   ts-loader: 9.2.8
-  tslib: ^2.3.1
+  tslib: 1.14.0
   typescript: 4.6.2
   vite: ^2.9.0
   vite-plugin-dynamic-import: ^0.7.0
@@ -168,6 +169,7 @@ devDependencies:
   '@babel/preset-typescript': 7.16.7_@babel+core@7.17.5
   '@babel/runtime': 7.17.2
   '@semantic-ui-react/css-patch': 1.0.0
+  '@types/react-s-alert': 1.3.3
   '@typescript-eslint/eslint-plugin': 5.14.0_f4054b8c3cd621db16ae1b9d571bccc0
   '@typescript-eslint/parser': 5.14.0_eslint@8.10.0+typescript@4.6.2
   '@vitejs/plugin-react-refresh': 1.3.6
@@ -200,7 +202,7 @@ devDependencies:
   tailwindcss: 3.0.24
   ts-config-single-spa: 2.0.1
   ts-loader: 9.2.8_typescript@4.6.2+webpack@5.70.0
-  tslib: 2.3.1
+  tslib: 1.14.0
   typescript: 4.6.2
   vite: 2.9.5_sass@1.49.9
   vite-plugin-dynamic-import: 0.7.1
@@ -3350,7 +3352,6 @@ packages:
 
   /@types/prop-types/15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
-    dev: false
 
   /@types/q/1.5.5:
     resolution: {integrity: sha512-L28j2FcJfSZOnL1WBjDYp2vUHCeIFlyYI/53EwD/rKUBQ7MtUUfbQWiyKJGpcnv4/WgrhWsFKrcPstcAt/J0tQ==}
@@ -3379,6 +3380,12 @@ packages:
       redux: 4.1.2
     dev: false
 
+  /@types/react-s-alert/1.3.3:
+    resolution: {integrity: sha512-T7xvvzwd/gS+0KJkGNYejLe+wqYb3qZD6IZrieB7O1wWZHlA0cgkZKM4RDuGtEyoPTUQifYauQBGOyNpb51zWA==}
+    dependencies:
+      '@types/react': 17.0.39
+    dev: true
+
   /@types/react-transition-group/4.4.4:
     resolution: {integrity: sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug==}
     dependencies:
@@ -3391,7 +3398,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.0.11
-    dev: false
 
   /@types/resolve/1.17.1:
     resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
@@ -3405,7 +3411,6 @@ packages:
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
-    dev: false
 
   /@types/serve-index/1.9.1:
     resolution: {integrity: sha512-d/Hs3nWDxNL2xAczmOVZNj92YZCS6RGxfBPjKzuu/XirCgXdpKEb88dYNbrYGint6IVWLNP+yonwVAuRC0T2Dg==}
@@ -5313,7 +5318,6 @@ packages:
 
   /csstype/3.0.11:
     resolution: {integrity: sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==}
-    dev: false
 
   /damerau-levenshtein/1.0.8:
     resolution: {integrity: sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==}
@@ -11694,6 +11698,10 @@ packages:
       json5: 1.0.1
       minimist: 1.2.6
       strip-bom: 3.0.0
+    dev: true
+
+  /tslib/1.14.0:
+    resolution: {integrity: sha512-+Zw5lu0D9tvBMjGP8LpvMb0u2WW2QV3y+D8mO6J+cNzCYIN4sVy43Bf9vl92nqFahutN0I8zHa7cc4vihIshnw==}
     dev: true
 
   /tslib/1.14.1:

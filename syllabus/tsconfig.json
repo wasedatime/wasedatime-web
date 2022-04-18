@@ -1,7 +1,7 @@
 {
   "extends": "ts-config-single-spa",
   "compilerOptions": {
-    "target": "ESNext",
+    "target": "esnext",
     "importHelpers": true,
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -11,8 +11,9 @@
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "esnext",
+    "types": ["node"],
+    "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
 

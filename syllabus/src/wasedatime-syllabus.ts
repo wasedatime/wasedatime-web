@@ -14,7 +14,7 @@ const cssLifecycles = singleSpaCss({
   // optional: defaults to false. This controls whether extracted CSS files from webpack
   // will automatically be loaded. This requires using the ExposeRuntimeCssAssetsPlugin,
   // which is documented below.
-  webpackExtractedCss: process.env.NODE_ENV === "production",
+  webpackExtractedCss: import.meta.env.PROD,
 
   // optional: defaults to true. Indicates whether the <link> element for the CSS will be
   // unmounted when the single-spa microfrontend is unmounted.
@@ -49,12 +49,12 @@ const reactLifecycles = singleSpaReact({
 // Export an array of lifecycles to integrate with a framework's
 // single-spa lifecycles. The order matters.
 export const bootstrap =
-  process.env.NODE_ENV === "production"
+  import.meta.env.PROD
     ? [cssLifecycles.bootstrap, reactLifecycles.bootstrap]
     : reactLifecycles.bootstrap;
 
 export const mount =
-  process.env.NODE_ENV === "production"
+  import.meta.env.PROD
     ? [
         // The css lifecycles should be before your framework's mount lifecycle,
         // to avoid a Flicker of Unstyled Content (FOUC)
@@ -64,7 +64,7 @@ export const mount =
     : reactLifecycles.mount;
 
 export const unmount =
-  process.env.NODE_ENV === "production"
+  import.meta.env.PROD
     ? [
         // The css lifecycles should be after your framework's unmount lifecycle,
         // to avoid a Flicker of Unstyled Content (FOUC)

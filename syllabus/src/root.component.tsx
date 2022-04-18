@@ -24,7 +24,7 @@ const config = {
     endpoints: [
       {
         name: "wasedatime-dev",
-        endpoint: process.env.REACT_APP_API_BASE_URL,
+        endpoint: import.meta.env.REACT_APP_API_BASE_URL,
       },
     ],
   },
@@ -33,11 +33,11 @@ API.configure(config);
 
 configAuth();
 
-if (process.env.NODE_ENV === "production") {
+if (import.meta.env.PROD) {
   ReactGA.initialize("UA-112185819-1", { debug: false, titleCase: false });
   Sentry.init({
     dsn: "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
-    environment: process.env.NODE_ENV,
+    environment: import.meta.env.MODE,
     ignoreErrors: [
       "Network Error",
       "NetworkError",

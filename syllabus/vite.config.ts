@@ -24,5 +24,9 @@ export default {
     },
     modules: ["node_modules"],
   },
+  define: {
+    define: "undefined",
+    global: {},
+  },
   plugins: [reactRefresh(), dynamicImport(), svgLoader()],
 };

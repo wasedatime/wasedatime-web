@@ -97,7 +97,8 @@ const Root = () => {
           )}
         >
           <Provider store={reduxStore}>
-            <App />
+            {/* <App /> */}
+            <div>Hello world</div>
           </Provider>
         </Sentry.ErrorBoundary>
       ) : (

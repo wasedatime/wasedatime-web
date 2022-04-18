@@ -156,15 +156,16 @@
   <script type="systemjs-importmap" defer>
     {
       "imports": {
-        "@wasedatime/root-config": "//localhost:9000/wasedatime-root-config.js",
-        "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.js"
+        "@wasedatime/root-config": "//localhost:9000/wasedatime-root-config.js"
       }
     }
   </script>
   <script type="importmap" defer>
     {
       "imports": {
-        "@wasedatime/campus": "//localhost:8081/wasedatime-campus.ts"
+        "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.ts",
+        "@wasedatime/campus": "//localhost:8081/wasedatime-campus.ts",
+        "@wasedatime/career": "//localhost:8082/wasedatime-career.ts"
       }
     }
   </script>
@@ -273,9 +274,9 @@
           <route path="campus">
             <application name="@wasedatime/campus"></application>
           </route>
-          <!-- <route path="career">
+          <route path="career">
             <application name="@wasedatime/career"></application>
-          </route> -->
+          </route>
           <route default>
             <application name="@wasedatime/root-config"></application>
           </route>

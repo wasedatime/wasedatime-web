@@ -43,11 +43,17 @@ const routes = constructRoutes(document.querySelector("#single-spa-layout"));
 const applications = constructApplications({
   routes,
   // loadApp: ({ name }) => System.import(name),
-  loadApp: ({ name }) => import(
-    /* webpackIgnore: true */
-    // @ts-ignore
-    name
-  ),
+  loadApp: ({ name }) => {
+    if (name === "@wasedatime/root-config") {
+      return System.import(name)
+    } else {
+      return import(
+        /* webpackIgnore: true */
+        // @ts-ignore
+        name
+      )
+    }
+  },
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
 

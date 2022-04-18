@@ -23,7 +23,6 @@ const InvisibleButton = styled("button")`
 const ColorButton = styled(InvisibleButton)<ColorButtonProps>`
   width: 1.5em;
   height: 1.5em;
-  border: 1px solid ${(props) => timetableColors[props.theme][`color${props.colorCode}`]};
   border-radius: 0.3em;
   margin: 0 0.1em;
   background-color: ${(props) => timetableColors[props.theme][`bgColor${props.colorCode}`]};

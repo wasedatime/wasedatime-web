@@ -42,32 +42,17 @@ const lifecycles = singleSpaReact({
 const routes = constructRoutes(document.querySelector("#single-spa-layout"));
 const applications = constructApplications({
   routes,
-  loadApp: ({ name }) => System.import(name),
+  // loadApp: ({ name }) => System.import(name),
+  loadApp: ({ name }) => import(
+    /* webpackIgnore: true */
+    // @ts-ignore
+    name
+  ),
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);
 layoutEngine.activate();
-registerApplication({
-  name: "@wasedatime/campus",
-  app: () =>
-    import(
-      /* webpackIgnore: true */
-      // @ts-ignore
-      "http://localhost:8081/wasedatime-campus.ts"
-    ),
-  activeWhen: ["/campus"],
-});
-registerApplication({
-  name: "@wasedatime/career",
-  app: () =>
-    import(
-      /* webpackIgnore: true */
-      // @ts-ignore
-      "http://localhost:8082/wasedatime-career.ts"
-    ),
-  activeWhen: ["/career"],
-});
 start();
 
 configAuth();

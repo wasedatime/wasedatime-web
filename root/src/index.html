@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>WasedaTime</title>
+  
   <!--
     Remove this if you only support browsers that support async/await.
     This is needed by babel to share largeish helper code for compiling async/await in older
     browsers. More information at https://github.com/single-spa/create-single-spa/issues/112
   -->
   <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script>
-
+  
   <!--
     This CSP allows any SSL-enabled host and for arbitrary eval(), but you should limit these directives further to increase your app's security.
     Learn more about CSP policies at https://content-security-policy.com/#directive
   -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https: localhost:*; object-src 'none'; img-src 'self' https: localhost:* data: http://books.google.com http://cdn.viglink.com; font-src 'self' https: localhost:* data:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: http: blob: data: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https: localhost:*; object-src 'none'; img-src 'self' https: localhost:* data: http://books.google.com http://cdn.viglink.com; font-src 'self' https: localhost:* data:;">
   <meta name="importmap-type" content="systemjs-importmap" />
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.4/dist/es-module-shims.js"></script>
   <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
   <!-- More info at https://github.com/joeldenning/import-map-overrides/blob/master/docs/configuration.md#domain-list -->
   <!-- <meta name="import-map-overrides-domains" content="denylist:prod.example.com" /> -->
@@ -160,7 +162,7 @@
       <!-- } -->
     <!-- } -->
   <!-- </script> -->
-  <script type="importmap" defer>
+  <script type="importmap-shim" defer>
     {
       "imports": {
         "@wasedatime/root-config": "//localhost:9000/wasedatime-root-config.ts",
@@ -290,7 +292,7 @@
   <div id="loading">
     <noscript><canvas></canvas></noscript>
   </div>
-  <script type="module" src="/wasedatime-root-config.ts"></script>
+  <script type="module-shim" src="/wasedatime-root-config.ts"></script>
   <!-- <script>
     import("@wasedatime/root-config");
   </script> -->

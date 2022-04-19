@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import {
   faClock,
@@ -22,12 +21,11 @@ import CourseInfo from "@app/components/courseInfo/CourseInfo";
 import { Badge } from "@app/components/styles/Badge";
 import { InvisibleButton } from "@app/components/styles/Button";
 import { Highlight } from "@app/components/syllabus/Highlight";
-import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
-import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 import { termKeysDecoder } from "@app/utils/term-keys-decoder";
+import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 type ExpandableProps = {
   expanded: boolean;
@@ -144,14 +142,10 @@ const OccurrenceList = styled("ul")`
   text-align: left;
 `;
 
-const mapSchoolToIcon = (school, lng) => (
+const mapSchoolToIcon = (school: string, lng: string) => (
   <SchoolIconItem key={school}>
     <SchoolIconImage
-      src={
-        lng === Lang.EN
-          ? schoolIconEnMap.allSchoolNameIconMap[school]
-          : schoolIconJaMap.allSchoolNameIconMap[school]
-      }
+      src={getSchoolIconPath(school, lng)}
       width="24px"
       height="24px"
       alt={school}

@@ -1,7 +1,6 @@
 import React from "react";
 
 import colors from "@bit/wasedatime.core.theme.colors";
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
@@ -12,10 +11,10 @@ import Card from "semantic-ui-react/dist/commonjs/views/Card";
 import styled from "styled-components";
 
 import SchoolImportCard from "@app/components/syllabus/SchoolImportCard";
-import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
-import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
 import "semantic-ui-css/components/popup.min.css";
 import { ThemeContext } from "@app/utils/theme-context";
+import { gradSchools, otherSchools, undergradSchools } from "@app/constants/schools-by-type";
+import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 type ThemeComponentProps = {
   isDark: boolean;
@@ -159,20 +158,26 @@ class SchoolFilterForm extends React.Component<Props, State> {
   schoolImportPanes = (theme) => {
     const { loadedSchools, loadingSchool } = this.state;
     const { t, i18n, selectedSchools, handleToggleFilter } = this.props;
-    const schoolGroupNames = ["Undergraduate", "Graduate", "Special"];
+    const schoolTypeNames = ["Undergraduate", "Graduate", "Special"];
+    const schoolsByType = [
+      undergradSchools,
+      gradSchools,
+      otherSchools
+    ];
 
-    const ImportCardGroup = ({ schoolNameIconMap, itemsPerRow }) => (
+    const ImportCardGroup = ({ schools, itemsPerRow }: { schools: string[]; itemsPerRow: any; }) => (
       <Cards itemsPerRow={itemsPerRow} style={{ marginTop: "0.5em" }}>
-        {Object.keys(schoolNameIconMap).map((schoolName) => (
+        {schools.map((schoolName: string) => (
           <SchoolImportCard
             key={schoolName}
             loaded={loadedSchools.includes(schoolName)}
             loading={loadingSchool === schoolName}
-            schoolIcon={schoolNameIconMap[schoolName]}
+            schoolIcon={getSchoolIconPath(schoolName, i18n.language)}
             onDownload={() => this.handleSchoolloading(schoolName)}
             isBannedToLoad={
               !loadedSchools.includes(schoolName) &&
-              loadingSchool &&
+              loadingSchool !== undefined &&
+              loadingSchool !== null &&
               loadingSchool !== schoolName
             }
             checked={selectedSchools.includes(schoolName)}
@@ -182,24 +187,10 @@ class SchoolFilterForm extends React.Component<Props, State> {
       </Cards>
     );
 
-    const lng = i18n.language;
-    const schoolIconMap =
-      i18n.language === Lang.EN
-        ? [
-            schoolIconEnMap.undergradSchoolNameIconMap,
-            schoolIconEnMap.gradSchoolNameIconMap,
-            schoolIconEnMap.otherSchoolNameIconMap,
-          ]
-        : [
-            schoolIconJaMap.undergradSchoolNameIconMap,
-            schoolIconJaMap.gradSchoolNameIconMap,
-            schoolIconJaMap.otherSchoolNameIconMap,
-          ];
-
-    return schoolIconMap.map((schoolNameIconMap, i) => ({
+    return schoolsByType.map((schools, i) => ({
       menuItem: (
-        <StyledMenuItem key={schoolGroupNames[i]} isDark={theme === "dark"}>
-          {t(`syllabus.School Filter.${schoolGroupNames[i]}`)}
+        <StyledMenuItem key={schoolTypeNames[i]} isDark={theme === "dark"}>
+          {t(`syllabus.School Filter.${schoolTypeNames[i]}`)}
         </StyledMenuItem>
       ),
       render: () => (
@@ -208,13 +199,13 @@ class SchoolFilterForm extends React.Component<Props, State> {
             return matches ? (
               <ImportCardGroup
                 key={i}
-                schoolNameIconMap={schoolNameIconMap}
+                schools={schools}
                 itemsPerRow={6}
               />
             ) : (
               <ImportCardGroup
                 key={i}
-                schoolNameIconMap={schoolNameIconMap}
+                schools={schools}
                 itemsPerRow={4}
               />
             );

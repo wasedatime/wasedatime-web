@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// import textLogo from "@bit/wasedatime.core.assets.text-logo";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import styled from "styled-components";
 

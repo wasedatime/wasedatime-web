@@ -67,7 +67,7 @@ const MajorWrapper = styled.div`
     width: 100%;
     height: 100%;
     opacity: 0.2;
-    background-image: url(${(new URL(majorBg, import.meta.url)).href});
+    background-image: url(${new URL(majorBg, import.meta.url).href});
     background-size: 15em;
   }
 `;
@@ -143,14 +143,21 @@ const SchoolMajorSelector = ({
               onClick={() => switchSchool(i)}
               active={selectedSchool === schools[i]}
             >
-              <SchoolImg src={getSchoolIconPath(school, "EN")} width="70" height="70" />
+              <SchoolImg
+                src={getSchoolIconPath(school, "EN")}
+                width="70"
+                height="70"
+              />
             </SchoolButton>
           </SchoolItem>
         ))}
       </SchoolMenu>
 
       {majorsBySchool[selectedSchool]?.map((major, i) => (
-        <MajorWrapper onClick={() => switchMajorAndCloseModal(major)} key={`major_button_${i}`}>
+        <MajorWrapper
+          onClick={() => switchMajorAndCloseModal(major)}
+          key={`major_button_${i}`}
+        >
           <MajorText className="text-white dark:text-dark-text2">
             {t(`labs.major.${major}`)}
           </MajorText>

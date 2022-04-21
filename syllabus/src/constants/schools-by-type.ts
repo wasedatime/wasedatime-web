@@ -79,12 +79,7 @@ export const gradSchools = [
   School.G_WBS,
 ];
 
-export const otherSchools = [
-  School.CJL,
-  School.GEC,
-  School.CIE,
-  School.ART,
-];
+export const otherSchools = [School.CJL, School.GEC, School.CIE, School.ART];
 
 export const allSchools = {
   ...undergradSchools,

@@ -13,7 +13,11 @@ import styled from "styled-components";
 import SchoolImportCard from "@app/components/syllabus/SchoolImportCard";
 import "semantic-ui-css/components/popup.min.css";
 import { ThemeContext } from "@app/utils/theme-context";
-import { gradSchools, otherSchools, undergradSchools } from "@app/constants/schools-by-type";
+import {
+  gradSchools,
+  otherSchools,
+  undergradSchools,
+} from "@app/constants/schools-by-type";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 type ThemeComponentProps = {
@@ -159,13 +163,15 @@ class SchoolFilterForm extends React.Component<Props, State> {
     const { loadedSchools, loadingSchool } = this.state;
     const { t, i18n, selectedSchools, handleToggleFilter } = this.props;
     const schoolTypeNames = ["Undergraduate", "Graduate", "Special"];
-    const schoolsByType = [
-      undergradSchools,
-      gradSchools,
-      otherSchools
-    ];
+    const schoolsByType = [undergradSchools, gradSchools, otherSchools];
 
-    const ImportCardGroup = ({ schools, itemsPerRow }: { schools: string[]; itemsPerRow: any; }) => (
+    const ImportCardGroup = ({
+      schools,
+      itemsPerRow,
+    }: {
+      schools: string[];
+      itemsPerRow: any;
+    }) => (
       <Cards itemsPerRow={itemsPerRow} style={{ marginTop: "0.5em" }}>
         {schools.map((schoolName: string) => (
           <SchoolImportCard
@@ -197,17 +203,9 @@ class SchoolFilterForm extends React.Component<Props, State> {
         <MediaQuery minWidth={sizes.tablet}>
           {(matches) => {
             return matches ? (
-              <ImportCardGroup
-                key={i}
-                schools={schools}
-                itemsPerRow={6}
-              />
+              <ImportCardGroup key={i} schools={schools} itemsPerRow={6} />
             ) : (
-              <ImportCardGroup
-                key={i}
-                schools={schools}
-                itemsPerRow={4}
-              />
+              <ImportCardGroup key={i} schools={schools} itemsPerRow={4} />
             );
           }}
         </MediaQuery>

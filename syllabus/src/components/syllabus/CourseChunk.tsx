@@ -2,7 +2,9 @@ import React, { lazy } from "react";
 
 import { UnstyledUList } from "@app/components/styles/List";
 import { SyllabusKey } from "@app/constants/syllabus-data";
-const CourseItemContainer = lazy(() => import("@app/containers/CourseItemContainer"));
+const CourseItemContainer = lazy(
+  () => import("@app/containers/CourseItemContainer")
+);
 import Course from "@app/types/course";
 
 interface Props {

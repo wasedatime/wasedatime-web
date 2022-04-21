@@ -5,7 +5,7 @@ const path = require("path");
 
 export default {
   root: "./src",
-  publicDir: './src/assets',
+  publicDir: "./src/assets",
   rollupOptions: {
     input: "wasedatime-root-config.ts",
     format: "system",
@@ -32,5 +32,5 @@ export default {
     dynamicImport(),
   ],
   assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
-  envPrefix: ["VITE_", "REACT_APP_"]
+  envPrefix: ["VITE_", "REACT_APP_"],
 };

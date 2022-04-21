@@ -29,7 +29,7 @@ type ThemedComponentProps = {
   $isDark: boolean;
 };
 
-const schoolCoverMap: { [name: string]: string; } = {
+const schoolCoverMap: { [name: string]: string } = {
   FSE: FSEcover,
   CSE: CSEcover,
   ASE: ASEcover,
@@ -62,7 +62,8 @@ const LabTrigger = styled.div<LabTrigger>`
     width: 100%;
     height: 100%;
     opacity: ${(props) => (props.school === "CSE" ? 0.2 : 0.3)};
-    background-image: url(${(props) => (new URL(schoolCoverMap[props.school], import.meta.url)).href});
+    background-image: url(${(props) =>
+      new URL(schoolCoverMap[props.school], import.meta.url).href});
     background-size: 100%;
     border-radius: 10px;
   }
@@ -222,15 +223,16 @@ const Lab = ({ name, reviews, school }) => {
         </Table.Row>
       </Table.Header>
       <Table.Body>
-        {Array.from(new Set(reviews.map((r) => r[itemLabel]))).map(
-          (item, i) =>
-            item ? (
-              <Table.Row key={`lab_review_item_${i}`}>
-                <StyledTableCell $isDark={theme === "dark"}>
-                  {item}
-                </StyledTableCell>
-              </Table.Row>
-            ) : <tr style={{ display: "none" }} key={`lab_review_item_${i}`}></tr>
+        {Array.from(new Set(reviews.map((r) => r[itemLabel]))).map((item, i) =>
+          item ? (
+            <Table.Row key={`lab_review_item_${i}`}>
+              <StyledTableCell $isDark={theme === "dark"}>
+                {item}
+              </StyledTableCell>
+            </Table.Row>
+          ) : (
+            <tr style={{ display: "none" }} key={`lab_review_item_${i}`}></tr>
+          )
         )}
       </Table.Body>
     </StyledTable>

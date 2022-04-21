@@ -43,11 +43,12 @@ const routes = constructRoutes(document.querySelector("#single-spa-layout"));
 const applications = constructApplications({
   routes,
   // loadApp: ({ name }) => System.import(name),
-  loadApp: ({ name }) => import(
-    /* @vite-ignore */
-    // @ts-ignore
-    name
-  ),
+  loadApp: ({ name }) =>
+    import(
+      /* @vite-ignore */
+      // @ts-ignore
+      name
+    ),
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
 

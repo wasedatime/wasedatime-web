@@ -110,11 +110,13 @@ const CourseAndPrefItem = ({
     <RowWrapper>
       <Popup
         trigger={
-          <ColorButton style={{
-            color: timetableColors[theme][`color${color}`],
-            backgroundColor: timetableColors[theme][`bgColor${color}`],
-            borderColor: timetableColors[theme][`color${color}`],
-          }} />
+          <ColorButton
+            style={{
+              color: timetableColors[theme][`color${color}`],
+              backgroundColor: timetableColors[theme][`bgColor${color}`],
+              borderColor: timetableColors[theme][`color${color}`],
+            }}
+          />
         }
         on="click"
         pinned

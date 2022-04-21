@@ -50,13 +50,16 @@ const CheckLabel = styled.div`
   height: 60px;
 `;
 
-const schoolCardDimmerColor = (isDimmerActive: boolean, theme: string): string => {
+const schoolCardDimmerColor = (
+  isDimmerActive: boolean,
+  theme: string
+): string => {
   if (theme === "light") {
     return isDimmerActive ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.8)";
   } else {
     return isDimmerActive ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.5)";
   }
-}
+};
 
 interface Props {
   loaded: boolean;
@@ -92,7 +95,7 @@ const SchoolImportCard = ({
       <Dimmer
         active={!loaded}
         style={{
-          background: schoolCardDimmerColor(isBannedToLoad, theme)
+          background: schoolCardDimmerColor(isBannedToLoad, theme),
         }}
       >
         {!loaded && loading && (

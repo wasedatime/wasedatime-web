@@ -84,9 +84,7 @@ const QuarterSwitch = ({
         style={buttonStyle}
         className="border-2 rounded border-quarter-light-fall text-quarter-light-fall hover:bg-quarter-light-fall hover:text-light-bgMain dark:border-quarter-dark-fall dark:text-quarter-dark-fall dark:hover:bg-quarter-dark-fall dark:hover:text-dark-bgMain"
       >
-        {selectedQuarter === Quarter.FALL && (
-          <FontAwesomeIcon icon={faCheck} />
-        )}{" "}
+        {selectedQuarter === Quarter.FALL && <FontAwesomeIcon icon={faCheck} />}{" "}
         <FontAwesomeIcon icon={faCanadianMapleLeaf} />
       </button>
       <OrButton $isDark={theme === "dark"} />

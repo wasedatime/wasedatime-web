@@ -9,6 +9,7 @@
     "build-dev": "APP_ENV=staging next build && next export -o dist/",
     "start-built": "next start",
     "lint": "next lint",
+    "fix": "",
     "test": "cross-env BABEL_ENV=test jest",
     "format": "prettier --write \"./**\""
   },

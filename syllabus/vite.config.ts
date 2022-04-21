@@ -11,7 +11,7 @@ const path = require("path");
 
 export default {
   root: "./src",
-  publicDir: './src/assets',
+  publicDir: "./src/assets",
   rollupOptions: {
     input: "wasedatime-syllabus.ts",
     format: "system",
@@ -30,5 +30,5 @@ export default {
   },
   plugins: [reactRefresh(), dynamicImport()],
   assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
-  envPrefix: ["VITE_", "REACT_APP_"]
+  envPrefix: ["VITE_", "REACT_APP_"],
 };

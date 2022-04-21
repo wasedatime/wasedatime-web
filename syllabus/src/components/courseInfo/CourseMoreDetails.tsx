@@ -121,13 +121,17 @@ const CourseMoreDetails = ({ course, t }: Props) => {
       title: t("courseMoreDetails.Outline"),
       content:
         course[SyllabusKey.OUTLINE] &&
-        course[SyllabusKey.OUTLINE].split("\n").map((c, i) => c && <p key={i}>{c}</p>),
+        course[SyllabusKey.OUTLINE]
+          .split("\n")
+          .map((c, i) => c && <p key={i}>{c}</p>),
     },
     {
       title: t("courseMoreDetails.Objective"),
       content:
         course[SyllabusKey.OBJECTIVE] &&
-        course[SyllabusKey.OBJECTIVE].split("\n").map((c, i) => c && <p key={i}>{c}</p>),
+        course[SyllabusKey.OBJECTIVE]
+          .split("\n")
+          .map((c, i) => c && <p key={i}>{c}</p>),
     },
     {
       title: t("courseMoreDetails.Schedule"),
@@ -139,7 +143,9 @@ const CourseMoreDetails = ({ course, t }: Props) => {
       title: t("courseMoreDetails.Self Study"),
       content:
         course[SyllabusKey.SELF_STUDY] &&
-        course[SyllabusKey.SELF_STUDY].split("\n").map((c, i) => c && <p key={i}>{c}</p>),
+        course[SyllabusKey.SELF_STUDY]
+          .split("\n")
+          .map((c, i) => c && <p key={i}>{c}</p>),
     },
     {
       title: t("courseMoreDetails.Textbook"),
@@ -157,7 +163,9 @@ const CourseMoreDetails = ({ course, t }: Props) => {
       title: t("courseMoreDetails.Note"),
       content:
         course[SyllabusKey.NOTE] &&
-        course[SyllabusKey.NOTE].split("\n").map((c, i) => c && <p key={i}>{c}</p>),
+        course[SyllabusKey.NOTE]
+          .split("\n")
+          .map((c, i) => c && <p key={i}>{c}</p>),
     },
   ];
 

@@ -1,6 +1,7 @@
 import { ViteEjsPlugin } from "vite-plugin-ejs";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import dynamicImport from "vite-plugin-dynamic-import";
+const { importMaps } = require('vite-plugin-import-maps')
 const path = require("path");
 
 export default {
@@ -11,10 +12,21 @@ export default {
     format: "system",
     preserveEntrySignatures: true,
   },
+  build: {
+    outDir: "../dist",
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        entryFileNames: "wasedatime-root-config.js"
+      },
+      external: ["jss-plugin-{}"]
+    }
+  },
   resolve: {
     fullySpecified: false,
     alias: {
       "@app": path.resolve(__dirname, "src/"),
+      "./runtimeConfig": "./runtimeConfig.browser",
     },
     modules: ["node_modules"],
   },
@@ -30,6 +42,16 @@ export default {
     })),
     reactRefresh(),
     dynamicImport(),
+    // importMaps([
+    //   {
+    //     imports: {
+    //       "@wasedatime/root-config": "http://localhost:9000/wasedatime-root-config.js",
+    //       "@wasedatime/syllabus": "http://localhost:8080/wasedatime-syllabus.js",
+    //       "@wasedatime/campus": "http://localhost:8081/wasedatime-campus.js",
+    //       "@wasedatime/career": "http://localhost:8082/wasedatime-career.js",
+    //     },
+    //   },
+    // ]),
   ],
   assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
   envPrefix: ["VITE_", "REACT_APP_"],

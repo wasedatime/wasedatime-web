@@ -16,6 +16,15 @@ export default {
     format: "system",
     preserveEntrySignatures: true,
   },
+  build: {
+    outDir: "../dist",
+    emptyOutDir: true,
+    rollupOptions: {
+      output: {
+        entryFileNames: "wasedatime-campus.js"
+      }
+    }
+  },
   resolve: {
     fullySpecified: false,
     alias: {

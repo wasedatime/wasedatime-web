@@ -12,7 +12,7 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "types": ["node", "vite/client"],
+    "types": ["vite/client"],
     "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,

@@ -11,7 +11,7 @@ import styled from "styled-components";
 import { ThemeContext } from "@app/utils/theme-context";
 
 type ThemedComponentProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const SchoolCardWrapper = styled(Dimmer.Dimmable)<ThemedComponentProps>`
@@ -20,7 +20,7 @@ const SchoolCardWrapper = styled(Dimmer.Dimmable)<ThemedComponentProps>`
   border: 0px !important;
   position: relative;
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
     background-color: ${colors.dark.text3} !important;
     box-shadow: 0 1px 3px 0 ${colors.dark.text3},0 0 0 1px ${colors.dark.text3} !important;
@@ -37,7 +37,7 @@ const SchoolImage = styled(Image)<ThemedComponentProps>`
     transform: translate(-6px, 3px);
   }
   ${(props) =>
-    props.isDark && `background-color: ${colors.dark.text3} !important;`}
+    props.$isDark && `background-color: ${colors.dark.text3} !important;`}
 `;
 
 const CheckLabel = styled.div`
@@ -49,6 +49,14 @@ const CheckLabel = styled.div`
   width: 60px;
   height: 60px;
 `;
+
+const schoolCardDimmerColor = (isDimmerActive: boolean, theme: string): string => {
+  if (theme === "light") {
+    return isDimmerActive ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.8)";
+  } else {
+    return isDimmerActive ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.5)";
+  }
+}
 
 interface Props {
   loaded: boolean;
@@ -78,18 +86,13 @@ const SchoolImportCard = ({
   return (
     <SchoolCardWrapper
       as={Card}
-      dimmed={!loaded}
       onClick={handleOnClick}
-      isDark={theme === "dark"}
+      $isDark={theme === "dark"}
     >
       <Dimmer
         active={!loaded}
         style={{
-          background: isBannedToLoad
-            ? "rgba(0,0,0,0.8)"
-            : theme === "dark"
-            ? "rgba(0,0,0,0.5)"
-            : "rgba(255,255,255,0.8)",
+          background: schoolCardDimmerColor(isBannedToLoad, theme)
         }}
       >
         {!loaded && loading && (
@@ -106,7 +109,7 @@ const SchoolImportCard = ({
         src={schoolIcon}
         width="70"
         height="70"
-        isDark={theme === "dark"}
+        $isDark={theme === "dark"}
       />
     </SchoolCardWrapper>
   );

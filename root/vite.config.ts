@@ -1,7 +1,6 @@
 import { ViteEjsPlugin } from "vite-plugin-ejs";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import dynamicImport from "vite-plugin-dynamic-import";
-import svgLoader from "vite-svg-loader";
 const path = require("path");
 
 export default {
@@ -31,7 +30,6 @@ export default {
     })),
     reactRefresh(),
     dynamicImport(),
-    svgLoader()
   ],
   assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
   envPrefix: ["VITE_", "REACT_APP_"]

@@ -41,8 +41,8 @@
   <% } %>
 
   <% if (isLocal || standalone) { %>
-  <link rel="shortcut icon" sizes="16x16" href="/src/assets/img/favicon.ico" />
-  <link rel="icon" sizes="192x192" href="/src/assets/img/logo.png" />
+  <link rel="shortcut icon" sizes="16x16" href="/assets/img/favicon.ico" />
+  <link rel="icon" sizes="192x192" href="/assets/img/logo.png" />
   <link
     rel="apple-touch-icon"
     sizes="128x128"
@@ -195,9 +195,9 @@
       })
     }
   </script>
-  <link rel="preload" as="font" href="./src/styles/fonts/segoe-ui.ttf" type="font/ttf" crossorigin="anonymous" />
-  <link rel="preload" as="font" href="./src/styles/fonts/yugothic-medium.otf" type="font/otf" crossorigin="anonymous" />
-  <link rel="preload" as="font" href="./src/styles/fonts/Lato-Regular.otf" type="font/ttf" crossorigin="anonymous" />
+  <link rel="preload" as="font" href="/assets/fonts/segoe-ui.ttf" type="font/ttf" crossorigin="anonymous" />
+  <link rel="preload" as="font" href="/assets/fonts/yugothic-medium.otf" type="font/otf" crossorigin="anonymous" />
+  <link rel="preload" as="font" href="/assets/fonts/Lato-Regular.otf" type="font/ttf" crossorigin="anonymous" />
   <link rel="preload" as="stylesheet" href='http://fonts.googleapis.com/css?family=Lato:400,700' type='text/css'>
   <% } %>
 
@@ -268,10 +268,10 @@
         <div id="nav"></div>
         <main>
           <route path="courses">
-            <% if (!isLocal && !standalone) { %>
+            <!-- <% if (!isLocal && !standalone) { %>
             <link rel="preload" href="/syllabus/main.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
             <noscript><link rel="stylesheet" href="/syllabus/main.css"></noscript>
-            <% } %>
+            <% } %> -->
             <application name="@wasedatime/syllabus"></application>
           </route>
           <route path="campus">
@@ -292,7 +292,9 @@
   <div id="loading">
     <noscript><canvas></canvas></noscript>
   </div>
-  <script type="module-shim" src="/wasedatime-root-config.ts"></script>
+  <script type="module-shim">
+    import("@wasedatime/root-config");
+  </script>
   <!-- <script>
     import("@wasedatime/root-config");
   </script> -->

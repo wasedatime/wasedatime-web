@@ -14,7 +14,7 @@ import timetableColors from "@app/constants/timetable-colors";
 
 type StyledCourseColumnProps = {
   displayPeriods: number;
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 type CourseItemProps = {
@@ -27,13 +27,13 @@ const StyledCourseColumn = styled.div<StyledCourseColumnProps>`
   display: flex;
   flex: 1 0 calc(30rem / 7 * ${(props) => props.displayPeriods});
   border-right: 1px solid
-    ${(props) => (props.isDark ? colors.dark.text3 : "#f7f7f7")};
+    ${(props) => (props.$isDark ? colors.dark.text3 : "#f7f7f7")};
   border-bottom: solid 1px
-    ${(props) => (props.isDark ? colors.dark.text3 : "#f7f7f7")};
+    ${(props) => (props.$isDark ? colors.dark.text3 : "#f7f7f7")};
   background: linear-gradient(
     180deg,
-    ${(props) => (props.isDark ? colors.dark.bgMain : "white")} 50%,
-    ${(props) => (props.isDark ? "#333" : "#eee")} 50%
+    ${(props) => (props.$isDark ? colors.dark.bgMain : "white")} 50%,
+    ${(props) => (props.$isDark ? "#333" : "#eee")} 50%
   );
   background-size: 100% calc(100% / ${(props) => props.displayPeriods} * 2);
   position: relative;
@@ -231,7 +231,7 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
   return (
     <StyledCourseColumn
       displayPeriods={displayPeriods}
-      isDark={theme === "dark"}
+      $isDark={theme === "dark"}
     >
       {distinctCourseListsComponent}
     </StyledCourseColumn>

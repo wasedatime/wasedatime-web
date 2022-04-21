@@ -15,25 +15,25 @@ import FilterGroups from "@app/types/filter";
 import { ThemeContext } from "@app/utils/theme-context";
 
 type FilterWrapperProps = {
-  isSideBar: boolean;
+  $isSideBar: boolean;
 };
 
 type FilterScrollAreaProps = {
-  isSideBar: boolean;
+  $isSideBar: boolean;
 };
 
 const FilterWrapper = styled.div<FilterWrapperProps>`
-  ${(props) => !props.isSideBar && "width: 100vw;"}
+  ${(props) => !props.$isSideBar && "width: 100vw;"}
   height: ${(props) =>
-    props.isSideBar ? "calc(100vh - 96px)" : "calc(100vh - 50px)"};
+    props.$isSideBar ? "calc(100vh - 96px)" : "calc(100vh - 50px)"};
 `;
 
 const FilterScrollArea = styled(SimpleBar)<FilterScrollAreaProps>`
   // flex: none;
   width: 100%;
-  height: ${(props) => (props.isSideBar ? "100%" : "calc(100% - 50px)")};
+  height: ${(props) => (props.$isSideBar ? "100%" : "calc(100% - 50px)")};
   padding: ${(props) =>
-    props.isSideBar ? "0.5em 1em 1em 1em" : "0.7em 1.2em 1.2em"};
+    props.$isSideBar ? "0.5em 1em 1em 1em" : "0.7em 1.2em 1.2em"};
 
   .simplebar-scrollbar::before {
     background-color: #999;
@@ -75,14 +75,14 @@ interface Props extends WithTranslation {
   filterGroups: FilterGroups;
   handleToggleFilter: (name: string, value: any) => void;
   clearFilter: () => void;
-  isSideBar: boolean;
+  $isSideBar: boolean;
 }
 
 const Filter = ({
   filterGroups,
   handleToggleFilter,
   clearFilter,
-  isSideBar,
+  $isSideBar,
   t,
 }: Props) => {
   const { theme, setTheme } = React.useContext(ThemeContext);
@@ -472,8 +472,8 @@ const Filter = ({
   }));
 
   return (
-    <FilterWrapper isSideBar={isSideBar}>
-      <FilterScrollArea isSideBar={isSideBar}>
+    <FilterWrapper $isSideBar={$isSideBar}>
+      <FilterScrollArea $isSideBar={$isSideBar}>
         <FilterTitle className="dark:text-dark-text1">
           <FontAwesomeIcon icon={faFilter} size="1x" />
           &nbsp;

@@ -51,8 +51,7 @@
     "vite": "^2.9.5",
     "vite-plugin-dynamic-import": "^0.8.0",
     "vite-plugin-ejs": "^1.4.4",
-    "vite-plugin-import-maps": "^0.1.2",
-    "vite-svg-loader": "^3.2.0"
+    "vite-plugin-import-maps": "^0.1.2"
   },
   "dependencies": {
     "@aws-amplify/auth": "4.5.0",
@@ -61,10 +60,10 @@
     "@bit/wasedatime.core.ts.constants.langs": "0.0.5",
     "@bit/wasedatime.core.ts.styles.overlay": "0.0.1",
     "@bit/wasedatime.core.ts.styles.wrapper": "0.0.1",
-    "@bit/wasedatime.core.ts.ui.header": "0.2.20",
+    "@bit/wasedatime.core.ts.ui.header": "0.2.21",
     "@bit/wasedatime.core.ts.ui.language-menu": "0.1.2",
-    "@bit/wasedatime.core.ts.ui.loading-spinner": "0.1.4",
-    "@bit/wasedatime.core.ts.ui.logo": "0.1.1",
+    "@bit/wasedatime.core.ts.ui.loading-spinner": "0.1.5",
+    "@bit/wasedatime.core.ts.ui.logo": "0.1.2",
     "@bit/wasedatime.core.ts.ui.modal": "0.0.8",
     "@bit/wasedatime.core.ts.ui.sign-in-modal": "0.1.6",
     "@bit/wasedatime.core.ts.utils.i18n": "0.0.4",

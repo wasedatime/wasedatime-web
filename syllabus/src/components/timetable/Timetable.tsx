@@ -19,7 +19,7 @@ type ColumnProps = {
 };
 
 type StyledMessageProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const ExtendedRowWrapper = styled(RowWrapper)`
@@ -53,7 +53,7 @@ const ScrollableTimetable = styled("div")`
 `;
 
 const StyledMessage = styled(Message)<StyledMessageProps>`
-  ${(props) => props.isDark && "opacity: 0.6;"}
+  ${(props) => props.$isDark && "opacity: 0.6;"}
 `;
 
 interface Props extends WithTranslation {
@@ -136,11 +136,11 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                       </p>
                     }
                     size="mini"
-                    isDark={theme === "dark"}
+                    $isDark={theme === "dark"}
                   />
                 </Section>
                 <Section>
-                  <StyledMessage success size="mini" isDark={theme === "dark"}>
+                  <StyledMessage success size="mini" $isDark={theme === "dark"}>
                     <p>{t("timetable.SaveSpace")}</p>
                   </StyledMessage>
                 </Section>

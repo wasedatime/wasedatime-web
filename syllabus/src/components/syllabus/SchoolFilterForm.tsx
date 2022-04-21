@@ -17,7 +17,7 @@ import { gradSchools, otherSchools, undergradSchools } from "@app/constants/scho
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 type ThemeComponentProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const Cards = styled(Card.Group)`
@@ -37,7 +37,7 @@ const Cards = styled(Card.Group)`
 
 const WiderPopup = styled(Popup)<ThemeComponentProps>`
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
     background-color: ${colors.dark.bgMain} !important;
     box-shadow: 0 2px 4px 0 ${colors.dark.text3} !important;
@@ -59,7 +59,7 @@ const WiderPopup = styled(Popup)<ThemeComponentProps>`
 
 const StyledTab = styled(Tab)<ThemeComponentProps>`
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
       .tabular.menu {
         border-bottom-color: ${colors.dark.text3} !important;
@@ -79,7 +79,7 @@ const StyledTab = styled(Tab)<ThemeComponentProps>`
 const StyledMenuItem = styled(Menu.Item)<ThemeComponentProps>`
   font-size: 1.2em;
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
     background-color: ${colors.dark.bgMain} !important;
     border-color: ${colors.dark.text3} !important;
@@ -189,7 +189,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
 
     return schoolsByType.map((schools, i) => ({
       menuItem: (
-        <StyledMenuItem key={schoolTypeNames[i]} isDark={theme === "dark"}>
+        <StyledMenuItem key={schoolTypeNames[i]} $isDark={theme === "dark"}>
           {t(`syllabus.School Filter.${schoolTypeNames[i]}`)}
         </StyledMenuItem>
       ),
@@ -254,19 +254,19 @@ class SchoolFilterForm extends React.Component<Props, State> {
         content={
           <StyledTab
             panes={this.schoolImportPanes(theme)}
-            isDark={theme === "dark"}
+            $isDark={theme === "dark"}
           />
         }
         on="click"
         position="bottom left"
         size="huge"
         wide="very"
-        isDark={theme === "dark"}
+        $isDark={theme === "dark"}
       />
     ) : (
       <StyledTab
         panes={this.schoolImportPanes(theme)}
-        isDark={theme === "dark"}
+        $isDark={theme === "dark"}
       />
     );
   }

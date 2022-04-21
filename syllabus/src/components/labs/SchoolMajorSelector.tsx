@@ -7,11 +7,9 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import majorBg from "@app/assets/img/major_bg.jpg";
-import aseIcon from "@app/assets/img/syllabus-icons/ase.png";
-import cseIcon from "@app/assets/img/syllabus-icons/cse.png";
-import fseIcon from "@app/assets/img/syllabus-icons/fse.png";
 import { Badge } from "@app/components/styles/Badge";
 import majorsBySchool from "@app/constants/majors-by-school";
+import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 type SchoolButtonProps = {
   active: boolean;
@@ -69,7 +67,7 @@ const MajorWrapper = styled.div`
     width: 100%;
     height: 100%;
     opacity: 0.2;
-    background-image: url(${majorBg});
+    background-image: url(${(new URL(majorBg, import.meta.url)).href});
     background-size: 15em;
   }
 `;
@@ -139,20 +137,20 @@ const SchoolMajorSelector = ({
         <b>{t("syllabus.Filter by")}</b>
       </h5>
       <SchoolMenu>
-        {[fseIcon, cseIcon, aseIcon].map((icon, i) => (
+        {["FSE", "CSE", "ASE"].map((school, i) => (
           <SchoolItem key={`school_button_${i}`}>
             <SchoolButton
               onClick={() => switchSchool(i)}
               active={selectedSchool === schools[i]}
             >
-              <SchoolImg src={icon} width="70" height="70" />
+              <SchoolImg src={getSchoolIconPath(school, "EN")} width="70" height="70" />
             </SchoolButton>
           </SchoolItem>
         ))}
       </SchoolMenu>
 
-      {majorsBySchool[selectedSchool]?.map((major) => (
-        <MajorWrapper onClick={() => switchMajorAndCloseModal(major)}>
+      {majorsBySchool[selectedSchool]?.map((major, i) => (
+        <MajorWrapper onClick={() => switchMajorAndCloseModal(major)} key={`major_button_${i}`}>
           <MajorText className="text-white dark:text-dark-text2">
             {t(`labs.major.${major}`)}
           </MajorText>

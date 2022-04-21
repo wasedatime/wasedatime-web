@@ -26,10 +26,10 @@ type LabTrigger = {
 };
 
 type ThemedComponentProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
-const schoolCoverMap = {
+const schoolCoverMap: { [name: string]: string; } = {
   FSE: FSEcover,
   CSE: CSEcover,
   ASE: ASEcover,
@@ -62,7 +62,7 @@ const LabTrigger = styled.div<LabTrigger>`
     width: 100%;
     height: 100%;
     opacity: ${(props) => (props.school === "CSE" ? 0.2 : 0.3)};
-    background-image: url(${(props) => schoolCoverMap[props.school]});
+    background-image: url(${(props) => (new URL(schoolCoverMap[props.school], import.meta.url)).href});
     background-size: 100%;
     border-radius: 10px;
   }
@@ -172,7 +172,7 @@ const SectionHeader = styled.h5`
 
 const StyledTable = styled(Table)<ThemedComponentProps>`
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
     border-color: ${colors.dark.text3} !important;
   `}
@@ -180,7 +180,7 @@ const StyledTable = styled(Table)<ThemedComponentProps>`
 
 const StyledTableHeaderCell = styled(Table.HeaderCell)<ThemedComponentProps>`
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
     background-color: ${colors.dark.bgSide} !important;
     color: ${colors.dark.text2} !important;
@@ -189,7 +189,7 @@ const StyledTableHeaderCell = styled(Table.HeaderCell)<ThemedComponentProps>`
 
 const StyledTableCell = styled(Table.Cell)<ThemedComponentProps>`
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
     background-color: ${colors.dark.bgMain} !important;
     color: ${colors.dark.text2} !important;
@@ -213,24 +213,24 @@ const Lab = ({ name, reviews, school }) => {
   const [open, setOpen] = useState(false);
 
   const itemTable = (itemLabel) => (
-    <StyledTable unstackable isDark={theme === "dark"}>
+    <StyledTable unstackable $isDark={theme === "dark"}>
       <Table.Header>
         <Table.Row>
-          <StyledTableHeaderCell isDark={theme === "dark"}>
+          <StyledTableHeaderCell $isDark={theme === "dark"}>
             {t(`labs.review.${itemLabel}`)}
           </StyledTableHeaderCell>
         </Table.Row>
       </Table.Header>
       <Table.Body>
         {Array.from(new Set(reviews.map((r) => r[itemLabel]))).map(
-          (item) =>
-            item && (
-              <Table.Row>
-                <StyledTableCell isDark={theme === "dark"}>
+          (item, i) =>
+            item ? (
+              <Table.Row key={`lab_review_item_${i}`}>
+                <StyledTableCell $isDark={theme === "dark"}>
                   {item}
                 </StyledTableCell>
               </Table.Row>
-            )
+            ) : <tr style={{ display: "none" }} key={`lab_review_item_${i}`}></tr>
         )}
       </Table.Body>
     </StyledTable>
@@ -265,10 +265,10 @@ const Lab = ({ name, reviews, school }) => {
 
             <SectionHeader>{t("labs.review.Research Topic")}</SectionHeader>
             {topicSatisficationAverage > 0 && (
-              <StyledTable unstackable isDark={theme === "dark"}>
+              <StyledTable unstackable $isDark={theme === "dark"}>
                 <Table.Header>
                   <Table.Row>
-                    <StyledTableHeaderCell isDark={theme === "dark"}>
+                    <StyledTableHeaderCell $isDark={theme === "dark"}>
                       {t("labs.review.topicSatisfication")}{" "}
                       <span style={{ float: "right" }}>
                         <ReviewStars scale={topicSatisficationAverage} />
@@ -286,10 +286,10 @@ const Lab = ({ name, reviews, school }) => {
             </SectionHeader>
 
             {guidanceAverage > 0 && (
-              <StyledTable unstackable isDark={theme === "dark"}>
+              <StyledTable unstackable $isDark={theme === "dark"}>
                 <Table.Header>
                   <Table.Row>
-                    <StyledTableHeaderCell isDark={theme === "dark"}>
+                    <StyledTableHeaderCell $isDark={theme === "dark"}>
                       <div
                         style={{
                           display: "flex",
@@ -318,10 +318,10 @@ const Lab = ({ name, reviews, school }) => {
             )}
 
             {happinessAverage > 0 && (
-              <StyledTable unstackable isDark={theme === "dark"}>
+              <StyledTable unstackable $isDark={theme === "dark"}>
                 <Table.Header>
                   <Table.Row>
-                    <StyledTableHeaderCell isDark={theme === "dark"}>
+                    <StyledTableHeaderCell $isDark={theme === "dark"}>
                       {t("labs.review.happiness")}{" "}
                       <span style={{ float: "right" }}>
                         <ReviewStars scale={happinessAverage} />

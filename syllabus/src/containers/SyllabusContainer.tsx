@@ -420,7 +420,7 @@ class SyllabusContainer extends React.Component<
                       filterGroups={this.state.filterGroups}
                       handleToggleFilter={this.handleToggleFilter}
                       clearFilter={this.clearFilter}
-                      isSideBar
+                      $isSideBar
                     />
                   </Suspense>
                 </SideColumn>
@@ -435,7 +435,7 @@ class SyllabusContainer extends React.Component<
                     filterGroups={this.state.filterGroups}
                     handleToggleFilter={this.handleToggleFilter}
                     clearFilter={this.clearFilter}
-                    isSideBar
+                    $isSideBar
                   />
                 </ShorterSideColumn>
               )
@@ -454,7 +454,7 @@ class SyllabusContainer extends React.Component<
                       filterGroups={this.state.filterGroups}
                       handleToggleFilter={this.handleToggleFilter}
                       clearFilter={this.clearFilter}
-                      isSideBar={false}
+                      $isSideBar={false}
                     />
                   </Modal>
                 </div>

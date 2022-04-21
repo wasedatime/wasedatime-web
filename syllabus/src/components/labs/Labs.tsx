@@ -310,11 +310,12 @@ class Labs extends React.Component<Props, State> {
               reviews[school][major].length > 0 ? (
                 reviews[school][major].map(
                   (lab) =>
-                    (!searchTerm || lab.lab.includes(searchTerm)) && (
+                    (!searchTerm || lab.lab.toLowerCase().includes(searchTerm.toLowerCase())) && (
                       <Lab
                         name={lab.lab}
                         reviews={lab.reviews}
                         school={school}
+                        key={lab.lab}
                       />
                     )
                 )

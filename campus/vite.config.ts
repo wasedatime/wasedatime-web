@@ -1,7 +1,6 @@
 import { defineConfig } from "vite";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import dynamicImport from "vite-plugin-dynamic-import";
-import svgLoader from "vite-svg-loader";
 const path = require("path");
 
 // https://vitejs.dev/config/
@@ -24,5 +23,5 @@ export default {
     },
     modules: ["node_modules"],
   },
-  plugins: [reactRefresh(), dynamicImport(), svgLoader()],
+  plugins: [reactRefresh(), dynamicImport()],
 };

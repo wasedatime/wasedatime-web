@@ -24,16 +24,16 @@ interface Props extends WithTranslation {
 }
 
 type ButtonProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const OrButton = styled(Button.Or)<ButtonProps>`
   height: 24px;
   &:before {
     background-color: ${(props) =>
-      props.isDark ? colors.dark.bgSide : colors.light.bgSide} !important;
+      props.$isDark ? colors.dark.bgSide : colors.light.bgSide} !important;
     color: ${(props) =>
-      props.isDark ? colors.dark.text2 : colors.light.text2} !important;
+      props.$isDark ? colors.dark.text2 : colors.light.text2} !important;
   }
 `;
 
@@ -65,7 +65,7 @@ const QuarterSwitch = ({
         )}{" "}
         <FontAwesomeIcon icon={faSpa} />
       </button>
-      <OrButton isDark={theme === "dark"} />
+      <OrButton $isDark={theme === "dark"} />
       <button
         onClick={() => toggleQuarter(Quarter.SUMMER)}
         style={buttonStyle}
@@ -89,7 +89,7 @@ const QuarterSwitch = ({
         )}{" "}
         <FontAwesomeIcon icon={faCanadianMapleLeaf} />
       </button>
-      <OrButton isDark={theme === "dark"} />
+      <OrButton $isDark={theme === "dark"} />
       <button
         onClick={() => toggleQuarter(Quarter.WINTER)}
         style={buttonStyle}

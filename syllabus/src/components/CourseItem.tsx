@@ -35,7 +35,7 @@ type DescriptionWrapperProps = {
   isLarger: boolean;
 };
 
-const CourseItemWrapper = styled("li")`
+const CourseItemWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;

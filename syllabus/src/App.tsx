@@ -86,7 +86,7 @@ const App = ({
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
-      <Alert stack={{ limit: 1 }} timeout={3000} />
+      <Alert timeout={3000} />
     </Suspense>
   );
 };

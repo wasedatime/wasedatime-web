@@ -8,6 +8,7 @@
     "build": "APP_ENV=production next build && next export -o dist/",
     "build-dev": "APP_ENV=staging next build && next export -o dist/",
     "start-built": "next start",
+    "preview": "next start",
     "lint": "next lint",
     "fix": "",
     "test": "cross-env BABEL_ENV=test jest",

@@ -1,13 +1,6 @@
-import { defineConfig } from "vite";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import dynamicImport from "vite-plugin-dynamic-import";
 const path = require("path");
-
-// https://vitejs.dev/config/
-// export default defineConfig({
-//   root: "./src",
-//   plugins: [react()]
-// })
 
 export default {
   root: "./src",
@@ -20,6 +13,8 @@ export default {
     outDir: "../dist",
     emptyOutDir: true,
     rollupOptions: {
+      input: "./src/wasedatime-campus.ts",
+      preserveEntrySignatures: true,
       output: {
         entryFileNames: "wasedatime-campus.js"
       }
@@ -33,4 +28,5 @@ export default {
     modules: ["node_modules"],
   },
   plugins: [reactRefresh(), dynamicImport()],
+  envPrefix: ["VITE_", "REACT_APP_"],
 };

@@ -16,10 +16,14 @@ export default {
     outDir: "../dist",
     emptyOutDir: true,
     rollupOptions: {
-      output: {
-        entryFileNames: "wasedatime-root-config.js"
+      input: {
+        "main": "./src/index.html",
+        "wasedatime-root-config": "./src/wasedatime-root-config.ts"
       },
-      external: ["jss-plugin-{}"]
+      preserveEntrySignatures: true,
+      output: {
+        entryFileNames: "[name].js"
+      },
     }
   },
   resolve: {
@@ -32,7 +36,7 @@ export default {
   },
   define: {
     define: "undefined",
-    global: {},
+    "global.TYPED_ARRAY_SUPPORT": undefined,
   },
   plugins: [
     ViteEjsPlugin((config) => ({
@@ -42,16 +46,6 @@ export default {
     })),
     reactRefresh(),
     dynamicImport(),
-    // importMaps([
-    //   {
-    //     imports: {
-    //       "@wasedatime/root-config": "http://localhost:9000/wasedatime-root-config.js",
-    //       "@wasedatime/syllabus": "http://localhost:8080/wasedatime-syllabus.js",
-    //       "@wasedatime/campus": "http://localhost:8081/wasedatime-campus.js",
-    //       "@wasedatime/career": "http://localhost:8082/wasedatime-career.js",
-    //     },
-    //   },
-    // ]),
   ],
   assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
   envPrefix: ["VITE_", "REACT_APP_"],

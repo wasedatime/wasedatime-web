@@ -12,6 +12,7 @@ export default {
   build: {
     outDir: "../dist",
     emptyOutDir: true,
+    cssCodeSplit: false,
     rollupOptions: {
       input: "./src/wasedatime-campus.ts",
       preserveEntrySignatures: true,

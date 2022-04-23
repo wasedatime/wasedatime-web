@@ -15,6 +15,7 @@ export default {
   build: {
     outDir: "../dist",
     emptyOutDir: true,
+    cssCodeSplit: false,
     rollupOptions: {
       input: {
         "main": "./src/index.html",

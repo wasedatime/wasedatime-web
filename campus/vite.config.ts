@@ -16,7 +16,8 @@ export default {
       input: "./src/wasedatime-campus.ts",
       preserveEntrySignatures: true,
       output: {
-        entryFileNames: "wasedatime-campus.js"
+        entryFileNames: "[name].js",
+        assetFileNames: "assets/[name].[ext]",
       }
     }
   },
@@ -28,5 +29,6 @@ export default {
     modules: ["node_modules"],
   },
   plugins: [reactRefresh(), dynamicImport()],
+  assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
   envPrefix: ["VITE_", "REACT_APP_"],
 };

@@ -22,7 +22,8 @@ export default {
       },
       preserveEntrySignatures: true,
       output: {
-        entryFileNames: "[name].js"
+        entryFileNames: "[name].js",
+        assetFileNames: "assets/[name].[ext]",
       },
     }
   },

@@ -13,14 +13,15 @@ export default {
     outDir: "../dist",
     emptyOutDir: true,
     cssCodeSplit: false,
+    manifest: true,
     rollupOptions: {
       input: "./src/wasedatime-campus.ts",
       preserveEntrySignatures: true,
       output: {
         entryFileNames: "[name].js",
         assetFileNames: "assets/[name].[ext]",
-      }
-    }
+      },
+    },
   },
   resolve: {
     fullySpecified: false,

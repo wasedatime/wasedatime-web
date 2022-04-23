@@ -17,9 +17,9 @@ export default {
       input: "./src/wasedatime-syllabus.ts",
       preserveEntrySignatures: true,
       output: {
-        entryFileNames: "wasedatime-syllabus.js"
-      }
-    }
+        entryFileNames: "wasedatime-syllabus.js",
+      },
+    },
   },
   resolve: {
     fullySpecified: false,

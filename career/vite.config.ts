@@ -16,9 +16,9 @@ export default {
       input: "./src/wasedatime-career.ts",
       preserveEntrySignatures: true,
       output: {
-        entryFileNames: "wasedatime-career.js"
-      }
-    }
+        entryFileNames: "wasedatime-career.js",
+      },
+    },
   },
   resolve: {
     fullySpecified: false,

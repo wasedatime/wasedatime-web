@@ -1,7 +1,7 @@
 import { ViteEjsPlugin } from "vite-plugin-ejs";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import dynamicImport from "vite-plugin-dynamic-import";
-const { importMaps } = require('vite-plugin-import-maps')
+const { importMaps } = require("vite-plugin-import-maps");
 const path = require("path");
 
 export default {
@@ -18,15 +18,15 @@ export default {
     cssCodeSplit: false,
     rollupOptions: {
       input: {
-        "main": "./src/index.html",
-        "wasedatime-root-config": "./src/wasedatime-root-config.ts"
+        main: "./src/index.html",
+        "wasedatime-root-config": "./src/wasedatime-root-config.ts",
       },
       preserveEntrySignatures: true,
       output: {
         entryFileNames: "[name].js",
         assetFileNames: "assets/[name].[ext]",
       },
-    }
+    },
   },
   resolve: {
     fullySpecified: false,

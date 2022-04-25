@@ -10,6 +10,7 @@ import { SyllabusKey } from "@app/constants/syllabus-data";
 import { CourseWithOcc } from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 import { ThemeContext } from "@app/utils/theme-context";
+import timetableColors from "@app/constants/timetable-colors";
 
 type StyledCourseColumnProps = {
   displayPeriods: number;
@@ -203,7 +204,11 @@ const CourseColumn = ({ largestPeriod, coursesAndProperties, t }: Props) => {
         // }
         return (
           <CourseItem
-            className={`color-${color} dark:opacity-70`}
+            style={{
+              color: timetableColors[theme][`color${color}`],
+              backgroundColor: timetableColors[theme][`bgColor${color}`],
+              borderColor: timetableColors[theme][`color${color}`],
+            }}
             key={`${course[SyllabusKey.TERM]}-${
               course[SyllabusKey.TITLE]
             }-${startPeriod}-${endPeriod}`}

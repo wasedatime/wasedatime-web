@@ -1,16 +1,16 @@
 import React from "react";
+
 import { useTranslation } from "react-i18next";
 import { navigateToUrl } from "single-spa";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExchangeAlt } from "@fortawesome/free-solid-svg-icons";
-import themeToggleLightImg from "@app/assets/img/home/theme-toggle-light.png";
+
 import themeToggleDarkImg from "@app/assets/img/home/theme-toggle-dark.png";
+import themeToggleLightImg from "@app/assets/img/home/theme-toggle-light.png";
 
 type Props = {
   isFirstAccess: boolean;
   goToPrevPage: () => void;
   closeModal: () => void;
-}
+};
 
 const NewFeatures = ({ isFirstAccess, goToPrevPage, closeModal }: Props) => {
   const { t } = useTranslation();
@@ -36,22 +36,15 @@ const NewFeatures = ({ isFirstAccess, goToPrevPage, closeModal }: Props) => {
         {t("welcome.themeToggle.themeToggleExplain2")}
         <br />
         {t("welcome.themeToggle.themeToggleExplain3")}
-        <br /><br />
+        <br />
+        <br />
         <div className="flex flex-row gap-8">
           <div className="text-center">
-            <img
-              src={themeToggleLightImg}
-              alt="reviews example"
-              width="100%"
-            />
+            <img src={themeToggleLightImg} alt="reviews example" width="100%" />
             <p>{t("welcome.themeToggle.lightMode")}</p>
           </div>
           <div className="text-center">
-            <img
-              src={themeToggleDarkImg}
-              alt="reviews example"
-              width="100%"
-            />
+            <img src={themeToggleDarkImg} alt="reviews example" width="100%" />
             <p>{t("welcome.themeToggle.darkMode")}</p>
           </div>
         </div>
@@ -81,7 +74,7 @@ const NewFeatures = ({ isFirstAccess, goToPrevPage, closeModal }: Props) => {
         </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default NewFeatures;

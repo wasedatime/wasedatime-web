@@ -12,7 +12,12 @@ interface Props {
   clearSearchBar: () => void;
 }
 
-const CourseChunk = ({ chunk, searchTerm, searchLang, clearSearchBar }: Props) => {
+const CourseChunk = ({
+  chunk,
+  searchTerm,
+  searchLang,
+  clearSearchBar,
+}: Props) => {
   return (
     <UnstyledUList>
       {chunk.map((course) => (

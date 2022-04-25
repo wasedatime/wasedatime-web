@@ -3,7 +3,6 @@ import React from "react";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
-import * as Sentry from "@sentry/react";
 import i18next from "i18next";
 import ReactDOM from "react-dom";
 import ReactGA from "react-ga";
@@ -70,18 +69,8 @@ if (process.env.NODE_ENV === "development") {
 } else {
   ReactGA.initialize(
     process.env.NODE_ENV === "production" ? "UA-112185819-1" : "UA-112185819-3",
-    { debug: false, titleCase: false },
+    { debug: false, titleCase: false }
   );
-  Sentry.init({
-    dsn: "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
-    environment: process.env.NODE_ENV,
-    ignoreErrors: [
-      "Network Error",
-      "NetworkError",
-      "Loading chunk",
-      "Timed out",
-    ],
-  });
 }
 
 ReactDOM.render(

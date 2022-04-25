@@ -1,8 +1,15 @@
 import React from "react";
 
 import colors from "@bit/wasedatime.core.theme.colors";
-import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+import {
+  faCheck,
+  faSpa,
+  faSun,
+  faSnowflake,
+} from "@fortawesome/free-solid-svg-icons";
+import { faCanadianMapleLeaf } from "@fortawesome/free-brands-svg-icons";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Button from "semantic-ui-react/dist/commonjs/elements/Button";
 import styled from "styled-components";
@@ -30,14 +37,10 @@ const OrButton = styled(Button.Or)<ButtonProps>`
   }
 `;
 
-const StyledButton = styled(Button)<ButtonProps>`
-  ${(props) => props.isDark && "opacity: 0.7;"}
-`;
-
 const buttonStyle = {
   marginBottom: "1em",
   padding: "0px 1em",
-  width: "90px",
+  width: "60px",
   height: "24px",
   fontSize: "12px",
 };
@@ -52,57 +55,51 @@ const QuarterSwitch = ({
 
   return semesterKey === Semester.SPRING ? (
     <Button.Group>
-      <StyledButton
-        inverted
-        color="pink"
+      <button
         onClick={() => toggleQuarter(Quarter.SPRING)}
         style={buttonStyle}
-        isDark={theme === "dark"}
+        className="border-2 rounded border-quarter-light-spring text-quarter-light-spring hover:bg-quarter-light-spring hover:text-light-bgMain dark:border-quarter-dark-spring dark:text-quarter-dark-spring dark:hover:bg-quarter-dark-spring dark:hover:text-dark-bgMain"
       >
         {selectedQuarter === Quarter.SPRING && (
           <FontAwesomeIcon icon={faCheck} />
         )}{" "}
-        {t("syllabus.semesterMap.Spring")}
-      </StyledButton>
+        <FontAwesomeIcon icon={faSpa} />
+      </button>
       <OrButton isDark={theme === "dark"} />
-      <StyledButton
-        inverted
-        color="orange"
+      <button
         onClick={() => toggleQuarter(Quarter.SUMMER)}
         style={buttonStyle}
-        isDark={theme === "dark"}
+        className="border-2 rounded border-quarter-light-summer text-quarter-light-summer hover:bg-quarter-light-summer hover:text-light-bgMain dark:border-quarter-dark-summer dark:text-quarter-dark-summer dark:hover:bg-quarter-dark-summer dark:hover:text-dark-bgMain"
       >
         {selectedQuarter === Quarter.SUMMER && (
           <FontAwesomeIcon icon={faCheck} />
         )}{" "}
-        {t("syllabus.semesterMap.Summer")}
-      </StyledButton>
+        <FontAwesomeIcon icon={faSun} />
+      </button>
     </Button.Group>
   ) : (
     <Button.Group>
-      <StyledButton
-        inverted
-        color="brown"
+      <button
         onClick={() => toggleQuarter(Quarter.FALL)}
         style={buttonStyle}
-        isDark={theme === "dark"}
+        className="border-2 rounded border-quarter-light-fall text-quarter-light-fall hover:bg-quarter-light-fall hover:text-light-bgMain dark:border-quarter-dark-fall dark:text-quarter-dark-fall dark:hover:bg-quarter-dark-fall dark:hover:text-dark-bgMain"
       >
-        {selectedQuarter === Quarter.FALL && <FontAwesomeIcon icon={faCheck} />}{" "}
-        {t("syllabus.semesterMap.Fall")}
-      </StyledButton>
+        {selectedQuarter === Quarter.FALL && (
+          <FontAwesomeIcon icon={faCheck} />
+        )}{" "}
+        <FontAwesomeIcon icon={faCanadianMapleLeaf} />
+      </button>
       <OrButton isDark={theme === "dark"} />
-      <StyledButton
-        inverted
-        color="blue"
+      <button
         onClick={() => toggleQuarter(Quarter.WINTER)}
         style={buttonStyle}
-        isDark={theme === "dark"}
+        className="border-2 rounded border-quarter-light-winter text-quarter-light-winter hover:bg-quarter-light-winter hover:text-light-bgMain dark:border-quarter-dark-winter dark:text-quarter-dark-winter dark:hover:bg-quarter-dark-winter dark:hover:text-dark-bgMain"
       >
         {selectedQuarter === Quarter.WINTER && (
           <FontAwesomeIcon icon={faCheck} />
         )}{" "}
-        {t("syllabus.semesterMap.Winter")}
-      </StyledButton>
+        <FontAwesomeIcon icon={faSnowflake} />
+      </button>
     </Button.Group>
   );
 };

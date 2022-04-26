@@ -40,30 +40,9 @@ const Card = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 40px 30px 30px;
-  width: 230px;
+  margin: 30px 15px;
+  width: 280px;
   text-align: center;
-`;
-
-const MemberImage = styled("img")`
-  width: 80%;
-  /* border-radius: 50%; */
-  box-shadow: 0px 0px 8px;
-`;
-const MemberName = styled("div")`
-  padding: 10px 0px 0px 0px;
-  width: 100%;
-  font-size: 1.3em;
-  text-align: center;
-`;
-
-const MemberPosition = styled("div")`
-  width: 100%;
-  text-align: center;
-`;
-
-const MemberVision = styled("div")`
-  max-width: 100%;
 `;
 
 const SocialMediaArea = styled("div")`
@@ -83,36 +62,76 @@ const MediaIcon = styled("img")`
 const MemberCard = ({
   image,
   name,
-  position,
+  positions,
   socials,
   profileText,
 }: Members) => (
   <Card>
-    <MemberImage
-      className="border-light-bgSide dark:border-dark-bgSide border-8 border-solid rounded-full"
-      src={image}
-    />
-    <MemberName className="text-light-text1 dark:text-dark-text1">
-      {name}
-    </MemberName>
-    <MemberPosition className="text-light-text1 dark:text-dark-text1">
-      {position}
-    </MemberPosition>
+    <a className="block group" href="#">
+      {/* Card: pic + hidden card-body +  Name */}
+      <div
+        className="card w-auto bg-transparent relative pl-2 py-4
+      group-hover:card-side group-hover:mx-[30px] group-hover:rounded-8xl
+      group-hover:bg-gradient-to-r group-hover:from-slate-100 group-hover:via-slate-50 group-hover:to-transparent
+      dark:group-hover:bg-gradient-to-r dark:group-hover:from-dark-card2 
+      group-hover:drop-shadow-lg dark:group-hover:drop-shadow-lg dark:group-hover:shadow-gray-600"
+      >
+        {/* Profile pic */}
+        <figure className="pl-3">
+          <img
+            className="mask mask-squircle object-cover w-[200px] h-[200px] opacity-100 transition-opacity group-hover:drop-shadow-none"
+            src={image}
+          />
+        </figure>
 
-    {socials && (
-      <SocialMediaArea>
-        {socials.map((social) => (
-          <a href={social.link} target="_blank" rel="noopener noreferrer">
-            <MediaIcon src={social.platform} />
-          </a>
-        ))}
-      </SocialMediaArea>
-    )}
-    {profileText && (
-      <MemberVision className="text-light-text2 dark:text-dark-text2">
-        {profileText}
-      </MemberVision>
-    )}
+        <div className="card-body items-left text-left w-[260px] hidden group-hover:block transition ease-in-out delay-300ms transition-duration: 1500ms group-hover:filter-none">
+          <div className="opacity-0  group-hover:opacity-100 ">
+            {/* Name */}
+            <p className="card-title font-bold text-3xl text-slate-800 dark:text-dark-text1 mx-1 py-3">
+              {name}
+            </p>
+            {/* Position */}
+            <div className="justify-start text-left inline-block w-[280px] drop-shadow-none	">
+              {positions &&
+                positions.map((position) => (
+                  <div
+                    className="badge bg-gray-200 font-normal text-xl border-transparent text-slate-500 h-10 mr-1.5
+                    dark:text-dark-text2 dark:bg-dark-card2 w-auto"
+                  >
+                    {position}
+                  </div>
+                ))}
+            </div>
+
+            {/* Profile Text */}
+            <p className="justify-start font-medium text-xl text-slate-600 dark:text-dark-text2 pt-2.5 pr-1 mx-1 w-auto leading-normal ">
+              {profileText}
+            </p>
+
+            {/* Socials */}
+            <div className="justify-start inline-block mx-1 py-2">
+              {socials && (
+                <SocialMediaArea>
+                  {socials.map((social) => (
+                    <a
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <MediaIcon src={social.platform} />
+                    </a>
+                  ))}
+                </SocialMediaArea>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* Name below the card*/}
+      <p className="text-center font-bold text-3xl text-slate-800 py-1 dark:text-dark-text1 group-hover:hidden">
+        {name}
+      </p>
+    </a>
   </Card>
 );
 
@@ -134,7 +153,7 @@ const MeetOurTeam = () => {
           <MemberCard
             image={member.image}
             name={member.name}
-            position={member.position}
+            positions={member.positions}
             socials={member.socials}
             profileText={member.profileText}
           />
@@ -151,12 +170,13 @@ const MeetOurTeam = () => {
           <MemberCard
             image={member.image}
             name={member.name}
-            position={member.position}
+            positions={member.positions}
             socials={member.socials}
             profileText={member.profileText}
           />
         ))}
       </CardArea>
+      <br />
     </Wrapper>
   );
 };

@@ -46,7 +46,7 @@
     "eslint-plugin-react-hooks": "4.3.0",
     "mini-css-extract-plugin": "2.6.0",
     "postcss": "^8.4.12",
-    "postcss-loader": "5.3.0",
+    "postcss-loader": "6.2.1",
     "prettier": "2.5.1",
     "prettier-eslint": "13.0.0",
     "react-scripts": "5.0.0",

@@ -88,7 +88,7 @@ const MemberCard = ({
   profileText,
 }: Members) => (
   <Card>
-    <a className="block group" href="">
+    <a className="block group" href="#">
       {/* Card: pic + hidden card-body +  Name */}
       <div
         className="card w-auto bg-transparent relative pl-2 py-4

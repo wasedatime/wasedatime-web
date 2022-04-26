@@ -45,27 +45,6 @@ const Card = styled("div")`
   text-align: center;
 `;
 
-// const MemberImage = styled("img")`
-//   width: 80%;
-//   /* border-radius: 50%; */
-//   box-shadow: 0px 0px 8px;
-// `;
-// const MemberName = styled("div")`
-//   padding: 10px 0px 0px 0px;
-//   width: 100%;
-//   font-size: 1.3em;
-//   text-align: center;
-// `;
-
-// const MemberPosition = styled("div")`
-//   width: 100%;
-//   text-align: center;
-// `;
-
-// const MemberVision = styled("div")`
-//   max-width: 100%;
-// `;
-
 const SocialMediaArea = styled("div")`
   text-align: center;
   display: flex;
@@ -119,7 +98,7 @@ const MemberCard = ({
                     className="badge bg-gray-200 font-normal text-xl border-transparent text-slate-500 h-10 mr-1.5
                     dark:text-dark-text2 dark:bg-dark-card2 w-auto"
                   >
-                    {position.position}
+                    {position}
                   </div>
                 ))}
             </div>

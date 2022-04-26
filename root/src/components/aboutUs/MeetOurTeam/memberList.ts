@@ -34,7 +34,7 @@ import twitter from "@app/assets/img/socialmediaicon/twitter.png";
 export interface Members {
   image: string;
   name: string;
-  positions: Array<{ position: string }>;
+  positions: Array<string>;
   socials?: Array<{ platform: string; link: string }>;
   profileText?: string;
 }
@@ -44,7 +44,7 @@ export const CurrentList: Array<Members> = [
   {
     image: hao,
     name: "Hao",
-    positions: [{ position: "Project Leader" }],
+    positions: ["Project Leader"],
     socials: [
       { platform: github, link: "https://github.com/YHhaoareyou" },
       { platform: facebook, link: "https://www.facebook.com/hao8711/" },
@@ -59,7 +59,7 @@ export const CurrentList: Array<Members> = [
   {
     image: austin,
     name: "Austin Zhu",
-    positions: [{ position: "Project Co-leader" }],
+    positions: ["Project Co-leader"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/austinzhu123/" },
       { platform: homepage, link: "https://austinzhu.dev/" },
@@ -74,7 +74,7 @@ export const CurrentList: Array<Members> = [
   {
     image: jason,
     name: "Jason Park",
-    positions: [{ position: "Backend Engineer" }, { position: "Marketing" }],
+    positions: ["Backend Engineer", "Marketing"],
     socials: [
       {
         platform: linkedin,
@@ -87,7 +87,7 @@ export const CurrentList: Array<Members> = [
   {
     image: nicholas,
     name: "Nicholas Narmada",
-    positions: [{ position: "Frontend Engineer" }],
+    positions: ["Frontend Engineer"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/nichnarmada/" },
       { platform: github, link: "https://github.com/nichnarmada" },
@@ -100,7 +100,7 @@ export const CurrentList: Array<Members> = [
   {
     image: takumi,
     name: "Takumi",
-    positions: [{ position: "IOS Engineer" }],
+    positions: ["IOS Engineer"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/ronin2_7/" },
     ],
@@ -109,7 +109,7 @@ export const CurrentList: Array<Members> = [
   {
     image: xinmei,
     name: "Xinmei(Evelyn) Liu",
-    positions: [{ position: "Marketing" }],
+    positions: ["Marketing"],
     socials: [
       {
         platform: instagram,
@@ -122,17 +122,17 @@ export const CurrentList: Array<Members> = [
   {
     image: xinyue,
     name: "Xinyue Tao",
-    positions: [{ position: "Product Manager" }, { position: "Frontend" }],
+    positions: ["Product Manager", "Frontend"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/xinyue_xxtao/" },
     ],
-    profileText: "Smile, my friend, smile!",
+    profileText: "Stay real, stay cool :)",
   },
   // akylai
   {
     image: akylai,
     name: "Akylai",
-    positions: [{ position: "Frontend Apprentice" }],
+    positions: ["Frontend Apprentice"],
     socials: [
       {
         platform: instagram,
@@ -144,7 +144,7 @@ export const CurrentList: Array<Members> = [
   {
     image: mona,
     name: "Mona Matsuda",
-    positions: [{ position: "Frontend Apprentice" }],
+    positions: ["Frontend Apprentice"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/monamrym/" },
     ],
@@ -155,7 +155,7 @@ export const AlumniList: Array<Members> = [
   {
     image: oscar,
     name: "Oscar Wang",
-    positions: [{ position: "Founder" }],
+    positions: ["Founder"],
     socials: [
       { platform: github, link: "https://github.com/oscarwang114" },
       { platform: twitter, link: "https://twitter.com/OscarWang114" },
@@ -168,12 +168,12 @@ export const AlumniList: Array<Members> = [
   {
     image: isabella,
     name: "Isabella Hu",
-    positions: [{ position: "Strategy" }],
+    positions: ["Strategy"],
   },
   {
     image: mei,
     name: "Mei",
-    positions: [{ position: "Frontend Engineer" }],
+    positions: ["Frontend Engineer"],
     socials: [
       { platform: twitter, link: "https://twitter.com/Rimei9623" },
       { platform: instagram, link: "https://www.instagram.com/limengmmmm/" },
@@ -186,7 +186,7 @@ export const AlumniList: Array<Members> = [
   {
     image: tang,
     name: "Yeping Tang",
-    positions: [{ position: "Frontend Engineer" }],
+    positions: ["Frontend Engineer"],
     socials: [
       { platform: facebook, link: "https://www.facebook.com/nero.archer.94" },
     ],
@@ -195,7 +195,7 @@ export const AlumniList: Array<Members> = [
   {
     image: gu,
     name: "Jiaxian Gu",
-    positions: [{ position: "Frontend Engineer" }],
+    positions: ["Frontend Engineer"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/jiaxiangu/" },
       { platform: email, link: "mailto:gujiaxian1997@gmail.com" },
@@ -209,7 +209,7 @@ export const AlumniList: Array<Members> = [
   {
     image: george,
     name: "George Xia",
-    positions: [{ position: "Product Manager" }],
+    positions: ["Product Manager"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/austinzhu123/" },
       { platform: homepage, link: "https://austinzhu.dev/" },
@@ -222,7 +222,7 @@ export const AlumniList: Array<Members> = [
   {
     image: zenda,
     name: "Zenda Chen",
-    positions: [{ position: "Marketing" }],
+    positions: ["Marketing"],
     socials: [
       { platform: email, link: "mailto:zenda0211@fuji.waseda.jp" },
       { platform: instagram, link: "https://www.instagram.com/zenda_chen/" },
@@ -231,7 +231,7 @@ export const AlumniList: Array<Members> = [
   {
     image: kaede,
     name: "Kaede Iijima",
-    positions: [{ position: "Software Engineer" }],
+    positions: ["Software Engineer"],
     socials: [
       { platform: github, link: "https://github.com/kaedejima" },
       {
@@ -243,7 +243,7 @@ export const AlumniList: Array<Members> = [
   {
     image: kaiqing,
     name: "Kaiqing",
-    positions: [{ position: "Marketing" }],
+    positions: ["Marketing"],
     socials: [
       {
         platform: instagram,
@@ -262,7 +262,7 @@ export const AlumniList: Array<Members> = [
   {
     image: hatori,
     name: "Zhen Cao",
-    positions: [{ position: "Frontend Engineer" }],
+    positions: ["Frontend Engineer"],
     socials: [
       {
         platform: linkedin,
@@ -278,20 +278,20 @@ export const AlumniList: Array<Members> = [
   {
     image: yaoyuan,
     name: "Yuan Yao",
-    positions: [{ position: "Backend Engineer" }],
+    positions: ["Backend Engineer"],
     socials: [{ platform: github, link: "https://github.com/youenn98/" }],
   },
   {
     image: zhaohuaibo,
     name: "Huaibo Zhao",
-    positions: [{ position: "Frontend Engineer" }],
+    positions: ["Frontend Engineer"],
     socials: [{ platform: email, link: "mailto:huaibozhao3@gmail.com" }],
     profileText: "I hope our project will add more joy to your campus life.",
   },
   {
     image: naomi,
     name: "Naomi Shen",
-    positions: [{ position: "Backend Apprentice" }],
+    positions: ["Backend Apprentice"],
     socials: [
       {
         platform: instagram,
@@ -303,7 +303,7 @@ export const AlumniList: Array<Members> = [
   {
     image: alina,
     name: "Alina Kenny",
-    positions: [{ position: "Business" }],
+    positions: ["Business"],
     socials: [
       {
         platform: instagram,
@@ -315,6 +315,6 @@ export const AlumniList: Array<Members> = [
   {
     image: kong,
     name: "Kong",
-    positions: [{ position: "Contributor" }],
+    positions: ["Contributor"],
   },
 ];

@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { navigateToUrl } from "single-spa";
-import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorBoundary } from "react-error-boundary";
 
 import CommonStyle from "@app/common-style";
 import ErrorFallback from "@app/components/ErrorFallback";

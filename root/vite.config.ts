@@ -50,5 +50,5 @@ export default {
     dynamicImport(),
   ],
   assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
-  envPrefix: ["VITE_", "REACT_APP_"],
+  envPrefix: ["VITE_", "REACT_APP_", "MF_", "PREFIX"],
 };

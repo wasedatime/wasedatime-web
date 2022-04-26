@@ -10,12 +10,14 @@ import styled from "styled-components";
 
 import "rc-slider/assets/index.css";
 
-import ASEcover from "@app/assets/img/school-covers/ase.png";
-import CSEcover from "@app/assets/img/school-covers/cse.png";
-import FSEcover from "@app/assets/img/school-covers/fse.png";
 import ReviewStars from "@app/components/courseInfo/ReviewStars";
 import Review from "@app/components/labs/Review";
 import { ThemeContext } from "@app/utils/theme-context";
+
+const bgImgUrl = (schoolCoverPath: string): string => {
+  const bgImg = new URL(schoolCoverPath, import.meta.url);
+  return bgImg.href;
+}
 
 type LabWrapperProps = {
   isOpen: boolean;
@@ -30,9 +32,9 @@ type ThemedComponentProps = {
 };
 
 const schoolCoverMap: { [name: string]: string } = {
-  FSE: FSEcover,
-  CSE: CSEcover,
-  ASE: ASEcover,
+  FSE: "/assets/img/school-covers/fse.png",
+  CSE: "/assets/img/school-covers/cse.png",
+  ASE: "/assets/img/school-covers/ase.png",
 };
 
 const LabWrapper = styled.div<LabWrapperProps>`
@@ -62,8 +64,7 @@ const LabTrigger = styled.div<LabTrigger>`
     width: 100%;
     height: 100%;
     opacity: ${(props) => (props.school === "CSE" ? 0.2 : 0.3)};
-    background-image: url(${(props) =>
-      new URL(schoolCoverMap[props.school], import.meta.url).href});
+    background-image: url(${(props) => import.meta.env.MODE === "development" ? bgImgUrl(schoolCoverMap[props.school]) : schoolCoverMap[props.school]});
     background-size: 100%;
     border-radius: 10px;
   }

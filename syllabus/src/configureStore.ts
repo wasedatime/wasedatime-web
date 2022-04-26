@@ -7,7 +7,7 @@ import { loadState } from "@app/utils/localforage-global-state";
 
 const configureStore = async () => {
   const middlewares = [thunk];
-  if (process.env.NODE_ENV !== "production") {
+  if (!import.meta.env.PROD) {
     middlewares.push(logger);
   }
   try {

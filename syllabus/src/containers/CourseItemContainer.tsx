@@ -2,7 +2,7 @@ import React from "react";
 
 import ReactGA from "react-ga";
 import { connect } from "react-redux";
-import Alert from "react-s-alert";
+import { toast } from 'react-toastify';
 
 import CourseItem from "@app/components/CourseItem";
 import { SyllabusKey } from "@app/constants/syllabus-data";
@@ -47,13 +47,7 @@ class CourseItemContainer extends React.Component<
       label: title,
     });
     if (addedCourseIds.length >= ADDED_COURSES_NUMBER_LIMIT) {
-      Alert.error(
-        `Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`,
-        {
-          position: "bottom",
-          effect: "jelly",
-        }
-      );
+      toast.error(`Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`);
 
       return;
     }
@@ -64,18 +58,9 @@ class CourseItemContainer extends React.Component<
         (o) => o[SyllabusKey.OCC_DAY] === -1 || o[SyllabusKey.OCC_PERIOD] === -1
       )
     ) {
-      Alert.warning(
-        "Course with undecided time cannot be displayed in timetable.",
-        {
-          position: "bottom",
-          effect: "jelly",
-        }
-      );
+      toast.warning("Course with undecided time cannot be displayed in timetable.");
     } else {
-      Alert.success("Course added.", {
-        position: "bottom",
-        effect: "jelly",
-      });
+      toast.success("Course added.");
     }
   };
 
@@ -87,10 +72,7 @@ class CourseItemContainer extends React.Component<
       label: title,
     });
     this.props.removeCourse(course[SyllabusKey.ID]);
-    Alert.success("Course removed.", {
-      position: "bottom",
-      effect: "jelly",
-    });
+    toast.success("Course removed.");
   };
 
   render() {

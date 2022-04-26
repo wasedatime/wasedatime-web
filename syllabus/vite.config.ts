@@ -13,11 +13,14 @@ export default {
   build: {
     outDir: "../dist",
     emptyOutDir: true,
+    cssCodeSplit: false,
+    manifest: true,
     rollupOptions: {
       input: "./src/wasedatime-syllabus.ts",
       preserveEntrySignatures: true,
       output: {
         entryFileNames: "wasedatime-syllabus.js",
+        assetFileNames: "assets/[name].[ext]",
       },
     },
   },

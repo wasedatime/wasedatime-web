@@ -70,11 +70,11 @@ i18nConfig({
 // production (wasedatime.com): UA-112185819-1
 // staging (dev.wasedatime.com): UA-112185819-3
 // development (localhost): UA-112185819-4
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.MODE === "development") {
   ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
 } else {
   ReactGA.initialize(
-    process.env.NODE_ENV === "production" ? "UA-112185819-1" : "UA-112185819-3",
+    import.meta.env.MODE === "production" ? "UA-112185819-1" : "UA-112185819-3",
     { debug: false, titleCase: false }
   );
 }

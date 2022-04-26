@@ -6,11 +6,12 @@ import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
 import "semantic-ui-css/components/dropdown.min.css";
 import { connect } from "react-redux";
-import "react-s-alert/dist/s-alert-default.css";
-import "react-s-alert/dist/s-alert-css-effects/jelly.css";
-// import "simplebar/dist/simplebar.min.css";
 
-import Alert from "react-s-alert";
+// import "react-s-alert/dist/s-alert-default.css";
+// import "react-s-alert/dist/s-alert-css-effects/jelly.css";
+// import Alert from "react-s-alert";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { fetchCourses, saveTimetable } from "@app/redux/actions";
 import { ReduxRootState } from "@app/redux/reducers";
@@ -21,6 +22,7 @@ import { ThemeContext } from "@app/utils/theme-context";
 const Timetable = lazy(() => import("@app/containers/TimetableContainer"));
 const Syllabus = lazy(() => import("@app/containers/SyllabusContainer"));
 const Labs = lazy(() => import("@app/components/labs/Labs"));
+
 interface IdAndPrefType {
   id: string;
   color: number;
@@ -86,7 +88,16 @@ const App = ({
       <BrowserRouter>
         <AppRoutes />
       </BrowserRouter>
-      <Alert timeout={3000} />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        pauseOnHover
+        theme={theme}
+      />
     </Suspense>
   );
 };
@@ -98,6 +109,8 @@ const NotFound = () => {
 
   return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />;
 };
+
+const Dummy = () => <></>
 
 const AppRoutes = () => {
   const navigate = useNavigate();
@@ -115,7 +128,7 @@ const AppRoutes = () => {
       <Route element={<Syllabus />} path="courses/syllabus" />
       <Route element={<Timetable />} path="courses/timetable" />
       <Route element={<Labs />} path="courses/labs" />
-      <Route element={<></>} path="home" />
+      <Route element={<Dummy />} path="home" />
       <Route element={<NotFound />} path="*" />
     </Routes>
   );

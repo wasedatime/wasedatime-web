@@ -2,7 +2,7 @@ import React from "react";
 
 import ReactGA from "react-ga";
 import { connect } from "react-redux";
-import Alert from "react-s-alert";
+import { toast } from 'react-toastify';
 
 import CourseItem from "@app/components/CourseItem";
 import { SyllabusKey } from "@app/constants/syllabus-data";
@@ -32,10 +32,7 @@ class AddedCourseItemContainer extends React.Component<
     });
     removeCourseFromList(course);
     removeCourse(course[SyllabusKey.ID]);
-    Alert.success("Course removed.", {
-      position: "bottom",
-      effect: "jelly",
-    });
+    toast.success("Course removed.");
   };
 
   render() {

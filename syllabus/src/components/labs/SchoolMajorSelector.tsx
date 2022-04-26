@@ -11,6 +11,11 @@ import { Badge } from "@app/components/styles/Badge";
 import majorsBySchool from "@app/constants/majors-by-school";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
+const bgImgUrl = () => {
+  const bgImg = new URL(majorBg, import.meta.url);
+  return bgImg.href;
+}
+
 type SchoolButtonProps = {
   active: boolean;
 };
@@ -67,7 +72,7 @@ const MajorWrapper = styled.div`
     width: 100%;
     height: 100%;
     opacity: 0.2;
-    background-image: url(${new URL(majorBg, import.meta.url).href});
+    background-image: url(${import.meta.env.MODE === "development" ? bgImgUrl : majorBg});
     background-size: 15em;
   }
 `;

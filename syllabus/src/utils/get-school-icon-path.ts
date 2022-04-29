@@ -6,7 +6,7 @@ const getSchoolIconPath = (school: string, lng: string): string => {
   const url = new URL(
     lng === Lang.JA ? schoolIconJA[school] : schoolIconEN[school],
     import.meta.url
-  )
+  );
   return url.href;
 };
 

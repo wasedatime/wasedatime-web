@@ -1,17 +1,19 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv } from "vite";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import dynamicImport from "vite-plugin-dynamic-import";
 const path = require("path");
-const { parsed } = require("dotenv").config({ path: path.resolve(__dirname, './src/.env') });
+const { parsed } = require("dotenv").config({
+  path: path.resolve(__dirname, "./src/.env"),
+});
 
 export default defineConfig(({ mode }) => {
   const publicAssetsBaseUrl =
     mode === "production"
       ? "/syllabus/"
       : mode === "staging"
-        ? `https://${parsed.MF_DOMAIN_WITH_PREFIX}/`
-        : "http://localhost:8080/";
-      
+      ? `https://${parsed.MF_DOMAIN_WITH_PREFIX}/`
+      : "http://localhost:8080/";
+
   return {
     root: "./src",
     publicDir: "assets",
@@ -50,5 +52,5 @@ export default defineConfig(({ mode }) => {
     plugins: [reactRefresh(), dynamicImport()],
     assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
     envPrefix: ["VITE_", "REACT_APP_"],
-  }
+  };
 });

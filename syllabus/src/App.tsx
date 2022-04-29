@@ -10,8 +10,8 @@ import { connect } from "react-redux";
 // import "react-s-alert/dist/s-alert-default.css";
 // import "react-s-alert/dist/s-alert-css-effects/jelly.css";
 // import Alert from "react-s-alert";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { fetchCourses, saveTimetable } from "@app/redux/actions";
 import { ReduxRootState } from "@app/redux/reducers";
@@ -110,7 +110,7 @@ const NotFound = () => {
   return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />;
 };
 
-const Dummy = () => <></>
+const Dummy = () => <></>;
 
 const AppRoutes = () => {
   const navigate = useNavigate();

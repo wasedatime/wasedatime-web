@@ -1,11 +1,13 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv } from "vite";
 import { ViteEjsPlugin } from "vite-plugin-ejs";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 import dynamicImport from "vite-plugin-dynamic-import";
 import VitePluginHtmlEnv from "vite-plugin-html-env";
 import { createHtmlPlugin } from "vite-plugin-html";
 const path = require("path");
-const { parsed } = require("dotenv").config({ path: path.resolve(__dirname, './src/.env') });
+const { parsed } = require("dotenv").config({
+  path: path.resolve(__dirname, "./src/.env"),
+});
 
 export default defineConfig(({ mode }) => {
   return {
@@ -56,5 +58,5 @@ export default defineConfig(({ mode }) => {
     ],
     assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
     envPrefix: ["VITE_", "REACT_APP_", "MF_", "PREFIX"],
-  }
+  };
 });

@@ -21,7 +21,7 @@ import ASEcover from "/img/school-covers/ase.png";
 const bgImgUrl = (schoolCoverPath: string): string => {
   const bgImg = new URL(schoolCoverPath, import.meta.url);
   return bgImg.href;
-}
+};
 
 type LabWrapperProps = {
   isOpen: boolean;

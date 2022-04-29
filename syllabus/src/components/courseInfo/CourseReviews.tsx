@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import AddReviewForm from "@app/components/courseInfo/AddReviewForm";

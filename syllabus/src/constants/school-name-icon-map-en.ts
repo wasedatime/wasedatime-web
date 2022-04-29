@@ -80,7 +80,7 @@ enum School {
 
 type SchoolNameIconMapType = {
   [school: string]: string;
-}
+};
 
 export const undergradSchoolNameIconMap: SchoolNameIconMapType = {
   [School.SILS]: silsIcon,

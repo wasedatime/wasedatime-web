@@ -3,7 +3,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 
 import CourseAndPrefItem from "@app/components/timetable/CourseAndPrefItem";
 import { SyllabusKey } from "@app/constants/syllabus-data";

@@ -40,6 +40,7 @@ specifiers:
   babel-plugin-styled-components: 2.0.6
   concurrently: 7.0.0
   cssnano: 5.1.0
+  dotenv: ^16.0.0
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4
   eslint-config-prettier: 8.5.0
@@ -160,6 +161,7 @@ devDependencies:
   babel-plugin-styled-components: 2.0.6_styled-components@5.3.3
   concurrently: 7.0.0
   cssnano: 5.1.0_postcss@8.4.12
+  dotenv: 16.0.0
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4_1a200a0ef4d49ba6b286d48d7621cc60
   eslint-config-prettier: 8.5.0_eslint@8.10.0
@@ -5487,6 +5489,11 @@ packages:
   /dotenv/10.0.0:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
     engines: {node: '>=10'}
+    dev: true
+
+  /dotenv/16.0.0:
+    resolution: {integrity: sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==}
+    engines: {node: '>=12'}
     dev: true
 
   /duplexer/0.1.2:

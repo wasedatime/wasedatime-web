@@ -9,6 +9,7 @@
     "build": "vite build",
     "build-dev": "vite build --mode staging",
     "preview": "vite preview --port 9000",
+    "preview-dev": "vite preview --mode staging --port 9000",
     "tsc": "tsc",
     "fix": "pnpm run format && pnpm run lint:fix",
     "lint": "eslint src --ext \"**/*.{js,ts,tsx}\"",
@@ -32,6 +33,7 @@
     "babel-plugin-styled-components": "2.0.6",
     "concurrently": "7.0.0",
     "cssnano": "5.1.4",
+    "dotenv": "^16.0.0",
     "eslint": "8.10.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
@@ -52,6 +54,8 @@
     "vite": "^2.9.5",
     "vite-plugin-dynamic-import": "^0.8.0",
     "vite-plugin-ejs": "^1.4.4",
+    "vite-plugin-html": "^3.2.0",
+    "vite-plugin-html-env": "^1.1.2",
     "vite-plugin-import-maps": "^0.1.2"
   },
   "dependencies": {

@@ -6,6 +6,7 @@
     "build": "pnpm recursive run build --workspace-concurrency 6",
     "build-dev": "pnpm recursive run build-dev --workspace-concurrency 6",
     "preview": "pnpm recursive run preview --workspace-concurrency 6",
+    "preview-dev": "pnpm recursive run preview-dev --workspace-concurrency 6",
     "lint": "pnpm recursive run lint --workspace-concurrency 6",
     "fix": "pnpm recursive run fix --workspace-concurrency 6",
     "format": "pnpm recursive run format --workspace-concurrency 6",

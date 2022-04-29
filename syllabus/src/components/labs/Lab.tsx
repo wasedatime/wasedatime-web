@@ -14,6 +14,10 @@ import ReviewStars from "@app/components/courseInfo/ReviewStars";
 import Review from "@app/components/labs/Review";
 import { ThemeContext } from "@app/utils/theme-context";
 
+import FSEcover from "/img/school-covers/fse.png";
+import CSEcover from "/img/school-covers/cse.png";
+import ASEcover from "/img/school-covers/ase.png";
+
 const bgImgUrl = (schoolCoverPath: string): string => {
   const bgImg = new URL(schoolCoverPath, import.meta.url);
   return bgImg.href;
@@ -32,9 +36,9 @@ type ThemedComponentProps = {
 };
 
 const schoolCoverMap: { [name: string]: string } = {
-  FSE: "/assets/img/school-covers/fse.png",
-  CSE: "/assets/img/school-covers/cse.png",
-  ASE: "/assets/img/school-covers/ase.png",
+  FSE: FSEcover,
+  CSE: CSEcover,
+  ASE: ASEcover,
 };
 
 const LabWrapper = styled.div<LabWrapperProps>`
@@ -64,7 +68,7 @@ const LabTrigger = styled.div<LabTrigger>`
     width: 100%;
     height: 100%;
     opacity: ${(props) => (props.school === "CSE" ? 0.2 : 0.3)};
-    background-image: url(${(props) => import.meta.env.MODE === "development" ? bgImgUrl(schoolCoverMap[props.school]) : schoolCoverMap[props.school]});
+    background-image: url(${(props) => bgImgUrl(schoolCoverMap[props.school])});
     background-size: 100%;
     border-radius: 10px;
   }

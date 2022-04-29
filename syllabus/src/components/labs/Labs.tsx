@@ -10,7 +10,7 @@ import MediaQuery from "react-responsive";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import styled from "styled-components";
 
-import reviews from "@app/assets/lab_reviews_by_school_major.json";
+import reviews from "@app/constants/lab_reviews_by_school_major.json";
 import Lab from "@app/components/labs/Lab";
 import SchoolMajorSelector from "@app/components/labs/SchoolMajorSelector";
 import FilterButton from "@app/components/syllabus/FilterButton";

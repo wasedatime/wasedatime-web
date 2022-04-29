@@ -32,6 +32,7 @@ specifiers:
   bootstrap: 5.1.3
   concurrently: 7.0.0
   cssnano: 5.1.0
+  dotenv: ^16.0.0
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4
   eslint-config-prettier: 8.5.0
@@ -106,6 +107,7 @@ devDependencies:
   babel-plugin-styled-components: 2.0.6_styled-components@5.3.3
   concurrently: 7.0.0
   cssnano: 5.1.0_postcss@8.4.8
+  dotenv: 16.0.0
   eslint: 8.10.0
   eslint-config-airbnb: 19.0.4_d088d899c01a254e9346ef40899b7d56
   eslint-config-prettier: 8.5.0_eslint@8.10.0
@@ -3560,6 +3562,11 @@ packages:
       dom-serializer: 1.4.1
       domelementtype: 2.3.0
       domhandler: 4.3.1
+    dev: true
+
+  /dotenv/16.0.0:
+    resolution: {integrity: sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==}
+    engines: {node: '>=12'}
     dev: true
 
   /electron-to-chromium/1.4.111:

@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import majorBg from "@app/assets/img/major_bg.jpg";
+import majorBg from "/img/major_bg.jpg";
 import { Badge } from "@app/components/styles/Badge";
 import majorsBySchool from "@app/constants/majors-by-school";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";

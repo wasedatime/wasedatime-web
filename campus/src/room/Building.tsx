@@ -1,7 +1,7 @@
 import React from "react";
 
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { Accordion, Card, Badge } from "react-bootstrap";
+import { Accordion, Card } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
@@ -14,10 +14,11 @@ const InfoWrapper = styled("div")`
   ${media.tablet`padding: 1em;`}
 `;
 
-const RoomType = styled(Badge)<RoomProps>`
-  font-size: 1.2em;
+const RoomType = styled("span")<RoomProps>`
   font-weight: 500;
-  margin: 5px 10px;
+  margin: 5px;
+  float: left;
+  padding: 0px 10px;
   border-radius: 6px;
   background-color: ${(props) => (props.vacancy ? "#71CE74" : "#E53935")};
 `;
@@ -79,25 +80,29 @@ const Building = ({ campusName, quar, weekday, period }) => {
             </RoomCar>
             <Accordion.Collapse eventKey="0">
               <Card.Body>
-                {Object.keys(campuses[campusName][buid]).map((roomdata, j) => (
-                  <RoomType
-                    className="text-light-bgMain dark:text-dark-bgSide"
-                    key={j}
-                    vacancy={checkVacancy(
-                      campuses,
-                      campusName,
-                      buid,
-                      roomdata,
-                      quar,
-                      period,
-                      weekday
-                    )}
-                  >
-                    {t("roomFinder.room prefix")}
-                    {roomdata}
-                    {t("roomFinder.room suffix")}
-                  </RoomType>
-                ))}
+                <div>
+                  {Object.keys(campuses[campusName][buid]).map(
+                    (roomdata, j) => (
+                      <RoomType
+                        className="text-light-bgMain dark:text-dark-bgSide"
+                        key={j}
+                        vacancy={checkVacancy(
+                          campuses,
+                          campusName,
+                          buid,
+                          roomdata,
+                          quar,
+                          period,
+                          weekday
+                        )}
+                      >
+                        {t("roomFinder.room prefix")}
+                        {roomdata}
+                        {t("roomFinder.room suffix")}
+                      </RoomType>
+                    )
+                  )}
+                </div>
               </Card.Body>
             </Accordion.Collapse>
           </Card>

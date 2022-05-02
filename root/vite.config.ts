@@ -31,7 +31,15 @@ export default defineConfig(({ mode }) => {
           entryFileNames: "[name].js",
           assetFileNames: "assets/[name].[ext]",
         },
-        external: ["/syllabus/assets/style.css", "/campus/assets/style.css"],
+        external:
+          mode === "staging"
+            ? [
+                `https://${parsed.PREFIX}.${parsed.MF_SYLLABUS_DOMAIN}/assets/style.css`,
+                `https://${parsed.PREFIX}.${parsed.MF_CAMPUS_DOMAIN}/assets/style.css`,
+              ]
+            : mode === "production"
+            ? ["/syllabus/assets/style.css", "/campus/assets/style.css"]
+            : [],
       },
     },
     resolve: {
@@ -66,7 +74,7 @@ export default defineConfig(({ mode }) => {
           "apple-touch-icon.png",
         ],
         manifest: {
-          name: "WasedaTime 早稲田タイム",
+          name: "WasedaTime",
           short_name: "WasedaTime",
           description:
             "Non-profit, student-run, open-source app aiming to support and improve the campus lives of Waseda University students. さらにスマートな早稲田生活のために作られた最強、最速の早大生専用の時間割。 早稲田タイム。",

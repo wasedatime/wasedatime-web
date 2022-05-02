@@ -47,15 +47,15 @@
         {
           "imports": {
             "@wasedatime/root-config": "/wasedatime-root-config.js",
-            "@wasedatime/syllabus": "http://<%= PREFIX %><%= MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
-            "@wasedatime/campus": "http://<%= PREFIX %><%= MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
+            "@wasedatime/syllabus": "https://<%= PREFIX %>.<%= MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
+            "@wasedatime/campus": "https://<%= PREFIX %>.<%= MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
           }
         }
       </script>
-      <link rel="preload" href="http://<%= PREFIX %><%= MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="http://<%= PREFIX %><%= MF_SYLLABUS_DOMAIN %>/assets/style.css"></noscript>
-      <link rel="preload" href="http://<%= PREFIX %><%= MF_CAMPUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="http://<%= PREFIX %><%= MF_CAMPUS_DOMAIN %>/assets/style.css"></noscript>
+      <link rel="preload" href="https://<%= PREFIX %>.<%= MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://<%= PREFIX %>.<%= MF_SYLLABUS_DOMAIN %>/assets/style.css"></noscript>
+      <link rel="preload" href="https://<%= PREFIX %>.<%= MF_CAMPUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://<%= PREFIX %>.<%= MF_CAMPUS_DOMAIN %>/assets/style.css"></noscript>
     <% } else { %>
       <script type="importmap-shim" defer>
         {
@@ -79,8 +79,8 @@
 
   <script>
     function setBodyBgColor() {
-      if (localStorage.getItem("color-theme") === "light") document.getElementsByTagName("body")[0].style.backgroundColor = "#fff";
-      else if (localStorage.getItem("color-theme") === "dark") document.getElementsByTagName("body")[0].style.backgroundColor = "#1F2022";
+      if (localStorage.getItem("color-theme") === "light") document.getElementsByTagName("html")[0].style.backgroundColor = "#fff";
+      else if (localStorage.getItem("color-theme") === "dark") document.getElementsByTagName("html")[0].style.backgroundColor = "#1F2022";
     };
     window.addEventListener("themeChanged", function(e) {
       setBodyBgColor();

@@ -6,6 +6,6 @@
 @tailwind utilities;
 
 .campus-container {
-  @import "./bootstrap.min";
+  @import "node_modules/bootstrap/dist/css/bootstrap.min";
   @import "node_modules/react-datepicker/dist/react-datepicker";
 }

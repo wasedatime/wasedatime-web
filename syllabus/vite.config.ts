@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     mode === "production"
       ? "/syllabus/"
       : mode === "staging"
-      ? `http://${parsed.MF_DOMAIN_WITH_PREFIX}/`
+      ? `https://${parsed.MF_DOMAIN_WITH_PREFIX}/`
       : "http://localhost:8080/";
 
   return {

@@ -26,7 +26,7 @@ interface Props extends WithTranslation {
 }
 
 type StyledTableProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const StyledSubHeading = styled.h4`
@@ -40,7 +40,7 @@ const StyledSubHeading = styled.h4`
 
 const StyledTable = styled(Table)<StyledTableProps>`
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
     border: 1px solid ${colors.dark.text3} !important;
     border-radius: 5px;
@@ -183,7 +183,7 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
       <StyledTable
         unstackable
         className="border-2 dark:border-dark-text3 dark:bg-dark-bgMain"
-        isDark={theme === "dark"}
+        $isDark={theme === "dark"}
       >
         <Table.Body className="dark:bg-dark-bgMain dark:text-dark-text1">
           <Table.Row>

@@ -32,7 +32,7 @@ const SyllabusTabs = ({ t }: WithTranslation) => {
   return (
     <TabsWrapper className="bg-light-bgSide dark:bg-dark-bgSide">
       {tabItems.map((item) => (
-        <Link to={`/courses/${item.path}`}>
+        <Link to={`/courses/${item.path}`} key={item.name}>
           <Tab
             className={
               location.pathname === `/courses/${item.path}`

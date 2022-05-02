@@ -20,6 +20,12 @@ import Nav from "@app/components/frame/Nav";
 import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/jp/translation.json";
 
+import { registerSW } from "virtual:pwa-register";
+
+if (import.meta.env.MODE !== "development" && "serviceWorker" in navigator) {
+  registerSW();
+}
+
 const lifecycles = singleSpaReact({
   React,
   ReactDOM,
@@ -42,7 +48,13 @@ const lifecycles = singleSpaReact({
 const routes = constructRoutes(document.querySelector("#single-spa-layout"));
 const applications = constructApplications({
   routes,
-  loadApp: ({ name }) => System.import(name),
+  // loadApp: ({ name }) => System.import(name),
+  loadApp: ({ name }) =>
+    import(
+      /* @vite-ignore */
+      // @ts-ignore
+      name
+    ),
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
@@ -64,11 +76,11 @@ i18nConfig({
 // production (wasedatime.com): UA-112185819-1
 // staging (dev.wasedatime.com): UA-112185819-3
 // development (localhost): UA-112185819-4
-if (process.env.NODE_ENV === "development") {
+if (import.meta.env.MODE === "development") {
   ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
 } else {
   ReactGA.initialize(
-    process.env.NODE_ENV === "production" ? "UA-112185819-1" : "UA-112185819-3",
+    import.meta.env.MODE === "production" ? "UA-112185819-1" : "UA-112185819-3",
     { debug: false, titleCase: false }
   );
 }

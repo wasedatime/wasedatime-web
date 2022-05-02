@@ -3,7 +3,7 @@ import React from "react";
 import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import Alert from "react-s-alert";
+import { toast } from "react-toastify";
 
 import CourseAndPrefItem from "@app/components/timetable/CourseAndPrefItem";
 import { SyllabusKey } from "@app/constants/syllabus-data";
@@ -50,10 +50,7 @@ class AddedCourseAndPrefItem extends React.Component<
       action: gaAppendActionWithLng(gaRemoveCourse, i18n.language),
       label: addedCourseAndPref.course[SyllabusKey.TITLE],
     });
-    Alert.success("Course removed.", {
-      position: "bottom",
-      effect: "jelly",
-    });
+    toast.success("Course removed.");
   };
 
   handleChangeColor = (colorId) => {

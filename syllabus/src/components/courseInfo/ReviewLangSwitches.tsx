@@ -19,7 +19,7 @@ type ReviewLangSwitchItem = {
 type ReviewLangSwitchProps = {
   active: boolean;
   isInHeading: boolean;
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
@@ -27,21 +27,21 @@ const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
   border: none;
   padding: 2px 10px;
   background-color: ${(props) =>
-    props.isDark ? colors.dark.text3 : colors.light.text3};
-  color: ${(props) => (props.isDark ? colors.dark.text1 : "#fff")};
+    props.$isDark ? colors.dark.text3 : colors.light.text3};
+  color: ${(props) => (props.$isDark ? colors.dark.text1 : "#fff")};
   ${(props) =>
     props.active &&
     `
-    background-color: ${props.isDark ? colors.dark.main : colors.light.main};
-    color: ${props.isDark ? colors.dark.text1 : "#fff"};
+    background-color: ${props.$isDark ? colors.dark.main : colors.light.main};
+    color: ${props.$isDark ? colors.dark.text1 : "#fff"};
   `};
   ${(props) => props.isInHeading && "line-height: 20px;"};
 
   &:hover {
     outline: none;
     background-color: ${(props) =>
-      props.isDark ? colors.dark.main : colors.light.main};
-    color: ${(props) => (props.isDark ? colors.dark.text1 : "#fff")};
+      props.$isDark ? colors.dark.main : colors.light.main};
+    color: ${(props) => (props.$isDark ? colors.dark.text1 : "#fff")};
   }
 
   &:focus {
@@ -86,7 +86,8 @@ const ReviewLangSwitches = ({
           active={reviewLang === item.label}
           onClick={() => switchReviewLang(item.label)}
           isInHeading={isInHeading}
-          isDark={theme === "dark"}
+          $isDark={theme === "dark"}
+          key={item.name}
         >
           {item.name}
         </ReviewLangSwitch>

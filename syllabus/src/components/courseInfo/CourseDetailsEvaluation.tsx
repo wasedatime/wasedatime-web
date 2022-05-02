@@ -16,11 +16,11 @@ const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
 const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
 
 type StyledTableProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const StyledTable = styled(Table)<StyledTableProps>`
-  ${(props) => props.isDark && "border: none !important;"}
+  ${(props) => props.$isDark && "border: none !important;"}
 `;
 
 const ChartWrapper = styled(Grid.Column)`
@@ -51,7 +51,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
       }));
 
     const evalsTable = (
-      <StyledTable isDark={theme === "dark"}>
+      <StyledTable $isDark={theme === "dark"}>
         <Table.Body className="dark:bg-dark-bgMain dark:text-dark-text1">
           {(course[SyllabusKey.EVAL] as any[]).map((e, i) => (
             <Table.Row key={i}>
@@ -119,7 +119,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
     <div>
       {(course[SyllabusKey.EVAL] as string)
         .split("\n")
-        .map((e) => e && <p>{e}</p>)}
+        .map((e, i) => e && <p key={i}>{e}</p>)}
     </div>
   );
 };

@@ -25,12 +25,11 @@ const Feeds = () => {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = React.useContext(ThemeContext);
 
-  const feedsDomain =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:8083"
-      : process.env.NODE_ENV === "staging"
-      ? `https://${process.env.PREFIX}.${process.env.MF_FEEDS_DOMAIN}`
-      : "/feeds";
+  const feedsDomain = import.meta.env.DEV
+    ? "http://localhost:8083"
+    : import.meta.env.MODE === "staging"
+    ? `https://${import.meta.env.PREFIX}.${import.meta.env.MF_FEEDS_DOMAIN}`
+    : "/feeds";
 
   return (
     <FeedsWrapper style={{ overflow: "hidden" }}>

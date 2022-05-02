@@ -112,7 +112,7 @@ const Editbutton = styled(Button)`
   color: orange !important;
   padding: 0px !important;
   background-color: ${(props) =>
-    props.isDark ? colors.dark.bgMain : colors.light.bgMain} !important;
+    props.$isDark ? colors.dark.bgMain : colors.light.bgMain} !important;
 `;
 
 const Deletebutton = styled(Editbutton)`
@@ -253,7 +253,7 @@ class ReviewsList extends React.Component<Props, State> {
                     index,
                   })
                 }
-                isDark={theme === "dark"}
+                $isDark={theme === "dark"}
               >
                 <FontAwesomeIcon icon={faPen} />
               </Editbutton>
@@ -261,7 +261,7 @@ class ReviewsList extends React.Component<Props, State> {
                 icon
                 size="massive"
                 onClick={() => this.openDeleteModal(review, index)}
-                isDark={theme === "dark"}
+                $isDark={theme === "dark"}
               >
                 <FontAwesomeIcon icon={faTrash} />
               </Deletebutton>

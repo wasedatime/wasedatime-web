@@ -13,6 +13,7 @@ import TimeRowList from "@app/components/timetable/TimeRowList";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { ThemeContext } from "@app/utils/theme-context";
+import timetableColors from "@app/constants/timetable-colors";
 
 type ColumnProps = {
   flexBasis: string;
@@ -121,15 +122,15 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                 </h5>
                 <br />
                 <Section>
-                  <StyledMessage
+                  <Message
                     warning
                     header={
-                      <h5>
+                      <h5 style={theme === "dark" ? { color: timetableColors.light.lightBrown } : {}}>
                         <b>{t("timetable.You haven't added any courses")}</b>
                       </h5>
                     }
                     content={
-                      <p>
+                      <p style={theme === "dark" ? { color: timetableColors.light.lightBrown } : {}}>
                         {t("timetable.Go to")}{" "}
                         <a href="/syllabus">{t("timetable.Syllabus")} </a>{" "}
                         {t("timetable.and try adding one!")}

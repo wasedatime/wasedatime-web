@@ -16,7 +16,7 @@
     "format": "prettier --write \"./**\""
   },
   "dependencies": {
-    "@bit/wasedatime.core.theme.colors": "^0.0.3",
+    "@bit/wasedatime.core.theme.colors": "0.0.5",
     "@bit/wasedatime.core.ts.ui.loading-spinner": "0.1.2",
     "@bit/wasedatime.core.ts.utils.responsive-utils": "npm:wasedatime.core.ts.utils.responsive-utils@^0.0.1",
     "@fortawesome/fontawesome-svg-core": "1.3.0",

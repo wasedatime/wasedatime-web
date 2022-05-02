@@ -80,7 +80,12 @@ Installation with other ways: https://pnpm.io/installation
 
 3. Then install Bit on your computer (local): https://docs.bit.dev/docs/installation
 
-4. Check your Bit authentication token with the following command:
+4. Login to Bit on your terminal
+```
+bit login
+```
+
+5. Check your Bit authentication token with the following command:
 	```
 	bit config
 	```

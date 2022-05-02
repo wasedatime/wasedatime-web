@@ -20,6 +20,12 @@ import Nav from "@app/components/frame/Nav";
 import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/jp/translation.json";
 
+import { registerSW } from "virtual:pwa-register";
+
+if (import.meta.env.MODE !== "development" && "serviceWorker" in navigator) {
+  registerSW();
+}
+
 const lifecycles = singleSpaReact({
   React,
   ReactDOM,

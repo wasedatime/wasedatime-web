@@ -29,7 +29,7 @@
       "scripthost",
       "es2016.array.include",
       "es2018",
-      "esnext"
+      "esnext",
     ],
   },
   "include": ["src"],

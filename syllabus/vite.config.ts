@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
     mode === "production"
       ? "/syllabus/"
       : mode === "staging"
-      ? `https://${parsed.MF_DOMAIN_WITH_PREFIX}/`
+      ? `http://${parsed.MF_DOMAIN_WITH_PREFIX}/`
       : "http://localhost:8080/";
 
   return {
@@ -49,7 +49,10 @@ export default defineConfig(({ mode }) => {
       // define: "undefined",
       "global.TYPED_ARRAY_SUPPORT": undefined,
     },
-    plugins: [reactRefresh(), dynamicImport()],
+    plugins: [
+      reactRefresh(),
+      dynamicImport(),
+    ],
     assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
     envPrefix: ["VITE_", "REACT_APP_"],
   };

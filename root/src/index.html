@@ -7,33 +7,30 @@
   <title>WasedaTime</title>
   
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: http: blob: data: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https: localhost:*; object-src 'none'; img-src 'self' https: localhost:* data: http://books.google.com http://cdn.viglink.com; font-src 'self' https: localhost:* data:;">
-  <meta name="importmap-type" content="systemjs-importmap" />
-  <script async src="/es-module-shims.js"></script>
+  <!-- <meta name="importmap-type" content="systemjs-importmap" /> -->
+  <!-- <script async src="/es-module-shims.js"></script> -->
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.4/dist/es-module-shims.js"></script>
+
+  <link rel="shortcut icon" sizes="16x16" href="/img/favicon.ico" />
+  <link rel="icon" sizes="192x192" href="/img/logo.png" />
+  <link rel="alternate icon" href="/img/favicon.ico" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="128x128">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="156x156">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="167x167">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
+  <link rel="mask-icon" href="/img/logo.png" color="#FFFFFF">
+  <meta name="theme-color" content="#ffffff">
+
+  <link href="/img/splash_image.png" sizes="2048x2732" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="1668x2224" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="1536x2048" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="1125x2436" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="1242x2208" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="750x1334" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="640x1136" rel="apple-touch-startup-image" />
 
   <% if (isLocal || standalone) { %>
     <link rel="stylesheet" href="./src/styles/tailwind-build-output.css" type="css">
-    <link rel="shortcut icon" sizes="16x16" href="/img/favicon.ico" />
-    <link rel="icon" sizes="192x192" href="/img/logo.png" />
-    <link
-      rel="apple-touch-icon"
-      sizes="128x128"
-      href="/img/maskable_icon.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="/img/maskable_icon.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="167x167"
-      href="/img/maskable_icon.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/img/maskable_icon.png"
-    />
     <script type="importmap-shim" defer>
       {
         "imports": {
@@ -45,78 +42,20 @@
       }
     </script>
   <% } else { %>
-    <link rel="shortcut icon" sizes="16x16" href="/img/favicon.ico" />
-    <link rel="icon" sizes="192x192" href="/img/logo.png" />
-    <link
-      rel="apple-touch-icon"
-      sizes="128x128"
-      href="/img/maskable_icon.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="152x152"
-      href="/img/maskable_icon.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="167x167"
-      href="/img/maskable_icon.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/img/maskable_icon.png"
-    />
-    <link
-      href="/img/splash_image.png"
-      sizes="2048x2732"
-      rel="apple-touch-startup-image"
-    />
-    <link
-      href="/img/splash_image.png"
-      sizes="1668x2224"
-      rel="apple-touch-startup-image"
-    />
-    <link
-      href="/img/splash_image.png"
-      sizes="1536x2048"
-      rel="apple-touch-startup-image"
-    />
-    <link
-      href="/img/splash_image.png"
-      sizes="1125x2436"
-      rel="apple-touch-startup-image"
-    />
-    <link
-      href="/img/splash_image.png"
-      sizes="1242x2208"
-      rel="apple-touch-startup-image"
-    />
-    <link
-      href="/img/splash_image.png"
-      sizes="750x1334"
-      rel="apple-touch-startup-image"
-    />
-    <link
-      href="/img/splash_image.png"
-      sizes="640x1136"
-      rel="apple-touch-startup-image"
-    />
-
     <% if (isDev) { %>
       <script type="importmap-shim" defer>
         {
           "imports": {
             "@wasedatime/root-config": "/wasedatime-root-config.js",
-            "@wasedatime/syllabus": "https://<%= PREFIX %>.<%= MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
-            "@wasedatime/campus": "https://<%= PREFIX %>.<%= MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
+            "@wasedatime/syllabus": "http://<%= PREFIX %><%= MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
+            "@wasedatime/campus": "http://<%= PREFIX %><%= MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
           }
         }
       </script>
-      <link rel="preload" href="https://<%= PREFIX %>.<%= MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="https://<%= PREFIX %>.<%= MF_SYLLABUS_DOMAIN %>/assets/style.css"></noscript>
-      <link rel="preload" href="https://<%= PREFIX %>.<%= MF_CAMPUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="https://<%= PREFIX %>.<%= MF_CAMPUS_DOMAIN %>/assets/style.css"></noscript>
+      <link rel="preload" href="http://<%= PREFIX %><%= MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="http://<%= PREFIX %><%= MF_SYLLABUS_DOMAIN %>/assets/style.css"></noscript>
+      <link rel="preload" href="http://<%= PREFIX %><%= MF_CAMPUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="http://<%= PREFIX %><%= MF_CAMPUS_DOMAIN %>/assets/style.css"></noscript>
     <% } else { %>
       <script type="importmap-shim" defer>
         {
@@ -132,14 +71,6 @@
       <link rel="preload" href="/campus/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
       <noscript><link rel="stylesheet" href="/campus/assets/style.css"></noscript>
     <% } %>
-
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js');
-        })
-      }
-    </script>
     <link rel="preload" as="font" href="/fonts/segoe-ui.ttf" type="font/ttf" crossorigin="anonymous" />
     <link rel="preload" as="font" href="/fonts/yugothic-medium.otf" type="font/otf" crossorigin="anonymous" />
     <link rel="preload" as="font" href="/fonts/Lato-Regular.ttf" type="font/ttf" crossorigin="anonymous" />

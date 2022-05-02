@@ -22,15 +22,17 @@ import timetableColors from "@app/constants/timetable-colors";
 
 type StyledPopupProps = {
   isDark: boolean;
-}
+};
 
 const StyledPopup = styled(Popup)<StyledPopupProps>`
   padding: 5px;
   padding-bottom: 0px;
   border-width: 1px;
   border-radius: 5px;
-  border-color: ${props => props.isDark ? colors.dark.text2 : colors.light.text3};
-  background-color: ${props => props.isDark ? colors.dark.bgSide : colors.light.bgSide};
+  border-color: ${(props) =>
+    props.isDark ? colors.dark.text2 : colors.light.text3};
+  background-color: ${(props) =>
+    props.isDark ? colors.dark.bgSide : colors.light.bgSide};
 `;
 
 const RowWrapper = styled("li")`

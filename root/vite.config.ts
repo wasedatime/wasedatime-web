@@ -31,6 +31,7 @@ export default defineConfig(({ mode }) => {
           entryFileNames: "[name].js",
           assetFileNames: "assets/[name].[ext]",
         },
+        external: ["/syllabus/assets/style.css", "/campus/assets/style.css"],
       },
     },
     resolve: {

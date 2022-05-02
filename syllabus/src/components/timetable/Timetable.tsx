@@ -125,12 +125,24 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                   <Message
                     warning
                     header={
-                      <h5 style={theme === "dark" ? { color: timetableColors.light.lightBrown } : {}}>
+                      <h5
+                        style={
+                          theme === "dark"
+                            ? { color: timetableColors.light.lightBrown }
+                            : {}
+                        }
+                      >
                         <b>{t("timetable.You haven't added any courses")}</b>
                       </h5>
                     }
                     content={
-                      <p style={theme === "dark" ? { color: timetableColors.light.lightBrown } : {}}>
+                      <p
+                        style={
+                          theme === "dark"
+                            ? { color: timetableColors.light.lightBrown }
+                            : {}
+                        }
+                      >
                         {t("timetable.Go to")}{" "}
                         <a href="/syllabus">{t("timetable.Syllabus")} </a>{" "}
                         {t("timetable.and try adding one!")}

@@ -49,10 +49,7 @@ export default defineConfig(({ mode }) => {
       // define: "undefined",
       "global.TYPED_ARRAY_SUPPORT": undefined,
     },
-    plugins: [
-      reactRefresh(),
-      dynamicImport(),
-    ],
+    plugins: [reactRefresh(), dynamicImport()],
     assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
     envPrefix: ["VITE_", "REACT_APP_"],
   };

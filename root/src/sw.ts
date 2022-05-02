@@ -1,9 +1,9 @@
 /// <reference lib="webworker" />
 
-import { skipWaiting, clientsClaim, setCacheNameDetails } from 'workbox-core'
-import { registerRoute } from 'workbox-routing'
-import { NetworkFirst, StaleWhileRevalidate } from 'workbox-strategies'
-import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching'
+import { skipWaiting, clientsClaim, setCacheNameDetails } from "workbox-core";
+import { registerRoute } from "workbox-routing";
+import { NetworkFirst, StaleWhileRevalidate } from "workbox-strategies";
+import { precacheAndRoute, cleanupOutdatedCaches } from "workbox-precaching";
 
 cleanupOutdatedCaches();
 skipWaiting();

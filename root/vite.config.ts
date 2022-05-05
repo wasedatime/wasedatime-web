@@ -12,7 +12,6 @@ export default defineConfig(({ mode }) => {
     publicDir: "assets",
     rollupOptions: {
       input: "wasedatime-root-config.ts",
-      format: "system",
       preserveEntrySignatures: true,
     },
     build: {

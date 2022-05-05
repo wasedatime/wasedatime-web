@@ -6,7 +6,6 @@ export default {
   root: "./src",
   rollupOptions: {
     input: "wasedatime-career.ts",
-    format: "system",
     preserveEntrySignatures: true,
   },
   build: {

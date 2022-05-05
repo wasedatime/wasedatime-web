@@ -18,7 +18,6 @@ export default defineConfig(({ mode }) => {
     base: publicAssetsBaseUrl,
     rollupOptions: {
       input: "wasedatime-syllabus.ts",
-      format: "system",
       preserveEntrySignatures: true,
     },
     build: {

@@ -20,6 +20,7 @@ specifiers:
   '@bit/wasedatime.core.ts.utils.responsive-utils': 0.0.1
   '@fortawesome/free-solid-svg-icons': 6.0.0
   '@fortawesome/react-fontawesome': 0.1.17
+  '@types/node': 17.0.21
   '@types/react': 17.0.39
   '@types/react-dom': 17.0.13
   '@types/styled-components': 5.1.24
@@ -101,6 +102,7 @@ devDependencies:
   '@babel/preset-react': 7.16.7_@babel+core@7.17.5
   '@babel/preset-typescript': 7.16.7_@babel+core@7.17.5
   '@babel/runtime': 7.17.2
+  '@types/node': 17.0.21
   '@typescript-eslint/eslint-plugin': 5.14.0_f4054b8c3cd621db16ae1b9d571bccc0
   '@typescript-eslint/parser': 5.14.0_eslint@8.10.0+typescript@4.6.2
   autoprefixer: 10.4.2_postcss@8.4.8
@@ -2374,6 +2376,10 @@ packages:
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha1-7ihweulOEdK4J7y+UnC86n8+ce4=}
+    dev: true
+
+  /@types/node/17.0.21:
+    resolution: {integrity: sha512-DBZCJbhII3r90XbQxI8Y9IjjiiOGlZ0Hr32omXIZvwwZ7p4DMMXGrKXVyPfuoBOri9XNtL0UK69jYIBIsRX3QQ==}
     dev: true
 
   /@types/parse-json/4.0.0:

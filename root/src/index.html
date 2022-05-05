@@ -47,15 +47,15 @@
         {
           "imports": {
             "@wasedatime/root-config": "/wasedatime-root-config.js",
-            "@wasedatime/syllabus": "https://<%= PREFIX %>.<%= MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
-            "@wasedatime/campus": "https://<%= PREFIX %>.<%= MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
+            "@wasedatime/syllabus": "https://<%= env.PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
+            "@wasedatime/campus": "https://<%= env.PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
           }
         }
       </script>
-      <link rel="preload" href="https://<%= PREFIX %>.<%= MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="https://<%= PREFIX %>.<%= MF_SYLLABUS_DOMAIN %>/assets/style.css"></noscript>
-      <link rel="preload" href="https://<%= PREFIX %>.<%= MF_CAMPUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="https://<%= PREFIX %>.<%= MF_CAMPUS_DOMAIN %>/assets/style.css"></noscript>
+      <link rel="preload" href="https://<%= env.PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://<%= env.PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css"></noscript>
+      <link rel="preload" href="https://<%= env.PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://<%= env.PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css"></noscript>
     <% } else { %>
       <script type="importmap-shim" defer>
         {

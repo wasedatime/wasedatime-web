@@ -4,11 +4,9 @@ import reactRefresh from "@vitejs/plugin-react-refresh";
 import dynamicImport from "vite-plugin-dynamic-import";
 import { VitePWA } from "vite-plugin-pwa";
 const path = require("path");
-const { parsed } = require("dotenv").config({
-  path: path.resolve(__dirname, "./src/.env"),
-});
 
 export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
   return {
     root: "./src",
     publicDir: "assets",
@@ -34,8 +32,8 @@ export default defineConfig(({ mode }) => {
         external:
           mode === "staging"
             ? [
-                `https://${parsed.PREFIX}.${parsed.MF_SYLLABUS_DOMAIN}/assets/style.css`,
-                `https://${parsed.PREFIX}.${parsed.MF_CAMPUS_DOMAIN}/assets/style.css`,
+                `https://${env.PREFIX}.${env.MF_SYLLABUS_DOMAIN}/assets/style.css`,
+                `https://${env.PREFIX}.${env.MF_CAMPUS_DOMAIN}/assets/style.css`,
               ]
             : mode === "production"
             ? ["/syllabus/assets/style.css", "/campus/assets/style.css"]
@@ -59,7 +57,7 @@ export default defineConfig(({ mode }) => {
         isLocal: config.mode === "development",
         isDev: config.mode === "staging",
         standalone: false,
-        ...parsed,
+        env,
       })),
       reactRefresh(),
       dynamicImport(),

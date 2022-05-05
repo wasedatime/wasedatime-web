@@ -1,17 +1,15 @@
 import reactRefresh from "@vitejs/plugin-react-refresh";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import dynamicImport from "vite-plugin-dynamic-import";
 const path = require("path");
-const { parsed } = require("dotenv").config({
-  path: path.resolve(__dirname, "./src/.env"),
-});
 
 export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), "");
   const publicAssetsBaseUrl =
     mode === "production"
       ? "/campus/"
       : mode === "staging"
-      ? `https://${parsed.MF_DOMAIN_WITH_PREFIX}/`
+      ? `https://${env.MF_DOMAIN_WITH_PREFIX}/`
       : "http://localhost:8081/";
 
   return {

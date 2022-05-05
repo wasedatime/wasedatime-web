@@ -28,7 +28,7 @@ const Feeds = () => {
   const feedsDomain = import.meta.env.DEV
     ? "http://localhost:8083"
     : import.meta.env.MODE === "staging"
-    ? `https://${import.meta.env.PREFIX}.${import.meta.env.MF_FEEDS_DOMAIN}`
+    ? `https://${import.meta.env.MF_PREFIX}.${import.meta.env.MF_FEEDS_DOMAIN}`
     : "/feeds";
 
   return (

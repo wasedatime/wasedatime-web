@@ -32,8 +32,8 @@ export default defineConfig(({ mode }) => {
         external:
           mode === "staging"
             ? [
-                `https://${env.PREFIX}.${env.MF_SYLLABUS_DOMAIN}/assets/style.css`,
-                `https://${env.PREFIX}.${env.MF_CAMPUS_DOMAIN}/assets/style.css`,
+                `https://${env.MF_PREFIX}.${env.MF_SYLLABUS_DOMAIN}/assets/style.css`,
+                `https://${env.MF_PREFIX}.${env.MF_CAMPUS_DOMAIN}/assets/style.css`,
               ]
             : mode === "production"
             ? ["/syllabus/assets/style.css", "/campus/assets/style.css"]
@@ -99,6 +99,6 @@ export default defineConfig(({ mode }) => {
       }),
     ],
     assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
-    envPrefix: ["VITE_", "REACT_APP_", "MF_", "PREFIX"],
+    envPrefix: ["VITE_", "REACT_APP_", "MF_"],
   };
 });

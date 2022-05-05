@@ -25,7 +25,7 @@ const Feeds = () => {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = React.useContext(ThemeContext);
 
-  const feedsDomain = import.meta.env.DEV
+  const feedsDomain = import.meta.env.MODE === "development"
     ? "http://localhost:8083"
     : import.meta.env.MODE === "staging"
     ? `https://${import.meta.env.MF_PREFIX}.${import.meta.env.MF_FEEDS_DOMAIN}`

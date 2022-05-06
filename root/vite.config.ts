@@ -61,8 +61,6 @@ export default defineConfig(({ mode }) => {
       reactRefresh(),
       dynamicImport(),
       VitePWA({
-        srcDir: "src",
-        filename: "sw.ts",
         registerType: "autoUpdate",
         includeAssets: [
           "favicon.svg",

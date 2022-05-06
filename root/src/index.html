@@ -34,7 +34,7 @@
     <script type="importmap-shim" defer>
       {
         "imports": {
-          "@wasedatime/root-config": "//localhost:9000/wasedatime-root-config.ts",
+          "@wasedatime/home": "//localhost:9000/wasedatime-home.ts",
           "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.ts",
           "@wasedatime/campus": "//localhost:8081/wasedatime-campus.ts",
           "@wasedatime/career": "//localhost:8082/wasedatime-career.ts"
@@ -46,7 +46,7 @@
       <script type="importmap-shim" defer>
         {
           "imports": {
-            "@wasedatime/root-config": "/wasedatime-root-config.js",
+            "@wasedatime/home": "/wasedatime-home.js",
             "@wasedatime/syllabus": "https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
             "@wasedatime/campus": "https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
           }
@@ -60,7 +60,7 @@
       <script type="importmap-shim" defer>
         {
           "imports": {
-            "@wasedatime/root-config": "/wasedatime-root-config.js",
+            "@wasedatime/home": "/wasedatime-home.js",
             "@wasedatime/syllabus": "/syllabus/wasedatime-syllabus.js",
             "@wasedatime/campus": "/campus/wasedatime-campus.js"
           }
@@ -153,7 +153,7 @@
             <application name="@wasedatime/career"></application>
           </route>
           <route default>
-            <application name="@wasedatime/root-config"></application>
+            <application name="@wasedatime/home"></application>
           </route>
         </main>
       </div>

@@ -12,10 +12,8 @@ import {
   constructRoutes,
   constructLayoutEngine,
 } from "single-spa-layout";
-import singleSpaReact from "single-spa-react";
 
 import "@app/styles/styles.css";
-import App from "@app/App";
 import Nav from "@app/components/frame/Nav";
 import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/jp/translation.json";
@@ -25,25 +23,6 @@ import { registerSW } from "virtual:pwa-register";
 if (import.meta.env.MODE !== "development" && "serviceWorker" in navigator) {
   registerSW();
 }
-
-const lifecycles = singleSpaReact({
-  React,
-  ReactDOM,
-  rootComponent: App,
-  errorBoundary: (
-    err,
-    info,
-    props // Customize the root error boundary for your microfrontend here.
-  ) => {
-    console.log("====================================");
-    console.error(err);
-    console.log(info);
-    console.log(props);
-    console.log("====================================");
-
-    return null;
-  },
-});
 
 const routes = constructRoutes(document.querySelector("#single-spa-layout"));
 const applications = constructApplications({
@@ -94,5 +73,3 @@ ReactDOM.render(React.createElement(Nav), document.getElementById("nav"));
 (localStorage.getItem("isFirstAccess") === null ||
   localStorage.getItem("isFirstAccess") === "true") &&
   navigateToUrl("/");
-
-export const { bootstrap, mount, unmount } = lifecycles;

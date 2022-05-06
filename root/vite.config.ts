@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => {
         input: {
           main: "./src/index.html",
           "wasedatime-root-config": "./src/wasedatime-root-config.ts",
+          "wasedatime-home": "./src/wasedatime-home.ts",
         },
         preserveEntrySignatures: true,
         output: {
@@ -61,8 +62,6 @@ export default defineConfig(({ mode }) => {
       reactRefresh(),
       dynamicImport(),
       VitePWA({
-        srcDir: "src",
-        filename: "sw.ts",
         registerType: "autoUpdate",
         includeAssets: [
           "favicon.svg",

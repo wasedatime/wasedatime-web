@@ -81,7 +81,7 @@
     "react-router-dom": "^6.3.0",
     "single-spa-react": "3.2.0",
     "styled-components": "5.3.3",
-    "vite": "^2.9.5",
+    "vite": "^2.9.8",
     "vite-plugin-dynamic-import": "^0.7.1"
   },
   "resolutions": {

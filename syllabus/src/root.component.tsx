@@ -10,6 +10,7 @@ import i18next from "i18next";
 import throttle from "lodash/throttle";
 import ReactGA from "react-ga";
 import { Provider } from "react-redux";
+import { RecoilRoot } from "recoil";
 
 import App from "@app/App";
 import ErrorFallback from "@app/components/ErrorFallback";
@@ -85,9 +86,11 @@ const Root = () => {
             <ErrorFallback error={error} resetError={resetError} />
           )}
         >
-          <Provider store={reduxStore}>
-            <App />
-          </Provider>
+          <RecoilRoot>
+            <Provider store={reduxStore}>
+              <App />
+            </Provider>
+          </RecoilRoot>
         </Sentry.ErrorBoundary>
       ) : (
         <LoadingSpinnerContainer />

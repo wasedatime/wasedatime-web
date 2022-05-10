@@ -100,7 +100,7 @@ export const CurrentList: Array<Members> = [
   {
     image: takumi,
     name: "Takumi",
-    positions: ["IOS Engineer"],
+    positions: ["iOS Engineer"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/ronin2_7/" },
     ],

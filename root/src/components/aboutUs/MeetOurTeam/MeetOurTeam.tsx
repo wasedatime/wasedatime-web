@@ -11,25 +11,19 @@ import {
 } from "@app/components/aboutUs/MeetOurTeam/memberList";
 
 const Title = styled("h2")`
-  width: 50%;
   font-weight: bold;
-  font-size: 1.5em;
-  margin: 0 auto;
   text-align: center;
 `;
 
 const SubTitle = styled("h2")`
-  width: 50%;
   font-weight: bold;
-  font-size: 1.3em;
-  margin: 5px auto;
+  margin: 10px auto;
   text-align: center;
 `;
 
 const CardArea = styled("div")`
-  width: 90%;
-  margin: 0px auto;
-  padding: 10px 100px;
+  width: 80%;
+  margin: 0px auto 40px auto;
   font-size: 0.9em;
   display: flex;
   flex-wrap: wrap;
@@ -40,8 +34,7 @@ const Card = styled("div")`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 30px 15px;
-  width: 280px;
+  width: 260px;
   text-align: center;
 `;
 
@@ -55,7 +48,7 @@ const SocialMediaArea = styled("div")`
 const MediaIcon = styled("img")`
   width: 100%;
   width: 1.3em;
-  margin: 4px;
+  margin: 6px 8px 4px 0px;
   text-align: center;
 `;
 
@@ -66,50 +59,43 @@ const MemberCard = ({
   socials,
   profileText,
 }: Members) => (
-  <Card>
+  <Card className="m-2 md:m-3.5 xl:x-4">
     <a className="block group" href="#">
       {/* Card: pic + hidden card-body +  Name */}
-      <div
-        className="card w-auto bg-transparent relative pl-2 py-4
-      group-hover:card-side group-hover:mx-[30px] group-hover:rounded-8xl
-      group-hover:bg-gradient-to-r group-hover:from-slate-100 group-hover:via-slate-50 group-hover:to-transparent
-      dark:group-hover:bg-gradient-to-r dark:group-hover:from-dark-card2 
-      group-hover:drop-shadow-lg dark:group-hover:drop-shadow-lg dark:group-hover:shadow-gray-600"
-      >
+      <div className="card w-auto bg-transparent group-hover:card-side group-hover:rounded-8xl group-hover:bg-gradient-to-r group-hover:from-light-card2 group-hover:via-light-card1 group-hover:to-transparent dark:group-hover:bg-gradient-to-r dark:group-hover:from-dark-card2 group-hover:drop-shadow-lg">
         {/* Profile pic */}
-        <figure className="pl-3">
+        <figure className="px-3 py-3 sm:px-5 sm:py-5">
+          {/* responsive for smaller screen: w/h - [100px] */}
           <img
-            className="mask mask-squircle object-cover w-[200px] h-[200px] opacity-100 transition-opacity group-hover:drop-shadow-none"
+            className="mask mask-squircle object-cover opacity-100 transition-opacity group-hover:drop-shadow-none w-[150px] h-[150px] sm:w-[200px] sm:h-[200px]"
             src={image}
           />
         </figure>
-
-        <div className="card-body items-left text-left w-[260px] hidden group-hover:block transition ease-in-out delay-300ms transition-duration: 1500ms group-hover:filter-none">
-          <div className="opacity-0  group-hover:opacity-100 ">
-            {/* Name */}
-            <p className="card-title font-bold text-3xl text-slate-800 dark:text-dark-text1 mx-1 py-3">
-              {name}
-            </p>
-            {/* Position */}
-            <div className="justify-start text-left inline-block w-[280px] drop-shadow-none	">
-              {positions &&
-                positions.map((position) => (
-                  <div
-                    className="badge bg-gray-200 font-normal text-xl border-transparent text-slate-500 h-10 mr-1.5
-                    dark:text-dark-text2 dark:bg-dark-card2 w-auto"
-                  >
-                    {position}
-                  </div>
-                ))}
-            </div>
+        {/* Card Body */}
+        <div className="card-body items-left text-left w-[200px] sm:w-[260px] hidden group-hover:block transition ease-in-out delay-300ms transition-duration: 1500ms opacity-0  group-hover:opacity-100 p-[10px] sm:p-[20px]">
+          {/* Name */}
+          <p className="card-title font-bold text-3xl text-light-text1 dark:text-dark-text1 mt-6 mb-3 ml-1.5">
+            {name}
+          </p>
+          {/* Position */}
+          <div className="justify-start text-left inline-block drop-shadow-none my-1.5">
+            {positions &&
+              positions.map((position) => (
+                <div
+                  className="badge w-auto h-auto sm:h-10 mr-1.5 mt-1.5 font-normal text-lg sm:text-xl border-transparent text-light-text2 bg-light-card3
+                  dark:text-dark-text2 dark:bg-dark-card2"
+                >
+                  {position}
+                </div>
+              ))}
 
             {/* Profile Text */}
-            <p className="justify-start font-medium text-xl text-slate-600 dark:text-dark-text2 pt-2.5 pr-1 mx-1 w-auto leading-normal ">
+            <p className="justify-start mt-3 mb-2 pl-1.5 font-medium text-lg sm:text-xl leading-normal text-light-text2 dark:text-dark-text2">
               {profileText}
             </p>
 
             {/* Socials */}
-            <div className="justify-start inline-block mx-1 py-2">
+            <div className="justify-start inline-block mx-1.5">
               {socials && (
                 <SocialMediaArea>
                   {socials.map((social) => (
@@ -128,7 +114,7 @@ const MemberCard = ({
         </div>
       </div>
       {/* Name below the card*/}
-      <p className="text-center font-bold text-3xl text-slate-800 py-1 dark:text-dark-text1 group-hover:hidden">
+      <p className="text-center py-1.5 px-3 sm:px-5 group-hover:hidden font-bold text-2xl sm:text-3xl text-light-text1 dark:text-dark-text1">
         {name}
       </p>
     </a>
@@ -140,12 +126,10 @@ const MeetOurTeam = () => {
 
   return (
     <Wrapper>
-      <br />
-      <Title className="text-light-text1 dark:text-dark-text1">
+      <Title className="mt-3.5 mb-2.5 sm:my-5 text-3xl sm:text-4xl 2xl:text-5xl text-light-text1 dark:text-dark-text1">
         Meet Our Talented Team!
       </Title>
-      <br />
-      <SubTitle className="text-light-text1 dark:text-dark-text1">
+      <SubTitle className="my-1.5 sm:my-5 text-2xl sm:text-3xl 2xl:text-4xl text-light-text1 dark:text-dark-text1">
         Current Members
       </SubTitle>
       <CardArea>
@@ -159,10 +143,8 @@ const MeetOurTeam = () => {
           />
         ))}
       </CardArea>
-      <br />
 
-      <br />
-      <SubTitle className="text-light-text1 dark:text-dark-text1">
+      <SubTitle className="my-1.5 sm:my-5 text-2xl sm:text-3xl 2xl:text-4xl text-light-text1 dark:text-dark-text1">
         Our Alumni
       </SubTitle>
       <CardArea>
@@ -176,7 +158,6 @@ const MeetOurTeam = () => {
           />
         ))}
       </CardArea>
-      <br />
     </Wrapper>
   );
 };

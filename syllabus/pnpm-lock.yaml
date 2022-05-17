@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@aws-amplify/api': ^4.0.38
   '@aws-amplify/auth': ^4.5.2
+  '@aws-amplify/core': 4.5.0
   '@babel/core': 7.17.5
   '@babel/eslint-parser': 7.17.0
   '@babel/plugin-transform-runtime': 7.17.0
@@ -94,6 +95,7 @@ specifiers:
 dependencies:
   '@aws-amplify/api': 4.0.38
   '@aws-amplify/auth': 4.5.2
+  '@aws-amplify/core': 4.5.0
   '@bit/wasedatime.core.theme.colors': node.bit.dev/@bit/wasedatime.core.theme.colors/0.0.5
   '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2
   '@bit/wasedatime.core.ts.constants.size-variables': node.bit.dev/@bit/wasedatime.core.ts.constants.size-variables/0.0.2_react-dom@17.0.2+react@17.0.2
@@ -259,6 +261,21 @@ packages:
     resolution: {integrity: sha512-m37sEWbx9+wqooNR3Sh6nsztzwzl9QWugjx9Fh3+5MOJqkEUUbP1gax+JIfcCE0fTG+emfDEtBUSJha5JSkj3g==}
     dependencies:
       '@aws-amplify/core': 4.5.2
+    transitivePeerDependencies:
+      - react-native
+    dev: false
+
+  /@aws-amplify/core/4.5.0:
+    resolution: {integrity: sha512-V6x7n26flxPNpQI9nrXUotfuIlxw2ctFaLAXXnfsKaR9GnwZjGn7ML4czjhzNypq5qUMSofr/cDno8fp43/elw==}
+    dependencies:
+      '@aws-crypto/sha256-js': 1.0.0-alpha.0
+      '@aws-sdk/client-cloudwatch-logs': 3.6.1
+      '@aws-sdk/client-cognito-identity': 3.6.1
+      '@aws-sdk/credential-provider-cognito-identity': 3.6.1
+      '@aws-sdk/types': 3.6.1
+      '@aws-sdk/util-hex-encoding': 3.6.1
+      universal-cookie: 4.0.4
+      zen-observable-ts: 0.8.19
     transitivePeerDependencies:
       - react-native
     dev: false

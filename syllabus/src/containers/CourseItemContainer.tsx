@@ -48,7 +48,11 @@ class CourseItemContainer extends React.Component<
       label: title,
     });
     if (addedCourseIds.length >= ADDED_COURSES_NUMBER_LIMIT) {
-      toast.error(this.props.t("alert.courses limit reached 1") + ADDED_COURSES_NUMBER_LIMIT + this.props.t("alert.courses limit reached 2"));
+      toast.error(
+        this.props.t("alert.courses limit reached 1") +
+          ADDED_COURSES_NUMBER_LIMIT +
+          this.props.t("alert.courses limit reached 2")
+      );
 
       return;
     }
@@ -117,8 +121,5 @@ const mapDispatchToProps = {
 };
 
 export default withTranslation("translation")(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(CourseItemContainer)
+  connect(mapStateToProps, mapDispatchToProps)(CourseItemContainer)
 );

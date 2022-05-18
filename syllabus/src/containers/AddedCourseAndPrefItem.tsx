@@ -50,7 +50,7 @@ class AddedCourseAndPrefItem extends React.Component<
       action: gaAppendActionWithLng(gaRemoveCourse, i18n.language),
       label: addedCourseAndPref.course[SyllabusKey.TITLE],
     });
-    toast.success("Course removed.");
+    toast.success(this.props.t("alert.course removed"));
   };
 
   handleChangeColor = (colorId) => {

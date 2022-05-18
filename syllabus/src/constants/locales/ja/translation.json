@@ -87,5 +87,12 @@
   "syllabusTabs": {
     "courses": "授業",
     "labs": "研究室"
+  },
+  "alert": {
+    "course added": "授業が時間割に追加された",
+    "course removed": "授業が時間割から削除された",
+    "course with undecided time": "時間未定の授業は時間割に表示されない",
+    "courses limit reached 1": "時間割に追加できる授業は",
+    "courses limit reached 2": "個まで"
   }
 }

@@ -7,9 +7,6 @@ import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
 import "semantic-ui-css/components/dropdown.min.css";
 import { connect } from "react-redux";
 
-// import "react-s-alert/dist/s-alert-default.css";
-// import "react-s-alert/dist/s-alert-css-effects/jelly.css";
-// import Alert from "react-s-alert";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

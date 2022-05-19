@@ -74,11 +74,7 @@
     <script type="module">
       import { registerSW } from "virtual:pwa-register";
       if ('serviceWorker' in navigator) {
-        console.log("test");
         registerSW();
-        // window.addEventListener('load', () => {
-        //   navigator.serviceWorker.register('/sw.js');
-        // })
       }
     </script>
 

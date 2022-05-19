@@ -94,6 +94,40 @@ export default defineConfig(({ mode }) => {
             },
           ],
         },
+        workbox: {
+          runtimeCaching: [
+            {
+              urlPattern: ({ event }) => event.request.mode === "navigate",
+              handler: 'NetworkFirst',
+              options: {
+                cacheName: "navigate-cache",
+                fetchOptions: {
+                  credentials: "same-origin",
+                },
+              },
+            },
+            {
+              urlPattern: /.*\.(?:js|ts|css)/,
+              handler: 'NetworkFirst',
+              options: {
+                cacheName: "js-css-cache",
+                fetchOptions: {
+                  credentials: "same-origin",
+                },
+              },
+            },
+            {
+              urlPattern: /.*\.(?:png|jpg|jpeg|svg|gif|woff|woff2|eot|ttf|otf)/,
+              handler: "StaleWhileRevalidate",
+              options: {
+                cacheName: "image-font-cache",
+                fetchOptions: {
+                  credentials: "same-origin",
+                },
+              },
+            },
+          ],
+        },
       }),
     ],
     assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],

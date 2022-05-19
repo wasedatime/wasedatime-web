@@ -64,7 +64,7 @@ export default defineConfig(({ mode }) => {
       VitePWA({
         strategies: "injectManifest",
         srcDir: ".",
-        filename: "sw.ts",
+        filename: "sw.js",
         registerType: "autoUpdate",
         useCredentials: mode === "staging",
         includeAssets: [

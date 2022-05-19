@@ -1,9 +1,9 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-restricted-globals */
 import { clientsClaim, setCacheNameDetails } from "workbox-core";
 import { precacheAndRoute, cleanupOutdatedCaches } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { NetworkFirst, StaleWhileRevalidate } from "workbox-strategies";
-
-declare let self: ServiceWorkerGlobalScope
 
 self.skipWaiting();
 clientsClaim();
@@ -44,7 +44,7 @@ registerRoute(
   })
 );
 
-self.addEventListener("message", function (event) {
+self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") {
     self.skipWaiting();
     clientsClaim();

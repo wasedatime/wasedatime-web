@@ -146,8 +146,12 @@ dependencies:
   single-spa-react: 4.6.1_41ec47b032f4824cf690f95377e02aa6
   styled-components: 5.3.3_a2a2181cfa9fa3a87be5c14ec7e31da3
   workbox-cacheable-response: 6.5.1
+  workbox-core: 6.5.1
   workbox-expiration: 6.5.1
+  workbox-precaching: 6.5.1
+  workbox-routing: 6.5.1
   workbox-strategies: 6.5.1
+  workbox-window: 6.5.3
 
 devDependencies:
   '@babel/core': 7.17.5
@@ -193,10 +197,6 @@ devDependencies:
   vite-plugin-html-env: 1.1.2_vite@2.9.8
   vite-plugin-import-maps: 0.1.2
   vite-plugin-pwa: 0.12.0_vite@2.9.8
-  workbox-core: 6.5.1
-  workbox-precaching: 6.5.1
-  workbox-routing: 6.5.1
-  workbox-window: 6.5.3
 
 packages:
 
@@ -3223,7 +3223,6 @@ packages:
 
   /@types/trusted-types/2.0.2:
     resolution: {integrity: sha512-F5DIZ36YVLE+PN+Zwws4kJogq47hNgX3Nx6WyDJ3kcplxyke3XIzB8uK5n/Lpm1HBsbGzd6nmGehL8cPekP+Tg==}
-    dev: true
 
   /@types/webpack-env/1.16.3:
     resolution: {integrity: sha512-9gtOPPkfyNoEqCQgx4qJKkuNm/x0R2hKR7fdl7zvTJyHnIisuE/LfvXOsYWL0o3qq6uiBnKZNNNzi3l0y/X+xw==}
@@ -10630,10 +10629,10 @@ packages:
 
   /workbox-core/6.5.1:
     resolution: {integrity: sha512-qObXZ39aFJ2N8X7IUbGrJHKWguliCuU1jOXM/I4MTT84u9BiKD2rHMkIzgeRP1Ixu9+cXU4/XHJq3Cy0Qqc5hw==}
+    dev: false
 
   /workbox-core/6.5.3:
     resolution: {integrity: sha512-Bb9ey5n/M9x+l3fBTlLpHt9ASTzgSGj6vxni7pY72ilB/Pb3XtN+cZ9yueboVhD5+9cNQrC9n/E1fSrqWsUz7Q==}
-    dev: true
 
   /workbox-expiration/6.5.1:
     resolution: {integrity: sha512-iY/cTADAQATMmPkUBRmQdacqq0TJd2wMHimBQz+tRnPGHSMH+/BoLPABPnu7O7rT/g/s59CUYYRGxe3mEgoJCA==}
@@ -10670,7 +10669,7 @@ packages:
       workbox-core: 6.5.1
       workbox-routing: 6.5.1
       workbox-strategies: 6.5.1
-    dev: true
+    dev: false
 
   /workbox-precaching/6.5.3:
     resolution: {integrity: sha512-sjNfgNLSsRX5zcc63H/ar/hCf+T19fRtTqvWh795gdpghWb5xsfEkecXEvZ8biEi1QD7X/ljtHphdaPvXDygMQ==}
@@ -10701,7 +10700,7 @@ packages:
     resolution: {integrity: sha512-yAAncdTwanvlR8KPjubyvFKeAok8ZcIws6UKxvIAg0I+wsf7UYi93DXNuZr6RBSQrByrN6HkCyjuhmk8P63+PA==}
     dependencies:
       workbox-core: 6.5.1
-    dev: true
+    dev: false
 
   /workbox-routing/6.5.3:
     resolution: {integrity: sha512-DFjxcuRAJjjt4T34RbMm3MCn+xnd36UT/2RfPRfa8VWJGItGJIn7tG+GwVTdHmvE54i/QmVTJepyAGWtoLPTmg==}
@@ -10713,6 +10712,7 @@ packages:
     resolution: {integrity: sha512-JNaTXPy8wXzKkr+6za7/eJX9opoZk7UgY261I2kPxl80XQD8lMjz0vo9EOcBwvD72v3ZhGJbW84ZaDwFEhFvWA==}
     dependencies:
       workbox-core: 6.5.1
+    dev: false
 
   /workbox-strategies/6.5.3:
     resolution: {integrity: sha512-MgmGRrDVXs7rtSCcetZgkSZyMpRGw8HqL2aguszOc3nUmzGZsT238z/NN9ZouCxSzDu3PQ3ZSKmovAacaIhu1w==}
@@ -10736,7 +10736,6 @@ packages:
     dependencies:
       '@types/trusted-types': 2.0.2
       workbox-core: 6.5.3
-    dev: true
 
   /wrap-ansi/6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}

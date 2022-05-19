@@ -7,6 +7,7 @@ declare let self: ServiceWorkerGlobalScope
 
 self.skipWaiting();
 clientsClaim();
+
 cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST);
 
@@ -26,7 +27,7 @@ registerRoute(
 );
 
 registerRoute(
-  /.*\.(?:js|css)/,
+  /.*\.(?:js|css|ts)/,
   new NetworkFirst({
     fetchOptions: {
       credentials: "same-origin",

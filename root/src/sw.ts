@@ -27,7 +27,7 @@ registerRoute(
 );
 
 registerRoute(
-  /.*\.(?:js|css|ts)/,
+  /.*\.(?:js|css)/,
   new NetworkFirst({
     fetchOptions: {
       credentials: "same-origin",

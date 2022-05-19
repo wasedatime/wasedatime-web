@@ -5,9 +5,9 @@ import { NetworkFirst, StaleWhileRevalidate } from "workbox-strategies";
 
 declare let self: ServiceWorkerGlobalScope
 
-cleanupOutdatedCaches();
 self.skipWaiting();
 clientsClaim();
+cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST);
 
 setCacheNameDetails({

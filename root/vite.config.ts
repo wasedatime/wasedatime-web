@@ -95,6 +95,7 @@ export default defineConfig(({ mode }) => {
           ],
         },
         workbox: {
+          cleanupOutdatedCaches: true,
           runtimeCaching: [
             {
               urlPattern: ({ event }) => event.request.mode === "navigate",

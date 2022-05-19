@@ -7,7 +7,6 @@ import { NetworkFirst, StaleWhileRevalidate } from "workbox-strategies";
 
 self.skipWaiting();
 clientsClaim();
-
 cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST);
 

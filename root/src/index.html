@@ -71,14 +71,17 @@
       <link rel="preload" href="/campus/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
       <noscript><link rel="stylesheet" href="/campus/assets/style.css"></noscript>
     <% } %>
-    <script>
+    <script type="module">
+      import { registerSW } from "virtual:pwa-register";
       if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js');
-        })
+        console.log("test");
+        registerSW();
+        // window.addEventListener('load', () => {
+        //   navigator.serviceWorker.register('/sw.js');
+        // })
       }
     </script>
-    
+
     <link rel="preload" as="font" href="/fonts/segoe-ui.ttf" type="font/ttf" crossorigin="anonymous" />
     <link rel="preload" as="font" href="/fonts/yugothic-medium.otf" type="font/otf" crossorigin="anonymous" />
     <link rel="preload" as="font" href="/fonts/Lato-Regular.ttf" type="font/ttf" crossorigin="anonymous" />

@@ -5,6 +5,8 @@ import { precacheAndRoute, cleanupOutdatedCaches } from "workbox-precaching";
 import { registerRoute } from "workbox-routing";
 import { NetworkFirst, StaleWhileRevalidate } from "workbox-strategies";
 
+self.__WB_DISABLE_DEV_LOGS = true;
+
 self.skipWaiting();
 clientsClaim();
 cleanupOutdatedCaches();

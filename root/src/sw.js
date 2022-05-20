@@ -9,6 +9,7 @@ self.__WB_DISABLE_DEV_LOGS = true;
 
 self.skipWaiting();
 clientsClaim();
+
 cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST);
 

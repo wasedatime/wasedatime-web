@@ -62,7 +62,11 @@ export default defineConfig(({ mode }) => {
       reactRefresh(),
       dynamicImport(),
       VitePWA({
+        strategies: "injectManifest",
+        srcDir: ".",
+        filename: "sw.js",
         registerType: "autoUpdate",
+        useCredentials: mode === "staging",
         includeAssets: [
           "favicon.svg",
           "favicon.ico",
@@ -91,40 +95,6 @@ export default defineConfig(({ mode }) => {
               sizes: "512x512",
               type: "image/png",
               purpose: "any maskable",
-            },
-          ],
-        },
-        workbox: {
-          runtimeCaching: [
-            {
-              urlPattern: ({ event }) => event.request.mode === "navigate",
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: "navigate-cache",
-                fetchOptions: {
-                  credentials: "same-origin",
-                },
-              },
-            },
-            {
-              urlPattern: /.*\.(?:js|ts|css)/,
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: "js-css-cache",
-                fetchOptions: {
-                  credentials: "same-origin",
-                },
-              },
-            },
-            {
-              urlPattern: /.*\.(?:png|jpg|jpeg|svg|gif|woff|woff2|eot|ttf|otf)/,
-              handler: "StaleWhileRevalidate",
-              options: {
-                cacheName: "image-font-cache",
-                fetchOptions: {
-                  credentials: "same-origin",
-                },
-              },
             },
           ],
         },

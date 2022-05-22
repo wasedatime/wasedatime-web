@@ -98,7 +98,7 @@ export default defineConfig(({ mode }) => {
           runtimeCaching: [
             {
               urlPattern: ({ event }) => event.request.mode === "navigate",
-              handler: 'NetworkFirst',
+              handler: "NetworkFirst",
               options: {
                 cacheName: "navigate-cache",
                 fetchOptions: {
@@ -108,7 +108,7 @@ export default defineConfig(({ mode }) => {
             },
             {
               urlPattern: /.*\.(?:js|ts|css)/,
-              handler: 'NetworkFirst',
+              handler: "NetworkFirst",
               options: {
                 cacheName: "js-css-cache",
                 fetchOptions: {

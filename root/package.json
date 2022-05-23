@@ -62,11 +62,7 @@
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-html-env": "^1.1.2",
     "vite-plugin-import-maps": "^0.1.2",
-    "vite-plugin-pwa": "^0.12.0",
-    "workbox-core": "6.5.1",
-    "workbox-precaching": "6.5.1",
-    "workbox-routing": "6.5.1",
-    "workbox-window": "^6.5.3"
+    "vite-plugin-pwa": "^0.12.0"
   },
   "dependencies": {
     "@aws-amplify/auth": "4.5.0",
@@ -116,8 +112,12 @@
     "single-spa-react": "4.6.1",
     "styled-components": "5.3.3",
     "workbox-cacheable-response": "6.5.1",
+    "workbox-core": "6.5.1",
     "workbox-expiration": "6.5.1",
-    "workbox-strategies": "6.5.1"
+    "workbox-precaching": "6.5.1",
+    "workbox-routing": "6.5.1",
+    "workbox-strategies": "6.5.1",
+    "workbox-window": "^6.5.3"
   },
   "peerDependencies": {
     "@babel/plugin-syntax-flow": "^7.16.7",

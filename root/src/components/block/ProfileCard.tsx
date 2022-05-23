@@ -1,4 +1,3 @@
-import { Opacity } from "@mui/icons-material";
 import React, { useState } from "react";
 import styled from "styled-components";
 
@@ -24,7 +23,7 @@ const MediaIcon = styled("img")`
   text-align: center;
 `;
 
-export interface ProfileProps {
+export interface ProfileCardProps {
   image: string;
   name: string;
   positions: Array<string>;
@@ -40,10 +39,10 @@ export const ProfileCard = ({
   socials,
   profileText,
 }: // mini,
-ProfileProps) => {
-  const [pic, setPic] = useState(true);
+ProfileCardProps) => {
+  const [showCard, setShowCard] = useState<boolean>(false);
   const handleClick = () => {
-    setPic(!pic);
+    setShowCard(!showCard);
   };
 
   return (
@@ -51,23 +50,7 @@ ProfileProps) => {
       className="block group cursor-pointer transition ease-in-out delay-300ms transition-duration:1500ms md:mx-8 md:my-6 lg:mx-10 lg:my-8"
       onClick={handleClick}
     >
-      {pic ? (
-        <div>
-          <div>
-            <p className="text-center text-lg sm:text-xl text-transparent font-bold group-hover:text-light-text2 dark:group-hover:text-dark-text1 translate-y-[85px] sm:translate-y-[110px] z-10">
-              Click to view the profile!
-            </p>
-            <img
-              className="mask mask-squircle object-cover opacity-100 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] m-2 z-0 group-hover:opacity-30"
-              src={image}
-            />
-          </div>
-          {/* Name below the card*/}
-          <p className="text-center py-1.5 px-3 sm:px-5 font-bold text-2xl sm:text-3xl text-light-text1 dark:text-dark-text1">
-            {name}
-          </p>
-        </div>
-      ) : (
+      {showCard ? (
         <div
           // Card: pic + hidden card-body +  Name
           className="card w-auto card-side rounded-8xl bg-gradient-to-r from-light-card2 to-light-card1 dark:bg-gradient-to-r dark:from-dark-card2 dark:to-dark-bgMain drop-shadow-lg translate-x-[5px] transition ease-in-out delay-200ms transition-duration:3000ms my-[9px] sm:my-[16px] z-20"
@@ -80,7 +63,6 @@ ProfileProps) => {
               src={image}
             />
           </figure>
-
           {/* Card Body */}
           <div className="card-body items-left text-left w-[200px] sm:w-[260px] block opacity-100 p-[10px] sm:p-[20px]">
             {/* close button from daisyui */}
@@ -138,6 +120,22 @@ ProfileProps) => {
               </div>
             </div>
           </div>
+        </div>
+      ) : (
+        <div>
+          <div>
+            <p className="text-center text-lg sm:text-xl text-transparent font-bold group-hover:text-light-text2 dark:group-hover:text-dark-text1 translate-y-[85px] sm:translate-y-[110px] z-10">
+              Click to view the profile!
+            </p>
+            <img
+              className="mask mask-squircle object-cover opacity-100 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] m-2 z-0 group-hover:opacity-30"
+              src={image}
+            />
+          </div>
+          {/* Name below the card*/}
+          <p className="text-center py-1.5 px-3 sm:px-5 font-bold text-2xl sm:text-3xl text-light-text1 dark:text-dark-text1">
+            {name}
+          </p>
         </div>
       )}
     </Card>

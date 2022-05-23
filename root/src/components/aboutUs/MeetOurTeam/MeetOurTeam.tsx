@@ -6,10 +6,10 @@ import styled from "styled-components";
 
 import {
   AlumniList,
-  CurrentList,
+  CurrentList
 } from "@app/components/aboutUs/MeetOurTeam/memberList";
 
-import { ProfileCard } from "@app/components/block/ProfileCardComponent";
+import { ProfileCard } from "@app/components/block/ProfileCard";
 
 const Title = styled("h2")`
   font-weight: bold;

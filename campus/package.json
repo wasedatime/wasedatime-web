@@ -17,8 +17,8 @@
   "devDependencies": {
     "@babel/core": "7.17.5",
     "@babel/eslint-parser": "7.17.0",
-    "@babel/plugin-syntax-flow": "^7.16.7",
-    "@babel/plugin-transform-react-jsx": "^7.17.3",
+    "@babel/plugin-syntax-flow": "^7.17.12",
+    "@babel/plugin-transform-react-jsx": "^7.17.12",
     "@babel/plugin-transform-runtime": "7.17.0",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-react": "7.16.7",
@@ -33,7 +33,7 @@
     "babel-plugin-styled-components": "2.0.6",
     "concurrently": "7.0.0",
     "cssnano": "5.1.0",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "eslint": "8.10.0",
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
@@ -49,7 +49,7 @@
     "prettier-eslint": "13.0.0",
     "prop-types": "^15.8.1",
     "react-is": "^18.1.0",
-    "react-native": "^0.68.1",
+    "react-native": "^0.68.2",
     "sass": "1.49.9",
     "tailwindcss": "3.0.23",
     "ts-config-single-spa": "2.0.1",
@@ -81,7 +81,7 @@
     "react-router-dom": "^6.3.0",
     "single-spa-react": "3.2.0",
     "styled-components": "5.3.3",
-    "vite": "^2.9.8",
+    "vite": "^2.9.9",
     "vite-plugin-dynamic-import": "^0.7.1"
   },
   "resolutions": {

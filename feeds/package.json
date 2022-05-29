@@ -8,7 +8,10 @@
     "build": "APP_ENV=production next build && next export -o dist/",
     "build-dev": "APP_ENV=staging next build && next export -o dist/",
     "start-built": "next start",
+    "preview": "APP_ENV=production next start --port 8083",
+    "preview-dev": "APP_ENV=staging next start --port 8083",
     "lint": "next lint",
+    "fix": "",
     "test": "cross-env BABEL_ENV=test jest",
     "format": "prettier --write \"./**\""
   },
@@ -35,18 +38,20 @@
   "devDependencies": {
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
-    "autoprefixer": "^10.4.4",
-    "cssnano": "^5.1.5",
+    "autoprefixer": "^10.4.7",
+    "cssnano": "^5.1.7",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-ts-react-important-stuff": "3.0.0",
     "eslint-plugin-prettier": "4.0.0",
+    "img-loader": "^4.0.0",
     "next-transpile-modules": "9.0.0",
-    "postcss": "^8.4.12",
+    "postcss": "^8.4.13",
     "raw-loader": "4.0.2",
-    "tailwindcss": "^3.0.23",
-    "typescript": "4.6.2"
+    "tailwindcss": "^3.0.24",
+    "typescript": "4.6.2",
+    "url-loader": "^4.1.1"
   },
   "browser": {
     "fs": false

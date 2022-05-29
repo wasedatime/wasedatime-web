@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-// import textLogo from "@bit/wasedatime.core.assets.text-logo";
 import { SmallLogo } from "@bit/wasedatime.core.ts.ui.logo";
 import styled from "styled-components";
 
@@ -10,6 +9,8 @@ import { NavItemsProps } from "@app/components/frame/Nav";
 import OtherLinks from "@app/components/frame/OtherLinks";
 import UserMenu from "@app/components/user/UserMenu";
 import LinkOutsideRouter from "@app/utils/link-outside-router";
+
+import logo from "@app/assets/img/home/logo.svg";
 
 type TextLogoWrapperProps = {
   expanded: boolean;
@@ -87,6 +88,8 @@ const Sidebar = ({ navItems, openSignInModal }: SidebarProps) => {
       >
         <div style={{ flex: "0 0 50px", textAlign: "center" }}>
           <SmallLogo />
+          {/* <img src={logo} width={50} height={50} alt="Small Logo" /> */}
+          {/* <img src="/assets/img/home/logo.svg" width={50} height={50} alt="Small Logo" /> */}
         </div>
         <TextLogoWrapper expanded={expanded}>
           <TextLogoStyles expanded={expanded}>

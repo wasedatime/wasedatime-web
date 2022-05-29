@@ -19,6 +19,10 @@ type ColumnProps = {
   flexBasis: string;
 };
 
+type StyledMessageProps = {
+  $isDark: boolean;
+};
+
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
   padding: 0.2em;
@@ -47,6 +51,16 @@ const ScrollableTimetable = styled("div")`
   flex: 1 0 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+`;
+
+const StyledWarningMessage = styled(Message)<StyledMessageProps>`
+  ${(props) => props.$isDark && `background-color: ${timetableColors.dark.deeperBrown} !important;`}
+  ${(props) => props.$isDark && `color: ${timetableColors.dark.lightBrown} !important;`}
+`;
+
+const StyledSuccessMessage = styled(Message)<StyledMessageProps>`
+  ${(props) => props.$isDark && `background-color: ${timetableColors.dark.deepGreen} !important;`}
+  ${(props) => props.$isDark && `color: ${timetableColors.dark.lightGreen} !important;`}
 `;
 
 interface Props extends WithTranslation {
@@ -114,28 +128,28 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                 </h5>
                 <br />
                 <Section>
-                  <Message
+                  <StyledWarningMessage
                     warning
                     header={
-                      <h5 style={theme === "dark" ? { color: timetableColors.light.lightBrown } : {}}>
+                      <h5>
                         <b>{t("timetable.You haven't added any courses")}</b>
                       </h5>
                     }
                     content={
-                      <p style={theme === "dark" ? { color: timetableColors.light.lightBrown } : {}}>
+                      <p>
                         {t("timetable.Go to")}{" "}
                         <a href="/syllabus">{t("timetable.Syllabus")} </a>{" "}
                         {t("timetable.and try adding one!")}
                       </p>
                     }
                     size="mini"
-                    style={theme === "dark" ? { backgroundColor: timetableColors.light.deepestBrown } : {}}
+                    $isDark={theme === "dark"}
                   />
                 </Section>
                 <Section>
-                  <Message success size="mini" style={theme === "dark" ? { backgroundColor: timetableColors.light.deepGreen } : {}}>
-                    <p style={theme === "dark" ? { color: timetableColors.light.lightGreen } : {}}>{t("timetable.SaveSpace")}</p>
-                  </Message>
+                  <StyledSuccessMessage success size="mini" $isDark={theme === "dark"}>
+                    <p>{t("timetable.SaveSpace")}</p>
+                  </StyledSuccessMessage>
                 </Section>
               </Article>
             </Wrapper>

@@ -8,7 +8,7 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Tabs, Tab, Badge } from "react-bootstrap";
+import { Tabs, Tab } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
@@ -127,19 +127,16 @@ const findPeriod = (totalMins) => {
   if (totalMins > 765) return -1;
 };
 
-const RoomType = styled(Badge)`
-  font-size: 1em;
+const RoomType = styled("span")`
   font-weight: 500;
-  margin: 1px 3px 1px 3px;
+  margin: 0px 5px;
+  padding: 0px 5px;
   background-color: #e53935;
   border-radius: 6px;
 `;
-const RoomEmpt = styled(Badge)`
-  font-size: 1em;
-  font-weight: 500;
-  margin: 1px 3px 1px 3px;
+
+const RoomEmpty = styled(RoomType)`
   background-color: #71ce74;
-  border-radius: 6px;
 `;
 
 interface PropsType {
@@ -191,9 +188,9 @@ const RoomFinder = (): JSX.Element => {
           <RoomType className="text-light-bgMain dark:text-dark-bgSide">
             {t("roomFinder.Occupied")}
           </RoomType>
-          <RoomEmpt className="text-light-bgMain dark:text-dark-bgSide">
+          <RoomEmpty className="text-light-bgMain dark:text-dark-bgSide">
             {t("roomFinder.Available")}
-          </RoomEmpt>
+          </RoomEmpty>
         </p>
         <p className="text-light-text2 dark:text-dark-text2">
           {t("roomFinder.note")}

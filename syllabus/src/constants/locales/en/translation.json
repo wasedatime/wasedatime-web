@@ -87,5 +87,12 @@
   "syllabusTabs": {
     "courses": "Courses",
     "labs": "Labs"
+  },
+  "alert": {
+    "course added": "Course added to Timetable",
+    "course removed": "Course removed from Timetable",
+    "course with undecided time": "Courses with undecided time will not be displayed in Timetable",
+    "courses limit reached 1": "Cannot add more than ",
+    "courses limit reached 2": " courses to Timetable"
   }
 }

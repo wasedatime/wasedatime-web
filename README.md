@@ -231,7 +231,9 @@ Whenever there is some progress in your work, commit it.
 
 ## Create a new app (micro-app) in WasedaTime
 
-*For new big features which is obviously less related to other existing apps (syllabus, campus, feeds)*
+*This section is being moved to internal documentation since it is an instruction for creating new & big features, which would be leave to our team members.*
+
+<!--
 
 1. Install `create-single-spa`
 ```bash
@@ -279,6 +281,8 @@ pnpm i
   },
   ```
   Then run `pnpm run local` inside root folder. This runs all app at the same time. Open http://localhost:9000 to see the result.
+
+-->
 
 # Contributors
 

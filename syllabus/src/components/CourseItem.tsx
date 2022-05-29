@@ -324,7 +324,7 @@ const CourseItem = ({
         }}
         className="bg-white hover:bg-light-bgSide dark:bg-dark-bgMain dark:border-dark-text3 dark:shadow-none dark:hover:bg-dark-bgSide"
       >
-        <StyledHeading className="dark:text-dark-main">
+        <StyledHeading className="dark:text-dark-text1">
           {highlightedTitle}
         </StyledHeading>
         {expandable && (
@@ -369,7 +369,7 @@ const CourseItem = ({
 
         <DescriptionWrapper
           isLarger={isRelatedCourse}
-          className="dark:text-dark-text1"
+          className="dark:text-dark-text2"
         >
           <Description>{yearTerm}</Description>
           <Description>

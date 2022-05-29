@@ -53,8 +53,14 @@ const ScrollableTimetable = styled("div")`
   -webkit-overflow-scrolling: touch;
 `;
 
-const StyledMessage = styled(Message)<StyledMessageProps>`
-  ${(props) => props.$isDark && "opacity: 0.6;"}
+const StyledWarningMessage = styled(Message)<StyledMessageProps>`
+  ${(props) => props.$isDark && `background-color: ${timetableColors.dark.deeperBrown} !important;`}
+  ${(props) => props.$isDark && `color: ${timetableColors.dark.lightBrown} !important;`}
+`;
+
+const StyledSuccessMessage = styled(Message)<StyledMessageProps>`
+  ${(props) => props.$isDark && `background-color: ${timetableColors.dark.deepGreen} !important;`}
+  ${(props) => props.$isDark && `color: ${timetableColors.dark.lightGreen} !important;`}
 `;
 
 interface Props extends WithTranslation {
@@ -122,27 +128,15 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                 </h5>
                 <br />
                 <Section>
-                  <Message
+                  <StyledWarningMessage
                     warning
                     header={
-                      <h5
-                        style={
-                          theme === "dark"
-                            ? { color: timetableColors.light.lightBrown }
-                            : {}
-                        }
-                      >
+                      <h5>
                         <b>{t("timetable.You haven't added any courses")}</b>
                       </h5>
                     }
                     content={
-                      <p
-                        style={
-                          theme === "dark"
-                            ? { color: timetableColors.light.lightBrown }
-                            : {}
-                        }
-                      >
+                      <p>
                         {t("timetable.Go to")}{" "}
                         <a href="/syllabus">{t("timetable.Syllabus")} </a>{" "}
                         {t("timetable.and try adding one!")}
@@ -153,9 +147,9 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                   />
                 </Section>
                 <Section>
-                  <StyledMessage success size="mini" $isDark={theme === "dark"}>
+                  <StyledSuccessMessage success size="mini" $isDark={theme === "dark"}>
                     <p>{t("timetable.SaveSpace")}</p>
-                  </StyledMessage>
+                  </StyledSuccessMessage>
                 </Section>
               </Article>
             </Wrapper>

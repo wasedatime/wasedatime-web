@@ -131,6 +131,10 @@ const ReviewsModal = styled.div`
   `}
 `;
 
+const LabHeader = styled.div`
+  padding: 1em;
+`;
+
 const ReviewsWrapper = styled(SimpleBar)`
   height: 100%;
   padding: 1em;
@@ -260,11 +264,12 @@ const Lab = ({ name, reviews, school }) => {
 
       {open && (
         <ReviewsModal className="bg-light-bgMain text-light-text2 dark:bg-dark-bgMain dark:text-dark-text2">
-          <ReviewsWrapper>
+          <LabHeader>
             <CloseButton onClick={() => setOpen(false)}>×</CloseButton>
-
             <ReviewProfName>{name}</ReviewProfName>
+          </LabHeader>
 
+          <ReviewsWrapper>
             <SectionHeader>{t("labs.review.Basics")}</SectionHeader>
             {itemTable("theme")}
             {itemTable("coreTime")}

@@ -62,6 +62,14 @@ const WiderPopup = styled(Popup)<ThemeComponentProps>`
 `;
 
 const StyledTab = styled(Tab)<ThemeComponentProps>`
+  .tabular.menu {
+    display: flex;
+    flex-direction: row;
+    .item {
+      flex: 1;
+    }
+  }
+
   ${(props) =>
     props.$isDark &&
     `

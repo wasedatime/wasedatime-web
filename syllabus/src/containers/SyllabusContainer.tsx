@@ -401,7 +401,7 @@ class SyllabusContainer extends React.Component<
                 />
               ) : (
                 <div style={{ padding: "2em" }}>
-                  <Message info>{t("message.choose school request")}</Message>
+                  <Message info style={theme === "dark" ? { opacity: 0.7 } : {}}>{t("message.choose school request")}</Message>
                   <SchoolFilterContainer
                     checkedSchools={[]}
                     handleToggleFilter={() => {}}

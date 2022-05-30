@@ -29,7 +29,6 @@ specifiers:
   react-dom: 17.0.2
   single-spa-react: 3.2.0
   ts-config-single-spa: 2.0.1
-  ts-loader: 9.2.8
   typescript: 4.6.2
   vite: ^2.9.0
   vite-plugin-dynamic-import: ^0.7.0
@@ -65,7 +64,6 @@ devDependencies:
   prettier: 2.5.1
   prettier-eslint: 13.0.0
   ts-config-single-spa: 2.0.1
-  ts-loader: 9.2.8_typescript@4.6.2
   typescript: 4.6.2
   vite: 2.9.5
   vite-plugin-dynamic-import: 0.7.1
@@ -2370,14 +2368,6 @@ packages:
     resolution: {integrity: sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==}
     dev: true
 
-  /enhanced-resolve/5.9.2:
-    resolution: {integrity: sha512-GIm3fQfwLJ8YZx2smuHpBKkXC1yOk+OBEmKckVyL0i/ea8mqDEykK3ld5dgH1QYPNyT/lIllxV2LULnxCHaHkA==}
-    engines: {node: '>=10.13.0'}
-    dependencies:
-      graceful-fs: 4.2.9
-      tapable: 2.2.1
-    dev: true
-
   /enquirer/2.3.6:
     resolution: {integrity: sha512-yjNnPr315/FjS4zIsUxYguYUPP2e1NK4d7E7ZOLiyYCcbFBiTMyID+2wvm2w6+pZ/odMA7cRkjhsPbltwBOrLg==}
     engines: {node: '>=8.6'}
@@ -3249,10 +3239,6 @@ packages:
       ignore: 5.2.0
       merge2: 1.4.1
       slash: 3.0.0
-    dev: true
-
-  /graceful-fs/4.2.9:
-    resolution: {integrity: sha512-NtNxqUcXgpW2iMrfqSfR73Glt39K+BLwWsPs94yR63v45T0Wbej7eRmL5cWfwEgqXnmjQp3zaJTshdRW/qC2ZQ==}
     dev: true
 
   /has-ansi/2.0.0:
@@ -4218,11 +4204,6 @@ packages:
       strip-ansi: 6.0.1
     dev: true
 
-  /tapable/2.2.1:
-    resolution: {integrity: sha512-GNzQvQTOIP6RyTfE2Qxb8ZVlNmw0n88vp1szwWRimP02mnTsx3Wtn5qRdqY9w2XduFNUgvOwhNnQsjwCp+kqaQ==}
-    engines: {node: '>=6'}
-    dev: true
-
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=}
     dev: true
@@ -4246,20 +4227,6 @@ packages:
 
   /ts-config-single-spa/2.0.1:
     resolution: {integrity: sha512-zGTozFbnMqdoNCsOJ+gqYSJNIm7QUJtN/3o8uyOCuFxwfrBETQ+lyHnvvgVO29IEVhhrnOp6NQAyOIVE8lmqxA==}
-    dev: true
-
-  /ts-loader/9.2.8_typescript@4.6.2:
-    resolution: {integrity: sha512-gxSak7IHUuRtwKf3FIPSW1VpZcqF9+MBrHOvBp9cjHh+525SjtCIJKVGjRKIAfxBwDGDGCFF00rTfzB1quxdSw==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      typescript: '*'
-      webpack: ^5.0.0
-    dependencies:
-      chalk: 4.1.2
-      enhanced-resolve: 5.9.2
-      micromatch: 4.0.4
-      semver: 7.3.5
-      typescript: 4.6.2
     dev: true
 
   /tsconfig-paths/3.12.0:

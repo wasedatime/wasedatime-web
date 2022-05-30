@@ -48,7 +48,6 @@
     "postcss": "^8.4.12",
     "prettier": "2.5.1",
     "prettier-eslint": "13.0.0",
-    "react-scripts": "5.0.0",
     "sass": "1.49.9",
     "single-spa-react": "4.6.1",
     "tailwindcss": "^3.0.23",
@@ -106,7 +105,6 @@
     "semantic-ui-css": "2.4.1",
     "semantic-ui-react": "2.1.2",
     "simplebar-react": "2.3.6",
-    "single-spa-css": "1.2.0",
     "single-spa-react": "4.6.1",
     "stickybits": "3.7.9",
     "styled-components": "5.3.3"

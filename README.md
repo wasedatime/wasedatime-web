@@ -207,7 +207,7 @@ Whenever there is some progress in your work, commit it.
 	```
 	Please refer to this link about how to write a commit message: https://www.conventionalcommits.org/en/v1.0.0/
 
-4. Push your changes to Github
+4. Push your changes to GitHub
 	```
 	git push origin feature/{name-of-your-new-feature}
 	```

@@ -80,7 +80,12 @@ Installation with other ways: https://pnpm.io/installation
 
 3. Then install Bit on your computer (local): https://docs.bit.dev/docs/installation
 
-4. Check your Bit authentication token with the following command:
+4. Login to Bit on your terminal
+```
+bit login
+```
+
+5. Check your Bit authentication token with the following command:
 	```
 	bit config
 	```
@@ -226,7 +231,9 @@ Whenever there is some progress in your work, commit it.
 
 ## Create a new app (micro-app) in WasedaTime
 
-*For new big features which is obviously less related to other existing apps (syllabus, campus, feeds)*
+*This section is being moved to internal documentation since it is an instruction for creating new & big features, which would be leave to our team members.*
+
+<!--
 
 1. Install `create-single-spa`
 ```bash
@@ -274,6 +281,8 @@ pnpm i
   },
   ```
   Then run `pnpm run local` inside root folder. This runs all app at the same time. Open http://localhost:9000 to see the result.
+
+-->
 
 # Contributors
 

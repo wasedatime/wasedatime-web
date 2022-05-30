@@ -26,10 +26,12 @@ const Feeds = () => {
   const { theme, setTheme } = React.useContext(ThemeContext);
 
   const feedsDomain =
-    process.env.NODE_ENV === "development"
+    import.meta.env.MODE === "development"
       ? "http://localhost:8083"
-      : process.env.NODE_ENV === "staging"
-      ? `https://${process.env.PREFIX}.${process.env.MF_FEEDS_DOMAIN}`
+      : import.meta.env.MODE === "staging"
+      ? `https://${import.meta.env.MF_PREFIX}.${
+          import.meta.env.MF_FEEDS_DOMAIN
+        }`
       : "/feeds";
 
   return (

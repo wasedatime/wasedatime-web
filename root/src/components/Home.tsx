@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
@@ -72,6 +73,7 @@ interface Props extends WithTranslation {
 
 const Home = ({ isFirstAccess, t, i18n }: Props) => {
   const { theme, setTheme } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   const [modalOpen, setModalOpen] = useState(isFirstAccess);
   const closeModal = () => {
@@ -126,6 +128,13 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
             onClick={() => setModalOpen(true)}
           >
             {t("welcome.newFeature")}
+          </button>
+          <button
+            type="button"
+            className="bg-light-bgMain hover:bg-light-bgSide dark:bg-dark-bgMain hover:dark:bg-dark-bgSide rounded-lg text-light-main dark:text-dark-text1 px-4 py-2 mx-2"
+            onClick={() => navigate("/aboutus")}
+          >
+            {t("aboutus.title")}
           </button>
         </Introduction>
 

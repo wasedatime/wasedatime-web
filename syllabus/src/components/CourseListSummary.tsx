@@ -20,7 +20,7 @@ type SortByButtonProps = {
 };
 
 type StyledDropdownProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
@@ -56,15 +56,15 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   min-height: 2em !important;
   min-width: 40% !important;
   background-color: ${(props) =>
-    props.isDark ? colors.dark.text3 : "white"} !important;
+    props.$isDark ? colors.dark.text3 : "white"} !important;
 
   .divider.text {
-    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
   }
 
   .divider.text + i.dropdown.icon {
     padding: 0.6rem;
-    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
   }
 `;
 
@@ -125,7 +125,7 @@ const CourseListSummary = ({
             changeSortingOption(data.value);
           }}
           aria-label="Sort added courses"
-          isDark={theme === "dark"}
+          $isDark={theme === "dark"}
         /> */}
       </RowWrapper>
     </div>

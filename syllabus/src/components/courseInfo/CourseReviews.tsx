@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
-import Alert from "react-s-alert";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 
 import AddReviewForm from "@app/components/courseInfo/AddReviewForm";
@@ -178,10 +178,7 @@ class CourseReviews extends React.Component<Props, State> {
     const { course, courseKey, t } = this.props;
 
     if (Object.values(formScales).indexOf(0) > -1 || formText.length === 0) {
-      Alert.warning(t("courseInfo.Fill in all fields before sending"), {
-        position: "bottom",
-        effect: "jelly",
-      });
+      toast.warning(t("courseInfo.Fill in all fields before sending"));
     } else {
       const editReview = { ...formScales, comment: formText };
       const newReview = {
@@ -232,10 +229,7 @@ class CourseReviews extends React.Component<Props, State> {
           ).then(async () => this.cleanFormAndUpdateReviews(newReview));
         }
       } catch (error) {
-        Alert.error(this.props.t("courseInfo.Review failed to send"), {
-          position: "bottom",
-          effect: "jelly",
-        });
+        toast.error(this.props.t("courseInfo.Review failed to send"));
       }
     }
   };
@@ -244,10 +238,7 @@ class CourseReviews extends React.Component<Props, State> {
     const { courseKey, t } = this.props;
     const { userToken, userId } = this.state;
 
-    Alert.success(t("courseInfo.Review sent"), {
-      position: "bottom",
-      effect: "jelly",
-    });
+    toast.success(t("courseInfo.Review sent"));
 
     const res = await API.get(
       "wasedatime-dev",
@@ -291,10 +282,7 @@ class CourseReviews extends React.Component<Props, State> {
       }
     )
       .then(() => {
-        Alert.success(t("courseInfo.Review deleted"), {
-          position: "bottom",
-          effect: "jelly",
-        });
+        toast.success(t("courseInfo.Review deleted"));
         ReactGA.event({
           category: gaCourseReviews,
           action: gaDeleteCourseReview,

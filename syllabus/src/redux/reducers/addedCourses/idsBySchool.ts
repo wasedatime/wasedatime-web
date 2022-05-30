@@ -48,7 +48,7 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
       };
     case REMOVE_COURSE:
       for (const school in state) {
-        if (state[school].ids.includes(id)) {
+        if (state[school].ids.includes(action.payload.id)) {
           return {
             ...state,
             [school]: {

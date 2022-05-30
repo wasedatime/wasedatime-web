@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WasedaTime</title>
+  
+  <!-- <meta http-equiv="Content-Security-Policy" content="default-src * 'self' blob: https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' blob: https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https: localhost:*; object-src 'none'; img-src 'self' https: localhost:* data: http://books.google.com http://cdn.viglink.com; font-src 'self' https: localhost:* data:;"> -->
+  <meta http-equiv="Content-Security-Policy" content="default-src * data: blob: filesystem: about: ws: wss: 'unsafe-inline' 'unsafe-eval'; script-src * data: blob: 'unsafe-inline' 'unsafe-eval'; connect-src * data: blob: 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src * data: blob: ; style-src * data: blob: 'unsafe-inline'; font-src * data: blob: 'unsafe-inline';">
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.4/dist/es-module-shims.js"></script>
+
+  <link rel="shortcut icon" sizes="16x16" href="/img/favicon.ico" />
+  <link rel="icon" sizes="192x192" href="/img/logo.png" />
+  <link rel="alternate icon" href="/img/favicon.ico" type="image/png" sizes="16x16">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="128x128">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="156x156">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="167x167">
+  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png" sizes="180x180">
+  <link rel="mask-icon" href="/img/logo.png" color="#FFFFFF">
+  <meta name="theme-color" content="#ffffff">
+
+  <link href="/img/splash_image.png" sizes="2048x2732" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="1668x2224" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="1536x2048" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="1125x2436" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="1242x2208" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="750x1334" rel="apple-touch-startup-image" />
+  <link href="/img/splash_image.png" sizes="640x1136" rel="apple-touch-startup-image" />
+
+  <% if (isLocal || standalone) { %>
+    <link rel="stylesheet" href="./src/styles/tailwind-build-output.css" type="css">
+    <script type="importmap-shim" defer>
+      {
+        "imports": {
+          "@wasedatime/home": "//localhost:9000/wasedatime-home.ts",
+          "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.ts",
+          "@wasedatime/campus": "//localhost:8081/wasedatime-campus.ts",
+          "@wasedatime/career": "//localhost:8082/wasedatime-career.ts"
+        }
+      }
+    </script>
+  <% } else { %>
+    <% if (isDev) { %>
+      <script type="importmap-shim" defer>
+        {
+          "imports": {
+            "@wasedatime/home": "/wasedatime-home.js",
+            "@wasedatime/syllabus": "https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
+            "@wasedatime/campus": "https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
+          }
+        }
+      </script>
+      <link rel="preload" href="https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css"></noscript>
+      <link rel="preload" href="https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css"></noscript>
+    <% } else { %>
+      <script type="importmap-shim" defer>
+        {
+          "imports": {
+            "@wasedatime/home": "/wasedatime-home.js",
+            "@wasedatime/syllabus": "/syllabus/wasedatime-syllabus.js",
+            "@wasedatime/campus": "/campus/wasedatime-campus.js"
+          }
+        }
+      </script>
+      <link rel="preload" href="/syllabus/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="/syllabus/assets/style.css"></noscript>
+      <link rel="preload" href="/campus/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+      <noscript><link rel="stylesheet" href="/campus/assets/style.css"></noscript>
+    <% } %>
+    <script type="module">
+      import { registerSW } from "virtual:pwa-register";
+      if ('serviceWorker' in navigator) {
+        registerSW();
+      }
+    </script>
+
+    <link rel="preload" as="font" href="/fonts/segoe-ui.ttf" type="font/ttf" crossorigin="anonymous" />
+    <link rel="preload" as="font" href="/fonts/yugothic-medium.otf" type="font/otf" crossorigin="anonymous" />
+    <link rel="preload" as="font" href="/fonts/Lato-Regular.ttf" type="font/ttf" crossorigin="anonymous" />
+    <link rel="preload" as="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+  <% } %>
+
+  <script>
+    function setBodyBgColor() {
+      if (localStorage.getItem("color-theme") === "light") document.getElementsByTagName("html")[0].style.backgroundColor = "#fff";
+      else if (localStorage.getItem("color-theme") === "dark") document.getElementsByTagName("html")[0].style.backgroundColor = "#1F2022";
+    };
+    window.addEventListener("themeChanged", function(e) {
+      setBodyBgColor();
+    }, false);
+  </script>
+
+  <style>
+  body {
+    margin: 0px;
+  }
+  #layout {
+    margin: 0px;
+    display: grid;
+    grid-template-rows: 67px calc(100% - 117px) 50px;
+    grid-template-columns: 65px calc(100vw - 65px);
+    font-family: Segoe UI, Yu Gothic Medium, Lato;
+    font-display: swap;
+    overflow-x: hidden;
+  }
+  main {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+  #nav {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+  #loading canvas {
+    background-image: url("/img/home/home_background-lg.jpg");
+    width: 100vw;
+    height: 100vh;
+  }
+  @media only screen and (max-width:768px) {
+    main {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    #nav {
+      grid-column-start: 1;
+      grid-column-end: 3;
+      grid-row-start: 3;
+      grid-row-end: 4;
+    }
+    #loading canvas {
+      background-image: url("/img/home/home_background-phone.jpg");
+      background-repeat: no-repeat;
+      background-size: 100vw 100vh;
+    }
+  }
+  </style>
+
+  <template id="single-spa-layout">
+    <single-spa-router>
+      <div id="layout">
+        <div id="nav"></div>
+        <main>
+          <route path="courses">
+            <application name="@wasedatime/syllabus"></application>
+          </route>
+          <route path="campus">
+            <application name="@wasedatime/campus"></application>
+          </route>
+          <route path="career">
+            <application name="@wasedatime/career"></application>
+          </route>
+          <route default>
+            <application name="@wasedatime/home"></application>
+          </route>
+        </main>
+      </div>
+    </single-spa-router>
+  </template>
+</head>
+<body>
+  <div id="loading">
+    <noscript><canvas></canvas></noscript>
+  </div>
+  <% if (isLocal || standalone) { %>
+  <script type="module-shim" src="/wasedatime-root-config.ts"></script>
+  <% } else { %>
+  <script type="module-shim" src="/wasedatime-root-config.js"></script>
+  <% } %>
+  <!-- <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full> -->
+</body>
+</html>

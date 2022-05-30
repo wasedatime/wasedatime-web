@@ -1,8 +1,9 @@
 import React from "react";
 
 import ReactGA from "react-ga";
+import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import Alert from "react-s-alert";
+import { toast } from "react-toastify";
 
 import CourseItem from "@app/components/CourseItem";
 import { SyllabusKey } from "@app/constants/syllabus-data";
@@ -26,7 +27,7 @@ interface ReduxDispatchProps {
   removeCourse: (id: string) => void;
 }
 
-interface OwnProps {
+interface OwnProps extends WithTranslation {
   searchTerm: string | string[];
   searchLang: string | string[];
   course: Course;
@@ -47,12 +48,10 @@ class CourseItemContainer extends React.Component<
       label: title,
     });
     if (addedCourseIds.length >= ADDED_COURSES_NUMBER_LIMIT) {
-      Alert.error(
-        `Cannot add more than ${ADDED_COURSES_NUMBER_LIMIT} courses`,
-        {
-          position: "bottom",
-          effect: "jelly",
-        }
+      toast.error(
+        this.props.t("alert.courses limit reached 1") +
+          ADDED_COURSES_NUMBER_LIMIT +
+          this.props.t("alert.courses limit reached 2")
       );
 
       return;
@@ -64,18 +63,9 @@ class CourseItemContainer extends React.Component<
         (o) => o[SyllabusKey.OCC_DAY] === -1 || o[SyllabusKey.OCC_PERIOD] === -1
       )
     ) {
-      Alert.warning(
-        "Course with undecided time cannot be displayed in timetable.",
-        {
-          position: "bottom",
-          effect: "jelly",
-        }
-      );
+      toast.warning(this.props.t("alert.course with undecided time"));
     } else {
-      Alert.success("Course added.", {
-        position: "bottom",
-        effect: "jelly",
-      });
+      toast.success(this.props.t("alert.course added"));
     }
   };
 
@@ -87,10 +77,7 @@ class CourseItemContainer extends React.Component<
       label: title,
     });
     this.props.removeCourse(course[SyllabusKey.ID]);
-    Alert.success("Course removed.", {
-      position: "bottom",
-      effect: "jelly",
-    });
+    toast.success(this.props.t("alert.course removed"));
   };
 
   render() {
@@ -133,7 +120,6 @@ const mapDispatchToProps = {
   removeCourse,
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(CourseItemContainer);
+export default withTranslation("translation")(
+  connect(mapStateToProps, mapDispatchToProps)(CourseItemContainer)
+);

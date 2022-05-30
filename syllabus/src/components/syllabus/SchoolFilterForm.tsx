@@ -1,7 +1,6 @@
 import React from "react";
 
 import colors from "@bit/wasedatime.core.theme.colors";
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
@@ -12,13 +11,17 @@ import Card from "semantic-ui-react/dist/commonjs/views/Card";
 import styled from "styled-components";
 
 import SchoolImportCard from "@app/components/syllabus/SchoolImportCard";
-import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
-import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
 import "semantic-ui-css/components/popup.min.css";
 import { ThemeContext } from "@app/utils/theme-context";
+import {
+  gradSchools,
+  otherSchools,
+  undergradSchools,
+} from "@app/constants/schools-by-type";
+import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 type ThemeComponentProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const Cards = styled(Card.Group)`
@@ -38,7 +41,7 @@ const Cards = styled(Card.Group)`
 
 const WiderPopup = styled(Popup)<ThemeComponentProps>`
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
     background-color: ${colors.dark.bgMain} !important;
     box-shadow: 0 2px 4px 0 ${colors.dark.text3} !important;
@@ -59,8 +62,16 @@ const WiderPopup = styled(Popup)<ThemeComponentProps>`
 `;
 
 const StyledTab = styled(Tab)<ThemeComponentProps>`
+  .tabular.menu {
+    display: flex;
+    flex-direction: row;
+    .item {
+      flex: 1;
+    }
+  }
+
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
       .tabular.menu {
         border-bottom-color: ${colors.dark.text3} !important;
@@ -80,7 +91,7 @@ const StyledTab = styled(Tab)<ThemeComponentProps>`
 const StyledMenuItem = styled(Menu.Item)<ThemeComponentProps>`
   font-size: 1.2em;
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
     background-color: ${colors.dark.bgMain} !important;
     border-color: ${colors.dark.text3} !important;
@@ -159,20 +170,28 @@ class SchoolFilterForm extends React.Component<Props, State> {
   schoolImportPanes = (theme) => {
     const { loadedSchools, loadingSchool } = this.state;
     const { t, i18n, selectedSchools, handleToggleFilter } = this.props;
-    const schoolGroupNames = ["Undergraduate", "Graduate", "Special"];
+    const schoolTypeNames = ["Undergraduate", "Graduate", "Special"];
+    const schoolsByType = [undergradSchools, gradSchools, otherSchools];
 
-    const ImportCardGroup = ({ schoolNameIconMap, itemsPerRow }) => (
+    const ImportCardGroup = ({
+      schools,
+      itemsPerRow,
+    }: {
+      schools: string[];
+      itemsPerRow: any;
+    }) => (
       <Cards itemsPerRow={itemsPerRow} style={{ marginTop: "0.5em" }}>
-        {Object.keys(schoolNameIconMap).map((schoolName) => (
+        {schools.map((schoolName: string) => (
           <SchoolImportCard
             key={schoolName}
             loaded={loadedSchools.includes(schoolName)}
             loading={loadingSchool === schoolName}
-            schoolIcon={schoolNameIconMap[schoolName]}
+            schoolIcon={getSchoolIconPath(schoolName, i18n.language)}
             onDownload={() => this.handleSchoolloading(schoolName)}
             isBannedToLoad={
               !loadedSchools.includes(schoolName) &&
-              loadingSchool &&
+              loadingSchool !== undefined &&
+              loadingSchool !== null &&
               loadingSchool !== schoolName
             }
             checked={selectedSchools.includes(schoolName)}
@@ -182,41 +201,19 @@ class SchoolFilterForm extends React.Component<Props, State> {
       </Cards>
     );
 
-    const lng = i18n.language;
-    const schoolIconMap =
-      i18n.language === Lang.EN
-        ? [
-            schoolIconEnMap.undergradSchoolNameIconMap,
-            schoolIconEnMap.gradSchoolNameIconMap,
-            schoolIconEnMap.otherSchoolNameIconMap,
-          ]
-        : [
-            schoolIconJaMap.undergradSchoolNameIconMap,
-            schoolIconJaMap.gradSchoolNameIconMap,
-            schoolIconJaMap.otherSchoolNameIconMap,
-          ];
-
-    return schoolIconMap.map((schoolNameIconMap, i) => ({
+    return schoolsByType.map((schools, i) => ({
       menuItem: (
-        <StyledMenuItem key={schoolGroupNames[i]} isDark={theme === "dark"}>
-          {t(`syllabus.School Filter.${schoolGroupNames[i]}`)}
+        <StyledMenuItem key={schoolTypeNames[i]} $isDark={theme === "dark"}>
+          {t(`syllabus.School Filter.${schoolTypeNames[i]}`)}
         </StyledMenuItem>
       ),
       render: () => (
         <MediaQuery minWidth={sizes.tablet}>
           {(matches) => {
             return matches ? (
-              <ImportCardGroup
-                key={i}
-                schoolNameIconMap={schoolNameIconMap}
-                itemsPerRow={6}
-              />
+              <ImportCardGroup key={i} schools={schools} itemsPerRow={6} />
             ) : (
-              <ImportCardGroup
-                key={i}
-                schoolNameIconMap={schoolNameIconMap}
-                itemsPerRow={4}
-              />
+              <ImportCardGroup key={i} schools={schools} itemsPerRow={4} />
             );
           }}
         </MediaQuery>
@@ -263,19 +260,19 @@ class SchoolFilterForm extends React.Component<Props, State> {
         content={
           <StyledTab
             panes={this.schoolImportPanes(theme)}
-            isDark={theme === "dark"}
+            $isDark={theme === "dark"}
           />
         }
         on="click"
         position="bottom left"
         size="huge"
         wide="very"
-        isDark={theme === "dark"}
+        $isDark={theme === "dark"}
       />
     ) : (
       <StyledTab
         panes={this.schoolImportPanes(theme)}
-        isDark={theme === "dark"}
+        $isDark={theme === "dark"}
       />
     );
   }

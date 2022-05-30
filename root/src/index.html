@@ -51,10 +51,10 @@
           }
         }
       </script>
-      <link rel="preload" href="https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css"></noscript>
-      <link rel="preload" href="https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css"></noscript>
+      <link rel="preload" href="https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style">
+      <link rel="stylesheet" href="https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css">
+      <link rel="preload" href="https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css" as="style">
+      <link rel="stylesheet" href="https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css">
     <% } else { %>
       <script type="importmap-shim" defer>
         {
@@ -65,10 +65,10 @@
           }
         }
       </script>
-      <link rel="preload" href="/syllabus/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="/syllabus/assets/style.css"></noscript>
-      <link rel="preload" href="/campus/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="/campus/assets/style.css"></noscript>
+      <link rel="preload" href="/syllabus/assets/style.css" as="style">
+      <link rel="stylesheet" href="/syllabus/assets/style.css">
+      <link rel="preload" href="/campus/assets/style.css" as="style">
+      <link rel="stylesheet" href="/campus/assets/style.css">
     <% } %>
     <script type="module">
       import { registerSW } from "virtual:pwa-register";

@@ -29,13 +29,10 @@ export default defineConfig(({ mode }) => {
           entryFileNames: "[name].js",
           assetFileNames: "assets/[name].[ext]",
         },
-        external:
-          mode === "development"
-            ? []
-            : [
-              `${env.VITE_MF_SYLLABUS_BASE_PATH}/assets/style.css`,
-              `${env.VITE_MF_CAMPUS_BASE_PATH}/assets/style.css`,
-            ],
+        external: [
+          `${env.VITE_MF_SYLLABUS_BASE_PATH}/assets/style.css`,
+          `${env.VITE_MF_CAMPUS_BASE_PATH}/assets/style.css`,
+        ],
       },
     },
     resolve: {

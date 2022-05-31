@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
   return {
     root: "./src",
     publicDir: "assets",
-    base: env.VITE_PUBLIC_BASE_PATH,
+    base: env.VITE_PUBLIC_BASE_PATH + "/",
     rollupOptions: {
       input: "wasedatime-campus.ts",
       preserveEntrySignatures: true,

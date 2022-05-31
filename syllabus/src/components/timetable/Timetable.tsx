@@ -54,13 +54,19 @@ const ScrollableTimetable = styled("div")`
 `;
 
 const StyledWarningMessage = styled(Message)<StyledMessageProps>`
-  ${(props) => props.$isDark && `background-color: ${timetableColors.dark.deeperBrown} !important;`}
-  ${(props) => props.$isDark && `color: ${timetableColors.dark.lightBrown} !important;`}
+  ${(props) =>
+    props.$isDark &&
+    `background-color: ${timetableColors.dark.deeperBrown} !important;`}
+  ${(props) =>
+    props.$isDark && `color: ${timetableColors.dark.lightBrown} !important;`}
 `;
 
 const StyledSuccessMessage = styled(Message)<StyledMessageProps>`
-  ${(props) => props.$isDark && `background-color: ${timetableColors.dark.deepGreen} !important;`}
-  ${(props) => props.$isDark && `color: ${timetableColors.dark.lightGreen} !important;`}
+  ${(props) =>
+    props.$isDark &&
+    `background-color: ${timetableColors.dark.deepGreen} !important;`}
+  ${(props) =>
+    props.$isDark && `color: ${timetableColors.dark.lightGreen} !important;`}
 `;
 
 interface Props extends WithTranslation {
@@ -147,7 +153,11 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
                   />
                 </Section>
                 <Section>
-                  <StyledSuccessMessage success size="mini" $isDark={theme === "dark"}>
+                  <StyledSuccessMessage
+                    success
+                    size="mini"
+                    $isDark={theme === "dark"}
+                  >
                     <p>{t("timetable.SaveSpace")}</p>
                   </StyledSuccessMessage>
                 </Section>

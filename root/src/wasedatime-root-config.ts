@@ -50,7 +50,10 @@ i18nConfig({
   },
 });
 
-ReactGA.initialize(import.meta.env.VITE_GA_ID, { debug: false, titleCase: false });
+ReactGA.initialize(import.meta.env.VITE_GA_ID, {
+  debug: false,
+  titleCase: false,
+});
 
 ReactDOM.render(
   React.createElement("span"),

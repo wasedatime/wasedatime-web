@@ -32,6 +32,7 @@ export default defineConfig(({ mode }) => {
         external: [
           `${env.VITE_MF_SYLLABUS_BASE_PATH}/assets/style.css`,
           `${env.VITE_MF_CAMPUS_BASE_PATH}/assets/style.css`,
+          "/assets/style.css",
         ],
       },
     },

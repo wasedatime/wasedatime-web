@@ -33,7 +33,10 @@ API.configure(config);
 
 configAuth();
 
-ReactGA.initialize(import.meta.env.VITE_GA_ID, { debug: false, titleCase: false });
+ReactGA.initialize(import.meta.env.VITE_GA_ID, {
+  debug: false,
+  titleCase: false,
+});
 
 const LoadingSpinnerContainer = () => {
   const { theme } = useContext(ThemeContext);

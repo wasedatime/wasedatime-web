@@ -50,18 +50,10 @@ i18nConfig({
   },
 });
 
-// ===== GA id =====
-// production (wasedatime.com): UA-112185819-1
-// staging (dev.wasedatime.com): UA-112185819-3
-// development (localhost): UA-112185819-4
-if (import.meta.env.MODE === "development") {
-  ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
-} else {
-  ReactGA.initialize(
-    import.meta.env.MODE === "production" ? "UA-112185819-1" : "UA-112185819-3",
-    { debug: false, titleCase: false }
-  );
-}
+ReactGA.initialize(import.meta.env.VITE_GA_ID, {
+  debug: false,
+  titleCase: false,
+});
 
 ReactDOM.render(
   React.createElement("span"),

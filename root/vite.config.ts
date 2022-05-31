@@ -6,7 +6,7 @@ import { VitePWA } from "vite-plugin-pwa";
 const path = require("path");
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
+  const env = loadEnv(mode, process.cwd() + "/src");
   return {
     root: "./src",
     publicDir: "assets",
@@ -29,15 +29,11 @@ export default defineConfig(({ mode }) => {
           entryFileNames: "[name].js",
           assetFileNames: "assets/[name].[ext]",
         },
-        external:
-          mode === "staging"
-            ? [
-                `https://${env.MF_PREFIX}.${env.MF_SYLLABUS_DOMAIN}/assets/style.css`,
-                `https://${env.MF_PREFIX}.${env.MF_CAMPUS_DOMAIN}/assets/style.css`,
-              ]
-            : mode === "production"
-            ? ["/syllabus/assets/style.css", "/campus/assets/style.css"]
-            : [],
+        external: [
+          `${env.VITE_MF_SYLLABUS_BASE_PATH}/assets/style.css`,
+          `${env.VITE_MF_CAMPUS_BASE_PATH}/assets/style.css`,
+          "/assets/style.css",
+        ],
       },
     },
     resolve: {
@@ -55,8 +51,6 @@ export default defineConfig(({ mode }) => {
     plugins: [
       ViteEjsPlugin((config) => ({
         isLocal: config.mode === "development",
-        isDev: config.mode === "staging",
-        standalone: false,
         env,
       })),
       reactRefresh(),
@@ -66,7 +60,7 @@ export default defineConfig(({ mode }) => {
         srcDir: ".",
         filename: "sw.js",
         registerType: "autoUpdate",
-        useCredentials: mode === "staging",
+        useCredentials: env.VITE_IS_STAGING === "true",
         includeAssets: [
           "favicon.svg",
           "favicon.ico",

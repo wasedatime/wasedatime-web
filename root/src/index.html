@@ -28,59 +28,35 @@
   <link href="/img/splash_image.png" sizes="750x1334" rel="apple-touch-startup-image" />
   <link href="/img/splash_image.png" sizes="640x1136" rel="apple-touch-startup-image" />
 
-  <% if (isLocal || standalone) { %>
-    <link rel="stylesheet" href="./src/styles/tailwind-build-output.css" type="css">
-    <script type="importmap-shim" defer>
-      {
-        "imports": {
-          "@wasedatime/home": "//localhost:9000/wasedatime-home.ts",
-          "@wasedatime/syllabus": "//localhost:8080/wasedatime-syllabus.ts",
-          "@wasedatime/campus": "//localhost:8081/wasedatime-campus.ts",
-          "@wasedatime/career": "//localhost:8082/wasedatime-career.ts"
-        }
+  <script type="importmap-shim" defer>
+    {
+      "imports": {
+        "@wasedatime/home": "<%= env.VITE_MF_HOME_BASE_PATH %>/wasedatime-home.<%= isLocal ? "ts" : "js" %>",
+        "@wasedatime/syllabus": "<%= env.VITE_MF_SYLLABUS_BASE_PATH %>/wasedatime-syllabus.<%= isLocal ? "ts" : "js" %>",
+        "@wasedatime/campus": "<%= env.VITE_MF_CAMPUS_BASE_PATH %>/wasedatime-campus.<%= isLocal ? "ts" : "js" %>"
       }
-    </script>
+    }
+  </script>
+
+  <% if (isLocal) { %>
+    <link rel="stylesheet" href="./src/styles/tailwind-build-output.css" type="css">
   <% } else { %>
-    <% if (isDev) { %>
-      <script type="importmap-shim" defer>
-        {
-          "imports": {
-            "@wasedatime/home": "/wasedatime-home.js",
-            "@wasedatime/syllabus": "https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/wasedatime-syllabus.js",
-            "@wasedatime/campus": "https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/wasedatime-campus.js"
-          }
-        }
-      </script>
-      <link rel="preload" href="https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="https://<%= env.MF_PREFIX %>.<%= env.MF_SYLLABUS_DOMAIN %>/assets/style.css"></noscript>
-      <link rel="preload" href="https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="https://<%= env.MF_PREFIX %>.<%= env.MF_CAMPUS_DOMAIN %>/assets/style.css"></noscript>
-    <% } else { %>
-      <script type="importmap-shim" defer>
-        {
-          "imports": {
-            "@wasedatime/home": "/wasedatime-home.js",
-            "@wasedatime/syllabus": "/syllabus/wasedatime-syllabus.js",
-            "@wasedatime/campus": "/campus/wasedatime-campus.js"
-          }
-        }
-      </script>
-      <link rel="preload" href="/syllabus/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="/syllabus/assets/style.css"></noscript>
-      <link rel="preload" href="/campus/assets/style.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-      <noscript><link rel="stylesheet" href="/campus/assets/style.css"></noscript>
-    <% } %>
+    <link rel="preload" href="<%= env.VITE_MF_SYLLABUS_BASE_PATH %>/assets/style.css" as="style">
+    <link rel="stylesheet" href="<%= env.VITE_MF_SYLLABUS_BASE_PATH %>/assets/style.css" type="css">
+    <link rel="preload" href="<%= env.VITE_MF_CAMPUS_BASE_PATH %>/assets/style.css" as="style">
+    <link rel="stylesheet" href="<%= env.VITE_MF_CAMPUS_BASE_PATH %>/assets/style.css" type="css">
+
+    <link rel="preload" as="font" href="/fonts/segoe-ui.ttf" type="font/ttf" crossorigin="anonymous" />
+    <link rel="preload" as="font" href="/fonts/yugothic-medium.otf" type="font/otf" crossorigin="anonymous" />
+    <link rel="preload" as="font" href="/fonts/Lato-Regular.ttf" type="font/ttf" crossorigin="anonymous" />
+    <link rel="preload" as="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+
     <script type="module">
       import { registerSW } from "virtual:pwa-register";
       if ('serviceWorker' in navigator) {
         registerSW();
       }
     </script>
-
-    <link rel="preload" as="font" href="/fonts/segoe-ui.ttf" type="font/ttf" crossorigin="anonymous" />
-    <link rel="preload" as="font" href="/fonts/yugothic-medium.otf" type="font/otf" crossorigin="anonymous" />
-    <link rel="preload" as="font" href="/fonts/Lato-Regular.ttf" type="font/ttf" crossorigin="anonymous" />
-    <link rel="preload" as="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
   <% } %>
 
   <script>
@@ -155,9 +131,9 @@
           <route path="campus">
             <application name="@wasedatime/campus"></application>
           </route>
-          <route path="career">
+          <!-- <route path="career">
             <application name="@wasedatime/career"></application>
-          </route>
+          </route> -->
           <route default>
             <application name="@wasedatime/home"></application>
           </route>
@@ -170,11 +146,6 @@
   <div id="loading">
     <noscript><canvas></canvas></noscript>
   </div>
-  <% if (isLocal || standalone) { %>
-  <script type="module-shim" src="/wasedatime-root-config.ts"></script>
-  <% } else { %>
-  <script type="module-shim" src="/wasedatime-root-config.js"></script>
-  <% } %>
-  <!-- <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full> -->
+  <script type="module-shim" src="/wasedatime-root-config.<%= isLocal ? "ts" : "js" %>"></script>
 </body>
 </html>

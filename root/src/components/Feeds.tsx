@@ -25,14 +25,7 @@ const Feeds = () => {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = React.useContext(ThemeContext);
 
-  const feedsDomain =
-    import.meta.env.MODE === "development"
-      ? "http://localhost:8083"
-      : import.meta.env.MODE === "staging"
-      ? `https://${import.meta.env.MF_PREFIX}.${
-          import.meta.env.MF_FEEDS_DOMAIN
-        }`
-      : "/feeds";
+  const feedsBasePath = import.meta.env.VITE_MF_FEEDS_BASE_PATH;
 
   return (
     <FeedsWrapper style={{ overflow: "hidden" }}>
@@ -52,7 +45,7 @@ const Feeds = () => {
       <div>
         {!feedsLoaded && <LoadingSpinner theme="light" message="Loading..." />}
         <iframe
-          src={`${feedsDomain}/${i18n.language}`}
+          src={feedsBasePath + i18n.language}
           style={{ width: "100%", height: "calc(100vh - 70px)" }}
           onLoad={() => setFeedsLoaded(true)}
         />

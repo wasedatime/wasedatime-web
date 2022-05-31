@@ -33,21 +33,7 @@ API.configure(config);
 
 configAuth();
 
-if (import.meta.env.PROD) {
-  ReactGA.initialize("UA-112185819-1", { debug: false, titleCase: false });
-  Sentry.init({
-    dsn: "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
-    environment: import.meta.env.MODE,
-    ignoreErrors: [
-      "Network Error",
-      "NetworkError",
-      "Loading chunk",
-      "Timed out",
-    ],
-  });
-} else {
-  ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
-}
+ReactGA.initialize(import.meta.env.VITE_GA_ID, { debug: false, titleCase: false });
 
 const LoadingSpinnerContainer = () => {
   const { theme } = useContext(ThemeContext);

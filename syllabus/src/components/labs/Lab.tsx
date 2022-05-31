@@ -132,11 +132,12 @@ const ReviewsModal = styled.div`
 `;
 
 const LabHeader = styled.div`
+  height: 15%;
   padding: 1em;
 `;
 
 const ReviewsWrapper = styled(SimpleBar)`
-  height: 100%;
+  height: 85%;
   padding: 1em;
   .simplebar-scrollbar::before {
     background-color: #999;

@@ -4,18 +4,12 @@ import dynamicImport from "vite-plugin-dynamic-import";
 const path = require("path");
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), "");
-  const publicAssetsBaseUrl =
-    mode === "production"
-      ? "/syllabus/"
-      : mode === "staging"
-      ? `https://${env.MF_DOMAIN_WITH_PREFIX}/`
-      : "http://localhost:8080/";
+  const env = loadEnv(mode, process.cwd() + "/src");
 
   return {
     root: "./src",
     publicDir: "assets",
-    base: publicAssetsBaseUrl,
+    base: env.VITE_PUBLIC_BASE_PATH,
     rollupOptions: {
       input: "wasedatime-syllabus.ts",
       preserveEntrySignatures: true,

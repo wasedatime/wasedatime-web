@@ -85,7 +85,7 @@
     "vite-plugin-dynamic-import": "^0.7.1"
   },
   "resolutions": {
-    "esbuild": "0.14.34"
+    "esbuild": "0.14.43"
   },
   "peerDependencies": {
     "@babel/plugin-syntax-flow": "^7.16.7",

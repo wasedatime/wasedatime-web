@@ -6,7 +6,7 @@ import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import levenshtein from "levenshtein-edit-distance";
+import { levenshteinEditDistance as levenshtein } from "levenshtein-edit-distance";
 import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";

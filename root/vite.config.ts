@@ -1,6 +1,6 @@
 import { defineConfig, loadEnv } from "vite";
 import { ViteEjsPlugin } from "vite-plugin-ejs";
-import reactRefresh from "@vitejs/plugin-react-refresh";
+import react from "@vitejs/plugin-react";
 import dynamicImport from "vite-plugin-dynamic-import";
 import { VitePWA } from "vite-plugin-pwa";
 const path = require("path");
@@ -48,8 +48,8 @@ export default defineConfig(({ mode }) => {
         isLocal: config.mode === "development",
         env,
       })),
-      reactRefresh(),
-      dynamicImport(),
+      react(),
+      mode === "development" ? null : dynamicImport(),
       VitePWA({
         strategies: "injectManifest",
         srcDir: ".",

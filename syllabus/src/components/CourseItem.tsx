@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import {
   faClock,
@@ -22,12 +21,11 @@ import CourseInfo from "@app/components/courseInfo/CourseInfo";
 import { Badge } from "@app/components/styles/Badge";
 import { InvisibleButton } from "@app/components/styles/Button";
 import { Highlight } from "@app/components/syllabus/Highlight";
-import * as schoolIconEnMap from "@app/constants/school-name-icon-map-en";
-import * as schoolIconJaMap from "@app/constants/school-name-icon-map-ja";
 import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 import { termKeysDecoder } from "@app/utils/term-keys-decoder";
+import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 type ExpandableProps = {
   expanded: boolean;
@@ -37,7 +35,7 @@ type DescriptionWrapperProps = {
   isLarger: boolean;
 };
 
-const CourseItemWrapper = styled("li")`
+const CourseItemWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   flex: 1 0 auto;
@@ -144,14 +142,10 @@ const OccurrenceList = styled("ul")`
   text-align: left;
 `;
 
-const mapSchoolToIcon = (school, lng) => (
+const mapSchoolToIcon = (school: string, lng: string) => (
   <SchoolIconItem key={school}>
     <SchoolIconImage
-      src={
-        lng === Lang.EN
-          ? schoolIconEnMap.allSchoolNameIconMap[school]
-          : schoolIconJaMap.allSchoolNameIconMap[school]
-      }
+      src={getSchoolIconPath(school, lng)}
       width="24px"
       height="24px"
       alt={school}
@@ -330,7 +324,7 @@ const CourseItem = ({
         }}
         className="bg-white hover:bg-light-bgSide dark:bg-dark-bgMain dark:border-dark-text3 dark:shadow-none dark:hover:bg-dark-bgSide"
       >
-        <StyledHeading className="dark:text-dark-main">
+        <StyledHeading className="dark:text-dark-text1">
           {highlightedTitle}
         </StyledHeading>
         {expandable && (
@@ -375,7 +369,7 @@ const CourseItem = ({
 
         <DescriptionWrapper
           isLarger={isRelatedCourse}
-          className="dark:text-dark-text1"
+          className="dark:text-dark-text2"
         >
           <Description>{yearTerm}</Description>
           <Description>

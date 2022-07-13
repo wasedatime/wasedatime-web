@@ -24,16 +24,16 @@ interface Props extends WithTranslation {
 }
 
 type ButtonProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const OrButton = styled(Button.Or)<ButtonProps>`
   height: 24px;
   &:before {
     background-color: ${(props) =>
-      props.isDark ? colors.dark.bgSide : colors.light.bgSide} !important;
+      props.$isDark ? colors.dark.bgSide : colors.light.bgSide} !important;
     color: ${(props) =>
-      props.isDark ? colors.dark.text2 : colors.light.text2} !important;
+      props.$isDark ? colors.dark.text2 : colors.light.text2} !important;
   }
 `;
 
@@ -65,7 +65,7 @@ const QuarterSwitch = ({
         )}{" "}
         <FontAwesomeIcon icon={faSpa} />
       </button>
-      <OrButton isDark={theme === "dark"} />
+      <OrButton $isDark={theme === "dark"} />
       <button
         onClick={() => toggleQuarter(Quarter.SUMMER)}
         style={buttonStyle}
@@ -84,12 +84,10 @@ const QuarterSwitch = ({
         style={buttonStyle}
         className="border-2 rounded border-quarter-light-fall text-quarter-light-fall hover:bg-quarter-light-fall hover:text-light-bgMain dark:border-quarter-dark-fall dark:text-quarter-dark-fall dark:hover:bg-quarter-dark-fall dark:hover:text-dark-bgMain"
       >
-        {selectedQuarter === Quarter.FALL && (
-          <FontAwesomeIcon icon={faCheck} />
-        )}{" "}
+        {selectedQuarter === Quarter.FALL && <FontAwesomeIcon icon={faCheck} />}{" "}
         <FontAwesomeIcon icon={faCanadianMapleLeaf} />
       </button>
-      <OrButton isDark={theme === "dark"} />
+      <OrButton $isDark={theme === "dark"} />
       <button
         onClick={() => toggleQuarter(Quarter.WINTER)}
         style={buttonStyle}

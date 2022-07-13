@@ -78,7 +78,7 @@
     "import/prefer-default-export": "off",
     "import/no-extraneous-dependencies": [
       "error",
-      { "devDependencies": ["**/webpack.*.js"], "peerDependencies": true }
+      { "devDependencies": [], "peerDependencies": true }
     ]
   },
   "overrides": [

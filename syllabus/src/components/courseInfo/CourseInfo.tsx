@@ -6,7 +6,7 @@ import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import levenshtein from "levenshtein-edit-distance";
+import { levenshteinEditDistance as levenshtein } from "levenshtein-edit-distance";
 import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
@@ -35,7 +35,7 @@ import { courseSchemaFullToShort } from "@app/utils/map-single-course-schema";
 import { ThemeContext } from "@app/utils/theme-context";
 
 type CourseInfoWrapperProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const CourseInfoWrapper = styled(Segment)<CourseInfoWrapperProps>`
@@ -44,7 +44,7 @@ const CourseInfoWrapper = styled(Segment)<CourseInfoWrapperProps>`
   cursor: auto;
   margin-top: 0px !important;
   border: none !important;
-  ${(props) => props.isDark && `background: ${colors.dark.bgMain} !important;`}
+  ${(props) => props.$isDark && `background: ${colors.dark.bgMain} !important;`}
 `;
 
 const RelatedCourses = styled.div`
@@ -258,7 +258,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
     return areDetailsLoaded ? (
       <CourseInfoWrapper
         className="dark:bg-dark-bgMain dark:text-dark-text1"
-        isDark={theme === "dark"}
+        $isDark={theme === "dark"}
       >
         <CourseDetails course={course} />
         <Grid className="mx-4 my-0 text-center dark:bg-dark-bgMain">
@@ -301,7 +301,7 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
             searchLang={searchLang}
           />
         ) : (
-          <LoadingTextPlaceHolder isDark={theme === "dark"} />
+          <LoadingTextPlaceHolder $isDark={theme === "dark"} />
         )}
         <StyledSubHeading className="dark:bg-dark-bgMain dark:text-dark-text1">
           {t("courseInfo.Related courses")}
@@ -331,12 +331,12 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
               </RelatedCourse>
             ))
           ) : (
-            <LoadingTextPlaceHolder isDark={theme === "dark"} />
+            <LoadingTextPlaceHolder $isDark={theme === "dark"} />
           )}
         </RelatedCourses>
       </CourseInfoWrapper>
     ) : (
-      <LoadingTextPlaceHolder isDark={theme === "dark"} />
+      <LoadingTextPlaceHolder $isDark={theme === "dark"} />
     );
   }
 }

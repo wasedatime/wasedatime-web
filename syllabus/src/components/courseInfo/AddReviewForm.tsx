@@ -104,7 +104,7 @@ const FieldLegend = styled(Divider)`
   font-size: 1.5em !important;
   width: 60% !important;
   margin: 1em 20% !important;
-  ${(props) => props.isDark && "color: #fff !important;"}
+  ${(props) => props.$isDark && "color: #fff !important;"}
 `;
 
 class AddReviewForm extends React.Component<Props, State> {
@@ -208,7 +208,7 @@ class AddReviewForm extends React.Component<Props, State> {
               e.preventDefault();
             }}
           >
-            <FieldLegend horizontal isDark={theme === "dark"}>
+            <FieldLegend horizontal $isDark={theme === "dark"}>
               {t("courseInfo.Scales")}
             </FieldLegend>
             <ScalesList>
@@ -257,7 +257,7 @@ class AddReviewForm extends React.Component<Props, State> {
             </ScalesList>
             <br />
 
-            <FieldLegend horizontal isDark={theme === "dark"}>
+            <FieldLegend horizontal $isDark={theme === "dark"}>
               {t("courseInfo.Review")}
             </FieldLegend>
             <StyledTextarea

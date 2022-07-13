@@ -11,29 +11,29 @@ https://www.materialpalette.com/colors
 */
 
 .theme-default {
-  @import "~semantic-ui-css/components/divider.min";
-  @import "~semantic-ui-css/components/statistic.min";
-  @import "~semantic-ui-css/components/grid.min";
-  @import "~semantic-ui-css/components/table.min";
-  @import "~semantic-ui-css/components/segment.min";
-  @import "~semantic-ui-css/components/button.min";
-  @import "~semantic-ui-css/components/modal.min";
-  @import "~semantic-ui-css/components/popup.min";
-  @import "~semantic-ui-css/components/message.min";
-  @import "~semantic-ui-css/components/menu.min";
-  @import "~semantic-ui-css/components/tab.min";
-  @import "~semantic-ui-css/components/card.min";
-  @import "~semantic-ui-css/components/dimmer.min";
-  @import "~semantic-ui-css/components/image.min";
-  @import "~semantic-ui-css/components/accordion.min";
-  @import "~semantic-ui-css/components/placeholder.min";
+  @import "node_modules/semantic-ui-css/components/divider.min";
+  @import "node_modules/semantic-ui-css/components/statistic.min";
+  @import "node_modules/semantic-ui-css/components/grid.min";
+  @import "node_modules/semantic-ui-css/components/table.min";
+  @import "node_modules/semantic-ui-css/components/segment.min";
+  @import "node_modules/semantic-ui-css/components/button.min";
+  @import "node_modules/semantic-ui-css/components/modal.min";
+  @import "node_modules/semantic-ui-css/components/popup.min";
+  @import "node_modules/semantic-ui-css/components/message.min";
+  @import "node_modules/semantic-ui-css/components/menu.min";
+  @import "node_modules/semantic-ui-css/components/tab.min";
+  @import "node_modules/semantic-ui-css/components/card.min";
+  @import "node_modules/semantic-ui-css/components/dimmer.min";
+  @import "node_modules/semantic-ui-css/components/image.min";
+  @import "node_modules/semantic-ui-css/components/accordion.min";
+  @import "node_modules/semantic-ui-css/components/placeholder.min";
 }
 
 #school_filter_form {
-  @import "~semantic-ui-css/components/menu.min";
-  @import "~semantic-ui-css/components/tab.min";
-  @import "~semantic-ui-css/components/card.min";
-  @import "~semantic-ui-css/components/dimmer.min";
+  @import "node_modules/semantic-ui-css/components/menu.min";
+  @import "node_modules/semantic-ui-css/components/tab.min";
+  @import "node_modules/semantic-ui-css/components/card.min";
+  @import "node_modules/semantic-ui-css/components/dimmer.min";
 }
 
 .ui.dropdown .menu.visible {

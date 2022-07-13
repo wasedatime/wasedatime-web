@@ -13,7 +13,7 @@ import styled from "styled-components";
 import { ThemeContext } from "@app/utils/theme-context";
 
 type StyledDropdownProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
@@ -23,28 +23,28 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   min-height: 32px !important;
   padding: 0.2rem 0.5rem 0.1rem 0.5rem !important;
   background-color: ${(props) =>
-    props.isDark ? colors.dark.card1 : "white"} !important;
+    props.$isDark ? colors.dark.card1 : "white"} !important;
 
   a.ui.label {
     border-width: 0px;
     border-radius: 5px;
     background-color: ${(props) =>
-      props.isDark ? colors.dark.text2 : colors.dark.text2} !important;
-    color: ${(props) => (props.isDark ? "#333" : "white")};
+      props.$isDark ? colors.dark.text2 : colors.dark.text2} !important;
+    color: ${(props) => (props.$isDark ? "#333" : "white")};
     .delete.icon {
       padding: 0px !important;
       &:before {
         content: "×";
         margin-left: 5px;
         font-size: 16px;
-        color: ${(props) => (props.isDark ? "#333" : "white")};
+        color: ${(props) => (props.$isDark ? "#333" : "white")};
       }
     }
   }
 
   .menu {
     background-color: ${(props) =>
-      props.isDark ? colors.dark.card1 : "white"} !important;
+      props.$isDark ? colors.dark.card1 : "white"} !important;
     ::-webkit-scrollbar {
       width: 0;
       background: transparent;
@@ -61,13 +61,13 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
 
   .text {
     margin: 0.4rem 1em !important;
-    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
   }
 
   i {
     padding: 0.5rem 1em !important;
     font-size: 14px !important;
-    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
   }
 `;
 
@@ -177,7 +177,7 @@ const FilterGroup = ({
           handleToggleFilter(inputName, data.value);
         }}
         aria-label={inputName}
-        isDark={theme === "dark"}
+        $isDark={theme === "dark"}
       />
     );
   }

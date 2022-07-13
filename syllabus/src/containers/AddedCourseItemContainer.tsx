@@ -1,8 +1,9 @@
 import React from "react";
 
 import ReactGA from "react-ga";
+import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import Alert from "react-s-alert";
+import { toast } from "react-toastify";
 
 import CourseItem from "@app/components/CourseItem";
 import { SyllabusKey } from "@app/constants/syllabus-data";
@@ -15,7 +16,7 @@ interface ReduxDispatchProps {
   removeCourse: (id: string) => void;
 }
 
-interface OwnProps {
+interface OwnProps extends WithTranslation {
   course: Course;
   removeCourseFromList: (course: Course) => void;
 }
@@ -32,10 +33,7 @@ class AddedCourseItemContainer extends React.Component<
     });
     removeCourseFromList(course);
     removeCourse(course[SyllabusKey.ID]);
-    Alert.success("Course removed.", {
-      position: "bottom",
-      effect: "jelly",
-    });
+    toast.success(this.props.t("alert.course removed"));
   };
 
   render() {
@@ -58,4 +56,6 @@ const mapDispatchToProps = {
   removeCourse,
 };
 
-export default connect(null, mapDispatchToProps)(AddedCourseItemContainer);
+export default withTranslation("translation")(
+  connect(null, mapDispatchToProps)(AddedCourseItemContainer)
+);

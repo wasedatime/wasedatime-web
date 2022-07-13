@@ -13,14 +13,14 @@ import FilterGroup from "@app/components/syllabus/FilterGroup";
 import { ThemeContext } from "@app/utils/theme-context";
 
 type ThemedComponentProps = {
-  isDark: boolean;
+  $isDark: boolean;
 };
 
 const Range = Slider.createSliderWithTooltip(Slider.Range);
 
 const StyledRange = styled(Range)<ThemedComponentProps>`
   ${(props) =>
-    props.isDark &&
+    props.$isDark &&
     `
       .rc-slider-rail {
         background-color: ${colors.dark.text3};
@@ -66,7 +66,7 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
   padding: 0px !important;
   padding-top: 0.3rem !important;
   background-color: ${(props) =>
-    props.isDark ? colors.dark.card1 : "white"} !important;
+    props.$isDark ? colors.dark.card1 : "white"} !important;
 
   label {
     font-family: Lato, Yu Gothic Medium, Segoe UI !important;
@@ -78,12 +78,12 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
     font-size: 1.3em !important;
     margin: 2px 1rem !important;
     color: ${(props) =>
-      props.isDark ? colors.dark.text2 : "black"} !important;
+      props.$isDark ? colors.dark.text2 : "black"} !important;
   }
 
   .menu {
     background-color: ${(props) =>
-      props.isDark ? colors.dark.card1 : "white"} !important;
+      props.$isDark ? colors.dark.card1 : "white"} !important;
     ::-webkit-scrollbar {
       width: 0;
       background: transparent;
@@ -94,7 +94,7 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
       .text {
         font-size: 16px !important;
         line-height: 1.2 !important;
-        color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
+        color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
       }
     }
   }
@@ -103,7 +103,7 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
     padding: 0.5rem 0.2rem 0.5rem 0px !important;
     font-size: 14px !important;
     font-weight: 100;
-    color: ${(props) => (props.isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
   }
 `;
 
@@ -162,7 +162,7 @@ const FilterEvalGroup = ({
             handleToggleFilter(typeInputName, data.value);
           }}
           aria-label={typeInputName}
-          isDark={theme === "dark"}
+          $isDark={theme === "dark"}
         />
         <br />
         <StyledRange
@@ -177,7 +177,7 @@ const FilterEvalGroup = ({
             `${percentInputName}Min`,
             `${percentInputName}Max`,
           ]}
-          isDark={theme === "dark"}
+          $isDark={theme === "dark"}
         />
       </EvalRangeWrapper>
       <FilterGroup

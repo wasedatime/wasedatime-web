@@ -24,7 +24,7 @@ const config = {
     endpoints: [
       {
         name: "wasedatime-dev",
-        endpoint: process.env.REACT_APP_API_BASE_URL,
+        endpoint: import.meta.env.REACT_APP_API_BASE_URL,
       },
     ],
   },
@@ -33,21 +33,10 @@ API.configure(config);
 
 configAuth();
 
-if (process.env.NODE_ENV === "production") {
-  ReactGA.initialize("UA-112185819-1", { debug: false, titleCase: false });
-  Sentry.init({
-    dsn: "https://6730c6ebd6784cee8330d59452a33d13@o498993.ingest.sentry.io/5577049",
-    environment: process.env.NODE_ENV,
-    ignoreErrors: [
-      "Network Error",
-      "NetworkError",
-      "Loading chunk",
-      "Timed out",
-    ],
-  });
-} else {
-  ReactGA.initialize("UA-112185819-4", { debug: false, titleCase: false });
-}
+ReactGA.initialize(import.meta.env.VITE_GA_ID, {
+  debug: false,
+  titleCase: false,
+});
 
 const LoadingSpinnerContainer = () => {
   const { theme } = useContext(ThemeContext);

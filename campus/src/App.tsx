@@ -1,12 +1,13 @@
-import React from "react";
+import React, { lazy } from "react";
 
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { useTranslation } from "react-i18next";
 
-import Bus from "@app/bus/Bus";
-import RoomFinder from "@app/room/RoomFinder";
 import { ThemeContext } from "@app/utils/theme-context";
-import "@app/styles/styles.scss";
+import "@app/styles/wasedatime-campus.scss";
+
+const Bus = lazy(() => import("@app/bus/Bus"));
+const RoomFinder = lazy(() => import("@app/room/RoomFinder"));
 
 const App = () => {
   const { t, i18n } = useTranslation();

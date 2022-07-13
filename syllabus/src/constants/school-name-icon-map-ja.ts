@@ -1,41 +1,41 @@
-import artIcon_jp from "@app/assets/img/syllabus-icons/art_jp.png";
-import aseIcon_jp from "@app/assets/img/syllabus-icons/ase_jp.png";
-import cieIcon_jp from "@app/assets/img/syllabus-icons/cie_jp.png";
-import cjlIcon_jp from "@app/assets/img/syllabus-icons/cjl_jp.png";
-import cmsIcon_jp from "@app/assets/img/syllabus-icons/cms_jp.png";
-import cseIcon_jp from "@app/assets/img/syllabus-icons/cse_jp.png";
-import eduIcon_jp from "@app/assets/img/syllabus-icons/edu_jp.png";
-import fseIcon_jp from "@app/assets/img/syllabus-icons/fse_jp.png";
-import gAseIcon_jp from "@app/assets/img/syllabus-icons/g_ase_jp.png";
-import gCseIcon_jp from "@app/assets/img/syllabus-icons/g_cse_jp.png";
-import gEIcon_jp from "@app/assets/img/syllabus-icons/g_e_jp.png";
-import gEduIcon_jp from "@app/assets/img/syllabus-icons/g_edu_jp.png";
-import gFseIcon_jp from "@app/assets/img/syllabus-icons/g_fse_jp.png";
-import gHumIcon_jp from "@app/assets/img/syllabus-icons/g_hum_jp.png";
-import gIpsIcon_jp from "@app/assets/img/syllabus-icons/g_ips_jp.png";
-import gItsIcon_jp from "@app/assets/img/syllabus-icons/g_its_jp.png";
-import gLasIcon_jp from "@app/assets/img/syllabus-icons/g_las_jp.png";
-import gLawIcon_jp from "@app/assets/img/syllabus-icons/g_law_jp.png";
-import gPsIcon_jp from "@app/assets/img/syllabus-icons/g_ps_jp.png";
-import gSaIcon_jp from "@app/assets/img/syllabus-icons/g_sa_jp.png";
-import gSapsIcon_jp from "@app/assets/img/syllabus-icons/g_saps_jp.png";
-import gScIcon_jp from "@app/assets/img/syllabus-icons/g_sc_jp.png";
-import gSeeeIcon_jp from "@app/assets/img/syllabus-icons/g_seee_jp.png";
-import gSiccsIcon_jp from "@app/assets/img/syllabus-icons/g_siccs_jp.png";
-import gSjalIcon_jp from "@app/assets/img/syllabus-icons/g_sjal_jp.png";
-import gSpsIcon_jp from "@app/assets/img/syllabus-icons/g_sps_jp.png";
-import gSssIcon_jp from "@app/assets/img/syllabus-icons/g_sss_jp.png";
-import gWbsIcon_jp from "@app/assets/img/syllabus-icons/g_wbs_jp.png";
-import gWlsIcon_jp from "@app/assets/img/syllabus-icons/g_wls_jp.png";
-import gecIcon_jp from "@app/assets/img/syllabus-icons/gec_jp.png";
-import hssIcon_jp from "@app/assets/img/syllabus-icons/hss_jp.png";
-import humIcon_jp from "@app/assets/img/syllabus-icons/hum_jp.png";
-import lawIcon_jp from "@app/assets/img/syllabus-icons/law_jp.png";
-import pseIcon_jp from "@app/assets/img/syllabus-icons/pse_jp.png";
-import silsIcon_jp from "@app/assets/img/syllabus-icons/sils_jp.png";
-import socIcon_jp from "@app/assets/img/syllabus-icons/soc_jp.png";
-import spsIcon_jp from "@app/assets/img/syllabus-icons/sps_jp.png";
-import sssIcon_jp from "@app/assets/img/syllabus-icons/sss_jp.png";
+import artIcon_jp from "/img/syllabus-icons/art_jp.png";
+import aseIcon_jp from "/img/syllabus-icons/ase_jp.png";
+import cieIcon_jp from "/img/syllabus-icons/cie_jp.png";
+import cjlIcon_jp from "/img/syllabus-icons/cjl_jp.png";
+import cmsIcon_jp from "/img/syllabus-icons/cms_jp.png";
+import cseIcon_jp from "/img/syllabus-icons/cse_jp.png";
+import eduIcon_jp from "/img/syllabus-icons/edu_jp.png";
+import fseIcon_jp from "/img/syllabus-icons/fse_jp.png";
+import gAseIcon_jp from "/img/syllabus-icons/g_ase_jp.png";
+import gCseIcon_jp from "/img/syllabus-icons/g_cse_jp.png";
+import gEIcon_jp from "/img/syllabus-icons/g_e_jp.png";
+import gEduIcon_jp from "/img/syllabus-icons/g_edu_jp.png";
+import gFseIcon_jp from "/img/syllabus-icons/g_fse_jp.png";
+import gHumIcon_jp from "/img/syllabus-icons/g_hum_jp.png";
+import gIpsIcon_jp from "/img/syllabus-icons/g_ips_jp.png";
+import gItsIcon_jp from "/img/syllabus-icons/g_its_jp.png";
+import gLasIcon_jp from "/img/syllabus-icons/g_las_jp.png";
+import gLawIcon_jp from "/img/syllabus-icons/g_law_jp.png";
+import gPsIcon_jp from "/img/syllabus-icons/g_ps_jp.png";
+import gSaIcon_jp from "/img/syllabus-icons/g_sa_jp.png";
+import gSapsIcon_jp from "/img/syllabus-icons/g_saps_jp.png";
+import gScIcon_jp from "/img/syllabus-icons/g_sc_jp.png";
+import gSeeeIcon_jp from "/img/syllabus-icons/g_seee_jp.png";
+import gSiccsIcon_jp from "/img/syllabus-icons/g_siccs_jp.png";
+import gSjalIcon_jp from "/img/syllabus-icons/g_sjal_jp.png";
+import gSpsIcon_jp from "/img/syllabus-icons/g_sps_jp.png";
+import gSssIcon_jp from "/img/syllabus-icons/g_sss_jp.png";
+import gWbsIcon_jp from "/img/syllabus-icons/g_wbs_jp.png";
+import gWlsIcon_jp from "/img/syllabus-icons/g_wls_jp.png";
+import gecIcon_jp from "/img/syllabus-icons/gec_jp.png";
+import hssIcon_jp from "/img/syllabus-icons/hss_jp.png";
+import humIcon_jp from "/img/syllabus-icons/hum_jp.png";
+import lawIcon_jp from "/img/syllabus-icons/law_jp.png";
+import pseIcon_jp from "/img/syllabus-icons/pse_jp.png";
+import silsIcon_jp from "/img/syllabus-icons/sils_jp.png";
+import socIcon_jp from "/img/syllabus-icons/soc_jp.png";
+import spsIcon_jp from "/img/syllabus-icons/sps_jp.png";
+import sssIcon_jp from "/img/syllabus-icons/sss_jp.png";
 
 enum School {
   SILS = "SILS",
@@ -78,7 +78,11 @@ enum School {
   GEC = "GEC",
 }
 
-export const undergradSchoolNameIconMap = {
+type SchoolNameIconMapType = {
+  [school: string]: string;
+};
+
+export const undergradSchoolNameIconMap: SchoolNameIconMapType = {
   [School.SILS]: silsIcon_jp,
   [School.PSE]: pseIcon_jp,
   [School.SSS]: sssIcon_jp,
@@ -94,7 +98,7 @@ export const undergradSchoolNameIconMap = {
   [School.SPS]: spsIcon_jp,
 };
 
-export const gradSchoolNameIconMap = {
+export const gradSchoolNameIconMap: SchoolNameIconMapType = {
   [School.G_PS]: gPsIcon_jp,
   [School.G_E]: gEIcon_jp,
   [School.G_LAW]: gLawIcon_jp,
@@ -118,14 +122,14 @@ export const gradSchoolNameIconMap = {
   [School.G_WBS]: gWbsIcon_jp,
 };
 
-export const otherSchoolNameIconMap = {
+export const otherSchoolNameIconMap: SchoolNameIconMapType = {
   [School.CJL]: cjlIcon_jp,
   [School.GEC]: gecIcon_jp,
   [School.CIE]: cieIcon_jp,
   [School.ART]: artIcon_jp,
 };
 
-export const allSchoolNameIconMap = {
+export const allSchoolNameIconMap: SchoolNameIconMapType = {
   ...undergradSchoolNameIconMap,
   ...gradSchoolNameIconMap,
   ...otherSchoolNameIconMap,

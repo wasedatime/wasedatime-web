@@ -17,8 +17,8 @@ export const addedCoursesOrderedIds = atom<AddedCoursesOrderedIds>({
   default: [],
 });
 
-export const addedCoursesSortOptions = atom<AddedCoursesSortOptions>({
-  key: "addedCoursesSortOptions",
+export const addedCoursesSortOption = atom<AddedCoursesSortOptions>({
+  key: "addedCoursesSortOption",
   default: AddedCoursesSortOptions.ADDED_ORDER,
 });
 

@@ -2,7 +2,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import {
   addedCourses as addedCoursesState,
   addedCoursesOrderedIds as addedCoursesOrderedIdsState,
-  addedCoursesSortOptions,
+  addedCoursesSortOption,
   fetchedCourses as fetchedCoursesState,
   fetchedSchools as fetchedSchoolsState,
   isCoursesFetching as isCoursesFetchingState,
@@ -81,7 +81,7 @@ export const toggleCourseVisibility = (courseId: string) => {
 
 // CHANGE_COURSES_SORTING_OPTION
 export const changeCoursesSortingOption = (option: AddedCoursesSortOptions) => {
-  const setSortOptions = useSetRecoilState(addedCoursesSortOptions);
+  const setSortOptions = useSetRecoilState(addedCoursesSortOption);
   setSortOptions(option);
 };
 

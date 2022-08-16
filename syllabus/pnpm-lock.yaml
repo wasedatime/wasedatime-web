@@ -75,6 +75,7 @@ specifiers:
   react-router-dom: 6.3.0
   react-toastify: 9.0.4
   react-waypoint: 10.1.0
+  recoil: ^0.7.5
   redux: 4.2.0
   redux-logger: 3.0.6
   redux-thunk: 2.4.1
@@ -135,6 +136,7 @@ dependencies:
   react-router-dom: 6.3.0_react-dom@17.0.2+react@17.0.2
   react-toastify: 9.0.4_react-dom@17.0.2+react@17.0.2
   react-waypoint: 10.1.0_react@17.0.2
+  recoil: 0.7.5_react-dom@17.0.2+react@17.0.2
   redux: 4.2.0
   redux-logger: 3.0.6
   redux-thunk: 2.4.1_redux@4.2.0
@@ -4665,6 +4667,10 @@ packages:
     engines: {node: '>= 10.x'}
     dev: false
 
+  /hamt_plus/1.0.2:
+    resolution: {integrity: sha1-4hwlKWjH4zsg9qGwlM2FeHomVgE=}
+    dev: false
+
   /has-ansi/2.0.0:
     resolution: {integrity: sha512-C8vBJ8DwUCx19vhm7urhTuUsr4/IyP6l4VzNQDv+ryHQObW3TTTp9yB68WpYgRe2bbaGuZ/se74IqFeVnMnLZg==}
     engines: {node: '>=0.10.0'}
@@ -6217,6 +6223,23 @@ packages:
     dependencies:
       picomatch: 2.3.1
     dev: true
+
+  /recoil/0.7.5_react-dom@17.0.2+react@17.0.2:
+    resolution: {integrity: sha512-GVShsj5+M/2GULWBs5WBJGcsNis/d3YvDiaKjYh3mLKXftjtmk9kfaQ8jwjoIXySCwn8/RhgJ4Sshwgzj2UpFA==}
+    peerDependencies:
+      react: '>=16.13.1'
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+    dependencies:
+      hamt_plus: 1.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+    dev: false
 
   /redux-logger/3.0.6:
     resolution: {integrity: sha1-91VZZvMJjzyIYExEnPC69XeCdL8=}

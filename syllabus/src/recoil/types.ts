@@ -6,6 +6,19 @@ export enum AddedCoursesSortOptions {
   COURSE_TIME = 2,
 }
 
+export type SavedState = {
+  addedCourses: {
+    byId: AddedCourses;
+    orderedIds: AddedCoursesOrderedIds;
+    sortingOption: AddedCoursesSortOptions;
+  };
+  fetchedCourses: {
+    coursesBySchool: FetchedCourses;
+    schools: FetchedSchools;
+    isFetching: boolean;
+  };
+}
+
 export type AddedCoursePref = {
   color: number;
   visibility: boolean;

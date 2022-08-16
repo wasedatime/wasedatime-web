@@ -1,4 +1,5 @@
 import React, { useEffect, lazy, Suspense, useContext } from "react";
+import localForage from "localforage";
 
 import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 import API from "@aws-amplify/api";
@@ -15,8 +16,19 @@ import { ReduxRootState } from "@app/redux/reducers";
 import { getAddedCoursePrefs } from "@app/redux/reducers/addedCourses";
 import "@app/styles/styles.scss";
 import { ThemeContext } from "@app/utils/theme-context";
+import { useSetRecoilState } from "recoil";
 
-const Timetable = lazy(() => import("@app/containers/TimetableContainer"));
+import {
+  addedCourses as addedCoursesState,
+  fetchedCourses as fetchedCoursesState,
+  addedCoursesOrderedIds as addedCoursesOrderedIdsState,
+  addedCoursesSortOption as addedCoursesSortOptionsState,
+  fetchedSchools as fetchedSchoolsState,
+  isCoursesFetching as isCoursesFetchingState
+} from "@app/recoil/atoms";
+import { SavedState } from "@app/recoil/types";
+
+const Timetable = lazy(() => import("@app/containers/TimetableContainer-bk"));
 const Syllabus = lazy(() => import("@app/containers/SyllabusContainer"));
 const Labs = lazy(() => import("@app/components/labs/Labs"));
 
@@ -41,6 +53,12 @@ const App = ({
   saveTimetable,
 }: ReduxStateProps & ReduxDispatchProps) => {
   const { theme } = useContext(ThemeContext);
+  const setAddedCourses = useSetRecoilState(addedCoursesState);
+  const setAddedCoursesOrderIds = useSetRecoilState(addedCoursesOrderedIdsState);
+  const setAddedCoursesSortOptions = useSetRecoilState(addedCoursesSortOptionsState);
+  const setFetchedCourses = useSetRecoilState(fetchedCoursesState);
+  const setFetchedSchools = useSetRecoilState(fetchedSchoolsState);
+  const setIsCoursesFetching = useSetRecoilState(isCoursesFetchingState);
 
   const postTimetable = async (idsAndPrefs) => {
     const idToken = await getIdToken();
@@ -52,7 +70,24 @@ const App = ({
     });
   };
 
+  const initAtoms = async () => {
+    localForage
+      .getItem("wasedatime-2021-state")
+      .then((state: SavedState) => {
+        if (state) {
+          setAddedCourses(state.addedCourses.byId);
+          setAddedCoursesOrderIds(state.addedCourses.orderedIds);
+          setAddedCoursesSortOptions(state.addedCourses.sortingOption);
+          setFetchedCourses(state.fetchedCourses.coursesBySchool);
+          setFetchedSchools(state.fetchedCourses.schools);
+          setIsCoursesFetching(state.fetchedCourses.isFetching);
+        }
+      })
+      .catch((err) => console.error(err));
+  }
+
   useEffect(() => {
+    initAtoms();
     const f = async () => {
       await fetchCourses();
 

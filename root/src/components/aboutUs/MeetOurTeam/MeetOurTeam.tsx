@@ -5,9 +5,9 @@ import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import {
-  AlumniList,
   CurrentList,
-} from "@app/components/aboutUs/MeetOurTeam/memberList";
+  AlumniList
+} from "@app/components/aboutUs/MeetOurTeam/MemberList";
 
 import { ProfileCard } from "@app/components/block/ProfileCard";
 
@@ -36,10 +36,10 @@ const MeetOurTeam = () => {
 
   return (
     <Wrapper>
-      <Title className="mt-3.5 mb-2.5 sm:my-5 text-3xl sm:text-4xl 2xl:text-5xl text-light-text1 dark:text-dark-text1">
+      <Title className="mt-3.5 mb-2 sm:my-5 text-3xl sm:text-4xl 2xl:text-5xl text-light-text1 dark:text-dark-text1">
         Meet Our Talented Team!
       </Title>
-      <SubTitle className="my-1.5 sm:my-5 text-2xl sm:text-3xl 2xl:text-4xl text-light-text1 dark:text-dark-text1">
+      <SubTitle className="my-1.5 sm:my-3.5 text-2xl sm:text-3xl 2xl:text-4xl text-light-text1 dark:text-dark-text1">
         Current Members
       </SubTitle>
       <CardArea>
@@ -54,7 +54,7 @@ const MeetOurTeam = () => {
         ))}
       </CardArea>
 
-      <SubTitle className="my-1.5 sm:my-5 text-2xl sm:text-3xl 2xl:text-4xl text-light-text1 dark:text-dark-text1">
+      <SubTitle className="my-1.5 sm:my-3.5 text-2xl sm:text-3xl 2xl:text-4xl text-light-text1 dark:text-dark-text1">
         Our Alumni
       </SubTitle>
       <CardArea>

@@ -18,7 +18,7 @@ const SocialMediaArea = styled("div")`
 
 const MediaIcon = styled("img")`
   width: 100%;
-  width: 1.3em;
+  width: 1.5em;
   margin: 6px 8px 4px 0px;
   text-align: center;
 `;
@@ -26,7 +26,7 @@ const MediaIcon = styled("img")`
 export interface ProfileCardProps {
   image: string;
   name: string;
-  positions: Array<string>;
+  positions?: Array<string>;
   socials?: Array<{ platform: string; link: string }>;
   profileText?: string;
   // mini?: boolean;
@@ -51,12 +51,13 @@ ProfileCardProps) => {
       onClick={handleClick}
     >
       {showCard ? (
+        // Card details open
         <div
           // Card: pic + hidden card-body +  Name
           className="card w-auto card-side rounded-8xl bg-gradient-to-r from-light-card2 to-light-card1 dark:bg-gradient-to-r dark:from-dark-card2 dark:to-dark-bgMain drop-shadow-lg translate-x-[5px] transition ease-in-out delay-200ms transition-duration:3000ms my-[9px] sm:my-[16px] z-20"
         >
           {/* Profile pic */}
-          <figure className="px-3 py-3 sm:px-5 sm:py-5">
+          <figure className="p-3 sm:p-5">
             {/* responsive for smaller screen: w/h - [100px] */}
             <img
               className="mask mask-squircle object-cover w-[150px] h-[150px] sm:w-[200px] sm:h-[200px]"
@@ -122,13 +123,16 @@ ProfileCardProps) => {
           </div>
         </div>
       ) : (
-        <div>
+        // Card details closed
+        <div className="display-flex">
+          <p 
+            className="text-center text-lg sm:text-xl text-transparent font-bold group-hover:text-light-text2 dark:group-hover:text-dark-text1 translate-y-[95px] sm:translate-y-[120px] z-10"
+          >
+            Click to view the profile!
+          </p>          
           <div>
-            <p className="text-center text-lg sm:text-xl text-transparent font-bold group-hover:text-light-text2 dark:group-hover:text-dark-text1 translate-y-[85px] sm:translate-y-[110px] z-10">
-              Click to view the profile!
-            </p>
             <img
-              className="mask mask-squircle object-cover opacity-100 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] m-2 z-0 group-hover:opacity-30"
+              className="mask mask-squircle object-cover opacity-100 w-[150px] h-[150px] sm:w-[200px] sm:h-[200px] m-[20px] z-0 group-hover:opacity-30"
               src={image}
             />
           </div>

@@ -11,7 +11,7 @@ import styled from "styled-components";
 
 import JoinUs from "@app/components/aboutUs/JoinUs";
 import OurMission from "@app/components/aboutUs/OurMission";
-import Partners from "@app/components/aboutUs/Partners";
+import Partners from "@app/components/aboutUs/PartnersPage/Partners";
 import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
 import { gaLanguage } from "@app/ga/eventCategories";
 import { ThemeContext } from "@app/utils/theme-context";

@@ -3,4 +3,5 @@ packages:
   - 'syllabus'
   - 'campus'
   - 'feeds'
+  - 'forum'
   - 'career'

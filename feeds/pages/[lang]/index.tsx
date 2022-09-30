@@ -7,6 +7,9 @@ import FeedLink from '../../components/FeedLink';
 import Grid from "@material-ui/core/Grid";
 import { useLocale } from '../../hooks/useLocale';
 import { languages } from '../../i18n.config';
+import { FeedInfo, Lang } from '../../constants/types';
+import { useState } from 'react';
+import { LangMap } from '../../constants/langs';
 
 interface StaticProps {
   params: { lang: string; }
@@ -17,8 +20,19 @@ interface HomeProps {
   lang: string;
 }
 
+const langs = ["EN", "JA", "zhCN", "zhTW"];
+
 const Home: NextPage<HomeProps> = ({ feedNames, lang }) => {
   const { locale, t } = useLocale(lang);
+  const [ filteredLang, setFilteredLang ] = useState("");
+
+  const feeds: FeedInfo[] = feedNames.map(name => ({
+    date: name.split('-')[0].replace(/_/g, '-'),
+    partner: name.split('-')[1].replace(/_/g, '-'),
+    title: name.split('-')[2].replace(/_/g, ' ').replace(/\[/g, '【').replace(/\]/g, '】').replace(/\</g, '(').replace(/\>/g, ')'),
+    lang: name.split('-')[3],
+    authors: name.split('-').slice(4).map(author => author.replace(/_/g, ' ').replace(/\</g, '(').replace(/\>/g, ')'))
+  }));
 
   return (
     <div className={styles.container}>
@@ -39,9 +53,25 @@ const Home: NextPage<HomeProps> = ({ feedNames, lang }) => {
           </p>
         </div>
 
+        <div style={{ marginBottom: 20 }}>
+          <button onClick={() => setFilteredLang("")}>
+            Clear
+            {/* Use a reset icon */}
+          </button>
+          {
+            langs.map(lang => (
+              <button onClick={() => setFilteredLang(lang)}>
+                {LangMap[lang as Lang]}
+              </button>
+            ))
+          }
+        </div>
+
         <Grid container spacing={4}>
           {
-            feedNames.map((name, i) => <FeedLink key={'feed_link' + i} name={name} locale={locale || 'en'} />)
+            feeds.filter(feed => !filteredLang || feed.lang === filteredLang).map((feed, i) => (
+              <FeedLink key={'feed_link' + i} name={feedNames[i]} feed={feed} locale={locale || 'en'} />
+            ))
           }
         </Grid>
       </main>

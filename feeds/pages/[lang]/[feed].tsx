@@ -67,6 +67,10 @@ const Feed = ({ feed, lang, filename, updatedAt }: Props) => {
         </div>
       }
 
+      <div className="mx-4 md:mx-20 my-4">      
+        <button className="w-[32px] h-[32px] rounded-full text-bold text-light-main border-2 border-light-main hover:text-white hover:bg-light-main" onClick={() => router.back()}>←</button>
+      </div>
+
       <div className="feedWrapper">
         <h1 className='text-3xl mb-8 title'>{feedInfo.title}</h1>
         <p className='info'>

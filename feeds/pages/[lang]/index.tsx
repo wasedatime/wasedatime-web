@@ -53,15 +53,19 @@ const Home: NextPage<HomeProps> = ({ feedNames, lang }) => {
         </div>
 
         <div id="filterButtonGroup" className="mb-8 inline-flex rounded-md" role="group">
-          <button type="button" id={filteredLang === "" ? "selected" : ""} className="border-l-2 rounded-l-lg" style={{ borderLeftWidth: 2 }} onClick={() => setFilteredLang("")}>
+          <button
+            type="button"
+            className={"py-2 px-2 md:px-4 text-sm font-medium border border-x-0 border-y-2 border-light-main border-l-2 rounded-l-lg " + (filteredLang === "" ? "bg-light-main text-white" : "text-light-main hover:bg-light-main hover:text-white")}
+            style={{ borderLeftWidth: 2 }}
+            onClick={() => setFilteredLang("")}
+          >
             All
           </button>
           {
             Object.values(Lang).map((lang, i) => (
               <button
                 type="button"
-                id={lang.toString() === filteredLang ? "selected" : ""}
-                className={i === Object.values(Lang).length - 1 ? "rounded-r-lg" : ""}
+                className={"py-2 px-2 md:px-4 text-sm font-medium border border-x-0 border-y-2 border-light-main " + (i === Object.values(Lang).length - 1 ? "rounded-r-lg " : " ") + (lang.toString() === filteredLang ? "bg-light-main text-white dark:text-white dark:bg-dark-main" : "text-light-main hover:bg-light-main hover:text-white")}
                 style={i === Object.values(Lang).length - 1 ? { borderRightWidth: 2 } : {}}
                 onClick={() => setFilteredLang(lang)}
               >

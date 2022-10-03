@@ -7,16 +7,16 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Hidden from "@material-ui/core/Hidden";
 import { useEffect, useState } from "react";
-import { FeedInfo, Lang } from "../constants/types";
-import { LangMap } from "../constants/langs";
+import { FeedInfo } from "../constants/types";
+import { Lang, LangMap } from "../constants/langs";
 
 const useStyles = makeStyles({
   card: {
     display: "flex",
-    padding: '0px 10px !important'
+    padding: 0
   },
   cardContent: {
-    padding: '0px !important'
+    padding: 20
   },
   cardDetails: {
     flex: 1,
@@ -27,6 +27,7 @@ const useStyles = makeStyles({
     width: 200,
   },
   title: {
+    fontSize: 20,
     fontFamily: "Lato, Yu Gothic Medium, Segoe UI"
   },
   text: {
@@ -84,6 +85,7 @@ const FeedLink = ({ name, feed, locale }: Props) => {
                 <h3 className={classes.title}>
                   {feed.title}
                 </h3>
+                <br />
                 <p className={classes.text}>
                   <b>{feed.partner}</b> {feed.authors.map((author, i) => i === 0 ? author :  ' & ' + author)}
                 </p>

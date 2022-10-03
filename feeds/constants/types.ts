@@ -5,10 +5,3 @@ export type FeedInfo = {
   lang: string;
   authors: string[];
 };
-
-export enum Lang {
-  EN = "EN",
-  JA = "JA",
-  zhCN = "zhCN",
-  zhTW = "zhTW"
-};

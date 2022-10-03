@@ -68,12 +68,12 @@ const Feed = ({ feed, lang, filename, updatedAt }: Props) => {
       }
 
       <div className="feedWrapper">
-        <h1 className='title'>{feedInfo.title}</h1>
+        <h1 className='text-3xl mb-8 title'>{feedInfo.title}</h1>
         <p className='info'>
           <b>{feedInfo.partner}</b> {feedInfo.authors.map((author, i) => i === 0 ? author :  ' & ' + author)}
         </p>
         <p className='info'>{feedInfo.date} (Last updated: {updatedAt})</p>
-        <hr />
+        <hr className="mb-8" />
         <div className='markdownWrapper'>
           <ReactMarkdown components={{ img: Img }} children={feed} />
         </div>

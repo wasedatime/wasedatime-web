@@ -67,17 +67,13 @@ const Feed = ({ feed, lang, filename, updatedAt }: Props) => {
         </div>
       }
 
-      <div className="mx-4 md:mx-20 my-4">      
-        <button className="w-[32px] h-[32px] rounded-full text-bold text-light-main border-2 border-light-main hover:text-white hover:bg-light-main" onClick={() => router.back()}>←</button>
-      </div>
-
       <div className="feedWrapper">
-        <h1 className='text-3xl mb-8 title'>{feedInfo.title}</h1>
+        <h1 className='title'>{feedInfo.title}</h1>
         <p className='info'>
           <b>{feedInfo.partner}</b> {feedInfo.authors.map((author, i) => i === 0 ? author :  ' & ' + author)}
         </p>
         <p className='info'>{feedInfo.date} (Last updated: {updatedAt})</p>
-        <hr className="mb-8" />
+        <hr />
         <div className='markdownWrapper'>
           <ReactMarkdown components={{ img: Img }} children={feed} />
         </div>

@@ -30,7 +30,7 @@
 
 .feedWrapper {
   padding: 0px 20vw;
-  padding-top: 0px;
+  padding-top: 70px;
 }
 
 .feedWrapper .title {
@@ -114,7 +114,7 @@
 @media (max-width: 768px) {
   .feedWrapper {
     padding: 0px 5vw;
-    padding-top: 0px;
+    padding-top: 70px;
   }
 
   .feedWrapper .markdownWrapper p {

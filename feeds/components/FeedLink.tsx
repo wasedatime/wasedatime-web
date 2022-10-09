@@ -7,16 +7,14 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Hidden from "@material-ui/core/Hidden";
 import { useEffect, useState } from "react";
-import { FeedInfo } from "../constants/types";
-import { Lang, LangMap } from "../constants/langs";
 
 const useStyles = makeStyles({
   card: {
     display: "flex",
-    padding: 0
+    padding: '0px 10px !important'
   },
   cardContent: {
-    padding: 20
+    padding: '0px !important'
   },
   cardDetails: {
     flex: 1,
@@ -27,7 +25,6 @@ const useStyles = makeStyles({
     width: 200,
   },
   title: {
-    fontSize: 20,
     fontFamily: "Lato, Yu Gothic Medium, Segoe UI"
   },
   text: {
@@ -43,15 +40,28 @@ const useStyles = makeStyles({
   }
 });
 
-type Props = {
-  name: string;
-  feed: FeedInfo;
-  locale: string;
+const LangMap : {
+  [key: string]: string;
+} = {
+  EN: 'English',
+  JA: '日本語',
+  zhCN: '简中',
+  zhTW: '繁中'
 }
 
-const FeedLink = ({ name, feed, locale }: Props) => {
+type LangMap = typeof LangMap[keyof typeof LangMap];
+
+const FeedLink = ({ name, locale }: { name: string; locale: string; }) => {
   const classes = useStyles();
   const [cover, setCover] = useState('');
+
+  const feedInfo = {
+    date: name.split('-')[0].replace(/_/g, '-'),
+    partner: name.split('-')[1].replace(/_/g, '-'),
+    title: name.split('-')[2].replace(/_/g, ' ').replace(/\[/g, '【').replace(/\]/g, '】').replace(/\</g, '(').replace(/\>/g, ')'),
+    lang: name.split('-')[3],
+    authors: name.split('-').slice(4).map(author => author.replace(/_/g, ' ').replace(/\</g, '(').replace(/\>/g, ')'))
+  };
 
   useEffect(() => {
     var coverImg;
@@ -83,15 +93,14 @@ const FeedLink = ({ name, feed, locale }: Props) => {
             <div className={classes.cardDetails}>
               <CardContent className={classes.cardContent}>
                 <h3 className={classes.title}>
-                  {feed.title}
+                  {feedInfo.title}
                 </h3>
-                <br />
                 <p className={classes.text}>
-                  <b>{feed.partner}</b> {feed.authors.map((author, i) => i === 0 ? author :  ' & ' + author)}
+                  <b>{feedInfo.partner}</b> {feedInfo.authors.map((author, i) => i === 0 ? author :  ' & ' + author)}
                 </p>
                 <p className={classes.text}>
-                  {feed.date}
-                  <span className={classes.lang}>{LangMap[feed.lang as Lang]}</span>
+                  {feedInfo.date}
+                  <span className={classes.lang}>{LangMap[feedInfo.lang]}</span>
                 </p>
               </CardContent>
             </div>

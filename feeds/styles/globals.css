@@ -1,6 +1,6 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
 
 @font-face {
   font-family: "Segoe UI";
@@ -37,4 +37,8 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Lato, Yu Gothic Medium, Segoe UI;
 }

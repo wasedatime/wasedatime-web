@@ -57,6 +57,11 @@
   "dependencies": {
     "@aws-amplify/auth": "4.4.4",
     "@bit/wasedatime.core.theme.colors": "^0.0.5",
+    "@bit/wasedatime.core.ts.constants.langs": "0.0.5",
+    "@bit/wasedatime.core.ts.ui.header": "0.2.21",
+    "@bit/wasedatime.core.ts.ui.loading-spinner": "0.1.5",
+    "@bit/wasedatime.core.ts.utils.i18n": "0.0.4",
+    "@bit/wasedatime.core.ts.utils.responsive-utils": "0.0.1",
     "@fortawesome/free-solid-svg-icons": "6.0.0",
     "@fortawesome/react-fontawesome": "0.1.17",
     "@types/react": "17.0.39",

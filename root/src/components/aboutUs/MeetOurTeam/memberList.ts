@@ -37,6 +37,8 @@ export interface Members {
   positions: Array<string>;
   socials?: Array<{ platform: string; link: string }>;
   profileText?: string;
+  isOpen?: boolean;
+  onClick?: () => void;
 }
 
 export const CurrentList: Array<Members> = [

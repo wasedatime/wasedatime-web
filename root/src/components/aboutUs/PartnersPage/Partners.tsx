@@ -4,10 +4,7 @@ import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
-import {
-  CurrentList,
-  AlumniList,
-} from "@app/components/aboutUs/MeetOurTeam/memberList";
+import { PartnerList } from "@app/components/aboutUs/PartnersPage/PartnerList";
 
 import { ProfileCard } from "@app/components/block/ProfileCard";
 
@@ -31,7 +28,7 @@ const CardArea = styled("div")`
   justify-content: space-evenly;
 `;
 
-const MeetOurTeam = () => {
+const Partners = () => {
   const { t } = useTranslation();
   const [activeCardName, setActiveCardName] = useState("");
 
@@ -44,32 +41,13 @@ const MeetOurTeam = () => {
         Current Members
       </SubTitle>
       <CardArea>
-        {CurrentList.map((member) => (
+        {PartnerList.map((org) => (
           <ProfileCard
-            image={member.image}
-            name={member.name}
-            positions={member.positions}
-            socials={member.socials}
-            profileText={member.profileText}
-            isOpen={member.name === activeCardName}
-            onClick={() => setActiveCardName(member.name)}
-          />
-        ))}
-      </CardArea>
-
-      <SubTitle className="my-1.5 sm:my-5 text-2xl sm:text-3xl 2xl:text-4xl text-light-text1 dark:text-dark-text1">
-        Our Alumni
-      </SubTitle>
-      <CardArea>
-        {AlumniList.map((member) => (
-          <ProfileCard
-            image={member.image}
-            name={member.name}
-            positions={member.positions}
-            socials={member.socials}
-            profileText={member.profileText}
-            onClick={() => setActiveCardName(member.name)}
-            isOpen={member.name === activeCardName}
+            image={org.img}
+            name={org.org}
+            socials={org.socials}
+            isOpen={org.org === activeCardName}
+            onClick={() => setActiveCardName(org.org)}
           />
         ))}
       </CardArea>
@@ -77,4 +55,4 @@ const MeetOurTeam = () => {
   );
 };
 
-export default MeetOurTeam;
+export default Partners;

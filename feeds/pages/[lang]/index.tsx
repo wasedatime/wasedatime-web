@@ -24,6 +24,7 @@ const Home: NextPage<HomeProps> = ({ feedNames, lang }) => {
   const [ filteredLang, setFilteredLang ] = useState("");
 
   const feeds: FeedInfo[] = feedNames.map(name => ({
+    name: name,
     date: name.split('-')[0].replace(/_/g, '-'),
     partner: name.split('-')[1].replace(/_/g, '-'),
     title: name.split('-')[2].replace(/_/g, ' ').replace(/\[/g, '【').replace(/\]/g, '】').replace(/\</g, '(').replace(/\>/g, ')'),
@@ -78,7 +79,7 @@ const Home: NextPage<HomeProps> = ({ feedNames, lang }) => {
         <Grid container spacing={4}>
           {
             feeds.filter(feed => !filteredLang || feed.lang === filteredLang).map((feed, i) => (
-              <FeedLink key={'feed_link' + i} name={feedNames[i]} feed={feed} locale={locale || 'en'} />
+              <FeedLink key={'feed_link' + i} name={feed.name} feed={feed} locale={locale || 'en'} />
             ))
           }
         </Grid>

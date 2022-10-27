@@ -1,5 +1,5 @@
 export type FeedInfo = {
-  date: string;
+  name: string;
   partner: string;
   title: string;
   lang: string;

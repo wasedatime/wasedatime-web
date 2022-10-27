@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 
 import {
-  AlumniList,
   CurrentList,
+  AlumniList,
 } from "@app/components/aboutUs/MeetOurTeam/memberList";
 
 import { ProfileCard } from "@app/components/block/ProfileCard";
@@ -33,6 +33,11 @@ const CardArea = styled("div")`
 
 const MeetOurTeam = () => {
   const { t } = useTranslation();
+  const [activeCardName, setActiveCardName] = useState("");
+
+  useEffect(() => {
+    console.log(activeCardName);
+  }, [activeCardName]);
 
   return (
     <Wrapper>
@@ -50,6 +55,9 @@ const MeetOurTeam = () => {
             positions={member.positions}
             socials={member.socials}
             profileText={member.profileText}
+            isOpen={activeCardName !== "" && member.name === activeCardName}
+            onClick={() => setActiveCardName(member.name)}
+            onClose={() => setActiveCardName("")}
           />
         ))}
       </CardArea>
@@ -65,6 +73,8 @@ const MeetOurTeam = () => {
             positions={member.positions}
             socials={member.socials}
             profileText={member.profileText}
+            onClick={() => setActiveCardName(member.name)}
+            isOpen={member.name === activeCardName}
           />
         ))}
       </CardArea>

@@ -30,6 +30,7 @@ export interface ProfileCardProps {
   socials?: Array<{ platform: string; link: string }>;
   profileText?: string;
   onClick?: () => void;
+  onClose?: () => void;
   isOpen?: boolean;
   // mini?: boolean;
 }
@@ -41,19 +42,20 @@ export const ProfileCard = ({
   socials,
   profileText,
   onClick,
+  onClose,
   isOpen,
 }: // mini,
 ProfileCardProps) => {
-  // const [showCard, setShowCard] = useState<boolean>(false);
+  const [showCard, setShowCard] = useState<boolean>(false);
 
-  // const handleClick = () => {
-  //   setShowCard(!showCard);
-  // };
+  const handleClick = () => {
+    setShowCard(!showCard);
+  };
 
   return (
     <Card
       className="block group cursor-pointer transition ease-in-out delay-300ms transition-duration:1500ms md:mx-8 md:my-6 lg:mx-10 lg:my-8"
-      onClick={onClick}
+      
     >
       {isOpen ? (
         <div className="card w-auto card-side rounded-8xl bg-gradient-to-r from-light-card2 to-light-card1 dark:bg-gradient-to-r dark:from-dark-card2 dark:to-dark-bgMain drop-shadow-lg translate-x-[5px] transition ease-in-out delay-200ms transition-duration:3000ms my-[9px] sm:my-[16px] z-20">
@@ -68,8 +70,8 @@ ProfileCardProps) => {
           {/* Card Body */}
           <div className="card-body items-left text-left w-[200px] sm:w-[260px] block opacity-100 p-[10px] sm:p-[20px]">
             {/* close button from daisyui */}
-            <div className="card-actions justify-end">
-              <button className="btn btn-square btn-sm border-transparent hover:border-transparent bg-light-card1 hover:bg-light-card2 focus:bg-light-card3 dark:bg-transparent dark:hover:bg-dark-card1 dark:focus:bg-dark-card2">
+            <div className="card-actions justify-end" onClick={onClose}>
+              <button onClick={onClose} className="btn btn-square btn-sm border-transparent hover:border-transparent bg-light-card1 hover:bg-light-card2 focus:bg-light-card3 dark:bg-transparent dark:hover:bg-dark-card1 dark:focus:bg-dark-card2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 stroke-light-darker dark:stroke-dark-main"
@@ -125,7 +127,7 @@ ProfileCardProps) => {
         </div>
       ) : (
         // Card: pic + hidden card-body +  Name
-        <div>
+        <div onClick={onClick}>
           <div>
             <p className="text-center text-lg sm:text-xl text-transparent font-bold group-hover:text-light-text2 dark:group-hover:text-dark-text1 translate-y-[85px] sm:translate-y-[110px] z-10">
               Click to view the profile!

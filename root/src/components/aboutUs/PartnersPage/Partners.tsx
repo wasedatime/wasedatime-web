@@ -46,8 +46,9 @@ const Partners = () => {
             image={org.img}
             name={org.org}
             socials={org.socials}
-            isOpen={org.org === activeCardName}
+            isOpen={activeCardName !== "" && org.org === activeCardName}
             onClick={() => setActiveCardName(org.org)}
+            onClose={() => setActiveCardName("")}
           />
         ))}
       </CardArea>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import { useTranslation } from "react-i18next";
@@ -35,6 +35,10 @@ const MeetOurTeam = () => {
   const { t } = useTranslation();
   const [activeCardName, setActiveCardName] = useState("");
 
+  useEffect(() => {
+    console.log(activeCardName);
+  }, [activeCardName]);
+
   return (
     <Wrapper>
       <Title className="mt-3.5 mb-2.5 sm:my-5 text-3xl sm:text-4xl 2xl:text-5xl text-light-text1 dark:text-dark-text1">
@@ -51,8 +55,9 @@ const MeetOurTeam = () => {
             positions={member.positions}
             socials={member.socials}
             profileText={member.profileText}
-            isOpen={member.name === activeCardName}
+            isOpen={activeCardName !== "" && member.name === activeCardName}
             onClick={() => setActiveCardName(member.name)}
+            onClose={() => setActiveCardName("")}
           />
         ))}
       </CardArea>

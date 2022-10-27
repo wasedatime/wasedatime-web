@@ -26,9 +26,12 @@ const MediaIcon = styled("img")`
 export interface ProfileCardProps {
   image: string;
   name: string;
-  positions: Array<string>;
+  positions?: Array<string>;
   socials?: Array<{ platform: string; link: string }>;
   profileText?: string;
+  onClick?: () => void;
+  onClose?: () => void;
+  isOpen?: boolean;
   // mini?: boolean;
 }
 
@@ -38,9 +41,13 @@ export const ProfileCard = ({
   positions,
   socials,
   profileText,
+  onClick,
+  onClose,
+  isOpen,
 }: // mini,
 ProfileCardProps) => {
   const [showCard, setShowCard] = useState<boolean>(false);
+
   const handleClick = () => {
     setShowCard(!showCard);
   };
@@ -48,13 +55,10 @@ ProfileCardProps) => {
   return (
     <Card
       className="block group cursor-pointer transition ease-in-out delay-300ms transition-duration:1500ms md:mx-8 md:my-6 lg:mx-10 lg:my-8"
-      onClick={handleClick}
+      
     >
-      {showCard ? (
-        <div
-          // Card: pic + hidden card-body +  Name
-          className="card w-auto card-side rounded-8xl bg-gradient-to-r from-light-card2 to-light-card1 dark:bg-gradient-to-r dark:from-dark-card2 dark:to-dark-bgMain drop-shadow-lg translate-x-[5px] transition ease-in-out delay-200ms transition-duration:3000ms my-[9px] sm:my-[16px] z-20"
-        >
+      {isOpen ? (
+        <div className="card w-auto card-side rounded-8xl bg-gradient-to-r from-light-card2 to-light-card1 dark:bg-gradient-to-r dark:from-dark-card2 dark:to-dark-bgMain drop-shadow-lg translate-x-[5px] transition ease-in-out delay-200ms transition-duration:3000ms my-[9px] sm:my-[16px] z-20">
           {/* Profile pic */}
           <figure className="px-3 py-3 sm:px-5 sm:py-5">
             {/* responsive for smaller screen: w/h - [100px] */}
@@ -66,7 +70,7 @@ ProfileCardProps) => {
           {/* Card Body */}
           <div className="card-body items-left text-left w-[200px] sm:w-[260px] block opacity-100 p-[10px] sm:p-[20px]">
             {/* close button from daisyui */}
-            <div className="card-actions justify-end">
+            <div className="card-actions justify-end" onClick={onClose}>
               <button className="btn btn-square btn-sm border-transparent hover:border-transparent bg-light-card1 hover:bg-light-card2 focus:bg-light-card3 dark:bg-transparent dark:hover:bg-dark-card1 dark:focus:bg-dark-card2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +126,8 @@ ProfileCardProps) => {
           </div>
         </div>
       ) : (
-        <div>
+        // Card: pic + hidden card-body +  Name
+        <div onClick={onClick}>
           <div>
             <p className="text-center text-lg sm:text-xl text-transparent font-bold group-hover:text-light-text2 dark:group-hover:text-dark-text1 translate-y-[85px] sm:translate-y-[110px] z-10">
               Click to view the profile!

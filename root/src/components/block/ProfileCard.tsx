@@ -71,7 +71,7 @@ ProfileCardProps) => {
           <div className="card-body items-left text-left w-[200px] sm:w-[260px] block opacity-100 p-[10px] sm:p-[20px]">
             {/* close button from daisyui */}
             <div className="card-actions justify-end" onClick={onClose}>
-              <button onClick={onClose} className="btn btn-square btn-sm border-transparent hover:border-transparent bg-light-card1 hover:bg-light-card2 focus:bg-light-card3 dark:bg-transparent dark:hover:bg-dark-card1 dark:focus:bg-dark-card2">
+              <button className="btn btn-square btn-sm border-transparent hover:border-transparent bg-light-card1 hover:bg-light-card2 focus:bg-light-card3 dark:bg-transparent dark:hover:bg-dark-card1 dark:focus:bg-dark-card2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 stroke-light-darker dark:stroke-dark-main"

@@ -57,8 +57,12 @@
   "dependencies": {
     "@aws-amplify/auth": "4.4.4",
     "@bit/wasedatime.core.theme.colors": "^0.0.5",
+    "@emotion/react": "11.9.0",
+    "@emotion/styled": "11.8.1",
     "@fortawesome/free-solid-svg-icons": "6.0.0",
     "@fortawesome/react-fontawesome": "0.1.17",
+    "@mui/icons-material": "5.8.3",
+    "@mui/material": "5.8.3",
     "@types/react": "17.0.39",
     "@types/react-dom": "17.0.13",
     "@types/styled-components": "5.1.24",

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { StickyNote2, StickyNote2Outlined } from '@mui/icons-material'
+import { StickyNote2, StickyNote2Outlined } from "@mui/icons-material";
 // @mui/icons-material";
 
 export const CoursesIcon = () => <StickyNote2Outlined fontSize="medium" />;

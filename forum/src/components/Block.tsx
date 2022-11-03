@@ -8,19 +8,19 @@ type Props = {
     title: string;
     onClick: () => void;
   }[];
-}
+};
 
 const Block = ({ children, actions }: Props) => {
   return (
     <div>
-      { children }
+      {children}
       <div>
-        {
-          actions.map(action => <BlockAction action={action} />)
-        }
+        {actions.map((action) => (
+          <BlockAction action={action} />
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default Block;

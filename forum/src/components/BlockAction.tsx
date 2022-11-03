@@ -6,14 +6,15 @@ type Props = {
     title: string;
     onClick: () => void;
   };
-}
+};
 
 const BlockAction = ({ action }: Props) => {
   return (
     <div onClick={action.onClick}>
-      {action.title} Button
+      {action.title}
+      {/* This is in Block Action */}
     </div>
-  )
-}
+  );
+};
 
 export default BlockAction;

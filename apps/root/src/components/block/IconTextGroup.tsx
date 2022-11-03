@@ -63,7 +63,7 @@ export const IconTextGroup = ({
   expanded,
   currentPath,
 }: IconTextGroupProps) => {
-  const [ isHover, setIsHover ] = useState(false);
+  const [isHover, setIsHover] = useState(false);
   return (
     <NavItemBlock
       className="group text-light-text2 dark:text-dark-text2"

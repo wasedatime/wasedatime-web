@@ -28,7 +28,7 @@ const App = () => {
             changeLang={(lng: string | undefined) => i18n.changeLanguage(lng)}
           />
         </div>
-        <div className="basis-[calc(100vh-67px)] flex flex-col lg:flex-row">
+        <div className="basis-[calc(100vh-67px)] flex flex-col">
           {/* <div className="basis-[60px] lg:basis-[20%] bg-zinc-100 dark:bg-zinc-700 dark:text-dark-text1">
             <BoardMenu />
           </div> */}
@@ -37,16 +37,20 @@ const App = () => {
           </div>
           {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
           <div className="flex h-screen justify-between pl-2 gap-4">
-            <Routes>
-              <Route element={<Board />} path="forum/:boardId" />
-              <Route element={<Thread />} path="forum/:board/:threadId" />
-            </Routes>
+            <div className="flex flex-row w-full">
+              <div className="w-5/6">
+                <Routes>
+                  <Route element={<Board />} path="forum/:boardId" />
+                  <Route element={<Thread />} path="forum/:board/:threadId" />
+                </Routes>
+              </div>
+              <div className="bg-gray-100 md:h-full flex w-1/6">
+                <h1 className="my-auto">Advertisement</h1>
+              </div>
+            </div>
           </div>
         </div>
       </BrowserRouter>
-      <div className="bg-gray-100 md:h-full flex">
-        <h1 className="my-auto">Advertisement</h1>
-        </div>
     </div>
   )
 }

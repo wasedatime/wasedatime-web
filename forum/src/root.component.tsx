@@ -20,7 +20,7 @@ i18nConfig({
 
 export default function Root(props) {
   return (
-    <section>
+    <section className="h-screen">
       <ThemeProvider>
         <App />
       </ThemeProvider>

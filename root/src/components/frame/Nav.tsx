@@ -19,6 +19,7 @@ import {
   CampusIconHovered,
 } from "@app/components/icons/CampusIcon";
 import { FeedsIcon, FeedsIconHovered } from "@app/components/icons/FeedsIcon";
+import { ForumIcon, ForumIconHovered } from "@app/components/icons/ForumIcon";
 import {
   SyllabusIcon,
   SyllabusIconHovered,
@@ -95,6 +96,12 @@ const Nav = () => {
       path: "/feeds",
       icon: <FeedsIcon />,
       iconHovered: <FeedsIconHovered />,
+    },
+    {
+      name: t("navigation.forum"),
+      path: "/forum",
+      icon: <ForumIcon />,
+      iconHovered: <ForumIconHovered />,
     },
   ];
 

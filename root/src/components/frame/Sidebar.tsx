@@ -110,6 +110,7 @@ const Sidebar = ({ navItems, openSignInModal }: SidebarProps) => {
           >
             <IconTextGroup
               icon={item.icon}
+              hoverIcon={item.iconHovered}
               text={item.name}
               iconPath={item.path}
               expanded={expanded}

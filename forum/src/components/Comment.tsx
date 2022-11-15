@@ -3,7 +3,7 @@ import Block from "./Block";
 
 type Props = {
   comment: any;
-}
+};
 
 const Comment = ({ comment }: Props) => {
   const actions = [
@@ -26,7 +26,7 @@ const Comment = ({ comment }: Props) => {
       </p>
       </div>
     </Block>
-  )
-}
+  );
+};
 
 export default Comment;

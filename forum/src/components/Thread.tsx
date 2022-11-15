@@ -46,11 +46,11 @@ threadAuthor: 'Waseda Taro',
     <div className='border-2 mt-12 mx-16 rounded-xl shadow-lg pb-6 h-fit px-4'>
       <ThreadBlock isPreview={false} thread={thread} />
       <CommentForm />
-      {
-        comments.map(comment => <Comment comment={comment} />)
-      }
+      {comments.map((comment) => (
+        <Comment comment={comment} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
 export default Thread;

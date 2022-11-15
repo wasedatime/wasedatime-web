@@ -1,16 +1,20 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import ThreadBlock from "./ThreadBlock";
 
+
+
 const Board = () => {
+
+
   const { boardId } = useParams();
 
   const threads: any[] = [
     {
       // univId: '12345' -> Future feature for different universities (According to Trello)
-      boardId: boardId,
+      boardId: 'Free Chat',
       userId: 'userid123',
-      // threadId: threadId,
+      threadId: '12345',
       threadTitle: 'Hello world',
       threadAuthor: 'Waseda Taro',
       threadBody:'This is the body located in the Board component.',
@@ -19,10 +23,10 @@ const Board = () => {
     },
     {
       // univId: '12345' -> Future feature for different universities (According to Trello)
-      boardId: boardId,
+      boardId: 'Courses',
       userId: 'userid123',
-      // threadId: threadId,
-      threadTitle: 'Hello world',
+      threadId: '12346',
+      threadTitle: 'Hello world (Courses)',
       threadAuthor: 'Waseda Taro',
       threadBody:'This is the body located in the Board component.',
       createdAt: 'October 1, 2022',
@@ -30,10 +34,10 @@ const Board = () => {
     },
     {
       // univId: '12345' -> Future feature for different universities (According to Trello)
-      boardId: boardId,
+      boardId: 'Research',
       userId: 'userid123',
-      // threadId: threadId,
-      threadTitle: 'Hello world',
+      threadId: '12346',
+      threadTitle: 'Hello world (Research)',
       threadAuthor: 'Waseda Taro',
       threadBody:'This is the body located in the Board component.',
       createdAt: 'October 1, 2022',
@@ -44,10 +48,10 @@ const Board = () => {
   return (
     <div className="max-w-3/5 w-3/5 mx-auto">
       {
-        threads.map(thread => <ThreadBlock isPreview={true} thread={thread} />)
+        threads.map(thread => <ThreadBlock isPreview={true} thread={thread}/>)
       }
     </div>
-  )
-}
+  );
+};
 
 export default Board;

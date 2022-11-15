@@ -1,43 +1,59 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "@bit/wasedatime.core.ts.ui.header";
 
+import { ThemeContext } from "@app/utils/theme-context";
 import Board from "./Board";
-import BoardMenu from "./BoardMenu";
-import Thread from "./Thread";
+import BoardMenu from "@app/components/BoardMenu";
+import Thread from "@app/components/Thread";
+
 
 const App = () => {
+  const { t, i18n } = useTranslation();
+  const { theme, setTheme } = React.useContext(ThemeContext);
+
   return (
-    <>
-    <div className="justify-between">
-    <BoardMenu />
-    </div>
-    {/* This code can become a new component from here */}
-      <div className="flex h-screen justify-between pl-2 gap-4">
-        <div className="w-64 text-center">
-          <h1>Home ---- Group</h1>
-          <h1 className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2">Select the School</h1>
-          <h1>Undergrad, Grad</h1>
-          <div className="border px-4 py-2 rounded-xl">
-            <h1>Spring Semester</h1>
-          </div>
-          <h1>Languages</h1>
-          <div className="border px-4 py-2 rounded-xl">
-            <h1>English</h1>
-          </div>
-        </div>
-        {/* End of new component code */}
+    <div className="flex flex-col">
       <BrowserRouter>
-        <Routes>
-          <Route element={<Board />} path="forum/:boardId" />
-          <Route element={<Thread />} path="forum/:board/:threadId" />
-        </Routes>
-      </BrowserRouter>
-      <div className="bg-gray-100 md:h-full flex">
-        <h1 className="my-auto">Advertisement</h1>
+        <div className="basis-[67px]">
+          <Header
+            title={t("navigation.forum")}
+            onInputChange={() => {}}
+            placeholder={t("search placeholder")}
+            inputText=""
+            disabled
+            isBlur={false}
+            theme={theme}
+            setTheme={setTheme}
+            changeLang={(lng: string | undefined) => i18n.changeLanguage(lng)}
+          />
         </div>
+        <div className="basis-[calc(100vh-67px)] flex flex-col">
+          {/* <div className="basis-[60px] lg:basis-[20%] bg-zinc-100 dark:bg-zinc-700 dark:text-dark-text1">
+            <BoardMenu />
+          </div> */}
+          <div className="justify-between">
+            <BoardMenu />
+          </div>
+          {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
+          <div className="flex h-screen justify-between pl-2 gap-4">
+            <div className="flex flex-row w-full">
+              <div className="w-5/6">
+                <Routes>
+                  <Route element={<Board />} path="forum/:boardId" />
+                  <Route element={<Thread />} path="forum/:board/:threadId" />
+                </Routes>
+              </div>
+              <div className="bg-gray-100 md:h-full flex w-1/6">
+                <h1 className="my-auto">Advertisement</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </BrowserRouter>
     </div>
-    </>
-  )
-}
+  );
+};
 
 export default App;

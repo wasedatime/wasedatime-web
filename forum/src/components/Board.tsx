@@ -12,7 +12,7 @@ const Board = () => {
   const threads: any[] = [
     {
       // univId: '12345' -> Future feature for different universities (According to Trello)
-      boardId: 'Free Chat',
+      boardId: 'freechat',
       userId: 'userid123',
       threadId: '12345',
       threadTitle: 'Hello world',
@@ -23,7 +23,7 @@ const Board = () => {
     },
     {
       // univId: '12345' -> Future feature for different universities (According to Trello)
-      boardId: 'Courses',
+      boardId: 'courses',
       userId: 'userid123',
       threadId: '12346',
       threadTitle: 'Hello world (Courses)',
@@ -34,7 +34,7 @@ const Board = () => {
     },
     {
       // univId: '12345' -> Future feature for different universities (According to Trello)
-      boardId: 'Research',
+      boardId: 'research',
       userId: 'userid123',
       threadId: '12346',
       threadTitle: 'Hello world (Research)',
@@ -46,9 +46,9 @@ const Board = () => {
   ];
 
   return (
-    <div className="max-w-3/5 w-3/5 mx-auto">
+    <div className="max-w-2/5 w-5/6 mx-auto h-full">
       {
-        threads.map(thread => <ThreadBlock isPreview={true} thread={thread}/>)
+        threads.filter(thread => thread.boardId === boardId).map(thread => <ThreadBlock isPreview={true} thread={thread}/>)
       }
     </div>
   );

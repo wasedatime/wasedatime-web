@@ -16,10 +16,15 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
       onClick: () => {}
     }
   ];
+
+  // const navigate = useNavigate()
+
   return (
     <Block actions={actions}>
       <Link to={isPreview ? `${thread.threadId}` : ``}>
       <div className={isPreview ? `border-2 mt-12 mx-16 rounded-xl shadow-lg pb-6 hover:bg-gray-50` : `cursor-default`}>
+        {/* {isPreview ? `` : <div onClick={() => navigate(-1)} className='text-xs mt-2 cursor-pointer text-gray-400 hover:text-gray-500 w-fit'>Back</div>} */}
+        {/* ^ This line goes to parent board on click while in thread */}
         <div className={`px-2`}>
         <div className="flex justify-between mt-2">
         <h1 className='text-2xl text-light-main my-auto'>{thread.threadTitle}</h1>

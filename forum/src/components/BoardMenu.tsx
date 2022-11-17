@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 // import { CoursesIcon, CoursesIconHovered, } from './icons/CoursesIcon'
 // import { FreeChatIcon, FreeChatIconHovered } from './icons/FreeChatIcon';
@@ -38,7 +38,7 @@ const menuItems: any[] = [
 const BoardMenu = () => {
 
   return (
-    <div className='bg-gray-100 flex justify-evenly'>
+    <div className='flex text-lg justify-evenly'>
       { menuItems.map(item => <>
       <div className="px-3.5 py-2 md:py-6">
         <div className={`text-center hover:text-light-main cursor-pointer`}>

@@ -1,14 +1,20 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
-const FilterMenu = () => 
-{
+const FilterMenu = () => {
 const [openSchoolModal, setOpenSchoolModal] = useState(false)
+const navigate = useNavigate()
+
 
   return (
-    // New component created by Michael
+    // New component created by Michael -- Zero functionality so far, moreso there for visuals
     <div className="w-64 text-center">
-          <h1>Home ---- Group</h1>
+          <div className='flex justify-center gap-4'>
+          <h1 onClick={() => navigate('/forum')} className='cursor-pointer'>Home</h1>
+          <h1 onClick={() => navigate(`/forum/courses`)}  className='cursor-pointer'>Courses</h1>
+          </div>
+          
           <h1 className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2" onClick={() => setOpenSchoolModal(!openSchoolModal)}>Select the School</h1>
           {/* School Select Div */}
           <h1>Undergrad, Grad</h1>

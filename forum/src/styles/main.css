@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.form-item-title {
+  @apply w-full border-b-2 border-light-lighter text-left py-1;
+}

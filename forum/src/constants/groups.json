@@ -1,0 +1,16 @@
+{
+  "Degree": [
+    "Undergraduate",
+    "Graduate"
+  ],
+  "Campus (Field of study)": [
+    "Main & Toyama (Liberal arts)",
+    "Nishi-Waseda (Science and Engineering)"
+  ],
+  "Identity": [
+    "Domestic students",
+    "International students",
+    "Exchange students",
+    "Faculty"
+  ]
+}

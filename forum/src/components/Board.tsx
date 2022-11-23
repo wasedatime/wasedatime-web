@@ -30,10 +30,10 @@ const Board = () => {
     },
     {
       // univId: '12345' -> Future feature for different universities (According to Trello)
-      boardId: "research",
+      boardId: "life",
       userId: "userid123",
       threadId: "12346",
-      threadTitle: "Hello world (Research)",
+      threadTitle: "Hello world (Life)",
       threadAuthor: "Waseda Taro",
       threadBody: "This is the body located in the Board component.",
       createdAt: "October 1, 2022",

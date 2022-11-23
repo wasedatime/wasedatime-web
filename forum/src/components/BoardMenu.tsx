@@ -14,8 +14,8 @@ const menuItems: any[] = [
   },
   {
     // icon: <ResearchIcon />,
-    title: "Research",
-    slug: "research",
+    title: "Life",
+    slug: "life",
   },
   {
     // icon: <JobHuntingIcon />,

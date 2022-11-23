@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-// import { CoursesIcon, CoursesIconHovered, } from './icons/CoursesIcon'
-// import { FreeChatIcon, FreeChatIconHovered } from './icons/FreeChatIcon';
-// import { JobHuntingIcon, JobHuntingIconHovered } from './icons/JobHuntingIcon';
-// import { LifeIcon, LifeIconHovered } from "./icons/LifeIcon";
-// import { ResearchIcon, ResearchIconHovered } from './icons/ResearchIcon';
 
 const menuItems: any[] = [
   {

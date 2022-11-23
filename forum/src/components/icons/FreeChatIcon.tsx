@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Chat, ChatOutlined } from '@mui/icons-material'
+import { Chat, ChatOutlined } from "@mui/icons-material";
 
 export const FreeChatIcon = () => <ChatOutlined fontSize="medium" />;
 

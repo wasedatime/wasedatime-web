@@ -9,7 +9,6 @@ import BoardMenu from "@app/components/BoardMenu";
 import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
 
-
 const App = () => {
   const { t, i18n } = useTranslation();
   const { theme, setTheme } = React.useContext(ThemeContext);

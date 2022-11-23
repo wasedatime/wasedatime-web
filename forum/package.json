@@ -37,6 +37,7 @@
     "eslint-config-airbnb": "19.0.4",
     "eslint-config-prettier": "8.5.0",
     "eslint-config-react-app": "7.0.0",
+    "eslint-config-ts-react-important-stuff": "3.0.0",
     "eslint-plugin-import": "2.25.4",
     "eslint-plugin-jsx-a11y": "6.5.1",
     "eslint-plugin-prefer-arrow": "1.2.3",

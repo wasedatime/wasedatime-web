@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const CommentForm = () => {
   return (
     <div className="flex justify-between">

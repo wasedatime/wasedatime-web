@@ -4,9 +4,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 
 import { ThemeContext } from "@app/utils/theme-context";
-import Board from "@app/components/Board";
+import Board from "./Board";
 import BoardMenu from "@app/components/BoardMenu";
 import Thread from "@app/components/Thread";
+import FilterMenu from "./FilterMenu";
 
 const App = () => {
   const { t, i18n } = useTranslation();
@@ -38,10 +39,11 @@ const App = () => {
           {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
           <div className="flex h-screen justify-between pl-2 gap-4">
             <div className="flex flex-row w-full">
+              <FilterMenu />
               <div className="w-5/6">
                 <Routes>
                   <Route element={<Board />} path="forum/:boardId" />
-                  <Route element={<Thread />} path="forum/:board/:threadId" />
+                  <Route element={<Thread />} path="forum/:boardId/:threadId" />
                 </Routes>
               </div>
               <div className="bg-gray-100 md:h-full flex w-1/6">

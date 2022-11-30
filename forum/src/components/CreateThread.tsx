@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 const CreateThread = () => {
 
-const [isExpanded, setIsExpanded] = useState(false)
+const [isExpanded, setIsExpanded] = useState(true)
 const [expandTags, setExpandTags] = useState(false)
 const [expandGroups, setExpandGroups] = useState(false)
 
@@ -17,10 +17,11 @@ const [expandGroups, setExpandGroups] = useState(false)
        
         />
         <h1 className='absolute top-0 right-2 hover:text-light-main cursor-pointer' onClick={() => setIsExpanded(false)}>X</h1>
-        <div className='absolute bottom-0 left-2 flex mb-3 gap-2 text-sm'>
-        <button className='relative border-light-main border px-4 rounded-lg hover:text-white hover:bg-light-main' onClick={() => setExpandTags(!expandTags)}>
+        <div className='absolute bottom-0 left-2 w-full flex mb-3 text-sm justify-between'>
+        <div className='my-auto'>
+        <button className='relative border-light-main border mx-4 px-4 rounded-lg hover:text-white hover:bg-light-main' onClick={() => setExpandTags(!expandTags)}>
             {expandTags ? (
-                <div className='bg-gray-100 border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg'>
+                <div className='bg-white border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg'>
                 Text
                 </div>
 
@@ -28,12 +29,14 @@ const [expandGroups, setExpandGroups] = useState(false)
             Tags</button>
         <button className='relative border-light-main border px-4 rounded-lg hover:text-white hover:bg-light-main' onClick={() => setExpandGroups(!expandGroups)}>Groups
         {expandGroups ? (
-                <div className='bg-gray-200 border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg'>
+                <div className='bg-white border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg'>
                 Text
                 </div>
 
             ) : null }
         </button>
+        </div>
+        <button className='border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker'>Submit Post</button>
         </div>
         </div>
   ) : (

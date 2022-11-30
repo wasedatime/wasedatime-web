@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 
 const CreateThread = () => {
 
-const [isExpanded, setIsExpanded] = useState(true)
+const [isExpanded, setIsExpanded] = useState(false)
 const [expandTags, setExpandTags] = useState(false)
 const [expandGroups, setExpandGroups] = useState(false)
 

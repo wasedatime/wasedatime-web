@@ -6,6 +6,7 @@ const TagsModal = () => {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  
 
   const tags: Array<string> = ["tag1", "tag2", "tag3"];
   const [selectedTags, setSelectedTags] = useState([]);

@@ -7,6 +7,7 @@ import App from "@app/components/App";
 import translationEN from "@app/constants/locales/en/translation.json";
 import translationJA from "@app/constants/locales/ja/translation.json";
 import { ThemeProvider } from "@app/utils/theme-context";
+import { RecoilRoot } from 'recoil';
 
 import "@app/styles/main.css";
 
@@ -21,9 +22,11 @@ i18nConfig({
 export default function Root(props) {
   return (
     <section className="h-screen">
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <RecoilRoot>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </RecoilRoot>
     </section>
   );
 }

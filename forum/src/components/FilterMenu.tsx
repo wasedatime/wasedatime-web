@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import TagsModal from "./TagsModal";
 
 const FilterMenu = () => {
   const [openSchoolModal, setOpenSchoolModal] = useState(false);
@@ -18,6 +19,7 @@ const FilterMenu = () => {
         >
           Courses
         </h1>
+        <TagsModal />
       </div>
 
       <h1
@@ -26,6 +28,7 @@ const FilterMenu = () => {
       >
         Select the School
       </h1>
+      
       {/* School Select Div */}
       <h1>Undergrad, Grad</h1>
       <div className="border px-4 py-2 rounded-xl">

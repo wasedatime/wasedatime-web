@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CreateThread from "./CreateThread";
+import Pagination from "./Pagination";
 import ThreadBlock from "./ThreadBlock";
 import boards from "@app/constants/dummy/boards.json";
 import threads from "@app/constants/dummy/threads.json";
@@ -21,6 +22,7 @@ const Board = () => {
         .map((thread, i) => (
           <ThreadBlock key={i} isPreview={true} thread={thread} />
         ))}
+      <Pagination count={threads.length} />
     </div>
   );
 };

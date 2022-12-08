@@ -5,3 +5,15 @@
 .form-item-title {
   @apply w-full border-b-2 border-light-lighter text-left py-1;
 }
+
+.checkbox-wrapper {
+  @apply flex items-center px-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600;
+}
+
+.checkbox-input {
+  @apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500;
+}
+
+.checkbox-label {
+  @apply py-2 ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300;
+}

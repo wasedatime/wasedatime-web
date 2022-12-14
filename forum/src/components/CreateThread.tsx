@@ -20,7 +20,7 @@ useEffect(() => {
 
 }, [boardId])
 
-const findBoardIndex = menuItems.findIndex((item) => item.slug == boardId)
+const findBoardIndex: number = menuItems.findIndex((item) => item.slug == boardId)
 
   return (
     isExpanded ?  (

@@ -1,0 +1,19 @@
+[
+  {
+    "title": "Courses",
+    "slug": "courses"
+  },
+  {
+    "title": "Life",
+    "slug": "life"
+  },
+  {
+    "title": "Job Hunting",
+    "slug": "jobhunting"
+  },
+  {
+    "title": "Free Chat",
+    "slug": "freechat"
+  }
+
+]

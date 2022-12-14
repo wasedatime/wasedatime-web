@@ -1,4 +1,6 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import { useParams } from 'react-router-dom'
+import menuItems from '@app/constants/menuItems.json'
 
 const CreateThread = () => {
 
@@ -9,10 +11,21 @@ const [expandGroups, setExpandGroups] = useState(false)
 
 // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
+const { boardId } = useParams()
+
+useEffect(() => {
+ setIsExpanded(false) 
+ setExpandTags(false)
+ setExpandGroups(false)
+
+}, [boardId])
+
+const findBoardIndex = menuItems.findIndex((item) => item.slug == boardId)
+
   return (
     isExpanded ?  (
         <div className='relative'>
-        <textarea placeholder='Share something...'
+        <textarea placeholder={`Share something in ${menuItems[findBoardIndex].title}...`}
         className='border-b-2 text-start border-light-main h-36 pl-2 pb-28 w-full hover:outline-0 focus:outline-0'
        
         />

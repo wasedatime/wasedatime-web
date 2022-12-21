@@ -1,55 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Block from "./Block";
 import Comment from "./Comment";
 import CommentForm from "./CommentForm";
 import ThreadBlock from "./ThreadBlock";
+import threads from "@app/constants/dummy/threads.json";
+import dummyComments from "@app/constants/dummy/comments.json";
 
 const Thread = () => {
-  const { threadId } = useParams();
+  const { threadUuid } = useParams();
+  const [thread, setThread] = useState<any>({});
+  const [comments, setComments] = useState<any[]>([]);
 
-  const thread: any = {
-    univId: "12345",
-    boardId: "postid123",
-    userId: "userid123",
-    threadId: threadId,
-    threadAuthor: "Waseda Taro",
-    threadTitle: "Hello world",
-    threadBody:
-      "This is the dummy post data in WasedaTime Forum. Please leave your comment.",
-    createdAt: "October 1, 2022",
-    updatedAt: "October 2, 2022",
-  };
-
-  const comments: any[] = [
-    {
-      threadId: threadId,
-      commentId: "",
-      commentBody:
-        "This is the first comment in WasedaTime Forum. Leave your comment here freely!",
-      commentAuthor: "Waseda Taro",
-      userId: "userid123",
-      createdAt: "October 1, 2022",
-      updatedAt: "October 2, 2022",
-    },
-    {
-      threadId: threadId,
-      commentId: "",
-      commentBody:
-        "This is the second comment in WasedaTime Forum. Leave your comment here freely!",
-      commentAuthor: "Waseda Taro",
-      userId: "userid123",
-      createdAt: "October 3, 2022",
-      updatedAt: "October 4, 2022",
-    },
-  ];
+  useEffect(() => {
+    var currentThread = threads.find((t) => t.uuid === threadUuid);
+    var filteredComments = dummyComments.filter(
+      (c) => c.threadId === threadUuid
+    );
+    setThread(currentThread);
+    setComments(filteredComments);
+  }, [threadUuid]);
 
   return (
     <div className="border-2 mt-12 mx-16 rounded-xl shadow-lg pb-6 h-fit px-4">
       <ThreadBlock isPreview={false} thread={thread} />
       <CommentForm />
-      {comments.map((comment) => (
-        <Comment comment={comment} />
+      {comments.map((comment, i) => (
+        <Comment key={i} comment={comment} />
       ))}
     </div>
   );

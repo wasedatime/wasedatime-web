@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import menuItems from "@app/constants/menuItems.json";
+import boards from "@app/constants/dummy/boards.json";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -9,22 +9,22 @@ const CreateThread = () => {
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
-  const { boardId } = useParams();
+  const { boardSlug } = useParams();
 
   useEffect(() => {
     setIsExpanded(false);
     setExpandTags(false);
     setExpandGroups(false);
-  }, [boardId]);
+  }, [boardSlug]);
 
-  const findBoardIndex: number = menuItems.findIndex(
-    (item) => item.slug == boardId
+  const findBoardIndex: number = boards.findIndex(
+    (board) => board.slug == boardSlug
   );
 
   return isExpanded ? (
     <div className="relative">
       <textarea
-        placeholder={`Share something in ${menuItems[findBoardIndex].title}...`}
+        placeholder={`Share something in ${boards[findBoardIndex].title}...`}
         className="border-b-2 text-start border-light-main h-36 pl-2 pb-28 w-full hover:outline-0 focus:outline-0"
       />
       <h1

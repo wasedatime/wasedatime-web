@@ -1,0 +1,92 @@
+[
+  {
+    "id": 0,
+    "title": "Courses",
+    "slug": "courses"
+  },
+  {
+    "id": 1,
+    "title": "Professors",
+    "slug": "professors"
+  },
+  {
+    "id": 2,
+    "title": "Seminar / Lab",
+    "slug": "lab"
+  },
+  {
+    "id": 3,
+    "title": "Research",
+    "slug": "research"
+  },
+  {
+    "id": 4,
+    "title": "School Application",
+    "slug": "apply"
+  },
+  {
+    "id": 5,
+    "title": "Gourmet",
+    "slug": "gourmet"
+  },
+  {
+    "id": 6,
+    "title": "Facilities",
+    "slug": "facilities"
+  },
+  {
+    "id": 7,
+    "title": "Circles",
+    "slug": "circles"
+  },
+  {
+    "id": 8,
+    "title": "Events",
+    "slug": "events"
+  },
+  {
+    "id": 9,
+    "title": "Scholarship",
+    "slug": "scholarship"
+  },
+  {
+    "id": 10,
+    "title": "Culture",
+    "slug": "culture"
+  },
+  {
+    "id": 11,
+    "title": "Language",
+    "slug": "language"
+  },
+  {
+    "id": 12,
+    "title": "Housing",
+    "slug": "housing"
+  },
+  {
+    "id": 13,
+    "title": "Travels",
+    "slug": "travels"
+  },
+  {
+    "id": 14,
+    "title": "Events",
+    "slug": "events"
+  },
+  {
+    "id": 15,
+    "title": "Part-time Job",
+    "slug": "parttime"
+  },
+  {
+    "id": 16,
+    "title": "Internship",
+    "slug": "internship"
+  },
+  {
+    "id": 17,
+    "title": "Job Hunting",
+    "slug": "jobhunting"
+  }
+]

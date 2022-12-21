@@ -42,8 +42,11 @@ const App = () => {
               <FilterMenu />
               <div className="w-5/6">
                 <Routes>
-                  <Route element={<Board />} path="forum/:boardId" />
-                  <Route element={<Thread />} path="forum/:boardId/:threadId" />
+                  <Route element={<Board />} path="forum/:boardSlug" />
+                  <Route
+                    element={<Thread />}
+                    path="forum/:boardSlug/:threadUuid"
+                  />
                 </Routes>
               </div>
               <div className="bg-gray-100 md:h-full flex w-1/6">

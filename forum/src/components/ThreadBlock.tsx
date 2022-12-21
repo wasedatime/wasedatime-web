@@ -20,7 +20,7 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
 
   return (
     <Block actions={actions}>
-      <Link to={isPreview ? `${thread.threadId}` : ``}>
+      <Link to={isPreview ? `${thread.uuid}` : ``}>
         <div
           className={
             isPreview
@@ -33,15 +33,13 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
           <div className={`px-2`}>
             <div className="flex justify-between mt-2">
               <h1 className="text-2xl text-light-main my-auto">
-                {thread.threadTitle}
+                {thread.title}
               </h1>
               <h2 className="text-sm text-light-text2 my-auto">
-                {thread.threadAuthor}
+                {thread.author}
               </h2>
             </div>
-            <p className="justify-left text-light-text1 pt-4">
-              {thread.threadBody}
-            </p>
+            <p className="justify-left text-light-text1 pt-4">{thread.body}</p>
           </div>
           <hr className="mx-2 pt-4 mt-6" />
         </div>

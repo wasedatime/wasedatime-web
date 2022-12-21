@@ -15,8 +15,8 @@ const Block = ({ children, actions }: Props) => {
     <div>
       {children}
       <div>
-        {actions.map((action) => (
-          <BlockAction action={action} />
+        {actions.map((action, i) => (
+          <BlockAction key={i} action={action} />
         ))}
       </div>
     </div>

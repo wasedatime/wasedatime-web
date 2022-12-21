@@ -1,0 +1,26 @@
+[
+  {
+    "id": 0,
+    "title": "Academic",
+    "slug": "academic",
+    "tags": [0, 1, 2, 3, 4]
+  },
+  {
+    "id": 1,
+    "title": "Campus",
+    "slug": "campus",
+    "tags": [5, 6, 7, 8, 9]
+  },
+  {
+    "id": 2,
+    "title": "Life",
+    "slug": "life",
+    "tags": [10, 11, 12, 13, 14]
+  },
+  {
+    "id": 3,
+    "title": "Job",
+    "slug": "job",
+    "tags": [15, 16, 17]
+  }
+]

@@ -1,33 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
-const menuItems: any[] = [
-  {
-    // icon: <CoursesIcon />,
-    title: "Courses",
-    slug: "courses",
-  },
-  {
-    // icon: <ResearchIcon />,
-    title: "Life",
-    slug: "life",
-  },
-  {
-    // icon: <JobHuntingIcon />,
-    title: "Job Hunting",
-    slug: "jobhunting",
-  },
-  {
-    // icon: <FreeChatIcon />,
-    title: "Free Chat",
-    slug: "freechat",
-  },
-  // {
-  //   icon: <FreeChatIcon />,
-  //   title: "School Select"
-  // },
-  
-];
+import menuItems from '@app/constants/menuItems.json'
 
 const BoardMenu = () => {
   return (

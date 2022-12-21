@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
+import CreateThread from "./CreateThread";
 import ThreadBlock from "./ThreadBlock";
 
 const Board = () => {
@@ -54,6 +55,7 @@ const Board = () => {
 
   return (
     <div className="max-w-2/5 w-5/6 mx-auto h-full">
+      <CreateThread />
       {threads
         .filter((thread) => thread.boardId === boardId)
         .map((thread) => (

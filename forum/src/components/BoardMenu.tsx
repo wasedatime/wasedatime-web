@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import menuItems from '@app/constants/menuItems.json'
+import menuItems from "@app/constants/menuItems.json";
 
 const BoardMenu = () => {
   return (

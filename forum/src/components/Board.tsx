@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CreateThread from "./CreateThread";
 import ThreadBlock from "./ThreadBlock";
-import boards from "@app/constants/dummy/boards.json";
+import boards from "@app/constants/boards.json";
 import threads from "@app/constants/dummy/threads.json";
 
 const Board = () => {

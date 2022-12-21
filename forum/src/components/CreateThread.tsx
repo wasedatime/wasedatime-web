@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import boards from "@app/constants/dummy/boards.json";
+import boards from "@app/constants/boards.json";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);

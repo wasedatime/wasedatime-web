@@ -1,13 +1,34 @@
 {
   "Campus (Field of study)": [
-    "Main & Toyama (Liberal arts)",
-    "Nishi-Waseda (Science and Engineering)",
-    "Tokorozawa (Sports)"
+    {
+      "id": "c_01",
+      "title": "Main & Toyama (Liberal arts)"
+    },
+    {
+      "id": "c_02",
+      "title": "Nishi-Waseda (Science and Engineering)"
+    },
+    {
+      "id": "c_03",
+      "title": "Tokorozawa (Sports)"
+    }
   ],
   "Identity": [
-    "Domestic students",
-    "International students",
-    "Exchange students",
-    "Faculty"
+    {
+      "id": "i_01",
+      "title": "Domestic students"
+    },
+    {
+      "id": "i_02",
+      "title": "International students"
+    },
+    {
+      "id": "i_03",
+      "title": "Exchange students"
+    },
+    {
+      "id": "i_04",
+      "title": "Faculty"
+    }
   ]
 }

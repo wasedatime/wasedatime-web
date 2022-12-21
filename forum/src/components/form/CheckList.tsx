@@ -1,11 +1,16 @@
 import React from "react";
 import CheckListItem from "@app/components/form/CheckListItem";
 
+type ListItem = {
+  id: string;
+  title: string;
+}
+
 type Props = {
   title: string;
-  items: string[];
-  onListItemToggle?: (value: string | number) => void;
-  isItemChecked?: (value: string | number) => boolean;
+  items: ListItem[];
+  onListItemToggle?: (value: string) => void;
+  isItemChecked?: (value: string) => boolean;
   listId?: string;
 }
 
@@ -19,10 +24,10 @@ const CheckList = ({ title, items, onListItemToggle, isItemChecked, listId }: Pr
           <CheckListItem
             key={`${listId}-${itemId}`}
             itemId={`${listId}-${itemId}`}
-            text={item}
-            value={item}
+            text={item.title}
+            value={item.id}
             onToggle={onListItemToggle}
-            isChecked={isItemChecked(item)}
+            isChecked={isItemChecked(item.id)}
           />
         ))
       }

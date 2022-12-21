@@ -3,14 +3,14 @@ import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import groups from "@app/constants/groups.json";
 import CheckList from "@app/components/form/CheckList";
-import { currentGroupsState } from "@app/recoil/atoms.ts";
+import { currentGroupsState } from "@app/recoil/atoms";
 
 const FilterMenu = () => {
   const [currentGroups, setCurrentGroups] = useRecoilState(currentGroupsState);
   const [openSchoolModal, setOpenSchoolModal] = useState(false);
   const navigate = useNavigate();
 
-  const toggleGroup = (group: string | number) => {
+  const toggleGroup = (group: string) => {
     if (currentGroups.includes(group)) {
       var groups = [...currentGroups];
       const index = groups.indexOf(group);
@@ -23,7 +23,7 @@ const FilterMenu = () => {
     }
   }
 
-  const isGroupChecked = (group: string | number) => currentGroups.includes(group);
+  const isGroupChecked = (group: string) => currentGroups.includes(group);
 
   useEffect(() => {
     console.log(currentGroups);

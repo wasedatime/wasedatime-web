@@ -2,8 +2,8 @@ import React from "react";
 
 type Props = {
   text: string;
-  value: string | number;
-  onToggle?: (value: string | number) => void;
+  value: string;
+  onToggle?: (value: string) => void;
   isChecked?: boolean;
   itemId?: string;
 }

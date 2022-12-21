@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import boards from "@app/constants/dummy/boards.json";
+import boards from "@app/constants/boards.json";
 
 const BoardMenu = () => {
   return (

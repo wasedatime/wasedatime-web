@@ -6,6 +6,9 @@ import ThreadBlock from "./ThreadBlock";
 import threads from "@app/constants/dummy/threads.json";
 import dummyComments from "@app/constants/dummy/comments.json";
 
+// TODO: add a 'back' button to navigate to the last page (board page) while remaining the page number
+// Consider (1) using global state or (2) add a query on the route (sth like this: http://localhost:9000/forum/academic/1?page=2)
+
 const Thread = () => {
   const { threadUuid } = useParams();
   const [thread, setThread] = useState<any>({});

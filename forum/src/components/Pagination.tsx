@@ -1,8 +1,13 @@
 import React from "react";
 
+const numOfThreadsPerPage = 10;
+
 type Props = {
   count: number;
 }
+
+// TODO: change page number by clicking on page button or arrow
+// TODO: filter threads to display by page number
 
 const Pagination = ({ count } : Props) => {
   return (
@@ -15,7 +20,7 @@ const Pagination = ({ count } : Props) => {
           </a>
         </li>
         {
-          [...Array(Math.ceil(count / 10))].map((_, pageId) => (
+          [...Array(Math.ceil(count / numOfThreadsPerPage))].map((_, pageId) => (
             <li key={pageId + 1}>
               <a href="#" className="px-3 py-2 rounded-full text-gray-500 hover:bg-light-main hover:text-white dark:text-gray-300 dark:hover:bg-dark-main dark:hover:text-white">{pageId + 1}</a>
             </li>

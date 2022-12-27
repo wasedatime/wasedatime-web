@@ -12,8 +12,9 @@
     "format": "pnpm recursive run format --workspace-concurrency 6",
     "test": "pnpm recursive run test --workspace-concurrency 6"
   },
-  "devDependencies": {},
-  "dependencies": {},
+  "devDependencies": {
+    "turbo": "^1.6.3"
+  },
   "bit": {
     "env": {},
     "componentsDefaultDirectory": "components/{name}",

@@ -82,3 +82,6 @@ bit.json
 
 # built tailwind css files in local
 **/tailwind-build-output.css
+
+# turbo
+.turbo

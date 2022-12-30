@@ -5,7 +5,7 @@ const TagsModal: React.FC = () => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const toggleShow = () => setShow(!show);
   
 
   const tags: Array<string> = ["tag1", "tag2", "tag3"];
@@ -16,21 +16,19 @@ const TagsModal: React.FC = () => {
       <button
         type="button"
         className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-        data-bs-toggle="modal"
-        data-bs-target="1"
-        onClick={handleShow}
+        onClick={toggleShow}
       >
         Choose Tags
       </button>
 
+      {/* avoid using undefined class name and attributes (modal and data-bs-blablabla are from the library Bootstrap, which is not installed in Forum app) */}
+      {/* Why not making use of the state `show` since you are already defined one? */}
+      {/* TODO for KJ: Remove all undefined classnames and attributes (those from Bootstrap) (Hao removed some but plz check if there are other not removed ones) */}
+      {/* TODO for KJ: Try to adjust the size and margin (You can do it after moving the modal to board menu) */}
       <div
-        className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
+        className={`${!show && "hidden"} fixed top-1/4 left-1/4 border outline-none overflow-x-hidden overflow-y-auto`}
         id="1"
-        data-bs-backdrop="static"
-        data-bs-keyboard="false"
         tabIndex={-1}
-        aria-labelledby="staticBackdropLabel"
-        aria-hidden="true"
       >
         <div className="modal-dialog relative w-auto pointer-events-none">
           <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
@@ -44,8 +42,6 @@ const TagsModal: React.FC = () => {
               <button
                 type="button"
                 className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-                data-bs-dismiss="modal"
-                aria-label="Close"
               ></button>
             </div>
             <div className="modal-body relative p-4">...</div>
@@ -53,7 +49,6 @@ const TagsModal: React.FC = () => {
               <button
                 type="button"
                 className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
-                data-bs-dismiss="modal"
               >
                 Close
               </button>

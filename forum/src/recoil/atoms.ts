@@ -5,7 +5,7 @@ export const currentBoardIdState = atom<string>({
   default: "Default Board",
 });
 
-export const currentTagsState = atom<string[]>({
+export const currentTagsState = atom<number[]>({
   key: "currentTags",
   default: [],
 });

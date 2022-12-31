@@ -25,10 +25,6 @@ const FilterMenu = () => {
 
   const isGroupChecked = (group: string) => currentGroups.includes(group);
 
-  useEffect(() => {
-    console.log(currentGroups);
-  }, [currentGroups]);
-
   return (
     <div className="w-64 text-center px-4">
       <div className="my-2 mx-auto">

@@ -1,5 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { atom } from 'recoil';
+import { TagState } from './Atoms'
 
 const TagsModal: React.FC = () => {
   const [show, setShow] = useState(false);
@@ -7,15 +10,33 @@ const TagsModal: React.FC = () => {
   const handleClose = () => setShow(false);
   const toggleShow = () => setShow(!show);
   
+  const testing = useRecoilState(TagState)
 
   const tags: Array<string> = ["tag1", "tag2", "tag3"];
-  const [selectedTags, setSelectedTags] = useState([]);
-
+  /* const tags = useRecoilValue(TagState) */
+  const [selectedTags, setSelectedTags] = useState<[]>([])
+  const setTagsSelected = useSetRecoilState(TagState);
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (selectedTags.indexOf(value) === -1) {
+      setSelectedTags([...selectedTags, value]);
+    } else {
+      setSelectedTags(selectedTags.filter((item) => item !== value));
+    }
+  };
+  console.log(selectedTags);
+  
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    toggleShow();
+    setTagsSelected(selectedTags)
+  };
+  console.log(testing)
   return (
     <>
       <button
         type="button"
-        className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+        className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
         onClick={toggleShow}
       >
         Choose Tags
@@ -39,22 +60,34 @@ const TagsModal: React.FC = () => {
               >
                 Choose Your Tags
               </h5>
-              <button
-                type="button"
-                className="btn-close box-content w-4 h-4 p-1 text-black border-none rounded-none opacity-50 focus:shadow-none focus:outline-none focus:opacity-100 hover:text-black hover:opacity-75 hover:no-underline"
-              ></button>
             </div>
-            <div className="modal-body relative p-4">...</div>
+            <div className="modal-body relative p-4">
+              {tags.map(tag => (
+                <div>
+                <label key={tag}>
+                  <input
+                    type="checkbox"
+                    value={tag}
+                    checked={selectedTags.indexOf(tag) !== -1}
+                    onChange={handleChange}
+                  />
+                  {tag}
+                </label>
+                </div>
+              ))}
+            </div>
             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
               <button
                 type="button"
-                className="inline-block px-6 py-2.5 bg-purple-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-purple-700 hover:shadow-lg focus:bg-purple-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-purple-800 active:shadow-lg transition duration-150 ease-in-out"
+                className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
+                onClick={toggleShow}
               >
                 Close
               </button>
               <button
-                type="button"
-                className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
+                type="submit"
+                className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
+                onClick={handleSubmit}
               >
                 Apply
               </button>

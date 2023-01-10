@@ -16,7 +16,7 @@ const Board = () => {
 
   const indexOfLastThread = currentPage * numOfThreadsPerPage
   const indexOfFirstThread = indexOfLastThread - numOfThreadsPerPage
-  const currentThreads = threads.slice(indexOfFirstThread, indexOfLastThread)
+  const currentThreads = threads.filter((thread) => thread.boardId === boardId).slice(indexOfFirstThread, indexOfLastThread)
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber)
@@ -30,18 +30,17 @@ const Board = () => {
   useEffect(() => {
     setCountFilteredThreads(threads.filter((thread) => thread.boardId === boardId).length)
     setCurrentPage(1)
-    // console.log(countFilteredThreads)
+    console.log('currentThreads', currentThreads)
   }, [boardId])
 
   return (
     <div className="max-w-2/5 w-5/6 mx-auto h-full">
       <CreateThread />
       {currentThreads
-        .filter((thread) => thread.boardId === boardId)
         .map((thread, i) => (
           <ThreadBlock key={i} isPreview={true} thread={thread} />
         ))}
-      <Pagination threadCount={countFilteredThreads} numOfThreadsPerPage={numOfThreadsPerPage} paginate={paginate} />
+      <Pagination threadCount={countFilteredThreads} numOfThreadsPerPage={numOfThreadsPerPage} paginate={paginate} currentPage={currentPage} />
     </div>
   );
 };

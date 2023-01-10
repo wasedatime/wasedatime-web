@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 
 
 type Props = {
@@ -8,9 +8,6 @@ type Props = {
   currentPage: number,
  
 }
-
-// TODO: change page number by clicking on page button or arrow
-// TODO: filter threads to display by page number
 
 const Pagination = ({ threadCount, numOfThreadsPerPage, paginate, currentPage} : Props) => {
 
@@ -39,7 +36,7 @@ if (currentPage > 1) {
         </li>
         {
           [...Array(Math.ceil(threadCount / numOfThreadsPerPage))].map((_, pageId) => (
-            <li key={pageId + 1} className='cursor-pointer' onClick={() => paginate(pageId + 1)}>
+            <li key={pageId + 1} className='cursor-pointer px-1' onClick={() => paginate(pageId + 1)}>
               <h1 className={currentPage === pageId + 1 ? `px-3 py-2 rounded-full bg-light-main text-white dark:text-gray-300 dark:hover:bg-dark-main dark:hover:text-white` : `px-3 py-2 rounded-full text-gray-500 hover:bg-light-main hover:text-white dark:text-gray-300 dark:hover:bg-dark-main dark:hover:text-white`}>{pageId + 1}</h1>
             </li>
           ))

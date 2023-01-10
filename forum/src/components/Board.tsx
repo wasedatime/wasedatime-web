@@ -30,11 +30,10 @@ const Board = () => {
   useEffect(() => {
     setCountFilteredThreads(threads.filter((thread) => thread.boardId === boardId).length)
     setCurrentPage(1)
-    console.log('currentThreads', currentThreads)
   }, [boardId])
 
   return (
-    <div className="max-w-2/5 w-5/6 mx-auto h-full">
+    <div className="max-w-2/5 w-5/6 mx-auto h-fit">
       <CreateThread />
       {currentThreads
         .map((thread, i) => (

@@ -13,6 +13,11 @@ type SchoolBlockProps = {
   school: School;
 }
 
+type SchoolFilterFormProps = {
+  isOpen: boolean;
+  setOpen: (isOpen: boolean) => void;
+}
+
 const TabMenu = () => (
   <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <ul className="flex flex-wrap -mb-px">
@@ -35,17 +40,12 @@ const SchoolBlock = ({ school }: SchoolBlockProps) => (
   </div>
 );
 
-const SchoolFilterForm = ({ isOpen }: { isOpen: boolean }) => {
-  const [ isModalOpen, setIsModalOpen ] = useState(isOpen);
+const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
   const [ schoolsCategoryId, setSchoolsCategoryId ] = useState(0);
 
-  useEffect(() => {
-    setIsModalOpen(isOpen);
-  }, [isOpen])
-
   return (
-    <div className={!isModalOpen ? "hidden " : "" + "fixed top-0 left-0 right-0 z-0 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full z-0"}>
-      <div className="fixed top-0 bottom-0 left-0 right-0 bg-gray-500 opacity-10 z-0" />
+    <div className={!isOpen ? "hidden " : "" + "fixed top-0 left-0 right-0 z-0 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full z-0"}>
+      <div className="fixed top-0 bottom-0 left-0 right-0 bg-gray-500 opacity-10 z-0" onClick={() => setOpen(false)} />
       <div className="fixed top-1/4 bottom-1/4 left-1/4 right-1/4 bg-white z-10">
         <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
           <ul className="flex flex-wrap -mb-px">

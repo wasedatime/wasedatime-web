@@ -3,6 +3,7 @@ import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import groups from "@app/constants/groups.json";
 import CheckList from "@app/components/form/CheckList";
+import SchoolFilterForm from "@app/components/SchoolFilterForm";
 import { currentGroupsState } from "@app/recoil/atoms";
 
 const FilterMenu = () => {
@@ -25,13 +26,20 @@ const FilterMenu = () => {
 
   const isGroupChecked = (group: string) => currentGroups.includes(group);
 
+  const toggleSchoolFilter = () => {
+    setOpenSchoolModal(!openSchoolModal);
+  }
+
   return (
     <div className="w-64 text-center px-4">
       <div className="my-2 mx-auto">
         <h1 className="form-item-title">School</h1>
-        <button className="w-full p-2 bg-light-main text-white rounded-lg my-1">
+        <button className="w-full p-2 bg-light-main text-white rounded-lg my-1" onClick={toggleSchoolFilter}>
           Select the School
         </button>
+        {
+          openSchoolModal && <SchoolFilterForm isOpen={openSchoolModal} setOpen={setOpenSchoolModal} />
+        }
       </div>
       
       {

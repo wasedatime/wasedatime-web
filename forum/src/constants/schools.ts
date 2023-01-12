@@ -1,4 +1,4 @@
-enum School {
+export enum School {
   SILS = "SILS",
   PSE = "PSE",
   SSS = "SSS",

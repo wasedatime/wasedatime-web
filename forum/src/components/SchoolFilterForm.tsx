@@ -7,7 +7,23 @@ import {
 import { School } from "@app/constants/schools";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
-const schoolsByCategory = [undergradSchools, gradSchools, otherSchools];
+const schoolsByCategory = [
+  {
+    slug: "undergrad",
+    title: "Undergraduate",
+    schools: undergradSchools
+  },
+  {
+    slug: "grad",
+    title: "Graduate",
+    schools: gradSchools
+  },
+  {
+    slug: "other",
+    title: "Other",
+    schools: otherSchools
+  },
+];
 
 type SchoolBlockProps = {
   school: School;
@@ -18,25 +34,39 @@ type SchoolFilterFormProps = {
   setOpen: (isOpen: boolean) => void;
 }
 
-const TabMenu = () => (
+type TabMenuProps = {
+  activeTab: number;
+  onClickTab: (itemId: number) => void;
+}
+
+type TabItemProps = {
+  title: string;
+  isActive: boolean;
+  onClick: () => void;
+}
+
+// TODO: use t(schoolsSlugPair.slug) instead of schoolsSlugPair.title; remove 'title' from schoolsByCategory
+const TabMenu = ({ activeTab, onClickTab }: TabMenuProps) => (
   <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
     <ul className="flex flex-wrap -mb-px">
-      <TabItem />
-      <TabItem />
-      <TabItem />
+      {
+        schoolsByCategory.map((schoolsSlugPair, i) => (
+          <TabItem key={schoolsSlugPair.slug} title={schoolsSlugPair.title} isActive={activeTab === i} onClick={() => onClickTab(i)} />
+        ))
+      }
     </ul>
   </div>
 )
 
-const TabItem = () => (
-  <li className="mr-2">
-    <a href="#" className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Profile</a>
+const TabItem = ({ title, isActive, onClick }: TabItemProps) => (
+  <li className="mr-2" onClick={onClick}>
+    <a href="#" className={isActive ? "tab-item-active" : "tab-item"}>{title}</a>
   </li>
 );
 
 const SchoolBlock = ({ school }: SchoolBlockProps) => (
-  <div className="float-left">
-    <img src={getSchoolIconPath(school, "en")} width={50} height={50} />
+  <div className="float-left m-2">
+    <img src={getSchoolIconPath(school, "en")} width={70} height={70} />
   </div>
 );
 
@@ -47,22 +77,10 @@ const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
     <div className={!isOpen ? "hidden " : "" + "fixed top-0 left-0 right-0 z-0 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full z-0"}>
       <div className="fixed top-0 bottom-0 left-0 right-0 bg-gray-500 opacity-10 z-0" onClick={() => setOpen(false)} />
       <div className="fixed top-1/4 bottom-1/4 left-1/4 right-1/4 bg-white z-10">
-        <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
-          <ul className="flex flex-wrap -mb-px">
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Profile</a>
-            </li>
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg active dark:text-blue-500 dark:border-blue-500" aria-current="page">Dashboard</a>
-            </li>
-            <li className="mr-2">
-                <a href="#" className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300">Settings</a>
-            </li>
-          </ul>
-        </div>
+        <TabMenu activeTab={schoolsCategoryId} onClickTab={setSchoolsCategoryId} />
         <div>
           {
-            schoolsByCategory[schoolsCategoryId].map(school => <SchoolBlock school={school} />)
+            schoolsByCategory[schoolsCategoryId].schools.map((school, i) => <SchoolBlock key={i} school={school} />)
           }
         </div>
       </div>

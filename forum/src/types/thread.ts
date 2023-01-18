@@ -10,6 +10,6 @@ type Thread = {
   body: string;
   createdAt: string;
   updatedAt: string;
-}
+};
 
 export default Thread;

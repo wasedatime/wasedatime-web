@@ -21,14 +21,18 @@ const Board = () => {
     dummyThreads.filter((thread) => thread.boardId === boardId)
   );
   const [filteredThreads, setFilteredThreads] = useState(
-    filterThreadsByTags(filterThreadsByGroups(boardThreads, currentGroups), currentTags)
+    filterThreadsByTags(
+      filterThreadsByGroups(boardThreads, currentGroups),
+      currentTags
+    )
   );
 
   useEffect(() => {
-    var currentBoardId = boards.find((board) => board.slug === boardSlug)?.id || 0;
+    var currentBoardId =
+      boards.find((board) => board.slug === boardSlug)?.id || 0;
     setBoardId(currentBoardId);
 
-    var threads = dummyThreads.filter((thread) => thread.boardId === boardId)
+    var threads = dummyThreads.filter((thread) => thread.boardId === boardId);
     setBoardThreads(threads);
 
     threads = filterThreadsByTags(threads, currentTags);
@@ -37,13 +41,13 @@ const Board = () => {
   }, [boardSlug]);
 
   useEffect(() => {
-    var threads = dummyThreads.filter((thread) => thread.boardId === boardId)
+    var threads = dummyThreads.filter((thread) => thread.boardId === boardId);
     setBoardThreads(threads);
 
     threads = filterThreadsByTags(threads, currentTags);
     threads = filterThreadsByGroups(threads, currentGroups);
     setFilteredThreads(threads);
-  }, [boardId])
+  }, [boardId]);
 
   useEffect(() => {
     var threads = filterThreadsByTags(boardThreads, currentTags);
@@ -58,10 +62,9 @@ const Board = () => {
   return (
     <div className="max-w-2/5 w-5/6 mx-auto h-full">
       <CreateThread />
-      {filteredThreads
-        .map((thread, i) => (
-          <ThreadBlock key={i} isPreview={true} thread={thread} />
-        ))}
+      {filteredThreads.map((thread, i) => (
+        <ThreadBlock key={i} isPreview={true} thread={thread} />
+      ))}
     </div>
   );
 };

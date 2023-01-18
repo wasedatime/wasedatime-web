@@ -20,40 +20,44 @@ const FilterMenu = () => {
       }
       setCurrentGroups(groups);
     } else {
-      setCurrentGroups([ ...currentGroups, group ]);
+      setCurrentGroups([...currentGroups, group]);
     }
-  }
+  };
 
   const isGroupChecked = (group: string) => currentGroups.includes(group);
 
   const toggleSchoolFilter = () => {
     setOpenSchoolModal(!openSchoolModal);
-  }
+  };
 
   return (
     <div className="w-64 text-center px-4">
       <div className="my-2 mx-auto">
         <h1 className="form-item-title">School</h1>
-        <button className="w-full p-2 bg-light-main text-white rounded-lg my-1" onClick={toggleSchoolFilter}>
+        <button
+          className="w-full p-2 bg-light-main text-white rounded-lg my-1"
+          onClick={toggleSchoolFilter}
+        >
           Select the School
         </button>
-        {
-          openSchoolModal && <SchoolFilterForm isOpen={openSchoolModal} setOpen={setOpenSchoolModal} />
-        }
-      </div>
-      
-      {
-        Object.keys(groups).map((groupCategory, groupCategoryId) => (
-          <CheckList
-            key={groupCategoryId}
-            listId={groupCategoryId.toString()}
-            title={groupCategory}
-            items={groups[groupCategory]}
-            onListItemToggle={toggleGroup}
-            isItemChecked={isGroupChecked}
+        {openSchoolModal && (
+          <SchoolFilterForm
+            isOpen={openSchoolModal}
+            setOpen={setOpenSchoolModal}
           />
-        ))
-      }
+        )}
+      </div>
+
+      {Object.keys(groups).map((groupCategory, groupCategoryId) => (
+        <CheckList
+          key={groupCategoryId}
+          listId={groupCategoryId.toString()}
+          title={groupCategory}
+          items={groups[groupCategory]}
+          onListItemToggle={toggleGroup}
+          isItemChecked={isGroupChecked}
+        />
+      ))}
     </div>
   );
 };

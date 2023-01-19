@@ -9,10 +9,7 @@
     "preview-dev": "vite preview --port 8081",
     "tsc": "tsc",
     "local": "concurrently --kill-others \"pnpm start\" \"cd ../root && pnpm start\"",
-    "fix": "pnpm run format && pnpm run lint:fix",
-    "lint": "eslint src --ext \"**/*.{js,ts,tsx}\"",
-    "lint:fix": "eslint --fix \"**/*.{js,ts,tsx}\"",
-    "format": "prettier --write \"**/*.{js,ts,tsx}\""
+    "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\" && prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "devDependencies": {
     "@babel/core": "7.17.5",

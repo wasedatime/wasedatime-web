@@ -1,0 +1,50 @@
+{
+  "name": "@wasedatime/career",
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "start": "vite --port 8082",
+    "build": "vite build",
+    "build-dev": "vite build",
+    "preview": "vite preview --port 8082",
+    "preview-dev": "vite preview --port 8082",
+    "tsc": "tsc",
+    "local": "concurrently --kill-others \"pnpm start\" \"cd ../root && pnpm start\"",
+    "fix": "pnpm run format && pnpm run lint:fix",
+    "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\" && prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+  },
+  "devDependencies": {
+    "@babel/core": "7.17.5",
+    "@babel/eslint-parser": "7.17.0",
+    "@babel/plugin-transform-runtime": "7.17.0",
+    "@babel/preset-env": "7.16.11",
+    "@babel/preset-react": "7.16.7",
+    "@babel/preset-typescript": "7.16.7",
+    "@babel/runtime": "7.17.2",
+    "@typescript-eslint/eslint-plugin": "5.14.0",
+    "@typescript-eslint/parser": "5.14.0",
+    "@vitejs/plugin-react-refresh": "^1.3.6",
+    "concurrently": "7.0.0",
+    "eslint": "8.10.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-config-react-app": "7.0.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-prefer-arrow": "1.2.3",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-react": "7.29.4",
+    "prettier": "2.5.1",
+    "prettier-eslint": "13.0.0",
+    "ts-config-single-spa": "2.0.1",
+    "typescript": "4.6.2",
+    "vite": "^2.9.0",
+    "vite-plugin-dynamic-import": "^0.7.0"
+  },
+  "dependencies": {
+    "@types/react": "17.0.39",
+    "@types/react-dom": "17.0.13",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "single-spa-react": "3.2.0"
+  }
+}

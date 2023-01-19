@@ -130,6 +130,12 @@ pnpm install
 // ↓ works the same
 pnpm i
 ```
+
+### Environment Variables
+Ask our team leader to get the required `.env` files.
+
+`.env` files are private and should not be shared with members outside the team in principle.
+
 ## Run the app on your local
 - Run the whole app
 	```
@@ -314,7 +320,11 @@ pnpm i
     <td align="center"><a href="https://github.com/kaedejima"><img src="https://avatars.githubusercontent.com/u/49092226?s=400&u=7f7d80600a0007aadc8a9e6d0df69e38088c5562&v=4" width="100px;" alt=""/><br /><sub><b>Kaede Iijima</b></sub></a><br /><a href="#code" title="Tutorials, Design">✅🎨</a></td>
     <td align="center"><a href="https://github.com/nichnarmada"><img src="https://avatars.githubusercontent.com/u/36405403?v=4" width="100px;" alt=""/><br /><sub><b>Nicholas Narmada</b></sub></a><br /><a href="#" title="Code, Ideas, Design, Planning, & Feedback">💻🎨🤔</a></td>
     <td align="center"><a href="https://github.com/ronin207"><img src="https://avatars.githubusercontent.com/u/59204227?v=4" width="100px;" alt=""/><br /><sub><b>Takumi Otsuka</b></sub></a><br /><a href="#" title="Code, Ideas, Design, Planning, & Feedback">💻🎨🤔</a></td>
-    <td align="center"><a href="https://github.com/Autogod"><img src="https://avatars.githubusercontent.com/u/93040528?v=4" width="100px;" alt=""/><br /><sub><b>Jason Park</b></sub></a><br /><a href="#" title="Code, Business & Feedback">💻💼🤔</a></td>
+    <td align="center"><a href="https://github.com/Autogod"><img src="https://avatars.githubusercontent.com/u/93040528?v=4" width="100px;" alt=""/><br /><sub><b>Jason Park</b></sub></a><br /><a href="#" title="Code, Business, Project Management, Feedback, Review">💻💼📆🤔👀</a></td>
+    <td align="center"><a href="https://github.com/xinyue296"><img src="https://avatars.githubusercontent.com/u/96937379?v=4" width="100px;" alt=""/><br /><sub><b>Xinyue Tao</b></sub></a><br /><a href="#" title="Code, Business, Design">💻💼🎨</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/kamlnskll"><img src="https://avatars.githubusercontent.com/u/91806277?v=4" width="100px;" alt=""/><br /><sub><b>Michael Kaminski</b></sub></a><br /><a href="#" title="Code, Design">💻🎨</a></td>
   </tr>
 </table>
 

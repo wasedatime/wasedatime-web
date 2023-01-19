@@ -1,7 +1,3 @@
 packages:
-  - 'root'
-  - 'syllabus'
-  - 'campus'
-  - 'feeds'
-  - 'forum'
-  - 'career'
+  - 'packages/*'
+  - 'apps/*'

@@ -4,4 +4,5 @@ export type FeedInfo = {
   title: string;
   lang: string;
   authors: string[];
+  date: string;
 };

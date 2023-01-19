@@ -4,11 +4,11 @@ on:
   push:
     branches: [ '**' ]
     paths:
-      - 'root/**'
+      - 'apps/root/**'
   pull_request:
     branches: [ 'master', 'develop' ]
     paths:
-      - 'root/**'
+      - 'apps/root/**'
 
 jobs:
   build:
@@ -30,4 +30,4 @@ jobs:
           key: ${{ runner.os }}-node16-${{ hashFiles('**/pnpm-lock.yaml') }}
       - uses: ./.github/actions/microapp
         with:
-          path: 'root'
+          path: 'apps/root'

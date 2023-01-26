@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { CloseIcon } from "@app/components/icons/CloseIcon";
@@ -12,6 +12,7 @@ const CreateThread = () => {
   const [expandGroups, setExpandGroups] = useState(false);
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
+  const [textContent, setTextContent] = useState("");
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
@@ -37,21 +38,31 @@ const CreateThread = () => {
     }
   }
 
+  const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    setTextContent(e.target.value);
+  }
+
   const handleSubmit = async () => {
+    if (textContent.length <= 0 || textContent.length > 2000) return;
+
     let idToken = userToken;
     if (idToken?.length <= 0) {
       idToken = await getIdToken();
       if (idToken?.length <= 0) return;
     }
+
+    console.log(textContent);
     // TODO: Implement submitting new thread API
     /*
     API.post("wasedatime-dev", "/forum/blablabla", {
-      body: { data: { blablabla } },
+      body: { data: { textContent } },
       headers: {
         Authorization: idToken,
       },
     });
     */
+
+    setTextContent("");
   }
 
   const findBoardIndex: number = boards.findIndex(
@@ -63,6 +74,8 @@ const CreateThread = () => {
       <textarea
         placeholder={`Share something in ${boards[findBoardIndex].title}...`}
         className="border-b-2 text-start border-light-main h-36 pl-2 pb-28 w-full hover:outline-0 focus:outline-0"
+        value={textContent}
+        onChange={handleTextChange}
       />
       <h1
         className="absolute top-0 right-2 hover:text-light-main cursor-pointer"

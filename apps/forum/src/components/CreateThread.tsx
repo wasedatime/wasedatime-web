@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import API from "@aws-amplify/api";
+import { CloseIcon } from "@app/components/icons/CloseIcon";
 import boards from "@app/constants/boards.json";
+import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
+import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [expandTags, setExpandTags] = useState(false);
   const [expandGroups, setExpandGroups] = useState(false);
+  const [userToken, setUserToken] = useState("");
+  const [isSignInModalOpen, setSignInModalOpen] = useState(false);
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
@@ -16,6 +22,36 @@ const CreateThread = () => {
     setExpandTags(false);
     setExpandGroups(false);
   }, [boardSlug]);
+
+  const handleOpenForm = async () => {
+    if (userToken?.length > 0) {
+      setIsExpanded(true);
+    } else {
+      const idToken = await getIdToken();
+      if (idToken?.length > 0) {
+        setUserToken(idToken);
+        setIsExpanded(true);
+      } else {
+        setSignInModalOpen(true);
+      }
+    }
+  }
+
+  const handleSubmit = async () => {
+    let idToken = userToken;
+    if (idToken?.length <= 0) {
+      idToken = await getIdToken();
+      if (idToken?.length <= 0) return;
+    }
+    /*
+    API.post("wasedatime-dev", "/forum/blablabla", {
+      body: { data: { blablabla } },
+      headers: {
+        Authorization: idToken,
+      },
+    });
+    */
+  }
 
   const findBoardIndex: number = boards.findIndex(
     (board) => board.slug == boardSlug
@@ -31,7 +67,7 @@ const CreateThread = () => {
         className="absolute top-0 right-2 hover:text-light-main cursor-pointer"
         onClick={() => setIsExpanded(false)}
       >
-        X
+        <CloseIcon />
       </h1>
       <div className="absolute bottom-0 left-2 w-full flex mb-3 text-sm justify-between">
         <div className="my-auto">
@@ -58,16 +94,23 @@ const CreateThread = () => {
             ) : null}
           </button>
         </div>
-        <button className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker">
+        <button
+          className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker"
+          onClick={handleSubmit}
+        >
           Submit Post
         </button>
       </div>
     </div>
   ) : (
     <div>
-      <div className="cursor-pointer" onClick={() => setIsExpanded(true)}>
+      <div className="cursor-pointer" onClick={handleOpenForm}>
         <h1 className="border-b-2 border-light-main">Start a new thread</h1>
       </div>
+      <SignInModal
+        isModalOpen={isSignInModalOpen}
+        closeModal={() => setSignInModalOpen(false)}
+      />
     </div>
   );
 };

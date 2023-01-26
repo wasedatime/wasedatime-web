@@ -93,7 +93,7 @@ const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
       className={
         (currentGroups.includes(school)
           ? "border-light-main"
-          : "border-light-bgMain") + " border-2 rounded grow-0 shrink-0 m-2"
+          : "border-light-bgMain") + " border-2 rounded grow-0 shrink-0 m-2 cursor-pointer"
       }
       onClick={() => toggleGroup(school)}
     >
@@ -111,10 +111,10 @@ const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
       }
     >
       <div
-        className="fixed top-0 bottom-0 left-0 right-0 bg-gray-500 opacity-10 z-0"
+        className="fixed top-0 bottom-0 left-0 right-0 bg-zinc-500 opacity-50 z-0"
         onClick={() => setOpen(false)}
       />
-      <div className="fixed rounded top-1/4 left-8 right-8 md:left-36 md:right-36 lg:left-1/4 lg:right-1/4 bg-white z-10">
+      <div className="fixed rounded-lg top-1/4 left-8 right-8 md:left-36 md:right-36 lg:left-1/4 lg:right-1/4 bg-white z-10">
         <TabMenu
           activeTab={schoolsCategoryId}
           onClickTab={setSchoolsCategoryId}

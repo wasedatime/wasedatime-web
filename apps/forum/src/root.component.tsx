@@ -2,6 +2,7 @@ import React from "react";
 import i18next from "i18next";
 import Lang from "@bit/wasedatime.core.ts.constants.langs";
 import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
+import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 
 import App from "@app/components/App";
 import translationEN from "@app/constants/locales/en/translation.json";
@@ -10,6 +11,8 @@ import { ThemeProvider } from "@app/utils/theme-context";
 import { RecoilRoot } from "recoil";
 
 import "@app/styles/main.css";
+
+configAuth();
 
 i18nConfig({
   i18n: i18next,

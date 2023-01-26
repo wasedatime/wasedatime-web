@@ -43,6 +43,7 @@ const CreateThread = () => {
       idToken = await getIdToken();
       if (idToken?.length <= 0) return;
     }
+    // TODO: Implement submitting new thread API
     /*
     API.post("wasedatime-dev", "/forum/blablabla", {
       body: { data: { blablabla } },

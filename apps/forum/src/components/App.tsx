@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "@bit/wasedatime.core.ts.ui.header";
+import Header from "@app/components/common/Header";
 
 import { ThemeContext } from "@app/utils/theme-context";
 import Board from "./Board";
@@ -22,7 +22,6 @@ const App = () => {
             onInputChange={() => {}}
             placeholder={t("search placeholder")}
             inputText=""
-            disabled
             isBlur={false}
             theme={theme}
             setTheme={setTheme}

@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => {
   return {
     root: "./src",
     publicDir: "assets",
-    base: env.VITE_PUBLIC_BASE_PATH + "/",
+    base: (env.VITE_PUBLIC_BASE_PATH || "http://localhost:8084") + "/",
     rollupOptions: {
       input: "wasedatime-forum.ts",
       preserveEntrySignatures: true,

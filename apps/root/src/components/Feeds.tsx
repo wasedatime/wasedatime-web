@@ -24,7 +24,7 @@ const Feeds = () => {
   const { t, i18n } = useTranslation()
   const { theme, setTheme } = React.useContext(ThemeContext)
 
-  const feedsBasePath = import.meta.env.VITE_MF_FEEDS_BASE_PATH
+  const feedsBasePath = import.meta.env.VITE_MF_FEEDS_BASE_PATH || "http://localhost:8083";
 
   return (
     <FeedsWrapper style={{ overflow: "hidden" }}>

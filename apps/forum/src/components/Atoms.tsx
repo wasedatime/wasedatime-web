@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { atom } from 'recoil';
-import { useRecoilState } from 'recoil';
+import * as React from "react";
+import { atom } from "recoil";
+import { useRecoilState } from "recoil";
 
-export const TagState = atom({
-    key: 'tagState',
-    default: [],
-  });
+export const TagState = atom<string[]>({
+  key: "tagState",
+  default: [],
+});

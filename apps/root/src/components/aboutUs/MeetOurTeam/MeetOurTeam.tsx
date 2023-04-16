@@ -74,6 +74,7 @@ const MeetOurTeam = () => {
             socials={member.socials}
             profileText={member.profileText}
             onClick={() => setActiveCardName(member.name)}
+            onClose={() => setActiveCardName("")}
             isOpen={member.name === activeCardName}
           />
         ))}

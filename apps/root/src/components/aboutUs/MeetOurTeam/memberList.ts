@@ -1,4 +1,3 @@
-import akylai from "@app/assets/img/contributors/akylai.jpg";
 import alina from "@app/assets/img/contributors/alina.jpg";
 import austin from "@app/assets/img/contributors/austin.jpg";
 import george from "@app/assets/img/contributors/george.jpg";
@@ -11,13 +10,11 @@ import kaede from "@app/assets/img/contributors/kaede.jpg";
 import kaiqing from "@app/assets/img/contributors/kaiqing.jpg";
 import kong from "@app/assets/img/contributors/kong.jpg";
 import mei from "@app/assets/img/contributors/mei.jpg";
-import mona from "@app/assets/img/contributors/mona.jpg";
 import naomi from "@app/assets/img/contributors/naomi.jpg";
 import nicholas from "@app/assets/img/contributors/nicholas.jpg";
 import oscar from "@app/assets/img/contributors/oscar.jpg";
 import takumi from "@app/assets/img/contributors/takumi.jpg";
 import tang from "@app/assets/img/contributors/tang.jpg";
-import xinmei from "@app/assets/img/contributors/xinmei.jpg";
 import xinyue from "@app/assets/img/contributors/xinyue.jpg";
 import yaoyuan from "@app/assets/img/contributors/yaoyuan.jpg";
 import zenda from "@app/assets/img/contributors/zenda.jpg";
@@ -76,12 +73,13 @@ export const CurrentList: Array<Members> = [
   {
     image: jason,
     name: "Jason Park",
-    positions: ["Backend Engineer", "Marketing"],
+    positions: ["Backend Engineer", "Next Project Leader"],
     socials: [
       {
         platform: linkedin,
         link: "https://www.linkedin.com/in/%E6%B5%9A%E5%BD%AC-%E6%9C%B4-a9a503200",
       },
+      { platform: github, link: "https://github.com/JasonNotJson" },
     ],
     profileText: "Imagine Sisyphus happy.",
   },
@@ -107,19 +105,6 @@ export const CurrentList: Array<Members> = [
       { platform: instagram, link: "https://www.instagram.com/ronin2_7/" },
     ],
   },
-  // xinmei
-  {
-    image: xinmei,
-    name: "Xinmei(Evelyn) Liu",
-    positions: ["Marketing"],
-    socials: [
-      {
-        platform: instagram,
-        link: "https://www.instagram.com/evelyn_liuxinm/",
-      },
-    ],
-    profileText: "I’m so happy to work with you guys together 🥰",
-  },
   // xinyue
   {
     image: xinyue,
@@ -129,27 +114,6 @@ export const CurrentList: Array<Members> = [
       { platform: instagram, link: "https://www.instagram.com/xinyue_xxtao/" },
     ],
     profileText: "Stay real, stay cool :)",
-  },
-  // akylai
-  {
-    image: akylai,
-    name: "Akylai",
-    positions: ["Frontend Apprentice"],
-    socials: [
-      {
-        platform: instagram,
-        link: "https://www.instagram.com/akylaimanalieva/",
-      },
-    ],
-  },
-  // mona
-  {
-    image: mona,
-    name: "Mona Matsuda",
-    positions: ["Frontend Apprentice"],
-    socials: [
-      { platform: instagram, link: "https://www.instagram.com/monamrym/" },
-    ],
   },
 ];
 

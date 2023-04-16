@@ -10,11 +10,13 @@ import kaede from "@app/assets/img/contributors/kaede.jpg";
 import kaiqing from "@app/assets/img/contributors/kaiqing.jpg";
 import kong from "@app/assets/img/contributors/kong.jpg";
 import mei from "@app/assets/img/contributors/mei.jpg";
+import michael from "@app/assets/img/contributors/michael.jpg";
 import naomi from "@app/assets/img/contributors/naomi.jpg";
 import nicholas from "@app/assets/img/contributors/nicholas.jpg";
 import oscar from "@app/assets/img/contributors/oscar.jpg";
 import takumi from "@app/assets/img/contributors/takumi.jpg";
 import tang from "@app/assets/img/contributors/tang.jpg";
+import xinmei from "@app/assets/img/contributors/xinmei.jpg";
 import xinyue from "@app/assets/img/contributors/xinyue.jpg";
 import yaoyuan from "@app/assets/img/contributors/yaoyuan.jpg";
 import zenda from "@app/assets/img/contributors/zenda.jpg";
@@ -87,7 +89,7 @@ export const CurrentList: Array<Members> = [
   {
     image: nicholas,
     name: "Nicholas Narmada",
-    positions: ["Frontend Engineer"],
+    positions: ["Frontend - react"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/nichnarmada/" },
       { platform: github, link: "https://github.com/nichnarmada" },
@@ -105,6 +107,19 @@ export const CurrentList: Array<Members> = [
       { platform: instagram, link: "https://www.instagram.com/ronin2_7/" },
     ],
   },
+  // xinmei
+  {
+    image: xinmei,
+    name: "Xinmei(Evelyn) Liu",
+    positions: ["Marketing"],
+    socials: [
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/evelyn_liuxinm/",
+      },
+    ],
+    profileText: "I’m so happy to work with you guys together 🥰",
+  },
   // xinyue
   {
     image: xinyue,
@@ -114,6 +129,21 @@ export const CurrentList: Array<Members> = [
       { platform: instagram, link: "https://www.instagram.com/xinyue_xxtao/" },
     ],
     profileText: "Stay real, stay cool :)",
+  },
+  // michael
+  {
+    image: michael,
+    name: "Michael Kaminski",
+    positions: ["Frontend - react"],
+    socials: [
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/michaelkaminsk/",
+      },
+      { platform: github, link: "https://github.com/kamlnskll" },
+      { platform: linkedin, link: "https://www.linkedin.com/in/mkaminsk/" },
+    ],
+    profileText: "Coming up with one!",
   },
 ];
 

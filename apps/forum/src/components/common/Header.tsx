@@ -124,7 +124,10 @@ const Header = ({
         onChange={
           onInputChange ? (e) => onInputChange(e.target.value) : () => {}
         }
-        onFocus={() => setIsInputExpanded(true)}
+        onFocus={() => {
+          setIsInputExpanded(true);
+          onSearchBarClick();
+        }}
         onBlur={() => setIsInputExpanded(false)}
         value={inputText || ""}
         disabled={disabled}

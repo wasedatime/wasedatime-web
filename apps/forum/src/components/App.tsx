@@ -1,13 +1,14 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Header from "@app/components/common/Header";
+import HeaderWithModal from "@app/components/common/HeaderWithModal";
 
 import { ThemeContext } from "@app/utils/theme-context";
 import Board from "./Board";
 import BoardMenu from "@app/components/BoardMenu";
 import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
+import SearchTags from "./SearchTags";
 
 const App = () => {
   const { t, i18n } = useTranslation();
@@ -17,7 +18,8 @@ const App = () => {
     <div className="flex flex-col">
       <BrowserRouter>
         <div className="basis-[67px]">
-          <Header
+          <HeaderWithModal
+            modal={SearchTags}
             title={t("navigation.forum")}
             onInputChange={() => {}}
             placeholder={t("search placeholder")}

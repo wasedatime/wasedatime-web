@@ -75,7 +75,7 @@ export const CurrentList: Array<Members> = [
   {
     image: jason,
     name: "Jason Park",
-    positions: ["Backend Engineer", "Next Project Leader"],
+    positions: ["Backend Engineer", "Cheer Leader"],
     socials: [
       {
         platform: linkedin,

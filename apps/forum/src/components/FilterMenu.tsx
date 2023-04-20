@@ -5,7 +5,6 @@ import groups from "@app/constants/groups.json";
 import CheckList from "@app/components/form/CheckList";
 import SchoolFilterForm from "@app/components/SchoolFilterForm";
 import { currentGroupsState } from "@app/recoil/atoms";
-import SearchTags from "./SearchTags";
 
 const FilterMenu = () => {
   const [currentGroups, setCurrentGroups] = useRecoilState(currentGroupsState);
@@ -33,10 +32,6 @@ const FilterMenu = () => {
 
   return (
     <div className="w-64 text-center px-4">
-      <div className="my-2 mx-auto">
-        <SearchTags />
-      </div>
-
       <div className="my-2 mx-auto">
         <h1 className="form-item-title">School</h1>
         <button

@@ -3,10 +3,12 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { atom } from "recoil";
 import { TagState } from "./Atoms";
 
-const SearchTags: React.FC = () => {
-  const [show, setShow] = useState(false);
-  const toggleShow = () => setShow(!show);
+type Props = {
+  isShow: boolean;
+  closeModal: () => void;
+}
 
+const SearchTags: React.FC<Props> = ({ isShow, closeModal }) => {
   const tagState = useRecoilValue(TagState);
 
   const [selectedTags, setSelectedTags] = useState<[]>([]);
@@ -56,46 +58,21 @@ const SearchTags: React.FC = () => {
   };
 
   const handleCloseModal = () => {
-    toggleShow();
-    setSelectedTags([]);
-  };
-
-  const handleClose = () => {
-    setSelectedTags([]);
-    setQuery("");
-    setShow(false);
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const value = event.target.value;
-    if (selectedTags.indexOf(value) === -1) {
-      setSelectedTags([...selectedTags, value]);
-    } else {
-      setSelectedTags(selectedTags.filter((item) => item !== value));
-    }
+    // setSelectedTags([]);
+    closeModal();
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    toggleShow();
     setTagsSelected(selectedTags);
     setQuery("");
+    closeModal();
   };
 
   return (
-    <>
-      <button
-        type="button"
-        className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
-        onClick={toggleShow}
-      >
-        Choose Tags
-      </button>
-      {/* -------------------------------------------------- */}
+    <div className={(isShow) ? "" : "hidden"}>
       <div
-        className={`${
-          !show && "hidden"
-        } fixed flex flex-col top-1/4 left-1/3 w-1/3 min-h-1/3 border shadow-lg rounded-lg overflow-y-auto`}
+        className="z-10 fixed flex flex-col top-1/4 left-1/3 w-1/3 min-h-1/3 bg-white border shadow-lg rounded-lg overflow-y-auto"
       >
         <div className="modal-header flex sticky top-0 bg-white items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
           <h5
@@ -178,7 +155,8 @@ const SearchTags: React.FC = () => {
           </div>
         </div>
       </div>
-    </>
+      <div className="z-0 absolute w-screen h-screen opacity-50 bg-slate-300" onClick={closeModal}></div>
+    </div>
   );
 };
 

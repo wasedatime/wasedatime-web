@@ -18,11 +18,12 @@ export default defineConfig({
     },
   },
   build: {
+    outDir: "lib",
     lib: {
-      entry: path.resolve(__dirname, "src/lib/index.ts"),
-      name: "MyLib",
+      entry: path.resolve(__dirname, "src/index.ts"),
+      name: "wasedatime-ui",
       formats: ["es", "umd"],
-      fileName: (format) => `my-lib.${format}.js`,
+      fileName: (format) => `wasedatime-ui.${format}.js`,
     },
     rollupOptions: {
       external: ["react", "react-dom"],

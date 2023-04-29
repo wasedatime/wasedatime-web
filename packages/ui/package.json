@@ -1,8 +1,20 @@
 {
-  "name": "ui",
-  "private": true,
+  "name": "wasedatime-ui",
   "version": "0.0.0",
+  "private": true,
   "type": "module",
+  "files": [
+    "lib/"
+  ],
+  "main": "lib/wasedatime-ui.umd.js",
+  "module": "lib/wasedatime-ui.es.js",
+  "types": "lib/wasedatime-ui.d.ts",
+  "exports": {
+    ".": {
+      "import": "lib/wasedatime-ui.es.js",
+      "require": "lib/wasedatime-ui.umd.js"
+    }
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

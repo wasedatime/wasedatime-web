@@ -8,6 +8,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "types": ["node"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

@@ -1,10 +1,11 @@
-import React from "react"
+import React, { MouseEvent } from "react"
 import colors from "@/theme/colors.json"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import { Languages } from "lucide-react"
 import MediaQuery from "react-responsive"
 import { sizes } from "@/utils/responsive"
+import { ThemeType } from "@/constants/type/theme"
 
 const buttonStyle = {
   display: "flex",
@@ -17,100 +18,84 @@ const buttonStyle = {
   backgroundColor: "inherit",
 }
 
-type ThemeTypes = "light" | "dark"
-
-class LanguangeMenu extends React.Component<
-  { theme: ThemeTypes; changeLang(lang: string): void },
-  {}
-> {
-  state = {
-    anchorEl: null,
-  }
-
-  handleClick = (event) => {
-    event.preventDefault()
-    this.setState({ anchorEl: event.currentTarget })
-  }
-
-  handleClose = () => {
-    this.setState({ anchorEl: null })
-  }
-
-  handleMenuItemClick = (event, lang) => {
-    event.preventDefault()
-    this.props.changeLang(lang)
-    window.dispatchEvent(new Event("storage"))
-    this.handleClose()
-  }
-
-  render() {
-    const { anchorEl } = this.state
-    return (
-      <div style={{ float: "right" }}>
-        <button
-          style={{
-            ...buttonStyle,
-            color:
-              this.props.theme === "light"
-                ? colors.light.main
-                : colors.dark.text2,
-          }}
-          onClick={this.handleClick}
-          aria-label="Language toggle"
-        >
-          <MediaQuery maxWidth={sizes.tablet}>
-            {(matches) =>
-              matches ? (
-                <Languages size="2x" />
-              ) : (
-                <Languages size="3x" transform="shrink-2" />
-              )
-            }
-          </MediaQuery>
-        </button>
-        <Menu
-          id="language-menu"
-          anchorEl={anchorEl}
-          open={Boolean(anchorEl)}
-          onClose={this.handleClose}
-          disableAutoFocusItem={true}
-          classes={{
-            paper:
-              this.props.theme === "light"
-                ? colors.light.bgSide
-                : colors.dark.bgSide,
-          }}
-        >
-          <MenuItem
-            style={{
-              fontSize: "0.8em",
-              padding: "5px 12px",
-              color:
-                this.props.theme === "light"
-                  ? colors.light.text2
-                  : colors.dark.text2,
-            }}
-            onClick={(event) => this.handleMenuItemClick(event, "ja")}
-          >
-            日本語
-          </MenuItem>
-          <MenuItem
-            style={{
-              fontSize: "0.8em",
-              padding: "5px 12px",
-              color:
-                this.props.theme === "light"
-                  ? colors.light.text2
-                  : colors.dark.text2,
-            }}
-            onClick={(event) => this.handleMenuItemClick(event, "en")}
-          >
-            English
-          </MenuItem>
-        </Menu>
-      </div>
-    )
-  }
+interface LanguageMenuProps {
+  theme: ThemeType
+  changeLang: (lang: string) => void
 }
 
-export default LanguangeMenu
+export const LanguageMenu = ({ theme, changeLang }: LanguageMenuProps) => {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+
+  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  const handleMenuItemClick = (
+    event: MouseEvent<HTMLLIElement>,
+    lang: string
+  ) => {
+    event.preventDefault()
+    changeLang(lang)
+    window.dispatchEvent(new Event("storage"))
+    handleClose()
+  }
+
+  return (
+    <div style={{ float: "right" }}>
+      <button
+        style={{
+          ...buttonStyle,
+          color: theme === "light" ? colors.light.main : colors.dark.text2,
+        }}
+        onClick={handleClick}
+        aria-label="Language toggle"
+      >
+        <MediaQuery maxWidth={sizes.tablet}>
+          {(matches: any) =>
+            matches ? (
+              <Languages size="2x" />
+            ) : (
+              <Languages size="3x" transform="shrink-2" />
+            )
+          }
+        </MediaQuery>
+      </button>
+      <Menu
+        id="language-menu"
+        anchorEl={anchorEl}
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+        disableAutoFocusItem={true}
+        classes={{
+          paper: theme === "light" ? colors.light.bgSide : colors.dark.bgSide,
+        }}
+      >
+        <MenuItem
+          style={{
+            fontSize: "0.8em",
+            padding: "5px 12px",
+            color: theme === "light" ? colors.light.text2 : colors.dark.text2,
+          }}
+          onClick={(event) => handleMenuItemClick(event, "ja")}
+        >
+          日本語
+        </MenuItem>
+        <MenuItem
+          style={{
+            fontSize: "0.8em",
+            padding: "5px 12px",
+            color: theme === "light" ? colors.light.text2 : colors.dark.text2,
+          }}
+          onClick={(event) => handleMenuItemClick(event, "en")}
+        >
+          English
+        </MenuItem>
+      </Menu>
+    </div>
+  )
+}

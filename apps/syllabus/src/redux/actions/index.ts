@@ -1,5 +1,5 @@
 import API from "@aws-amplify/api";
-import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
+import { getIdToken } from "wasedatime-ui";
 
 import { schoolCodeMap } from "@app/constants/school-code";
 import { SyllabusKey } from "@app/constants/syllabus-data";

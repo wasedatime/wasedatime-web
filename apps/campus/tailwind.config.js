@@ -1,4 +1,4 @@
-const colors = require("wasedatime-ui/theme/colors");
+const colors = require("wasedatime-ui/colors");
 
 module.exports = {
   darkMode: "class",

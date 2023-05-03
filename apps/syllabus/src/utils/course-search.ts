@@ -1,4 +1,4 @@
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import { Lang } from "wasedatime-ui";
 import sortBy from "lodash/sortBy";
 
 import { SyllabusKey } from "@app/constants/syllabus-data";

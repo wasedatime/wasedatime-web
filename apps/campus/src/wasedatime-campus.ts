@@ -1,7 +1,6 @@
 import React from "react";
 
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
+import { Lang, i18nConfig } from "wasedatime-ui";
 import i18next from "i18next";
 import ReactDOM from "react-dom";
 import singleSpaReact from "single-spa-react";

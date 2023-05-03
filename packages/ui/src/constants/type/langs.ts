@@ -1,5 +1,4 @@
-enum Lang {
+export enum Lang {
   EN = "en",
   JA = "ja",
 }
-export default Lang

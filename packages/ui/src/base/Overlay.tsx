@@ -5,5 +5,3 @@ export const Overlay = styled("div")`
   flex-direction: column;
   flex: 1 0 auto;
 `
-
-export default Overlay

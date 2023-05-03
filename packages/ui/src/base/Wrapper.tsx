@@ -21,5 +21,3 @@ export const WrapperWithBackground = styled(Wrapper)`
   background-size: cover;
   background-repeat: no-repeat;
 `
-
-export default Wrapper

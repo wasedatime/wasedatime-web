@@ -8,6 +8,7 @@ export const Logo = () => (
     style={{ width: 120, height: 120 }}
   />
 )
+
 export const LogoJp = () => (
   <img
     src={logoJp}
@@ -15,6 +16,7 @@ export const LogoJp = () => (
     style={{ width: 120, height: 120 }}
   />
 )
+
 export const SmallLogo = () => (
   <img
     src={logo}
@@ -22,8 +24,7 @@ export const SmallLogo = () => (
     style={{ width: 50, height: 50 }}
   />
 )
+
 export const SmallLogoJp = () => (
   <img src={logoJp} style={{ width: 50, height: 50 }} />
 )
-
-export default Logo

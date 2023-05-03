@@ -1,7 +1,7 @@
 import MediaQuery from "react-responsive"
 import { useNavigate } from "react-router-dom"
 import colors from "@/theme/colors.json"
-import LanguageMenu from "@/layout/LanguageMenu"
+import { LanguageMenu } from "@/layout/LanguageMenu"
 import { sizes } from "@/utils/responsive"
 import { SmallLogo } from "@/theme/Logo"
 import { ThemeToggle } from "@/layout/ThemeToggle"
@@ -91,7 +91,7 @@ type HeaderProps = {
   setTheme: (theme: ThemeType) => void
 }
 
-const Header = ({
+export const Header = ({
   title,
   onInputChange,
   placeholder,
@@ -102,7 +102,7 @@ const Header = ({
   theme = "light",
   setTheme,
 }: HeaderProps) => {
-  let navigate = useNavigate()
+  const navigate = useNavigate()
 
   const searchBar = (
     <label style={{ marginLeft: "0" }}>
@@ -122,7 +122,7 @@ const Header = ({
   return (
     <header style={headerStyle(isBlur, theme)}>
       <MediaQuery maxWidth={sizes.tablet}>
-        {(matches) =>
+        {(matches: any) =>
           matches ? (
             <div style={logoWrapperStyle} onClick={() => navigate("/home")}>
               <SmallLogo />
@@ -136,7 +136,7 @@ const Header = ({
       </MediaQuery>
 
       <MediaQuery maxWidth={sizes.tablet}>
-        {(matches) =>
+        {(matches: any) =>
           matches ? (
             <div style={mobileSearchBarWrapperStyle}>{searchBar}</div>
           ) : (
@@ -152,5 +152,3 @@ const Header = ({
     </header>
   )
 }
-
-export default Header

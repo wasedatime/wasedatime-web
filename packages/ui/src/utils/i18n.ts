@@ -1,7 +1,7 @@
 import { initReactI18next } from "react-i18next"
 import detector from "i18next-browser-languagedetector"
 import HttpApi from "i18next-http-backend"
-import Lang from "@/constants/type/langs"
+import { Lang } from "@/constants/type/langs"
 import coreTranslationEn from "@/constants/locales/en.json"
 import coreTranslationJa from "@/constants/locales/ja.json"
 
@@ -14,13 +14,13 @@ const defaultTranslations = {
   [Lang.JA]: coreTranslationJa,
 }
 
-function i18nConfig({
+export const i18nConfig = ({
   i18n,
   customTranslations = defaultTranslations,
 }: {
   i18n: any
   customTranslations?: TranslationsTypes
-}): void {
+}) => {
   const resources = {
     [Lang.EN]: {
       translation: { ...coreTranslationEn, ...customTranslations[Lang.EN] },
@@ -56,5 +56,3 @@ function i18nConfig({
       detection: detectorOptions,
     })
 }
-
-export default i18nConfig

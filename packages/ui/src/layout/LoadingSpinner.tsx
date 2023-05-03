@@ -41,7 +41,7 @@ type State = {
   delayMessage: string
 }
 
-class LoadingSpinner extends React.Component<Props, State> {
+export class LoadingSpinner extends React.Component<Props, State> {
   _isMounted: boolean
   constructor(props: Props) {
     super(props)
@@ -113,5 +113,3 @@ class LoadingSpinner extends React.Component<Props, State> {
     )
   }
 }
-
-export default LoadingSpinner

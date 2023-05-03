@@ -11,8 +11,8 @@
   "types": "lib/wasedatime-ui.d.ts",
   "exports": {
     ".": {
-      "import": "lib/wasedatime-ui.es.js",
-      "require": "lib/wasedatime-ui.umd.js"
+      "import": "./lib/wasedatime-ui.es.js",
+      "require": "./lib/wasedatime-ui.umd.js"
     }
   },
   "scripts": {

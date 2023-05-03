@@ -1,7 +1,4 @@
-lockfileVersion: 5.4
-
-specifiers:
-  turbo: ^1.6.3
+lockfileVersion: '6.0'
 
 devDependencies:
   turbo: 1.9.3

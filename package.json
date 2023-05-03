@@ -1,5 +1,9 @@
 {
   "name": "@wasedatime/web",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "start": "turbo run start",
@@ -12,10 +16,5 @@
   },
   "devDependencies": {
     "turbo": "^1.6.3"
-  },
-  "bit": {
-    "env": {},
-    "componentsDefaultDirectory": "components/{name}",
-    "packageManager": "npm"
   }
 }

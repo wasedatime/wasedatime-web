@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Wrapper, media } from "wasedatime-ui";
 import styled from "styled-components";
 
 import { UnstyledUList } from "@app/components/styles/List";

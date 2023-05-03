@@ -1,7 +1,6 @@
 import React from "react";
 
-import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { RowWrapper, media, sizes } from "wasedatime-ui";
 import {
   faAngleDoubleLeft,
   faAngleDoubleRight,

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
+import { Wrapper } from "wasedatime-ui";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 

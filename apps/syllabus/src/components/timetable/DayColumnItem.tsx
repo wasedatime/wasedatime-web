@@ -1,6 +1,6 @@
 import React from "react";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media } from "wasedatime-ui";
 import styled from "styled-components";
 
 import CourseColumn from "@app/components/timetable/CourseColumn";

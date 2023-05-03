@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useEffect } from "react";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media } from "wasedatime-ui";
 import {
   faClock,
   faAngleDoubleRight,

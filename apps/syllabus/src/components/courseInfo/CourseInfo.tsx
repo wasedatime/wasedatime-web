@@ -1,9 +1,7 @@
 import React from "react";
 
 import API from "@aws-amplify/api";
-import colors from "@bit/wasedatime.core.theme.colors";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
+import { Colors, media, getUserAttr } from "wasedatime-ui";
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { levenshteinEditDistance as levenshtein } from "levenshtein-edit-distance";

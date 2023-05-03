@@ -1,7 +1,6 @@
 import React from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import { height } from "@bit/wasedatime.core.ts.constants.size-variables";
+import { Colors, height } from "wasedatime-ui";
 import {
   faArrowDown,
   faMinusCircle,

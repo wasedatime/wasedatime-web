@@ -1,7 +1,6 @@
 import React from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Colors, media, sizes } from "wasedatime-ui";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
 import Menu from "semantic-ui-react/dist/commonjs/collections/Menu";

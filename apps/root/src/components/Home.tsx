@@ -1,10 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { WrapperWithBackground, Header, Logo, media } from "wasedatime-ui";
 import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { navigateToUrl } from "single-spa";

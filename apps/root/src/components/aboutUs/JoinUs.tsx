@@ -1,8 +1,6 @@
 import React from "react";
 
-import { Overlay } from "@bit/wasedatime.core.ts.styles.overlay";
-import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Overlay, Wrapper, media, sizes } from "wasedatime-ui";
 import { faUserTie, faUserCog } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Helmet } from "react-helmet";

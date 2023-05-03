@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
 
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import { LoadingSpinner } from "wasedatime-ui";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 

@@ -1,6 +1,6 @@
 import React from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
+import { Colors } from "wasedatime-ui";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import {

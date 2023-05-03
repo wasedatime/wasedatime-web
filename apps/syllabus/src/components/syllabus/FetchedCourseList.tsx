@@ -1,7 +1,6 @@
 import React from "react";
 
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Lang, media } from "wasedatime-ui";
 import chunk from "lodash/chunk";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { Waypoint } from "react-waypoint";

@@ -1,10 +1,7 @@
 import React, { lazy, Suspense } from "react";
 
 import API from "@aws-amplify/api";
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import Modal from "@bit/wasedatime.core.ts.ui.modal";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Modal, media, sizes, Header, LoadingSpinner } from "wasedatime-ui";
 import debounce from "lodash/debounce";
 import queryString from "query-string";
 import ReactGA from "react-ga";

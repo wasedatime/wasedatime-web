@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
+import { media, getUserAttr, signOut } from "wasedatime-ui";
 import { WithTranslation, withTranslation } from "react-i18next";
 import styled from "styled-components";
 

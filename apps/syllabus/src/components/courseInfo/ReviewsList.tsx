@@ -1,8 +1,6 @@
 import React from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import Modal from "@bit/wasedatime.core.ts.ui.modal";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Colors, Modal, media, sizes } from "wasedatime-ui";
 import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";

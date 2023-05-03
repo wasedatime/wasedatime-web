@@ -1,9 +1,13 @@
 import React from "react";
 
 import API from "@aws-amplify/api";
-import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { getIdToken, getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
+import {
+  media,
+  sizes,
+  getIdToken,
+  getUserAttr,
+  SignInModal,
+} from "wasedatime-ui";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactGA from "react-ga";

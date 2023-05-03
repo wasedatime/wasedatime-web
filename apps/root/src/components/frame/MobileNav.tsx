@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { getUserAttr, signOut } from "@bit/wasedatime.core.ts.utils.user";
+import { getUserAttr, signOut } from "wasedatime-ui";
 import { useTranslation } from "react-i18next";
 
 import { NavItemsProps } from "@app/components/frame/Nav";

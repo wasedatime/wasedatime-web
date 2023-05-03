@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Colors, media } from "wasedatime-ui";
 import Slider from "rc-slider/lib/Slider";
 import { useTranslation } from "react-i18next";
 import Table from "semantic-ui-react/dist/commonjs/collections/Table";

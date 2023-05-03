@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import Modal from "@bit/wasedatime.core.ts.ui.modal";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Modal, Header, media, sizes } from "wasedatime-ui";
 import debounce from "lodash/debounce";
 import { Helmet } from "react-helmet";
 import { WithTranslation, withTranslation } from "react-i18next";

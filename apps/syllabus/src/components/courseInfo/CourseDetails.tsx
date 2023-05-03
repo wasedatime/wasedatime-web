@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
+import { Colors } from "wasedatime-ui";
 import {
   faBroadcastTower,
   faChalkboardTeacher,
@@ -42,11 +42,11 @@ const StyledTable = styled(Table)<StyledTableProps>`
   ${(props) =>
     props.$isDark &&
     `
-    border: 1px solid ${colors.dark.text3} !important;
+    border: 1px solid ${Colors.dark.text3} !important;
     border-radius: 5px;
     border-bottom-width: 0px !important;
     tbody tr td {
-      border-bottom: 1px solid ${colors.dark.text3};
+      border-bottom: 1px solid ${Colors.dark.text3};
     }
   `}
 `;

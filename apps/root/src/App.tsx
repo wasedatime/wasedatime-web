@@ -1,7 +1,7 @@
 import React, { useEffect, lazy, Suspense, useContext } from "react";
 
 import { Hub } from "@aws-amplify/core";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import { LoadingSpinner } from "wasedatime-ui";
 import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";

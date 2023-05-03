@@ -1,7 +1,6 @@
 import * as React from "react";
 
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
+import { Header, LoadingSpinner } from "wasedatime-ui";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";
 

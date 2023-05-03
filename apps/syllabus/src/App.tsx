@@ -2,8 +2,7 @@ import React, { useEffect, lazy, Suspense, useContext } from "react";
 
 import { Routes, Route, BrowserRouter, useNavigate } from "react-router-dom";
 import API from "@aws-amplify/api";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
+import { getIdToken, LoadingSpinner } from "wasedatime-ui";
 import "semantic-ui-css/components/dropdown.min.css";
 import { connect } from "react-redux";
 

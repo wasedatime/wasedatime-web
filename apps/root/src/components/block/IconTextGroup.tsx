@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
+import { Colors } from "wasedatime-ui";
 import styled from "styled-components";
 
 interface NavItemBlockProps {
@@ -23,7 +23,7 @@ interface IconTextGroupProps {
 const NavItemBlock = styled.div<NavItemBlockProps>`
   display: flex;
   flex-direction: row;
-  color: ${(props) => (props.isCurrentPath ? colors.light.main : "#fff")};
+  color: ${(props) => (props.isCurrentPath ? Colors.light.main : "#fff")};
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Colors, media } from "wasedatime-ui";
 import {
   faExternalLinkSquareAlt,
   faMinusCircle,
@@ -17,7 +17,6 @@ import { SyllabusKey } from "@app/constants/syllabus-data";
 import Course from "@app/types/course";
 import { getCourseTitleAndInstructor } from "@app/utils/course-search";
 import { ThemeContext } from "@app/utils/theme-context";
-import colors from "@bit/wasedatime.core.theme.colors";
 import timetableColors from "@app/constants/timetable-colors";
 
 type StyledPopupProps = {

@@ -7,7 +7,7 @@ import React, {
   useContext,
 } from "react";
 
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { sizes } from "wasedatime-ui";
 import { createBrowserHistory } from "history";
 import ReactGA from "react-ga";
 import { useTranslation } from "react-i18next";

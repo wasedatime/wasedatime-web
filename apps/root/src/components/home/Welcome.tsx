@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
+import { Logo } from "wasedatime-ui";
 import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useTranslation } from "react-i18next";

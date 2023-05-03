@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 
 import API from "@aws-amplify/api";
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
-import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
+import { Lang, LoadingSpinner, i18nConfig, configAuth } from "wasedatime-ui";
 import * as Sentry from "@sentry/react";
 import i18next from "i18next";
 import throttle from "lodash/throttle";

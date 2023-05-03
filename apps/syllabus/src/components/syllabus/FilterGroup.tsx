@@ -1,6 +1,6 @@
 import React from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
+import { Colors } from "wasedatime-ui";
 import { WithStyles, createStyles } from "@material-ui/core";
 import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";

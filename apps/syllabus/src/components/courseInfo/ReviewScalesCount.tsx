@@ -1,6 +1,6 @@
 import React from "react";
 
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media, sizes } from "wasedatime-ui";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
 import styled from "styled-components";

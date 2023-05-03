@@ -1,7 +1,6 @@
 import React from "react";
 
-import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { RowWrapper, Wrapper, media } from "wasedatime-ui";
 import { WithTranslation, withTranslation } from "react-i18next";
 import Message from "semantic-ui-react/dist/commonjs/collections/Message";
 import styled from "styled-components";

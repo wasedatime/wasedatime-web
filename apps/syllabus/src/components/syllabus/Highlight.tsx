@@ -1,6 +1,6 @@
 import React from "react";
 
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import { Lang } from "wasedatime-ui";
 
 import { tokenize } from "@app/utils/course-search";
 

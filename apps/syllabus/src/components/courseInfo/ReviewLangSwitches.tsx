@@ -1,6 +1,6 @@
 import React from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
+import { Colors } from "wasedatime-ui";
 import styled from "styled-components";
 
 import { ThemeContext } from "@app/utils/theme-context";

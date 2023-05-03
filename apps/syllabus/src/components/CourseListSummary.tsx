@@ -1,7 +1,6 @@
 import React from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
+import { Colors, RowWrapper } from "wasedatime-ui";
 import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";
@@ -56,15 +55,15 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   min-height: 2em !important;
   min-width: 40% !important;
   background-color: ${(props) =>
-    props.$isDark ? colors.dark.text3 : "white"} !important;
+    props.$isDark ? Colors.dark.text3 : "white"} !important;
 
   .divider.text {
-    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? Colors.dark.text2 : "black")};
   }
 
   .divider.text + i.dropdown.icon {
     padding: 0.6rem;
-    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? Colors.dark.text2 : "black")};
   }
 `;
 

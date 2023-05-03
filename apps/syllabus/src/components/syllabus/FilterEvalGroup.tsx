@@ -1,13 +1,12 @@
 import React from "react";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Colors, media } from "wasedatime-ui";
 import FormLabel from "@material-ui/core/FormLabel";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
 import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
 import styled from "styled-components";
-import colors from "@bit/wasedatime.core.theme.colors";
 
 import FilterGroup from "@app/components/syllabus/FilterGroup";
 import { ThemeContext } from "@app/utils/theme-context";

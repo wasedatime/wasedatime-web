@@ -1,7 +1,6 @@
 import React from "react";
 
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { LoadingSpinner, media } from "wasedatime-ui";
 import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { WithTranslation, withTranslation } from "react-i18next";

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Modal from "@bit/wasedatime.core.ts.ui.modal";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Modal, sizes } from "wasedatime-ui";
 import ReactGA from "react-ga";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";

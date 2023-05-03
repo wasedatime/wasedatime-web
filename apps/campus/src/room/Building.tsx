@@ -1,6 +1,6 @@
 import React from "react";
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media } from "wasedatime-ui";
 import { Accordion, Card } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";

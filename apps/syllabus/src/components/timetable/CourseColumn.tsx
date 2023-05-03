@@ -1,7 +1,6 @@
 import React from "react";
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Colors, media } from "wasedatime-ui";
 import { WithTranslation, withTranslation } from "react-i18next";
 import SimpleBar from "simplebar-react";
 import styled from "styled-components";

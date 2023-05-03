@@ -1,9 +1,6 @@
 import React, { useState, useContext, lazy, Suspense } from "react";
 
-import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Wrapper, Header, LoadingSpinner, media } from "wasedatime-ui";
 import ReactGA from "react-ga";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";

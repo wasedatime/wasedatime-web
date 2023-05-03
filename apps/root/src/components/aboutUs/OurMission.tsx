@@ -1,7 +1,6 @@
 import React from "react";
 
-import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Wrapper, media } from "wasedatime-ui";
 import {
   faBook,
   faCalendarAlt,

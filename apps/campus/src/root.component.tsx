@@ -1,8 +1,5 @@
 import React, { Suspense, useContext, useEffect } from "react";
-
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
+import { Lang, LoadingSpinner, i18nConfig } from "wasedatime-ui";
 import i18next from "i18next";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Routes, Route } from "react-router-dom";

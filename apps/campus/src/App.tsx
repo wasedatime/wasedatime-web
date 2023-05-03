@@ -1,6 +1,6 @@
 import React, { lazy } from "react";
 
-import Header from "wasedatime/header";
+import { Header } from "wasedatime-ui";
 import { useTranslation } from "react-i18next";
 
 import { ThemeContext } from "@app/utils/theme-context";

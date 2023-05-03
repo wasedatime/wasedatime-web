@@ -1,5 +1,5 @@
 export { height, fontSize } from '../constants/size-variables';
-export type { Lang } from '../constants/type/langs';
+export { Lang } from '../constants/type/langs';
 export { isScreenType } from '../constants/type/screen';
 export type { ScreenType } from '../constants/type/screen';
 export { isThemeType } from '../constants/type/theme';

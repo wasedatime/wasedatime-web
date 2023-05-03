@@ -25,9 +25,6 @@ dependencies:
   lucide-react:
     specifier: ^0.187.0
     version: 0.187.0(react@18.2.0)
-  no-scroll:
-    specifier: ^2.1.1
-    version: 2.1.1
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -6467,7 +6464,6 @@ packages:
   /flow-parser@0.205.0:
     resolution: {integrity: sha512-ZJ6VuLe/BoqeI4GsF+ZuzlpfGi3FCnBrb4xDYhgEJxRt7SAj3ibRuRSsuJSRcY+lQhPZRPNbNWiQqFMxramUzw==}
     engines: {node: '>=0.4.0'}
-    dev: true
 
   /for-each@0.3.3:
     resolution: {integrity: sha512-jqYfLp7mo9vIyQf8ykW2v7A+2N4QjeCeI5+Dz9XraiO1ign81wjiH7Fb9vSOWvQfNtmSa4H2RoQTrrXivdUZmw==}
@@ -7652,7 +7648,7 @@ packages:
       '@babel/register': 7.21.0(@babel/core@7.21.8)
       babel-core: 7.0.0-bridge.0(@babel/core@7.21.8)
       chalk: 4.1.2
-      flow-parser: 0.185.2
+      flow-parser: 0.205.0
       graceful-fs: 4.2.11
       micromatch: 3.1.10
       neo-async: 2.6.2
@@ -8495,10 +8491,6 @@ packages:
 
   /nice-try@1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
-    dev: false
-
-  /no-scroll@2.1.1:
-    resolution: {integrity: sha512-YTzGAJOo/B6hkodeT5SKKHpOhAzjMfkUCCXjLJwjWk2F4/InIg+HbdH9kmT7bKpleDuqLZDTRy2OdNtAj0IVyQ==}
     dev: false
 
   /nocache@3.0.4:

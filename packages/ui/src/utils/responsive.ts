@@ -1,3 +1,4 @@
+import { ScreenType } from "@/constants/type/screen"
 import { css } from "styled-components"
 
 export const sizes = {
@@ -7,20 +8,10 @@ export const sizes = {
   phoneMini: 375,
 }
 
-type accProps = {
-  [key: string]: (x: TemplateStringsArray) => string[]
-}
-
-// Iterate through the sizes and create a media template
-export const media = Object.keys(sizes).reduce(
-  (acc: accProps, label: string) => {
-    acc[label] = (...args) => css`
-      @media (max-width: ${sizes[label] / 16}em) {
-        ${css(args)};
+export const media = (screen: ScreenType, styles: TemplateStringsArray) => {
+  return `
+      @media screen and (max-width: ${sizes[screen] / 16}em) {
+        ${css(styles)};
       }
     `
-
-    return acc
-  },
-  {}
-)
+}

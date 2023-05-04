@@ -1,5 +1,4 @@
 import { ScreenType } from "@/constants/type/screen"
-import { css } from "styled-components"
 
 export const sizes = {
   desktop: 992,
@@ -8,10 +7,10 @@ export const sizes = {
   phoneMini: 375,
 }
 
-export const media = (screen: ScreenType, styles: TemplateStringsArray) => {
+export const media = (screen: ScreenType, styles: string) => {
   return `
       @media screen and (max-width: ${sizes[screen] / 16}em) {
-        ${css(styles)};
+        ${styles};
       }
     `
 }

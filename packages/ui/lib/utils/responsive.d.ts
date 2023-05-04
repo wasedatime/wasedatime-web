@@ -5,4 +5,4 @@ export declare const sizes: {
     phone: number;
     phoneMini: number;
 };
-export declare const media: (screen: ScreenType, styles: TemplateStringsArray) => string;
+export declare const media: (screen: ScreenType, styles: string) => string;

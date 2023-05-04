@@ -1,13 +1,13 @@
-import React from "react";
+import React from "react"
 
 import {
   StyledHeader,
   StyledParagraph,
   StyledBold,
-} from "@app/components/PrivacyPolicy";
+} from "@app/components/PrivacyPolicy"
 
 const TermsOfService = () => (
-  <div className="bg-light-bgMain dark:bg-dark-bgMain p-6 md:py-24 md:px-60">
+  <div className="bg-light-bgMain p-6 dark:bg-dark-bgMain md:py-24 md:px-60">
     <StyledHeader headerType="h2" centered>
       TERMS OF SERVICE
     </StyledHeader>
@@ -157,6 +157,6 @@ const TermsOfService = () => (
       Japan without regards to its conflict of law provisions.
     </StyledParagraph>
   </div>
-);
+)
 
-export default TermsOfService;
+export default TermsOfService

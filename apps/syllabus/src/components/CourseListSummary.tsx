@@ -1,26 +1,26 @@
-import React from "react";
+import React from "react"
 
-import { Colors, RowWrapper } from "wasedatime-ui";
-import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { WithTranslation, withTranslation } from "react-i18next";
-import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
-import styled from "styled-components";
+import { Colors, RowWrapper } from "wasedatime-ui"
+import { faSortAmountDown } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { WithTranslation, withTranslation } from "react-i18next"
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown"
+import styled from "styled-components"
 
-import { InvisibleButton } from "@app/components/styles/Button";
-import Label from "@app/components/styles/Label";
-import SortingOption from "@app/constants/sorting-options";
-import { SyllabusKey } from "@app/constants/syllabus-data";
-import Course from "@app/types/course";
-import { ThemeContext } from "@app/utils/theme-context";
+import { InvisibleButton } from "@app/components/styles/Button"
+import Label from "@app/components/styles/Label"
+import SortingOption from "@app/constants/sorting-options"
+import { SyllabusKey } from "@app/constants/syllabus-data"
+import Course from "@app/types/course"
+import { ThemeContext } from "@app/utils/theme-context"
 
 type SortByButtonProps = {
-  isSortingOptionOpen: boolean;
-};
+  isSortingOptionOpen: boolean
+}
 
 type StyledDropdownProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
   margin-left: auto;
@@ -35,17 +35,17 @@ const SortByButton = styled(InvisibleButton)<SortByButtonProps>`
   }
   fill: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
   color: ${(props) => (props.isSortingOptionOpen ? "#b51e36;" : "#000;")};
-`;
+`
 
 const SortingIcon = styled(FontAwesomeIcon)`
   margin: auto;
   margin-right: 0.5em;
-`;
+`
 
 const StyledLabel = styled(Label)`
   height: 30px;
   margin: 0px 2px;
-`;
+`
 
 const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   font-family: Segoe UI, Yu Gothic Medium, Lato;
@@ -65,18 +65,18 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
     padding: 0.6rem;
     color: ${(props) => (props.$isDark ? Colors.dark.text2 : "black")};
   }
-`;
+`
 
 const creditSum = (courses) => {
   return courses
     .map((course) => course[SyllabusKey.CREDIT])
-    .reduce((a, b) => a + b, 0);
-};
+    .reduce((a, b) => a + b, 0)
+}
 
 interface Props extends WithTranslation {
-  courses: Course[];
-  selectedSortingOption: string;
-  changeSortingOption: (x: string) => void;
+  courses: Course[]
+  selectedSortingOption: string
+  changeSortingOption: (x: string) => void
 }
 
 const CourseListSummary = ({
@@ -85,7 +85,7 @@ const CourseListSummary = ({
   changeSortingOption,
   t,
 }: Props) => {
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
   const sortingOptions = [
     {
@@ -103,7 +103,7 @@ const CourseListSummary = ({
       text: t("syllabus.Course time"),
       value: SortingOption.COURSE_TIME,
     },
-  ];
+  ]
 
   return (
     <div style={{ marginBottom: "1rem" }}>
@@ -128,7 +128,7 @@ const CourseListSummary = ({
         /> */}
       </RowWrapper>
     </div>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(CourseListSummary);
+export default withTranslation("translation")(CourseListSummary)

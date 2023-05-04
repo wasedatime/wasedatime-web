@@ -1,46 +1,46 @@
-import aditya from "@app/assets/img/contributors/aditya.jpg";
-import alina from "@app/assets/img/contributors/alina.jpg";
-import austin from "@app/assets/img/contributors/austin.jpg";
-import george from "@app/assets/img/contributors/george.jpg";
-import gu from "@app/assets/img/contributors/gu.jpg";
-import gunjan from "@app/assets/img/contributors/gunjan.jpg";
-import hao from "@app/assets/img/contributors/hao.jpg";
-import hatori from "@app/assets/img/contributors/hatori.jpg";
-import isabella from "@app/assets/img/contributors/isabella.jpg";
-import jason from "@app/assets/img/contributors/jason.jpg";
-import kaede from "@app/assets/img/contributors/kaede.jpg";
-import kaiqing from "@app/assets/img/contributors/kaiqing.jpg";
-import kong from "@app/assets/img/contributors/kong.jpg";
-import mei from "@app/assets/img/contributors/mei.jpg";
-import michael from "@app/assets/img/contributors/michael.jpg";
-import naomi from "@app/assets/img/contributors/naomi.jpg";
-import nicholas from "@app/assets/img/contributors/nicholas.jpg";
-import oscar from "@app/assets/img/contributors/oscar.jpg";
-import pam from "@app/assets/img/contributors/pam.jpg";
-import takumi from "@app/assets/img/contributors/takumi.jpg";
-import tang from "@app/assets/img/contributors/tang.jpg";
-import xinmei from "@app/assets/img/contributors/xinmei.jpg";
-import xinyue from "@app/assets/img/contributors/xinyue.jpg";
-import yaoyuan from "@app/assets/img/contributors/yaoyuan.jpg";
-import zenda from "@app/assets/img/contributors/zenda.jpg";
-import zhaohuaibo from "@app/assets/img/contributors/zhaohuaibo.jpg";
-import email from "@app/assets/img/socialmediaicon/email.png";
-import facebook from "@app/assets/img/socialmediaicon/facebook.png";
-import github from "@app/assets/img/socialmediaicon/github.png";
-import homepage from "@app/assets/img/socialmediaicon/homepage.png";
-import instagram from "@app/assets/img/socialmediaicon/instagram.png";
-import linkedin from "@app/assets/img/socialmediaicon/linkedin.png";
-import weibo from "@app/assets/img/socialmediaicon/sina-weibo.png";
-import twitter from "@app/assets/img/socialmediaicon/twitter.png";
+import aditya from "@app/assets/img/contributors/aditya.jpg"
+import alina from "@app/assets/img/contributors/alina.jpg"
+import austin from "@app/assets/img/contributors/austin.jpg"
+import george from "@app/assets/img/contributors/george.jpg"
+import gu from "@app/assets/img/contributors/gu.jpg"
+import gunjan from "@app/assets/img/contributors/gunjan.jpg"
+import hao from "@app/assets/img/contributors/hao.jpg"
+import hatori from "@app/assets/img/contributors/hatori.jpg"
+import isabella from "@app/assets/img/contributors/isabella.jpg"
+import jason from "@app/assets/img/contributors/jason.jpg"
+import kaede from "@app/assets/img/contributors/kaede.jpg"
+import kaiqing from "@app/assets/img/contributors/kaiqing.jpg"
+import kong from "@app/assets/img/contributors/kong.jpg"
+import mei from "@app/assets/img/contributors/mei.jpg"
+import michael from "@app/assets/img/contributors/michael.jpg"
+import naomi from "@app/assets/img/contributors/naomi.jpg"
+import nicholas from "@app/assets/img/contributors/nicholas.jpg"
+import oscar from "@app/assets/img/contributors/oscar.jpg"
+import pam from "@app/assets/img/contributors/pam.jpg"
+import takumi from "@app/assets/img/contributors/takumi.jpg"
+import tang from "@app/assets/img/contributors/tang.jpg"
+import xinmei from "@app/assets/img/contributors/xinmei.jpg"
+import xinyue from "@app/assets/img/contributors/xinyue.jpg"
+import yaoyuan from "@app/assets/img/contributors/yaoyuan.jpg"
+import zenda from "@app/assets/img/contributors/zenda.jpg"
+import zhaohuaibo from "@app/assets/img/contributors/zhaohuaibo.jpg"
+import email from "@app/assets/img/socialmediaicon/email.png"
+import facebook from "@app/assets/img/socialmediaicon/facebook.png"
+import github from "@app/assets/img/socialmediaicon/github.png"
+import homepage from "@app/assets/img/socialmediaicon/homepage.png"
+import instagram from "@app/assets/img/socialmediaicon/instagram.png"
+import linkedin from "@app/assets/img/socialmediaicon/linkedin.png"
+import weibo from "@app/assets/img/socialmediaicon/sina-weibo.png"
+import twitter from "@app/assets/img/socialmediaicon/twitter.png"
 
 export interface Members {
-  image: string;
-  name: string;
-  positions: Array<string>;
-  socials?: Array<{ platform: string; link: string }>;
-  profileText?: string;
-  isOpen?: boolean;
-  onClick?: () => void;
+  image: string
+  name: string
+  positions: Array<string>
+  socials?: Array<{ platform: string; link: string }>
+  profileText?: string
+  isOpen?: boolean
+  onClick?: () => void
 }
 
 export const CurrentList: Array<Members> = [
@@ -169,7 +169,7 @@ export const CurrentList: Array<Members> = [
     ],
     profileText: "Thank you!!",
   },
-];
+]
 
 export const AlumniList: Array<Members> = [
   {
@@ -349,4 +349,4 @@ export const AlumniList: Array<Members> = [
     ],
     profileText: "I’m so happy to work with you guys together 🥰",
   },
-];
+]

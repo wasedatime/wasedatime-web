@@ -1,6 +1,6 @@
-import React from "react";
+import React from "react"
 
-import { Wrapper, media } from "wasedatime-ui";
+import { Wrapper, media } from "wasedatime-ui"
 import {
   faBook,
   faCalendarAlt,
@@ -9,14 +9,14 @@ import {
   faNewspaper,
   faPlayCircle,
   faUserAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   VerticalTimeline,
   VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import styled from "styled-components";
-import "react-vertical-timeline-component/style.min.css";
+} from "react-vertical-timeline-component"
+import styled from "styled-components"
+import "react-vertical-timeline-component/style.min.css"
 
 const MainParagraph = styled("p")`
   align-items: center;
@@ -26,7 +26,7 @@ const MainParagraph = styled("p")`
   width: 90%;
   margin: 0 auto;
   font-size: 0.9em;
-`;
+`
 
 const OurMission = () => (
   <Wrapper className="bg-light-bgMain dark:bg-dark-bgMain">
@@ -282,6 +282,6 @@ const OurMission = () => (
     </div>
     <br />
   </Wrapper>
-);
+)
 
-export default OurMission;
+export default OurMission

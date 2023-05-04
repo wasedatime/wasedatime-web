@@ -1,46 +1,46 @@
-import { SyllabusKey } from "@app/constants/syllabus-data";
-import Course from "@app/types/course";
-import FilterGroups from "@app/types/filter";
+import { SyllabusKey } from "@app/constants/syllabus-data"
+import Course from "@app/types/course"
+import FilterGroups from "@app/types/filter"
 
 class CoursesFilter {
-  maxLength: number;
+  maxLength: number
 
-  filterValues: any[];
+  filterValues: any[]
 
   constructor(filterValues) {
-    this.maxLength = 100;
-    this.filterValues = filterValues;
+    this.maxLength = 100
+    this.filterValues = filterValues
   }
 
   filterCallback = (course: Course) => {
-    return true;
-  };
+    return true
+  }
 
   filterCourses = (courses: Course[]) => {
     return this.filterValues.length < this.maxLength
       ? courses.filter(this.filterCallback)
-      : courses;
-  };
+      : courses
+  }
 }
 
 class SemesterFilter extends CoursesFilter {
   filterCallback = (course: Course) => {
     return this.filterValues.some((filter) =>
       course[SyllabusKey.TERM].includes(filter)
-    );
-  };
+    )
+  }
 }
 
 class SchoolFilter extends CoursesFilter {
   filterCallback = (course: Course) => {
-    return this.filterValues.includes(course[SyllabusKey.SCHOOL]);
-  };
+    return this.filterValues.includes(course[SyllabusKey.SCHOOL])
+  }
 }
 
 class LangFilter extends CoursesFilter {
   constructor(filterValues) {
-    super(filterValues);
-    this.maxLength = 10;
+    super(filterValues)
+    this.maxLength = 10
   }
 
   filterCallback = (course: Course) => {
@@ -49,14 +49,14 @@ class LangFilter extends CoursesFilter {
         .toString()
         .split(",")
         .filter((l) => this.filterValues.includes(l)).length > 0
-    );
-  };
+    )
+  }
 }
 
 class ModalityFilter extends CoursesFilter {
   constructor(filterValues) {
-    super(filterValues);
-    this.maxLength = 5;
+    super(filterValues)
+    this.maxLength = 5
   }
 
   filterCallback = (course: Course) => {
@@ -65,14 +65,14 @@ class ModalityFilter extends CoursesFilter {
         .toString()
         .split(",")
         .filter((l) => this.filterValues.includes(l)).length > 0
-    );
-  };
+    )
+  }
 }
 
 class DayFilter extends CoursesFilter {
   constructor(filterValues) {
-    super(filterValues);
-    this.maxLength = 6;
+    super(filterValues)
+    this.maxLength = 6
   }
 
   filterCallback = (course: Course) => {
@@ -81,81 +81,81 @@ class DayFilter extends CoursesFilter {
       course[SyllabusKey.OCCURRENCES].some((occ) =>
         this.filterValues.includes(occ[SyllabusKey.OCC_DAY].toString())
       )
-    );
-  };
+    )
+  }
 }
 
 class PeriodFilter extends CoursesFilter {
   constructor(filterValues) {
-    super(filterValues);
-    this.maxLength = 7;
+    super(filterValues)
+    this.maxLength = 7
   }
 
   filterCallback = (course: Course) => {
-    const occurrences = course[SyllabusKey.OCCURRENCES];
+    const occurrences = course[SyllabusKey.OCCURRENCES]
     for (const filter of this.filterValues) {
-      const period = parseInt(filter, 10);
+      const period = parseInt(filter, 10)
       for (const occ of occurrences) {
-        const op = occ[SyllabusKey.OCC_PERIOD];
-        const start = (op / 10) | 0;
-        const end = op % 10;
-        if (op > 9 && start <= period && period <= end) return true;
-        if (op <= 9 && op === period) return true;
+        const op = occ[SyllabusKey.OCC_PERIOD]
+        const start = (op / 10) | 0
+        const end = op % 10
+        if (op > 9 && start <= period && period <= end) return true
+        if (op <= 9 && op === period) return true
       }
     }
 
-    return false;
-  };
+    return false
+  }
 }
 class MinYearFilter extends CoursesFilter {
   constructor(filterValues) {
-    super(filterValues);
-    this.maxLength = 4;
+    super(filterValues)
+    this.maxLength = 4
   }
 
   filterCallback = (course: Course) => {
-    return this.filterValues.includes(course[SyllabusKey.MIN_YEAR].toString());
-  };
+    return this.filterValues.includes(course[SyllabusKey.MIN_YEAR].toString())
+  }
 }
 class CreditFilter extends CoursesFilter {
   constructor(filterValues) {
-    super(filterValues);
-    this.maxLength = 3;
+    super(filterValues)
+    this.maxLength = 3
   }
 
   filterCallback = (course: Course) => {
     return course[SyllabusKey.CREDIT] >= 3
       ? this.filterValues.includes("3")
-      : this.filterValues.includes(course[SyllabusKey.CREDIT].toString());
-  };
+      : this.filterValues.includes(course[SyllabusKey.CREDIT].toString())
+  }
 }
 class TypeFilter extends CoursesFilter {
   constructor(filterValues) {
-    super(filterValues);
-    this.maxLength = 9;
+    super(filterValues)
+    this.maxLength = 9
   }
 
   filterCallback = (course: Course) => {
-    return this.filterValues.includes(course[SyllabusKey.TYPE].toString());
-  };
+    return this.filterValues.includes(course[SyllabusKey.TYPE].toString())
+  }
 }
 class LevelFilter extends CoursesFilter {
   constructor(filterValues) {
-    super(filterValues);
-    this.maxLength = 6;
+    super(filterValues)
+    this.maxLength = 6
   }
 
   filterCallback = (course: Course) => {
-    return this.filterValues.includes(course[SyllabusKey.LEVEL].toString());
-  };
+    return this.filterValues.includes(course[SyllabusKey.LEVEL].toString())
+  }
 }
 
 class EvalPercentFilter extends CoursesFilter {
-  type: number;
+  type: number
 
   constructor(filterValues, type) {
-    super(filterValues);
-    this.type = type;
+    super(filterValues)
+    this.type = type
   }
 
   filterCallback = (course: Course) => {
@@ -163,25 +163,25 @@ class EvalPercentFilter extends CoursesFilter {
       !Array.isArray(course[SyllabusKey.EVAL]) ||
       course[SyllabusKey.EVAL].length === 0
     )
-      return false;
+      return false
     // Check if the target evaluation item (e.g. 'exam') is included in the evaluation of this course
     const targetEval = (course[SyllabusKey.EVAL] as any[]).filter(
       (e) => e[SyllabusKey.EVAL_TYPE] === this.type
-    )[0];
+    )[0]
     // If the target evaluation item (e.g. 'exam') is included, check if its percentage is in the range of the filter
     // If it is included, return the course; if not included, check if the eval filter includes 0
     // If yes, return the course
     return targetEval
       ? targetEval[SyllabusKey.EVAL_PERCENT] >= this.filterValues[0] &&
           targetEval[SyllabusKey.EVAL_PERCENT] <= this.filterValues[1]
-      : this.filterValues[0] === 0;
-  };
+      : this.filterValues[0] === 0
+  }
 
   filterCourses = (courses: Course[]) => {
     return this.filterValues[0] === 0 && this.filterValues[1] === 100
       ? courses
-      : courses.filter((course) => this.filterCallback(course));
-  };
+      : courses.filter((course) => this.filterCallback(course))
+  }
 }
 class EvalSpecialFilter extends CoursesFilter {
   filterCallback = (course: Course) => {
@@ -189,23 +189,23 @@ class EvalSpecialFilter extends CoursesFilter {
       !Array.isArray(course[SyllabusKey.EVAL]) ||
       course[SyllabusKey.EVAL].length === 0
     )
-      return false;
-    let isFiltered = true;
-    ["noExam", "noPaper", "noClassParticipation"].forEach((filter, i) => {
+      return false
+    let isFiltered = true
+    ;["noExam", "noPaper", "noClassParticipation"].forEach((filter, i) => {
       if (this.filterValues.includes(filter)) {
         const targetEval = (course[SyllabusKey.EVAL] as any[]).filter(
           (e) => e[SyllabusKey.EVAL_TYPE] === i
-        )[0];
+        )[0]
         if (
           targetEval !== undefined &&
           targetEval[SyllabusKey.EVAL_PERCENT] > 0
         )
-          isFiltered = false;
+          isFiltered = false
       }
-    });
+    })
 
-    return isFiltered;
-  };
+    return isFiltered
+  }
 }
 
 const filterCourses = (
@@ -225,7 +225,7 @@ const filterCourses = (
     new EvalSpecialFilter(filterGroups.evalSpecial),
     new TypeFilter(filterGroups.type),
     new LevelFilter(filterGroups.level),
-  ];
+  ]
 
   return filters.reduce(
     (filteredCourses, filter) =>
@@ -233,7 +233,7 @@ const filterCourses = (
         ? filter.filterCourses(filteredCourses)
         : filteredCourses,
     courses
-  );
-};
+  )
+}
 
-export default filterCourses;
+export default filterCourses

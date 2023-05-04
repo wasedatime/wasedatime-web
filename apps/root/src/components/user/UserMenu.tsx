@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { media, getUserAttr, signOut } from "wasedatime-ui";
-import { WithTranslation, withTranslation } from "react-i18next";
-import styled from "styled-components";
+import { media, getUserAttr, signOut } from "wasedatime-ui"
+import { WithTranslation, withTranslation } from "react-i18next"
+import styled from "styled-components"
 
-import { ProfileIconHovered } from "@app/components/icons/ProfileIcon";
+import { ProfileIconHovered } from "@app/components/icons/ProfileIcon"
 
 type SignInSpanProps = {
-  ishovered: boolean;
-};
+  ishovered: boolean
+}
 
 const UserMenuTrigger = styled("div")`
   color: #fff;
@@ -41,7 +41,7 @@ const UserMenuTrigger = styled("div")`
   &:hover {
     cursor: pointer;
   }
-`;
+`
 
 const StyledSpan = styled("span")<SignInSpanProps>`
   text-align: left;
@@ -55,31 +55,31 @@ const StyledSpan = styled("span")<SignInSpanProps>`
     props.ishovered
       ? "width 0.5s ease, opacity 0.5s ease 0.1s"
       : "width 0.5s, opacity 0.2s"};
-`;
+`
 
 interface Props extends WithTranslation {
-  openSignInModal: () => void;
-  isHovered: boolean;
-  isMobileMode: boolean;
+  openSignInModal: () => void
+  isHovered: boolean
+  isMobileMode: boolean
 }
 
 const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
-  const [userAttr, setUserAttr] = useState(null);
-  const [isUserIconHovered, setIsUserIconHovered] = useState(false);
-  const notSignedIn = !userAttr;
-  if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr));
+  const [userAttr, setUserAttr] = useState(null)
+  const [isUserIconHovered, setIsUserIconHovered] = useState(false)
+  const notSignedIn = !userAttr
+  if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr))
 
   return notSignedIn ? (
     <UserMenuTrigger
       className="group text-light-text2 dark:text-dark-text2"
       onClick={openSignInModal}
     >
-      <div className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
+      <div className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
         <ProfileIconHovered />
       </div>
       {!isMobileMode && (
         <StyledSpan
-          className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1"
+          className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1"
           ishovered={isHovered}
         >
           {t("user.Sign in")}
@@ -88,14 +88,14 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
     </UserMenuTrigger>
   ) : (
     <div
-      className="relative inline-block text-left group"
+      className="group relative inline-block text-left"
       onMouseEnter={() => setIsUserIconHovered(true)}
       onTouchStart={() => setIsUserIconHovered(true)}
       onMouseLeave={() => setIsUserIconHovered(false)}
     >
       <button
         type="button"
-        className="inline-flex w-full rounded-md shadow-sm bg-blank text-white focus:outline-none"
+        className="bg-blank inline-flex w-full rounded-md text-white shadow-sm focus:outline-none"
         style={{ padding: "10px" }}
         id="options-menu"
         aria-haspopup="true"
@@ -110,7 +110,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
           style={{ marginLeft: "2px" }}
         />
         <StyledSpan
-          className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1"
+          className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1"
           style={{ paddingTop: "8px" }}
           ishovered={isHovered}
         >
@@ -121,9 +121,9 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
       <div
         className={`transition-opacity ${
           isUserIconHovered
-            ? "duration-500 delay-100 opacity-100"
-            : "duration-300 opacity-0"
-        } w-full origin-top-left absolute right-0 m-0 rounded-md shadow-lg text-white`}
+            ? "opacity-100 delay-100 duration-500"
+            : "opacity-0 duration-300"
+        } absolute right-0 m-0 w-full origin-top-left rounded-md text-white shadow-lg`}
       >
         <div
           role="menu"
@@ -132,7 +132,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
         >
           <a
             href="#"
-            className="block px-4 py-2 text-white hover:text-gray-500 bg-gray-500 hover:bg-gray-300"
+            className="block bg-gray-500 px-4 py-2 text-white hover:bg-gray-300 hover:text-gray-500"
             role="menuitem"
             onClick={signOut}
           >
@@ -141,7 +141,7 @@ const UserMenu = ({ openSignInModal, isHovered, isMobileMode, t }: Props) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(UserMenu);
+export default withTranslation("translation")(UserMenu)

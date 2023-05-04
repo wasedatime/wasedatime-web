@@ -1,18 +1,18 @@
-import React from "react";
+import React from "react"
 
-import { media } from "wasedatime-ui";
-import { Accordion, Card } from "react-bootstrap";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { media } from "wasedatime-ui"
+import { Accordion, Card } from "react-bootstrap"
+import { useTranslation } from "react-i18next"
+import styled from "styled-components"
 
-import { campuses } from "@app/constants/campus_quart";
+import { campuses } from "@app/constants/campus_quart"
 
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   padding: 1em 0px;
   ${media.tablet`padding: 1em;`}
-`;
+`
 
 const RoomType = styled("span")<RoomProps>`
   font-weight: 500;
@@ -21,24 +21,24 @@ const RoomType = styled("span")<RoomProps>`
   padding: 0px 10px;
   border-radius: 6px;
   background-color: ${(props) => (props.vacancy ? "#71CE74" : "#E53935")};
-`;
+`
 
 interface RoomProps {
-  vacancy: number;
+  vacancy: number
 }
 
 const RoomAcc = styled(Accordion)`
   padding: 0px;
-`;
+`
 const RoomCar = styled(Card.Header)`
   padding: 0px !important;
   text-align: center;
   width: 100%;
   cursor: pointer;
-`;
+`
 
 interface Props {
-  CampusName: string;
+  CampusName: string
 }
 
 function checkVacancy(
@@ -50,21 +50,21 @@ function checkVacancy(
   period,
   weekday
 ) {
-  let vacancy = 1;
+  let vacancy = 1
   try {
-    if (period === -1) return 0;
+    if (period === -1) return 0
     vacancy = campuses[campusName][buid][roomdata][quar][period][weekday]
       ? 1
-      : 0;
+      : 0
 
-    return vacancy;
+    return vacancy
   } catch (err) {
-    return 0;
+    return 0
   }
 }
 
 const Building = ({ campusName, quar, weekday, period }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   return (
     <InfoWrapper>
@@ -109,7 +109,7 @@ const Building = ({ campusName, quar, weekday, period }) => {
         </RoomAcc>
       ))}
     </InfoWrapper>
-  );
-};
+  )
+}
 
-export default Building;
+export default Building

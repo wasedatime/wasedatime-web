@@ -1,27 +1,27 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { SmallLogo } from "wasedatime-ui";
-import styled from "styled-components";
+import { SmallLogo } from "wasedatime-ui"
+import styled from "styled-components"
 
-import { TitleLogo } from "@app/assets/img/home/TitleLogo";
-import { IconTextGroup } from "@app/components/block/IconTextGroup";
-import { NavItemsProps } from "@app/components/frame/Nav";
-import OtherLinks from "@app/components/frame/OtherLinks";
-import UserMenu from "@app/components/user/UserMenu";
-import LinkOutsideRouter from "@app/utils/link-outside-router";
+import { TitleLogo } from "@app/assets/img/home/TitleLogo"
+import { IconTextGroup } from "@app/components/block/IconTextGroup"
+import { NavItemsProps } from "@app/components/frame/Nav"
+import OtherLinks from "@app/components/frame/OtherLinks"
+import UserMenu from "@app/components/user/UserMenu"
+import LinkOutsideRouter from "@app/utils/link-outside-router"
 
-import logo from "@app/assets/img/home/logo.svg";
+import logo from "@app/assets/img/home/logo.svg"
 
 type TextLogoWrapperProps = {
-  expanded: boolean;
-};
+  expanded: boolean
+}
 
 type TextLogoProps = {
-  expanded: boolean;
-};
+  expanded: boolean
+}
 
 interface SideWrapperProps {
-  expanded: boolean;
+  expanded: boolean
 }
 
 const SidebarWrapper = styled.aside<SideWrapperProps>`
@@ -33,11 +33,11 @@ const SidebarWrapper = styled.aside<SideWrapperProps>`
   box-shadow: rgba(0, 0, 0, 0.45) 4px 0px 12px;
   transition: width 0.5s;
   ${(props) => props.expanded && "width: 210px; transition: width 0.5s;"};
-`;
+`
 
 const TextLogoWrapper = styled.div<TextLogoWrapperProps>`
   ${(props) => props.expanded && "flex: 0 0 130px;"}
-`;
+`
 
 const TextLogoStyles = styled.div<TextLogoProps>`
   margin: 5px 0 0 10px !important;
@@ -48,26 +48,26 @@ const TextLogoStyles = styled.div<TextLogoProps>`
       props.expanded ? "opacity 0.5s ease-out 0.2s" : "opacity 0.3s"},
     width 0.3s ${(props) => !props.expanded && "0.2s"};
   display: inline-block;
-`;
+`
 
 export type SidebarProps = {
-  navItems: NavItemsProps[];
-  openSignInModal: () => void;
-};
+  navItems: NavItemsProps[]
+  openSignInModal: () => void
+}
 
 const Sidebar = ({ navItems, openSignInModal }: SidebarProps) => {
-  const [expanded, setExpanded] = useState<boolean>(false);
+  const [expanded, setExpanded] = useState<boolean>(false)
   const [currentPath, setCurrentPath] = useState<string>(
     window.location.pathname
-  );
+  )
 
   const expandSidebar = () => {
-    if (!expanded) setExpanded(true);
-  };
+    if (!expanded) setExpanded(true)
+  }
 
   const foldSidebar = () => {
-    if (expanded) setExpanded(false);
-  };
+    if (expanded) setExpanded(false)
+  }
 
   return (
     <SidebarWrapper
@@ -127,7 +127,7 @@ const Sidebar = ({ navItems, openSignInModal }: SidebarProps) => {
         />
       </div>
     </SidebarWrapper>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

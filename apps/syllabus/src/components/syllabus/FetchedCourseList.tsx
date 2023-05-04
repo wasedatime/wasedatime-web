@@ -1,15 +1,15 @@
-import React from "react";
+import React from "react"
 
-import { Lang, media } from "wasedatime-ui";
-import chunk from "lodash/chunk";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { Waypoint } from "react-waypoint";
-import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import SimpleBar from "simplebar-react";
-import styled from "styled-components";
+import { Lang, media } from "wasedatime-ui"
+import chunk from "lodash/chunk"
+import { WithTranslation, withTranslation } from "react-i18next"
+import { Waypoint } from "react-waypoint"
+import Message from "semantic-ui-react/dist/commonjs/collections/Message"
+import SimpleBar from "simplebar-react"
+import styled from "styled-components"
 
-import CourseChunk from "@app/components/syllabus/CourseChunk";
-import Course from "@app/types/course";
+import CourseChunk from "@app/components/syllabus/CourseChunk"
+import Course from "@app/types/course"
 
 const CourseListWrapper = styled(SimpleBar)`
   height: calc(100vh - 96px);
@@ -30,40 +30,40 @@ const CourseListWrapper = styled(SimpleBar)`
   .simplebar-placeholder {
     height: 5px !important;
   }
-`;
+`
 
 const CourseChunkWrapper = styled("div")`
   margin: 0.5em;
-`;
+`
 
 const getChunkKey = (chunk) => {
-  const head = chunk[0];
-  const tail = chunk[chunk.length - 1];
+  const head = chunk[0]
+  const tail = chunk[chunk.length - 1]
 
-  return `${head.a}-${tail.a}`;
-};
+  return `${head.a}-${tail.a}`
+}
 
-const COURSES_PER_CHUNK = 5;
-const INIT_CHUNKS_NUM = 1;
+const COURSES_PER_CHUNK = 5
+const INIT_CHUNKS_NUM = 1
 
 interface Props extends WithTranslation {
-  searchTerm: string | string[];
-  searchLang: string | string[];
-  results: Course[];
-  onSearchInputChange: (inputText: string) => void;
-  clearSearchBar: () => void;
+  searchTerm: string | string[]
+  searchLang: string | string[]
+  results: Course[]
+  onSearchInputChange: (inputText: string) => void
+  clearSearchBar: () => void
 }
 
 interface State {
-  loadedChunksNum: number;
+  loadedChunksNum: number
 }
 
 class FetchedCourseList extends React.Component<Props, State> {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       loadedChunksNum: INIT_CHUNKS_NUM,
-    };
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -73,22 +73,22 @@ class FetchedCourseList extends React.Component<Props, State> {
           loadedChunksNum: INIT_CHUNKS_NUM,
         },
         () => {
-          let isChunkChanged = false;
+          let isChunkChanged = false
 
           for (let index = 0; index < 5; index++) {
             if (this.props.results[index] !== prevProps.results[index]) {
-              isChunkChanged = true;
-              break;
+              isChunkChanged = true
+              break
             }
           }
 
           if (!isChunkChanged) {
-            this.loadMoreChunks(0);
+            this.loadMoreChunks(0)
           }
         }
-      );
+      )
 
-      window.scrollTo({ top: 0 });
+      window.scrollTo({ top: 0 })
     }
   }
 
@@ -96,22 +96,22 @@ class FetchedCourseList extends React.Component<Props, State> {
     chunk(this.props.results, COURSES_PER_CHUNK).slice(
       0,
       this.state.loadedChunksNum
-    );
+    )
 
   loadMoreChunks = (index) => {
     if (index + 1 === this.state.loadedChunksNum) {
       this.setState((prevState, props) => {
         return {
           loadedChunksNum: prevState.loadedChunksNum + 1,
-        };
-      });
+        }
+      })
     }
-  };
+  }
 
   render() {
     const { searchTerm, searchLang, results, clearSearchBar, t, i18n } =
-      this.props;
-    const resultsInChunks = this.resultsToChunks();
+      this.props
+    const resultsInChunks = this.resultsToChunks()
 
     return (
       <CourseListWrapper autoHide>
@@ -120,7 +120,7 @@ class FetchedCourseList extends React.Component<Props, State> {
             <Waypoint
               key={getChunkKey(chunk)}
               onEnter={({ currentPosition }) => {
-                this.loadMoreChunks(index);
+                this.loadMoreChunks(index)
               }}
             >
               <CourseChunkWrapper>
@@ -150,8 +150,8 @@ class FetchedCourseList extends React.Component<Props, State> {
           </Message>
         )}
       </CourseListWrapper>
-    );
+    )
   }
 }
 
-export default withTranslation("translation")(FetchedCourseList);
+export default withTranslation("translation")(FetchedCourseList)

@@ -1,26 +1,26 @@
-import React from "react";
+import React from "react"
 
-import { Colors } from "wasedatime-ui";
-import styled from "styled-components";
+import { Colors } from "wasedatime-ui"
+import styled from "styled-components"
 
-import { ThemeContext } from "@app/utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context"
 
 interface Props {
-  reviewLang: string;
-  switchReviewLang: (lng: string) => void;
-  isInHeading: boolean;
+  reviewLang: string
+  switchReviewLang: (lng: string) => void
+  isInHeading: boolean
 }
 
 type ReviewLangSwitchItem = {
-  label: string;
-  name: string;
-};
+  label: string
+  name: string
+}
 
 type ReviewLangSwitchProps = {
-  active: boolean;
-  isInHeading: boolean;
-  $isDark: boolean;
-};
+  active: boolean
+  isInHeading: boolean
+  $isDark: boolean
+}
 
 const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
   font-size: 0.6em;
@@ -47,7 +47,7 @@ const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
   &:focus {
     outline: none;
   }
-`;
+`
 
 const reviewLangSwitchItems: ReviewLangSwitchItem[] = [
   {
@@ -70,14 +70,14 @@ const reviewLangSwitchItems: ReviewLangSwitchItem[] = [
     label: "ko",
     name: "한국",
   },
-];
+]
 
 const ReviewLangSwitches = ({
   reviewLang,
   switchReviewLang,
   isInHeading,
 }: Props) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext)
 
   return (
     <span>
@@ -93,7 +93,7 @@ const ReviewLangSwitches = ({
         </ReviewLangSwitch>
       ))}
     </span>
-  );
-};
+  )
+}
 
-export default ReviewLangSwitches;
+export default ReviewLangSwitches

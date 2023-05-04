@@ -1,27 +1,27 @@
-import React from "react";
+import React from "react"
 
-import { Colors, media, sizes } from "wasedatime-ui";
-import { WithTranslation, withTranslation } from "react-i18next";
-import MediaQuery from "react-responsive";
-import Menu from "semantic-ui-react/dist/commonjs/collections/Menu";
-import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
-import Tab from "semantic-ui-react/dist/commonjs/modules/Tab";
-import Card from "semantic-ui-react/dist/commonjs/views/Card";
-import styled from "styled-components";
+import { Colors, media, sizes } from "wasedatime-ui"
+import { WithTranslation, withTranslation } from "react-i18next"
+import MediaQuery from "react-responsive"
+import Menu from "semantic-ui-react/dist/commonjs/collections/Menu"
+import Popup from "semantic-ui-react/dist/commonjs/modules/Popup"
+import Tab from "semantic-ui-react/dist/commonjs/modules/Tab"
+import Card from "semantic-ui-react/dist/commonjs/views/Card"
+import styled from "styled-components"
 
-import SchoolImportCard from "@app/components/syllabus/SchoolImportCard";
-import "semantic-ui-css/components/popup.min.css";
-import { ThemeContext } from "@app/utils/theme-context";
+import SchoolImportCard from "@app/components/syllabus/SchoolImportCard"
+import "semantic-ui-css/components/popup.min.css"
+import { ThemeContext } from "@app/utils/theme-context"
 import {
   gradSchools,
   otherSchools,
   undergradSchools,
-} from "@app/constants/schools-by-type";
-import getSchoolIconPath from "@app/utils/get-school-icon-path";
+} from "@app/constants/schools-by-type"
+import getSchoolIconPath from "@app/utils/get-school-icon-path"
 
 type ThemeComponentProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const Cards = styled(Card.Group)`
   .ui.card > .ui.image {
@@ -36,7 +36,7 @@ const Cards = styled(Card.Group)`
       width: 60px !important;
     }
   }
-`;
+`
 
 const WiderPopup = styled(Popup)<ThemeComponentProps>`
   ${(props) =>
@@ -58,7 +58,7 @@ const WiderPopup = styled(Popup)<ThemeComponentProps>`
       width: 80vw;
     }
   `}
-`;
+`
 
 const StyledTab = styled(Tab)<ThemeComponentProps>`
   .tabular.menu {
@@ -85,7 +85,7 @@ const StyledTab = styled(Tab)<ThemeComponentProps>`
         }
       }
     `}
-`;
+`
 
 const StyledMenuItem = styled(Menu.Item)<ThemeComponentProps>`
   font-size: 1.2em;
@@ -96,7 +96,7 @@ const StyledMenuItem = styled(Menu.Item)<ThemeComponentProps>`
     border-color: ${colors.dark.text3} !important;
     color: ${colors.dark.text2} !important;
   `}
-`;
+`
 
 const ChooseSchoolButton = styled("button")`
   width: 100%;
@@ -122,62 +122,62 @@ const ChooseSchoolButton = styled("button")`
   &:focus {
     outline: 0;
   }
-`;
+`
 
 interface Props extends WithTranslation {
-  loadedSchools: string[];
-  selectedSchools: string[];
-  handleToggleFilter: (school: string) => void;
-  loadSyllabus: (school: string) => void;
-  removeSyllabus: (school: string) => void;
-  isPopup: boolean;
+  loadedSchools: string[]
+  selectedSchools: string[]
+  handleToggleFilter: (school: string) => void
+  loadSyllabus: (school: string) => void
+  removeSyllabus: (school: string) => void
+  isPopup: boolean
 }
 
 interface State {
-  open: boolean;
-  loadedSchools: string[];
-  loadingSchool: string | null;
-  removingSchool: string | null;
+  open: boolean
+  loadedSchools: string[]
+  loadingSchool: string | null
+  removingSchool: string | null
 }
 
 class SchoolFilterForm extends React.Component<Props, State> {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       open: true,
       loadedSchools: props.loadedSchools,
       loadingSchool: null,
       removingSchool: null,
-    };
+    }
   }
 
-  static contextType = ThemeContext;
+  static contextType = ThemeContext
 
   componentDidMount() {
-    const { loadedSchools, selectedSchools, handleToggleFilter } = this.props;
+    const { loadedSchools, selectedSchools, handleToggleFilter } = this.props
     if (loadedSchools.length === 1 && selectedSchools.length === 0)
-      handleToggleFilter(loadedSchools[0]);
+      handleToggleFilter(loadedSchools[0])
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.loadedSchools !== this.props.loadedSchools) {
-      this.setState({ loadedSchools: this.props.loadedSchools });
+      this.setState({ loadedSchools: this.props.loadedSchools })
     }
   }
 
   schoolImportPanes = (theme) => {
-    const { loadedSchools, loadingSchool } = this.state;
-    const { t, i18n, selectedSchools, handleToggleFilter } = this.props;
-    const schoolTypeNames = ["Undergraduate", "Graduate", "Special"];
-    const schoolsByType = [undergradSchools, gradSchools, otherSchools];
+    const { loadedSchools, loadingSchool } = this.state
+    const { t, i18n, selectedSchools, handleToggleFilter } = this.props
+    const schoolTypeNames = ["Undergraduate", "Graduate", "Special"]
+    const schoolsByType = [undergradSchools, gradSchools, otherSchools]
 
     const ImportCardGroup = ({
       schools,
       itemsPerRow,
     }: {
-      schools: string[];
-      itemsPerRow: any;
+      schools: string[]
+      itemsPerRow: any
     }) => (
       <Cards itemsPerRow={itemsPerRow} style={{ marginTop: "0.5em" }}>
         {schools.map((schoolName: string) => (
@@ -198,7 +198,7 @@ class SchoolFilterForm extends React.Component<Props, State> {
           />
         ))}
       </Cards>
-    );
+    )
 
     return schoolsByType.map((schools, i) => ({
       menuItem: (
@@ -213,27 +213,27 @@ class SchoolFilterForm extends React.Component<Props, State> {
               <ImportCardGroup key={i} schools={schools} itemsPerRow={6} />
             ) : (
               <ImportCardGroup key={i} schools={schools} itemsPerRow={4} />
-            );
+            )
           }}
         </MediaQuery>
       ),
-    }));
-  };
+    }))
+  }
 
   handleSchoolloading = async (school) => {
-    const { selectedSchools, loadSyllabus } = this.props;
-    const { loadedSchools } = this.state;
-    const newLoadedSchools = [...loadedSchools];
+    const { selectedSchools, loadSyllabus } = this.props
+    const { loadedSchools } = this.state
+    const newLoadedSchools = [...loadedSchools]
 
     if (loadedSchools.length >= 10) {
       if (selectedSchools.includes(loadedSchools[0]))
-        this.props.handleToggleFilter(loadedSchools[0]);
-      newLoadedSchools.splice(0, 1);
+        this.props.handleToggleFilter(loadedSchools[0])
+      newLoadedSchools.splice(0, 1)
     }
 
-    this.setState({ loadingSchool: school });
-    newLoadedSchools.push(school);
-    await loadSyllabus(school);
+    this.setState({ loadingSchool: school })
+    newLoadedSchools.push(school)
+    await loadSyllabus(school)
 
     this.setState(
       {
@@ -241,12 +241,12 @@ class SchoolFilterForm extends React.Component<Props, State> {
         loadedSchools: newLoadedSchools,
       },
       () => this.props.handleToggleFilter(school)
-    );
-  };
+    )
+  }
 
   render() {
-    const { theme } = this.context;
-    const { t, isPopup } = this.props;
+    const { theme } = this.context
+    const { t, isPopup } = this.props
 
     return isPopup ? (
       <WiderPopup
@@ -273,8 +273,8 @@ class SchoolFilterForm extends React.Component<Props, State> {
         panes={this.schoolImportPanes(theme)}
         $isDark={theme === "dark"}
       />
-    );
+    )
   }
 }
 
-export default withTranslation("translation")(SchoolFilterForm);
+export default withTranslation("translation")(SchoolFilterForm)

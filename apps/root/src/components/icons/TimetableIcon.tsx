@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 
-import { DateRange, DateRangeOutlined } from "@mui/icons-material";
+import { DateRange, DateRangeOutlined } from "@mui/icons-material"
 
-export const TimetableIcon = () => <DateRangeOutlined fontSize="large" />;
+export const TimetableIcon = () => <DateRangeOutlined fontSize="large" />
 
-export const TimetableIconHovered = () => <DateRange fontSize="large" />;
+export const TimetableIconHovered = () => <DateRange fontSize="large" />

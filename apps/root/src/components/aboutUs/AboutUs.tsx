@@ -1,35 +1,35 @@
-import React, { useState, useContext, lazy, Suspense } from "react";
+import React, { useState, useContext, lazy, Suspense } from "react"
 
-import { Wrapper, Header, LoadingSpinner, media } from "wasedatime-ui";
-import ReactGA from "react-ga";
-import { Helmet } from "react-helmet";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { Wrapper, Header, LoadingSpinner, media } from "wasedatime-ui"
+import ReactGA from "react-ga"
+import { Helmet } from "react-helmet"
+import { useTranslation } from "react-i18next"
+import styled from "styled-components"
 
-import JoinUs from "@app/components/aboutUs/JoinUs";
-import OurMission from "@app/components/aboutUs/OurMission";
-import Partners from "@app/components/aboutUs/PartnersPage/Partners";
-import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
-import { gaLanguage } from "@app/ga/eventCategories";
-import { ThemeContext } from "@app/utils/theme-context";
+import JoinUs from "@app/components/aboutUs/JoinUs"
+import OurMission from "@app/components/aboutUs/OurMission"
+import Partners from "@app/components/aboutUs/PartnersPage/Partners"
+import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions"
+import { gaLanguage } from "@app/ga/eventCategories"
+import { ThemeContext } from "@app/utils/theme-context"
 
 const MeetOurTeam = lazy(
   () => import("@app/components/aboutUs/MeetOurTeam/MeetOurTeam")
-);
+)
 
 const AboutUsWrapper = styled(Wrapper)`
   display: flex;
   flex-direction: column;
-`;
+`
 
 const HeaderWrapper = styled.div`
   flex: 67px;
-`;
+`
 
 const AboutUsFlex = styled.div`
   flex: calc(100% - 67px);
   padding: 10px;
-`;
+`
 
 const AboutUsMenu = styled.div`
   ${media.tablet`text-align: center;`}
@@ -37,20 +37,20 @@ const AboutUsMenu = styled.div`
     text-align: center;
     font-size:3.5vw;
     `}
-`;
+`
 
 const AboutUs = () => {
-  const { theme, setTheme } = useContext(ThemeContext);
-  const [activePage, setActivePage] = useState("our mission");
-  const { t, i18n } = useTranslation();
+  const { theme, setTheme } = useContext(ThemeContext)
+  const [activePage, setActivePage] = useState("our mission")
+  const { t, i18n } = useTranslation()
   const changeLanguage = (lng) => {
     ReactGA.event({
       category: gaLanguage,
       action: gaAppendActionWithLng(gaChangeLanguage, lng),
       label: lng,
-    });
-    i18n.changeLanguage(lng);
-  };
+    })
+    i18n.changeLanguage(lng)
+  }
 
   return (
     <AboutUsWrapper
@@ -90,9 +90,9 @@ const AboutUs = () => {
             className={`
             border-y-2 border-l-2 border-light-main dark:border-dark-main ${
               activePage === "our mission"
-                ? "bg-light-main dark:bg-dark-main text-white"
-                : "bg-light-bgSide dark:bg-dark-bgSide text-light-main dark:text-dark-main"
-            } hover:bg-light-main hover:text-white dark:hover:bg-dark-main dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-l-lg
+                ? "bg-light-main text-white dark:bg-dark-main"
+                : "bg-light-bgSide text-light-main dark:bg-dark-bgSide dark:text-dark-main"
+            } mx-0 rounded-l-lg px-4 py-2 outline-none hover:bg-light-main hover:text-white focus:outline-none dark:hover:bg-dark-main dark:hover:text-white
           `}
             onClick={() =>
               activePage !== "our mission" && setActivePage("our mission")
@@ -105,9 +105,9 @@ const AboutUs = () => {
             className={`
             border-y-2 border-light-main dark:border-dark-main ${
               activePage === "join us"
-                ? "bg-light-main dark:bg-dark-main text-white"
-                : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-main"
-            } hover:bg-light-main hover:text-white dark:hover:bg-dark-main dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+                ? "bg-light-main text-white dark:bg-dark-main"
+                : "bg-white text-light-main dark:bg-dark-bgSide dark:text-dark-main"
+            } mx-0 px-4 py-2 outline-none hover:bg-light-main hover:text-white focus:outline-none dark:hover:bg-dark-main dark:hover:text-white
           `}
             onClick={() => activePage !== "join us" && setActivePage("join us")}
           >
@@ -118,9 +118,9 @@ const AboutUs = () => {
             className={`
             border-y-2 border-light-main dark:border-dark-main ${
               activePage === "meet our team"
-                ? "bg-light-main dark:bg-dark-main text-white"
-                : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-main"
-            } hover:bg-light-main hover:text-white dark:hover:bg-dark-main dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none
+                ? "bg-light-main text-white dark:bg-dark-main"
+                : "bg-white text-light-main dark:bg-dark-bgSide dark:text-dark-main"
+            } mx-0 px-4 py-2 outline-none hover:bg-light-main hover:text-white focus:outline-none dark:hover:bg-dark-main dark:hover:text-white
           `}
             onClick={() =>
               activePage !== "meet our team" && setActivePage("meet our team")
@@ -133,9 +133,9 @@ const AboutUs = () => {
             className={`
             border-y-2 border-r-2 border-light-main dark:border-dark-main  ${
               activePage === "partners"
-                ? "bg-light-main dark:bg-dark-main text-white"
-                : "bg-white dark:bg-dark-bgSide text-light-main dark:text-dark-main"
-            } hover:bg-light-main hover:text-white dark:hover:bg-dark-main dark:hover:text-white px-4 py-2 mx-0 outline-none focus:outline-none rounded-r-lg
+                ? "bg-light-main text-white dark:bg-dark-main"
+                : "bg-white text-light-main dark:bg-dark-bgSide dark:text-dark-main"
+            } mx-0 rounded-r-lg px-4 py-2 outline-none hover:bg-light-main hover:text-white focus:outline-none dark:hover:bg-dark-main dark:hover:text-white
           `}
             onClick={() =>
               activePage !== "partners" && setActivePage("partners")
@@ -173,7 +173,7 @@ const AboutUs = () => {
         )}
       </AboutUsFlex>
     </AboutUsWrapper>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs

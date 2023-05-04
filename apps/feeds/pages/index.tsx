@@ -1,18 +1,18 @@
-import type { NextPage } from "next";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { LoadingSpinner } from "wasedatime-ui";
+import type { NextPage } from "next"
+import { useEffect } from "react"
+import { useRouter } from "next/router"
+import { LoadingSpinner } from "wasedatime-ui"
 
 const Home: NextPage = () => {
-  const router = useRouter();
+  const router = useRouter()
   useEffect(() => {
-    router.push("/en");
-  }, []);
+    router.push("/en")
+  }, [])
   return (
     <div style={{ textAlign: "center" }}>
       <LoadingSpinner message={"Redirecting..."} theme="light" />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

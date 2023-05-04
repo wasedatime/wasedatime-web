@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import singleSpaReact from "single-spa-react";
+import React from "react"
+import ReactDOM from "react-dom"
+import singleSpaReact from "single-spa-react"
 
-import "@app/styles/styles.css";
-import App from "@app/App";
+import "@app/styles/styles.css"
+import App from "@app/App"
 
 const lifecycles = singleSpaReact({
   React,
@@ -14,14 +14,14 @@ const lifecycles = singleSpaReact({
     info,
     props // Customize the root error boundary for your microfrontend here.
   ) => {
-    console.log("====================================");
-    console.error(err);
-    console.log(info);
-    console.log(props);
-    console.log("====================================");
+    console.log("====================================")
+    console.error(err)
+    console.log(info)
+    console.log(props)
+    console.log("====================================")
 
-    return null;
+    return null
   },
-});
+})
 
-export const { bootstrap, mount, unmount } = lifecycles;
+export const { bootstrap, mount, unmount } = lifecycles

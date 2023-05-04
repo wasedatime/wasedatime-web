@@ -1,40 +1,40 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Colors } from "wasedatime-ui";
+import { Colors } from "wasedatime-ui"
 import {
   faChevronDown,
   faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { WithTranslation, withTranslation } from "react-i18next";
-import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion";
-import styled from "styled-components";
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { WithTranslation, withTranslation } from "react-i18next"
+import Table from "semantic-ui-react/dist/commonjs/collections/Table"
+import Accordion from "semantic-ui-react/dist/commonjs/modules/Accordion"
+import styled from "styled-components"
 
-import Label from "@app/components/styles/Label";
-import { SyllabusKey } from "@app/constants/syllabus-data";
-import Course from "@app/types/course";
-import { ThemeContext } from "@app/utils/theme-context";
+import Label from "@app/components/styles/Label"
+import { SyllabusKey } from "@app/constants/syllabus-data"
+import Course from "@app/types/course"
+import { ThemeContext } from "@app/utils/theme-context"
 
 interface Props extends WithTranslation {
-  course: Course;
+  course: Course
 }
 
 interface ScheduleProps {
-  content: string;
+  content: string
 }
 
 interface TextbooksProps {
-  content: string;
+  content: string
 }
 
 const Schedule = ({ content }: ScheduleProps) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext)
 
   const items = content
     .split("\n")
     .filter((c) => c)
-    .filter((c, i) => i % 2 === 1);
+    .filter((c, i) => i % 2 === 1)
 
   return (
     <Table basic="very">
@@ -55,8 +55,8 @@ const Schedule = ({ content }: ScheduleProps) => {
         </Table.Body>
       ))}
     </Table>
-  );
-};
+  )
+}
 
 const Textbooks = ({ content }: TextbooksProps) => {
   // const [isBookLoaded, setIsBookLoaded] = useState(false);
@@ -111,11 +111,11 @@ const Textbooks = ({ content }: TextbooksProps) => {
         )}
       </div> */}
     </div>
-  );
-};
+  )
+}
 
 const CourseMoreDetails = ({ course, t }: Props) => {
-  const [activeDetailsIndex, setActiveDetailsIndex] = useState(-1);
+  const [activeDetailsIndex, setActiveDetailsIndex] = useState(-1)
   const details = [
     {
       title: t("courseMoreDetails.Outline"),
@@ -167,12 +167,12 @@ const CourseMoreDetails = ({ course, t }: Props) => {
           .split("\n")
           .map((c, i) => c && <p key={i}>{c}</p>),
     },
-  ];
+  ]
 
   return (
     <Accordion
       style={{ padding: "0px 2em" }}
-      className="dark:bg-dark-bgMain mb-4"
+      className="mb-4 dark:bg-dark-bgMain"
     >
       {details.map(
         (detail, i) =>
@@ -185,7 +185,7 @@ const CourseMoreDetails = ({ course, t }: Props) => {
                 onClick={() => {
                   activeDetailsIndex === i
                     ? setActiveDetailsIndex(-1)
-                    : setActiveDetailsIndex(i);
+                    : setActiveDetailsIndex(i)
                 }}
               >
                 <h4 className="text-2xl dark:text-dark-text1">
@@ -207,7 +207,7 @@ const CourseMoreDetails = ({ course, t }: Props) => {
           )
       )}
     </Accordion>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(CourseMoreDetails);
+export default withTranslation("translation")(CourseMoreDetails)

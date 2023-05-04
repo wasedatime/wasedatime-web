@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 
-import { LibraryBooks, LibraryBooksOutlined } from "@mui/icons-material";
+import { LibraryBooks, LibraryBooksOutlined } from "@mui/icons-material"
 
-export const FeedsIcon = () => <LibraryBooksOutlined fontSize="large" />;
+export const FeedsIcon = () => <LibraryBooksOutlined fontSize="large" />
 
-export const FeedsIconHovered = () => <LibraryBooks fontSize="large" />;
+export const FeedsIconHovered = () => <LibraryBooks fontSize="large" />

@@ -1,11 +1,11 @@
-import React from "react";
+import React from "react"
 
-import { Colors } from "wasedatime-ui";
-import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder";
+import { Colors } from "wasedatime-ui"
+import Placeholder from "semantic-ui-react/dist/commonjs/elements/Placeholder"
 
 type Props = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const LoadingTextPlaceHolder = ({ $isDark }: Props) => (
   <Placeholder
@@ -37,6 +37,6 @@ const LoadingTextPlaceHolder = ({ $isDark }: Props) => (
       />
     </Placeholder.Paragraph>
   </Placeholder>
-);
+)
 
-export default LoadingTextPlaceHolder;
+export default LoadingTextPlaceHolder

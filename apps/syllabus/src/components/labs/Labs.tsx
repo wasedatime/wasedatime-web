@@ -1,39 +1,39 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Modal, Header, media, sizes } from "wasedatime-ui";
-import debounce from "lodash/debounce";
-import { Helmet } from "react-helmet";
-import { WithTranslation, withTranslation } from "react-i18next";
-import MediaQuery from "react-responsive";
-import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import styled from "styled-components";
+import { Modal, Header, media, sizes } from "wasedatime-ui"
+import debounce from "lodash/debounce"
+import { Helmet } from "react-helmet"
+import { WithTranslation, withTranslation } from "react-i18next"
+import MediaQuery from "react-responsive"
+import Message from "semantic-ui-react/dist/commonjs/collections/Message"
+import styled from "styled-components"
 
-import reviews from "@app/constants/lab_reviews_by_school_major.json";
-import Lab from "@app/components/labs/Lab";
-import SchoolMajorSelector from "@app/components/labs/SchoolMajorSelector";
-import FilterButton from "@app/components/syllabus/FilterButton";
-import SyllabusTabs from "@app/components/SyllabusTabs";
-import { ThemeContext } from "@app/utils/theme-context";
+import reviews from "@app/constants/lab_reviews_by_school_major.json"
+import Lab from "@app/components/labs/Lab"
+import SchoolMajorSelector from "@app/components/labs/SchoolMajorSelector"
+import FilterButton from "@app/components/syllabus/FilterButton"
+import SyllabusTabs from "@app/components/SyllabusTabs"
+import { ThemeContext } from "@app/utils/theme-context"
 
 type ThankMessageProps = {
-  isDisplayed: boolean;
-};
+  isDisplayed: boolean
+}
 
 type LabsWrapperProps = {
-  isLower: boolean;
-};
+  isLower: boolean
+}
 
 type MajorHeaderProps = {
-  school: string;
-};
+  school: string
+}
 
 type FilterWrapper = {
-  isLower: boolean;
-};
+  isLower: boolean
+}
 
 type LabsListProps = {
-  isLower: boolean;
-};
+  isLower: boolean
+}
 
 const LabsOuterWrapper = styled.div`
   display: flex;
@@ -42,15 +42,15 @@ const LabsOuterWrapper = styled.div`
     height: calc(100vh - 60px);
     overflow-y: hidden;
   `}
-`;
+`
 
 const HeaderWrapper = styled.div`
   flex: 67px;
-`;
+`
 
 const SyllabusTabsWrapper = styled.div`
   flex: 29px;
-`;
+`
 
 const ThankMessage = styled.div<ThankMessageProps>`
   flex: 21px;
@@ -58,7 +58,7 @@ const ThankMessage = styled.div<ThankMessageProps>`
   text-align: center;
   position: relative;
   ${(props) => !props.isDisplayed && "display: none;"}
-`;
+`
 
 const CloseThankMessageButton = styled.span`
   position: absolute;
@@ -66,7 +66,7 @@ const CloseThankMessageButton = styled.span`
   top: -5px;
   font-size: 18px;
   cursor: pointer;
-`;
+`
 
 const LabsWrapper = styled.div<LabsWrapperProps>`
   flex-grow: 1;
@@ -83,7 +83,7 @@ const LabsWrapper = styled.div<LabsWrapperProps>`
   overflow-y: hidden;
   display: flex;
   flex-direction: row;
-`;
+`
 
 const MajorHeader = styled.h3<MajorHeaderProps>`
   width: 80%;
@@ -101,9 +101,9 @@ const MajorHeader = styled.h3<MajorHeaderProps>`
         ? "rgba(190,106,20,0.5)"
         : props.school === "CSE"
         ? "rgba(105,140,45,0.5)"
-        : "rgba(50,98,149,0.5)";
+        : "rgba(50,98,149,0.5)"
     }};
-`;
+`
 
 const FilterWrapper = styled.div<FilterWrapper>`
   flex: 20em;
@@ -123,12 +123,12 @@ const FilterWrapper = styled.div<FilterWrapper>`
     width: 0;
     background: transparent;
   }
-`;
+`
 
 const ShorterFilterWrapper = styled(FilterWrapper)`
   flex: 15em;
   padding: 1em 2em 0px 1em;
-`;
+`
 
 const LabsList = styled.div<LabsListProps>`
   flex: calc(100% - 20em);
@@ -166,7 +166,7 @@ const LabsList = styled.div<LabsListProps>`
     border-radius: 10px;
     background: #999;
   }
-`;
+`
 
 const modalStyle = {
   overlay: {
@@ -189,22 +189,22 @@ const modalStyle = {
     fontSize: "16px",
     padding: 0,
   },
-};
+}
 
-type Props = WithTranslation;
+type Props = WithTranslation
 
 interface State {
-  school: string;
-  major: string;
-  inputText: string;
-  searchTerm: string;
-  isModalOpen: boolean;
-  isThankMessageDisplayed: boolean;
+  school: string
+  major: string
+  inputText: string
+  searchTerm: string
+  isModalOpen: boolean
+  isThankMessageDisplayed: boolean
 }
 
 class Labs extends React.Component<Props, State> {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       school: "FSE",
@@ -213,18 +213,18 @@ class Labs extends React.Component<Props, State> {
       searchTerm: "",
       isModalOpen: false,
       isThankMessageDisplayed: true,
-    };
+    }
   }
 
-  static contextType = ThemeContext;
+  static contextType = ThemeContext
 
   updateSearchTerm = () => {
     this.setState((prevState, props) => {
       return {
         searchTerm: prevState.inputText,
-      };
-    });
-  };
+      }
+    })
+  }
 
   handleInputChange = (inputText) => {
     this.setState(
@@ -234,18 +234,18 @@ class Labs extends React.Component<Props, State> {
       debounce(this.updateSearchTerm, 500, {
         leading: false,
       })
-    );
-  };
+    )
+  }
 
   handleToggleModal = () => {
-    this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }));
-  };
+    this.setState((prevState) => ({ isModalOpen: !prevState.isModalOpen }))
+  }
 
   render() {
-    const { t, i18n } = this.props;
+    const { t, i18n } = this.props
     const { school, major, inputText, searchTerm, isThankMessageDisplayed } =
-      this.state;
-    const { theme, setTheme } = this.context;
+      this.state
+    const { theme, setTheme } = this.context
 
     return (
       <LabsOuterWrapper className="theme-default">
@@ -392,8 +392,8 @@ class Labs extends React.Component<Props, State> {
           </MediaQuery>
         </LabsWrapper>
       </LabsOuterWrapper>
-    );
+    )
   }
 }
 
-export default withTranslation("translation")(Labs);
+export default withTranslation("translation")(Labs)

@@ -1,33 +1,33 @@
-import React from "react";
+import React from "react"
 
-import { LoadingSpinner, media } from "wasedatime-ui";
-import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { WithTranslation, withTranslation } from "react-i18next";
-import Divider from "semantic-ui-react/dist/commonjs/elements/Divider";
-import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
-import styled from "styled-components";
+import { LoadingSpinner, media } from "wasedatime-ui"
+import { faStar, faTimes, faCheck } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { WithTranslation, withTranslation } from "react-i18next"
+import Divider from "semantic-ui-react/dist/commonjs/elements/Divider"
+import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic"
+import styled from "styled-components"
 
-import { ThemeContext } from "@app/utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context"
 
 interface Props extends WithTranslation {
-  closeModal: () => void;
+  closeModal: () => void
   scales: {
-    satisfaction: number;
-    difficulty: number;
-    benefit: number;
-  };
-  text: string;
-  handleFormSubmit: () => void;
-  handleScaleChange: (target: string, score: number) => void;
-  handleTextChange: (text: string) => void;
-  isSending: boolean;
+    satisfaction: number
+    difficulty: number
+    benefit: number
+  }
+  text: string
+  handleFormSubmit: () => void
+  handleScaleChange: (target: string, score: number) => void
+  handleTextChange: (text: string) => void
+  isSending: boolean
 }
 
 interface State {
-  paintedSatisfactionStars: number;
-  paintedDifficultyStars: number;
-  paintedBenefitStars: number;
+  paintedSatisfactionStars: number
+  paintedDifficultyStars: number
+  paintedBenefitStars: number
 }
 
 const StyledSubHeading = styled("h4")`
@@ -38,7 +38,7 @@ const StyledSubHeading = styled("h4")`
   font-weight: 300;
   ${media.tablet`// font-size: 2rem;`};
   font-size: 16px;
-`;
+`
 
 const StyledForm = styled("form")`
   width: 100%;
@@ -47,13 +47,13 @@ const StyledForm = styled("form")`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
+`
 
 const ScalesList = styled("div")`
   display: flex;
   flex-direction: row;
   ${media.tablet`flex: 2; flex-direction: column;`};
-`;
+`
 
 const Scale = styled(Statistic)`
   margin: 0.5em 0px !important;
@@ -61,9 +61,9 @@ const Scale = styled(Statistic)`
   flex: 1 0 33%;
   text-align: center;
   font-size: 0.5em !important;
-`;
+`
 
-const Stars = styled(Statistic.Value)``;
+const Stars = styled(Statistic.Value)``
 
 const StyledTextarea = styled("textarea")`
   border-radius: 10px;
@@ -73,13 +73,13 @@ const StyledTextarea = styled("textarea")`
   height: 100px;
   flex: 1 0 auto;
   font-size: 1.5em !important;
-`;
+`
 
 const FormActions = styled("div")`
   display: flex;
   margin-top: 10px;
   font-size: 1.5em !important;
-`;
+`
 
 const SubmitFormButton = styled("button")`
   flex: 0 0 20%;
@@ -88,7 +88,7 @@ const SubmitFormButton = styled("button")`
   border: 0px;
   border-radius: 5px 0 0 5px;
   ${media.tablet`flex: 0 0 30%;`};
-`;
+`
 
 const CloseFormButton = styled("button")`
   flex: 0 0 20%;
@@ -97,54 +97,54 @@ const CloseFormButton = styled("button")`
   border: 0px;
   border-radius: 0 5px 5px 0;
   ${media.tablet`flex: 0 0 30%;`};
-`;
+`
 
 const FieldLegend = styled(Divider)`
   font-size: 1.5em !important;
   width: 60% !important;
   margin: 1em 20% !important;
   ${(props) => props.$isDark && "color: #fff !important;"}
-`;
+`
 
 class AddReviewForm extends React.Component<Props, State> {
   state = {
     paintedSatisfactionStars: 0,
     paintedDifficultyStars: 0,
     paintedBenefitStars: 0,
-  };
+  }
 
-  static contextType = ThemeContext;
+  static contextType = ThemeContext
 
   displayStars = (label, selectedStar, paintedStar) => {
-    const stars = [];
+    const stars = []
     for (let n = 1; n <= 5; n++) {
-      let paintedStarsLabel = "";
+      let paintedStarsLabel = ""
       switch (label) {
         case "satisfaction":
-          paintedStarsLabel = "paintedSatisfactionStars";
-          break;
+          paintedStarsLabel = "paintedSatisfactionStars"
+          break
         case "difficulty":
-          paintedStarsLabel = "paintedDifficultyStars";
-          break;
+          paintedStarsLabel = "paintedDifficultyStars"
+          break
         case "benefit":
-          paintedStarsLabel = "paintedBenefitStars";
-          break;
+          paintedStarsLabel = "paintedBenefitStars"
+          break
         default:
-          paintedStarsLabel = "paintedSatisfactionStars";
+          paintedStarsLabel = "paintedSatisfactionStars"
       }
       const color =
         n <= paintedStar || (paintedStar === 0 && n <= selectedStar)
           ? "orange"
-          : "#ddd";
+          : "#ddd"
 
       const newStateOnMouseOver = { [paintedStarsLabel]: n } as Pick<
         State,
         keyof State
-      >;
+      >
       const newStateOnMouseOut = { [paintedStarsLabel]: selectedStar } as Pick<
         State,
         keyof State
-      >;
+      >
 
       stars.push(
         <FontAwesomeIcon
@@ -155,43 +155,43 @@ class AddReviewForm extends React.Component<Props, State> {
           onMouseOut={() => this.setState(newStateOnMouseOut)}
           onClick={() => this.props.handleScaleChange(label, n)}
         />
-      );
+      )
     }
 
-    return stars;
-  };
+    return stars
+  }
 
   changeStarsColor = (label, scale) => {
     switch (label) {
       case "satisfaction":
-        this.setState({ paintedSatisfactionStars: scale });
-        break;
+        this.setState({ paintedSatisfactionStars: scale })
+        break
       case "difficulty":
-        this.setState({ paintedDifficultyStars: scale });
-        break;
+        this.setState({ paintedDifficultyStars: scale })
+        break
       case "benefit":
-        this.setState({ paintedBenefitStars: scale });
-        break;
+        this.setState({ paintedBenefitStars: scale })
+        break
       default:
-        this.setState({ paintedSatisfactionStars: scale });
+        this.setState({ paintedSatisfactionStars: scale })
     }
-  };
+  }
 
   handleTextareaChange = (event) => {
-    event.preventDefault();
-    const inputText = event.target.value;
-    this.props.handleTextChange(inputText);
-  };
+    event.preventDefault()
+    const inputText = event.target.value
+    this.props.handleTextChange(inputText)
+  }
 
   render() {
     const { closeModal, scales, text, handleFormSubmit, isSending, t } =
-      this.props;
+      this.props
     const {
       paintedSatisfactionStars,
       paintedDifficultyStars,
       paintedBenefitStars,
-    } = this.state;
-    const { theme } = this.context;
+    } = this.state
+    const { theme } = this.context
 
     return (
       <div>
@@ -204,7 +204,7 @@ class AddReviewForm extends React.Component<Props, State> {
         ) : (
           <StyledForm
             onSubmit={(e) => {
-              e.preventDefault();
+              e.preventDefault()
             }}
           >
             <FieldLegend horizontal $isDark={theme === "dark"}>
@@ -277,8 +277,8 @@ class AddReviewForm extends React.Component<Props, State> {
           </StyledForm>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default withTranslation("translation")(AddReviewForm);
+export default withTranslation("translation")(AddReviewForm)

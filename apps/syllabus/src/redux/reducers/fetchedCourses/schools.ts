@@ -2,35 +2,35 @@ import {
   FETCH_COURSES_SUCCESS,
   ADD_SCHOOL_FETCH_COURSES_SUCCESS,
   REMOVE_SCHOOL,
-} from "@app/redux/actions/types";
-import Course from "@app/types/course";
+} from "@app/redux/actions/types"
+import Course from "@app/types/course"
 
 interface PayloadProps {
-  school?: string;
-  exp?: string;
-  updatedSchools: SchoolsProps;
+  school?: string
+  exp?: string
+  updatedSchools: SchoolsProps
 }
 
 interface ActionProps {
-  type: string;
-  payload: PayloadProps;
+  type: string
+  payload: PayloadProps
 }
 
 interface SchoolsProps {
   [school: string]: {
-    name: string;
-    exp: string;
-    active: boolean;
-    timestamp: number;
-  };
+    name: string
+    exp: string
+    active: boolean
+    timestamp: number
+  }
 }
 
-const initialState: SchoolsProps = {};
+const initialState: SchoolsProps = {}
 
 const schools = (state = initialState, action: ActionProps): SchoolsProps => {
   switch (action.type) {
     case FETCH_COURSES_SUCCESS:
-      return action.payload.updatedSchools;
+      return action.payload.updatedSchools
     case ADD_SCHOOL_FETCH_COURSES_SUCCESS:
       return {
         ...state,
@@ -40,7 +40,7 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
           active: true,
           timestamp: Date.now(),
         },
-      };
+      }
     case REMOVE_SCHOOL:
       return {
         ...state,
@@ -50,16 +50,16 @@ const schools = (state = initialState, action: ActionProps): SchoolsProps => {
           active: false,
           timestamp: 0,
         },
-      };
+      }
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default schools;
+export default schools
 
 export const getSchools = (schoolsObj) =>
   Object.keys(schoolsObj)
     .filter((school) => schoolsObj[school].active)
     .sort((a, b) => schoolsObj[a].timestamp - schoolsObj[b].timestamp)
-    .map((school) => school);
+    .map((school) => school)

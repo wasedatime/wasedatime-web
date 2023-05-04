@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
 
-import { Wrapper, media } from "wasedatime-ui";
-import styled from "styled-components";
+import { Wrapper, media } from "wasedatime-ui"
+import styled from "styled-components"
 
-import { UnstyledUList } from "@app/components/styles/List";
-import AddedCourseAndPrefItem from "@app/containers/AddedCourseAndPrefItem";
-import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer";
-import Course from "@app/types/course";
+import { UnstyledUList } from "@app/components/styles/List"
+import AddedCourseAndPrefItem from "@app/containers/AddedCourseAndPrefItem"
+import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer"
+import Course from "@app/types/course"
 
 const ExtendedWrapper = styled(Wrapper)`
   padding: 0 1em;
   ${media.tablet`margin-top: 1rem;`};
-`;
+`
 
 const ExtendedUnstyledUList = styled(UnstyledUList)`
   font-size: 14px;
   max-height: calc(100vh - 160px);
   overflow-y: auto;
   ${media.tablet`max-height: none;`};
-`;
+`
 
 interface Props {
   addedCoursesAndPrefs: {
     pref: {
-      color: number;
-      displayLang: string;
-      visibility: boolean;
-    };
-    course: Course;
-  }[];
+      color: number
+      displayLang: string
+      visibility: boolean
+    }
+    course: Course
+  }[]
 }
 
 const AddedCourseAndPrefList = ({ addedCoursesAndPrefs }: Props) => {
@@ -52,7 +52,7 @@ const AddedCourseAndPrefList = ({ addedCoursesAndPrefs }: Props) => {
         </ExtendedUnstyledUList>
       </Wrapper>
     </ExtendedWrapper>
-  );
-};
+  )
+}
 
-export default AddedCourseAndPrefList;
+export default AddedCourseAndPrefList

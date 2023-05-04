@@ -12,6 +12,7 @@
     "preview": "turbo run preview",
     "preview-dev": "turbo run preview-dev",
     "lint": "turbo run lint",
+    "format": "turbo run format",
     "test": "turbo run test"
   },
   "devDependencies": {

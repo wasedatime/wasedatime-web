@@ -5,7 +5,9 @@
     "eslint": "latest",
     "eslint-config-next": "latest",
     "eslint-config-prettier": "latest",
+    "eslint-config-turbo": "latest",
     "eslint-plugin-react": "latest",
-    "eslint-config-turbo": "latest"
+    "@typescript-eslint/parser": "latest",
+    "eslint-import-resolver-typescript": "latest"
   }
 }

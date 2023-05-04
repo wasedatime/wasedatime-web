@@ -4,12 +4,7 @@ module.exports = {
     "turbo",
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:jsx-a11y/recommended",
-    "airbnb",
-    "plugin:import/errors",
-    "plugin:import/warnings",
     "plugin:import/typescript",
-    "plugin:prettier/recommended",
     "prettier",
   ],
   rules: {

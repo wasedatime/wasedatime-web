@@ -1,17 +1,7 @@
 module.exports = {
-  printWidth: 80,
+  plugins: [require("prettier-plugin-tailwindcss")],
+  trailingComma: "es5",
   tabWidth: 2,
-  useTabs: false,
-  semi: true,
-  htmlWhitespaceSensitivity: "css",
-  endOfLine: "lf",
-
-  overrides: [
-    {
-      files: ["*.html", "*ejs"],
-      options: {
-        printWidth: 200,
-      },
-    },
-  ],
+  semi: false,
+  singleQuote: false,
 };

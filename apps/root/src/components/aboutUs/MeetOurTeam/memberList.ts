@@ -1,7 +1,9 @@
+import aditya from "@app/assets/img/contributors/aditya.jpg";
 import alina from "@app/assets/img/contributors/alina.jpg";
 import austin from "@app/assets/img/contributors/austin.jpg";
 import george from "@app/assets/img/contributors/george.jpg";
 import gu from "@app/assets/img/contributors/gu.jpg";
+import gunjan from "@app/assets/img/contributors/gunjan.jpg";
 import hao from "@app/assets/img/contributors/hao.jpg";
 import hatori from "@app/assets/img/contributors/hatori.jpg";
 import isabella from "@app/assets/img/contributors/isabella.jpg";
@@ -144,6 +146,27 @@ export const CurrentList: Array<Members> = [
       { platform: linkedin, link: "https://www.linkedin.com/in/mkaminsk/" },
     ],
     profileText: "Coming up with one!",
+  },
+  //gunjan
+  {
+    image: gunjan,
+    name: "Gunjan",
+    positions: ["Frontend - flutter"],
+    socials: [
+      {
+        platform: github,
+        link: "https://github.com/gunjan-sri",
+      },
+    ],
+    profileText: "I have no idea what I'm doing",
+  },
+  //aditya
+  {
+    image: aditya,
+    name: "Aditya Sundar",
+    positions: ["Frontend - flutter"],
+    socials: [],
+    profileText: "We live in a society...",
   },
 ];
 

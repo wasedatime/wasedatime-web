@@ -32,11 +32,11 @@ const AboutUsFlex = styled.div`
 `
 
 const AboutUsMenu = styled.div`
-  ${media.tablet`text-align: center;`}
-  ${media.phone`
+  ${media("tablet",`text-align: center;`)}
+  ${media("phone",`
     text-align: center;
     font-size:3.5vw;
-    `}
+    `)}
 `
 
 const AboutUs = () => {

@@ -53,12 +53,12 @@ const RelatedCourses = styled.div`
   @media (max-width: 1280px) {
     width: calc(96vw - 55em - 120px);
   }
-  ${media.desktop`
+  ${media("desktop",`
     width: calc(96vw - 30em - 130px);
-  `}
-  ${media.tablet`
+  `)}
+  ${media("tablet",`
     width: calc(96vw - 40px);
-  `}
+  `)}
   
   overflow-x: auto;
   padding: none;
@@ -80,9 +80,9 @@ const RelatedCourse = styled.div`
   @media (max-width: 1280px) {
     flex: 0 0 49.5%;
   }
-  ${media.desktop`flex: 0 0 49.5%;`}
-  ${media.tablet`flex: 0 0 33%;`}
-  ${media.phone`flex: 0 0 49.5%;`}
+  ${media("desktop",`flex: 0 0 49.5%;`)}
+  ${media("tablet",`flex: 0 0 33%;`)}
+  ${media("phone",`flex: 0 0 49.5%;`)}
 `
 
 const StyledSubHeading = styled("h4")`

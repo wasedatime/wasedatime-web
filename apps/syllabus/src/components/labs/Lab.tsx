@@ -42,13 +42,19 @@ const schoolCoverMap: { [name: string]: string } = {
 
 const LabWrapper = styled.div<LabWrapperProps>`
   flex: 0 0 ${(props) => (props.isOpen ? "100%" : "45%")};
-  ${media.desktop`
+  ${media(
+    "desktop",
+    `
     flex: 0 0 100%;
-  `}
+  `
+  )}
   margin-bottom: 1em;
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     margin-bottom: 1rem;
-  `}
+  `
+  )}
 `
 
 const LabTrigger = styled.div<LabTrigger>`
@@ -72,9 +78,12 @@ const LabTrigger = styled.div<LabTrigger>`
     border-radius: 10px;
   }
 
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     height: 70px;
-  `}
+  `
+  )}
 `
 
 const LabName = styled.div`
@@ -94,12 +103,15 @@ const LabName = styled.div`
     font-size: 40px;
   }
 
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     font-size: 28px;
     &:hover {
       font-size: 32px;
     }
-  `}
+  `
+  )}
 `
 
 const ReviewsModalOverlay = styled.div`
@@ -123,11 +135,14 @@ const ReviewsModal = styled.div`
   border-radius: 10px;
   padding: 1em;
 
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     left: 5vw;
     right: 5vw;
     padding: 1rem;
-  `}
+  `
+  )}
 `
 
 const LabHeader = styled.div`
@@ -162,9 +177,12 @@ const ReviewProfName = styled.h2`
   text-align: center;
   margin-bottom: 1rem;
   font-size: 2em;
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     font-size: 1.5em;
-  `}
+  `
+  )}
 `
 
 const CloseButton = styled.button`

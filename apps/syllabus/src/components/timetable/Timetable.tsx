@@ -26,22 +26,31 @@ const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
   padding: 0.2em;
   padding-left: 1em;
-  ${media.phone`
+  ${media(
+    "phone",
+    `
     padding: 0
-  `};
+  `
+  )};
 `
 
 const Column = styled.div<ColumnProps>`
   flex: ${(props) => `0 0 ${props.flexBasis};`}
   max-width: ${(props) => `${props.flexBasis};`}
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     flex: 1 0 auto;
     max-width: 100vw;
-  `};
-  ${media.phone`
+  `
+  )};
+  ${media(
+    "phone",
+    `
     flex: 1 0 auto;
     max-width: 100vw;
-  `};
+  `
+  )};
 `
 
 const ScrollableTimetable = styled("div")`

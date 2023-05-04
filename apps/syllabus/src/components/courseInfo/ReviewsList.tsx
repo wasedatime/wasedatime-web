@@ -63,7 +63,7 @@ const ReviewDivider = styled("hr")`
 const ReviewText = styled("div")`
   font-size: 1.3em;
   line-height: 1.5em;
-  ${media.phoneMini`font-size: 1.5em; flex: 1 0 60%;`};
+  ${media("phoneMini",`font-size: 1.5em; flex: 1 0 60%;`)};
 `
 
 const GoogleTranslationHint = styled("p")`
@@ -99,7 +99,7 @@ const ReviewScalesList = styled("div")`
   align-items: flex-end;
   font-size: 1.4em;
   line-height: 1.5em;
-  ${media.phoneMini`flex: 1 0 40%;`};
+  ${media("phoneMini",`flex: 1 0 40%;`)};
 `
 
 const ReviewScale = styled("div")`

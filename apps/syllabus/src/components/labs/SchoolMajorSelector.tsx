@@ -25,12 +25,15 @@ type ReviewsCountProps = {
 }
 
 const Menu = styled.div`
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     padding: 2em;
     padding-bottom: 90px;
     height: calc(100vh - 60px);
     overflow-y: auto;
-  `}
+  `
+  )}
 `
 
 const SchoolMenu = styled.div`

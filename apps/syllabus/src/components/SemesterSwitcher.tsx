@@ -44,15 +44,14 @@ const ExtendedInvisibleButton = styled(
   &:active {
     color: #000;
   }
-  ${media.tablet`
+  ${media("tablet",`
     &:focus {
         color: #000;
-    }`};
-  ${media.phone`
+    }`)};
+  ${media("phone",`
     &:focus {
       color: #000;
-    }
-  `};
+    }`)};
   ${(props) => props.small && "margin: 0px 25px;"}
 `
 

@@ -52,12 +52,15 @@ const WiderPopup = styled(Popup)<ThemeComponentProps>`
     }
   `}
 
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     max-width: 100vw !important;
     & > div {
       width: 80vw;
     }
-  `}
+  `
+  )}
 `
 
 const StyledTab = styled(Tab)<ThemeComponentProps>`
@@ -109,7 +112,7 @@ const ChooseSchoolButton = styled("button")`
   border-radius: 5px;
   font-weight: 600;
   cursor: pointer !important;
-  ${media.phoneMini`font-size: 11px;`} i {
+  ${media("phoneMini", `font-size: 11px;`)} i {
     color: #48af37;
   }
   &:hover {

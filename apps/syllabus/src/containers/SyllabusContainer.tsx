@@ -66,7 +66,7 @@ const SyllabusFlex = styled.div`
   flex: calc(100% - 96px);
   display: flex;
   flex-direction: row;
-  ${media.tablet`height: calc(100vh - 146px); flex: calc(100vh - 146px);`}
+  ${media("tablet", `height: calc(100vh - 146px); flex: calc(100vh - 146px);`)}
   overflow-y: hidden;
 `
 

@@ -114,7 +114,7 @@ const StyledFormLabel = styled(FormLabel)`
 
 const EvalRangeWrapper = styled.div`
   margin-bottom: 30px;
-  ${media.tablet`width: 80%;`}
+  ${media("tablet", `width: 80%;`)}
 `
 
 interface Props {

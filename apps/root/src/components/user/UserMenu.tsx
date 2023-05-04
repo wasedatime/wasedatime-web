@@ -17,7 +17,7 @@ const UserMenuTrigger = styled("div")`
   flex-direction: row;
   align-items: center;
   padding: 0.5vh 0.5em 1em 0.7em;
-  ${media.tablet`padding: 0.5em;`}
+  ${media("tablet",`padding: 0.5em;`)}
 
   svg {
     width: 40px !important;
@@ -35,7 +35,7 @@ const UserMenuTrigger = styled("div")`
   img.ui.circular.image {
     width: 40px;
     min-width: 40px;
-    ${media.phone`width: 35px; min-width: 35px;`}
+    ${media("phone",`width: 35px; min-width: 35px;`)}
   }
 
   &:hover {

@@ -68,7 +68,7 @@ const CourseTitle = styled("span")`
   overflow-x: hidden;
   overflow-wrap: break-word;
   text-align: center;
-  ${media.phone`font-size: 0.7em;`}
+  ${media("phone", `font-size: 0.7em;`)}
 `
 
 const CourseLocation = styled("span")`
@@ -81,7 +81,7 @@ const CourseLocation = styled("span")`
   align-items: center;
   justify-content: center;
   text-align: center;
-  ${media.phone`font-size: 0.6em;`}
+  ${media("phone", `font-size: 0.6em;`)}
 `
 
 const CourseList = styled("div")`

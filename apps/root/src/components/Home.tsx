@@ -19,7 +19,7 @@ const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: calc(100vw - 65px);
-  ${media.tablet`width: 100vw;`}
+  ${media("tablet", `width: 100vw;`)}
   position: fixed;
 `
 
@@ -61,7 +61,7 @@ const Description = styled("p")`
   font-weight: 300;
   /* color: #ffffff; */
   /* text-shadow: 0px 0px 3px #000000; */
-  ${media.phone`font-size: 1em;`}
+  ${media("phone", `font-size: 1em;`)}
 `
 
 interface Props extends WithTranslation {

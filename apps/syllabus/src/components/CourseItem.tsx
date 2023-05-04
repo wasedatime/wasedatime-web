@@ -67,14 +67,14 @@ const StyledHeading = styled("h3")`
   margin: 0;
   text-align: left;
   font-size: 1.2em;
-  ${media.phone`font-size: 1.1em;`};
+  ${media("phone",`font-size: 1.1em;`)};
   font-weight: 600;
   color: #000;
 `
 
 const StyledSubHeading = styled(StyledHeading)`
   font-size: 1em;
-  ${media.phone`font-size: 0.9em;`};
+  ${media("phone",`font-size: 0.9em;`)};
   color: #777;
 `
 

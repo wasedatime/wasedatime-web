@@ -27,7 +27,7 @@ const ChartWrapper = styled(Grid.Column)`
   width: 150px;
   height: 150px;
   margin: 0px auto;
-  ${media.phone`width: 100px; height: 100px;`}
+  ${media("phone", `width: 100px; height: 100px;`)}
 `
 
 interface Props extends WithTranslation {

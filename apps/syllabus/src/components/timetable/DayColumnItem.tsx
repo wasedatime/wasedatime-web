@@ -11,7 +11,7 @@ const StyledDayColumnItem = styled("li")`
   flex-direction: column;
   flex: 1 0 0;
   min-height: calc(100vh - 150px);
-  ${media.tablet`min-height: calc(100vh - 250px);`}
+  ${media("tablet", `min-height: calc(100vh - 250px);`)}
 `
 
 const DayItem = styled("div")`

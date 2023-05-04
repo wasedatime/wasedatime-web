@@ -38,10 +38,13 @@ type LabsListProps = {
 const LabsOuterWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     height: calc(100vh - 60px);
     overflow-y: hidden;
-  `}
+  `
+  )}
 `
 
 const HeaderWrapper = styled.div`
@@ -74,12 +77,18 @@ const LabsWrapper = styled.div<LabsWrapperProps>`
   padding: 0px;
   ${(props) =>
     props.isLower
-      ? media.tablet`
+      ? media(
+          "tablet",
+          `
         height: calc(100vh - 177px);
       `
-      : media.tablet`
+        )
+      : media(
+          "tablet",
+          `
         height: calc(100vh - 156px);
-      `}
+      `
+        )}
   overflow-y: hidden;
   display: flex;
   flex-direction: row;
@@ -88,10 +97,13 @@ const LabsWrapper = styled.div<LabsWrapperProps>`
 const MajorHeader = styled.h3<MajorHeaderProps>`
   width: 80%;
   font-size: 3rem;
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     width: 95%;
     font-size: 2rem;
-  `}
+  `
+  )}
   margin-top: 1em;
   padding-bottom: 10px;
   text-align: center;
@@ -112,12 +124,18 @@ const FilterWrapper = styled.div<FilterWrapper>`
   height: calc(100vh - ${(props) => (props.isLower ? "117px" : "96px")});
   ${(props) =>
     props.isLower
-      ? media.tablet`
+      ? media(
+          "tablet",
+          `
         height: calc(100vh - 177px);
       `
-      : media.tablet`
+        )
+      : media(
+          "tablet",
+          `
         height: calc(100vh - 156px);
-      `}
+      `
+        )}
   overflow-y: auto;
   ::-webkit-scrollbar {
     width: 0;
@@ -140,20 +158,29 @@ const LabsList = styled.div<LabsListProps>`
   justify-content: center;
   align-items: flex-start;
   align-content: flex-start;
-  ${media.tablet`padding: 0px 2em;`}
+  ${media("tablet", `padding: 0px 2em;`)}
 
   height: calc(100vh - ${(props) => (props.isLower ? "117px" : "96px")});
   ${(props) =>
     props.isLower
-      ? media.tablet`
+      ? media(
+          "tablet",
+          `
         height: calc(100vh - 177px);
       `
-      : media.tablet`
+        )
+      : media(
+          "tablet",
+          `
         height: calc(100vh - 156px);
-      `}
-  ${media.tablet`
+      `
+        )}
+  ${media(
+    "tablet",
+    `
     padding-bottom: 90px;
-  `}
+  `
+  )}
 
   overflow-y: auto;
 

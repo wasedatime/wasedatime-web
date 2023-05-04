@@ -21,7 +21,7 @@ import "react-vertical-timeline-component/style.min.css"
 const MainParagraph = styled("p")`
   align-items: center;
   padding: 0 20vw;
-  ${media.tablet`padding: 0 5vw;`};
+  ${media("tablet",`padding: 0 5vw;`)};
   color: #666;
   width: 90%;
   margin: 0 auto;

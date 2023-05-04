@@ -36,7 +36,7 @@ const StyledSubHeading = styled("h4")`
   padding-left: 1rem;
   border-left: 5px solid rgb(148, 27, 47);
   font-weight: 300;
-  ${media.tablet`// font-size: 2rem;`};
+  ${media("tablet",`// font-size: 2rem;`)};
   font-size: 16px;
 `
 
@@ -52,7 +52,7 @@ const StyledForm = styled("form")`
 const ScalesList = styled("div")`
   display: flex;
   flex-direction: row;
-  ${media.tablet`flex: 2; flex-direction: column;`};
+  ${media("tablet",`flex: 2; flex-direction: column;`)};
 `
 
 const Scale = styled(Statistic)`
@@ -87,7 +87,7 @@ const SubmitFormButton = styled("button")`
   color: #fff;
   border: 0px;
   border-radius: 5px 0 0 5px;
-  ${media.tablet`flex: 0 0 30%;`};
+  ${media("tablet",`flex: 0 0 30%;`)};
 `
 
 const CloseFormButton = styled("button")`
@@ -96,7 +96,7 @@ const CloseFormButton = styled("button")`
   color: #fff;
   border: 0px;
   border-radius: 0 5px 5px 0;
-  ${media.tablet`flex: 0 0 30%;`};
+  ${media("tablet",`flex: 0 0 30%;`)};
 `
 
 const FieldLegend = styled(Divider)`

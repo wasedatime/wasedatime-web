@@ -11,7 +11,7 @@ const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   padding: 1em 0px;
-  ${media.tablet`padding: 1em;`}
+  ${media("tablet", `padding: 1em;`)}
 `
 
 const RoomType = styled("span")<RoomProps>`

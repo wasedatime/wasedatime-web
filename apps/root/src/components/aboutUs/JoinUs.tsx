@@ -11,7 +11,7 @@ const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   padding: 0 20vw 50px;
   color: #666;
-  ${media.phone`padding: 0 10vw 50px;`};
+  ${media("phone",`padding: 0 10vw 50px;`)};
   hr {
     width: 80%;
   }

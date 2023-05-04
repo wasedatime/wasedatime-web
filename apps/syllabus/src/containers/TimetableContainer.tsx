@@ -20,7 +20,7 @@ const Timetable = lazy(() => import("@app/components/timetable/Timetable"))
 
 const TimetableWrapper = styled(Wrapper)`
   height: 100vh;
-  ${media.tablet`height: calc(100vh - 60px);`}
+  ${media("tablet", `height: calc(100vh - 60px);`)}
   display: flex;
   flex-direction: column;
 `

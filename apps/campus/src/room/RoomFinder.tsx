@@ -20,7 +20,7 @@ const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   padding: 2em 20em;
-  ${media.desktop`padding: 2em;`}
+  ${media("desktop", `padding: 2em;`)}
 `
 
 const DatePickerButton = styled("button")`
@@ -32,8 +32,8 @@ const DatePickerButton = styled("button")`
     outline: none;
     background: #ddd;
   }
-  ${media.phone`padding: 0.5em 0.3em;`}
-  ${media.phoneMini`font-size: 0.9em;`}
+  ${media("phone", `padding: 0.5em 0.3em;`)}
+  ${media("phoneMini", `font-size: 0.9em;`)}
 `
 
 const DatetimeClearButton = styled("button")`
@@ -49,8 +49,8 @@ const DatetimeClearButton = styled("button")`
   &:focus {
     outline: none;
   }
-  ${media.phone`padding: 0.5em 0.3em;`}
-  ${media.phoneMini`font-size: 0.9em;`}
+  ${media("phone", `padding: 0.5em 0.3em;`)}
+  ${media("phoneMini", `font-size: 0.9em;`)}
 `
 
 const DateSelectorWrapper = (props: any) => <DateSelector {...props} />

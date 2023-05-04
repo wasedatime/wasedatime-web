@@ -13,7 +13,7 @@ import Course from "@app/types/course"
 
 const CourseListWrapper = styled(SimpleBar)`
   height: calc(100vh - 96px);
-  ${media.tablet`height: calc(100vh - 166px);`}
+  ${media("tablet", `height: calc(100vh - 166px);`)}
   overflow-x: hidden;
 
   ::-webkit-scrollbar {

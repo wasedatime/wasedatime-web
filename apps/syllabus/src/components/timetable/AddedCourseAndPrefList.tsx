@@ -10,14 +10,14 @@ import Course from "@app/types/course"
 
 const ExtendedWrapper = styled(Wrapper)`
   padding: 0 1em;
-  ${media.tablet`margin-top: 1rem;`};
+  ${media("tablet", `margin-top: 1rem;`)};
 `
 
 const ExtendedUnstyledUList = styled(UnstyledUList)`
   font-size: 14px;
   max-height: calc(100vh - 160px);
   overflow-y: auto;
-  ${media.tablet`max-height: none;`};
+  ${media("tablet", `max-height: none;`)};
 `
 
 interface Props {

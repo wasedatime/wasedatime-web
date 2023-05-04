@@ -7,7 +7,7 @@ import React, {
   useContext,
 } from "react"
 
-import { sizes } from "wasedatime-ui"
+import { SignInModal, sizes } from "wasedatime-ui"
 import { createBrowserHistory } from "history"
 import ReactGA from "react-ga"
 import { useTranslation } from "react-i18next"
@@ -28,9 +28,6 @@ import { ThemeContext, ThemeProvider } from "@app/utils/theme-context"
 
 const Sidebar = lazy(() => import("@app/components/frame/Sidebar"))
 const MobileNav = lazy(() => import("@app/components/frame/MobileNav"))
-const SignInModal = lazy(
-  () => import("@bit/wasedatime.core.ts.ui.sign-in-modal")
-)
 
 const history = createBrowserHistory()
 

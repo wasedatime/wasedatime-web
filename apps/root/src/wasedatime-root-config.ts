@@ -1,7 +1,6 @@
 import React from "react"
 
-import { i18nConfig, configAuth } from "wasedatime-ui"
-import { Lang } from "wasedatime-ui/lib/constants/type/langs"
+import { Lang, i18nConfig, configAuth } from "wasedatime-ui"
 import i18next from "i18next"
 import ReactDOM from "react-dom"
 import ReactGA from "react-ga"
@@ -56,7 +55,6 @@ ReactGA.initialize(import.meta.env.VITE_GA_ID, {
 
 ReactDOM.render(React.createElement("span"), document.getElementById("loading"))
 ReactDOM.render(React.createElement(Nav), document.getElementById("nav"))
-
 ;(localStorage.getItem("isFirstAccess") === null ||
   localStorage.getItem("isFirstAccess") === "true") &&
   navigateToUrl("/")

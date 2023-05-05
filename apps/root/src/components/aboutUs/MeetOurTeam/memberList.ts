@@ -1,8 +1,9 @@
-import akylai from "@app/assets/img/contributors/akylai.jpg";
+import aditya from "@app/assets/img/contributors/aditya.jpg";
 import alina from "@app/assets/img/contributors/alina.jpg";
 import austin from "@app/assets/img/contributors/austin.jpg";
 import george from "@app/assets/img/contributors/george.jpg";
 import gu from "@app/assets/img/contributors/gu.jpg";
+import gunjan from "@app/assets/img/contributors/gunjan.jpg";
 import hao from "@app/assets/img/contributors/hao.jpg";
 import hatori from "@app/assets/img/contributors/hatori.jpg";
 import isabella from "@app/assets/img/contributors/isabella.jpg";
@@ -11,10 +12,11 @@ import kaede from "@app/assets/img/contributors/kaede.jpg";
 import kaiqing from "@app/assets/img/contributors/kaiqing.jpg";
 import kong from "@app/assets/img/contributors/kong.jpg";
 import mei from "@app/assets/img/contributors/mei.jpg";
-import mona from "@app/assets/img/contributors/mona.jpg";
+import michael from "@app/assets/img/contributors/michael.jpg";
 import naomi from "@app/assets/img/contributors/naomi.jpg";
 import nicholas from "@app/assets/img/contributors/nicholas.jpg";
 import oscar from "@app/assets/img/contributors/oscar.jpg";
+import pam from "@app/assets/img/contributors/pam.jpg";
 import takumi from "@app/assets/img/contributors/takumi.jpg";
 import tang from "@app/assets/img/contributors/tang.jpg";
 import xinmei from "@app/assets/img/contributors/xinmei.jpg";
@@ -76,20 +78,21 @@ export const CurrentList: Array<Members> = [
   {
     image: jason,
     name: "Jason Park",
-    positions: ["Backend Engineer", "Marketing"],
+    positions: ["Backend Engineer", "CheerLeader"],
     socials: [
       {
         platform: linkedin,
         link: "https://www.linkedin.com/in/%E6%B5%9A%E5%BD%AC-%E6%9C%B4-a9a503200",
       },
+      { platform: github, link: "https://github.com/JasonNotJson" },
     ],
-    profileText: "Imagine Sisyphus happy.",
+    profileText: "Imagine Sisyphus happy!",
   },
   // nicholas
   {
     image: nicholas,
     name: "Nicholas Narmada",
-    positions: ["Frontend Engineer"],
+    positions: ["Frontend - react"],
     socials: [
       { platform: instagram, link: "https://www.instagram.com/nichnarmada/" },
       { platform: github, link: "https://github.com/nichnarmada" },
@@ -107,19 +110,6 @@ export const CurrentList: Array<Members> = [
       { platform: instagram, link: "https://www.instagram.com/ronin2_7/" },
     ],
   },
-  // xinmei
-  {
-    image: xinmei,
-    name: "Xinmei(Evelyn) Liu",
-    positions: ["Marketing"],
-    socials: [
-      {
-        platform: instagram,
-        link: "https://www.instagram.com/evelyn_liuxinm/",
-      },
-    ],
-    profileText: "I’m so happy to work with you guys together 🥰",
-  },
   // xinyue
   {
     image: xinyue,
@@ -130,26 +120,54 @@ export const CurrentList: Array<Members> = [
     ],
     profileText: "Stay real, stay cool :)",
   },
-  // akylai
+  // michael
   {
-    image: akylai,
-    name: "Akylai",
-    positions: ["Frontend Apprentice"],
+    image: michael,
+    name: "Michael Kaminski",
+    positions: ["Frontend - react"],
     socials: [
       {
         platform: instagram,
-        link: "https://www.instagram.com/akylaimanalieva/",
+        link: "https://www.instagram.com/michaelkaminsk/",
+      },
+      { platform: github, link: "https://github.com/kamlnskll" },
+      { platform: linkedin, link: "https://www.linkedin.com/in/mkaminsk/" },
+    ],
+    profileText: "Coming up with one!",
+  },
+  //gunjan
+  {
+    image: gunjan,
+    name: "Gunjan",
+    positions: ["Frontend - flutter"],
+    socials: [
+      {
+        platform: github,
+        link: "https://github.com/gunjan-sri",
       },
     ],
+    profileText: "I have no idea what I'm doing",
   },
-  // mona
+  //aditya
   {
-    image: mona,
-    name: "Mona Matsuda",
-    positions: ["Frontend Apprentice"],
+    image: aditya,
+    name: "Aditya Sundar",
+    positions: ["Frontend - flutter"],
+    socials: [],
+    profileText: "We live in a society...",
+  },
+  //pam
+  {
+    image: pam,
+    name: "Pam",
+    positions: ["Marketing"],
     socials: [
-      { platform: instagram, link: "https://www.instagram.com/monamrym/" },
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/pamxsc/",
+      },
     ],
+    profileText: "Thank you!!",
   },
 ];
 
@@ -318,5 +336,17 @@ export const AlumniList: Array<Members> = [
     image: kong,
     name: "Kong",
     positions: ["Contributor"],
+  },
+  {
+    image: xinmei,
+    name: "Xinmei(Evelyn) Liu",
+    positions: ["Marketing"],
+    socials: [
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/evelyn_liuxinm/",
+      },
+    ],
+    profileText: "I’m so happy to work with you guys together 🥰",
   },
 ];

@@ -1,4 +1,3 @@
-import reactRefresh from "@vitejs/plugin-react-refresh"
 import react from "@vitejs/plugin-react"
 import dynamicImport from "vite-plugin-dynamic-import"
 const path = require("path")
@@ -27,6 +26,6 @@ export default {
     },
     modules: ["node_modules"],
   },
-  plugins: [react(), reactRefresh(), dynamicImport()],
+  plugins: [react(), dynamicImport()],
   envPrefix: ["VITE_", "REACT_APP_"],
 }

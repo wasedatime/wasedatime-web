@@ -67,9 +67,6 @@
     "vite-plugin-dynamic-import": "^0.7.1",
     "wasedatime-ui": "*"
   },
-  "resolutions": {
-    "esbuild": "0.14.43"
-  },
   "peerDependencies": {
     "@babel/plugin-syntax-flow": "^7.16.7",
     "@babel/plugin-transform-react-jsx": "^7.17.3",

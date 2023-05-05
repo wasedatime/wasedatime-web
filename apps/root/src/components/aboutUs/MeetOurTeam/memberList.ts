@@ -16,6 +16,7 @@ import michael from "@app/assets/img/contributors/michael.jpg";
 import naomi from "@app/assets/img/contributors/naomi.jpg";
 import nicholas from "@app/assets/img/contributors/nicholas.jpg";
 import oscar from "@app/assets/img/contributors/oscar.jpg";
+import pam from "@app/assets/img/contributors/pam.jpg";
 import takumi from "@app/assets/img/contributors/takumi.jpg";
 import tang from "@app/assets/img/contributors/tang.jpg";
 import xinmei from "@app/assets/img/contributors/xinmei.jpg";
@@ -85,7 +86,7 @@ export const CurrentList: Array<Members> = [
       },
       { platform: github, link: "https://github.com/JasonNotJson" },
     ],
-    profileText: "Imagine Sisyphus happy.",
+    profileText: "Imagine Sisyphus happy!",
   },
   // nicholas
   {
@@ -108,19 +109,6 @@ export const CurrentList: Array<Members> = [
     socials: [
       { platform: instagram, link: "https://www.instagram.com/ronin2_7/" },
     ],
-  },
-  // xinmei
-  {
-    image: xinmei,
-    name: "Xinmei(Evelyn) Liu",
-    positions: ["Marketing"],
-    socials: [
-      {
-        platform: instagram,
-        link: "https://www.instagram.com/evelyn_liuxinm/",
-      },
-    ],
-    profileText: "I’m so happy to work with you guys together 🥰",
   },
   // xinyue
   {
@@ -167,6 +155,19 @@ export const CurrentList: Array<Members> = [
     positions: ["Frontend - flutter"],
     socials: [],
     profileText: "We live in a society...",
+  },
+  //pam
+  {
+    image: pam,
+    name: "Pam",
+    positions: ["Marketing"],
+    socials: [
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/pamxsc/",
+      },
+    ],
+    profileText: "Thank you!!",
   },
 ];
 
@@ -335,5 +336,17 @@ export const AlumniList: Array<Members> = [
     image: kong,
     name: "Kong",
     positions: ["Contributor"],
+  },
+  {
+    image: xinmei,
+    name: "Xinmei(Evelyn) Liu",
+    positions: ["Marketing"],
+    socials: [
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/evelyn_liuxinm/",
+      },
+    ],
+    profileText: "I’m so happy to work with you guys together 🥰",
   },
 ];

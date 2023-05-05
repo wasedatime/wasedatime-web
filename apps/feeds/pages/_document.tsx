@@ -1,6 +1,6 @@
 import Document, { DocumentContext } from "next/document"
 import custom from "!!raw-loader!../styles/feed.css"
-import { ServerStyleSheets } from "@material-ui/core/styles"
+import { ServerStyleSheets } from "@mui/styles"
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

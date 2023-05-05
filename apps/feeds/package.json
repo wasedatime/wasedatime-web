@@ -16,8 +16,11 @@
     "format": "prettier --write \"{components,constants,hooks,pages}/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@emotion/react": "11.9.0",
+    "@emotion/styled": "11.8.1",
     "@fortawesome/fontawesome-svg-core": "6.1.1",
-    "@material-ui/core": "4.12.4",
+    "@mui/material": "5.8.3",
+    "@mui/styles": "^5.12.3",
     "fs": "0.0.1-security",
     "i18next": "21.8.9",
     "i18next-browser-languagedetector": "6.1.4",

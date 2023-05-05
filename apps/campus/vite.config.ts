@@ -1,4 +1,3 @@
-import reactRefresh from "@vitejs/plugin-react-refresh"
 import { defineConfig, loadEnv } from "vite"
 import react from "@vitejs/plugin-react"
 import dynamicImport from "vite-plugin-dynamic-import"
@@ -36,7 +35,7 @@ export default defineConfig(({ mode }) => {
       },
       modules: ["node_modules"],
     },
-    plugins: [react(), reactRefresh(), dynamicImport()],
+    plugins: [react(), dynamicImport()],
     assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
     envPrefix: ["VITE_", "REACT_APP_"],
   }

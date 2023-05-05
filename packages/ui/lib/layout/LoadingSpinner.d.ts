@@ -1,17 +1,8 @@
-import React from "react";
-type ThemeTypes = "light" | "dark";
-type Props = {
+/// <reference types="react" />
+import { ThemeType } from '../constants/type/theme';
+interface LoadingSpinnerProps {
     message: string;
-    theme: ThemeTypes;
-};
-type State = {
-    delayMessage: string;
-};
-export declare class LoadingSpinner extends React.Component<Props, State> {
-    _isMounted: boolean;
-    constructor(props: Props);
-    componentDidMount(): void;
-    componentWillUnmount(): void;
-    render(): JSX.Element;
+    theme: ThemeType;
 }
+export declare const LoadingSpinner: ({ message, theme }: LoadingSpinnerProps) => JSX.Element;
 export {};

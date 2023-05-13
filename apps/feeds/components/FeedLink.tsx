@@ -1,47 +1,13 @@
 import Link from "next/link"
-import { makeStyles } from "@mui/material/styles"
 import Grid from "@mui/material/Grid"
 import Card from "@mui/material/Card"
 import CardActionArea from "@mui/material/CardActionArea"
 import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import Hidden from "@mui/material/Hidden"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import { FeedInfo } from "../constants/types"
 import { Lang, LangMap } from "../constants/langs"
-
-const useStyles = makeStyles({
-  card: {
-    display: "flex",
-    padding: 0,
-  },
-  cardContent: {
-    padding: 20,
-  },
-  cardDetails: {
-    flex: 1,
-    padding: 10,
-    lineHeight: 1.5,
-  },
-  cardMedia: {
-    width: 200,
-  },
-  title: {
-    fontSize: 20,
-    fontFamily: "Lato, Yu Gothic Medium, Segoe UI",
-  },
-  text: {
-    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
-    color: "#666",
-  },
-  lang: {
-    float: "right",
-    borderRadius: 5,
-    background: "#bbb",
-    color: "#fff",
-    padding: "0px 5px",
-  },
-})
 
 type Props = {
   name: string
@@ -50,7 +16,6 @@ type Props = {
 }
 
 const FeedLink = ({ name, feed, locale }: Props) => {
-  const classes = useStyles()
   const [cover, setCover] = useState("")
 
   useEffect(() => {
@@ -87,20 +52,60 @@ const FeedLink = ({ name, feed, locale }: Props) => {
           }
           passHref
         >
-          <Card className={classes.card}>
-            <div className={classes.cardDetails}>
-              <CardContent className={classes.cardContent}>
-                <h3 className={classes.title}>{feed.title}</h3>
+          <Card
+            sx={{
+              display: "flex",
+              padding: 0,
+            }}
+          >
+            <div
+              style={{
+                flex: 1,
+                padding: 10,
+                lineHeight: 1.5,
+              }}
+            >
+              <CardContent
+                sx={{
+                  padding: 20,
+                }}
+              >
+                <h3
+                  style={{
+                    fontSize: 20,
+                    fontFamily: "Lato, Yu Gothic Medium, Segoe UI",
+                  }}
+                >
+                  {feed.title}
+                </h3>
                 <br />
-                <p className={classes.text}>
+                <p
+                  style={{
+                    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+                    color: "#666",
+                  }}
+                >
                   <b>{feed.partner}</b>{" "}
                   {feed.authors.map((author, i) =>
                     i === 0 ? author : " & " + author
                   )}
                 </p>
-                <p className={classes.text}>
+                <p
+                  style={{
+                    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+                    color: "#666",
+                  }}
+                >
                   {feed.date}
-                  <span className={classes.lang}>
+                  <span
+                    style={{
+                      float: "right",
+                      borderRadius: 5,
+                      background: "#bbb",
+                      color: "#fff",
+                      padding: "0px 5px",
+                    }}
+                  >
                     {LangMap[feed.lang as Lang]}
                   </span>
                 </p>
@@ -108,7 +113,9 @@ const FeedLink = ({ name, feed, locale }: Props) => {
             </div>
             <Hidden xsDown>
               <CardMedia
-                className={classes.cardMedia}
+                sx={{
+                  width: 200,
+                }}
                 image={cover}
                 title="Feed Cover Image"
               />

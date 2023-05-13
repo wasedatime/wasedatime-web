@@ -1,26 +1,30 @@
 /** @type {import('next').NextConfig} */
 const withPlugins = require("next-compose-plugins")
-const withTM = require("next-transpile-modules")(["wasedatime-ui"])
+const withMDX = require("@next/mdx")({
+  extension: /\.(md|mdx)$/,
+})
 const optimizedImages = require("next-optimized-images")
 
 module.exports = withPlugins(
   [[optimizedImages, {}]],
-  withTM({
+  withMDX({
     reactStrictMode: true,
-    webpack: function (config) {
+    /* webpack: function (config) {
       config.module.rules.push({
         test: /\.md$/,
         use: "raw-loader",
       })
       return config
-    },
+    }, */
     images: {
       disableStaticImages: true,
+      unoptimized: true,
     },
     assetPrefix: process.env.APP_ENV === "production" ? "/feeds" : "",
     env: {
       APP_ENV: process.env.APP_ENV || "development",
       MF_FEEDS_DOMAIN: process.env.MF_FEEDS_DOMAIN || "",
     },
+    transpilePackages: ["wasedatime-ui"],
   })
 )

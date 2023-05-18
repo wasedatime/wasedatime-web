@@ -1,10 +1,16 @@
-import Document, { DocumentContext } from "next/document"
+import Document, {
+  DocumentContext,
+  Head,
+  Html,
+  Main,
+  NextScript,
+} from "next/document"
 import custom from "!!raw-loader!../styles/feed.css"
 import { ServerStyleSheets } from "@mui/styles"
+import React from "react"
 
-export default class MyDocument extends Document {
+export default class CustomDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
-    // Render app and page and get the context of the page with collected side effects.
     const sheets = new ServerStyleSheets()
     const originalRenderPage = ctx.renderPage
 
@@ -19,15 +25,23 @@ export default class MyDocument extends Document {
       styles: (
         <>
           {initialProps.styles}
-          <style
-            amp-custom=""
-            dangerouslySetInnerHTML={{
-              __html: custom,
-            }}
-          />
           {sheets.getStyleElement()}
         </>
       ),
     }
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head>
+          <style amp-custom="" dangerouslySetInnerHTML={{ __html: custom }} />
+        </Head>
+        <body>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    )
   }
 }

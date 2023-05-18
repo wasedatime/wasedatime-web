@@ -3,7 +3,7 @@ import React, { useState, useEffect, createContext } from "react"
 export type ThemeTypes = "light" | "dark"
 
 const getInitialTheme = (): ThemeTypes => {
-  if (typeof window !== "undefined" && window.localStorage) {
+  if (typeof window !== "undefined") {
     const storedPrefs = window.localStorage.getItem("color-theme")
     if (typeof storedPrefs === "string") {
       return storedPrefs as ThemeTypes
@@ -12,9 +12,8 @@ const getInitialTheme = (): ThemeTypes => {
     if (userMedia.matches) {
       return "dark"
     }
+    return "light"
   }
-  // If you want to use dark theme as the default, return 'dark' instead
-
   return "light"
 }
 
@@ -42,14 +41,16 @@ export const ThemeProvider = ({
 
   const [theme, setTheme] = useState<ThemeTypes>(getInitialTheme)
 
-  const rawSetTheme = (rawTheme: ThemeTypes) => {
-    const root = window.document.documentElement
-    const isDark = rawTheme === "dark"
-    const themeChangedEvent = new Event("themeChanged")
-    root.classList.remove(isDark ? "light" : "dark")
-    root.classList.add(rawTheme)
-    localStorage.setItem("color-theme", rawTheme)
-    window.dispatchEvent(themeChangedEvent)
+  const rawSetTheme = (theme: ThemeTypes) => {
+    if (typeof window !== "undefined") {
+      const root = window.document.documentElement
+      const isDark = theme === "dark"
+      const themeChangedEvent = new Event("themeChanged")
+      root.classList.remove(isDark ? "light" : "dark")
+      root.classList.add(theme)
+      localStorage.setItem("color-theme", theme)
+      window.dispatchEvent(themeChangedEvent)
+    }
   }
 
   if (initialTheme) {

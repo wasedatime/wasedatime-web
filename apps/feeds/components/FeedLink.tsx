@@ -1,3 +1,5 @@
+"use client"
+
 import Link from "next/link"
 import Grid from "@mui/material/Grid"
 import Card from "@mui/material/Card"

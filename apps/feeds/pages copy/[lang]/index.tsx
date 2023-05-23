@@ -3,6 +3,7 @@ import type { NextPage } from "next"
 import Head from "next/head"
 import fs from "fs"
 import path from "path"
+import React from "react"
 import FeedLink from "../../components/FeedLink"
 import Grid from "@mui/material/Grid"
 import { useLocale } from "../../hooks/useLocale"
@@ -57,7 +58,7 @@ const Home: NextPage<HomeProps> = ({ feedNames, lang }) => {
       <main className="flex flex-1 flex-col">
         <div className="my-8 flex flex-col text-center">
           <h2 className="text-3xl text-gray-600">{t.index.welcome}</h2>
-          <hr className="my-4 mx-auto w-1/2 text-gray-600" />
+          <hr className="mx-auto my-4 w-1/2 text-gray-600" />
           <div className="text-center">
             <p>{t.index["top message"]}</p>
             <p>
@@ -80,7 +81,7 @@ const Home: NextPage<HomeProps> = ({ feedNames, lang }) => {
           <button
             type="button"
             className={
-              "rounded-l-lg border border-x-0 border-y-2 border-l-2 border-light-main py-2 px-2 text-sm font-medium md:px-4 " +
+              "rounded-l-lg border border-x-0 border-y-2 border-l-2 border-light-main px-2 py-2 text-sm font-medium md:px-4 " +
               (filteredLang === ""
                 ? "bg-light-main text-white"
                 : "text-light-main hover:bg-light-main hover:text-white")
@@ -94,7 +95,7 @@ const Home: NextPage<HomeProps> = ({ feedNames, lang }) => {
             <button
               type="button"
               className={
-                "border border-x-0 border-y-2 border-light-main py-2 px-2 text-sm font-medium md:px-4 " +
+                "border border-x-0 border-y-2 border-light-main px-2 py-2 text-sm font-medium md:px-4 " +
                 (i === Object.values(Lang).length - 1 ? "rounded-r-lg " : " ") +
                 (lang.toString() === filteredLang
                   ? "bg-light-main text-white dark:bg-dark-main dark:text-white"

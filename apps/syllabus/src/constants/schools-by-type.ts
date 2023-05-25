@@ -53,7 +53,7 @@ export const undergradSchools = [
   School.SOC,
   School.HUM,
   School.SPS,
-];
+]
 
 export const gradSchools = [
   School.G_PS,
@@ -77,14 +77,14 @@ export const gradSchools = [
   School.G_SEEE,
   School.G_SICCS,
   School.G_WBS,
-];
+]
 
-export const otherSchools = [School.CJL, School.GEC, School.CIE, School.ART];
+export const otherSchools = [School.CJL, School.GEC, School.CIE, School.ART]
 
 export const allSchools = {
   ...undergradSchools,
   ...gradSchools,
   ...otherSchools,
-};
+}
 
-export default allSchools;
+export default allSchools

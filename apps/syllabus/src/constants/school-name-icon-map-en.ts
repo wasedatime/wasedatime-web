@@ -1,41 +1,41 @@
-import artIcon from "/img/syllabus-icons/art.png";
-import aseIcon from "/img/syllabus-icons/ase.png";
-import cieIcon from "/img/syllabus-icons/cie.png";
-import cjlIcon from "/img/syllabus-icons/cjl.png";
-import cmsIcon from "/img/syllabus-icons/cms.png";
-import cseIcon from "/img/syllabus-icons/cse.png";
-import eduIcon from "/img/syllabus-icons/edu.png";
-import fseIcon from "/img/syllabus-icons/fse.png";
-import gAseIcon from "/img/syllabus-icons/g_ase.png";
-import gCseIcon from "/img/syllabus-icons/g_cse.png";
-import gEIcon from "/img/syllabus-icons/g_e.png";
-import gEduIcon from "/img/syllabus-icons/g_edu.png";
-import gFseIcon from "/img/syllabus-icons/g_fse.png";
-import gHumIcon from "/img/syllabus-icons/g_hum.png";
-import gIpsIcon from "/img/syllabus-icons/g_ips.png";
-import gItsIcon from "/img/syllabus-icons/g_its.png";
-import gLasIcon from "/img/syllabus-icons/g_las.png";
-import gLawIcon from "/img/syllabus-icons/g_law.png";
-import gPsIcon from "/img/syllabus-icons/g_ps.png";
-import gSaIcon from "/img/syllabus-icons/g_sa.png";
-import gSapsIcon from "/img/syllabus-icons/g_saps.png";
-import gScIcon from "/img/syllabus-icons/g_sc.png";
-import gSeeeIcon from "/img/syllabus-icons/g_seee.png";
-import gSiccsIcon from "/img/syllabus-icons/g_siccs.png";
-import gSjalIcon from "/img/syllabus-icons/g_sjal.png";
-import gSpsIcon from "/img/syllabus-icons/g_sps.png";
-import gSssIcon from "/img/syllabus-icons/g_sss.png";
-import gWbsIcon from "/img/syllabus-icons/g_wbs.png";
-import gWlsIcon from "/img/syllabus-icons/g_wls.png";
-import gecIcon from "/img/syllabus-icons/gec.png";
-import hssIcon from "/img/syllabus-icons/hss.png";
-import humIcon from "/img/syllabus-icons/hum.png";
-import lawIcon from "/img/syllabus-icons/law.png";
-import pseIcon from "/img/syllabus-icons/pse.png";
-import silsIcon from "/img/syllabus-icons/sils.png";
-import socIcon from "/img/syllabus-icons/soc.png";
-import spsIcon from "/img/syllabus-icons/sps.png";
-import sssIcon from "/img/syllabus-icons/sss.png";
+import artIcon from "/img/syllabus-icons/art.png"
+import aseIcon from "/img/syllabus-icons/ase.png"
+import cieIcon from "/img/syllabus-icons/cie.png"
+import cjlIcon from "/img/syllabus-icons/cjl.png"
+import cmsIcon from "/img/syllabus-icons/cms.png"
+import cseIcon from "/img/syllabus-icons/cse.png"
+import eduIcon from "/img/syllabus-icons/edu.png"
+import fseIcon from "/img/syllabus-icons/fse.png"
+import gAseIcon from "/img/syllabus-icons/g_ase.png"
+import gCseIcon from "/img/syllabus-icons/g_cse.png"
+import gEIcon from "/img/syllabus-icons/g_e.png"
+import gEduIcon from "/img/syllabus-icons/g_edu.png"
+import gFseIcon from "/img/syllabus-icons/g_fse.png"
+import gHumIcon from "/img/syllabus-icons/g_hum.png"
+import gIpsIcon from "/img/syllabus-icons/g_ips.png"
+import gItsIcon from "/img/syllabus-icons/g_its.png"
+import gLasIcon from "/img/syllabus-icons/g_las.png"
+import gLawIcon from "/img/syllabus-icons/g_law.png"
+import gPsIcon from "/img/syllabus-icons/g_ps.png"
+import gSaIcon from "/img/syllabus-icons/g_sa.png"
+import gSapsIcon from "/img/syllabus-icons/g_saps.png"
+import gScIcon from "/img/syllabus-icons/g_sc.png"
+import gSeeeIcon from "/img/syllabus-icons/g_seee.png"
+import gSiccsIcon from "/img/syllabus-icons/g_siccs.png"
+import gSjalIcon from "/img/syllabus-icons/g_sjal.png"
+import gSpsIcon from "/img/syllabus-icons/g_sps.png"
+import gSssIcon from "/img/syllabus-icons/g_sss.png"
+import gWbsIcon from "/img/syllabus-icons/g_wbs.png"
+import gWlsIcon from "/img/syllabus-icons/g_wls.png"
+import gecIcon from "/img/syllabus-icons/gec.png"
+import hssIcon from "/img/syllabus-icons/hss.png"
+import humIcon from "/img/syllabus-icons/hum.png"
+import lawIcon from "/img/syllabus-icons/law.png"
+import pseIcon from "/img/syllabus-icons/pse.png"
+import silsIcon from "/img/syllabus-icons/sils.png"
+import socIcon from "/img/syllabus-icons/soc.png"
+import spsIcon from "/img/syllabus-icons/sps.png"
+import sssIcon from "/img/syllabus-icons/sss.png"
 
 enum School {
   SILS = "SILS",
@@ -79,8 +79,8 @@ enum School {
 }
 
 type SchoolNameIconMapType = {
-  [school: string]: string;
-};
+  [school: string]: string
+}
 
 export const undergradSchoolNameIconMap: SchoolNameIconMapType = {
   [School.SILS]: silsIcon,
@@ -96,7 +96,7 @@ export const undergradSchoolNameIconMap: SchoolNameIconMapType = {
   [School.SOC]: socIcon,
   [School.HUM]: humIcon,
   [School.SPS]: spsIcon,
-};
+}
 
 export const gradSchoolNameIconMap: SchoolNameIconMapType = {
   [School.G_PS]: gPsIcon,
@@ -120,19 +120,19 @@ export const gradSchoolNameIconMap: SchoolNameIconMapType = {
   [School.G_SEEE]: gSeeeIcon,
   [School.G_SICCS]: gSiccsIcon,
   [School.G_WBS]: gWbsIcon,
-};
+}
 
 export const otherSchoolNameIconMap: SchoolNameIconMapType = {
   [School.CJL]: cjlIcon,
   [School.GEC]: gecIcon,
   [School.CIE]: cieIcon,
   [School.ART]: artIcon,
-};
+}
 
 export const allSchoolNameIconMap: SchoolNameIconMapType = {
   ...undergradSchoolNameIconMap,
   ...gradSchoolNameIconMap,
   ...otherSchoolNameIconMap,
-};
+}
 
-export default allSchoolNameIconMap;
+export default allSchoolNameIconMap

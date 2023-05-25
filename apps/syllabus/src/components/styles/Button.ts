@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Button = styled("button")`
   padding: 12px;
@@ -19,7 +19,7 @@ export const Button = styled("button")`
     box-shadow: 0 5px #666;
     transform: translateY(3px);
   }
-`;
+`
 
 export const InvisibleButton = styled("button")`
   align-self: flex-start;
@@ -30,7 +30,7 @@ export const InvisibleButton = styled("button")`
     outline: 0;
   }
   -webkit-tap-highlight-color: transparent;
-`;
+`
 
 export const FloatingActionButton = styled(InvisibleButton)`
   position: fixed;
@@ -48,7 +48,7 @@ export const FloatingActionButton = styled(InvisibleButton)`
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.4), 0 6px 10px 0 rgba(0, 0, 0, 0.2),
     0 1px 18px 0 rgba(0, 0, 0, 0.15);
   -webkit-tap-highlight-color: transparent;
-`;
+`
 
 // interface CustomButtonProps {
 //   bgColor: string;
@@ -73,6 +73,6 @@ export const CustomButton = styled("button")`
   ___CSS_3___ ___CSS_4___ &:focus {
     outline: none;
   }
-`;
+`
 
-export default CustomButton;
+export default CustomButton

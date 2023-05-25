@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext } from "react"
 
-import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { Logo } from "wasedatime-ui"
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useTranslation } from "react-i18next"
+import styled from "styled-components"
 
-import { ThemeContext } from "@app/utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context"
 
 type Props = {
-  goToNextPage: () => void;
-};
+  goToNextPage: () => void
+}
 
 const LogoWrapper = styled("div")`
   transform: translate(0, 5vh);
@@ -18,11 +18,11 @@ const LogoWrapper = styled("div")`
     text-align: center;
     margin: auto;
   }
-`;
+`
 
 const Welcome = ({ goToNextPage }: Props) => {
-  const { t, i18n } = useTranslation();
-  const { theme, setTheme } = useContext(ThemeContext);
+  const { t, i18n } = useTranslation()
+  const { theme, setTheme } = useContext(ThemeContext)
 
   return (
     <div className="w-full">
@@ -30,12 +30,12 @@ const Welcome = ({ goToNextPage }: Props) => {
         <Logo />
       </LogoWrapper>
 
-      <h3 className="text-center my-4">{t("welcome.welcome")}</h3>
-      <h6 className="text-center my-4">{t("welcome.slogan")}</h6>
+      <h3 className="my-4 text-center">{t("welcome.welcome")}</h3>
+      <h6 className="my-4 text-center">{t("welcome.slogan")}</h6>
 
-      <div className="text-center my-4">
+      <div className="my-4 text-center">
         <button
-          className={`border-2 border-red-700 rounded-lg px-4 mx-2 hover:bg-red-700 hover:text-white focus:outline-none ${
+          className={`mx-2 rounded-lg border-2 border-red-700 px-4 hover:bg-red-700 hover:text-white focus:outline-none ${
             i18n.language === "en" ? "bg-red-700 text-white" : "text-red-700"
           }`}
           onClick={() => i18n.changeLanguage("en")}
@@ -43,7 +43,7 @@ const Welcome = ({ goToNextPage }: Props) => {
           English
         </button>
         <button
-          className={`border-2 border-red-700 rounded-lg px-4 mx-2 hover:bg-red-700 hover:text-white focus:outline-none ${
+          className={`mx-2 rounded-lg border-2 border-red-700 px-4 hover:bg-red-700 hover:text-white focus:outline-none ${
             i18n.language === "ja" ? "bg-red-700 text-white" : "text-red-700"
           }`}
           onClick={() => i18n.changeLanguage("ja")}
@@ -63,16 +63,16 @@ const Welcome = ({ goToNextPage }: Props) => {
 
       <hr className="my-8 dark:border-dark-text3" />
 
-      <div className="text-center mt-6">
+      <div className="mt-6 text-center">
         <button
-          className="border-2 border-red-700 text-red-700 rounded-lg px-4 hover:bg-red-700 hover:text-white focus:outline-none"
+          className="rounded-lg border-2 border-red-700 px-4 text-red-700 hover:bg-red-700 hover:text-white focus:outline-none"
           onClick={goToNextPage}
         >
           {t("welcome.next").toUpperCase()}
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Welcome;
+export default Welcome

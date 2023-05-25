@@ -1,27 +1,27 @@
-import React, { forwardRef, useState } from "react";
+import React, { forwardRef, useState } from "react"
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { media } from "wasedatime-ui"
 import {
   faClock,
   faSearch,
   faCalendarAlt,
   faTimes,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Tabs, Tab } from "react-bootstrap";
-import DatePicker from "react-datepicker";
-import { Helmet } from "react-helmet";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Tabs, Tab } from "react-bootstrap"
+import DatePicker from "react-datepicker"
+import { Helmet } from "react-helmet"
+import { useTranslation } from "react-i18next"
+import styled from "styled-components"
 
-import Building from "@app/room/Building";
+import Building from "@app/room/Building"
 
 const InfoWrapper = styled("div")`
   display: flex;
   flex-direction: column;
   padding: 2em 20em;
-  ${media.desktop`padding: 2em;`}
-`;
+  ${media("desktop", `padding: 2em;`)}
+`
 
 const DatePickerButton = styled("button")`
   padding: 0.5em 0.8em;
@@ -32,9 +32,9 @@ const DatePickerButton = styled("button")`
     outline: none;
     background: #ddd;
   }
-  ${media.phone`padding: 0.5em 0.3em;`}
-  ${media.phoneMini`font-size: 0.9em;`}
-`;
+  ${media("phone", `padding: 0.5em 0.3em;`)}
+  ${media("phoneMini", `font-size: 0.9em;`)}
+`
 
 const DatetimeClearButton = styled("button")`
   padding: 0.5em 0.8em 0.5em 0.4em;
@@ -49,13 +49,13 @@ const DatetimeClearButton = styled("button")`
   &:focus {
     outline: none;
   }
-  ${media.phone`padding: 0.5em 0.3em;`}
-  ${media.phoneMini`font-size: 0.9em;`}
-`;
+  ${media("phone", `padding: 0.5em 0.3em;`)}
+  ${media("phoneMini", `font-size: 0.9em;`)}
+`
 
-const DateSelectorWrapper = (props: any) => <DateSelector {...props} />;
+const DateSelectorWrapper = (props: any) => <DateSelector {...props} />
 
-const TimeSelectorWrapper = (props: any) => <TimeSelector {...props} />;
+const TimeSelectorWrapper = (props: any) => <TimeSelector {...props} />
 
 const DateSelector = forwardRef<any, PropsType>(({ value, onClick }, ref) => (
   <DatePickerButton
@@ -65,27 +65,27 @@ const DateSelector = forwardRef<any, PropsType>(({ value, onClick }, ref) => (
   >
     <FontAwesomeIcon icon={faCalendarAlt} size="1x" /> {value}
   </DatePickerButton>
-));
+))
 
 const TimeSelector = forwardRef<any, PropsType>(({ value, onClick }, ref) => (
   <DatePickerButton onClick={onClick} ref={ref}>
     <FontAwesomeIcon icon={faClock} size="1x" /> {value}
   </DatePickerButton>
-));
+))
 
 const DatePickerSpan = styled("span")`
   display: inline-block;
   width: 38%;
-`;
+`
 
 const DatetimeSelection = styled("div")`
   border-radius: 5px;
   cursor: pointer;
-`;
+`
 
 const findQuar = (mon, dai) => {
   if (mon === 4 || mon === 5 || (mon === 6 && dai < 21)) {
-    return 0;
+    return 0
   }
   if (
     mon === 7 ||
@@ -93,39 +93,39 @@ const findQuar = (mon, dai) => {
     (mon === 6 && dai >= 21) ||
     (mon === 9 && dai < 21)
   ) {
-    return 1;
+    return 1
   }
   if (mon === 10 || (mon === 11 && dai < 22) || (mon === 9 && dai >= 21)) {
-    return 2;
+    return 2
   }
 
-  return 3;
-};
+  return 3
+}
 
 const findPeriod = (totalMins) => {
   if (totalMins < 100) {
-    return 0;
+    return 0
   }
   if (totalMins >= 100 && totalMins < 240) {
-    return 1;
+    return 1
   }
   if (totalMins >= 240 && totalMins < 345) {
-    return 2;
+    return 2
   }
   if (totalMins >= 345 && totalMins < 450) {
-    return 3;
+    return 3
   }
   if (totalMins >= 450 && totalMins < 555) {
-    return 4;
+    return 4
   }
   if (totalMins >= 555 && totalMins < 660) {
-    return 5;
+    return 5
   }
   if (totalMins >= 660 && totalMins <= 765) {
-    return 6;
+    return 6
   }
-  if (totalMins > 765) return -1;
-};
+  if (totalMins > 765) return -1
+}
 
 const RoomType = styled("span")`
   font-weight: 500;
@@ -133,28 +133,28 @@ const RoomType = styled("span")`
   padding: 0px 5px;
   background-color: #e53935;
   border-radius: 6px;
-`;
+`
 
 const RoomEmpty = styled(RoomType)`
   background-color: #71ce74;
-`;
+`
 
 interface PropsType {
-  value: string;
-  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  value: string
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 const RoomFinder = (): JSX.Element => {
-  const { t } = useTranslation();
-  const [date, setDate] = useState<Date>(new Date());
-  const onDatetimeChange = (date: Date): void => setDate(date || new Date());
-  const clearDatetime = (): void => setDate(new Date());
-  const day = date.getDay() > 0 ? date.getDay() - 1 : 6;
-  const totalMins = (date.getHours() - 9) * 60 + date.getMinutes();
-  const per = findPeriod(totalMins);
-  const mon = date.getMonth();
-  const dai = date.getDate();
-  const quarter = findQuar(mon, dai);
+  const { t } = useTranslation()
+  const [date, setDate] = useState<Date>(new Date())
+  const onDatetimeChange = (date: Date): void => setDate(date || new Date())
+  const clearDatetime = (): void => setDate(new Date())
+  const day = date.getDay() > 0 ? date.getDay() - 1 : 6
+  const totalMins = (date.getHours() - 9) * 60 + date.getMinutes()
+  const per = findPeriod(totalMins)
+  const mon = date.getMonth()
+  const dai = date.getDate()
+  const quarter = findQuar(mon, dai)
 
   return (
     <React.Fragment>
@@ -178,7 +178,7 @@ const RoomFinder = (): JSX.Element => {
             paddingLeft: "10px",
             marginBottom: "20px",
           }}
-          className="text-light-text1 dark:text-dark-text1 border-l-4 border-solid border-light-main dark:border-dark-main"
+          className="border-l-4 border-solid border-light-main text-light-text1 dark:border-dark-main dark:text-dark-text1"
         >
           {t("roomFinder.title")}
         </h1>
@@ -284,7 +284,7 @@ const RoomFinder = (): JSX.Element => {
         </div>
       </InfoWrapper>
     </React.Fragment>
-  );
-};
+  )
+}
 
-export default RoomFinder;
+export default RoomFinder

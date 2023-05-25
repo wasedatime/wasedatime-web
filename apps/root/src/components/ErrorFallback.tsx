@@ -1,8 +1,8 @@
-import React from "react";
+import React from "react"
 
 interface Props {
-  error: Error;
-  resetError: () => void;
+  error: Error
+  resetError: () => void
 }
 
 const ErrorFallback = ({ error }: Props) => (
@@ -26,5 +26,5 @@ const ErrorFallback = ({ error }: Props) => (
       <p>ご協力ありがとうございます！</p>
     </div>
   </div>
-);
-export default ErrorFallback;
+)
+export default ErrorFallback

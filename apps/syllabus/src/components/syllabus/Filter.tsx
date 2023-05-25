@@ -1,32 +1,32 @@
-import React from "react";
+import React from "react"
 
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { WithTranslation, withTranslation } from "react-i18next";
-import Button from "semantic-ui-react/dist/commonjs/elements/Button";
-import SimpleBar from "simplebar-react";
-import styled from "styled-components";
+import { faFilter } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { WithTranslation, withTranslation } from "react-i18next"
+import Button from "semantic-ui-react/dist/commonjs/elements/Button"
+import SimpleBar from "simplebar-react"
+import styled from "styled-components"
 
-import FilterEvalGroup from "@app/components/syllabus/FilterEvalGroup";
-import FilterGroup from "@app/components/syllabus/FilterGroup";
-import FilterOption from "@app/constants/syllabus-filter";
-import SchoolFilterContainer from "@app/containers/SchoolFilterContainer";
-import FilterGroups from "@app/types/filter";
-import { ThemeContext } from "@app/utils/theme-context";
+import FilterEvalGroup from "@app/components/syllabus/FilterEvalGroup"
+import FilterGroup from "@app/components/syllabus/FilterGroup"
+import FilterOption from "@app/constants/syllabus-filter"
+import SchoolFilterContainer from "@app/containers/SchoolFilterContainer"
+import FilterGroups from "@app/types/filter"
+import { ThemeContext } from "@app/utils/theme-context"
 
 type FilterWrapperProps = {
-  $isSideBar: boolean;
-};
+  $isSideBar: boolean
+}
 
 type FilterScrollAreaProps = {
-  $isSideBar: boolean;
-};
+  $isSideBar: boolean
+}
 
 const FilterWrapper = styled.div<FilterWrapperProps>`
   ${(props) => !props.$isSideBar && "width: 100vw;"}
   height: ${(props) =>
     props.$isSideBar ? "calc(100vh - 96px)" : "calc(100vh - 50px)"};
-`;
+`
 
 const FilterScrollArea = styled(SimpleBar)<FilterScrollAreaProps>`
   // flex: none;
@@ -48,20 +48,20 @@ const FilterScrollArea = styled(SimpleBar)<FilterScrollAreaProps>`
   }
 
   overflow-y: auto;
-`;
+`
 
 const FilterTitle = styled("span")`
   display: flex;
   align-items: center;
   font-family: Segoe UI, Yu Gothic Medium, Lato;
   font-display: swap;
-`;
+`
 
 const FilterClearButton = styled(Button)`
   color: #b51e36 !important;
   font-weight: 500 !important;
   font-size: 0.8em !important;
-`;
+`
 
 const FilterGroupWrapper = styled("div")`
   background-color: #fff;
@@ -69,13 +69,13 @@ const FilterGroupWrapper = styled("div")`
   padding: 0px 1rem;
   margin-top: 0.2em;
   font-size: 11px;
-`;
+`
 
 interface Props extends WithTranslation {
-  filterGroups: FilterGroups;
-  handleToggleFilter: (name: string, value: any) => void;
-  clearFilter: () => void;
-  $isSideBar: boolean;
+  filterGroups: FilterGroups
+  handleToggleFilter: (name: string, value: any) => void
+  clearFilter: () => void
+  $isSideBar: boolean
 }
 
 const Filter = ({
@@ -85,12 +85,12 @@ const Filter = ({
   $isSideBar,
   t,
 }: Props) => {
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
-  const checkedSchools = filterGroups[FilterOption.SCHOOL];
+  const checkedSchools = filterGroups[FilterOption.SCHOOL]
 
-  const semesterLegend = t("syllabus.Semesters");
-  const semesterInputName = FilterOption.SEMESTER;
+  const semesterLegend = t("syllabus.Semesters")
+  const semesterInputName = FilterOption.SEMESTER
   const semesterInputs = [
     {
       key:
@@ -159,17 +159,17 @@ const Filter = ({
       text: t("syllabus.semesterMap.Full-Year"),
       value: "f",
     },
-  ];
+  ]
   const checkedSemesterInputs = semesterInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[semesterInputName] &&
         filterGroups[semesterInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
-  const langLegend = t("syllabus.Languages");
-  const langInputName = FilterOption.LANG;
+  const langLegend = t("syllabus.Languages")
+  const langInputName = FilterOption.LANG
   const langInputs = [
     {
       key: t("syllabus.languageCodes.0"),
@@ -221,17 +221,17 @@ const Filter = ({
       text: t("other"),
       value: "9",
     },
-  ];
+  ]
   const checkedLangInputs = langInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[langInputName] &&
         filterGroups[langInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
-  const modalityLegend = t("classModalities.label");
-  const modalityInputName = FilterOption.MODALITY;
+  const modalityLegend = t("classModalities.label")
+  const modalityInputName = FilterOption.MODALITY
   const modalityInputs = [
     {
       key: t("classModalities.In person"),
@@ -258,17 +258,17 @@ const Filter = ({
       text: t("classModalities.Realtime streaming"),
       value: "4",
     },
-  ];
+  ]
   const checkedModalityInputs = modalityInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[modalityInputName] &&
         filterGroups[modalityInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
-  const dayLegend = t("syllabus.day");
-  const dayInputName = FilterOption.DAY;
+  const dayLegend = t("syllabus.day")
+  const dayInputName = FilterOption.DAY
   const dayInputs = [
     { value: "1", label: t("common.mon") },
     { value: "2", label: t("common.tue") },
@@ -276,17 +276,17 @@ const Filter = ({
     { value: "4", label: t("common.thu") },
     { value: "5", label: t("common.fri") },
     { value: "6", label: t("common.sat") },
-  ];
+  ]
   const checkedDayInputs = dayInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[dayInputName] &&
         filterGroups[dayInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
-  const periodLegend = t("syllabus.period.Period");
-  const periodInputName = FilterOption.PERIOD;
+  const periodLegend = t("syllabus.period.Period")
+  const periodInputName = FilterOption.PERIOD
   const periodInputs = [
     { value: "1", label: t("syllabus.period.1") },
     { value: "2", label: t("syllabus.period.2") },
@@ -295,48 +295,48 @@ const Filter = ({
     { value: "5", label: t("syllabus.period.5") },
     { value: "6", label: t("syllabus.period.6") },
     { value: "7", label: t("syllabus.period.7") },
-  ];
+  ]
   const checkedPeriodInputs = periodInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[periodInputName] &&
         filterGroups[periodInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
-  const minYearLegend = t("syllabus.minYear");
-  const minYearInputName = FilterOption.MIN_YEAR;
+  const minYearLegend = t("syllabus.minYear")
+  const minYearInputName = FilterOption.MIN_YEAR
   const minYearInputs = [
     { value: "1", label: "1+" },
     { value: "2", label: "2+" },
     { value: "3", label: "3+" },
     { value: "4", label: "4+" },
-  ];
+  ]
   const checkedMinYearInputs = minYearInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[minYearInputName] &&
         filterGroups[minYearInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
-  const creditLegend = t("syllabus.credit");
-  const creditInputName = FilterOption.CREDIT;
+  const creditLegend = t("syllabus.credit")
+  const creditInputName = FilterOption.CREDIT
   const creditInputs = [
     { value: "1", label: "1" },
     { value: "2", label: "2" },
     { value: "3", label: "3+" },
-  ];
+  ]
   const checkedCreditInputs = creditInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[creditInputName] &&
         filterGroups[creditInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
-  const evalLegend = t("syllabus.eval.title");
-  const evalTypeDefault = t("syllabus.eval.typeDefault");
+  const evalLegend = t("syllabus.eval.title")
+  const evalTypeDefault = t("syllabus.eval.typeDefault")
   const evalTypeInputs = [
     { key: "Exam", text: t("syllabus.eval.Exam"), value: 0 },
     { key: "Papers", text: t("syllabus.eval.Papers"), value: 1 },
@@ -346,16 +346,16 @@ const Filter = ({
       value: 2,
     },
     { key: "Others", text: t("syllabus.eval.Others"), value: 3 },
-  ];
-  const evalTypeInputName = FilterOption.EVAL_TYPE;
-  const evalPercentInputName = FilterOption.EVAL_PERCENT;
+  ]
+  const evalTypeInputName = FilterOption.EVAL_TYPE
+  const evalPercentInputName = FilterOption.EVAL_PERCENT
   const selectedEvalTypeInput =
-    filterGroups[evalTypeInputName] >= 0 ? filterGroups[evalTypeInputName] : -1;
+    filterGroups[evalTypeInputName] >= 0 ? filterGroups[evalTypeInputName] : -1
   const selectedEvalPercentInputs = filterGroups[evalPercentInputName] || [
     0, 100,
-  ];
+  ]
 
-  const evalSpecialInputName = FilterOption.EVAL_SPECIAL;
+  const evalSpecialInputName = FilterOption.EVAL_SPECIAL
   const evalSpecialInputs = [
     { value: "noExam", label: t("syllabus.eval.No exam") },
     { value: "noPaper", label: t("syllabus.eval.No paper") },
@@ -363,17 +363,17 @@ const Filter = ({
       value: "noClassParticipation",
       label: t("syllabus.eval.No class participation"),
     },
-  ];
+  ]
   const checkedEvalSpecialInputs = evalSpecialInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[evalSpecialInputName] &&
         filterGroups[evalSpecialInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
-  const typeLegend = t("syllabus.type");
-  const typeInputName = FilterOption.TYPE;
+  const typeLegend = t("syllabus.type")
+  const typeInputName = FilterOption.TYPE
   const typeInputs = [
     {
       key: "Lecture",
@@ -420,17 +420,17 @@ const Filter = ({
       text: t("courseInfo.Details.Type.Blended"),
       value: "8",
     },
-  ];
+  ]
   const checkedTypeInputs = typeInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[typeInputName] &&
         filterGroups[typeInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
-  const levelLegend = t("syllabus.level");
-  const levelInputName = FilterOption.LEVEL;
+  const levelLegend = t("syllabus.level")
+  const levelInputName = FilterOption.LEVEL
   const levelInputs = [
     {
       key: "Beginner",
@@ -462,14 +462,14 @@ const Filter = ({
       text: t("courseInfo.Details.Level.Doctor"),
       value: "5",
     },
-  ];
+  ]
   const checkedLevelInputs = levelInputs.map((input) => ({
     ...input,
     ischecked:
       (filterGroups[levelInputName] &&
         filterGroups[levelInputName].includes(input.value)) ||
       false,
-  }));
+  }))
 
   return (
     <FilterWrapper $isSideBar={$isSideBar}>
@@ -481,7 +481,7 @@ const Filter = ({
           &nbsp;
           <button
             onClick={clearFilter}
-            className="mx-2 text-lg bg-light-bgMain text-light-main dark:bg-dark-bgMain dark:text-dark-main"
+            className="mx-2 bg-light-bgMain text-lg text-light-main dark:bg-dark-bgMain dark:text-dark-main"
           >
             {t("syllabus.Clear filter")}
           </button>
@@ -570,7 +570,7 @@ const Filter = ({
         </FilterGroupWrapper>
       </FilterScrollArea>
     </FilterWrapper>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(Filter);
+export default withTranslation("translation")(Filter)

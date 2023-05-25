@@ -6,4 +6,4 @@ enum ReviewLang {
   ko = "Korean",
 }
 
-export default ReviewLang;
+export default ReviewLang

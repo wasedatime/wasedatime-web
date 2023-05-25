@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 
-import styled from "styled-components";
+import styled from "styled-components"
 
-import TimeRowItem from "@app/components/timetable/TimeRowItem";
-import { ThemeContext } from "@app/utils/theme-context";
+import TimeRowItem from "@app/components/timetable/TimeRowItem"
+import { ThemeContext } from "@app/utils/theme-context"
 
 const StyledList = styled("ol")`
   display: flex;
@@ -16,14 +16,14 @@ const StyledList = styled("ol")`
   position: sticky;
   z-index: 80;
   left: 0;
-`;
+`
 
 interface Props {
-  largestPeriod: number;
+  largestPeriod: number
 }
 
 const TimeRowList = ({ largestPeriod }: Props) => {
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
   const periods = [
     {
@@ -58,7 +58,7 @@ const TimeRowList = ({ largestPeriod }: Props) => {
       o: [
         { school: "G_WBS", s: "1830", e: "2010" },
         { school: "ART", s: "1810", e: "1950" },
-      ]
+      ],
     },
     {
       s: "2045",
@@ -67,16 +67,16 @@ const TimeRowList = ({ largestPeriod }: Props) => {
       o: [
         { school: "G_WBS", s: "2020", e: "2200" },
         { school: "ART", s: "1955", e: "2135" },
-      ]
+      ],
     },
-  ];
+  ]
   const timeRows = periods
     .slice(0, Math.max(largestPeriod, 5))
     .map((period) => {
-      return <TimeRowItem key={period.p} period={period} />;
-    });
+      return <TimeRowItem key={period.p} period={period} />
+    })
 
-  return <StyledList>{timeRows}</StyledList>;
-};
+  return <StyledList>{timeRows}</StyledList>
+}
 
-export default TimeRowList;
+export default TimeRowList

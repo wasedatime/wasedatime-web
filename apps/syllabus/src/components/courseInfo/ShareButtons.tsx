@@ -1,36 +1,36 @@
-import React from "react";
+import React from "react"
 
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import { IconDefinition } from "@fortawesome/fontawesome-svg-core"
 import {
   faFacebookSquare,
   faTwitterSquare,
   faLinkedin,
   faLine,
   faWhatsappSquare,
-} from "@fortawesome/free-brands-svg-icons";
-import { faLink } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import ReactGA from "react-ga";
-import { withTranslation } from "react-i18next";
-import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
+} from "@fortawesome/free-brands-svg-icons"
+import { faLink } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { CopyToClipboard } from "react-copy-to-clipboard"
+import ReactGA from "react-ga"
+import { withTranslation } from "react-i18next"
+import Popup from "semantic-ui-react/dist/commonjs/modules/Popup"
 
-import { InvisibleButton } from "@app/components/styles/Button";
-import { gaShareCourse } from "@app/ga/eventActions";
-import { gaCourseDetails } from "@app/ga/eventCategories";
+import { InvisibleButton } from "@app/components/styles/Button"
+import { gaShareCourse } from "@app/ga/eventActions"
+import { gaCourseDetails } from "@app/ga/eventCategories"
 
 type SnsItem = {
-  label: string;
-  name: string;
-  url: string;
-  icon: IconDefinition;
-  color: string;
-};
+  label: string
+  name: string
+  url: string
+  icon: IconDefinition
+  color: string
+}
 
 type SnsButtonProps = {
-  snsItem: SnsItem;
-  handleClick: (snsName: string) => void;
-};
+  snsItem: SnsItem
+  handleClick: (snsName: string) => void
+}
 
 const SnsButton = ({ snsItem, handleClick }: SnsButtonProps) => (
   <a
@@ -48,18 +48,18 @@ const SnsButton = ({ snsItem, handleClick }: SnsButtonProps) => (
       }}
     />{" "}
   </a>
-);
+)
 
 const ShareButtons = ({ courseId, t }) => {
-  const shareLink = `https://${window.location.hostname}${window.location.pathname}?courseId=${courseId}`;
-  const shareText = t("syllabus.Share text");
+  const shareLink = `https://${window.location.hostname}${window.location.pathname}?courseId=${courseId}`
+  const shareText = t("syllabus.Share text")
   const handleSnsButtonClicked = (name) => {
     ReactGA.event({
       category: gaCourseDetails,
       action: gaShareCourse,
       label: name,
-    });
-  };
+    })
+  }
 
   const snsItems: SnsItem[] = [
     {
@@ -97,7 +97,7 @@ const ShareButtons = ({ courseId, t }) => {
       icon: faWhatsappSquare,
       color: "#4FCE5D",
     },
-  ];
+  ]
 
   const copyClipboardButton = (
     <CopyToClipboard
@@ -121,7 +121,7 @@ const ShareButtons = ({ courseId, t }) => {
         />
       </InvisibleButton>
     </CopyToClipboard>
-  );
+  )
 
   return (
     <span className="dark:bg-dark-text3">
@@ -135,7 +135,7 @@ const ShareButtons = ({ courseId, t }) => {
       ))}
       {copyClipboardButton}
     </span>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(ShareButtons);
+export default withTranslation("translation")(ShareButtons)

@@ -1,28 +1,27 @@
-import React from "react";
+import React from "react"
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { Colors, media } from "wasedatime-ui"
 import {
   faExternalLinkSquareAlt,
   faMinusCircle,
   faToggleOff,
   faToggleOn,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useNavigate } from "react-router-dom";
-import Popup from "semantic-ui-react/dist/commonjs/modules/Popup";
-import styled from "styled-components";
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useNavigate } from "react-router-dom"
+import Popup from "semantic-ui-react/dist/commonjs/modules/Popup"
+import styled from "styled-components"
 
-import ColorSelector from "@app/components/timetable/ColorSelector";
-import { SyllabusKey } from "@app/constants/syllabus-data";
-import Course from "@app/types/course";
-import { getCourseTitleAndInstructor } from "@app/utils/course-search";
-import { ThemeContext } from "@app/utils/theme-context";
-import colors from "@bit/wasedatime.core.theme.colors";
-import timetableColors from "@app/constants/timetable-colors";
+import ColorSelector from "@app/components/timetable/ColorSelector"
+import { SyllabusKey } from "@app/constants/syllabus-data"
+import Course from "@app/types/course"
+import { getCourseTitleAndInstructor } from "@app/utils/course-search"
+import { ThemeContext } from "@app/utils/theme-context"
+import timetableColors from "@app/constants/timetable-colors"
 
 type StyledPopupProps = {
-  isDark: boolean;
-};
+  isDark: boolean
+}
 
 const StyledPopup = styled(Popup)<StyledPopupProps>`
   padding: 5px;
@@ -33,13 +32,13 @@ const StyledPopup = styled(Popup)<StyledPopupProps>`
     props.isDark ? colors.dark.text2 : colors.light.text3};
   background-color: ${(props) =>
     props.isDark ? colors.dark.bgSide : colors.light.bgSide};
-`;
+`
 
 const RowWrapper = styled("li")`
   display: flex;
   flex-direction: row;
   padding: 0.3em 0;
-`;
+`
 
 const CourseItemWrapper = styled("div")`
   display: flex;
@@ -47,7 +46,7 @@ const CourseItemWrapper = styled("div")`
   flex: 1 0 0;
   align-items: stretch;
   color: #000;
-`;
+`
 
 const InvisibleButton = styled("button")`
   align-self: flex-start;
@@ -55,7 +54,7 @@ const InvisibleButton = styled("button")`
   border: none;
   padding: 0;
   outline: 0;
-`;
+`
 
 const ColorButton = styled(InvisibleButton)`
   width: 1.5em;
@@ -63,30 +62,30 @@ const ColorButton = styled(InvisibleButton)`
   border: none;
   border-radius: 50%;
   margin: 0.5em 0.5em 0 0;
-`;
+`
 
 const StyledHeading = styled("h3")`
   margin: 0;
   text-align: left;
   font-size: 1.2em;
-  ${media.phone`font-size: 1.1em;`};
+  ${media("phone", `font-size: 1.1em;`)};
   font-weight: 600;
-`;
+`
 
 const CourseItemRow = styled("div")`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`;
+`
 
 interface Props {
-  color: number;
-  visibility: boolean;
-  displayLang: string;
-  course: Course;
-  handleToggleVisibility: (id: string) => void;
-  handleRemoveCourse: (id: string) => void;
-  handleChangeColor: (color: number) => void;
+  color: number
+  visibility: boolean
+  displayLang: string
+  course: Course
+  handleToggleVisibility: (id: string) => void
+  handleRemoveCourse: (id: string) => void
+  handleChangeColor: (color: number) => void
 }
 
 const CourseAndPrefItem = ({
@@ -98,13 +97,10 @@ const CourseAndPrefItem = ({
   handleRemoveCourse,
   handleChangeColor,
 }: Props) => {
-  const navigate = useNavigate();
-  const { theme, setTheme } = React.useContext(ThemeContext);
-  const { title, instructor } = getCourseTitleAndInstructor(
-    course,
-    displayLang
-  );
-  const courseId = course[SyllabusKey.ID];
+  const navigate = useNavigate()
+  const { theme, setTheme } = React.useContext(ThemeContext)
+  const { title, instructor } = getCourseTitleAndInstructor(course, displayLang)
+  const courseId = course[SyllabusKey.ID]
   const removeCourseIcon = (
     <FontAwesomeIcon
       style={{ color: "#ce0115" }}
@@ -112,7 +108,7 @@ const CourseAndPrefItem = ({
       size="2x"
       transform="shrink-2"
     />
-  );
+  )
   const visibilityIcon = (
     <FontAwesomeIcon
       style={{ color: "#48af37" }}
@@ -120,7 +116,7 @@ const CourseAndPrefItem = ({
       size="2x"
       transform="shrink-2"
     />
-  );
+  )
 
   return (
     <RowWrapper>
@@ -165,8 +161,8 @@ const CourseAndPrefItem = ({
           >
             <InvisibleButton
               onClick={(e) => {
-                e.preventDefault();
-                handleToggleVisibility(courseId);
+                e.preventDefault()
+                handleToggleVisibility(courseId)
               }}
               className="bg-light-bgMain dark:bg-dark-bgMain"
             >
@@ -188,8 +184,8 @@ const CourseAndPrefItem = ({
             </a>
             <InvisibleButton
               onClick={(e) => {
-                e.preventDefault();
-                handleRemoveCourse(courseId);
+                e.preventDefault()
+                handleRemoveCourse(courseId)
               }}
               className="bg-light-bgMain dark:bg-dark-bgMain"
             >
@@ -199,7 +195,7 @@ const CourseAndPrefItem = ({
         </CourseItemRow>
       </CourseItemWrapper>
     </RowWrapper>
-  );
-};
+  )
+}
 
-export default CourseAndPrefItem;
+export default CourseAndPrefItem

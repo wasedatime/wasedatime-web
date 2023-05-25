@@ -1,4 +1,4 @@
-import { SyllabusKey } from "@app/constants/syllabus-data";
+import { SyllabusKey } from "@app/constants/syllabus-data"
 
 export const parseCourse = (course, school) => ({
   [SyllabusKey.SCHOOL]: school,
@@ -14,7 +14,7 @@ export const parseCourse = (course, school) => ({
   [SyllabusKey.TYPE]: course.type,
   [SyllabusKey.LEVEL]: course.lvl,
   reviews: course.reviews.map((r) => {
-    const review = r.Item || r;
+    const review = r.Item || r
 
     return {
       benefit: parseInt(review.benefit.N),
@@ -35,6 +35,6 @@ export const parseCourse = (course, school) => ({
       uid: "",
       updated_at: review.updated_at.S,
       year: parseInt(review.year.N),
-    };
+    }
   }),
-});
+})

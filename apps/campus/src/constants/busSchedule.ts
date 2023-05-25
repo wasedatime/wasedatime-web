@@ -1,6 +1,6 @@
 const getTotalMins = (hours: number, mins: number) => {
-  return 60 * hours + mins;
-};
+  return 60 * hours + mins
+}
 
 export const busSchedule = {
   // Weekday schedule
@@ -189,4 +189,4 @@ export const busSchedule = {
       11: [24, 25, 26, 27],
     },
   },
-};
+}

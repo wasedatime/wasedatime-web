@@ -1,30 +1,27 @@
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
-import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import ReactGA from "react-ga";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { navigateToUrl } from "single-spa";
-import styled from "styled-components";
+import { WrapperWithBackground, Header, Logo, media } from "wasedatime-ui"
+import ReactGA from "react-ga"
+import { WithTranslation, withTranslation } from "react-i18next"
+import { navigateToUrl } from "single-spa"
+import styled from "styled-components"
 
-import homeBackgroundDark from "@app/assets/img/home/home_background-dark.png";
-import homeBackgroundLight from "@app/assets/img/home/home_background-light.jpg";
-import { TitleLogo } from "@app/assets/img/home/TitleLogo";
-import HomeModal from "@app/components/home/HomeModal";
-import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions";
-import { gaLanguage } from "@app/ga/eventCategories";
-import { ThemeContext } from "@app/utils/theme-context";
+import homeBackgroundDark from "@app/assets/img/home/home_background-dark.png"
+import homeBackgroundLight from "@app/assets/img/home/home_background-light.jpg"
+import { TitleLogo } from "@app/assets/img/home/TitleLogo"
+import HomeModal from "@app/components/home/HomeModal"
+import { gaAppendActionWithLng, gaChangeLanguage } from "@app/ga/eventActions"
+import { gaLanguage } from "@app/ga/eventCategories"
+import { ThemeContext } from "@app/utils/theme-context"
 
 const StyledWrapper = styled(WrapperWithBackground)`
   background-repeat: no-repeat;
   background-attachment: fixed;
   width: calc(100vw - 65px);
-  ${media.tablet`width: 100vw;`}
+  ${media("tablet", `width: 100vw;`)}
   position: fixed;
-`;
+`
 
 const StyledArticle = styled("article")`
   display: flex;
@@ -34,7 +31,7 @@ const StyledArticle = styled("article")`
   align-item: center;
   padding-top: 5em;
   height: 100vh;
-`;
+`
 
 const LogoWrapper = styled("div")`
   transform: translate(0, 5vh);
@@ -42,12 +39,12 @@ const LogoWrapper = styled("div")`
     text-align: center;
     margin: auto;
   }
-`;
+`
 
 const Introduction = styled("div")`
   text-align: center;
   max-width: 100%;
-`;
+`
 
 const MainHeading = styled("h1")`
   padding-top: 48px;
@@ -56,7 +53,7 @@ const MainHeading = styled("h1")`
     margin: 1em auto 0px auto;
   }
   align-items: "center";
-`;
+`
 
 // to be imported from Bit
 const Description = styled("p")`
@@ -64,31 +61,31 @@ const Description = styled("p")`
   font-weight: 300;
   /* color: #ffffff; */
   /* text-shadow: 0px 0px 3px #000000; */
-  ${media.phone`font-size: 1em;`}
-`;
+  ${media("phone", `font-size: 1em;`)}
+`
 
 interface Props extends WithTranslation {
-  isFirstAccess: boolean;
+  isFirstAccess: boolean
 }
 
 const Home = ({ isFirstAccess, t, i18n }: Props) => {
-  const { theme, setTheme } = useContext(ThemeContext);
-  const navigate = useNavigate();
+  const { theme, setTheme } = useContext(ThemeContext)
+  const navigate = useNavigate()
 
-  const [modalOpen, setModalOpen] = useState(isFirstAccess);
+  const [modalOpen, setModalOpen] = useState(isFirstAccess)
   const closeModal = () => {
-    setModalOpen(false);
-    if (isFirstAccess) navigateToUrl("/courses/timetable");
-  };
+    setModalOpen(false)
+    if (isFirstAccess) navigateToUrl("/courses/timetable")
+  }
 
   const changeLanguage = (lng) => {
     ReactGA.event({
       category: gaLanguage,
       action: gaAppendActionWithLng(gaChangeLanguage, lng),
       label: lng,
-    });
-    i18n.changeLanguage(lng);
-  };
+    })
+    i18n.changeLanguage(lng)
+  }
 
   return (
     <StyledWrapper
@@ -113,25 +110,25 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
         <Introduction>
           <MainHeading>
             <TitleLogo
-              className="fill-light-text1 dark:fill-white block m-auto"
+              className="m-auto block fill-light-text1 dark:fill-white"
               width="200"
               height="50"
             />
           </MainHeading>
-          <Description className="text-white dark:text-dark-text1 text-shadow-sm dark:text-shadow-sm my-2">
+          <Description className="text-shadow-sm dark:text-shadow-sm my-2 text-white dark:text-dark-text1">
             {t("about.description")}
           </Description>
           <br />
           <button
             type="button"
-            className="bg-light-main hover:bg-light-lighter rounded-lg text-white px-4 py-2 mx-2"
+            className="mx-2 rounded-lg bg-light-main px-4 py-2 text-white hover:bg-light-lighter"
             onClick={() => setModalOpen(true)}
           >
             {t("welcome.newFeature")}
           </button>
           <button
             type="button"
-            className="bg-light-bgMain hover:bg-light-bgSide dark:bg-dark-bgMain hover:dark:bg-dark-bgSide rounded-lg text-light-main dark:text-dark-text1 px-4 py-2 mx-2"
+            className="mx-2 rounded-lg bg-light-bgMain px-4 py-2 text-light-main hover:bg-light-bgSide dark:bg-dark-bgMain dark:text-dark-text1 hover:dark:bg-dark-bgSide"
             onClick={() => navigate("/aboutus")}
           >
             {t("aboutus.title")}
@@ -145,7 +142,7 @@ const Home = ({ isFirstAccess, t, i18n }: Props) => {
         />
       </StyledArticle>
     </StyledWrapper>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(Home);
+export default withTranslation("translation")(Home)

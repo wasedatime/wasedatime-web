@@ -4,15 +4,15 @@
 // import linkedin from "@app/assets/img/socialmediaicon/linkedin.png";
 // import weibo from "@app/assets/img/socialmediaicon/sina-weibo.png";
 // import twitter from "@app/assets/img/socialmediaicon/twitter.png";
-import instagram from "@app/assets/img/socialmediaicon/instagram.png";
-import facebook from "@app/assets/img/socialmediaicon/facebook.png";
-import kredit from "@app/assets/img/partners/kredit.png";
+import instagram from "@app/assets/img/socialmediaicon/instagram.png"
+import facebook from "@app/assets/img/socialmediaicon/facebook.png"
+import kredit from "@app/assets/img/partners/kredit.png"
 
 export interface PartnerProfile {
-  org: string;
-  img: string;
-  socials?: Array<{ link: string; platform: string }>;
-  members?: Array<{ name: string; platform: string }>;
+  org: string
+  img: string
+  socials?: Array<{ link: string; platform: string }>
+  members?: Array<{ name: string; platform: string }>
 }
 
 export const PartnerList: Array<PartnerProfile> = [
@@ -99,4 +99,4 @@ export const PartnerList: Array<PartnerProfile> = [
       },
     ],
   },
-];
+]

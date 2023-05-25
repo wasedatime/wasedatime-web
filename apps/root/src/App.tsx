@@ -1,42 +1,42 @@
-import React, { useEffect, lazy, Suspense, useContext } from "react";
+import React, { useEffect, lazy, Suspense, useContext } from "react"
 
-import { Hub } from "@aws-amplify/core";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import ReactGA from "react-ga";
-import { Helmet } from "react-helmet";
-import { useTranslation } from "react-i18next";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { navigateToUrl } from "single-spa";
-import { ErrorBoundary } from "react-error-boundary";
+import { Hub } from "@aws-amplify/core"
+import { LoadingSpinner } from "wasedatime-ui"
+import ReactGA from "react-ga"
+import { Helmet } from "react-helmet"
+import { useTranslation } from "react-i18next"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { navigateToUrl } from "single-spa"
+import { ErrorBoundary } from "react-error-boundary"
 
-import CommonStyle from "@app/common-style";
-import ErrorFallback from "@app/components/ErrorFallback";
-import PrivacyPolicy from "@app/components/PrivacyPolicy";
-import TermsOfService from "@app/components/TermsOfService";
-import RedirectPage from "@app/components/user/RedirectPage";
+import CommonStyle from "@app/common-style"
+import ErrorFallback from "@app/components/ErrorFallback"
+import PrivacyPolicy from "@app/components/PrivacyPolicy"
+import TermsOfService from "@app/components/TermsOfService"
+import RedirectPage from "@app/components/user/RedirectPage"
 import {
   gaUserSignIn,
   gaUserSignInFailure,
   gaUserSignOut,
-} from "@app/ga/eventActions";
-import { gaUser } from "@app/ga/eventCategories";
-import { ThemeContext, ThemeProvider } from "@app/utils/theme-context";
+} from "@app/ga/eventActions"
+import { gaUser } from "@app/ga/eventCategories"
+import { ThemeContext, ThemeProvider } from "@app/utils/theme-context"
 
-const AboutUs = lazy(() => import("@app/components/aboutUs/AboutUs"));
-const Home = lazy(() => import("@app/components/Home"));
-const Feeds = lazy(() => import("@app/components/Feeds"));
+const AboutUs = lazy(() => import("@app/components/aboutUs/AboutUs"))
+const Home = lazy(() => import("@app/components/Home"))
+const Feeds = lazy(() => import("@app/components/Feeds"))
 
 const NotFound = () => {
-  useEffect(() => navigateToUrl("/"), []);
+  useEffect(() => navigateToUrl("/"), [])
 
-  return <LoadingSpinner theme="light" message="Not found! Redirecting..." />;
-};
+  return <LoadingSpinner theme="light" message="Not found! Redirecting..." />
+}
 
 const Redirect = ({ to }: { to: string }) => {
-  useEffect(() => navigateToUrl(to), []);
+  useEffect(() => navigateToUrl(to), [])
 
-  return null;
-};
+  return null
+}
 
 const AppRoutes = () => {
   useEffect(() => {
@@ -46,30 +46,30 @@ const AppRoutes = () => {
           ReactGA.event({
             category: gaUser,
             action: gaUserSignIn,
-          });
-          break;
+          })
+          break
         case "signOut":
           ReactGA.event({
             category: gaUser,
             action: gaUserSignOut,
-          });
-          break;
+          })
+          break
         case "signIn_failure":
           ReactGA.event({
             category: gaUser,
             action: gaUserSignInFailure,
-          });
-          break;
+          })
+          break
         case "customOAuthState":
-          window.location.pathname = data;
-          break;
+          window.location.pathname = data
+          break
         default:
-          break;
+          break
       }
-    });
+    })
 
-    return unsubscribe;
-  }, []);
+    return unsubscribe
+  }, [])
 
   return (
     <Routes>
@@ -86,24 +86,24 @@ const AppRoutes = () => {
       <Route element={<></>} path="/career" />
       <Route element={<NotFound />} path="*" />
     </Routes>
-  );
-};
+  )
+}
 
 const LoadingSpinnerContainer = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
 
   return (
     <div style={{ height: "100vh" }} className="dark:bg-dark-bgMain">
       <LoadingSpinner theme={theme} message="Loading..." />
     </div>
-  );
-};
+  )
+}
 
 const App = () => {
-  const { i18n } = useTranslation();
+  const { i18n } = useTranslation()
   useEffect(() => {
-    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
-  }, []);
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
+  }, [])
 
   return (
     <>
@@ -141,7 +141,7 @@ const App = () => {
         </ErrorBoundary>
       </ThemeProvider>
     </>
-  );
-};
+  )
+}
 
-export default App;
+export default App

@@ -1,16 +1,16 @@
-import React from "react";
+import React from "react"
 
-import styled from "styled-components";
+import styled from "styled-components"
 
-import timetableColors from "@app/constants/timetable-colors";
-import { ThemeContext } from "@app/utils/theme-context";
+import timetableColors from "@app/constants/timetable-colors"
+import { ThemeContext } from "@app/utils/theme-context"
 
-const colorIds: number[] = [0, 1, 2, 3, 4, 5, 6, 7];
+const colorIds: number[] = [0, 1, 2, 3, 4, 5, 6, 7]
 
 type ColorButtonProps = {
-  colorCode: number;
-  theme: string;
-};
+  colorCode: number
+  theme: string
+}
 
 const InvisibleButton = styled("button")`
   align-self: flex-start;
@@ -18,7 +18,7 @@ const InvisibleButton = styled("button")`
   border: none;
   padding: 0;
   outline: 0;
-`;
+`
 
 const ColorButton = styled(InvisibleButton)<ColorButtonProps>`
   width: 1.5em;
@@ -29,14 +29,14 @@ const ColorButton = styled(InvisibleButton)<ColorButtonProps>`
   margin: 0 0.1em;
   background-color: ${(props) =>
     timetableColors[props.theme][`bgColor${props.colorCode}`]};
-`;
+`
 
 interface Props {
-  handleChangeColor: (id: number) => void;
+  handleChangeColor: (id: number) => void
 }
 
 const ColorSelector = ({ handleChangeColor }: Props) => {
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
   return (
     <div>
@@ -45,14 +45,14 @@ const ColorSelector = ({ handleChangeColor }: Props) => {
           key={id}
           colorCode={id}
           onClick={(event) => {
-            event.preventDefault();
-            handleChangeColor(id);
+            event.preventDefault()
+            handleChangeColor(id)
           }}
           theme={theme}
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default ColorSelector;
+export default ColorSelector

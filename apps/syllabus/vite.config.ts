@@ -1,10 +1,10 @@
-import { defineConfig, loadEnv } from "vite";
-import reactRefresh from "@vitejs/plugin-react-refresh";
-import dynamicImport from "vite-plugin-dynamic-import";
-const path = require("path");
+import { defineConfig, loadEnv } from "vite"
+import react from "@vitejs/plugin-react"
+import dynamicImport from "vite-plugin-dynamic-import"
+const path = require("path")
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd() + "/src");
+  const env = loadEnv(mode, process.cwd() + "/src")
 
   return {
     root: "./src",
@@ -40,8 +40,8 @@ export default defineConfig(({ mode }) => {
       // define: "undefined",
       "global.TYPED_ARRAY_SUPPORT": undefined,
     },
-    plugins: [reactRefresh(), dynamicImport()],
+    plugins: [react(), dynamicImport()],
     assetsInclude: ["**/*.png", "**/*.jpg", "**/*.svg"],
     envPrefix: ["VITE_", "REACT_APP_"],
-  };
-});
+  }
+})

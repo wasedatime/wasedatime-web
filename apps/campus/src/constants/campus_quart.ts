@@ -26711,4 +26711,4 @@ export const campuses = {
       ],
     },
   },
-};
+}

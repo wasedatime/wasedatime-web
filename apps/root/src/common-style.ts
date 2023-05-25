@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components"
 
 const CommonStyle = createGlobalStyle`
 *,
@@ -68,6 +68,6 @@ a:focus {
   outline: 0;
 }
 
-`;
+`
 
-export default CommonStyle;
+export default CommonStyle

@@ -1,30 +1,29 @@
-import React from "react";
+import React from "react"
 
-import { RowWrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { RowWrapper, media, sizes } from "wasedatime-ui"
 import {
   faAngleDoubleLeft,
   faAngleDoubleRight,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import MediaQuery from "react-responsive";
-import styled from "styled-components";
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import MediaQuery from "react-responsive"
+import styled from "styled-components"
 
-import { InvisibleButton } from "@app/components/styles/Button";
-import QuarterSwitch from "@app/components/timetable/QuarterSwitch";
-import { ThemeContext } from "@app/utils/theme-context";
+import { InvisibleButton } from "@app/components/styles/Button"
+import QuarterSwitch from "@app/components/timetable/QuarterSwitch"
+import { ThemeContext } from "@app/utils/theme-context"
 
 type ExtendedInvisibleButtonProps = {
-  small: boolean;
-};
+  small: boolean
+}
 
 type SemesterTitleProps = {
-  small: boolean;
-};
+  small: boolean
+}
 
 type ExtendedRowWrapperProps = {
-  small: boolean;
-};
+  small: boolean
+}
 
 const ExtendedRowWrapper = styled(RowWrapper)<ExtendedRowWrapperProps>`
   flex: none;
@@ -32,7 +31,7 @@ const ExtendedRowWrapper = styled(RowWrapper)<ExtendedRowWrapperProps>`
   font-size: 1.3em;
   ${(props) => props.small && "font-size: 1em;"}
   padding: 0.3em;
-`;
+`
 
 const ExtendedInvisibleButton = styled(
   InvisibleButton
@@ -45,32 +44,31 @@ const ExtendedInvisibleButton = styled(
   &:active {
     color: #000;
   }
-  ${media.tablet`
+  ${media("tablet",`
     &:focus {
         color: #000;
-    }`};
-  ${media.phone`
+    }`)};
+  ${media("phone",`
     &:focus {
       color: #000;
-    }
-  `};
+    }`)};
   ${(props) => props.small && "margin: 0px 25px;"}
-`;
+`
 
 const SemesterTitle = styled.div<SemesterTitleProps>`
   width: 300px;
   ${(props) => props.small && "width: 200px;"}
   text-align: center;
-`;
+`
 
 interface Props {
-  semesterTitle: string;
-  selectedSemester: string;
-  selectedQuarter: string | null;
-  isQuarterDisplayed: boolean;
-  toggleSemester: () => void;
-  toggleQuarter: (quarter: string) => void;
-  isSmallSize: boolean;
+  semesterTitle: string
+  selectedSemester: string
+  selectedQuarter: string | null
+  isQuarterDisplayed: boolean
+  toggleSemester: () => void
+  toggleQuarter: (quarter: string) => void
+  isSmallSize: boolean
 }
 
 const SemesterSwitcher = ({
@@ -140,7 +138,7 @@ const SemesterSwitcher = ({
         }
       </MediaQuery>
     </div>
-  );
-};
+  )
+}
 
-export default SemesterSwitcher;
+export default SemesterSwitcher

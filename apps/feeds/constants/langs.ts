@@ -3,15 +3,15 @@ export enum Lang {
   JA = "JA",
   zhCN = "zhCN",
   zhTW = "zhTW",
-  KR = "KR"
-};
+  KR = "KR",
+}
 
-export const LangMap : {
-  [key in Lang]: string;
+export const LangMap: {
+  [key in Lang]: string
 } = {
-  EN: 'English',
-  JA: '日本語',
-  zhCN: '简中',
-  zhTW: '繁中',
-  KR: '한국어'
-};
+  EN: "English",
+  JA: "日本語",
+  zhCN: "简中",
+  zhTW: "繁中",
+  KR: "한국어",
+}

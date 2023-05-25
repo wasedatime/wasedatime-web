@@ -1,49 +1,57 @@
-import React from "react";
+import React from "react"
 
-import { RowWrapper, Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { WithTranslation, withTranslation } from "react-i18next";
-import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import styled from "styled-components";
+import { RowWrapper, Wrapper, media } from "wasedatime-ui"
+import { WithTranslation, withTranslation } from "react-i18next"
+import Message from "semantic-ui-react/dist/commonjs/collections/Message"
+import styled from "styled-components"
 
-import { Article, Section } from "@app/components/styles/Article";
-import AddedCourseAndPrefList from "@app/components/timetable/AddedCourseAndPrefList";
-import DayColumnList from "@app/components/timetable/DayColumnList";
-import TimeRowList from "@app/components/timetable/TimeRowList";
-import { SyllabusKey } from "@app/constants/syllabus-data";
-import Course from "@app/types/course";
-import { ThemeContext } from "@app/utils/theme-context";
-import timetableColors from "@app/constants/timetable-colors";
+import { Article, Section } from "@app/components/styles/Article"
+import AddedCourseAndPrefList from "@app/components/timetable/AddedCourseAndPrefList"
+import DayColumnList from "@app/components/timetable/DayColumnList"
+import TimeRowList from "@app/components/timetable/TimeRowList"
+import { SyllabusKey } from "@app/constants/syllabus-data"
+import Course from "@app/types/course"
+import { ThemeContext } from "@app/utils/theme-context"
+import timetableColors from "@app/constants/timetable-colors"
 
 type ColumnProps = {
-  flexBasis: string;
-};
+  flexBasis: string
+}
 
 type StyledMessageProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const ExtendedRowWrapper = styled(RowWrapper)`
   flex-wrap: wrap;
   padding: 0.2em;
   padding-left: 1em;
-  ${media.phone`
+  ${media(
+    "phone",
+    `
     padding: 0
-  `};
-`;
+  `
+  )};
+`
 
 const Column = styled.div<ColumnProps>`
   flex: ${(props) => `0 0 ${props.flexBasis};`}
   max-width: ${(props) => `${props.flexBasis};`}
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     flex: 1 0 auto;
     max-width: 100vw;
-  `};
-  ${media.phone`
+  `
+  )};
+  ${media(
+    "phone",
+    `
     flex: 1 0 auto;
     max-width: 100vw;
-  `};
-`;
+  `
+  )};
+`
 
 const ScrollableTimetable = styled("div")`
   display: flex;
@@ -51,7 +59,7 @@ const ScrollableTimetable = styled("div")`
   flex: 1 0 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-`;
+`
 
 const StyledWarningMessage = styled(Message)<StyledMessageProps>`
   ${(props) =>
@@ -59,7 +67,7 @@ const StyledWarningMessage = styled(Message)<StyledMessageProps>`
     `background-color: ${timetableColors.dark.deeperBrown} !important;`}
   ${(props) =>
     props.$isDark && `color: ${timetableColors.dark.lightBrown} !important;`}
-`;
+`
 
 const StyledSuccessMessage = styled(Message)<StyledMessageProps>`
   ${(props) =>
@@ -67,50 +75,50 @@ const StyledSuccessMessage = styled(Message)<StyledMessageProps>`
     `background-color: ${timetableColors.dark.deepGreen} !important;`}
   ${(props) =>
     props.$isDark && `color: ${timetableColors.dark.lightGreen} !important;`}
-`;
+`
 
 interface Props extends WithTranslation {
   addedCoursesAndPrefs: {
     pref: {
-      color: number;
-      displayLang: string;
-      visibility: boolean;
-    };
-    course: Course;
-  }[];
+      color: number
+      displayLang: string
+      visibility: boolean
+    }
+    course: Course
+  }[]
 }
 
 const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
   const visibleAddedCoursesAndPrefs = addedCoursesAndPrefs.filter(
     (elem) => elem.pref.visibility === true
-  );
+  )
 
   const largestDayAndPeriod = visibleAddedCoursesAndPrefs.reduce(
     (acc, elem) => {
-      const occurrences = elem.course[SyllabusKey.OCCURRENCES];
+      const occurrences = elem.course[SyllabusKey.OCCURRENCES]
 
       return occurrences.reduce((acc, occurrence) => {
-        const unformattedPeriod = occurrence[SyllabusKey.OCC_PERIOD];
+        const unformattedPeriod = occurrence[SyllabusKey.OCC_PERIOD]
         const maxPeriod =
           unformattedPeriod === -1
             ? 0
             : unformattedPeriod > 9
             ? unformattedPeriod % 10
-            : unformattedPeriod;
+            : unformattedPeriod
 
         return {
           ...acc,
           day: Math.max(acc.day, occurrence[SyllabusKey.OCC_DAY]),
           period: Math.max(acc.period, maxPeriod),
-        };
-      }, acc);
+        }
+      }, acc)
     },
     { day: 1, period: 1 }
-  );
+  )
 
-  const { day: largestDay, period: largestPeriod } = largestDayAndPeriod;
+  const { day: largestDay, period: largestPeriod } = largestDayAndPeriod
 
   return (
     <ExtendedRowWrapper className="theme-default bg-light-bgMain dark:bg-dark-bgMain">
@@ -168,7 +176,7 @@ const Timetable = ({ addedCoursesAndPrefs, t }: Props) => {
         </Wrapper>
       </Column>
     </ExtendedRowWrapper>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(Timetable);
+export default withTranslation("translation")(Timetable)

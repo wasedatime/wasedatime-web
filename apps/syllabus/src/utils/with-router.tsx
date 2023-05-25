@@ -1,21 +1,21 @@
-import React from "react";
+import React from "react"
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
 
 function withRouter(Component) {
   const ComponentWithRouterProp = (props) => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
-    return <Component {...props} router={{ navigate }} />;
-  };
+    return <Component {...props} router={{ navigate }} />
+  }
 
-  return ComponentWithRouterProp;
+  return ComponentWithRouterProp
 }
 
-export default withRouter;
+export default withRouter
 
 export type WithRouter = {
   router: {
-    navigate: (path: string) => void;
-  };
-};
+    navigate: (path: string) => void
+  }
+}

@@ -1,11 +1,11 @@
 /* eslint-disable no-nested-ternary */
-import React from "react";
+import React from "react"
 
 interface StyledTextProps {
-  children: any;
-  centered?: boolean;
-  headerType?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-  id?: string;
+  children: any
+  centered?: boolean
+  headerType?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+  id?: string
 }
 
 export const StyledHeader = ({
@@ -18,7 +18,7 @@ export const StyledHeader = ({
     <h1
       id={id}
       className={`text-light-text1 dark:text-dark-text1 ${
-        centered && "text-center my-4"
+        centered && "my-4 text-center"
       }`}
     >
       {children}
@@ -27,7 +27,7 @@ export const StyledHeader = ({
     <h2
       id={id}
       className={`text-light-text1 dark:text-dark-text1 ${
-        centered && "text-center my-4"
+        centered && "my-4 text-center"
       }`}
     >
       {children}
@@ -36,7 +36,7 @@ export const StyledHeader = ({
     <h3
       id={id}
       className={`text-light-text1 dark:text-dark-text1 ${
-        centered && "text-center my-4"
+        centered && "my-4 text-center"
       }`}
     >
       {children}
@@ -45,7 +45,7 @@ export const StyledHeader = ({
     <h4
       id={id}
       className={`text-light-text1 dark:text-dark-text1 ${
-        centered && "text-center my-4"
+        centered && "my-4 text-center"
       }`}
     >
       {children}
@@ -54,7 +54,7 @@ export const StyledHeader = ({
     <h5
       id={id}
       className={`text-light-text1 dark:text-dark-text1 ${
-        centered && "text-center my-4"
+        centered && "my-4 text-center"
       }`}
     >
       {children}
@@ -63,12 +63,12 @@ export const StyledHeader = ({
     <h6
       id={id}
       className={`text-light-text1 dark:text-dark-text1 ${
-        centered && "text-center my-4"
+        centered && "my-4 text-center"
       }`}
     >
       {children}
     </h6>
-  );
+  )
 
 export const StyledParagraph = ({
   children,
@@ -78,26 +78,26 @@ export const StyledParagraph = ({
   <p
     id={id}
     className={`text-light-text2 dark:text-dark-text2 ${
-      centered && "text-center my-4"
+      centered && "my-4 text-center"
     }`}
   >
     {children}
   </p>
-);
+)
 
 export const StyledBold = ({ children, centered, id }: StyledTextProps) => (
   <b
     id={id}
     className={`text-light-text1 dark:text-dark-text1 ${
-      centered && "text-center my-4"
+      centered && "my-4 text-center"
     }`}
   >
     {children}
   </b>
-);
+)
 
 const PrivacyPolicy = () => (
-  <div className="bg-light-bgMain dark:bg-dark-bgMain p-6 md:py-24 md:px-60">
+  <div className="bg-light-bgMain p-6 dark:bg-dark-bgMain md:py-24 md:px-60">
     <StyledHeader headerType="h1" centered>
       PRIVACY NOTICE
     </StyledHeader>
@@ -532,6 +532,6 @@ const PrivacyPolicy = () => (
       </a>
     </StyledParagraph>
   </div>
-);
+)
 
-export default PrivacyPolicy;
+export default PrivacyPolicy

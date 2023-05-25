@@ -11,4 +11,4 @@ export const quarterColors = {
     spring: "#FF65D3",
     summer: "#FF7701",
   },
-};
+}

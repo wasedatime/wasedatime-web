@@ -1,59 +1,62 @@
-import React from "react";
+import React from "react"
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { faFilter } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { media } from "wasedatime-ui"
+import { faFilter } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useTranslation } from "react-i18next"
+import styled from "styled-components"
 
-import majorBg from "/img/major_bg.jpg";
-import { Badge } from "@app/components/styles/Badge";
-import majorsBySchool from "@app/constants/majors-by-school";
-import getSchoolIconPath from "@app/utils/get-school-icon-path";
+import majorBg from "/img/major_bg.jpg"
+import { Badge } from "@app/components/styles/Badge"
+import majorsBySchool from "@app/constants/majors-by-school"
+import getSchoolIconPath from "@app/utils/get-school-icon-path"
 
 const bgImgUrl = () => {
-  const bgImg = new URL(majorBg, import.meta.url);
-  return bgImg.href;
-};
+  const bgImg = new URL(majorBg, import.meta.url)
+  return bgImg.href
+}
 
 type SchoolButtonProps = {
-  active: boolean;
-};
+  active: boolean
+}
 
 type ReviewsCountProps = {
-  school: string;
-};
+  school: string
+}
 
 const Menu = styled.div`
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     padding: 2em;
     padding-bottom: 90px;
     height: calc(100vh - 60px);
     overflow-y: auto;
-  `}
-`;
+  `
+  )}
+`
 
 const SchoolMenu = styled.div`
   display: flex;
   flex-direction: row;
-`;
+`
 
 const SchoolItem = styled.div`
   flex: auto;
   padding: 0px auto;
   text-align: center;
-`;
+`
 
 const SchoolButton = styled.button<SchoolButtonProps>`
   margin: 0px auto;
   ${(props) => !props.active && "opacity: 0.4;"}
-`;
+`
 
 const SchoolImg = styled.img`
   &:hover {
     opacity: 0.5;
   }
-`;
+`
 
 const MajorWrapper = styled.div`
   width: 100%;
@@ -77,7 +80,7 @@ const MajorWrapper = styled.div`
       : majorBg});
     background-size: 15em;
   }
-`;
+`
 
 const MajorText = styled.div`
   position: relative;
@@ -95,7 +98,7 @@ const MajorText = styled.div`
   &:hover {
     font-size: 22px;
   }
-`;
+`
 
 const ReviewsCount = styled(Badge)<ReviewsCountProps>`
   position: absolute;
@@ -113,11 +116,11 @@ const ReviewsCount = styled(Badge)<ReviewsCountProps>`
       ? "rgba(190,106,20,0.5)"
       : props.school === "CSE"
       ? "rgba(105,140,45,0.5)"
-      : "rgba(50,98,149,0.5)";
+      : "rgba(50,98,149,0.5)"
   }};
-`;
+`
 
-const schools = ["FSE", "CSE", "ASE"];
+const schools = ["FSE", "CSE", "ASE"]
 
 const SchoolMajorSelector = ({
   reviews,
@@ -126,15 +129,15 @@ const SchoolMajorSelector = ({
   setMajor,
   closeModal,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
   const switchSchool = (schoolIndex: number) => {
-    setSchool(schools[schoolIndex]);
-    setMajor("");
-  };
+    setSchool(schools[schoolIndex])
+    setMajor("")
+  }
   const switchMajorAndCloseModal = (major: string) => {
-    setMajor(major);
-    closeModal();
-  };
+    setMajor(major)
+    closeModal()
+  }
 
   return (
     <Menu>
@@ -174,7 +177,7 @@ const SchoolMajorSelector = ({
         </MajorWrapper>
       ))}
     </Menu>
-  );
-};
+  )
+}
 
-export default SchoolMajorSelector;
+export default SchoolMajorSelector

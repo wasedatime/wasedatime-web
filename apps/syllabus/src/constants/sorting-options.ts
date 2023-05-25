@@ -4,4 +4,4 @@ enum SortingOption {
   COURSE_TIME = "COURSE_TIME",
 }
 
-export default SortingOption;
+export default SortingOption

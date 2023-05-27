@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import API from "@aws-amplify/api";
-import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
-import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
+import { SignInModal, getIdToken } from "wasedatime-ui"
 import { SendIcon } from "./icons/SendIcon";
 
 const CommentForm = () => {

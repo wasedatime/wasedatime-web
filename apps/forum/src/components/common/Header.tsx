@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import MediaQuery from "react-responsive";
 import { useNavigate } from "react-router-dom";
 
-import colors from "@bit/wasedatime.core.theme.colors";
+import colors from "wasedatime-ui/colors";
 import LanguageMenu from "./LanguageMenu";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import {sizes} from "wasedatime-ui"
 import logo from "@app/assets/logo.svg";
 import { ThemeToggle } from "./ThemeToggle";
 import { THEME } from "@app/types/theme";
@@ -31,7 +31,7 @@ const headerStyle = (isBlur: boolean, theme: THEME) => {
     gridRow: "1 / 2",
     display: "flex",
     flexDirection: "row" as "row",
-  }
+  };
 };
 
 const titleWrapperStyle = {
@@ -104,18 +104,21 @@ const Header = ({
   changeLang,
   theme = THEME.LIGHT,
   setTheme,
-  onSearchBarClick = () => {}
+  onSearchBarClick = () => {},
 }: HeaderProps) => {
   let navigate = useNavigate();
-  const [ isInputExpanded, setIsInputExpanded ] = useState(false);
-  
+  const [isInputExpanded, setIsInputExpanded] = useState(false);
+
   const searchBar = (
-    <label
-      className="ml-0 flex flex-row justify-end md:justify-center"
-    >
+    <label className="ml-0 flex flex-row justify-end md:justify-center">
       {!isInputExpanded && (
-        <header className="ml-2 md:hidden self-center" style={titleWrapperStyle}>
-          <h2 className="text-2xl text-light-text1 dark:text-dark-text1">{title}</h2>
+        <header
+          className="ml-2 md:hidden self-center"
+          style={titleWrapperStyle}
+        >
+          <h2 className="text-2xl text-light-text1 dark:text-dark-text1">
+            {title}
+          </h2>
         </header>
       )}
       <input
@@ -134,7 +137,9 @@ const Header = ({
         className={isInputExpanded ? "w-full" : "hidden md:block md:w-1/2"}
       />
       <span
-        className={"w-0 -translate-x-8 h-[40px] py-[6px] text-light-text2 dark:text-dark-text2"}
+        className={
+          "w-0 -translate-x-8 h-[40px] py-[6px] text-light-text2 dark:text-dark-text2"
+        }
         onClick={() => {
           setIsInputExpanded(true);
           onSearchBarClick();
@@ -151,7 +156,11 @@ const Header = ({
         {(matches: boolean) =>
           matches ? (
             <div style={logoWrapperStyle} onClick={() => navigate("/home")}>
-              <img src={(new URL(logo, import.meta.url)).href} alt="WasedaTime English Small Logo" className="w-[50px] h-[50px]" />
+              <img
+                src={new URL(logo, import.meta.url).href}
+                alt="WasedaTime English Small Logo"
+                className="w-[50px] h-[50px]"
+              />
             </div>
           ) : (
             <header style={titleWrapperStyle}>

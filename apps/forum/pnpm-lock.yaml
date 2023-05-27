@@ -79,81 +79,185 @@ specifiers:
   vite-plugin-dynamic-import: ^0.7.1
 
 dependencies:
-  '@aws-amplify/api': 4.0.42_react-native@0.68.5
-  '@aws-amplify/auth': 4.4.4_react-native@0.68.5
-  '@bit/wasedatime.core.theme.colors': node.bit.dev/@bit/wasedatime.core.theme.colors/0.0.5
-  '@bit/wasedatime.core.ts.constants.langs': node.bit.dev/@bit/wasedatime.core.ts.constants.langs/0.0.5_react-dom@17.0.2+react@17.0.2
-  '@bit/wasedatime.core.ts.ui.header': node.bit.dev/@bit/wasedatime.core.ts.ui.header/0.2.21_85437955bddca72fa9ee81a991b14a9d
-  '@bit/wasedatime.core.ts.ui.loading-spinner': node.bit.dev/@bit/wasedatime.core.ts.ui.loading-spinner/0.1.5_af520ff3c650e6a6d05e9a79e9549b09
-  '@bit/wasedatime.core.ts.ui.sign-in-modal': node.bit.dev/@bit/wasedatime.core.ts.ui.sign-in-modal/0.1.6_f77ae0e4b6d953df59adc94f9e4d5b61
-  '@bit/wasedatime.core.ts.utils.i18n': node.bit.dev/@bit/wasedatime.core.ts.utils.i18n/0.0.4_1622241db2281c7eeaec01382c7056b3
-  '@bit/wasedatime.core.ts.utils.responsive-utils': node.bit.dev/@bit/wasedatime.core.ts.utils.responsive-utils/0.0.1_af520ff3c650e6a6d05e9a79e9549b09
-  '@bit/wasedatime.core.ts.utils.user': node.bit.dev/@bit/wasedatime.core.ts.utils.user/0.0.4_a508a016322cb0cfa568f892dc7f22d1
-  '@emotion/react': 11.9.0_7c3ecd89bd75b61b41f2029715ea2305
-  '@emotion/styled': 11.8.1_aa14098c2ea011cbc634dc0640a5389f
-  '@fortawesome/free-solid-svg-icons': 6.0.0
-  '@fortawesome/react-fontawesome': 0.1.17_4bd8f766d7cd56ce339ee1b51a510026
-  '@material-ui/core': 4.12.4_b8fdba992ce7d797017dc07106486496
-  '@mui/icons-material': 5.8.3_19826fe7d1e065d37ae39dc1593fa7ef
-  '@mui/material': 5.8.3_a7084c6b0bc860a95662c948db843c1e
-  '@types/react': 17.0.39
-  '@types/react-dom': 17.0.13
-  '@types/styled-components': 5.1.24
-  '@vitejs/plugin-react-refresh': 1.3.6
-  i18next: 19.9.2
-  react: 17.0.2
-  react-dom: 17.0.2_react@17.0.2
-  react-ga: 3.3.0_prop-types@15.8.1+react@17.0.2
-  react-helmet: 6.1.0_react@17.0.2
-  react-i18next: 11.15.6_1622241db2281c7eeaec01382c7056b3
-  react-responsive: 9.0.0-beta.10_react@17.0.2
-  react-router-dom: 6.7.0_react-dom@17.0.2+react@17.0.2
-  recoil: 0.7.6_a508a016322cb0cfa568f892dc7f22d1
-  single-spa-react: 3.2.0_react@17.0.2
-  styled-components: 5.3.3_af520ff3c650e6a6d05e9a79e9549b09
-  vite: 2.9.15_sass@1.49.9
-  vite-plugin-dynamic-import: 0.7.1
+  '@aws-amplify/api':
+    specifier: 4.0.42
+    version: 4.0.42(react-native@0.68.7)
+  '@aws-amplify/auth':
+    specifier: 4.4.4
+    version: 4.4.4(react-native@0.68.7)
+  '@emotion/react':
+    specifier: 11.9.0
+    version: 11.9.0(@babel/core@7.17.5)(@types/react@17.0.39)(react@17.0.2)
+  '@emotion/styled':
+    specifier: 11.8.1
+    version: 11.8.1(@babel/core@7.17.5)(@emotion/react@11.9.0)(@types/react@17.0.39)(react@17.0.2)
+  '@fortawesome/free-solid-svg-icons':
+    specifier: 6.0.0
+    version: 6.0.0
+  '@fortawesome/react-fontawesome':
+    specifier: 0.1.17
+    version: 0.1.17(@fortawesome/fontawesome-svg-core@1.3.0)(react@17.0.2)
+  '@material-ui/core':
+    specifier: 4.12.4
+    version: 4.12.4(@types/react@17.0.39)(react-dom@17.0.2)(react@17.0.2)
+  '@mui/icons-material':
+    specifier: 5.8.3
+    version: 5.8.3(@mui/material@5.8.3)(@types/react@17.0.39)(react@17.0.2)
+  '@mui/material':
+    specifier: 5.8.3
+    version: 5.8.3(@emotion/react@11.9.0)(@emotion/styled@11.8.1)(@types/react@17.0.39)(react-dom@17.0.2)(react@17.0.2)
+  '@popperjs/core':
+    specifier: ^2.11.8
+    version: 2.11.8
+  '@types/react':
+    specifier: 17.0.39
+    version: 17.0.39
+  '@types/react-dom':
+    specifier: 17.0.13
+    version: 17.0.13
+  '@types/styled-components':
+    specifier: 5.1.24
+    version: 5.1.24
+  '@vitejs/plugin-react-refresh':
+    specifier: ^1.3.6
+    version: 1.3.6
+  eslint-plugin-react-hooks:
+    specifier: 4.3.0
+    version: 4.3.0(eslint@8.10.0)
+  i18next:
+    specifier: 19.9.2
+    version: 19.9.2
+  react:
+    specifier: 17.0.2
+    version: 17.0.2
+  react-dom:
+    specifier: 17.0.2
+    version: 17.0.2(react@17.0.2)
+  react-ga:
+    specifier: 3.3.0
+    version: 3.3.0(prop-types@15.8.1)(react@17.0.2)
+  react-helmet:
+    specifier: 6.1.0
+    version: 6.1.0(react@17.0.2)
+  react-i18next:
+    specifier: 11.15.6
+    version: 11.15.6(i18next@19.9.2)(react-dom@17.0.2)(react-native@0.68.7)(react@17.0.2)
+  react-responsive:
+    specifier: 9.0.0-beta.10
+    version: 9.0.0-beta.10(react@17.0.2)
+  react-router-dom:
+    specifier: ^6.11.2
+    version: 6.11.2(react-dom@17.0.2)(react@17.0.2)
+  recoil:
+    specifier: ^0.7.7
+    version: 0.7.7(react-dom@17.0.2)(react-native@0.68.7)(react@17.0.2)
+  single-spa-react:
+    specifier: 3.2.0
+    version: 3.2.0(react@17.0.2)
+  styled-components:
+    specifier: 5.3.3
+    version: 5.3.3(react-dom@17.0.2)(react-is@18.2.0)(react@17.0.2)
+  vite:
+    specifier: 4.3.5
+    version: 4.3.5(@types/node@17.0.21)(sass@1.49.9)
+  vite-plugin-dynamic-import:
+    specifier: ^0.7.1
+    version: 0.7.1
+  wasedatime-ui:
+    specifier: '*'
+    version: link:../../packages/ui
 
 devDependencies:
-  '@babel/core': 7.17.5
-  '@babel/eslint-parser': 7.17.0_@babel+core@7.17.5+eslint@8.10.0
-  '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.17.5
-  '@babel/plugin-transform-react-jsx': 7.20.7_@babel+core@7.17.5
-  '@babel/plugin-transform-runtime': 7.17.0_@babel+core@7.17.5
-  '@babel/preset-env': 7.16.11_@babel+core@7.17.5
-  '@babel/preset-react': 7.16.7_@babel+core@7.17.5
-  '@babel/preset-typescript': 7.16.7_@babel+core@7.17.5
-  '@babel/runtime': 7.17.2
-  '@fortawesome/fontawesome-svg-core': 1.3.0
-  '@types/node': 17.0.21
-  '@typescript-eslint/eslint-plugin': 5.14.0_f4054b8c3cd621db16ae1b9d571bccc0
-  '@typescript-eslint/parser': 5.14.0_eslint@8.10.0+typescript@4.6.2
-  autoprefixer: 10.4.2_postcss@8.4.8
-  babel-plugin-styled-components: 2.0.6_styled-components@5.3.3
-  concurrently: 7.0.0
-  cssnano: 5.1.0_postcss@8.4.8
-  dotenv: 16.0.3
-  eslint: 8.10.0
-  eslint-config-airbnb: 19.0.4_1a200a0ef4d49ba6b286d48d7621cc60
-  eslint-config-prettier: 8.5.0_eslint@8.10.0
-  eslint-config-react-app: 7.0.0_46a52ca0e38ae2eb45790201a6dea17a
-  eslint-config-ts-react-important-stuff: 3.0.0_eslint@8.10.0
-  eslint-plugin-import: 2.25.4_eslint@8.10.0
-  eslint-plugin-jsx-a11y: 6.5.1_eslint@8.10.0
-  eslint-plugin-prefer-arrow: 1.2.3_eslint@8.10.0
-  eslint-plugin-prettier: 4.0.0_f3d13a703a9c1079e3d1af6044603beb
-  eslint-plugin-react: 7.29.4_eslint@8.10.0
-  eslint-plugin-react-hooks: 4.3.0_eslint@8.10.0
-  postcss: 8.4.8
-  prettier: 2.5.1
-  prettier-eslint: 13.0.0
-  prop-types: 15.8.1
-  react-is: 18.2.0
-  react-native: 0.68.5_24353ddb04343aa31089be039ffbe27f
-  sass: 1.49.9
-  tailwindcss: 3.0.23_autoprefixer@10.4.2
-  ts-config-single-spa: 2.0.1
-  typescript: 4.6.2
+  '@babel/core':
+    specifier: 7.17.5
+    version: 7.17.5
+  '@babel/eslint-parser':
+    specifier: 7.17.0
+    version: 7.17.0(@babel/core@7.17.5)(eslint@8.10.0)
+  '@babel/plugin-syntax-flow':
+    specifier: ^7.21.4
+    version: 7.21.4(@babel/core@7.17.5)
+  '@babel/plugin-transform-react-jsx':
+    specifier: ^7.22.0
+    version: 7.22.0(@babel/core@7.17.5)
+  '@babel/plugin-transform-runtime':
+    specifier: 7.17.0
+    version: 7.17.0(@babel/core@7.17.5)
+  '@babel/preset-env':
+    specifier: 7.16.11
+    version: 7.16.11(@babel/core@7.17.5)
+  '@babel/preset-react':
+    specifier: 7.16.7
+    version: 7.16.7(@babel/core@7.17.5)
+  '@babel/preset-typescript':
+    specifier: 7.16.7
+    version: 7.16.7(@babel/core@7.17.5)
+  '@babel/runtime':
+    specifier: 7.17.2
+    version: 7.17.2
+  '@fortawesome/fontawesome-svg-core':
+    specifier: 1.3.0
+    version: 1.3.0
+  '@types/node':
+    specifier: 17.0.21
+    version: 17.0.21
+  '@typescript-eslint/eslint-plugin':
+    specifier: 5.14.0
+    version: 5.14.0(@typescript-eslint/parser@5.14.0)(eslint@8.10.0)(typescript@4.6.2)
+  '@typescript-eslint/parser':
+    specifier: 5.14.0
+    version: 5.14.0(eslint@8.10.0)(typescript@4.6.2)
+  autoprefixer:
+    specifier: 10.4.2
+    version: 10.4.2(postcss@8.4.8)
+  babel-plugin-styled-components:
+    specifier: 2.0.6
+    version: 2.0.6(styled-components@5.3.3)
+  concurrently:
+    specifier: 7.0.0
+    version: 7.0.0
+  cssnano:
+    specifier: 5.1.0
+    version: 5.1.0(postcss@8.4.8)
+  dotenv:
+    specifier: ^16.0.3
+    version: 16.0.3
+  eslint:
+    specifier: 8.10.0
+    version: 8.10.0
+  eslint-config-custom:
+    specifier: workspace:*
+    version: link:../../packages/eslint-config-custom
+  postcss:
+    specifier: 8.4.8
+    version: 8.4.8
+  prettier:
+    specifier: 2.5.1
+    version: 2.5.1
+  prettier-eslint:
+    specifier: 13.0.0
+    version: 13.0.0
+  prop-types:
+    specifier: ^15.8.1
+    version: 15.8.1
+  react-is:
+    specifier: ^18.2.0
+    version: 18.2.0
+  react-native:
+    specifier: ^0.68.7
+    version: 0.68.7(@babel/core@7.17.5)(@babel/preset-env@7.16.11)(react@17.0.2)
+  sass:
+    specifier: 1.49.9
+    version: 1.49.9
+  tailwindcss:
+    specifier: 3.0.23
+    version: 3.0.23(autoprefixer@10.4.2)(postcss@8.4.8)
+  ts-config-single-spa:
+    specifier: 2.0.1
+    version: 2.0.1
+  typescript:
+    specifier: 4.6.2
+    version: 4.6.2
 
 packages:
 
@@ -164,14 +268,14 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
 
-  /@aws-amplify/api-graphql/2.3.6_react-native@0.68.5:
+  /@aws-amplify/api-graphql@2.3.6(react-native@0.68.7):
     resolution: {integrity: sha512-bAFApP7Yw2uLythEG4og0nDm8xVqqEMLKiT5AUpElKmlzU5t106gYissRLet+oHeiE2DMnIWCL9g/rOn93Z1NQ==}
     dependencies:
-      '@aws-amplify/api-rest': 2.0.42_react-native@0.68.5
-      '@aws-amplify/auth': 4.5.6_react-native@0.68.5
-      '@aws-amplify/cache': 4.0.44_react-native@0.68.5
-      '@aws-amplify/core': 4.5.6_react-native@0.68.5
-      '@aws-amplify/pubsub': 4.4.3_react-native@0.68.5
+      '@aws-amplify/api-rest': 2.0.42(react-native@0.68.7)
+      '@aws-amplify/auth': 4.5.6(react-native@0.68.7)
+      '@aws-amplify/cache': 4.0.44(react-native@0.68.7)
+      '@aws-amplify/core': 4.5.6(react-native@0.68.7)
+      '@aws-amplify/pubsub': 4.4.3(react-native@0.68.7)
       graphql: 15.8.0
       uuid: 3.4.0
       zen-observable-ts: 0.8.19
@@ -181,32 +285,32 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/api-rest/2.0.42_react-native@0.68.5:
+  /@aws-amplify/api-rest@2.0.42(react-native@0.68.7):
     resolution: {integrity: sha512-37BUCnI1PM273jUwWceEZVi0frO0mHY8dY/9EZ2zUmA6Rbscbm5ZpyB8E+txtO+odbbBxnU5JHdc7JnWr7Fwpw==}
     dependencies:
-      '@aws-amplify/core': 4.5.6_react-native@0.68.5
+      '@aws-amplify/core': 4.5.6(react-native@0.68.7)
       axios: 0.21.4
     transitivePeerDependencies:
       - debug
       - react-native
     dev: false
 
-  /@aws-amplify/api/4.0.42_react-native@0.68.5:
+  /@aws-amplify/api@4.0.42(react-native@0.68.7):
     resolution: {integrity: sha512-h+nm6Frbu4G2Ftc7s0SVdQEoLOE9tVlfRM6q0JrQ48Ilu1myQdQ3wormWUxdhlpkuTq+UOYcDTcIUeiD3CC2mA==}
     dependencies:
-      '@aws-amplify/api-graphql': 2.3.6_react-native@0.68.5
-      '@aws-amplify/api-rest': 2.0.42_react-native@0.68.5
+      '@aws-amplify/api-graphql': 2.3.6(react-native@0.68.7)
+      '@aws-amplify/api-rest': 2.0.42(react-native@0.68.7)
     transitivePeerDependencies:
       - debug
       - encoding
       - react-native
     dev: false
 
-  /@aws-amplify/auth/4.4.4_react-native@0.68.5:
+  /@aws-amplify/auth@4.4.4(react-native@0.68.7):
     resolution: {integrity: sha512-/iQB8teOXxb6XkOK2nPBxldU5YZjMLy6vTpihWMOPP96TWqldgnKSZykYtsrTb6uYK8iF1VWr7DI9OE7UpKONQ==}
     dependencies:
-      '@aws-amplify/cache': 4.0.37_react-native@0.68.5
-      '@aws-amplify/core': 4.4.2_react-native@0.68.5
+      '@aws-amplify/cache': 4.0.37(react-native@0.68.7)
+      '@aws-amplify/core': 4.4.2(react-native@0.68.7)
       amazon-cognito-identity-js: 5.2.8
       crypto-js: 4.1.1
     transitivePeerDependencies:
@@ -214,11 +318,11 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/auth/4.5.6_react-native@0.68.5:
+  /@aws-amplify/auth@4.5.6(react-native@0.68.7):
     resolution: {integrity: sha512-G0pxqKaVouuhVK6qH0EBHG5ziNVRT7AzKSj8jN2I7klHtFJHnY/F6NEEjr/e99IgbyzspjWX5xFRBAQecgF44A==}
     dependencies:
-      '@aws-amplify/cache': 4.0.44_react-native@0.68.5
-      '@aws-amplify/core': 4.5.6_react-native@0.68.5
+      '@aws-amplify/cache': 4.0.44(react-native@0.68.7)
+      '@aws-amplify/core': 4.5.6(react-native@0.68.7)
       amazon-cognito-identity-js: 5.2.9
       crypto-js: 4.1.1
     transitivePeerDependencies:
@@ -226,49 +330,29 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/auth/4.6.16_react-native@0.68.5:
-    resolution: {integrity: sha512-VSUTkh29xClpdLGF12hx6dyEcxwcP9sJrDnUBkugnWjM+KWPDphrcFR+p2h8cv3N1AIVnA/r+Zq35KuJQ++KlQ==}
-    dependencies:
-      '@aws-amplify/cache': 4.0.65_react-native@0.68.5
-      '@aws-amplify/core': 4.7.14_react-native@0.68.5
-      amazon-cognito-identity-js: 5.2.14
-      crypto-js: 4.1.1
-    transitivePeerDependencies:
-      - encoding
-      - react-native
-    dev: false
-
-  /@aws-amplify/cache/4.0.37_react-native@0.68.5:
+  /@aws-amplify/cache@4.0.37(react-native@0.68.7):
     resolution: {integrity: sha512-SlUYGVTCv848TAOVW+8PhMQKUaC6fAiflEqvW6LkXN0Etj1tetsUhXoSDFVevxkKQEXXouFrj9dSWnYE6SOIhA==}
     dependencies:
-      '@aws-amplify/core': 4.4.2_react-native@0.68.5
+      '@aws-amplify/core': 4.4.2(react-native@0.68.7)
     transitivePeerDependencies:
       - react-native
     dev: false
 
-  /@aws-amplify/cache/4.0.44_react-native@0.68.5:
+  /@aws-amplify/cache@4.0.44(react-native@0.68.7):
     resolution: {integrity: sha512-lfybDAXaJWzHPprPJILPcSNCfow9xkgskP5tkNdG2/dlkgTwN2aUJVkQdguO5q5zUxgM0xoS7bbVY3kvoQ2b6Q==}
     dependencies:
-      '@aws-amplify/core': 4.5.6_react-native@0.68.5
+      '@aws-amplify/core': 4.5.6(react-native@0.68.7)
     transitivePeerDependencies:
       - react-native
     dev: false
 
-  /@aws-amplify/cache/4.0.65_react-native@0.68.5:
-    resolution: {integrity: sha512-C80LcnqJavjUWkH2mLtjRqTM2znX2IxU56mYUwmPWugMPJ8klvJlru9HA+rcMg+yqp2fNsRaiMtqrzx2oFNX6A==}
-    dependencies:
-      '@aws-amplify/core': 4.7.14_react-native@0.68.5
-    transitivePeerDependencies:
-      - react-native
-    dev: false
-
-  /@aws-amplify/core/4.4.2_react-native@0.68.5:
+  /@aws-amplify/core@4.4.2(react-native@0.68.7):
     resolution: {integrity: sha512-5Q6Te5WcLaUcJpXPVVCb/i/HLBr7dS2KyODqiadb2G4ocqmr6DQaMGo7f77LjQ6WqMDETSijqsLjU8nK+2xOpg==}
     dependencies:
       '@aws-crypto/sha256-js': 1.0.0-alpha.0
-      '@aws-sdk/client-cloudwatch-logs': 3.6.1_react-native@0.68.5
-      '@aws-sdk/client-cognito-identity': 3.6.1_react-native@0.68.5
-      '@aws-sdk/credential-provider-cognito-identity': 3.6.1_react-native@0.68.5
+      '@aws-sdk/client-cloudwatch-logs': 3.6.1(react-native@0.68.7)
+      '@aws-sdk/client-cognito-identity': 3.6.1(react-native@0.68.7)
+      '@aws-sdk/credential-provider-cognito-identity': 3.6.1(react-native@0.68.7)
       '@aws-sdk/types': 3.6.1
       '@aws-sdk/util-hex-encoding': 3.6.1
       universal-cookie: 4.0.4
@@ -277,13 +361,13 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/core/4.5.6_react-native@0.68.5:
+  /@aws-amplify/core@4.5.6(react-native@0.68.7):
     resolution: {integrity: sha512-TmtKtxMno7TubMqiXQpqdFIfIBm2bCqK6sW1BUk8N8WoHnuA3hBPf1qmZeDHTaSjTFBV1AOxfVgVZ9RGErZQzw==}
     dependencies:
       '@aws-crypto/sha256-js': 1.0.0-alpha.0
-      '@aws-sdk/client-cloudwatch-logs': 3.6.1_react-native@0.68.5
-      '@aws-sdk/client-cognito-identity': 3.6.1_react-native@0.68.5
-      '@aws-sdk/credential-provider-cognito-identity': 3.6.1_react-native@0.68.5
+      '@aws-sdk/client-cloudwatch-logs': 3.6.1(react-native@0.68.7)
+      '@aws-sdk/client-cognito-identity': 3.6.1(react-native@0.68.7)
+      '@aws-sdk/credential-provider-cognito-identity': 3.6.1(react-native@0.68.7)
       '@aws-sdk/types': 3.6.1
       '@aws-sdk/util-hex-encoding': 3.6.1
       universal-cookie: 4.0.4
@@ -292,27 +376,12 @@ packages:
       - react-native
     dev: false
 
-  /@aws-amplify/core/4.7.14_react-native@0.68.5:
-    resolution: {integrity: sha512-hrjeDLlx7a0zlaiDRzOagP7zsAye8k9krmjV1o49Db2NRqVmFzIiFg8SZ+xX+5xk4TI7rwxnCQ4zFJAHsrcSmw==}
-    dependencies:
-      '@aws-crypto/sha256-js': 1.0.0-alpha.0
-      '@aws-sdk/client-cloudwatch-logs': 3.6.1_react-native@0.68.5
-      '@aws-sdk/client-cognito-identity': 3.6.1_react-native@0.68.5
-      '@aws-sdk/credential-provider-cognito-identity': 3.6.1_react-native@0.68.5
-      '@aws-sdk/types': 3.6.1
-      '@aws-sdk/util-hex-encoding': 3.6.1
-      universal-cookie: 4.0.4
-      zen-observable-ts: 0.8.19
-    transitivePeerDependencies:
-      - react-native
-    dev: false
-
-  /@aws-amplify/pubsub/4.4.3_react-native@0.68.5:
+  /@aws-amplify/pubsub@4.4.3(react-native@0.68.7):
     resolution: {integrity: sha512-bpjucdYHpnrz0fq+0PZ/UfaUR67z7RUm13iDL3GnX8TMCRTTaquOF7S2Sfn9zlWzwDOFzrne6JAl8lnwBmjuEw==}
     dependencies:
-      '@aws-amplify/auth': 4.5.6_react-native@0.68.5
-      '@aws-amplify/cache': 4.0.44_react-native@0.68.5
-      '@aws-amplify/core': 4.5.6_react-native@0.68.5
+      '@aws-amplify/auth': 4.5.6(react-native@0.68.7)
+      '@aws-amplify/cache': 4.0.44(react-native@0.68.7)
+      '@aws-amplify/core': 4.5.6(react-native@0.68.7)
       graphql: 15.8.0
       paho-mqtt: 1.1.0
       uuid: 3.4.0
@@ -378,7 +447,7 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@aws-sdk/client-cloudwatch-logs/3.6.1_react-native@0.68.5:
+  /@aws-sdk/client-cloudwatch-logs@3.6.1(react-native@0.68.7):
     resolution: {integrity: sha512-QOxIDnlVTpnwJ26Gap6RGz61cDLH6TKrIp30VqwdMeT1pCGy8mn9rWln6XA+ymkofHy/08RfpGp+VN4axwd4Lw==}
     engines: {node: '>=10.0.0'}
     dependencies:
@@ -392,7 +461,7 @@ packages:
       '@aws-sdk/middleware-content-length': 3.6.1
       '@aws-sdk/middleware-host-header': 3.6.1
       '@aws-sdk/middleware-logger': 3.6.1
-      '@aws-sdk/middleware-retry': 3.6.1_react-native@0.68.5
+      '@aws-sdk/middleware-retry': 3.6.1(react-native@0.68.7)
       '@aws-sdk/middleware-serde': 3.6.1
       '@aws-sdk/middleware-signing': 3.6.1
       '@aws-sdk/middleware-stack': 3.6.1
@@ -417,7 +486,7 @@ packages:
       - react-native
     dev: false
 
-  /@aws-sdk/client-cognito-identity/3.6.1_react-native@0.68.5:
+  /@aws-sdk/client-cognito-identity@3.6.1(react-native@0.68.7):
     resolution: {integrity: sha512-FMj2GR9R5oCKb3/NI16GIvWeHcE4uX42fBAaQKPbjg2gALFDx9CcJYsdOtDP37V89GtPyZilLv6GJxrwJKzYGg==}
     engines: {node: '>=10.0.0'}
     dependencies:
@@ -431,7 +500,7 @@ packages:
       '@aws-sdk/middleware-content-length': 3.6.1
       '@aws-sdk/middleware-host-header': 3.6.1
       '@aws-sdk/middleware-logger': 3.6.1
-      '@aws-sdk/middleware-retry': 3.6.1_react-native@0.68.5
+      '@aws-sdk/middleware-retry': 3.6.1(react-native@0.68.7)
       '@aws-sdk/middleware-serde': 3.6.1
       '@aws-sdk/middleware-signing': 3.6.1
       '@aws-sdk/middleware-stack': 3.6.1
@@ -465,11 +534,11 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@aws-sdk/credential-provider-cognito-identity/3.6.1_react-native@0.68.5:
+  /@aws-sdk/credential-provider-cognito-identity@3.6.1(react-native@0.68.7):
     resolution: {integrity: sha512-uJ9q+yq+Dhdo32gcv0p/AT7sKSAUH0y4ts9XRK/vx0dW9Q3XJy99mOJlq/6fkh4LfWeavJJlaCo9lSHNMWXx4w==}
     engines: {node: '>= 10.0.0'}
     dependencies:
-      '@aws-sdk/client-cognito-identity': 3.6.1_react-native@0.68.5
+      '@aws-sdk/client-cognito-identity': 3.6.1(react-native@0.68.7)
       '@aws-sdk/property-provider': 3.6.1
       '@aws-sdk/types': 3.6.1
       tslib: 1.14.1
@@ -589,14 +658,14 @@ packages:
       tslib: 1.14.1
     dev: false
 
-  /@aws-sdk/middleware-retry/3.6.1_react-native@0.68.5:
+  /@aws-sdk/middleware-retry@3.6.1(react-native@0.68.7):
     resolution: {integrity: sha512-WHeo4d2jsXxBP+cec2SeLb0btYXwYXuE56WLmNt0RvJYmiBzytUeGJeRa9HuwV574kgigAuHGCeHlPO36G4Y0Q==}
     engines: {node: '>= 10.0.0'}
     dependencies:
       '@aws-sdk/protocol-http': 3.6.1
       '@aws-sdk/service-error-classification': 3.6.1
       '@aws-sdk/types': 3.6.1
-      react-native-get-random-values: 1.8.0_react-native@0.68.5
+      react-native-get-random-values: 1.9.0(react-native@0.68.7)
       tslib: 1.14.1
       uuid: 3.4.0
     transitivePeerDependencies:
@@ -1436,8 +1505,8 @@ packages:
       '@babel/helper-plugin-utils': 7.20.2
     dev: true
 
-  /@babel/plugin-syntax-flow/7.18.6_@babel+core@7.17.5:
-    resolution: {integrity: sha512-LUbR+KNTBWCUAqRG9ex5Gnzu2IOkt8jRJbHHXFT9q+L9zm7M/QQbEqXyw1n1pohYvOyWC8CjeyjrSaIwiYjK7A==}
+  /@babel/plugin-syntax-flow@7.21.4(@babel/core@7.17.5):
+    resolution: {integrity: sha512-l9xd3N+XG4fZRxEP3vXdK6RW7vN1Uf5dxzRC/09wV86wqZ/YYQooBIGNsiRdfNR3/q2/5pPzV4B54J/9ctX5jw==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -1672,9 +1741,8 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.17.5
-      '@babel/helper-plugin-utils': 7.20.2
-      '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.17.5
-    dev: true
+      '@babel/helper-plugin-utils': 7.21.5
+      '@babel/plugin-syntax-flow': 7.21.4(@babel/core@7.17.5)
 
   /@babel/plugin-transform-for-of/7.18.8_@babel+core@7.17.5:
     resolution: {integrity: sha512-yEfTRnjuskWYo0k1mHUqrVWaZwrdq8AYbfrpqULOJOaucGSp4mNMVps+YtA8byoevxS/urwU75vyhQIxcCgiBQ==}
@@ -1854,7 +1922,7 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.17.5
-      '@babel/plugin-transform-react-jsx': 7.20.7_@babel+core@7.17.5
+      '@babel/plugin-transform-react-jsx': 7.22.0(@babel/core@7.17.5)
     dev: true
 
   /@babel/plugin-transform-react-jsx-self/7.18.6_@babel+core@7.17.5:
@@ -1875,8 +1943,8 @@ packages:
       '@babel/core': 7.17.5
       '@babel/helper-plugin-utils': 7.21.5
 
-  /@babel/plugin-transform-react-jsx/7.20.7_@babel+core@7.17.5:
-    resolution: {integrity: sha512-Tfq7qqD+tRj3EoDhY00nn2uP2hsRxgYGi5mLQ5TimKav0a9Lrpd4deE+fcLXU8zFYRjlKPHZhpCvfEA6qnBxqQ==}
+  /@babel/plugin-transform-react-jsx@7.22.0(@babel/core@7.17.5):
+    resolution: {integrity: sha512-Li7gdm7eGZJidME4KlXmzQdnuUwE4jhPnICgGpWN56W7GWhmCQ2LmDepyZX4zBsoSNWP9bqDcJo5wQFndcAd9Q==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -2141,12 +2209,12 @@ packages:
       '@babel/core': ^7.0.0-0
     dependencies:
       '@babel/core': 7.17.5
-      '@babel/helper-plugin-utils': 7.20.2
-      '@babel/helper-validator-option': 7.18.6
-      '@babel/plugin-transform-react-display-name': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-react-jsx': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-react-jsx-development': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-react-pure-annotations': 7.18.6_@babel+core@7.17.5
+      '@babel/helper-plugin-utils': 7.21.5
+      '@babel/helper-validator-option': 7.21.0
+      '@babel/plugin-transform-react-display-name': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-react-jsx': 7.22.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-react-jsx-development': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-react-pure-annotations': 7.18.6(@babel/core@7.17.5)
     dev: true
 
   /@babel/preset-typescript/7.16.7_@babel+core@7.17.5:
@@ -2623,7 +2691,7 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       '@emotion/hash': 0.8.0
       '@material-ui/types': 5.1.0_@types+react@17.0.39
       '@material-ui/utils': 4.11.3_react-dom@17.0.2+react@17.0.2
@@ -2655,8 +2723,8 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.20.7
-      '@material-ui/utils': 4.11.3_react-dom@17.0.2+react@17.0.2
+      '@babel/runtime': 7.22.0
+      '@material-ui/utils': 4.11.3(react-dom@17.0.2)(react@17.0.2)
       '@types/react': 17.0.39
       csstype: 2.6.21
       prop-types: 15.8.1
@@ -2682,7 +2750,7 @@ packages:
       react: ^16.8.0 || ^17.0.0
       react-dom: ^16.8.0 || ^17.0.0
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       prop-types: 15.8.1
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
@@ -2700,11 +2768,11 @@ packages:
       '@types/react':
         optional: true
     dependencies:
-      '@babel/runtime': 7.20.7
-      '@emotion/is-prop-valid': 1.2.0
-      '@mui/types': 7.2.3_@types+react@17.0.39
-      '@mui/utils': 5.11.2_react@17.0.2
-      '@popperjs/core': 2.11.6
+      '@babel/runtime': 7.22.0
+      '@emotion/is-prop-valid': 1.2.1
+      '@mui/types': 7.2.4(@types/react@17.0.39)
+      '@mui/utils': 5.13.1(react@17.0.2)
+      '@popperjs/core': 2.11.8
       '@types/react': 17.0.39
       clsx: 1.2.1
       prop-types: 15.8.1
@@ -2878,8 +2946,8 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
 
-  /@popperjs/core/2.11.6:
-    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
+  /@popperjs/core@2.11.8:
+    resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
 
   /@react-native-community/cli-debugger-ui/7.0.3:
@@ -3025,7 +3093,7 @@ packages:
       ora: 3.4.0
     dev: true
 
-  /@react-native-community/cli/7.0.4_react-native@0.68.5:
+  /@react-native-community/cli@7.0.4(@babel/core@7.17.5)(react-native@0.68.7):
     resolution: {integrity: sha512-W9nACtHWaLJZIP48cQmhQOnl5/7maoWE1Aji67MrLeIoB+ScNTJxaHfV4fMcklD6B6XEhaKokPACRZWm36zAog==}
     engines: {node: '>=12'}
     hasBin: true
@@ -3058,7 +3126,7 @@ packages:
       ora: 3.4.0
       pretty-format: 26.6.2
       prompts: 2.4.2
-      react-native: 0.68.5_24353ddb04343aa31089be039ffbe27f
+      react-native: 0.68.7(@babel/core@7.17.5)(@babel/preset-env@7.16.11)(react@17.0.2)
       semver: 6.3.0
       serve-static: 1.15.0
       strip-ansi: 5.2.0
@@ -3083,8 +3151,8 @@ packages:
     resolution: {integrity: sha512-K0aGNn1TjalKj+65D7ycc1//H9roAQ51GJVk5ZJQFb2teECGmzd86bYDC0aYdbRf7gtovescq4Zt6FR0tgXiHQ==}
     dev: true
 
-  /@remix-run/router/1.3.0:
-    resolution: {integrity: sha512-nwQoYb3m4DDpHTeOwpJEuDt8lWVcujhYYSFGLluC+9es2PyLjm+jjq3IeRBQbwBtPLJE/lkuHuGHr8uQLgmJRA==}
+  /@remix-run/router@1.6.2:
+    resolution: {integrity: sha512-LzqpSrMK/3JBAVBI9u3NWtOhWNw5AMQfrUFYB0+bDHTSw17z++WJLsPsxAuK+oSddsxk4d7F/JcdDPM1M5YAhA==}
     engines: {node: '>=14'}
     dev: false
 
@@ -3877,7 +3945,7 @@ packages:
     resolution: {integrity: sha512-Cg7TFGpIr01vOQNODXOOaGz2NpCU5gl8x1qJFbb6hbZxR7XrcE2vtbAsTAbJ7/xwJtUuJEw8K8Zr/AE0LHlesg==}
     engines: {node: '>=10', npm: '>=6'}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       cosmiconfig: 7.1.0
       resolve: 1.22.2
     dev: false
@@ -3947,32 +4015,32 @@ packages:
       '@babel/core': ^7.0.0
     dependencies:
       '@babel/core': 7.17.5
-      '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-proposal-object-rest-spread': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-syntax-class-properties': 7.12.13_@babel+core@7.17.5
-      '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-syntax-jsx': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-syntax-object-rest-spread': 7.8.3_@babel+core@7.17.5
-      '@babel/plugin-transform-arrow-functions': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-block-scoped-functions': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-block-scoping': 7.20.11_@babel+core@7.17.5
-      '@babel/plugin-transform-classes': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-computed-properties': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-destructuring': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-flow-strip-types': 7.19.0_@babel+core@7.17.5
-      '@babel/plugin-transform-for-of': 7.18.8_@babel+core@7.17.5
-      '@babel/plugin-transform-function-name': 7.18.9_@babel+core@7.17.5
-      '@babel/plugin-transform-literals': 7.18.9_@babel+core@7.17.5
-      '@babel/plugin-transform-member-expression-literals': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-modules-commonjs': 7.20.11_@babel+core@7.17.5
-      '@babel/plugin-transform-object-super': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-parameters': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-property-literals': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-react-display-name': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-react-jsx': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-shorthand-properties': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-spread': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-template-literals': 7.18.9_@babel+core@7.17.5
+      '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-proposal-object-rest-spread': 7.20.7(@babel/core@7.17.5)
+      '@babel/plugin-syntax-class-properties': 7.12.13(@babel/core@7.17.5)
+      '@babel/plugin-syntax-flow': 7.21.4(@babel/core@7.17.5)
+      '@babel/plugin-syntax-jsx': 7.21.4(@babel/core@7.17.5)
+      '@babel/plugin-syntax-object-rest-spread': 7.8.3(@babel/core@7.17.5)
+      '@babel/plugin-transform-arrow-functions': 7.21.5(@babel/core@7.17.5)
+      '@babel/plugin-transform-block-scoped-functions': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-block-scoping': 7.21.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-classes': 7.21.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-computed-properties': 7.21.5(@babel/core@7.17.5)
+      '@babel/plugin-transform-destructuring': 7.21.3(@babel/core@7.17.5)
+      '@babel/plugin-transform-flow-strip-types': 7.21.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-for-of': 7.21.5(@babel/core@7.17.5)
+      '@babel/plugin-transform-function-name': 7.18.9(@babel/core@7.17.5)
+      '@babel/plugin-transform-literals': 7.18.9(@babel/core@7.17.5)
+      '@babel/plugin-transform-member-expression-literals': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-modules-commonjs': 7.21.5(@babel/core@7.17.5)
+      '@babel/plugin-transform-object-super': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-parameters': 7.22.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-property-literals': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-react-display-name': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-react-jsx': 7.22.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-shorthand-properties': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-spread': 7.20.7(@babel/core@7.17.5)
+      '@babel/plugin-transform-template-literals': 7.18.9(@babel/core@7.17.5)
       babel-plugin-syntax-trailing-function-commas: 7.0.0-beta.0
     transitivePeerDependencies:
       - supports-color
@@ -4564,7 +4632,7 @@ packages:
   /css-vendor/2.0.8:
     resolution: {integrity: sha512-x9Aq0XTInxrkuFeHKbYC7zWY8ai7qJ04Kxd9MnvbC1uO5DagxoHQjm4JvG+vCdXOoFtCjbL2XSZfxmoYa9uQVQ==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       is-in-browser: 1.1.3
     dev: false
 
@@ -4825,7 +4893,7 @@ packages:
   /dom-helpers/5.2.1:
     resolution: {integrity: sha512-nRCa7CK3VTrM2NmGkIy4cbK7IZlgBE/PYMn55rrXefr5xXDP0LdtfPnblFDoVdcAfslJ7or6iqAUnx0CCGIWQA==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       csstype: 3.1.2
     dev: false
 
@@ -6757,7 +6825,7 @@ packages:
   /jss-plugin-camel-case/10.9.2:
     resolution: {integrity: sha512-wgBPlL3WS0WDJ1lPJcgjux/SHnDuu7opmgQKSraKs4z8dCCyYMx9IDPFKBXQ8Q5dVYij1FFV0WdxyhuOOAXuTg==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       hyphenate-style-name: 1.0.4
       jss: 10.10.0
     dev: false
@@ -6765,21 +6833,21 @@ packages:
   /jss-plugin-default-unit/10.9.2:
     resolution: {integrity: sha512-pYg0QX3bBEFtTnmeSI3l7ad1vtHU42YEEpgW7pmIh+9pkWNWb5dwS/4onSfAaI0kq+dOZHzz4dWe+8vWnanoSg==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       jss: 10.10.0
     dev: false
 
   /jss-plugin-global/10.9.2:
     resolution: {integrity: sha512-GcX0aE8Ef6AtlasVrafg1DItlL/tWHoC4cGir4r3gegbWwF5ZOBYhx04gurPvWHC8F873aEGqge7C17xpwmp2g==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       jss: 10.10.0
     dev: false
 
   /jss-plugin-nested/10.9.2:
     resolution: {integrity: sha512-VgiOWIC6bvgDaAL97XCxGD0BxOKM0K0zeB/ECyNaVF6FqvdGB9KBBWRdy2STYAss4VVA7i5TbxFZN+WSX1kfQA==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       jss: 10.10.0
       tiny-warning: 1.0.3
     dev: false
@@ -6787,14 +6855,14 @@ packages:
   /jss-plugin-props-sort/10.9.2:
     resolution: {integrity: sha512-AP1AyUTbi2szylgr+O0OB7gkIxEGzySLITZ2GpsaoX72YMCGI2jYAc+WUhPfvUnZYiauF4zTnN4V4TGuvFjJlw==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       jss: 10.10.0
     dev: false
 
   /jss-plugin-rule-value-function/10.9.2:
     resolution: {integrity: sha512-vf5ms8zvLFMub6swbNxvzsurHfUZ5Shy5aJB2gIpY6WNA3uLinEcxYyraQXItRHi5ivXGqYciFDRM2ZoVoRZ4Q==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       jss: 10.10.0
       tiny-warning: 1.0.3
     dev: false
@@ -6802,7 +6870,7 @@ packages:
   /jss-plugin-vendor-prefixer/10.9.2:
     resolution: {integrity: sha512-SxcEoH+Rttf9fEv6KkiPzLdXRmI6waOTcMkbbEFgdZLDYNIP9UKNHFy6thhbRKqv0XMQZdrEsbDyV464zE/dUA==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       css-vendor: 2.0.8
       jss: 10.10.0
     dev: false
@@ -6810,7 +6878,7 @@ packages:
   /jss/10.9.2:
     resolution: {integrity: sha512-b8G6rWpYLR4teTUbGd4I4EsnWjg7MN0Q5bSsjKhVkJVjhQDy2KzkbD2AW3TuT0RYZVmZZHKIrXDn6kjU14qkUg==}
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       csstype: 3.1.2
       is-in-browser: 1.1.3
       tiny-warning: 1.0.3
@@ -7102,44 +7170,44 @@ packages:
     resolution: {integrity: sha512-tgTG4j0SKwLHbLRELMmgkgkjV1biYkWlGGKOmM484/fJC6bpDikdaFhfjsyE+W+qt7I5szbCPCickMTNQ+zwig==}
     dependencies:
       '@babel/core': 7.17.5
-      '@babel/plugin-proposal-class-properties': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-proposal-export-default-from': 7.18.10_@babel+core@7.17.5
-      '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-proposal-object-rest-spread': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-proposal-optional-catch-binding': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-proposal-optional-chaining': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-syntax-dynamic-import': 7.8.3_@babel+core@7.17.5
-      '@babel/plugin-syntax-export-default-from': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-syntax-flow': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-syntax-nullish-coalescing-operator': 7.8.3_@babel+core@7.17.5
-      '@babel/plugin-syntax-optional-chaining': 7.8.3_@babel+core@7.17.5
-      '@babel/plugin-transform-arrow-functions': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-async-to-generator': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-block-scoping': 7.20.11_@babel+core@7.17.5
-      '@babel/plugin-transform-classes': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-computed-properties': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-destructuring': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-exponentiation-operator': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-flow-strip-types': 7.19.0_@babel+core@7.17.5
-      '@babel/plugin-transform-for-of': 7.18.8_@babel+core@7.17.5
-      '@babel/plugin-transform-function-name': 7.18.9_@babel+core@7.17.5
-      '@babel/plugin-transform-literals': 7.18.9_@babel+core@7.17.5
-      '@babel/plugin-transform-modules-commonjs': 7.20.11_@babel+core@7.17.5
-      '@babel/plugin-transform-object-assign': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-parameters': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-react-display-name': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-react-jsx': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-react-jsx-self': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-react-jsx-source': 7.19.6_@babel+core@7.17.5
-      '@babel/plugin-transform-regenerator': 7.20.5_@babel+core@7.17.5
-      '@babel/plugin-transform-runtime': 7.17.0_@babel+core@7.17.5
-      '@babel/plugin-transform-shorthand-properties': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-spread': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-sticky-regex': 7.18.6_@babel+core@7.17.5
-      '@babel/plugin-transform-template-literals': 7.18.9_@babel+core@7.17.5
-      '@babel/plugin-transform-typescript': 7.20.7_@babel+core@7.17.5
-      '@babel/plugin-transform-unicode-regex': 7.18.6_@babel+core@7.17.5
-      '@babel/template': 7.20.7
+      '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-proposal-export-default-from': 7.18.10(@babel/core@7.17.5)
+      '@babel/plugin-proposal-nullish-coalescing-operator': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-proposal-object-rest-spread': 7.20.7(@babel/core@7.17.5)
+      '@babel/plugin-proposal-optional-catch-binding': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-proposal-optional-chaining': 7.21.0(@babel/core@7.17.5)
+      '@babel/plugin-syntax-dynamic-import': 7.8.3(@babel/core@7.17.5)
+      '@babel/plugin-syntax-export-default-from': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-syntax-flow': 7.21.4(@babel/core@7.17.5)
+      '@babel/plugin-syntax-nullish-coalescing-operator': 7.8.3(@babel/core@7.17.5)
+      '@babel/plugin-syntax-optional-chaining': 7.8.3(@babel/core@7.17.5)
+      '@babel/plugin-transform-arrow-functions': 7.21.5(@babel/core@7.17.5)
+      '@babel/plugin-transform-async-to-generator': 7.20.7(@babel/core@7.17.5)
+      '@babel/plugin-transform-block-scoping': 7.21.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-classes': 7.21.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-computed-properties': 7.21.5(@babel/core@7.17.5)
+      '@babel/plugin-transform-destructuring': 7.21.3(@babel/core@7.17.5)
+      '@babel/plugin-transform-exponentiation-operator': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-flow-strip-types': 7.21.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-for-of': 7.21.5(@babel/core@7.17.5)
+      '@babel/plugin-transform-function-name': 7.18.9(@babel/core@7.17.5)
+      '@babel/plugin-transform-literals': 7.18.9(@babel/core@7.17.5)
+      '@babel/plugin-transform-modules-commonjs': 7.21.5(@babel/core@7.17.5)
+      '@babel/plugin-transform-object-assign': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-parameters': 7.22.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-react-display-name': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-react-jsx': 7.22.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-react-jsx-self': 7.21.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-react-jsx-source': 7.19.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-regenerator': 7.21.5(@babel/core@7.17.5)
+      '@babel/plugin-transform-runtime': 7.17.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-shorthand-properties': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-spread': 7.20.7(@babel/core@7.17.5)
+      '@babel/plugin-transform-sticky-regex': 7.18.6(@babel/core@7.17.5)
+      '@babel/plugin-transform-template-literals': 7.18.9(@babel/core@7.17.5)
+      '@babel/plugin-transform-typescript': 7.22.0(@babel/core@7.17.5)
+      '@babel/plugin-transform-unicode-regex': 7.18.6(@babel/core@7.17.5)
+      '@babel/template': 7.21.9
       react-refresh: 0.4.3
     transitivePeerDependencies:
       - supports-color
@@ -8344,7 +8412,7 @@ packages:
       react-side-effect: 2.1.2_react@17.0.2
     dev: false
 
-  /react-i18next/11.15.6_1622241db2281c7eeaec01382c7056b3:
+  /react-i18next@11.15.6(i18next@19.9.2)(react-dom@17.0.2)(react-native@0.68.7)(react@17.0.2):
     resolution: {integrity: sha512-OUWcFdNgIA9swVx3JGIreuquglAinpRwB/HYrCprTN+s9BQDt9LSiY7x5DGc2JzVpwqtpoTV7oRUTOxEPNyUPw==}
     peerDependencies:
       i18next: '>= 19.0.0'
@@ -8362,8 +8430,8 @@ packages:
       html-parse-stringify: 3.0.1
       i18next: 19.9.2
       react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-native: 0.68.5_24353ddb04343aa31089be039ffbe27f
+      react-dom: 17.0.2(react@17.0.2)
+      react-native: 0.68.7(@babel/core@7.17.5)(@babel/preset-env@7.16.11)(react@17.0.2)
     dev: false
 
   /react-is/16.13.1:
@@ -8406,28 +8474,28 @@ packages:
       - supports-color
     dev: true
 
-  /react-native-get-random-values/1.8.0_react-native@0.68.5:
-    resolution: {integrity: sha512-H/zghhun0T+UIJLmig3+ZuBCvF66rdbiWUfRSNS6kv5oDSpa1ZiVyvRWtuPesQpT8dXj+Bv7WJRQOUP+5TB1sA==}
+  /react-native-get-random-values@1.9.0(react-native@0.68.7):
+    resolution: {integrity: sha512-+29IR2oxzxNVeaRwCqGZ9ABadzMI8SLTBidrIDXPOkKnm5+kEmLt34QKM4JV+d2usPErvKyS85le0OmGTHnyWQ==}
     peerDependencies:
       react-native: '>=0.56'
     dependencies:
       fast-base64-decode: 1.0.0
-      react-native: 0.68.5_24353ddb04343aa31089be039ffbe27f
+      react-native: 0.68.7(@babel/core@7.17.5)(@babel/preset-env@7.16.11)(react@17.0.2)
     dev: false
 
   /react-native-gradle-plugin/0.0.6:
     resolution: {integrity: sha512-eIlgtsmDp1jLC24dRn43hB3kEcZVqx6DUQbR0N1ABXGnMEafm9I3V3dUUeD1vh+Dy5WqijSoEwLNUPLgu5zDMg==}
     dev: true
 
-  /react-native/0.68.5_24353ddb04343aa31089be039ffbe27f:
-    resolution: {integrity: sha512-t3kiQ/gumFV+0r/NRSIGtYxanjY4da0utFqHgkMcRPJVwXFWC0Fr8YiOeRGYO1dp8EfrSsOjtfWic/inqVYlbQ==}
+  /react-native@0.68.7(@babel/core@7.17.5)(@babel/preset-env@7.16.11)(react@17.0.2):
+    resolution: {integrity: sha512-t7XvcwKyXhN9vR8GfgLUyEYYccwI390pG7debFSGns/5Vb0+/ZiGuSmVZGLNt1NVc3UH2zI2GGkDdSJR8Locig==}
     engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
       react: 17.0.2
     dependencies:
       '@jest/create-cache-key-function': 27.5.1
-      '@react-native-community/cli': 7.0.4_react-native@0.68.5
+      '@react-native-community/cli': 7.0.4(@babel/core@7.17.5)(react-native@0.68.7)
       '@react-native-community/cli-platform-android': 7.0.1
       '@react-native-community/cli-platform-ios': 7.0.1
       '@react-native/assets': 1.0.0
@@ -8503,26 +8571,26 @@ packages:
       shallow-equal: 1.2.1
     dev: false
 
-  /react-router-dom/6.7.0_react-dom@17.0.2+react@17.0.2:
-    resolution: {integrity: sha512-jQtXUJyhso3kFw430+0SPCbmCmY1/kJv8iRffGHwHy3CkoomGxeYzMkmeSPYo6Egzh3FKJZRAL22yg5p2tXtfg==}
+  /react-router-dom@6.11.2(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-JNbKtAeh1VSJQnH6RvBDNhxNwemRj7KxCzc5jb7zvDSKRnPWIFj9pO+eXqjM69gQJ0r46hSz1x4l9y0651DKWw==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
       react-dom: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.3.0
+      '@remix-run/router': 1.6.2
       react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-router: 6.7.0_react@17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-router: 6.11.2(react@17.0.2)
     dev: false
 
-  /react-router/6.7.0_react@17.0.2:
-    resolution: {integrity: sha512-KNWlG622ddq29MAM159uUsNMdbX8USruoKnwMMQcs/QWZgFUayICSn2oB7reHce1zPj6CG18kfkZIunSSRyGHg==}
+  /react-router@6.11.2(react@17.0.2):
+    resolution: {integrity: sha512-74z9xUSaSX07t3LM+pS6Un0T55ibUE/79CzfZpy5wsPDZaea1F8QkrsiyRnA2YQ7LwE/umaydzXZV80iDCPkMg==}
     engines: {node: '>=14'}
     peerDependencies:
       react: '>=16.8'
     dependencies:
-      '@remix-run/router': 1.3.0
+      '@remix-run/router': 1.6.2
       react: 17.0.2
     dev: false
 
@@ -8550,7 +8618,7 @@ packages:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
     dependencies:
-      '@babel/runtime': 7.17.2
+      '@babel/runtime': 7.22.0
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
@@ -8608,8 +8676,8 @@ packages:
       tslib: 2.4.1
     dev: true
 
-  /recoil/0.7.6_a508a016322cb0cfa568f892dc7f22d1:
-    resolution: {integrity: sha512-hsBEw7jFdpBCY/tu2GweiyaqHKxVj6EqF2/SfrglbKvJHhpN57SANWvPW+gE90i3Awi+A5gssOd3u+vWlT+g7g==}
+  /recoil@0.7.7(react-dom@17.0.2)(react-native@0.68.7)(react@17.0.2):
+    resolution: {integrity: sha512-8Og5KPQW9LwC577Vc7Ug2P0vQshkv1y3zG3tSSkWMqkWSwHmE+by06L8JtnGocjW6gcCvfwB3YtrJG6/tWivNQ==}
     peerDependencies:
       react: '>=16.13.1'
       react-dom: '*'
@@ -8622,8 +8690,8 @@ packages:
     dependencies:
       hamt_plus: 1.0.2
       react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
-      react-native: 0.68.5_24353ddb04343aa31089be039ffbe27f
+      react-dom: 17.0.2(react@17.0.2)
+      react-native: 0.68.7(@babel/core@7.17.5)(@babel/preset-env@7.16.11)(react@17.0.2)
     dev: false
 
   /regenerate-unicode-properties/10.1.0:
@@ -8643,8 +8711,7 @@ packages:
   /regenerator-transform/0.15.1:
     resolution: {integrity: sha512-knzmNAcuyxV+gQCufkYcvOqX/qIIfHLv0u5x79kRxuGojfYVky1f15TzZEu2Avte8QGepvUNTnLskf8E6X6Vyg==}
     dependencies:
-      '@babel/runtime': 7.20.7
-    dev: true
+      '@babel/runtime': 7.22.0
 
   /regex-not/1.0.2:
     resolution: {integrity: sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==}
@@ -8799,9 +8866,9 @@ packages:
     dependencies:
       glob: 7.2.3
 
-  /rollup/2.77.3:
-    resolution: {integrity: sha512-/qxNTG7FbmefJWoeeYJFbHehJ2HNWnjkAFRKzWN/45eNBBF/r8lo992CwcJXEzyVxs5FmfId+vTSTQDb+bxA+g==}
-    engines: {node: '>=10.0.0'}
+  /rollup@3.23.0:
+    resolution: {integrity: sha512-h31UlwEi7FHihLe1zbk+3Q7z1k/84rb9BSwmBSr/XjOCEaBJ2YyedQDuM0t/kfOS0IxM+vk1/zI9XxYj9V+NJQ==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
@@ -9692,26 +9759,35 @@ packages:
       fast-glob: 3.2.12
     dev: false
 
-  /vite/2.9.15_sass@1.49.9:
-    resolution: {integrity: sha512-fzMt2jK4vQ3yK56te3Kqpkaeq9DkcZfBbzHwYpobasvgYmP2SoAr6Aic05CsB4CzCZbsDv4sujX3pkEGhLabVQ==}
-    engines: {node: '>=12.2.0'}
+  /vite@4.3.5(@types/node@17.0.21)(sass@1.49.9):
+    resolution: {integrity: sha512-0gEnL9wiRFxgz40o/i/eTBwm+NEbpUeTWhzKrZDSdKm6nplj+z4lKz8ANDgildxHm47Vg8EUia0aicKbawUVVA==}
+    engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
+      '@types/node': '>= 14'
       less: '*'
       sass: '*'
       stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
     peerDependenciesMeta:
+      '@types/node':
+        optional: true
       less:
         optional: true
       sass:
         optional: true
       stylus:
         optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
     dependencies:
+      '@types/node': 17.0.21
       esbuild: 0.14.43
       postcss: 8.4.23
-      resolve: 1.22.2
-      rollup: 2.77.3
+      rollup: 3.23.0
       sass: 1.49.9
     optionalDependencies:
       fsevents: 2.3.2

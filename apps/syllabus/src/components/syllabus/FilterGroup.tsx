@@ -1,20 +1,20 @@
-import React from "react";
+import React from "react"
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import { WithStyles, createStyles } from "@material-ui/core";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormLabel from "@material-ui/core/FormLabel";
-import { withStyles } from "@material-ui/core/styles";
-import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
-import styled from "styled-components";
+import { Colors } from "wasedatime-ui"
+import { WithStyles, createStyles } from "@material-ui/core"
+import Checkbox from "@material-ui/core/Checkbox"
+import FormControlLabel from "@material-ui/core/FormControlLabel"
+import FormGroup from "@material-ui/core/FormGroup"
+import FormLabel from "@material-ui/core/FormLabel"
+import { withStyles } from "@material-ui/core/styles"
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown"
+import styled from "styled-components"
 
-import { ThemeContext } from "@app/utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context"
 
 type StyledDropdownProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   font-size: 0.9em !important;
@@ -69,7 +69,7 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
     font-size: 14px !important;
     color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
   }
-`;
+`
 
 // const StyledFormControlLabel = styled(FormControlLabel)`
 //   label {
@@ -111,15 +111,15 @@ const styles = (theme) =>
     checkBoxChecked: {
       color: `${colors.dark.lighter} !important`,
     },
-  });
+  })
 
 interface Props extends WithStyles<typeof styles> {
-  handleToggleFilter: (name: string, value: any) => void;
-  legend: string;
-  inputs: any;
-  inputName: string;
-  classes: any;
-  filterType: string;
+  handleToggleFilter: (name: string, value: any) => void
+  legend: string
+  inputs: any
+  inputName: string
+  classes: any
+  filterType: string
 }
 
 const FilterGroup = ({
@@ -130,9 +130,9 @@ const FilterGroup = ({
   classes,
   filterType,
 }: Props) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext)
 
-  let filterItems;
+  let filterItems
   if (filterType === "checkbox") {
     filterItems = inputs.map((input) => (
       <FormControlLabel
@@ -144,7 +144,7 @@ const FilterGroup = ({
             value={input.value}
             checked={input.ischecked}
             onChange={(e) => {
-              handleToggleFilter(e.target.name, e.target.value);
+              handleToggleFilter(e.target.name, e.target.value)
             }}
             classes={{
               root: classes.checkBox,
@@ -160,7 +160,7 @@ const FilterGroup = ({
           label: classes.formControlLabel_label,
         }}
       />
-    ));
+    ))
   } else if (filterType === "dropdown") {
     filterItems = (
       <StyledDropdown
@@ -174,12 +174,12 @@ const FilterGroup = ({
         }))}
         value={inputs.filter((i) => i.ischecked).map((i) => i.value)}
         onChange={(e, data) => {
-          handleToggleFilter(inputName, data.value);
+          handleToggleFilter(inputName, data.value)
         }}
         aria-label={inputName}
         $isDark={theme === "dark"}
       />
-    );
+    )
   }
 
   return (
@@ -193,7 +193,7 @@ const FilterGroup = ({
         {filterItems}
       </FormGroup>
     </div>
-  );
-};
+  )
+}
 
-export default withStyles(styles)(FilterGroup);
+export default withStyles(styles)(FilterGroup)

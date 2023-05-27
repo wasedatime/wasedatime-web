@@ -1,45 +1,41 @@
-import React from "react";
+import React from "react"
 
-import { faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styled from "styled-components";
+import { faStar, faStarHalf } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import styled from "styled-components"
 
 const FilledStar = styled(FontAwesomeIcon)`
   color: orange;
   vertical-align: 0.1em;
-`;
+`
 
 const BlankStar = styled(FontAwesomeIcon)`
   // color: #ccc;
   vertical-align: 0.1em;
-`;
+`
 
 const StyledReviewStars = styled("span")`
   white-space: pre;
-`;
+`
 
 const displayFilledStars = (scale: number): JSX.Element[] => {
-  const stars = [];
+  const stars = []
   for (let n = Math.floor(scale); n > 0; n--) {
-    stars.push(<FilledStar key={n} icon={faStar} />);
+    stars.push(<FilledStar key={n} icon={faStar} />)
   }
 
-  return stars;
+  return stars
   // return [...Array(Math.floor(scale)).keys()].map(i => {
   //   return <FilledStar key={i} icon={faStar} />
   // })
-};
+}
 
 const displayHalfStar = (scale: number): JSX.Element | string => {
-  return (scale - Math.floor(scale)) * 2 ? (
-    <FilledStar icon={faStarHalf} />
-  ) : (
-    ""
-  );
-};
+  return (scale - Math.floor(scale)) * 2 ? <FilledStar icon={faStarHalf} /> : ""
+}
 
 const displayBlankStars = (scale: number): JSX.Element[] => {
-  const stars = [];
+  const stars = []
   for (let n = 5 - Math.ceil(scale); n > 0; n--) {
     stars.push(
       <BlankStar
@@ -47,15 +43,15 @@ const displayBlankStars = (scale: number): JSX.Element[] => {
         icon={faStar}
         className="text-light-text3 dark:text-dark-text2"
       />
-    );
+    )
   }
 
-  return stars;
+  return stars
   // return [...Array(5-Math.ceil(scale)).keys()].map(i => <BlankStar key={i} icon={faStar} />)
-};
+}
 
 interface Props {
-  scale: number;
+  scale: number
 }
 
 const ReviewStars = ({ scale }: Props) => (
@@ -64,6 +60,6 @@ const ReviewStars = ({ scale }: Props) => (
     {displayHalfStar(scale)}
     {displayBlankStars(scale)}
   </StyledReviewStars>
-);
+)
 
-export default ReviewStars;
+export default ReviewStars

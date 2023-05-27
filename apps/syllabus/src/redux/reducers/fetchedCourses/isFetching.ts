@@ -3,24 +3,24 @@ import {
   FETCH_COURSES_SUCCESS,
   FETCH_COURSES_FAILURE,
   SAVE_TIMETABLE,
-} from "@app/redux/actions/types";
+} from "@app/redux/actions/types"
 
 interface ActionProps {
-  type: string;
+  type: string
 }
 
 const isFetching = (state = false, action: ActionProps): boolean => {
   switch (action.type) {
     case FETCH_COURSES_REQUEST:
-      return true;
+      return true
     case FETCH_COURSES_SUCCESS:
     case FETCH_COURSES_FAILURE:
-      return false;
+      return false
     case SAVE_TIMETABLE:
-      return false;
+      return false
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default isFetching;
+export default isFetching

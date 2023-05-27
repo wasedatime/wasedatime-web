@@ -1,103 +1,123 @@
-import Link from "next/link";
-import { makeStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
-import Hidden from "@material-ui/core/Hidden";
-import { useEffect, useState } from "react";
-import { FeedInfo } from "../constants/types";
-import { Lang, LangMap } from "../constants/langs";
+"use client"
 
-const useStyles = makeStyles({
-  card: {
-    display: "flex",
-    padding: 0
-  },
-  cardContent: {
-    padding: 20
-  },
-  cardDetails: {
-    flex: 1,
-    padding: 10,
-    lineHeight: 1.5
-  },
-  cardMedia: {
-    width: 200,
-  },
-  title: {
-    fontSize: 20,
-    fontFamily: "Lato, Yu Gothic Medium, Segoe UI"
-  },
-  text: {
-    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
-    color: '#666'
-  },
-  lang: {
-    float: 'right',
-    borderRadius: 5,
-    background: '#bbb',
-    color: '#fff',
-    padding: '0px 5px'
-  }
-});
+import Link from "next/link"
+import Grid from "@mui/material/Grid"
+import Card from "@mui/material/Card"
+import CardActionArea from "@mui/material/CardActionArea"
+import CardContent from "@mui/material/CardContent"
+import CardMedia from "@mui/material/CardMedia"
+import Hidden from "@mui/material/Hidden"
+import React, { useEffect, useState } from "react"
+import { FeedInfo } from "../constants/types"
+import { Lang, LangMap } from "../constants/langs"
 
 type Props = {
-  name: string;
-  feed: FeedInfo;
-  locale: string;
+  name: string
+  feed: FeedInfo
+  locale: string
 }
 
 const FeedLink = ({ name, feed, locale }: Props) => {
-  const classes = useStyles();
-  const [cover, setCover] = useState('');
+  const [cover, setCover] = useState("")
 
   useEffect(() => {
-    var coverImg;
+    var coverImg
     try {
-      coverImg = require(`../public/feeds/${name}/media/image1.jpg`);
+      coverImg = require(`../public/feeds/${name}/media/image1.jpg`)
     } catch (e: any) {
-      if (e.code === 'MODULE_NOT_FOUND') {
+      if (e.code === "MODULE_NOT_FOUND") {
         try {
-          coverImg = require(`../public/feeds/${name}/media/image1.jpeg`);
+          coverImg = require(`../public/feeds/${name}/media/image1.jpeg`)
         } catch (err: any) {
-          if (err.code === 'MODULE_NOT_FOUND') {
+          if (err.code === "MODULE_NOT_FOUND") {
             try {
-              coverImg = require(`../public/feeds/${name}/media/image1.png`);
+              coverImg = require(`../public/feeds/${name}/media/image1.png`)
             } catch (error: any) {
-              coverImg = null;
+              coverImg = null
             }
           }
         }
       }
     }
-    setCover(coverImg);
+    setCover(coverImg)
   }, [])
-  
+
   return (
     <Grid item xs={12} md={6}>
       <CardActionArea component="a" href="#">
-        <Link href={(process.env.APP_ENV === 'production' ? "/feeds/" : "") + locale + '/' + name} passHref>
-          <Card className={classes.card}>
-            <div className={classes.cardDetails}>
-              <CardContent className={classes.cardContent}>
-                <h3 className={classes.title}>
+        <Link
+          href={
+            (process.env.APP_ENV === "production" ? "/feeds/" : "") +
+            locale +
+            "/" +
+            name
+          }
+          passHref
+        >
+          <Card
+            sx={{
+              display: "flex",
+              padding: 0,
+            }}
+          >
+            <div
+              style={{
+                flex: 1,
+                padding: 10,
+                lineHeight: 1.5,
+              }}
+            >
+              <CardContent
+                sx={{
+                  padding: 20,
+                }}
+              >
+                <h3
+                  style={{
+                    fontSize: 20,
+                    fontFamily: "Lato, Yu Gothic Medium, Segoe UI",
+                  }}
+                >
                   {feed.title}
                 </h3>
                 <br />
-                <p className={classes.text}>
-                  <b>{feed.partner}</b> {feed.authors.map((author, i) => i === 0 ? author :  ' & ' + author)}
+                <p
+                  style={{
+                    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+                    color: "#666",
+                  }}
+                >
+                  <b>{feed.partner}</b>{" "}
+                  {feed.authors.map((author, i) =>
+                    i === 0 ? author : " & " + author
+                  )}
                 </p>
-                <p className={classes.text}>
+                <p
+                  style={{
+                    fontFamily: "Segoe UI, Yu Gothic Medium, Lato",
+                    color: "#666",
+                  }}
+                >
                   {feed.date}
-                  <span className={classes.lang}>{LangMap[feed.lang as Lang]}</span>
+                  <span
+                    style={{
+                      float: "right",
+                      borderRadius: 5,
+                      background: "#bbb",
+                      color: "#fff",
+                      padding: "0px 5px",
+                    }}
+                  >
+                    {LangMap[feed.lang as Lang]}
+                  </span>
                 </p>
               </CardContent>
             </div>
             <Hidden xsDown>
               <CardMedia
-                className={classes.cardMedia}
+                sx={{
+                  width: 200,
+                }}
                 image={cover}
                 title="Feed Cover Image"
               />
@@ -109,4 +129,4 @@ const FeedLink = ({ name, feed, locale }: Props) => {
   )
 }
 
-export default FeedLink;
+export default FeedLink

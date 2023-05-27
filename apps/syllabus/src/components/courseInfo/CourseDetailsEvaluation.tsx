@@ -1,41 +1,41 @@
-import React from "react";
+import React from "react"
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { PieChart } from "react-minimal-pie-chart";
-import MediaQuery from "react-responsive";
-import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
-import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import styled from "styled-components";
+import { media } from "wasedatime-ui"
+import { WithTranslation, withTranslation } from "react-i18next"
+import { PieChart } from "react-minimal-pie-chart"
+import MediaQuery from "react-responsive"
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid"
+import Table from "semantic-ui-react/dist/commonjs/collections/Table"
+import styled from "styled-components"
 
-import { SyllabusKey } from "@app/constants/syllabus-data";
-import Course from "@app/types/course";
-import { ThemeContext } from "@app/utils/theme-context";
+import { SyllabusKey } from "@app/constants/syllabus-data"
+import Course from "@app/types/course"
+import { ThemeContext } from "@app/utils/theme-context"
 
-const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"];
-const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"];
+const evalTypeMap = ["Exam", "Papers", "Class Participation", "Others"]
+const evalColorMap = ["#c2402c", "#c87f3d", "#a2ae67", "#6c92b4", "#28b4a9"]
 
 type StyledTableProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const StyledTable = styled(Table)<StyledTableProps>`
   ${(props) => props.$isDark && "border: none !important;"}
-`;
+`
 
 const ChartWrapper = styled(Grid.Column)`
   width: 150px;
   height: 150px;
   margin: 0px auto;
-  ${media.phone`width: 100px; height: 100px;`}
-`;
+  ${media("phone", `width: 100px; height: 100px;`)}
+`
 
 interface Props extends WithTranslation {
-  course: Course;
+  course: Course
 }
 
 const CourseDetailsEvaluation = ({ course, t }: Props) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext)
 
   if (Array.isArray(course[SyllabusKey.EVAL])) {
     const evalChartData = (course[SyllabusKey.EVAL] as any[])
@@ -48,7 +48,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
         ),
         value: e[SyllabusKey.EVAL_PERCENT],
         color: evalColorMap[e[SyllabusKey.EVAL_TYPE]],
-      }));
+      }))
 
     const evalsTable = (
       <StyledTable $isDark={theme === "dark"}>
@@ -79,7 +79,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
           ))}
         </Table.Body>
       </StyledTable>
-    );
+    )
     const evalsChart = (
       <PieChart
         data={evalChartData}
@@ -97,7 +97,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
         viewBoxSize={[50, 100]}
         center={[30, 50]}
       />
-    );
+    )
 
     return course[SyllabusKey.EVAL].length > 0 ? (
       <Grid>
@@ -112,7 +112,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
       <p style={{ textAlign: "center" }}>
         Click the blue arrow button above to check the details
       </p>
-    );
+    )
   }
 
   return (
@@ -121,7 +121,7 @@ const CourseDetailsEvaluation = ({ course, t }: Props) => {
         .split("\n")
         .map((e, i) => e && <p key={i}>{e}</p>)}
     </div>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(CourseDetailsEvaluation);
+export default withTranslation("translation")(CourseDetailsEvaluation)

@@ -1,23 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react"
 
-import API from "@aws-amplify/api";
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
-import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
-import * as Sentry from "@sentry/react";
-import i18next from "i18next";
-import throttle from "lodash/throttle";
-import ReactGA from "react-ga";
-import { Provider } from "react-redux";
+import API from "@aws-amplify/api"
+import { Lang, LoadingSpinner, i18nConfig, configAuth } from "wasedatime-ui"
+import * as Sentry from "@sentry/react"
+import i18next from "i18next"
+import throttle from "lodash/throttle"
+import ReactGA from "react-ga"
+import { Provider } from "react-redux"
 
-import App from "@app/App";
-import ErrorFallback from "@app/components/ErrorFallback";
-import configureStore from "@app/configureStore";
-import translationEN from "@app/constants/locales/en/translation.json";
-import translationJA from "@app/constants/locales/ja/translation.json";
-import { saveState } from "@app/utils/localforage-global-state";
-import { ThemeContext, ThemeProvider } from "@app/utils/theme-context";
+import App from "@app/App"
+import ErrorFallback from "@app/components/ErrorFallback"
+import configureStore from "@app/configureStore"
+import translationEN from "@app/constants/locales/en/translation.json"
+import translationJA from "@app/constants/locales/ja/translation.json"
+import { saveState } from "@app/utils/localforage-global-state"
+import { ThemeContext, ThemeProvider } from "@app/utils/theme-context"
 
 const config = {
   API: {
@@ -28,28 +25,28 @@ const config = {
       },
     ],
   },
-};
-API.configure(config);
+}
+API.configure(config)
 
-configAuth();
+configAuth()
 
 ReactGA.initialize(import.meta.env.VITE_GA_ID, {
   debug: false,
   titleCase: false,
-});
+})
 
 const LoadingSpinnerContainer = () => {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(ThemeContext)
 
   return (
     <div style={{ height: "100vh" }} className="dark:bg-dark-bgMain">
       <LoadingSpinner theme={theme} message="Loading..." />
     </div>
-  );
-};
+  )
+}
 
 const Root = () => {
-  const [reduxStore, setReduxStore] = useState(null);
+  const [reduxStore, setReduxStore] = useState(null)
 
   useEffect(() => {
     i18nConfig({
@@ -58,24 +55,24 @@ const Root = () => {
         [Lang.EN]: translationEN,
         [Lang.JA]: translationJA,
       },
-    });
+    })
     // i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
     if (!reduxStore) {
-      storeConfig();
+      storeConfig()
     }
-  }, []);
+  }, [])
 
   const storeConfig = async () => {
-    const store = await configureStore();
+    const store = await configureStore()
 
     store.subscribe(
       throttle(() => {
-        const state = store.getState();
-        saveState(state);
+        const state = store.getState()
+        saveState(state)
       }, 800)
-    );
-    setReduxStore(store);
-  };
+    )
+    setReduxStore(store)
+  }
 
   return (
     <ThemeProvider>
@@ -93,7 +90,7 @@ const Root = () => {
         <LoadingSpinnerContainer />
       )}
     </ThemeProvider>
-  );
-};
+  )
+}
 
-export default Root;
+export default Root

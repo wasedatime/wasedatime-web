@@ -1,4 +1,4 @@
-import { School } from "@app/constants/syllabus-data";
+import { School } from "@app/constants/syllabus-data"
 
 export const schoolCodeMap: Readonly<{ [k: string]: string }> = {
   "11": School.PSE,
@@ -38,6 +38,6 @@ export const schoolCodeMap: Readonly<{ [k: string]: string }> = {
   "92": School.CJL,
   "98": School.CIE,
   "9S": School.GEC,
-};
+}
 
-export default schoolCodeMap;
+export default schoolCodeMap

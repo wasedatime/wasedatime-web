@@ -1,17 +1,17 @@
-import React, { lazy } from "react";
+import React, { lazy } from "react"
 
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import { useTranslation } from "react-i18next";
+import { Header } from "wasedatime-ui"
+import { useTranslation } from "react-i18next"
 
-import { ThemeContext } from "@app/utils/theme-context";
-import "@app/styles/wasedatime-campus.scss";
+import { ThemeContext } from "@app/utils/theme-context"
+import "@app/styles/wasedatime-campus.scss"
 
-const Bus = lazy(() => import("@app/bus/Bus"));
-const RoomFinder = lazy(() => import("@app/room/RoomFinder"));
+const Bus = lazy(() => import("@app/bus/Bus"))
+const RoomFinder = lazy(() => import("@app/room/RoomFinder"))
 
 const App = () => {
-  const { t, i18n } = useTranslation();
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const { t, i18n } = useTranslation()
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -33,7 +33,7 @@ const App = () => {
         <Bus />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App

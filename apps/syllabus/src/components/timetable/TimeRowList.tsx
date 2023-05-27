@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 
-import styled from "styled-components";
+import styled from "styled-components"
 
-import TimeRowItem from "@app/components/timetable/TimeRowItem";
-import { ThemeContext } from "@app/utils/theme-context";
+import TimeRowItem from "@app/components/timetable/TimeRowItem"
+import { ThemeContext } from "@app/utils/theme-context"
 
 const StyledList = styled("ol")`
   display: flex;
@@ -16,59 +16,67 @@ const StyledList = styled("ol")`
   position: sticky;
   z-index: 80;
   left: 0;
-`;
+`
 
 interface Props {
-  largestPeriod: number;
+  largestPeriod: number
 }
 
 const TimeRowList = ({ largestPeriod }: Props) => {
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
   const periods = [
     {
-      s: "0900",
+      s: "0850",
       e: "1030",
       p: 1,
     },
     {
       s: "1040",
-      e: "1210",
+      e: "1220",
       p: 2,
     },
     {
-      s: "1300",
-      e: "1430",
+      s: "1310",
+      e: "1450",
       p: 3,
     },
     {
-      s: "1445",
-      e: "1615",
+      s: "1505",
+      e: "1645",
       p: 4,
     },
     {
-      s: "1630",
-      e: "1800",
+      s: "1700",
+      e: "1840",
       p: 5,
     },
     {
-      s: "1815",
-      e: "1945",
+      s: "1855",
+      e: "2035",
       p: 6,
+      o: [
+        { school: "G_WBS", s: "1830", e: "2010" },
+        { school: "ART", s: "1810", e: "1950" },
+      ],
     },
     {
-      s: "1955",
-      e: "2125",
+      s: "2045",
+      e: "2135",
       p: 7,
+      o: [
+        { school: "G_WBS", s: "2020", e: "2200" },
+        { school: "ART", s: "1955", e: "2135" },
+      ],
     },
-  ];
+  ]
   const timeRows = periods
     .slice(0, Math.max(largestPeriod, 5))
     .map((period) => {
-      return <TimeRowItem key={period.p} period={period} />;
-    });
+      return <TimeRowItem key={period.p} period={period} />
+    })
 
-  return <StyledList>{timeRows}</StyledList>;
-};
+  return <StyledList>{timeRows}</StyledList>
+}
 
-export default TimeRowList;
+export default TimeRowList

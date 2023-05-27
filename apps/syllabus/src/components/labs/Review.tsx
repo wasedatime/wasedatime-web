@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 
 const Review = () => {
-  return <div />;
-};
+  return <div />
+}
 
-export default Review;
+export default Review

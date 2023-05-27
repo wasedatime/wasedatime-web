@@ -1,56 +1,61 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from "react"
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import Slider from "rc-slider/lib/Slider";
-import { useTranslation } from "react-i18next";
-import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import SimpleBar from "simplebar-react";
-import styled from "styled-components";
+import { Colors, media } from "wasedatime-ui"
+import Slider from "rc-slider/lib/Slider"
+import { useTranslation } from "react-i18next"
+import Table from "semantic-ui-react/dist/commonjs/collections/Table"
+import SimpleBar from "simplebar-react"
+import styled from "styled-components"
 
-import "rc-slider/assets/index.css";
+import "rc-slider/assets/index.css"
 
-import ReviewStars from "@app/components/courseInfo/ReviewStars";
-import Review from "@app/components/labs/Review";
-import { ThemeContext } from "@app/utils/theme-context";
+import ReviewStars from "@app/components/courseInfo/ReviewStars"
+import Review from "@app/components/labs/Review"
+import { ThemeContext } from "@app/utils/theme-context"
 
-import FSEcover from "/img/school-covers/fse.png";
-import CSEcover from "/img/school-covers/cse.png";
-import ASEcover from "/img/school-covers/ase.png";
+import FSEcover from "/img/school-covers/fse.png"
+import CSEcover from "/img/school-covers/cse.png"
+import ASEcover from "/img/school-covers/ase.png"
 
 const bgImgUrl = (schoolCoverPath: string): string => {
-  const bgImg = new URL(schoolCoverPath, import.meta.url);
-  return bgImg.href;
-};
+  const bgImg = new URL(schoolCoverPath, import.meta.url)
+  return bgImg.href
+}
 
 type LabWrapperProps = {
-  isOpen: boolean;
-};
+  isOpen: boolean
+}
 
 type LabTrigger = {
-  school: string;
-};
+  school: string
+}
 
 type ThemedComponentProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const schoolCoverMap: { [name: string]: string } = {
   FSE: FSEcover,
   CSE: CSEcover,
   ASE: ASEcover,
-};
+}
 
 const LabWrapper = styled.div<LabWrapperProps>`
   flex: 0 0 ${(props) => (props.isOpen ? "100%" : "45%")};
-  ${media.desktop`
+  ${media(
+    "desktop",
+    `
     flex: 0 0 100%;
-  `}
+  `
+  )}
   margin-bottom: 1em;
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     margin-bottom: 1rem;
-  `}
-`;
+  `
+  )}
+`
 
 const LabTrigger = styled.div<LabTrigger>`
   width: 100%;
@@ -73,10 +78,13 @@ const LabTrigger = styled.div<LabTrigger>`
     border-radius: 10px;
   }
 
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     height: 70px;
-  `}
-`;
+  `
+  )}
+`
 
 const LabName = styled.div`
   position: relative;
@@ -95,13 +103,16 @@ const LabName = styled.div`
     font-size: 40px;
   }
 
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     font-size: 28px;
     &:hover {
       font-size: 32px;
     }
-  `}
-`;
+  `
+  )}
+`
 
 const ReviewsModalOverlay = styled.div`
   position: fixed;
@@ -112,7 +123,7 @@ const ReviewsModalOverlay = styled.div`
   z-index: 409;
   background-color: #000;
   opacity: 0.3;
-`;
+`
 
 const ReviewsModal = styled.div`
   position: absolute;
@@ -124,17 +135,20 @@ const ReviewsModal = styled.div`
   border-radius: 10px;
   padding: 1em;
 
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     left: 5vw;
     right: 5vw;
     padding: 1rem;
-  `}
-`;
+  `
+  )}
+`
 
 const LabHeader = styled.div`
   height: 15%;
   padding: 1em;
-`;
+`
 
 const ReviewsWrapper = styled(SimpleBar)`
   height: 85%;
@@ -157,16 +171,19 @@ const ReviewsWrapper = styled(SimpleBar)`
     border-radius: 10px;
     background: #999;
   }
-`;
+`
 
 const ReviewProfName = styled.h2`
   text-align: center;
   margin-bottom: 1rem;
   font-size: 2em;
-  ${media.tablet`
+  ${media(
+    "tablet",
+    `
     font-size: 1.5em;
-  `}
-`;
+  `
+  )}
+`
 
 const CloseButton = styled.button`
   position: absolute;
@@ -174,12 +191,12 @@ const CloseButton = styled.button`
   right: 5px;
   font-size: 36px;
   color: #aaa;
-`;
+`
 
 const SectionHeader = styled.h5`
   border-left: 5px solid #b51e36;
   padding-left: 10px;
-`;
+`
 
 const StyledTable = styled(Table)<ThemedComponentProps>`
   ${(props) =>
@@ -187,7 +204,7 @@ const StyledTable = styled(Table)<ThemedComponentProps>`
     `
     border-color: ${colors.dark.text3} !important;
   `}
-`;
+`
 
 const StyledTableHeaderCell = styled(Table.HeaderCell)<ThemedComponentProps>`
   ${(props) =>
@@ -196,7 +213,7 @@ const StyledTableHeaderCell = styled(Table.HeaderCell)<ThemedComponentProps>`
     background-color: ${colors.dark.bgSide} !important;
     color: ${colors.dark.text2} !important;
   `}
-`;
+`
 
 const StyledTableCell = styled(Table.Cell)<ThemedComponentProps>`
   ${(props) =>
@@ -205,23 +222,23 @@ const StyledTableCell = styled(Table.Cell)<ThemedComponentProps>`
     background-color: ${colors.dark.bgMain} !important;
     color: ${colors.dark.text2} !important;
   `}
-`;
+`
 
 const getRoundedAverage = (reviews, itemLabel) => {
   const filteredReviews = reviews.filter(
     (review) => review[itemLabel] && Number.isInteger(review[itemLabel])
-  );
+  )
   const average =
     filteredReviews.reduce((sum, review) => sum + review[itemLabel], 0) /
-    filteredReviews.length;
+    filteredReviews.length
 
-  return Math.round(average * 2) / 2 || 0;
-};
+  return Math.round(average * 2) / 2 || 0
+}
 
 const Lab = ({ name, reviews, school }) => {
-  const { theme } = useContext(ThemeContext);
-  const { t } = useTranslation();
-  const [open, setOpen] = useState(false);
+  const { theme } = useContext(ThemeContext)
+  const { t } = useTranslation()
+  const [open, setOpen] = useState(false)
 
   const itemTable = (itemLabel) => (
     <StyledTable unstackable $isDark={theme === "dark"}>
@@ -246,14 +263,14 @@ const Lab = ({ name, reviews, school }) => {
         )}
       </Table.Body>
     </StyledTable>
-  );
+  )
 
   const topicSatisficationAverage = getRoundedAverage(
     reviews,
     "topicSatisfication"
-  );
-  const guidanceAverage = getRoundedAverage(reviews, "guidance");
-  const happinessAverage = getRoundedAverage(reviews, "happiness");
+  )
+  const guidanceAverage = getRoundedAverage(reviews, "guidance")
+  const happinessAverage = getRoundedAverage(reviews, "happiness")
 
   return (
     <LabWrapper isOpen={open}>
@@ -361,7 +378,7 @@ const Lab = ({ name, reviews, school }) => {
       )}
       <Review />
     </LabWrapper>
-  );
-};
+  )
+}
 
-export default Lab;
+export default Lab

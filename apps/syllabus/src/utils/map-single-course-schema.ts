@@ -1,9 +1,9 @@
-import schoolCodeMap from "@app/constants/school-code";
+import schoolCodeMap from "@app/constants/school-code"
 import {
   SyllabusKey,
   SyllabusAttr,
   SyllabusEvalAttr,
-} from "@app/constants/syllabus-data";
+} from "@app/constants/syllabus-data"
 
 export const courseSchemaFullToShort = (course) => {
   const occs =
@@ -12,8 +12,8 @@ export const courseSchemaFullToShort = (course) => {
       [SyllabusKey.OCC_DAY]: occ[SyllabusKey.OCC_DAY],
       [SyllabusKey.OCC_PERIOD]: occ[SyllabusKey.OCC_PERIOD],
       [SyllabusKey.OCC_LOCATION]: occ[SyllabusKey.OCC_LOCATION],
-    }));
-  const courseEvals = course[SyllabusAttr[SyllabusKey.EVAL]];
+    }))
+  const courseEvals = course[SyllabusAttr[SyllabusKey.EVAL]]
   const evals = Array.isArray(courseEvals)
     ? courseEvals.map((e) => ({
         [SyllabusKey.EVAL_TYPE]: e[SyllabusEvalAttr[SyllabusKey.EVAL_TYPE]],
@@ -22,7 +22,7 @@ export const courseSchemaFullToShort = (course) => {
         [SyllabusKey.EVAL_CRITERIA]:
           e[SyllabusEvalAttr[SyllabusKey.EVAL_CRITERIA]],
       }))
-    : courseEvals;
+    : courseEvals
 
   return {
     [SyllabusKey.ID]: course[SyllabusAttr[SyllabusKey.ID]],
@@ -52,5 +52,5 @@ export const courseSchemaFullToShort = (course) => {
     schedule: course.schedule,
     ref: course.ref,
     text: course.text,
-  };
-};
+  }
+}

@@ -14,4 +14,4 @@ enum FilterOption {
   MODALITY = "modality",
 }
 
-export default FilterOption;
+export default FilterOption

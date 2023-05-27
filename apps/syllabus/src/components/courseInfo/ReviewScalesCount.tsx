@@ -1,11 +1,11 @@
-import React from "react";
+import React from "react"
 
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { WithTranslation, withTranslation } from "react-i18next";
-import MediaQuery from "react-responsive";
-import styled from "styled-components";
+import { media, sizes } from "wasedatime-ui"
+import { WithTranslation, withTranslation } from "react-i18next"
+import MediaQuery from "react-responsive"
+import styled from "styled-components"
 
-import ReviewStars from "@app/components/courseInfo/ReviewStars";
+import ReviewStars from "@app/components/courseInfo/ReviewStars"
 
 const ReviewScalesRow = styled("div")`
   display: flex;
@@ -13,40 +13,40 @@ const ReviewScalesRow = styled("div")`
   font-size: 1.5em;
   padding: 0.5rem;
   line-height: 100%;
-  ${media.tablet`font-size: 1.2em;`};
-  ${media.phoneMini`font-size: 1em;`};
-`;
+  ${media("tablet",`font-size: 1.2em;`)};
+  ${media("phoneMini",`font-size: 1em;`)};
+`
 
 const ReviewScalesList = styled("div")`
   flex: 5;
   display: flex;
   flex-direction: row;
-  ${media.tablet`flex: 2; flex-direction: column;`};
-`;
+  ${media("tablet",`flex: 2; flex-direction: column;`)};
+`
 
 const ReviewScale = styled("div")`
   flex: 1;
   padding: 1rem 0px;
   text-align: center;
-  ${media.tablet`
+  ${media("tablet",`
     flex: 1;
     padding: 0.2rem 0px;
     text-align: left;
-  `};
-`;
+  `)};
+`
 
 const ReviewsCount = styled("div")`
   flex: 1;
   padding: 0.5em 0px 1em 0px;
   text-align: center;
   justify-content: flex-start;
-`;
+`
 
 interface Props extends WithTranslation {
-  avgSatisfaction: number;
-  avgDifficulty: number;
-  avgBenefit: number;
-  thisCourseReviewsLength: number;
+  avgSatisfaction: number
+  avgDifficulty: number
+  avgBenefit: number
+  thisCourseReviewsLength: number
 }
 
 const ReviewScalesCount = ({
@@ -96,6 +96,6 @@ const ReviewScalesCount = ({
         : t("courseInfo.Review")}
     </ReviewsCount>
   </ReviewScalesRow>
-);
+)
 
-export default withTranslation("translation")(ReviewScalesCount);
+export default withTranslation("translation")(ReviewScalesCount)

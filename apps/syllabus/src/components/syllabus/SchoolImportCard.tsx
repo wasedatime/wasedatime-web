@@ -1,18 +1,18 @@
-import React from "react";
+import React from "react"
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "semantic-ui-react/dist/commonjs/elements/Image";
-import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer";
-import Card from "semantic-ui-react/dist/commonjs/views/Card";
-import styled from "styled-components";
+import { Colors } from "wasedatime-ui"
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import Image from "semantic-ui-react/dist/commonjs/elements/Image"
+import Dimmer from "semantic-ui-react/dist/commonjs/modules/Dimmer"
+import Card from "semantic-ui-react/dist/commonjs/views/Card"
+import styled from "styled-components"
 
-import { ThemeContext } from "@app/utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context"
 
 type ThemedComponentProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const SchoolCardWrapper = styled(Dimmer.Dimmable)<ThemedComponentProps>`
   color: rgba(0, 0, 0, 0.05);
@@ -29,7 +29,7 @@ const SchoolCardWrapper = styled(Dimmer.Dimmable)<ThemedComponentProps>`
   &:hover i {
     color: rgba(0, 0, 0, 0.5);
   }
-`;
+`
 
 const SchoolImage = styled(Image)<ThemedComponentProps>`
   span {
@@ -38,7 +38,7 @@ const SchoolImage = styled(Image)<ThemedComponentProps>`
   }
   ${(props) =>
     props.$isDark && `background-color: ${colors.dark.text3} !important;`}
-`;
+`
 
 const CheckLabel = styled.div`
   position: absolute;
@@ -48,27 +48,27 @@ const CheckLabel = styled.div`
   left: 0px;
   width: 60px;
   height: 60px;
-`;
+`
 
 const schoolCardDimmerColor = (
   isDimmerActive: boolean,
   theme: string
 ): string => {
   if (theme === "light") {
-    return isDimmerActive ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.8)";
+    return isDimmerActive ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.8)"
   } else {
-    return isDimmerActive ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.5)";
+    return isDimmerActive ? "rgba(0,0,0,0.7)" : "rgba(0,0,0,0.5)"
   }
-};
+}
 
 interface Props {
-  loaded: boolean;
-  loading: boolean;
-  schoolIcon: string;
-  onDownload: () => void;
-  isBannedToLoad: boolean;
-  checked: boolean;
-  onCheck: () => void;
+  loaded: boolean
+  loading: boolean
+  schoolIcon: string
+  onDownload: () => void
+  isBannedToLoad: boolean
+  checked: boolean
+  onCheck: () => void
 }
 
 const SchoolImportCard = ({
@@ -80,11 +80,11 @@ const SchoolImportCard = ({
   checked,
   onCheck,
 }: Props) => {
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
   const handleOnClick = () => {
-    !isBannedToLoad && (loaded ? onCheck() : onDownload());
-  };
+    !isBannedToLoad && (loaded ? onCheck() : onDownload())
+  }
 
   return (
     <SchoolCardWrapper
@@ -115,7 +115,7 @@ const SchoolImportCard = ({
         $isDark={theme === "dark"}
       />
     </SchoolCardWrapper>
-  );
-};
+  )
+}
 
-export default SchoolImportCard;
+export default SchoolImportCard

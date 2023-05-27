@@ -1,33 +1,33 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import colors from "@bit/wasedatime.core.theme.colors";
+import { Colors } from "wasedatime-ui"
 import {
   faBroadcastTower,
   faChalkboardTeacher,
   faClock,
   faVideo,
   faWifi,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { WithTranslation, withTranslation } from "react-i18next";
-import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
-import Table from "semantic-ui-react/dist/commonjs/collections/Table";
-import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic";
-import styled from "styled-components";
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { WithTranslation, withTranslation } from "react-i18next"
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid"
+import Table from "semantic-ui-react/dist/commonjs/collections/Table"
+import Statistic from "semantic-ui-react/dist/commonjs/views/Statistic"
+import styled from "styled-components"
 
-import CourseDetailsEvaluation from "@app/components/courseInfo/CourseDetailsEvaluation";
-import CourseMoreDetails from "@app/components/courseInfo/CourseMoreDetails";
-import { SyllabusKey } from "@app/constants/syllabus-data";
-import Course from "@app/types/course";
-import { ThemeContext } from "@app/utils/theme-context";
+import CourseDetailsEvaluation from "@app/components/courseInfo/CourseDetailsEvaluation"
+import CourseMoreDetails from "@app/components/courseInfo/CourseMoreDetails"
+import { SyllabusKey } from "@app/constants/syllabus-data"
+import Course from "@app/types/course"
+import { ThemeContext } from "@app/utils/theme-context"
 
 interface Props extends WithTranslation {
-  course: Course;
+  course: Course
 }
 
 type StyledTableProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const StyledSubHeading = styled.h4`
   align-self: flex-start;
@@ -36,24 +36,24 @@ const StyledSubHeading = styled.h4`
   border-left: 5px solid rgb(148, 27, 47);
   font-weight: 300;
   font-size: 16px;
-`;
+`
 
 const StyledTable = styled(Table)<StyledTableProps>`
   ${(props) =>
     props.$isDark &&
     `
-    border: 1px solid ${colors.dark.text3} !important;
+    border: 1px solid ${Colors.dark.text3} !important;
     border-radius: 5px;
     border-bottom-width: 0px !important;
     tbody tr td {
-      border-bottom: 1px solid ${colors.dark.text3};
+      border-bottom: 1px solid ${Colors.dark.text3};
     }
   `}
-`;
+`
 
 const CourseDetails = ({ course, t, i18n }: Props) => {
-  const { theme } = React.useContext(ThemeContext);
-  const [activeDetailsIndex, setActiveDetailsIndex] = useState(-1);
+  const { theme } = React.useContext(ThemeContext)
+  const [activeDetailsIndex, setActiveDetailsIndex] = useState(-1)
 
   const courseTypes = [
     t("courseInfo.Details.Type.Lecture"),
@@ -65,7 +65,7 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
     t("courseInfo.Details.Type.Graduate Research"),
     t("courseInfo.Details.Type.Practice"),
     t("courseInfo.Details.Type.Blended"),
-  ];
+  ]
 
   const courseLevels = [
     t("courseInfo.Details.Level.Beginner"),
@@ -74,7 +74,7 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
     t("courseInfo.Details.Level.Final-stage"),
     t("courseInfo.Details.Level.Master"),
     t("courseInfo.Details.Level.Doctor"),
-  ];
+  ]
 
   const courseModalities = [
     {
@@ -118,17 +118,15 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
         </span>
       ),
     },
-  ];
+  ]
 
   const courseType =
-    course[SyllabusKey.TYPE] === -1
-      ? ""
-      : courseTypes[course[SyllabusKey.TYPE]];
+    course[SyllabusKey.TYPE] === -1 ? "" : courseTypes[course[SyllabusKey.TYPE]]
   const courseLevel =
     course[SyllabusKey.LEVEL] === -1
       ? ""
-      : courseLevels[course[SyllabusKey.LEVEL]];
-  const courseModality = courseModalities[course[SyllabusKey.MODALITY]];
+      : courseLevels[course[SyllabusKey.LEVEL]]
+  const courseModality = courseModalities[course[SyllabusKey.MODALITY]]
 
   const courseDetails = (
     <React.Fragment>
@@ -233,7 +231,7 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
         </Table.Body>
       </StyledTable>
     </React.Fragment>
-  );
+  )
 
   return (
     <div className="dark:bg-dark-bgMain">
@@ -245,7 +243,7 @@ const CourseDetails = ({ course, t, i18n }: Props) => {
       <StyledSubHeading>{t("courseMoreDetails.title")}</StyledSubHeading>
       <CourseMoreDetails course={course} />
     </div>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(CourseDetails);
+export default withTranslation("translation")(CourseDetails)

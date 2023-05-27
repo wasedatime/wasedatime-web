@@ -69,6 +69,6 @@ const timetableColors = {
     deepGrey: "#D3CFC9",
     lightGrey: "#484E51",
   },
-};
+}
 
-export default timetableColors;
+export default timetableColors

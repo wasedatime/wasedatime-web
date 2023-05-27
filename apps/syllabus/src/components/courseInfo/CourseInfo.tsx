@@ -1,42 +1,40 @@
-import React from "react";
+import React from "react"
 
-import API from "@aws-amplify/api";
-import colors from "@bit/wasedatime.core.theme.colors";
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
-import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { levenshteinEditDistance as levenshtein } from "levenshtein-edit-distance";
-import ReactGA from "react-ga";
-import { WithTranslation, withTranslation } from "react-i18next";
-import { connect } from "react-redux";
-import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
-import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
-import styled from "styled-components";
+import API from "@aws-amplify/api"
+import { Colors, media, getUserAttr } from "wasedatime-ui"
+import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { levenshteinEditDistance as levenshtein } from "levenshtein-edit-distance"
+import ReactGA from "react-ga"
+import { WithTranslation, withTranslation } from "react-i18next"
+import { connect } from "react-redux"
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid"
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment"
+import styled from "styled-components"
 
-import CourseDetails from "@app/components/courseInfo/CourseDetails";
-import CourseReviews from "@app/components/courseInfo/CourseReviews";
-import ShareButtons from "@app/components/courseInfo/ShareButtons";
-import LoadingTextPlaceHolder from "@app/components/styles/LoadingTextPlaceHolder";
-import { SyllabusKey } from "@app/constants/syllabus-data";
-import CourseItemContainer from "@app/containers/CourseItemContainer";
+import CourseDetails from "@app/components/courseInfo/CourseDetails"
+import CourseReviews from "@app/components/courseInfo/CourseReviews"
+import ShareButtons from "@app/components/courseInfo/ShareButtons"
+import LoadingTextPlaceHolder from "@app/components/styles/LoadingTextPlaceHolder"
+import { SyllabusKey } from "@app/constants/syllabus-data"
+import CourseItemContainer from "@app/containers/CourseItemContainer"
 import {
   gaAppendActionWithLng,
   gaClickRelatedCourse,
   gaClickSyllabusLink,
   gaOpenCourseDetails,
-} from "@app/ga/eventActions";
-import { gaCourseDetails } from "@app/ga/eventCategories";
-import { ReduxRootState } from "@app/redux/reducers";
-import { getFetchedCoursesList } from "@app/redux/reducers/fetchedCourses";
-import Course from "@app/types/course";
-import Review from "@app/types/review";
-import { courseSchemaFullToShort } from "@app/utils/map-single-course-schema";
-import { ThemeContext } from "@app/utils/theme-context";
+} from "@app/ga/eventActions"
+import { gaCourseDetails } from "@app/ga/eventCategories"
+import { ReduxRootState } from "@app/redux/reducers"
+import { getFetchedCoursesList } from "@app/redux/reducers/fetchedCourses"
+import Course from "@app/types/course"
+import Review from "@app/types/review"
+import { courseSchemaFullToShort } from "@app/utils/map-single-course-schema"
+import { ThemeContext } from "@app/utils/theme-context"
 
 type CourseInfoWrapperProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
 const CourseInfoWrapper = styled(Segment)<CourseInfoWrapperProps>`
   width: 100%;
@@ -45,7 +43,7 @@ const CourseInfoWrapper = styled(Segment)<CourseInfoWrapperProps>`
   margin-top: 0px !important;
   border: none !important;
   ${(props) => props.$isDark && `background: ${colors.dark.bgMain} !important;`}
-`;
+`
 
 const RelatedCourses = styled.div`
   display: flex;
@@ -55,12 +53,12 @@ const RelatedCourses = styled.div`
   @media (max-width: 1280px) {
     width: calc(96vw - 55em - 120px);
   }
-  ${media.desktop`
+  ${media("desktop",`
     width: calc(96vw - 30em - 130px);
-  `}
-  ${media.tablet`
+  `)}
+  ${media("tablet",`
     width: calc(96vw - 40px);
-  `}
+  `)}
   
   overflow-x: auto;
   padding: none;
@@ -75,17 +73,17 @@ const RelatedCourses = styled.div`
     border-radius: 10px;
     background: #999;
   }
-`;
+`
 
 const RelatedCourse = styled.div`
   flex: 0 0 33.3%;
   @media (max-width: 1280px) {
     flex: 0 0 49.5%;
   }
-  ${media.desktop`flex: 0 0 49.5%;`}
-  ${media.tablet`flex: 0 0 33%;`}
-  ${media.phone`flex: 0 0 49.5%;`}
-`;
+  ${media("desktop",`flex: 0 0 49.5%;`)}
+  ${media("tablet",`flex: 0 0 33%;`)}
+  ${media("phone",`flex: 0 0 49.5%;`)}
+`
 
 const StyledSubHeading = styled("h4")`
   align-self: flex-start;
@@ -94,15 +92,15 @@ const StyledSubHeading = styled("h4")`
   border-left: 5px solid rgb(148, 27, 47);
   font-weight: 300;
   font-size: 16px;
-`;
+`
 
-const getCourseKey = (course) => course[SyllabusKey.ID].substring(0, 12);
+const getCourseKey = (course) => course[SyllabusKey.ID].substring(0, 12)
 
 const getRelatedCourses = (loadedCourses, thisCourse, thisCourseKey) => {
-  const courseId = thisCourse[SyllabusKey.ID];
-  const courseCode = thisCourse[SyllabusKey.CODE];
-  const thisCourseTitle = thisCourse[SyllabusKey.TITLE];
-  const thisCourseSchool = thisCourse[SyllabusKey.SCHOOL];
+  const courseId = thisCourse[SyllabusKey.ID]
+  const courseCode = thisCourse[SyllabusKey.CODE]
+  const thisCourseTitle = thisCourse[SyllabusKey.TITLE]
+  const thisCourseSchool = thisCourse[SyllabusKey.SCHOOL]
 
   const sortedRelatedCourses = loadedCourses
     .filter(
@@ -115,39 +113,39 @@ const getRelatedCourses = (loadedCourses, thisCourse, thisCourseKey) => {
         a[SyllabusKey.SCHOOL] === thisCourseSchool &&
         b[SyllabusKey.SCHOOL] !== thisCourseSchool
       )
-        return -1;
+        return -1
       if (
         a[SyllabusKey.SCHOOL] !== thisCourseSchool &&
         b[SyllabusKey.SCHOOL] === thisCourseSchool
       )
-        return 1;
+        return 1
 
       return (
         levenshtein(thisCourseTitle, a[SyllabusKey.TITLE]) -
         levenshtein(thisCourseTitle, b[SyllabusKey.TITLE])
-      );
+      )
     })
-    .slice(0, 10);
+    .slice(0, 10)
 
-  return sortedRelatedCourses;
-};
+  return sortedRelatedCourses
+}
 
 interface ReduxStateProps {
-  fetchedCourses: Course[];
+  fetchedCourses: Course[]
 }
 
 interface OwnProps extends WithTranslation {
-  course: Course;
-  searchLang: string | string[];
-  clearSearchBar: () => void;
+  course: Course
+  searchLang: string | string[]
+  clearSearchBar: () => void
 }
 
 interface OwnState {
-  courseWithMoreDetails: Course;
-  relatedCourses: Course[];
-  thisCourseReviews: Review[];
-  areDetailsLoaded: boolean;
-  areReviewsLoaded: boolean;
+  courseWithMoreDetails: Course
+  relatedCourses: Course[]
+  thisCourseReviews: Review[]
+  areDetailsLoaded: boolean
+  areReviewsLoaded: boolean
 }
 
 class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
@@ -157,35 +155,35 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
     thisCourseReviews: [],
     areDetailsLoaded: false,
     areReviewsLoaded: false,
-  };
+  }
 
-  static contextType = ThemeContext;
+  static contextType = ThemeContext
 
   async loadReviewsAndRelatedCourses() {
-    const thisCourse = this.props.course;
-    const loadedCourses = this.props.fetchedCourses;
-    const thisCourseKey = getCourseKey(thisCourse);
+    const thisCourse = this.props.course
+    const loadedCourses = this.props.fetchedCourses
+    const thisCourseKey = getCourseKey(thisCourse)
 
     // Get related courses by code, sort them, and get the first k courses (k=10)
     const relatedCourses = getRelatedCourses(
       loadedCourses,
       thisCourse,
       thisCourseKey
-    );
+    )
 
     // Fetch reviews with course key
-    const thisCourseReviews = await this.getCourseReviewsByKey(thisCourseKey);
+    const thisCourseReviews = await this.getCourseReviewsByKey(thisCourseKey)
 
     this.setState({
       relatedCourses,
       thisCourseReviews: thisCourseReviews || [],
       areReviewsLoaded: true,
-    });
+    })
   }
 
   getCourseReviewsByKey = async (courseKey: string): Promise<Review[]> => {
     try {
-      const userAttr = await getUserAttr();
+      const userAttr = await getUserAttr()
       const res = await API.get(
         "wasedatime-dev",
         `/course-reviews/${courseKey}?uid=${userAttr ? userAttr.id : ""}`,
@@ -195,20 +193,20 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
             "Content-Type": "application/json",
           },
         }
-      );
+      )
 
-      return res.data;
+      return res.data
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   async componentDidMount() {
     ReactGA.event({
       category: gaCourseDetails,
       action: gaOpenCourseDetails,
       label: this.props.course[SyllabusKey.TITLE],
-    });
+    })
     try {
       const res = await API.get(
         "wasedatime-dev",
@@ -219,21 +217,21 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
           },
           response: true,
         }
-      );
+      )
       this.setState(
         {
           courseWithMoreDetails: courseSchemaFullToShort(res.data.data),
           areDetailsLoaded: true,
         },
         this.loadReviewsAndRelatedCourses
-      );
+      )
     } catch (error) {
       this.setState(
         {
           areDetailsLoaded: true,
         },
         this.loadReviewsAndRelatedCourses
-      );
+      )
     }
   }
 
@@ -244,16 +242,16 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
       clearSearchBar,
       t,
       i18n,
-    } = this.props;
+    } = this.props
     const {
       courseWithMoreDetails,
       areDetailsLoaded,
       areReviewsLoaded,
       thisCourseReviews,
       relatedCourses,
-    } = this.state;
-    const course = courseWithMoreDetails || courseFromProps;
-    const { theme } = this.context;
+    } = this.state
+    const course = courseWithMoreDetails || courseFromProps
+    const { theme } = this.context
 
     return areDetailsLoaded ? (
       <CourseInfoWrapper
@@ -316,8 +314,8 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
                     category: gaCourseDetails,
                     action: gaClickRelatedCourse,
                     label: course[SyllabusKey.TITLE],
-                  });
-                  clearSearchBar();
+                  })
+                  clearSearchBar()
                 }}
                 className="dark:bg-dark-bgMain"
               >
@@ -337,15 +335,15 @@ class CourseInfo extends React.Component<ReduxStateProps & OwnProps, OwnState> {
       </CourseInfoWrapper>
     ) : (
       <LoadingTextPlaceHolder $isDark={theme === "dark"} />
-    );
+    )
   }
 }
 
 const mapStateToProps = (state: ReduxRootState) => ({
   fetchedCourses: getFetchedCoursesList(state.fetchedCourses.coursesBySchool),
-});
+})
 
 export default connect<ReduxStateProps, {}>(
   mapStateToProps,
   null
-)(withTranslation("translation")(CourseInfo));
+)(withTranslation("translation")(CourseInfo))

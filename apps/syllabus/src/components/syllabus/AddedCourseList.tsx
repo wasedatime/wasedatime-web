@@ -1,29 +1,28 @@
-import React from "react";
+import React from "react"
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import { height } from "@bit/wasedatime.core.ts.constants.size-variables";
+import { Colors, height } from "wasedatime-ui"
 import {
   faArrowDown,
   faMinusCircle,
   faPlusCircle,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { WithTranslation, withTranslation } from "react-i18next";
-import Message from "semantic-ui-react/dist/commonjs/collections/Message";
-import Segment from "semantic-ui-react/dist/commonjs/elements/Segment";
-import SimpleBar from "simplebar-react";
-import stickybits from "stickybits";
-import styled from "styled-components";
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { WithTranslation, withTranslation } from "react-i18next"
+import Message from "semantic-ui-react/dist/commonjs/collections/Message"
+import Segment from "semantic-ui-react/dist/commonjs/elements/Segment"
+import SimpleBar from "simplebar-react"
+import stickybits from "stickybits"
+import styled from "styled-components"
 
-import { Article, Section, Subheading } from "@app/components/styles/Article";
-import AddedCourseItemContainer from "@app/containers/AddedCourseItemContainer";
-import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer";
-import Course from "@app/types/course";
-import { ThemeContext } from "@app/utils/theme-context";
+import { Article, Section, Subheading } from "@app/components/styles/Article"
+import AddedCourseItemContainer from "@app/containers/AddedCourseItemContainer"
+import CourseListSummaryContainer from "@app/containers/CourseListSummaryContainer"
+import Course from "@app/types/course"
+import { ThemeContext } from "@app/utils/theme-context"
 
 type CourseListWrapperProps = {
-  innerRef: any;
-};
+  innerRef: any
+}
 
 const CourseListWrapper = styled.div<CourseListWrapperProps>`
   position: fixed !important;
@@ -44,7 +43,7 @@ const CourseListWrapper = styled.div<CourseListWrapperProps>`
     border-radius: 5px;
     background: #999;
   }
-`;
+`
 
 const StyledSimpleBar = styled(SimpleBar)`
   ::-webkit-scrollbar {
@@ -55,18 +54,18 @@ const StyledSimpleBar = styled(SimpleBar)`
     border-radius: 5px;
     background: #999;
   }
-`;
+`
 
 const ExtendedArticle = styled(Article)`
   margin-top: 0.2em;
   padding: 1em 0px;
-`;
+`
 
 const StyledMessageHeader = styled(Message.Header)`
   font-family: Segoe UI, Yu Gothic Medium, Lato !important;
   font-display: swap;
   font-size: 14px !important;
-`;
+`
 
 const StepGroup = styled.div`
   margin-top: 1rem;
@@ -75,39 +74,39 @@ const StepGroup = styled.div`
     padding: 1em 2em;
     margin: 0px;
   }
-`;
+`
 
 const Step = styled(Segment)`
   padding: 1em 2em;
   margin: 0px;
-`;
+`
 
 interface Props extends WithTranslation {
-  addedCourses: Course[];
+  addedCourses: Course[]
 }
 
 interface State {
-  courses: Course[];
+  courses: Course[]
 }
 
 class AddedCourseList extends React.Component<Props, State> {
-  wrapper: any;
+  wrapper: any
 
-  stickyWrapper: any;
+  stickyWrapper: any
 
-  setWrapperRef: any;
+  setWrapperRef: any
 
-  createStickyWrapper: () => void;
+  createStickyWrapper: () => void
 
-  cleanupStickyWrapper: () => void;
+  cleanupStickyWrapper: () => void
 
   constructor(props) {
-    super(props);
-    this.wrapper = null;
+    super(props)
+    this.wrapper = null
 
     this.setWrapperRef = (element) => {
-      this.wrapper = element;
-    };
+      this.wrapper = element
+    }
 
     this.createStickyWrapper = () => {
       if (this.wrapper) {
@@ -115,46 +114,46 @@ class AddedCourseList extends React.Component<Props, State> {
           stickyBitStickyOffset:
             parseInt(height.headerHeight, 10) +
             parseInt(height.switchHeight, 10),
-        });
+        })
       }
-    };
+    }
 
     this.cleanupStickyWrapper = () => {
       if (this.stickyWrapper) {
-        this.stickyWrapper.cleanup();
+        this.stickyWrapper.cleanup()
       }
-    };
+    }
 
     this.state = {
       courses: props.addedCourses,
-    };
+    }
   }
 
-  static contextType = ThemeContext;
+  static contextType = ThemeContext
 
   componentDidMount() {
-    this.createStickyWrapper();
+    this.createStickyWrapper()
   }
 
   componentWillUnmount() {
-    this.cleanupStickyWrapper();
+    this.cleanupStickyWrapper()
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.addedCourses !== this.props.addedCourses) {
-      this.setState({ courses: this.props.addedCourses });
+      this.setState({ courses: this.props.addedCourses })
     }
   }
 
   removeCourseFromList = (course) => {
     this.setState((prevState) => ({
       courses: prevState.courses.filter((c) => c !== course),
-    }));
-  };
+    }))
+  }
 
   render() {
-    const { addedCourses, t } = this.props;
-    const { theme } = this.context;
+    const { addedCourses, t } = this.props
+    const { theme } = this.context
 
     return (
       <CourseListWrapper innerRef={this.setWrapperRef}>
@@ -253,8 +252,8 @@ class AddedCourseList extends React.Component<Props, State> {
           </ExtendedArticle>
         )}
       </CourseListWrapper>
-    );
+    )
   }
 }
 
-export default withTranslation("translation")(AddedCourseList);
+export default withTranslation("translation")(AddedCourseList)

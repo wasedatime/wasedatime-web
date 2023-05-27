@@ -1,30 +1,30 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react"
 
-import colors from "@bit/wasedatime.core.theme.colors";
-import styled from "styled-components";
+import { Colors } from "wasedatime-ui"
+import styled from "styled-components"
 
 interface NavItemBlockProps {
-  expanded: boolean;
-  isCurrentPath: boolean;
+  expanded: boolean
+  isCurrentPath: boolean
 }
 
 interface NavItemTextProps {
-  expanded: boolean;
+  expanded: boolean
 }
 
 interface IconTextGroupProps {
-  icon: ReactNode;
-  hoverIcon?: ReactNode;
-  text?: string;
-  iconPath?: string;
-  expanded?: boolean;
-  currentPath?: string;
+  icon: ReactNode
+  hoverIcon?: ReactNode
+  text?: string
+  iconPath?: string
+  expanded?: boolean
+  currentPath?: string
 }
 
 const NavItemBlock = styled.div<NavItemBlockProps>`
   display: flex;
   flex-direction: row;
-  color: ${(props) => (props.isCurrentPath ? colors.light.main : "#fff")};
+  color: ${(props) => (props.isCurrentPath ? Colors.light.main : "#fff")};
   font-size: 18px;
   font-weight: 100;
   padding: 1vh 0px;
@@ -40,7 +40,7 @@ const NavItemBlock = styled.div<NavItemBlockProps>`
   &:hover {
     cursor: pointer;
   }
-`;
+`
 
 const NavItemText = styled.span<NavItemTextProps>`
   overflow: hidden;
@@ -53,7 +53,7 @@ const NavItemText = styled.span<NavItemTextProps>`
   opacity: ${(props) => (props.expanded ? "1" : "0")};
   width: ${(props) => (props.expanded ? "120px" : "0px")};
   transition: opacity 0.3s ease-out, width 0.5s;
-`;
+`
 
 export const IconTextGroup = ({
   icon,
@@ -63,7 +63,7 @@ export const IconTextGroup = ({
   expanded,
   currentPath,
 }: IconTextGroupProps) => {
-  const [isHover, setIsHover] = useState(false);
+  const [isHover, setIsHover] = useState(false)
   return (
     <NavItemBlock
       className="group text-light-text2 dark:text-dark-text2"
@@ -72,17 +72,17 @@ export const IconTextGroup = ({
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
     >
-      <div className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
+      <div className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
         {isHover && hoverIcon ? hoverIcon : icon}
       </div>
       {text && (
         <NavItemText
-          className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1"
+          className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1"
           expanded={expanded}
         >
           {text}
         </NavItemText>
       )}
     </NavItemBlock>
-  );
-};
+  )
+}

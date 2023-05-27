@@ -1,16 +1,15 @@
-import * as React from "react";
+import * as React from "react"
 
-import Header from "@bit/wasedatime.core.ts.ui.header";
-import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
-import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import { Header, LoadingSpinner } from "wasedatime-ui"
+import { useTranslation } from "react-i18next"
+import styled from "styled-components"
 
-import { ThemeContext } from "@app/utils/theme-context";
+import { ThemeContext } from "@app/utils/theme-context"
 
 const FeedsWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
+`
 
 const HeaderWrapper = styled.div`
   flex: 0 0 67px;
@@ -18,14 +17,15 @@ const HeaderWrapper = styled.div`
     font-size: 32px;
     font-family: Lato, Yu Gothic Medium, Segoe UI;
   }
-`;
+`
 
 const Feeds = () => {
-  const [feedsLoaded, setFeedsLoaded] = React.useState(false);
-  const { t, i18n } = useTranslation();
-  const { theme, setTheme } = React.useContext(ThemeContext);
+  const [feedsLoaded, setFeedsLoaded] = React.useState(false)
+  const { t, i18n } = useTranslation()
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
-  const feedsBasePath = import.meta.env.VITE_MF_FEEDS_BASE_PATH || "http://localhost:8083";
+  const feedsBasePath =
+    import.meta.env.VITE_MF_FEEDS_BASE_PATH || "http://localhost:8083"
 
   return (
     <FeedsWrapper style={{ overflow: "hidden" }}>
@@ -51,7 +51,7 @@ const Feeds = () => {
         />
       </div>
     </FeedsWrapper>
-  );
-};
+  )
+}
 
-export default Feeds;
+export default Feeds

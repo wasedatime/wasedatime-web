@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 type Props = {
-  filled?: boolean | false;
-  color?: string;
-};
+  filled?: boolean | false
+  color?: string
+}
 
 export const Label = styled.span<Props>`
   border: 1px solid ${(props) => props.color || "grey"};
@@ -16,15 +16,15 @@ export const Label = styled.span<Props>`
   vertical-align: middle;
 
   ${(props) => {
-    if (!props.filled) return;
-    const bgColorStyle = `background-color: ${props.color || "grey"};`;
+    if (!props.filled) return
+    const bgColorStyle = `background-color: ${props.color || "grey"};`
     const restStyle = `
       border: 0px;
       color: white;
-    `;
+    `
 
-    return bgColorStyle + restStyle;
+    return bgColorStyle + restStyle
   }}
-`;
+`
 
-export default Label;
+export default Label

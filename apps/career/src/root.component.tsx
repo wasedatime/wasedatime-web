@@ -1,7 +1,7 @@
-import React from "react";
+import React from "react"
 
 interface RootProps {
-  name?: string;
+  name?: string
 }
 
 const Root = ({ name }: RootProps) => {
@@ -13,7 +13,7 @@ const Root = ({ name }: RootProps) => {
         new big feature in WasedaTime!
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default Root;
+export default Root

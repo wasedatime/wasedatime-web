@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import Modal from "@bit/wasedatime.core.ts.ui.modal";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import ReactGA from "react-ga";
-import { WithTranslation, withTranslation } from "react-i18next";
-import MediaQuery from "react-responsive";
+import React, { useState } from "react"
+import { Modal, sizes } from "wasedatime-ui"
+import ReactGA from "react-ga"
+import { WithTranslation, withTranslation } from "react-i18next"
+import MediaQuery from "react-responsive"
 
-import NewFeatures from "@app/components/home/NewFeatures";
-import Welcome from "@app/components/home/Welcome";
-import { gaSetLanguage } from "@app/ga/eventActions";
-import { gaLanguage } from "@app/ga/eventCategories";
+import NewFeatures from "@app/components/home/NewFeatures"
+import Welcome from "@app/components/home/Welcome"
+import { gaSetLanguage } from "@app/ga/eventActions"
+import { gaLanguage } from "@app/ga/eventCategories"
 
 const modalStyle = {
   overlay: {
@@ -37,7 +36,7 @@ const modalStyle = {
     backgroundColor: "transparent",
     padding: 0,
   },
-};
+}
 
 const mobileModalStyle = {
   overlay: modalStyle.overlay,
@@ -49,12 +48,12 @@ const mobileModalStyle = {
     left: "calc((100vw - 300px) / 2)",
     fontSize: "14px",
   },
-};
+}
 
 interface Props extends WithTranslation {
-  isModalOpen: boolean;
-  closeModal: () => void;
-  isFirstAccess: boolean;
+  isModalOpen: boolean
+  closeModal: () => void
+  isFirstAccess: boolean
 }
 
 const HomeModal = ({
@@ -64,15 +63,15 @@ const HomeModal = ({
   t,
   i18n,
 }: Props) => {
-  const [pageIndex, setPageIndex] = useState(0);
+  const [pageIndex, setPageIndex] = useState(0)
   const changeLanguage = (lng) => {
     ReactGA.event({
       category: gaLanguage,
       action: gaSetLanguage,
       label: lng,
-    });
-    i18n.changeLanguage(lng);
-  };
+    })
+    i18n.changeLanguage(lng)
+  }
 
   const pages = [
     <Welcome goToNextPage={() => setPageIndex(pageIndex + 1)} />,
@@ -81,7 +80,7 @@ const HomeModal = ({
       closeModal={closeModal}
       isFirstAccess={isFirstAccess}
     />,
-  ];
+  ]
 
   return (
     <div>
@@ -93,7 +92,7 @@ const HomeModal = ({
               style={mobileModalStyle}
               onRequestClose={closeModal}
             >
-              <div className="h-full p-6 flex items-center bg-light-bgMain dark:bg-dark-bgMain dark:text-dark-text1">
+              <div className="flex h-full items-center bg-light-bgMain p-6 dark:bg-dark-bgMain dark:text-dark-text1">
                 {pages[pageIndex]}
               </div>
             </Modal>
@@ -103,7 +102,7 @@ const HomeModal = ({
               style={modalStyle}
               onRequestClose={closeModal}
             >
-              <div className="h-full p-6 flex items-center bg-light-bgMain dark:bg-dark-bgMain dark:text-dark-text1">
+              <div className="flex h-full items-center bg-light-bgMain p-6 dark:bg-dark-bgMain dark:text-dark-text1">
                 {pages[pageIndex]}
               </div>
             </Modal>
@@ -111,7 +110,7 @@ const HomeModal = ({
         }
       </MediaQuery>
     </div>
-  );
-};
+  )
+}
 
-export default withTranslation("translation")(HomeModal);
+export default withTranslation("translation")(HomeModal)

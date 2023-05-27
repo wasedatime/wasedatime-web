@@ -1,18 +1,18 @@
-import React from "react";
+import React from "react"
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import styled from "styled-components";
+import { media } from "wasedatime-ui"
+import styled from "styled-components"
 
-import CourseColumn from "@app/components/timetable/CourseColumn";
-import { CourseWithOcc } from "@app/types/course";
+import CourseColumn from "@app/components/timetable/CourseColumn"
+import { CourseWithOcc } from "@app/types/course"
 
 const StyledDayColumnItem = styled("li")`
   display: flex;
   flex-direction: column;
   flex: 1 0 0;
   min-height: calc(100vh - 150px);
-  ${media.tablet`min-height: calc(100vh - 250px);`}
-`;
+  ${media("tablet", `min-height: calc(100vh - 250px);`)}
+`
 
 const DayItem = styled("div")`
   display: flex;
@@ -22,19 +22,19 @@ const DayItem = styled("div")`
   font-size: 1em;
   font-weight: 600;
   max-height: 20px !important;
-`;
+`
 
 interface Props {
-  day: string;
-  largestPeriod: number;
+  day: string
+  largestPeriod: number
   coursesAndProperties: {
     pref: {
-      color: number;
-      displayLang: string;
-      visibility: boolean;
-    };
-    course: CourseWithOcc;
-  }[];
+      color: number
+      displayLang: string
+      visibility: boolean
+    }
+    course: CourseWithOcc
+  }[]
 }
 
 const DayColumnItem = ({ day, largestPeriod, coursesAndProperties }: Props) => {
@@ -48,7 +48,7 @@ const DayColumnItem = ({ day, largestPeriod, coursesAndProperties }: Props) => {
         coursesAndProperties={coursesAndProperties}
       />
     </StyledDayColumnItem>
-  );
-};
+  )
+}
 
-export default DayColumnItem;
+export default DayColumnItem

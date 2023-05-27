@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Arrow = styled("div")`
   position: absolute;
@@ -24,7 +24,7 @@ export const Arrow = styled("div")`
     border-style: solid;
   }
   z-index: 105;
-`;
+`
 
 export const PopperBox = styled("div")`
   display: flex;
@@ -39,6 +39,6 @@ export const PopperBox = styled("div")`
   padding: 0.5em;
   text-align: center;
   z-index: 105;
-`;
+`
 
-export default PopperBox;
+export default PopperBox

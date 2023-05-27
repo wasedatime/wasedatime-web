@@ -1,9 +1,9 @@
-import React from "react";
+import React from "react"
 
-import ReactDOM from "react-dom";
-import singleSpaReact from "single-spa-react";
+import ReactDOM from "react-dom"
+import singleSpaReact from "single-spa-react"
 
-import Root from "@app/root.component";
+import Root from "@app/root.component"
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
 const lifecycles = singleSpaReact({
@@ -15,6 +15,6 @@ const lifecycles = singleSpaReact({
     info,
     props // Customize the root error boundary for your microfrontend here.
   ) => null,
-});
+})
 
-export const { bootstrap, mount, unmount } = lifecycles;
+export const { bootstrap, mount, unmount } = lifecycles

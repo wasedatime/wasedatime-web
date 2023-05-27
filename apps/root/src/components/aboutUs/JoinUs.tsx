@@ -1,23 +1,21 @@
-import React from "react";
+import React from "react"
 
-import { Overlay } from "@bit/wasedatime.core.ts.styles.overlay";
-import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
-import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import { faUserTie, faUserCog } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Helmet } from "react-helmet";
-import MediaQuery from "react-responsive";
-import styled from "styled-components";
+import { Overlay, Wrapper, media, sizes } from "wasedatime-ui"
+import { faUserTie, faUserCog } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { Helmet } from "react-helmet"
+import MediaQuery from "react-responsive"
+import styled from "styled-components"
 
 const ExtendedOverlay = styled(Overlay)`
   align-items: center;
   padding: 0 20vw 50px;
   color: #666;
-  ${media.phone`padding: 0 10vw 50px;`};
+  ${media("phone",`padding: 0 10vw 50px;`)};
   hr {
     width: 80%;
   }
-`;
+`
 
 const JoinUs = () => (
   <Wrapper className="bg-light-bgMain dark:bg-dark-bgMain">
@@ -262,6 +260,6 @@ const JoinUs = () => (
       <br />
     </ExtendedOverlay>
   </Wrapper>
-);
+)
 
-export default JoinUs;
+export default JoinUs

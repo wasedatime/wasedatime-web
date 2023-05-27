@@ -1,22 +1,21 @@
-import React from "react";
+import React from "react"
 
-import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import FormLabel from "@material-ui/core/FormLabel";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
-import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";
-import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown";
-import styled from "styled-components";
-import colors from "@bit/wasedatime.core.theme.colors";
+import { Colors, media } from "wasedatime-ui"
+import FormLabel from "@material-ui/core/FormLabel"
+import Slider from "rc-slider"
+import "rc-slider/assets/index.css"
+import Grid from "semantic-ui-react/dist/commonjs/collections/Grid"
+import Dropdown from "semantic-ui-react/dist/commonjs/modules/Dropdown"
+import styled from "styled-components"
 
-import FilterGroup from "@app/components/syllabus/FilterGroup";
-import { ThemeContext } from "@app/utils/theme-context";
+import FilterGroup from "@app/components/syllabus/FilterGroup"
+import { ThemeContext } from "@app/utils/theme-context"
 
 type ThemedComponentProps = {
-  $isDark: boolean;
-};
+  $isDark: boolean
+}
 
-const Range = Slider.createSliderWithTooltip(Slider.Range);
+const Range = Slider.createSliderWithTooltip(Slider.Range)
 
 const StyledRange = styled(Range)<ThemedComponentProps>`
   ${(props) =>
@@ -59,7 +58,7 @@ const StyledRange = styled(Range)<ThemedComponentProps>`
         }
       }
     `}
-`;
+`
 
 const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
   min-height: 32px !important;
@@ -105,30 +104,30 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
     font-weight: 100;
     color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
   }
-`;
+`
 
 const StyledFormLabel = styled(FormLabel)`
   font-size: 1.3em !important;
   font-family: Lato, Yu Gothic Medium, Segoe UI;
   font-weight: bold;
-`;
+`
 
 const EvalRangeWrapper = styled.div`
   margin-bottom: 30px;
-  ${media.tablet`width: 80%;`}
-`;
+  ${media("tablet", `width: 80%;`)}
+`
 
 interface Props {
-  handleToggleFilter: (name: string, value: any) => void;
-  legend: string;
-  typeDefault: string;
-  typeInputs: object[];
-  typeInputName: string;
-  selectedTypeInput: number;
-  percentInputName: string;
-  selectedPercentInputs: number[];
-  specialInputName: string;
-  checkedSpecialInputs: object[];
+  handleToggleFilter: (name: string, value: any) => void
+  legend: string
+  typeDefault: string
+  typeInputs: object[]
+  typeInputName: string
+  selectedTypeInput: number
+  percentInputName: string
+  selectedPercentInputs: number[]
+  specialInputName: string
+  checkedSpecialInputs: object[]
 }
 
 const FilterEvalGroup = ({
@@ -143,7 +142,7 @@ const FilterEvalGroup = ({
   specialInputName,
   checkedSpecialInputs,
 }: Props) => {
-  const { theme } = React.useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext)
 
   return (
     <div>
@@ -159,7 +158,7 @@ const FilterEvalGroup = ({
           options={typeInputs}
           value={selectedTypeInput}
           onChange={(e, data) => {
-            handleToggleFilter(typeInputName, data.value);
+            handleToggleFilter(typeInputName, data.value)
           }}
           aria-label={typeInputName}
           $isDark={theme === "dark"}
@@ -188,7 +187,7 @@ const FilterEvalGroup = ({
         filterType="checkbox"
       />
     </div>
-  );
-};
+  )
+}
 
-export default FilterEvalGroup;
+export default FilterEvalGroup

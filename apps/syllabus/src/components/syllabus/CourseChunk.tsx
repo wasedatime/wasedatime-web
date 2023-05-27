@@ -1,17 +1,17 @@
-import React, { lazy } from "react";
+import React, { lazy } from "react"
 
-import { UnstyledUList } from "@app/components/styles/List";
-import { SyllabusKey } from "@app/constants/syllabus-data";
+import { UnstyledUList } from "@app/components/styles/List"
+import { SyllabusKey } from "@app/constants/syllabus-data"
 const CourseItemContainer = lazy(
   () => import("@app/containers/CourseItemContainer")
-);
-import Course from "@app/types/course";
+)
+import Course from "@app/types/course"
 
 interface Props {
-  chunk: Course[];
-  searchTerm: string | string[];
-  searchLang: string | string[];
-  clearSearchBar: () => void;
+  chunk: Course[]
+  searchTerm: string | string[]
+  searchLang: string | string[]
+  clearSearchBar: () => void
 }
 
 const CourseChunk = ({
@@ -33,7 +33,7 @@ const CourseChunk = ({
         />
       ))}
     </UnstyledUList>
-  );
-};
+  )
+}
 
-export default CourseChunk;
+export default CourseChunk

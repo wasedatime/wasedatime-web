@@ -1,0 +1,48 @@
+{
+  "light": {
+    "main": "#9E1E32",
+    "lighter": "#AB2339",
+    "darker": "#8E1729",
+    "secondary": "#F57C00",
+    "bgMain": "#FFFFFF",
+    "bgSide": "#FAFAFA",
+    "text1": "#333333",
+    "text2": "#606060",
+    "text3": "#B4B4B4",
+    "card1": "#FFFFFF",
+    "card2": "#EEEEEE",
+    "card3": "#E5E5E5"
+  },
+  "dark": {
+    "main": "#CB3243",
+    "lighter": "#D5919A",
+    "darker": "#1E1315",
+    "secondary": "#FFCB80",
+    "bgMain": "#1F2022",
+    "bgSide": "#242527",
+    "text1": "#D7D7D7",
+    "text2": "#A1A1A1",
+    "text3": "#585858",
+    "card1": "#2C2C2C",
+    "card2": "#353535",
+    "card3": "#232323"
+  },
+  "icon": {
+    "sun": "#FFC000",
+    "moon": "#F7E7CE"
+  },
+  "quarter": {
+    "dark": {
+      "fall": "#9A5306",
+      "winter": "#0073A9",
+      "spring": "#8F0066",
+      "summer": "#CB5E00"
+    },
+    "light": {
+      "fall": "#C16808",
+      "winter": "#3AC0FF",
+      "spring": "#FF65D3",
+      "summer": "#FF7701"
+    }
+  }
+}

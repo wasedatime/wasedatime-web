@@ -1,8 +1,6 @@
 import React from "react";
 import i18next from "i18next";
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
-import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
-import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
+import { Lang, LoadingSpinner, i18nConfig, configAuth } from "wasedatime-ui"
 
 import App from "@app/components/App";
 import translationEN from "@app/constants/locales/en/translation.json";

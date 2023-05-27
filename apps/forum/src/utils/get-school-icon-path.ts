@@ -1,4 +1,4 @@
-import Lang from "@bit/wasedatime.core.ts.constants.langs";
+import { Lang } from "wasedatime-ui";
 import schoolIconEN from "@app/constants/school-name-icon-map-en";
 import schoolIconJA from "@app/constants/school-name-icon-map-ja";
 

@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { CloseIcon } from "@app/components/icons/CloseIcon";
 import boards from "@app/constants/boards.json";
-import SignInModal from "@bit/wasedatime.core.ts.ui.sign-in-modal";
-import { getIdToken } from "@bit/wasedatime.core.ts.utils.user";
+import { SignInModal, getIdToken } from "wasedatime-ui";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -36,11 +35,11 @@ const CreateThread = () => {
         setSignInModalOpen(true);
       }
     }
-  }
+  };
 
   const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setTextContent(e.target.value);
-  }
+  };
 
   const handleSubmit = async () => {
     if (textContent.length <= 0 || textContent.length > 2000) return;
@@ -63,7 +62,7 @@ const CreateThread = () => {
     */
 
     setTextContent("");
-  }
+  };
 
   const findBoardIndex: number = boards.findIndex(
     (board) => board.slug == boardSlug

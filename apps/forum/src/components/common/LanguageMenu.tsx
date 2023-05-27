@@ -4,7 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLanguage } from "@fortawesome/free-solid-svg-icons";
 import MediaQuery from "react-responsive";
-import { sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
+import { sizes } from "wasedatime-ui";
 import { THEME } from "@app/types/theme";
 
 const buttonStyle = {
@@ -16,8 +16,8 @@ const buttonStyle = {
   padding: "0px",
   margin: "0px 1rem",
   color: "#b51e36",
-  backgroundColor: "inherit"
-}
+  backgroundColor: "inherit",
+};
 
 class LanguangeMenu extends React.Component<
   { changeLang(lang: string): void },
@@ -36,10 +36,13 @@ class LanguangeMenu extends React.Component<
     this.setState({ anchorEl: null });
   };
 
-  handleMenuItemClick = (event: React.MouseEvent<HTMLElement>, lang: string) => {
+  handleMenuItemClick = (
+    event: React.MouseEvent<HTMLElement>,
+    lang: string
+  ) => {
     event.preventDefault();
     this.props.changeLang(lang);
-    window.dispatchEvent( new Event('storage') );
+    window.dispatchEvent(new Event("storage"));
     this.handleClose();
   };
 
@@ -47,13 +50,21 @@ class LanguangeMenu extends React.Component<
     const { anchorEl } = this.state;
     return (
       <div style={{ float: "right" }}>
-        <button style={buttonStyle} onClick={this.handleClick} aria-label="Language toggle">
+        <button
+          style={buttonStyle}
+          onClick={this.handleClick}
+          aria-label="Language toggle"
+        >
           <MediaQuery maxWidth={sizes.tablet}>
-            {
-              (matches: boolean) => matches ? (
+            {(matches: boolean) =>
+              matches ? (
                 <FontAwesomeIcon icon={faLanguage} size="2x" />
               ) : (
-                <FontAwesomeIcon icon={faLanguage} size="3x" transform="shrink-2" />
+                <FontAwesomeIcon
+                  icon={faLanguage}
+                  size="3x"
+                  transform="shrink-2"
+                />
               )
             }
           </MediaQuery>
@@ -67,13 +78,17 @@ class LanguangeMenu extends React.Component<
         >
           <MenuItem
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={(event: React.MouseEvent<HTMLElement>) => this.handleMenuItemClick(event, "ja")}
+            onClick={(event: React.MouseEvent<HTMLElement>) =>
+              this.handleMenuItemClick(event, "ja")
+            }
           >
             日本語
           </MenuItem>
           <MenuItem
             style={{ fontSize: "0.8em", padding: "5px 12px" }}
-            onClick={(event: React.MouseEvent<HTMLElement>) => this.handleMenuItemClick(event, "en")}
+            onClick={(event: React.MouseEvent<HTMLElement>) =>
+              this.handleMenuItemClick(event, "en")
+            }
           >
             English
           </MenuItem>
@@ -84,4 +99,3 @@ class LanguangeMenu extends React.Component<
 }
 
 export default LanguangeMenu;
-

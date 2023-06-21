@@ -73,43 +73,6 @@ sudo npm install -g pnpm
 ```
 Installation with other ways: https://pnpm.io/installation
 
-### Bit
-
-1. Create a [Bit.dev](https://bit.dev) account if you haven't.
-2. If you are a member of our development team, tell me your username or email so that I can add you to our Bit team.
-
-3. Then install Bit on your computer (local): https://docs.bit.dev/docs/installation
-
-4. Login to Bit on your terminal
-```
-bit login
-```
-
-5. Check your Bit authentication token with the following command:
-	```
-	bit config
-	```
-	and add the token to your environment variable with the following steps:
-
-	**Mac/Linux**
-	1. Add the following to file `~/.bash_profile`
-	```
-	export BIT_TOKEN=XXXXXXXXXXXXX
-	// replace XXXXXXXXXXXXX to your token
-	```
-	2. If you are using Z shell (check if there is a text `zsh` on top of your terminal), add the following in file `~/.zshrc`
-	```
-	if [ -f ~/.bash_profile ]; then 
-	    . ~/.bash_profile;
-	fi
-	```
-	3. Either restart your terminal or run the following:
-	```
-	source ~/.bash_profile
-	```
-	**Windows**
-	https://www3.ntu.edu.sg/home/ehchua/programming/howto/Environment_Variables.html
-
 ### Clone WasedaTime
 ```
 // By HTTP

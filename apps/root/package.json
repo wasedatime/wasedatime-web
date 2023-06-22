@@ -15,7 +15,7 @@
     "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\"",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "local": "concurrently --kill-others \"pnpm start\" \"cd ../syllabus && pnpm start\" \"cd ../campus && pnpm start\" \"cd ../career && pnpm start\" \"cd ../blog && pnpm start\"",
-    "tailwind:build": "pnpx tailwind build -i ./src/styles/styles.css -o ./src/styles/tailwind-build-output.css"
+    "tailwind:build": "pnpx tailwindcss build -i ./src/styles/styles.css -o ./src/styles/tailwind-build-output.css"
   },
   "devDependencies": {
     "@babel/core": "7.18.2",
@@ -35,6 +35,7 @@
     "concurrently": "7.2.1",
     "cssnano": "5.1.11",
     "dotenv": "16.0.1",
+    "esbuild": "^0.18.6",
     "eslint": "8.17.0",
     "eslint-config-custom": "workspace:*",
     "i18next": "21.8.9",

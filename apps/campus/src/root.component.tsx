@@ -1,21 +1,11 @@
 import React, { Suspense, useContext, useEffect } from "react"
-import { Lang, LoadingSpinner, i18nConfig } from "wasedatime-ui"
-import i18next from "i18next"
+import { LoadingSpinner } from "wasedatime-ui"
 import { useTranslation } from "react-i18next"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
 import App from "@app/App"
-import translationEN from "@app/constants/locales/en/translation.json"
-import translationJA from "@app/constants/locales/ja/translation.json"
+import "@app/utils/i18n"
 import { ThemeContext, ThemeProvider } from "@app/utils/theme-context"
-
-i18nConfig({
-  i18n: i18next,
-  customTranslations: {
-    [Lang.EN]: translationEN,
-    [Lang.JA]: translationJA,
-  },
-})
 
 const LoadingSpinnerContainer = () => {
   const { theme } = useContext(ThemeContext)
@@ -28,10 +18,10 @@ const LoadingSpinnerContainer = () => {
 }
 
 const Root = (props) => {
-  // const { i18n } = useTranslation()
+  const { i18n } = useTranslation()
 
   useEffect(() => {
-    // i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
   }, [])
 
   return (

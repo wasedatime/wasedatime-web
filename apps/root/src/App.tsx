@@ -100,10 +100,10 @@ const LoadingSpinnerContainer = () => {
 }
 
 const App = () => {
-  // const { i18n } = useTranslation()
-  // useEffect(() => {
-  //   i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
-  // }, [])
+  const { i18n } = useTranslation()
+  useEffect(() => {
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
+  }, [])
 
   return (
     <>

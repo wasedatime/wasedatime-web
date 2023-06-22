@@ -3734,7 +3734,7 @@ const Kh = /* @__PURE__ */ Sh(bo), yl = document, uv = () => {
     !n || !n.style || !e.current || (t.style.position = "", t.style.overflow = "", n.style.position = "", n.style.overflow = "", n.style.paddingRight = "", e.current = !1);
   }];
 };
-Kh.setAppElement("#layout");
+Kh.setAppElement(document.createElement("div"));
 const z4 = ({
   isOpen: e,
   children: t,

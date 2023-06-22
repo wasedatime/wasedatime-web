@@ -2,7 +2,7 @@ import React from "react"
 import ReactModal from "react-modal"
 import { useScrollBlock } from "@/hooks/useScrollBlock"
 
-ReactModal.setAppElement("#layout")
+ReactModal.setAppElement(document.createElement('div'))
 
 interface ModalProps extends React.Component {
   isOpen: boolean

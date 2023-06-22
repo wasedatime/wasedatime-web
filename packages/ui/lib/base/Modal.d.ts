@@ -1,5 +1,5 @@
-import React from "react";
-interface ModalProps extends React.Component {
+/// <reference types="react" />
+type ModalProps = {
     isOpen: boolean;
     children: any;
     closeTimeoutMS?: number;
@@ -7,6 +7,6 @@ interface ModalProps extends React.Component {
     overlayClassName?: string;
     className?: string;
     onRequestClose?: () => void;
-}
+};
 export declare const Modal: ({ isOpen, children, closeTimeoutMS, style, overlayClassName, className, onRequestClose, }: ModalProps) => JSX.Element;
 export default Modal;

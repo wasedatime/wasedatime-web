@@ -1,10 +1,9 @@
-import React from "react"
 import ReactModal from "react-modal"
 import { useScrollBlock } from "@/hooks/useScrollBlock"
 
 ReactModal.setAppElement("body")
 
-interface ModalProps extends React.Component {
+type ModalProps = {
   isOpen: boolean
   children: any
   closeTimeoutMS?: number

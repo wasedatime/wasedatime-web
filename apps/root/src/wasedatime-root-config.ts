@@ -48,6 +48,11 @@ i18nConfig({
   },
 })
 
+console.log("==========");
+console.log(i18next);
+console.log(i18nConfig);
+console.log("==========");
+
 ReactGA.initialize(import.meta.env.VITE_GA_ID, {
   debug: false,
   titleCase: false,

@@ -28,10 +28,10 @@ const LoadingSpinnerContainer = () => {
 }
 
 const Root = (props) => {
-  const { i18n } = useTranslation()
+  // const { i18n } = useTranslation()
 
   useEffect(() => {
-    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
+    // i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
   }, [])
 
   return (

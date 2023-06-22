@@ -23,13 +23,13 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
   min-height: 32px !important;
   padding: 0.2rem 0.5rem 0.1rem 0.5rem !important;
   background-color: ${(props) =>
-    props.$isDark ? colors.dark.card1 : "white"} !important;
+    props.$isDark ? Colors.dark.card1 : "white"} !important;
 
   a.ui.label {
     border-width: 0px;
     border-radius: 5px;
     background-color: ${(props) =>
-      props.$isDark ? colors.dark.text2 : colors.dark.text2} !important;
+      props.$isDark ? Colors.dark.text2 : Colors.dark.text2} !important;
     color: ${(props) => (props.$isDark ? "#333" : "white")};
     .delete.icon {
       padding: 0px !important;
@@ -44,7 +44,7 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
 
   .menu {
     background-color: ${(props) =>
-      props.$isDark ? colors.dark.card1 : "white"} !important;
+      props.$isDark ? Colors.dark.card1 : "white"} !important;
     ::-webkit-scrollbar {
       width: 0;
       background: transparent;
@@ -61,13 +61,13 @@ const StyledDropdown = styled(Dropdown)<StyledDropdownProps>`
 
   .text {
     margin: 0.4rem 1em !important;
-    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? Colors.dark.text2 : "black")};
   }
 
   i {
     padding: 0.5rem 1em !important;
     font-size: 14px !important;
-    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? Colors.dark.text2 : "black")};
   }
 `
 
@@ -109,7 +109,7 @@ const styles = (theme) =>
       transform: "scale(1.5)",
     },
     checkBoxChecked: {
-      color: `${colors.dark.lighter} !important`,
+      color: `${Colors.dark.lighter} !important`,
     },
   })
 

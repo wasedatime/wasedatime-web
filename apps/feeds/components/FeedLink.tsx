@@ -113,7 +113,7 @@ const FeedLink = ({ name, feed, locale }: Props) => {
                 </p>
               </CardContent>
             </div>
-            <Hidden xsDown>
+            {/* <Hidden xsDown> */}
               <CardMedia
                 sx={{
                   width: 200,
@@ -121,7 +121,7 @@ const FeedLink = ({ name, feed, locale }: Props) => {
                 image={cover}
                 title="Feed Cover Image"
               />
-            </Hidden>
+            {/* </Hidden> */}
           </Card>
         </Link>
       </CardActionArea>

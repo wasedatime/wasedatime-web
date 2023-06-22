@@ -31,9 +31,9 @@ const OrButton = styled(Button.Or)<ButtonProps>`
   height: 24px;
   &:before {
     background-color: ${(props) =>
-      props.$isDark ? colors.dark.bgSide : colors.light.bgSide} !important;
+      props.$isDark ? Colors.dark.bgSide : Colors.light.bgSide} !important;
     color: ${(props) =>
-      props.$isDark ? colors.dark.text2 : colors.light.text2} !important;
+      props.$isDark ? Colors.dark.text2 : Colors.light.text2} !important;
   }
 `
 

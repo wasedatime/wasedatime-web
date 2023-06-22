@@ -1,5 +1,6 @@
-import { withTranslation, WithTranslation } from "react-i18next"
+import { WithTranslation } from "react-i18next"
 import { GoogleIcon } from "@/icons/GoogleIcon"
+import { CrossIcon } from "@/icons/CrossIcon"
 import { signIn } from "@/utils/user"
 import { Dialog } from "@headlessui/react"
 
@@ -9,7 +10,8 @@ interface Props extends WithTranslation {
 }
 
 const buttonStyle = {
-  fontSize: "1.2em",
+  width: "70%",
+  fontSize: "1.6em",
   padding: "0.5em",
   margin: "0.5em",
   background: "#b51e36",
@@ -29,25 +31,28 @@ const SignInModal = ({ isModalOpen, closeModal, t }: Props) => {
   return (
     <Dialog open={isModalOpen} onClose={() => closeModal}>
       <Dialog.Panel
-        className="bg-light-bgMain text-light-text1 dark:bg-dark-bgMain dark:text-dark-text1 dark:border-2 dark:border-dark-text3"
-        style={{ borderRadius: "20px", padding: "1em 2em" }}
+        className="bg-light-bgMain text-light-text1 dark:bg-dark-bgMain dark:text-dark-text1 dark:border-2 dark:border-dark-text3 rounded-lg p-4 fixed top-1/3 z-50 shadow-xl border-4 border-gray-100"
+        style={{ top: "25vh", left: "20vw", width: "60vw", borderRadius: "20px", boxShadow: "0px 0px 10px gray" }}
       >
-        <Dialog.Title style={{ fontSize: "24px" }}>
+        <Dialog.Title style={{ fontSize: "24px", position: "relative" }} className="text-center">
+          <button style={{ position: "absolute", top: 0, right: 0, fontSize: 50 }} onClick={closeModal}>
+            <CrossIcon />
+          </button>
           {t(`user.Sign in`)}
           <hr style={{ backgroundColor: "#585858", borderColor: "#585858" }} />
         </Dialog.Title>
         <Dialog.Description>
-          <div className="px-4 py-4 lg:px-16">
+          <div className="px-4 py-4 lg:px-16 text-center">
             <p>{t(`user.sign in description`)}</p>
             <button style={buttonStyle} onClick={signIn}>
-              <span style={{ padding: "0px", paddingRight: "0.5em" }}>
+              <span style={{ float: "left", color: "#fff" }}>
                 <GoogleIcon />
               </span>
               {t(`user.Sign in with WasedaMail`)}
             </button>
           </div>
           <hr style={{ backgroundColor: "#585858", borderColor: "#585858" }} />
-          <p>
+          <p className="text-center">
             {t(`user.agreement on privacy policy 1`)}
             <a href="/privacy-policy">
               <b>{t(`user.Privacy Policy`)}</b>
@@ -64,4 +69,4 @@ const SignInModal = ({ isModalOpen, closeModal, t }: Props) => {
   )
 }
 
-export default withTranslation("translation")(SignInModal)
+export default SignInModal

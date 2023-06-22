@@ -321,10 +321,10 @@ const Bus = (): JSX.Element => {
 
   const { t, i18n } = useTranslation()
   useEffect(() => {
-    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
+    // i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
   }, [])
 
-  const lng = i18n.language
+  const lng = i18n.language || "en"
   const { wasedaStatus, nishiStatus } = getBusStatuses(date, lng, t)
   const wasedaStatusComponent = createStatusComponent(wasedaStatus, t)
   const nishiStatusComponent = createStatusComponent(nishiStatus, t)

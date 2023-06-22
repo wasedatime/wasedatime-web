@@ -3,8 +3,6 @@ import colors from "@/theme/colors.json"
 import Menu from "@mui/material/Menu"
 import MenuItem from "@mui/material/MenuItem"
 import { Languages } from "lucide-react"
-import MediaQuery from "react-responsive"
-import { sizes } from "@/utils/responsive"
 import { ThemeType } from "@/constants/type/theme"
 
 const buttonStyle = {
@@ -55,15 +53,7 @@ export const LanguageMenu = ({ theme, changeLang }: LanguageMenuProps) => {
         onClick={handleClick}
         aria-label="Language toggle"
       >
-        <MediaQuery maxWidth={sizes.tablet}>
-          {(matches: any) =>
-            matches ? (
-              <Languages size="2x" />
-            ) : (
-              <Languages size="3x" transform="shrink-2" />
-            )
-          }
-        </MediaQuery>
+        <Languages size={32} />
       </button>
       <Menu
         id="language-menu"

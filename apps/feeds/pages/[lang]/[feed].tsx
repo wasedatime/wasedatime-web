@@ -1,6 +1,7 @@
-import { useRouter } from "next/router"
 import { useAmp } from "next/amp"
 import Head from "next/head"
+import Image from 'next/image'
+import { useRouter } from "next/router"
 import ReactMarkdown from "react-markdown"
 import fs from "fs"
 import path from "path"
@@ -37,30 +38,15 @@ const Feed = ({ feed, lang, filename, updatedAt }: Props) => {
     src?: string | undefined
     title?: string | undefined
   }) {
-    return isAmp ? (
-      <span className="ampImgContainer">
-        <amp-img
-          layout="fill"
-          width="300"
-          height="200"
-          className="contain"
+    return (
+      <div className="mx-auto w-full md:w-3/4">
+        <Image
           src={require(`../../public/feeds/${decodeURI(src)}`)}
-          alt={alt}
+          alt={alt || ""}
+          className=""
+          layout="responsive"
         />
-      </span>
-    ) : (
-      <i-amphtml-sizer-intrinsic>
-        <img
-          src={require(`../../public/feeds/${decodeURI(src)}`)}
-          alt={alt}
-          style={{
-            width: "100%",
-            maxWidth: "800px",
-            margin: "10px auto",
-            display: "block",
-          }}
-        />
-      </i-amphtml-sizer-intrinsic>
+      </div>
     )
   }
 

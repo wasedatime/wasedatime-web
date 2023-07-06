@@ -5,8 +5,7 @@ import Grid from "@mui/material/Grid"
 import Card from "@mui/material/Card"
 import CardActionArea from "@mui/material/CardActionArea"
 import CardContent from "@mui/material/CardContent"
-import CardMedia from "@mui/material/CardMedia"
-import Hidden from "@mui/material/Hidden"
+import Image from 'next/image'
 import React, { useEffect, useState } from "react"
 import { FeedInfo } from "../constants/types"
 import { Lang, LangMap } from "../constants/langs"
@@ -39,13 +38,14 @@ const FeedLink = ({ name, feed, locale }: Props) => {
         }
       }
     }
+    console.log(coverImg);
     setCover(coverImg)
   }, [])
 
   return (
     <Grid item xs={12} md={6}>
-      <CardActionArea component="a" href="#">
-        <Link
+      <CardActionArea component="span">
+      <Link
           href={
             (process.env.APP_ENV === "production" ? "/feeds/" : "") +
             locale +
@@ -69,7 +69,7 @@ const FeedLink = ({ name, feed, locale }: Props) => {
             >
               <CardContent
                 sx={{
-                  padding: 20,
+                  padding: 2,
                 }}
               >
                 <h3
@@ -113,15 +113,9 @@ const FeedLink = ({ name, feed, locale }: Props) => {
                 </p>
               </CardContent>
             </div>
-            {/* <Hidden xsDown> */}
-              <CardMedia
-                sx={{
-                  width: 200,
-                }}
-                image={cover}
-                title="Feed Cover Image"
-              />
-            {/* </Hidden> */}
+            <div className="w-1/2 h-48 relative">
+              {cover && <Image src={cover} alt="Feed Cover Image" layout="responsive" />}
+            </div>
           </Card>
         </Link>
       </CardActionArea>

@@ -1,6 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
+import { useTranslation } from "react-i18next"
 import { CloseIcon } from "@app/components/icons/CloseIcon";
 import boards from "@app/constants/boards.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
@@ -12,6 +13,7 @@ const CreateThread = () => {
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [textContent, setTextContent] = useState("");
+  const { t, i18n } = useTranslation()
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
@@ -123,6 +125,7 @@ const CreateThread = () => {
       <SignInModal
         isModalOpen={isSignInModalOpen}
         closeModal={() => setSignInModalOpen(false)}
+        t={t}
       />
     </div>
   );

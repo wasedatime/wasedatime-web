@@ -1,4 +1,4 @@
-export { i18nConfig } from "@/utils/i18n"
+export { getCoreTranslation, getI18nHttpBackend, getI18nLanguageDetector } from "@/utils/i18n"
 export { sizes, media } from "@/utils/responsive"
 export {
   configAuth,

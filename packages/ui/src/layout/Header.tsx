@@ -1,5 +1,4 @@
 import MediaQuery from "react-responsive"
-import { useNavigate } from "react-router-dom"
 import colors from "@/theme/colors.json"
 import { LanguageMenu } from "@/layout/LanguageMenu"
 import { sizes } from "@/utils/responsive"
@@ -102,8 +101,6 @@ export const Header = ({
   theme = "light",
   setTheme,
 }: HeaderProps) => {
-  const navigate = useNavigate()
-
   const searchBar = (
     <label style={{ marginLeft: "0" }}>
       <input
@@ -124,7 +121,7 @@ export const Header = ({
       <MediaQuery maxWidth={sizes.tablet}>
         {(matches: any) =>
           matches ? (
-            <div style={logoWrapperStyle} onClick={() => navigate("/home")}>
+            <div style={logoWrapperStyle} onClick={() => {location.href = "/home"}}>
               <SmallLogo />
             </div>
           ) : (

@@ -120,6 +120,7 @@ const Nav = () => {
         <SignInModal
           isModalOpen={isSignInModalOpen}
           closeModal={() => setSignInModalOpen(false)}
+          t={t}
         />
       </ThemeProvider>
     </Suspense>

@@ -31,6 +31,7 @@
     "concurrently": "7.0.0",
     "cssnano": "5.1.0",
     "dotenv": "^16.0.3",
+    "esbuild": "^0.18.6",
     "eslint": "8.10.0",
     "eslint-config-custom": "workspace:*",
     "postcss": "8.4.8",
@@ -74,9 +75,6 @@
     "vite": "4.3.5",
     "vite-plugin-dynamic-import": "^0.7.1",
     "wasedatime-ui": "*"
-  },
-  "resolutions": {
-    "esbuild": "0.14.43"
   },
   "peerDependencies": {
     "@babel/plugin-syntax-flow": "^7.16.7",

@@ -154,10 +154,10 @@ const CreateThread = () => {
           Start a new thread
         </h1>
       </div>
-      <SignInModal
+      {/* <SignInModal
         isModalOpen={isSignInModalOpen}
         closeModal={() => setSignInModalOpen(false)}
-      />
+      /> */}
     </div>
   );
 };

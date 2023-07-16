@@ -1,10 +1,10 @@
 type Thread = {
   uuid: string;
-  univId: number;
-  boardId: number;
-  tagId: number;
-  groupId: string;
-  userId: string;
+  univ_id: number;
+  board_id: string;
+  tag_id: string;
+  group_id: string;
+  user_id: string;
   author: string;
   title: string;
   body: string;

@@ -34,6 +34,7 @@
     "esbuild": "^0.18.6",
     "eslint": "8.10.0",
     "eslint-config-custom": "workspace:*",
+    "localforage": "1.10.0",
     "postcss": "8.4.8",
     "prettier": "2.5.1",
     "prettier-eslint": "13.0.0",

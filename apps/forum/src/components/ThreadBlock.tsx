@@ -70,9 +70,6 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
           <div>
             <h3>Views: {thread.views}</h3>
           </div>
-          <div>
-            <h3>Views: {thread.views}</h3>
-          </div>
         </div>
       </Link>
     </Block>

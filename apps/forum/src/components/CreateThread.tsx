@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { CloseIcon } from "@app/components/icons/CloseIcon";
 import boards from "@app/constants/boards.json";
+import tagsData from "@app/constants/tags.json";
+import groupsData from "@app/constants/groups.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
 
 const CreateThread = () => {
@@ -13,6 +15,9 @@ const CreateThread = () => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [textContent, setTextContent] = useState("");
   const [titleContent, setTitleContent] = useState("");
+  const [tags, setTags] = useState([]);
+  const [group, setGroups] = useState(groupsData);
+  const [selectedTag, setSelectedTag] = useState(null);
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
@@ -22,6 +27,18 @@ const CreateThread = () => {
     setIsExpanded(false);
     setExpandTags(false);
     setExpandGroups(false);
+  }, [boardSlug]);
+
+  useEffect(() => {
+    const board = boards.find((board) => board.slug === boardSlug);
+    if (board) {
+      const boardTags = board.tags.map((tagId) =>
+        tagsData.find((tags) => tags.id === tagId)
+      );
+      setTags(boardTags);
+    } else {
+      setTags([]);
+    }
   }, [boardSlug]);
 
   const handleOpenForm = async () => {
@@ -46,6 +63,10 @@ const CreateThread = () => {
     setTextContent(e.target.value);
   };
 
+  const handleTagClick = (tag: any) => {
+    setSelectedTag(tag);
+  };
+
   const handleSubmit = async () => {
     if (!titleContent || titleContent.trim().length === 0) {
       alert("Please enter a title");
@@ -68,7 +89,7 @@ const CreateThread = () => {
           data: {
             body: textContent,
             title: titleContent,
-            tag_id: "Life",
+            tag_id: selectedTag,
             group_id: "SILS",
             univ_id: "1",
           },
@@ -122,10 +143,20 @@ const CreateThread = () => {
           >
             {expandTags ? (
               <div className="bg-light-main text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg">
-                Text
+                {tags.map((tag) => (
+                  <div
+                    key={tag.id}
+                    onClick={() => handleTagClick(tag)}
+                    className={`tag ${
+                      selectedTag === tag ? "tag-selected" : ""
+                    }`}
+                  >
+                    {tag.title}
+                  </div>
+                ))}
               </div>
             ) : null}
-            <p>Tags</p>
+            <p>{selectedTag ? selectedTag.title : "Tags"}</p>
           </button>
           <button
             className="relative border-light-main border px-4 rounded-lg hover:text-white hover:bg-light-main"

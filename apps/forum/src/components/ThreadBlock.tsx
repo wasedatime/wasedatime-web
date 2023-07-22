@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Block from "./Block";
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
+import { getIdToken } from "wasedatime-ui";
+import API from "@aws-amplify/api";
 
 type Props = {
   isPreview: boolean;
@@ -8,6 +12,19 @@ type Props = {
 };
 
 const ThreadBlock = ({ isPreview, thread }: Props) => {
+  const [userToken, setUserToken] = useState("");
+
+  useEffect(() => {
+    const updateLoginStatus = async () => {
+      const idToken = await getIdToken();
+      if (idToken && idToken.length > 0) {
+        setUserToken(idToken);
+      }
+    };
+
+    updateLoginStatus();
+  }, [userToken]);
+
   const actions = [
     {
       icon: "",
@@ -15,6 +32,30 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
       onClick: () => {},
     },
   ];
+
+  const updateThread = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("Thread updated!");
+    // TODO: open edit form
+    // TODO: call api
+  }
+
+  const deleteThread = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log("Thread deleted!");
+    // TODO: confirm message before executing api
+    try {
+      const response = await API.del("wasedatime-dev", `/forum/${thread.board_id}/${thread.thread_id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: userToken,
+        },
+      });
+      console.log("Thread deleted!:", response);
+    } catch (error) {
+      console.error("Thread not deleted successfully!:", error);
+    }
+  }
 
   const navigate = useNavigate();
 
@@ -38,16 +79,6 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
               Back
             </div>
           )}
-          {isPreview ? (
-            ``
-          ) : (
-            <div
-              onClick={() => navigate(-1)}
-              className="text-xs mt-2 cursor-pointer text-gray-400 hover:text-gray-500 w-fit"
-            >
-              Back
-            </div>
-          )}
           {/* ^ This line goes to parent board on click while in thread */}
           <div className={`px-2`}>
             <div className="flex justify-between mt-2">
@@ -60,8 +91,16 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
                 <div className="bg-red-500 rounded-lg"> {thread.tag_id}</div>
                 {/* ToDO: There is no author for now will add later on */}
                 {/* <h2 className="text-sm text-light-text2 my-auto">
-                {thread.author}
-              </h2> */}
+                  {thread.author}
+                </h2> */}
+                {
+                  userToken && userToken.length > 0 && thread.uid === userToken && (
+                    <>
+                      <button onClick={updateThread}><EditIcon fontSize="large" color="warning" /></button>
+                      <button onClick={deleteThread}><DeleteIcon fontSize="large" color="error" /></button>
+                    </>
+                  )
+                }
               </div>
             </div>
             <p className="justify-left text-light-text1 pt-4">{thread.body}</p>

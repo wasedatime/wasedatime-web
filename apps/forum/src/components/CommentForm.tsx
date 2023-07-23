@@ -3,12 +3,14 @@ import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { SignInModal, getIdToken } from "wasedatime-ui";
 import { SendIcon } from "./icons/SendIcon";
+import { useTranslation } from "react-i18next";
 
 const CommentForm = () => {
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [comment, setComment] = useState("");
   const { threadUuid } = useParams();
+  const { t } = useTranslation();
 
   // console.log(threadUuid);
 
@@ -77,6 +79,7 @@ const CommentForm = () => {
         <SignInModal
           isModalOpen={isSignInModalOpen}
           closeModal={() => setSignInModalOpen(false)}
+          t={t}
         />
       )}
     </div>

@@ -6,6 +6,7 @@ import boards from "@app/constants/boards.json";
 import tagsData from "@app/constants/tags.json";
 import groupsData from "@app/constants/groups.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
+import { useTranslation } from "react-i18next";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -22,6 +23,7 @@ const CreateThread = () => {
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
   const { boardSlug } = useParams();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsExpanded(false);
@@ -185,10 +187,11 @@ const CreateThread = () => {
           Start a new thread
         </h1>
       </div>
-      {/* <SignInModal
+      <SignInModal
         isModalOpen={isSignInModalOpen}
         closeModal={() => setSignInModalOpen(false)}
-      /> */}
+        t={t}
+      />
     </div>
   );
 };

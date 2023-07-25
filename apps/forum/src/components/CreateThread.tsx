@@ -89,7 +89,7 @@ const CreateThread = () => {
           data: {
             body: textContent,
             title: titleContent,
-            tag_id: selectedTag,
+            tag_id: selectedTag.title,
             group_id: "SILS",
             univ_id: "1",
           },

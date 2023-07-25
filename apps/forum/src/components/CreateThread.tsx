@@ -6,11 +6,11 @@ import boards from "@app/constants/boards.json";
 import tagsData from "@app/constants/tags.json";
 import groupsData from "@app/constants/groups.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
+import DropdownWithTabs from "./SchoolTag";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [expandTags, setExpandTags] = useState(false);
-  const [expandGroups, setExpandGroups] = useState(false);
+  const [expandedDropdown, setExpandedDropdown] = useState(null);
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [textContent, setTextContent] = useState("");
@@ -18,15 +18,12 @@ const CreateThread = () => {
   const [tags, setTags] = useState([]);
   const [group, setGroups] = useState(groupsData);
   const [selectedTag, setSelectedTag] = useState(null);
-
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
   const { boardSlug } = useParams();
 
   useEffect(() => {
     setIsExpanded(false);
-    setExpandTags(false);
-    setExpandGroups(false);
   }, [boardSlug]);
 
   useEffect(() => {
@@ -52,6 +49,14 @@ const CreateThread = () => {
       } else {
         setSignInModalOpen(true);
       }
+    }
+  };
+
+  const handleDropdown = (dropDown) => {
+    if (expandedDropdown === dropDown) {
+      setExpandedDropdown(null);
+    } else {
+      setExpandedDropdown(dropDown);
     }
   };
 
@@ -139,9 +144,9 @@ const CreateThread = () => {
         <div className="my-auto">
           <button
             className="relative text-black-900 border-light-main border mx-4 px-4 rounded-lg hover:text-white hover:bg-light-main"
-            onClick={() => setExpandTags(!expandTags)}
+            onClick={() => handleDropdown("tags")}
           >
-            {expandTags ? (
+            {expandedDropdown === "tags" ? (
               <div className="bg-light-main text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg">
                 {tags.map((tag) => (
                   <div
@@ -160,12 +165,12 @@ const CreateThread = () => {
           </button>
           <button
             className="relative border-light-main border px-4 rounded-lg hover:text-white hover:bg-light-main"
-            onClick={() => setExpandGroups(!expandGroups)}
+            onClick={() => handleDropdown("school")}
           >
-            Groups
-            {expandGroups ? (
-              <div className="bg-white border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg">
-                Text
+            School
+            {expandedDropdown === "school" ? (
+              <div className="bg-white border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg overflow-auto">
+                <DropdownWithTabs />
               </div>
             ) : null}
           </button>

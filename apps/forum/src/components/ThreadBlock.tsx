@@ -38,16 +38,6 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
               Back
             </div>
           )}
-          {isPreview ? (
-            ``
-          ) : (
-            <div
-              onClick={() => navigate(-1)}
-              className="text-xs mt-2 cursor-pointer text-gray-400 hover:text-gray-500 w-fit"
-            >
-              Back
-            </div>
-          )}
           {/* ^ This line goes to parent board on click while in thread */}
           <div className={`px-2`}>
             <div className="flex justify-between mt-2">

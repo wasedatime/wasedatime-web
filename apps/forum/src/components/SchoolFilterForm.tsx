@@ -93,7 +93,8 @@ const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
       className={
         (currentGroups.includes(school)
           ? "border-light-main"
-          : "border-light-bgMain") + " border-2 rounded grow-0 shrink-0 m-2 cursor-pointer"
+          : "border-light-bgMain") +
+        " border-2 rounded grow-0 shrink-0 m-2 cursor-pointer"
       }
       onClick={() => toggleGroup(school)}
     >

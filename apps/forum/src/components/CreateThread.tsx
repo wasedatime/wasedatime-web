@@ -169,7 +169,7 @@ const CreateThread = () => {
           >
             School
             {expandedDropdown === "school" ? (
-              <div className="bg-white border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg overflow-auto">
+              <div className="bg-white border border-light-main absolute h-64 w-56 top-8 left-0 rounded-lg overflow-auto">
                 <DropdownWithTabs />
               </div>
             ) : null}

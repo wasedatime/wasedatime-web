@@ -41,9 +41,9 @@
   <% if (isLocal) { %>
     <link rel="stylesheet" href="./src/styles/tailwind-build-output.css" type="css">
   <% } else { %>
-    <link rel="preload" href="<%= env.VITE_MF_SYLLABUS_BASE_PATH %>/assets/style.css" as="style" onload="this.rel='stylesheet'">
-    <link rel="preload" href="<%= env.VITE_MF_CAMPUS_BASE_PATH %>/assets/style.css" as="style" onload="this.rel='stylesheet'">
-
+    <link rel="preload" href="<%= env.VITE_MF_SYLLABUS_BASE_PATH || "http://localhost:8080" %>/assets/style.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<%= env.VITE_MF_CAMPUS_BASE_PATH || "http://localhost:8081" %>/assets/style.css" as="style" onload="this.rel='stylesheet'">
+    
     <link rel="preload" as="font" href="/fonts/segoe-ui.ttf" type="font/ttf" crossorigin="anonymous" />
     <link rel="preload" as="font" href="/fonts/yugothic-medium.otf" type="font/otf" crossorigin="anonymous" />
     <link rel="preload" as="font" href="/fonts/Lato-Regular.ttf" type="font/ttf" crossorigin="anonymous" />

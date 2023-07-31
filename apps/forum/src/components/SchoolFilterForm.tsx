@@ -108,7 +108,7 @@ const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
         !isOpen
           ? "hidden "
           : "" +
-            "fixed top-0 left-0 right-0 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full z-0"
+            "fixed top-0 left-0 right-0 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full z-10"
       }
     >
       <div

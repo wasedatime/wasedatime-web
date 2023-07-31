@@ -9,8 +9,6 @@ import { School } from "@app/constants/schools";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
 import { selectedSchoolState } from "@app/recoil/atoms";
 
-type Props = {};
-
 const schoolsByCategory = [
   {
     slug: "undergrad",
@@ -28,10 +26,6 @@ const schoolsByCategory = [
     schools: otherSchools,
   },
 ];
-
-type SchoolBlockProps = {
-  school: School;
-};
 
 const TabItem = ({ title, isActive, onClick }) => (
   <li className="mr-2" onClick={onClick}>

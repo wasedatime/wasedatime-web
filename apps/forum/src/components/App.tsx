@@ -50,9 +50,9 @@ const App = () => {
                   />
                 </Routes>
               </div>
-              <div className="bg-gray-100 md:h-full flex w-1/6">
+              {/* <div className="bg-gray-100 md:h-full flex w-1/6">
                 <h1 className="my-auto">Advertisement</h1>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

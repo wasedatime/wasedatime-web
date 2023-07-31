@@ -6,7 +6,7 @@ import boards from "@app/constants/boards.json";
 import tagsData from "@app/constants/tags.json";
 import groupsData from "@app/constants/groups.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
-import DropdownWithTabs from "./SchoolTag";
+import DropdownWithTabs from "./Dropdown";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -169,7 +169,7 @@ const CreateThread = () => {
           >
             School
             {expandedDropdown === "school" ? (
-              <div className="bg-white border border-light-main absolute h-64 w-56 top-8 left-0 rounded-lg overflow-auto">
+              <div className="bg-white border border-light-main absolute h-64 w-64 top-8 left-0 rounded-lg overflow-auto">
                 <DropdownWithTabs />
               </div>
             ) : null}

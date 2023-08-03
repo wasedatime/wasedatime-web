@@ -19,7 +19,7 @@ import CSEcover from "/img/school-covers/cse.png";
 import ASEcover from "/img/school-covers/ase.png";
 
 const bgImgUrl = (schoolCoverPath: string): string => {
-  const bgImg = new URL(schoolCoverPath, import.meta.url);
+  const bgImg = new URL(schoolCoverPath, import.meta.url || "/syllabus");
   return bgImg.href;
 };
 

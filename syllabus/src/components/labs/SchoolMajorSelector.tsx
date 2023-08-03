@@ -12,7 +12,7 @@ import majorsBySchool from "@app/constants/majors-by-school";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 const bgImgUrl = () => {
-  const bgImg = new URL(majorBg, import.meta.url || "/syllabus");
+  const bgImg = new URL(majorBg, import.meta.url || "https://wasedatime.com/syllabus");
   return bgImg.href;
 };
 

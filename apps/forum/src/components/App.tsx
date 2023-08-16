@@ -10,6 +10,7 @@ import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
 import SearchTags from "./SearchTags";
 import BoardPages from "./BoardPages";
+import ForumHomepage from "./ForumHomepage";
 
 const App = () => {
   const { t, i18n } = useTranslation();
@@ -39,7 +40,8 @@ const App = () => {
             <BoardMenu />
           </div>
           {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
-          <BoardPages />
+          <ForumHomepage />
+          {/* <BoardPages /> */}
         </div>
       </BrowserRouter>
     </div>

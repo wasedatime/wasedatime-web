@@ -9,6 +9,7 @@ import BoardMenu from "@app/components/BoardMenu";
 import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
 import SearchTags from "./SearchTags";
+import BoardPages from "./BoardPages";
 
 const App = () => {
   const { t, i18n } = useTranslation();
@@ -38,23 +39,7 @@ const App = () => {
             <BoardMenu />
           </div>
           {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
-          <div className="flex h-screen justify-between pl-2 gap-4">
-            <div className="flex flex-row w-full">
-              <FilterMenu />
-              <div className="w-5/6">
-                <Routes>
-                  <Route element={<Board />} path="forum/:boardSlug" />
-                  <Route
-                    element={<Thread />}
-                    path="forum/:boardSlug/:threadUuid"
-                  />
-                </Routes>
-              </div>
-              <div className="bg-gray-100 md:h-full flex w-1/6">
-                <h1 className="my-auto">Advertisement</h1>
-              </div>
-            </div>
-          </div>
+          <BoardPages />
         </div>
       </BrowserRouter>
     </div>

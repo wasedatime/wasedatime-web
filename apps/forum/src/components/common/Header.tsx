@@ -164,7 +164,11 @@ const Header = ({
             </div>
           ) : (
             <header style={titleWrapperStyle}>
-              <h2 style={pageTitleStyle(theme)}>{title}</h2>
+              <h2 style={pageTitleStyle(theme)}
+                  onClick={() => navigate("/forum")}
+              >
+                {title}
+              </h2>
             </header>
           )
         }

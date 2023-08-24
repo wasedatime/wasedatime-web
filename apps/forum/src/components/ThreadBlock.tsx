@@ -3,9 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import Block from "./Block";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { getIdToken, Modal as CommonModal } from "wasedatime-ui";
-import Modal from "@app/components/common/Modal";
+import { getIdToken } from "wasedatime-ui";
 import API from "@aws-amplify/api";
+import { ConfirmModal } from "@app/components/form/ConfirmModal";
+import { EditThreadForm } from "@app/components/form/EditThreadForm";
 
 type Props = {
   isPreview: boolean;
@@ -41,8 +42,8 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
     setEditModalOpen(true);
   }
 
-  const updateThread = async () => {
-    console.log("Try updating...");
+  const updateThread = async (title: string, body: string) => {
+    console.log(`Try updating thread...\nTitle: ${title}\nBody: ${body}`);
     try {
       // const response = await API.del("wasedatime-dev", `/forum/${thread.board_id}/${thread.thread_id}`, {
       //   headers: {
@@ -112,63 +113,26 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
                   {thread.author}
                 </h2> */}
                 {
-                  editModalOpen && (
-                    <Modal>
-                      <div>
-                        <div className="relative p-6 flex-auto">
-                          Edit form in construction...
-                        </div>
-                        <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                          <button
-                            className="text-white bg-light-main active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                            type="button"
-                            onClick={updateThread}
-                          >
-                            Submit
-                          </button>
-                          <button
-                            className="text-light-main background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
-                            type="button"
-                            onClick={() => setEditModalOpen(false)}
-                          >
-                            Cancel
-                          </button>
-                        </div>
-                      </div>
-                    </Modal>
-                  )
+                  editModalOpen && <EditThreadForm
+                    originalTitle={thread.title}
+                    originalBody={thread.body}
+                    updateThread={updateThread}
+                    closeForm={() => setEditModalOpen(false)}
+                  />
                 }
                 {
-                  // userToken?.length > 0 && (
-                  userToken?.length > 0 && thread.uid === userToken && (
+                  // userToken?.length > 0 && thread.uid === userToken && (
+                  userToken?.length > 0 && (
                     <div>
                       <button onClick={openThreadEditForm}><EditIcon fontSize="large" color="warning" /></button>
                       <button onClick={confirmDeleteThread}><DeleteIcon fontSize="large" color="error" /></button>
-                      {deleteModalOpen && (
-                        <Modal>
-                          <div>
-                            <div className="relative p-6 flex-auto">
-                              <h3 className="text-2xl">Are you sure to delete this thread?</h3>
-                            </div>
-                            <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-                              <button
-                                className="text-white bg-light-main active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                                type="button"
-                                onClick={deleteThread}
-                              >
-                                Yes, delete it
-                              </button>
-                              <button
-                                className="text-light-main background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
-                                type="button"
-                                onClick={() => setDeleteModalOpen(false)}
-                              >
-                                No, keep it
-                              </button>
-                            </div>
-                          </div>
-                        </Modal>
-                      )}
+                      {deleteModalOpen && <ConfirmModal
+                        questionText="Are you sure to delete this thread?"
+                        confirmText="Yes, delete it"
+                        cancelText="No, keep it"
+                        confirmAction={deleteThread}
+                        cancelAction={() => setDeleteModalOpen(false)}
+                      />}
                     </div>
                   )
                 }

@@ -5,7 +5,7 @@ import { WrapperWithBackground } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import { Logo } from "@bit/wasedatime.core.ts.ui.logo";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { navigateToUrl } from "single-spa";
 import styled from "styled-components";

@@ -4,7 +4,7 @@ import { Wrapper } from "@bit/wasedatime.core.ts.styles.wrapper";
 import Header from "@bit/wasedatime.core.ts.ui.header";
 import LoadingSpinner from "@bit/wasedatime.core.ts.ui.loading-spinner";
 import { media } from "@bit/wasedatime.core.ts.utils.responsive-utils";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 import styled from "styled-components";

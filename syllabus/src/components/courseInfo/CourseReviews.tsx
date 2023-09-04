@@ -6,7 +6,7 @@ import { media, sizes } from "@bit/wasedatime.core.ts.utils.responsive-utils";
 import { getIdToken, getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { WithTranslation, withTranslation } from "react-i18next";
 import MediaQuery from "react-responsive";
 import { toast } from "react-toastify";

@@ -7,7 +7,7 @@ import { getUserAttr } from "@bit/wasedatime.core.ts.utils.user";
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { levenshteinEditDistance as levenshtein } from "levenshtein-edit-distance";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { WithTranslation, withTranslation } from "react-i18next";
 import { connect } from "react-redux";
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid";

@@ -5,7 +5,7 @@ import i18nConfig from "@bit/wasedatime.core.ts.utils.i18n";
 import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 import i18next from "i18next";
 import ReactDOM from "react-dom";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { navigateToUrl, registerApplication, start } from "single-spa";
 import {
   constructApplications,
@@ -50,10 +50,7 @@ i18nConfig({
   },
 });
 
-ReactGA.initialize(import.meta.env.VITE_GA_ID, {
-  debug: false,
-  titleCase: false,
-});
+ReactGA.initialize(import.meta.env.VITE_GA_ID);
 
 ReactDOM.render(
   React.createElement("span"),

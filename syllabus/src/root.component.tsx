@@ -8,7 +8,7 @@ import { configAuth } from "@bit/wasedatime.core.ts.utils.user";
 import * as Sentry from "@sentry/react";
 import i18next from "i18next";
 import throttle from "lodash/throttle";
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { Provider } from "react-redux";
 
 import App from "@app/App";
@@ -33,10 +33,7 @@ API.configure(config);
 
 configAuth();
 
-ReactGA.initialize(import.meta.env.VITE_GA_ID, {
-  debug: false,
-  titleCase: false,
-});
+ReactGA.initialize(import.meta.env.VITE_GA_ID);
 
 const LoadingSpinnerContainer = () => {
   const { theme } = useContext(ThemeContext);

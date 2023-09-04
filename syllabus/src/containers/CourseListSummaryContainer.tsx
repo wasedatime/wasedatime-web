@@ -1,6 +1,6 @@
 import React from "react";
 
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 import { connect } from "react-redux";
 
 import CourseListSummary from "@app/components/CourseListSummary";

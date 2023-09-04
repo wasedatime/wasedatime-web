@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Block from "./Block";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { getIdToken } from "wasedatime-ui";
 import API from "@aws-amplify/api";
 import { ConfirmModal } from "@app/components/form/ConfirmModal";
@@ -40,43 +40,59 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
   const openThreadEditForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setEditModalOpen(true);
-  }
+  };
 
   const updateThread = async (title: string, body: string) => {
     console.log(`Try updating thread...\nTitle: ${title}\nBody: ${body}`);
     try {
-      // const response = await API.del("wasedatime-dev", `/forum/${thread.board_id}/${thread.thread_id}`, {
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //     Authorization: userToken,
-      //   },
-      // });
-      // console.log("Thread updated!:", response);
+      const response = await API.patch(
+        "wasedatime-dev",
+        `/forum/${thread.board_id}/${thread.thread_id}`,
+        {
+          body: {
+            data: {
+              tag_id: "courses",
+              group_id: "SILS",
+              title,
+              body,
+            },
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: userToken,
+          },
+        }
+      );
+      console.log("Thread updated!:", response);
     } catch (error) {
       console.error("Thread not updated successfully!:", error);
     }
     setEditModalOpen(false);
-  }
+  };
 
   const confirmDeleteThread = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setDeleteModalOpen(true);
-  }
+  };
 
   const deleteThread = async () => {
     console.log("Try deleting...");
     try {
-      const response = await API.del("wasedatime-dev", `/forum/${thread.board_id}/${thread.thread_id}`, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: userToken,
-        },
-      });
+      const response = await API.del(
+        "wasedatime-dev",
+        `/forum/${thread.board_id}/${thread.thread_id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: userToken,
+          },
+        }
+      );
       console.log("Thread deleted!:", response);
     } catch (error) {
       console.error("Thread not deleted successfully!:", error);
     }
-  }
+  };
 
   const navigate = useNavigate();
 
@@ -112,27 +128,33 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
                 {/* <h2 className="text-sm text-light-text2 my-auto">
                   {thread.author}
                 </h2> */}
-                {
-                  editModalOpen && <EditThreadForm
+                {editModalOpen && (
+                  <EditThreadForm
                     originalTitle={thread.title}
                     originalBody={thread.body}
                     updateThread={updateThread}
                     closeForm={() => setEditModalOpen(false)}
                   />
-                }
+                )}
                 {
                   // userToken?.length > 0 && thread.uid === userToken && (
                   userToken?.length > 0 && (
                     <div>
-                      <button onClick={openThreadEditForm}><EditIcon fontSize="large" color="warning" /></button>
-                      <button onClick={confirmDeleteThread}><DeleteIcon fontSize="large" color="error" /></button>
-                      {deleteModalOpen && <ConfirmModal
-                        questionText="Are you sure to delete this thread?"
-                        confirmText="Yes, delete it"
-                        cancelText="No, keep it"
-                        confirmAction={deleteThread}
-                        cancelAction={() => setDeleteModalOpen(false)}
-                      />}
+                      <button onClick={openThreadEditForm}>
+                        <EditIcon fontSize="large" color="warning" />
+                      </button>
+                      <button onClick={confirmDeleteThread}>
+                        <DeleteIcon fontSize="large" color="error" />
+                      </button>
+                      {deleteModalOpen && (
+                        <ConfirmModal
+                          questionText="Are you sure to delete this thread?"
+                          confirmText="Yes, delete it"
+                          cancelText="No, keep it"
+                          confirmAction={deleteThread}
+                          cancelAction={() => setDeleteModalOpen(false)}
+                        />
+                      )}
                     </div>
                   )
                 }

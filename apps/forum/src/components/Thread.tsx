@@ -20,7 +20,6 @@ const Thread = () => {
         console.log("could not find user Id");
       } else {
         let userId = userAttr.id;
-        console.log(userId);
         setUserToken(userId);
         fetchData(userId);
       }

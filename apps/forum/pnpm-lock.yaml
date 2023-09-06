@@ -68,6 +68,9 @@ dependencies:
   react-i18next:
     specifier: 11.15.6
     version: 11.15.6(i18next@19.9.2)(react-dom@17.0.2)(react-native@0.68.7)(react@17.0.2)
+  react-infinite-scroll-component:
+    specifier: ^6.1.0
+    version: 6.1.0(react@17.0.2)
   react-responsive:
     specifier: 9.0.0-beta.10
     version: 9.0.0-beta.10(react@17.0.2)
@@ -7327,6 +7330,15 @@ packages:
       react-native: 0.68.7(@babel/core@7.17.5)(@babel/preset-env@7.16.11)(react@17.0.2)
     dev: false
 
+  /react-infinite-scroll-component@6.1.0(react@17.0.2):
+    resolution: {integrity: sha512-SQu5nCqy8DxQWpnUVLx7V7b7LcA37aM7tvoWjTLZp1dk6EJibM5/4EJKzOnl07/BsM1Y40sKLuqjCwwH/xV0TQ==}
+    peerDependencies:
+      react: '>=16.0.0'
+    dependencies:
+      react: 17.0.2
+      throttle-debounce: 2.3.0
+    dev: false
+
   /react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
@@ -8183,6 +8195,11 @@ packages:
 
   /throat@5.0.0:
     resolution: {integrity: sha512-fcwX4mndzpLQKBS1DVYhGAcYaYt7vsHNIvQV+WXMvnow5cgjPphq5CaayLaGsjRdSCKZFNGt7/GYAuXaNOiYCA==}
+
+  /throttle-debounce@2.3.0:
+    resolution: {integrity: sha512-H7oLPV0P7+jgvrk+6mwwwBDmxTaxnu9HMXmloNLXwnNO0ZxZ31Orah2n8lU1eMPvsaowP2CX+USCgyovXfdOFQ==}
+    engines: {node: '>=8'}
+    dev: false
 
   /through2@2.0.5:
     resolution: {integrity: sha512-/mrRod8xqpA+IHSLyGCQ2s8SPHiCDEeQJSep1jqLYeEUClOFG2Qsh+4FU6G9VeqpZnGW/Su8LQGc4YKni5rYSQ==}

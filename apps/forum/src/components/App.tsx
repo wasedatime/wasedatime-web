@@ -15,9 +15,9 @@ const App = () => {
   const { theme, setTheme } = React.useContext(ThemeContext);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen">
       <BrowserRouter>
-        <div className="basis-[67px]">
+        <div className="flex h-[67px] shrink-0 grow-0">
           <HeaderWithModal
             modal={SearchTags}
             title={t("navigation.forum")}
@@ -30,7 +30,7 @@ const App = () => {
             changeLang={(lng: string | undefined) => i18n.changeLanguage(lng)}
           />
         </div>
-        <div className="basis-[calc(100vh-67px)] flex flex-col">
+        <div className="flex flex-col h-[calc(100vh-67px)]">
           {/* <div className="basis-[60px] lg:basis-[20%] bg-zinc-100 dark:bg-zinc-700 dark:text-dark-text1">
             <BoardMenu />
           </div> */}
@@ -38,7 +38,7 @@ const App = () => {
             <BoardMenu />
           </div>
           {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
-          <div className="flex h-screen justify-between pl-2 gap-4">
+          <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-143px)]">
             <div className="flex flex-row w-full">
               <FilterMenu />
               <div className="w-5/6">

@@ -10,29 +10,29 @@ type Props = {
 const LoadingTextPlaceHolder = ({ $isDark }: Props) => (
   <Placeholder
     style={{
-      backgroundColor: $isDark ? colors.dark.text3 : colors.light.text3,
+      backgroundColor: $isDark ? Colors.dark.text3 : Colors.light.text3,
       margin: "1rem",
     }}
   >
     <Placeholder.Paragraph>
       <Placeholder.Line
         style={{
-          backgroundColor: $isDark ? colors.dark.bgMain : colors.light.bgMain,
+          backgroundColor: $isDark ? Colors.dark.bgMain : Colors.light.bgMain,
         }}
       />
       <Placeholder.Line
         style={{
-          backgroundColor: $isDark ? colors.dark.bgMain : colors.light.bgMain,
+          backgroundColor: $isDark ? Colors.dark.bgMain : Colors.light.bgMain,
         }}
       />
       <Placeholder.Line
         style={{
-          backgroundColor: $isDark ? colors.dark.bgMain : colors.light.bgMain,
+          backgroundColor: $isDark ? Colors.dark.bgMain : Colors.light.bgMain,
         }}
       />
       <Placeholder.Line
         style={{
-          backgroundColor: $isDark ? colors.dark.bgMain : colors.light.bgMain,
+          backgroundColor: $isDark ? Colors.dark.bgMain : Colors.light.bgMain,
         }}
       />
     </Placeholder.Paragraph>

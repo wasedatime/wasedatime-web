@@ -42,13 +42,13 @@ const WiderPopup = styled(Popup)<ThemeComponentProps>`
   ${(props) =>
     props.$isDark &&
     `
-    background-color: ${colors.dark.bgMain} !important;
-    box-shadow: 0 2px 4px 0 ${colors.dark.text3} !important;
-    border-color: ${colors.dark.text3} !important;
+    background-color: ${Colors.dark.bgMain} !important;
+    box-shadow: 0 2px 4px 0 ${Colors.dark.text3} !important;
+    border-color: ${Colors.dark.text3} !important;
     &:before {
-      background-color: ${colors.dark.bgMain} !important;
-      border-color: ${colors.dark.text3} !important;
-      box-shadow: -1px -1px 0 0 ${colors.dark.text3} !important;
+      background-color: ${Colors.dark.bgMain} !important;
+      border-color: ${Colors.dark.text3} !important;
+      box-shadow: -1px -1px 0 0 ${Colors.dark.text3} !important;
     }
   `}
 
@@ -76,15 +76,15 @@ const StyledTab = styled(Tab)<ThemeComponentProps>`
     props.$isDark &&
     `
       .tabular.menu {
-        border-bottom-color: ${colors.dark.text3} !important;
+        border-bottom-color: ${Colors.dark.text3} !important;
         .item {
-          background-color: ${colors.dark.bgMain} !important;
+          background-color: ${Colors.dark.bgMain} !important;
           border-width: 0px !important;
-          color: ${colors.dark.text2} !important;
+          color: ${Colors.dark.text2} !important;
         }
         .item.active {
           border-width: 1px !important;
-          border-color: ${colors.dark.text3} !important;
+          border-color: ${Colors.dark.text3} !important;
         }
       }
     `}
@@ -95,9 +95,9 @@ const StyledMenuItem = styled(Menu.Item)<ThemeComponentProps>`
   ${(props) =>
     props.$isDark &&
     `
-    background-color: ${colors.dark.bgMain} !important;
-    border-color: ${colors.dark.text3} !important;
-    color: ${colors.dark.text2} !important;
+    background-color: ${Colors.dark.bgMain} !important;
+    border-color: ${Colors.dark.text3} !important;
+    color: ${Colors.dark.text2} !important;
   `}
 `
 

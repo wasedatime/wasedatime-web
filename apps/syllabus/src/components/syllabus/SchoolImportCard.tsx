@@ -22,8 +22,8 @@ const SchoolCardWrapper = styled(Dimmer.Dimmable)<ThemedComponentProps>`
   ${(props) =>
     props.$isDark &&
     `
-    background-color: ${colors.dark.text3} !important;
-    box-shadow: 0 1px 3px 0 ${colors.dark.text3},0 0 0 1px ${colors.dark.text3} !important;
+    background-color: ${Colors.dark.text3} !important;
+    box-shadow: 0 1px 3px 0 ${Colors.dark.text3},0 0 0 1px ${Colors.dark.text3} !important;
   `}
 
   &:hover i {
@@ -37,7 +37,7 @@ const SchoolImage = styled(Image)<ThemedComponentProps>`
     transform: translate(-6px, 3px);
   }
   ${(props) =>
-    props.$isDark && `background-color: ${colors.dark.text3} !important;`}
+    props.$isDark && `background-color: ${Colors.dark.text3} !important;`}
 `
 
 const CheckLabel = styled.div`

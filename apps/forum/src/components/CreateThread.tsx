@@ -125,7 +125,7 @@ const CreateThread = () => {
           onChange={handleTitleChange}
         />
         <textarea
-          placeholder={`Share something in ${boards[findBoardIndex].title}...`}
+          placeholder={`Anything interesting?`}
           className=" h-36 pl-2 pb-28 w-full hover:outline-0 focus:outline-0"
           value={textContent}
           onChange={handleBodyChange}
@@ -144,7 +144,7 @@ const CreateThread = () => {
             onClick={() => setExpandTags(!expandTags)}
           >
             {expandTags ? (
-              <div className="bg-light-main text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg">
+              <div className="bg-light-main text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
                 {tags.map((tag) => (
                   <div
                     key={tag.id}
@@ -166,7 +166,7 @@ const CreateThread = () => {
           >
             Groups
             {expandGroups ? (
-              <div className="bg-white border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg">
+              <div className="bg-white border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
                 Text
               </div>
             ) : null}
@@ -184,7 +184,7 @@ const CreateThread = () => {
     <div>
       <div className="cursor-pointer" onClick={handleOpenForm}>
         <h1 className="border-2 p-2 rounded-lg border-light-main">
-          Start a new thread
+          Anything interesting?
         </h1>
       </div>
       <SignInModal

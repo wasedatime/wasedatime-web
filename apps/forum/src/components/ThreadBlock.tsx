@@ -101,7 +101,7 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
         <div
           className={
             isPreview
-              ? `border-2 mt-12 mx-4 rounded-xl shadow-lg pb-6 hover:bg-gray-50 golden-gradient-border`
+              ? `border-2 mt-12 mx-4 rounded-xl shadow-lg pb-6 hover:bg-gray-50`
               : `cursor-default`
           }
         >
@@ -122,7 +122,7 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
               <div>
                 {/* ToDo: create component for tag within Thread Block */}
                 <div className="bg-red-500 rounded-lg"> {thread.group_id}</div>
-                <div className="bg-red-500 rounded-lg"> {thread.tag_id}</div>
+
                 {/* ToDO: There is no author for now will add later on */}
                 {/* <h2 className="text-sm text-light-text2 my-auto">
                   {thread.author}
@@ -161,7 +161,11 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
             </div>
             <p className="justify-left text-light-text1 pt-4">{thread.body}</p>
           </div>
-          <hr className="mx-2 pt-4 mt-6" />
+          <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
+            {" "}
+            {`# ${thread.tag_id}`}
+          </div>
+          <hr className="mx-2 pt-2 mt-6" />
           <div>
             <h3>Views: {thread.views}</h3>
           </div>

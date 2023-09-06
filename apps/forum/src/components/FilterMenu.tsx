@@ -31,7 +31,7 @@ const FilterMenu = () => {
   };
 
   return (
-    <div className="w-64 text-center px-4">
+    <div className=" text-center px-2 lg:px-10">
       <div className="my-2 mx-auto">
         <h1 className="form-item-title">School</h1>
         <button
@@ -48,7 +48,7 @@ const FilterMenu = () => {
         )}
       </div>
 
-      {Object.keys(groups).map((groupCategory, groupCategoryId) => (
+      {/* {Object.keys(groups).map((groupCategory, groupCategoryId) => (
         <CheckList
           key={groupCategoryId}
           listId={groupCategoryId.toString()}
@@ -57,7 +57,7 @@ const FilterMenu = () => {
           onListItemToggle={toggleGroup}
           isItemChecked={isGroupChecked}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

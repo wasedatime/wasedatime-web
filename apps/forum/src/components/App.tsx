@@ -15,44 +15,43 @@ const App = () => {
   const { theme, setTheme } = React.useContext(ThemeContext);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen">
       <BrowserRouter>
-        <div className="basis-[67px]">
-          <HeaderWithModal
-            modal={SearchTags}
-            title={t("navigation.forum")}
-            onInputChange={() => {}}
-            placeholder={t("search placeholder")}
-            inputText=""
-            isBlur={false}
-            theme={theme}
-            setTheme={setTheme}
-            changeLang={(lng: string | undefined) => i18n.changeLanguage(lng)}
-          />
-        </div>
-        <div className="basis-[calc(100vh-67px)] flex flex-col">
-          {/* <div className="basis-[60px] lg:basis-[20%] bg-zinc-100 dark:bg-zinc-700 dark:text-dark-text1">
-            <BoardMenu />
-          </div> */}
-          <div className="justify-between">
-            <BoardMenu />
+        <div className="flex-shrink-0 h-16">
+          <div className="basis-[67px]">
+            <HeaderWithModal
+              modal={SearchTags}
+              title={t("navigation.forum")}
+              onInputChange={() => {}}
+              placeholder={t("search placeholder")}
+              inputText=""
+              isBlur={false}
+              theme={theme}
+              setTheme={setTheme}
+              changeLang={(lng: string | undefined) => i18n.changeLanguage(lng)}
+            />
           </div>
-          {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
-          <div className="flex h-screen justify-between pl-2 gap-4">
-            <div className="flex flex-row w-full">
+        </div>
+        <div className="basis-[calc(100vh-67px)] flex flex-col mt-[23px]">
+          <div className="flex-grow flex flex-row">
+            <div className="flex flex-col w-1/5 ">
+              {/* FilterMenu and BoardMenu stacked vertically */}
               <FilterMenu />
-              <div className="w-5/6">
-                <Routes>
-                  <Route element={<Board />} path="forum/:boardSlug" />
-                  <Route
-                    element={<Thread />}
-                    path="forum/:boardSlug/:threadUuid"
-                  />
-                </Routes>
-              </div>
-              <div className="bg-gray-100 md:h-full flex w-1/6">
-                <h1 className="my-auto">Advertisement</h1>
-              </div>
+              <BoardMenu />
+            </div>
+
+            {/* Remaining part */}
+            <div className="flex flex-col w-3/5">
+              <Routes>
+                <Route element={<Board />} path="forum/:boardSlug" />
+                <Route
+                  element={<Thread />}
+                  path="forum/:boardSlug/:threadUuid"
+                />
+              </Routes>
+            </div>
+            <div className="flex flex-col w-1/5 bg-gray-100">
+              <h1>Advertisement</h1>
             </div>
           </div>
         </div>
@@ -62,3 +61,49 @@ const App = () => {
 };
 
 export default App;
+
+// return (
+//   <div className="flex flex-col">
+//     <BrowserRouter>
+//       <div className="basis-[67px]">
+//         <HeaderWithModal
+//           modal={SearchTags}
+//           title={t("navigation.forum")}
+//           onInputChange={() => {}}
+//           placeholder={t("search placeholder")}
+//           inputText=""
+//           isBlur={false}
+//           theme={theme}
+//           setTheme={setTheme}
+//           changeLang={(lng: string | undefined) => i18n.changeLanguage(lng)}
+//         />
+//       </div>
+//       <div className="basis-[calc(100vh-67px)] flex flex-col">
+//         {/* <div className="basis-[60px] lg:basis-[20%] bg-zinc-100 dark:bg-zinc-700 dark:text-dark-text1">
+//           <BoardMenu />
+//         </div> */}
+
+//         {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
+//         <div className="flex h-screen justify-between pl-2 gap-4 pt-4 mt-[23px]">
+//           <div className="flex flex-col w-full">
+//             <FilterMenu />
+//             <BoardMenu />
+//             {/* <div className="justify-between"></div> */}
+//             <div className="w-5/6 mt-2">
+//               <Routes>
+//                 <Route element={<Board />} path="forum/:boardSlug" />
+//                 <Route
+//                   element={<Thread />}
+//                   path="forum/:boardSlug/:threadUuid"
+//                 />
+//               </Routes>
+//             </div>
+//             <div className="bg-gray-100 md:h-full flex w-1/6">
+//               <h1 className="my-auto">Advertisement</h1>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </BrowserRouter>
+//   </div>
+// );

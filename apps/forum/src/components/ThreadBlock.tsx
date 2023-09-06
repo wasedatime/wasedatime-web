@@ -76,7 +76,6 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
   };
 
   const deleteThread = async () => {
-    console.log("Try deleting...");
     try {
       const response = await API.del(
         "wasedatime-dev",
@@ -102,7 +101,7 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
         <div
           className={
             isPreview
-              ? `border-2 mt-12 mx-4 rounded-xl shadow-lg pb-6 hover:bg-gray-50`
+              ? `border-2 mt-12 mx-4 rounded-xl shadow-lg pb-6 hover:bg-gray-50 golden-gradient-border`
               : `cursor-default`
           }
         >
@@ -138,7 +137,7 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
                 )}
                 {
                   // userToken?.length > 0 && thread.uid === userToken && (
-                  userToken?.length > 0 && (
+                  userToken?.length > 0 && thread.mod === true && (
                     <div>
                       <button onClick={openThreadEditForm}>
                         <EditIcon fontSize="large" color="warning" />

@@ -40,6 +40,7 @@ const Board = () => {
       response: true,
     })
       .then((res) => {
+        console.log(res.data.data);
         var threads = res.data.data.filter(
           (thread: Thread) => thread.board_id === currentBoardId
         );

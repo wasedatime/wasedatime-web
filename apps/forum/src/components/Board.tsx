@@ -5,8 +5,8 @@ import CreateThread from "./CreateThread";
 import ThreadBlock from "./ThreadBlock";
 import boards from "@app/constants/boards.json";
 import localForage from "localforage";
-import { currentGroupsState, currentTagsState } from "@app/recoil/atoms";
-import { filterThreadsByTags, filterThreadsByGroups } from "@app/utils/filter";
+import { currentSchoolState, currentTagsState } from "@app/recoil/atoms";
+import { filterThreadsByTags, filterThreadsBySchool } from "@app/utils/filter";
 import { API } from "@aws-amplify/api";
 import Thread from "@app/types/thread";
 import { getUserAttr } from "wasedatime-ui";
@@ -18,7 +18,7 @@ const Board = () => {
   const { boardSlug } = useParams();
 
   const currentTags = useRecoilValue(currentTagsState);
-  const currentGroups = useRecoilValue(currentGroupsState);
+  const currentSchools = useRecoilValue(currentSchoolState);
 
   const [boardId, setBoardId] = useState(
     boards.find((board) => board.slug === boardSlug)?.slug || "academic"
@@ -65,7 +65,10 @@ const Board = () => {
         console.log(threads);
 
         var filteredThreads = filterThreadsByTags(threads, currentTags);
-        filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);
+        filteredThreads = filterThreadsBySchool(
+          filteredThreads,
+          currentSchools
+        );
         if (filteredThreads.length > threadCountPerPage * page)
           filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
         setFilteredThreads(filteredThreads);
@@ -77,16 +80,16 @@ const Board = () => {
       });
   };
 
-  // when currentTags or currentGroups change, filter the threads
+  // when currentTags or currentSchools change, filter the threads
   useEffect(() => {
     var filteredThreads = filterThreadsByTags(boardThreads, currentTags);
-    filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);
+    filteredThreads = filterThreadsBySchool(filteredThreads, currentSchools);
     if (filteredThreads.length > threadCountPerPage * page)
       filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
     if (filteredThreads.length > threadCountPerPage * page)
       filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
     setFilteredThreads(filteredThreads);
-  }, [currentTags, currentGroups]);
+  }, [currentTags, currentSchools]);
 
   const displayMoreThread = () => {
     setTimeout(() => {
@@ -94,7 +97,7 @@ const Board = () => {
       const nextPage = page + 1;
       setPage(nextPage);
       var threads = filterThreadsByTags(boardThreads, currentTags);
-      threads = filterThreadsByGroups(threads, currentGroups);
+      threads = filterThreadsBySchool(threads, currentSchools);
       threads = threads.slice(0, threadCountPerPage * nextPage);
       setFilteredThreads(threads);
     }, 1000);

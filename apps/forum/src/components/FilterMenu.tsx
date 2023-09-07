@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import groups from "@app/constants/groups.json";
-import CheckList from "@app/components/form/CheckList";
 import SchoolFilterForm from "@app/components/SchoolFilterForm";
-import { currentGroupsState } from "@app/recoil/atoms";
+import { currentSchoolState } from "@app/recoil/atoms";
 
 const FilterMenu = () => {
-  const [currentGroups, setCurrentGroups] = useRecoilState(currentGroupsState);
+  const [currentSchools, setCurrentSchools] =
+    useRecoilState(currentSchoolState);
   const [openSchoolModal, setOpenSchoolModal] = useState(false);
   const navigate = useNavigate();
 
   const toggleGroup = (group: string) => {
-    if (currentGroups.includes(group)) {
-      var groups = [...currentGroups];
+    if (currentSchools.includes(group)) {
+      var groups = [...currentSchools];
       const index = groups.indexOf(group);
       if (index > -1) {
         groups.splice(index, 1);
       }
-      setCurrentGroups(groups);
+      setCurrentSchools(groups);
     } else {
-      setCurrentGroups([...currentGroups, group]);
+      setCurrentSchools([...currentSchools, group]);
     }
   };
 
-  const isGroupChecked = (group: string) => currentGroups.includes(group);
+  const isGroupChecked = (group: string) => currentSchools.includes(group);
 
   const toggleSchoolFilter = () => {
     setOpenSchoolModal(!openSchoolModal);

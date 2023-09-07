@@ -10,7 +10,7 @@ export const currentTagsState = atom<string[]>({
   default: [],
 });
 
-export const currentGroupsState = atom<string[]>({
-  key: "currentGroups",
+export const currentSchoolState = atom<string[]>({
+  key: "currentSchools",
   default: [],
 });

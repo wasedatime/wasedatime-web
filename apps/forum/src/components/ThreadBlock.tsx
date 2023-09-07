@@ -14,38 +14,38 @@ type Props = {
   thread: any;
 };
 
+const convertUrlsToLinks = (text: string) => {
+  if (!text) return null;
+
+  const urlRegex = /https?:\/\/[^\s]+/g;
+  const parts = text.split(urlRegex);
+  const matches = text.match(urlRegex);
+
+  return (
+    <div>
+      {parts.map((part, index) => (
+        <React.Fragment key={index}>
+          {part}
+          {matches && matches[index] ? (
+            <a
+              href={matches[index]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600"
+            >
+              {matches[index]}
+            </a>
+          ) : null}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
+
 const ThreadBlock = ({ isPreview, thread }: Props) => {
   const [userToken, setUserToken] = useState("");
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-
-  const convertUrlsToLinks = (text: string) => {
-    if (!text) return null;
-
-    const urlRegex = /https?:\/\/[^\s]+/g;
-    const parts = text.split(urlRegex);
-    const matches = text.match(urlRegex);
-
-    return (
-      <div>
-        {parts.map((part, index) => (
-          <>
-            {part}
-            {matches && matches[index] ? (
-              <a
-                href={matches[index]}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600"
-              >
-                {matches[index]}
-              </a>
-            ) : null}
-          </>
-        ))}
-      </div>
-    );
-  };
 
   useEffect(() => {
     const updateLoginStatus = async () => {

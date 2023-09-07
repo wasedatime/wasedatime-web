@@ -7,6 +7,7 @@ import { getIdToken } from "wasedatime-ui";
 import API from "@aws-amplify/api";
 import { ConfirmModal } from "@app/components/form/ConfirmModal";
 import { EditThreadForm } from "@app/components/form/EditThreadForm";
+import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 type Props = {
   isPreview: boolean;
@@ -17,6 +18,34 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
   const [userToken, setUserToken] = useState("");
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const convertUrlsToLinks = (text: string) => {
+    if (!text) return null;
+
+    const urlRegex = /https?:\/\/[^\s]+/g;
+    const parts = text.split(urlRegex);
+    const matches = text.match(urlRegex);
+
+    return (
+      <div>
+        {parts.map((part, index) => (
+          <>
+            {part}
+            {matches && matches[index] ? (
+              <a
+                href={matches[index]}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600"
+              >
+                {matches[index]}
+              </a>
+            ) : null}
+          </>
+        ))}
+      </div>
+    );
+  };
 
   useEffect(() => {
     const updateLoginStatus = async () => {
@@ -121,7 +150,11 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
               </h1>
               <div>
                 {/* ToDo: create component for tag within Thread Block */}
-                <div className="bg-red-500 rounded-lg"> {thread.group_id}</div>
+                <img
+                  src={getSchoolIconPath(thread.group_id, "en")}
+                  width={40}
+                  height={40}
+                />
 
                 {/* ToDO: There is no author for now will add later on */}
                 {/* <h2 className="text-sm text-light-text2 my-auto">
@@ -159,7 +192,12 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
                 }
               </div>
             </div>
-            <p className="justify-left text-light-text1 pt-4">{thread.body}</p>
+            <p
+              className="justify-left text-light-text1 pt-4"
+              style={{ whiteSpace: "pre-line" }}
+            >
+              {convertUrlsToLinks(thread.body)}
+            </p>
           </div>
           <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
             {" "}

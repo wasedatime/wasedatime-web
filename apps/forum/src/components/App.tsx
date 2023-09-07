@@ -34,7 +34,7 @@ const App = () => {
         </div>
         <div className="basis-[calc(100vh-67px)] flex flex-col mt-[23px]">
           <div className="flex-grow flex flex-row">
-            <div className="flex flex-col w-1/5 ">
+            <div className="flex flex-col sm:ml-5 lg:ml-10 w-1/5 ">
               {/* FilterMenu and BoardMenu stacked vertically */}
               <FilterMenu />
               <BoardMenu />
@@ -50,7 +50,7 @@ const App = () => {
                 />
               </Routes>
             </div>
-            <div className="flex flex-col w-1/5 bg-gray-100">
+            <div className="flex flex-col w-1/5 h-1/2 bg-gray-100">
               <h1>Advertisement</h1>
             </div>
           </div>

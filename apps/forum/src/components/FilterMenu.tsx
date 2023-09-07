@@ -31,7 +31,7 @@ const FilterMenu = () => {
   };
 
   return (
-    <div className=" text-center px-2 lg:px-10">
+    <div className=" text-center pl-2 lg:pl-10">
       <div className="my-2 mx-auto">
         <h1 className="form-item-title">School</h1>
         <button

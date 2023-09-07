@@ -4,9 +4,9 @@ import boards from "@app/constants/boards.json";
 
 const BoardMenu = () => {
   return (
-    <div className="px-2 md:px-4 lg:px-10">
+    <div className="pl-2 md:pl-4 lg:pl-10">
       <h1 className="form-item-title">Topics</h1>
-      <div className="flex flex-col sm:text-lg text-sm">
+      <div className="flex flex-col sm:text-lg text-sm text-light-text1">
         {boards.map((board, i) => (
           <div
             key={i}

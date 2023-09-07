@@ -52,6 +52,7 @@ const Board = () => {
     }
 
     API.get("wasedatime-dev", `/forum/${boardId}?uid=${userId}`, {
+
       headers: {
         "Content-Type": "application/json",
       },

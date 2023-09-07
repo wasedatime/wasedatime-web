@@ -7,20 +7,20 @@
   },
   {
     "id": 1,
-    "title": "Campus",
-    "slug": "campus",
-    "tags": [5, 6, 7, 8, 9]
+    "title": "Job Hunting",
+    "slug": "job hunting",
+    "tags": [15, 16, 17]
   },
   {
     "id": 2,
-    "title": "Life",
-    "slug": "life",
-    "tags": [10, 11, 12, 13, 14]
+    "title": "Campus Life",
+    "slug": "campus life",
+    "tags": [5, 6, 7, 8, 9, 10, 11, 12, 13]
   },
   {
     "id": 3,
-    "title": "Job",
-    "slug": "job",
+    "title": "WTF?",
+    "slug": "wtf",
     "tags": [15, 16, 17]
   }
 ]

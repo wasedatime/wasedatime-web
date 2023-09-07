@@ -6,6 +6,7 @@ export const filterThreadsByTags = (threads: Thread[], tags: string[]) =>
     : threads;
 
 export const filterThreadsByGroups = (threads: Thread[], groups: string[]) =>
+  
   groups.length > 0
     ? threads.filter((thread) => groups.includes(thread.group_id))
     : threads;

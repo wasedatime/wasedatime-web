@@ -64,7 +64,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    console.log("filter Threads has updated:", filteredThreads);
+    // console.log("filter Threads has updated:", filteredThreads);
   }, [filteredThreads]);
 
   useEffect(() => {
@@ -72,10 +72,16 @@ const Home = () => {
     filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);
     if (filteredThreads.length > threadCountPerPage * page)
       filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
-    if (filteredThreads.length > threadCountPerPage * page)
-      filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
     setFilteredThreads(filteredThreads);
+    displayMoreThread();  
   }, [currentTags, currentGroups]);
+
+
+    // 1 when you first enter) fetch posts (useEffect) -> display posts 
+    // 2 filtering by "groups" -> state that manages groups ("") -> group is selected then setGroup(selected group)
+    // 3) [posts, setPosts] = useState([]) -> entering the page: setState([post1, post2..... post9])
+    // 4) displayMore is triggered [...post9] + [additional 10 posts] = [20 posts]
+
 
   const displayMoreThread = () => {
     console.log("displayMoreThread called"); // Debugging

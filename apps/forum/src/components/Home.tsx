@@ -53,8 +53,8 @@ const Home = () => {
         );
 
         console.log("API Response:", response.data); // Debugging
-
         setAllThreads([...response.data]);
+        setFilteredThreads([...response.data]);
       } catch (error) {
         console.error("An error occurred:", error); // Enhanced error logging
       }
@@ -64,14 +64,8 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    console.log("filter Threads has updated:", filteredThreads);
-  }, [filteredThreads]);
-
-  useEffect(() => {
     var filteredThreads = filterThreadsByTags(allThreads, currentTags);
     filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);
-    if (filteredThreads.length > threadCountPerPage * page)
-      filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
     if (filteredThreads.length > threadCountPerPage * page)
       filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
     setFilteredThreads(filteredThreads);

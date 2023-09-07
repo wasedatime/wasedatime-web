@@ -52,7 +52,6 @@ const Board = () => {
     }
 
     API.get("wasedatime-dev", `/forum/${boardId}?uid=${userId}`, {
-
       headers: {
         "Content-Type": "application/json",
       },
@@ -63,10 +62,12 @@ const Board = () => {
           (thread: Thread) => thread.board_id === boardId
         );
         setBoardThreads(threads);
+        console.log(boardThreads);
 
         var filteredThreads = filterThreadsByTags(threads, currentTags);
         filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);
-        if (filteredThreads.length > threadCountPerPage * page) filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
+        if (filteredThreads.length > threadCountPerPage * page)
+          filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
         setFilteredThreads(filteredThreads);
 
         boardStorage.setItem(boardId, threads);
@@ -80,8 +81,10 @@ const Board = () => {
   useEffect(() => {
     var filteredThreads = filterThreadsByTags(boardThreads, currentTags);
     filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);
-    if (filteredThreads.length > threadCountPerPage * page) filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
-    if (filteredThreads.length > threadCountPerPage * page) filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
+    if (filteredThreads.length > threadCountPerPage * page)
+      filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
+    if (filteredThreads.length > threadCountPerPage * page)
+      filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
     setFilteredThreads(filteredThreads);
   }, [currentTags, currentGroups]);
 
@@ -95,30 +98,29 @@ const Board = () => {
       threads = threads.slice(0, threadCountPerPage * nextPage);
       setFilteredThreads(threads);
     }, 1000);
-    
-  }
+  };
 
   return (
     <div className="max-w-2/5 w-5/6 mx-auto h-full">
       <CreateThread />
       <div className="overflow-auto h-[calc(100%-44px)]" id="scrollableDiv">
         <InfiniteScroll
-            dataLength={filteredThreads.length}
-            next={displayMoreThread}
-            hasMore={true}
-            scrollableTarget="scrollableDiv"
-            loader={<h4>Loading...</h4>}
-            style={{ overflowY: "hidden" }}
-          >
-            {/* {this.state.items.map((i, index) => (
+          dataLength={filteredThreads.length}
+          next={displayMoreThread}
+          hasMore={true}
+          scrollableTarget="scrollableDiv"
+          loader={<h4>Loading...</h4>}
+          style={{ overflowY: "hidden" }}
+        >
+          {/* {this.state.items.map((i, index) => (
               <div style={style} key={index}>
                 div - #{index}
               </div>
             ))} */}
-            {filteredThreads.map((thread, i) => (
-              <ThreadBlock key={i} isPreview={true} thread={thread} />
-            ))}
-          </InfiniteScroll>
+          {filteredThreads.map((thread, i) => (
+            <ThreadBlock key={i} isPreview={true} thread={thread} />
+          ))}
+        </InfiniteScroll>
       </div>
     </div>
   );

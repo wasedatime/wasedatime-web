@@ -27,13 +27,15 @@ const Board = () => {
     name: "BoardData",
   });
 
+  const uid = "uid";
+
   // fetching the board data
   useEffect(() => {
     var currentBoardId =
       boards.find((board) => board.slug === boardSlug)?.slug || "academic";
     setBoardId(currentBoardId);
 
-    API.get("wasedatime-dev", `/forum/${currentBoardId}`, {
+    API.get("wasedatime-dev", `/forum/${currentBoardId}?uid=${uid}`, {
       headers: {
         "Content-Type": "application/json",
       },

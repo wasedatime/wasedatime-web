@@ -29,43 +29,72 @@ const Home = () => {
 
   // fetching the all thread data
   useEffect(() => {
-    getAllThreads();
+    const fetchData = async () => {
+      try {
+        let userId = userToken;
+        if (userId.length === 0) {
+          const userAttr = await getUserAttr();
+          if (userAttr) {
+            userId = userAttr.id;
+            setUserToken(userId);
+          }
+        }
+
+        console.log(`Fetching data for userId: ${userId}`); // Debugging
+
+        const response = await API.get(
+          "wasedatime-dev",
+          `/forum?uid=${userId}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+
+        console.log("API Response:", response.data); // Debugging
+
+        setAllThreads([...response.data]);
+      } catch (error) {
+        console.error("An error occurred:", error); // Enhanced error logging
+      }
+    };
+
+    fetchData();
   }, []);
 
   useEffect(() => {
-    console.log("allThreads has updated:", allThreads);
-  }, [allThreads]);
+    console.log("filter Threads has updated:", filteredThreads);
+  }, [filteredThreads]);
 
-  const getAllThreads = async () => {
-    try {
-      let userId = userToken;
-      if (userId.length === 0) {
-        const userAttr = await getUserAttr();
-        if (userAttr) {
-          userId = userAttr.id;
-          setUserToken(userId);
-        }
-      }
-
-      const response = await API.get("wasedatime-dev", `/forum?uid=${userId}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      setAllThreads([...response.data]);
-    } catch (error) {
-      console.error("Error fetching threads:", error);
-    }
-  };
+  useEffect(() => {
+    var filteredThreads = filterThreadsByTags(allThreads, currentTags);
+    filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);
+    if (filteredThreads.length > threadCountPerPage * page)
+      filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
+    if (filteredThreads.length > threadCountPerPage * page)
+      filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
+    setFilteredThreads(filteredThreads);
+  }, [currentTags, currentGroups]);
 
   const displayMoreThread = () => {
+    console.log("displayMoreThread called"); // Debugging
     setTimeout(() => {
+      console.log(
+        "Inside setTimeout, allThreads.length:",
+        allThreads.length,
+        "threadCountPerPage:",
+        threadCountPerPage,
+        "page:",
+        page
+      ); // Debugging
       if (allThreads.length < threadCountPerPage * page) return;
       const nextPage = page + 1;
       setPage(nextPage);
       var threads = filterThreadsByTags(allThreads, currentTags);
       threads = filterThreadsByGroups(threads, currentGroups);
       threads = threads.slice(0, threadCountPerPage * nextPage);
+      console.log("Setting filteredThreads:", threads); // Debugging
       setFilteredThreads(threads);
     }, 1000);
   };

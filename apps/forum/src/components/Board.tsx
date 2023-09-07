@@ -62,7 +62,7 @@ const Board = () => {
           (thread: Thread) => thread.board_id === boardId
         );
         setBoardThreads(threads);
-        console.log(boardThreads);
+        console.log(threads);
 
         var filteredThreads = filterThreadsByTags(threads, currentTags);
         filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);

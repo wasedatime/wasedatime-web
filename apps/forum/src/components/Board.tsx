@@ -52,7 +52,9 @@ const Board = () => {
       }
     }
 
-    const apiPath = boardId ? `/forum/${boardId}?uid=${userId}` : `/forum?uid=${userId}`;
+    const apiPath = boardId
+      ? `/forum/${boardId}?uid=${userId}`
+      : `/forum?uid=${userId}`;
     API.get("wasedatime-dev", apiPath, {
       headers: {
         "Content-Type": "application/json",
@@ -61,7 +63,9 @@ const Board = () => {
     })
       .then((res) => {
         var threads = boardId
-          ? res.data.data.filter((thread: Thread) => thread.board_id === boardId)
+          ? res.data.data.filter(
+              (thread: Thread) => thread.board_id === boardId
+            )
           : res.data.data;
         setBoardThreads(threads);
 
@@ -124,7 +128,7 @@ const Board = () => {
               key={i}
               isPreview={true}
               thread={thread}
-              fromRoot={false}
+              fromRoot={boardId === ""}
             />
           ))}
         </InfiniteScroll>

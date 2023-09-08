@@ -17,7 +17,6 @@ const Thread = () => {
       const idToken = await getIdToken();
       const userAttr = await getUserAttr();
       if (userAttr?.id > 0) {
-        console.log("could not find user Id");
       } else {
         let userId = userAttr.id;
         setUserToken(userId);
@@ -39,10 +38,7 @@ const Thread = () => {
           response: true,
         }
       );
-
       setThread(threadRes.data.data);
-      console.log(threadRes.data.data);
-
       const commentsRes = await API.get(
         "wasedatime-dev",
         `/forum-comment/${threadUuid}?uid=${token}`,
@@ -53,12 +49,9 @@ const Thread = () => {
           response: true,
         }
       );
-
       setComments(commentsRes.data.data);
-
-      console.log(commentsRes.data.data);
     } catch (e) {
-      console.error(e);
+      console.error("An error occurred:", e);
     }
   };
 

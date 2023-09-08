@@ -5,8 +5,8 @@ import CreateThread from "./CreateThread";
 import ThreadBlock from "./ThreadBlock";
 import boards from "@app/constants/boards.json";
 import localForage from "localforage";
-import { currentGroupsState, currentTagsState } from "@app/recoil/atoms";
-import { filterThreadsByTags, filterThreadsByGroups } from "@app/utils/filter";
+import { currentSchoolState, currentTagsState } from "@app/recoil/atoms";
+import { filterThreadsByTags, filterThreadsBySchool } from "@app/utils/filter";
 import { API } from "@aws-amplify/api";
 import Thread from "@app/types/thread";
 import { getUserAttr } from "wasedatime-ui";
@@ -18,7 +18,7 @@ const Board = () => {
   const { boardSlug } = useParams();
 
   const currentTags = useRecoilValue(currentTagsState);
-  const currentGroups = useRecoilValue(currentGroupsState);
+  const currentSchools = useRecoilValue(currentSchoolState);
 
   const [boardId, setBoardId] = useState(
     boards.find((board) => board.slug === boardSlug)?.slug || "academic"
@@ -52,7 +52,6 @@ const Board = () => {
     }
 
     API.get("wasedatime-dev", `/forum/${boardId}?uid=${userId}`, {
-
       headers: {
         "Content-Type": "application/json",
       },
@@ -65,8 +64,12 @@ const Board = () => {
         setBoardThreads(threads);
 
         var filteredThreads = filterThreadsByTags(threads, currentTags);
-        filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);
-        if (filteredThreads.length > threadCountPerPage * page) filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
+        filteredThreads = filterThreadsBySchool(
+          filteredThreads,
+          currentSchools
+        );
+        if (filteredThreads.length > threadCountPerPage * page)
+          filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
         setFilteredThreads(filteredThreads);
 
         boardStorage.setItem(boardId, threads);
@@ -76,14 +79,14 @@ const Board = () => {
       });
   };
 
-  // when currentTags or currentGroups change, filter the threads
+  // when currentTags or currentSchools change, filter the threads
   useEffect(() => {
     var filteredThreads = filterThreadsByTags(boardThreads, currentTags);
-    filteredThreads = filterThreadsByGroups(filteredThreads, currentGroups);
-    if (filteredThreads.length > threadCountPerPage * page) filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
-    if (filteredThreads.length > threadCountPerPage * page) filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
+    filteredThreads = filterThreadsBySchool(filteredThreads, currentSchools);
+    if (filteredThreads.length > threadCountPerPage * page)
+      filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
     setFilteredThreads(filteredThreads);
-  }, [currentTags, currentGroups]);
+  }, [currentTags, currentSchools]);
 
   const displayMoreThread = () => {
     setTimeout(() => {
@@ -91,34 +94,33 @@ const Board = () => {
       const nextPage = page + 1;
       setPage(nextPage);
       var threads = filterThreadsByTags(boardThreads, currentTags);
-      threads = filterThreadsByGroups(threads, currentGroups);
+      threads = filterThreadsBySchool(threads, currentSchools);
       threads = threads.slice(0, threadCountPerPage * nextPage);
       setFilteredThreads(threads);
     }, 1000);
-    
-  }
+  };
 
   return (
     <div className="max-w-2/5 w-5/6 mx-auto h-full">
       <CreateThread />
       <div className="overflow-auto h-[calc(100%-44px)]" id="scrollableDiv">
         <InfiniteScroll
-            dataLength={filteredThreads.length}
-            next={displayMoreThread}
-            hasMore={true}
-            scrollableTarget="scrollableDiv"
-            loader={<h4>Loading...</h4>}
-            style={{ overflowY: "hidden" }}
-          >
-            {/* {this.state.items.map((i, index) => (
+          dataLength={filteredThreads.length}
+          next={displayMoreThread}
+          hasMore={true}
+          scrollableTarget="scrollableDiv"
+          loader={<h4>Loading...</h4>}
+          style={{ overflowY: "hidden" }}
+        >
+          {/* {this.state.items.map((i, index) => (
               <div style={style} key={index}>
                 div - #{index}
               </div>
             ))} */}
-            {filteredThreads.map((thread, i) => (
-              <ThreadBlock key={i} isPreview={true} thread={thread} />
-            ))}
-          </InfiniteScroll>
+          {filteredThreads.map((thread, i) => (
+            <ThreadBlock key={i} isPreview={true} thread={thread} />
+          ))}
+        </InfiniteScroll>
       </div>
     </div>
   );

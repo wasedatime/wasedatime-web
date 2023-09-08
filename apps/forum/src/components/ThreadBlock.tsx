@@ -12,26 +12,26 @@ import getSchoolIconPath from "@app/utils/get-school-icon-path";
 type Props = {
   isPreview: boolean;
   thread: any;
+  text?: string;
 };
 
-const ThreadBlock = ({ isPreview, thread }: Props) => {
-  const [userToken, setUserToken] = useState("");
-  const [editModalOpen, setEditModalOpen] = useState(false);
-  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+const convertUrlsToLinks = ({ isPreview, text }: Props) => {
+  if (!text) return null;
 
-  const convertUrlsToLinks = (text: string) => {
-    if (!text) return null;
+  const urlRegex = /https?:\/\/[^\s]+/g;
+  const parts = text.split(urlRegex);
+  const matches = text.match(urlRegex);
 
-    const urlRegex = /https?:\/\/[^\s]+/g;
-    const parts = text.split(urlRegex);
-    const matches = text.match(urlRegex);
-
-    return (
-      <div>
-        {parts.map((part, index) => (
-          <>
-            {part}
-            {matches && matches[index] ? (
+  return (
+    <div>
+      {parts.map((part, index) => (
+        <React.Fragment key={index}>
+          {part && <span className="text-black">{part}</span>}
+          {matches &&
+            matches[index] &&
+            (isPreview ? (
+              <h3 className="text-blue-600">{matches[index]}</h3>
+            ) : (
               <a
                 href={matches[index]}
                 target="_blank"
@@ -40,12 +40,17 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
               >
                 {matches[index]}
               </a>
-            ) : null}
-          </>
-        ))}
-      </div>
-    );
-  };
+            ))}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
+
+const ThreadBlock = ({ isPreview, thread }: Props) => {
+  const [userToken, setUserToken] = useState("");
+  const [editModalOpen, setEditModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   useEffect(() => {
     const updateLoginStatus = async () => {
@@ -72,7 +77,6 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
   };
 
   const updateThread = async (title: string, body: string) => {
-    console.log(`Try updating thread...\nTitle: ${title}\nBody: ${body}`);
     try {
       const response = await API.patch(
         "wasedatime-dev",
@@ -92,7 +96,6 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
           },
         }
       );
-      console.log("Thread updated!:", response);
     } catch (error) {
       console.error("Thread not updated successfully!:", error);
     }
@@ -116,17 +119,18 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
           },
         }
       );
-      console.log("Thread deleted!:", response);
+      setDeleteModalOpen(false);
     } catch (error) {
       console.error("Thread not deleted successfully!:", error);
     }
+    window.location.reload();
   };
 
   const navigate = useNavigate();
-
+  // /forum/_abddior / thread_id;
   return (
     <Block actions={actions}>
-      <Link to={isPreview ? `${thread.thread_id}` : ``}>
+      <Link to={isPreview ? `${thread.board_id}/${thread.thread_id}` : ``}>
         <div
           className={
             isPreview
@@ -192,12 +196,16 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
                 }
               </div>
             </div>
-            <p
+            <h2
               className="justify-left text-light-text1 pt-4"
               style={{ whiteSpace: "pre-line" }}
             >
-              {convertUrlsToLinks(thread.body)}
-            </p>
+              {convertUrlsToLinks({
+                isPreview,
+                text: thread.body,
+                thread: thread,
+              })}
+            </h2>
           </div>
           <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
             {" "}

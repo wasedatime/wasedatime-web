@@ -7,17 +7,17 @@ import tagsData from "@app/constants/tags.json";
 import groupsData from "@app/constants/groups.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
 import { useTranslation } from "react-i18next";
+import { getUserId, getUserIdToken } from "@app/utils/auth";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [expandTags, setExpandTags] = useState(false);
-  const [expandGroups, setExpandGroups] = useState(false);
+  const [expandSchool, setExpandSchool] = useState(false);
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [textContent, setTextContent] = useState("");
   const [titleContent, setTitleContent] = useState("");
   const [tags, setTags] = useState([]);
-  const [group, setGroups] = useState(groupsData);
   const [selectedTag, setSelectedTag] = useState(null);
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
@@ -28,7 +28,7 @@ const CreateThread = () => {
   useEffect(() => {
     setIsExpanded(false);
     setExpandTags(false);
-    setExpandGroups(false);
+    setExpandSchool(false);
   }, [boardSlug]);
 
   useEffect(() => {
@@ -92,7 +92,7 @@ const CreateThread = () => {
             body: textContent,
             title: titleContent,
             tag_id: selectedTag.title,
-            group_id: "SILS",
+            group_id: "PSE",
             univ_id: "1",
           },
         },
@@ -101,14 +101,11 @@ const CreateThread = () => {
           Authorization: idToken,
         },
       });
-      console.log("It worked!:", response);
       setTextContent("");
-    } catch (error) {
-      console.error("It didn't work!:", error);
-    }
-
+    } catch (error) {}
     setTitleContent("");
     setTextContent("");
+    window.location.reload();
   };
 
   const findBoardIndex: number = boards.findIndex(
@@ -162,10 +159,10 @@ const CreateThread = () => {
           </button>
           <button
             className="relative border-light-main border px-4 rounded-lg hover:text-white hover:bg-light-main"
-            onClick={() => setExpandGroups(!expandGroups)}
+            onClick={() => setExpandSchool(!expandSchool)}
           >
-            Groups
-            {expandGroups ? (
+            School
+            {expandSchool ? (
               <div className="bg-white border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
                 Text
               </div>

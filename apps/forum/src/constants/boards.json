@@ -8,13 +8,13 @@
   {
     "id": 1,
     "title": "Job Hunting",
-    "slug": "job hunting",
+    "slug": "job",
     "tags": [15, 16, 17]
   },
   {
     "id": 2,
     "title": "Campus Life",
-    "slug": "campus life",
+    "slug": "life",
     "tags": [5, 6, 7, 8, 9, 10, 11, 12, 13]
   },
   {

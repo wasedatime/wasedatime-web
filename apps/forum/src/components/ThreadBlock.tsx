@@ -128,7 +128,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
   };
 
   const navigate = useNavigate();
-  // /forum/_abddior / thread_id;
+
   return (
     <Block actions={actions}>
       <Link

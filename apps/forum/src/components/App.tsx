@@ -8,7 +8,7 @@ import BoardMenu from "@app/components/BoardMenu";
 import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
 import SearchTags from "./SearchTags";
-import Forum from "@app/components/Forum";
+// import Forum from "@app/components/Forum";
 
 const App = () => {
   const { t, i18n } = useTranslation();
@@ -39,7 +39,7 @@ const App = () => {
             </div>
             <div className="flex flex-col w-3/5">
               <Routes>
-                <Route element={<Forum />} path="forum" />
+                <Route element={<Board />} path="forum" />
                 <Route element={<Board />} path="forum/:boardSlug" />
                 <Route
                   element={<Thread />}

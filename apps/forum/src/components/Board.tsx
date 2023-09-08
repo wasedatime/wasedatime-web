@@ -22,7 +22,7 @@ const Board = () => {
   const currentSchools = useRecoilValue(currentSchoolState);
 
   const [boardId, setBoardId] = useState(
-    boards.find((board) => board.slug === boardSlug)?.slug || "academic"
+    boards.find((board) => board.slug === boardSlug)?.slug || ""
   );
 
   const [boardThreads, setBoardThreads] = useState<Thread[]>([]);
@@ -37,7 +37,7 @@ const Board = () => {
   // fetching the board data
   useEffect(() => {
     var currentBoardId =
-      boards.find((board) => board.slug === boardSlug)?.slug || "academic";
+      boards.find((board) => board.slug === boardSlug)?.slug || "";
     setBoardId(currentBoardId);
     getThreads(currentBoardId);
   }, [boardSlug]);
@@ -52,16 +52,17 @@ const Board = () => {
       }
     }
 
-    API.get("wasedatime-dev", `/forum/${boardId}?uid=${userId}`, {
+    const apiPath = boardId ? `/forum/${boardId}?uid=${userId}` : `/forum?uid=${userId}`;
+    API.get("wasedatime-dev", apiPath, {
       headers: {
         "Content-Type": "application/json",
       },
       response: true,
     })
       .then((res) => {
-        var threads = res.data.data.filter(
-          (thread: Thread) => thread.board_id === boardId
-        );
+        var threads = boardId
+          ? res.data.data.filter((thread: Thread) => thread.board_id === boardId)
+          : res.data.data;
         setBoardThreads(threads);
 
         var filteredThreads = filterThreadsByTags(threads, currentTags);

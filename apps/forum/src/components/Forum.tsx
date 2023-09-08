@@ -1,3 +1,4 @@
+/*
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import CreateThread from "./CreateThread";
@@ -75,11 +76,6 @@ const Forum: React.FC = () => {
           loader={<h4>Loading...</h4>}
           style={{ overflowY: "hidden" }}
         >
-          {/* {this.state.items.map((i, index) => (
-            <div style={style} key={index}>
-            div - #{index}
-            </div>
-          ))} */}
           {filteredThreads.map((thread, i) => (
             <ThreadBlock
               key={i}
@@ -95,6 +91,7 @@ const Forum: React.FC = () => {
 };
 
 export default Forum;
+*/
 
 // 1 when you first enter) fetch posts (useEffect) -> display posts
 // 2 filtering by "groups" -> state that manages groups ("") -> group is selected then setGroup(selected group)

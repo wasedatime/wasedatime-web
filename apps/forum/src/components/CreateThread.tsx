@@ -19,7 +19,6 @@ const CreateThread = () => {
   const [titleContent, setTitleContent] = useState("");
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null);
-
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
   const { boardSlug } = useParams();
@@ -54,6 +53,14 @@ const CreateThread = () => {
       } else {
         setSignInModalOpen(true);
       }
+    }
+  };
+
+  const handleDropdown = (dropDown) => {
+    if (expandedDropdown === dropDown) {
+      setExpandedDropdown(null);
+    } else {
+      setExpandedDropdown(dropDown);
     }
   };
 
@@ -92,7 +99,7 @@ const CreateThread = () => {
             body: textContent,
             title: titleContent,
             tag_id: selectedTag.title,
-            group_id: "PSE",
+            group_id: "SILS",
             univ_id: "1",
           },
         },
@@ -138,7 +145,7 @@ const CreateThread = () => {
         <div className="my-auto">
           <button
             className="relative text-black-900 border-light-main border mx-4 px-4 rounded-lg hover:text-white hover:bg-light-main"
-            onClick={() => setExpandTags(!expandTags)}
+            onClick={() => handleDropdown("tags")}
           >
             {expandTags ? (
               <div className="bg-light-main text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg z-10">

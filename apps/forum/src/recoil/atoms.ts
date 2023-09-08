@@ -14,3 +14,8 @@ export const currentSchoolState = atom<string[]>({
   key: "currentSchools",
   default: [],
 });
+
+export const selectedSchoolState = atom<string>({
+  key: "selectedSchool",
+  default: "none",
+});

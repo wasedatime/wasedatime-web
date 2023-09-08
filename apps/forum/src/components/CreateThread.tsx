@@ -19,6 +19,8 @@ const CreateThread = () => {
   const [titleContent, setTitleContent] = useState("");
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null);
+  const [expandedDropdown, setExpandedDropdown] = useState(false);
+
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
   const { boardSlug } = useParams();

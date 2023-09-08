@@ -1,4 +1,3 @@
-/*
 import React, { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
 import CreateThread from "./CreateThread";
@@ -91,7 +90,6 @@ const Forum: React.FC = () => {
 };
 
 export default Forum;
-*/
 
 // 1 when you first enter) fetch posts (useEffect) -> display posts
 // 2 filtering by "groups" -> state that manages groups ("") -> group is selected then setGroup(selected group)

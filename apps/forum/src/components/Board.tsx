@@ -11,6 +11,7 @@ import { API } from "@aws-amplify/api";
 import Thread from "@app/types/thread";
 import { getUserAttr } from "wasedatime-ui";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const threadCountPerPage = 3; // 10
 
@@ -118,7 +119,12 @@ const Board = () => {
               </div>
             ))} */}
           {filteredThreads.map((thread, i) => (
-            <ThreadBlock key={i} isPreview={true} thread={thread} />
+            <ThreadBlock
+              key={i}
+              isPreview={true}
+              thread={thread}
+              fromRoot={false}
+            />
           ))}
         </InfiniteScroll>
       </div>

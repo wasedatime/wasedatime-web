@@ -81,7 +81,12 @@ const Forum: React.FC = () => {
             </div>
           ))} */}
           {filteredThreads.map((thread, i) => (
-            <ThreadBlock key={i} isPreview={true} thread={thread} />
+            <ThreadBlock
+              key={i}
+              isPreview={true}
+              thread={thread}
+              fromRoot={true}
+            />
           ))}
         </InfiniteScroll>
       </div>

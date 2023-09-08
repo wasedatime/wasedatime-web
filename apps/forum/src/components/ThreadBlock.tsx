@@ -12,6 +12,7 @@ import getSchoolIconPath from "@app/utils/get-school-icon-path";
 type Props = {
   isPreview: boolean;
   thread: any;
+  fromRoot?: boolean;
   text?: string;
 };
 
@@ -47,7 +48,7 @@ const convertUrlsToLinks = ({ isPreview, text }: Props) => {
   );
 };
 
-const ThreadBlock = ({ isPreview, thread }: Props) => {
+const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
   const [userToken, setUserToken] = useState("");
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
@@ -130,7 +131,15 @@ const ThreadBlock = ({ isPreview, thread }: Props) => {
   // /forum/_abddior / thread_id;
   return (
     <Block actions={actions}>
-      <Link to={isPreview ? `${thread.board_id}/${thread.thread_id}` : ``}>
+      <Link
+        to={
+          isPreview
+            ? fromRoot
+              ? `${thread.board_id}/${thread.thread_id}`
+              : `${thread.thread_id}`
+            : ""
+        }
+      >
         <div
           className={
             isPreview

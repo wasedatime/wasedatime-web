@@ -3,14 +3,14 @@ import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { SignInModal, getIdToken } from "wasedatime-ui";
 import { SendIcon } from "./icons/SendIcon";
+import { useTranslation } from "react-i18next";
 
 const CommentForm = () => {
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [comment, setComment] = useState("");
   const { threadUuid } = useParams();
-
-  // console.log(threadUuid);
+  const { t } = useTranslation();
 
   const handleFocusForm = async () => {
     if (userToken?.length <= 0) {
@@ -48,12 +48,11 @@ const CommentForm = () => {
           Authorization: idToken,
         },
       });
-      console.log("Successfully posted comment");
     } catch (error) {
       console.error("An error occurred:", error);
     }
-
     setComment("");
+    window.location.reload();
   };
 
   return (
@@ -77,6 +76,7 @@ const CommentForm = () => {
         <SignInModal
           isModalOpen={isSignInModalOpen}
           closeModal={() => setSignInModalOpen(false)}
+          t={t}
         />
       )}
     </div>

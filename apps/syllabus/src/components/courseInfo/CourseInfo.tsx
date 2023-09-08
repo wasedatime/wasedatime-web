@@ -42,7 +42,7 @@ const CourseInfoWrapper = styled(Segment)<CourseInfoWrapperProps>`
   cursor: auto;
   margin-top: 0px !important;
   border: none !important;
-  ${(props) => props.$isDark && `background: ${colors.dark.bgMain} !important;`}
+  ${(props) => props.$isDark && `background: ${Colors.dark.bgMain} !important;`}
 `
 
 const RelatedCourses = styled.div`

@@ -35,7 +35,7 @@ const modalStyle = (theme: string) => ({
     outline: "none",
     fontSize: "16px",
     borderRadius: "20px",
-    backgroundColor: colors[theme].bgMain,
+    backgroundColor: Colors[theme].bgMain,
   },
 })
 
@@ -110,7 +110,7 @@ const Editbutton = styled(Button)`
   color: orange !important;
   padding: 0px !important;
   background-color: ${(props) =>
-    props.$isDark ? colors.dark.bgMain : colors.light.bgMain} !important;
+    props.$isDark ? Colors.dark.bgMain : Colors.light.bgMain} !important;
 `
 
 const Deletebutton = styled(Editbutton)`

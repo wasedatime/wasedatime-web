@@ -5,13 +5,13 @@ export const currentBoardIdState = atom<string>({
   default: "Default Board",
 });
 
-export const currentTagsState = atom<number[]>({
+export const currentTagsState = atom<string[]>({
   key: "currentTags",
   default: [],
 });
 
-export const currentGroupsState = atom<string[]>({
-  key: "currentGroups",
+export const currentSchoolState = atom<string[]>({
+  key: "currentSchools",
   default: [],
 });
 

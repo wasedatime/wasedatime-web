@@ -7,7 +7,7 @@ import {
 } from "@app/constants/schools";
 import { School } from "@app/constants/schools";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
-import { currentGroupsState } from "@app/recoil/atoms";
+import { currentSchoolState } from "@app/recoil/atoms";
 
 const schoolsByCategory = [
   {
@@ -73,25 +73,26 @@ const TabItem = ({ title, isActive, onClick }: TabItemProps) => (
 
 const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
   const [schoolsCategoryId, setSchoolsCategoryId] = useState(0);
-  const [currentGroups, setCurrentGroups] = useRecoilState(currentGroupsState);
+  const [currentSchools, setCurrentSchools] =
+    useRecoilState(currentSchoolState);
 
-  const toggleGroup = (group: string) => {
-    if (currentGroups.includes(group)) {
-      var groups = [...currentGroups];
-      const index = groups.indexOf(group);
+  const toggleGroup = (school: string) => {
+    if (currentSchools.includes(school)) {
+      var schools = [...currentSchools];
+      const index = schools.indexOf(school);
       if (index > -1) {
-        groups.splice(index, 1);
+        schools.splice(index, 1);
       }
-      setCurrentGroups(groups);
+      setCurrentSchools(schools);
     } else {
-      setCurrentGroups([...currentGroups, group]);
+      setCurrentSchools([...currentSchools, school]);
     }
   };
 
   const SchoolBlock = ({ school }: SchoolBlockProps) => (
     <div
       className={
-        (currentGroups.includes(school)
+        (currentSchools.includes(school)
           ? "border-light-main"
           : "border-light-bgMain") +
         " border-2 rounded grow-0 shrink-0 m-2 cursor-pointer"
@@ -108,7 +109,7 @@ const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
         !isOpen
           ? "hidden "
           : "" +
-            "fixed top-0 left-0 right-0 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full z-10"
+            "fixed top-0 left-0 right-0 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full z-40"
       }
     >
       <div

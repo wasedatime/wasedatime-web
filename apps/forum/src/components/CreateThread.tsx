@@ -6,24 +6,28 @@ import boards from "@app/constants/boards.json";
 import tagsData from "@app/constants/tags.json";
 import groupsData from "@app/constants/groups.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
-import DropdownWithTabs from "./Dropdown";
+import { useTranslation } from "react-i18next";
+import { getUserId, getUserIdToken } from "@app/utils/auth";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [expandedDropdown, setExpandedDropdown] = useState(null);
+  const [expandTags, setExpandTags] = useState(false);
+  const [expandSchool, setExpandSchool] = useState(false);
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [textContent, setTextContent] = useState("");
   const [titleContent, setTitleContent] = useState("");
   const [tags, setTags] = useState([]);
-  const [group, setGroups] = useState(groupsData);
   const [selectedTag, setSelectedTag] = useState(null);
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
 
   const { boardSlug } = useParams();
+  const { t } = useTranslation();
 
   useEffect(() => {
     setIsExpanded(false);
+    setExpandTags(false);
+    setExpandSchool(false);
   }, [boardSlug]);
 
   useEffect(() => {
@@ -104,14 +108,11 @@ const CreateThread = () => {
           Authorization: idToken,
         },
       });
-      console.log("It worked!:", response);
       setTextContent("");
-    } catch (error) {
-      console.error("It didn't work!:", error);
-    }
-
+    } catch (error) {}
     setTitleContent("");
     setTextContent("");
+    window.location.reload();
   };
 
   const findBoardIndex: number = boards.findIndex(
@@ -128,7 +129,7 @@ const CreateThread = () => {
           onChange={handleTitleChange}
         />
         <textarea
-          placeholder={`Share something in ${boards[findBoardIndex].title}...`}
+          placeholder={`Anything interesting?`}
           className=" h-36 pl-2 pb-28 w-full hover:outline-0 focus:outline-0"
           value={textContent}
           onChange={handleBodyChange}
@@ -146,8 +147,8 @@ const CreateThread = () => {
             className="relative text-black-900 border-light-main border mx-4 px-4 rounded-lg hover:text-white hover:bg-light-main"
             onClick={() => handleDropdown("tags")}
           >
-            {expandedDropdown === "tags" ? (
-              <div className="bg-light-main text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg">
+            {expandTags ? (
+              <div className="bg-light-main text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
                 {tags.map((tag) => (
                   <div
                     key={tag.id}
@@ -165,12 +166,12 @@ const CreateThread = () => {
           </button>
           <button
             className="relative border-light-main border px-4 rounded-lg hover:text-white hover:bg-light-main"
-            onClick={() => handleDropdown("school")}
+            onClick={() => setExpandSchool(!expandSchool)}
           >
             School
-            {expandedDropdown === "school" ? (
-              <div className="bg-white border border-light-main absolute h-64 w-64 top-8 left-0 rounded-lg overflow-auto">
-                <DropdownWithTabs />
+            {expandSchool ? (
+              <div className="bg-white border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
+                Text
               </div>
             ) : null}
           </button>
@@ -187,13 +188,14 @@ const CreateThread = () => {
     <div>
       <div className="cursor-pointer" onClick={handleOpenForm}>
         <h1 className="border-2 p-2 rounded-lg border-light-main">
-          Start a new thread
+          Anything interesting?
         </h1>
       </div>
-      {/* <SignInModal
+      <SignInModal
         isModalOpen={isSignInModalOpen}
         closeModal={() => setSignInModalOpen(false)}
-      /> */}
+        t={t}
+      />
     </div>
   );
 };

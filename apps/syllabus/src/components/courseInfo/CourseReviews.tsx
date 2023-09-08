@@ -413,6 +413,7 @@ class CourseReviews extends React.Component<Props, State> {
         <SignInModal
           isModalOpen={isSignInModalOpen}
           closeModal={() => this.setState({ isSignInModalOpen: false })}
+          t={this.props.t}
         />
       </StyledReviewsWrapper>
     )

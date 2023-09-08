@@ -1,15 +1,17 @@
 type Thread = {
   uuid: string;
-  univId: number;
-  boardId: number;
-  tagId: number;
-  groupId: string;
-  userId: string;
+  univ_id: number;
+  board_id: string;
+  tag_id: string;
+  group_id: string;
+  user_id: string;
+  thread_id: string;
   author: string;
   title: string;
   body: string;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
+  mod: boolean;
 };
 
 export default Thread;

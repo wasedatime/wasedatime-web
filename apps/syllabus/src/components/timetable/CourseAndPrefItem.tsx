@@ -29,9 +29,9 @@ const StyledPopup = styled(Popup)<StyledPopupProps>`
   border-width: 1px;
   border-radius: 5px;
   border-color: ${(props) =>
-    props.isDark ? colors.dark.text2 : colors.light.text3};
+    props.isDark ? Colors.dark.text2 : Colors.light.text3};
   background-color: ${(props) =>
-    props.isDark ? colors.dark.bgSide : colors.light.bgSide};
+    props.isDark ? Colors.dark.bgSide : Colors.light.bgSide};
 `
 
 const RowWrapper = styled("li")`

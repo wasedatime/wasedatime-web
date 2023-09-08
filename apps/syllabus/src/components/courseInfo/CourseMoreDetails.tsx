@@ -43,7 +43,7 @@ const Schedule = ({ content }: ScheduleProps) => {
           <Table.Row>
             <Table.Cell>
               <div>
-                <Label filled color={colors[theme].lighter}>
+                <Label filled color={Colors[theme].lighter}>
                   {i + 1}
                 </Label>
               </div>

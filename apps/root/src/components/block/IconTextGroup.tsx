@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react"
 
 import { Colors } from "wasedatime-ui"
 import styled from "styled-components"
@@ -13,12 +13,12 @@ interface NavItemTextProps {
 }
 
 interface IconTextGroupProps {
-  icon: ReactNode;
-  hoverIcon?: ReactNode;
-  text?: string;
-  iconPath?: string;
-  expanded?: boolean;
-  currentPath?: string;
+  icon: ReactNode
+  hoverIcon?: ReactNode
+  text?: string
+  iconPath?: string
+  expanded?: boolean
+  currentPath?: string
 }
 
 const NavItemBlock = styled.div<NavItemBlockProps>`
@@ -63,7 +63,7 @@ export const IconTextGroup = ({
   expanded,
   currentPath,
 }: IconTextGroupProps) => {
-  const [isHover, setIsHover] = useState(false);
+  const [isHover, setIsHover] = useState(false)
   return (
     <NavItemBlock
       className="group text-light-text2 dark:text-dark-text2"
@@ -72,7 +72,7 @@ export const IconTextGroup = ({
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
     >
-      <div className="text-light-text2 dark:text-dark-text2 group-hover:text-light-main dark:group-hover:text-dark-text1">
+      <div className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
         {isHover && hoverIcon ? hoverIcon : icon}
       </div>
       {text && (

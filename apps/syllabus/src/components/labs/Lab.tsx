@@ -202,7 +202,7 @@ const StyledTable = styled(Table)<ThemedComponentProps>`
   ${(props) =>
     props.$isDark &&
     `
-    border-color: ${colors.dark.text3} !important;
+    border-color: ${Colors.dark.text3} !important;
   `}
 `
 
@@ -210,8 +210,8 @@ const StyledTableHeaderCell = styled(Table.HeaderCell)<ThemedComponentProps>`
   ${(props) =>
     props.$isDark &&
     `
-    background-color: ${colors.dark.bgSide} !important;
-    color: ${colors.dark.text2} !important;
+    background-color: ${Colors.dark.bgSide} !important;
+    color: ${Colors.dark.text2} !important;
   `}
 `
 
@@ -219,8 +219,8 @@ const StyledTableCell = styled(Table.Cell)<ThemedComponentProps>`
   ${(props) =>
     props.$isDark &&
     `
-    background-color: ${colors.dark.bgMain} !important;
-    color: ${colors.dark.text2} !important;
+    background-color: ${Colors.dark.bgMain} !important;
+    color: ${Colors.dark.text2} !important;
   `}
 `
 

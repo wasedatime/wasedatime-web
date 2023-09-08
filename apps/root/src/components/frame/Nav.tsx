@@ -14,12 +14,9 @@ import { useTranslation } from "react-i18next"
 import MediaQuery from "react-responsive"
 import { navigateToUrl } from "single-spa"
 
-import {
-  CampusIcon,
-  CampusIconHovered,
-} from "@app/components/icons/CampusIcon";
-import { FeedsIcon, FeedsIconHovered } from "@app/components/icons/FeedsIcon";
-import { ForumIcon, ForumIconHovered } from "@app/components/icons/ForumIcon";
+import { CampusIcon, CampusIconHovered } from "@app/components/icons/CampusIcon"
+import { FeedsIcon, FeedsIconHovered } from "@app/components/icons/FeedsIcon"
+import { ForumIcon, ForumIconHovered } from "@app/components/icons/ForumIcon"
 import {
   SyllabusIcon,
   SyllabusIconHovered,
@@ -100,7 +97,7 @@ const Nav = () => {
       icon: <ForumIcon />,
       iconHovered: <ForumIconHovered />,
     },
-  ];
+  ]
 
   return (
     <Suspense fallback="">

@@ -8,6 +8,7 @@ import API from "@aws-amplify/api";
 import { ConfirmModal } from "@app/components/form/ConfirmModal";
 import { EditThreadForm } from "@app/components/form/EditThreadForm";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
+import { Visibility } from "@mui/icons-material";
 
 type Props = {
   isPreview: boolean;
@@ -224,7 +225,9 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
           </div>
           <hr className="mx-2 pt-2 mt-6" />
           <div>
-            <h3>Views: {thread.views}</h3>
+            <h3>
+              <Visibility fontSize="small" /> <span>{thread.views}</span>
+            </h3>
           </div>
         </div>
       </Link>

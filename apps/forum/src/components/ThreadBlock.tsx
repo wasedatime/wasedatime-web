@@ -50,7 +50,7 @@ const convertUrlsToLinks = ({ isPreview, text }: Props) => {
 
 const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
   const [userToken, setUserToken] = useState("");
-  const [editModalOpen, setEditModalOpen] = useState(false);
+  // const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   useEffect(() => {
@@ -72,6 +72,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
     },
   ];
 
+  /*
   const openThreadEditForm = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setEditModalOpen(true);
@@ -102,6 +103,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
     }
     setEditModalOpen(false);
   };
+  */
 
   const confirmDeleteThread = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -173,21 +175,21 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
                 {/* <h2 className="text-sm text-light-text2 my-auto">
                   {thread.author}
                 </h2> */}
-                {editModalOpen && (
+                {/* editModalOpen && (
                   <EditThreadForm
                     originalTitle={thread.title}
                     originalBody={thread.body}
                     updateThread={updateThread}
                     closeForm={() => setEditModalOpen(false)}
                   />
-                )}
+                ) */}
                 {
                   // userToken?.length > 0 && thread.uid === userToken && (
                   userToken?.length > 0 && thread.mod === true && (
                     <div>
-                      <button onClick={openThreadEditForm}>
+                      {/* <button onClick={openThreadEditForm}>
                         <EditIcon fontSize="large" color="warning" />
-                      </button>
+                      </button> */}
                       <button onClick={confirmDeleteThread}>
                         <DeleteIcon fontSize="large" color="error" />
                       </button>

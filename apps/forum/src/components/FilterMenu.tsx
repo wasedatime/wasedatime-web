@@ -1,44 +1,43 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
-import groups from "@app/constants/groups.json";
-import CheckList from "@app/components/form/CheckList";
 import SchoolFilterForm from "@app/components/SchoolFilterForm";
-import { currentGroupsState } from "@app/recoil/atoms";
+import { currentSchoolState } from "@app/recoil/atoms";
 
 const FilterMenu = () => {
-  const [currentGroups, setCurrentGroups] = useRecoilState(currentGroupsState);
+  const [currentSchools, setCurrentSchools] =
+    useRecoilState(currentSchoolState);
   const [openSchoolModal, setOpenSchoolModal] = useState(false);
   const navigate = useNavigate();
 
   const toggleGroup = (group: string) => {
-    if (currentGroups.includes(group)) {
-      var groups = [...currentGroups];
+    if (currentSchools.includes(group)) {
+      var groups = [...currentSchools];
       const index = groups.indexOf(group);
       if (index > -1) {
         groups.splice(index, 1);
       }
-      setCurrentGroups(groups);
+      setCurrentSchools(groups);
     } else {
-      setCurrentGroups([...currentGroups, group]);
+      setCurrentSchools([...currentSchools, group]);
     }
   };
 
-  const isGroupChecked = (group: string) => currentGroups.includes(group);
+  const isGroupChecked = (group: string) => currentSchools.includes(group);
 
   const toggleSchoolFilter = () => {
     setOpenSchoolModal(!openSchoolModal);
   };
 
   return (
-    <div className="w-64 text-center px-4">
+    <div className=" text-center pl-2 lg:pl-10">
       <div className="my-2 mx-auto">
         <h1 className="form-item-title">School</h1>
         <button
           className="w-full p-2 bg-light-main text-white rounded-lg my-1"
           onClick={toggleSchoolFilter}
         >
-          Select the School
+          Select a School
         </button>
         {openSchoolModal && (
           <SchoolFilterForm
@@ -48,7 +47,7 @@ const FilterMenu = () => {
         )}
       </div>
 
-      {Object.keys(groups).map((groupCategory, groupCategoryId) => (
+      {/* {Object.keys(groups).map((groupCategory, groupCategoryId) => (
         <CheckList
           key={groupCategoryId}
           listId={groupCategoryId.toString()}
@@ -57,7 +56,7 @@ const FilterMenu = () => {
           onListItemToggle={toggleGroup}
           isItemChecked={isGroupChecked}
         />
-      ))}
+      ))} */}
     </div>
   );
 };

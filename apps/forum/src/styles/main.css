@@ -25,3 +25,24 @@
 .tab-item-active {
   @apply inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500;
 }
+
+.golden-gradient-border {
+  position: relative;
+}
+
+.golden-gradient-border::before {
+  content: "";
+  position: absolute;
+  top: -4px; /* Extend outside the parent's boundary */
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+  z-index: -1;
+  border: double 4px transparent;
+  background-image: linear-gradient(white, white),
+    linear-gradient(to right, #ffd700, #ffd700);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  filter: blur(2px);
+  border-radius: inherit; /* To maintain the same rounded corners as the parent */
+}

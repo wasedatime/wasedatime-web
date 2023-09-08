@@ -1,12 +1,16 @@
 import React, { ChangeEvent, useState } from "react";
+import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
-import { SignInModal, getIdToken } from "wasedatime-ui"
+import { SignInModal, getIdToken } from "wasedatime-ui";
 import { SendIcon } from "./icons/SendIcon";
+import { useTranslation } from "react-i18next";
 
 const CommentForm = () => {
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [comment, setComment] = useState("");
+  const { threadUuid } = useParams();
+  const { t } = useTranslation();
 
   const handleFocusForm = async () => {
     if (userToken?.length <= 0) {
@@ -20,11 +24,11 @@ const CommentForm = () => {
         setSignInModalOpen(true);
       }
     }
-  }
+  };
 
   const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
     setComment(e.target.value);
-  }
+  };
 
   const handleSubmit = async () => {
     if (comment.length <= 0 || comment.length > 200) return;
@@ -35,19 +39,21 @@ const CommentForm = () => {
       if (idToken?.length <= 0) return;
     }
 
-    console.log(comment);
-    // TODO: Implement submitting new comment API
-    /*
-    API.post("wasedatime-dev", "/forum/blablabla", {
-      body: { data: { comment } },
-      headers: {
-        Authorization: idToken,
-      },
-    });
-    */
-
+    // Wrap the API call with a try-catch block
+    try {
+      await API.post("wasedatime-dev", `/forum-comment/${threadUuid}`, {
+        body: { data: { body: comment } },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: idToken,
+        },
+      });
+    } catch (error) {
+      console.error("An error occurred:", error);
+    }
     setComment("");
-  }
+    window.location.reload();
+  };
 
   return (
     <div className="flex justify-between">
@@ -66,15 +72,13 @@ const CommentForm = () => {
       >
         <SendIcon />
       </span>
-      {
-        isSignInModalOpen && (
-          <SignInModal
-            isModalOpen={isSignInModalOpen}
-            closeModal={() => setSignInModalOpen(false)}
-          />
-        )
-      }
-      
+      {isSignInModalOpen && (
+        <SignInModal
+          isModalOpen={isSignInModalOpen}
+          closeModal={() => setSignInModalOpen(false)}
+          t={t}
+        />
+      )}
     </div>
   );
 };

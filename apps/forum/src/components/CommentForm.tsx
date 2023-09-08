@@ -12,8 +12,6 @@ const CommentForm = () => {
   const { threadUuid } = useParams();
   const { t } = useTranslation();
 
-  // console.log(threadUuid);
-
   const handleFocusForm = async () => {
     if (userToken?.length <= 0) {
       const idToken = await getIdToken();
@@ -50,12 +48,11 @@ const CommentForm = () => {
           Authorization: idToken,
         },
       });
-      console.log("Successfully posted comment");
     } catch (error) {
       console.error("An error occurred:", error);
     }
-
     setComment("");
+    window.location.reload();
   };
 
   return (

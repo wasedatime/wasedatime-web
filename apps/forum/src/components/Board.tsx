@@ -62,7 +62,6 @@ const Board = () => {
           (thread: Thread) => thread.board_id === boardId
         );
         setBoardThreads(threads);
-        console.log(threads);
 
         var filteredThreads = filterThreadsByTags(threads, currentTags);
         filteredThreads = filterThreadsBySchool(
@@ -84,8 +83,6 @@ const Board = () => {
   useEffect(() => {
     var filteredThreads = filterThreadsByTags(boardThreads, currentTags);
     filteredThreads = filterThreadsBySchool(filteredThreads, currentSchools);
-    if (filteredThreads.length > threadCountPerPage * page)
-      filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
     if (filteredThreads.length > threadCountPerPage * page)
       filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
     setFilteredThreads(filteredThreads);

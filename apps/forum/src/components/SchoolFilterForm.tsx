@@ -77,7 +77,6 @@ const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
     useRecoilState(currentSchoolState);
 
   const toggleGroup = (school: string) => {
-    console.log(school);
     if (currentSchools.includes(school)) {
       var schools = [...currentSchools];
       const index = schools.indexOf(school);

@@ -19,3 +19,8 @@ export const selectedSchoolState = atom<string>({
   key: "selectedSchool",
   default: "none",
 });
+
+export const hashtagState = atom<Record<string, number>>({
+  key: "hashtag",
+  default: {},
+});

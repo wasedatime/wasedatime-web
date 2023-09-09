@@ -62,7 +62,7 @@ const CreateThread = () => {
     if (expandedDropdown === dropDown) {
       setExpandedDropdown(null);
     } else {
-      setExpandedDropdown(dropDown);
+      setExpandedDropdown(tags);
     }
   };
 
@@ -147,7 +147,7 @@ const CreateThread = () => {
         <div className="my-auto">
           <button
             className="relative text-black-900 border-light-main border mx-4 px-4 rounded-lg hover:text-white hover:bg-light-main"
-            onClick={() => handleDropdown("tags")}
+            onClick={() => setExpandTags(!expandTags)}
           >
             {expandTags ? (
               <div className="bg-light-main text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg z-10">

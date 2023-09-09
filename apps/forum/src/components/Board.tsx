@@ -31,21 +31,26 @@ const Board = () => {
   const indexRef = useRef(index);
   const currentSchoolsRef = useRef(currentSchools);
   const mountedRef = useRef(false);
+  const boardRef = useRef(boardId);
 
   // useEffect #1 to initially fetch data when user first comes into forums
   useEffect(() => {
-    getThreads("", 0, 10, []);
+    if (!boardSlug) {
+      getThreads("", 0, 10, []);
+    } else {
+      getThreads(boardSlug, 0, 10, []);
+    }
+
     const handleScroll = () => {
       mountedRef.current = true;
       const element = scrollableElementRef.current;
       const currentIdx = indexRef.current;
       const selectedSchools = currentSchoolsRef.current;
-      console.log("current index : ", currentIdx);
 
       if (element) {
-        const scrollHeight = element.scrollHeight;
-        const scrollTop = element.scrollTop;
-        const clientHeight = element.clientHeight;
+        const scrollHeight = (element as HTMLElement).scrollHeight;
+        const scrollTop = (element as HTMLElement).scrollTop;
+        const clientHeight = (element as HTMLElement).clientHeight;
 
         if (scrollHeight - scrollTop === clientHeight) {
           // Reached the bottom of the scrollable element
@@ -58,13 +63,13 @@ const Board = () => {
 
     const element = scrollableElementRef.current;
     if (element) {
-      element.addEventListener("scroll", handleScroll);
+      (element as HTMLElement).addEventListener("scroll", handleScroll);
     }
 
     // Cleanup
     return () => {
       if (element) {
-        element.removeEventListener("scroll", handleScroll);
+        (element as HTMLElement).removeEventListener("scroll", handleScroll);
       }
     };
   }, []);
@@ -77,30 +82,28 @@ const Board = () => {
           boards.find((board) => board.slug === boardSlug)?.slug || "";
         setBoardThreads([]);
         setBoardId(currentBoardId);
+        boardRef.current = boardId;
         getThreads(currentBoardId, 0, 10, currentSchools);
       } else {
         // This block will only run if boardSlug is undefined
         setBoardThreads([]);
         getThreads("", index, 10, currentSchools);
-        console.log("Triggered on first useEffect when boardSlug is undefined");
       }
     }
   }, [boardSlug]);
 
+  //useEffect #3 to fetch and filter results by school
   useEffect(() => {
     if (mountedRef.current) {
       setBoardThreads([]);
       indexRef.current = 0;
-      getThreads("", 0, 10, currentSchools);
-      console.log("Triggered on third UseEffect");
+      getThreads(boardSlug, 0, 10, currentSchools);
       currentSchoolsRef.current = currentSchools;
-    } else {
-      mountedRef.current = true;
     }
   }, [currentSchools]);
 
   const getThreads = async (
-    boardId: string,
+    boardId: string | undefined,
     index: number,
     threadCount: number,
     school: string[]
@@ -118,12 +121,11 @@ const Board = () => {
     }
 
     const apiPath = boardId
-      ? `/forum/${boardId}?uid=${userId}&index=${index}&num=${threadCount}&school=${school}`
+      ? `/forum/${boardSlug}?uid=${userId}&index=${index}&num=${threadCount}&school=${school}`
       : `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}`;
 
     // const apiPath = `/forum?uid=${userId}&index=0&num=10`;
-
-    console.log(apiPath);
+    // console.log(apiPath);
 
     API.get("wasedatime-dev", apiPath, {
       headers: {

@@ -88,5 +88,15 @@
     "id": 17,
     "title": "Job Hunting",
     "slug": "jobhunting"
+  },
+  {
+    "id": 18,
+    "title": "Memes",
+    "slug": "memes"
+  },
+  {
+    "id": 19,
+    "title": "Random",
+    "slug": "random"
   }
 ]

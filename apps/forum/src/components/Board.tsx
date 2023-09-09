@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useRecoilValue } from "recoil";
 import { useParams } from "react-router-dom";
 import CreateThread from "./CreateThread";
@@ -11,9 +11,6 @@ import { API } from "@aws-amplify/api";
 import Thread from "@app/types/thread";
 import { getUserAttr } from "wasedatime-ui";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { faL } from "@fortawesome/free-solid-svg-icons";
-
-const threadCountPerPage = 3; // 10
 
 const Board = () => {
   const { boardSlug } = useParams();
@@ -26,35 +23,108 @@ const Board = () => {
   );
 
   const [boardThreads, setBoardThreads] = useState<Thread[]>([]);
-  const [filteredThreads, setFilteredThreads] = useState<Thread[]>([]);
   const [userToken, setUserToken] = useState("");
-  const [page, setPage] = useState(1);
+  const [index, setIndex] = useState(0);
+  const [hasMoreItems, setHasMoreItems] = useState(true);
 
-  const boardStorage = localForage.createInstance({
-    name: "BoardData",
-  });
+  const scrollableElementRef = useRef(null);
+  const indexRef = useRef(index);
+  const currentSchoolsRef = useRef(currentSchools);
+  const mountedRef = useRef(false);
 
-  // fetching the board data
+  // useEffect #1 to initially fetch data when user first comes into forums
   useEffect(() => {
-    var currentBoardId =
-      boards.find((board) => board.slug === boardSlug)?.slug || "";
-    setBoardId(currentBoardId);
-    getThreads(currentBoardId);
+    getThreads("", 0, 10, []);
+    const handleScroll = () => {
+      mountedRef.current = true;
+      const element = scrollableElementRef.current;
+      const currentIdx = indexRef.current;
+      const selectedSchools = currentSchoolsRef.current;
+      console.log("current index : ", currentIdx);
+
+      if (element) {
+        const scrollHeight = element.scrollHeight;
+        const scrollTop = element.scrollTop;
+        const clientHeight = element.clientHeight;
+
+        if (scrollHeight - scrollTop === clientHeight) {
+          // Reached the bottom of the scrollable element
+          if (hasMoreItems) {
+            getThreads("", currentIdx, 10, selectedSchools);
+          }
+        }
+      }
+    };
+
+    const element = scrollableElementRef.current;
+    if (element) {
+      element.addEventListener("scroll", handleScroll);
+    }
+
+    // Cleanup
+    return () => {
+      if (element) {
+        element.removeEventListener("scroll", handleScroll);
+      }
+    };
+  }, []);
+
+  // useEffect #2 to fetch data only when user is moving around forums
+  useEffect(() => {
+    if (mountedRef.current) {
+      if (boardSlug) {
+        var currentBoardId =
+          boards.find((board) => board.slug === boardSlug)?.slug || "";
+        setBoardThreads([]);
+        setBoardId(currentBoardId);
+        getThreads(currentBoardId, 0, 10, currentSchools);
+      } else {
+        // This block will only run if boardSlug is undefined
+        setBoardThreads([]);
+        getThreads("", index, 10, currentSchools);
+        console.log("Triggered on first useEffect when boardSlug is undefined");
+      }
+    }
   }, [boardSlug]);
 
-  const getThreads = async (boardId: string) => {
+  useEffect(() => {
+    if (mountedRef.current) {
+      setBoardThreads([]);
+      indexRef.current = 0;
+      getThreads("", 0, 10, currentSchools);
+      console.log("Triggered on third UseEffect");
+      currentSchoolsRef.current = currentSchools;
+    } else {
+      mountedRef.current = true;
+    }
+  }, [currentSchools]);
+
+  const getThreads = async (
+    boardId: string,
+    index: number,
+    threadCount: number,
+    school: string[]
+  ) => {
     let userId = userToken;
     if (userId.length == 0) {
       const userAttr = await getUserAttr();
       if (userAttr) {
         userId = userAttr.id;
         setUserToken(userId);
+      } else {
+        userId = "";
+        setUserToken(userId);
       }
     }
 
     const apiPath = boardId
-      ? `/forum/${boardId}?uid=${userId}`
-      : `/forum?uid=${userId}`;
+      ? `/forum/${boardId}?uid=${userId}&index=${index}&num=${threadCount}&school=${school}`
+      : `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}`;
+
+    // const apiPath = `/forum?uid=${userId}&index=0&num=10`;
+
+    console.log(apiPath);
+
     API.get("wasedatime-dev", apiPath, {
       headers: {
         "Content-Type": "application/json",
@@ -67,71 +137,41 @@ const Board = () => {
               (thread: Thread) => thread.board_id === boardId
             )
           : res.data.data;
-        setBoardThreads(threads);
+        setBoardThreads((prevBoardThreads) => [
+          ...prevBoardThreads,
+          ...threads,
+        ]);
 
-        var filteredThreads = filterThreadsByTags(threads, currentTags);
-        filteredThreads = filterThreadsBySchool(
-          filteredThreads,
-          currentSchools
-        );
-        if (filteredThreads.length > threadCountPerPage * page)
-          filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
-        setFilteredThreads(filteredThreads);
+        const endIndex: number = res.data.message;
 
-        boardStorage.setItem(boardId, threads);
+        if (threads.length < threadCount || threads.length === 0) {
+          setHasMoreItems(false);
+        }
+
+        const newIndex = endIndex;
+        indexRef.current = newIndex;
       })
       .catch((e) => {
         console.error(e);
       });
   };
 
-  // when currentTags or currentSchools change, filter the threads
-  useEffect(() => {
-    var filteredThreads = filterThreadsByTags(boardThreads, currentTags);
-    filteredThreads = filterThreadsBySchool(filteredThreads, currentSchools);
-    if (filteredThreads.length > threadCountPerPage * page)
-      filteredThreads = filteredThreads.slice(0, threadCountPerPage * page);
-    setFilteredThreads(filteredThreads);
-  }, [currentTags, currentSchools]);
-
-  const displayMoreThread = () => {
-    setTimeout(() => {
-      if (boardThreads.length < threadCountPerPage * page) return;
-      const nextPage = page + 1;
-      setPage(nextPage);
-      var threads = filterThreadsByTags(boardThreads, currentTags);
-      threads = filterThreadsBySchool(threads, currentSchools);
-      threads = threads.slice(0, threadCountPerPage * nextPage);
-      setFilteredThreads(threads);
-    }, 1000);
-  };
-
   return (
     <div className="max-w-2/5 w-5/6 mx-auto h-full">
       <CreateThread />
-      <div className="overflow-auto h-[calc(100%-44px)]" id="scrollableDiv">
-        <InfiniteScroll
-          dataLength={filteredThreads.length}
-          next={displayMoreThread}
-          hasMore={true}
-          scrollableTarget="scrollableDiv"
-          loader={<h4>Loading...</h4>}
-          style={{ overflowY: "hidden" }}
-        >
-          {/* {this.state.items.map((i, index) => (
-              <div style={style} key={index}>
-                div - #{index}
-              </div>
-            ))} */}
-          {filteredThreads.map((thread, i) => (
-            <ThreadBlock
-              key={i}
-              isPreview={true}
-              thread={thread}
-              fromRoot={boardId === ""}
-            />
-          ))}
-        </InfiniteScroll>
+      <div
+        className="overflow-auto h-[calc(100%-44px)]"
+        id="scrollableDiv"
+        ref={scrollableElementRef}
+      >
+        {boardThreads.map((thread, i) => (
+          <ThreadBlock
+            key={i}
+            isPreview={true}
+            thread={thread}
+            fromRoot={boardId === ""}
+          />
+        ))}
       </div>
     </div>
   );

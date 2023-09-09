@@ -9,6 +9,7 @@ import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
 import SearchTags from "./SearchTags";
 import Forum from "@app/components/Forum";
+import BreadCrumbs from "@app/components/BreadCrumbs";
 
 const App = () => {
   const { t, i18n } = useTranslation();
@@ -34,6 +35,7 @@ const App = () => {
           {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
           <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-143px)]">
             <div className="flex flex-col w-1/5">
+              <BreadCrumbs />
               <FilterMenu />
               <BoardMenu />
             </div>
@@ -48,8 +50,8 @@ const App = () => {
               </Routes>
             </div>
             <div className="flex flex-col w-1/5 ">
-              <div className="h-[500px] bg-gray-100 w-[250px] justify-self-end">
-                <h1>Advertisement</h1>
+              <div className="h-[500px] w-[250px] justify-self-end">
+                <h1></h1>
               </div>
             </div>
           </div>

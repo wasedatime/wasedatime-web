@@ -80,6 +80,12 @@ const Nav = () => {
       iconHovered: <SyllabusIconHovered />,
     },
     {
+      name: t("navigation.forum"),
+      path: "/forum",
+      icon: <ForumIcon />,
+      iconHovered: <ForumIconHovered />,
+    },
+    {
       name: t("navigation.campus"),
       path: "/campus",
       icon: <CampusIcon />,
@@ -91,12 +97,7 @@ const Nav = () => {
       icon: <FeedsIcon />,
       iconHovered: <FeedsIconHovered />,
     },
-    {
-      name: t("navigation.forum"),
-      path: "/forum",
-      icon: <ForumIcon />,
-      iconHovered: <ForumIconHovered />,
-    },
+    
   ]
 
   return (

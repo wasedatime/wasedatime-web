@@ -35,10 +35,7 @@ const CreateThread = () => {
   useEffect(() => {
     const board = boards.find((board) => board.slug === boardSlug);
     if (board) {
-      const boardTags = board.tags.map((tagId) =>
-        tagsData.find((tags) => tags.id === tagId)
-      );
-      setTags(boardTags);
+      setTags(board.tags);
     } else {
       setTags([]);
     }
@@ -150,13 +147,15 @@ const CreateThread = () => {
             onClick={() => setExpandTags(!expandTags)}
           >
             {expandTags ? (
-              <div className="bg-light-main text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
+              <div className="bg-light-bgSide text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
                 {tags.map((tag) => (
                   <div
                     key={tag.id}
                     onClick={() => handleTagClick(tag)}
                     className={`tag ${
-                      selectedTag === tag ? "tag-selected" : ""
+                      selectedTag && selectedTag.id === tag.id
+                        ? "tag-selected"
+                        : ""
                     }`}
                   >
                     {tag.title}
@@ -164,6 +163,7 @@ const CreateThread = () => {
                 ))}
               </div>
             ) : null}
+
             <p>{selectedTag ? selectedTag.title : "Tags"}</p>
           </button>
           <button
@@ -172,7 +172,7 @@ const CreateThread = () => {
           >
             School
             {expandSchool ? (
-              <div className="bg-white border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
+              <div className="bg-light-bgSide border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
                 Text
               </div>
             ) : null}

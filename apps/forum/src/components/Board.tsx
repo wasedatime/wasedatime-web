@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
 import CreateThread from "./CreateThread";
 import ThreadBlock from "./ThreadBlock";
@@ -27,15 +27,16 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   const [userToken, setUserToken] = useState("");
   const [index, setIndex] = useState(0);
   const [hasMoreItems, setHasMoreItems] = useState(true);
-  const [refresh, setRefresh] = useState(triggerRefresh);
+  const [tags, setTags] = useState([]);
 
   const scrollableElementRef = useRef(null);
   const indexRef = useRef(index);
   const currentSchoolsRef = useRef(currentSchools);
-  const mountedRef = useRef(false);
-  const boardRef = useRef(boardId);
 
-  const tags = [];
+  const prevBoardSlug = useRef(boardSlug);
+  const prevTags = useRef(tags);
+  const prevCurrentSchools = useRef(currentSchools);
+  const prevTriggerRefresh = useRef(triggerRefresh);
 
   // useEffect #1 to initially fetch data when user first comes into forums
   useEffect(() => {
@@ -53,7 +54,11 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
         if (scrollHeight - scrollTop === clientHeight) {
           // Reached the bottom of the scrollable element
           if (hasMoreItems) {
-            getThreads("", currentIdx, 10, selectedSchools, tags);
+            if (boardId) {
+              getThreads(boardId, currentIdx, 10, selectedSchools, tags);
+            } else {
+              getThreads("", currentIdx, 10, selectedSchools, tags);
+            }
           }
         }
       }
@@ -74,25 +79,69 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
 
   // useEffect #2 to fetch data only when user is moving around forums
   useEffect(() => {
-    if (boardSlug) {
+    if (boardId) {
       var currentBoardId =
         boards.find((board) => board.slug === boardSlug)?.slug || "";
       setBoardThreads([]);
       setBoardId(currentBoardId);
       getThreads(currentBoardId, 0, 10, currentSchools, tags);
     }
-  }, [boardSlug]);
+  }, [boardSlug, tags]);
 
   //useEffect #3 to fetch and filter results by school
   useEffect(() => {
+    setTags((tags) => (tags = []));
     setBoardThreads([]);
     indexRef.current = 0;
-    getThreads(boardSlug, 0, 10, currentSchools, tags);
+    getThreads(boardSlug, 0, 10, currentSchools, []);
     currentSchoolsRef.current = currentSchools;
   }, [currentSchools, triggerRefresh]);
 
+  // useEffect(() => {
+  //   // Check if boardSlug or tags have changed
+  //   if (boardSlug !== prevBoardSlug.current || tags !== prevTags.current) {
+  //     console.log("Condition 1 triggered!");
+  //     var currentBoardId =
+  //       boards.find((board) => board.slug === boardSlug)?.slug || "";
+  //     setBoardThreads([]);
+  //     setBoardId(currentBoardId);
+  //     getThreads(currentBoardId, 0, 10, currentSchools, tags);
+  //   }
+
+  //   // Check if currentSchools or triggerRefresh have changed
+  //   if (
+  //     currentSchools !== prevCurrentSchools.current ||
+  //     (triggerRefresh !== prevTriggerRefresh.current && triggerRefresh === true)
+  //   ) {
+  //     console.log("condition 2 triggered!");
+  //     setTags((tags) => (tags = []));
+  //     setBoardThreads([]);
+  //     indexRef.current = 0;
+  //     getThreads(boardSlug, 0, 10, currentSchools, []);
+  //     currentSchoolsRef.current = currentSchools;
+  //   }
+
+  //   // Update the previous values for the next run
+  //   prevBoardSlug.current = boardSlug;
+  //   prevTags.current = tags;
+  //   prevCurrentSchools.current = currentSchools;
+  //   prevTriggerRefresh.current = triggerRefresh;
+  // }, [
+  //   boardSlug,
+  //   tags,
+  //   currentSchools,
+  //   triggerRefresh,
+  //   boards,
+  //   // currentSchoolsRef,
+  //   indexRef,
+  // ]);
+
+  useEffect(() => {
+    setTags(currentTags);
+  }, [currentTags]);
+
   const getThreads = async (
-    boardId: string | undefined,
+    boardId: string | "",
     index: number,
     threadCount: number,
     school: string[],
@@ -110,11 +159,12 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
       }
     }
 
-    const apiPath = `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}&board_id=${boardSlug}`;
-    // ? `/forum/${boardSlug}?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}`
-    // : ;
+    const apiPath = boardId
+      ? `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}&board_id=${boardId}`
+      : `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}`;
 
     // const apiPath = `/forum?uid=${userId}&index=0&num=10`;
+    console.log(apiPath);
 
     API.get("wasedatime-dev", apiPath, {
       headers: {

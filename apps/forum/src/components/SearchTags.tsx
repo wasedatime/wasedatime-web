@@ -64,7 +64,7 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
 
   return (
     <div className={isShow ? "" : "hidden"}>
-      <div className="z-10 fixed flex flex-col top-1/4 left-1/3 w-1/3 min-h-1/3 bg-white border shadow-lg rounded-lg overflow-y-auto">
+      <div className="z-10 fixed flex flex-col mt-20 left-1/3 w-1/3 min-h-1/3 bg-white border shadow-lg rounded-lg overflow-y-auto">
         <div className="modal-header flex sticky top-0 bg-white items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
           <h5
             className="text-xl font-medium leading-normal text-gray-800 font-sans"
@@ -86,15 +86,16 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
           </div>
           <ul className="py-1 shadow-lg rounded-lg">
             {tagsToDisplay
-              // .filter((item) => {
-              //   const searchTerm = query.toLowerCase();
-              //   const existingTerm = item.toLocaleLowerCase();
-              //   return searchTerm && existingTerm.startsWith(searchTerm);
-              // })
+              .filter((item) => {
+                const searchTerm = query.toLowerCase();
+                const existingTerm = item.toLocaleLowerCase();
+                return searchTerm && existingTerm.startsWith(searchTerm);
+              })
               .map((item) => (
                 <li
                   className="px-4 py-2 hover:bg-gray-100 font-sans"
                   onClick={() => handleClick(item)}
+                  key={item}
                 >
                   {item}
                 </li>

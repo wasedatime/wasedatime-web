@@ -12,8 +12,9 @@ import Thread from "@app/types/thread";
 import { getUserAttr } from "wasedatime-ui";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const Board = () => {
+const Board = ({ triggerRefresh, setBoard }: any) => {
   const { boardSlug } = useParams();
+  setBoard(boardSlug);
 
   const currentTags = useRecoilValue(currentTagsState);
   const currentSchools = useRecoilValue(currentSchoolState);
@@ -26,6 +27,7 @@ const Board = () => {
   const [userToken, setUserToken] = useState("");
   const [index, setIndex] = useState(0);
   const [hasMoreItems, setHasMoreItems] = useState(true);
+  const [refresh, setRefresh] = useState(triggerRefresh);
 
   const scrollableElementRef = useRef(null);
   const indexRef = useRef(index);
@@ -33,16 +35,12 @@ const Board = () => {
   const mountedRef = useRef(false);
   const boardRef = useRef(boardId);
 
+  const tags = [];
+
   // useEffect #1 to initially fetch data when user first comes into forums
   useEffect(() => {
-    if (!boardSlug) {
-      getThreads("", 0, 10, []);
-    } else {
-      getThreads(boardSlug, 0, 10, []);
-    }
-
     const handleScroll = () => {
-      mountedRef.current = true;
+      // mountedRef.current = true;
       const element = scrollableElementRef.current;
       const currentIdx = indexRef.current;
       const selectedSchools = currentSchoolsRef.current;
@@ -55,7 +53,7 @@ const Board = () => {
         if (scrollHeight - scrollTop === clientHeight) {
           // Reached the bottom of the scrollable element
           if (hasMoreItems) {
-            getThreads("", currentIdx, 10, selectedSchools);
+            getThreads("", currentIdx, 10, selectedSchools, tags);
           }
         }
       }
@@ -76,37 +74,29 @@ const Board = () => {
 
   // useEffect #2 to fetch data only when user is moving around forums
   useEffect(() => {
-    if (mountedRef.current) {
-      if (boardSlug) {
-        var currentBoardId =
-          boards.find((board) => board.slug === boardSlug)?.slug || "";
-        setBoardThreads([]);
-        setBoardId(currentBoardId);
-        boardRef.current = boardId;
-        getThreads(currentBoardId, 0, 10, currentSchools);
-      } else {
-        // This block will only run if boardSlug is undefined
-        setBoardThreads([]);
-        getThreads("", index, 10, currentSchools);
-      }
+    if (boardSlug) {
+      var currentBoardId =
+        boards.find((board) => board.slug === boardSlug)?.slug || "";
+      setBoardThreads([]);
+      setBoardId(currentBoardId);
+      getThreads(currentBoardId, 0, 10, currentSchools, tags);
     }
   }, [boardSlug]);
 
   //useEffect #3 to fetch and filter results by school
   useEffect(() => {
-    if (mountedRef.current) {
-      setBoardThreads([]);
-      indexRef.current = 0;
-      getThreads(boardSlug, 0, 10, currentSchools);
-      currentSchoolsRef.current = currentSchools;
-    }
-  }, [currentSchools]);
+    setBoardThreads([]);
+    indexRef.current = 0;
+    getThreads(boardSlug, 0, 10, currentSchools, tags);
+    currentSchoolsRef.current = currentSchools;
+  }, [currentSchools, triggerRefresh]);
 
   const getThreads = async (
     boardId: string | undefined,
     index: number,
     threadCount: number,
-    school: string[]
+    school: string[],
+    tags: string[]
   ) => {
     let userId = userToken;
     if (userId.length == 0) {
@@ -120,12 +110,11 @@ const Board = () => {
       }
     }
 
-    const apiPath = boardId
-      ? `/forum/${boardSlug}?uid=${userId}&index=${index}&num=${threadCount}&school=${school}`
-      : `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}`;
+    const apiPath = `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}&board_id=${boardSlug}`;
+    // ? `/forum/${boardSlug}?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}`
+    // : ;
 
     // const apiPath = `/forum?uid=${userId}&index=0&num=10`;
-    // console.log(apiPath);
 
     API.get("wasedatime-dev", apiPath, {
       headers: {
@@ -162,7 +151,7 @@ const Board = () => {
     <div className="max-w-2/5 w-5/6 mx-auto h-full">
       <CreateThread />
       <div
-        className="overflow-auto h-[calc(100%-44px)]"
+        className="overflow-auto h-[calc(100%-44px)] mt-5"
         id="scrollableDiv"
         ref={scrollableElementRef}
       >

@@ -146,7 +146,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
         <div
           className={
             isPreview
-              ? `border-2 mt-12 mx-4 rounded-xl shadow-lg pb-6 hover:bg-gray-50`
+              ? `border-2 mb-10 mr-4 rounded-xl shadow-lg hover:bg-gray-50 p-6`
               : `cursor-default`
           }
         >
@@ -161,10 +161,10 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
           {/* ^ This line goes to parent board on click while in thread */}
           <div className={`px-2`}>
             <div className="flex justify-between mt-2">
-              <h1 className="text-2xl text-light-main my-auto">
+              <h1 className="text-2xl text-light-main mb-auto">
                 {thread.title}
               </h1>
-              <div>
+              <div className="flex justify-center flex-col items-center">
                 {/* ToDo: create component for tag within Thread Block */}
                 <img
                   src={getSchoolIconPath(thread.group_id, "en")}
@@ -192,7 +192,11 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
                         <EditIcon fontSize="large" color="warning" />
                       </button> */}
                       <button onClick={confirmDeleteThread}>
-                        <DeleteIcon fontSize="large" color="error" />
+                        <DeleteIcon
+                          fontSize="large"
+                          color="error"
+                          className="mt-3"
+                        />
                       </button>
                       {deleteModalOpen && (
                         <ConfirmModal

@@ -75,27 +75,30 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
         (element as HTMLElement).removeEventListener("scroll", handleScroll);
       }
     };
-  }, []);
+  }, [boardId, tags]);
 
   // useEffect #2 to fetch data only when user is moving around forums
-  useEffect(() => {
-    if (boardId) {
-      var currentBoardId =
-        boards.find((board) => board.slug === boardSlug)?.slug || "";
-      setBoardThreads([]);
-      setBoardId(currentBoardId);
-      getThreads(currentBoardId, 0, 10, currentSchools, tags);
-    }
-  }, [boardSlug, tags]);
+  // useEffect(() => {
+  //   if (boardId) {
+  //     var currentBoardId =
+  //       boards.find((board) => board.slug === boardSlug)?.slug || "";
+  //     setBoardThreads([]);
+  //     setBoardId(currentBoardId);
+  //     getThreads(currentBoardId, 0, 10, currentSchools, tags);
+  //   }
+  // }, [boardSlug, tags]);
 
   //useEffect #3 to fetch and filter results by school
   useEffect(() => {
+    var currentBoardId =
+      boards.find((board) => board.slug === boardSlug)?.slug || "";
     setTags((tags) => (tags = []));
     setBoardThreads([]);
     indexRef.current = 0;
-    getThreads(boardSlug, 0, 10, currentSchools, []);
+    setBoardId(currentBoardId);
+    getThreads(currentBoardId, 0, 10, currentSchools, []);
     currentSchoolsRef.current = currentSchools;
-  }, [currentSchools, triggerRefresh]);
+  }, [boardSlug, currentSchools, triggerRefresh]);
 
   // useEffect(() => {
   //   // Check if boardSlug or tags have changed

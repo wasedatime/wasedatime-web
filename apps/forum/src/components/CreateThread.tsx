@@ -25,7 +25,7 @@ const CreateThread = () => {
   const [textContent, setTextContent] = useState("");
   const [titleContent, setTitleContent] = useState("");
   const [tags, setTags] = useState([]);
-  const [board, setBoard] = useState("");
+  const [selectedBoard, setSelectedBoard] = useState("");
   const [selectedTag, setSelectedTag] = useState(null);
   const [selectedSchool, setSelectedSchool] = useState("");
   const [expandedDropdown, setExpandedDropdown] = useState(false);
@@ -35,15 +35,15 @@ const CreateThread = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-    setBoard(boardSlug);
+    setSelectedBoard(boardSlug);
     setIsExpanded(false);
     setExpandTags(false);
     setExpandSchool(false);
   }, [boardSlug]);
 
   useEffect(() => {
-    console.log(board);
-  }, [board]);
+    console.log(selectedBoard);
+  }, [selectedBoard]);
 
   useEffect(() => {
     const board = boards.find((board) => board.slug === boardSlug);
@@ -59,6 +59,21 @@ const CreateThread = () => {
       setTags(allTags);
     }
   }, [boardSlug]);
+
+  useEffect(() => {
+    const board = boards.find((board) => board.slug === selectedBoard);
+
+    if (board) {
+      setTags(board.tags);
+    } else {
+      // Collect all tags from all boards
+      const allTags = boards.reduce((acc, currBoard) => {
+        return acc.concat(currBoard.tags);
+      }, []);
+
+      setTags(allTags);
+    }
+  }, [selectedBoard]);
 
   const handleOpenForm = async () => {
     if (userToken?.length > 0) {
@@ -97,7 +112,7 @@ const CreateThread = () => {
   const handleSubmit = async () => {
     // Require a Board
     // If current board isn't chosen, then output this
-    if (!board) {
+    if (!selectedBoard) {
       alert("Please choose a board");
       return;
     }
@@ -118,24 +133,28 @@ const CreateThread = () => {
       if (idToken?.length <= 0) return;
     }
 
-    console.log(board);
+    console.log(selectedBoard);
 
     try {
-      const response = await API.post("wasedatime-dev", `/forum/${board}`, {
-        body: {
-          data: {
-            body: textContent,
-            title: titleContent,
-            tag_id: selectedTag.title,
-            group_id: selectedSchool,
-            univ_id: "1",
+      const response = await API.post(
+        "wasedatime-dev",
+        `/forum/${selectedBoard}`,
+        {
+          body: {
+            data: {
+              body: textContent,
+              title: titleContent,
+              tag_id: selectedTag.title,
+              group_id: selectedSchool,
+              univ_id: "1",
+            },
           },
-        },
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: idToken,
-        },
-      });
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: idToken,
+          },
+        }
+      );
       setTextContent("");
     } catch (error) {}
     setTitleContent("");
@@ -149,7 +168,7 @@ const CreateThread = () => {
 
   const getTitleBySlug = (inputSlug: string) => {
     const result = boards.find((board) => board.slug === inputSlug);
-    return result ? result.title : "Choose a board";
+    return result ? result.title : "What's the topic?";
   };
 
   const BoardDropdownMenu = ({ slug }: { slug?: string }) => {
@@ -159,7 +178,11 @@ const CreateThread = () => {
         <div>
           <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
             {/* Current Board */}
-            {slug ? getTitleBySlug(slug) : board ? board : "What's the Topic?"}
+            {slug
+              ? getTitleBySlug(slug)
+              : selectedBoard
+              ? selectedBoard
+              : "What's the Topic?"}
           </Menu.Button>
         </div>
 
@@ -183,7 +206,7 @@ const CreateThread = () => {
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block w-full px-4 py-2 text-left text-sm"
                       )}
-                      onClick={() => setBoard(board.slug)}
+                      onClick={() => setSelectedBoard(board.slug)}
                     >
                       {board.title}
                     </button>

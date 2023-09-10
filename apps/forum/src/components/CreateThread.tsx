@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { CloseIcon } from "@app/components/icons/CloseIcon";
@@ -8,6 +8,11 @@ import groupsData from "@app/constants/groups.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
 import { useTranslation } from "react-i18next";
 import { getUserId, getUserIdToken } from "@app/utils/auth";
+import { Menu, Transition } from "@headlessui/react";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -82,10 +87,20 @@ const CreateThread = () => {
   };
 
   const handleSubmit = async () => {
+    // Require a Board
+    // If current board isn't chosen, then output this
+    // if () {
+    //   alert("Please choose a board");
+    //   return;
+    // }
+
+    // Require a Title
     if (!titleContent || titleContent.trim().length === 0) {
       alert("Please enter a title");
       return;
     }
+
+    // Require a Body
     if (textContent.trim().length <= 0 || textContent.trim().length > 2000)
       return;
 
@@ -124,9 +139,59 @@ const CreateThread = () => {
     (board) => board.slug == boardSlug
   );
 
+  const getTitleBySlug = (inputSlug: string) => {
+    const result = boards.find((board) => board.slug === inputSlug);
+    return result ? result.title : "Choose a board";
+  };
+
+  const BoardDropdownMenu = ({ slug }: { slug?: string }) => {
+    // Menu would not show if you are in a board
+    return slug ? null : (
+      <Menu as="div" className="relative inline-block text-left">
+        <div>
+          <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+            {/* Current Board */}
+            {slug ? getTitleBySlug(slug) : "Choose a board"}
+          </Menu.Button>
+        </div>
+
+        <Transition
+          as={Fragment}
+          enter="transition ease-out duration-100"
+          enterFrom="transform opacity-0 scale-95"
+          enterTo="transform opacity-100 scale-100"
+          leave="transition ease-in duration-75"
+          leaveFrom="transform opacity-100 scale-100"
+          leaveTo="transform opacity-0 scale-95"
+        >
+          <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+            <div className="py-1">
+              {boards.map((board) => (
+                <Menu.Item>
+                  {/* Please add logic that changes the board here */}
+                  {({ active }) => (
+                    <button
+                      className={classNames(
+                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
+                        "block w-full px-4 py-2 text-left text-sm"
+                      )}
+                    >
+                      {board.title}
+                    </button>
+                  )}
+                </Menu.Item>
+              ))}
+            </div>
+          </Menu.Items>
+        </Transition>
+      </Menu>
+    );
+  };
+
   return isExpanded ? (
     <div className="relative">
       <div className="border-2 text-start text-black dark:text-white p-2 border-light-main rounded-lg">
+        <BoardDropdownMenu slug={boardSlug} />
         <textarea
           placeholder={`Enter Title`}
           className="border-b-2 overflow-y-hidden border-light-main h-10 pl-2 pb-2 w-full hover:outline-0 focus:outline-0"
@@ -185,7 +250,7 @@ const CreateThread = () => {
           </button>
         </div>
         <button
-          className="border-light-main border mx-4 px-4 mx-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker"
+          className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker"
           onClick={handleSubmit}
         >
           Submit Post

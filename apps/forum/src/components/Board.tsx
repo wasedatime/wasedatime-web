@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
 import CreateThread from "./CreateThread";
 import ThreadBlock from "./ThreadBlock";
@@ -16,7 +16,7 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   const { boardSlug } = useParams();
   setBoard(boardSlug);
 
-  const currentTags = useRecoilValue(currentTagsState);
+  const [currentTags, setCurrentTags] = useRecoilState(currentTagsState);
   const currentSchools = useRecoilValue(currentSchoolState);
 
   const [boardId, setBoardId] = useState(
@@ -50,28 +50,24 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
         const scrollHeight = (element as HTMLElement).scrollHeight;
         const scrollTop = (element as HTMLElement).scrollTop;
         const clientHeight = (element as HTMLElement).clientHeight;
-
-        if (scrollHeight - scrollTop === clientHeight) {
-          // Reached the bottom of the scrollable element
-          if (hasMoreItems) {
-            if (boardId) {
-              getThreads(boardId, currentIdx, 10, selectedSchools, tags);
-            } else {
-              getThreads("", currentIdx, 10, selectedSchools, tags);
-            }
-          }
+        
+        // Reached the bottom of the scrollable element
+        if (scrollTop > 0 && scrollHeight - scrollTop === clientHeight && hasMoreItems) {
+          getThreads(boardId, currentIdx, 10, selectedSchools, tags);
         }
       }
     };
 
     const element = scrollableElementRef.current;
     if (element) {
+      console.log("addEventListener");
       (element as HTMLElement).addEventListener("scroll", handleScroll);
     }
 
     // Cleanup
     return () => {
       if (element) {
+        console.log("removeEventListener");
         (element as HTMLElement).removeEventListener("scroll", handleScroll);
       }
     };
@@ -92,13 +88,13 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   useEffect(() => {
     var currentBoardId =
       boards.find((board) => board.slug === boardSlug)?.slug || "";
-    setTags((tags) => (tags = []));
     setBoardThreads([]);
     indexRef.current = 0;
     setBoardId(currentBoardId);
-    getThreads(currentBoardId, 0, 10, currentSchools, []);
+    getThreads(currentBoardId, 0, 10, currentSchools, boardSlug === boardId ? tags : []);
     currentSchoolsRef.current = currentSchools;
-  }, [boardSlug, currentSchools, triggerRefresh]);
+    setHasMoreItems(true);
+  }, [boardSlug, currentSchools, triggerRefresh, tags]);
 
   // useEffect(() => {
   //   // Check if boardSlug or tags have changed
@@ -140,7 +136,7 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   // ]);
 
   useEffect(() => {
-    setTags(currentTags);
+    if (tags.length > 0 || currentTags.length > 0) setTags(currentTags);
   }, [currentTags]);
 
   const getThreads = async (

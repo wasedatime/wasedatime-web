@@ -97,6 +97,7 @@ const SchoolFilterForm = ({
   const applySelection = () => {
     setSchool(tempSelectedSchool); // Update the state using setSchool
     setTempSelectedSchool(""); // Clear the temporary state
+    setOpen(false);
   };
 
   const SchoolBlock = ({ school }: SchoolBlockProps) => (
@@ -127,9 +128,12 @@ const SchoolFilterForm = ({
       />
       <div
         className="fixed rounded-lg top-1/4 left-8 right-8 md:left-36 md:right-36 lg:left-1/4 lg:right-1/4 bg-white z-10"
-        onClick={(e) => e.stopPropagation()} // Stop event propagation here
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* ... rest of your modal content ... */}
+        <TabMenu
+          activeTab={schoolsCategoryId}
+          onClickTab={setSchoolsCategoryId}
+        />
         <div className="flex flex-row flex-wrap">
           {schoolsByCategory[schoolsCategoryId].schools.map((school, i) => (
             <SchoolBlock key={i} school={school} />
@@ -137,7 +141,7 @@ const SchoolFilterForm = ({
         </div>
         {tempSelectedSchool && (
           <button
-            className="bg-blue-500 text-white rounded-lg px-4 py-2 mt-4"
+            className="bg-light-main text-white rounded-lg px-4 py-2 mt-4"
             onClick={applySelection}
           >
             Apply

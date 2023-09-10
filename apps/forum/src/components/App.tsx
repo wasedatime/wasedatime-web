@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import HeaderWithModal from "@app/components/common/HeaderWithModal";
 import { ThemeContext } from "@app/utils/theme-context";
 import Board from "./Board";
@@ -68,7 +62,7 @@ const InnerApp = () => {
                 onClick={handleReset}
                 className="p-2 bg-light-main text-white rounded-lg my-1 w-full"
               >
-                Go back to Forums
+                Back to Forums!
               </button>
             </div>
             <FilterMenu />

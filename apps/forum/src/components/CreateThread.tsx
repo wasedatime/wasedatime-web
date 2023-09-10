@@ -25,6 +25,7 @@ const CreateThread = () => {
   const [textContent, setTextContent] = useState("");
   const [titleContent, setTitleContent] = useState("");
   const [tags, setTags] = useState([]);
+  const [board, setBoard] = useState("");
   const [selectedTag, setSelectedTag] = useState(null);
   const [selectedSchool, setSelectedSchool] = useState("");
   const [expandedDropdown, setExpandedDropdown] = useState(false);
@@ -35,10 +36,15 @@ const CreateThread = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
+    setBoard(boardSlug);
     setIsExpanded(false);
     setExpandTags(false);
     setExpandSchool(false);
   }, [boardSlug]);
+
+  useEffect(() => {
+    console.log(board);
+  }, [board]);
 
   useEffect(() => {
     const board = boards.find((board) => board.slug === boardSlug);
@@ -54,10 +60,6 @@ const CreateThread = () => {
       setTags(allTags);
     }
   }, [boardSlug, boards]);
-
-  useEffect(() => {
-    console.log(selectedSchool);
-  }, [selectedSchool]);
 
   const handleOpenForm = async () => {
     if (userToken?.length > 0) {
@@ -117,10 +119,10 @@ const CreateThread = () => {
       if (idToken?.length <= 0) return;
     }
 
-    // TODO: Implement submitting new thread API
+    console.log(board);
 
     try {
-      const response = await API.post("wasedatime-dev", `/forum/${boardSlug}`, {
+      const response = await API.post("wasedatime-dev", `/forum/${board}`, {
         body: {
           data: {
             body: textContent,
@@ -158,7 +160,7 @@ const CreateThread = () => {
         <div>
           <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
             {/* Current Board */}
-            {slug ? getTitleBySlug(slug) : "Choose a board"}
+            {slug ? getTitleBySlug(slug) : "What's the Topic?"}
           </Menu.Button>
         </div>
 
@@ -182,6 +184,7 @@ const CreateThread = () => {
                         active ? "bg-gray-100 text-gray-900" : "text-gray-700",
                         "block w-full px-4 py-2 text-left text-sm"
                       )}
+                      onClick={() => setBoard(board.title)}
                     >
                       {board.title}
                     </button>
@@ -262,7 +265,7 @@ const CreateThread = () => {
           className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker"
           onClick={handleSubmit}
         >
-          Submit Post
+          Post
         </button>
       </div>
     </div>

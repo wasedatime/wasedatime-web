@@ -268,11 +268,11 @@ const CreateThread = () => {
             </Transition>
           </Menu> */}
           <button
-            className="relative text-black-900 border-light-main border mx-4 px-4 rounded-lg hover:text-white hover:bg-light-main"
+            className="relative text-black-900 border-light-main border mx-4 px-4 rounded-md hover:text-white hover:bg-light-main"
             onClick={() => setExpandTags(!expandTags)}
           >
             {expandTags ? (
-              <div className="bg-light-bgSide text-black border-light-main border absolute h-[200px] w-32 top-8 left-0 rounded-lg z-10 overflow-y-auto">
+              <div className="bg-light-bgSide text-black border-light-main border absolute max-h-[200px] w-32 top-6 left-0 rounded-md z-10 overflow-y-auto">
                 {tags.map((tag) => (
                   <div
                     key={tag.id}
@@ -292,7 +292,7 @@ const CreateThread = () => {
             <p>{selectedTag ? selectedTag.title : "Tags"}</p>
           </button>
           <button
-            className="relative border-light-main border px-4 rounded-lg hover:text-white hover:bg-light-main"
+            className="relative border-light-main border px-4 rounded-md hover:text-white hover:bg-light-main"
             onClick={() => setExpandSchool(!expandSchool)}
           >
             {expandSchool ? (

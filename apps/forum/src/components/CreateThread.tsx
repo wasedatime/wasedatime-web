@@ -8,6 +8,8 @@ import groupsData from "@app/constants/groups.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
 import { useTranslation } from "react-i18next";
 import { getUserId, getUserIdToken } from "@app/utils/auth";
+import SchoolFilterForm from "./common/SchoolFilter";
+import getSchoolIconPath from "@app/utils/get-school-icon-path";
 
 const CreateThread = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -19,6 +21,7 @@ const CreateThread = () => {
   const [titleContent, setTitleContent] = useState("");
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedSchool, setSelectedSchool] = useState("");
   const [expandedDropdown, setExpandedDropdown] = useState(false);
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
@@ -46,6 +49,10 @@ const CreateThread = () => {
       setTags(allTags);
     }
   }, [boardSlug, boards]);
+
+  useEffect(() => {
+    console.log(selectedSchool);
+  }, [selectedSchool]);
 
   const handleOpenForm = async () => {
     if (userToken?.length > 0) {
@@ -104,7 +111,7 @@ const CreateThread = () => {
             body: textContent,
             title: titleContent,
             tag_id: selectedTag.title,
-            group_id: "SILS",
+            group_id: selectedSchool,
             univ_id: "1",
           },
         },
@@ -176,12 +183,14 @@ const CreateThread = () => {
             className="relative border-light-main border px-4 rounded-lg hover:text-white hover:bg-light-main"
             onClick={() => setExpandSchool(!expandSchool)}
           >
-            School
             {expandSchool ? (
-              <div className="bg-light-bgSide border border-light-main absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
-                Text
-              </div>
+              <SchoolFilterForm
+                isOpen={expandSchool}
+                setOpen={setExpandSchool}
+                setSchool={setSelectedSchool}
+              />
             ) : null}
+            <p>{selectedSchool ? selectedSchool : "School"}</p>
           </button>
         </div>
         <button

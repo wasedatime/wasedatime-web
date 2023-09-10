@@ -35,7 +35,6 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
 
   // useEffect #1 to initially fetch data when user first comes into forums
   useEffect(() => {
-    console.log(tags);
     const handleScroll = () => {
       // mountedRef.current = true;
       const element = scrollableElementRef.current;

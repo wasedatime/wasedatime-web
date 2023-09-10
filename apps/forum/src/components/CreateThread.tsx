@@ -34,12 +34,18 @@ const CreateThread = () => {
 
   useEffect(() => {
     const board = boards.find((board) => board.slug === boardSlug);
+
     if (board) {
       setTags(board.tags);
     } else {
-      setTags([]);
+      // Collect all tags from all boards
+      const allTags = boards.reduce((acc, currBoard) => {
+        return acc.concat(currBoard.tags);
+      }, []);
+
+      setTags(allTags);
     }
-  }, [boardSlug]);
+  }, [boardSlug, boards]);
 
   const handleOpenForm = async () => {
     if (userToken?.length > 0) {
@@ -147,7 +153,7 @@ const CreateThread = () => {
             onClick={() => setExpandTags(!expandTags)}
           >
             {expandTags ? (
-              <div className="bg-light-bgSide text-black border-light-main border absolute h-32 w-32 top-8 left-0 rounded-lg z-10">
+              <div className="bg-light-bgSide text-black border-light-main border absolute h-[200px] w-32 top-8 left-0 rounded-lg z-10 overflow-y-auto">
                 {tags.map((tag) => (
                   <div
                     key={tag.id}
@@ -156,7 +162,7 @@ const CreateThread = () => {
                       selectedTag && selectedTag.id === tag.id
                         ? "tag-selected"
                         : ""
-                    }`}
+                    } hover:bg-gray-200 cursor-pointer`}
                   >
                     {tag.title}
                   </div>

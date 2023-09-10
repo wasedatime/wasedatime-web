@@ -62,6 +62,10 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
     closeModal();
   };
 
+  const handleReset = () => {
+    setSelectedTags([]);
+  };
+
   return (
     <div className={isShow ? "" : "hidden"}>
       <div className="z-10 fixed flex flex-col mt-20 left-1/3 w-1/3 min-h-1/3 bg-white border shadow-lg rounded-lg overflow-y-auto">
@@ -74,7 +78,7 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
           </h5>
         </div>
         {/* SEARCH COMPONENT PART */}
-        <div className="modal-body flex flex-col">
+        <div className="modal-body flex flex-col flex flex-col max-h-[70vh] overflow-y-auto">
           <div>
             <input
               type="text"
@@ -102,17 +106,20 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
               ))}
           </ul>
 
-          <div className="grid grid-cols-3 gap-4 items-center justify-between relative p-4 border-b">
+          <div className="grid grid-cols-3 gap-4 items-center justify-items-center align-items-center relative p-4 border-b">
             {tagsToDisplay.map((tag) => (
               <button
                 key={tag}
-                className="inline-block bg-gray-200 w-20 hover:bg-gray-300 px-2 py-1 rounded-full mr-2 mb-2 font-sans"
+                className="inline-block bg-gray-200 w-24 hover:bg-gray-300 px-2 py-1 rounded-full mb-2 font-sans overflow-hidden"
                 onClick={() => handleClick(tag)}
               >
-                {tag}
+                <div className="whitespace-nowrap overflow-ellipsis overflow-hidden">
+                  {tag}
+                </div>
               </button>
             ))}
           </div>
+
           {/* DISPLAY FOR CURRENT SELECTED currentTagsState */}
           {selectedTags.length > 0 && (
             <div className="my-2 w-full shadow-lg rounded-lg">
@@ -129,21 +136,30 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
               ))}
             </div>
           )}
-          <div className="modal-footer flex flex-wrap sticky bottom-0 w-full h-18 bg-white items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+          <div className="modal-footer flex flex-wrap justify-between sticky bottom-0 w-full h-18 bg-white items-center p-4 border-t border-gray-200 rounded-b-md">
             <button
               type="submit"
               className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
-              onClick={handleSubmit}
+              onClick={handleReset}
             >
-              Apply
+              Reset
             </button>
-            <button
-              type="button"
-              className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
-              onClick={handleCloseModal}
-            >
-              Close
-            </button>
+            <div className="flex">
+              <button
+                type="submit"
+                className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
+                onClick={handleSubmit}
+              >
+                Apply
+              </button>
+              <button
+                type="button"
+                className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
+                onClick={handleCloseModal}
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -33,13 +33,9 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   const indexRef = useRef(index);
   const currentSchoolsRef = useRef(currentSchools);
 
-  const prevBoardSlug = useRef(boardSlug);
-  const prevTags = useRef(tags);
-  const prevCurrentSchools = useRef(currentSchools);
-  const prevTriggerRefresh = useRef(triggerRefresh);
-
   // useEffect #1 to initially fetch data when user first comes into forums
   useEffect(() => {
+    console.log(tags);
     const handleScroll = () => {
       // mountedRef.current = true;
       const element = scrollableElementRef.current;
@@ -50,9 +46,13 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
         const scrollHeight = (element as HTMLElement).scrollHeight;
         const scrollTop = (element as HTMLElement).scrollTop;
         const clientHeight = (element as HTMLElement).clientHeight;
-        
+
         // Reached the bottom of the scrollable element
-        if (scrollTop > 0 && scrollHeight - scrollTop === clientHeight && hasMoreItems) {
+        if (
+          scrollTop > 0 &&
+          scrollHeight - scrollTop === clientHeight &&
+          hasMoreItems
+        ) {
           getThreads(boardId, currentIdx, 10, selectedSchools, tags);
         }
       }
@@ -60,14 +60,12 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
 
     const element = scrollableElementRef.current;
     if (element) {
-      console.log("addEventListener");
       (element as HTMLElement).addEventListener("scroll", handleScroll);
     }
 
     // Cleanup
     return () => {
       if (element) {
-        console.log("removeEventListener");
         (element as HTMLElement).removeEventListener("scroll", handleScroll);
       }
     };
@@ -91,10 +89,14 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
     setBoardThreads([]);
     indexRef.current = 0;
     setBoardId(currentBoardId);
-    getThreads(currentBoardId, 0, 10, currentSchools, boardSlug === boardId ? tags : []);
+    getThreads(currentBoardId, 0, 10, currentSchools, tags);
     currentSchoolsRef.current = currentSchools;
     setHasMoreItems(true);
   }, [boardSlug, currentSchools, triggerRefresh, tags]);
+
+  useEffect(() => {
+    setCurrentTags([]);
+  }, [boardSlug]);
 
   // useEffect(() => {
   //   // Check if boardSlug or tags have changed

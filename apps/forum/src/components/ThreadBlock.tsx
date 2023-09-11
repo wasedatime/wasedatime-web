@@ -8,13 +8,15 @@ import API from "@aws-amplify/api";
 import { ConfirmModal } from "@app/components/form/ConfirmModal";
 import { EditThreadForm } from "@app/components/form/EditThreadForm";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
-import { Visibility } from "@mui/icons-material";
+import { Favorite, Share, Visibility } from "@mui/icons-material";
+import { red } from "@mui/material/colors";
 
 type Props = {
   isPreview: boolean;
   thread: any;
   fromRoot?: boolean;
   text?: string;
+  onDelete?: (threadId: string) => void;
 };
 
 const convertUrlsToLinks = ({ isPreview, text }: Props) => {
@@ -49,10 +51,16 @@ const convertUrlsToLinks = ({ isPreview, text }: Props) => {
   );
 };
 
-const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
+const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
   const [userToken, setUserToken] = useState("");
-  // const [editModalOpen, setEditModalOpen] = useState(false);
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [userLiked, setUserLiked] = useState(thread.user_liked);
+  const [totalLikes, setTotalLikes] = useState(thread.total_likes);
+
+  useEffect(() => {
+    setUserLiked(thread.user_liked);
+    setTotalLikes(thread.total_likes);
+  }, [thread]);
 
   useEffect(() => {
     const updateLoginStatus = async () => {
@@ -61,7 +69,6 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
         setUserToken(idToken);
       }
     };
-
     updateLoginStatus();
   }, [userToken]);
 
@@ -73,25 +80,29 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
     },
   ];
 
-  /*
-  const openThreadEditForm = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleLike = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setEditModalOpen(true);
+    updateThreadLikes();
   };
 
-  const updateThread = async (title: string, body: string) => {
+  const updateThreadLikes = async () => {
+    console.log("triggered!");
     try {
+      const action = userLiked ? "dislike" : "like";
+      console.log(action);
+
       const response = await API.patch(
         "wasedatime-dev",
         `/forum/${thread.board_id}/${thread.thread_id}`,
         {
           body: {
             data: {
-              tag_id: "courses",
-              group_id: "SILS",
-              title,
-              body,
+              tag_id: thread.tag_id,
+              group_id: thread.group_id,
+              title: thread.title,
+              body: thread.body,
             },
+            action,
           },
           headers: {
             "Content-Type": "application/json",
@@ -99,12 +110,20 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
           },
         }
       );
+      if (response && response.success) {
+        console.log(response);
+        setUserLiked(!userLiked);
+
+        if (userLiked) {
+          setTotalLikes(totalLikes - 1);
+        } else {
+          setTotalLikes(totalLikes + 1);
+        }
+      }
     } catch (error) {
       console.error("Thread not updated successfully!:", error);
     }
-    setEditModalOpen(false);
   };
-  */
 
   const confirmDeleteThread = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -127,7 +146,11 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
     } catch (error) {
       console.error("Thread not deleted successfully!:", error);
     }
-    window.location.reload();
+    if (isPreview && onDelete) {
+      onDelete(thread.thread_id);
+    } else {
+      navigate(-1);
+    }
   };
 
   const navigate = useNavigate();
@@ -166,11 +189,13 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
               </h1>
               <div className="flex justify-center flex-col items-center">
                 {/* ToDo: create component for tag within Thread Block */}
-                <img
-                  src={getSchoolIconPath(thread.group_id, "en")}
-                  width={40}
-                  height={40}
-                />
+                {thread.group_id && (
+                  <img
+                    src={getSchoolIconPath(thread.group_id, "en")}
+                    width={40}
+                    height={40}
+                  />
+                )}
 
                 {/* ToDO: There is no author for now will add later on */}
                 {/* <h2 className="text-sm text-light-text2 my-auto">
@@ -228,9 +253,24 @@ const ThreadBlock = ({ isPreview, fromRoot, thread }: Props) => {
             {`# ${thread.tag_id}`}
           </div>
           <hr className="mx-2 pt-2 mt-6" />
-          <div>
+          <div className="flex flex-row justify-evenly pt-2">
             <h3>
               <Visibility fontSize="small" /> <span>{thread.views}</span>
+            </h3>
+            <div className="flex flex-row">
+              <button onClick={handleLike}>
+                <Favorite
+                  fontSize="small"
+                  color={userLiked ? "error" : undefined}
+                />
+              </button>
+              <h3>
+                <span>{"  "}</span>
+                <span>{totalLikes}</span>
+              </h3>
+            </div>
+            <h3>
+              <Share fontSize="small" />
             </h3>
           </div>
         </div>

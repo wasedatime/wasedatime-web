@@ -5,6 +5,8 @@ import CommentForm from "./CommentForm";
 import ThreadBlock from "./ThreadBlock";
 import { API } from "@aws-amplify/api";
 import { getUserAttr, getIdToken } from "wasedatime-ui";
+import ThreadType from "@app/types/thread";
+import CommentType from "@app/types/comment";
 
 const Thread = () => {
   const [userToken, setUserToken] = useState("");
@@ -12,58 +14,66 @@ const Thread = () => {
   const [thread, setThread] = useState<any>({});
   const [comments, setComments] = useState<any[]>([]);
 
-  const fetchIdToken = async () => {
-    if (userToken?.length <= 0) {
-      const idToken = await getIdToken();
+  const fetchData = async () => {
+    let userId = userToken;
+    if (userId.length === 0) {
       const userAttr = await getUserAttr();
-      if (userAttr?.id > 0) {
-      } else {
-        let userId = userAttr.id;
-        setUserToken(userId);
-        fetchData(userId);
-      }
+      userId = userAttr ? userAttr.id : "";
+      setUserToken(userId);
     }
-  };
 
-  const fetchData = async (token: string) => {
-    try {
-      const threadRes = await API.get(
-        "wasedatime-dev",
-        `/forum/${boardSlug}/${threadUuid}?uid=${token}`,
-        {
-          headers: {
-            "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
-            "Content-Type": "application/json",
-          },
-          response: true,
-        }
-      );
-      setThread(threadRes.data.data);
-      const commentsRes = await API.get(
-        "wasedatime-dev",
-        `/forum-comment/${threadUuid}?uid=${token}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          response: true,
-        }
-      );
-      setComments(commentsRes.data.data);
-    } catch (e) {
-      console.error("An error occurred:", e);
-    }
+    // Wait for the state to update, then proceed with fetching
+    await API.get(
+      "wasedatime-dev",
+      `/forum/${boardSlug}/${threadUuid}?uid=${userId}`,
+      {
+        headers: {
+          "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
+          "Content-Type": "application/json",
+        },
+        response: true,
+      }
+    )
+      .then((res) => {
+        var threadRes = res.data.data;
+        setThread(threadRes);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+
+    await API.get(
+      "wasedatime-dev",
+      `/forum-comment/${threadUuid}?uid=${userId}`,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        response: true,
+      }
+    )
+      .then((res) => {
+        var commentRes = res.data.data;
+        setComments(commentRes);
+      })
+      .catch((e) => {
+        console.error(e);
+      });
   };
 
   useEffect(() => {
-    fetchIdToken();
-  }, [threadUuid]);
+    fetchData();
+  }, []);
+
+  const handleNewComment = (newComment: CommentType) => {
+    setComments((prevComments) => [newComment, ...prevComments]);
+  };
 
   return (
     <div className="border-2 mt-12 mx-16 rounded-xl shadow-lg pb-6 h-fit px-4">
       {/* <CreateThread /> */}
       <ThreadBlock isPreview={false} thread={thread} />
-      <CommentForm />
+      <CommentForm onNewComment={handleNewComment} />
       {comments.map((comment, i) => (
         <Comment key={i} comment={comment} />
       ))}

@@ -1,37 +1,35 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { useParams } from "react-router-dom";
 import CreateThread from "./CreateThread";
 import ThreadBlock from "./ThreadBlock";
 import boards from "@app/constants/boards.json";
-import localForage from "localforage";
 import { currentSchoolState, currentTagsState } from "@app/recoil/atoms";
-import { filterThreadsByTags, filterThreadsBySchool } from "@app/utils/filter";
 import { API } from "@aws-amplify/api";
 import Thread from "@app/types/thread";
 import { getUserAttr } from "wasedatime-ui";
-import InfiniteScroll from "react-infinite-scroll-component";
+import ThreadType from "@app/types/thread";
 
 const Board = ({ triggerRefresh, setBoard }: any) => {
-  const { boardSlug } = useParams();
-  setBoard(boardSlug);
-
   const [currentTags, setCurrentTags] = useRecoilState(currentTagsState);
   const currentSchools = useRecoilValue(currentSchoolState);
-
-  const [boardId, setBoardId] = useState(
-    boards.find((board) => board.slug === boardSlug)?.slug || ""
-  );
-
-  const [boardThreads, setBoardThreads] = useState<Thread[]>([]);
+  const [boardThreads, setBoardThreads] = useState<ThreadType[]>([]);
   const [userToken, setUserToken] = useState("");
   const [index, setIndex] = useState(0);
   const [hasMoreItems, setHasMoreItems] = useState(true);
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState<string[]>([]);
 
   const scrollableElementRef = useRef(null);
   const indexRef = useRef(index);
   const currentSchoolsRef = useRef(currentSchools);
+  const { boardSlug } = useParams();
+  const [boardId, setBoardId] = useState(
+    boards.find((board) => board.slug === boardSlug)?.slug || ""
+  );
+
+  useEffect(() => {
+    setBoard(boardSlug);
+  }, [boardSlug]);
 
   // useEffect #1 to initially fetch data when user first comes into forums
   useEffect(() => {
@@ -70,17 +68,6 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
     };
   }, [boardId, tags]);
 
-  // useEffect #2 to fetch data only when user is moving around forums
-  // useEffect(() => {
-  //   if (boardId) {
-  //     var currentBoardId =
-  //       boards.find((board) => board.slug === boardSlug)?.slug || "";
-  //     setBoardThreads([]);
-  //     setBoardId(currentBoardId);
-  //     getThreads(currentBoardId, 0, 10, currentSchools, tags);
-  //   }
-  // }, [boardSlug, tags]);
-
   //useEffect #3 to fetch and filter results by school
   useEffect(() => {
     var currentBoardId =
@@ -96,45 +83,6 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   useEffect(() => {
     setCurrentTags([]);
   }, [boardSlug]);
-
-  // useEffect(() => {
-  //   // Check if boardSlug or tags have changed
-  //   if (boardSlug !== prevBoardSlug.current || tags !== prevTags.current) {
-  //     console.log("Condition 1 triggered!");
-  //     var currentBoardId =
-  //       boards.find((board) => board.slug === boardSlug)?.slug || "";
-  //     setBoardThreads([]);
-  //     setBoardId(currentBoardId);
-  //     getThreads(currentBoardId, 0, 10, currentSchools, tags);
-  //   }
-
-  //   // Check if currentSchools or triggerRefresh have changed
-  //   if (
-  //     currentSchools !== prevCurrentSchools.current ||
-  //     (triggerRefresh !== prevTriggerRefresh.current && triggerRefresh === true)
-  //   ) {
-  //     console.log("condition 2 triggered!");
-  //     setTags((tags) => (tags = []));
-  //     setBoardThreads([]);
-  //     indexRef.current = 0;
-  //     getThreads(boardSlug, 0, 10, currentSchools, []);
-  //     currentSchoolsRef.current = currentSchools;
-  //   }
-
-  //   // Update the previous values for the next run
-  //   prevBoardSlug.current = boardSlug;
-  //   prevTags.current = tags;
-  //   prevCurrentSchools.current = currentSchools;
-  //   prevTriggerRefresh.current = triggerRefresh;
-  // }, [
-  //   boardSlug,
-  //   tags,
-  //   currentSchools,
-  //   triggerRefresh,
-  //   boards,
-  //   // currentSchoolsRef,
-  //   indexRef,
-  // ]);
 
   useEffect(() => {
     if (tags.length > 0 || currentTags.length > 0) setTags(currentTags);
@@ -162,9 +110,6 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
     const apiPath = boardId
       ? `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}&board_id=${boardId}`
       : `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}`;
-
-    // const apiPath = `/forum?uid=${userId}&index=0&num=10`;
-    console.log(apiPath);
 
     API.get("wasedatime-dev", apiPath, {
       headers: {
@@ -197,9 +142,20 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
       });
   };
 
+  const handleNewThread = (newThread: ThreadType) => {
+    setBoardThreads((prevBoardThreads) => [newThread, ...prevBoardThreads]);
+  };
+
+  const handleDeleteThread = (threadId: ThreadType["thread_id"]) => {
+    const updatedThreads = boardThreads.filter(
+      (thread) => thread.thread_id !== threadId
+    );
+    setBoardThreads(updatedThreads);
+  };
+
   return (
     <div className="max-w-2/5 w-5/6 mx-auto h-full">
-      <CreateThread />
+      <CreateThread onNewThread={handleNewThread} />
       <div
         className="overflow-auto h-[calc(100%-44px)] mt-5"
         id="scrollableDiv"
@@ -211,6 +167,7 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
             isPreview={true}
             thread={thread}
             fromRoot={boardId === ""}
+            onDelete={handleDeleteThread}
           />
         ))}
       </div>

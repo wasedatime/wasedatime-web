@@ -1,17 +1,15 @@
-type Thread = {
-  uuid: string;
-  univ_id: number;
+type ThreadType = {
   board_id: string;
-  tag_id: string;
-  group_id: string;
-  user_id: string;
-  thread_id: string;
-  author: string;
-  title: string;
-  body: string;
   created_at: string;
   updated_at: string;
-  mod: boolean;
+  title: string;
+  body: string;
+  thread_id: string;
+  tag_id: string;
+  group_id: string;
+  univ_id: number;
+  views: number;
+  mod?: boolean;
 };
 
-export default Thread;
+export default ThreadType;

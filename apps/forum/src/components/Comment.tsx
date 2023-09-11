@@ -13,7 +13,6 @@ type Props = {
 
 const Comment = ({ comment }: Props) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-  const [userToken, setUserToken] = useState("");
 
   const actions = [
     {
@@ -51,8 +50,6 @@ const Comment = ({ comment }: Props) => {
 
     window.location.reload();
   };
-
-  console.log(comment);
 
   return (
     <Block actions={actions}>

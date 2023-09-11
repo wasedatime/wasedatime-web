@@ -3,61 +3,41 @@ import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { CloseIcon } from "@app/components/icons/CloseIcon";
 import boards from "@app/constants/boards.json";
-import tagsData from "@app/constants/tags.json";
-import groupsData from "@app/constants/groups.json";
 import { SignInModal, getIdToken } from "wasedatime-ui";
 import { useTranslation } from "react-i18next";
-import { getUserId, getUserIdToken } from "@app/utils/auth";
 import SchoolFilterForm from "./common/SchoolFilter";
-import getSchoolIconPath from "@app/utils/get-school-icon-path";
 import { Menu, Transition } from "@headlessui/react";
+import ThreadType from "@app/types/thread";
+import TagType from "@app/types/tag";
+
+interface CreateThreadProps {
+  onNewThread: (newThread: ThreadType) => void;
+}
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const CreateThread = () => {
+const CreateThread = ({ onNewThread }: CreateThreadProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [expandTags, setExpandTags] = useState(false);
   const [expandSchool, setExpandSchool] = useState(false);
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [textContent, setTextContent] = useState("");
   const [titleContent, setTitleContent] = useState("");
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState<TagType[]>([]);
   const [selectedBoard, setSelectedBoard] = useState("");
-  const [selectedTag, setSelectedTag] = useState(null);
+  const [selectedTag, setSelectedTag] = useState<TagType | null>(null);
   const [selectedSchool, setSelectedSchool] = useState("");
-  const [expandedDropdown, setExpandedDropdown] = useState(false);
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
   const { boardSlug } = useParams();
   const { t } = useTranslation();
 
   useEffect(() => {
-    setSelectedBoard(boardSlug);
+    setSelectedBoard(boardSlug || "");
     setIsExpanded(false);
-    setExpandTags(false);
     setExpandSchool(false);
-  }, [boardSlug]);
-
-  useEffect(() => {
-    console.log(selectedBoard);
-  }, [selectedBoard]);
-
-  useEffect(() => {
-    const board = boards.find((board) => board.slug === boardSlug);
-
-    if (board) {
-      setTags(board.tags);
-    } else {
-      // Collect all tags from all boards
-      const allTags = boards.reduce((acc, currBoard) => {
-        return acc.concat(currBoard.tags);
-      }, []);
-
-      setTags(allTags);
-    }
   }, [boardSlug]);
 
   useEffect(() => {
@@ -67,7 +47,7 @@ const CreateThread = () => {
       setTags(board.tags);
     } else {
       // Collect all tags from all boards
-      const allTags = boards.reduce((acc, currBoard) => {
+      const allTags = boards.reduce<TagType[]>((acc, currBoard) => {
         return acc.concat(currBoard.tags);
       }, []);
 
@@ -86,14 +66,6 @@ const CreateThread = () => {
       } else {
         setSignInModalOpen(true);
       }
-    }
-  };
-
-  const handleDropdown = (dropDown) => {
-    if (expandedDropdown === dropDown) {
-      setExpandedDropdown(null);
-    } else {
-      setExpandedDropdown(tags);
     }
   };
 
@@ -124,8 +96,25 @@ const CreateThread = () => {
     }
 
     // Require a Body
-    if (textContent.trim().length <= 0 || textContent.trim().length > 2000) {
+    const trimmedTextContent = textContent.trim();
+
+    if (trimmedTextContent.length <= 0) {
       alert("Please enter a body");
+      return;
+    } else if (trimmedTextContent.length > 2000) {
+      alert("The body is too long. Please limit it to 2000 characters.");
+      return;
+    }
+
+    // Require a Tag
+    if (!selectedTag) {
+      alert("Select a tag");
+      return;
+    }
+
+    // Require a School
+    if (!selectedSchool) {
+      alert("Select a school");
       return;
     }
 
@@ -134,8 +123,6 @@ const CreateThread = () => {
       idToken = await getIdToken();
       if (idToken?.length <= 0) return;
     }
-
-    console.log(selectedBoard);
 
     try {
       const response = await API.post(
@@ -157,13 +144,18 @@ const CreateThread = () => {
           },
         }
       );
+
+      const newThread: ThreadType = response.data;
+      console.log(newThread);
+      onNewThread(newThread);
+
+      setTitleContent("");
       setTextContent("");
+      setSelectedBoard("");
+      setSelectedTag(null);
     } catch (error) {
       console.log(error);
     }
-    setTitleContent("");
-    setTextContent("");
-    // window.location.reload();
   };
 
   const findBoardIndex: number = boards.findIndex(
@@ -294,30 +286,6 @@ const CreateThread = () => {
               </Menu.Items>
             </Transition>
           </Menu>
-          {/* <button
-            className="relative text-black-900 border-light-main border mx-4 px-4 rounded-md hover:text-white hover:bg-light-main"
-            onClick={() => setExpandTags(!expandTags)}
-          >
-            {expandTags ? (
-              <div className="bg-light-bgSide text-black border-light-main border absolute max-h-[200px] w-32 top-6 left-0 rounded-md z-10 overflow-y-auto">
-                {tags.map((tag) => (
-                  <div
-                    key={tag.id}
-                    onClick={() => handleTagClick(tag)}
-                    className={`tag ${
-                      selectedTag && selectedTag.id === tag.id
-                        ? "tag-selected"
-                        : ""
-                    } hover:bg-gray-200 cursor-pointer`}
-                  >
-                    {tag.title}
-                  </div>
-                ))}
-              </div>
-            ) : null}
-
-            <p>{selectedTag ? selectedTag.title : "Tags"}</p>
-          </button> */}
           <button
             className="relative border-light-main border px-4 rounded-md hover:text-white hover:bg-light-main"
             onClick={() => setExpandSchool(!expandSchool)}

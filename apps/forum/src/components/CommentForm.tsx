@@ -4,8 +4,13 @@ import API from "@aws-amplify/api";
 import { SignInModal, getIdToken } from "wasedatime-ui";
 import { SendIcon } from "./icons/SendIcon";
 import { useTranslation } from "react-i18next";
+import CommentType from "@app/types/comment";
 
-const CommentForm = () => {
+interface CommentFormProps {
+  onNewComment: (newComment: CommentType) => void;
+}
+
+const CommentForm: React.FC<CommentFormProps> = ({ onNewComment }) => {
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [comment, setComment] = useState("");
@@ -41,18 +46,25 @@ const CommentForm = () => {
 
     // Wrap the API call with a try-catch block
     try {
-      await API.post("wasedatime-dev", `/forum-comment/${threadUuid}`, {
-        body: { data: { body: comment } },
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: idToken,
-        },
-      });
+      const response = await API.post(
+        "wasedatime-dev",
+        `/forum-comment/${threadUuid}`,
+        {
+          body: { data: { body: comment } },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: idToken,
+          },
+        }
+      );
+
+      const newComment: CommentType = response.data;
+
+      onNewComment(newComment);
+      setComment("");
     } catch (error) {
       console.error("An error occurred:", error);
     }
-    setComment("");
-    window.location.reload();
   };
 
   return (

@@ -3,6 +3,7 @@ import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import boards from "@app/constants/boards.json";
 import { currentTagsState } from "@app/recoil/atoms";
 import { useParams } from "react-router-dom";
+import TagType from "@app/types/tag";
 
 type Props = {
   isShow: boolean;
@@ -11,18 +12,12 @@ type Props = {
 };
 
 const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
-  const [selectedTags, setSelectedTags] = useState<[]>([]);
-  const [boardTags, setBoardTags] = useState([]);
-  const [board, setBoard] = useState(boardSlug);
+  const [selectedTags, setSelectedTags] = useState<(string | TagType)[]>([]);
   const [tagsToDisplay, setTagsToDisplay] = useState<string[]>([]);
   const setTagsSelected = useSetRecoilState(currentTagsState);
   {
     /* Later, use useEffect hook to fetch tags from the server side. */
   }
-
-  useEffect(() => {
-    setBoard(boardSlug);
-  }, [boardSlug]);
 
   useEffect(() => {
     let newTags: string[] = [];

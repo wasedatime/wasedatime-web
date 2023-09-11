@@ -8,8 +8,6 @@ import BoardMenu from "@app/components/BoardMenu";
 import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
 import SearchTags from "./SearchTags";
-import Forum from "@app/components/Forum";
-import BreadCrumbs from "@app/components/BreadCrumbs";
 
 const App = () => {
   return (

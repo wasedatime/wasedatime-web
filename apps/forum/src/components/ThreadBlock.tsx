@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Block from "./Block";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { getIdToken } from "wasedatime-ui";
@@ -155,7 +155,8 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
   };
 
   const handleShare = () => {
-    const url = window.location.href;
+    const url = `${window.location.origin}/board/${thread.board_id}/${thread.thread_id}`;
+
     navigator.clipboard.writeText(url).then(
       () => {
         console.log("Successfully copied to clipboard");

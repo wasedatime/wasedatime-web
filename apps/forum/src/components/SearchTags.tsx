@@ -63,10 +63,10 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
 
   return (
     <div className={isShow ? "" : "hidden"}>
-      <div className="z-10 fixed flex flex-col mt-20 left-1/3 w-1/3 min-h-1/3 bg-white border shadow-lg rounded-lg overflow-y-auto">
-        <div className="modal-header flex sticky top-0 bg-white items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
+      <div className="z-10 fixed flex flex-col mt-20 left-1/3 w-1/3 min-h-1/3 bg-white border shadow-lg rounded-lg overflow-y-auto standard-style">
+        <div className="modal-header flex sticky top-0 bg-white items-center justify-between p-4 border-b border-gray-200 rounded-t-md standard-style">
           <h5
-            className="text-xl font-medium leading-normal text-gray-800 font-sans"
+            className="text-xl font-medium leading-normal text-gray-800 font-sans standard-style"
             id="exampleModalLabel"
           >
             Choose Your Tags
@@ -79,11 +79,11 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="h-full w-full px-4 py-4 shadow-lg rounded-md"
+              className="h-full w-full px-4 py-4 shadow-lg rounded-md standard-style"
               placeholder="Search"
             />
           </div>
-          <ul className="py-1 shadow-lg rounded-lg">
+          <ul className="py-1 shadow-lg rounded-lg standard-style">
             {tagsToDisplay
               .filter((item) => {
                 const searchTerm = query.toLowerCase();
@@ -92,7 +92,7 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
               })
               .map((item) => (
                 <li
-                  className="px-4 py-2 hover:bg-gray-100 font-sans"
+                  className="px-4 py-2 hover:bg-gray-100 font-sans standard-style"
                   onClick={() => handleClick(item)}
                   key={item}
                 >
@@ -101,11 +101,11 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
               ))}
           </ul>
 
-          <div className="grid grid-cols-3 gap-4 items-center justify-items-center align-items-center relative p-4 border-b">
+          <div className="grid grid-cols-3 gap-4 items-center justify-items-center align-items-center relative p-4 border-b standard-style">
             {tagsToDisplay.map((tag) => (
               <button
                 key={tag}
-                className="inline-block bg-gray-200 w-24 hover:bg-gray-300 px-2 py-1 rounded-full mb-2 font-sans overflow-hidden"
+                className="inline-block bg-light-card2 hover:bg-light-card3 dark:bg-dark-card1 dark:hover:bg-dark-card2 w-24 px-2 py-1 rounded-full mb-2 font-sans overflow-hidden text-light-text1 dark:text-dark-text1"
                 onClick={() => handleClick(tag)}
               >
                 <div className="whitespace-nowrap overflow-ellipsis overflow-hidden">
@@ -117,11 +117,11 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
 
           {/* DISPLAY FOR CURRENT SELECTED currentTagsState */}
           {selectedTags.length > 0 && (
-            <div className="my-2 w-full shadow-lg rounded-lg">
+            <div className="w-full shadow-lg rounded-lg">
               {selectedTags.map((tag) => (
                 <button
                   key={tag}
-                  className="inline-block bg-gray-200 hover:bg-gray-300 px-2 py-1 rounded-full mr-2 mb-2 font-sans"
+                  className="inline-block bg-light-card2 hover:bg-light-card3 dark:bg-dark-card1 dark:hover:bg-dark-card2 w-24 px-2 py-1 rounded-full m-2 font-sans overflow-hidden text-light-text1 dark:text-dark-text1"
                   onClick={() =>
                     setSelectedTags(selectedTags.filter((item) => item !== tag))
                   }
@@ -131,25 +131,25 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
               ))}
             </div>
           )}
-          <div className="modal-footer flex flex-wrap justify-between sticky bottom-0 w-full h-18 bg-white items-center p-4 border-t border-gray-200 rounded-b-md">
+          <div className="modal-footer flex flex-wrap justify-between sticky bottom-0 w-full h-18 standard-style items-center p-4 border-t border-gray-200 rounded-b-md">
             <button
               type="submit"
-              className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
+              className="border bg-light-lighter hover:bg-light-main dark:hover:bg-dark-main cursor-pointer text-light-text1 dark:text-dark-text1 text-center rounded-xl px-4 py-2"
               onClick={handleReset}
             >
               Reset
             </button>
-            <div className="flex">
+            <div className="flex gap-2">
               <button
                 type="submit"
-                className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
+                className="border bg-light-lighter hover:bg-light-main dark:hover:bg-dark-main cursor-pointer text-light-text1 dark:text-dark-text1 text-center rounded-xl px-4 py-2"
                 onClick={handleSubmit}
               >
                 Apply
               </button>
               <button
                 type="button"
-                className="border bg-light-lighter hover:bg-light-main cursor-pointer text-white text-center rounded-xl px-4 py-2"
+                className="border bg-light-lighter hover:bg-light-main dark:hover:bg-dark-main cursor-pointer text-light-text1 dark:text-dark-text1 text-center rounded-xl px-4 py-2"
                 onClick={handleCloseModal}
               >
                 Close

@@ -124,8 +124,10 @@ const CreateThread = () => {
     }
 
     // Require a Body
-    if (textContent.trim().length <= 0 || textContent.trim().length > 2000)
+    if (textContent.trim().length <= 0 || textContent.trim().length > 2000) {
+      alert("Please enter a body");
       return;
+    }
 
     let idToken = userToken;
     if (idToken?.length <= 0) {
@@ -156,10 +158,12 @@ const CreateThread = () => {
         }
       );
       setTextContent("");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
     setTitleContent("");
     setTextContent("");
-    window.location.reload();
+    // window.location.reload();
   };
 
   const findBoardIndex: number = boards.findIndex(

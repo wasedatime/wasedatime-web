@@ -28,6 +28,7 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   const [index, setIndex] = useState(0);
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [tags, setTags] = useState([]);
+  const [lastEvaluatedKey, setLastEvaluatedKey] = useState(null);
 
   const scrollableElementRef = useRef(null);
   const indexRef = useRef(index);
@@ -52,7 +53,7 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
           scrollHeight - scrollTop === clientHeight &&
           hasMoreItems
         ) {
-          getThreads(boardId, currentIdx, 10, selectedSchools, tags);
+          getThreads(boardId, selectedSchools, tags);
         }
       }
     };
@@ -85,12 +86,12 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   useEffect(() => {
     var currentBoardId =
       boards.find((board) => board.slug === boardSlug)?.slug || "";
-    setBoardThreads([]);
-    indexRef.current = 0;
-    setBoardId(currentBoardId);
-    getThreads(currentBoardId, 0, 10, currentSchools, tags);
-    currentSchoolsRef.current = currentSchools;
-    setHasMoreItems(true);
+    setBoardThreads([]); // Clear the existing threads
+    setLastEvaluatedKey(null); // Reset LastEvaluatedKey
+    setBoardId(currentBoardId); // Update boardId
+    getThreads(currentBoardId, currentSchools, tags); // Fetch threads without index and threadCount
+    currentSchoolsRef.current = currentSchools; // Update the currentSchoolsRef
+    setHasMoreItems(true); // Reset pagination flag
   }, [boardSlug, currentSchools, triggerRefresh, tags]);
 
   useEffect(() => {
@@ -142,8 +143,8 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
 
   const getThreads = async (
     boardId: string | "",
-    index: number,
-    threadCount: number,
+    // index: number,
+    // threadCount: number,
     school: string[],
     tags: string[]
   ) => {
@@ -159,9 +160,20 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
       }
     }
 
-    const apiPath = boardId
-      ? `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}&board_id=${boardId}`
-      : `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}`;
+    // const apiPath = boardId
+    //   ? `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}&board_id=${boardId}`
+    //   : `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}`;
+
+    let apiPath = `/forum?uid=${userId}&school=${school}&tags=${tags}`;
+
+    if (boardId) {
+      apiPath += `&board_id=${boardId}`;
+    }
+    if (lastEvaluatedKey) {
+      apiPath += `&last_evaluated_key=${encodeURIComponent(
+        JSON.stringify(lastEvaluatedKey)
+      )}`;
+    }
 
     // const apiPath = `/forum?uid=${userId}&index=0&num=10`;
     console.log(apiPath);
@@ -183,14 +195,12 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
           ...threads,
         ]);
 
-        const endIndex: number = res.data.message;
+        const newLastEvaluatedKey = res.data.message;
+        setLastEvaluatedKey(newLastEvaluatedKey);
 
-        if (threads.length < threadCount || threads.length === 0) {
+        if (!newLastEvaluatedKey) {
           setHasMoreItems(false);
         }
-
-        const newIndex = endIndex;
-        indexRef.current = newIndex;
       })
       .catch((e) => {
         console.error(e);

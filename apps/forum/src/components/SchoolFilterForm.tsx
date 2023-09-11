@@ -49,7 +49,7 @@ type TabItemProps = {
 
 // TODO: use t(schoolsSlugPair.slug) instead of schoolsSlugPair.title; remove 'title' from schoolsByCategory
 const TabMenu = ({ activeTab, onClickTab }: TabMenuProps) => (
-  <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+  <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 standard-style">
     <ul className="flex flex-wrap -mb-px">
       {schoolsByCategory.map((schoolsSlugPair, i) => (
         <TabItem
@@ -93,9 +93,9 @@ const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
     <div
       className={
         (currentSchools.includes(school)
-          ? "border-light-main"
-          : "border-light-bgMain") +
-        " border-2 rounded grow-0 shrink-0 m-2 cursor-pointer"
+          ? "border-light-main dark:border-dark-main"
+          : "border-light-bgMain dark:border-dark-bgMain") +
+        " border-2 rounded grow-0 shrink-0 m-2 cursor-pointer standard-style-schoolfilter"
       }
       onClick={() => toggleGroup(school)}
     >
@@ -121,7 +121,7 @@ const SchoolFilterForm = ({ isOpen, setOpen }: SchoolFilterFormProps) => {
           activeTab={schoolsCategoryId}
           onClickTab={setSchoolsCategoryId}
         />
-        <div className="flex flex-row flex-wrap">
+        <div className="flex flex-row flex-wrap standard-style">
           {schoolsByCategory[schoolsCategoryId].schools.map((school, i) => (
             <SchoolBlock key={i} school={school} />
           ))}

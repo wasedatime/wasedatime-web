@@ -53,7 +53,7 @@ const Comment = ({ comment }: Props) => {
 
   return (
     <Block actions={actions}>
-      <div className="border-2 rounded-xl px-4 py-2 text-light-text2 mt-4">
+      <div className="border-2 rounded-xl px-4 py-2 text-light-text2 mt-4 standard-style">
         <div className="flex justify-between">
           <h2 className="text-xs my-auto">{comment.created_at}</h2>
           {comment.mod === true && (

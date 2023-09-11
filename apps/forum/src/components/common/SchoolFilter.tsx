@@ -57,7 +57,7 @@ const TabItem = ({ title, isActive, onClick }: TabItemProps) => (
 );
 
 const TabMenu = ({ activeTab, onClickTab }: TabMenuProps) => (
-  <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
+  <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 standard-style">
     <ul className="flex flex-wrap -mb-px">
       {schoolsByCategory.map((schoolsSlugPair, i) => (
         <TabItem
@@ -104,9 +104,9 @@ const SchoolFilterForm = ({
     <div
       className={
         (tempSelectedSchool === school
-          ? "border-light-main"
-          : "border-light-bgMain") +
-        " border-2 rounded grow-0 shrink-0 m-2 cursor-pointer"
+          ? "border-light-main dark:border-dark-main"
+          : "border-light-bgMain dark:border-dark-bgMain") +
+        " border-2 rounded grow-0 shrink-0 m-2 cursor-pointer standard-style-schoolfilter"
       }
       onClick={() => toggleGroup(school)}
     >
@@ -127,21 +127,21 @@ const SchoolFilterForm = ({
         onClick={() => setOpen(false)}
       />
       <div
-        className="fixed rounded-lg top-1/4 left-8 right-8 md:left-36 md:right-36 lg:left-1/4 lg:right-1/4 bg-white z-10"
+        className="fixed rounded-lg top-1/4 left-8 right-8 md:left-36 md:right-36 lg:left-1/4 lg:right-1/4 bg-light-bgMain dark:bg-dark-bgMain z-10"
         onClick={(e) => e.stopPropagation()}
       >
         <TabMenu
           activeTab={schoolsCategoryId}
           onClickTab={setSchoolsCategoryId}
         />
-        <div className="flex flex-row flex-wrap">
+        <div className="flex flex-row flex-wrap standard-style">
           {schoolsByCategory[schoolsCategoryId].schools.map((school, i) => (
             <SchoolBlock key={i} school={school} />
           ))}
         </div>
         {tempSelectedSchool && (
           <button
-            className="bg-light-main text-white rounded-lg px-4 py-2 mt-4"
+            className="bg-light-main text-white rounded-lg px-4 py-2 m-2"
             onClick={applySelection}
           >
             Apply

@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Block from "./Block";
 import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 import { getIdToken } from "wasedatime-ui";
 import API from "@aws-amplify/api";
 import { ConfirmModal } from "@app/components/form/ConfirmModal";
-import { EditThreadForm } from "@app/components/form/EditThreadForm";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
 import { Favorite, Share, Visibility } from "@mui/icons-material";
-import { red } from "@mui/material/colors";
 
 type Props = {
   isPreview: boolean;
@@ -30,7 +27,11 @@ const convertUrlsToLinks = ({ isPreview, text }: Props) => {
     <div>
       {parts.map((part, index) => (
         <React.Fragment key={index}>
-          {part && <span className="text-black">{part}</span>}
+          {part && (
+            <span className="text-light-text1 dark:text-dark-text1">
+              {part}
+            </span>
+          )}
           {matches &&
             matches[index] &&
             (isPreview ? (
@@ -153,6 +154,18 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
     }
   };
 
+  const handleShare = () => {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(
+      () => {
+        console.log("Successfully copied to clipboard");
+      },
+      (err) => {
+        console.error("Could not copy text: ", err);
+      }
+    );
+  };
+
   const navigate = useNavigate();
 
   return (
@@ -169,14 +182,14 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
         <div
           className={
             isPreview
-              ? `border-2 mb-10 mr-4 rounded-xl shadow-lg hover:bg-gray-50 p-6`
-              : `cursor-default`
+              ? `border-2 mb-10 mr-4 rounded-xl shadow-lg p-6 standard-style-hover`
+              : `cursor-default bg-light-card1 standard-style`
           }
         >
           {!isPreview && (
             <div
               onClick={() => navigate(-1)}
-              className="text-xs mt-2 cursor-pointer text-gray-400 hover:text-gray-500 w-fit"
+              className="text-xs mt-2 cursor-pointer text-light-text1 dark:text-dark-text1 hover:text-light-text2 dark:hover:text-dark-text2 w-fit"
             >
               Back
             </div>
@@ -184,7 +197,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
           {/* ^ This line goes to parent board on click while in thread */}
           <div className={`px-2`}>
             <div className="flex justify-between mt-2">
-              <h1 className="text-2xl text-light-main mb-auto">
+              <h1 className="text-2xl mb-auto text-light-main dark:text-dark-main">
                 {thread.title}
               </h1>
               <div className="flex justify-center flex-col items-center">
@@ -238,7 +251,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
               </div>
             </div>
             <h2
-              className="justify-left text-light-text1 pt-4"
+              className="justify-left pt-4 text-light-text1 dark:text-dark-text1"
               style={{ whiteSpace: "pre-line" }}
             >
               {convertUrlsToLinks({
@@ -258,20 +271,26 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
               <Visibility fontSize="small" /> <span>{thread.views}</span>
             </h3>
             <div className="flex flex-row">
-              <button onClick={handleLike}>
+              <button onClick={handleLike} className="clipboard-icon group">
                 <Favorite
                   fontSize="small"
                   color={userLiked ? "error" : undefined}
                 />
+                <span className="clipboard-tooltip group-hover:scale-100">
+                  Like!
+                </span>
               </button>
               <h3>
                 <span>{"  "}</span>
                 <span>{totalLikes}</span>
               </h3>
             </div>
-            <h3>
+            <button className="clipboard-icon group" onClick={handleShare}>
               <Share fontSize="small" />
-            </h3>
+              <span className="clipboard-tooltip group-hover:scale-100">
+                Copy Link!
+              </span>
+            </button>
           </div>
         </div>
       </Link>

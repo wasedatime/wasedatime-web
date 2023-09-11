@@ -2,6 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+.clipboard-icon {
+  @apply relative;
+}
+.clipboard-tooltip {
+  @apply absolute p-2 w-auto min-w-max bottom-10 left-1/2 transform -translate-x-1/2 shadow-md text-light-text1 dark:bg-dark-bgMain dark:text-dark-text1 bg-light-bgSide text-xs font-bold transition-all duration-100 scale-0 origin-left rounded-md;
+}
+
+.standard-style {
+  @apply bg-light-card1 border-light-text3 dark:bg-dark-bgMain dark:text-dark-text1 dark:border-dark-text3 dark:shadow-none;
+}
+
+.standard-style-hover {
+  @apply bg-light-card1 border-light-text3 dark:bg-dark-bgMain dark:text-dark-text1 dark:border-dark-text3 dark:shadow-none hover:bg-light-card2 dark:hover:bg-dark-card2;
+}
+
+.standard-style-schoolfilter {
+  @apply bg-light-card1 dark:bg-dark-bgMain dark:text-dark-text1 dark:border-dark-text3 dark:shadow-none;
+}
+
 .form-item-title {
   @apply w-full border-b-2 border-light-lighter text-left py-1;
 }

@@ -172,7 +172,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
     return slug ? null : (
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+          <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 standard-style-hover">
             {/* Current Board */}
             {slug
               ? getTitleBySlug(slug)
@@ -191,7 +191,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+          <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             <div className="py-1">
               {boards.map((board) => (
                 <Menu.Item key={board.id}>
@@ -199,8 +199,10 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
                   {({ active }) => (
                     <button
                       className={classNames(
-                        active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                        "block w-full px-4 py-2 text-left text-sm"
+                        active
+                          ? "bg-light-bgSide text-light-text2"
+                          : "text-light-text2",
+                        "block w-full px-4 py-2 text-left text-sm standard-style-hover"
                       )}
                       onClick={() => setSelectedBoard(board.slug)}
                     >
@@ -218,17 +220,17 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
 
   return isExpanded ? (
     <div className="relative">
-      <div className="border-2 text-start text-black dark:text-white p-2 border-light-main rounded-lg">
+      <div className="border-2 text-start text-black dark:text-white standard-style p-2 border-light-main dark:border-dark-main rounded-lg">
         <BoardDropdownMenu slug={boardSlug} />
         <textarea
           placeholder={`Enter Title`}
-          className="border-b-2 overflow-y-hidden border-light-main h-10 pl-2 pb-2 w-full hover:outline-0 focus:outline-0"
+          className="border-b-2 overflow-y-hidden border-light-main h-10 pl-2 pb-2 w-full hover:outline-0 focus:outline-0 standard-style"
           value={titleContent}
           onChange={handleTitleChange}
         />
         <textarea
           placeholder={`Anything interesting?`}
-          className=" h-36 pl-2 pb-28 w-full hover:outline-0 focus:outline-0"
+          className=" h-36 pl-2 pb-28 w-full hover:outline-0 focus:outline-0 standard-style"
           value={textContent}
           onChange={handleBodyChange}
         />
@@ -243,10 +245,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
         <div className="my-auto">
           <Menu as="div" className="relative inline-block text-left">
             <div>
-              <Menu.Button
-                className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                // onClick={() => setExpandTags(!expandTags)}
-              >
+              <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 standard-style-hover">
                 {selectedTag ? selectedTag.title : "Tags"}
               </Menu.Button>
             </div>
@@ -260,7 +259,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
               leaveFrom="transform opacity-100 scale-100"
               leaveTo="transform opacity-0 scale-95"
             >
-              <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <Menu.Items className="absolute left-0 z-10 mt-2 w-56 origin-top-right rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none standard-style">
                 <div className="py-1">
                   {tags.map((tag) => (
                     <Menu.Item key={tag.id}>
@@ -269,8 +268,8 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
                           onClick={() => handleTagClick(tag)}
                           className={classNames(
                             active
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-700",
+                              ? "bg-light-bgSide text-light-text2 dark:bg-dark-bgSide dark:text-dark-text2"
+                              : "text-gray-700 dark:text-dark-text2",
                             "block w-full px-4 py-2 text-left text-sm",
                             selectedTag && selectedTag.id === tag.id
                               ? "tag-selected"
@@ -287,7 +286,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
             </Transition>
           </Menu>
           <button
-            className="relative border-light-main border px-4 rounded-md hover:text-white hover:bg-light-main"
+            className="relative border px-4 rounded-md "
             onClick={() => setExpandSchool(!expandSchool)}
           >
             {expandSchool ? (

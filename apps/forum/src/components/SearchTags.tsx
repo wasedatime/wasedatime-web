@@ -54,6 +54,7 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
     event.preventDefault();
     setTagsSelected(selectedTags);
     setQuery("");
+    setSelectedTags([]);
     closeModal();
   };
 
@@ -73,7 +74,7 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
           </h5>
         </div>
         {/* SEARCH COMPONENT PART */}
-        <div className="modal-body flex flex-col flex flex-col max-h-[70vh] overflow-y-auto">
+        <div className="modal-body flex flex-col flex flex-col max-h-[60vh] overflow-y-auto">
           <div>
             <input
               type="text"
@@ -108,9 +109,7 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
                 className="inline-block bg-light-card2 hover:bg-light-card3 dark:bg-dark-card1 dark:hover:bg-dark-card2 w-24 px-2 py-1 rounded-full mb-2 font-sans overflow-hidden text-light-text1 dark:text-dark-text1"
                 onClick={() => handleClick(tag)}
               >
-                <div className="whitespace-nowrap overflow-ellipsis overflow-hidden">
-                  {tag}
-                </div>
+                <div className="">{tag}</div>
               </button>
             ))}
           </div>
@@ -126,7 +125,7 @@ const SearchTags: React.FC<Props> = ({ isShow, closeModal, boardSlug }) => {
                     setSelectedTags(selectedTags.filter((item) => item !== tag))
                   }
                 >
-                  {tag}
+                  <div className="whitespace-nowrap overflow-hidden">{tag}</div>
                 </button>
               ))}
             </div>

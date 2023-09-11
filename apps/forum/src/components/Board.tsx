@@ -82,7 +82,7 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
 
   useEffect(() => {
     setCurrentTags([]);
-  }, [boardSlug]);
+  }, [boardSlug, triggerRefresh]);
 
   useEffect(() => {
     if (tags.length > 0 || currentTags.length > 0) setTags(currentTags);

@@ -404,3 +404,4 @@ export const AlumniList: Array<Members> = [
     ],
   },
 ]
+// fuck

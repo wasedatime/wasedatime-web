@@ -1,7 +1,6 @@
 import React from "react"
 
-import { Lang, i18nConfig, configAuth } from "wasedatime-ui"
-import i18next from "i18next"
+import { configAuth } from "wasedatime-ui"
 import ReactDOM from "react-dom"
 import ReactGA from "react-ga"
 import { navigateToUrl, registerApplication, start } from "single-spa"
@@ -12,9 +11,8 @@ import {
 } from "single-spa-layout"
 
 import "@app/styles/styles.css"
+import "@app/utils/i18n"
 import Nav from "@app/components/frame/Nav"
-import translationEN from "@app/constants/locales/en/translation.json"
-import translationJA from "@app/constants/locales/jp/translation.json"
 
 import { registerSW } from "virtual:pwa-register"
 
@@ -39,14 +37,6 @@ layoutEngine.activate()
 start()
 
 configAuth()
-
-i18nConfig({
-  i18n: i18next,
-  customTranslations: {
-    [Lang.EN]: translationEN,
-    [Lang.JA]: translationJA,
-  },
-})
 
 ReactGA.initialize(import.meta.env.VITE_GA_ID, {
   debug: false,

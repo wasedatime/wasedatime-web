@@ -16,6 +16,7 @@ import { navigateToUrl } from "single-spa"
 
 import { CampusIcon, CampusIconHovered } from "@app/components/icons/CampusIcon"
 import { FeedsIcon, FeedsIconHovered } from "@app/components/icons/FeedsIcon"
+import { ForumIcon, ForumIconHovered } from "@app/components/icons/ForumIcon"
 import {
   SyllabusIcon,
   SyllabusIconHovered,
@@ -79,6 +80,12 @@ const Nav = () => {
       iconHovered: <SyllabusIconHovered />,
     },
     {
+      name: t("navigation.forum"),
+      path: "/forum",
+      icon: <ForumIcon />,
+      iconHovered: <ForumIconHovered />,
+    },
+    {
       name: t("navigation.campus"),
       path: "/campus",
       icon: <CampusIcon />,
@@ -90,6 +97,7 @@ const Nav = () => {
       icon: <FeedsIcon />,
       iconHovered: <FeedsIconHovered />,
     },
+    
   ]
 
   return (
@@ -113,6 +121,7 @@ const Nav = () => {
         <SignInModal
           isModalOpen={isSignInModalOpen}
           closeModal={() => setSignInModalOpen(false)}
+          t={t}
         />
       </ThemeProvider>
     </Suspense>

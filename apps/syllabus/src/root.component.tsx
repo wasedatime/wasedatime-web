@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useContext } from "react"
 
 import API from "@aws-amplify/api"
-import { Lang, LoadingSpinner, i18nConfig, configAuth } from "wasedatime-ui"
+import { LoadingSpinner, configAuth } from "wasedatime-ui"
 import * as Sentry from "@sentry/react"
-import i18next from "i18next"
 import throttle from "lodash/throttle"
 import ReactGA from "react-ga"
+import { useTranslation } from "react-i18next"
 import { Provider } from "react-redux"
 
 import App from "@app/App"
 import ErrorFallback from "@app/components/ErrorFallback"
 import configureStore from "@app/configureStore"
-import translationEN from "@app/constants/locales/en/translation.json"
-import translationJA from "@app/constants/locales/ja/translation.json"
+import "@app/utils/i18n"
 import { saveState } from "@app/utils/localforage-global-state"
 import { ThemeContext, ThemeProvider } from "@app/utils/theme-context"
 
@@ -46,17 +45,11 @@ const LoadingSpinnerContainer = () => {
 }
 
 const Root = () => {
+  const { i18n } = useTranslation()
   const [reduxStore, setReduxStore] = useState(null)
 
   useEffect(() => {
-    i18nConfig({
-      i18n: i18next,
-      customTranslations: {
-        [Lang.EN]: translationEN,
-        [Lang.JA]: translationJA,
-      },
-    })
-    // i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
     if (!reduxStore) {
       storeConfig()
     }

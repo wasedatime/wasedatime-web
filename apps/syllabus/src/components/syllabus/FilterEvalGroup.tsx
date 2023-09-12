@@ -22,39 +22,39 @@ const StyledRange = styled(Range)<ThemedComponentProps>`
     props.$isDark &&
     `
       .rc-slider-rail {
-        background-color: ${colors.dark.text3};
+        background-color: ${Colors.dark.text3};
       }
 
       .rc-slider-track {
-        background-color: ${colors.dark.main};
+        background-color: ${Colors.dark.main};
       }
     
       .rc-slider-handle {
-        background-color: ${colors.dark.text3};
-        border-color: ${colors.dark.main};
+        background-color: ${Colors.dark.text3};
+        border-color: ${Colors.dark.main};
         &:hover {
-          border-color: ${colors.dark.main};
+          border-color: ${Colors.dark.main};
         }
         &:focus {
-          border-color: ${colors.dark.main};
+          border-color: ${Colors.dark.main};
         }
       }
 
       .rc-slider-handle-clicked-focus {
-        border-color: ${colors.dark.main};
+        border-color: ${Colors.dark.main};
         &:focus {
-          border-color: ${colors.dark.main};
+          border-color: ${Colors.dark.main};
         }
       }
     
       .rc-slider-handle-dragging {
-        background-color: ${colors.dark.text3};
-        border-color: ${colors.dark.main};
+        background-color: ${Colors.dark.text3};
+        border-color: ${Colors.dark.main};
         &:hover {
-          border-color: ${colors.dark.main};
+          border-color: ${Colors.dark.main};
         }
         &:focus {
-          border-color: ${colors.dark.main};
+          border-color: ${Colors.dark.main};
         }
       }
     `}
@@ -65,7 +65,7 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
   padding: 0px !important;
   padding-top: 0.3rem !important;
   background-color: ${(props) =>
-    props.$isDark ? colors.dark.card1 : "white"} !important;
+    props.$isDark ? Colors.dark.card1 : "white"} !important;
 
   label {
     font-family: Lato, Yu Gothic Medium, Segoe UI !important;
@@ -77,12 +77,12 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
     font-size: 1.3em !important;
     margin: 2px 1rem !important;
     color: ${(props) =>
-      props.$isDark ? colors.dark.text2 : "black"} !important;
+      props.$isDark ? Colors.dark.text2 : "black"} !important;
   }
 
   .menu {
     background-color: ${(props) =>
-      props.$isDark ? colors.dark.card1 : "white"} !important;
+      props.$isDark ? Colors.dark.card1 : "white"} !important;
     ::-webkit-scrollbar {
       width: 0;
       background: transparent;
@@ -93,7 +93,7 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
       .text {
         font-size: 16px !important;
         line-height: 1.2 !important;
-        color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
+        color: ${(props) => (props.$isDark ? Colors.dark.text2 : "black")};
       }
     }
   }
@@ -102,7 +102,7 @@ const StyledDropdown = styled(Dropdown)<ThemedComponentProps>`
     padding: 0.5rem 0.2rem 0.5rem 0px !important;
     font-size: 14px !important;
     font-weight: 100;
-    color: ${(props) => (props.$isDark ? colors.dark.text2 : "black")};
+    color: ${(props) => (props.$isDark ? Colors.dark.text2 : "black")};
   }
 `
 

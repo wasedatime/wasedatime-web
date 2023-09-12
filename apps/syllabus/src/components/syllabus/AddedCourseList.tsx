@@ -209,7 +209,7 @@ class AddedCourseList extends React.Component<Props, State> {
                   <FontAwesomeIcon
                     icon={faArrowDown}
                     color={
-                      theme === "light" ? colors.light.text2 : colors.dark.text2
+                      theme === "light" ? Colors.light.text2 : Colors.dark.text2
                     }
                     size="1x"
                   />

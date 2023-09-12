@@ -27,21 +27,21 @@ const ReviewLangSwitch = styled.button<ReviewLangSwitchProps>`
   border: none;
   padding: 2px 10px;
   background-color: ${(props) =>
-    props.$isDark ? colors.dark.text3 : colors.light.text3};
-  color: ${(props) => (props.$isDark ? colors.dark.text1 : "#fff")};
+    props.$isDark ? Colors.dark.text3 : Colors.light.text3};
+  color: ${(props) => (props.$isDark ? Colors.dark.text1 : "#fff")};
   ${(props) =>
     props.active &&
     `
-    background-color: ${props.$isDark ? colors.dark.main : colors.light.main};
-    color: ${props.$isDark ? colors.dark.text1 : "#fff"};
+    background-color: ${props.$isDark ? Colors.dark.main : Colors.light.main};
+    color: ${props.$isDark ? Colors.dark.text1 : "#fff"};
   `};
   ${(props) => props.isInHeading && "line-height: 20px;"};
 
   &:hover {
     outline: none;
     background-color: ${(props) =>
-      props.$isDark ? colors.dark.main : colors.light.main};
-    color: ${(props) => (props.$isDark ? colors.dark.text1 : "#fff")};
+      props.$isDark ? Colors.dark.main : Colors.light.main};
+    color: ${(props) => (props.$isDark ? Colors.dark.text1 : "#fff")};
   }
 
   &:focus {

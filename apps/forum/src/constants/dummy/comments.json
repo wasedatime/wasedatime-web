@@ -1,0 +1,110 @@
+[
+  {
+    "commentId": "0",
+    "threadId": "0",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the first comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "1",
+    "threadId": "0",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the second comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "2",
+    "threadId": "1",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the third comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "3",
+    "threadId": "2",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the fourth comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "4",
+    "threadId": "3",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the fifth comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "5",
+    "threadId": "3",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the sixth comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "6",
+    "threadId": "4",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the seventh comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "7",
+    "threadId": "5",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the eighth comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "8",
+    "threadId": "5",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the ninth comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "9",
+    "threadId": "5",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the tenth comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "10",
+    "threadId": "6",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the eleventh comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  },
+  {
+    "commentId": "11",
+    "threadId": "7",
+    "userId": "userid123",
+    "author": "Waseda Taro",
+    "body":  "This is the twelveth comment in WasedaTime Forum. Leave your comment here freely!",
+    "createdAt": "October 1, 2022",
+    "updatedAt": "October 2, 2022"
+  }
+]

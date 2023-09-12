@@ -1,5 +1,7 @@
 import React from "react"
+import React from "react"
 
+import { Wrapper, media } from "wasedatime-ui"
 import { Wrapper, media } from "wasedatime-ui"
 import {
   faBook,
@@ -9,6 +11,8 @@ import {
   faNewspaper,
   faPlayCircle,
   faUserAlt,
+} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -27,6 +31,7 @@ const MainParagraph = styled("p")`
   width: 90%;
   margin: 0 auto;
   font-size: 0.9em;
+`
 `
 
 const OurMission = () => (

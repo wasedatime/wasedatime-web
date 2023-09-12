@@ -1,14 +1,14 @@
 import React from "react";
 import Block from "./Block";
 import { useState } from "react";
-import Comment from "@app/types/comment";
+import CommentType from "@app/types/comment";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { ConfirmModal } from "@app/components/form/ConfirmModal";
 import API from "@aws-amplify/api";
 import { getIdToken } from "wasedatime-ui";
 
 type Props = {
-  comment: Comment;
+  comment: CommentType;
 };
 
 const Comment = ({ comment }: Props) => {

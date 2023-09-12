@@ -68,7 +68,7 @@ const InnerApp = () => {
             <BoardMenu />
             <FeedBackBox />
           </div>
-          <div className="flex flex-col w-3/5">
+          <div className="flex flex-col md:w-3/5 w-4/5">
             <Routes>
               <Route
                 element={<Board triggerRefresh={refresh} setBoard={setBoard} />}

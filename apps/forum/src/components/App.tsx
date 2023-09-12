@@ -9,6 +9,9 @@ import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
 import SearchTags from "./SearchTags";
 import FeedBackBox from "./FeedBackBox";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 const App = () => {
   return (
@@ -61,14 +64,15 @@ const InnerApp = () => {
                 onClick={handleReset}
                 className="p-2 bg-light-main text-white rounded-lg my-1 w-full"
               >
-                Back to Forums!
+                {/* <HomeIcon fontSize="large" /> */}
+                <ArrowBackIcon fontSize="large" />
               </button>
             </div>
             <FilterMenu />
             <BoardMenu />
             <FeedBackBox />
           </div>
-          <div className="flex flex-col w-3/5">
+          <div className="flex flex-col md:w-3/5 w-4/5">
             <Routes>
               <Route
                 element={<Board triggerRefresh={refresh} setBoard={setBoard} />}
@@ -81,8 +85,8 @@ const InnerApp = () => {
               <Route element={<Thread />} path="forum/:boardSlug/:threadUuid" />
             </Routes>
           </div>
-          <div className="flex flex-col w-1/5 ">
-            <div className="h-[500px] w-[250px] justify-self-end">
+          <div className="flex flex-col md:w-1/5 ">
+            <div className="hidden md:h-[500px] md:w-[250px] justify-self-end">
               <h1></h1>
             </div>
           </div>

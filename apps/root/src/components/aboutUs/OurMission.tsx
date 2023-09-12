@@ -17,11 +17,12 @@ import {
 } from "react-vertical-timeline-component"
 import styled from "styled-components"
 import "react-vertical-timeline-component/style.min.css"
+import ForumOutlined from "@mui/icons-material"
 
 const MainParagraph = styled("p")`
   align-items: center;
   padding: 0 20vw;
-  ${media("tablet",`padding: 0 5vw;`)};
+  ${media("tablet", `padding: 0 5vw;`)};
   color: #666;
   width: 90%;
   margin: 0 auto;
@@ -152,6 +153,24 @@ const OurMission = () => (
       <VerticalTimeline>
         <VerticalTimelineElement
           contentStyle={{
+            background: "rgb(38, 38, 38)",
+            color: "#fff",
+          }}
+          contentArrowStyle={{ borderRight: "7px solid  rgb(38, 38, 38)" }}
+          className="vertical-timeline-element--work"
+          date="September 2023"
+          iconStyle={{
+            background: "rgb(38, 38, 38)",
+            color: "#fff",
+            fontSize: "24px",
+          }}
+          icon={<FontAwesomeIcon icon={faNewspaper} />}
+        >
+          <h6 className="vertical-timeline-element-subtitle">September 2023</h6>
+          <h4>Forums</h4>
+        </VerticalTimelineElement>
+        <VerticalTimelineElement
+          contentStyle={{
             background: "rgb(166,47,58)",
             color: "#fff",
           }}
@@ -166,7 +185,7 @@ const OurMission = () => (
           icon={<FontAwesomeIcon icon={faNewspaper} />}
         >
           <h6 className="vertical-timeline-element-subtitle">March 2021</h6>
-          <h4>Articles (to be released)</h4>
+          <h4>Feeds</h4>
         </VerticalTimelineElement>
         <VerticalTimelineElement
           contentStyle={{

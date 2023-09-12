@@ -7,6 +7,8 @@ import API from "@aws-amplify/api";
 import { ConfirmModal } from "@app/components/form/ConfirmModal";
 import getSchoolIconPath from "@app/utils/get-school-icon-path";
 import { Favorite, Share, Visibility } from "@mui/icons-material";
+import TextsmsIcon from "@mui/icons-material/Textsms";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 type Props = {
   isPreview: boolean;
@@ -98,7 +100,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
         {
           body: {
             data: {
-              tag_id: thread.tag_id,
+              tag_id: "NA",
               group_id: thread.group_id,
               title: thread.title,
               body: thread.body,
@@ -192,14 +194,14 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
               onClick={() => navigate(-1)}
               className="text-xs mt-2 cursor-pointer text-light-text1 dark:text-dark-text1 hover:text-light-text2 dark:hover:text-dark-text2 w-fit"
             >
-              Back
+              <ArrowBackIcon fontSize="large" />
             </div>
           )}
           {/* ^ This line goes to parent board on click while in thread */}
           <div className={`px-2`}>
             <div className="flex justify-between mt-2">
               <h1 className="text-2xl mb-auto text-light-main dark:text-dark-main">
-                {thread.title}
+                {thread.board_id}
               </h1>
               <div className="flex justify-center flex-col items-center">
                 {/* ToDo: create component for tag within Thread Block */}
@@ -236,15 +238,12 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
               })}
             </h2>
           </div>
-          <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
+          {/* <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
             {" "}
             {`# ${thread.tag_id}`}
-          </div>
+          </div> */}
           <hr className="mx-2 pt-2 mt-6" />
           <div className="flex flex-row justify-evenly pt-2 items-center">
-            <h3>
-              <Visibility fontSize="small" /> <span>{thread.views}</span>
-            </h3>
             <div className="flex flex-row">
               <button onClick={handleLike} className="clipboard-icon group">
                 <Favorite
@@ -252,20 +251,27 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
                   color={userLiked ? "error" : undefined}
                 />
                 <span className="clipboard-tooltip group-hover:scale-100">
-                  Like!
+                  Liked
                 </span>
               </button>
+
               <h3>
                 <span>{"  "}</span>
                 <span>{totalLikes}</span>
               </h3>
             </div>
+            <h3>
+              <TextsmsIcon fontSize="small" />
+            </h3>
             <button className="clipboard-icon group" onClick={handleShare}>
               <Share fontSize="small" />
               <span className="clipboard-tooltip group-hover:scale-100">
-                Copy Link!
+                Link Copied!
               </span>
             </button>
+            <h3>
+              <Visibility fontSize="small" /> <span>{thread.views}</span>
+            </h3>
             {
               // userToken?.length > 0 && thread.uid === userToken && (
               userToken?.length > 0 && thread.mod === true && (

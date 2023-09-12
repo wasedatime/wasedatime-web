@@ -10,10 +10,10 @@ const BoardMenu = () => {
         {boards.map((board, i) => (
           <div
             key={i}
-            className="px-3.5 py-1 md:py-4 flex hover:text-light-main hover:text-dark-main"
+            className=" py-1 md:py-4 flex hover:text-light-main hover:text-dark-main"
           >
-            <span className="text-left list-inside list-disc">•</span>
-            <div className="text-left ml-2 cursor-pointer ">
+            {/* <span className="text-left list-inside list-disc">•</span> */}
+            <div className="text-left cursor-pointer border p-2 rounded-lg ">
               <Link to={`forum/${board.slug}`}>{board.title}</Link>
             </div>
           </div>

@@ -118,19 +118,20 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
       response: true,
     })
       .then((res) => {
-        var threads = boardId
-          ? res.data.data.filter(
-              (thread: Thread) => thread.board_id === boardId
-            )
-          : res.data.data;
-        setBoardThreads((prevBoardThreads) => [
+        var threads =
+          res.data.data && boardId
+            ? res.data.data.filter(
+                (thread: Thread) => thread.board_id === boardId
+              )
+            : res.data.data;
+        setBoardThreads((prevBoardThreads = []) => [
           ...prevBoardThreads,
-          ...threads,
+          ...(Array.isArray(threads) ? threads : []),
         ]);
 
         const endIndex: number = res.data.message;
 
-        if (threads.length < threadCount || threads.length === 0) {
+        if (threads && (threads.length < threadCount || threads.length === 0)) {
           setHasMoreItems(false);
         }
 

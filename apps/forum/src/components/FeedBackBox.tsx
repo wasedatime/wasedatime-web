@@ -5,15 +5,13 @@ type Props = {};
 
 const FeedBackBox = (props: Props) => {
   return (
-    <div className="pl-2 md:pl-4 lg:pl-10">
+    <div className="pl-2 md:pl-4 lg:pl-10 overflow-y-auto">
       <h1 className="form-item-title">Feedback</h1>
-      <p className="text-light-text1 dark:text-dark-text1">
-        The Forums is a brand new feature in WasedaTime. There are many
-        unexpected bugs. Sorry about that. If something gets stuck spam refresh
-        and tell us.
-        <br /> We would like to know how everyone's exprience is.
-        <br /> Whether there are any bugs or issues. Or any features you would
-        like to be added.
+      <p className="text-light-text1 dark:text-dark-text1 ">
+        This is WasedaTime forum beta.
+        <br />
+        We are sorry for any unexpected bugs. Spam refresh if anything goes
+        wrong.
         <br />
         <a
           href="https://forms.gle/9qCxdehr8CrxNdbZ9"

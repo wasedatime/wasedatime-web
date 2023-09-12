@@ -6,6 +6,9 @@ import { navigateToUrl } from "single-spa"
 import themeToggleDarkImg from "@app/assets/img/home/theme-toggle-dark.png"
 import themeToggleLightImg from "@app/assets/img/home/theme-toggle-light.png"
 
+import forumDarkImg from "@app/assets/img/home/forum-dark.png"
+import forumLightImg from "@app/assets/img/home/forum-light.png"
+
 type Props = {
   isFirstAccess: boolean
   goToPrevPage: () => void
@@ -38,15 +41,19 @@ const NewFeatures = ({ isFirstAccess, goToPrevPage, closeModal }: Props) => {
         {t("welcome.themeToggle.themeToggleExplain3")}
         <br />
         <br />
-        <div className="flex flex-row gap-8">
-          <div className="text-center">
-            <img src={themeToggleLightImg} alt="reviews example" width="100%" />
+        <div className="flex flex-row items-center justify-center">
+          <div className=" text-center ">
+            <img
+              src={forumLightImg}
+              alt="reviews example"
+              style={{ width: "auto", height: "10%" }}
+            />
             <p>{t("welcome.themeToggle.lightMode")}</p>
           </div>
-          <div className="text-center">
+          {/* <div className="text-center">
             <img src={themeToggleDarkImg} alt="reviews example" width="100%" />
             <p>{t("welcome.themeToggle.darkMode")}</p>
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -9,6 +9,7 @@ import { API } from "@aws-amplify/api";
 
 import "@app/utils/i18n";
 import "@app/styles/main.css";
+// import "@app/styles/common.css";
 
 configAuth();
 

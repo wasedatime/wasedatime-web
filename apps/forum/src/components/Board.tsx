@@ -118,11 +118,12 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
       response: true,
     })
       .then((res) => {
-        var threads = boardId
-          ? res.data.data.filter(
-              (thread: Thread) => thread.board_id === boardId
-            )
-          : res.data.data;
+        var threads =
+          res.data.data && boardId
+            ? res.data.data.filter(
+                (thread: Thread) => thread.board_id === boardId
+              )
+            : res.data.data;
         setBoardThreads((prevBoardThreads = []) => [
           ...prevBoardThreads,
           ...(Array.isArray(threads) ? threads : []),

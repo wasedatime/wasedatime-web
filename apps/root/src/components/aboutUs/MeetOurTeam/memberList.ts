@@ -44,11 +44,25 @@ export interface Members {
 }
 
 export const CurrentList: Array<Members> = [
+  // jason
+  {
+    image: jason,
+    name: "Jason Park",
+    positions: ["Backend", "Frontend - React", "Project Leader"],
+    socials: [
+      {
+        platform: linkedin,
+        link: "https://www.linkedin.com/in/%E6%B5%9A%E5%BD%AC-%E6%9C%B4-a9a503200",
+      },
+      { platform: github, link: "https://github.com/JasonNotJson" },
+    ],
+    profileText: "Imagine Sisyphus happy!",
+  },
   // hao
   {
     image: hao,
     name: "Hao",
-    positions: ["Project Leader"],
+    positions: ["Former Project Leader", "Frontend Advisor"],
     socials: [
       { platform: github, link: "https://github.com/YHhaoareyou" },
       { platform: facebook, link: "https://www.facebook.com/hao8711/" },
@@ -58,35 +72,6 @@ export const CurrentList: Array<Members> = [
       },
     ],
     profileText: "WasedaTime, a better Waseda life",
-  },
-  // austin
-  {
-    image: austin,
-    name: "Austin Zhu",
-    positions: ["Project Co-leader"],
-    socials: [
-      { platform: instagram, link: "https://www.instagram.com/austinzhu123/" },
-      { platform: homepage, link: "https://austinzhu.dev/" },
-      {
-        platform: linkedin,
-        link: "https://www.linkedin.com/in/yiming-zhu-622a98152",
-      },
-    ],
-    profileText: "WasedaTime is gonna be legendary.",
-  },
-  // jason
-  {
-    image: jason,
-    name: "Jason Park",
-    positions: ["Backend Engineer", "CheerLeader"],
-    socials: [
-      {
-        platform: linkedin,
-        link: "https://www.linkedin.com/in/%E6%B5%9A%E5%BD%AC-%E6%9C%B4-a9a503200",
-      },
-      { platform: github, link: "https://github.com/JasonNotJson" },
-    ],
-    profileText: "Imagine Sisyphus happy!",
   },
   // nicholas
   {
@@ -102,14 +87,7 @@ export const CurrentList: Array<Members> = [
       "People call me the Pro Pro, aka the Professional Procrastinator 🙂",
   },
   // takumi
-  {
-    image: takumi,
-    name: "Takumi",
-    positions: ["iOS Engineer"],
-    socials: [
-      { platform: instagram, link: "https://www.instagram.com/ronin2_7/" },
-    ],
-  },
+
   // xinyue
   {
     image: xinyue,
@@ -121,25 +99,12 @@ export const CurrentList: Array<Members> = [
     profileText: "Stay real, stay cool :)",
   },
   // michael
-  {
-    image: michael,
-    name: "Michael Kaminski",
-    positions: ["Frontend - react"],
-    socials: [
-      {
-        platform: instagram,
-        link: "https://www.instagram.com/michaelkaminsk/",
-      },
-      { platform: github, link: "https://github.com/kamlnskll" },
-      { platform: linkedin, link: "https://www.linkedin.com/in/mkaminsk/" },
-    ],
-    profileText: "Coming up with one!",
-  },
+
   //gunjan
   {
     image: gunjan,
     name: "Gunjan",
-    positions: ["Frontend - flutter"],
+    positions: ["App Dev - flutter"],
     socials: [
       {
         platform: github,
@@ -152,7 +117,7 @@ export const CurrentList: Array<Members> = [
   {
     image: aditya,
     name: "Aditya Sundar",
-    positions: ["Frontend - flutter"],
+    positions: ["App Dev - flutter"],
     socials: [],
     profileText: "We live in a society...",
   },
@@ -348,5 +313,41 @@ export const AlumniList: Array<Members> = [
       },
     ],
     profileText: "I’m so happy to work with you guys together 🥰",
+  },
+  {
+    image: austin,
+    name: "Austin Zhu",
+    positions: ["Project Co-leader"],
+    socials: [
+      { platform: instagram, link: "https://www.instagram.com/austinzhu123/" },
+      { platform: homepage, link: "https://austinzhu.dev/" },
+      {
+        platform: linkedin,
+        link: "https://www.linkedin.com/in/yiming-zhu-622a98152",
+      },
+    ],
+    profileText: "WasedaTime is gonna be legendary.",
+  },
+  {
+    image: michael,
+    name: "Michael Kaminski",
+    positions: ["Frontend - react"],
+    socials: [
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/michaelkaminsk/",
+      },
+      { platform: github, link: "https://github.com/kamlnskll" },
+      { platform: linkedin, link: "https://www.linkedin.com/in/mkaminsk/" },
+    ],
+    profileText: "Coming up with one!",
+  },
+  {
+    image: takumi,
+    name: "Takumi",
+    positions: ["iOS Engineer"],
+    socials: [
+      { platform: instagram, link: "https://www.instagram.com/ronin2_7/" },
+    ],
   },
 ]

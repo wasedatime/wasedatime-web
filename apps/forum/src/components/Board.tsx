@@ -130,7 +130,7 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
 
         const endIndex: number = res.data.message;
 
-        if (threads.length < threadCount || threads.length === 0) {
+        if (threads && (threads.length < threadCount || threads.length === 0)) {
           setHasMoreItems(false);
         }
 

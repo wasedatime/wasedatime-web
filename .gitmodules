@@ -1,4 +1,3 @@
-[submodule "feeds/public/feeds"]
-	path = feeds/public/feeds
-	url = git@github.com:wasedatime/feeds.git
-	branch = main
+[submodule "apps/feeds/public/feeds"]
+	path = apps/feeds/public/feeds
+	url = https://github.com/wasedatime/feeds.git

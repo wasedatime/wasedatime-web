@@ -1,0 +1,58 @@
+{
+  "navigation": {
+    "timetable": "時間割",
+    "syllabus": "シラバス",
+    "campus": "キャンパス",
+    "career": "キャリア",
+    "corona-info": "コロナ",
+    "home": "ホーム",
+    "aboutus": "組織概要",
+    "feeds": "記事",
+    "forum": "フォーラム"
+  },
+  "aboutus": {
+    "title": "チーム概要",
+    "our mission": "理念",
+    "join us": "募集",
+    "meet our team": "メンバー",
+    "partners": "コラボ",
+    "We are on a mission": "ミッション",
+    "Frontend Engineer": "フロントエンドエンジニア",
+    "Backend Engineer": "バックエンドエンジニア",
+    "Kaiqing": "晴",
+    "Yeping Tang": "トウ  ナリヒラ ",
+    "seize the day": "いまが最高！"
+  },
+  "search placeholder": "授業を検索（構築中...）",
+  "search feeds placeholder": "記事を検索（構築中...）",
+  "verify": {
+    "failed": {
+      "title": "ログイン失敗...",
+      "message1": "早稲田のGmailアカウントでログインしてください。",
+      "message2": "早稲田大学の学生であることを確認するためです。",
+      "message3": "5秒後、ホームページへ遷移します..."
+    },
+    "success": {
+      "title": "ログイン成功！遷移中...",
+      "message1": "デバイスを跨って時間割を保存することができるようになりました。",
+      "message2": "授業レビューの作成、編集もできます！",
+      "navigateHint": "ページが遷移されない場合、こちらをクリックしてください。"
+    }
+  },
+  "welcome": {
+    "welcome": "ようこそ早稲田タイムへ！",
+    "slogan": "早稲田タイムで、スマートな早稲田ライフを",
+    "next": "次へ",
+    "back": "戻る",
+    "done": "了解",
+    "newFeature": "新機能",
+    "themeToggle": {
+      "title": "ダークモード",
+      "themeToggleExplain1": "ヘッダーの右端にテーマのスイッチが追加されました。",
+      "themeToggleExplain2": "クリックするとライトモード/ダークモードの切り替えができます。",
+      "themeToggleExplain3": "ぜひお好みのテーマで利用してください！",
+      "lightMode": "ライトモード",
+      "darkMode": "ダークモード"
+    }
+  }
+}

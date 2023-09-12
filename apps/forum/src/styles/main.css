@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.clipboard-icon {
+  @apply relative;
+}
+.clipboard-tooltip {
+  @apply absolute p-2 w-auto min-w-max bottom-10 left-1/2 transform -translate-x-1/2 shadow-md text-light-text1 dark:bg-dark-bgMain dark:text-dark-text1 bg-light-bgSide text-xs font-bold transition-all duration-100 scale-0 origin-left rounded-md;
+}
+
+.standard-style {
+  @apply bg-light-card1 border-light-text3 dark:bg-dark-bgMain dark:text-dark-text1 dark:border-dark-text3 dark:shadow-none;
+}
+
+.standard-style-hover {
+  @apply bg-light-card1 border-light-text3 dark:bg-dark-bgMain dark:text-dark-text1 dark:border-dark-text3 dark:shadow-none hover:bg-light-card2 dark:hover:bg-dark-card2;
+}
+
+.standard-style-schoolfilter {
+  @apply bg-light-card1 dark:bg-dark-bgMain dark:text-dark-text1 dark:border-dark-text3 dark:shadow-none;
+}
+
+.form-item-title {
+  @apply w-full border-b-2 border-light-lighter text-left py-1;
+}
+
+.checkbox-wrapper {
+  @apply flex items-center px-2 rounded hover:bg-gray-100 dark:hover:bg-gray-600;
+}
+
+.checkbox-input {
+  @apply w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500;
+}
+
+.checkbox-label {
+  @apply py-2 ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300;
+}
+
+.tab-item {
+  @apply inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300;
+}
+
+.tab-item-active {
+  @apply inline-block p-4 text-blue-600 border-b-2 border-blue-600 rounded-t-lg dark:text-blue-500 dark:border-blue-500;
+}
+
+.golden-gradient-border {
+  position: relative;
+}
+
+.golden-gradient-border::before {
+  content: "";
+  position: absolute;
+  top: -4px; /* Extend outside the parent's boundary */
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+  z-index: -1;
+  border: double 4px transparent;
+  background-image: linear-gradient(white, white),
+    linear-gradient(to right, #ffd700, #ffd700);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  filter: blur(2px);
+  border-radius: inherit; /* To maintain the same rounded corners as the parent */
+}

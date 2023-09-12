@@ -1,0 +1,59 @@
+{
+  "navigation": {
+    "timetable": "Timetable",
+    "syllabus": "Syllabus",
+    "campus": "Campus",
+    "career": "Career",
+    "corona-info": "COVID19",
+    "home": "Home",
+    "aboutus": "About Us",
+    "feeds": "Feeds",
+    "forum": "Forum"
+  },
+  "aboutus": {
+    "title": "About Us",
+    "our mission": "Our Mission",
+    "join us": "Join Us",
+    "meet our team": "Meet Our Team",
+    "partners": "Partners",
+    "We are on a mission": "We are on a mission",
+    "Frontend Engineer": "Frontend Engineer",
+    "Backend Engineer": "Backend Engineer",
+    "Kaiqing": "Kaiqing",
+    "Yeping Tang": "Yeping Tang",
+    "Impressive I'm beginning to understand everything now": "Impressive, I'm beginning to understand everything now.",
+    "seize the day": "Seize the day!"
+  },
+  "search placeholder": "Search courses (in construction...)",
+  "search feeds placeholder": "Search feeds (in construction...)",
+  "verify": {
+    "failed": {
+      "title": "Login failed...",
+      "message1": "Please use your Waseda Gmail account to sign in.",
+      "message2": "We need to confirm that you are a student in Waseda university.",
+      "message3": "You will be redirected to our home page in 5 seconds..."
+    },
+    "success": {
+      "title": "Login successfully! Redirecting...",
+      "message1": "Now you can save your timetable and check it in any device!",
+      "message2": "You can also write and edit your course reviews now!",
+      "navigateHint": "Click here if the page is not redirected."
+    }
+  },
+  "welcome": {
+    "welcome": "Welcome to WasedaTime!",
+    "slogan": "WasedaTime, a smarter Waseda life",
+    "next": "Next",
+    "back": "Back",
+    "done": "Done",
+    "newFeature": "New features",
+    "themeToggle": {
+      "title": "Dark mode",
+      "themeToggleExplain1": "Theme toggle is added on the right of the header.",
+      "themeToggleExplain2": "You can switch between light and dark mode by clicking it.",
+      "themeToggleExplain3": "Enjoy WasedaTime with your favorite mode!",
+      "lightMode": "Light mode",
+      "darkMode": "Dark mode"
+    }
+  }
+}

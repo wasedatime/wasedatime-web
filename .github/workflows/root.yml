@@ -2,13 +2,13 @@ name: Node.js CI - Root
 
 on:
   push:
-    branches: [ '**' ]
+    branches: ["**"]
     paths:
-      - 'root/**'
+      - "apps/root/**"
   pull_request:
-    branches: [ 'master', 'develop' ]
+    branches: ["master", "develop"]
     paths:
-      - 'root/**'
+      - "apps/root/**"
 
 jobs:
   build:
@@ -17,6 +17,9 @@ jobs:
       REACT_APP_API_BASE_URL: ${{ secrets.REACT_APP_API_BASE_URL_M }}
       BIT_TOKEN: ${{ secrets.BIT_TOKEN }}
       REACT_APP_BLOG_S3_BASE_URL: https://wasedatime-feeds.s3-ap-northeast-1.amazonaws.com
+      VITE_MF_SYLLABUS_BASE_PATH: http://localhost:8080
+      VITE_MF_CAMPUS_BASE_PATH: http://localhost:8081
+      VITE_MF_FORUM_BASE_PATH: http://localhost:8084
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js 16.x
@@ -30,4 +33,4 @@ jobs:
           key: ${{ runner.os }}-node16-${{ hashFiles('**/pnpm-lock.yaml') }}
       - uses: ./.github/actions/microapp
         with:
-          path: 'root'
+          path: "apps/root"

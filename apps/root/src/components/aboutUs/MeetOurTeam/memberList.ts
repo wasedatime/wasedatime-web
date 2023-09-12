@@ -1,6 +1,7 @@
 import aditya from "@app/assets/img/contributors/aditya.jpg"
 import alina from "@app/assets/img/contributors/alina.jpg"
 import austin from "@app/assets/img/contributors/austin.jpg"
+import alfonso from "@app/assets/img/contributors/alfonso.jpg"
 import george from "@app/assets/img/contributors/george.jpg"
 import gu from "@app/assets/img/contributors/gu.jpg"
 import gunjan from "@app/assets/img/contributors/gunjan.jpg"
@@ -11,12 +12,14 @@ import jason from "@app/assets/img/contributors/jason.jpg"
 import kaede from "@app/assets/img/contributors/kaede.jpg"
 import kaiqing from "@app/assets/img/contributors/kaiqing.jpg"
 import kong from "@app/assets/img/contributors/kong.jpg"
+import lien from "@app/assets/img/contributors/lien.jpg"
 import mei from "@app/assets/img/contributors/mei.jpg"
 import michael from "@app/assets/img/contributors/michael.jpg"
 import naomi from "@app/assets/img/contributors/naomi.jpg"
 import nicholas from "@app/assets/img/contributors/nicholas.jpg"
 import oscar from "@app/assets/img/contributors/oscar.jpg"
 import pam from "@app/assets/img/contributors/pam.jpg"
+import shiori from "@app/assets/img/contributors/shiori.jpg"
 import takumi from "@app/assets/img/contributors/takumi.jpg"
 import tang from "@app/assets/img/contributors/tang.jpg"
 import xinmei from "@app/assets/img/contributors/xinmei.jpg"
@@ -133,6 +136,56 @@ export const CurrentList: Array<Members> = [
       },
     ],
     profileText: "Thank you!!",
+  },
+  {
+    image: lien,
+    name: "Y.H LIEN",
+    positions: ["Backend"],
+    socials: [
+      {
+        platform: instagram,
+        link: "https://instagram.com/y.lien?igshid=OGQ5ZDc2ODk2ZA==",
+      },
+      {
+        platform: github,
+        link: "https://github.com/LIEN-YUHSIANG",
+      },
+    ],
+    profileText:
+      "Build your life with rhymes :i_love_you_hand_sign: :i_love_you_hand_sign: ",
+  },
+  {
+    image: shiori,
+    name: "Yoshida Shiori",
+    positions: ["Business", "Marketing"],
+    socials: [
+      {
+        platform: instagram,
+        link: "https://www.instagram.com/shiorigintama/",
+      },
+      {
+        platform: linkedin,
+        link: "https://www.linkedin.com/in/shiori-yoshida-386781250/",
+      },
+    ],
+    profileText: "Thank you!!",
+  },
+  {
+    image: alfonso,
+    name: "Alfonso Hu",
+    positions: ["Business", "Operations"],
+    socials: [
+      {
+        platform: instagram,
+        link: "https://instagram.com/snailalfonso?igshid=OGQ5ZDc2ODk2ZA==",
+      },
+      {
+        platform: linkedin,
+        link: "http://linkedin.com/in/dongjian-hu-9a0617256",
+      },
+    ],
+    profileText:
+      "We must all suffer from one of two pains: the Pain of Discipline or the Pain of Regret.",
   },
 ]
 

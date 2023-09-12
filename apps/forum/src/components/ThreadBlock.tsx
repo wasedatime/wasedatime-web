@@ -223,32 +223,6 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
                     closeForm={() => setEditModalOpen(false)}
                   />
                 ) */}
-                {
-                  // userToken?.length > 0 && thread.uid === userToken && (
-                  userToken?.length > 0 && thread.mod === true && (
-                    <div>
-                      {/* <button onClick={openThreadEditForm}>
-                        <EditIcon fontSize="large" color="warning" />
-                      </button> */}
-                      <button onClick={confirmDeleteThread}>
-                        <DeleteIcon
-                          fontSize="large"
-                          color="error"
-                          className="mt-3"
-                        />
-                      </button>
-                      {deleteModalOpen && (
-                        <ConfirmModal
-                          questionText="Are you sure to delete this thread?"
-                          confirmText="Yes, delete it"
-                          cancelText="No, keep it"
-                          confirmAction={deleteThread}
-                          cancelAction={() => setDeleteModalOpen(false)}
-                        />
-                      )}
-                    </div>
-                  )
-                }
               </div>
             </div>
             <h2
@@ -267,7 +241,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
             {`# ${thread.tag_id}`}
           </div>
           <hr className="mx-2 pt-2 mt-6" />
-          <div className="flex flex-row justify-evenly pt-2">
+          <div className="flex flex-row justify-evenly pt-2 items-center">
             <h3>
               <Visibility fontSize="small" /> <span>{thread.views}</span>
             </h3>
@@ -292,6 +266,28 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
                 Copy Link!
               </span>
             </button>
+            {
+              // userToken?.length > 0 && thread.uid === userToken && (
+              userToken?.length > 0 && thread.mod === true && (
+                <div>
+                  {/* <button onClick={openThreadEditForm}>
+                        <EditIcon fontSize="large" color="warning" />
+                      </button> */}
+                  <button onClick={confirmDeleteThread}>
+                    <DeleteIcon fontSize="large" color="error" />
+                  </button>
+                  {deleteModalOpen && (
+                    <ConfirmModal
+                      questionText="Are you sure to delete this thread?"
+                      confirmText="Yes, delete it"
+                      cancelText="No, keep it"
+                      confirmAction={deleteThread}
+                      cancelAction={() => setDeleteModalOpen(false)}
+                    />
+                  )}
+                </div>
+              )
+            }
           </div>
         </div>
       </Link>

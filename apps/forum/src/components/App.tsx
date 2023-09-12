@@ -8,6 +8,7 @@ import BoardMenu from "@app/components/BoardMenu";
 import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
 import SearchTags from "./SearchTags";
+import FeedBackBox from "./FeedBackBox";
 
 const App = () => {
   return (
@@ -65,6 +66,7 @@ const InnerApp = () => {
             </div>
             <FilterMenu />
             <BoardMenu />
+            <FeedBackBox />
           </div>
           <div className="flex flex-col w-3/5">
             <Routes>

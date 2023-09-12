@@ -9,6 +9,9 @@ import Thread from "@app/components/Thread";
 import FilterMenu from "./FilterMenu";
 import SearchTags from "./SearchTags";
 import FeedBackBox from "./FeedBackBox";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
+import RefreshIcon from "@mui/icons-material/Refresh";
 
 const App = () => {
   return (
@@ -61,7 +64,8 @@ const InnerApp = () => {
                 onClick={handleReset}
                 className="p-2 bg-light-main text-white rounded-lg my-1 w-full"
               >
-                Back to Forums!
+                {/* <HomeIcon fontSize="large" /> */}
+                <ArrowBackIcon fontSize="large" />
               </button>
             </div>
             <FilterMenu />

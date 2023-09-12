@@ -85,15 +85,15 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
     // Require a Board
     // If current board isn't chosen, then output this
     if (!selectedBoard) {
-      alert("Please choose a board");
+      alert("Please choose a Topic");
       return;
     }
 
     // Require a Title
-    if (!titleContent || titleContent.trim().length === 0) {
-      alert("Please enter a title");
-      return;
-    }
+    // if (!titleContent || titleContent.trim().length === 0) {
+    //   alert("Please enter a title");
+    //   return;
+    // }
 
     // Require a Body
     const trimmedTextContent = textContent.trim();
@@ -107,10 +107,10 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
     }
 
     // Require a Tag
-    if (!selectedTag) {
-      alert("Select a tag");
-      return;
-    }
+    // if (!selectedTag) {
+    //   alert("Select a tag");
+    //   return;
+    // }
 
     // Require a School
     if (!selectedSchool) {
@@ -132,8 +132,8 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
           body: {
             data: {
               body: textContent,
-              title: titleContent,
-              tag_id: selectedTag.title,
+              title: "default",
+              tag_id: "default",
               group_id: selectedSchool,
               univ_id: "1",
             },
@@ -222,15 +222,15 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
     <div className="relative">
       <div className="border-2 text-start text-black dark:text-white bg-light-card1 dark:bg-dark-bgMain dark:text-dark-text1 dark:shadow-none p-2 border-light-main dark:border-dark-main rounded-lg">
         <BoardDropdownMenu slug={boardSlug} />
-        <textarea
+        {/* <textarea
           placeholder={`Enter Title`}
           className="border-b-2 overflow-y-hidden border-light-main dark:border-dark-main h-10 pl-2 pb-2 w-full hover:outline-0 focus:outline-0 standard-style"
           value={titleContent}
           onChange={handleTitleChange}
-        />
+        /> */}
         <textarea
           placeholder={`Anything interesting?`}
-          className=" h-36 pl-2 pb-28 w-full hover:outline-0 focus:outline-0 standard-style "
+          className=" h-36 pl-2 pb-28 pt-2 w-full hover:outline-0 focus:outline-0 standard-style "
           value={textContent}
           onChange={handleBodyChange}
         />
@@ -243,7 +243,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
       </h1>
       <div className="absolute bottom-0 left-2 w-full flex mb-3 mt-3 text-sm justify-between">
         <div className="my-auto flex flex-row gap-x-2">
-          {selectedBoard && (
+          {/* {selectedBoard && (
             <Menu as="div" className="relative inline-block text-left">
               <div>
                 <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 standard-style-hover">
@@ -288,7 +288,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
                 )}
               </Transition>
             </Menu>
-          )}
+          )} */}
           <button
             className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 standard-style-hover"
             onClick={() => setExpandSchool(!expandSchool)}

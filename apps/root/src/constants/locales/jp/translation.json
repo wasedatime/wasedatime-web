@@ -47,11 +47,11 @@
     "done": "了解",
     "newFeature": "新機能",
     "themeToggle": {
-      "title": "ダークモード",
-      "themeToggleExplain1": "ヘッダーの右端にテーマのスイッチが追加されました。",
-      "themeToggleExplain2": "クリックするとライトモード/ダークモードの切り替えができます。",
-      "themeToggleExplain3": "ぜひお好みのテーマで利用してください！",
-      "lightMode": "ライトモード",
+      "title": "フォーラム",
+      "themeToggleExplain1": "学業/就活/大学学生活/ランダムの4つのカテゴリーで情報発信・共有",
+      "themeToggleExplain2": "匿名なので困ったことがあった時に気軽に質問を聞けます",
+      "themeToggleExplain3": "お楽しみください :)",
+      "lightMode": "フォーラム",
       "darkMode": "ダークモード"
     }
   }

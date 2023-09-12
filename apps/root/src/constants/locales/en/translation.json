@@ -48,11 +48,11 @@
     "done": "Done",
     "newFeature": "New features",
     "themeToggle": {
-      "title": "Dark mode",
-      "themeToggleExplain1": "Theme toggle is added on the right of the header.",
-      "themeToggleExplain2": "You can switch between light and dark mode by clicking it.",
-      "themeToggleExplain3": "Enjoy WasedaTime with your favorite mode!",
-      "lightMode": "Light mode",
+      "title": "Forum",
+      "themeToggleExplain1": "Discover, Connect, and Share information with other users.",
+      "themeToggleExplain2": "Anonymous, so ask anything to the community!",
+      "themeToggleExplain3": "Please Enjoy!",
+      "lightMode": "Forum",
       "darkMode": "Dark mode"
     }
   }

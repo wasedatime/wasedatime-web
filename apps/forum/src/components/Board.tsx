@@ -123,9 +123,9 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
               (thread: Thread) => thread.board_id === boardId
             )
           : res.data.data;
-        setBoardThreads((prevBoardThreads) => [
+        setBoardThreads((prevBoardThreads = []) => [
           ...prevBoardThreads,
-          ...threads,
+          ...(Array.isArray(threads) ? threads : []),
         ]);
 
         const endIndex: number = res.data.message;

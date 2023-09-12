@@ -9,7 +9,7 @@ import React, {
 
 import { SignInModal, sizes } from "wasedatime-ui"
 import { createBrowserHistory } from "history"
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import { useTranslation } from "react-i18next"
 import MediaQuery from "react-responsive"
 import { navigateToUrl } from "single-spa"
@@ -54,14 +54,19 @@ const Nav = () => {
       i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
     }
 
-    const page = window.location.pathname + window.location.search
-    ReactGA.set({ page })
-    ReactGA.pageview(page)
+    const page_path = window.location.pathname + window.location.search
+    ReactGA.send({
+      hitType: "pageview",
+      page_path: page_path,
+    })
 
     return history.listen(({ location, action }) => {
       if (action === "POP") {
-        ReactGA.set({ page: location.pathname })
-        ReactGA.pageview(location.pathname)
+        const new_page_path = location.pathname + location.search
+        ReactGA.send({
+          hitType: "pageview",
+          page_path: new_page_path,
+        })
       }
     })
   }, [])
@@ -97,7 +102,6 @@ const Nav = () => {
       icon: <FeedsIcon />,
       iconHovered: <FeedsIconHovered />,
     },
-    
   ]
 
   return (

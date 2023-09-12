@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 import { WrapperWithBackground, Header, Logo, media } from "wasedatime-ui"
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import { WithTranslation, withTranslation } from "react-i18next"
 import { navigateToUrl } from "single-spa"
 import styled from "styled-components"

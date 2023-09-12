@@ -2,7 +2,7 @@ import React from "react"
 
 import { configAuth } from "wasedatime-ui"
 import ReactDOM from "react-dom"
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import { navigateToUrl, registerApplication, start } from "single-spa"
 import {
   constructApplications,
@@ -38,10 +38,7 @@ start()
 
 configAuth()
 
-ReactGA.initialize(import.meta.env.VITE_GA_ID, {
-  debug: false,
-  titleCase: false,
-})
+ReactGA.initialize(import.meta.env.VITE_GA_ID, {})
 
 ReactDOM.render(React.createElement("span"), document.getElementById("loading"))
 ReactDOM.render(React.createElement(Nav), document.getElementById("nav"))

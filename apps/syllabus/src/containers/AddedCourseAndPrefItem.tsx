@@ -1,6 +1,6 @@
 import React from "react"
 
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import { WithTranslation, withTranslation } from "react-i18next"
 import { connect } from "react-redux"
 import { toast } from "react-toastify"

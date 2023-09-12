@@ -4,7 +4,7 @@ import API from "@aws-amplify/api"
 import { LoadingSpinner, configAuth } from "wasedatime-ui"
 import * as Sentry from "@sentry/react"
 import throttle from "lodash/throttle"
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import { useTranslation } from "react-i18next"
 import { Provider } from "react-redux"
 
@@ -29,10 +29,7 @@ API.configure(config)
 
 configAuth()
 
-ReactGA.initialize(import.meta.env.VITE_GA_ID, {
-  debug: false,
-  titleCase: false,
-})
+ReactGA.initialize(import.meta.env.VITE_GA_ID, {})
 
 const LoadingSpinnerContainer = () => {
   const { theme } = useContext(ThemeContext)
@@ -49,7 +46,7 @@ const Root = () => {
   const [reduxStore, setReduxStore] = useState(null)
 
   useEffect(() => {
-    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"));
+    i18n.changeLanguage(localStorage.getItem("wasedatime-lng"))
     if (!reduxStore) {
       storeConfig()
     }

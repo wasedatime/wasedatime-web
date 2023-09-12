@@ -10,7 +10,7 @@ import {
 } from "wasedatime-ui"
 import { faPen } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import { WithTranslation, withTranslation } from "react-i18next"
 import MediaQuery from "react-responsive"
 import { toast } from "react-toastify"
@@ -34,7 +34,7 @@ import { getAvgScales } from "@app/utils/get-avg-scales"
 import { ThemeContext } from "@app/utils/theme-context"
 
 const StyledReviewsWrapper = styled("div")`
-  ${media("phone",`padding: 0 1em;`)}
+  ${media("phone", `padding: 0 1em;`)}
 `
 
 const StyledSubHeading = styled("h4")`
@@ -60,8 +60,8 @@ const AddReviewButton = styled("button")`
     width: 100%;
     margin-top: 0.5em;
   }
-  ${media("desktop",`float: none; width: 100%; margin-top: 0.5em;`)}
-  ${media("phone",`font-size: 1.5em`)}
+  ${media("desktop", `float: none; width: 100%; margin-top: 0.5em;`)}
+  ${media("phone", `font-size: 1.5em`)}
 `
 
 const Announcement = styled("div")`
@@ -71,7 +71,7 @@ const Announcement = styled("div")`
   margin-bottom: 5px;
   padding: 5px 10px;
   font-size: 0.7em;
-  ${media("tablet",`font-size: 1em`)}
+  ${media("tablet", `font-size: 1em`)}
   border-radius: 3px;
   line-height: normal;
 `

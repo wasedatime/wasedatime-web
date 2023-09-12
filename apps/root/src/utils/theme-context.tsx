@@ -1,6 +1,6 @@
 import React, { useState, useEffect, createContext } from "react"
 
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 
 import { gaAppendActionWithTheme, gaChangeTheme } from "@app/ga/eventActions"
 import { gaTheme } from "@app/ga/eventCategories"

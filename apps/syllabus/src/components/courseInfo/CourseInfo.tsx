@@ -5,7 +5,7 @@ import { Colors, media, getUserAttr } from "wasedatime-ui"
 import { faExternalLinkSquareAlt } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { levenshteinEditDistance as levenshtein } from "levenshtein-edit-distance"
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import { WithTranslation, withTranslation } from "react-i18next"
 import { connect } from "react-redux"
 import Grid from "semantic-ui-react/dist/commonjs/collections/Grid"
@@ -53,12 +53,18 @@ const RelatedCourses = styled.div`
   @media (max-width: 1280px) {
     width: calc(96vw - 55em - 120px);
   }
-  ${media("desktop",`
+  ${media(
+    "desktop",
+    `
     width: calc(96vw - 30em - 130px);
-  `)}
-  ${media("tablet",`
+  `
+  )}
+  ${media(
+    "tablet",
+    `
     width: calc(96vw - 40px);
-  `)}
+  `
+  )}
   
   overflow-x: auto;
   padding: none;
@@ -80,9 +86,9 @@ const RelatedCourse = styled.div`
   @media (max-width: 1280px) {
     flex: 0 0 49.5%;
   }
-  ${media("desktop",`flex: 0 0 49.5%;`)}
-  ${media("tablet",`flex: 0 0 33%;`)}
-  ${media("phone",`flex: 0 0 49.5%;`)}
+  ${media("desktop", `flex: 0 0 49.5%;`)}
+  ${media("tablet", `flex: 0 0 33%;`)}
+  ${media("phone", `flex: 0 0 49.5%;`)}
 `
 
 const StyledSubHeading = styled("h4")`

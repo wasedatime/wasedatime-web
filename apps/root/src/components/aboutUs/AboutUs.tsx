@@ -1,7 +1,7 @@
 import React, { useState, useContext, lazy, Suspense } from "react"
 
 import { Wrapper, Header, LoadingSpinner, media } from "wasedatime-ui"
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import { Helmet } from "react-helmet"
 import { useTranslation } from "react-i18next"
 import styled from "styled-components"
@@ -32,11 +32,14 @@ const AboutUsFlex = styled.div`
 `
 
 const AboutUsMenu = styled.div`
-  ${media("tablet",`text-align: center;`)}
-  ${media("phone",`
+  ${media("tablet", `text-align: center;`)}
+  ${media(
+    "phone",
+    `
     text-align: center;
     font-size:3.5vw;
-    `)}
+    `
+  )}
 `
 
 const AboutUs = () => {

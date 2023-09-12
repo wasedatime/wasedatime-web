@@ -11,7 +11,7 @@ import {
 import { faLink } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { CopyToClipboard } from "react-copy-to-clipboard"
-import ReactGA from "react-ga"
+import ReactGA from "react-ga4"
 import { withTranslation } from "react-i18next"
 import Popup from "semantic-ui-react/dist/commonjs/modules/Popup"
 

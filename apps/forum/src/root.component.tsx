@@ -1,6 +1,6 @@
 import React from "react";
 import { configAuth } from "wasedatime-ui";
-
+import ReactGA from "react-ga4";
 import App from "@app/components/App";
 import { ThemeProvider } from "@app/utils/theme-context";
 import { RecoilRoot } from "recoil";
@@ -23,6 +23,8 @@ const apiConfig = {
   },
 };
 API.configure(apiConfig);
+
+ReactGA.initialize(import.meta.env.VITE_GA_ID, {});
 
 export default function Root(props) {
   return (

@@ -10,6 +10,8 @@ type ThreadType = {
   univ_id: number;
   views: number;
   mod?: boolean;
+  user_liked?: boolean;
+  total_likes?: number;
 };
 
 export default ThreadType;

@@ -9,6 +9,7 @@ import { API } from "@aws-amplify/api";
 import Thread from "@app/types/thread";
 import { getUserAttr } from "wasedatime-ui";
 import ThreadType from "@app/types/thread";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const Board = ({ triggerRefresh, setBoard }: any) => {
   const [currentTags, setCurrentTags] = useRecoilState(currentTagsState);
@@ -18,8 +19,8 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   const [index, setIndex] = useState(0);
   const [hasMoreItems, setHasMoreItems] = useState(true);
   const [tags, setTags] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const scrollableElementRef = useRef(null);
   const indexRef = useRef(index);
   const currentSchoolsRef = useRef(currentSchools);
   const { boardSlug } = useParams();
@@ -27,67 +28,35 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
     boards.find((board) => board.slug === boardSlug)?.slug || ""
   );
 
+  // Use Effect to set the board state in the parent component for tag filtering
   useEffect(() => {
     setBoard(boardSlug);
   }, [boardSlug]);
 
-  // useEffect #1 to initially fetch data when user first comes into forums
-  useEffect(() => {
-    const handleScroll = () => {
-      // mountedRef.current = true;
-      const element = scrollableElementRef.current;
-      const currentIdx = indexRef.current;
-      const selectedSchools = currentSchoolsRef.current;
-
-      if (element) {
-        const scrollHeight = (element as HTMLElement).scrollHeight;
-        const scrollTop = (element as HTMLElement).scrollTop;
-        const clientHeight = (element as HTMLElement).clientHeight;
-
-        // Reached the bottom of the scrollable element
-        if (
-          scrollTop > 0 &&
-          scrollHeight - scrollTop === clientHeight &&
-          hasMoreItems
-        ) {
-          getThreads(boardId, currentIdx, 10, selectedSchools, tags);
-        }
-      }
-    };
-
-    const element = scrollableElementRef.current;
-    if (element) {
-      (element as HTMLElement).addEventListener("scroll", handleScroll);
-    }
-
-    // Cleanup
-    return () => {
-      if (element) {
-        (element as HTMLElement).removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, [boardId, tags]);
-
-  //useEffect #3 to fetch and filter results by school
+  // Use Effect for initial fetch
   useEffect(() => {
     var currentBoardId =
       boards.find((board) => board.slug === boardSlug)?.slug || "";
     setBoardThreads([]);
     indexRef.current = 0;
     setBoardId(currentBoardId);
-    getThreads(currentBoardId, 0, 10, currentSchools, tags);
+    getThreads(currentBoardId, 0, 10, currentSchools, currentTags);
     currentSchoolsRef.current = currentSchools;
     setHasMoreItems(true);
-  }, [boardSlug, currentSchools, triggerRefresh, tags]);
+  }, [boardSlug, currentSchools, triggerRefresh]);
 
+  // UseEffect to reset selected tags when board changes or user triggers a refresh
   useEffect(() => {
     setCurrentTags([]);
   }, [boardSlug, triggerRefresh]);
 
-  useEffect(() => {
-    if (tags.length > 0 || currentTags.length > 0) setTags(currentTags);
-  }, [currentTags]);
+  // UseEffect to set tags when global recoil state current tags changes. may need optimization.
+  // As of Sept 13th, 2023, tag search is disabled
+  // useEffect(() => {
+  //   if (tags.length > 0 || currentTags.length > 0) setTags(currentTags);
+  // }, [currentTags]);
 
+  // function to fetch threads
   const getThreads = async (
     boardId: string | "",
     index: number,
@@ -95,52 +64,60 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
     school: string[],
     tags: string[]
   ) => {
+    setIsLoading(true); // Set loading to true at the beginning of your fetch operation
     let userId = userToken;
-    if (userId.length == 0) {
-      const userAttr = await getUserAttr();
-      if (userAttr) {
-        userId = userAttr.id;
-        setUserToken(userId);
-      } else {
-        userId = "";
-        setUserToken(userId);
-      }
-    }
 
-    const apiPath = boardId
-      ? `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}&board_id=${boardId}`
-      : `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}`;
-
-    API.get("wasedatime-dev", apiPath, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      response: true,
-    })
-      .then((res) => {
-        var threads =
-          res.data.data && boardId
-            ? res.data.data.filter(
-                (thread: Thread) => thread.board_id === boardId
-              )
-            : res.data.data;
-        setBoardThreads((prevBoardThreads = []) => [
-          ...prevBoardThreads,
-          ...(Array.isArray(threads) ? threads : []),
-        ]);
-
-        const endIndex: number = res.data.message;
-
-        if (threads && (threads.length < threadCount || threads.length === 0)) {
-          setHasMoreItems(false);
+    try {
+      if (userId.length === 0) {
+        const userAttr = await getUserAttr();
+        if (userAttr) {
+          userId = userAttr.id;
+          setUserToken(userId);
+        } else {
+          userId = "";
+          setUserToken(userId);
         }
+      }
 
-        const newIndex = endIndex;
-        indexRef.current = newIndex;
-      })
-      .catch((e) => {
-        console.error(e);
+      const apiPath = boardId
+        ? // if board id exists, the db query has better efficiency
+          `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}&board_id=${boardId}`
+        : // else, the db will not query but scan which has bad efficiency
+          `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}`;
+
+      const res = await API.get("wasedatime-dev", apiPath, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        response: true,
       });
+
+      var threads =
+        res.data.data && boardId
+          ? res.data.data.filter(
+              (thread: Thread) => thread.board_id === boardId
+            )
+          : res.data.data;
+
+      setBoardThreads((prevBoardThreads = []) => [
+        ...prevBoardThreads,
+        ...(Array.isArray(threads) ? threads : []),
+      ]);
+
+      // the last index of the array is the index of the last item in the db
+      const endIndex: number = res.data.message;
+
+      if (threads && (threads.length < threadCount || threads.length === 0)) {
+        setHasMoreItems(false);
+      }
+
+      const newIndex = endIndex;
+      indexRef.current = newIndex;
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setIsLoading(false); // Set loading to false at the end of your fetch operation, regardless of its outcome
+    }
   };
 
   const handleNewThread = (newThread: ThreadType) => {
@@ -155,22 +132,41 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   };
 
   return (
-    <div className="max-w-2/5 w-5/6 mx-auto h-full">
+    // <div className="max-w-2/5 w-5/6 mx-auto h-full">
+    <div className="mx-auto rounded-xl shadow-lg px-2 h-full lg:w-5/6 standard-style">
       <CreateThread onNewThread={handleNewThread} />
       <div
-        className="overflow-auto h-[calc(100%-44px)] mt-5"
+        className="overflow-auto h-[calc(100%-44px)] mt-4 md:mt-8 lg:mt-12"
         id="scrollableDiv"
-        ref={scrollableElementRef}
       >
-        {boardThreads.map((thread, i) => (
-          <ThreadBlock
-            key={i}
-            isPreview={true}
-            thread={thread}
-            fromRoot={boardId === ""}
-            onDelete={handleDeleteThread}
-          />
-        ))}
+        <InfiniteScroll
+          dataLength={boardThreads.length}
+          next={() => {
+            if (!isLoading && hasMoreItems) {
+              getThreads(
+                boardId,
+                indexRef.current,
+                10,
+                currentSchoolsRef.current,
+                tags
+              );
+            }
+          }}
+          hasMore={hasMoreItems}
+          scrollableTarget="scrollableDiv"
+          loader={<h4>Loading...</h4>}
+          style={{ overflowY: "hidden" }}
+        >
+          {boardThreads.map((thread, i) => (
+            <ThreadBlock
+              key={i}
+              isPreview={true}
+              thread={thread}
+              fromRoot={boardId === ""}
+              onDelete={handleDeleteThread}
+            />
+          ))}
+        </InfiniteScroll>
       </div>
     </div>
   );

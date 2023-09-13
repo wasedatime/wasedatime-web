@@ -41,14 +41,12 @@ const convertUrlsToLinks = (isPreview: boolean, text: string) => {
             (isPreview ? (
               <h3 className="text-blue-600">{matches[index]}</h3>
             ) : (
-              <a
-                href={matches[index]}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 text-lg"
+              <span
+                className="text-blue-600 text-2xl cursor-pointer"
+                onClick={() => window.open(matches[index], "_blank")}
               >
                 {matches[index]}
-              </a>
+              </span>
             ))}
         </React.Fragment>
       ))}
@@ -199,7 +197,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
           {!isPreview && (
             <div
               onClick={() => navigate(-1)}
-              className="text-xs mt-2 cursor-pointer text-light-text1 dark:text-dark-text1 hover:text-light-text2 dark:hover:text-dark-text2 w-fit"
+              className="mt-2 cursor-pointer text-light-text1 dark:text-dark-text1 hover:text-light-text2 dark:hover:text-dark-text2 w-fit"
             >
               <ArrowBackIcon fontSize="large" />
             </div>

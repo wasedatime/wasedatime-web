@@ -16,7 +16,7 @@ const FilterMenu = () => {
           className="w-full p-2 bg-light-main text-white rounded-lg my-1"
           onClick={toggleSchoolFilter}
         >
-          Select a School
+          Select School
         </button>
         {openSchoolModal && (
           <SchoolFilterForm

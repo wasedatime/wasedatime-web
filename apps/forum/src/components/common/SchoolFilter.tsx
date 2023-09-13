@@ -141,7 +141,7 @@ const SchoolFilterForm = ({
         </div>
         {tempSelectedSchool && (
           <button
-            className="bg-light-main text-white rounded-lg px-4 py-2 m-2"
+            className="bg-light-main text-white rounded-lg px-4 py-2 m-2 text-4xl"
             onClick={applySelection}
           >
             Apply

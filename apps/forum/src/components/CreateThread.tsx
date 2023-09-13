@@ -146,7 +146,6 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
       );
 
       const newThread: ThreadType = response.data;
-      console.log(newThread);
       onNewThread(newThread);
 
       setTitleContent("");
@@ -172,7 +171,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
     return slug ? null : (
       <Menu as="div" className="relative inline-block text-left">
         <div>
-          <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 standard-style-hover">
+          <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 standard-style-hover">
             {/* Current Board */}
             {slug
               ? getTitleBySlug(slug)
@@ -202,7 +201,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
                         active
                           ? "bg-light-bgSide text-light-text2"
                           : "text-light-text2",
-                        "block w-full px-4 py-2 text-left text-sm standard-style-hover"
+                        "block w-full px-4 py-2 text-left text-3xl standard-style-hover"
                       )}
                       onClick={() => setSelectedBoard(board.slug)}
                     >
@@ -230,7 +229,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
         /> */}
         <textarea
           placeholder={`Anything interesting?`}
-          className=" h-36 pl-2 pb-28 pt-2 w-full hover:outline-0 focus:outline-0 standard-style "
+          className=" h-50 pl-2 pb-28 pt-2 w-full hover:outline-0 focus:outline-0 standard-style text-3xl overflow-y-hidden"
           value={textContent}
           onChange={handleBodyChange}
         />
@@ -304,7 +303,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
           </button>
         </div>
         <button
-          className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker"
+          className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker text-3xl"
           onClick={handleSubmit}
         >
           Post

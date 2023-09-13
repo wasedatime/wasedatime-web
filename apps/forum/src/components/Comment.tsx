@@ -87,7 +87,7 @@ const Comment = ({ comment }: Props) => {
     <Block actions={actions}>
       <div className="border-2 rounded-xl px-4 py-2 text-light-text2 mt-4 standard-style flex flex-row justify-between items-center">
         <div>
-          <h2 className="text-2xl h2-2">{convertUrlsToLinks(comment.body)}</h2>
+          <h2 className="text-2xl p-2">{convertUrlsToLinks(comment.body)}</h2>
           <h2 className="text-xs my-auto"></h2>
         </div>
         {comment.mod === true && (

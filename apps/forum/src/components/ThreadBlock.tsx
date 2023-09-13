@@ -32,23 +32,27 @@ const convertUrlsToLinks = (isPreview: boolean, text: string) => {
       {parts.map((part, index) => (
         <React.Fragment key={index}>
           {part && (
-            <span className="text-light-text1 dark:text-dark-text1 text-3xl">
+            <span
+              className={
+                isPreview
+                  ? "text-light-text1 dark:text-dark-text1 text-3xl"
+                  : "text-light-text1 dark:text-dark-text1 text-3xl select-text cursor-text"
+              }
+            >
               {part}
             </span>
           )}
           {matches &&
             matches[index] &&
             (isPreview ? (
-              <h3 className="text-blue-600">{matches[index]}</h3>
+              <span className="text-blue-600">{matches[index]}</span>
             ) : (
-              <a
-                href={matches[index]}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 text-lg"
+              <span
+                className="text-blue-600 text-2xl cursor-pointer"
+                onClick={() => window.open(matches[index], "_blank")}
               >
                 {matches[index]}
-              </a>
+              </span>
             ))}
         </React.Fragment>
       ))}
@@ -178,124 +182,132 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
 
   const navigate = useNavigate();
 
-  return (
-    <Block actions={actions}>
-      <Link
-        to={
+  const renderContent = () => {
+    return (
+      <div
+        className={
           isPreview
-            ? fromRoot
-              ? `${thread.board_id}/${thread.thread_id}`
-              : `${thread.thread_id}`
-            : ""
+            ? `border-2 mb-10 mr-4 rounded-xl shadow-lg p-6 standard-style-hover`
+            : `cursor-default bg-light-card1 standard-style`
         }
       >
-        <div
-          className={
-            isPreview
-              ? `border-2 mb-10 mr-4 rounded-xl shadow-lg p-6 standard-style-hover`
-              : `cursor-default bg-light-card1 standard-style`
-          }
-        >
-          {!isPreview && (
-            <div
-              onClick={() => navigate(-1)}
-              className="text-xs mt-2 cursor-pointer text-light-text1 dark:text-dark-text1 hover:text-light-text2 dark:hover:text-dark-text2 w-fit"
-            >
-              <ArrowBackIcon fontSize="large" />
-            </div>
-          )}
-          {/* ^ This line goes to parent board on click while in thread */}
-          <div className={`px-2`}>
-            <div className="flex justify-between mt-2">
-              <h1 className="text-4xl font-bold mb-auto text-light-main dark:text-dark-main text-3xl">
-                {getTitleBySlug(thread.board_id)}
-              </h1>
-              <div className="flex justify-center flex-col items-center">
-                {/* ToDo: create component for tag within Thread Block */}
-                {thread.group_id && (
-                  <img
-                    src={getSchoolIconPath(thread.group_id, "en")}
-                    width={40}
-                    height={40}
-                  />
-                )}
-
-                {/* ToDO: There is no author for now will add later on */}
-                {/* <h2 className="text-sm text-light-text2 my-auto">
-                  {thread.author}
-                </h2> */}
-                {/* editModalOpen && (
-                  <EditThreadForm
-                    originalTitle={thread.title}
-                    originalBody={thread.body}
-                    updateThread={updateThread}
-                    closeForm={() => setEditModalOpen(false)}
-                  />
-                ) */}
-              </div>
-            </div>
-            <h2
-              className="justify-left pt-4 text-light-text1 dark:text-dark-text1"
-              style={{ whiteSpace: "pre-line" }}
-            >
-              {convertUrlsToLinks(isPreview, thread.body)}
-            </h2>
+        {!isPreview && (
+          <div
+            onClick={() => navigate(-1)}
+            className="mt-2 cursor-pointer text-light-text1 dark:text-dark-text1 hover:text-light-text2 dark:hover:text-dark-text2 w-fit"
+          >
+            <ArrowBackIcon fontSize="large" />
           </div>
-          {/* <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
-            {" "}
-            {`# ${thread.tag_id}`}
-          </div> */}
-          <hr className="mx-2 pt-2 mt-6" />
-          <div className="flex flex-row justify-evenly pt-2 items-center">
-            <div className="flex flex-row items-center content-center">
-              <button onClick={handleLike} className="clipboard-icon group">
-                <Favorite color={userLiked ? "error" : undefined} />
-                <span className="clipboard-tooltip group-hover:scale-100 text-lg">
-                  Liked
-                </span>
-              </button>
-              <h3>
-                <span>{"  "}</span>
-                <span>{totalLikes}</span>
-              </h3>
+        )}
+        {/* ^ This line goes to parent board on click while in thread */}
+        <div className={`px-2`}>
+          <div className="flex justify-between mt-2">
+            <h1 className="text-4xl font-bold mb-auto text-light-main dark:text-dark-main text-3xl">
+              {getTitleBySlug(thread.board_id)}
+            </h1>
+            <div className="flex justify-center flex-col items-center">
+              {/* ToDo: create component for tag within Thread Block */}
+              {thread.group_id && (
+                <img
+                  src={getSchoolIconPath(thread.group_id, "en")}
+                  width={40}
+                  height={40}
+                />
+              )}
+
+              {/* ToDO: There is no author for now will add later on */}
+              {/* <h2 className="text-sm text-light-text2 my-auto">
+                    {thread.author}
+                  </h2> */}
+              {/* editModalOpen && (
+                    <EditThreadForm
+                      originalTitle={thread.title}
+                      originalBody={thread.body}
+                      updateThread={updateThread}
+                      closeForm={() => setEditModalOpen(false)}
+                    />
+                  ) */}
             </div>
-            <h3>
-              <TextsmsIcon />
-            </h3>
-            <button className="clipboard-icon group" onClick={handleShare}>
-              <Share />
-              <span className="clipboard-tooltip group-hover:scale-100">
-                Link Copied!
+          </div>
+          <h2
+            className="justify-left pt-4 text-light-text1 dark:text-dark-text1"
+            style={{ whiteSpace: "pre-line" }}
+          >
+            {convertUrlsToLinks(isPreview, thread.body)}
+          </h2>
+        </div>
+        {/* <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
+              {" "}
+              {`# ${thread.tag_id}`}
+            </div> */}
+        <hr className="mx-2 pt-2 mt-6" />
+        <div className="flex flex-row justify-evenly pt-2 items-center">
+          <div className="flex flex-row items-center content-center">
+            <button onClick={handleLike} className="clipboard-icon group">
+              <Favorite color={userLiked ? "error" : undefined} />
+              <span className="clipboard-tooltip group-hover:scale-100 text-lg">
+                Liked
               </span>
             </button>
-            <h3 className="items-center">
-              <Visibility /> <span>{thread.views}</span>
+            <h3>
+              <span>{"  "}</span>
+              <span>{totalLikes}</span>
             </h3>
-            {
-              // userToken?.length > 0 && thread.uid === userToken && (
-              userToken?.length > 0 && thread.mod === true && (
-                <div>
-                  {/* <button onClick={openThreadEditForm}>
-                        <EditIcon fontSize="large" color="warning" />
-                      </button> */}
-                  <button onClick={confirmDeleteThread}>
-                    <DeleteIcon fontSize="large" color="error" />
-                  </button>
-                  {deleteModalOpen && (
-                    <ConfirmModal
-                      questionText="Are you sure to delete this thread?"
-                      confirmText="Yes, delete it"
-                      cancelText="No, keep it"
-                      confirmAction={deleteThread}
-                      cancelAction={() => setDeleteModalOpen(false)}
-                    />
-                  )}
-                </div>
-              )
-            }
           </div>
+          <h3>
+            <TextsmsIcon />
+          </h3>
+          <button className="clipboard-icon group" onClick={handleShare}>
+            <Share />
+            <span className="clipboard-tooltip group-hover:scale-100">
+              Link Copied!
+            </span>
+          </button>
+          <h3 className="items-center">
+            <Visibility /> <span>{thread.views}</span>
+          </h3>
+          {
+            // userToken?.length > 0 && thread.uid === userToken && (
+            userToken?.length > 0 && thread.mod === true && (
+              <div>
+                {/* <button onClick={openThreadEditForm}>
+                          <EditIcon fontSize="large" color="warning" />
+                        </button> */}
+                <button onClick={confirmDeleteThread}>
+                  <DeleteIcon fontSize="large" color="error" />
+                </button>
+                {deleteModalOpen && (
+                  <ConfirmModal
+                    questionText="Are you sure to delete this thread?"
+                    confirmText="Yes, delete it"
+                    cancelText="No, keep it"
+                    confirmAction={deleteThread}
+                    cancelAction={() => setDeleteModalOpen(false)}
+                  />
+                )}
+              </div>
+            )
+          }
         </div>
-      </Link>
+      </div>
+    );
+  };
+
+  return (
+    <Block actions={actions}>
+      {isPreview ? (
+        <Link
+          to={
+            fromRoot
+              ? `${thread.board_id}/${thread.thread_id}`
+              : `${thread.thread_id}`
+          }
+        >
+          {renderContent()}
+        </Link>
+      ) : (
+        renderContent()
+      )}
     </Block>
   );
 };

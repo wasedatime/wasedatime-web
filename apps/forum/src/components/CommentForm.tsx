@@ -70,7 +70,7 @@ const CommentForm: React.FC<CommentFormProps> = ({ onNewComment }) => {
   return (
     <div className="flex justify-between">
       <input
-        className="text-sm text-light-text3 w-full focus:text-light-text1 focus:ring border-2 mt-4 mb-2 rounded-lg px-4 py-2 standard-style"
+        className="text-2xl text-light-text3 dark:text-dark-text1 w-full focus:text-light-text1 focus:ring border-2 mt-4 mb-2 rounded-lg px-4 py-2 standard-style"
         placeholder="Write your comment here (no more than 200 character)"
         value={comment}
         onChange={handleTextChange}

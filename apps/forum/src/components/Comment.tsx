@@ -11,6 +11,38 @@ type Props = {
   comment: CommentType;
 };
 
+const convertUrlsToLinks = (text: string) => {
+  if (!text) return null;
+
+  const urlRegex = /https?:\/\/[^\s]+/g;
+  const parts = text.split(urlRegex);
+  const matches = text.match(urlRegex);
+
+  return (
+    <div>
+      {parts.map((part, index) => (
+        <React.Fragment key={index}>
+          {part && (
+            <span className="text-light-text1 dark:text-dark-text1 text-2xl p-2">
+              {part}
+            </span>
+          )}
+          {matches && matches[index] && (
+            <a
+              href={matches[index]}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 text-2xl p-2"
+            >
+              {matches[index]}
+            </a>
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
+
 const Comment = ({ comment }: Props) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
@@ -53,27 +85,27 @@ const Comment = ({ comment }: Props) => {
 
   return (
     <Block actions={actions}>
-      <div className="border-2 rounded-xl px-4 py-2 text-light-text2 mt-4 standard-style">
-        <div className="flex justify-between">
-          <h2 className="text-xs my-auto">{comment.created_at}</h2>
-          {comment.mod === true && (
-            <div>
-              <button onClick={confirmDeleteThread}>
-                <DeleteIcon fontSize="large" color="error" />
-              </button>
-              {deleteModalOpen && (
-                <ConfirmModal
-                  questionText="Are you sure to delete this comment?"
-                  confirmText="Yes, delete it"
-                  cancelText="No, keep it"
-                  confirmAction={deleteComment}
-                  cancelAction={() => setDeleteModalOpen(false)}
-                />
-              )}
-            </div>
-          )}
+      <div className="border-2 rounded-xl px-4 py-2 text-light-text2 mt-4 standard-style flex flex-row justify-between items-center">
+        <div>
+          <p className="text-2xl p-2">{convertUrlsToLinks(comment.body)}</p>
+          <h2 className="text-xs my-auto"></h2>
         </div>
-        <p className="text-sm">{comment.body}</p>
+        {comment.mod === true && (
+          <div className="justify-end">
+            <button onClick={confirmDeleteThread}>
+              <DeleteIcon fontSize="large" color="error" />
+            </button>
+            {deleteModalOpen && (
+              <ConfirmModal
+                questionText="Are you sure to delete this comment?"
+                confirmText="Yes, delete it"
+                cancelText="No, keep it"
+                confirmAction={deleteComment}
+                cancelAction={() => setDeleteModalOpen(false)}
+              />
+            )}
+          </div>
+        )}
       </div>
     </Block>
   );

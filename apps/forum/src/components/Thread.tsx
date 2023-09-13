@@ -70,7 +70,7 @@ const Thread = () => {
   };
 
   return (
-    <div className="border-2 mt-12 mx-16 rounded-xl shadow-lg pb-6 h-fit px-4 standard-style">
+    <div className="border-2 mt-12 mx-auto rounded-xl shadow-lg py-6 h-fit px-4 standard-style">
       {/* <CreateThread /> */}
       <ThreadBlock isPreview={false} thread={thread} />
       <CommentForm onNewComment={handleNewComment} />

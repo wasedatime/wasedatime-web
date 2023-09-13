@@ -229,7 +229,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
         /> */}
         <textarea
           placeholder={`Anything interesting?`}
-          className=" h-36 pl-2 pb-28 pt-2 w-full hover:outline-0 focus:outline-0 standard-style text-3xl"
+          className=" h-50 pl-2 pb-28 pt-2 w-full hover:outline-0 focus:outline-0 standard-style text-3xl overflow-y-hidden"
           value={textContent}
           onChange={handleBodyChange}
         />
@@ -303,7 +303,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
           </button>
         </div>
         <button
-          className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker"
+          className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker text-3xl"
           onClick={handleSubmit}
         >
           Post

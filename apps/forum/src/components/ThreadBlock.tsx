@@ -244,27 +244,33 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
         <div className="flex flex-row justify-evenly pt-2 items-center">
           <div className="flex flex-row items-center content-center">
             <button onClick={handleLike} className="clipboard-icon group">
-              <Favorite color={userLiked ? "error" : undefined} />
-              <span className="clipboard-tooltip group-hover:scale-100 text-lg">
-                Liked
+              <Favorite
+                color={userLiked ? "error" : undefined}
+                fontSize="large"
+              />
+              <span className="clipboard-tooltip group-hover:scale-150 text-[144px]">
+                Like!
               </span>
             </button>
             <h3>
               <span>{"  "}</span>
-              <span>{totalLikes}</span>
+              <span className="text-3xl">{totalLikes}</span>
             </h3>
           </div>
           <h3>
-            <TextsmsIcon />
+            <TextsmsIcon fontSize="large" />
+            <span>{"  "}</span>
+            <span className="text-3xl">{thread.comment_count}</span>
           </h3>
           <button className="clipboard-icon group" onClick={handleShare}>
-            <Share />
-            <span className="clipboard-tooltip group-hover:scale-100">
+            <Share fontSize="large" />
+            <span className="clipboard-tooltip group-hover:scale-150">
               Link Copied!
             </span>
           </button>
-          <h3 className="items-center">
-            <Visibility /> <span>{thread.views}</span>
+          <h3 className="items-center content-center justify-center">
+            <Visibility fontSize="large" />{" "}
+            <span className="text-3xl">{thread.views}</span>
           </h3>
           {
             // userToken?.length > 0 && thread.uid === userToken && (

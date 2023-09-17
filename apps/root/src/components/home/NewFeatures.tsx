@@ -46,7 +46,7 @@ const NewFeatures = ({ isFirstAccess, goToPrevPage, closeModal }: Props) => {
             <img
               src={forumLightImg}
               alt="reviews example"
-              style={{ width: "auto", height: "10%" }}
+              style={{ width: "100%" }}
             />
             <p>{t("welcome.themeToggle.lightMode")}</p>
           </div>

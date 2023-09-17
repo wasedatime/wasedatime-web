@@ -6,9 +6,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { ConfirmModal } from "@app/components/form/ConfirmModal";
 import API from "@aws-amplify/api";
 import { getIdToken } from "wasedatime-ui";
+import ThreadType from "@app/types/thread";
 
 type Props = {
   comment: CommentType;
+  thread: ThreadType;
+  setComments: React.Dispatch<React.SetStateAction<CommentType[]>>;
+  setThread: React.Dispatch<React.SetStateAction<ThreadType>>;
 };
 
 const convertUrlsToLinks = (text: string) => {
@@ -43,7 +47,7 @@ const convertUrlsToLinks = (text: string) => {
   );
 };
 
-const Comment = ({ comment }: Props) => {
+const Comment = ({ comment, thread, setComments, setThread }: Props) => {
   const [deleteModalOpen, setDeleteModalOpen] = useState(false);
 
   const actions = [
@@ -54,18 +58,39 @@ const Comment = ({ comment }: Props) => {
     },
   ];
 
+  const removeComment = (commentTS: string) => {
+    setComments((prevComments) => {
+      return prevComments.filter((comment) => comment.created_at !== commentTS);
+    });
+
+    setThread((prevThread) => {
+      if (
+        prevThread &&
+        typeof prevThread.comment_count === "number" &&
+        prevThread.comment_count > 0
+      ) {
+        return {
+          ...prevThread,
+          comment_count: prevThread.comment_count - 1,
+        };
+      }
+      return prevThread; // No change if comment_count is already 0 or undefined
+    });
+  };
+
   const confirmDeleteThread = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setDeleteModalOpen(true);
   };
 
   const deleteComment = async () => {
+    console.log("Triggered!");
     try {
       const idToken = await getIdToken();
       if (!idToken || idToken.length === 0) {
         throw new Error("Invalid ID token");
       }
-      await API.del(
+      const res = await API.del(
         "wasedatime-dev",
         `/forum-comment/${comment.thread_id}?ts=${comment.created_at}`,
         {
@@ -75,12 +100,34 @@ const Comment = ({ comment }: Props) => {
           },
         }
       );
-      setDeleteModalOpen(false);
-    } catch (error) {
-      console.error("Thread not deleted successfully!:", error);
-    }
 
-    window.location.reload();
+      console.log(res);
+
+      const action = "update_decr";
+      await API.patch(
+        "wasedatime-dev",
+        `/forum/${thread.board_id}/${thread.thread_id}`,
+        {
+          body: {
+            data: {
+              tag_id: "NA",
+              group_id: "NA",
+              title: "NA",
+              body: "NA",
+            },
+            action,
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: idToken,
+          },
+        }
+      );
+      setDeleteModalOpen(false);
+      removeComment(comment.created_at);
+    } catch (error) {
+      console.error("Comment not deleted successfully!:", error);
+    }
   };
 
   return (

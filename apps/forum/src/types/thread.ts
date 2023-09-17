@@ -12,6 +12,8 @@ type ThreadType = {
   mod?: boolean;
   user_liked?: boolean;
   total_likes?: number;
+  comment_count?: number;
+  new_comment?: boolean;
 };
 
 export default ThreadType;

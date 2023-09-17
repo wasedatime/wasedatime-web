@@ -1,21 +1,32 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { SignInModal, getIdToken } from "wasedatime-ui";
 import { SendIcon } from "./icons/SendIcon";
 import { useTranslation } from "react-i18next";
 import CommentType from "@app/types/comment";
+import ThreadType from "@app/types/thread";
 
 interface CommentFormProps {
   onNewComment: (newComment: CommentType) => void;
+  thread: ThreadType;
+  setThread: React.Dispatch<React.SetStateAction<ThreadType>>;
 }
 
-const CommentForm: React.FC<CommentFormProps> = ({ onNewComment }) => {
+const CommentForm: React.FC<CommentFormProps> = ({
+  onNewComment,
+  thread,
+  setThread,
+}) => {
   const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [comment, setComment] = useState("");
-  const { threadUuid } = useParams();
+  const { boardSlug, threadUuid } = useParams();
   const { t } = useTranslation();
+
+  useEffect(() => {
+    console.log(thread);
+  }, [thread]);
 
   const handleFocusForm = async () => {
     if (userToken?.length <= 0) {
@@ -59,11 +70,46 @@ const CommentForm: React.FC<CommentFormProps> = ({ onNewComment }) => {
       );
 
       const newComment: CommentType = response.data;
-
       onNewComment(newComment);
       setComment("");
+
+      const action = "update_incr";
+      const patchCount = await API.patch(
+        "wasedatime-dev",
+        `/forum/${boardSlug}/${threadUuid}`,
+        {
+          body: {
+            data: {
+              tag_id: "NA",
+              group_id: boardSlug,
+              title: threadUuid,
+              body: "NA",
+            },
+            action,
+          },
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: userToken,
+          },
+        }
+      );
+
+      console.log(patchCount);
+
+      if (patchCount.success === true) {
+        console.log("patch success!");
+        setThread((prevThread) => {
+          return {
+            ...prevThread,
+            comment_count: prevThread.comment_count
+              ? prevThread.comment_count + 1
+              : 1,
+          };
+        });
+      }
     } catch (error) {
       console.error("An error occurred:", error);
+    } finally {
     }
   };
 

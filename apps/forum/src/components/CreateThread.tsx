@@ -21,8 +21,8 @@ function classNames(...classes) {
 const CreateThread = ({ onNewThread }: CreateThreadProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [expandSchool, setExpandSchool] = useState(false);
-  const [userToken, setUserToken] = useState("");
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
+  const [userToken, setUserToken] = useState("");
   const [textContent, setTextContent] = useState("");
   const [titleContent, setTitleContent] = useState("");
   const [tags, setTags] = useState<TagType[]>([]);
@@ -145,8 +145,15 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
         }
       );
 
-      const newThread: ThreadType = response.data;
-      onNewThread(newThread);
+      const fetchedThread: ThreadType = response.data;
+      const completeThread = {
+        ...fetchedThread,
+        total_likes: 0,
+        user_liked: false,
+        comment_count: 0,
+        new_comment: false,
+      };
+      onNewThread(completeThread);
 
       setTitleContent("");
       setTextContent("");

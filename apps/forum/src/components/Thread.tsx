@@ -12,7 +12,7 @@ const Thread = () => {
   const [userToken, setUserToken] = useState("");
   const { boardSlug, threadUuid } = useParams();
   const [thread, setThread] = useState<any>({});
-  const [comments, setComments] = useState<any[]>([]);
+  const [comments, setComments] = useState<CommentType[]>([]);
 
   const fetchData = async () => {
     let userId = userToken;
@@ -23,6 +23,7 @@ const Thread = () => {
     }
 
     // Wait for the state to update, then proceed with fetching
+    // Fetch Threads
     await API.get(
       "wasedatime-dev",
       `/forum/${boardSlug}/${threadUuid}?uid=${userId}`,
@@ -41,7 +42,7 @@ const Thread = () => {
       .catch((e) => {
         console.error(e);
       });
-
+    // Fetch comments
     await API.get(
       "wasedatime-dev",
       `/forum-comment/${threadUuid}?uid=${userId}`,
@@ -73,9 +74,19 @@ const Thread = () => {
     <div className="border-2 mt-12 mx-auto rounded-xl shadow-lg py-6 h-fit px-4 standard-style max-w-2/5 w-5/6">
       {/* <CreateThread /> */}
       <ThreadBlock isPreview={false} thread={thread} />
-      <CommentForm onNewComment={handleNewComment} />
+      <CommentForm
+        onNewComment={handleNewComment}
+        thread={thread}
+        setThread={setThread}
+      />
       {comments.map((comment, i) => (
-        <Comment key={i} comment={comment} />
+        <Comment
+          key={i}
+          comment={comment}
+          thread={thread}
+          setComments={setComments}
+          setThread={setThread}
+        />
       ))}
     </div>
   );

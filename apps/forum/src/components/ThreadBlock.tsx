@@ -242,7 +242,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
             </div> */}
         <hr className="mx-2 pt-2 mt-6" />
         <div className="flex flex-row justify-evenly pt-2 items-center">
-          <div className="flex flex-row items-center content-center">
+          <div className="flex flex-row items-center justify-center">
             <button onClick={handleLike} className="clipboard-icon group">
               <Favorite
                 color={userLiked ? "error" : undefined}
@@ -257,9 +257,12 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
               <span className="text-3xl">{totalLikes}</span>
             </h3>
           </div>
-          <h3>
-            <TextsmsIcon fontSize="large" />
-            <span>{"  "}</span>
+          <h3 className="flex flex-row items-center justify-center gap-2">
+            <TextsmsIcon
+              fontSize="large"
+              color={thread.new_comment && thread.mod ? "success" : "inherit"}
+            />
+            {/* <span>{"  "}</span> */}
             <span className="text-3xl">{thread.comment_count}</span>
           </h3>
           <button className="clipboard-icon group" onClick={handleShare}>
@@ -268,7 +271,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
               Link Copied!
             </span>
           </button>
-          <h3 className="items-center content-center justify-center">
+          <h3 className="flex flex-row items-center justify-center gap-2">
             <Visibility fontSize="large" />{" "}
             <span className="text-3xl">{thread.views}</span>
           </h3>

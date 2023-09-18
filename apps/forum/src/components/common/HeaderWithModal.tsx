@@ -15,6 +15,7 @@ type Props = {
   setTheme?: (theme: THEME) => void;
   onSearchBarClick?: () => void;
   boardSlug: string;
+  commentNotify: boolean;
 };
 
 const HeaderWithModal = ({
@@ -23,26 +24,27 @@ const HeaderWithModal = ({
   boardSlug,
   ...others
 }: Props) => {
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [board, setBoard] = useState(boardSlug);
+  // const [isModalOpen, setModalOpen] = useState(false);
+  // const [board, setBoard] = useState(boardSlug);
 
-  useEffect(() => {
-    setBoard(boardSlug);
-  }, [boardSlug]);
+  // useEffect(() => {
+  //   setBoard(boardSlug);
+  // }, [boardSlug]);
 
-  const handleSearchBarClick = () => {
-    if (onSearchBarClick) onSearchBarClick();
-    setModalOpen(!isModalOpen);
-  };
+  // const handleSearchBarClick = () => {
+  //   if (onSearchBarClick) onSearchBarClick();
+  //   setModalOpen(!isModalOpen);
+  // };
 
   return (
     <>
-      <Header {...others} onSearchBarClick={handleSearchBarClick} />
-      {modal({
+      {/* <Header {...others} onSearchBarClick={handleSearchBarClick} /> */}
+      <Header {...others} />
+      {/* {modal({
         isShow: isModalOpen,
         closeModal: () => setModalOpen(false),
         boardSlug: board,
-      })}
+      })} */}
     </>
   );
 };

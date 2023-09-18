@@ -10,8 +10,8 @@ import FilterMenu from "./FilterMenu";
 import SearchTags from "./SearchTags";
 import FeedBackBox from "./FeedBackBox";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
-import RefreshIcon from "@mui/icons-material/Refresh";
+import { API } from "@aws-amplify/api";
+import { getUserAttr, getIdToken } from "wasedatime-ui";
 
 const App = () => {
   return (
@@ -31,12 +31,35 @@ const InnerApp = () => {
   const { theme, setTheme } = React.useContext(ThemeContext);
   const [refresh, setRefresh] = useState(false);
   const [board, setBoard] = useState("");
+  const [commentNotify, setCommentNotify] = useState(false);
   const navigate = useNavigate();
 
   const handleReset = () => {
     navigate("/forum");
     setRefresh(!refresh);
   };
+
+  const fetchNotification = async () => {
+    let idToken = "";
+    if (idToken?.length <= 0) {
+      idToken = await getIdToken();
+      if (idToken?.length <= 0) return;
+    }
+    const res = await API.get("wasedatime-dev", `/forum/user`, {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: idToken,
+      },
+      response: true,
+    });
+
+    const commentFlag = res.data.data.new_comment_flag;
+    setCommentNotify(commentFlag);
+  };
+
+  useEffect(() => {
+    fetchNotification();
+  }, []);
 
   return (
     <>
@@ -52,6 +75,8 @@ const InnerApp = () => {
           setTheme={setTheme}
           changeLang={(lng: string | undefined) => i18n.changeLanguage(lng)}
           boardSlug={board}
+          disabled={true}
+          commentNotify={commentNotify}
         />
       </div>
       <div className="flex flex-col h-[calc(100vh-50px)] mt-[23px]">

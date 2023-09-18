@@ -7,7 +7,7 @@ import boards from "@app/constants/boards.json";
 import { currentSchoolState, currentTagsState } from "@app/recoil/atoms";
 import { API } from "@aws-amplify/api";
 import Thread from "@app/types/thread";
-import { getUserAttr } from "wasedatime-ui";
+import { getUserAttr, getIdToken } from "wasedatime-ui";
 import ThreadType from "@app/types/thread";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -78,7 +78,6 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
           setUserToken(userId);
         }
       }
-
       const apiPath = boardId
         ? // if board id exists, the db query has better efficiency
           `/forum?uid=${userId}&index=${index}&num=${threadCount}&school=${school}&tags=${tags}&board_id=${boardId}`

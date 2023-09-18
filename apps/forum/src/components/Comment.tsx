@@ -84,7 +84,6 @@ const Comment = ({ comment, thread, setComments, setThread }: Props) => {
   };
 
   const deleteComment = async () => {
-    console.log("Triggered!");
     try {
       const idToken = await getIdToken();
       if (!idToken || idToken.length === 0) {

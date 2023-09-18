@@ -24,10 +24,6 @@ const CommentForm: React.FC<CommentFormProps> = ({
   const { boardSlug, threadUuid } = useParams();
   const { t } = useTranslation();
 
-  useEffect(() => {
-    console.log(thread);
-  }, [thread]);
-
   const handleFocusForm = async () => {
     if (userToken?.length <= 0) {
       const idToken = await getIdToken();

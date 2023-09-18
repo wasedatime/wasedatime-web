@@ -4,11 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 import colors from "wasedatime-ui/colors";
 import LanguageMenu from "./LanguageMenu";
-import {sizes} from "wasedatime-ui"
+import { sizes } from "wasedatime-ui";
 import logo from "@app/assets/logo.svg";
 import { ThemeToggle } from "./ThemeToggle";
 import { THEME } from "@app/types/theme";
 import { SearchIcon } from "../icons/SearchIcon";
+import CommentNotification from "./CommentNotification";
 
 const headerStyle = (isBlur: boolean, theme: THEME) => {
   const lightBackgroundColor = isBlur ? "#FAFAFA30" : colors.light.bgSide;
@@ -92,6 +93,7 @@ type HeaderProps = {
   theme?: THEME;
   setTheme?: (theme: THEME) => void;
   onSearchBarClick?: () => void;
+  commentNotify: boolean;
 };
 
 const Header = ({
@@ -105,6 +107,7 @@ const Header = ({
   theme = THEME.LIGHT,
   setTheme,
   onSearchBarClick = () => {},
+  commentNotify,
 }: HeaderProps) => {
   let navigate = useNavigate();
   const [isInputExpanded, setIsInputExpanded] = useState(false);
@@ -181,6 +184,7 @@ const Header = ({
       </MediaQuery>
 
       <div style={headerMenuWrapperStyle}>
+        <CommentNotification commentNotify={commentNotify} />
         <ThemeToggle theme={theme} setTheme={setTheme} />
         <LanguageMenu changeLang={changeLang} />
       </div>

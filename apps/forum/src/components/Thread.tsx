@@ -64,7 +64,7 @@ const Thread = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [threadUuid, boardSlug]);
 
   const handleNewComment = (newComment: CommentType) => {
     setComments((prevComments) => [newComment, ...prevComments]);

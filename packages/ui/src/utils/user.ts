@@ -1,4 +1,4 @@
-import Auth from "@aws-amplify/auth"
+import { Auth } from "@aws-amplify/auth"
 import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types"
 
 export const configAuth = () => {

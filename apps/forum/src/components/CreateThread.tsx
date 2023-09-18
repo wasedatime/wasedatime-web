@@ -226,7 +226,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
 
   return isExpanded ? (
     <div className="relative">
-      <div className="border-2 text-start text-black dark:text-white bg-light-card1 dark:bg-dark-bgMain dark:text-dark-text1 dark:shadow-none p-2 border-light-main dark:border-dark-main rounded-lg">
+      <div className="border-4 text-start text-black dark:text-white bg-light-card1 dark:bg-dark-bgMain dark:text-dark-text1 dark:shadow-none p-2 border-light-main dark:border-dark-main rounded-lg">
         <BoardDropdownMenu slug={boardSlug} />
         {/* <textarea
           placeholder={`Enter Title`}
@@ -320,7 +320,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
   ) : (
     <div>
       <div className="cursor-pointer" onClick={handleOpenForm}>
-        <h1 className="border-2 p-2 rounded-lg border-light-main">
+        <h1 className="border-4 p-2 rounded-lg border-light-main">
           Anything interesting?
         </h1>
       </div>

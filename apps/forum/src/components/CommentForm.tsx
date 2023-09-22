@@ -66,6 +66,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
       );
 
       const newComment: CommentType = response.data;
+
       onNewComment(newComment);
       setComment("");
 
@@ -105,12 +106,12 @@ const CommentForm: React.FC<CommentFormProps> = ({
       }
     } catch (error) {
       console.error("An error occurred:", error);
-    } finally {
     }
   };
 
   return (
     <div className="flex justify-between">
+      {/* <div>Posted at ${time}</div> */}
       <input
         className="text-2xl text-light-text3 dark:text-dark-text1 w-full focus:text-light-text1 focus:ring border-2 mt-4 mb-2 rounded-lg px-4 py-2 standard-style"
         placeholder="Write your comment here (no more than 200 character)"
@@ -126,13 +127,11 @@ const CommentForm: React.FC<CommentFormProps> = ({
       >
         <SendIcon />
       </span>
-      {isSignInModalOpen && (
-        <SignInModal
-          isModalOpen={isSignInModalOpen}
-          closeModal={() => setSignInModalOpen(false)}
-          t={t}
-        />
-      )}
+      <SignInModal
+        isModalOpen={isSignInModalOpen}
+        closeModal={() => setSignInModalOpen(false)}
+        t={t}
+      />
     </div>
   );
 };

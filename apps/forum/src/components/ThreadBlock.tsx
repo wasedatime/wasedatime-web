@@ -11,7 +11,7 @@ import TextsmsIcon from "@mui/icons-material/Textsms";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import boards from "@app/constants/boards.json";
 import ThreadType from "@app/types/thread";
-
+import { timeFormatter } from "@app/utils/timeFormatter";
 type Props = {
   isPreview: boolean;
   thread: ThreadType;
@@ -182,6 +182,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
 
   const navigate = useNavigate();
 
+  const time = timeFormatter(thread);
   const renderContent = () => {
     return (
       <div
@@ -205,6 +206,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
             <h1 className="text-4xl font-bold mb-auto text-light-main dark:text-dark-main text-3xl">
               {getTitleBySlug(thread.board_id)}
             </h1>
+
             <div className="flex justify-center flex-col items-center">
               {/* ToDo: create component for tag within Thread Block */}
               {thread.group_id && (
@@ -235,13 +237,17 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
           >
             {convertUrlsToLinks(isPreview, thread.body)}
           </h2>
+          <h2 className="text-xs mt-5">Posted at {time}</h2>
         </div>
         {/* <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
               {" "}
               {`# ${thread.tag_id}`}
             </div> */}
         <hr className="mx-2 pt-2 mt-6" />
+        {/* horizontal line break */}
         <div className="flex flex-row justify-evenly pt-2 items-center">
+          {/* The down panel that has like button, views in total, etc...*/}
+
           <div className="flex flex-row items-center justify-center">
             <button onClick={handleLike} className="clipboard-icon group">
               <Favorite

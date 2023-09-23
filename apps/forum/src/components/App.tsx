@@ -105,6 +105,10 @@ const InnerApp = () => {
               />
               <Route
                 element={<Board triggerRefresh={refresh} setBoard={setBoard} />}
+                path="forum/academic"
+              />
+              <Route
+                element={<Board triggerRefresh={refresh} setBoard={setBoard} />}
                 path="forum/:boardSlug"
               />
               <Route element={<Thread />} path="forum/:boardSlug/:threadUuid" />

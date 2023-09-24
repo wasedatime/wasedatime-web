@@ -11,6 +11,7 @@ import TextsmsIcon from "@mui/icons-material/Textsms";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import boards from "@app/constants/boards.json";
 import ThreadType from "@app/types/thread";
+import ImageIcon from "@mui/icons-material/Image";
 
 type Props = {
   isPreview: boolean;
@@ -201,9 +202,12 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
         {/* ^ This line goes to parent board on click while in thread */}
         <div className={`px-2`}>
           <div className="flex justify-between mt-2">
-            <h1 className="text-4xl font-bold mb-auto text-light-main dark:text-dark-main text-3xl">
-              {getTitleBySlug(thread.board_id)}
-            </h1>
+            <div className="flex items-center justify-center mb-auto gap-x-4">
+              <h1 className="text-4xl font-bold  text-light-main dark:text-dark-main text-3xl">
+                {getTitleBySlug(thread.board_id)}
+              </h1>
+              <ImageIcon color={thread.obj_key ? "success" : "inherit"} />
+            </div>
             <div className="flex justify-center flex-col items-center">
               {/* ToDo: create component for tag within Thread Block */}
               {thread.group_id && (

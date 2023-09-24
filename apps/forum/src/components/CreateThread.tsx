@@ -10,7 +10,6 @@ import { Menu, Transition } from "@headlessui/react";
 import ThreadType from "@app/types/thread";
 import TagType from "@app/types/tag";
 import ImageIcon from "@mui/icons-material/Image";
-import { set } from "mongoose";
 import threadPayload from "@app/types/threadPayload";
 
 interface CreateThreadProps {

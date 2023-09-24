@@ -206,7 +206,9 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
               <h1 className="text-4xl font-bold  text-light-main dark:text-dark-main text-3xl">
                 {getTitleBySlug(thread.board_id)}
               </h1>
-              <ImageIcon color={thread.obj_key ? "success" : "inherit"} />
+              <ImageIcon
+                color={thread.obj_key || thread.url ? "success" : "inherit"}
+              />
             </div>
             <div className="flex justify-center flex-col items-center">
               {/* ToDo: create component for tag within Thread Block */}

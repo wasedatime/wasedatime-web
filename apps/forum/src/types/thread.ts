@@ -14,6 +14,7 @@ type ThreadType = {
   total_likes?: number;
   comment_count?: number;
   new_comment?: boolean;
+  url?: string;
 };
 
 export default ThreadType;

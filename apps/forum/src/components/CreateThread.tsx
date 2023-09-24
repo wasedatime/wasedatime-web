@@ -9,6 +9,9 @@ import SchoolFilterForm from "./common/SchoolFilter";
 import { Menu, Transition } from "@headlessui/react";
 import ThreadType from "@app/types/thread";
 import TagType from "@app/types/tag";
+import ImageIcon from "@mui/icons-material/Image";
+import { set } from "mongoose";
+import threadPayload from "@app/types/threadPayload";
 
 interface CreateThreadProps {
   onNewThread: (newThread: ThreadType) => void;
@@ -29,6 +32,9 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
   const [selectedBoard, setSelectedBoard] = useState("");
   const [selectedTag, setSelectedTag] = useState<TagType | null>(null);
   const [selectedSchool, setSelectedSchool] = useState("");
+  const [fileName, setFileName] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [fileType, setFileType] = useState<string | null>(null);
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
   const { boardSlug } = useParams();
@@ -81,6 +87,20 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
     setSelectedTag(tag);
   };
 
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files ? e.target.files[0] : null;
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        const base64data = reader.result as string;
+        setSelectedFile(base64data); // Store the base64-encoded image
+        setFileType(file.type); // Store the MIME type of the file
+      };
+      setFileName(file.name); // Store the name of the selected file
+    }
+  };
+
   const handleSubmit = async () => {
     // Require a Board
     // If current board isn't chosen, then output this
@@ -125,18 +145,26 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
     }
 
     try {
+      const payload: threadPayload = {
+        body: textContent,
+        title: "default",
+        tag_id: "default",
+        group_id: selectedSchool,
+        univ_id: "1",
+        board_id: selectedBoard,
+      };
+
+      if (selectedFile) {
+        payload.image = selectedFile;
+        payload.contentType = fileType || "";
+        payload.fileName = fileName || "image";
+      }
       const response = await API.post(
         "wasedatime-dev",
         `/forum/${selectedBoard}`,
         {
           body: {
-            data: {
-              body: textContent,
-              title: "default",
-              tag_id: "default",
-              group_id: selectedSchool,
-              univ_id: "1",
-            },
+            data: payload,
           },
           headers: {
             "Content-Type": "application/json",
@@ -158,6 +186,10 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
       setTitleContent("");
       setTextContent("");
       setSelectedBoard("");
+      setSelectedSchool("");
+      setSelectedFile(null);
+      setFileType(null);
+      setFileName(null);
       setSelectedTag(null);
     } catch (error) {
       console.log(error);
@@ -308,6 +340,22 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
             ) : null}
             <p>{selectedSchool ? selectedSchool : "School"}</p>
           </button>
+          <div className="uploader">
+            <label htmlFor="imageUpload" className="cursor-pointer">
+              {fileName ? (
+                <span>{fileName}</span>
+              ) : (
+                <ImageIcon fontSize="large" />
+              )}
+            </label>
+            <input
+              type="file"
+              id="imageUpload"
+              accept="image/png, image/jpeg, image/gif" // allow only images
+              className="hidden"
+              onChange={handleImageChange}
+            />
+          </div>
         </div>
         <button
           className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker text-3xl"

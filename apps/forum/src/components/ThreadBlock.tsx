@@ -120,7 +120,6 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
         }
       );
       if (response && response.success) {
-        console.log(response);
         setUserLiked(!userLiked);
 
         if (userLiked) {
@@ -163,7 +162,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
   };
 
   const handleShare = () => {
-    const url = `${window.location.origin}/board/${thread.board_id}/${thread.thread_id}`;
+    const url = `${window.location.origin}/forum/${thread.board_id}/${thread.thread_id}`;
 
     navigator.clipboard.writeText(url).then(
       () => {
@@ -229,6 +228,13 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
                   ) */}
             </div>
           </div>
+          {thread.url ? (
+            <img
+              src={thread.url}
+              alt="Thread Image"
+              className="block mx-auto p-4"
+            />
+          ) : null}
           <h2
             className="justify-left pt-4 text-light-text1 dark:text-dark-text1"
             style={{ whiteSpace: "pre-line" }}

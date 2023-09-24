@@ -100,8 +100,6 @@ const Comment = ({ comment, thread, setComments, setThread }: Props) => {
         }
       );
 
-      console.log(res);
-
       const action = "update_decr";
       await API.patch(
         "wasedatime-dev",

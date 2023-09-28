@@ -237,7 +237,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
           >
             {convertUrlsToLinks(isPreview, thread.body)}
           </h2>
-          <h2 className="text-xs mt-5">Posted at {time}</h2>
+          <h2 className="text-lg mt-5">Posted at {time}</h2>
         </div>
         {/* <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
               {" "}

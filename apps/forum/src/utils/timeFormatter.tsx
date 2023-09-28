@@ -7,6 +7,9 @@ export function timeFormatter(newComment: threadOrComment): string {
   const utcTimestamp = newComment.created_at;
   const date = new Date(utcTimestamp);
 
+  // Add 9 hours to UTC time
+  date.setUTCHours(date.getUTCHours() + 9);
+
   // Extract year, month, date, hours, and minutes
   const year = date.getUTCFullYear();
   const month = date.getUTCMonth() + 1; // Months are 0-based, so add 1

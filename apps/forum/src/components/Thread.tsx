@@ -22,6 +22,12 @@ const Thread = () => {
       setUserToken(userId);
     }
 
+    let idToken = "";
+    if (idToken?.length <= 0) {
+      idToken = await getIdToken();
+      if (idToken?.length <= 0) return;
+    }
+
     // Wait for the state to update, then proceed with fetching
     // Fetch Threads
     await API.get(
@@ -31,6 +37,7 @@ const Thread = () => {
         headers: {
           "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
           "Content-Type": "application/json",
+          Authorization: idToken,
         },
         response: true,
       }

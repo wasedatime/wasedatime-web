@@ -26,12 +26,12 @@ const App = () => {
 export default App;
 
 const NotFound = () => {
-  const { theme } = React.useContext(ThemeContext)
-  const navigate = useNavigate()
-  useEffect(() => navigate("/"))
+  const { theme } = React.useContext(ThemeContext);
+  const navigate = useNavigate();
+  useEffect(() => navigate("/"));
 
-  return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />
-}
+  return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />;
+};
 
 const InnerApp = () => {
   const { t, i18n } = useTranslation();

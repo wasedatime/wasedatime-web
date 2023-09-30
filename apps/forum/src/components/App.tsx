@@ -11,7 +11,7 @@ import SearchTags from "./SearchTags";
 import FeedBackBox from "./FeedBackBox";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { API } from "@aws-amplify/api";
-import { getUserAttr, getIdToken } from "wasedatime-ui";
+import { getUserAttr, getIdToken, LoadingSpinner } from "wasedatime-ui";
 
 const App = () => {
   return (
@@ -24,6 +24,14 @@ const App = () => {
 };
 
 export default App;
+
+const NotFound = () => {
+  const { theme } = React.useContext(ThemeContext);
+  const navigate = useNavigate();
+  useEffect(() => navigate("/"));
+
+  return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />;
+};
 
 const InnerApp = () => {
   const { t, i18n } = useTranslation();
@@ -108,6 +116,7 @@ const InnerApp = () => {
                 path="forum/:boardSlug"
               />
               <Route element={<Thread />} path="forum/:boardSlug/:threadUuid" />
+              <Route element={<NotFound />} path="*" />
             </Routes>
           </div>
           <div className="flex flex-col sm:w-1/5 ">

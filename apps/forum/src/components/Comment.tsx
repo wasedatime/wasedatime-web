@@ -7,6 +7,7 @@ import { ConfirmModal } from "@app/components/form/ConfirmModal";
 import API from "@aws-amplify/api";
 import { getIdToken } from "wasedatime-ui";
 import ThreadType from "@app/types/thread";
+import { timeFormatter } from "../utils/timeFormatter";
 
 type Props = {
   comment: CommentType;
@@ -18,7 +19,7 @@ type Props = {
 const convertUrlsToLinks = (text: string) => {
   if (!text) return null;
 
-  const urlRegex = /https?:\/\/[^\s]+/g;
+  const urlRegex: RegExp = /https?:\/\/[^\s]+/g;
   const parts = text.split(urlRegex);
   const matches = text.match(urlRegex);
 
@@ -100,8 +101,6 @@ const Comment = ({ comment, thread, setComments, setThread }: Props) => {
         }
       );
 
-      console.log(res);
-
       const action = "update_decr";
       await API.patch(
         "wasedatime-dev",
@@ -129,12 +128,15 @@ const Comment = ({ comment, thread, setComments, setThread }: Props) => {
     }
   };
 
+  const time = timeFormatter(comment);
+  console.log(comment);
+
   return (
     <Block actions={actions}>
       <div className="border-2 rounded-xl px-4 py-2 text-light-text2 mt-4 standard-style flex flex-row justify-between items-center">
         <div>
           <h2 className="text-2xl p-2">{convertUrlsToLinks(comment.body)}</h2>
-          <h2 className="text-xs my-auto"></h2>
+          <h2 className="text-xs my-auto">Posted at {time}</h2>
         </div>
         {comment.mod === true && (
           <div className="justify-end">

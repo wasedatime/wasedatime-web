@@ -22,6 +22,12 @@ const Thread = () => {
       setUserToken(userId);
     }
 
+    let idToken = "";
+    if (idToken?.length <= 0) {
+      idToken = await getIdToken();
+      if (idToken?.length <= 0) return;
+    }
+
     // Wait for the state to update, then proceed with fetching
     // Fetch Threads
     await API.get(
@@ -31,6 +37,7 @@ const Thread = () => {
         headers: {
           "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
           "Content-Type": "application/json",
+          Authorization: idToken,
         },
         response: true,
       }
@@ -73,6 +80,7 @@ const Thread = () => {
   return (
     <div className="border-2 mt-12 mx-auto rounded-xl shadow-lg py-6 h-fit px-4 standard-style max-w-2/5 w-5/6">
       {/* <CreateThread /> */}
+
       <ThreadBlock isPreview={false} thread={thread} />
       <CommentForm
         onNewComment={handleNewComment}

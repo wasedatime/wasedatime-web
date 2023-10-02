@@ -8,17 +8,18 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.md$/,
       use: "raw-loader",
-    });
-    return config;
+    })
+    return config
   },
   images: {
-    unoptimized: true
+    unoptimized: true,
   },
-  assetPrefix: process.env.APP_ENV === 'production' ? "/feeds" : "",
+  assetPrefix: process.env.APP_ENV === "production" ? "/feeds" : "",
   env: {
-    APP_ENV: process.env.APP_ENV || 'development',
-    MF_FEEDS_DOMAIN: process.env.MF_FEEDS_DOMAIN || ''
-  }
+    APP_ENV: process.env.APP_ENV || "development",
+    MF_FEEDS_DOMAIN: process.env.MF_FEEDS_DOMAIN || "",
+  },
+  distDir: "dist",
 }
 
 module.exports = nextConfig

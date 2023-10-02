@@ -129,14 +129,15 @@ const Comment = ({ comment, thread, setComments, setThread }: Props) => {
   };
 
   const time = timeFormatter(comment);
-  console.log(comment);
 
   return (
     <Block actions={actions}>
       <div className="border-2 rounded-xl px-4 py-2 text-light-text2 mt-4 standard-style flex flex-row justify-between items-center">
         <div>
-          <h2 className="text-2xl p-2">{convertUrlsToLinks(comment.body)}</h2>
-          <h2 className="text-xs my-auto">Posted at {time}</h2>
+          <h2 className="text-2xl p-2 text-left">
+            {convertUrlsToLinks(comment.body)}
+          </h2>
+          <h2 className="text-sm my-auto p-2">{time}</h2>
         </div>
         {comment.mod === true && (
           <div className="justify-end">

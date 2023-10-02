@@ -25,6 +25,10 @@ const RedirectPage = () => {
     redirectToHomeAfter5Sec().catch((err) => console.error(err))
   }, [])
 
+  //! https://wasedatime.com/verify?error_description=Loginfail....
+
+  //! https://wasedatime.com/verify -> considered as success
+
   return window.location.search.includes("error_description") ? (
     <div className="mt-20 text-center">
       <LoadingSpinner theme={theme} message={t("verify.failed.title")} />

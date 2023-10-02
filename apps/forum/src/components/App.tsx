@@ -119,7 +119,7 @@ const InnerApp = () => {
               <Route element={<NotFound />} path="*" />
             </Routes>
           </div>
-          <div className="flex flex-col sm:w-1/5 ">
+          <div className="flex flex-col lg:w-1/5 ">
             <div className="hidden md:h-[500px] md:w-[250px] justify-self-end">
               <h1></h1>
             </div>

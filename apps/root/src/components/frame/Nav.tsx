@@ -90,18 +90,18 @@ const Nav = () => {
       icon: <ForumIcon />,
       iconHovered: <ForumIconHovered />,
     },
-    {
-      name: t("navigation.campus"),
-      path: "/campus",
-      icon: <CampusIcon />,
-      iconHovered: <CampusIconHovered />,
-    },
-    {
-      name: t("navigation.feeds"),
-      path: "/feeds",
-      icon: <FeedsIcon />,
-      iconHovered: <FeedsIconHovered />,
-    },
+    // {
+    //   name: t("navigation.campus"),
+    //   path: "/campus",
+    //   icon: <CampusIcon />,
+    //   iconHovered: <CampusIconHovered />,
+    // },
+    // {
+    //   name: t("navigation.feeds"),
+    //   path: "/feeds",
+    //   icon: <FeedsIcon />,
+    //   iconHovered: <FeedsIconHovered />,
+    // },
   ]
 
   return (

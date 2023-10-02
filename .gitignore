@@ -85,3 +85,7 @@ bit.json
 
 # turbo
 .turbo
+
+# feeds articles
+
+apps/feeds/public/feeds/

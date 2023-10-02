@@ -272,12 +272,12 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
           onChange={handleBodyChange}
         />
       </div>
-      <h1
+      <button
         className="absolute top-0 right-2 m-1 p-1 hover:text-light-main cursor-pointer"
         onClick={() => setIsExpanded(false)}
       >
         <CloseIcon />
-      </h1>
+      </button>
       <div className="absolute bottom-0 left-2 w-full flex mb-3 mt-3 text-sm justify-between">
         <div className="my-auto flex flex-row gap-x-2">
           {/* {selectedBoard && (

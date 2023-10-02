@@ -37,7 +37,6 @@ const Thread = () => {
         headers: {
           "x-api-key": "0PaO2fHuJR9jlLLdXEDOyUgFXthoEXv8Sp0oNsb8",
           "Content-Type": "application/json",
-          // Authorization: idToken,
         },
         response: true,
       }
@@ -78,7 +77,7 @@ const Thread = () => {
   };
 
   return (
-    <div className="border-2 mt-12 mx-auto rounded-xl shadow-lg py-6 h-fit px-4 standard-style max-w-2/5 w-5/6">
+    <div className="border-2 mt-12 mx-1 md:mx-auto rounded-xl shadow-lg py-6 h-fit px-4 standard-style max-w-[290px] lg:max-w-[900px]">
       {/* <CreateThread /> */}
 
       <ThreadBlock isPreview={false} thread={thread} />

@@ -6,23 +6,25 @@ type threadOrComment = CommentType | ThreadType;
 export function timeFormatter(newComment: threadOrComment): string {
   const utcTimestamp = newComment.created_at;
   const date = new Date(utcTimestamp);
+  const now = new Date(); // Get the current date and time
 
-  // Add 9 hours to UTC time
+  // Convert both to JST
   date.setUTCHours(date.getUTCHours() + 9);
+  now.setUTCHours(now.getUTCHours() + 9);
 
-  // Extract year, month, date, hours, and minutes
-  const year = date.getUTCFullYear();
-  const month = date.getUTCMonth() + 1; // Months are 0-based, so add 1
-  const day = date.getUTCDate();
-  const hours = date.getUTCHours();
-  const minutes = date.getUTCMinutes();
+  // Calculate time difference in milliseconds
+  const diff = now.getTime() - date.getTime();
 
-  // Format the components as a string
-  const formattedTimestamp = `${year}-${month.toString().padStart(2, "0")}-${day
-    .toString()
-    .padStart(2, "0")} ${hours.toString().padStart(2, "0")}:${minutes
-    .toString()
-    .padStart(2, "0")}`;
+  // Convert to minutes and hours
+  const minutesDiff = Math.floor(diff / 60000); // 60 * 1000
+  const hoursDiff = Math.floor(minutesDiff / 60);
 
-  return formattedTimestamp;
+  if (minutesDiff < 60) {
+    return minutesDiff === 1 ? "1 minute ago" : `${minutesDiff} minutes ago`;
+  } else if (hoursDiff < 24) {
+    return hoursDiff === 1 ? "1 hour ago" : `${hoursDiff} hours ago`;
+  } else {
+    const daysDiff = Math.floor(hoursDiff / 24);
+    return daysDiff === 1 ? "1 day ago" : `${daysDiff} days ago`;
+  }
 }

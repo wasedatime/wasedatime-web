@@ -204,10 +204,11 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
         {/* ^ This line goes to parent board on click while in thread */}
         <div className={`px-2`}>
           <div className="flex justify-between mt-2">
-            <div className="flex items-center justify-center mb-auto gap-x-4">
+            <div className="flex items-center text-center justify-center mb-auto gap-x-4">
               <h1 className="text-4xl font-bold  text-light-main dark:text-dark-main text-3xl">
                 {getTitleBySlug(thread.board_id)}
               </h1>
+              <h2 className="text-lg">{time}</h2>
 
               <ImageIcon
                 color={thread.obj_key || thread.url ? "success" : "inherit"}
@@ -237,6 +238,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
                   ) */}
             </div>
           </div>
+
           {thread.url ? (
             <img
               src={thread.url}
@@ -250,7 +252,6 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
           >
             {convertUrlsToLinks(isPreview, thread.body)}
           </h2>
-          <h2 className="text-lg mt-5">Posted at {time}</h2>
         </div>
         {/* <div className="inline-block text-blue-600 rounded-lg pl-2 pt-2">
               {" "}

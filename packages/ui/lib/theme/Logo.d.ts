@@ -1,5 +1,4 @@
-/// <reference types="react" />
-export declare const Logo: () => JSX.Element;
-export declare const LogoJp: () => JSX.Element;
-export declare const SmallLogo: () => JSX.Element;
-export declare const SmallLogoJp: () => JSX.Element;
+export declare const Logo: () => import("react/jsx-runtime").JSX.Element;
+export declare const LogoJp: () => import("react/jsx-runtime").JSX.Element;
+export declare const SmallLogo: () => import("react/jsx-runtime").JSX.Element;
+export declare const SmallLogoJp: () => import("react/jsx-runtime").JSX.Element;

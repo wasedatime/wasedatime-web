@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { ThemeType } from '../constants/type/theme';
 type HeaderProps = {
     title: string;
@@ -11,5 +10,5 @@ type HeaderProps = {
     theme?: ThemeType;
     setTheme: (theme: ThemeType) => void;
 };
-export declare const Header: ({ title, onInputChange, placeholder, inputText, disabled, isBlur, changeLang, theme, setTheme, }: HeaderProps) => JSX.Element;
+export declare const Header: ({ title, onInputChange, placeholder, inputText, disabled, isBlur, changeLang, theme, setTheme, }: HeaderProps) => import("react/jsx-runtime").JSX.Element;
 export {};

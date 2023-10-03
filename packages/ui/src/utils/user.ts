@@ -2,8 +2,15 @@ import { Auth } from "@aws-amplify/auth"
 import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types"
 
 export const configAuth = () => {
-  const authRedirectPath =
-    window.location.protocol + "//" + window.location.host + "/verify"
+
+  const queryString = window.location.search
+
+  let authRedirectPath =
+      window.location.protocol + "//" + window.location.host + "/verify"
+  if(window.location.search.includes("error_description")) {
+    authRedirectPath = window.location.protocol + "//" + window.location.host + "/verify" + queryString
+  }
+
   const authSignOutPath =
     window.location.protocol + "//" + window.location.host + "/"
 
@@ -74,6 +81,7 @@ export const getUserAttr = async () => {
 }
 
 export const signIn = () => {
+  configAuth()
   try {
     Auth.federatedSignIn({
       provider: CognitoHostedUIIdentityProvider.Google,

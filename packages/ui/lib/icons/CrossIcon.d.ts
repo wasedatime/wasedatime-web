@@ -1,2 +1,1 @@
-/// <reference types="react" />
-export declare const CrossIcon: () => JSX.Element;
+export declare const CrossIcon: () => import("react/jsx-runtime").JSX.Element;

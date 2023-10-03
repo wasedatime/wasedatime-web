@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import HeaderWithModal from "@app/components/common/HeaderWithModal";

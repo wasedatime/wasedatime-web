@@ -311,7 +311,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
             Post
           </button>
         </div>
-        <div className=" bottom-0 border-l-4 border-r-4 border-b-4 rounded-b-lg border-light-main dark:border-dark-main border-2 left-2 w-full flex text-sm justify-between items-center">
+        <div className=" bottom-0 border-l-4 border-r-4 border-b-4 rounded-b-lg p-2 border-light-main dark:border-dark-main border-2 left-2 w-full flex text-sm justify-between items-center">
           {/* {selectedBoard && (
             <Menu as="div" className="relative inline-block text-left">
               <div>

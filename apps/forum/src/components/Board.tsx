@@ -135,7 +135,7 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
     <div className="mx-auto px-2 h-full lg:w-5/6 max-w-[5/6] standard-style">
       <CreateThread onNewThread={handleNewThread} />
       <div
-        className="overflow-auto h-[calc(100%-44px)] mt-4 md:mt-8 lg:mt-12"
+        className="overflow-auto h-[calc(100%-24px)] mt-4 md:mt-8 lg:mt-12"
         id="scrollableDiv"
       >
         <InfiniteScroll

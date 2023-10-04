@@ -73,7 +73,7 @@ const Thread = () => {
   }, [threadUuid, boardSlug]);
 
   const handleNewComment = (newComment: CommentType) => {
-    setComments((prevComments) => [newComment, ...prevComments]);
+    setComments((prevComments) => [...prevComments, newComment]);
   };
 
   return (

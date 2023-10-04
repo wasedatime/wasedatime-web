@@ -89,7 +89,7 @@ const InnerApp = () => {
       </div>
       <div className="flex flex-col h-fit md:mt-[23px]">
         {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
-        <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-150px)]">
+        <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-100px)]">
           <div className="flex flex-col w-1/5">
             {/* <BreadCrumbs onTriggerFetch={handleTriggerFetch} /> */}
             <div className="pl-2 lg:pl-10">

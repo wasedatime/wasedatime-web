@@ -1,4 +1,10 @@
-import React, { ChangeEvent, useEffect, useState, Fragment } from "react";
+import React, {
+  ChangeEvent,
+  useEffect,
+  useState,
+  Fragment,
+  useRef,
+} from "react";
 import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { CloseIcon } from "@app/components/icons/CloseIcon";
@@ -11,6 +17,7 @@ import ThreadType from "@app/types/thread";
 import TagType from "@app/types/tag";
 import ImageIcon from "@mui/icons-material/Image";
 import threadPayload from "@app/types/threadPayload";
+import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 
 interface CreateThreadProps {
   onNewThread: (newThread: ThreadType) => void;
@@ -21,7 +28,6 @@ function classNames(...classes) {
 }
 
 const CreateThread = ({ onNewThread }: CreateThreadProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [expandSchool, setExpandSchool] = useState(false);
   const [isSignInModalOpen, setSignInModalOpen] = useState(false);
   const [userToken, setUserToken] = useState("");
@@ -34,14 +40,36 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
   const [fileName, setFileName] = useState<string | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [fileType, setFileType] = useState<string | null>(null);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
+  const textareaRef = useRef(null);
 
   // Tags and Group buttons might be best moved to their respective components but this is how I will leave it for now.
   const { boardSlug } = useParams();
   const { t } = useTranslation();
 
   useEffect(() => {
+    const trimmedTextContent = textContent.trim();
+
+    const isInvalidToken = !userToken || userToken.length <= 0;
+    const isInvalidBoard = !selectedBoard;
+    const isInvalidTextContent =
+      !textContent ||
+      trimmedTextContent.length <= 0 ||
+      trimmedTextContent.length > 2000;
+    const isInvalidSchool = !selectedSchool;
+
+    // Enable button only if all conditions are false (i.e., all are valid)
+    setIsButtonDisabled(
+      isInvalidToken ||
+        isInvalidBoard ||
+        isInvalidTextContent ||
+        isInvalidSchool
+    );
+  }, [userToken, selectedBoard, textContent, selectedSchool]);
+
+  useEffect(() => {
     setSelectedBoard(boardSlug || "");
-    setIsExpanded(false);
     setExpandSchool(false);
   }, [boardSlug]);
 
@@ -62,12 +90,10 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
 
   const handleOpenForm = async () => {
     if (userToken?.length > 0) {
-      setIsExpanded(true);
     } else {
       const idToken = await getIdToken();
       if (idToken?.length > 0) {
         setUserToken(idToken);
-        setIsExpanded(true);
       } else {
         setSignInModalOpen(true);
       }
@@ -79,6 +105,9 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
   };
 
   const handleBodyChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const textArea = textareaRef.current!;
+    textArea.style.height = "auto";
+    textArea.style.height = `${textArea.scrollHeight}px`;
     setTextContent(e.target.value);
   };
 
@@ -215,7 +244,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
               ? getTitleBySlug(slug)
               : selectedBoard
               ? getTitleBySlug(selectedBoard)
-              : "What's the Topic?"}
+              : "Topic"}
           </Menu.Button>
         </div>
 
@@ -255,31 +284,34 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
     );
   };
 
-  return isExpanded ? (
-    <div className="relative">
-      <div className="border-4 text-start text-black dark:text-white bg-light-card1 dark:bg-dark-bgMain dark:text-dark-text1 dark:shadow-none p-2 border-light-main dark:border-dark-main rounded-lg">
-        <BoardDropdownMenu slug={boardSlug} />
-        {/* <textarea
-          placeholder={`Enter Title`}
-          className="border-b-2 overflow-y-hidden border-light-main dark:border-dark-main h-10 pl-2 pb-2 w-full hover:outline-0 focus:outline-0 standard-style"
-          value={titleContent}
-          onChange={handleTitleChange}
-        /> */}
-        <textarea
-          placeholder={`Anything interesting?`}
-          className=" h-50 pl-2 pb-28 pt-2 w-full hover:outline-0 focus:outline-0 standard-style text-3xl overflow-y-hidden"
-          value={textContent}
-          onChange={handleBodyChange}
-        />
-      </div>
-      <button
-        className="absolute top-0 right-2 m-1 p-1 hover:text-light-main cursor-pointer"
-        onClick={() => setIsExpanded(false)}
-      >
-        <CloseIcon />
-      </button>
-      <div className="absolute bottom-0 left-2 w-full flex mb-3 mt-3 text-sm justify-between">
-        <div className="my-auto flex flex-row gap-x-2">
+  return (
+    <div>
+      <div className="relative">
+        <div className="border-t-4 border-l-4 border-r-4 p-2 text-start text-black dark:text-white bg-light-card1 dark:bg-dark-bgMain dark:text-dark-text1 dark:shadow-none p-2 border-light-main dark:border-dark-main rounded-t-lg flex justify-between items-start relative">
+          {/* Added 'relative' to the parent div's class list */}
+
+          <textarea
+            placeholder={`Anything interesting?`}
+            className="h-50 pl-2 pt-2 pb-20 w-full hover:outline-0 focus:outline-0 standard-style text-3xl "
+            value={textContent}
+            onChange={handleBodyChange}
+            onFocus={handleOpenForm}
+            ref={textareaRef}
+          />
+
+          <button
+            className={`absolute bottom-0 right-0 border m-4 px-4 py-2 rounded-lg text-3xl z-10 ${
+              isButtonDisabled
+                ? "bg-gray-400 text-gray-700 hover:bg-gray-400 cursor-not-allowed"
+                : "border-light-main text-white bg-light-lighter hover:bg-light-darker"
+            }`}
+            onClick={isButtonDisabled ? () => {} : handleSubmit}
+            disabled={isButtonDisabled}
+          >
+            Post
+          </button>
+        </div>
+        <div className=" bottom-0 border-l-4 border-r-4 border-b-4 rounded-b-lg border-light-main dark:border-dark-main border-2 left-2 w-full flex text-sm justify-between items-center">
           {/* {selectedBoard && (
             <Menu as="div" className="relative inline-block text-left">
               <div>
@@ -326,25 +358,30 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
               </Transition>
             </Menu>
           )} */}
-          <button
-            className="inline-flex w-full justify-center gap-x-1.5 rounded-md px-3 py-2 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300 standard-style-hover"
-            onClick={() => setExpandSchool(!expandSchool)}
-          >
-            {expandSchool ? (
-              <SchoolFilterForm
-                isOpen={expandSchool}
-                setOpen={setExpandSchool}
-                setSchool={setSelectedSchool}
-              />
-            ) : null}
-            <p>{selectedSchool ? selectedSchool : "School"}</p>
-          </button>
-          <div className="uploader">
+          <div className="w-1/3 p-2 flex justify-center items-center">
+            <BoardDropdownMenu slug={boardSlug} />
+          </div>
+          <div className="w-1/3 p-2 flex justify-center items-center">
+            <button
+              className="inline-flex  gap-x-1.5 rounded-md bg-white px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 standard-style-hover"
+              onClick={() => setExpandSchool(!expandSchool)}
+            >
+              {expandSchool ? (
+                <SchoolFilterForm
+                  isOpen={expandSchool}
+                  setOpen={setExpandSchool}
+                  setSchool={setSelectedSchool}
+                />
+              ) : null}
+              <p>{selectedSchool ? selectedSchool : "School"}</p>
+            </button>
+          </div>
+          <div className="uploader flex justify-center items-center w-1/3 p-2">
             <label htmlFor="imageUpload" className="cursor-pointer">
               {fileName ? (
                 <span>{fileName}</span>
               ) : (
-                <ImageIcon fontSize="large" />
+                <AddPhotoAlternateIcon style={{ fontSize: "40px" }} />
               )}
             </label>
             <input
@@ -356,21 +393,8 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
             />
           </div>
         </div>
-        <button
-          className="border-light-main border mx-4 px-4 py-1 rounded-lg text-white bg-light-lighter hover:bg-light-darker text-3xl"
-          onClick={handleSubmit}
-        >
-          Post
-        </button>
       </div>
-    </div>
-  ) : (
-    <div>
-      <div className="cursor-pointer" onClick={handleOpenForm}>
-        <h1 className="border-4 p-2 rounded-lg border-light-main">
-          Anything interesting?
-        </h1>
-      </div>
+
       <SignInModal
         isModalOpen={isSignInModalOpen}
         closeModal={() => setSignInModalOpen(false)}
@@ -381,3 +405,11 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
 };
 
 export default CreateThread;
+{
+  /* <textarea
+          placeholder={`Enter Title`}
+          className="border-b-2 overflow-y-hidden border-light-main dark:border-dark-main h-10 pl-2 pb-2 w-full hover:outline-0 focus:outline-0 standard-style"
+          value={titleContent}
+          onChange={handleTitleChange}
+        /> */
+}

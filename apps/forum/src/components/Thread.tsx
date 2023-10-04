@@ -73,11 +73,11 @@ const Thread = () => {
   }, [threadUuid, boardSlug]);
 
   const handleNewComment = (newComment: CommentType) => {
-    setComments((prevComments) => [newComment, ...prevComments]);
+    setComments((prevComments) => [...prevComments, newComment]);
   };
 
   return (
-    <div className="border-2 mt-12 mx-1 md:mx-auto rounded-xl shadow-lg py-6 h-fit px-4 standard-style max-w-[290px] lg:max-w-[900px]">
+    <div className="border-2 w-full md:w-5/6 mx-auto rounded-xl shadow-lg py-6 px-4 standard-style max-w-[290px] sm:max-w-[900px] overflow-y-auto h-fit">
       {/* <CreateThread /> */}
 
       <ThreadBlock isPreview={false} thread={thread} />

@@ -215,8 +215,8 @@ devDependencies:
     specifier: 4.7.3
     version: 4.7.3
   vite:
-    specifier: 4.3.5
-    version: 4.3.5(@types/node@17.0.41)
+    specifier: 4.3.9
+    version: 4.3.9(@types/node@17.0.41)
   vite-plugin-dynamic-import:
     specifier: 0.9.6
     version: 0.9.6
@@ -225,16 +225,16 @@ devDependencies:
     version: 1.4.4
   vite-plugin-html:
     specifier: 3.2.0
-    version: 3.2.0(vite@4.3.5)
+    version: 3.2.0(vite@4.3.9)
   vite-plugin-html-env:
     specifier: 1.1.2
-    version: 1.1.2(vite@4.3.5)
+    version: 1.1.2(vite@4.3.9)
   vite-plugin-import-maps:
     specifier: 0.1.2
-    version: 0.1.2(vite@4.3.5)
+    version: 0.1.2(vite@4.3.9)
   vite-plugin-pwa:
     specifier: 0.12.0
-    version: 0.12.0(vite@4.3.5)(workbox-build@6.6.0)(workbox-window@6.5.3)
+    version: 0.12.0(vite@4.3.9)(workbox-build@6.6.0)(workbox-window@6.5.3)
 
 packages:
 
@@ -8815,16 +8815,16 @@ packages:
       ejs: 3.1.9
     dev: true
 
-  /vite-plugin-html-env@1.1.2(vite@4.3.5):
+  /vite-plugin-html-env@1.1.2(vite@4.3.9):
     resolution: {integrity: sha512-7cFcNYnnRiCR0oUbw1nU8VuAMEdQisVdWU1gkSq5aS4UxSdwnJesr/wzz/cGHzkrM7EWarIoNXzuAYNY0C6hvA==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.1.3
     dependencies:
-      vite: 4.3.5(@types/node@17.0.41)
+      vite: 4.3.9(@types/node@17.0.41)
     dev: true
 
-  /vite-plugin-html@3.2.0(vite@4.3.5):
+  /vite-plugin-html@3.2.0(vite@4.3.9):
     resolution: {integrity: sha512-2VLCeDiHmV/BqqNn5h2V+4280KRgQzCFN47cst3WiNK848klESPQnzuC3okH5XHtgwHH/6s1Ho/YV6yIO0pgoQ==}
     peerDependencies:
       vite: '>=2.0.0'
@@ -8841,10 +8841,10 @@ packages:
       html-minifier-terser: 6.1.0
       node-html-parser: 5.4.2
       pathe: 0.2.0
-      vite: 4.3.5(@types/node@17.0.41)
+      vite: 4.3.9(@types/node@17.0.41)
     dev: true
 
-  /vite-plugin-import-maps@0.1.2(vite@4.3.5):
+  /vite-plugin-import-maps@0.1.2(vite@4.3.9):
     resolution: {integrity: sha512-FEUMPFrPzXYWNCLYRk8p0GMygsZJ2s9pr6Wrql6qOletelNgmrznui/8GnAebNt9H5dh+BgLRc1+X03SlPwfgg==}
     peerDependencies:
       vite: ^2.0.4
@@ -8852,12 +8852,12 @@ packages:
       less: 4.2.0
       sass: 1.66.1
       stylus: 0.60.0
-      vite: 4.3.5(@types/node@17.0.41)
+      vite: 4.3.9(@types/node@17.0.41)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-pwa@0.12.0(vite@4.3.5)(workbox-build@6.6.0)(workbox-window@6.5.3):
+  /vite-plugin-pwa@0.12.0(vite@4.3.9)(workbox-build@6.6.0)(workbox-window@6.5.3):
     resolution: {integrity: sha512-KYD+cnS5ExLF3T28NkfzBLZ53ehHlp+qMhHGFNh0zlVGpFHrJkL2v9wd4AMi7ZkBTffgeNatIFiv8rhCsMSxBQ==}
     peerDependencies:
       vite: ^2.0.0
@@ -8868,7 +8868,7 @@ packages:
       fast-glob: 3.3.1
       pretty-bytes: 6.1.1
       rollup: 2.79.1
-      vite: 4.3.5(@types/node@17.0.41)
+      vite: 4.3.9(@types/node@17.0.41)
       workbox-build: 6.6.0
       workbox-window: 6.5.3
     transitivePeerDependencies:
@@ -8882,8 +8882,8 @@ packages:
       fast-glob: 3.3.1
     dev: true
 
-  /vite@4.3.5(@types/node@17.0.41):
-    resolution: {integrity: sha512-0gEnL9wiRFxgz40o/i/eTBwm+NEbpUeTWhzKrZDSdKm6nplj+z4lKz8ANDgildxHm47Vg8EUia0aicKbawUVVA==}
+  /vite@4.3.9(@types/node@17.0.41):
+    resolution: {integrity: sha512-qsTNZjO9NoJNW7KnOrgYwczm0WctJ8m/yqYAMAK9Lxt4SoySUfS5S8ia9K7JHpa3KEeMfyF8LoJ3c5NeBJy6pg==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:

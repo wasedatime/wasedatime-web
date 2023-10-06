@@ -27,11 +27,18 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
       className="flex-1 text-center"
       customOnClick={() => setCurrentPath(item.path)}
     >
-      <div className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
-        {item.icon}
-      </div>
-      <div className="text-lg text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
-        {item.name}
+      <div className="relative">
+        <div className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
+          {item.icon}
+        </div>
+        <div className="text-lg text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
+          {item.name}
+        </div>
+        {item.tooltip && (
+          <span className="absolute top-0 left-1/2 z-10 -translate-x-1/2 -translate-y-full transform whitespace-nowrap rounded bg-light-main px-3 py-2 text-lg text-dark-text1 dark:bg-dark-main">
+            {item.tooltip}
+          </span>
+        )}
       </div>
     </LinkOutsideRouter>
   ))

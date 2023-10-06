@@ -16,9 +16,23 @@ import Nav from "@app/components/frame/Nav"
 
 import { registerSW } from "virtual:pwa-register"
 
+import { API } from "@aws-amplify/api"
+
 if (import.meta.env.MODE !== "development" && "serviceWorker" in navigator) {
   registerSW()
 }
+
+const apiConfig = {
+  API: {
+    endpoints: [
+      {
+        name: "wasedatime-dev",
+        endpoint: import.meta.env.VITE_API_BASE_URL,
+      },
+    ],
+  },
+}
+API.configure(apiConfig)
 
 const routes = constructRoutes(document.querySelector("#single-spa-layout"))
 const applications = constructApplications({

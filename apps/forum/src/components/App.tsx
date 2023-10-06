@@ -12,6 +12,7 @@ import FeedBackBox from "./FeedBackBox";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { API } from "@aws-amplify/api";
 import { getUserAttr, getIdToken, LoadingSpinner } from "wasedatime-ui";
+import { storeDate } from "@app/utils/storeDate";
 
 const App = () => {
   return (
@@ -67,6 +68,7 @@ const InnerApp = () => {
 
   useEffect(() => {
     fetchNotification();
+    storeDate();
   }, []);
 
   return (

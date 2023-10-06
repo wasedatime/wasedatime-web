@@ -19,6 +19,7 @@ interface IconTextGroupProps {
   iconPath?: string
   expanded?: boolean
   currentPath?: string
+  tooltip?: string
 }
 
 const NavItemBlock = styled.div<NavItemBlockProps>`
@@ -62,6 +63,7 @@ export const IconTextGroup = ({
   iconPath,
   expanded,
   currentPath,
+  tooltip,
 }: IconTextGroupProps) => {
   const [isHover, setIsHover] = useState(false)
   return (
@@ -72,17 +74,27 @@ export const IconTextGroup = ({
       onMouseOver={() => setIsHover(true)}
       onMouseOut={() => setIsHover(false)}
     >
-      <div className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
-        {isHover && hoverIcon ? hoverIcon : icon}
+      <div className="relative inline-flex items-center">
+        {" "}
+        {/* This is the wrapper */}
+        <div className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
+          {isHover && hoverIcon ? hoverIcon : icon}
+        </div>
+        {text && (
+          <NavItemText
+            className="ml-2 text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1" // added ml-2 for spacing
+            expanded={expanded}
+          >
+            {text}
+          </NavItemText>
+        )}
+        {/* Tooltip rendering */}
+        {tooltip && expanded && (
+          <span className="absolute top-1/2 left-full z-10 ml-2 w-auto -translate-y-1/2 transform whitespace-nowrap rounded bg-light-main px-3 py-2 text-xl text-dark-text1 dark:bg-dark-main">
+            {tooltip}
+          </span>
+        )}
       </div>
-      {text && (
-        <NavItemText
-          className="text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1"
-          expanded={expanded}
-        >
-          {text}
-        </NavItemText>
-      )}
     </NavItemBlock>
   )
 }

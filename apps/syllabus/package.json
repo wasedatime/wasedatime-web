@@ -36,7 +36,7 @@
     "dotenv": "16.0.1",
     "eslint": "8.17.0",
     "eslint-config-custom": "workspace:*",
-    "postcss": "8.4.14",
+    "postcss": "8.4.31",
     "prettier": "2.6.2",
     "prettier-plugin-tailwindcss": "^0.2.8",
     "sass": "1.52.2",

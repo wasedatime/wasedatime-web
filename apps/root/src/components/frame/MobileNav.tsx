@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 import { getUserAttr, signOut } from "wasedatime-ui"
 import { useTranslation } from "react-i18next"
@@ -19,6 +19,15 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
   const [currentPath, setCurrentPath] = useState(window.location.pathname)
   const notSignedIn = !userAttr
   if (notSignedIn) getUserAttr().then((attr) => setUserAttr(attr))
+  const [showTooltip, setShowTooltip] = useState(true)
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setShowTooltip(false) // Hide tooltip after 3 seconds
+    }, 3000)
+
+    return () => clearTimeout(timeoutId) // Cleanup on unmount
+  }, []) // Run once after the initial render
 
   const styledLinks = navItems.map((item) => (
     <LinkOutsideRouter
@@ -34,7 +43,7 @@ const MobileNav = ({ navItems, openSignInModal }: Props) => {
         <div className="text-lg text-light-text2 group-hover:text-light-main dark:text-dark-text2 dark:group-hover:text-dark-text1">
           {item.name}
         </div>
-        {item.tooltip && (
+        {item.tooltip && showTooltip && (
           <span className="absolute top-0 left-1/2 z-10 -translate-x-1/2 -translate-y-full transform whitespace-nowrap rounded bg-light-main px-3 py-2 text-lg text-dark-text1 dark:bg-dark-main">
             {item.tooltip}
           </span>

@@ -28,6 +28,8 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
     boards.find((board) => board.slug === boardSlug)?.slug || ""
   );
 
+  localStorage.setItem("mobileNavCheck", "false");
+
   // Use Effect to set the board state in the parent component for tag filtering
   useEffect(() => {
     setBoard(boardSlug);

@@ -26,11 +26,7 @@ import {
   TimetableIconHovered,
 } from "@app/components/icons/TimetableIcon"
 import { ThemeContext, ThemeProvider } from "@app/utils/theme-context"
-import {
-  getCurrentDateInJST,
-  getCurrentDateInUTC,
-  extractDate,
-} from "@app/utils/getDate"
+import { getCurrentDateInUTC, extractDate } from "@app/utils/getDate"
 import { shouldCallApi } from "@app/utils/shouldCallApi"
 import { fetchNotificaiton } from "@app/utils/fetchNotification"
 
@@ -71,15 +67,17 @@ const Nav = () => {
 
     const fetchNotificationAndUpdateState = async () => {
       try {
-        const storedDateInJST = localStorage.getItem("lastCheckedDateJST")
-        const currentDateInJST = getCurrentDateInJST()
-        const storedDateOnly = extractDate(storedDateInJST || "")
-        const currentDateOnly = extractDate(currentDateInJST)
+        const storedDateInUTC = localStorage.getItem("lastCheckedDateUTC")
+        const currentDateInUTC = getCurrentDateInUTC()
+        const storedDateOnly = extractDate(storedDateInUTC || "")
+        const currentDateOnly = extractDate(currentDateInUTC)
 
         if (!storedDateOnly) {
-          localStorage.setItem("lastCheckedDateJST", currentDateInJST)
+          localStorage.setItem("lastCheckedDateUTC", currentDateInUTC)
         } else if (shouldCallApi()) {
-          const newPostsCount = await fetchNotificaiton(storedDateInJST || "")
+          const newPostsCount = await fetchNotificaiton(currentDateOnly || "")
+          // const newPostsCount = ""
+
           const updatedNavItems = navItems.map((item) =>
             item.path === "/forum"
               ? {
@@ -92,7 +90,7 @@ const Nav = () => {
               : item
           )
           setNavItems(updatedNavItems)
-          localStorage.setItem("lastCheckedDateJST", currentDateInJST)
+          localStorage.setItem("lastCheckedDateUTC", currentDateInUTC)
           localStorage.setItem(
             "lastApiCallTimestamp",
             new Date().getTime().toString()

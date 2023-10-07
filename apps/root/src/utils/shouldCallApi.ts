@@ -1,4 +1,5 @@
 const LAST_API_CALL_TIMESTAMP = "lastApiCallTimestamp"
+// const ONE_HOUR_IN_MS = 1
 const ONE_HOUR_IN_MS = 60 * 60 * 1000
 
 const convertToTimestamp = (datetime: string) => {

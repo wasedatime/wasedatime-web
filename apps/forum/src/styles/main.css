@@ -65,8 +65,6 @@
   filter: blur(2px);
   border-radius: inherit; /* To maintain the same rounded corners as the parent */
 }
-<<<<<<< Updated upstream
-=======
 
 @media (max-width: 600px) {
   .left-side {
@@ -96,4 +94,3 @@
   left: 15%;
   z-index: 99;
 }
->>>>>>> Stashed changes

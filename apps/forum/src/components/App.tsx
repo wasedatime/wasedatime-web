@@ -19,6 +19,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { API } from "@aws-amplify/api";
 import { getUserAttr, getIdToken, LoadingSpinner } from "wasedatime-ui";
 import { storeDate } from "@app/utils/storeDate";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 const App = () => {
   return (
@@ -106,7 +107,7 @@ const InnerApp = () => {
         />
       </div>
       <div className="flex flex-col h-fit mt-[23px]">
-        <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-100px)]">
+        <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-150px)] md:h-[calc(100vh-100px)]">
           <div className="left-side flex flex-col w-1/5">
             <div className="pl-2 lg:pl-10">
               <button
@@ -122,14 +123,14 @@ const InnerApp = () => {
           </div>
           {!isThreadRoute && (
             <button
-              className="filterButton p-2 bg-light-main text-white rounded-lg h-10"
+              className="filterButton p-2 bg-light-main dark:bg-dark-main text-white rounded-full"
               onClick={handleFilterButtonClick}
             >
-              Filter
+              <FilterAltIcon style={{ fontSize: "35px" }} />
             </button>
           )}
           {filterButtonClicked && (
-            <div className="filterModal rounded-lg bg-black">
+            <div className="filterModal rounded-lg standard-style">
               <button
                 onClick={handleReset}
                 className="p-2 bg-light-main text-white rounded-lg my-1 w-full"

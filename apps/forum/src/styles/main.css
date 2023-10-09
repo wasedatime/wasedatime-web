@@ -78,6 +78,8 @@
 
 .filterButton {
   display: none;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   bottom: 10%;
   right: 5%;

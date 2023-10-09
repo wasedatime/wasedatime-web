@@ -79,8 +79,8 @@
 .filterButton {
   display: none;
   position: absolute;
-  bottom: 7%;
-  right: 2%;
+  bottom: 10%;
+  right: 5%;
 }
 
 .filterModal {

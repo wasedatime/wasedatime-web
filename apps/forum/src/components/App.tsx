@@ -12,8 +12,6 @@ import FeedBackBox from "./FeedBackBox";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { API } from "@aws-amplify/api";
 import { getUserAttr, getIdToken, LoadingSpinner } from "wasedatime-ui";
-import "./static/styles.css";
-
 
 const App = () => {
   return (
@@ -44,7 +42,6 @@ const InnerApp = () => {
   const [commentNotify, setCommentNotify] = useState(false);
   const navigate = useNavigate();
   const [filterButtonClicked, setFilterButtonClicked] = useState(false);
-  
 
   const handleReset = () => {
     navigate("/forum");
@@ -74,8 +71,8 @@ const InnerApp = () => {
   }, []);
 
   const handleFilterButtonClick = () => {
-    setFilterButtonClicked(!filterButtonClicked)
-  }
+    setFilterButtonClicked(!filterButtonClicked);
+  };
 
   return (
     <>
@@ -110,21 +107,26 @@ const InnerApp = () => {
             <BoardMenu />
             <FeedBackBox />
           </div>
-          <button className="filterButton p-2 bg-light-main text-white rounded-lg h-10" onClick={handleFilterButtonClick}>Filter</button>
-          { filterButtonClicked && 
-          <div className="filterModal rounded-lg bg-black">
+          <button
+            className="filterButton p-2 bg-light-main text-white rounded-lg h-10"
+            onClick={handleFilterButtonClick}
+          >
+            Filter
+          </button>
+          {filterButtonClicked && (
+            <div className="filterModal rounded-lg bg-black">
               <button
                 onClick={handleReset}
                 className="p-2 bg-light-main text-white rounded-lg my-1 w-full"
               >
                 <ArrowBackIcon fontSize="large" />
               </button>
-            <FilterMenu />
-            <BoardMenu />
-            <FeedBackBox />
-          </div>
-          }
-          
+              <FilterMenu />
+              <BoardMenu />
+              <FeedBackBox />
+            </div>
+          )}
+
           <div className="flex flex-col">
             <Routes>
               <Route

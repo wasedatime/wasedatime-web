@@ -168,3 +168,5 @@ const InnerApp = () => {
     </>
   );
 };
+
+// prevenging empty pushes

@@ -292,7 +292,7 @@ const CreateThread = ({ onNewThread }: CreateThreadProps) => {
 
           <textarea
             placeholder={`Anything interesting?`}
-            className="h-50 pl-2 pt-2 pb-20 w-full hover:outline-0 focus:outline-0 standard-style text-3xl "
+            className="pl-2 pt-2 pb-10 w-full hover:outline-0 focus:outline-0 standard-style text-3xl "
             value={textContent}
             onChange={handleBodyChange}
             onFocus={handleOpenForm}

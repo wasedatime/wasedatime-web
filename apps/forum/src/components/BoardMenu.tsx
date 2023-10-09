@@ -14,7 +14,7 @@ const BoardMenu = () => {
           >
             {/* <span className="text-left list-inside list-disc">•</span> */}
             <div className="text-left cursor-pointer border p-2 rounded-lg gap-2">
-              <Link to={`forum/${board.slug}`} className="text-xl lg:text-2xl">
+              <Link to={`/${board.slug}`} className="text-xl lg:text-2xl">
                 {board.title}
               </Link>
             </div>

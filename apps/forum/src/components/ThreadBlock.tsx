@@ -189,7 +189,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
       <div
         className={
           isPreview
-            ? `border-2 mb-10 mr-4 rounded-xl shadow-lg p-6 standard-style-hover max-w-[290px] lg:max-w-[900px]`
+            ? `border-2 mb-10 mr-4 rounded-xl shadow-lg p-6 standard-style-hover lg:max-w-[900px]`
             : `cursor-default bg-light-card1 standard-style`
         }
       >
@@ -262,7 +262,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
         <div className="flex flex-row justify-evenly pt-2 items-center">
           {/* The down panel that has like button, views in total, etc...*/}
 
-          <div className="flex flex-row items-center justify-center">
+          <div className="flex flex-row items-center justify-center gap-2">
             <button onClick={handleLike} className="clipboard-icon group">
               <Favorite
                 color={userLiked ? "error" : undefined}

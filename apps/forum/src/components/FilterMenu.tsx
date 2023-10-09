@@ -11,7 +11,7 @@ const FilterMenu = () => {
   return (
     <div className=" text-center pl-2 lg:pl-10">
       <div className="my-2 mx-auto">
-        <h1 className="form-item-title">School</h1>
+        <h3 className="form-item-title">School</h3>
         <button
           className="w-full p-2 bg-light-main text-white rounded-lg my-1"
           onClick={toggleSchoolFilter}

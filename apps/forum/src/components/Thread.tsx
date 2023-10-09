@@ -77,7 +77,7 @@ const Thread = () => {
   };
 
   return (
-    <div className="border-2 w-full md:w-5/6 mx-auto rounded-xl shadow-lg py-6 px-4 standard-style max-w-[290px] sm:max-w-[900px] overflow-y-auto h-fit">
+    <div className="border-2 w-full md:w-5/6 mx-auto rounded-xl shadow-lg py-6 px-4 standard-style max-w-[390px] sm:max-w-[900px] overflow-y-auto h-fit">
       {/* <CreateThread /> */}
 
       <ThreadBlock isPreview={false} thread={thread} />

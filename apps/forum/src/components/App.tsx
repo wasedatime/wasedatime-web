@@ -1,6 +1,12 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import HeaderWithModal from "@app/components/common/HeaderWithModal";
 import { ThemeContext } from "@app/utils/theme-context";
 import Board from "./Board";
@@ -13,6 +19,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { API } from "@aws-amplify/api";
 import { getUserAttr, getIdToken, LoadingSpinner } from "wasedatime-ui";
 import { storeDate } from "@app/utils/storeDate";
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 const App = () => {
   return (
@@ -35,6 +42,7 @@ const NotFound = () => {
 };
 
 const InnerApp = () => {
+  const location = useLocation();
   const { t, i18n } = useTranslation();
 
   const { theme, setTheme } = React.useContext(ThemeContext);
@@ -42,6 +50,11 @@ const InnerApp = () => {
   const [board, setBoard] = useState("");
   const [commentNotify, setCommentNotify] = useState(false);
   const navigate = useNavigate();
+  const [filterButtonClicked, setFilterButtonClicked] = useState(false);
+
+  const isThreadRoute =
+    location.pathname.includes("forum/") &&
+    location.pathname.split("/").length === 4;
 
   const handleReset = () => {
     navigate("/forum");
@@ -71,6 +84,10 @@ const InnerApp = () => {
     storeDate();
   }, []);
 
+  const handleFilterButtonClick = () => {
+    setFilterButtonClicked(!filterButtonClicked);
+  };
+
   return (
     <>
       <div className="flex h-[67px] shrink-0 grow-0">
@@ -89,17 +106,14 @@ const InnerApp = () => {
           commentNotify={commentNotify}
         />
       </div>
-      <div className="flex flex-col h-fit md:mt-[23px]">
-        {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
-        <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-100px)]">
-          <div className="flex flex-col w-1/5">
-            {/* <BreadCrumbs onTriggerFetch={handleTriggerFetch} /> */}
+      <div className="flex flex-col h-fit mt-[23px]">
+        <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-150px)] md:h-[calc(100vh-100px)]">
+          <div className="left-side flex flex-col w-1/5">
             <div className="pl-2 lg:pl-10">
               <button
                 onClick={handleReset}
                 className="p-2 bg-light-main text-white rounded-lg my-1 w-full"
               >
-                {/* <HomeIcon fontSize="large" /> */}
                 <ArrowBackIcon fontSize="large" />
               </button>
             </div>
@@ -107,7 +121,29 @@ const InnerApp = () => {
             <BoardMenu />
             <FeedBackBox />
           </div>
-          <div className="flex flex-col md:w-3/5 w-4/5">
+          {!isThreadRoute && (
+            <button
+              className="filterButton p-2 bg-light-main dark:bg-dark-main text-white rounded-full"
+              onClick={handleFilterButtonClick}
+            >
+              <FilterAltIcon style={{ fontSize: "35px" }} />
+            </button>
+          )}
+          {filterButtonClicked && (
+            <div className="filterModal rounded-lg standard-style">
+              <button
+                onClick={handleReset}
+                className="p-2 bg-light-main text-white rounded-lg my-1 w-full"
+              >
+                <ArrowBackIcon fontSize="large" />
+              </button>
+              <FilterMenu />
+              <BoardMenu />
+              <FeedBackBox />
+            </div>
+          )}
+
+          <div className="flex flex-col md:w-3/5">
             <Routes>
               <Route
                 element={<Board triggerRefresh={refresh} setBoard={setBoard} />}

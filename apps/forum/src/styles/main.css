@@ -65,3 +65,31 @@
   filter: blur(2px);
   border-radius: inherit; /* To maintain the same rounded corners as the parent */
 }
+
+@media (max-width: 600px) {
+  .left-side {
+    display: none !important;
+  }
+
+  .filterButton {
+    display: block !important;
+  }
+}
+
+.filterButton {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+}
+
+.filterModal {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  position: absolute;
+  left: 15%;
+  z-index: 99;
+}

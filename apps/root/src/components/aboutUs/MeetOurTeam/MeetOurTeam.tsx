@@ -35,10 +35,6 @@ const MeetOurTeam = () => {
   const { t } = useTranslation()
   const [activeCardName, setActiveCardName] = useState("")
 
-  useEffect(() => {
-    console.log(activeCardName)
-  }, [activeCardName])
-
   return (
     <Wrapper>
       <Title className="mt-3.5 mb-2.5 text-3xl text-light-text1 dark:text-dark-text1 sm:my-5 sm:text-4xl 2xl:text-5xl">

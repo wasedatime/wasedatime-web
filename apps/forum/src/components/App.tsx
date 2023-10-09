@@ -57,13 +57,6 @@ const InnerApp = () => {
     location.pathname.startsWith("/") &&
     location.pathname.split("/").length === 3;
 
-  console.log(location);
-  console.log(isThreadRoute);
-
-  useEffect(() => {
-    console.log(location.hash);
-  }, [location]);
-
   const handleReset = () => {
     navigate("/");
     setRefresh(!refresh);

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
+  HashRouter,
   BrowserRouter,
   Routes,
   Route,
@@ -24,9 +25,9 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 const App = () => {
   return (
     <div className="flex flex-col h-screen">
-      <BrowserRouter>
+      <HashRouter>
         <InnerApp />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 };
@@ -53,11 +54,11 @@ const InnerApp = () => {
   const [filterButtonClicked, setFilterButtonClicked] = useState(false);
 
   const isThreadRoute =
-    location.pathname.includes("forum/") &&
+    location.pathname.includes("forum#/") &&
     location.pathname.split("/").length === 4;
 
   const handleReset = () => {
-    navigate("/forum");
+    navigate("/");
     setRefresh(!refresh);
   };
 
@@ -123,7 +124,7 @@ const InnerApp = () => {
           </div>
           {!isThreadRoute && (
             <button
-              className="filterButton p-2 bg-light-main dark:bg-dark-main text-white rounded-full "
+              className="filterButton p-2 bg-light-main dark:bg-dark-main text-white rounded-full"
               onClick={handleFilterButtonClick}
             >
               <FilterAltIcon style={{ fontSize: "35px" }} />
@@ -147,13 +148,13 @@ const InnerApp = () => {
             <Routes>
               <Route
                 element={<Board triggerRefresh={refresh} setBoard={setBoard} />}
-                path="forum"
+                path="/"
               />
               <Route
                 element={<Board triggerRefresh={refresh} setBoard={setBoard} />}
-                path="forum/:boardSlug"
+                path="/:boardSlug"
               />
-              <Route element={<Thread />} path="forum/:boardSlug/:threadUuid" />
+              <Route element={<Thread />} path="/:boardSlug/:threadUuid" />
               <Route element={<NotFound />} path="*" />
             </Routes>
           </div>
@@ -167,3 +168,5 @@ const InnerApp = () => {
     </>
   );
 };
+
+// prevenging empty pushes

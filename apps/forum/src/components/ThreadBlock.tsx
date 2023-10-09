@@ -164,7 +164,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
   };
 
   const handleShare = () => {
-    const url = `${window.location.origin}/forum/${thread.board_id}/${thread.thread_id}`;
+    const url = `${window.location.origin}/forum#/${thread.board_id}/${thread.thread_id}`;
 
     navigator.clipboard.writeText(url).then(
       () => {

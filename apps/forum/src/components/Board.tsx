@@ -133,7 +133,7 @@ const Board = ({ triggerRefresh, setBoard }: any) => {
   return (
     // <div className="max-w-2/5 w-5/6 mx-auto h-full">
 
-    <div className="mx-auto px-2 h-full lg:w-5/6 max-w-[280px] sm:max-w-[900px] standard-style overflow-y-hidden">
+    <div className="mx-auto px-2 h-full lg:w-5/6 max-w-[380px] md:maw-w-[700px] lg:max-w-[900px] standard-style overflow-y-hidden">
       <CreateThread onNewThread={handleNewThread} />
       <div
         className="overflow-auto h-[calc(100%-150px)] mt-4 md:mt-8 lg:mt-12"

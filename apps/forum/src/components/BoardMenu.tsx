@@ -5,7 +5,7 @@ import boards from "@app/constants/boards.json";
 const BoardMenu = () => {
   return (
     <div className="pl-2 md:pl-4 lg:pl-10">
-      <h1 className="form-item-title">Topics</h1>
+      <h3 className="form-item-title">Topics</h3>
       <div className="flex flex-col sm:text-xl text-sm text-light-text1 text-light-text1 dark:text-dark-text1">
         {boards.map((board, i) => (
           <div

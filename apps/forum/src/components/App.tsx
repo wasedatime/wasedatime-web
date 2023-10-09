@@ -129,7 +129,7 @@ const InnerApp = () => {
             </div>
           )}
 
-          <div className="flex flex-col">
+          <div className="flex flex-col md:w-3/5">
             <Routes>
               <Route
                 element={<Board triggerRefresh={refresh} setBoard={setBoard} />}
@@ -142,6 +142,11 @@ const InnerApp = () => {
               <Route element={<Thread />} path="forum/:boardSlug/:threadUuid" />
               <Route element={<NotFound />} path="*" />
             </Routes>
+          </div>
+          <div className="flex flex-col lg:w-1/5 ">
+            <div className="hidden md:h-[500px] md:w-[250px] justify-self-end">
+              <h1></h1>
+            </div>
           </div>
         </div>
       </div>

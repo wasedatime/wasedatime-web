@@ -66,13 +66,13 @@
   border-radius: inherit; /* To maintain the same rounded corners as the parent */
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .left-side {
-      display: none !important;
+    display: none !important;
   }
 
   .filterButton {
-      display: block !important;
+    display: block !important;
   }
 }
 
@@ -91,4 +91,3 @@
   left: 15%;
   z-index: 99;
 }
-

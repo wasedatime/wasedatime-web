@@ -6,7 +6,7 @@ type Props = {};
 const FeedBackBox = (props: Props) => {
   return (
     <div className="pl-2 md:pl-4 lg:pl-10 overflow-y-auto">
-      <h1 className="form-item-title">Feedback</h1>
+      <h3 className="form-item-title">Feedback</h3>
       <p className="text-light-text1 dark:text-dark-text1 ">
         This is WasedaTime forum beta.
         <br />

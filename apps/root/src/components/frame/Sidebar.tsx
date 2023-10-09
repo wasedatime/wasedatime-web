@@ -115,6 +115,7 @@ const Sidebar = ({ navItems, openSignInModal }: SidebarProps) => {
               iconPath={item.path}
               expanded={expanded}
               currentPath={currentPath}
+              tooltip={item.tooltip}
             />
           </LinkOutsideRouter>
         ))}

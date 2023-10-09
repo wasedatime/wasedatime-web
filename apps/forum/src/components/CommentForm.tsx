@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import API from "@aws-amplify/api";
 import { SignInModal, getIdToken } from "wasedatime-ui";
@@ -23,6 +23,7 @@ const CommentForm: React.FC<CommentFormProps> = ({
   const [comment, setComment] = useState("");
   const { boardSlug, threadUuid } = useParams();
   const { t } = useTranslation();
+  const textareaRef = useRef(null);
 
   const handleFocusForm = async () => {
     if (userToken?.length <= 0) {
@@ -38,12 +39,23 @@ const CommentForm: React.FC<CommentFormProps> = ({
     }
   };
 
-  const handleTextChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleTextChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const textArea = textareaRef.current!;
+    textArea.style.height = "auto";
+    textArea.style.height = `${textArea.scrollHeight}px`;
     setComment(e.target.value);
   };
 
   const handleSubmit = async () => {
-    if (comment.length <= 0 || comment.length > 200) return;
+    if (comment.length <= 0) {
+      alert("Your comment cannot be empty.");
+      return;
+    }
+
+    if (comment.length > 200) {
+      alert("Your comment cannot exceed 200 characters.");
+      return;
+    }
 
     let idToken = userToken;
     if (idToken?.length <= 0) {
@@ -110,9 +122,10 @@ const CommentForm: React.FC<CommentFormProps> = ({
   };
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between items-center">
       {/* <div>Posted at ${time}</div> */}
-      <input
+      <textarea
+        ref={textareaRef}
         className="text-2xl text-light-text3 dark:text-dark-text1 w-full focus:text-light-text1 focus:ring border-2 mt-4 mb-2 rounded-lg px-4 py-2 standard-style"
         placeholder="Write your comment here (no more than 200 character)"
         value={comment}

@@ -56,6 +56,7 @@
     "vite-plugin-pwa": "0.12.0"
   },
   "dependencies": {
+    "@aws-amplify/api": "4.0.42",
     "@aws-amplify/auth": "4.5.6",
     "@aws-amplify/core": "4.5.6",
     "@emotion/react": "11.9.0",

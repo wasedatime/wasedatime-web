@@ -243,7 +243,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
             <img
               src={thread.url}
               alt="Thread Image"
-              className="block mx-auto p-4"
+              className="block mx-auto p-4 max-h-[calc(100vh-143px*2)]"
             />
           ) : null}
           <h2

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
 import HeaderWithModal from "@app/components/common/HeaderWithModal";
@@ -12,6 +12,7 @@ import FeedBackBox from "./FeedBackBox";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { API } from "@aws-amplify/api";
 import { getUserAttr, getIdToken, LoadingSpinner } from "wasedatime-ui";
+import { storeDate } from "@app/utils/storeDate";
 
 const App = () => {
   return (
@@ -68,6 +69,7 @@ const InnerApp = () => {
 
   useEffect(() => {
     fetchNotification();
+    storeDate();
   }, []);
 
   const handleFilterButtonClick = () => {

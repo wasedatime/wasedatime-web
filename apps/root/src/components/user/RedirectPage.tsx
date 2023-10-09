@@ -19,15 +19,14 @@ const RedirectPage = () => {
       if (window.location.search.includes("error_description")) {
         await timeout(5000)
         navigate("/")
+      } else {
+        await timeout(1000)
+        navigate("/")
       }
     }
 
     redirectToHomeAfter5Sec().catch((err) => console.error(err))
   }, [])
-
-  //! https://wasedatime.com/verify?error_description=Loginfail....
-
-  //! https://wasedatime.com/verify -> considered as success
 
   return window.location.search.includes("error_description") ? (
     <div className="mt-20 text-center">

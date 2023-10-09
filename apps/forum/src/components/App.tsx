@@ -12,6 +12,8 @@ import FeedBackBox from "./FeedBackBox";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { API } from "@aws-amplify/api";
 import { getUserAttr, getIdToken, LoadingSpinner } from "wasedatime-ui";
+import "./static/styles.css";
+
 
 const App = () => {
   return (
@@ -41,6 +43,8 @@ const InnerApp = () => {
   const [board, setBoard] = useState("");
   const [commentNotify, setCommentNotify] = useState(false);
   const navigate = useNavigate();
+  const [filterButtonClicked, setFilterButtonClicked] = useState(false);
+  
 
   const handleReset = () => {
     navigate("/forum");
@@ -69,6 +73,10 @@ const InnerApp = () => {
     fetchNotification();
   }, []);
 
+  const handleFilterButtonClick = () => {
+    setFilterButtonClicked(!filterButtonClicked)
+  }
+
   return (
     <>
       <div className="flex h-[67px] shrink-0 grow-0">
@@ -88,16 +96,13 @@ const InnerApp = () => {
         />
       </div>
       <div className="flex flex-col h-[calc(100vh-50px)] mt-[23px]">
-        {/* <div className="basis-[calc(100vh-187px)] lg:basis-[80%] dark:text-dark-text1"> */}
         <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-143px)]">
-          <div className="flex flex-col w-1/5">
-            {/* <BreadCrumbs onTriggerFetch={handleTriggerFetch} /> */}
+          <div className="left-side flex flex-col w-1/5">
             <div className="pl-2 lg:pl-10">
               <button
                 onClick={handleReset}
                 className="p-2 bg-light-main text-white rounded-lg my-1 w-full"
               >
-                {/* <HomeIcon fontSize="large" /> */}
                 <ArrowBackIcon fontSize="large" />
               </button>
             </div>
@@ -105,7 +110,22 @@ const InnerApp = () => {
             <BoardMenu />
             <FeedBackBox />
           </div>
-          <div className="flex flex-col md:w-3/5 w-4/5">
+          <button className="filterButton p-2 bg-light-main text-white rounded-lg h-10" onClick={handleFilterButtonClick}>Filter</button>
+          { filterButtonClicked && 
+          <div className="filterModal flex flex-col w-70 h-70 absolute top-1/4 left-1/10 flex items-center justify-center rounded-lg bg-black">
+              <button
+                onClick={handleReset}
+                className="p-2 bg-light-main text-white rounded-lg my-1 w-full"
+              >
+                <ArrowBackIcon fontSize="large" />
+              </button>
+            <FilterMenu />
+            <BoardMenu />
+            <FeedBackBox />
+          </div>
+          }
+          
+          <div className="flex flex-col">
             <Routes>
               <Route
                 element={<Board triggerRefresh={refresh} setBoard={setBoard} />}
@@ -118,11 +138,6 @@ const InnerApp = () => {
               <Route element={<Thread />} path="forum/:boardSlug/:threadUuid" />
               <Route element={<NotFound />} path="*" />
             </Routes>
-          </div>
-          <div className="flex flex-col lg:w-1/5 ">
-            <div className="hidden md:h-[500px] md:w-[250px] justify-self-end">
-              <h1></h1>
-            </div>
           </div>
         </div>
       </div>

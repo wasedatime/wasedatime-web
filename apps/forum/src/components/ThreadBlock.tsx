@@ -189,7 +189,7 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
       <div
         className={
           isPreview
-            ? `border-2 mb-10 mr-4 rounded-xl shadow-lg p-6 standard-style-hover max-w-[290px] lg:max-w-[900px]`
+            ? `border-2 mb-10 mr-4 rounded-xl shadow-lg p-6 standard-style-hover lg:max-w-[900px]`
             : `cursor-default bg-light-card1 standard-style`
         }
       >

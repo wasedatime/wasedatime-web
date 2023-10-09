@@ -112,7 +112,7 @@ const InnerApp = () => {
           </div>
           <button className="filterButton p-2 bg-light-main text-white rounded-lg h-10" onClick={handleFilterButtonClick}>Filter</button>
           { filterButtonClicked && 
-          <div className="filterModal flex flex-col w-70 h-70 absolute top-1/4 left-1/10 flex items-center justify-center rounded-lg bg-black">
+          <div className="filterModal rounded-lg bg-black">
               <button
                 onClick={handleReset}
                 className="p-2 bg-light-main text-white rounded-lg my-1 w-full"

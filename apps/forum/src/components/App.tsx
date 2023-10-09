@@ -105,7 +105,7 @@ const InnerApp = () => {
           commentNotify={commentNotify}
         />
       </div>
-      <div className="flex flex-col h-[calc(100vh-50px)] mt-[23px]">
+      <div className="flex flex-col h-fit mt-[23px]">
         <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-100px)]">
           <div className="left-side flex flex-col w-1/5">
             <div className="pl-2 lg:pl-10">

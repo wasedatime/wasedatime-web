@@ -1,6 +1,12 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import HeaderWithModal from "@app/components/common/HeaderWithModal";
 import { ThemeContext } from "@app/utils/theme-context";
 import Board from "./Board";
@@ -35,6 +41,7 @@ const NotFound = () => {
 };
 
 const InnerApp = () => {
+  const location = useLocation();
   const { t, i18n } = useTranslation();
 
   const { theme, setTheme } = React.useContext(ThemeContext);
@@ -43,6 +50,10 @@ const InnerApp = () => {
   const [commentNotify, setCommentNotify] = useState(false);
   const navigate = useNavigate();
   const [filterButtonClicked, setFilterButtonClicked] = useState(false);
+
+  const isThreadRoute =
+    location.pathname.includes("forum/") &&
+    location.pathname.split("/").length === 4;
 
   const handleReset = () => {
     navigate("/forum");
@@ -95,7 +106,7 @@ const InnerApp = () => {
         />
       </div>
       <div className="flex flex-col h-[calc(100vh-50px)] mt-[23px]">
-        <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-143px)]">
+        <div className="flex justify-between pl-2 gap-4 h-[calc(100vh-100px)]">
           <div className="left-side flex flex-col w-1/5">
             <div className="pl-2 lg:pl-10">
               <button
@@ -109,12 +120,14 @@ const InnerApp = () => {
             <BoardMenu />
             <FeedBackBox />
           </div>
-          <button
-            className="filterButton p-2 bg-light-main text-white rounded-lg h-10"
-            onClick={handleFilterButtonClick}
-          >
-            Filter
-          </button>
+          {!isThreadRoute && (
+            <button
+              className="filterButton p-2 bg-light-main text-white rounded-lg h-10"
+              onClick={handleFilterButtonClick}
+            >
+              Filter
+            </button>
+          )}
           {filterButtonClicked && (
             <div className="filterModal rounded-lg bg-black">
               <button

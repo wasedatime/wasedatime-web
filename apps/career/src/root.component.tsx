@@ -29,7 +29,7 @@ ReactGA.initialize(import.meta.env.VITE_GA_ID, {})
 
 export default function Root(props) {
   return (
-    <section className="h-[calc(100vh-50px)] sm:h-screen">
+    <section className="h-screen">
       <RecoilRoot>
         <ThemeProvider>
           <App />

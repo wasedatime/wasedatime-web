@@ -1,41 +1,54 @@
 import React, { useEffect, useContext } from "react"
-import {
-  HashRouter,
-  BrowserRouter,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom"
-import { LoadingSpinner } from "wasedatime-ui"
+import { HashRouter, Routes, Route } from "react-router-dom"
 import { ThemeContext } from "@app/utils/theme-context"
 import Joblist from "@app/components/Joblist"
 import Jobdetail from "@app/components/Jobdetail"
+import { useTranslation } from "react-i18next";
+import HeaderWithModal from "@app/components/common/HeaderWithModal"
+import Header from "@app/components/common/Header"
+
 
 type Props = {}
 
-const NotFound = () => {
-  const { theme } = React.useContext(ThemeContext)
-  const navigate = useNavigate()
-  useEffect(() => navigate("/"))
+const App = () => {
+  return (
+    <div className="flex flex-col h-screen">
+      <HashRouter>
+        <InnerApp />
+      </HashRouter>
+    </div>
+  );
+};
 
-  return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />
+const PageRoutes = () => {
+  return (
+      <Routes>
+        <Route element={<Joblist />} path="/" />
+        <Route element={<Jobdetail />} path="/:jobId" />
+      </Routes>
+  )
 }
 
-const App = (props: Props) => {
-  const PageRoutes = () => {
-    return (
-      <HashRouter>
-        <Routes>
-          <Route element={<Joblist />} path="/" />
-          <Route element={<Jobdetail />} path="/:jobId" />
-          <Route element={<NotFound />} path="*" />
-        </Routes>
-      </HashRouter>
-    )
-  }
+const InnerApp = (props: Props) => {
+  const { t, i18n } = useTranslation();
+  const { theme, setTheme } = React.useContext(ThemeContext);
+  
 
   return (
     <div className="flex h-screen items-center justify-center">
+      <div className="flex h-[67px] shrink-0 grow-0">
+        <Header
+          title={t("navigation.career")}
+          onInputChange={() => {}}
+          placeholder={t("")}
+          inputText=""
+          disabled={true}
+          isBlur={true}
+          theme={theme}
+          setTheme={setTheme}
+          changeLang={(lng) => i18n.changeLanguage(lng)}
+        />
+      </div>
       <div className="flex flex-col md:w-3/5">
         <PageRoutes />
       </div>

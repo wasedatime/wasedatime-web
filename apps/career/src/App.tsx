@@ -27,7 +27,7 @@ const App = (props: Props) => {
       <HashRouter>
         <Routes>
           <Route element={<Joblist />} path="/" />
-          <Route element={<Jobdetail />} path="/:jobDetail" />
+          <Route element={<Jobdetail />} path="/:jobId" />
           <Route element={<NotFound />} path="*" />
         </Routes>
       </HashRouter>

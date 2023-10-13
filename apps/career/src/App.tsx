@@ -35,7 +35,7 @@ const InnerApp = (props: Props) => {
   
 
   return (
-    <div className="flex h-screen items-center justify-center">
+    <>
       <div className="flex h-[67px] shrink-0 grow-0">
         <Header
           title={t("navigation.career")}
@@ -52,7 +52,7 @@ const InnerApp = (props: Props) => {
       <div className="flex flex-col md:w-3/5">
         <PageRoutes />
       </div>
-    </div>
+    </>
   )
 }
 

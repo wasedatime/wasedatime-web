@@ -39,6 +39,8 @@ const titleWrapperStyle = {
 }
 
 const logoWrapperStyle = {
+  display: 'flex',
+  alignItems: 'center',
   flex: "3",
   padding: "0px 0px 0px 1em",
 }
@@ -161,7 +163,10 @@ const Header = ({
                 alt="WasedaTime English Small Logo"
                 className="h-[50px] w-[50px]"
               />
-            </div>
+              <h2 className="text-2xl text-light-text1 dark:text-dark-text1 ml-5 whitespace-nowrap"> 
+                {title}
+              </h2>
+          </div>
           ) : (
             <header style={titleWrapperStyle}>
               <h2 style={pageTitleStyle(theme)}>{title}</h2>

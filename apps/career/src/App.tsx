@@ -1,42 +1,46 @@
-import React, { useState, useEffect } from "react"
-import Header from "./components/common/Header"
-import HeaderWithModal from "./components/common/HeaderWithModal"
-import { HashRouter } from "react-router-dom"
-import { useTranslation } from "react-i18next"
-import { ThemeContext } from "./utils/theme-context"
+import React, { useEffect, useContext } from "react"
+import {
+  HashRouter,
+  BrowserRouter,
+  Routes,
+  Route,
+  useNavigate,
+} from "react-router-dom"
+import { LoadingSpinner } from "wasedatime-ui"
+import { ThemeContext } from "@app/utils/theme-context"
+import Joblist from "@app/components/Joblist"
+import Jobdetail from "@app/components/Jobdetail"
+
 type Props = {}
-// className = "flex h-screen flex-col"
-const App = () => {
-  return (
-    <div className="flex h-screen flex-col">
+
+const NotFound = () => {
+  const { theme } = React.useContext(ThemeContext)
+  const navigate = useNavigate()
+  useEffect(() => navigate("/"))
+
+  return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />
+}
+
+const App = (props: Props) => {
+  const PageRoutes = () => {
+    return (
       <HashRouter>
-        <InnerApp />
+        <Routes>
+          <Route element={<Joblist />} path="/" />
+          <Route element={<Jobdetail />} path="/:jobId" />
+          <Route element={<NotFound />} path="*" />
+        </Routes>
       </HashRouter>
+    )
+  }
+
+  return (
+    <div className="flex h-screen items-center justify-center">
+      <div className="flex flex-col md:w-3/5">
+        <PageRoutes />
+      </div>
     </div>
   )
 }
 
-const InnerApp = () => {
-  const { t, i18n } = useTranslation()
-  const [commentNotify, setCommentNotify] = useState(false)
-  const { theme, setTheme } = React.useContext(ThemeContext)
-  return (
-    <>
-      <div className="flex h-[67px] shrink-0 grow-0">
-        <Header
-          title={t("navigation.campus")}
-          onInputChange={() => {}}
-          placeholder={t("search placeholder")}
-          inputText=""
-          disabled
-          isBlur={false}
-          theme={theme}
-          setTheme={setTheme}
-          changeLang={(lng) => i18n.changeLanguage(lng)}
-          commentNotify={commentNotify}
-        />
-      </div>
-    </>
-  )
-}
 export default App

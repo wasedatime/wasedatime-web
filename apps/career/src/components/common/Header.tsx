@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import MediaQuery from "react-responsive";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react"
+import MediaQuery from "react-responsive"
+import { useNavigate } from "react-router-dom"
 
-import colors from "wasedatime-ui/colors";
-import LanguageMenu from "./LanguageMenu";
-import { sizes } from "wasedatime-ui";
-import logo from "@app/assets/logo.svg";
-import { ThemeToggle } from "./ThemeToggle";
-import { THEME } from "@app/types/theme";
-import { SearchIcon } from "../icons/SearchIcon";
-import CommentNotification from "./CommentNotification";
+import colors from "wasedatime-ui/colors"
+import LanguageMenu from "./LanguageMenu"
+import { sizes } from "wasedatime-ui"
+import logo from "@app/assets/logo.svg"
+import { ThemeToggle } from "./ThemeToggle"
+import { THEME } from "@app/types/theme"
+import { SearchIcon } from "../icons/SearchIcon"
+import CommentNotification from "./CommentNotification"
 
 const headerStyle = (isBlur: boolean, theme: THEME) => {
-  const lightBackgroundColor = isBlur ? "#FAFAFA30" : colors.light.bgSide;
-  const darkBackgroundColor = isBlur ? "#24252770" : colors.dark.bgSide;
+  const lightBackgroundColor = isBlur ? "#FAFAFA30" : colors.light.bgSide
+  const darkBackgroundColor = isBlur ? "#24252770" : colors.dark.bgSide
 
   return {
     height: "67px",
@@ -32,28 +32,28 @@ const headerStyle = (isBlur: boolean, theme: THEME) => {
     gridRow: "1 / 2",
     display: "flex",
     flexDirection: "row" as "row",
-  };
-};
+  }
+}
 
 const titleWrapperStyle = {
   flex: "5",
   paddingRight: "0px",
-};
+}
 
 const logoWrapperStyle = {
   flex: "3",
   padding: "0px 0px 0px 1em",
-};
+}
 
 const searchBarWrapperStyle = {
   flex: "8",
   margin: "auto 0px",
-};
+}
 
 const mobileSearchBarWrapperStyle = {
   flex: "10",
   margin: "auto 0px",
-};
+}
 
 const headerMenuWrapperStyle = {
   flex: "3",
@@ -61,7 +61,7 @@ const headerMenuWrapperStyle = {
   display: "flex",
   flexDirection: "row" as "row",
   justifyContent: "flex-end",
-};
+}
 
 const inputStyle = (theme: THEME) => ({
   borderRadius: "25px",
@@ -73,28 +73,28 @@ const inputStyle = (theme: THEME) => ({
   borderColor: theme === "light" ? colors.light.bgSide : colors.dark.text3,
   backgroundColor: theme === "light" ? colors.light.bgMain : colors.dark.text3,
   color: theme === "light" ? colors.light.text1 : colors.dark.text1,
-});
+})
 
 const pageTitleStyle = (theme: THEME) => ({
   fontWeight: 500,
   paddingLeft: "100px",
   fontSize: "32px",
   color: theme === "light" ? colors.light.text1 : colors.dark.text1,
-});
+})
 
 type HeaderProps = {
-  title: string;
-  onInputChange(x: string): void;
-  placeholder: string;
-  inputText: string | string[];
-  disabled?: boolean;
-  isBlur: boolean;
-  changeLang(x: string): void;
-  theme?: THEME;
-  setTheme?: (theme: THEME) => void;
-  onSearchBarClick?: () => void;
-  commentNotify: boolean;
-};
+  title: string
+  onInputChange(x: string): void
+  placeholder: string
+  inputText: string | string[]
+  disabled?: boolean
+  isBlur: boolean
+  changeLang(x: string): void
+  theme?: THEME
+  setTheme?: (theme: THEME) => void
+  onSearchBarClick?: () => void
+  commentNotify: boolean
+}
 
 const Header = ({
   title,
@@ -109,17 +109,17 @@ const Header = ({
   onSearchBarClick = () => {},
   commentNotify,
 }: HeaderProps) => {
-  let navigate = useNavigate();
-  const [isInputExpanded, setIsInputExpanded] = useState(false);
+  let navigate = useNavigate()
+  const [isInputExpanded, setIsInputExpanded] = useState(false)
 
   const searchBar = (
     <label className="ml-0 flex flex-row justify-end md:justify-center">
       {!isInputExpanded && (
         <header
-          className="ml-2 md:hidden self-center"
+          className="ml-2 self-center md:hidden"
           style={titleWrapperStyle}
         >
-          <h2 className="text-2xl text-light-text1 dark:text-dark-text1">
+          <h2 className="text-light-text1 dark:text-dark-text1 text-2xl">
             {title}
           </h2>
         </header>
@@ -131,8 +131,8 @@ const Header = ({
           onInputChange ? (e) => onInputChange(e.target.value) : () => {}
         }
         onFocus={() => {
-          setIsInputExpanded(true);
-          onSearchBarClick();
+          setIsInputExpanded(true)
+          onSearchBarClick()
         }}
         onBlur={() => setIsInputExpanded(false)}
         value={inputText || ""}
@@ -141,17 +141,17 @@ const Header = ({
       />
       <span
         className={
-          "w-0 -translate-x-8 h-[40px] py-[6px] text-light-text2 dark:text-dark-text2"
+          "text-light-text2 dark:text-dark-text2 h-[40px] w-0 -translate-x-8 py-[6px]"
         }
         onClick={() => {
-          setIsInputExpanded(true);
-          onSearchBarClick();
+          setIsInputExpanded(true)
+          onSearchBarClick()
         }}
       >
         <SearchIcon />
       </span>
     </label>
-  );
+  )
 
   return (
     <header style={headerStyle(isBlur, theme)}>
@@ -162,7 +162,7 @@ const Header = ({
               <img
                 src={new URL(logo, import.meta.url).href}
                 alt="WasedaTime English Small Logo"
-                className="w-[50px] h-[50px]"
+                className="h-[50px] w-[50px]"
               />
             </div>
           ) : (
@@ -189,7 +189,7 @@ const Header = ({
         <LanguageMenu changeLang={changeLang} />
       </div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

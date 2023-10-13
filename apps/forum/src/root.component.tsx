@@ -1,7 +1,7 @@
 import React from "react";
 import { configAuth } from "wasedatime-ui";
 import ReactGA from "react-ga4";
-import App from "@app/components/App";
+import App from "@app/App";
 import { ThemeProvider } from "@app/utils/theme-context";
 import { RecoilRoot } from "recoil";
 

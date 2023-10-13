@@ -29,6 +29,7 @@ import { ThemeContext, ThemeProvider } from "@app/utils/theme-context"
 import { getCurrentDateInUTC, extractDate } from "@app/utils/getDate"
 import { shouldCallApi } from "@app/utils/shouldCallApi"
 import { fetchNotificaiton } from "@app/utils/fetchNotification"
+import { CareerIcon, CareerIconHovered } from "@app/components/icons/CareerIcon"
 
 const Sidebar = lazy(() => import("@app/components/frame/Sidebar"))
 const MobileNav = lazy(() => import("@app/components/frame/MobileNav"))
@@ -145,6 +146,12 @@ const Nav = () => {
       icon: <ForumIcon />,
       iconHovered: <ForumIconHovered />,
       tooltip: "Check out the new posts!",
+    },
+    {
+      name: t("navigation.career"),
+      path: "/career",
+      icon: <CareerIcon />,
+      iconHovered: <CareerIconHovered />,
     },
     // {
     //   name: t("navigation.campus"),

@@ -26,6 +26,9 @@ dependencies:
   react-responsive:
     specifier: 9.0.0-beta.10
     version: 9.0.0-beta.10(react@17.0.2)
+  react-router-dom:
+    specifier: ^6.16.0
+    version: 6.16.0(react-dom@17.0.2)(react@17.0.2)
   recoil:
     specifier: ^0.7.7
     version: 0.7.7(react-dom@17.0.2)(react-native@0.72.6)(react@17.0.2)
@@ -3188,6 +3191,11 @@ packages:
       react-native: 0.72.6(@babel/core@7.17.5)(@babel/preset-env@7.16.11)(react@17.0.2)
     dev: false
 
+  /@remix-run/router@1.9.0:
+    resolution: {integrity: sha512-bV63itrKBC0zdT27qYm6SDZHlkXwFL1xMBuhkn+X7l0+IIhNaH5wuuvZKp6eKhCD4KFhujhfhCT1YxXW6esUIA==}
+    engines: {node: '>=14.0.0'}
+    dev: false
+
   /@rollup/pluginutils@4.2.1:
     resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
     engines: {node: '>= 8.0.0'}
@@ -6170,6 +6178,29 @@ packages:
       prop-types: 15.8.1
       react: 17.0.2
       shallow-equal: 1.2.1
+    dev: false
+
+  /react-router-dom@6.16.0(react-dom@17.0.2)(react@17.0.2):
+    resolution: {integrity: sha512-aTfBLv3mk/gaKLxgRDUPbPw+s4Y/O+ma3rEN1u8EgEpLpPe6gNjIsWt9rxushMHHMb7mSwxRGdGlGdvmFsyPIg==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+      react-dom: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.9.0
+      react: 17.0.2
+      react-dom: 17.0.2(react@17.0.2)
+      react-router: 6.16.0(react@17.0.2)
+    dev: false
+
+  /react-router@6.16.0(react@17.0.2):
+    resolution: {integrity: sha512-VT4Mmc4jj5YyjpOi5jOf0I+TYzGpvzERy4ckNSvSh2RArv8LLoCxlsZ2D+tc7zgjxcY34oTz2hZaeX5RVprKqA==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      react: '>=16.8'
+    dependencies:
+      '@remix-run/router': 1.9.0
+      react: 17.0.2
     dev: false
 
   /react-shallow-renderer@16.15.0(react@17.0.2):

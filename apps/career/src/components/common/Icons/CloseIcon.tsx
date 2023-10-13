@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-import { Close } from "@mui/icons-material";
-// @mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close"
 
-export const CloseIcon = () => <Close fontSize="large" />;
+export const closeIcon = () => <CloseIcon fontSize="large" />

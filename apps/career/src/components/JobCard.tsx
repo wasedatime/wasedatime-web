@@ -1,5 +1,5 @@
 import React from "react"
-
+import WorkIcon from "@mui/icons-material/Work"
 interface JobCardProps {
   title: string
   description: string
@@ -15,7 +15,10 @@ const JobCard: React.FC<JobCardProps> = ({
 }) => {
   return (
     <div className="rounded-lg bg-white p-4 shadow-md">
-      <h2 className="mb-2 text-2xl font-bold">{title}</h2>
+      <div className="flex justify-between">
+        <h2 className="mb-2 text-2xl font-bold">{title}</h2>
+        <WorkIcon fontSize="large" />
+      </div>
       <p className="mb-4 text-gray-600">{description}</p>
       <div className="flex justify-between text-gray-500">
         <p>{location}</p>

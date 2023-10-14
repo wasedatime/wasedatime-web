@@ -3,36 +3,34 @@ import { HashRouter, Routes, Route } from "react-router-dom"
 import { ThemeContext } from "@app/utils/theme-context"
 import Joblist from "@app/components/Joblist"
 import Jobdetail from "@app/components/Jobdetail"
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next"
 import HeaderWithModal from "@app/components/common/HeaderWithModal"
 import Header from "@app/components/common/Header"
-
 
 type Props = {}
 
 const App = () => {
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex h-screen flex-col">
       <HashRouter>
         <InnerApp />
       </HashRouter>
     </div>
-  );
-};
+  )
+}
 
 const PageRoutes = () => {
   return (
-      <Routes>
-        <Route element={<Joblist />} path="/" />
-        <Route element={<Jobdetail />} path="/:jobId" />
-      </Routes>
+    <Routes>
+      <Route element={<Joblist />} path="/" />
+      <Route element={<Jobdetail />} path="/:jobId" />
+    </Routes>
   )
 }
 
 const InnerApp = (props: Props) => {
-  const { t, i18n } = useTranslation();
-  const { theme, setTheme } = React.useContext(ThemeContext);
-  
+  const { t, i18n } = useTranslation()
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
   return (
     <>

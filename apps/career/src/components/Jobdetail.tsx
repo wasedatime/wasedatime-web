@@ -12,6 +12,7 @@ import { Link, useLocation } from "react-router-dom"
 const Jobdetail = () => {
   const location = useLocation()
   const jobData = location.state
+  const { description, title, datePosted, jobID, located } = jobData
   return (
     <div
       className="flex w-screen flex-col"
@@ -36,11 +37,11 @@ const Jobdetail = () => {
           className="mr-60 mb-14 flex h-20 w-full justify-center text-5xl font-bold"
           // style={{ outline: "2px solid limegreen" }}
         >
-          Job Detail
+          {title}
         </h1>
       </div>
 
-      <div className="ml-10 self-start">{jobData.description}</div>
+      <div className="ml-10 self-start">{description}</div>
       <img src="" alt=""></img>
     </div>
   )

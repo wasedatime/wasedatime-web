@@ -1,4 +1,10 @@
 //Program to create random Data, will be deleted in the future
+import { v4 as uuidv4 } from "uuid"
+
+function generateRandomID(): string {
+  const randomID = uuidv4()
+  return randomID
+}
 
 function generateRandomFutureDate(
   minDaysInFuture: number,
@@ -52,15 +58,16 @@ function generateJobListing() {
     const randomIndex = Math.floor(Math.random() * arr.length)
     return arr[randomIndex]
   }
-
-  const title = randomElement(titles)
-  const location = randomElement(locations)
-  const description = randomElement(descriptions)
+  const jobID : string = generateRandomID()
+  const title : string = randomElement(titles)
+  const location : string = randomElement(locations)
+  const description : string = randomElement(descriptions)
   const datePosted = new Date(
     generateRandomFutureDate(1, 365)
   ).toLocaleDateString()
 
   return {
+    jobID,
     title,
     location,
     description,

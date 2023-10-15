@@ -6,6 +6,7 @@ import Jobdetail from "@app/components/Jobdetail"
 import { useTranslation } from "react-i18next"
 import HeaderWithModal from "@app/components/common/HeaderWithModal"
 import Header from "@app/components/common/Header"
+import { jobData as job } from "./Data/JobData"
 
 type Props = {}
 
@@ -36,7 +37,7 @@ const InnerApp = (props: Props) => {
     <>
       <div className="flex h-[67px] shrink-0 grow-0">
         <Header
-          title={t("navigation.career")}
+          title={t("Career")}
           onInputChange={() => {}}
           placeholder={t("")}
           inputText=""

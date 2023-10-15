@@ -1,7 +1,7 @@
 import React from "react"
 import JobCard from "./JobCard"
 import { jobData } from "@app/Data/JobData"
-import WorkIcon from "@mui/icons-material/Work"
+
 type Props = {}
 
 const Joblist = (props: Props) => {
@@ -12,6 +12,7 @@ const Joblist = (props: Props) => {
         {jobData.map((job, index) => (
           <JobCard
             key={index}
+            jobID={job.jobID}
             title={job.title}
             description={job.description}
             location={job.location}

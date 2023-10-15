@@ -13,17 +13,29 @@ const Jobdetail = () => {
   const location = useLocation()
   const jobData = location.state
   return (
-    <div className="flex w-screen flex-col">
-      <div className=" mb-10 mt-10 flex justify-center">
-        <div className="mr-0">
+    <div
+      className="flex w-screen flex-col"
+      // style={{ outline: "2px solid limegreen" }}
+    >
+      <div className="mb-10 mt-10 flex">
+        <div className="max-h-20">
           <Link to={"/"}>
-            <button className=" mr-10 h-20 w-40 justify-self-start  rounded bg-blue-500 py-2 px-4 font-bold  text-white hover:bg-blue-700">
+            <button
+              onClick={(e) => {
+                e.stopPropagation()
+              }}
+              className="h-full w-40 rounded bg-blue-500 py-2 px-4  font-bold text-white hover:bg-blue-700"
+              // style={{ outline: "2px solid limegreen" }}
+            >
               Home
             </button>
           </Link>
         </div>
 
-        <h1 className="mb-14 justify-self-center text-5xl font-bold">
+        <h1
+          className="mr-60 mb-14 flex h-20 w-full justify-center text-5xl font-bold"
+          // style={{ outline: "2px solid limegreen" }}
+        >
           Job Detail
         </h1>
       </div>

@@ -48,7 +48,8 @@ const InnerApp = (props: Props) => {
           changeLang={(lng) => i18n.changeLanguage(lng)}
         />
       </div>
-      <div className="flex flex-col md:w-3/5">
+      <div className="flex flex-col md:w-3/5 ">
+        {/* md:w-3/5 */}
         <PageRoutes />
       </div>
     </>

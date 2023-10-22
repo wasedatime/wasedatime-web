@@ -61,6 +61,7 @@ const Thread = () => {
     )
       .then((res) => {
         var commentRes = res.data.data;
+        console.log(commentRes);
         setComments(commentRes);
       })
       .catch((e) => {

@@ -134,6 +134,7 @@ const Comment = ({ comment, thread, setComments, setThread }: Props) => {
     <Block actions={actions}>
       <div className="border-2 rounded-xl px-4 py-2 text-light-text2 mt-4 standard-style flex flex-row justify-between items-center">
         <div>
+          <span className="text-sm my-auto p-2">{comment.author}</span>
           <h2 className="text-2xl p-2 text-left">
             {convertUrlsToLinks(comment.body)}
           </h2>

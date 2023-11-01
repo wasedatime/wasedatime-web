@@ -129,12 +129,29 @@ const Comment = ({ comment, thread, setComments, setThread }: Props) => {
   };
 
   const time = timeFormatter(comment);
+  
+  const [nameFlag, setNameFlag] = useState(false);
+  const toggleExplain = ()=> {
+    setNameFlag( !nameFlag );
+  }
+  
 
   return (
     <Block actions={actions}>
       <div className="border-2 rounded-xl px-4 py-2 text-light-text2 mt-4 standard-style flex flex-row justify-between items-center">
         <div>
-          <span className="text-sm my-auto p-2">{comment.author}</span>
+          <h2 className="relative text-xl p-1 group">
+            <span className="absolute text-red-600/100">{comment.author}</span>
+            <span onClick={toggleExplain}>
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-40 h-6">
+               <path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" />
+              </svg>
+            </span>
+            {nameFlag && 
+            <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 standard-style">
+              We don't collect user info!\nTreat this code as user name~ 
+            </div>}
+          </h2>
           <h2 className="text-2xl p-2 text-left">
             {convertUrlsToLinks(comment.body)}
           </h2>

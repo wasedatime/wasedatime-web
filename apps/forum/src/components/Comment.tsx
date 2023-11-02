@@ -149,7 +149,7 @@ const Comment = ({ comment, thread, setComments, setThread }: Props) => {
             </span>
             {nameFlag && 
             <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700 standard-style">
-              We don't collect user info!\nTreat this code as user name~ 
+              We don't collect user info! Treat this code as user name~ 
             </div>}
           </h2>
           <h2 className="text-2xl p-2 text-left">

@@ -1,12 +1,13 @@
 import React, { useEffect, useContext } from "react"
 import { HashRouter, Routes, Route } from "react-router-dom"
 import { ThemeContext } from "@app/utils/theme-context"
-import Joblist from "@app/components/Joblist"
-import Jobdetail from "@app/components/Jobdetail"
+import Joblist from "@app/components/joblist/Joblist"
+import Jobdetail from "@app/components/jobdetail/Jobdetail"
 import { useTranslation } from "react-i18next"
 import HeaderWithModal from "@app/components/common/HeaderWithModal"
 import Header from "@app/components/common/Header"
 import { jobData as job } from "./Data/JobData"
+import JobPage from "@app/components/JobPage"
 
 type Props = {}
 
@@ -23,7 +24,7 @@ const App = () => {
 const PageRoutes = () => {
   return (
     <Routes>
-      <Route element={<Joblist />} path="/" />
+      <Route element={<JobPage />} path="/" />
       <Route element={<Jobdetail />} path="/:jobId" />
     </Routes>
   )
@@ -48,8 +49,9 @@ const InnerApp = (props: Props) => {
           changeLang={(lng) => i18n.changeLanguage(lng)}
         />
       </div>
-      <div className="flex flex-col md:w-3/5 ">
+      <div className="container mx-auto h-[calc(100vh-150px)]">
         {/* md:w-3/5 */}
+
         <PageRoutes />
       </div>
     </>

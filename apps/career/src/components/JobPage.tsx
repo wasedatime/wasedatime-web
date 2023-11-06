@@ -1,7 +1,12 @@
 import React from "react"
+import Joblist from "./joblist/Joblist"
 
 function JobPage() {
-  return <div>JobPage</div>
+  return (
+    <>
+      <Joblist />
+    </>
+  )
 }
 
 export default JobPage

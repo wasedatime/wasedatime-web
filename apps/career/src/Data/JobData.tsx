@@ -58,10 +58,10 @@ function generateJobListing() {
     const randomIndex = Math.floor(Math.random() * arr.length)
     return arr[randomIndex]
   }
-  const jobID : string = generateRandomID()
-  const title : string = randomElement(titles)
-  const location : string = randomElement(locations)
-  const description : string = randomElement(descriptions)
+  const jobID: string = generateRandomID()
+  const title: string = randomElement(titles)
+  const location: string = randomElement(locations)
+  const description: string = randomElement(descriptions)
   const datePosted = new Date(
     generateRandomFutureDate(1, 365)
   ).toLocaleDateString()
@@ -85,7 +85,7 @@ function generateJobListings(count: number) {
 }
 
 // Generate, for example, 10 job listings
-export const jobData = generateJobListings(10)
+export const jobData = generateJobListings(4)
 
 // Display the generated data
 // console.log(jobData)

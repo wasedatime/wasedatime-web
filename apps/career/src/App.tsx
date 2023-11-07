@@ -6,8 +6,6 @@ import Jobdetail from "@app/components/jobdetail/Jobdetail"
 import { useTranslation } from "react-i18next"
 import HeaderWithModal from "@app/components/common/HeaderWithModal"
 import Header from "@app/components/common/Header"
-import { jobData as job } from "./Data/JobData"
-import JobPage from "@app/components/JobPage"
 
 type Props = {}
 
@@ -24,7 +22,7 @@ const App = () => {
 const PageRoutes = () => {
   return (
     <Routes>
-      <Route element={<JobPage />} path="/" />
+      <Route element={<Joblist />} path="/" />
       <Route element={<Jobdetail />} path="/:jobId" />
     </Routes>
   )
@@ -49,10 +47,12 @@ const InnerApp = (props: Props) => {
           changeLang={(lng) => i18n.changeLanguage(lng)}
         />
       </div>
-      <div className="container mx-auto h-[calc(100vh-127px)] overflow-y-auto px-2">
-        {/* md:w-3/5 */}
+      <div className="h-[calc(100vh-127px)] overflow-y-auto">
+        <div className="container mx-auto px-2">
+          {/* md:w-3/5 */}
 
-        <PageRoutes />
+          <PageRoutes />
+        </div>
       </div>
     </>
   )

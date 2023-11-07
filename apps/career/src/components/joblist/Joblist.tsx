@@ -1,15 +1,15 @@
 import React from "react"
 import JobCard from "@app/components/joblist/JobCard"
 import jobData from "@app/constants/dummy.json"
+import Profile from "./Profile"
 
 type Props = {}
 
 const Joblist = (props: Props) => {
   return (
-    <div className="grid grid-cols-12 place-items-center justify-center gap-y-6 lg:gap-10">
-      <div className="col-span-12 ">
-        <h1 className="py-14 text-center text-8xl font-bold">Careers</h1>
-        <div className="pt-6">
+    <div className="grid grid-cols-12 gap-y-6 lg:gap-10 lg:gap-y-0">
+      <div className="col-span-12 lg:col-span-9">
+        <div className="mt-14 pt-6">
           {jobData.map((job, index) => (
             <JobCard
               key={index}
@@ -22,6 +22,11 @@ const Joblist = (props: Props) => {
               datePosted={job.datePosted}
             />
           ))}
+        </div>
+      </div>
+      <div className="col-span-12 lg:col-span-3">
+        <div className="mt-14 pt-6">
+          <Profile />
         </div>
       </div>
     </div>

@@ -15,7 +15,7 @@ const jobdetail = (props: Props) => {
   const job = jobData.find((j) => j.jobID === jobId)
 
   return (
-    <div className="grid grid-cols-12 gap-y-10 lg:gap-10">
+    <div className="grid grid-cols-12 gap-y-10 lg:gap-10 lg:gap-y-0">
       <div className="col-span-12">
         <h1 className="pt-7 text-center text-8xl font-bold">Careers</h1>
         <Breadcrumbs job={job} />

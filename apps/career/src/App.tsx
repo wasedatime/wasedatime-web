@@ -49,7 +49,7 @@ const InnerApp = (props: Props) => {
           changeLang={(lng) => i18n.changeLanguage(lng)}
         />
       </div>
-      <div className="container mx-auto h-[calc(100vh-150px)]">
+      <div className="container mx-auto h-[calc(100vh-127px)] overflow-y-auto px-2">
         {/* md:w-3/5 */}
 
         <PageRoutes />

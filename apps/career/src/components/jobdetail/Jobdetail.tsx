@@ -28,7 +28,10 @@ const jobdetail = (props: Props) => {
           <div className="grid grid-cols-12">
             <div className="col-span-12 lg:col-span-8">
               <div className="relative">
-                <h5 className="mb-1 text-gray-900 dark:text-gray-50"> TEST </h5>
+                <h5 className="mb-1 text-gray-900 dark:text-gray-50">
+                  {" "}
+                  Job Title{" "}
+                </h5>
               </div>
             </div>
           </div>

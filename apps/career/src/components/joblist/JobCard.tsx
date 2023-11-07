@@ -39,7 +39,7 @@ const JobCard: React.FC<JobCardProps> = ({
   // Include additional props as necessary
 }) => {
   return (
-    <div className="job-card-standard h-full">
+    <div className="job-card-standard standard-style h-full">
       <div className="p-4">
         <div className="grid h-auto w-full grid-cols-12 items-center gap-x-11 sm:h-36 sm:gap-24">
           {/* Logo Section */}

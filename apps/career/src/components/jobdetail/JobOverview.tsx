@@ -61,7 +61,7 @@ const JobOverview = ({ job }: Props) => {
 
   return (
     <>
-      <div className="mt-14 rounded border border-gray-100/30 dark:border-neutral-600/80">
+      <div className="standard-style mt-14 rounded border">
         <div className="p-6">
           <h1 className="m-2 text-2xl font-bold">Job Overview</h1>
           <ul>

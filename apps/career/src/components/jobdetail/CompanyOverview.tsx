@@ -29,7 +29,7 @@ const CompanyOverview = ({ job }: Props) => {
 
   return (
     <>
-      <div className="mt-14 rounded border border-gray-100/50 dark:border-neutral-600">
+      <div className="standard-style mt-14 rounded border">
         <h1 className="p-6 text-center text-4xl font-bold">Company Overview</h1>
         <div className="text-center">
           <div className="mx-auto h-[55px] w-[55px] rounded-full">
@@ -45,9 +45,7 @@ const CompanyOverview = ({ job }: Props) => {
           </div>
           {jobInformation.map((info, index) => (
             <div key={index} className="mt-4">
-              <h3 className="mb-0 text-3xl text-gray-900 dark:text-gray-50">
-                {info.label}
-              </h3>
+              <h3 className="mb-0 text-3xl ">{info.label}</h3>
               {info.isLink ? (
                 <a
                   href={

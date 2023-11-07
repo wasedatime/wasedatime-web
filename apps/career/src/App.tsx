@@ -1,45 +1,60 @@
 import React, { useEffect, useContext } from "react"
-import {
-  HashRouter,
-  BrowserRouter,
-  Routes,
-  Route,
-  useNavigate,
-} from "react-router-dom"
-import { LoadingSpinner } from "wasedatime-ui"
+import { HashRouter, Routes, Route } from "react-router-dom"
 import { ThemeContext } from "@app/utils/theme-context"
-import Joblist from "@app/components/Joblist"
-import Jobdetail from "@app/components/Jobdetail"
+import Joblist from "@app/components/joblist/Joblist"
+import Jobdetail from "@app/components/jobdetail/Jobdetail"
+import { useTranslation } from "react-i18next"
+import HeaderWithModal from "@app/components/common/HeaderWithModal"
+import Header from "@app/components/common/Header"
+import { jobData as job } from "./Data/JobData"
+import JobPage from "@app/components/JobPage"
 
 type Props = {}
 
-const NotFound = () => {
-  const { theme } = React.useContext(ThemeContext)
-  const navigate = useNavigate()
-  useEffect(() => navigate("/"))
-
-  return <LoadingSpinner theme={theme} message="Not found! Redirecting..." />
+const App = () => {
+  return (
+    <div className="flex h-screen flex-col">
+      <HashRouter>
+        <InnerApp />
+      </HashRouter>
+    </div>
+  )
 }
 
-const App = (props: Props) => {
-  const PageRoutes = () => {
-    return (
-      <HashRouter>
-        <Routes>
-          <Route element={<Joblist />} path="/" />
-          <Route element={<Jobdetail />} path="/:jobId" />
-          <Route element={<NotFound />} path="*" />
-        </Routes>
-      </HashRouter>
-    )
-  }
+const PageRoutes = () => {
+  return (
+    <Routes>
+      <Route element={<JobPage />} path="/" />
+      <Route element={<Jobdetail />} path="/:jobId" />
+    </Routes>
+  )
+}
+
+const InnerApp = (props: Props) => {
+  const { t, i18n } = useTranslation()
+  const { theme, setTheme } = React.useContext(ThemeContext)
 
   return (
-    <div className="flex h-screen items-center justify-center">
-      <div className="flex flex-col md:w-3/5">
+    <>
+      <div className="flex h-[67px] shrink-0 grow-0">
+        <Header
+          title={t("Career")}
+          onInputChange={() => {}}
+          placeholder={t("")}
+          inputText=""
+          disabled={true}
+          isBlur={true}
+          theme={theme}
+          setTheme={setTheme}
+          changeLang={(lng) => i18n.changeLanguage(lng)}
+        />
+      </div>
+      <div className="container mx-auto h-[calc(100vh-150px)]">
+        {/* md:w-3/5 */}
+
         <PageRoutes />
       </div>
-    </div>
+    </>
   )
 }
 

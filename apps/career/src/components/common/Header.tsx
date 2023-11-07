@@ -3,13 +3,11 @@ import MediaQuery from "react-responsive"
 import { useNavigate } from "react-router-dom"
 
 import colors from "wasedatime-ui/colors"
-import LanguageMenu from "./LanguageMenu"
+import LanguageMenu from "@app/components/common/LanguageMenu"
 import { sizes } from "wasedatime-ui"
 import logo from "@app/assets/logo.svg"
 import { ThemeToggle } from "./ThemeToggle"
 import { THEME } from "@app/types/theme"
-import { SearchIcon } from "../icons/SearchIcon"
-import CommentNotification from "./CommentNotification"
 
 const headerStyle = (isBlur: boolean, theme: THEME) => {
   const lightBackgroundColor = isBlur ? "#FAFAFA30" : colors.light.bgSide
@@ -41,6 +39,8 @@ const titleWrapperStyle = {
 }
 
 const logoWrapperStyle = {
+  display: 'flex',
+  alignItems: 'center',
   flex: "3",
   padding: "0px 0px 0px 1em",
 }
@@ -93,7 +93,6 @@ type HeaderProps = {
   theme?: THEME
   setTheme?: (theme: THEME) => void
   onSearchBarClick?: () => void
-  commentNotify: boolean
 }
 
 const Header = ({
@@ -107,51 +106,51 @@ const Header = ({
   theme = THEME.LIGHT,
   setTheme,
   onSearchBarClick = () => {},
-  commentNotify,
 }: HeaderProps) => {
   let navigate = useNavigate()
   const [isInputExpanded, setIsInputExpanded] = useState(false)
 
-  const searchBar = (
-    <label className="ml-0 flex flex-row justify-end md:justify-center">
-      {!isInputExpanded && (
-        <header
-          className="ml-2 self-center md:hidden"
-          style={titleWrapperStyle}
-        >
-          <h2 className="text-light-text1 dark:text-dark-text1 text-2xl">
-            {title}
-          </h2>
-        </header>
-      )}
-      <input
-        style={inputStyle(theme)}
-        placeholder={placeholder || "Search..."}
-        onChange={
-          onInputChange ? (e) => onInputChange(e.target.value) : () => {}
-        }
-        onFocus={() => {
-          setIsInputExpanded(true)
-          onSearchBarClick()
-        }}
-        onBlur={() => setIsInputExpanded(false)}
-        value={inputText || ""}
-        disabled={disabled}
-        className={isInputExpanded ? "w-full" : "hidden md:block md:w-1/2"}
-      />
-      <span
-        className={
-          "text-light-text2 dark:text-dark-text2 h-[40px] w-0 -translate-x-8 py-[6px]"
-        }
-        onClick={() => {
-          setIsInputExpanded(true)
-          onSearchBarClick()
-        }}
-      >
-        <SearchIcon />
-      </span>
-    </label>
-  )
+  // const searchBar = (
+  //   <label className="ml-0 flex flex-row justify-end md:justify-center">
+  //     {!isInputExpanded && (
+  //       <header
+  //         className="ml-2 self-center md:hidden"
+  //         style={titleWrapperStyle}
+  //       >
+  //         <h2 className="text-2xl text-light-text1 dark:text-dark-text1">
+  //           {title}
+  //         </h2>
+  //       </header>
+  //     )}
+  //     <input
+  //       style={inputStyle(theme)}
+  //       placeholder={placeholder || "Search..."}
+  //       onChange={
+  //         onInputChange ? (e) => onInputChange(e.target.value) : () => {}
+  //       }
+  //       onFocus={() => {
+  //         setIsInputExpanded(true)
+  //         onSearchBarClick()
+  //       }}
+  //       onBlur={() => setIsInputExpanded(false)}
+  //       value={inputText || ""}
+  //       disabled={disabled}
+  //       className={isInputExpanded ? "w-full" : "hidden md:block md:w-1/2"}
+  //     />
+  //     {/* Search Icon disabled */}
+  //     {/* <span
+  //       className={
+  //         "h-[40px] w-0 -translate-x-8 py-[6px] text-light-text2 dark:text-dark-text2"
+  //       }
+  //       onClick={() => {
+  //         setIsInputExpanded(true)
+  //         onSearchBarClick()
+  //       }}
+  //     >
+  //       <SearchIcon />
+  //     </span> */}
+  //   </label>
+  // )
 
   return (
     <header style={headerStyle(isBlur, theme)}>
@@ -164,7 +163,10 @@ const Header = ({
                 alt="WasedaTime English Small Logo"
                 className="h-[50px] w-[50px]"
               />
-            </div>
+              <h2 className="text-2xl text-light-text1 dark:text-dark-text1 ml-5 whitespace-nowrap"> 
+                {title}
+              </h2>
+          </div>
           ) : (
             <header style={titleWrapperStyle}>
               <h2 style={pageTitleStyle(theme)}>{title}</h2>
@@ -176,15 +178,19 @@ const Header = ({
       <MediaQuery maxWidth={sizes.tablet}>
         {(matches: boolean) =>
           matches ? (
-            <div style={mobileSearchBarWrapperStyle}>{searchBar}</div>
+            <div style={mobileSearchBarWrapperStyle}></div>
           ) : (
-            <div style={searchBarWrapperStyle}>{searchBar}</div>
+            <div style={searchBarWrapperStyle}></div>
           )
+          // (
+          //   <div style={mobileSearchBarWrapperStyle}>{searchBar}</div>
+          // ) : (
+          //   <div style={searchBarWrapperStyle}>{searchBar}</div>
+          // )
         }
       </MediaQuery>
 
       <div style={headerMenuWrapperStyle}>
-        <CommentNotification commentNotify={commentNotify} />
         <ThemeToggle theme={theme} setTheme={setTheme} />
         <LanguageMenu changeLang={changeLang} />
       </div>

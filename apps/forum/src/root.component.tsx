@@ -12,7 +12,7 @@ import "@app/styles/main.css";
 import "@app/styles/common.css";
 
 configAuth();
-
+type Props = {};
 const apiConfig = {
   API: {
     endpoints: [
@@ -27,7 +27,7 @@ API.configure(apiConfig);
 
 ReactGA.initialize(import.meta.env.VITE_GA_ID, {});
 
-export default function Root(props) {
+export default function Root(props: Props) {
   return (
     <section className="sm:h-screen h-[calc(100vh-50px)]">
       <RecoilRoot>

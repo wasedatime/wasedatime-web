@@ -6,6 +6,7 @@ import {
 } from "@app/constants/schools"
 import { School } from "@app/constants/schools"
 import getSchoolIconPath from "@app/utils/get-school-icon-path"
+import type UserProfile from "@app/types/userProfile"
 
 const schoolsByCategory = [
   {
@@ -29,10 +30,11 @@ type SchoolBlockProps = {
   school: School
 }
 
-type SchoolFilterFormProps = {
+interface SchoolFilterFormProps {
   isOpen: boolean
-  setOpen: (isOpen: boolean) => void
-  setSchool: (school: string) => void
+  setOpen: (open: boolean) => void
+  profileData: UserProfile
+  setProfileData: (profileData: UserProfile) => void
 }
 
 type TabMenuProps = {
@@ -79,7 +81,8 @@ const TabMenu = ({ activeTab, onClickTab }: TabMenuProps) => (
 const SchoolFilterForm = ({
   isOpen,
   setOpen,
-  setSchool,
+  profileData,
+  setProfileData,
 }: SchoolFilterFormProps) => {
   const [schoolsCategoryId, setSchoolsCategoryId] = useState(0)
   const [tempSelectedSchool, setTempSelectedSchool] = useState("")
@@ -93,7 +96,10 @@ const SchoolFilterForm = ({
   }
 
   const applySelection = () => {
-    setSchool(tempSelectedSchool) // Update the state using setSchool
+    setProfileData({
+      ...profileData,
+      school: tempSelectedSchool,
+    }) // Update the state using setSchool
     setTempSelectedSchool("") // Clear the temporary state
     setOpen(false)
   }

@@ -6,32 +6,16 @@ import GradeIcon from "@mui/icons-material/Grade"
 import LanguageIcon from "@mui/icons-material/Language"
 import StarBorderIcon from "@mui/icons-material/StarBorder"
 import SchoolIcon from "@mui/icons-material/School"
+import type UserProfile from "@app/types/userProfile"
+import ProfileModal from "./ProfileModal"
+import CareerComponentProps from "@app/types/careerComponentProps"
 
-type UserProfile = {
-  name: string
-  school: string
-  email: string
-  grade: string
-  classOf: string
-  languages: Array<{ language: string; level: string }>
-  interests: string[]
-}
+const PostRegisterProfile: React.FC<CareerComponentProps> = ({
+  profile,
+  setProfile,
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-const Profile = () => {
-  const [profile, setProfile] = useState<UserProfile>({
-    name: "Alex Johnson",
-    school: "SILS",
-    email: "alex.johnson@example.com",
-    grade: "3",
-    classOf: "2025",
-    languages: [
-      { language: "English", level: "Fluent" },
-      { language: "Japanese", level: "N4" },
-      // Add more as needed
-    ],
-    interests: ["Marketing", "IT"],
-    // Add more as needed
-  })
   const profileInformation = [
     {
       label: "Name",
@@ -54,7 +38,7 @@ const Profile = () => {
       ),
     },
     {
-      label: "Year",
+      label: "Grade",
       content: profile.grade,
       icon: (
         <GradeIcon
@@ -76,9 +60,12 @@ const Profile = () => {
     {
       label: "Languages",
       content: (
-        <ul className="list-disc pl-4">
+        <ul className="ml-4 list-disc pl-4">
           {profile.languages.map((lang, index) => (
-            <li key={index}>{`${lang.language} - ${lang.level}`}</li>
+            <li
+              className=""
+              key={index}
+            >{`${lang.language} - ${lang.level}`}</li>
           ))}
         </ul>
       ),
@@ -92,9 +79,11 @@ const Profile = () => {
     {
       label: "Interests",
       content: (
-        <ul className="list-disc pl-4">
+        <ul className="ml-4 list-disc pl-4">
           {profile.interests.map((interest, index) => (
-            <li key={index}>{interest}</li>
+            <li className="" key={index}>
+              {interest}
+            </li>
           ))}
         </ul>
       ),
@@ -107,6 +96,10 @@ const Profile = () => {
     },
     // Add more sections as needed
   ]
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen)
+  }
   return (
     <div className="standard-style mt-4 rounded border">
       <h1 className="p-6 text-center text-2xl font-bold">Profile</h1>
@@ -134,13 +127,17 @@ const Profile = () => {
           ))}
         </ul>
         <div className="mt-8 space-y-2">
-          <div className="btn w-full border-transparent bg-blue-300 p-2  text-xl capitalize text-blue-900 hover:-translate-y-1.5">
-            Edit Profile
-          </div>
+          <button
+            onClick={toggleModal}
+            className="btn w-full border-transparent bg-blue-300 p-2 text-xl capitalize text-blue-900 hover:-translate-y-1.5"
+          >
+            Register Profile
+          </button>
         </div>
       </div>
+      {isModalOpen && <ProfileModal closeModal={toggleModal} />}
     </div>
   )
 }
 
-export default Profile
+export default PostRegisterProfile

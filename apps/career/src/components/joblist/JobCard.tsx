@@ -11,23 +11,11 @@ interface JobCardProps {
   datePosted: string
   logo: string
   company: string
+  isLoggedIn: boolean
+  isRegistered: boolean
 }
 
 // Props needed, company logo, title, company, salary, location, datePosted, job Type
-
-// const JobCard: React.FC<JobCardProps> = ({
-//   title,
-//   description,
-//   location,
-//   datePosted,
-//   jobID,
-//   logo,
-// }) => {
-//   const [isExpanded, setIsExpanded] = useState(false)
-
-//   const handleExpand = () => {
-//     setIsExpanded(!isExpanded)
-//   }
 
 const JobCard: React.FC<JobCardProps> = ({
   jobID,
@@ -36,6 +24,8 @@ const JobCard: React.FC<JobCardProps> = ({
   location,
   datePosted,
   company,
+  isLoggedIn,
+  isRegistered,
   // Include additional props as necessary
 }) => {
   return (
@@ -48,16 +38,22 @@ const JobCard: React.FC<JobCardProps> = ({
               <img
                 src={logo}
                 alt="Company Logo"
-                className="mx-auto h-[55px] w-[55px] object-contain"
+                className={`mx-auto h-[55px] w-[55px] object-contain ${
+                  isRegistered ? `` : `blur-sm filter`
+                }`}
               />
             </div>
           </div>
           {/* Title Section */}
           <div className="col-span-12 lg:col-span-3">
             <div className="mb-md-0 mb-2">
-              <h2 className="truncate text-2xl font-bold">{title}</h2>
-              <p className="mb-0 truncate text-gray-500 dark:text-gray-300">
-                {company}
+              <h2 className={`truncate text-2xl font-bold`}>{title}</h2>
+              <p
+                className={`mb-0 truncate text-gray-500 dark:text-gray-300 ${
+                  isRegistered ? `` : `blur-sm filter`
+                }`}
+              >
+                {isRegistered ? company : "HAHA Register First Bro"}
               </p>
               {/* Other information related to the job title can be added here */}
             </div>
@@ -80,7 +76,7 @@ const JobCard: React.FC<JobCardProps> = ({
           {/* Additional sections can be added here */}
         </div>
       </div>
-      <JobCardFooter jobID={jobID} />
+      <JobCardFooter jobID={jobID} isRegistered={isRegistered} />
     </div>
   )
 }

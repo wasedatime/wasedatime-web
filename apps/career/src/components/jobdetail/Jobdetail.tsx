@@ -5,10 +5,11 @@ import CompanyOverview from "./CompanyOverview"
 import JobOverview from "./JobOverview"
 import JobContent from "./JobContent"
 import Breadcrumbs from "../common/Breadcrumbs"
+import CareerComponentProps from "@app/types/careerComponentProps"
 
 type Props = {}
 
-const jobdetail = (props: Props) => {
+const Jobdetail: React.FC<CareerComponentProps> = ({ profile, setProfile }) => {
   let { jobId } = useParams()
 
   // Find the job that matches the jobID from the URL
@@ -33,4 +34,4 @@ const jobdetail = (props: Props) => {
   )
 }
 
-export default jobdetail
+export default Jobdetail

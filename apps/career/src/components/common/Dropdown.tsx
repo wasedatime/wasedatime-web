@@ -2,7 +2,7 @@ import React from "react"
 
 type DropdownProps = {
   name: string
-  value: string | Array<string>
+  value: string | string[]
   handleChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
   options: Array<{ label: string; value: string | number }>
   placeholder: string
@@ -19,6 +19,13 @@ const Dropdown: React.FC<DropdownProps> = ({
   styles = "w-full",
   multiple = false,
 }) => {
+  const handleMultipleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedOptions = Array.from(
+      e.target.selectedOptions,
+      (option) => option.value
+    )
+    handleChange({ target: { name: e.target.name, value: selectedOptions } })
+  }
   const formatValueForDisplay = (selectedValues: any | "") => {
     return Array.isArray(selectedValues)
       ? selectedValues.join(", ")
@@ -28,7 +35,7 @@ const Dropdown: React.FC<DropdownProps> = ({
     <select
       name={name}
       value={multiple ? value : formatValueForDisplay(value)}
-      onChange={handleChange}
+      onChange={multiple ? handleMultipleChange : handleChange}
       multiple={multiple}
       className={`${styles} standard-style rounded border p-2`}
     >

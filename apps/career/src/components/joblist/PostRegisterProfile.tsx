@@ -109,7 +109,7 @@ const PostRegisterProfile: React.FC<CareerComponentProps> = ({
             <img
               className="flex h-[55px] w-[55px] object-cover p-2"
               alt={`${profile.school} Icon`}
-              src={getSchoolIconPath("SILS", "en")}
+              src={getSchoolIconPath(`${profile.school}`, "en")}
             />
           </div>
         </div>

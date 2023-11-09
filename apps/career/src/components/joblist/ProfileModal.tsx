@@ -22,19 +22,19 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   closeModal,
 }) => {
   const [expandSchool, setExpandSchool] = useState(false)
-  const [profileData, setProfileData] = useState({
-    school: profile.school,
-    name: profile.name,
-    email: profile.email,
-    grade: profile.grade,
-    class_of: profile.class_of,
-    languages: profile.languages,
-    interests: profile.interests,
-  })
+  // const [profileData, setProfileData] = useState({
+  //   school: profile.school,
+  //   name: profile.name,
+  //   email: profile.email,
+  //   grade: profile.grade,
+  //   class_of: profile.class_of,
+  //   languages: profile.languages,
+  //   interests: profile.interests,
+  // })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setProfileData((prevState) => ({
+    setProfile((prevState) => ({
       ...prevState,
       [name]: value,
     }))
@@ -49,13 +49,13 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
         .filter((option) => option.selected)
         .map((option) => option.value)
       // Update the state with the new array of selected options
-      setProfileData((prevState) => ({
+      setProfile((prevState) => ({
         ...prevState,
         [name]: selectedOptions,
       }))
     } else {
       // Update the state for a single select dropdown
-      setProfileData((prevState) => ({
+      setProfile((prevState) => ({
         ...prevState,
         [name]: value,
       }))
@@ -63,7 +63,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   }
 
   const handleSubmit = () => {
-    console.log("Submitted data:", profileData)
+    console.log("Submitted data:", profile)
     closeModal()
   }
   return (
@@ -80,13 +80,13 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                 <SchoolFilterForm
                   isOpen={expandSchool}
                   setOpen={setExpandSchool}
-                  profileData={profileData}
-                  setProfileData={setProfileData}
+                  profileData={profile}
+                  setProfileData={setProfile}
                 />
               ) : null}
-              {profileData.school ? (
+              {profile.school ? (
                 <img
-                  src={getSchoolIconPath(profileData.school, "en")}
+                  src={getSchoolIconPath(profile.school, "en")}
                   width={40}
                   height={40}
                 />
@@ -99,7 +99,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
             type="text"
             name="name"
             placeholder="Name"
-            value={profileData.name}
+            value={profile.name}
             onChange={handleInputChange}
             className="standard-style w-full rounded border p-2"
           />
@@ -107,20 +107,20 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
             type="email"
             name="email"
             placeholder="Email"
-            value={profileData.email}
+            value={profile.email}
             onChange={handleInputChange}
             className="standard-style w-full rounded border p-2"
           />
           <Dropdown
             name="grade"
-            value={profileData.grade}
+            value={profile.grade}
             handleChange={handleDropdownChange}
             options={gradeOptions}
             placeholder="Select Grade"
           />
           <Dropdown
             name="class_of"
-            value={profileData.class_of}
+            value={profile.class_of}
             handleChange={handleDropdownChange}
             options={gradYearOptions}
             placeholder="Select Graduation Year"
@@ -128,7 +128,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           <div className="grid grid-cols-2 gap-2">
             <Dropdown
               name="language 1"
-              value={profileData.languages}
+              value={profile.languages}
               handleChange={handleDropdownChange}
               options={languageOptions}
               placeholder="Select Language"
@@ -136,7 +136,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
             />
             <Dropdown
               name="Level"
-              value={profileData.languages}
+              value={profile.languages}
               handleChange={handleDropdownChange}
               options={levelOptions}
               placeholder="Select Level"
@@ -145,10 +145,11 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           </div>
           <Dropdown
             name="interests"
-            value={profileData.interests}
+            value={profile.interests}
             handleChange={handleDropdownChange}
             options={interestOptions}
             placeholder="Select Interest"
+            multiple={true}
           />
           <div className="text-center">
             <button

@@ -49,7 +49,7 @@ const PostRegisterProfile: React.FC<CareerComponentProps> = ({
     },
     {
       label: "Class Of",
-      content: profile.classOf,
+      content: profile.class_of,
       icon: (
         <SchoolIcon
           fontSize="large"
@@ -131,11 +131,17 @@ const PostRegisterProfile: React.FC<CareerComponentProps> = ({
             onClick={toggleModal}
             className="btn w-full border-transparent bg-blue-300 p-2 text-xl capitalize text-blue-900 hover:-translate-y-1.5"
           >
-            Register Profile
+            Edit Profile
           </button>
         </div>
       </div>
-      {isModalOpen && <ProfileModal closeModal={toggleModal} />}
+      {isModalOpen && (
+        <ProfileModal
+          profile={profile}
+          setProfile={setProfile}
+          closeModal={toggleModal}
+        />
+      )}
     </div>
   )
 }

@@ -33,6 +33,10 @@ const Joblist: React.FC<CareerComponentProps> = ({ profile, setProfile }) => {
     handleOpenForm()
   }, [])
 
+  useEffect(() => {
+    console.log(profile)
+  }, [profile])
+
   return (
     <>
       {isLoggedIn ? (

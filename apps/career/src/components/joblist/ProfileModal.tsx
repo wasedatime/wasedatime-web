@@ -3,6 +3,14 @@ import SchoolFilterForm from "../common/SchoolFilter"
 import getSchoolIconPath from "@app/utils/get-school-icon-path"
 import { profile } from "console"
 import CareerComponentProps from "@app/types/careerComponentProps"
+import Dropdown from "../common/Dropdown"
+import {
+  gradYearOptions,
+  gradeOptions,
+  interestOptions,
+  languageOptions,
+  levelOptions,
+} from "@app/constants/dropdownOptions"
 
 interface ProfileModalProps extends CareerComponentProps {
   closeModal: () => void
@@ -24,18 +32,39 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     interests: profile.interests,
   })
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    setProfileData({ ...profileData, [name]: value })
+    setProfileData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }))
+  }
+
+  const handleDropdownChange = (event) => {
+    const { name, value, options, type } = event.target
+
+    // Check if it's a multiple select dropdown
+    if (type === "select-multiple") {
+      const selectedOptions = Array.from(options)
+        .filter((option) => option.selected)
+        .map((option) => option.value)
+      // Update the state with the new array of selected options
+      setProfileData((prevState) => ({
+        ...prevState,
+        [name]: selectedOptions,
+      }))
+    } else {
+      // Update the state for a single select dropdown
+      setProfileData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }))
+    }
   }
 
   const handleSubmit = () => {
-    // Here you would call your API function and pass the profileData object
-    // Example: apiService.submitProfile(profileData);
     console.log("Submitted data:", profileData)
-    closeModal() // Close modal after submission
+    closeModal()
   }
   return (
     <div className="fixed inset-0 z-50 h-full w-full overflow-y-auto bg-gray-600 bg-opacity-50">
@@ -71,48 +100,55 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
             name="name"
             placeholder="Name"
             value={profileData.name}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
+            onChange={handleInputChange}
+            className="standard-style w-full rounded border p-2"
           />
           <input
             type="email"
             name="email"
             placeholder="Email"
             value={profileData.email}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
+            onChange={handleInputChange}
+            className="standard-style w-full rounded border p-2"
           />
-          <input
-            type="text"
+          <Dropdown
             name="grade"
-            placeholder="Grade"
             value={profileData.grade}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
+            handleChange={handleDropdownChange}
+            options={gradeOptions}
+            placeholder="Select Grade"
           />
-          <input
-            type="text"
+          <Dropdown
             name="class_of"
-            placeholder="Class of"
             value={profileData.class_of}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
+            handleChange={handleDropdownChange}
+            options={gradYearOptions}
+            placeholder="Select Graduation Year"
           />
-          <input
-            type="text"
-            name="language"
-            placeholder="Language"
-            value={profileData.languages}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
-          />
-          <input
-            type="text"
+          <div className="grid grid-cols-2 gap-2">
+            <Dropdown
+              name="language 1"
+              value={profileData.languages}
+              handleChange={handleDropdownChange}
+              options={languageOptions}
+              placeholder="Select Language"
+              styles="col-span-1"
+            />
+            <Dropdown
+              name="Level"
+              value={profileData.languages}
+              handleChange={handleDropdownChange}
+              options={levelOptions}
+              placeholder="Select Level"
+              styles="row-span-1"
+            />
+          </div>
+          <Dropdown
             name="interests"
-            placeholder="Interests"
             value={profileData.interests}
-            onChange={handleChange}
-            className="w-full rounded border p-2"
+            handleChange={handleDropdownChange}
+            options={interestOptions}
+            placeholder="Select Interest"
           />
           <div className="text-center">
             <button

@@ -43,7 +43,7 @@ const InnerApp = () => {
     school: "SILS",
     email: "alex.johnson@example.com",
     grade: "3",
-    classOf: "2025",
+    class_of: "2025",
     languages: [
       { language: "English", level: "Fluent" },
       { language: "Japanese", level: "N4" },

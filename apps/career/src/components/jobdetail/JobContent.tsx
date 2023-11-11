@@ -53,7 +53,7 @@ const JobContent = ({ job }: Props) => {
   ]
   return (
     <>
-      <div className="mt-14 rounded-md border border-gray-100/30 dark:border-neutral-600/80">
+      <div className="standard-style mt-14 rounded-md border">
         <div className="relative">
           <img
             className="mb-7 h-[300px] w-[800px] rounded-md object-cover"
@@ -61,7 +61,7 @@ const JobContent = ({ job }: Props) => {
             src={job.heroImage}
           />
           {job.companyLogo && (
-            <div className="absolute -bottom-7 left-7 z-20 ">
+            <div className="absolute -bottom-10 left-7 z-20 ">
               <img
                 className="mb-7 h-[55px] w-[55px] rounded-md object-cover"
                 alt="Company Logo"

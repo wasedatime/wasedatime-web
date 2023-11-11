@@ -68,7 +68,7 @@ const InnerApp = () => {
           changeLang={(lng) => i18n.changeLanguage(lng)}
         />
       </div>
-      <div className="h-[calc(100vh-127px)] overflow-y-auto">
+      <div className="h-[calc(100vh-127px)] overflow-y-auto lg:h-full">
         <div className="container mx-auto px-2">
           {/* md:w-3/5 */}
 

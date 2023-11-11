@@ -56,7 +56,7 @@ const JobContent = ({ job }: Props) => {
       <div className="mt-14 rounded-md border border-gray-100/30 dark:border-neutral-600/80">
         <div className="relative">
           <img
-            className="mb-7 h-[300px] w-[800px] rounded-md"
+            className="mb-7 h-[300px] w-[800px] rounded-md object-cover"
             alt="Job Hero Image"
             src={job.heroImage}
           />

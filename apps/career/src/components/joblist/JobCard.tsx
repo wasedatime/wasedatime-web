@@ -2,29 +2,22 @@ import React, { useState } from "react"
 import WorkIcon from "@mui/icons-material/Work"
 import { Link } from "react-router-dom"
 import JobCardFooter from "./JobCardFooter"
+import JobProps from "@app/types/job"
 
-interface JobCardProps {
-  jobID: string
-  title: string
-  description: string
-  location: string
-  datePosted: string
-  logo: string
-  company: string
+interface JobCardProps extends JobProps {
   isLoggedIn: boolean
-  isRegistered: boolean
+  isRegistered: boolean | false
 }
 
 // Props needed, company logo, title, company, salary, location, datePosted, job Type
 
 const JobCard: React.FC<JobCardProps> = ({
-  jobID,
-  logo,
+  job_id,
+  company_logo,
   title,
   location,
-  datePosted,
+  created_at,
   company,
-  isLoggedIn,
   isRegistered,
   // Include additional props as necessary
 }) => {
@@ -36,7 +29,7 @@ const JobCard: React.FC<JobCardProps> = ({
           <div className="col-span-12 lg:col-span-2">
             <div className="mb-md-0 mb-4 text-center">
               <img
-                src={logo}
+                src={company_logo}
                 alt="Company Logo"
                 className={`mx-auto h-[55px] w-[55px] object-contain ${
                   isRegistered ? `` : `blur-sm filter`
@@ -70,13 +63,13 @@ const JobCard: React.FC<JobCardProps> = ({
           {/* Date Posted Section */}
           <div className="col-span-12 lg:col-span-2">
             <div className="mb-0">
-              <h2 className="text-2xl font-bold">{datePosted}</h2>
+              <h2 className="text-2xl font-bold">{created_at}</h2>
             </div>
           </div>
           {/* Additional sections can be added here */}
         </div>
       </div>
-      <JobCardFooter jobID={jobID} isRegistered={isRegistered} />
+      <JobCardFooter jobID={job_id} isRegistered={isRegistered} />
     </div>
   )
 }

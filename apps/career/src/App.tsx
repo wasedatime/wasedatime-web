@@ -8,6 +8,8 @@ import HeaderWithModal from "@app/components/common/HeaderWithModal"
 import Header from "@app/components/common/Header"
 import type UserProfile from "./types/userProfile"
 import type CareerComponentProps from "./types/careerComponentProps"
+import API from "@aws-amplify/api"
+import { getIdToken } from "wasedatime-ui"
 
 const App = () => {
   return (
@@ -19,15 +21,31 @@ const App = () => {
   )
 }
 
-const PageRoutes = ({ profile, setProfile }: CareerComponentProps) => {
+const PageRoutes = ({
+  profile,
+  setProfile,
+  isRegistered,
+}: CareerComponentProps) => {
   return (
     <Routes>
       <Route
-        element={<Joblist profile={profile} setProfile={setProfile} />}
+        element={
+          <Joblist
+            profile={profile}
+            setProfile={setProfile}
+            isRegistered={isRegistered}
+          />
+        }
         path="/"
       />
       <Route
-        element={<Jobdetail profile={profile} setProfile={setProfile} />}
+        element={
+          <Jobdetail
+            profile={profile}
+            setProfile={setProfile}
+            isRegistered={isRegistered}
+          />
+        }
         path="/:jobId"
       />
     </Routes>
@@ -37,21 +55,51 @@ const PageRoutes = ({ profile, setProfile }: CareerComponentProps) => {
 const InnerApp = () => {
   const { t, i18n } = useTranslation()
   const { theme, setTheme } = React.useContext(ThemeContext)
+  const [isRegistered, setIsRegistered] = useState(false)
+  const [userToken, setUserToken] = useState("")
 
   const [profile, setProfile] = useState<UserProfile>({
-    name: "Alex Johnson",
-    school: "SILS",
-    email: "alex.johnson@example.com",
-    grade: "3",
-    class_of: "2025",
+    name: "",
+    school: "",
+    email: "",
+    year: "",
+    class_of: "",
     languages: [
-      { language: "English", level: "Fluent" },
-      { language: "Japanese", level: "N4" },
-      // Add more as needed
+      { language: "", level: "" },
+      { language: "", level: "" },
     ],
-    interests: ["Marketing", "IT"],
-    // Add more as needed
+    interests: [],
   })
+
+  const fetchUserProfile = async () => {
+    const idToken = await getIdToken()
+
+    try {
+      const res = await API.get("wasedatime-dev", "/profile", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: idToken,
+        },
+        response: true,
+      })
+      console.log(res.data.data)
+
+      const data = res.data.data
+
+      if (data) {
+        setProfile(data)
+        setIsRegistered(true)
+      } else {
+        setIsRegistered(false)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchUserProfile()
+  }, [])
 
   return (
     <>
@@ -72,7 +120,11 @@ const InnerApp = () => {
         <div className="container mx-auto px-2">
           {/* md:w-3/5 */}
 
-          <PageRoutes profile={profile} setProfile={setProfile} />
+          <PageRoutes
+            profile={profile}
+            setProfile={setProfile}
+            isRegistered={isRegistered}
+          />
         </div>
       </div>
     </>

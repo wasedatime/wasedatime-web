@@ -13,6 +13,7 @@ import CareerComponentProps from "@app/types/careerComponentProps"
 const PostRegisterProfile: React.FC<CareerComponentProps> = ({
   profile,
   setProfile,
+  isRegistered,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -39,7 +40,7 @@ const PostRegisterProfile: React.FC<CareerComponentProps> = ({
     },
     {
       label: "Grade",
-      content: profile.grade,
+      content: profile.year,
       icon: (
         <GradeIcon
           fontSize="large"
@@ -137,6 +138,7 @@ const PostRegisterProfile: React.FC<CareerComponentProps> = ({
       </div>
       {isModalOpen && (
         <ProfileModal
+          isRegistered={isRegistered}
           profile={profile}
           setProfile={setProfile}
           closeModal={toggleModal}

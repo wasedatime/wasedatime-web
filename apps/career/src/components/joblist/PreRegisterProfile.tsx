@@ -41,7 +41,13 @@ const PreRegisterProfile: React.FC<CareerComponentProps> = ({
         </div>
       </div>
 
-      {isModalOpen && <ProfileModal closeModal={toggleModal} />}
+      {isModalOpen && (
+        <ProfileModal
+          profile={profile}
+          setProfile={setProfile}
+          closeModal={toggleModal}
+        />
+      )}
     </div>
   )
 }

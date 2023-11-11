@@ -1,15 +1,15 @@
 [
   {
-    "jobID": "job-00000",
-    "companyLogo": "https://i.imgur.com/UGtF7B4.jpeg",
-    "heroImage": "https://www.tastingtable.com/img/gallery/12-low-carb-fast-food-options-that-wont-ruin-your-diet/l-intro-1651501665.jpg",
+    "job_id": "job-00000",
+    "company_logo": "https://i.imgur.com/UGtF7B4.jpeg",
+    "hero_image": "https://www.tastingtable.com/img/gallery/12-low-carb-fast-food-options-that-wont-ruin-your-diet/l-intro-1651501665.jpg",
     "title": "Fast food restaurant manager",
     "company": "Burton-Kaiser",
     "salary": "4688250 JPY",
     "location": "South Lauriebury",
-    "datePosted": "2023-11-04",
-    "jobType": "Full-time",
-    "jobDescription": "Seat like since six lose difference daughter. Fine heavy where west above sort structure.\nAgree member age house new when about. My ability clearly management together.",
+    "created_at": "2023-11-04",
+    "type": "Full-time",
+    "job_description": "Seat like since six lose difference daughter. Fine heavy where west above sort structure.\nAgree member age house new when about. My ability clearly management together.",
     "website": "www.google.com",
     "responsibilities": "3 times a week. oneday 4 hours"
   },

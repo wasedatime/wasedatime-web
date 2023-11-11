@@ -1,15 +1,7 @@
+import JobProps from "@app/types/job"
 import React from "react"
 
-type Props = {
-  job: {
-    company: string
-    companyLogo: string
-    website: string
-    companyDescription: string
-  }
-}
-
-const CompanyOverview = ({ job }: Props) => {
+const CompanyOverview = ({ job }: { job: JobProps }) => {
   const jobInformation = [
     {
       label: "Company Name",
@@ -22,7 +14,7 @@ const CompanyOverview = ({ job }: Props) => {
     },
     {
       label: "Description",
-      content: job.companyDescription,
+      content: job.company_description,
     },
     // Add more sections as needed
   ]
@@ -33,12 +25,12 @@ const CompanyOverview = ({ job }: Props) => {
         <h1 className="p-6 text-center text-4xl font-bold">Company Overview</h1>
         <div className="text-center">
           <div className="mx-auto h-[55px] w-[55px] rounded-full">
-            {job.companyLogo && (
+            {job.company_logo && (
               <div className="">
                 <img
                   className=" h-[55px] w-[55px] rounded-md object-cover"
                   alt="Company Logo"
-                  src={job.companyLogo}
+                  src={job.company_logo}
                 />
               </div>
             )}{" "}

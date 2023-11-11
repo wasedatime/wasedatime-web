@@ -1,14 +1,8 @@
+import JobProps from "@app/types/job"
 import React from "react"
 import { useLocation, Link } from "react-router-dom"
 
-type props = {
-  job: {
-    jobID: string
-    title: string
-  }
-}
-
-const Breadcrumbs = ({ job }: props) => {
+const Breadcrumbs = ({ job }: { job: JobProps }) => {
   const location = useLocation()
   const pathnames = location.pathname.split("/").filter((x) => x)
 

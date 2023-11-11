@@ -7,13 +7,11 @@ import JobContent from "./JobContent"
 import Breadcrumbs from "../common/Breadcrumbs"
 import CareerComponentProps from "@app/types/careerComponentProps"
 
-type Props = {}
-
 const Jobdetail: React.FC<CareerComponentProps> = ({ profile, setProfile }) => {
   let { jobId } = useParams()
 
   // Find the job that matches the jobID from the URL
-  const job = jobData.find((j) => j.jobID === jobId)
+  const job = jobData.find((j) => j.job_id === jobId)
 
   return (
     <div className="grid grid-cols-12 gap-y-10 lg:gap-10 lg:gap-y-0">

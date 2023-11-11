@@ -6,15 +6,42 @@ import { getUserAttr, getIdToken, SignInModal } from "wasedatime-ui"
 import { useTranslation } from "react-i18next"
 import PreRegisterProfile from "./PreRegisterProfile"
 import type CareerComponentProps from "@app/types/careerComponentProps"
+import API from "@aws-amplify/api"
 
 type Props = {}
 
-const Joblist: React.FC<CareerComponentProps> = ({ profile, setProfile }) => {
+const Joblist: React.FC<CareerComponentProps> = ({
+  profile,
+  setProfile,
+  isRegistered,
+}) => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const [isRegistered, setIsRegistered] = useState(true)
   const [userToken, setUserToken] = useState("")
   const { t } = useTranslation()
+
+  const fetchCareer = async () => {
+    const idToken = await getIdToken()
+
+    try {
+      const res = await API.get("wasedatime-dev", "/career?type=internship", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: idToken,
+        },
+        response: true,
+      })
+      console.log(res.data.data)
+
+      const data = res.data.data
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchCareer()
+  }, [])
 
   const handleOpenForm = async () => {
     if (userToken?.length > 0) {
@@ -33,10 +60,6 @@ const Joblist: React.FC<CareerComponentProps> = ({ profile, setProfile }) => {
     handleOpenForm()
   }, [])
 
-  useEffect(() => {
-    console.log(profile)
-  }, [profile])
-
   return (
     <>
       {isLoggedIn ? (
@@ -46,13 +69,13 @@ const Joblist: React.FC<CareerComponentProps> = ({ profile, setProfile }) => {
               {jobData.map((job, index) => (
                 <JobCard
                   key={index}
-                  jobID={job.jobID}
-                  logo={job.companyLogo}
+                  job_id={job.job_id}
+                  company_logo={job.company_logo}
                   company={job.company}
                   title={job.title}
-                  description={job.description}
+                  job_description={job.description}
                   location={job.location}
-                  datePosted={job.datePosted}
+                  created_at={job.created_at}
                   isLoggedIn={isLoggedIn}
                   isRegistered={isRegistered}
                 />
@@ -63,6 +86,7 @@ const Joblist: React.FC<CareerComponentProps> = ({ profile, setProfile }) => {
             <div className="mt-14 pt-6">
               {isRegistered ? (
                 <PostRegisterProfile
+                  isRegistered={isRegistered}
                   profile={profile}
                   setProfile={setProfile}
                 />

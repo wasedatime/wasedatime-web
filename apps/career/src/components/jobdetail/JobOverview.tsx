@@ -5,10 +5,7 @@ import BadgeIcon from "@mui/icons-material/Badge"
 import LocationOnIcon from "@mui/icons-material/LocationOn"
 import HistoryIcon from "@mui/icons-material/History"
 import PaidIcon from "@mui/icons-material/Paid"
-
-type Props = {
-  job: object
-}
+import JobProps from "@app/types/job"
 
 const jobDetailStructure = [
   {
@@ -32,7 +29,7 @@ const jobDetailStructure = [
     ),
   },
   {
-    key: "datePosted",
+    key: "created_at",
     label: "Date Posted",
     icon: (
       <HistoryIcon
@@ -53,11 +50,8 @@ const jobDetailStructure = [
   },
 ]
 
-const JobOverview = ({ job }: Props) => {
+const JobOverview = ({ job }: { job: JobProps }) => {
   // If job doesn't exist, you can handle the null case by rendering something else
-  if (!job) {
-    return <div>No job found</div>
-  }
 
   return (
     <>
@@ -66,9 +60,6 @@ const JobOverview = ({ job }: Props) => {
           <h1 className="m-2 text-2xl font-bold">Job Overview</h1>
           <ul>
             {jobDetailStructure.map((detail) => {
-              // Check if the job has the property
-              if (!(detail.key in job)) return null
-
               const value = job[detail.key]
               return (
                 <li key={detail.key}>

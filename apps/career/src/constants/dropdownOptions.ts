@@ -1,10 +1,10 @@
 export const gradeOptions = [
-  { label: "Freshman", value: "1" },
-  { label: "Sophomore", value: "2" },
-  { label: "Junior", value: "3" },
-  { label: "Senior", value: "4" },
-  { label: "Master 1", value: "5" },
-  { label: "Master 2", value: "6" },
+  { label: "Freshman", value: "Freshman" },
+  { label: "Sophomore", value: "Sophomore" },
+  { label: "Junior", value: "Junior" },
+  { label: "Senior", value: "Senior" },
+  { label: "Master 1", value: "Master 1" },
+  { label: "Master 2", value: "Master 2" },
 ]
 
 export const gradYearOptions = [
@@ -17,14 +17,14 @@ export const gradYearOptions = [
 ]
 
 export const languageOptions = [
-  { label: "Japanese", value: "ja" },
-  { label: "English", value: "en" },
-  { label: "Simplified Chinese", value: "zh-CH" },
-  { label: "Traditional Chinese", value: "zh-TW" },
-  { label: "Korean", value: "ko" },
-  { label: "French", value: "fr" },
-  { label: "German", value: "de" },
-  { label: "Spanish", value: "es" },
+  { label: "Japanese", value: "Japanese" },
+  { label: "English", value: "English" },
+  { label: "Simplified Chinese", value: "Simplified Chinese" },
+  { label: "Traditional Chinese", value: "Traditional Chinese" },
+  { label: "Korean", value: "Korean" },
+  { label: "French", value: "French" },
+  { label: "German", value: "German" },
+  { label: "Spanish", value: "Spanish" },
 ]
 
 export const interestOptions = [
@@ -38,9 +38,7 @@ export const interestOptions = [
   { label: "Engineering", value: "engineering" },
   { label: "Consulting", value: "consulting" },
   { label: "Sales", value: "sales" },
-  { label: "Law", value: "law" },
   { label: "Media", value: "media" },
-  { label: "Non-Profit", value: "non_profit" },
   { label: "Retail", value: "retail" },
 ]
 
@@ -50,4 +48,12 @@ export const levelOptions = [
   { label: "Advanced", value: "Advanced" },
   { label: "Fluent", value: "Fluent" },
   { label: "Native", value: "Native" },
+]
+
+export const JaLevelOptions = [
+  { label: "N1", value: "N1" },
+  { label: "N2", value: "N2" },
+  { label: "N3", value: "N3" },
+  { label: "N4", value: "N4" },
+  { label: "N5", value: "N5" },
 ]

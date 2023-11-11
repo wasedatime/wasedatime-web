@@ -3,10 +3,11 @@ import WorkIcon from "@mui/icons-material/Work"
 import { Link } from "react-router-dom"
 import JobCardFooter from "./JobCardFooter"
 import JobProps from "@app/types/job"
+import { timeFormatter } from "@app/utils/timeFormatter"
 
 interface JobCardProps extends JobProps {
   isLoggedIn: boolean
-  isRegistered: boolean | false
+  isRegistered: boolean
 }
 
 // Props needed, company logo, title, company, salary, location, datePosted, job Type
@@ -21,6 +22,8 @@ const JobCard: React.FC<JobCardProps> = ({
   isRegistered,
   // Include additional props as necessary
 }) => {
+  const formattedTime = timeFormatter(created_at)
+
   return (
     <div className="job-card-standard standard-style h-full">
       <div className="p-4">
@@ -63,7 +66,7 @@ const JobCard: React.FC<JobCardProps> = ({
           {/* Date Posted Section */}
           <div className="col-span-12 lg:col-span-2">
             <div className="mb-0">
-              <h2 className="text-2xl font-bold">{created_at}</h2>
+              <h2 className="text-2xl font-bold">{formattedTime}</h2>
             </div>
           </div>
           {/* Additional sections can be added here */}

@@ -7,11 +7,28 @@ import JobContent from "./JobContent"
 import Breadcrumbs from "../common/Breadcrumbs"
 import CareerComponentProps from "@app/types/careerComponentProps"
 
-const Jobdetail: React.FC<CareerComponentProps> = ({ profile, setProfile }) => {
+const Jobdetail: React.FC<CareerComponentProps> = ({ jobData }) => {
   let { jobId } = useParams()
 
-  // Find the job that matches the jobID from the URL
-  const job = jobData.find((j) => j.job_id === jobId)
+  let job
+  if (jobData && jobData.length > 0) {
+    // Find the job that matches the jobID from the state
+    job = jobData.find((j) => j.job_id === jobId)
+  } else {
+    // Try to get the data from localStorage
+    const storedJobData = localStorage.getItem("jobData")
+    if (storedJobData) {
+      const parsedJobData = JSON.parse(storedJobData)
+      job = parsedJobData.find((j) => j.job_id === jobId)
+    }
+  }
+
+  if (!job) {
+    // Handle the case where the job is not found
+    return <div>Job not found</div>
+  }
+
+  console.log(jobData)
 
   return (
     <div className="grid grid-cols-12 gap-y-10 lg:gap-10 lg:gap-y-0">

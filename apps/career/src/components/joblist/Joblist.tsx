@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import JobCard from "@app/components/joblist/JobCard"
-import jobData from "@app/constants/dummy.json"
 import PostRegisterProfile from "./PostRegisterProfile"
 import { getUserAttr, getIdToken, SignInModal } from "wasedatime-ui"
 import { useTranslation } from "react-i18next"
@@ -11,6 +10,7 @@ import API from "@aws-amplify/api"
 type Props = {}
 
 const Joblist: React.FC<CareerComponentProps> = ({
+  jobData,
   profile,
   setProfile,
   isRegistered,
@@ -19,29 +19,6 @@ const Joblist: React.FC<CareerComponentProps> = ({
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [userToken, setUserToken] = useState("")
   const { t } = useTranslation()
-
-  const fetchCareer = async () => {
-    const idToken = await getIdToken()
-
-    try {
-      const res = await API.get("wasedatime-dev", "/career?type=internship", {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: idToken,
-        },
-        response: true,
-      })
-      console.log(res.data.data)
-
-      const data = res.data.data
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  useEffect(() => {
-    fetchCareer()
-  }, [])
 
   const handleOpenForm = async () => {
     if (userToken?.length > 0) {

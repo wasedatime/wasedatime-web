@@ -49,7 +49,7 @@ const JobContent = ({ job }: { job: JobProps }) => {
           {job.company_logo && (
             <div className="absolute -bottom-10 left-7 z-20 ">
               <img
-                className="mb-7 h-[55px] w-[55px] rounded-md object-cover"
+                className="mb-7 h-[55px] w-[55px] rounded-md object-contain"
                 alt="Company Logo"
                 src={job.company_logo}
               />
@@ -62,7 +62,7 @@ const JobContent = ({ job }: { job: JobProps }) => {
               <h3 className="text-bold mb-3 text-gray-900 dark:text-gray-50">
                 {section.title}
               </h3>
-              <p className="mb-0 text-gray-500 dark:text-gray-300">
+              <p className="mb-0 whitespace-pre-line text-gray-500 dark:text-gray-300">
                 {section.content}
               </p>
             </div>

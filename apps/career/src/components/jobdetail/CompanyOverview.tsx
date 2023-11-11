@@ -28,7 +28,7 @@ const CompanyOverview = ({ job }: { job: JobProps }) => {
             {job.company_logo && (
               <div className="">
                 <img
-                  className=" h-[55px] w-[55px] rounded-md object-cover"
+                  className=" h-[55px] w-[55px] rounded-md object-contain"
                   alt="Company Logo"
                   src={job.company_logo}
                 />
@@ -52,7 +52,7 @@ const CompanyOverview = ({ job }: { job: JobProps }) => {
                   {info.content}
                 </a>
               ) : (
-                <p className="mb-4 text-gray-500 dark:text-gray-300">
+                <p className="mb-4 whitespace-pre-line p-2 font-bold text-gray-500 dark:text-gray-300">
                   {info.content}
                 </p>
               )}

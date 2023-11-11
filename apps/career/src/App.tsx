@@ -22,6 +22,7 @@ const App = () => {
 }
 
 const PageRoutes = ({
+  jobData,
   profile,
   setProfile,
   isRegistered,
@@ -31,6 +32,7 @@ const PageRoutes = ({
       <Route
         element={
           <Joblist
+            jobData={jobData}
             profile={profile}
             setProfile={setProfile}
             isRegistered={isRegistered}
@@ -41,6 +43,7 @@ const PageRoutes = ({
       <Route
         element={
           <Jobdetail
+            jobData={jobData}
             profile={profile}
             setProfile={setProfile}
             isRegistered={isRegistered}
@@ -56,7 +59,7 @@ const InnerApp = () => {
   const { t, i18n } = useTranslation()
   const { theme, setTheme } = React.useContext(ThemeContext)
   const [isRegistered, setIsRegistered] = useState(false)
-  const [userToken, setUserToken] = useState("")
+  const [jobData, setJobData] = useState([])
 
   const [profile, setProfile] = useState<UserProfile>({
     name: "",
@@ -82,7 +85,6 @@ const InnerApp = () => {
         },
         response: true,
       })
-      console.log(res.data.data)
 
       const data = res.data.data
 
@@ -97,8 +99,28 @@ const InnerApp = () => {
     }
   }
 
+  const fetchCareer = async () => {
+    const idToken = await getIdToken()
+
+    try {
+      const res = await API.get("wasedatime-dev", "/career?type=internship", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: idToken,
+        },
+        response: true,
+      })
+      const data = res.data.data.Items
+      setJobData(data)
+      localStorage.setItem("jobs", JSON.stringify(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   useEffect(() => {
     fetchUserProfile()
+    fetchCareer()
   }, [])
 
   return (
@@ -121,6 +143,7 @@ const InnerApp = () => {
           {/* md:w-3/5 */}
 
           <PageRoutes
+            jobData={jobData}
             profile={profile}
             setProfile={setProfile}
             isRegistered={isRegistered}

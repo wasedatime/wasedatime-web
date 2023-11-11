@@ -1,5 +1,5 @@
 export function timeFormatter(time: any): string {
-  const utcTimestamp = time.created_at
+  const utcTimestamp = time
   const date = new Date(utcTimestamp)
   const now = new Date() // Get the current date and time
 

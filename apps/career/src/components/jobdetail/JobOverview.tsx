@@ -69,7 +69,7 @@ const JobOverview = ({ job }: { job: JobProps }) => {
                       <h2 className="mb-2 text-2xl font-bold">
                         {detail.label}
                       </h2>
-                      <h2 className="text-2xl">{value}</h2>
+                      <h2 className="whitespace-pre-line text-2xl">{value}</h2>
                     </div>
                   </div>
                 </li>

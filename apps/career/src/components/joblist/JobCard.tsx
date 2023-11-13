@@ -26,7 +26,7 @@ const JobCard: React.FC<JobCardProps> = ({
       <div className="p-4">
         <div className="grid h-auto w-full grid-cols-12 items-center gap-x-11 sm:h-36 sm:gap-24">
           {/* Logo Section */}
-          <div className="col-span-12 lg:col-span-2">
+          <div className="col-span-12 sm:col-span-2">
             <div className="mb-md-0 mb-4 text-center">
               <img
                 src={company_logo}
@@ -38,7 +38,7 @@ const JobCard: React.FC<JobCardProps> = ({
             </div>
           </div>
           {/* Title Section */}
-          <div className="col-span-12 lg:col-span-3">
+          <div className="col-span-12 sm:col-span-3">
             <div className="mb-md-0 mb-2">
               <h2
                 className={`truncate text-2xl font-bold text-light-text1 dark:text-dark-text1`}
@@ -56,8 +56,8 @@ const JobCard: React.FC<JobCardProps> = ({
             </div>
           </div>
           {/* Location Section */}
-          <div className="col-span-12 lg:col-span-3">
-            <div className="mb-2 lg:flex">
+          <div className="col-span-12 sm:col-span-3">
+            <div className="mb-2 sm:flex">
               {/* You can add an icon for location next to the text */}
               <p className="mb-0 truncate text-light-text1 dark:text-dark-text1">
                 {location}
@@ -65,12 +65,12 @@ const JobCard: React.FC<JobCardProps> = ({
             </div>
           </div>
           {/* Date Posted Section */}
-          <div className="col-span-12 lg:col-span-2">
+          <div className="col-span-12 sm:col-span-2">
             <div className="mb-0">
               <h2 className="text-2xl font-bold">{formattedTime}</h2>
             </div>
           </div>
-          <div className="col-span-12 lg:col-span-2">
+          <div className="col-span-12 sm:col-span-2">
             <div className="flex flex-wrap gap-1.5">
               <span className=" rounded bg-green-500/20 px-2 py-0.5 font-medium capitalize text-green-500">
                 {type}

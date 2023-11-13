@@ -12,10 +12,6 @@ const JobContent = ({ job }: { job: JobProps }) => {
       content: job.job_description,
     },
     {
-      title: "Responsibilities",
-      content: job.responsibilities,
-    },
-    {
       title: "Qualification",
       content: job.qualifications,
     },

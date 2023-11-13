@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react"
 import JobCard from "@app/components/joblist/JobCard"
 import PostRegisterProfile from "./PostRegisterProfile"
-import { getUserAttr, getIdToken, SignInModal } from "wasedatime-ui"
+import { getIdToken, SignInModal } from "wasedatime-ui"
 import { useTranslation } from "react-i18next"
 import PreRegisterProfile from "./PreRegisterProfile"
 import type CareerComponentProps from "@app/types/careerComponentProps"
-import API from "@aws-amplify/api"
 
 type Props = {}
 
@@ -50,10 +49,10 @@ const Joblist: React.FC<CareerComponentProps> = ({
                   company_logo={job.company_logo}
                   company={job.company}
                   title={job.title}
-                  job_description={job.description}
+                  job_description={job.job_description}
                   location={job.location}
                   created_at={job.created_at}
-                  isLoggedIn={isLoggedIn}
+                  type={job.type}
                   isRegistered={isRegistered}
                 />
               ))}

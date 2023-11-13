@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react"
 import SchoolFilterForm from "../common/SchoolFilter"
 import getSchoolIconPath from "@app/utils/get-school-icon-path"
-import { profile } from "console"
-import CareerComponentProps from "@app/types/careerComponentProps"
 import Dropdown from "../common/Dropdown"
 import {
   JaLevelOptions,
@@ -16,8 +14,9 @@ import InterestGrid from "../common/IntersestGrid"
 import UserProfile from "@app/types/userProfile"
 import API from "@aws-amplify/api"
 import { getIdToken } from "wasedatime-ui"
+import ProfileComponentProps from "@app/types/profileComponentProps"
 
-interface ProfileModalProps extends CareerComponentProps {
+interface ProfileModalProps extends ProfileComponentProps {
   closeModal: () => void
 }
 
@@ -28,7 +27,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   isRegistered,
 }) => {
   const [expandSchool, setExpandSchool] = useState(false)
-  const [localProfile, setLocalProfile] = useState(profile)
   const [userToken, setUserToken] = useState("")
 
   const getUserIdToken = async () => {

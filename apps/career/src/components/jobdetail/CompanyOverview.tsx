@@ -41,7 +41,7 @@ const CompanyOverview = ({ job }: { job: JobProps }) => {
               {info.isLink ? (
                 <a
                   href={
-                    /^https?:\/\//i.test(info.content)
+                    /^https?:\/\//i.test(info.content || "")
                       ? info.content
                       : `http://${info.content}`
                   }

@@ -2,10 +2,9 @@ import React, { useState } from "react"
 import AccountCircleIcon from "@mui/icons-material/AccountCircle"
 import ProfileModal from "./ProfileModal"
 import CareerComponentProps from "@app/types/careerComponentProps"
+import ProfileComponentProps from "@app/types/profileComponentProps"
 
-type Props = {}
-
-const PreRegisterProfile: React.FC<CareerComponentProps> = ({
+const PreRegisterProfile: React.FC<ProfileComponentProps> = ({
   profile,
   setProfile,
 }) => {

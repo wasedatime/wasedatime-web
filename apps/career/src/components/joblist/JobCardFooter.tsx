@@ -12,13 +12,13 @@ const JobCardFooter: React.FC<JobFooterProps> = ({ jobID, isRegistered }) => {
     <div className="bg-gray-100 px-4 py-4 dark:bg-neutral-700">
       {isRegistered ? (
         <Link to={`/${jobID}`}>
-          <div className="col-span-12 text-right text-light-text1 dark:text-dark-text1 lg:col-span-6 lg:mt-0">
+          <div className="col-span-12 text-right text-light-text1 dark:text-dark-text1 sm:col-span-6 sm:mt-0">
             <span>Apply</span>
             <KeyboardDoubleArrowRightIcon />
           </div>
         </Link>
       ) : (
-        <div className="col-span-12 cursor-not-allowed text-right text-light-text1 dark:text-dark-text1 lg:col-span-6 lg:mt-0">
+        <div className="col-span-12 cursor-not-allowed text-right text-light-text1 dark:text-dark-text1 sm:col-span-6 sm:mt-0">
           <span>Apply</span>
           <KeyboardDoubleArrowRightIcon />
         </div>

@@ -43,9 +43,13 @@ const JobCard: React.FC<JobCardProps> = ({
           {/* Title Section */}
           <div className="col-span-12 lg:col-span-3">
             <div className="mb-md-0 mb-2">
-              <h2 className={`truncate text-2xl font-bold`}>{title}</h2>
+              <h2
+                className={`truncate text-2xl font-bold text-light-text1 dark:text-dark-text1`}
+              >
+                {title}
+              </h2>
               <p
-                className={`mb-0 truncate text-gray-500 dark:text-gray-300 ${
+                className={`mb-0 truncate text-light-text1 dark:text-dark-text1 ${
                   isRegistered ? `` : `blur-sm filter`
                 }`}
               >
@@ -58,7 +62,7 @@ const JobCard: React.FC<JobCardProps> = ({
           <div className="col-span-12 lg:col-span-3">
             <div className="mb-2 lg:flex">
               {/* You can add an icon for location next to the text */}
-              <p className="mb-0 truncate text-gray-500 dark:text-gray-300">
+              <p className="mb-0 truncate text-light-text1 dark:text-dark-text1">
                 {location}
               </p>
             </div>

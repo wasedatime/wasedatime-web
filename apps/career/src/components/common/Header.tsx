@@ -8,6 +8,7 @@ import { sizes } from "wasedatime-ui"
 import logo from "@app/assets/logo.svg"
 import { ThemeToggle } from "./ThemeToggle"
 import { THEME } from "@app/types/theme"
+import JobPostButton from "./JobPostButton"
 
 const headerStyle = (isBlur: boolean, theme: THEME) => {
   const lightBackgroundColor = isBlur ? "#FAFAFA30" : colors.light.bgSide
@@ -39,8 +40,8 @@ const titleWrapperStyle = {
 }
 
 const logoWrapperStyle = {
-  display: 'flex',
-  alignItems: 'center',
+  display: "flex",
+  alignItems: "center",
   flex: "3",
   padding: "0px 0px 0px 1em",
 }
@@ -56,7 +57,7 @@ const mobileSearchBarWrapperStyle = {
 }
 
 const headerMenuWrapperStyle = {
-  flex: "3",
+  flex: "20",
   margin: "auto 0px",
   display: "flex",
   flexDirection: "row" as "row",
@@ -163,10 +164,10 @@ const Header = ({
                 alt="WasedaTime English Small Logo"
                 className="h-[50px] w-[50px]"
               />
-              <h2 className="text-2xl text-light-text1 dark:text-dark-text1 ml-5 whitespace-nowrap"> 
+              <h2 className="ml-5 whitespace-nowrap text-2xl text-light-text1 dark:text-dark-text1">
                 {title}
               </h2>
-          </div>
+            </div>
           ) : (
             <header style={titleWrapperStyle}>
               <h2 style={pageTitleStyle(theme)}>{title}</h2>
@@ -176,12 +177,13 @@ const Header = ({
       </MediaQuery>
 
       <MediaQuery maxWidth={sizes.tablet}>
-        {(matches: boolean) =>
-          matches ? (
-            <div style={mobileSearchBarWrapperStyle}></div>
-          ) : (
-            <div style={searchBarWrapperStyle}></div>
-          )
+        {
+          (matches: boolean) =>
+            matches ? (
+              <div style={mobileSearchBarWrapperStyle}></div>
+            ) : (
+              <div style={searchBarWrapperStyle}></div>
+            )
           // (
           //   <div style={mobileSearchBarWrapperStyle}>{searchBar}</div>
           // ) : (
@@ -191,6 +193,7 @@ const Header = ({
       </MediaQuery>
 
       <div style={headerMenuWrapperStyle}>
+        <JobPostButton />
         <ThemeToggle theme={theme} setTheme={setTheme} />
         <LanguageMenu changeLang={changeLang} />
       </div>

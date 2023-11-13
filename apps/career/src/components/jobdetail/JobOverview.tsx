@@ -1,13 +1,18 @@
 import React from "react"
-import { useParams } from "react-router-dom"
-import jobData from "@app/constants/dummy.json"
 import BadgeIcon from "@mui/icons-material/Badge"
 import LocationOnIcon from "@mui/icons-material/LocationOn"
 import HistoryIcon from "@mui/icons-material/History"
 import PaidIcon from "@mui/icons-material/Paid"
 import JobProps from "@app/types/job"
+import { timeFormatter } from "@app/utils/timeFormatter"
 
-const jobDetailStructure = [
+interface Details {
+  key: keyof JobProps
+  label: string
+  icon: JSX.Element
+}
+
+const jobDetailStructure: Details[] = [
   {
     key: "title",
     label: "Job Title",
@@ -60,7 +65,11 @@ const JobOverview = ({ job }: { job: JobProps }) => {
           <h1 className="m-2 text-2xl font-bold">Job Overview</h1>
           <ul>
             {jobDetailStructure.map((detail) => {
-              const value = job[detail.key]
+              let value = job[detail.key]
+
+              if (detail.key === "created_at") {
+                value = timeFormatter(value)
+              }
               return (
                 <li key={detail.key}>
                   <div className="mt-6 flex items-center">
@@ -77,7 +86,14 @@ const JobOverview = ({ job }: { job: JobProps }) => {
             })}
           </ul>
           <div className="mt-8 space-y-2">
-            <div className="btn w-full border-transparent bg-blue-300 p-2  text-xl capitalize text-blue-900 hover:-translate-y-1.5">
+            <div
+              className="btn w-full cursor-pointer border-transparent bg-blue-300 p-2 text-xl capitalize text-blue-900 hover:-translate-y-1.5"
+              onClick={() => {
+                if (job && job.apply) {
+                  window.open(job.apply, "_blank")
+                }
+              }}
+            >
               apply now
             </div>
           </div>

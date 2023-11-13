@@ -6,11 +6,10 @@ import GradeIcon from "@mui/icons-material/Grade"
 import LanguageIcon from "@mui/icons-material/Language"
 import StarBorderIcon from "@mui/icons-material/StarBorder"
 import SchoolIcon from "@mui/icons-material/School"
-import type UserProfile from "@app/types/userProfile"
 import ProfileModal from "./ProfileModal"
-import CareerComponentProps from "@app/types/careerComponentProps"
+import ProfileComponentProps from "@app/types/profileComponentProps"
 
-const PostRegisterProfile: React.FC<CareerComponentProps> = ({
+const PostRegisterProfile: React.FC<ProfileComponentProps> = ({
   profile,
   setProfile,
   isRegistered,

@@ -112,7 +112,6 @@ const InnerApp = () => {
       })
       const data = res.data.data.Items
       setJobData(data)
-      localStorage.setItem("jobs", JSON.stringify(data))
     } catch (error) {
       console.error(error)
     }

@@ -72,7 +72,7 @@ const JobOverview = ({ job }: { job: JobProps }) => {
               }
               return (
                 <li key={detail.key}>
-                  <div className="mt-6 flex items-center">
+                  <div className="mt-6 flex items-center truncate">
                     {detail.icon && <i>{detail.icon}</i>}
                     <div className="ml-4">
                       <h2 className="mb-2 text-2xl font-bold">
@@ -87,7 +87,7 @@ const JobOverview = ({ job }: { job: JobProps }) => {
           </ul>
           <div className="mt-8 space-y-2">
             <div
-              className="btn w-full cursor-pointer border-transparent bg-blue-300 p-2 text-xl capitalize text-blue-900 hover:-translate-y-1.5"
+              className="w-full cursor-pointer rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white hover:-translate-y-1.5 hover:bg-light-lighter dark:bg-dark-main dark:hover:bg-dark-lighter"
               onClick={() => {
                 if (job && job.apply) {
                   window.open(job.apply, "_blank")

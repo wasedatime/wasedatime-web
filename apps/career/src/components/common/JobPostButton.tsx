@@ -9,7 +9,7 @@ const JobPostButton = () => {
   return (
     <button
       onClick={handleClick}
-      className="mx-4 rounded-lg bg-light-main px-2 text-white"
+      className="mx-4 cursor-pointer rounded-lg rounded-lg border-transparent bg-light-main bg-light-main px-2 text-center text-xl capitalize text-white text-white hover:-translate-y-1.5 hover:bg-light-lighter dark:bg-dark-main dark:hover:bg-dark-lighter"
     >
       Post a Job
     </button>

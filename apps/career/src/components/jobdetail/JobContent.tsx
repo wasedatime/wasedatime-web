@@ -67,7 +67,7 @@ const JobContent = ({ job }: { job: JobProps }) => {
         <div className="grid grid-cols-12">
           <div className="col-span-4 col-start-9 mt-8 space-y-2 p-6">
             <div
-              className="btn w-full cursor-pointer border-transparent bg-blue-300 p-2 text-xl capitalize text-blue-900 hover:-translate-y-1.5"
+              className="w-full cursor-pointer rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white hover:-translate-y-1.5 hover:bg-light-lighter dark:bg-dark-main dark:hover:bg-dark-lighter"
               onClick={() => {
                 if (job && job.apply) {
                   window.open(job.apply, "_blank")

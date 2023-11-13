@@ -12,7 +12,7 @@ const InterestGrid = ({ options, selectedInterests, onInterestChange }) => {
           key={option.value}
           className={`mb-2 inline-block w-24 overflow-hidden rounded-full px-2 py-1 font-sans ${
             selectedInterests.includes(option.value)
-              ? "bg-light-card3 dark:bg-dark-card2" // Selected style
+              ? "bg-light-main dark:bg-dark-main" // Selected style
               : "bg-light-card2 dark:bg-dark-card1" // Unselected style
           }`}
           onClick={() => handleInterestClick(option.value)}

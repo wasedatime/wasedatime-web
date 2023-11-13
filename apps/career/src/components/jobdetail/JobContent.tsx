@@ -55,12 +55,8 @@ const JobContent = ({ job }: { job: JobProps }) => {
         <div className="p-6">
           {jobContentSections.map((section, index) => (
             <div key={index} className="mt-5">
-              <h3 className="text-bold mb-3 text-gray-900 dark:text-gray-50">
-                {section.title}
-              </h3>
-              <p className="mb-0 whitespace-pre-line text-gray-500 dark:text-gray-300">
-                {section.content}
-              </p>
+              <h3 className="text-bold mb-3">{section.title}</h3>
+              <p className="mb-0 whitespace-pre-line">{section.content}</p>
             </div>
           ))}
         </div>

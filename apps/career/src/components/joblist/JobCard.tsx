@@ -67,7 +67,9 @@ const JobCard: React.FC<JobCardProps> = ({
           {/* Date Posted Section */}
           <div className="col-span-12 sm:col-span-2">
             <div className="mb-0">
-              <h2 className="text-2xl font-bold">{formattedTime}</h2>
+              <h2 className="text-2xl font-bold text-light-text1 dark:text-dark-text1">
+                {formattedTime}
+              </h2>
             </div>
           </div>
           <div className="col-span-12 sm:col-span-2">

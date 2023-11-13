@@ -101,7 +101,7 @@ const PostRegisterProfile: React.FC<ProfileComponentProps> = ({
     setIsModalOpen(!isModalOpen)
   }
   return (
-    <div className="standard-style mt-4 rounded border">
+    <div className="standard-style mt-4 rounded border text-light-text1 dark:text-dark-text1">
       <h1 className="p-6 text-center text-2xl font-bold">Profile</h1>
       <div className="ml-2">
         <div className="text-center">
@@ -118,10 +118,10 @@ const PostRegisterProfile: React.FC<ProfileComponentProps> = ({
         <ul>
           {profileInformation.map((info, index) => (
             <li key={index} className="mt-6 flex items-center">
-              <i className="text-gray-500">{info.icon}</i>
+              <i className="">{info.icon}</i>
               <div className="ml-4">
-                <h2 className="mb-2 text-2xl font-bold">{info.label}</h2>
-                <h2 className="text-2xl">{info.content}</h2>
+                <h2 className="mb-2 text-2xl font-bold ">{info.label}</h2>
+                <h2 className="text-2xl ">{info.content}</h2>
               </div>
             </li>
           ))}

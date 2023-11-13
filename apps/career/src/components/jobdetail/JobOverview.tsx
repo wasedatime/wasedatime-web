@@ -60,7 +60,7 @@ const JobOverview = ({ job }: { job: JobProps }) => {
 
   return (
     <>
-      <div className="standard-style mt-14 rounded border">
+      <div className="standard-style mt-14 rounded border text-light-text1 dark:text-dark-text1">
         <div className="p-6">
           <h1 className="m-2 text-2xl font-bold">Job Overview</h1>
           <ul>

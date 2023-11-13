@@ -21,7 +21,7 @@ const CompanyOverview = ({ job }: { job: JobProps }) => {
 
   return (
     <>
-      <div className="standard-style mt-14 rounded border">
+      <div className="standard-style mt-14 rounded border text-light-text1 dark:text-dark-text1">
         <h1 className="p-6 text-center text-4xl font-bold">Company Overview</h1>
         <div className="text-center">
           <div className="mx-auto h-[55px] w-[55px] rounded-full">
@@ -52,7 +52,7 @@ const CompanyOverview = ({ job }: { job: JobProps }) => {
                   {info.content}
                 </a>
               ) : (
-                <p className="mb-4 whitespace-pre-line p-2 font-bold text-gray-500 dark:text-gray-300">
+                <p className="mb-4 whitespace-pre-line p-2 font-bold">
                   {info.content}
                 </p>
               )}

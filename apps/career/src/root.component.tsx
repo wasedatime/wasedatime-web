@@ -1,19 +1,40 @@
 import React from "react"
+import { configAuth } from "wasedatime-ui"
+import ReactGA from "react-ga4"
+import App from "@app/App"
+import { ThemeProvider } from "@app/utils/theme-context"
+import { RecoilRoot } from "recoil"
 
-interface RootProps {
-  name?: string
+import { API } from "@aws-amplify/api"
+
+import "@app/utils/i18n"
+import "@app/styles/main.css"
+import "@app/styles/common.css"
+
+configAuth()
+
+const apiConfig = {
+  API: {
+    endpoints: [
+      {
+        name: "wasedatime-dev",
+        endpoint: import.meta.env.VITE_API_BASE_URL,
+      },
+    ],
+  },
 }
+API.configure(apiConfig)
 
-const Root = ({ name }: RootProps) => {
+ReactGA.initialize(import.meta.env.VITE_GA_ID, {})
+
+export default function Root(props) {
   return (
-    <div>
-      <h1>{name} is mounted!</h1>
-      <p>
-        This 'career' app is deprecated. You can copy this app for starting a
-        new big feature in WasedaTime!
-      </p>
-    </div>
+    <section className="h-screen">
+      <RecoilRoot>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </RecoilRoot>
+    </section>
   )
 }
-
-export default Root

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   HashRouter,
-  BrowserRouter,
   Routes,
   Route,
   useNavigate,
@@ -10,12 +9,12 @@ import {
 } from "react-router-dom";
 import HeaderWithModal from "@app/components/common/HeaderWithModal";
 import { ThemeContext } from "@app/utils/theme-context";
-import Board from "./Board";
+import Board from "./components/Board";
 import BoardMenu from "@app/components/BoardMenu";
 import Thread from "@app/components/Thread";
-import FilterMenu from "./FilterMenu";
-import SearchTags from "./SearchTags";
-import FeedBackBox from "./FeedBackBox";
+import FilterMenu from "./components/FilterMenu";
+import SearchTags from "./components/SearchTags";
+import FeedBackBox from "./components/FeedBackBox";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { API } from "@aws-amplify/api";
 import { getUserAttr, getIdToken, LoadingSpinner } from "wasedatime-ui";

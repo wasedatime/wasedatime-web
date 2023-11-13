@@ -14,6 +14,7 @@ jobs:
         microapps: [
             "WEBHOOK_ROOT_DEV",
             "WEBHOOK_SYLLABUS_DEV",
+            "WEBHOOK_CAREER_DEV",
             # "WEBHOOK_CAMPUS_DEV",
             # "WEBHOOK_FEEDS_DEV",
             "WEBHOOK_FORUMS_DEV",
@@ -32,6 +33,7 @@ jobs:
         microapps: [
             "WEBHOOK_ROOT_PROD",
             "WEBHOOK_SYLLABUS_PROD",
+            "WEBHOOK_CAREER_PROD",
             # "WEBHOOK_CAMPUS_PROD",
             # "WEBHOOK_FEEDS_PROD",
             "WEBHOOK_FORUMS_PROD",

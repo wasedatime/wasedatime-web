@@ -1,21 +1,7 @@
 import React from "react"
+import JobProps from "@app/types/job"
 
-type Props = {
-  job: {
-    title: string
-    jobDescription: string
-    responsibilities: string
-    qualifications: string
-    appeal: string
-    min_hours: string
-    companyLogo: string
-    heroImage: string
-    location: string
-    salary: string
-  }
-}
-
-const JobContent = ({ job }: Props) => {
+const JobContent = ({ job }: { job: JobProps }) => {
   const jobContentSections = [
     {
       title: "Job Title",
@@ -23,7 +9,7 @@ const JobContent = ({ job }: Props) => {
     },
     {
       title: "Job Description",
-      content: job.jobDescription,
+      content: job.job_description,
     },
     {
       title: "Responsibilities",
@@ -53,19 +39,19 @@ const JobContent = ({ job }: Props) => {
   ]
   return (
     <>
-      <div className="mt-14 rounded-md border border-gray-100/30 dark:border-neutral-600/80">
+      <div className="standard-style mt-14 rounded-md border">
         <div className="relative">
           <img
-            className="mb-7 h-[300px] w-[800px] rounded-md"
+            className="mb-7 h-[300px] w-[800px] rounded-md object-cover"
             alt="Job Hero Image"
-            src={job.heroImage}
+            src={job.hero_image}
           />
-          {job.companyLogo && (
-            <div className="absolute -bottom-7 left-7 z-20 ">
+          {job.company_logo && (
+            <div className="absolute -bottom-10 left-7 z-20 ">
               <img
-                className="mb-7 h-[55px] w-[55px] rounded-md object-cover"
+                className="mb-7 h-[55px] w-[55px] rounded-md object-contain"
                 alt="Company Logo"
-                src={job.companyLogo}
+                src={job.company_logo}
               />
             </div>
           )}
@@ -76,7 +62,7 @@ const JobContent = ({ job }: Props) => {
               <h3 className="text-bold mb-3 text-gray-900 dark:text-gray-50">
                 {section.title}
               </h3>
-              <p className="mb-0 text-gray-500 dark:text-gray-300">
+              <p className="mb-0 whitespace-pre-line text-gray-500 dark:text-gray-300">
                 {section.content}
               </p>
             </div>

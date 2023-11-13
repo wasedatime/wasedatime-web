@@ -2,62 +2,58 @@ import React, { useState } from "react"
 import WorkIcon from "@mui/icons-material/Work"
 import { Link } from "react-router-dom"
 import JobCardFooter from "./JobCardFooter"
+import JobProps from "@app/types/job"
+import { timeFormatter } from "@app/utils/timeFormatter"
 
-interface JobCardProps {
-  jobID: string
-  title: string
-  description: string
-  location: string
-  datePosted: string
-  logo: string
-  company: string
+interface JobCardProps extends JobProps {
+  isLoggedIn: boolean
+  isRegistered: boolean
 }
 
 // Props needed, company logo, title, company, salary, location, datePosted, job Type
 
-// const JobCard: React.FC<JobCardProps> = ({
-//   title,
-//   description,
-//   location,
-//   datePosted,
-//   jobID,
-//   logo,
-// }) => {
-//   const [isExpanded, setIsExpanded] = useState(false)
-
-//   const handleExpand = () => {
-//     setIsExpanded(!isExpanded)
-//   }
-
 const JobCard: React.FC<JobCardProps> = ({
-  jobID,
-  logo,
+  job_id,
+  company_logo,
   title,
   location,
-  datePosted,
+  created_at,
   company,
+  isRegistered,
   // Include additional props as necessary
 }) => {
+  const formattedTime = timeFormatter(created_at)
+
   return (
-    <div className="job-card-standard h-full">
+    <div className="job-card-standard standard-style h-full">
       <div className="p-4">
         <div className="grid h-auto w-full grid-cols-12 items-center gap-x-11 sm:h-36 sm:gap-24">
           {/* Logo Section */}
           <div className="col-span-12 lg:col-span-2">
             <div className="mb-md-0 mb-4 text-center">
               <img
-                src={logo}
+                src={company_logo}
                 alt="Company Logo"
-                className="mx-auto h-[55px] w-[55px] object-contain"
+                className={`mx-auto h-[55px] w-[55px] object-contain ${
+                  isRegistered ? `` : `blur-sm filter`
+                }`}
               />
             </div>
           </div>
           {/* Title Section */}
           <div className="col-span-12 lg:col-span-3">
             <div className="mb-md-0 mb-2">
-              <h2 className="text-2xl font-bold">{title}</h2>
-              <p className="fs-14 mb-0 text-gray-500 dark:text-gray-300">
-                {company}
+              <h2
+                className={`truncate text-2xl font-bold text-light-text1 dark:text-dark-text1`}
+              >
+                {title}
+              </h2>
+              <p
+                className={`mb-0 truncate text-light-text1 dark:text-dark-text1 ${
+                  isRegistered ? `` : `blur-sm filter`
+                }`}
+              >
+                {isRegistered ? company : "HAHA Register First Bro"}
               </p>
               {/* Other information related to the job title can be added here */}
             </div>
@@ -66,7 +62,7 @@ const JobCard: React.FC<JobCardProps> = ({
           <div className="col-span-12 lg:col-span-3">
             <div className="mb-2 lg:flex">
               {/* You can add an icon for location next to the text */}
-              <p className="mb-0 text-gray-500 dark:text-gray-300">
+              <p className="mb-0 truncate text-light-text1 dark:text-dark-text1">
                 {location}
               </p>
             </div>
@@ -74,13 +70,13 @@ const JobCard: React.FC<JobCardProps> = ({
           {/* Date Posted Section */}
           <div className="col-span-12 lg:col-span-2">
             <div className="mb-0">
-              <h2 className="text-2xl font-bold">{datePosted}</h2>
+              <h2 className="text-2xl font-bold">{formattedTime}</h2>
             </div>
           </div>
           {/* Additional sections can be added here */}
         </div>
       </div>
-      <JobCardFooter jobID={jobID} />
+      <JobCardFooter jobID={job_id} isRegistered={isRegistered} />
     </div>
   )
 }

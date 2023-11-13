@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useState } from "react"
 import { HashRouter, Routes, Route } from "react-router-dom"
 import { ThemeContext } from "@app/utils/theme-context"
 import Joblist from "@app/components/joblist/Joblist"
@@ -6,10 +6,10 @@ import Jobdetail from "@app/components/jobdetail/Jobdetail"
 import { useTranslation } from "react-i18next"
 import HeaderWithModal from "@app/components/common/HeaderWithModal"
 import Header from "@app/components/common/Header"
-import { jobData as job } from "./Data/JobData"
-import JobPage from "@app/components/JobPage"
-
-type Props = {}
+import type UserProfile from "./types/userProfile"
+import type CareerComponentProps from "./types/careerComponentProps"
+import API from "@aws-amplify/api"
+import { getIdToken } from "wasedatime-ui"
 
 const App = () => {
   return (
@@ -21,18 +21,107 @@ const App = () => {
   )
 }
 
-const PageRoutes = () => {
+const PageRoutes = ({
+  jobData,
+  profile,
+  setProfile,
+  isRegistered,
+}: CareerComponentProps) => {
   return (
     <Routes>
-      <Route element={<JobPage />} path="/" />
-      <Route element={<Jobdetail />} path="/:jobId" />
+      <Route
+        element={
+          <Joblist
+            jobData={jobData}
+            profile={profile}
+            setProfile={setProfile}
+            isRegistered={isRegistered}
+          />
+        }
+        path="/"
+      />
+      <Route
+        element={
+          <Jobdetail
+            jobData={jobData}
+            profile={profile}
+            setProfile={setProfile}
+            isRegistered={isRegistered}
+          />
+        }
+        path="/:jobId"
+      />
     </Routes>
   )
 }
 
-const InnerApp = (props: Props) => {
+const InnerApp = () => {
   const { t, i18n } = useTranslation()
   const { theme, setTheme } = React.useContext(ThemeContext)
+  const [isRegistered, setIsRegistered] = useState(false)
+  const [jobData, setJobData] = useState([])
+
+  const [profile, setProfile] = useState<UserProfile>({
+    name: "",
+    school: "",
+    email: "",
+    year: "",
+    class_of: "",
+    languages: [
+      { language: "", level: "" },
+      { language: "", level: "" },
+    ],
+    interests: [],
+  })
+
+  const fetchUserProfile = async () => {
+    const idToken = await getIdToken()
+
+    try {
+      const res = await API.get("wasedatime-dev", "/profile", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: idToken,
+        },
+        response: true,
+      })
+
+      const data = res.data.data
+
+      if (data) {
+        setProfile(data)
+        setIsRegistered(true)
+      } else {
+        setIsRegistered(false)
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  const fetchCareer = async () => {
+    const idToken = await getIdToken()
+
+    try {
+      const res = await API.get("wasedatime-dev", "/career?type=internship", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: idToken,
+        },
+        response: true,
+      })
+      const data = res.data.data.Items
+      setJobData(data)
+      localStorage.setItem("jobs", JSON.stringify(data))
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
+  useEffect(() => {
+    fetchUserProfile()
+    fetchCareer()
+  }, [])
 
   return (
     <>
@@ -49,10 +138,17 @@ const InnerApp = (props: Props) => {
           changeLang={(lng) => i18n.changeLanguage(lng)}
         />
       </div>
-      <div className="container mx-auto h-[calc(100vh-127px)] overflow-y-auto px-2">
-        {/* md:w-3/5 */}
+      <div className="h-[calc(100vh-127px)] overflow-y-auto lg:h-full">
+        <div className="container mx-auto px-2">
+          {/* md:w-3/5 */}
 
-        <PageRoutes />
+          <PageRoutes
+            jobData={jobData}
+            profile={profile}
+            setProfile={setProfile}
+            isRegistered={isRegistered}
+          />
+        </div>
       </div>
     </>
   )

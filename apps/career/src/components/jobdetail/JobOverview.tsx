@@ -1,10 +1,12 @@
-import React from "react"
+import React, { useState } from "react"
 import BadgeIcon from "@mui/icons-material/Badge"
 import LocationOnIcon from "@mui/icons-material/LocationOn"
 import HistoryIcon from "@mui/icons-material/History"
 import PaidIcon from "@mui/icons-material/Paid"
 import JobProps from "@app/types/job"
 import { timeFormatter } from "@app/utils/timeFormatter"
+import AgreeModal from "@app/components/common/AgreeModal"
+import UserProfile from "@app/types/userProfile"
 
 interface Details {
   key: keyof JobProps
@@ -55,8 +57,26 @@ const jobDetailStructure: Details[] = [
   },
 ]
 
-const JobOverview = ({ job }: { job: JobProps }) => {
-  // If job doesn't exist, you can handle the null case by rendering something else
+const JobOverview = ({
+  job,
+  profile,
+}: {
+  job: JobProps
+  profile: UserProfile
+}) => {
+  const [isAgreeModalOpen, setIsAgreeModalOpen] = useState(false)
+
+  const handleApplyClick = () => {
+    setIsAgreeModalOpen(true)
+  }
+
+  const handleModalAgree = () => {
+    setIsAgreeModalOpen(false)
+  }
+
+  const handleModalDisagree = () => {
+    setIsAgreeModalOpen(false)
+  }
 
   return (
     <>
@@ -88,17 +108,21 @@ const JobOverview = ({ job }: { job: JobProps }) => {
           <div className="mt-8 space-y-2">
             <div
               className="w-full cursor-pointer rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white hover:-translate-y-1.5 hover:bg-light-lighter dark:bg-dark-main dark:hover:bg-dark-lighter"
-              onClick={() => {
-                if (job && job.apply) {
-                  window.open(job.apply, "_blank")
-                }
-              }}
+              onClick={handleApplyClick}
             >
               apply now
             </div>
           </div>
         </div>
       </div>
+      {isAgreeModalOpen && (
+        <AgreeModal
+          onAgree={handleModalAgree}
+          onDisagree={handleModalDisagree}
+          job={job}
+          profile={profile}
+        />
+      )}
     </>
   )
 }

@@ -10,6 +10,7 @@ import { SignInModal } from "wasedatime-ui"
 import { useTranslation } from "react-i18next"
 
 const Jobdetail: React.FC<CareerComponentProps> = ({
+  profile,
   jobData,
   isRegistered,
 }) => {
@@ -23,7 +24,6 @@ const Jobdetail: React.FC<CareerComponentProps> = ({
     job = jobData.find((j) => j.job_id === jobId)
   } else {
     const storedJobData = localStorage.getItem("jobs")
-    console.log(storedJobData)
     if (storedJobData) {
       const parsedJobData = JSON.parse(storedJobData) as JobProps[]
       job = parsedJobData.find((j) => j.job_id === jobId)
@@ -34,7 +34,8 @@ const Jobdetail: React.FC<CareerComponentProps> = ({
     return <div>Job not found</div>
   }
 
-  console.log(jobData)
+  console.log("Job data state : ", job)
+  console.log("Profile data state : ", profile)
 
   return (
     <>
@@ -46,10 +47,10 @@ const Jobdetail: React.FC<CareerComponentProps> = ({
         {isRegistered ? (
           <>
             <div className="col-span-12 lg:col-span-3">
-              <JobOverview job={job} />
+              <JobOverview job={job} profile={profile} />
             </div>
             <div className="col-span-12 lg:col-span-6">
-              <JobContent job={job} />
+              <JobContent job={job} profile={profile} />
             </div>
             <div className="col-span-12 lg:col-span-3">
               <CompanyOverview job={job} />

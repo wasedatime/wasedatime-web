@@ -47,10 +47,10 @@ const Jobdetail: React.FC<CareerComponentProps> = ({
         {isRegistered ? (
           <>
             <div className="col-span-12 lg:col-span-3">
-              <JobOverview job={job} />
+              <JobOverview job={job} profile={profile} />
             </div>
             <div className="col-span-12 lg:col-span-6">
-              <JobContent job={job} />
+              <JobContent job={job} profile={profile} />
             </div>
             <div className="col-span-12 lg:col-span-3">
               <CompanyOverview job={job} />

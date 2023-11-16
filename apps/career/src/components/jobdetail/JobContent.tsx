@@ -1,8 +1,28 @@
-import React from "react"
+import React, { useState } from "react"
 import JobProps from "@app/types/job"
-import postApplication from "@app/utils/postApplication"
+import AgreeModal from "@app/components/common/AgreeModal"
+import UserProfile from "@app/types/userProfile"
 
-const JobContent = ({ job }: { job: JobProps }) => {
+const JobContent = ({
+  job,
+  profile,
+}: {
+  job: JobProps
+  profile: UserProfile
+}) => {
+  const [isAgreeModalOpen, setIsAgreeModalOpen] = useState(false)
+
+  const handleApplyClick = () => {
+    setIsAgreeModalOpen(true)
+  }
+
+  const handleModalAgree = () => {
+    setIsAgreeModalOpen(false)
+  }
+
+  const handleModalDisagree = () => {
+    setIsAgreeModalOpen(false)
+  }
   const jobContentSections = [
     {
       title: "Job Title",
@@ -65,17 +85,21 @@ const JobContent = ({ job }: { job: JobProps }) => {
           <div className="col-span-4 col-start-9 mt-8 space-y-2 p-6">
             <div
               className="w-full cursor-pointer rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white hover:-translate-y-1.5 hover:bg-light-lighter dark:bg-dark-main dark:hover:bg-dark-lighter"
-              onClick={() => {
-                if (job && job.apply) {
-                  window.open(job.apply, "_blank")
-                }
-              }}
+              onClick={handleApplyClick}
             >
               apply now
             </div>
           </div>
         </div>
       </div>
+      {isAgreeModalOpen && (
+        <AgreeModal
+          onAgree={handleModalAgree}
+          onDisagree={handleModalDisagree}
+          job={job}
+          profile={profile}
+        />
+      )}
     </>
   )
 }

@@ -52,9 +52,6 @@ const Jobdetail: React.FC<CareerComponentProps> = ({
     setIsAgreeModalOpen(false)
   }
 
-  console.log("Job data state : ", job)
-  console.log("Profile data state : ", profile)
-
   return (
     <>
       <div className="grid grid-cols-12 gap-y-10 text-light-text1 dark:text-dark-text1 lg:gap-10 lg:gap-y-0">

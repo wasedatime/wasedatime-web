@@ -53,10 +53,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     }))
   }
 
-  useEffect(() => {
-    console.log(profile)
-  }, [profile])
-
   const handleDropdownChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -99,12 +95,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
   const patchProfile = async (profileData: UserProfile) => {
     const dataToSend = { ...profileData }
-    delete dataToSend.created_at
-    delete dataToSend.updated_at
-    delete dataToSend.uid
-    delete dataToSend.school_email
-
-    console.log("profile data : ", dataToSend)
 
     const idToken = await getIdToken()
     try {
@@ -115,8 +105,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           Authorization: idToken,
         },
       })
-
-      console.log(response)
     } catch (error) {
       console.error("An error occurred:", error)
     }
@@ -132,8 +120,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           Authorization: idToken,
         },
       })
-
-      console.log(response)
     } catch (error) {
       console.error("An error occurred:", error)
     }
@@ -141,7 +127,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
   const handleSubmit = () => {
     if (isRegistered) {
-      console.log("patch")
       patchProfile(profile)
     } else {
       postProfile(profile)

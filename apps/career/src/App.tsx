@@ -110,8 +110,6 @@ const InnerApp = () => {
     const info = await getUserAttr()
     const uid = info?.id
 
-    console.log("Triggered!")
-
     try {
       const res = await API.get(
         "wasedatime-dev",

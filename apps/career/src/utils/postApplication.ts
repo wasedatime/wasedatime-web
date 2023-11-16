@@ -17,7 +17,6 @@ export const postApplication = async (
     agreed: true,
   }
   try {
-    console.log(applicationData)
     const response = await API.post("wasedatime-dev", `/career`, {
       body: { data: applicationData },
       headers: {

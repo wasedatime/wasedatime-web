@@ -16,6 +16,7 @@ interface JobProps {
   website?: string
   type?: string
   apply?: string
+  applied?: boolean
 }
 
 export default JobProps

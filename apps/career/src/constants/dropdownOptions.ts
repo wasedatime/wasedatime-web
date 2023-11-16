@@ -51,6 +51,7 @@ export const levelOptions = [
 ]
 
 export const JaLevelOptions = [
+  { label: "Native", value: "Native" },
   { label: "N1", value: "N1" },
   { label: "N2", value: "N2" },
   { label: "N3", value: "N3" },

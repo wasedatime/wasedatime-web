@@ -13,8 +13,11 @@ const Jobdetail: React.FC<CareerComponentProps> = ({
   profile,
   jobData,
   isRegistered,
+  onJobApplied,
 }) => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false)
+  const [isAgreeModalOpen, setIsAgreeModalOpen] = useState(false)
+
   const { t } = useTranslation()
 
   let { jobId } = useParams()
@@ -34,6 +37,21 @@ const Jobdetail: React.FC<CareerComponentProps> = ({
     return <div>Job not found</div>
   }
 
+  const handleApplyClick = () => {
+    setIsAgreeModalOpen(true)
+  }
+
+  const handleModalAgree = () => {
+    setIsAgreeModalOpen(false)
+    if (job && onJobApplied) {
+      onJobApplied(job.job_id)
+    }
+  }
+
+  const handleModalDisagree = () => {
+    setIsAgreeModalOpen(false)
+  }
+
   console.log("Job data state : ", job)
   console.log("Profile data state : ", profile)
 
@@ -47,10 +65,24 @@ const Jobdetail: React.FC<CareerComponentProps> = ({
         {isRegistered ? (
           <>
             <div className="col-span-12 lg:col-span-3">
-              <JobOverview job={job} profile={profile} />
+              <JobOverview
+                job={job}
+                profile={profile}
+                onApplyClick={handleApplyClick}
+                isAgreeModalOpen={isAgreeModalOpen}
+                onModalAgree={handleModalAgree}
+                onModalDisagree={handleModalDisagree}
+              />
             </div>
             <div className="col-span-12 lg:col-span-6">
-              <JobContent job={job} profile={profile} />
+              <JobContent
+                job={job}
+                profile={profile}
+                onApplyClick={handleApplyClick}
+                isAgreeModalOpen={isAgreeModalOpen}
+                onModalAgree={handleModalAgree}
+                onModalDisagree={handleModalDisagree}
+              />
             </div>
             <div className="col-span-12 lg:col-span-3">
               <CompanyOverview job={job} />

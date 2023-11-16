@@ -3,26 +3,23 @@ import JobProps from "@app/types/job"
 import AgreeModal from "@app/components/common/AgreeModal"
 import UserProfile from "@app/types/userProfile"
 
-const JobContent = ({
-  job,
-  profile,
-}: {
+interface JobContentProps {
   job: JobProps
   profile: UserProfile
+  onApplyClick: () => void // Assuming onApplyClick is a function that takes no arguments and returns void
+  isAgreeModalOpen: boolean // Boolean state
+  onModalAgree: () => void // Assuming onModalAgree is a function that takes no arguments and returns void
+  onModalDisagree: () => void // Assuming onModalDisagree is a function that takes no arguments and returns void
+}
+
+const JobContent: React.FC<JobContentProps> = ({
+  job,
+  profile,
+  onApplyClick,
+  isAgreeModalOpen,
+  onModalAgree,
+  onModalDisagree,
 }) => {
-  const [isAgreeModalOpen, setIsAgreeModalOpen] = useState(false)
-
-  const handleApplyClick = () => {
-    setIsAgreeModalOpen(true)
-  }
-
-  const handleModalAgree = () => {
-    setIsAgreeModalOpen(false)
-  }
-
-  const handleModalDisagree = () => {
-    setIsAgreeModalOpen(false)
-  }
   const jobContentSections = [
     {
       title: "Job Title",
@@ -54,6 +51,10 @@ const JobContent = ({
     },
     // You can add more sections here as needed
   ]
+
+  const applyButtonClass = job.applied
+    ? "w-full rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white cursor-not-allowed opacity-50"
+    : "w-full cursor-pointer rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white hover:-translate-y-1.5 hover:bg-light-lighter dark:bg-dark-main dark:hover:bg-dark-lighter"
   return (
     <>
       <div className="standard-style mt-14 rounded-md border">
@@ -84,18 +85,18 @@ const JobContent = ({
         <div className="grid grid-cols-12">
           <div className="col-span-4 col-start-9 mt-8 space-y-2 p-6">
             <div
-              className="w-full cursor-pointer rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white hover:-translate-y-1.5 hover:bg-light-lighter dark:bg-dark-main dark:hover:bg-dark-lighter"
-              onClick={handleApplyClick}
+              className={applyButtonClass}
+              onClick={!job.applied ? onApplyClick : undefined}
             >
-              apply now
+              {!job.applied ? "apply now" : "applied"}
             </div>
           </div>
         </div>
       </div>
       {isAgreeModalOpen && (
         <AgreeModal
-          onAgree={handleModalAgree}
-          onDisagree={handleModalDisagree}
+          onAgree={onModalAgree}
+          onDisagree={onModalDisagree}
           job={job}
           profile={profile}
         />

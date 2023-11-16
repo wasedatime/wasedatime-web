@@ -14,6 +14,15 @@ interface Details {
   icon: JSX.Element
 }
 
+interface JobOverviewProps {
+  job: JobProps
+  profile: UserProfile
+  onApplyClick: () => void // Assuming onApplyClick is a function that takes no arguments and returns void
+  isAgreeModalOpen: boolean // Boolean state
+  onModalAgree: () => void // Assuming onModalAgree is a function that takes no arguments and returns void
+  onModalDisagree: () => void // Assuming onModalDisagree is a function that takes no arguments and returns void
+}
+
 const jobDetailStructure: Details[] = [
   {
     key: "title",
@@ -57,26 +66,17 @@ const jobDetailStructure: Details[] = [
   },
 ]
 
-const JobOverview = ({
+const JobOverview: React.FC<JobOverviewProps> = ({
   job,
   profile,
-}: {
-  job: JobProps
-  profile: UserProfile
+  onApplyClick,
+  isAgreeModalOpen,
+  onModalAgree,
+  onModalDisagree,
 }) => {
-  const [isAgreeModalOpen, setIsAgreeModalOpen] = useState(false)
-
-  const handleApplyClick = () => {
-    setIsAgreeModalOpen(true)
-  }
-
-  const handleModalAgree = () => {
-    setIsAgreeModalOpen(false)
-  }
-
-  const handleModalDisagree = () => {
-    setIsAgreeModalOpen(false)
-  }
+  const applyButtonClass = job.applied
+    ? "w-full rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white cursor-not-allowed opacity-50"
+    : "w-full cursor-pointer rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white hover:-translate-y-1.5 hover:bg-light-lighter dark:bg-dark-main dark:hover:bg-dark-lighter"
 
   return (
     <>
@@ -107,18 +107,18 @@ const JobOverview = ({
           </ul>
           <div className="mt-8 space-y-2">
             <div
-              className="w-full cursor-pointer rounded-lg border-transparent bg-light-main p-2 text-center text-xl capitalize text-white hover:-translate-y-1.5 hover:bg-light-lighter dark:bg-dark-main dark:hover:bg-dark-lighter"
-              onClick={handleApplyClick}
+              className={applyButtonClass}
+              onClick={!job.applied ? onApplyClick : undefined}
             >
-              apply now
+              {!job.applied ? "apply now" : "applied"}
             </div>
           </div>
         </div>
       </div>
       {isAgreeModalOpen && (
         <AgreeModal
-          onAgree={handleModalAgree}
-          onDisagree={handleModalDisagree}
+          onAgree={onModalAgree}
+          onDisagree={onModalDisagree}
           job={job}
           profile={profile}
         />

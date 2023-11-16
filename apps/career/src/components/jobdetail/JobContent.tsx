@@ -1,5 +1,6 @@
 import React from "react"
 import JobProps from "@app/types/job"
+import postApplication from "@app/utils/postApplication"
 
 const JobContent = ({ job }: { job: JobProps }) => {
   const jobContentSections = [

@@ -41,7 +41,7 @@ const Joblist: React.FC<CareerComponentProps> = ({
       {isLoggedIn ? (
         <div className="grid grid-cols-12 gap-y-6 sm:gap-10 sm:gap-y-0">
           <div className="col-span-12 sm:col-span-9">
-            <div className={`mt-14 pt-6`}>
+            <div className={`mt-14 py-6`}>
               {jobData.map((job, index) => (
                 <JobCard
                   key={index}

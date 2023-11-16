@@ -102,6 +102,8 @@ const InnerApp = () => {
   const fetchCareer = async () => {
     const idToken = await getIdToken()
 
+    console.log("Triggered!")
+
     try {
       const res = await API.get("wasedatime-dev", "/career?type=internship", {
         headers: {

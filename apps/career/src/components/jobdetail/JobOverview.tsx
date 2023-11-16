@@ -5,6 +5,7 @@ import HistoryIcon from "@mui/icons-material/History"
 import PaidIcon from "@mui/icons-material/Paid"
 import JobProps from "@app/types/job"
 import { timeFormatter } from "@app/utils/timeFormatter"
+import postApplication from "@app/utils/postApplication"
 
 interface Details {
   key: keyof JobProps

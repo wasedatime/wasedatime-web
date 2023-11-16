@@ -152,7 +152,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   return (
     <div className="fixed inset-0 z-50 h-full w-full overflow-y-auto bg-gray-600 bg-opacity-50">
       <div className="flex h-full items-center justify-center">
-        <div className="standard-style mx-auto max-w-3xl space-y-6 rounded-lg p-6">
+        <div className="standard-style mx-auto max-w-xl space-y-6 rounded-lg p-6 sm:max-w-3xl">
           <h2 className="text-center text-2xl font-bold">Register Profile</h2>
           <div className="flex w-full items-center justify-center p-2">
             <button

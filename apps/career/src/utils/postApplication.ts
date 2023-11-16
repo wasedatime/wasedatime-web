@@ -11,6 +11,7 @@ export const postApplication = async (
     title: jobData.title,
     job_id: jobData.job_id,
     company: jobData.company,
+    created_at: jobData.created_at,
     email: profileData.email,
     name: profileData.name,
     agreed: true,

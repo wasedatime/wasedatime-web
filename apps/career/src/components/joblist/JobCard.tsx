@@ -2,6 +2,7 @@ import React from "react"
 import JobCardFooter from "./JobCardFooter"
 import JobProps from "@app/types/job"
 import { timeFormatter } from "@app/utils/timeFormatter"
+import StarIcon from "@mui/icons-material/Star"
 
 interface JobCardProps extends JobProps {
   isRegistered?: boolean
@@ -17,12 +18,18 @@ const JobCard: React.FC<JobCardProps> = ({
   created_at,
   company,
   type,
+  applied,
   isRegistered = false,
 }) => {
   const formattedTime = timeFormatter(created_at)
 
   return (
-    <div className="job-card-standard standard-style h-full">
+    <div className="job-card-standard standard-style">
+      {applied && (
+        <div className="absolute -left-20 -top-[5px] w-48 -rotate-45 bg-light-main p-[6px] text-center text-white">
+          <StarIcon />
+        </div>
+      )}
       <div className="p-4">
         <div className="grid h-auto w-full grid-cols-12 items-center gap-x-11 sm:h-36 sm:gap-24">
           {/* Logo Section */}

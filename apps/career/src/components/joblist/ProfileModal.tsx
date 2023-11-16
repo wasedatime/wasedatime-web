@@ -53,10 +53,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     }))
   }
 
-  useEffect(() => {
-    console.log(profile)
-  }, [profile])
-
   const handleDropdownChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
@@ -99,12 +95,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
   const patchProfile = async (profileData: UserProfile) => {
     const dataToSend = { ...profileData }
-    delete dataToSend.created_at
-    delete dataToSend.updated_at
-    delete dataToSend.uid
-    delete dataToSend.school_email
-
-    console.log("profile data : ", dataToSend)
 
     const idToken = await getIdToken()
     try {
@@ -115,8 +105,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           Authorization: idToken,
         },
       })
-
-      console.log(response)
     } catch (error) {
       console.error("An error occurred:", error)
     }
@@ -132,8 +120,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           Authorization: idToken,
         },
       })
-
-      console.log(response)
     } catch (error) {
       console.error("An error occurred:", error)
     }
@@ -141,7 +127,6 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
   const handleSubmit = () => {
     if (isRegistered) {
-      console.log("patch")
       patchProfile(profile)
     } else {
       postProfile(profile)
@@ -150,7 +135,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     closeModal()
   }
   return (
-    <div className="fixed inset-0 z-50 h-full w-full overflow-y-auto bg-gray-600 bg-opacity-50">
+    <div className="fixed inset-0 z-[1000] h-full w-full overflow-y-auto bg-gray-600 bg-opacity-50">
       <div className="flex h-full items-center justify-center">
         <div className="standard-style mx-auto max-w-xl space-y-6 rounded-lg p-6 sm:max-w-3xl">
           <h2 className="text-center text-2xl font-bold">Register Profile</h2>
@@ -264,6 +249,31 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
                 handleChange={handleDropdownChange}
                 options={
                   profile.languages[1].language === "Japanese"
+                    ? JaLevelOptions
+                    : levelOptions
+                }
+                placeholder="Select Level"
+                styles="row-span-1"
+              />
+            </div>
+          </div>
+          <div className="flex flex-row items-center justify-center text-center">
+            <h1 className="mr-2 text-2xl font-bold capitalize">language 3</h1>
+            <div className="grid grid-cols-2 gap-2">
+              <Dropdown
+                name="language 3"
+                value={profile.languages[2].language}
+                handleChange={handleDropdownChange}
+                options={languageOptions}
+                placeholder="Select Language"
+                styles="col-span-1"
+              />
+              <Dropdown
+                name="Level 3"
+                value={profile.languages[2].level}
+                handleChange={handleDropdownChange}
+                options={
+                  profile.languages[2].language === "Japanese"
                     ? JaLevelOptions
                     : levelOptions
                 }

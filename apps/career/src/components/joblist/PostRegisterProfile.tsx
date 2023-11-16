@@ -61,12 +61,15 @@ const PostRegisterProfile: React.FC<ProfileComponentProps> = ({
       label: "Languages",
       content: (
         <ul className="ml-4 list-disc pl-4">
-          {profile.languages.map((lang, index) => (
-            <li
-              className=""
-              key={index}
-            >{`${lang.language} - ${lang.level}`}</li>
-          ))}
+          {profile.languages.map(
+            (lang, index) =>
+              lang.language && (
+                <li
+                  className=""
+                  key={index}
+                >{`${lang.language} - ${lang.level}`}</li>
+              )
+          )}
         </ul>
       ),
       icon: (

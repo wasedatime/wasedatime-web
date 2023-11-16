@@ -53,6 +53,7 @@ const Joblist: React.FC<CareerComponentProps> = ({
                   location={job.location}
                   created_at={job.created_at}
                   type={job.type}
+                  applied={job.applied}
                   isRegistered={isRegistered}
                 />
               ))}

@@ -6,10 +6,10 @@ import UserProfile from "@app/types/userProfile"
 interface JobContentProps {
   job: JobProps
   profile: UserProfile
-  onApplyClick: () => void // Assuming onApplyClick is a function that takes no arguments and returns void
-  isAgreeModalOpen: boolean // Boolean state
-  onModalAgree: () => void // Assuming onModalAgree is a function that takes no arguments and returns void
-  onModalDisagree: () => void // Assuming onModalDisagree is a function that takes no arguments and returns void
+  onApplyClick: () => void
+  isAgreeModalOpen: boolean
+  onModalAgree: () => void
+  onModalDisagree: () => void
 }
 
 const JobContent: React.FC<JobContentProps> = ({

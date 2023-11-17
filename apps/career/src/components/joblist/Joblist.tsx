@@ -13,6 +13,7 @@ const Joblist: React.FC<CareerComponentProps> = ({
   profile,
   setProfile,
   isRegistered,
+  setIsRegistered,
 }) => {
   const [isSignInModalOpen, setSignInModalOpen] = useState(false)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
@@ -68,7 +69,12 @@ const Joblist: React.FC<CareerComponentProps> = ({
                   setProfile={setProfile}
                 />
               ) : (
-                <PreRegisterProfile profile={profile} setProfile={setProfile} />
+                <PreRegisterProfile
+                  isRegistered={isRegistered}
+                  profile={profile}
+                  setIsRegistered={setIsRegistered}
+                  setProfile={setProfile}
+                />
               )}
             </div>
           </div>

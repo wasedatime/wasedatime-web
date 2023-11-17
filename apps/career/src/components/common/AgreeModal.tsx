@@ -20,7 +20,14 @@ const AgreeModal: React.FC<AgreeModalProps> = ({
 }) => {
   const handleAgree = async () => {
     try {
-      const idToken = await getIdToken() // Correctly awaiting the Promise
+      // Check if job.apply is a URL and redirect if so
+      if (job.apply) {
+        window.open(job.apply, "_blank") // Open the URL in a new tab
+        onAgree() // Optionally call onAgree if needed after redirection
+        return // Return early to avoid executing the rest of the function
+      }
+
+      const idToken = await getIdToken() // Continue with existing logic if job.apply is not a URL
       if (idToken) {
         await postApplication(profile, job, idToken)
         onAgree()

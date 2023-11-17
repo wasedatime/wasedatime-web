@@ -34,17 +34,19 @@
         "@wasedatime/home": "<%= env.VITE_MF_HOME_BASE_PATH || "http://localhost:9000" %>/wasedatime-home.<%= isLocal ? "ts" : "js" %>",
         "@wasedatime/syllabus": "<%= env.VITE_MF_SYLLABUS_BASE_PATH || "http://localhost:8080" %>/wasedatime-syllabus.<%= isLocal ? "ts" : "js" %>",
         "@wasedatime/campus": "<%= env.VITE_MF_CAMPUS_BASE_PATH || "http://localhost:8081" %>/wasedatime-campus.<%= isLocal ? "ts" : "js" %>",
+        "@wasedatime/career": "<%= env.VITE_MF_CAREER_BASE_PATH || "http://localhost:8082" %>/wasedatime-career.<%= isLocal ? "ts" : "js" %>",
         "@wasedatime/forum": "<%= env.VITE_MF_FORUM_BASE_PATH || "http://localhost:8084" %>/wasedatime-forum.<%= isLocal ? "ts" : "js" %>"
       }
     }
   </script>
-  <!-- "@wasedatime/career": "<%= env.VITE_MF_CAREER_BASE_PATH || "http://localhost:8082" %>/wasedatime-career.<%= isLocal ? "ts" : "js" %>", -->
+  
 
   <% if (isLocal) { %>
     <link rel="stylesheet" href="./src/styles/tailwind-build-output.css" type="css">
   <% } else { %>
     <link rel="preload" href="<%= env.VITE_MF_SYLLABUS_BASE_PATH || "http://localhost:8080" %>/assets/style.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="<%= env.VITE_MF_CAMPUS_BASE_PATH || "http://localhost:8081" %>/assets/style.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="<%= env.VITE_MF_CAREER_BASE_PATH || "http://localhost:8082" %>/assets/style.css" as="style" onload="this.rel='stylesheet'">
     <link rel="preload" href="<%= env.VITE_MF_FORUM_BASE_PATH || "http://localhost:8084" %>/assets/style.css" as="style" onload="this.rel='stylesheet'">
 
     <link rel="preload" as="font" href="/fonts/segoe-ui.ttf" type="font/ttf" crossorigin="anonymous" />
@@ -135,21 +137,16 @@
           <route path="forum">
             <application name="@wasedatime/forum"></application>
           </route>
-          <!-- <route path="forum/:boardSlug">
-            <application name="@wasedatime/forum"></application>
-          </route>
-          <route path="forum/:boardSlug/:threadUuid">
-            <application name="@wasedatime/forum"></application>
-          </route> -->
-          <!-- <route path="career">
+          <route path="career">
             <application name="@wasedatime/career"></application>
-          </route> -->
+          </route>
           <route default>
             <application name="@wasedatime/home"></application>
           </route>
         </main>
       </div>
     </single-spa-router>
+    
   </template>
 </head>
 <body>

@@ -97,10 +97,8 @@ const ThreadBlock = ({ isPreview, fromRoot, thread, onDelete }: Props) => {
   };
 
   const updateThreadLikes = async () => {
-    console.log("triggered!");
     try {
       const action = userLiked ? "dislike" : "like";
-      console.log(action);
 
       const response = await API.patch(
         "wasedatime-dev",

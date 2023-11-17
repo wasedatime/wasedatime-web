@@ -158,7 +158,10 @@ const Header = ({
       <MediaQuery maxWidth={sizes.tablet}>
         {(matches: boolean) =>
           matches ? (
-            <div style={logoWrapperStyle} onClick={() => navigate("/home")}>
+            <div
+              style={logoWrapperStyle}
+              onClick={() => (window.location.href = "/home")}
+            >
               <img
                 src={new URL(logo, import.meta.url).href}
                 alt="WasedaTime English Small Logo"

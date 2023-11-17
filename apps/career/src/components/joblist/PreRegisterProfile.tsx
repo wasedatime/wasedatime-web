@@ -5,6 +5,8 @@ import CareerComponentProps from "@app/types/careerComponentProps"
 import ProfileComponentProps from "@app/types/profileComponentProps"
 
 const PreRegisterProfile: React.FC<ProfileComponentProps> = ({
+  isRegistered,
+  setIsRegistered,
   profile,
   setProfile,
 }) => {
@@ -48,6 +50,7 @@ const PreRegisterProfile: React.FC<ProfileComponentProps> = ({
           profile={profile}
           setProfile={setProfile}
           closeModal={toggleModal}
+          setIsRegistered={setIsRegistered}
         />
       )}
     </div>

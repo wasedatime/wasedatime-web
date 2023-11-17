@@ -25,6 +25,7 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
   setProfile,
   closeModal,
   isRegistered,
+  setIsRegistered,
 }) => {
   const [expandSchool, setExpandSchool] = useState(false)
   const [userToken, setUserToken] = useState("")
@@ -127,15 +128,23 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     }
   }
 
-  const handleSubmit = () => {
-    if (isRegistered) {
-      patchProfile(profile)
-    } else {
-      postProfile(profile)
+  const handleSubmit = async () => {
+    try {
+      if (isRegistered) {
+        await patchProfile(profile)
+      } else {
+        await postProfile(profile)
+        if (setIsRegistered) {
+          setIsRegistered(true)
+        }
+      }
+    } catch (error) {
+      console.error("Error in submitting profile:", error)
+    } finally {
+      closeModal()
     }
-
-    closeModal()
   }
+
   return (
     <div className="fixed inset-0 z-[1000] h-full w-full overflow-y-auto bg-gray-600 bg-opacity-50">
       <div className="flex h-full items-center justify-center">

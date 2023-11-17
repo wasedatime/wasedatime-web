@@ -69,7 +69,9 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
 
       // Handling language and level dropdowns
       if (name.startsWith("language") || name.startsWith("Level")) {
-        const index = name.endsWith("2") ? 1 : 0 // Determine the index based on the dropdown name
+        // Extract the number from the name to determine the index
+        const indexMatch = name.match(/\d+/)
+        const index = indexMatch ? parseInt(indexMatch[0], 10) - 1 : 0
         const key = name.startsWith("language") ? "language" : "level"
 
         // Update the specific language or level

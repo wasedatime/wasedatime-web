@@ -53,8 +53,8 @@ const InnerApp = () => {
   const [filterButtonClicked, setFilterButtonClicked] = useState(false);
 
   const isThreadRoute =
-    location.pathname.includes("forum#/") &&
-    location.pathname.split("/").length === 4;
+    location.pathname.startsWith("/") &&
+    location.pathname.split("/").length === 3;
 
   const handleReset = () => {
     navigate("/");

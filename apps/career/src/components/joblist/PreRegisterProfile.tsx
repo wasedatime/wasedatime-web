@@ -5,6 +5,8 @@ import CareerComponentProps from "@app/types/careerComponentProps"
 import ProfileComponentProps from "@app/types/profileComponentProps"
 
 const PreRegisterProfile: React.FC<ProfileComponentProps> = ({
+  isRegistered,
+  setIsRegistered,
   profile,
   setProfile,
 }) => {
@@ -26,6 +28,9 @@ const PreRegisterProfile: React.FC<ProfileComponentProps> = ({
         </div>
       </div>
       <div className="p-4">
+        <p className="font-bold leading-relaxed">
+          Register profile to unblur detail!
+        </p>
         <p className="leading-relaxed">
           Please register your user profile to apply for WasedaTime Careers. The
           data collected is isolated and will only be used in the Careers page.
@@ -45,6 +50,7 @@ const PreRegisterProfile: React.FC<ProfileComponentProps> = ({
           profile={profile}
           setProfile={setProfile}
           closeModal={toggleModal}
+          setIsRegistered={setIsRegistered}
         />
       )}
     </div>

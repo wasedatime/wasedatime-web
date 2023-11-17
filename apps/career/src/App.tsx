@@ -27,6 +27,7 @@ const PageRoutes = ({
   profile,
   setProfile,
   isRegistered,
+  setIsRegistered,
   onJobApplied,
 }: CareerComponentProps) => {
   return (
@@ -38,6 +39,7 @@ const PageRoutes = ({
             profile={profile}
             setProfile={setProfile}
             isRegistered={isRegistered}
+            setIsRegistered={setIsRegistered}
           />
         }
         path="/"
@@ -168,7 +170,9 @@ const InnerApp = () => {
             profile={profile}
             setProfile={setProfile}
             isRegistered={isRegistered}
+            setIsRegistered={setIsRegistered}
             onJobApplied={handleJobApplied}
+            setIsRegsitered={setIsRegistered}
           />
         </div>
       </div>

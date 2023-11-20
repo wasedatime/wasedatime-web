@@ -18,7 +18,7 @@ type LinksWrapperProps = {
 
 const LinksWrapper = styled.div<LinksWrapperProps>`
   ${(props) => (props.expanded ? "width: 210px;" : "width: 100%;")}
-  height: 120px;
+  height: 135px;
   overflow-x: hidden;
   padding: 0px;
   margin-bottom: 0.1vh;
@@ -83,6 +83,13 @@ const OtherLinks = ({ expanded, setCurrentPath }: Props) => {
         customOnClick={() => setCurrentPath("/privacy-policy")}
       >
         {t("user.Privacy Policy")}
+      </LinkOutsideRouter>
+      <br />
+      <LinkOutsideRouter
+        to="/commercial-disclosure"
+        customOnClick={() => setCurrentPath("/commercial-disclosure")}
+      >
+        {t("Commercial Disclosure")}
       </LinkOutsideRouter>
       <br />
       <a

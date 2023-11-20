@@ -172,7 +172,7 @@ const CommercialDisclosure = () => (
       Price
     </StyledHeader>
     <StyledParagraph centered>
-      Amounts listed on each product page in luma.
+      Price listed on each event page in luma.
     </StyledParagraph>
   </div>
 )

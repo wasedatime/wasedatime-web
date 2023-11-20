@@ -14,6 +14,8 @@ import ErrorFallback from "@app/components/ErrorFallback"
 import PrivacyPolicy from "@app/components/PrivacyPolicy"
 import TermsOfService from "@app/components/TermsOfService"
 import RedirectPage from "@app/components/user/RedirectPage"
+import CommercialDisclosure from "@app/components/CommercialDisclosure"
+
 import {
   gaUserSignIn,
   gaUserSignInFailure,
@@ -75,6 +77,7 @@ const AppRoutes = () => {
     <Routes>
       <Route element={<TermsOfService />} path="/terms-of-service" />
       <Route element={<PrivacyPolicy />} path="/privacy-policy" />
+      <Route element={<CommercialDisclosure />} path="/commercial-disclosure" />
       <Route element={<AboutUs />} path="/aboutus" />
       <Route element={<RedirectPage />} path="/verify" />
       <Route element={<Feeds />} path="/feeds" />

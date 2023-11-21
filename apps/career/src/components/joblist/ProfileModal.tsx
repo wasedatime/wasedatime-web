@@ -145,34 +145,42 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
     }
   }
 
+  const isFormValid = () => {
+    const { school, name, email, year, class_of } = profile
+    return school && name && email && year && class_of
+  }
+
   return (
     <div className="fixed inset-0 z-[1000] h-full w-full overflow-y-auto bg-gray-600 bg-opacity-50">
       <div className="flex h-full items-center justify-center">
         <div className="standard-style mx-auto max-w-xl space-y-6 rounded-lg p-6 sm:max-w-3xl">
           <h2 className="text-center text-2xl font-bold">Register Profile</h2>
-          <div className="flex w-full items-center justify-center p-2">
-            <button
-              className="standard-style-hover  inline-flex gap-x-1.5 rounded-md bg-white px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-              onClick={() => setExpandSchool(!expandSchool)}
-            >
-              {expandSchool ? (
-                <SchoolFilterForm
-                  isOpen={expandSchool}
-                  setOpen={setExpandSchool}
-                  profileData={profile}
-                  setProfileData={setProfile}
-                />
-              ) : null}
-              {profile.school ? (
-                <img
-                  src={getSchoolIconPath(profile.school, "en")}
-                  width={40}
-                  height={40}
-                />
-              ) : (
-                <p>Choose your school</p>
-              )}
-            </button>
+          <div className="flex w-full items-center justify-between p-2">
+            <h1 className="mr-2 text-2xl font-bold capitalize">school</h1>
+            <div className="flex flex-grow justify-center">
+              <button
+                className="standard-style-hover  inline-flex gap-x-1.5 rounded-md bg-white px-3 py-2 text-2xl font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                onClick={() => setExpandSchool(!expandSchool)}
+              >
+                {expandSchool ? (
+                  <SchoolFilterForm
+                    isOpen={expandSchool}
+                    setOpen={setExpandSchool}
+                    profileData={profile}
+                    setProfileData={setProfile}
+                  />
+                ) : null}
+                {profile.school ? (
+                  <img
+                    src={getSchoolIconPath(profile.school, "en")}
+                    width={40}
+                    height={40}
+                  />
+                ) : (
+                  <p>Choose your school</p>
+                )}
+              </button>
+            </div>
           </div>
           <div className="flex flex-row items-center justify-center text-center">
             <h1 className="mr-2 text-2xl font-bold capitalize">name</h1>
@@ -304,11 +312,17 @@ const ProfileModal: React.FC<ProfileModalProps> = ({
           <div className="text-center">
             <button
               onClick={handleSubmit}
-              className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700"
+              className={`rounded bg-blue-500 px-4 py-2 text-white ${
+                !isFormValid()
+                  ? "cursor-not-allowed opacity-50"
+                  : "hover:bg-blue-700"
+              }`}
+              disabled={!isFormValid()}
             >
               Submit
             </button>
           </div>
+
           <div className="text-center">
             <button
               onClick={closeModal}

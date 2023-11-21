@@ -34,7 +34,7 @@ interface SchoolFilterFormProps {
   isOpen: boolean
   setOpen: (open: boolean) => void
   profileData: UserProfile
-  setProfileData: (profileData: UserProfile) => void
+  setProfileData?: (profileData: UserProfile) => void
 }
 
 type TabMenuProps = {

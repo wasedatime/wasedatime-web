@@ -95,8 +95,8 @@ devDependencies:
     specifier: 10.4.7
     version: 10.4.7(postcss@8.4.31)
   cssnano:
-    specifier: 5.1.11
-    version: 5.1.11(postcss@8.4.31)
+    specifier: 5.1.15
+    version: 5.1.15(postcss@8.4.31)
   eslint:
     specifier: 8.17.0
     version: 8.17.0
@@ -2133,8 +2133,8 @@ packages:
       postcss: 8.4.31
     dev: true
 
-  /cssnano@5.1.11(postcss@8.4.31):
-    resolution: {integrity: sha512-2nx+O6LvewPo5EBtYrKc8762mMkZRk9cMGIOP4UlkmxHm7ObxH+zvsJJ+qLwPkUc4/yumL/qJkavYi9NlodWIQ==}
+  /cssnano@5.1.15(postcss@8.4.31):
+    resolution: {integrity: sha512-j+BKgDcLDQA+eDifLx0EO4XSA56b7uut3BQFH+wbSaSTuGLuiyTa/wbRYthUXX8LC9mLg+WWKe8h+qJuwTAbHw==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15

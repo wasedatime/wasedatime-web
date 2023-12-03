@@ -158,8 +158,8 @@ devDependencies:
     specifier: 7.0.0
     version: 7.0.0
   cssnano:
-    specifier: 5.1.0
-    version: 5.1.0(postcss@8.4.31)
+    specifier: 5.1.15
+    version: 5.1.15(postcss@8.4.31)
   dotenv:
     specifier: ^16.0.3
     version: 16.3.1
@@ -5281,8 +5281,8 @@ packages:
       postcss: 8.4.31
     dev: true
 
-  /cssnano@5.1.0(postcss@8.4.31):
-    resolution: {integrity: sha512-wWxave1wMlThGg4ueK98jFKaNqXnQd1nVZpSkQ9XvR+YymlzP1ofWqES1JkHtI250LksP9z5JH+oDcrKDJezAg==}
+  /cssnano@5.1.15(postcss@8.4.31):
+    resolution: {integrity: sha512-j+BKgDcLDQA+eDifLx0EO4XSA56b7uut3BQFH+wbSaSTuGLuiyTa/wbRYthUXX8LC9mLg+WWKe8h+qJuwTAbHw==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15

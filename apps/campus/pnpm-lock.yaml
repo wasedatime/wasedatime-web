@@ -161,8 +161,8 @@ devDependencies:
     specifier: 4.6.2
     version: 4.6.2
   vite:
-    specifier: ^4.3.5
-    version: 4.4.9(@types/node@17.0.21)(sass@1.49.9)
+    specifier: ^4.4.12
+    version: 4.4.12(@types/node@17.0.21)(sass@1.49.9)
 
 packages:
 
@@ -7326,8 +7326,8 @@ packages:
       fast-glob: 3.3.1
     dev: false
 
-  /vite@4.4.9(@types/node@17.0.21)(sass@1.49.9):
-    resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
+  /vite@4.4.12(@types/node@17.0.21)(sass@1.49.9):
+    resolution: {integrity: sha512-KtPlUbWfxzGVul8Nut8Gw2Qe8sBzWY+8QVc5SL8iRFnpnrcoCaNlzO40c1R6hPmcdTwIPEDkq0Y9+27a5tVbdQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:

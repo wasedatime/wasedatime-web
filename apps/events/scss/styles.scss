@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './theme.scss', './main.scss', './card.scss', './fontsizes.scss', './flex.scss', './buttons.scss', './form.scss';
+
+body {
+    font-size: 14px;
+    @apply bg-ground;
+}
+
+html {
+    font-size: 16px;
+    line-height: 1.25;
+    min-width: 310px;
+    @media (max-width: 370px) {
+        font-size: 15px;
+    }
+    @media (max-width: 330px) {
+        font-size: 14px;
+        body {
+            font-size: 13px;
+        }
+    }
+}

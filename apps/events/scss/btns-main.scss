@@ -1,0 +1,34 @@
+.btn {
+    @apply leading-1 whitespace-nowrap select-none outline-none gap-[0.5em] relative transition-all;
+    @extend .flex-middle;
+    @apply inline-flex;
+    img {
+        @apply max-w-[1.5em];
+    }
+}
+
+.btn-hover {
+    &:not(:disabled):not(.loading) {
+        @apply relative cursor-pointer z-1;
+        &::after {
+            content: '';
+            @extend .absolute-full;
+            @apply bg-current opacity-0 -z-1;
+        }
+        &.active::after, &:active::after {
+            @apply opacity-10;
+        }
+    }
+    &:disabled {
+        @apply cursor-not-allowed opacity-50;
+    }
+}
+
+.hover .btn-hover:not(:disabled):not(:active):hover::after {
+    @apply opacity-20;
+}
+
+
+%btn-normal {
+    @extend .btn, .btn-hover;
+}

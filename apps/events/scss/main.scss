@@ -1,0 +1,42 @@
+.absolute-full,
+.fixed-full {
+    @apply top-0 left-0 w-full h-full;
+}
+
+.absolute-full {
+    @apply absolute rounded-[inherit];
+}
+
+.fixed-full {
+    @apply fixed;
+}
+
+.after-full::after,
+.before-full::before {
+    content: "";
+    @extend .absolute-full;
+}
+
+.middle {
+    position: absolute;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+.loader {
+    @apply w-[1.25em] h-[1.25em] border-[0.1em] border-current border-r-transparent rounded-full animate-spin flex;
+}
+
+.loading {
+    @apply cursor-not-allowed;
+
+    &::after {
+        content: "";
+        @extend .loader;
+    }
+
+    &.middle {
+        @apply text-primary;
+    }
+}

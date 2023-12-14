@@ -1,0 +1,13 @@
+.Form-Field {
+    @apply h-[2.571em] px-[0.645em] border border-surface-11 rounded-[0.286em] outline-none whitespace-nowrap;
+    &:checked, &:focus {
+        @apply border-black;
+    }
+    &::placeholder {
+        @apply text-accent-10 opacity-90;
+    }
+}
+
+textarea.Form-Field {
+    @apply p-[0.645em] h-[initial] resize-none;
+}

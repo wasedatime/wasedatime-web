@@ -1,0 +1,31 @@
+.main {
+    @apply flex xl:gap-7 md:gap-6 sm:gap-5 gap-4 relative transition-all;
+    >div {
+        min-width: calc(20.5% - 1.75rem);
+        @media (max-width: 2000px) {
+            min-width: calc(26% - 1.75rem);
+        }
+        @media (max-width: 1024px) {
+            min-width: calc(40% - 1.75rem);
+        }
+        @media (max-width: 768px) {
+            min-width: calc(50% - 1.75rem);
+        }
+        @media (max-width: 600px) {
+            min-width: calc(50% - 1.75rem);
+        }
+        @media (max-width: 500px) {
+            min-width: calc(60% - 1.5rem);
+        }
+        @media (max-width: 450px) {
+            min-width: calc(70% - 1rem);
+        }
+    }
+}
+
+.root {
+    >button {
+        @apply lg:bg-transparent bg-primary lg:text-[initial] text-white;
+        position: absolute !important;
+    }
+}

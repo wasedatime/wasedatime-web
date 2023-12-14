@@ -1,0 +1,9 @@
+.root {
+    @apply leading-0 w-[2em] h-[2em] border border-surface-11 text-accent-10 rounded-[0.286em];
+    &:has(input:not(:checked)):hover {
+        @apply cursor-pointer text-black border-current;
+    }
+    &:has(input:checked) {
+        @apply text-black border-current;
+    }
+}

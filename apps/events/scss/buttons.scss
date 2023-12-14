@@ -1,0 +1,40 @@
+@import './btns-main.scss';
+
+
+.btn-normal {
+    @extend %btn-normal;
+    @apply py-[0.5em] px-[0.75em] rounded-[0.25em];
+}
+
+.btn-primary {
+    @extend %btn-normal;
+    @apply bg-primary text-white p-[0.6em] px-[1.5em] rounded-[0.571em];
+}
+
+
+.btn-icon {
+    @extend %btn-normal;
+    @apply rounded-full w-[2em] h-[2em];
+    svg {
+        @apply max-w-[1em];
+    }
+}
+
+.btn-text {
+    @extend .btn;
+    @apply underline;
+    &:hover {
+        @apply text-primary;
+    }
+}
+
+.btn-rounded {
+    @extend .btn;
+    @apply py-[0.536em] px-[0.714em] rounded-[2em] border border-surface-10;
+    &:hover {
+        cursor: pointer;
+    }
+    &:hover, &:active, &:has(input:checked) {
+        @apply bg-surface-11;
+    }
+}

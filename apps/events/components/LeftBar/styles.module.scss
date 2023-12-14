@@ -1,0 +1,41 @@
+.main {
+    a {
+        @apply flex items-center justify-center py-4;
+        svg {
+            @apply w-[1em];
+        }
+        &:hover {
+            @apply text-primary bg-primary bg-opacity-5;
+        }
+    }
+    li:nth-last-child(2) {
+        @apply mt-auto;
+        i {
+            @apply scale-125;
+        }
+    }
+}
+
+.active {
+    cursor: text;
+    @apply text-primary;
+}
+
+.root {
+    @apply sm:left-0 -left-40;
+}
+
+.input {
+    @apply hidden;
+    &:checked + .root {
+        @apply left-0;
+        .close {
+            @apply opacity-100 visible delay-300 top-[0.75em];
+        }
+    }
+}
+
+
+.close {
+    @apply opacity-0 invisible top-[-1em] transition-all;
+}

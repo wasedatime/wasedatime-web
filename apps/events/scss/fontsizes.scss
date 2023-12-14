@@ -1,0 +1,32 @@
+h1,
+.h1 {
+    @apply lg:text-4xl md:text-3xl text-2xl font-medium;
+}
+
+h2,
+.h2 {
+    @apply lg:text-3xl md:text-2xl text-xl font-medium;
+}
+
+h3,
+.h3 {
+    @apply lg:text-2xl md:text-xl text-lg font-medium;
+}
+
+h4,
+.h4 {
+    @apply lg:text-xl md:text-lg text-md font-medium;
+}
+
+h5,
+.h5 {
+    @apply lg:text-lg text-md font-medium;
+}
+
+h6, .h6 {
+    @apply lg:text-md md:text-base;
+}
+
+.subtitle {
+    @apply opacity-60 font-bold leading-1;
+}

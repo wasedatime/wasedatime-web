@@ -1,0 +1,21 @@
+.root {
+    @apply flex;
+    label {
+        @apply text-accent-10 flex-1;
+        &:not(:first-child) {
+            @apply rounded-tl-none rounded-bl-none;
+        }
+        &:not(:last-child) {
+            @apply border-r-0 rounded-tr-none rounded-br-none;
+        }
+        &:has(input:checked), &:hover {
+            @apply text-black border-black;
+            & + label {
+                @apply border-l-black;
+            }
+        }
+        &:has(input:not(:checked)) {
+            @apply cursor-pointer;
+        }
+    }
+}

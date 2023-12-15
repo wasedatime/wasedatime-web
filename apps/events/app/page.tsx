@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <PageLayout title="Event">
       <div className="text-right">
-        <Link href='/' className="btn-text">
+        <Link href='/events' className="btn-text">
           <AccountBox /> My Page
         </Link>
       </div>

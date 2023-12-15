@@ -7,7 +7,7 @@ const nextConfig = {
     images: {
       unoptimized: true,
     },
-    assetPrefix: process.env.APP_ENV = "production",
+    assetPrefix: process.env.APP_ENV === "production" ? "/events" : "",
     env: {
       APP_ENV: process.env.APP_ENV || "development"
     },

@@ -15,18 +15,18 @@ h3,
 
 h4,
 .h4 {
-    @apply lg:text-xl md:text-lg text-md font-medium;
+    @apply lg:text-xl md:text-lg text-base font-medium;
 }
 
 h5,
 .h5 {
-    @apply lg:text-lg text-md font-medium;
+    @apply lg:text-lg text-base font-medium;
 }
 
 h6, .h6 {
-    @apply lg:text-md md:text-base;
+    @apply lg:text-base md:text-base;
 }
 
 .subtitle {
-    @apply opacity-60 font-bold leading-1;
+    @apply opacity-60 font-bold leading-[4px];
 }

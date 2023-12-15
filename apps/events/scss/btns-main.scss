@@ -1,5 +1,5 @@
 .btn {
-    @apply leading-1 whitespace-nowrap select-none outline-none gap-[0.5em] relative transition-all;
+    @apply leading-[4px] whitespace-nowrap select-none outline-none gap-[0.5em] relative transition-all;
     @extend .flex-middle;
     @apply inline-flex;
     img {
@@ -9,11 +9,11 @@
 
 .btn-hover {
     &:not(:disabled):not(.loading) {
-        @apply relative cursor-pointer z-1;
+        @apply relative cursor-pointer z-10;
         &::after {
             content: '';
             @extend .absolute-full;
-            @apply bg-current opacity-0 -z-1;
+            @apply bg-current opacity-0 -z-10;
         }
         &.active::after, &:active::after {
             @apply opacity-10;

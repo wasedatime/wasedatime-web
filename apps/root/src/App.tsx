@@ -27,6 +27,7 @@ import { ThemeContext, ThemeProvider } from "@app/utils/theme-context"
 const AboutUs = lazy(() => import("@app/components/aboutUs/AboutUs"))
 const Home = lazy(() => import("@app/components/Home"))
 const Feeds = lazy(() => import("@app/components/Feeds"))
+const Events = lazy(() => import("@app/components/Events"))
 
 const NotFound = () => {
   useEffect(() => navigateToUrl("/"), [])
@@ -87,7 +88,8 @@ const AppRoutes = () => {
       <Route element={<Redirect to="/courses/syllabus" />} path="/syllabus" />
       <Route element={<></>} path="/forum" />
       <Route element={<></>} path="/campus" />
-      {/* <Route element={<></>} path="/career" /> */}
+      <Route element={<></>} path="/career" />
+      <Route element={<Events/>} path="/events" />
       <Route element={<NotFound />} path="*" />
     </Routes>
   )

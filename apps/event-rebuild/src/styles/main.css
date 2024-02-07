@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.clipboard-icon {
+  @apply relative;
+}
+.clipboard-tooltip {
+  @apply absolute bottom-10 left-1/2 w-auto min-w-max origin-left -translate-x-1/2 scale-0 transform rounded-md bg-light-bgSide p-2 text-xs font-bold text-light-text1 shadow-md transition-all duration-100 dark:bg-dark-bgMain dark:text-dark-text1;
+}
+
+.standard-style {
+  @apply border-light-text3 bg-light-card1 dark:border-dark-text3 dark:bg-dark-bgMain dark:text-dark-text1 dark:shadow-none;
+}
+
+.standard-style-hover {
+  @apply border-light-text3 bg-light-card1 hover:bg-light-card2 dark:border-dark-text3 dark:bg-dark-bgMain dark:text-dark-text1 dark:shadow-none dark:hover:bg-dark-card2;
+}
+
+.standard-style-schoolfilter {
+  @apply bg-light-card1 dark:border-dark-text3 dark:bg-dark-bgMain dark:text-dark-text1 dark:shadow-none;
+}
+
+.form-item-title {
+  @apply w-full border-b-2 border-light-lighter py-1 text-left;
+}
+
+.checkbox-wrapper {
+  @apply flex items-center rounded px-2 hover:bg-gray-100 dark:hover:bg-gray-600;
+}
+
+.checkbox-input {
+  @apply h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-blue-600;
+}
+
+.checkbox-label {
+  @apply ml-2 w-full rounded py-2 text-sm font-medium text-gray-900 dark:text-gray-300;
+}
+
+.tab-item {
+  @apply inline-block rounded-t-lg border-b-2 border-transparent p-4 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300;
+}
+
+.tab-item-active {
+  @apply inline-block rounded-t-lg border-b-2 border-blue-600 p-4 text-blue-600 dark:border-blue-500 dark:text-blue-500;
+}
+
+.job-card-standard {
+  @apply relative mt-4 overflow-hidden rounded-md border border-light-text3 bg-light-card1 transition-all duration-500 ease-in-out hover:-translate-y-2 dark:border-dark-text3 dark:bg-dark-bgMain dark:text-dark-text1 dark:shadow-none;
+}
+
+@media (max-width: 600px) {
+  .left-side {
+    display: none !important;
+  }
+
+  .filterButton {
+    display: block !important;
+  }
+}
+
+.filterButton {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 10%;
+  right: 5%;
+}
+
+.filterModal {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  position: absolute;
+  left: 15%;
+  z-index: 99;
+}
+
+.accordion-item .accordion-header.active {
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+  -webkit-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

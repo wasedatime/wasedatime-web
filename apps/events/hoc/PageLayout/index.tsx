@@ -11,9 +11,9 @@ interface PropsType extends HeaderProps {
 export default function PageLayout(props: PropsType) {
     return (
         <main className="flex gap-3 lg:gap-6">
-            <LeftBar />
+            {/* <LeftBar /> */}
             <div className={`flex-1 ${styles.main}`}>
-                <Header title={props.title} />
+                {/* <Header title={props.title} /> */}
                 <div className={`${styles.wrapper} lg:pr-16 md:mr-2 pb-16`}>
                     {props.children}
                 </div>

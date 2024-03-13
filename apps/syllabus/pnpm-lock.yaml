@@ -194,8 +194,8 @@ devDependencies:
     specifier: ^0.2.8
     version: 0.2.8(prettier@2.6.2)
   sass:
-    specifier: 1.52.2
-    version: 1.52.2
+    specifier: 1.72.0
+    version: 1.72.0
   tailwindcss:
     specifier: 3.0.24
     version: 3.0.24(postcss@8.4.31)
@@ -210,7 +210,7 @@ devDependencies:
     version: 4.7.3
   vite:
     specifier: 4.3.5
-    version: 4.3.5(@types/node@17.0.41)(sass@1.52.2)
+    version: 4.3.5(@types/node@17.0.41)(sass@1.72.0)
   vite-plugin-dynamic-import:
     specifier: 0.9.6
     version: 0.9.6
@@ -7845,9 +7845,9 @@ packages:
     resolution: {integrity: sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==}
     dev: false
 
-  /sass@1.52.2:
-    resolution: {integrity: sha512-mfHB2VSeFS7sZlPv9YohB9GB7yWIgQNTGniQwfQ04EoQN0wsQEv7SwpCwy/x48Af+Z3vDeFXz+iuXM3HK/phZQ==}
-    engines: {node: '>=12.0.0'}
+  /sass@1.72.0:
+    resolution: {integrity: sha512-Gpczt3WA56Ly0Mn8Sl21Vj94s1axi9hDIzDFn9Ph9x3C3p4nNyvsqJoQyVXKou6cBlfFWEgRW4rT8Tb4i3XnVA==}
+    engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
       chokidar: 3.5.3
@@ -8515,7 +8515,7 @@ packages:
       fast-glob: 3.3.1
     dev: true
 
-  /vite@4.3.5(@types/node@17.0.41)(sass@1.52.2):
+  /vite@4.3.5(@types/node@17.0.41)(sass@1.72.0):
     resolution: {integrity: sha512-0gEnL9wiRFxgz40o/i/eTBwm+NEbpUeTWhzKrZDSdKm6nplj+z4lKz8ANDgildxHm47Vg8EUia0aicKbawUVVA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -8544,7 +8544,7 @@ packages:
       esbuild: 0.17.19
       postcss: 8.4.31
       rollup: 3.29.1
-      sass: 1.52.2
+      sass: 1.72.0
     optionalDependencies:
       fsevents: 2.3.3
     dev: true

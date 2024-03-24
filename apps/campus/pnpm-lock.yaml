@@ -162,7 +162,7 @@ devDependencies:
     version: 4.6.2
   vite:
     specifier: ^4.3.5
-    version: 4.4.9(@types/node@17.0.21)(sass@1.49.9)
+    version: 4.5.2(@types/node@17.0.21)(sass@1.49.9)
 
 packages:
 
@@ -6627,8 +6627,8 @@ packages:
     dependencies:
       glob: 7.2.3
 
-  /rollup@3.29.1:
-    resolution: {integrity: sha512-c+ebvQz0VIH4KhhCpDsI+Bik0eT8ZFEVZEYw0cGMVqIP8zc+gnwl7iXCamTw7vzv2MeuZFZfdx5JJIq+ehzDlg==}
+  /rollup@3.29.4:
+    resolution: {integrity: sha512-oWzmBZwvYrU0iJHtDmhsm662rC15FRXmcjCk1xD771dFDx5jJ02ufAQQTn0etB2emNk4J9EZg/yWKpsn9BWGRw==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -7326,8 +7326,8 @@ packages:
       fast-glob: 3.3.1
     dev: false
 
-  /vite@4.4.9(@types/node@17.0.21)(sass@1.49.9):
-    resolution: {integrity: sha512-2mbUn2LlUmNASWwSCNSJ/EG2HuSRTnVNaydp6vMCm5VIqJsjMfbIWtbH2kDuwUVW5mMUKKZvGPX/rqeqVvv1XA==}
+  /vite@4.5.2(@types/node@17.0.21)(sass@1.49.9):
+    resolution: {integrity: sha512-tBCZBNSBbHQkaGyhGCDUGqeo2ph8Fstyp6FMSvTtsXeZSPpSMGlviAOav2hxVTqFcx8Hj/twtWKsMJXNY0xI8w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -7357,7 +7357,7 @@ packages:
       '@types/node': 17.0.21
       esbuild: 0.18.20
       postcss: 8.4.31
-      rollup: 3.29.1
+      rollup: 3.29.4
       sass: 1.49.9
     optionalDependencies:
       fsevents: 2.3.3

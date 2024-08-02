@@ -46,7 +46,7 @@
     "@types/node": "17.0.41",
     "@types/react": "17.0.39",
     "@types/react-dom": "17.0.13",
-    "autoprefixer": "10.4.7",
+    "autoprefixer": "10.4.20",
     "cssnano": "5.1.11",
     "eslint": "8.17.0",
     "eslint-config-custom": "workspace:*",

@@ -173,8 +173,8 @@ devDependencies:
     specifier: 7.2.1
     version: 7.2.1
   cssnano:
-    specifier: 5.1.11
-    version: 5.1.11(postcss@8.4.31)
+    specifier: 5.1.15
+    version: 5.1.15(postcss@8.4.31)
   dotenv:
     specifier: 16.0.1
     version: 16.0.1
@@ -4646,8 +4646,8 @@ packages:
       postcss: 8.4.31
     dev: true
 
-  /cssnano@5.1.11(postcss@8.4.31):
-    resolution: {integrity: sha512-2nx+O6LvewPo5EBtYrKc8762mMkZRk9cMGIOP4UlkmxHm7ObxH+zvsJJ+qLwPkUc4/yumL/qJkavYi9NlodWIQ==}
+  /cssnano@5.1.15(postcss@8.4.31):
+    resolution: {integrity: sha512-j+BKgDcLDQA+eDifLx0EO4XSA56b7uut3BQFH+wbSaSTuGLuiyTa/wbRYthUXX8LC9mLg+WWKe8h+qJuwTAbHw==}
     engines: {node: ^10 || ^12 || >=14.0}
     peerDependencies:
       postcss: ^8.2.15
@@ -6126,6 +6126,7 @@ packages:
   /metro-react-native-babel-preset@0.76.7(@babel/core@7.18.2):
     resolution: {integrity: sha512-R25wq+VOSorAK3hc07NW0SmN8z9S/IR0Us0oGAsBcMZnsgkbOxu77Mduqf+f4is/wnWHc5+9bfiqdLnaMngiVw==}
     engines: {node: '>=16'}
+    deprecated: Use @react-native/babel-preset instead
     peerDependencies:
       '@babel/core': '*'
     dependencies:
@@ -6175,6 +6176,7 @@ packages:
   /metro-react-native-babel-preset@0.76.7(@babel/core@7.22.17):
     resolution: {integrity: sha512-R25wq+VOSorAK3hc07NW0SmN8z9S/IR0Us0oGAsBcMZnsgkbOxu77Mduqf+f4is/wnWHc5+9bfiqdLnaMngiVw==}
     engines: {node: '>=16'}
+    deprecated: Use @react-native/babel-preset instead
     peerDependencies:
       '@babel/core': '*'
     dependencies:
@@ -7805,6 +7807,7 @@ packages:
 
   /rimraf@2.6.3:
     resolution: {integrity: sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
     dependencies:
       glob: 7.2.3
@@ -8216,6 +8219,7 @@ packages:
 
   /sudo-prompt@9.2.1:
     resolution: {integrity: sha512-Mu7R0g4ig9TUuGSxJavny5Rv0egCEtpZRNMrZaYS1vxkiIxGiGUwoezU3LazIQ+KE04hTrTfNPgxU5gzi7F5Pw==}
+    deprecated: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
     dev: false
 
   /supports-color@5.5.0:

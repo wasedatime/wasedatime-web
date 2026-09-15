@@ -47,7 +47,7 @@
     "@types/react": "17.0.39",
     "@types/react-dom": "17.0.13",
     "autoprefixer": "10.4.7",
-    "cssnano": "5.1.11",
+    "cssnano": "5.1.15",
     "eslint": "8.17.0",
     "eslint-config-custom": "workspace:*",
     "img-loader": "4.0.0",

@@ -191,8 +191,8 @@ devDependencies:
     specifier: 3.0.23
     version: 3.0.23(autoprefixer@10.4.2)(postcss@8.4.31)
   ts-config-single-spa:
-    specifier: 2.0.1
-    version: 2.0.1
+    specifier: 3.0.0
+    version: 3.0.0
   typescript:
     specifier: 4.6.2
     version: 4.6.2
@@ -8357,8 +8357,8 @@ packages:
     hasBin: true
     dev: true
 
-  /ts-config-single-spa@2.0.1:
-    resolution: {integrity: sha512-zGTozFbnMqdoNCsOJ+gqYSJNIm7QUJtN/3o8uyOCuFxwfrBETQ+lyHnvvgVO29IEVhhrnOp6NQAyOIVE8lmqxA==}
+  /ts-config-single-spa@3.0.0:
+    resolution: {integrity: sha512-SS24+FHn9mi0awcoHN4l6uioBxPjgOnwI8adVZeNnw8oXJ8VyAGDqBfRF1EMVtd9Va0bxA8kkeU0SWtLS/Guvg==}
     dev: true
 
   /tslib@1.14.1:

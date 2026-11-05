@@ -18,7 +18,7 @@
     "tailwind:build": "pnpx tailwindcss build -i ./src/styles/styles.css -o ./src/styles/tailwind-build-output.css"
   },
   "devDependencies": {
-    "@babel/core": "7.18.2",
+    "@babel/core": "7.29.6",
     "@babel/eslint-parser": "7.18.2",
     "@babel/plugin-syntax-flow": "7.17.12",
     "@babel/plugin-transform-react-jsx": "7.17.12",

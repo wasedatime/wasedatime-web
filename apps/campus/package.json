@@ -33,7 +33,7 @@
     "dotenv": "^16.0.3",
     "eslint": "8.10.0",
     "eslint-config-custom": "workspace:*",
-    "postcss": "8.4.31",
+    "postcss": "8.5.23",
     "prettier": "2.5.1",
     "prettier-plugin-tailwindcss": "^0.2.8",
     "prop-types": "^15.8.1",

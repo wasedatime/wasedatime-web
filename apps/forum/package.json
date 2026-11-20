@@ -13,7 +13,7 @@
     "lint": "eslint --fix \"src/**/*.{js,jsx,ts,tsx}\" && prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
   },
   "devDependencies": {
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.29.6",
     "@babel/eslint-parser": "7.17.0",
     "@babel/plugin-syntax-flow": "^7.21.4",
     "@babel/plugin-transform-react-jsx": "^7.22.0",
